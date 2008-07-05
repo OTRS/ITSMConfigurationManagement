@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem.pm - all config item function
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.1.1.1 2008-07-05 16:24:13 mh Exp $
+# $Id: ITSMConfigItem.pm,v 1.2 2008-07-05 18:01:02 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -24,7 +24,7 @@ use Kernel::System::Time;
 use Kernel::System::XML;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.1.1.1 $) [1];
+$VERSION = qw($Revision: 1.2 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition', 'Kernel::System::ITSMConfigItem::Number',
@@ -1011,19 +1011,19 @@ sub _FindInciConfigItems {
     return if $Param{ScannedConfigItemIDs}->{ $Param{ConfigItemID} };
     $Param{ScannedConfigItemIDs}->{ $Param{ConfigItemID} }->{Type} = 'operational';
 
-    return 1;  # TODO FIXME
-
     # find all linked config items (childs)
-    my $LinkedConfigItemIDs = $Self->{LinkObject2}->PartnerKeyList(
-        SourceClass  => 'ITSMConfigItem',
-        SourceKey    => $Param{ConfigItemID},
-        PartnerClass => 'ITSMConfigItem',
-        LinkType     => $Param{LinkType},
-        Direction    => 'Both',
+    my %LinkedConfigItemIDs = $Self->{LinkObject}->LinkKeyList(
+        Object1   => 'ITSMConfigItem',
+        Key1      => $Param{ConfigItemID},
+        Object2   => 'ITSMConfigItem',
+        State     => 'Valid',
+        Type      => $Param{LinkType},
+        Direction => 'Both',
+        UserID    => 1,
     );
 
     CONFIGITEMID:
-    for my $ConfigItemID ( @{$LinkedConfigItemIDs} ) {
+    for my $ConfigItemID ( keys %LinkedConfigItemIDs ) {
 
         # get config item data
         my $ConfigItem = $Self->ConfigItemGet(
@@ -1059,16 +1059,18 @@ sub _FindWarnConfigItems {
     $Param{ScannedConfigItemIDs}->{ $Param{ConfigItemID} }->{FindWarn} = 1;
 
     # find all linked config items (parents)
-    my $LinkedConfigItemIDs = $Self->{LinkObject2}->PartnerKeyList(
-        SourceClass  => 'ITSMConfigItem',
-        SourceKey    => $Param{ConfigItemID},
-        PartnerClass => 'ITSMConfigItem',
-        LinkType     => $Param{LinkType},
-        Direction    => 'Both',
+    my %LinkedConfigItemIDs = $Self->{LinkObject}->LinkKeyList(
+        Object1   => 'ITSMConfigItem',
+        Key1      => $Param{ConfigItemID},
+        Object2   => 'ITSMConfigItem',
+        State     => 'Valid',
+        Type      => $Param{LinkType},
+        Direction => 'Both',
+        UserID    => 1,
     );
 
     CONFIGITEMID:
-    for my $ConfigItemID ( @{$LinkedConfigItemIDs} ) {
+    for my $ConfigItemID ( keys %LinkedConfigItemIDs ) {
 
         # start recursion
         $Self->_FindWarnConfigItems(
@@ -1129,6 +1131,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.1.1.1 $ $Date: 2008-07-05 16:24:13 $
+$Revision: 1.2 $ $Date: 2008-07-05 18:01:02 $
 
 =cut
