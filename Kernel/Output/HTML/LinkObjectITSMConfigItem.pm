@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/LinkObjectITSMConfigItem.pm - layout backend module
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: LinkObjectITSMConfigItem.pm,v 1.1.1.1 2008-07-05 16:24:13 mh Exp $
+# $Id: LinkObjectITSMConfigItem.pm,v 1.2 2008-07-05 20:50:15 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -18,7 +18,7 @@ use Kernel::Output::HTML::Layout;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.1.1.1 $) [1];
+$VERSION = qw($Revision: 1.2 $) [1];
 
 =head1 NAME
 
@@ -217,7 +217,7 @@ sub TableCreateComplex {
 
             # extract version data
             my $Version = $ConfigItemList->{$ConfigItemID}->{Data};
-    
+
             my @ItemColumns = (
                 {
                     Type             => 'CurInciSignal',
@@ -246,7 +246,7 @@ sub TableCreateComplex {
                     Content => $Version->{CreateTime},
                 },
             );
-    
+
             push @ItemList, \@ItemColumns;
         }
 
@@ -472,16 +472,25 @@ sub SelectableObjectList {
     return if !$ClassList;
     return if ref $ClassList ne 'HASH';
 
+    my $Counter = 0;
     for my $ClassID ( sort { lc $ClassList->{$a} cmp lc $ClassList->{$b} } keys %{$ClassList} ) {
 
         my $Class = $ClassList->{$ClassID} || '';
         my $Identifier = $Self->{ObjectData}->{Object} . '::' . $ClassID;
 
+        # set selected flag
         my $Selected;
-        if ( $Param{Selected} && $Param{Selected} eq $Identifier ) {
-            $Selected = 1;
+        if ( $Param{Selected} ) {
+
+            if ( $Param{Selected} eq $Identifier ) {
+                $Selected = 1;
+            }
+            elsif ( $Param{Selected} eq $Self->{ObjectData}->{Object} && !$Counter ) {
+                $Selected = 1;
+            }
         }
 
+        # create row
         my %Row = (
             Key      => $Identifier,
             Value    => $Self->{ObjectData}->{Realname} . '::' . $Class,
@@ -489,6 +498,9 @@ sub SelectableObjectList {
         );
 
         push @ObjectSelectList, \%Row;
+    }
+    continue {
+        $Counter++;
     }
 
     return @ObjectSelectList;
@@ -548,7 +560,7 @@ sub SearchOptionList {
         },
     );
 
-    ## add object dependence attributes
+    # add object dependence attributes
     #if ( $Param{SubObject} ) {
     #
     #    # get class list
@@ -662,6 +674,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.1.1.1 $ $Date: 2008-07-05 16:24:13 $
+$Revision: 1.2 $ $Date: 2008-07-05 20:50:15 $
 
 =cut
