@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <otrs_package version="1.0">
-    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.1.1.1 2008-07-05 16:24:13 mh Exp $</CVS>
+    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.2 2008-07-05 21:03:27 mh Exp $</CVS>
     <Name>ITSMConfigurationManagement</Name>
     <Version>0.0.0</Version>
     <Framework>2.3.x</Framework>
     <PackageRequired Version="1.1.91">ITSMCore</PackageRequired>
+    <PackageRequired Version="1.1.91">ITSMIncidentProblemManagement</PackageRequired>
     <Vendor>OTRS AG</Vendor>
     <URL>http://otrs.org/</URL>
     <License>GNU GENERAL PUBLIC LICENSE Version 2, June 1991</License>
@@ -1371,75 +1372,75 @@
         <Insert Table="configitem_definition">
             <Data Key="class_id">33</Data>
             <Data Key="configitem_definition" Type="Quote">[
-{
-     Key => 'Type',
-     Name => 'Type',
-     Searchable => 1,
-     Input => {
-         Type => 'GeneralCatalog',
-         Class => 'ITSM::Location::Type',
-         Translation => 1,
-     },
-},
-{
-     Key => 'Phone1',
-     Name => 'Phone 1',
-     Searchable => 1,
-     Input => {
-         Type => 'Text',
-         Size => 50,
-         MaxLength => 100,
-     },
-},
-{
-     Key => 'Phone2',
-     Name => 'Phone 2',
-     Searchable => 1,
-     Input => {
-         Type => 'Text',
-         Size => 50,
-         MaxLength => 100,
-     },
-},
-{
-     Key => 'Fax',
-     Name => 'Fax',
-     Searchable => 1,
-     Input => {
-         Type => 'Text',
-         Size => 50,
-         MaxLength => 100,
-     },
-},
-{
-     Key => 'E-Mail',
-     Name => 'E-Mail',
-     Searchable => 1,
-     Input => {
-         Type => 'Text',
-         Size => 50,
-         MaxLength => 100,
-     },
-},
-{
-     Key => 'Address',
-     Name => 'Address',
-     Searchable => 1,
-     Input => {
-         Type => 'TextArea',
-     },
-},
-{
-     Key => 'Note',
-     Name => 'Note',
-     Searchable => 1,
-     Input => {
-         Type => 'TextArea',
-         Required => 1,
-     },
-     CountMin => 0,
-     CountDefault => 0,
-},
+    {
+        Key => 'Type',
+        Name => 'Type',
+        Searchable => 1,
+        Input => {
+            Type => 'GeneralCatalog',
+            Class => 'ITSM::Location::Type',
+            Translation => 1,
+        },
+    },
+    {
+        Key => 'Phone1',
+        Name => 'Phone 1',
+        Searchable => 1,
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 100,
+        },
+    },
+    {
+        Key => 'Phone2',
+        Name => 'Phone 2',
+        Searchable => 1,
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 100,
+        },
+    },
+    {
+        Key => 'Fax',
+        Name => 'Fax',
+        Searchable => 1,
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 100,
+        },
+    },
+    {
+        Key => 'E-Mail',
+        Name => 'E-Mail',
+        Searchable => 1,
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 100,
+        },
+    },
+    {
+        Key => 'Address',
+        Name => 'Address',
+        Searchable => 1,
+        Input => {
+            Type => 'TextArea',
+        },
+    },
+    {
+        Key => 'Note',
+        Name => 'Note',
+        Searchable => 1,
+        Input => {
+            Type => 'TextArea',
+            Required => 1,
+        },
+        CountMin => 0,
+        CountDefault => 0,
+    },
 ];</Data>
             <Data Key="version">1</Data>
             <Data Key="create_time">current_timestamp</Data>
@@ -1686,11 +1687,6 @@
         &lt;li&gt;ITSMConfigurationManagement 1.1.91&lt;/li&gt;
         &lt;/ul&gt;
         &lt;br&gt;
-        ATTENTION&lt;br&gt;
-        &lt;br&gt;
-        Make sure your database accepts packages over 5 MB in size. A MySQL database for example accepts packages up to 1 MB by default. In this case, the value for max_allowed_packet must be increased. The recommended maximum size accepted is 20 MB.&lt;br&gt;
-        &lt;br&gt;
-        &lt;br&gt;
         ((enjoy))&lt;br&gt;
         &lt;br&gt;
     </IntroInstallPre>
@@ -1705,11 +1701,6 @@
         &lt;ul&gt;
         &lt;li&gt;ITSMConfigurationManagement 1.1.91&lt;/li&gt;
         &lt;/ul&gt;
-        &lt;br&gt;
-        ACHTUNG&lt;br&gt;
-        &lt;br&gt;
-        Vergewissern Sie sich, dass ihre Datenbank Pakete mit einer Größe von mehr als 5 MB akzeptiert. Eine MySQL Datenbank akzeptiert beispielsweise standartmäßig Pakete mit einer Größe von maximal 1 MB. In diesem Fall muss der Wert für max_allowed_packet erhöht werden. Empfohlen werden 20 MB.&lt;br&gt;
-        &lt;br&gt;
         &lt;br&gt;
         ((enjoy))&lt;br&gt;
         &lt;br&gt;
@@ -1726,11 +1717,6 @@
         &lt;li&gt;ITSMConfigurationManagement 1.1.91&lt;/li&gt;
         &lt;/ul&gt;
         &lt;br&gt;
-        ATTENTION&lt;br&gt;
-        &lt;br&gt;
-        Make sure your database accepts packages over 5 MB in size. A MySQL database for example accepts packages up to 1 MB by default. In this case, the value for max_allowed_packet must be increased. The recommended maximum size accepted is 20 MB.&lt;br&gt;
-        &lt;br&gt;
-        &lt;br&gt;
         ((enjoy))&lt;br&gt;
         &lt;br&gt;
     </IntroUpgradePre>
@@ -1745,11 +1731,6 @@
         &lt;ul&gt;
         &lt;li&gt;ITSMConfigurationManagement 1.1.91&lt;/li&gt;
         &lt;/ul&gt;
-        &lt;br&gt;
-        ACHTUNG&lt;br&gt;
-        &lt;br&gt;
-        Vergewissern Sie sich, dass ihre Datenbank Pakete mit einer Größe von mehr als 5 MB akzeptiert. Eine MySQL Datenbank akzeptiert beispielsweise standartmäßig Pakete mit einer Größe von maximal 1 MB. In diesem Fall muss der Wert für max_allowed_packet erhöht werden. Empfohlen werden 20 MB.&lt;br&gt;
-        &lt;br&gt;
         &lt;br&gt;
         ((enjoy))&lt;br&gt;
         &lt;br&gt;
