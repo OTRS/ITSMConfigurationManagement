@@ -1,0 +1,85 @@
+# --
+# AgentITSMConfigItem.dtl - provides HTML form for AgentITSMConfigItem
+# Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
+# --
+# $Id: AgentITSMConfigItem.dtl,v 1.1.1.1 2008-07-05 16:24:13 mh Exp $
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (GPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
+# --
+
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+  <tr>
+    <td class="mainhead">
+      $Env{"Box0"}$Text{"Overview"}: $Text{"Config Item"} $Env{"Box1"}
+    </td>
+  </tr>
+  <tr>
+    <td class="menu">
+      $Text{"Config Items shown"}: $QData{"Result"} -
+      $Text{"Page"}: $QData{"PageNull"}
+<!-- dtl:block:Page -->
+<!-- dtl:block:PageNormal -->
+      <a href="$Env{"Baselink"}Action=$Env{"Action"}&ClassID=$QData{"ClassID"}&Page=$QData{"Page"}">$QData{"Page"}</a>
+<!-- dtl:block:PageNormal -->
+<!-- dtl:block:PageBold -->
+      <a href="$Env{"Baselink"}Action=$Env{"Action"}&ClassID=$QData{"ClassID"}&Page=$QData{"Page"}"><b>$QData{"Page"}</b></a>
+<!-- dtl:block:PageBold -->
+<!-- dtl:block:Page -->
+      -
+      $Text{"Config Items available"}: $QData{"ConfigItemsAvail"}
+    </td>
+  </tr>
+  <tr>
+    <td class="mainbody">
+      $Text{"Class"}:
+<!-- dtl:block:Menu -->
+<!-- dtl:block:MenuItemSplit -->
+      -
+<!-- dtl:block:MenuItemSplit -->
+<!-- dtl:block:MenuItem -->
+      <a href="$Env{"Baselink"}Action=$Env{"Action"}&ClassID=$QData{"ClassID"}">$QData{"Class"} ($QData{"Count"})</a>&nbsp;
+<!-- dtl:block:MenuItem -->
+<!-- dtl:block:Menu -->
+    </td>
+  </tr>
+<!-- dtl:block:Class -->
+  <tr>
+    <td class="mainhead" align="center">
+      $Env{"Box0"} $Text{"Class"}: $QData{"Class"} $Env{"Box1"}
+    </td>
+  </tr>
+  <tr>
+    <td class="mainbody" align="center">
+      <br>
+      <table border="0" width="800" cellspacing="0" cellpadding="3">
+        <tr class="contenthead">
+          <td class="contentkey" width="20">&nbsp;</td>
+          <td class="contentkey">$Text{"Number"}</td>
+          <td class="contentkey">$Text{"Name"}</td>
+          <td class="contentkey">$Text{"Deployment State"}</td>
+          <td class="contentkey" width="150">$Text{"Last Change"}</td>
+        </tr>
+<!-- dtl:block:ClassRow -->
+        <tr class="contentbody">
+          <td class="$QData{"CssClass"}" align="right">
+            <img border="0" src="$Env{"Images"}$QData{"CurInciSignal"}.png" title="$Text{"$QData{"CurInciState"}"}" alt="$Text{"$QData{"CurInciState"}"}">
+          </td>
+          <td class="$QData{"CssClass"}">
+            <a href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom&ConfigItemID=$QData{"ConfigItemID"}">$QData{"Number"}</a>
+          </td>
+          <td class="$QData{"CssClass"}">$QData{"Name","40"}</td>
+          <td class="$QData{"CssClass"}">$Text{"$QData{"CurDeplState"}"}</td>
+          <td class="$QData{"CssClass"}" width="150">$TimeLong{"$QData{"CreateTime"}"}</td>
+        </tr>
+<!-- dtl:block:ClassRow -->
+        <tr class="contentfooter">
+          <td colspan="5">&nbsp;</td>
+        </tr>
+      </table>
+      <br>
+    </td>
+  </tr>
+<!-- dtl:block:Class -->
+</table>

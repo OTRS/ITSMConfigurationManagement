@@ -1,0 +1,189 @@
+# --
+# AdminITSMConfigItem.dtl - provides HTML form for AdminITSMConfigItem
+# Copyright (C) 2001-2007 OTRS GmbH, http://otrs.org/
+# --
+# $Id: AdminITSMConfigItem.dtl,v 1.1.1.1 2008-07-05 16:24:13 mh Exp $
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (GPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/gpl.txt.
+# --
+
+<!-- dtl:block:Overview -->
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+  <tr>
+    <td colspan="2" class="mainhead">
+      $Env{"Box0"}$Text{"Config Item Management"}$Env{"Box1"}
+    </td>
+  </tr>
+  <tr>
+    <td width="30%" class="mainbody">
+      <form action="$Env{"CGIHandle"}" method="get">
+        <input type="hidden" name="Action" value="$Env{"Action"}">
+        <input type="hidden" name="Subaction" value="DefinitionChange">
+        <table width="100%" cellspacing="0" cellpadding="4">
+          <tr>
+            <td class="contenthead">$Text{"Change Definition"}:</td>
+          </tr>
+          <tr>
+            <td class="contentbody">
+              <table>
+                <tr>
+                  <td class="contentkey">$Text{"Config Item"} $Text{"Class"}: </td>
+                  <td class="contentvalue">$Data{"ClassOptionStrg"}</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td class="contentfooter">
+              <input class="button" type="submit" value="$Text{"Change"}">
+            </td>
+          </tr>
+        </table>
+      </form>
+    </td>
+    <td width="70%" class="mainbody">
+<!-- dtl:block:OverviewList -->
+      <table width="100%" cellspacing="0" cellpadding="4">
+        <tr>
+          <td class="contenthead">$Text{"List"}:</td>
+        </tr>
+        <tr>
+          <td class="contentbody">
+            <table width="100%" border="0" cellspacing="0" cellpadding="3">
+              <tr>
+                <td class="contentkey" width="60%">$Text{"Config Item"} $Text{"Class"}</td>
+              </tr>
+<!-- dtl:block:OverviewListRow -->
+              <tr>
+                <td class="$QData{"CssClass"}">
+                  <a href="$Env{"Baselink"}Action=$Env{"Action"}&Subaction=DefinitionList&ClassID=$QData{"ClassID"}">
+                  $QData{"Name"}
+                  </a>
+                </td>
+              </tr>
+<!-- dtl:block:OverviewListRow -->
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td class="contentfooter">
+            &nbsp;
+          </td>
+        </tr>
+      </table>
+<!-- dtl:block:OverviewList -->
+<!-- dtl:block:DefinitionList -->
+      <table width="100%" cellspacing="0" cellpadding="4">
+        <tr>
+          <td class="contenthead">$Text{"List"}:</td>
+        </tr>
+        <tr>
+          <td class="contentbody">
+            <table width="100%" border="0" cellspacing="0" cellpadding="3">
+              <tr>
+                <td class="contentkey" width="50%">$Text{"Config Item"} $Text{"Class"}</td>
+                <td class="contentkey">$Text{"Version"}</td>
+                <td class="contentkey">$Text{"Created by"}</td>
+                <td class="contentkey">$Text{"Created"}</td>
+              </tr>
+<!-- dtl:block:DefinitionListRow -->
+              <tr>
+                <td class="$QData{"CssClass"}">
+                  <a href="$Env{"Baselink"}Action=$Env{"Action"}&Subaction=DefinitionView&DefinitionID=$QData{"DefinitionID"}">
+                  $QData{"Class"}
+                  </a>
+                </td>
+                <td class="$QData{"CssClass"}">$QData{"Version"}</td>
+                <td class="$QData{"CssClass"}">
+                  <div title="$QData{"UserLogin"} ($Quote{"$Data{"UserFirstname"} $Data{"UserLastname"}"})">
+                  $QData{"UserLogin","15"} ($Quote{"$Data{"UserFirstname"} $Data{"UserLastname"}","15"})
+                  </div>
+                </td>
+                <td class="$QData{"CssClass"}">$TimeLong{"$QData{"CreateTime"}"}</td>
+              </tr>
+<!-- dtl:block:DefinitionListRow -->
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td class="contentfooter">
+            &nbsp;
+          </td>
+        </tr>
+      </table>
+<!-- dtl:block:DefinitionList -->
+<!-- dtl:block:DefinitionView -->
+      <table width="100%" cellspacing="0" cellpadding="4">
+        <tr>
+          <td class="contenthead">$Text{"View"}:</td>
+        </tr>
+        <tr>
+          <td class="contentbody">
+            <table border="0" cellspacing="0" cellpadding="3">
+              <tr>
+                <td class="contentkey">$Text{"Config Item"} $Text{"Class"}: </td>
+                <td class="contentvalue">$QData{"Class"}</td>
+              </tr>
+              <tr>
+                <td class="contentkey">$Text{"Version"}: </td>
+                <td class="contentvalue">$QData{"Version"}</td>
+              </tr>
+              <tr>
+                <td class="contentkey">$Text{"Created by"}: </td>
+                <td class="contentvalue">$QData{"UserLogin"} ($Quote{"$Data{"UserFirstname"} $Data{"UserLastname"}"})</td>
+              </tr>
+              <tr>
+                <td class="contentkey">$Text{"Created"}: </td>
+                <td class="contentvalue">$TimeLong{"$QData{"CreateTime"}"}</td>
+              </tr>
+              <tr>
+                <td class="contentkey">$Text{"Definition"}: </td>
+                <td class="contentvalue">$Data{"DefinitionString"}</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td class="contentfooter">&nbsp;</td>
+        </tr>
+      </table>
+<!-- dtl:block:DefinitionView -->
+<!-- dtl:block:DefinitionChange -->
+      <form action="$Env{"CGIHandle"}" method="post">
+        <input type="hidden" name="Action" value="$Env{"Action"}">
+        <input type="hidden" name="Subaction" value="DefinitionSave">
+        <input type="hidden" name="ClassID" value="$QData{"ClassID"}">
+        <table width="100%" cellspacing="0" cellpadding="4">
+          <tr>
+            <td class="contenthead">$Text{"Change"}:</td>
+          </tr>
+          <tr>
+            <td class="contentbody">
+              <table border="0" cellspacing="0" cellpadding="3">
+                <tr>
+                  <td class="contentkey">$Text{"Config Item"} $Text{"Class"}: </td>
+                  <td class="contentvalue">$QData{"Class"}</td>
+                </tr>
+                <tr>
+                  <td class="contentkey">$Text{"Definition"}: </td>
+                  <td class="contentvalue">
+                    <textarea name="Definition" rows="50" cols="80" wrap="off">$QData{"Definition"}</textarea>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td class="contentfooter">
+              <input class="button" type="submit" value="$Text{"Save"}">
+            </td>
+          </tr>
+        </table>
+      </form>
+<!-- dtl:block:DefinitionChange -->
+    </td>
+  </tr>
+</table>
+<!-- dtl:block:Overview -->

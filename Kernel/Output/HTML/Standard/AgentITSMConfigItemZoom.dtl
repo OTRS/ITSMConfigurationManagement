@@ -1,0 +1,197 @@
+# --
+# AgentITSMConfigItemZoom.dtl - provides HTML form for AgentITSMConfigItemZoom
+# Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
+# --
+# $Id: AgentITSMConfigItemZoom.dtl,v 1.1.1.1 2008-07-05 16:24:13 mh Exp $
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (GPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
+# --
+
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+  <tr>
+    <td class="mainhead">
+      $Env{"Box0"}$Text{"Zoom"} $Text{"Config Item"}: $QData{"Number"} $Env{"Box1"}
+    </td>
+  </tr>
+</table>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+  <tr>
+    <td width="75%" class="menu">
+<!-- dtl:block:Menu -->
+<!-- dtl:block:MenuItemSplit -->
+      -
+<!-- dtl:block:MenuItemSplit -->
+<!-- dtl:block:MenuItem -->
+      <a href="$Env{"Baselink"}$Data{"Link"}" $Data{"LinkParam"} onmouseover="window.status='$JSText{"$QData{"Name"}"}'; return true;" onmouseout="window.status='';" class="menuitem">$Text{"$QData{"Name"}"}</a>
+<!-- dtl:block:MenuItem -->
+<!-- dtl:block:Menu -->
+    </td>
+    <td align="right" width="25%" class="menu"></td>
+  </tr>
+</table>
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+  <tr>
+    <td rowspan="2" valign="top" width="75%" class="mainbody">
+<!-- dtl:block:Tree -->
+      <table border="0" width="100%" cellspacing="0" cellpadding="0">
+<!-- dtl:block:TreeItem -->
+<!-- dtl:block:TreeItemActive -->
+        <tr>
+          <td>
+            <table border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="small" width="10">&nbsp;</td>
+                <td class="small" valign="bottom">
+                  <img border="0" src="$Env{"Images"}$QData{"InciSignal"}-small.png" title="$Text{"$QData{"InciState"}"}" alt="$Text{"$QData{"InciState"}"}">
+                </td>
+                <td class="small">
+                  &nbsp;&nbsp;|--&gt;&gt;&gt;&nbsp;
+                  <i>
+                  <b>
+                  <u>
+                  $QData{"Count"}.
+                  <a href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom&ConfigItemID=$QData{"ConfigItemID"}&VersionID=$QData{"VersionID"}&ShowVersions=$QData{"ShowVersions"}">
+                  $QData{"Name"} ($Text{"$QData{"DeplState"}"})
+                  </a>
+                  $QData{"UserLogin","30"} ($Quote{"$Data{"UserFirstname"} $Data{"UserLastname"}","30"}) - $TimeLong{"$QData{"CreateTime"}"}
+                  </u>
+                  </b>
+                  </i>
+                  &nbsp;
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+<!-- dtl:block:TreeItemActive -->
+<!-- dtl:block:TreeItemInactive -->
+        <tr>
+          <td>
+            <table border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="small" width="10">&nbsp;</td>
+                <td class="small" valign="bottom">
+                  <img border="0" src="$Env{"Images"}$QData{"InciSignal"}-small.png" title="$Text{"$QData{"InciState"}"}" alt="$Text{"$QData{"InciState"}"}">
+                </td>
+                <td class="small">
+                  &nbsp;&nbsp;|--&gt;&nbsp;$QData{"Count"}.
+                  <a href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom&ConfigItemID=$QData{"ConfigItemID"}&VersionID=$QData{"VersionID"}&ShowVersions=$QData{"ShowVersions"}">
+                  $QData{"Name"} ($Text{"$QData{"DeplState"}"})
+                  </a>
+                  $QData{"UserLogin","30"} ($Quote{"$Data{"UserFirstname"} $Data{"UserLastname"}","30"}) - $TimeLong{"$QData{"CreateTime"}"}
+                  &nbsp;
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+<!-- dtl:block:TreeItemInactive -->
+<!-- dtl:block:TreeItem -->
+      </table>
+<!-- dtl:block:Tree -->
+      <hr size="2">
+      <table border="0" width="100%" cellspacing="0" cellpadding="1">
+<!-- dtl:block:Data -->
+        <tr>
+          <td class="contentkey" width="25%">
+            <div title="$Text{"$QData{"Description"}"}">
+<!-- dtl:block:DataNamePre -->
+            &nbsp;&nbsp;&nbsp;&nbsp;
+<!-- dtl:block:DataNamePre -->
+            $Text{"$QData{"Name"}"}:&nbsp;&nbsp;
+            </div>
+          </td>
+          <td class="contentvalue">
+<!-- dtl:block:DataValuePre -->
+            &nbsp;&nbsp;&nbsp;&nbsp;
+<!-- dtl:block:DataValuePre -->
+            $Data{"Value"}
+          </td>
+        </tr>
+<!-- dtl:block:Data -->
+      </table>
+<!-- dtl:block:LinkTableComplex -->
+      <hr size="2">
+      <br>
+      <table width="98%" align="center" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            $Data{"LinkTableStrg"}
+          </td>
+        </tr>
+      </table>
+<!-- dtl:block:LinkTableComplex -->
+      <br>
+    </td>
+    <td width="25%" valign="top" class="menu">
+<!-- dtl:block:Meta -->
+      <table border="0" cellspacing="1" cellpadding="0" width="100%">
+        <tr>
+          <td><b>$Text{"Class"}: </b></td>
+          <td>$QData{"Class","25"}</td>
+        </tr>
+        <tr>
+          <td colspan="2">&nbsp;</td>
+        </tr>
+        <tr>
+          <td><b>$Text{"Name"}: </b></td>
+          <td><div title="$QData{"Name"}">$QData{"Name","25"}</div></td>
+        </tr>
+        <tr>
+          <td><b>$Text{"Current Deployment State"}: </b></td>
+          <td>$Quote{"$Text{"$Data{"CurDeplState"}"}","25"}</td>
+        </tr>
+        <tr>
+          <td><b>$Text{"Current Incident State"}: </b></td>
+          <td>
+            <table border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td>
+                  <div title="$Text{"$QData{"CurInciState"}"}">
+                  $Quote{"$Text{"$Data{"CurInciState"}"}","25"}&nbsp;&nbsp;
+                  </div>
+                </td>
+                <td>
+                  <img border="0" src="$Env{"Images"}$QData{"CurInciSignal"}.png" title="$Text{"$QData{"CurInciState"}"}" alt="$Text{"$QData{"CurInciState"}"}">
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="mainkey">$Text{"Created"}:</td>
+          <td class="mainvalue">$TimeLong{"$Data{"CreateTime"}"}</td>
+        </tr>
+        <tr>
+          <td class="mainkey">$Text{"Created by"}:</td>
+          <td>
+            <div title="$QData{"CreateUserLogin"} ($Quote{"$Data{"CreateUserFirstname"} $Data{"CreateUserLastname"}"})">
+            $QData{"CreateUserLogin","15"} ($Quote{"$Data{"CreateUserFirstname"} $Data{"CreateUserLastname"}","15"})
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="mainkey">$Text{"Last changed"}:</td>
+          <td class="mainvalue">$TimeLong{"$Data{"ChangeTime"}"}</td>
+        </tr>
+        <tr>
+          <td class="mainkey">$Text{"Last changed by"}:</td>
+          <td>
+            <div title="$QData{"ChangeUserLogin"} ($Quote{"$Data{"ChangeUserFirstname"} $Data{"ChangeUserLastname"}"})">
+            $QData{"ChangeUserLogin","15"} ($Quote{"$Data{"ChangeUserFirstname"} $Data{"ChangeUserLastname"}","15"})
+            </div>
+          </td>
+        </tr>
+<!-- dtl:block:LinkTableSimple -->
+        $Data{"LinkTableStrg"}
+<!-- dtl:block:LinkTableSimple -->
+      </table>
+<!-- dtl:block:Meta -->
+    </td>
+  </tr>
+</table>

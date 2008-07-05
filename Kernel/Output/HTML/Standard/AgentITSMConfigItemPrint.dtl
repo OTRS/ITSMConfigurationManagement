@@ -1,0 +1,137 @@
+# --
+# AgentITSMConfigItemPrint.dtl - provides HTML print view
+# Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
+# --
+# $Id: AgentITSMConfigItemPrint.dtl,v 1.1.1.1 2008-07-05 16:24:13 mh Exp $
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (GPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
+# --
+
+<table border="0" cellspacing="1" cellpadding="0" width="100%">
+  <tr>
+    <td class="mainhead">$Text{"ConfigItem"}</td>
+  </tr>
+</table>
+<table border="0" cellspacing="1" cellpadding="10" width="100%">
+  <tr>
+    <td class="contentkey">
+      $Text{"ConfigItem-Info"}:
+      <table border="0" cellspacing="3" cellpadding="0" width="100%">
+        <tr>
+          <td class="contentkey">$Text{"Class"}:</td>
+          <td class="contentvalue">$QData{"Class"}</td>
+          <td class="contentkey">$Text{"Created"}:</td>
+          <td class="contentvalue">$TimeLong{"$Data{"CreateTime"}"}</td>
+        </tr>
+        <tr>
+          <td class="contentkey">$Text{"ConfigItem"}:</td>
+          <td class="contentvalue">$QData{"CurrentName"}</td>
+          <td class="contentkey">$Text{"Created by"}:</td>
+          <td class="contentvalue">$QData{"CreateByUserLogin"} ($QData{"CreateByUserFirstname"} $QData{"CreateByUserLastname"})</td>
+        </tr>
+        <tr>
+          <td class="contentkey">$Text{"Current Deployment State"}:</td>
+          <td class="contentvalue">$Text{"$QData{"CurDeplState"}"}</td>
+          <td class="contentkey">$Text{"Last changed"}:</td>
+          <td class="contentvalue">$TimeLong{"$Data{"ChangeTime"}"}</td>
+        </tr>
+        <tr>
+          <td class="contentkey">$Text{"Current Incident State"}:</td>
+          <td class="contentvalue">$Text{"$QData{"CurInciState"}"}</td>
+          <td class="contentkey">$Text{"Last changed by"}:</td>
+          <td class="contentvalue">$QData{"ChangeByUserLogin"} ($QData{"ChangeByUserFirstname"} $QData{"ChangeByUserLastname"})</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+<!-- dtl:block:Link -->
+  <tr>
+    <td class="contentkey">
+      $Text{"Linked-Object"}:
+      <table border="0" cellspacing="0" cellpadding="0" width="100%">
+        <tr>
+          <td width="50%" valign="top">
+            <table border="0" cellspacing="3" cellpadding="0" width="100%">
+<!-- dtl:block:LinkType -->
+              <tr valign="top">
+                <td class="contentkey" width="20%">$Text{"$Data{"LinkTypeName"}"}:</td>
+                <td class="contentvalue">
+<!-- dtl:block:LinkTypeRow -->
+                  $Data{"LinkStrg"}<br>
+<!-- dtl:block:LinkTypeRow -->
+                </td>
+              </tr>
+<!-- dtl:block:LinkType -->
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+<!-- dtl:block:Link -->
+</table>
+<!-- dtl:block:Version -->
+<table border="0" width="640" cellpadding="0" cellspacing="0" bgcolor="#000000" class="container">
+  <tr>
+    <td>
+      <table border="0" width="640" cellpadding="10" cellspacing="1" bgcolor="#ffffff">
+        <tr>
+          <td>
+            <table border="0" width="100%" cellspacing="0" cellpadding="3">
+              <tr bgcolor="#ffffff">
+                <td valign="top" width="100%" class="contentkey">
+                  $Text{"Version"}&nbsp;$QData{"VersionNumber"}
+                  <table border="0" width="100%" cellspacing="0" cellpadding="1">
+                    <tr>
+                      <td class="contentkey" width="25%">$Text{"Created"}:</td>
+                      <td class="contentvalue">$TimeLong{"$Data{"CreateTime"}"}</td>
+                    </tr>
+                    <tr>
+                      <td class="contentkey">$Text{"Created by"}:</td>
+                      <td class="contentvalue">$QData{"CreateByUserLogin"} ($QData{"CreateByUserFirstname"} $QData{"CreateByUserLastname"})</td>
+                    </tr>
+                    <tr>
+                      <td class="contentkey">&nbsp;</td>
+                      <td class="contentvalue">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td class="contentkey">$Text{"Name"}:</td>
+                      <td class="contentvalue">$QData{"Name"}</td>
+                    </tr>
+                    <tr>
+                      <td class="contentkey">$Text{"Deployment State"}:</td>
+                      <td class="contentvalue">$Text{"$QData{"DeplState"}"}</td>
+                    </tr>
+                    <tr>
+                      <td class="contentkey">$Text{"Incident State"}:</td>
+                      <td class="contentvalue">$Text{"$QData{"InciState"}"}</td>
+                    </tr>
+<!-- dtl:block:VersionRow -->
+                    <tr>
+                      <td class="contentkey">
+<!-- dtl:block:VersionRowNamePre -->
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+<!-- dtl:block:VersionRowNamePre -->
+                        $Text{"$QData{"Name"}"}:&nbsp;&nbsp;
+                      </td>
+                      <td class="contentvalue">
+<!-- dtl:block:VersionRowValuePre -->
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+<!-- dtl:block:VersionRowValuePre -->
+                        $Data{"Value"}
+                      </td>
+                    </tr>
+<!-- dtl:block:VersionRow -->
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- dtl:block:Version -->

@@ -1,0 +1,1757 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<otrs_package version="1.0">
+    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.1.1.1 2008-07-05 16:24:13 mh Exp $</CVS>
+    <Name>ITSMConfigurationManagement</Name>
+    <Version>0.0.0</Version>
+    <Framework>2.3.x</Framework>
+    <PackageRequired Version="1.1.91">ITSMCore</PackageRequired>
+    <Vendor>OTRS AG</Vendor>
+    <URL>http://otrs.org/</URL>
+    <License>GNU GENERAL PUBLIC LICENSE Version 2, June 1991</License>
+    <Description Lang="en">The OTRS::ITSM Configuration Management package.</Description>
+    <Description Lang="de">Das OTRS::ITSM Configuration Management Paket.</Description>
+    <Filelist>
+        <File Permission="644" Location="Kernel/Config/Files/ITSMConfigItem.xml"/>
+        <File Permission="644" Location="Kernel/Language/bg_ITSMConfigItem.pm"/>
+        <File Permission="644" Location="Kernel/Language/cz_ITSMConfigItem.pm"/>
+        <File Permission="644" Location="Kernel/Language/de_ITSMConfigItem.pm"/>
+        <File Permission="644" Location="Kernel/Modules/AdminITSMConfigItem.pm"/>
+        <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItem.pm"/>
+        <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItemAdd.pm"/>
+        <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItemEdit.pm"/>
+        <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItemPrint.pm"/>
+        <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItemSearch.pm"/>
+        <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItemSearchResult.pm"/>
+        <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItemZoom.pm"/>
+        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutCustomer.pm"/>
+        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutDate.pm"/>
+        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutDateTime.pm"/>
+        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutDummy.pm"/>
+        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutGeneralCatalog.pm"/>
+        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutInteger.pm"/>
+        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutText.pm"/>
+        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutTextArea.pm"/>
+        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemMenuGeneric.pm"/>
+        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemMenuVersions.pm"/>
+        <File Permission="644" Location="Kernel/Output/HTML/LayoutITSMConfigItem.pm"/>
+        <File Permission="644" Location="Kernel/Output/HTML/LinkObjectITSMConfigItem.pm"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AdminITSMConfigItem.dtl"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItem.dtl"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemAdd.dtl"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemEdit.dtl"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemPrint.dtl"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemSearch.dtl"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemSearchResult.dtl"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemZoom.dtl"/>
+        <File Permission="644" Location="Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm"/>
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem.pm"/>
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem/Definition.pm"/>
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem/Number.pm"/>
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem/Version.pm"/>
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem/XML.pm"/>
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem/Number/AutoIncrement.pm"/>
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem/XML/Type/Customer.pm"/>
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem/XML/Type/Date.pm"/>
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem/XML/Type/DateTime.pm"/>
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem/XML/Type/Dummy.pm"/>
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem/XML/Type/GeneralCatalog.pm"/>
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem/XML/Type/Integer.pm"/>
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem/XML/Type/Text.pm"/>
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem/XML/Type/TextArea.pm"/>
+        <File Permission="644" Location="Kernel/System/LinkObject/ITSMConfigItem.pm"/>
+        <File Permission="644" Location="Kernel/System/Stats/Dynamic/ITSMConfigItem.pm"/>
+        <File Permission="644" Location="scripts/test/ImportExportObjectITSMConfigItem.t"/>
+        <File Permission="644" Location="scripts/test/ITSMConfigItem.t"/>
+        <File Permission="644" Location="var/httpd/htdocs/images/Standard/itsm_configitem.png"/>
+    </Filelist>
+    <DatabaseInstall>
+        <TableCreate Name="configitem">
+            <Column Name="id" Required="true" PrimaryKey="true" AutoIncrement="true" Type="BIGINT"/>
+            <Column Name="configitem_number" Required="true" Size="100" Type="VARCHAR"/>
+            <Column Name="class_id" Required="true" Type="INTEGER"/>
+            <Column Name="last_version_id" Required="false" Type="BIGINT"/>
+            <Column Name="cur_depl_state_id" Required="false" Type="INTEGER"/>
+            <Column Name="cur_inci_state_id" Required="false" Type="INTEGER"/>
+            <Column Name="create_time" Required="true" Type="DATE"/>
+            <Column Name="create_by" Required="true" Type="INTEGER"/>
+            <Column Name="change_time" Required="true" Type="DATE"/>
+            <Column Name="change_by" Required="true" Type="INTEGER"/>
+            <Unique>
+                <UniqueColumn Name="configitem_number"/>
+            </Unique>
+            <Index Name="configitem_class_id">
+                <IndexColumn Name="class_id"/>
+            </Index>
+            <Index Name="configitem_last_version_id">
+                <IndexColumn Name="last_version_id"/>
+            </Index>
+            <Index Name="configitem_cur_depl_state_id">
+                <IndexColumn Name="cur_depl_state_id"/>
+            </Index>
+            <Index Name="configitem_cur_inci_state_id">
+                <IndexColumn Name="cur_inci_state_id"/>
+            </Index>
+            <ForeignKey ForeignTable="users">
+                <Reference Local="create_by" Foreign="id"/>
+                <Reference Local="change_by" Foreign="id"/>
+            </ForeignKey>
+        </TableCreate>
+        <TableCreate Name="configitem_definition">
+            <Column Name="id" Required="true" PrimaryKey="true" AutoIncrement="true" Type="INTEGER"/>
+            <Column Name="class_id" Required="true" Type="INTEGER"/>
+            <Column Name="configitem_definition" Required="true" Type="LONGBLOB"/>
+            <Column Name="version" Required="true" Type="INTEGER"/>
+            <Column Name="create_time" Required="true" Type="DATE"/>
+            <Column Name="create_by" Required="true" Type="INTEGER"/>
+            <ForeignKey ForeignTable="users">
+                <Reference Local="create_by" Foreign="id"/>
+            </ForeignKey>
+        </TableCreate>
+        <TableCreate Name="configitem_version">
+            <Column Name="id" Required="true" PrimaryKey="true" AutoIncrement="true" Type="BIGINT"/>
+            <Column Name="configitem_id" Required="true" Type="BIGINT"/>
+            <Column Name="name" Required="true" Size="250" Type="VARCHAR"/>
+            <Column Name="definition_id" Required="true" Type="INTEGER"/>
+            <Column Name="depl_state_id" Required="true" Type="INTEGER"/>
+            <Column Name="inci_state_id" Required="false" Type="INTEGER"/>
+            <Column Name="create_time" Required="true" Type="DATE"/>
+            <Column Name="create_by" Required="true" Type="INTEGER"/>
+            <Index Name="configitem_version_configitem_id">
+                <IndexColumn Name="configitem_id"/>
+            </Index>
+            <Index Name="configitem_version_depl_state_id">
+                <IndexColumn Name="depl_state_id"/>
+            </Index>
+            <Index Name="configitem_version_inci_state_id">
+                <IndexColumn Name="inci_state_id"/>
+            </Index>
+            <ForeignKey ForeignTable="configitem">
+                <Reference Local="configitem_id" Foreign="id"/>
+            </ForeignKey>
+            <ForeignKey ForeignTable="configitem_definition">
+                <Reference Local="definition_id" Foreign="id"/>
+            </ForeignKey>
+            <ForeignKey ForeignTable="users">
+                <Reference Local="create_by" Foreign="id"/>
+            </ForeignKey>
+        </TableCreate>
+        <TableCreate Name="configitem_counter">
+            <Column Name="class_id" Required="true" PrimaryKey="true" Type="INTEGER"/>
+            <Column Name="counter_type" Required="true" Size="50" Type="VARCHAR"/>
+            <Column Name="counter" Required="true" Size="50" Type="VARCHAR"/>
+        </TableCreate>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Class</Data>
+            <Data Key="name" Type="Quote">Computer</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Class</Data>
+            <Data Key="name" Type="Quote">Hardware</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Class</Data>
+            <Data Key="name" Type="Quote">Location</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Class</Data>
+            <Data Key="name" Type="Quote">Network</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Class</Data>
+            <Data Key="name" Type="Quote">Software</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::DeploymentState</Data>
+            <Data Key="name" Type="Quote">Expired</Data>
+            <Data Key="functionality" Type="Quote">productive</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::DeploymentState</Data>
+            <Data Key="name" Type="Quote">Inactive</Data>
+            <Data Key="functionality" Type="Quote">postproductive</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::DeploymentState</Data>
+            <Data Key="name" Type="Quote">Maintenance</Data>
+            <Data Key="functionality" Type="Quote">productive</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::DeploymentState</Data>
+            <Data Key="name" Type="Quote">Pilot</Data>
+            <Data Key="functionality" Type="Quote">productive</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::DeploymentState</Data>
+            <Data Key="name" Type="Quote">Planned</Data>
+            <Data Key="functionality" Type="Quote">preproductive</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::DeploymentState</Data>
+            <Data Key="name" Type="Quote">Production</Data>
+            <Data Key="functionality" Type="Quote">productive</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::DeploymentState</Data>
+            <Data Key="name" Type="Quote">Repair</Data>
+            <Data Key="functionality" Type="Quote">productive</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::DeploymentState</Data>
+            <Data Key="name" Type="Quote">Retired</Data>
+            <Data Key="functionality" Type="Quote">postproductive</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::DeploymentState</Data>
+            <Data Key="name" Type="Quote">Review</Data>
+            <Data Key="functionality" Type="Quote">productive</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::DeploymentState</Data>
+            <Data Key="name" Type="Quote">Test/QA</Data>
+            <Data Key="functionality" Type="Quote">preproductive</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::YesNo</Data>
+            <Data Key="name" Type="Quote">Yes</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::YesNo</Data>
+            <Data Key="name" Type="Quote">No</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Computer::Type</Data>
+            <Data Key="name" Type="Quote">Laptop</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Computer::Type</Data>
+            <Data Key="name" Type="Quote">Desktop</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Computer::Type</Data>
+            <Data Key="name" Type="Quote">Phone</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Computer::Type</Data>
+            <Data Key="name" Type="Quote">PDA</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Computer::Type</Data>
+            <Data Key="name" Type="Quote">Server</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Computer::Type</Data>
+            <Data Key="name" Type="Quote">Other</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Hardware::Type</Data>
+            <Data Key="name" Type="Quote">Monitor</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Hardware::Type</Data>
+            <Data Key="name" Type="Quote">Printer</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Hardware::Type</Data>
+            <Data Key="name" Type="Quote">Switch</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Hardware::Type</Data>
+            <Data Key="name" Type="Quote">Router</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Hardware::Type</Data>
+            <Data Key="name" Type="Quote">WLAN Access Point</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Hardware::Type</Data>
+            <Data Key="name" Type="Quote">Security Device</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Hardware::Type</Data>
+            <Data Key="name" Type="Quote">Backup Device</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Hardware::Type</Data>
+            <Data Key="name" Type="Quote">Mouse</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Hardware::Type</Data>
+            <Data Key="name" Type="Quote">Keybord</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Hardware::Type</Data>
+            <Data Key="name" Type="Quote">Camera</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Hardware::Type</Data>
+            <Data Key="name" Type="Quote">Beamer</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Hardware::Type</Data>
+            <Data Key="name" Type="Quote">Modem</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Hardware::Type</Data>
+            <Data Key="name" Type="Quote">PCMCIA Card</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Hardware::Type</Data>
+            <Data Key="name" Type="Quote">USB Device</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Hardware::Type</Data>
+            <Data Key="name" Type="Quote">Docking Station</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Hardware::Type</Data>
+            <Data Key="name" Type="Quote">Scanner</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Hardware::Type</Data>
+            <Data Key="name" Type="Quote">Other</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::Location::Type</Data>
+            <Data Key="name" Type="Quote">Building</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::Location::Type</Data>
+            <Data Key="name" Type="Quote">Office</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::Location::Type</Data>
+            <Data Key="name" Type="Quote">Floor</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::Location::Type</Data>
+            <Data Key="name" Type="Quote">Room</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::Location::Type</Data>
+            <Data Key="name" Type="Quote">Rack</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::Location::Type</Data>
+            <Data Key="name" Type="Quote">Workplace</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::Location::Type</Data>
+            <Data Key="name" Type="Quote">Outlet</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::Location::Type</Data>
+            <Data Key="name" Type="Quote">IT Facility</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::Location::Type</Data>
+            <Data Key="name" Type="Quote">Other</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Network::Type</Data>
+            <Data Key="name" Type="Quote">LAN</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Network::Type</Data>
+            <Data Key="name" Type="Quote">WLAN</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Network::Type</Data>
+            <Data Key="name" Type="Quote">Telco</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Network::Type</Data>
+            <Data Key="name" Type="Quote">GSM</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Network::Type</Data>
+            <Data Key="name" Type="Quote">Other</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Software::Type</Data>
+            <Data Key="name" Type="Quote">Client Application</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Software::Type</Data>
+            <Data Key="name" Type="Quote">Middleware</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Software::Type</Data>
+            <Data Key="name" Type="Quote">Server Application</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Software::Type</Data>
+            <Data Key="name" Type="Quote">Client OS</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Software::Type</Data>
+            <Data Key="name" Type="Quote">Server OS</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Software::Type</Data>
+            <Data Key="name" Type="Quote">Admin Tool</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Software::Type</Data>
+            <Data Key="name" Type="Quote">User Tool</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Software::Type</Data>
+            <Data Key="name" Type="Quote">Embedded</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Software::Type</Data>
+            <Data Key="name" Type="Quote">Other</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Software::LicenceType</Data>
+            <Data Key="name" Type="Quote">Single Licence</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Software::LicenceType</Data>
+            <Data Key="name" Type="Quote">Per User</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Software::LicenceType</Data>
+            <Data Key="name" Type="Quote">Concurrent Users</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Software::LicenceType</Data>
+            <Data Key="name" Type="Quote">Per Processor</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Software::LicenceType</Data>
+            <Data Key="name" Type="Quote">Per Server</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Software::LicenceType</Data>
+            <Data Key="name" Type="Quote">Per Node</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Software::LicenceType</Data>
+            <Data Key="name" Type="Quote">Volume Licence</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Software::LicenceType</Data>
+            <Data Key="name" Type="Quote">Enterprise Licence</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Software::LicenceType</Data>
+            <Data Key="name" Type="Quote">Developer Licence</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Software::LicenceType</Data>
+            <Data Key="name" Type="Quote">Demo</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Software::LicenceType</Data>
+            <Data Key="name" Type="Quote">Time Restricted</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Software::LicenceType</Data>
+            <Data Key="name" Type="Quote">Freeware</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Software::LicenceType</Data>
+            <Data Key="name" Type="Quote">Open Source</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="general_catalog">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Software::LicenceType</Data>
+            <Data Key="name" Type="Quote">Unlimited</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="configitem_definition">
+            <Data Key="class_id">29</Data>
+            <Data Key="configitem_definition" Type="Quote">[
+{
+    Key => 'Vendor',
+    Name => 'Vendor',
+    Searchable => 1,
+    Input => {
+        Type => 'Text',
+        Size => 50,
+        MaxLength => 50,
+    },
+},
+{
+    Key => 'Model',
+    Name => 'Model',
+    Searchable => 1,
+    Input => {
+        Type => 'Text',
+        Size => 50,
+        MaxLength => 50,
+    },
+},
+{
+    Key => 'Description',
+    Name => 'Description',
+    Searchable => 1,
+    Input => {
+        Type => 'TextArea',
+    },
+},
+{
+    Key => 'Type',
+    Name => 'Type',
+    Searchable => 1,
+    Input => {
+        Type => 'GeneralCatalog',
+        Class => 'ITSM::ConfigItem::Computer::Type',
+        Translation => 1,
+    },
+},
+{
+    Key => 'Owner',
+    Name => 'Owner',
+    Searchable => 1,
+    Input => {
+        Type => 'Customer',
+    },
+},
+{
+    Key => 'SerialNumber',
+    Name => 'Serial Number',
+    Searchable => 1,
+    Input => {
+        Type => 'Text',
+        Size => 50,
+        MaxLength => 100,
+    },
+},
+{
+    Key => 'OperatingSystem',
+    Name => 'Operating System',
+    Input => {
+        Type => 'Text',
+        Size => 50,
+        MaxLength => 100,
+    },
+},
+{
+    Key => 'CPU',
+    Name => 'CPU',
+    Input => {
+        Type => 'Text',
+        Size => 50,
+        MaxLength => 100,
+    },
+    CountMax => 16,
+},
+{
+    Key => 'Ram',
+    Name => 'Ram',
+    Input => {
+        Type => 'Text',
+        Size => 50,
+        MaxLength => 100,
+    },
+    CountMax => 10,
+},
+{
+    Key => 'HardDisk',
+    Name => 'Hard Disk',
+    Input => {
+        Type => 'Text',
+        Size => 50,
+        MaxLength => 100,
+    },
+    CountMax => 10,
+    Sub => [
+        {
+            Key => 'Capacity',
+            Name => 'Capacity',
+            Input => {
+                Type => 'Text',
+                Size => 20,
+                MaxLength => 10,
+            },
+        },
+    ],
+},
+{
+    Key => 'FQDN',
+    Name => 'FQDN',
+    Searchable => 1,
+    Input => {
+        Type => 'Text',
+        Size => 50,
+        MaxLength => 100,
+    },
+},
+{
+    Key => 'NIC',
+    Name => 'Network Adapter',
+    Input => {
+        Type => 'Text',
+        Size => 50,
+        MaxLength => 100,
+        Required => 1,
+    },
+    CountMin => 0,
+    CountMax => 10,
+    CountDefault => 1,
+    Sub => [
+        {
+            Key => 'IPoverDHCP',
+            Name => 'IP over DHCP',
+            Input => {
+                Type => 'GeneralCatalog',
+                Class => 'ITSM::ConfigItem::YesNo',
+                Translation => 1,
+                Required => 1,
+            },
+        },
+        {
+            Key => 'IPAddress',
+            Name => 'IP Address',
+            Searchable => 1,
+            Input => {
+                Type => 'Text',
+                Size => 40,
+                MaxLength => 40,
+                Required => 1,
+            },
+            CountMin => 0,
+            CountMax => 20,
+            CountDefault => 0,
+        },
+    ],
+},
+{
+    Key => 'GraphicAdapter',
+    Name => 'Graphic Adapter',
+    Input => {
+        Type => 'Text',
+        Size => 50,
+        MaxLength => 100,
+    },
+},
+{
+    Key => 'OtherEquipment',
+    Name => 'Other Equipment',
+    Input => {
+        Type => 'TextArea',
+        Required => 1,
+    },
+    CountMin => 0,
+    CountDefault => 0,
+},
+{
+    Key => 'WarrantyExpirationDate',
+    Name => 'Warranty Expiration Date',
+    Searchable => 1,
+    Input => {
+        Type => 'Date',
+    },
+},
+{
+    Key => 'InstallDate',
+    Name => 'Install Date',
+    Searchable => 1,
+    Input => {
+        Type => 'Date',
+        Required => 1,
+    },
+    CountMin => 0,
+    CountDefault => 0,
+},
+{
+    Key => 'Note',
+    Name => 'Note',
+    Searchable => 1,
+    Input => {
+        Type => 'TextArea',
+        Required => 1,
+    },
+    CountMin => 0,
+    CountDefault => 0,
+},
+];</Data>
+            <Data Key="version">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+        </Insert>
+        <Insert Table="configitem_definition">
+            <Data Key="class_id">30</Data>
+            <Data Key="configitem_definition" Type="Quote">[
+    {
+        Key => 'Vendor',
+        Name => 'Vendor',
+        Searchable => 1,
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 50,
+        },
+    },
+    {
+        Key => 'Model',
+        Name => 'Model',
+        Searchable => 1,
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 50,
+        },
+    },
+    {
+        Key => 'Description',
+        Name => 'Description',
+        Searchable => 1,
+        Input => {
+            Type => 'TextArea',
+        },
+    },
+    {
+        Key => 'Type',
+        Name => 'Type',
+        Searchable => 1,
+        Input => {
+            Type => 'GeneralCatalog',
+            Class => 'ITSM::ConfigItem::Hardware::Type',
+            Translation => 1,
+        },
+    },
+    {
+        Key => 'Owner',
+        Name => 'Owner',
+        Searchable => 1,
+        Input => {
+            Type => 'Customer',
+        },
+    },
+    {
+        Key => 'SerialNumber',
+        Name => 'Serial Number',
+        Searchable => 1,
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 100,
+        },
+    },
+    {
+        Key => 'WarrantyExpirationDate',
+        Name => 'Warranty Expiration Date',
+        Searchable => 1,
+        Input => {
+            Type => 'Date',
+        },
+    },
+    {
+        Key => 'InstallDate',
+        Name => 'Install Date',
+        Searchable => 1,
+        Input => {
+            Type => 'Date',
+            Required => 1,
+        },
+        CountMin => 0,
+        CountMax => 1,
+        CountDefault => 0,
+    },
+    {
+        Key => 'Note',
+        Name => 'Note',
+        Searchable => 1,
+        Input => {
+            Type => 'TextArea',
+            Required => 1,
+        },
+        CountMin => 0,
+        CountMax => 1,
+        CountDefault => 0,
+    },
+];</Data>
+            <Data Key="version">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+        </Insert>
+        <Insert Table="configitem_definition">
+            <Data Key="class_id">31</Data>
+            <Data Key="configitem_definition" Type="Quote">[
+    {
+        Key => 'Description',
+        Name => 'Description',
+        Searchable => 1,
+        Input => {
+            Type => 'TextArea',
+        },
+    },
+    {
+        Key => 'Type',
+        Name => 'Type',
+        Searchable => 1,
+        Input => {
+            Type => 'GeneralCatalog',
+            Class => 'ITSM::ConfigItem::Network::Type',
+            Translation => 1,
+        },
+    },
+    {
+        Key => 'NetworkAddress',
+        Name => 'Network Address',
+        Searchable => 1,
+        Input => {
+            Type => 'Text',
+            Size => 30,
+            MaxLength => 20,
+            Required => 1,
+        },
+        CountMin => 0,
+        CountMax => 100,
+        CountDefault => 1,
+        Sub => [
+            {
+                Key => 'SubnetMask',
+                Name => 'Subnet Mask',
+                Input => {
+                    Type => 'Text',
+                    Size => 30,
+                    MaxLength => 20,
+                    ValueDefault => '255.255.255.0',
+                    Required => 1,
+                },
+                CountMin => 0,
+                CountMax => 1,
+                CountDefault => 0,
+            },
+            {
+                Key => 'Gateway',
+                Name => 'Gateway',
+                Input => {
+                    Type => 'Text',
+                    Size => 30,
+                    MaxLength => 20,
+                    Required => 1,
+                },
+                CountMin => 0,
+                CountMax => 10,
+                CountDefault => 0,
+            },
+        ],
+    },
+    {
+        Key => 'Note',
+        Name => 'Note',
+        Searchable => 1,
+        Input => {
+            Type => 'TextArea',
+            Required => 1,
+        },
+        CountMin => 0,
+        CountMax => 1,
+        CountDefault => 0,
+    },
+];</Data>
+            <Data Key="version">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+        </Insert>
+        <Insert Table="configitem_definition">
+            <Data Key="class_id">32</Data>
+            <Data Key="configitem_definition" Type="Quote">[
+    {
+        Key => 'Vendor',
+        Name => 'Vendor',
+        Searchable => 1,
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 50,
+        },
+    },
+    {
+        Key => 'Version',
+        Name => 'Version',
+        Searchable => 1,
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 50,
+        },
+    },
+    {
+        Key => 'Description',
+        Name => 'Description',
+        Searchable => 1,
+        Input => {
+            Type => 'TextArea',
+        },
+    },
+    {
+        Key => 'Type',
+        Name => 'Type',
+        Searchable => 1,
+        Input => {
+            Type => 'GeneralCatalog',
+            Class => 'ITSM::ConfigItem::Software::Type',
+            Translation => 1,
+        },
+    },
+    {
+        Key => 'Owner',
+        Name => 'Owner',
+        Searchable => 1,
+        Input => {
+            Type => 'Customer',
+        },
+    },
+    {
+        Key => 'SerialNumber',
+        Name => 'Serial Number',
+        Searchable => 1,
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 50,
+        },
+    },
+    {
+        Key => 'LicenceType',
+        Name => 'Licence Type',
+        Searchable => 1,
+        Input => {
+            Type => 'GeneralCatalog',
+            Class => 'ITSM::ConfigItem::Software::LicenceType',
+            Translation => 1,
+        },
+    },
+    {
+        Key => 'LicenceKey',
+        Name => 'Licence Key',
+        Searchable => 1,
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 50,
+            Required => 1,
+        },
+        CountMin => 0,
+        CountMax => 100,
+        CountDefault => 0,
+        Sub => [
+            {
+                Key => 'Quantity',
+                Name => 'Quantity',
+                Input => {
+                    Type => 'Integer',
+                    ValueMin => 1,
+                    ValueMax => 1000,
+                    ValueDefault => 1,
+                    Required => 1,
+                },
+                CountMin => 0,
+                CountMax => 1,
+                CountDefault => 0,
+            },
+            {
+                Key => 'ExpirationDate',
+                Name => 'Expiration Date',
+                Input => {
+                    Type => 'Date',
+                    Required => 1,
+                },
+                CountMin => 0,
+                CountMax => 1,
+                CountDefault => 0,
+            },
+        ],
+    },
+    {
+        Key => 'Media',
+        Name => 'Media',
+        Input => {
+            Type => 'Text',
+            Size => 40,
+            MaxLength => 20,
+        },
+    },
+    {
+        Key => 'Note',
+        Name => 'Note',
+        Searchable => 1,
+        Input => {
+            Type => 'TextArea',
+            Required => 1,
+        },
+        CountMin => 0,
+        CountMax => 1,
+        CountDefault => 0,
+    },
+];</Data>
+            <Data Key="version">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+        </Insert>
+        <Insert Table="configitem_definition">
+            <Data Key="class_id">33</Data>
+            <Data Key="configitem_definition" Type="Quote">[
+{
+     Key => 'Type',
+     Name => 'Type',
+     Searchable => 1,
+     Input => {
+         Type => 'GeneralCatalog',
+         Class => 'ITSM::Location::Type',
+         Translation => 1,
+     },
+},
+{
+     Key => 'Phone1',
+     Name => 'Phone 1',
+     Searchable => 1,
+     Input => {
+         Type => 'Text',
+         Size => 50,
+         MaxLength => 100,
+     },
+},
+{
+     Key => 'Phone2',
+     Name => 'Phone 2',
+     Searchable => 1,
+     Input => {
+         Type => 'Text',
+         Size => 50,
+         MaxLength => 100,
+     },
+},
+{
+     Key => 'Fax',
+     Name => 'Fax',
+     Searchable => 1,
+     Input => {
+         Type => 'Text',
+         Size => 50,
+         MaxLength => 100,
+     },
+},
+{
+     Key => 'E-Mail',
+     Name => 'E-Mail',
+     Searchable => 1,
+     Input => {
+         Type => 'Text',
+         Size => 50,
+         MaxLength => 100,
+     },
+},
+{
+     Key => 'Address',
+     Name => 'Address',
+     Searchable => 1,
+     Input => {
+         Type => 'TextArea',
+     },
+},
+{
+     Key => 'Note',
+     Name => 'Note',
+     Searchable => 1,
+     Input => {
+         Type => 'TextArea',
+         Required => 1,
+     },
+     CountMin => 0,
+     CountDefault => 0,
+},
+];</Data>
+            <Data Key="version">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+        </Insert>
+    </DatabaseInstall>
+    <DatabaseUpgrade>
+        <TableAlter Name="configitem" Version="0.9.3">
+            <ColumnChange NameOld="number" NameNew="configitem_number" Required="true" Size="100" Type="VARCHAR"/>
+        </TableAlter>
+        <TableAlter Name="configitem" Version="0.9.4">
+            <ColumnAdd Name="current_state_id" Required="false" Type="INTEGER"/>
+        </TableAlter>
+        <TableAlter Name="configitem_counter" Version="0.9.4">
+            <ColumnChange NameOld="type" NameNew="counter_type" Required="true" Size="50" Type="VARCHAR"/>
+        </TableAlter>
+        <TableAlter Name="configitem_definition" Version="0.9.5">
+            <ColumnChange NameOld="definition" NameNew="configitem_definition" Required="true" Type="LONGBLOB"/>
+        </TableAlter>
+        <TableAlter Name="configitem" Version="1.0.90">
+            <ColumnChange NameOld="current_state_id" NameNew="cur_depl_state_id" Required="false" Type="INTEGER"/>
+            <ColumnAdd Name="cur_inci_state_id" Required="false" Type="INTEGER"/>
+        </TableAlter>
+        <TableAlter Name="configitem_version" Version="1.0.90">
+            <ColumnChange NameOld="state_id" NameNew="depl_state_id" Required="true" Type="INTEGER"/>
+            <ColumnAdd Name="inci_state_id" Required="false" Type="INTEGER"/>
+        </TableAlter>
+        <TableAlter Name="configitem_version" Version="1.0.94">
+            <ColumnChange NameOld="inci_state_id" NameNew="inci_state_id" Required="false" Type="INTEGER"/>
+        </TableAlter>
+        <TableAlter Name="configitem" Version="1.0.96">
+            <ColumnAdd Name="last_version_id" Required="false" Type="BIGINT"/>
+        </TableAlter>
+    </DatabaseUpgrade>
+    <DatabaseUninstall>
+        <TableDrop Name="configitem_counter"/>
+        <TableDrop Name="configitem_version"/>
+        <TableDrop Name="configitem_definition"/>
+        <TableDrop Name="configitem"/>
+    </DatabaseUninstall>
+    <CodeInstall>
+        require Kernel::System::Group;
+        $Self-&gt;{GroupObject} = Kernel::System::Group-&gt;new(%{$Self});
+
+        # add group itsm-configitem
+        $Self-&gt;{GroupObject}-&gt;GroupAdd(
+            Name    =&gt; 'itsm-configitem',
+            Comment =&gt; 'Group for ITSM ConfigItem mask access in the agent interface.',
+            ValidID =&gt; 1,
+            UserID  =&gt; 1,
+        );
+
+        # add user root to itsm-configitem admin group
+        $Self-&gt;{GroupObject}-&gt;GroupMemberAdd(
+            GID        =&gt; $Self-&gt;{GroupObject}-&gt;GroupLookup(Group =&gt; 'itsm-configitem'),
+            UID        =&gt; 1,
+            Permission =&gt; {
+                ro        =&gt; 1,
+                move_into =&gt; 1,
+                create    =&gt; 1,
+                owner     =&gt; 1,
+                priority  =&gt; 1,
+                rw        =&gt; 1,
+            },
+            UserID =&gt; 1,
+        );
+    </CodeInstall>
+    <CodeUpgrade>
+        require Kernel::System::Group;
+        $Self-&gt;{GroupObject} = Kernel::System::Group-&gt;new(%{$Self});
+
+        # add group itsm-configitem
+        $Self-&gt;{GroupObject}-&gt;GroupAdd(
+            Name    =&gt; 'itsm-configitem',
+            Comment =&gt; 'Group for ITSM ConfigItem mask access in the agent interface.',
+            ValidID =&gt; 1,
+            UserID  =&gt; 1,
+        );
+
+        # add user root to itsm-configitem admin group
+        $Self-&gt;{GroupObject}-&gt;GroupMemberAdd(
+            GID        =&gt; $Self-&gt;{GroupObject}-&gt;GroupLookup(Group =&gt; 'itsm-configitem'),
+            UID        =&gt; 1,
+            Permission =&gt; {
+                ro        =&gt; 1,
+                move_into =&gt; 1,
+                create    =&gt; 1,
+                owner     =&gt; 1,
+                priority  =&gt; 1,
+                rw        =&gt; 1,
+            },
+            UserID =&gt; 1,
+        );
+
+        # create general catalog object
+        use Kernel::System::GeneralCatalog;
+        $Self-&gt;{GeneralCatalogObject} = Kernel::System::GeneralCatalog-&gt;new(%{$Self});
+
+        # rename general catalog class from state to deployment state
+        $Self-&gt;{GeneralCatalogObject}-&gt;ClassRename(
+            ClassOld =&gt; 'ITSM::ConfigItem::State',
+            ClassNew =&gt; 'ITSM::ConfigItem::DeploymentState',
+        );
+
+        # reset deployment state, if required
+        # define default items
+        my $NewItemData = {
+            33 =&gt; {
+                Name          =&gt; 'Expired',
+                Functionality =&gt; 'productive',
+                ValidID       =&gt; 1,
+                Comment       =&gt; '',
+            },
+            34 =&gt; {
+                Name          =&gt; 'Inactive',
+                Functionality =&gt; 'postproductive',
+                ValidID       =&gt; 1,
+                Comment       =&gt; '',
+            },
+            35 =&gt; {
+                Name          =&gt; 'Maintenance',
+                Functionality =&gt; 'productive',
+                ValidID       =&gt; 1,
+                Comment       =&gt; '',
+            },
+            36 =&gt; {
+                Name          =&gt; 'Pilot',
+                Functionality =&gt; 'productive',
+                ValidID       =&gt; 1,
+                Comment       =&gt; '',
+            },
+            37 =&gt; {
+                Name          =&gt; 'Planned',
+                Functionality =&gt; 'preproductive',
+                ValidID       =&gt; 1,
+                Comment       =&gt; '',
+            },
+            38 =&gt; {
+                Name          =&gt; 'Production',
+                Functionality =&gt; 'productive',
+                ValidID       =&gt; 1,
+                Comment       =&gt; '',
+            },
+            39 =&gt; {
+                Name          =&gt; 'Repair',
+                Functionality =&gt; 'productive',
+                ValidID       =&gt; 1,
+                Comment       =&gt; '',
+            },
+            40 =&gt; {
+                Name          =&gt; 'Retired',
+                Functionality =&gt; 'postproductive',
+                ValidID       =&gt; 1,
+                Comment       =&gt; '',
+            },
+            41 =&gt; {
+                Name          =&gt; 'Review',
+                Functionality =&gt; 'productive',
+                ValidID       =&gt; 1,
+                Comment       =&gt; '',
+            },
+            42 =&gt; {
+                Name          =&gt; 'Test/QA',
+                Functionality =&gt; 'preproductive',
+                ValidID       =&gt; 1,
+                Comment       =&gt; '',
+            },
+        };
+
+        # get functionality list
+        my $FunctionalityList = $Self-&gt;{GeneralCatalogObject}-&gt;FunctionalityList(
+            Class =&gt; 'ITSM::ConfigItem::DeploymentState',
+        );
+
+        my $ExistsPreproductive = 0;
+        my $ExistsProductive = 0;
+        my $ExistsPostproductive = 0;
+
+        # check functionality list
+        for my $Functionality (@{$FunctionalityList}) {
+            if ($Functionality eq 'preproductive') {
+                $ExistsPreproductive = 1;
+            }
+            elsif ($Functionality eq 'productive') {
+                $ExistsProductive = 1;
+            }
+            elsif ($Functionality eq 'postproductive') {
+                $ExistsPostproductive = 1;
+            }
+        }
+
+        # start reset, if required
+        if (!$ExistsPreproductive || !$ExistsProductive || !$ExistsPostproductive) {
+
+            # get item list
+            my $ItemList = $Self-&gt;{GeneralCatalogObject}-&gt;ItemList(
+                Class   =&gt; 'ITSM::ConfigItem::DeploymentState',
+                Valid   =&gt; 0,
+            );
+
+            # reset config item state
+            for my $ItemID (keys %{$ItemList}) {
+                if ($NewItemData-&gt;{$ItemID}) {
+
+                    # update item
+                    $Self-&gt;{GeneralCatalogObject}-&gt;ItemUpdate(
+                        ItemID        =&gt; $ItemID,
+                        Name          =&gt; $NewItemData-&gt;{$ItemID}-&gt;{Name},
+                        Functionality =&gt; $NewItemData-&gt;{$ItemID}-&gt;{Functionality},
+                        ValidID       =&gt; $NewItemData-&gt;{$ItemID}-&gt;{ValidID},
+                        Comment       =&gt; $NewItemData-&gt;{$ItemID}-&gt;{Comment},
+                        UserID        =&gt; 1,
+                    );
+                }
+                else {
+
+                    # get item data
+                    my $CurrentItem = $Self-&gt;{GeneralCatalogObject}-&gt;ItemGet(
+                        ItemID  =&gt; $ItemID,
+                    );
+
+                    # update item
+                    $Self-&gt;{GeneralCatalogObject}-&gt;ItemUpdate(
+                        ItemID        =&gt; $ItemID,
+                        Name          =&gt; $CurrentItem-&gt;{Name},
+                        Functionality =&gt; 'productive',
+                        ValidID       =&gt; $CurrentItem-&gt;{ValidID} || 1,
+                        Comment       =&gt; $CurrentItem-&gt;{Comment},
+                        UserID        =&gt; 1,
+                    );
+                }
+            }
+        }
+    </CodeUpgrade>
+    <IntroInstallPre Title="Install Information" Lang="en">
+        &lt;br&gt;
+        WELCOME&lt;br&gt;
+        &lt;br&gt;
+        You are about to install the OTRS module ITSMConfigurationManagement.&lt;br&gt;
+        &lt;br&gt;
+        &lt;br&gt;
+        REQUIRED OTRS PACKAGES
+        &lt;ul&gt;
+        &lt;li&gt;ITSMConfigurationManagement 1.1.91&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;br&gt;
+        ATTENTION&lt;br&gt;
+        &lt;br&gt;
+        Make sure your database accepts packages over 5 MB in size. A MySQL database for example accepts packages up to 1 MB by default. In this case, the value for max_allowed_packet must be increased. The recommended maximum size accepted is 20 MB.&lt;br&gt;
+        &lt;br&gt;
+        &lt;br&gt;
+        ((enjoy))&lt;br&gt;
+        &lt;br&gt;
+    </IntroInstallPre>
+    <IntroInstallPre Title="Installation Information" Lang="de">
+        &lt;br&gt;
+        WILLKOMMEN&lt;br&gt;
+        &lt;br&gt;
+        Sie sind im Begriff das OTRS-Modul ITSMConfigurationManagement zu installieren.&lt;br&gt;
+        &lt;br&gt;
+        &lt;br&gt;
+        BENÖTIGTE OTRS-PAKETE
+        &lt;ul&gt;
+        &lt;li&gt;ITSMConfigurationManagement 1.1.91&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;br&gt;
+        ACHTUNG&lt;br&gt;
+        &lt;br&gt;
+        Vergewissern Sie sich, dass ihre Datenbank Pakete mit einer Größe von mehr als 5 MB akzeptiert. Eine MySQL Datenbank akzeptiert beispielsweise standartmäßig Pakete mit einer Größe von maximal 1 MB. In diesem Fall muss der Wert für max_allowed_packet erhöht werden. Empfohlen werden 20 MB.&lt;br&gt;
+        &lt;br&gt;
+        &lt;br&gt;
+        ((enjoy))&lt;br&gt;
+        &lt;br&gt;
+    </IntroInstallPre>
+    <IntroUpgradePre Title="Upgrade Information" Lang="en">
+        &lt;br&gt;
+        WELCOME&lt;br&gt;
+        &lt;br&gt;
+        You are about to upgrade the OTRS module ITSMConfigurationManagement.&lt;br&gt;
+        &lt;br&gt;
+        &lt;br&gt;
+        REQUIRED OTRS PACKAGES
+        &lt;ul&gt;
+        &lt;li&gt;ITSMConfigurationManagement 1.1.91&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;br&gt;
+        ATTENTION&lt;br&gt;
+        &lt;br&gt;
+        Make sure your database accepts packages over 5 MB in size. A MySQL database for example accepts packages up to 1 MB by default. In this case, the value for max_allowed_packet must be increased. The recommended maximum size accepted is 20 MB.&lt;br&gt;
+        &lt;br&gt;
+        &lt;br&gt;
+        ((enjoy))&lt;br&gt;
+        &lt;br&gt;
+    </IntroUpgradePre>
+    <IntroUpgradePre Title="Upgrade Information" Lang="de">
+        &lt;br&gt;
+        WILLKOMMEN&lt;br&gt;
+        &lt;br&gt;
+        Sie sind im Begriff das OTRS-Modul ITSMConfigurationManagement zu aktualisieren.&lt;br&gt;
+        &lt;br&gt;
+        &lt;br&gt;
+        BENÖTIGTE OTRS-PAKETE
+        &lt;ul&gt;
+        &lt;li&gt;ITSMConfigurationManagement 1.1.91&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;br&gt;
+        ACHTUNG&lt;br&gt;
+        &lt;br&gt;
+        Vergewissern Sie sich, dass ihre Datenbank Pakete mit einer Größe von mehr als 5 MB akzeptiert. Eine MySQL Datenbank akzeptiert beispielsweise standartmäßig Pakete mit einer Größe von maximal 1 MB. In diesem Fall muss der Wert für max_allowed_packet erhöht werden. Empfohlen werden 20 MB.&lt;br&gt;
+        &lt;br&gt;
+        &lt;br&gt;
+        ((enjoy))&lt;br&gt;
+        &lt;br&gt;
+    </IntroUpgradePre>
+</otrs_package>

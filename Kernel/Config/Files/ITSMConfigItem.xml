@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<otrs_config version="1.0" init="Config">
+    <CVS>$Id: ITSMConfigItem.xml,v 1.1.1.1 2008-07-05 16:24:13 mh Exp $</CVS>
+    <ConfigItem Name="Frontend::Module###AdminITSMConfigItem" Required="0" Valid="1">
+        <Description Lang="en">Frontend module registration for the AdminITSMConfigItem configuration in the admin area.</Description>
+        <Description Lang="de">Frontendmodul-Registration der AdminITSMConfigItem Konfiguration im Admin-Bereich.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Admin::ModuleRegistration</SubGroup>
+        <Setting>
+            <FrontendModuleReg>
+                <Group>admin</Group>
+                <Description>Admin</Description>
+                <Title>Config Item</Title>
+                <NavBarName>Admin</NavBarName>
+                <NavBarModule>
+                    <Module>Kernel::Output::HTML::NavBarModuleAdmin</Module>
+                    <Name>Config Item</Name>
+                    <Block>Block3</Block>
+                    <Prio>495</Prio>
+                </NavBarModule>
+            </FrontendModuleReg>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="Frontend::Module###AgentITSMConfigItem" Required="0" Valid="1">
+        <Description Lang="en">Frontend module registration for the AgentITSMConfigItem object in the agent interface.</Description>
+        <Description Lang="de">Frontendmodul-Registration des AgentITSMConfigItem-Objekts im Agent-Interface.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ModuleRegistration</SubGroup>
+        <Setting>
+            <FrontendModuleReg>
+                <GroupRo>itsm-configitem</GroupRo>
+                <Description>ITSM Config Item Overview</Description>
+                <NavBarName>Config Item</NavBarName>
+                <Title>Config Item</Title>
+                <NavBar>
+                    <Description>Config Item-Area</Description>
+                    <Name>Config Item</Name>
+                    <Type>Menu</Type>
+                    <Block>ItemArea</Block>
+                    <Image>itsm_configitem.png</Image>
+                    <Link>Action=AgentITSMConfigItem</Link>
+                    <NavBar>Config Item</NavBar>
+                    <AccessKey></AccessKey>
+                    <Prio>3200</Prio>
+                </NavBar>
+                <NavBar>
+                    <Description>Overview</Description>
+                    <Name>Overview</Name>
+                    <Image>overview.png</Image>
+                    <Link>Action=AgentITSMConfigItem</Link>
+                    <Type></Type>
+                    <Block></Block>
+                    <NavBar>Config Item</NavBar>
+                    <AccessKey></AccessKey>
+                    <Prio>100</Prio>
+                </NavBar>
+            </FrontendModuleReg>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="Frontend::Module###AgentITSMConfigItemZoom" Required="0" Valid="1">
+        <Description Lang="en">Frontend module registration for the AgentITSMConfigItemZoom object in the agent interface.</Description>
+        <Description Lang="de">Frontendmodul-Registration des AgentITSMConfigItemZoom-Objekts im Agent-Interface.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ModuleRegistration</SubGroup>
+        <Setting>
+            <FrontendModuleReg>
+                <GroupRo>itsm-configitem</GroupRo>
+                <Description>Config Item Zoom</Description>
+                <Title>Zoom</Title>
+                <NavBarName>Config Item</NavBarName>
+            </FrontendModuleReg>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="Frontend::Module###AgentITSMConfigItemEdit" Required="0" Valid="1">
+        <Description Lang="en">Frontend module registration for the AgentITSMConfigItemEdit object in the agent interface.</Description>
+        <Description Lang="de">Frontendmodul-Registration des AgentITSMConfigItemEdit-Objekts im Agent-Interface.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ModuleRegistration</SubGroup>
+        <Setting>
+            <FrontendModuleReg>
+                <Group>itsm-configitem</Group>
+                <Description>Config Item Edit</Description>
+                <Title>Edit</Title>
+                <NavBarName>Config Item</NavBarName>
+            </FrontendModuleReg>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="Frontend::Module###AgentITSMConfigItemPrint" Required="0" Valid="1">
+        <Description Lang="en">Frontend module registration for the AgentITSMConfigItemPrint object in the agent interface.</Description>
+        <Description Lang="de">Frontendmodul-Registration des AgentITSMConfigItemPrint-Objekts im Agent-Interface.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ModuleRegistration</SubGroup>
+        <Setting>
+            <FrontendModuleReg>
+                <GroupRo>itsm-configitem</GroupRo>
+                <Description>Config Item Print</Description>
+                <Title>Print</Title>
+                <NavBarName>Config Item</NavBarName>
+            </FrontendModuleReg>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="Frontend::Module###AgentITSMConfigItemAdd" Required="0" Valid="1">
+        <Description Lang="en">Frontend module registration for the AgentITSMConfigItemAdd object in the agent interface.</Description>
+        <Description Lang="de">Frontendmodul-Registration des AgentITSMConfigItemAdd-Objekts im Agent-Interface.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ModuleRegistration</SubGroup>
+        <Setting>
+            <FrontendModuleReg>
+                <Group>itsm-configitem</Group>
+                <Description>Config Item Add</Description>
+                <Title>Add</Title>
+                <NavBarName>Config Item</NavBarName>
+                <NavBar>
+                    <Description>New</Description>
+                    <Name>New</Name>
+                    <Image>new.png</Image>
+                    <Link>Action=AgentITSMConfigItemAdd</Link>
+                    <Type></Type>
+                    <Block></Block>
+                    <NavBar>Config Item</NavBar>
+                    <AccessKey></AccessKey>
+                    <Prio>200</Prio>
+                </NavBar>
+            </FrontendModuleReg>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="Frontend::Module###AgentITSMConfigItemSearch" Required="0" Valid="1">
+        <Description Lang="en">Frontend module registration for the AgentITSMConfigItemSearch object in the agent interface.</Description>
+        <Description Lang="de">Frontendmodul-Registration des AgentITSMConfigItemSearch-Objekts im Agent-Interface.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ModuleRegistration</SubGroup>
+        <Setting>
+            <FrontendModuleReg>
+                <GroupRo>itsm-configitem</GroupRo>
+                <Description>Search Config Items</Description>
+                <Title>Search</Title>
+                <NavBarName>Config Item</NavBarName>
+                <NavBar>
+                    <Description>Search Config Items</Description>
+                    <Name>Search</Name>
+                    <Image>search.png</Image>
+                    <Link>Action=AgentITSMConfigItemSearch</Link>
+                    <NavBar>Config Item</NavBar>
+                    <Type></Type>
+                    <Block></Block>
+                    <AccessKey></AccessKey>
+                    <Prio>300</Prio>
+                </NavBar>
+            </FrontendModuleReg>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="Frontend::Module###AgentITSMConfigItemSearchResult" Required="0" Valid="1">
+        <Description Lang="en">Frontend module registration for the AgentITSMConfigItemSearchResult object in the agent interface.</Description>
+        <Description Lang="de">Frontendmodul-Registration des AgentITSMConfigItemSearchResult-Objekts im Agent-Interface.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ModuleRegistration</SubGroup>
+        <Setting>
+            <FrontendModuleReg>
+                <GroupRo>itsm-configitem</GroupRo>
+                <Description>Config Item Edit</Description>
+                <Title>SearchResult</Title>
+                <NavBarName>Config Item</NavBarName>
+            </FrontendModuleReg>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###000-Back" Required="0" Valid="1">
+        <Description Lang="en">Module to show back link in config item menu.</Description>
+        <Description Lang="de">Über dieses Modul wird der Zurück-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="Module">Kernel::Output::HTML::ITSMConfigItemMenuGeneric</Item>
+                <Item Key="Name">Back</Item>
+                <Item Key="Description">Back</Item>
+                <Item Key="Action"></Item>
+                <Item Key="Link">$Env{"ITSMConfigItemLastScreenOverview"}</Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###100-Versions" Required="0" Valid="1">
+        <Description Lang="en">Module to show versions link in config item menu.</Description>
+        <Description Lang="de">Über dieses Modul wird der Versionen-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="Module">Kernel::Output::HTML::ITSMConfigItemMenuVersions</Item>
+                <Item Key="Name">Versions</Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###200-Edit" Required="0" Valid="1">
+        <Description Lang="en">Module to show edit link in config item menu.</Description>
+        <Description Lang="de">Über dieses Modul wird der Bearbeiten-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="Module">Kernel::Output::HTML::ITSMConfigItemMenuGeneric</Item>
+                <Item Key="Name">Edit</Item>
+                <Item Key="Description">Edit</Item>
+                <Item Key="Action">AgentITSMConfigItemEdit</Item>
+                <Item Key="Link">Action=AgentITSMConfigItemEdit&amp;ConfigItemID=$QData{"ConfigItemID"}</Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###300-Print" Required="0" Valid="1">
+        <Description Lang="en">Module to show print link in config item menu.</Description>
+        <Description Lang="de">Über dieses Modul wird der Drucken-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="Module">Kernel::Output::HTML::ITSMConfigItemMenuGeneric</Item>
+                <Item Key="Name">Print</Item>
+                <Item Key="Description">Print</Item>
+                <Item Key="Action">AgentITSMConfigItemPrint</Item>
+                <Item Key="Link">Action=AgentITSMConfigItemPrint&amp;ConfigItemID=$QData{"ConfigItemID"}&amp;VersionID=$QData{"VersionID"}</Item>
+                <Item Key="LinkParam">target="print"</Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###400-Link" Required="0" Valid="1">
+        <Description Lang="en">Module to show the link link in config item menu.</Description>
+        <Description Lang="de">Über dieses Modul wird der Verknüpfen-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="Module">Kernel::Output::HTML::ITSMConfigItemMenuGeneric</Item>
+                <Item Key="Name">Link</Item>
+                <Item Key="Description">Link</Item>
+                <Item Key="Action">AgentLinkObject</Item>
+                <Item Key="Link">Action=AgentLinkObject&amp;SourceObject=ITSMConfigItem&amp;SourceKey=$QData{"ConfigItemID"}</Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###500-Duplicate" Required="0" Valid="1">
+        <Description Lang="en">Module to show duplicate link in config item menu.</Description>
+        <Description Lang="de">Über dieses Modul wird der Duplizieren-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="Module">Kernel::Output::HTML::ITSMConfigItemMenuGeneric</Item>
+                <Item Key="Name">Duplicate</Item>
+                <Item Key="Description">Duplicate</Item>
+                <Item Key="Action">AgentITSMConfigItemEdit</Item>
+                <Item Key="Link">Action=AgentITSMConfigItemEdit&amp;DuplicateID=$QData{"ConfigItemID"}&amp;VersionID=$QData{"VersionID"}</Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="ITSMConfigItem::NumberGenerator" Required="1" Valid="1">
+        <Description Lang="en">Select the config item number generator module. "AutoIncrement" increments the config item number, the SystemID, the ConfigItemClassID and the counter are used. The format is "SystemID ConfigItemClassID Counter", e.g. 1205000004, 1205000005.</Description>
+        <Description Lang="de">Auswahl des Moduls zur Generierung der ConfigItem-Nummer. "AutoIncrement" zählt die ConfigItem-Nummer automatisch hoch und verbindet sie mit der SystemID und mit der ConfigItemClassID. Es wird das Format "SystemID ConfigItemClassID Counter" verwendet, z. B. 1205000004, 1205000005.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Core::ITSMConfigItem</SubGroup>
+        <Setting>
+            <Option Location="Kernel/System/ITSMConfigItem/Number/*.pm" SelectedID="Kernel::System::ITSMConfigItem::Number::AutoIncrement"></Option>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="Stats::DynamicObjectRegistration###ITSMConfigItem" Required="0" Valid="1">
+        <Description Lang="en">Here you can decide if the stats module may generate stats about itsm config item stuff.</Description>
+        <Description Lang="de">Hier können Sie festlegen, ob das Statistik-Modul auch Statistiken über ITSM ConfigItem Dinge generieren darf.</Description>
+        <Group>Framework</Group>
+        <SubGroup>Core::Stats</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="Module">Kernel::System::Stats::Dynamic::ITSMConfigItem</Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="ImportExport::ObjectBackendRegistration###ITSMConfigItem" Required="0" Valid="1">
+        <Description Lang="en">Object backend module registration for the import/export modul.</Description>
+        <Description Lang="de">Objekt-Backend Modul Registration des Import/Export Moduls.</Description>
+        <Group>ImportExport</Group>
+        <SubGroup>ObjectBackend::ModuleRegistration</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="Module">Kernel::System::ImportExport::ObjectBackend::ITSMConfigItem</Item>
+                <Item Key="Name">Config Item</Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
+</otrs_config>
