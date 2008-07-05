@@ -2,7 +2,7 @@
 # Kernel/System/LinkObject/ITSMConfigItem.pm - to link config item objects
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.1.1.1 2008-07-05 16:24:13 mh Exp $
+# $Id: ITSMConfigItem.pm,v 1.2 2008-07-05 20:46:27 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -17,7 +17,7 @@ use warnings;
 use Kernel::System::ITSMConfigItem;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.1.1.1 $) [1];
+$VERSION = qw($Revision: 1.2 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -129,6 +129,14 @@ sub ObjectDescriptionGet {
         }
     }
 
+    # create description
+    my %Description = (
+        Normal => 'ConfigItem',
+        Long   => 'ConfigItem',
+    );
+
+    return %Description if $Param{Mode} && $Param{Mode} eq 'Temporary';
+
     # get last version data
     my $VersionData = $Self->{ConfigItemObject}->VersionGet(
         ConfigItemID => $Param{Key},
@@ -141,9 +149,9 @@ sub ObjectDescriptionGet {
     return if !%{$VersionData};
 
     # create description
-    my %Description = (
-        Normal => "ITSMConfigItem# $VersionData->{Number}",
-        Long   => "ITSMConfigItem# $VersionData->{Number}: $VersionData->{Name}",
+    %Description = (
+        Normal => "ConfigItem# $VersionData->{Number}",
+        Long   => "ConfigItem# $VersionData->{Number}: $VersionData->{Name}",
     );
 
     return %Description;
@@ -240,6 +248,7 @@ link add pre event module
         SourceObject => 'ITSMConfigItem',
         SourceKey    => 321,
         Type         => 'Normal',
+        State        => 'Valid',
         UserID       => 1,
     );
 
@@ -250,6 +259,7 @@ link add pre event module
         TargetObject => 'ITSMConfigItem',
         TargetKey    => 321,
         Type         => 'Normal',
+        State        => 'Valid',
         UserID       => 1,
     );
 
@@ -259,7 +269,7 @@ sub LinkAddPre {
     my ( $Self, %Param ) = @_;
 
     # check needed stuff
-    for my $Argument (qw(Key Type UserID)) {
+    for my $Argument (qw(Key Type State UserID)) {
         if ( !$Param{$Argument} ) {
             $Self->{LogObject}->Log(
                 Priority => 'error',
@@ -268,6 +278,8 @@ sub LinkAddPre {
             return;
         }
     }
+
+    return 1 if $Param{State} eq 'Temporary';
 
     return 1;
 }
@@ -281,6 +293,7 @@ link add pre event module
         SourceObject => 'ITSMConfigItem',
         SourceKey    => 321,
         Type         => 'Normal',
+        State        => 'Valid',
         UserID       => 1,
     );
 
@@ -291,6 +304,7 @@ link add pre event module
         TargetObject => 'ITSMConfigItem',
         TargetKey    => 321,
         Type         => 'Normal',
+        State        => 'Valid',
         UserID       => 1,
     );
 
@@ -300,7 +314,7 @@ sub LinkAddPost {
     my ( $Self, %Param ) = @_;
 
     # check needed stuff
-    for my $Argument (qw(Key Type UserID)) {
+    for my $Argument (qw(Key Type State UserID)) {
         if ( !$Param{$Argument} ) {
             $Self->{LogObject}->Log(
                 Priority => 'error',
@@ -309,6 +323,8 @@ sub LinkAddPost {
             return;
         }
     }
+
+    return 1 if $Param{State} eq 'Temporary';
 
     return 1;
 }
@@ -322,6 +338,7 @@ link delete pre event module
         SourceObject => 'ITSMConfigItem',
         SourceKey    => 321,
         Type         => 'Normal',
+        State        => 'Valid',
         UserID       => 1,
     );
 
@@ -332,6 +349,7 @@ link delete pre event module
         TargetObject => 'ITSMConfigItem',
         TargetKey    => 321,
         Type         => 'Normal',
+        State        => 'Valid',
         UserID       => 1,
     );
 
@@ -341,7 +359,7 @@ sub LinkDeletePre {
     my ( $Self, %Param ) = @_;
 
     # check needed stuff
-    for my $Argument (qw(Key Type UserID)) {
+    for my $Argument (qw(Key Type State UserID)) {
         if ( !$Param{$Argument} ) {
             $Self->{LogObject}->Log(
                 Priority => 'error',
@@ -350,6 +368,8 @@ sub LinkDeletePre {
             return;
         }
     }
+
+    return 1 if $Param{State} eq 'Temporary';
 
     return 1;
 }
@@ -363,6 +383,7 @@ link delete post event module
         SourceObject => 'ITSMConfigItem',
         SourceKey    => 321,
         Type         => 'Normal',
+        State        => 'Valid',
         UserID       => 1,
     );
 
@@ -373,6 +394,7 @@ link delete post event module
         TargetObject => 'ITSMConfigItem',
         TargetKey    => 321,
         Type         => 'Normal',
+        State        => 'Valid',
         UserID       => 1,
     );
 
@@ -382,7 +404,7 @@ sub LinkDeletePost {
     my ( $Self, %Param ) = @_;
 
     # check needed stuff
-    for my $Argument (qw(Key Type UserID)) {
+    for my $Argument (qw(Key Type State UserID)) {
         if ( !$Param{$Argument} ) {
             $Self->{LogObject}->Log(
                 Priority => 'error',
@@ -391,6 +413,8 @@ sub LinkDeletePost {
             return;
         }
     }
+
+    return 1 if $Param{State} eq 'Temporary';
 
     return 1;
 }
