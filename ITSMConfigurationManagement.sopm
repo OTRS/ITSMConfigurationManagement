@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <otrs_package version="1.0">
-    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.3 2008-07-06 09:29:35 mh Exp $</CVS>
+    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.4 2008-07-06 18:12:38 mh Exp $</CVS>
     <Name>ITSMConfigurationManagement</Name>
     <Version>0.0.0</Version>
     <Framework>2.3.x</Framework>
@@ -845,7 +845,7 @@
             <Data Key="change_by">1</Data>
         </Insert>
         <Insert Table="configitem_definition">
-            <Data Key="class_id">29</Data>
+            <Data Key="class_id">32</Data>
             <Data Key="configitem_definition" Type="Quote">[
 {
     Key => 'Vendor',
@@ -1057,7 +1057,7 @@
             <Data Key="create_by">1</Data>
         </Insert>
         <Insert Table="configitem_definition">
-            <Data Key="class_id">30</Data>
+            <Data Key="class_id">33</Data>
             <Data Key="configitem_definition" Type="Quote">[
     {
         Key => 'Vendor',
@@ -1153,7 +1153,84 @@
             <Data Key="create_by">1</Data>
         </Insert>
         <Insert Table="configitem_definition">
-            <Data Key="class_id">31</Data>
+            <Data Key="class_id">34</Data>
+            <Data Key="configitem_definition" Type="Quote">[
+    {
+        Key => 'Type',
+        Name => 'Type',
+        Searchable => 1,
+        Input => {
+            Type => 'GeneralCatalog',
+            Class => 'ITSM::Location::Type',
+            Translation => 1,
+        },
+    },
+    {
+        Key => 'Phone1',
+        Name => 'Phone 1',
+        Searchable => 1,
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 100,
+        },
+    },
+    {
+        Key => 'Phone2',
+        Name => 'Phone 2',
+        Searchable => 1,
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 100,
+        },
+    },
+    {
+        Key => 'Fax',
+        Name => 'Fax',
+        Searchable => 1,
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 100,
+        },
+    },
+    {
+        Key => 'E-Mail',
+        Name => 'E-Mail',
+        Searchable => 1,
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 100,
+        },
+    },
+    {
+        Key => 'Address',
+        Name => 'Address',
+        Searchable => 1,
+        Input => {
+            Type => 'TextArea',
+        },
+    },
+    {
+        Key => 'Note',
+        Name => 'Note',
+        Searchable => 1,
+        Input => {
+            Type => 'TextArea',
+            Required => 1,
+        },
+        CountMin => 0,
+        CountDefault => 0,
+    },
+];</Data>
+            <Data Key="version">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+        </Insert>
+        <Insert Table="configitem_definition">
+            <Data Key="class_id">35</Data>
             <Data Key="configitem_definition" Type="Quote">[
     {
         Key => 'Description',
@@ -1234,7 +1311,7 @@
             <Data Key="create_by">1</Data>
         </Insert>
         <Insert Table="configitem_definition">
-            <Data Key="class_id">32</Data>
+            <Data Key="class_id">36</Data>
             <Data Key="configitem_definition" Type="Quote">[
     {
         Key => 'Vendor',
@@ -1362,83 +1439,6 @@
         },
         CountMin => 0,
         CountMax => 1,
-        CountDefault => 0,
-    },
-];</Data>
-            <Data Key="version">1</Data>
-            <Data Key="create_time">current_timestamp</Data>
-            <Data Key="create_by">1</Data>
-        </Insert>
-        <Insert Table="configitem_definition">
-            <Data Key="class_id">33</Data>
-            <Data Key="configitem_definition" Type="Quote">[
-    {
-        Key => 'Type',
-        Name => 'Type',
-        Searchable => 1,
-        Input => {
-            Type => 'GeneralCatalog',
-            Class => 'ITSM::Location::Type',
-            Translation => 1,
-        },
-    },
-    {
-        Key => 'Phone1',
-        Name => 'Phone 1',
-        Searchable => 1,
-        Input => {
-            Type => 'Text',
-            Size => 50,
-            MaxLength => 100,
-        },
-    },
-    {
-        Key => 'Phone2',
-        Name => 'Phone 2',
-        Searchable => 1,
-        Input => {
-            Type => 'Text',
-            Size => 50,
-            MaxLength => 100,
-        },
-    },
-    {
-        Key => 'Fax',
-        Name => 'Fax',
-        Searchable => 1,
-        Input => {
-            Type => 'Text',
-            Size => 50,
-            MaxLength => 100,
-        },
-    },
-    {
-        Key => 'E-Mail',
-        Name => 'E-Mail',
-        Searchable => 1,
-        Input => {
-            Type => 'Text',
-            Size => 50,
-            MaxLength => 100,
-        },
-    },
-    {
-        Key => 'Address',
-        Name => 'Address',
-        Searchable => 1,
-        Input => {
-            Type => 'TextArea',
-        },
-    },
-    {
-        Key => 'Note',
-        Name => 'Note',
-        Searchable => 1,
-        Input => {
-            Type => 'TextArea',
-            Required => 1,
-        },
-        CountMin => 0,
         CountDefault => 0,
     },
 ];</Data>
