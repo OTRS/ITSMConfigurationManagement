@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/LinkObjectITSMConfigItem.pm - layout backend module
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: LinkObjectITSMConfigItem.pm,v 1.2 2008-07-05 20:50:15 mh Exp $
+# $Id: LinkObjectITSMConfigItem.pm,v 1.3 2008-07-07 11:52:57 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -18,7 +18,7 @@ use Kernel::Output::HTML::Layout;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.2 $) [1];
+$VERSION = qw($Revision: 1.3 $) [1];
 
 =head1 NAME
 
@@ -355,8 +355,8 @@ sub TableCreateSimple {
                 my %Item = (
                     Type    => 'Link',
                     Content => 'CI:' . $Version->{Number},
-                    Title   => "ConfigItem# $Version->{Number} ($Version->{Class}): $Version->{Name}",
-                    Link    => '$Env{"Baselink"}Action=AgentITSMConfigItemZoom&ConfigItemID='
+                    Title => "ConfigItem# $Version->{Number} ($Version->{Class}): $Version->{Name}",
+                    Link  => '$Env{"Baselink"}Action=AgentITSMConfigItemZoom&ConfigItemID='
                         . $ConfigItemID,
                 );
 
@@ -413,7 +413,7 @@ sub ContentStringCreate {
             . 'title="$Text{"$QData{"CurInciState"}"}" alt="$Text{"$QData{"CurInciState"}"}">',
         Data => {
             CurInciSignal => $CurInciSignal,
-            CurInciState  => $Content->{Content} || '',
+            CurInciState => $Content->{Content} || '',
         },
     );
 
@@ -674,6 +674,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.2 $ $Date: 2008-07-05 20:50:15 $
+$Revision: 1.3 $ $Date: 2008-07-07 11:52:57 $
 
 =cut
