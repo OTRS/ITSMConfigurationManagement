@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <otrs_package version="1.0">
-    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.5 2008-07-10 15:26:08 mh Exp $</CVS>
+    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.6 2008-07-11 17:42:17 ub Exp $</CVS>
     <Name>ITSMConfigurationManagement</Name>
     <Version>0.0.0</Version>
     <Framework>2.3.x</Framework>
@@ -64,6 +64,7 @@
         <File Permission="644" Location="scripts/test/ImportExportObjectITSMConfigItem.t"/>
         <File Permission="644" Location="scripts/test/ITSMConfigItem.t"/>
         <File Permission="644" Location="var/httpd/htdocs/images/Standard/itsm_configitem.png"/>
+        <File Permission="644" Location="var/packagesetup/ITSMConfigurationManagement.pm"/>
     </Filelist>
     <DatabaseInstall Type="post">
         <TableCreate Name="configitem">
@@ -844,608 +845,6 @@
             <Data Key="change_time">current_timestamp</Data>
             <Data Key="change_by">1</Data>
         </Insert>
-        <Insert Table="configitem_definition">
-            <Data Key="class_id">32</Data>
-            <Data Key="configitem_definition" Type="Quote">[
-{
-    Key => 'Vendor',
-    Name => 'Vendor',
-    Searchable => 1,
-    Input => {
-        Type => 'Text',
-        Size => 50,
-        MaxLength => 50,
-    },
-},
-{
-    Key => 'Model',
-    Name => 'Model',
-    Searchable => 1,
-    Input => {
-        Type => 'Text',
-        Size => 50,
-        MaxLength => 50,
-    },
-},
-{
-    Key => 'Description',
-    Name => 'Description',
-    Searchable => 1,
-    Input => {
-        Type => 'TextArea',
-    },
-},
-{
-    Key => 'Type',
-    Name => 'Type',
-    Searchable => 1,
-    Input => {
-        Type => 'GeneralCatalog',
-        Class => 'ITSM::ConfigItem::Computer::Type',
-        Translation => 1,
-    },
-},
-{
-    Key => 'Owner',
-    Name => 'Owner',
-    Searchable => 1,
-    Input => {
-        Type => 'Customer',
-    },
-},
-{
-    Key => 'SerialNumber',
-    Name => 'Serial Number',
-    Searchable => 1,
-    Input => {
-        Type => 'Text',
-        Size => 50,
-        MaxLength => 100,
-    },
-},
-{
-    Key => 'OperatingSystem',
-    Name => 'Operating System',
-    Input => {
-        Type => 'Text',
-        Size => 50,
-        MaxLength => 100,
-    },
-},
-{
-    Key => 'CPU',
-    Name => 'CPU',
-    Input => {
-        Type => 'Text',
-        Size => 50,
-        MaxLength => 100,
-    },
-    CountMax => 16,
-},
-{
-    Key => 'Ram',
-    Name => 'Ram',
-    Input => {
-        Type => 'Text',
-        Size => 50,
-        MaxLength => 100,
-    },
-    CountMax => 10,
-},
-{
-    Key => 'HardDisk',
-    Name => 'Hard Disk',
-    Input => {
-        Type => 'Text',
-        Size => 50,
-        MaxLength => 100,
-    },
-    CountMax => 10,
-    Sub => [
-        {
-            Key => 'Capacity',
-            Name => 'Capacity',
-            Input => {
-                Type => 'Text',
-                Size => 20,
-                MaxLength => 10,
-            },
-        },
-    ],
-},
-{
-    Key => 'FQDN',
-    Name => 'FQDN',
-    Searchable => 1,
-    Input => {
-        Type => 'Text',
-        Size => 50,
-        MaxLength => 100,
-    },
-},
-{
-    Key => 'NIC',
-    Name => 'Network Adapter',
-    Input => {
-        Type => 'Text',
-        Size => 50,
-        MaxLength => 100,
-        Required => 1,
-    },
-    CountMin => 0,
-    CountMax => 10,
-    CountDefault => 1,
-    Sub => [
-        {
-            Key => 'IPoverDHCP',
-            Name => 'IP over DHCP',
-            Input => {
-                Type => 'GeneralCatalog',
-                Class => 'ITSM::ConfigItem::YesNo',
-                Translation => 1,
-                Required => 1,
-            },
-        },
-        {
-            Key => 'IPAddress',
-            Name => 'IP Address',
-            Searchable => 1,
-            Input => {
-                Type => 'Text',
-                Size => 40,
-                MaxLength => 40,
-                Required => 1,
-            },
-            CountMin => 0,
-            CountMax => 20,
-            CountDefault => 0,
-        },
-    ],
-},
-{
-    Key => 'GraphicAdapter',
-    Name => 'Graphic Adapter',
-    Input => {
-        Type => 'Text',
-        Size => 50,
-        MaxLength => 100,
-    },
-},
-{
-    Key => 'OtherEquipment',
-    Name => 'Other Equipment',
-    Input => {
-        Type => 'TextArea',
-        Required => 1,
-    },
-    CountMin => 0,
-    CountDefault => 0,
-},
-{
-    Key => 'WarrantyExpirationDate',
-    Name => 'Warranty Expiration Date',
-    Searchable => 1,
-    Input => {
-        Type => 'Date',
-    },
-},
-{
-    Key => 'InstallDate',
-    Name => 'Install Date',
-    Searchable => 1,
-    Input => {
-        Type => 'Date',
-        Required => 1,
-    },
-    CountMin => 0,
-    CountDefault => 0,
-},
-{
-    Key => 'Note',
-    Name => 'Note',
-    Searchable => 1,
-    Input => {
-        Type => 'TextArea',
-        Required => 1,
-    },
-    CountMin => 0,
-    CountDefault => 0,
-},
-];</Data>
-            <Data Key="version">1</Data>
-            <Data Key="create_time">current_timestamp</Data>
-            <Data Key="create_by">1</Data>
-        </Insert>
-        <Insert Table="configitem_definition">
-            <Data Key="class_id">33</Data>
-            <Data Key="configitem_definition" Type="Quote">[
-    {
-        Key => 'Vendor',
-        Name => 'Vendor',
-        Searchable => 1,
-        Input => {
-            Type => 'Text',
-            Size => 50,
-            MaxLength => 50,
-        },
-    },
-    {
-        Key => 'Model',
-        Name => 'Model',
-        Searchable => 1,
-        Input => {
-            Type => 'Text',
-            Size => 50,
-            MaxLength => 50,
-        },
-    },
-    {
-        Key => 'Description',
-        Name => 'Description',
-        Searchable => 1,
-        Input => {
-            Type => 'TextArea',
-        },
-    },
-    {
-        Key => 'Type',
-        Name => 'Type',
-        Searchable => 1,
-        Input => {
-            Type => 'GeneralCatalog',
-            Class => 'ITSM::ConfigItem::Hardware::Type',
-            Translation => 1,
-        },
-    },
-    {
-        Key => 'Owner',
-        Name => 'Owner',
-        Searchable => 1,
-        Input => {
-            Type => 'Customer',
-        },
-    },
-    {
-        Key => 'SerialNumber',
-        Name => 'Serial Number',
-        Searchable => 1,
-        Input => {
-            Type => 'Text',
-            Size => 50,
-            MaxLength => 100,
-        },
-    },
-    {
-        Key => 'WarrantyExpirationDate',
-        Name => 'Warranty Expiration Date',
-        Searchable => 1,
-        Input => {
-            Type => 'Date',
-        },
-    },
-    {
-        Key => 'InstallDate',
-        Name => 'Install Date',
-        Searchable => 1,
-        Input => {
-            Type => 'Date',
-            Required => 1,
-        },
-        CountMin => 0,
-        CountMax => 1,
-        CountDefault => 0,
-    },
-    {
-        Key => 'Note',
-        Name => 'Note',
-        Searchable => 1,
-        Input => {
-            Type => 'TextArea',
-            Required => 1,
-        },
-        CountMin => 0,
-        CountMax => 1,
-        CountDefault => 0,
-    },
-];</Data>
-            <Data Key="version">1</Data>
-            <Data Key="create_time">current_timestamp</Data>
-            <Data Key="create_by">1</Data>
-        </Insert>
-        <Insert Table="configitem_definition">
-            <Data Key="class_id">34</Data>
-            <Data Key="configitem_definition" Type="Quote">[
-    {
-        Key => 'Type',
-        Name => 'Type',
-        Searchable => 1,
-        Input => {
-            Type => 'GeneralCatalog',
-            Class => 'ITSM::Location::Type',
-            Translation => 1,
-        },
-    },
-    {
-        Key => 'Phone1',
-        Name => 'Phone 1',
-        Searchable => 1,
-        Input => {
-            Type => 'Text',
-            Size => 50,
-            MaxLength => 100,
-        },
-    },
-    {
-        Key => 'Phone2',
-        Name => 'Phone 2',
-        Searchable => 1,
-        Input => {
-            Type => 'Text',
-            Size => 50,
-            MaxLength => 100,
-        },
-    },
-    {
-        Key => 'Fax',
-        Name => 'Fax',
-        Searchable => 1,
-        Input => {
-            Type => 'Text',
-            Size => 50,
-            MaxLength => 100,
-        },
-    },
-    {
-        Key => 'E-Mail',
-        Name => 'E-Mail',
-        Searchable => 1,
-        Input => {
-            Type => 'Text',
-            Size => 50,
-            MaxLength => 100,
-        },
-    },
-    {
-        Key => 'Address',
-        Name => 'Address',
-        Searchable => 1,
-        Input => {
-            Type => 'TextArea',
-        },
-    },
-    {
-        Key => 'Note',
-        Name => 'Note',
-        Searchable => 1,
-        Input => {
-            Type => 'TextArea',
-            Required => 1,
-        },
-        CountMin => 0,
-        CountDefault => 0,
-    },
-];</Data>
-            <Data Key="version">1</Data>
-            <Data Key="create_time">current_timestamp</Data>
-            <Data Key="create_by">1</Data>
-        </Insert>
-        <Insert Table="configitem_definition">
-            <Data Key="class_id">35</Data>
-            <Data Key="configitem_definition" Type="Quote">[
-    {
-        Key => 'Description',
-        Name => 'Description',
-        Searchable => 1,
-        Input => {
-            Type => 'TextArea',
-        },
-    },
-    {
-        Key => 'Type',
-        Name => 'Type',
-        Searchable => 1,
-        Input => {
-            Type => 'GeneralCatalog',
-            Class => 'ITSM::ConfigItem::Network::Type',
-            Translation => 1,
-        },
-    },
-    {
-        Key => 'NetworkAddress',
-        Name => 'Network Address',
-        Searchable => 1,
-        Input => {
-            Type => 'Text',
-            Size => 30,
-            MaxLength => 20,
-            Required => 1,
-        },
-        CountMin => 0,
-        CountMax => 100,
-        CountDefault => 1,
-        Sub => [
-            {
-                Key => 'SubnetMask',
-                Name => 'Subnet Mask',
-                Input => {
-                    Type => 'Text',
-                    Size => 30,
-                    MaxLength => 20,
-                    ValueDefault => '255.255.255.0',
-                    Required => 1,
-                },
-                CountMin => 0,
-                CountMax => 1,
-                CountDefault => 0,
-            },
-            {
-                Key => 'Gateway',
-                Name => 'Gateway',
-                Input => {
-                    Type => 'Text',
-                    Size => 30,
-                    MaxLength => 20,
-                    Required => 1,
-                },
-                CountMin => 0,
-                CountMax => 10,
-                CountDefault => 0,
-            },
-        ],
-    },
-    {
-        Key => 'Note',
-        Name => 'Note',
-        Searchable => 1,
-        Input => {
-            Type => 'TextArea',
-            Required => 1,
-        },
-        CountMin => 0,
-        CountMax => 1,
-        CountDefault => 0,
-    },
-];</Data>
-            <Data Key="version">1</Data>
-            <Data Key="create_time">current_timestamp</Data>
-            <Data Key="create_by">1</Data>
-        </Insert>
-        <Insert Table="configitem_definition">
-            <Data Key="class_id">36</Data>
-            <Data Key="configitem_definition" Type="Quote">[
-    {
-        Key => 'Vendor',
-        Name => 'Vendor',
-        Searchable => 1,
-        Input => {
-            Type => 'Text',
-            Size => 50,
-            MaxLength => 50,
-        },
-    },
-    {
-        Key => 'Version',
-        Name => 'Version',
-        Searchable => 1,
-        Input => {
-            Type => 'Text',
-            Size => 50,
-            MaxLength => 50,
-        },
-    },
-    {
-        Key => 'Description',
-        Name => 'Description',
-        Searchable => 1,
-        Input => {
-            Type => 'TextArea',
-        },
-    },
-    {
-        Key => 'Type',
-        Name => 'Type',
-        Searchable => 1,
-        Input => {
-            Type => 'GeneralCatalog',
-            Class => 'ITSM::ConfigItem::Software::Type',
-            Translation => 1,
-        },
-    },
-    {
-        Key => 'Owner',
-        Name => 'Owner',
-        Searchable => 1,
-        Input => {
-            Type => 'Customer',
-        },
-    },
-    {
-        Key => 'SerialNumber',
-        Name => 'Serial Number',
-        Searchable => 1,
-        Input => {
-            Type => 'Text',
-            Size => 50,
-            MaxLength => 50,
-        },
-    },
-    {
-        Key => 'LicenceType',
-        Name => 'Licence Type',
-        Searchable => 1,
-        Input => {
-            Type => 'GeneralCatalog',
-            Class => 'ITSM::ConfigItem::Software::LicenceType',
-            Translation => 1,
-        },
-    },
-    {
-        Key => 'LicenceKey',
-        Name => 'Licence Key',
-        Searchable => 1,
-        Input => {
-            Type => 'Text',
-            Size => 50,
-            MaxLength => 50,
-            Required => 1,
-        },
-        CountMin => 0,
-        CountMax => 100,
-        CountDefault => 0,
-        Sub => [
-            {
-                Key => 'Quantity',
-                Name => 'Quantity',
-                Input => {
-                    Type => 'Integer',
-                    ValueMin => 1,
-                    ValueMax => 1000,
-                    ValueDefault => 1,
-                    Required => 1,
-                },
-                CountMin => 0,
-                CountMax => 1,
-                CountDefault => 0,
-            },
-            {
-                Key => 'ExpirationDate',
-                Name => 'Expiration Date',
-                Input => {
-                    Type => 'Date',
-                    Required => 1,
-                },
-                CountMin => 0,
-                CountMax => 1,
-                CountDefault => 0,
-            },
-        ],
-    },
-    {
-        Key => 'Media',
-        Name => 'Media',
-        Input => {
-            Type => 'Text',
-            Size => 40,
-            MaxLength => 20,
-        },
-    },
-    {
-        Key => 'Note',
-        Name => 'Note',
-        Searchable => 1,
-        Input => {
-            Type => 'TextArea',
-            Required => 1,
-        },
-        CountMin => 0,
-        CountMax => 1,
-        CountDefault => 0,
-    },
-];</Data>
-            <Data Key="version">1</Data>
-            <Data Key="create_time">current_timestamp</Data>
-            <Data Key="create_by">1</Data>
-        </Insert>
     </DatabaseInstall>
     <DatabaseUninstall Type="pre">
         <TableDrop Name="configitem_counter"/>
@@ -1454,199 +853,145 @@
         <TableDrop Name="configitem"/>
     </DatabaseUninstall>
     <CodeInstall Type="post">
-        require Kernel::System::Group;
-        $Self-&gt;{GroupObject} = Kernel::System::Group-&gt;new(%{$Self});
 
-        # add group itsm-configitem
-        $Self-&gt;{GroupObject}-&gt;GroupAdd(
-            Name    =&gt; 'itsm-configitem',
-            Comment =&gt; 'Group for ITSM ConfigItem mask access in the agent interface.',
-            ValidID =&gt; 1,
-            UserID  =&gt; 1,
-        );
+        # define function name
+        my $FunctionName = 'CodeInstall';
 
-        # add user root to itsm-configitem admin group
-        $Self-&gt;{GroupObject}-&gt;GroupMemberAdd(
-            GID        =&gt; $Self-&gt;{GroupObject}-&gt;GroupLookup(Group =&gt; 'itsm-configitem'),
-            UID        =&gt; 1,
-            Permission =&gt; {
-                ro        =&gt; 1,
-                move_into =&gt; 1,
-                create    =&gt; 1,
-                owner     =&gt; 1,
-                priority  =&gt; 1,
-                rw        =&gt; 1,
-            },
-            UserID =&gt; 1,
-        );
+        # create the package name
+        my $CodeModule = 'var::packagesetup::' . $Param{Structure}-&gt;{Name}-&gt;{Content};
+
+        # load the module
+        if ( $Self-&gt;{MainObject}-&gt;Require($CodeModule) ) {
+
+            # create new instance
+            my $CodeObject = $CodeModule-&gt;new( %{$Self} );
+
+            if ($CodeObject) {
+
+                # start methode
+                if ( !$CodeObject-&gt;$FunctionName(%{$Self}) ) {
+                    $Self-&gt;{LogObject}-&gt;Log(
+                        Priority =&gt; 'error',
+                        Message  =&gt; "Could not call method $FunctionName() on $CodeModule.pm."
+                    );
+                }
+            }
+
+            # error handling
+            else {
+                $Self-&gt;{LogObject}-&gt;Log(
+                    Priority =&gt; 'error',
+                    Message  =&gt; "Could not call method new() on $CodeModule.pm."
+                );
+            }
+        }
+
     </CodeInstall>
+    <CodeReinstall Type="post">
+
+        # define function name
+        my $FunctionName = 'CodeReinstall';
+
+        # create the package name
+        my $CodeModule = 'var::packagesetup::' . $Param{Structure}-&gt;{Name}-&gt;{Content};
+
+        # load the module
+        if ( $Self-&gt;{MainObject}-&gt;Require($CodeModule) ) {
+
+            # create new instance
+            my $CodeObject = $CodeModule-&gt;new( %{$Self} );
+
+            if ($CodeObject) {
+
+                # start methode
+                if ( !$CodeObject-&gt;$FunctionName(%{$Self}) ) {
+                    $Self-&gt;{LogObject}-&gt;Log(
+                        Priority =&gt; 'error',
+                        Message  =&gt; "Could not call method $FunctionName() on $CodeModule.pm."
+                    );
+                }
+            }
+
+            # error handling
+            else {
+                $Self-&gt;{LogObject}-&gt;Log(
+                    Priority =&gt; 'error',
+                    Message  =&gt; "Could not call method new() on $CodeModule.pm."
+                );
+            }
+        }
+
+    </CodeReinstall>
     <CodeUpgrade Type="post">
-        require Kernel::System::Group;
-        $Self-&gt;{GroupObject} = Kernel::System::Group-&gt;new(%{$Self});
 
-        # add group itsm-configitem
-        $Self-&gt;{GroupObject}-&gt;GroupAdd(
-            Name    =&gt; 'itsm-configitem',
-            Comment =&gt; 'Group for ITSM ConfigItem mask access in the agent interface.',
-            ValidID =&gt; 1,
-            UserID  =&gt; 1,
-        );
+        # define function name
+        my $FunctionName = 'CodeUpgrade';
 
-        # add user root to itsm-configitem admin group
-        $Self-&gt;{GroupObject}-&gt;GroupMemberAdd(
-            GID        =&gt; $Self-&gt;{GroupObject}-&gt;GroupLookup(Group =&gt; 'itsm-configitem'),
-            UID        =&gt; 1,
-            Permission =&gt; {
-                ro        =&gt; 1,
-                move_into =&gt; 1,
-                create    =&gt; 1,
-                owner     =&gt; 1,
-                priority  =&gt; 1,
-                rw        =&gt; 1,
-            },
-            UserID =&gt; 1,
-        );
+        # create the package name
+        my $CodeModule = 'var::packagesetup::' . $Param{Structure}-&gt;{Name}-&gt;{Content};
 
-        # create general catalog object
-        use Kernel::System::GeneralCatalog;
-        $Self-&gt;{GeneralCatalogObject} = Kernel::System::GeneralCatalog-&gt;new(%{$Self});
+        # load the module
+        if ( $Self-&gt;{MainObject}-&gt;Require($CodeModule) ) {
 
-        # rename general catalog class from state to deployment state
-        $Self-&gt;{GeneralCatalogObject}-&gt;ClassRename(
-            ClassOld =&gt; 'ITSM::ConfigItem::State',
-            ClassNew =&gt; 'ITSM::ConfigItem::DeploymentState',
-        );
+            # create new instance
+            my $CodeObject = $CodeModule-&gt;new( %{$Self} );
 
-        # reset deployment state, if required
-        # define default items
-        my $NewItemData = {
-            33 =&gt; {
-                Name          =&gt; 'Expired',
-                Functionality =&gt; 'productive',
-                ValidID       =&gt; 1,
-                Comment       =&gt; '',
-            },
-            34 =&gt; {
-                Name          =&gt; 'Inactive',
-                Functionality =&gt; 'postproductive',
-                ValidID       =&gt; 1,
-                Comment       =&gt; '',
-            },
-            35 =&gt; {
-                Name          =&gt; 'Maintenance',
-                Functionality =&gt; 'productive',
-                ValidID       =&gt; 1,
-                Comment       =&gt; '',
-            },
-            36 =&gt; {
-                Name          =&gt; 'Pilot',
-                Functionality =&gt; 'productive',
-                ValidID       =&gt; 1,
-                Comment       =&gt; '',
-            },
-            37 =&gt; {
-                Name          =&gt; 'Planned',
-                Functionality =&gt; 'preproductive',
-                ValidID       =&gt; 1,
-                Comment       =&gt; '',
-            },
-            38 =&gt; {
-                Name          =&gt; 'Production',
-                Functionality =&gt; 'productive',
-                ValidID       =&gt; 1,
-                Comment       =&gt; '',
-            },
-            39 =&gt; {
-                Name          =&gt; 'Repair',
-                Functionality =&gt; 'productive',
-                ValidID       =&gt; 1,
-                Comment       =&gt; '',
-            },
-            40 =&gt; {
-                Name          =&gt; 'Retired',
-                Functionality =&gt; 'postproductive',
-                ValidID       =&gt; 1,
-                Comment       =&gt; '',
-            },
-            41 =&gt; {
-                Name          =&gt; 'Review',
-                Functionality =&gt; 'productive',
-                ValidID       =&gt; 1,
-                Comment       =&gt; '',
-            },
-            42 =&gt; {
-                Name          =&gt; 'Test/QA',
-                Functionality =&gt; 'preproductive',
-                ValidID       =&gt; 1,
-                Comment       =&gt; '',
-            },
-        };
+            if ($CodeObject) {
 
-        # get functionality list
-        my $FunctionalityList = $Self-&gt;{GeneralCatalogObject}-&gt;FunctionalityList(
-            Class =&gt; 'ITSM::ConfigItem::DeploymentState',
-        );
-
-        my $ExistsPreproductive = 0;
-        my $ExistsProductive = 0;
-        my $ExistsPostproductive = 0;
-
-        # check functionality list
-        for my $Functionality (@{$FunctionalityList}) {
-            if ($Functionality eq 'preproductive') {
-                $ExistsPreproductive = 1;
-            }
-            elsif ($Functionality eq 'productive') {
-                $ExistsProductive = 1;
-            }
-            elsif ($Functionality eq 'postproductive') {
-                $ExistsPostproductive = 1;
-            }
-        }
-
-        # start reset, if required
-        if (!$ExistsPreproductive || !$ExistsProductive || !$ExistsPostproductive) {
-
-            # get item list
-            my $ItemList = $Self-&gt;{GeneralCatalogObject}-&gt;ItemList(
-                Class   =&gt; 'ITSM::ConfigItem::DeploymentState',
-                Valid   =&gt; 0,
-            );
-
-            # reset config item state
-            for my $ItemID (keys %{$ItemList}) {
-                if ($NewItemData-&gt;{$ItemID}) {
-
-                    # update item
-                    $Self-&gt;{GeneralCatalogObject}-&gt;ItemUpdate(
-                        ItemID        =&gt; $ItemID,
-                        Name          =&gt; $NewItemData-&gt;{$ItemID}-&gt;{Name},
-                        Functionality =&gt; $NewItemData-&gt;{$ItemID}-&gt;{Functionality},
-                        ValidID       =&gt; $NewItemData-&gt;{$ItemID}-&gt;{ValidID},
-                        Comment       =&gt; $NewItemData-&gt;{$ItemID}-&gt;{Comment},
-                        UserID        =&gt; 1,
-                    );
-                }
-                else {
-
-                    # get item data
-                    my $CurrentItem = $Self-&gt;{GeneralCatalogObject}-&gt;ItemGet(
-                        ItemID  =&gt; $ItemID,
-                    );
-
-                    # update item
-                    $Self-&gt;{GeneralCatalogObject}-&gt;ItemUpdate(
-                        ItemID        =&gt; $ItemID,
-                        Name          =&gt; $CurrentItem-&gt;{Name},
-                        Functionality =&gt; 'productive',
-                        ValidID       =&gt; $CurrentItem-&gt;{ValidID} || 1,
-                        Comment       =&gt; $CurrentItem-&gt;{Comment},
-                        UserID        =&gt; 1,
+                # start methode
+                if ( !$CodeObject-&gt;$FunctionName(%{$Self}) ) {
+                    $Self-&gt;{LogObject}-&gt;Log(
+                        Priority =&gt; 'error',
+                        Message  =&gt; "Could not call method $FunctionName() on $CodeModule.pm."
                     );
                 }
             }
+
+            # error handling
+            else {
+                $Self-&gt;{LogObject}-&gt;Log(
+                    Priority =&gt; 'error',
+                    Message  =&gt; "Could not call method new() on $CodeModule.pm."
+                );
+            }
         }
+
     </CodeUpgrade>
+    <CodeUninstall Type="post">
+
+        # define function name
+        my $FunctionName = 'CodeUninstall';
+
+        # create the package name
+        my $CodeModule = 'var::packagesetup::' . $Param{Structure}-&gt;{Name}-&gt;{Content};
+
+        # load the module
+        if ( $Self-&gt;{MainObject}-&gt;Require($CodeModule) ) {
+
+            # create new instance
+            my $CodeObject = $CodeModule-&gt;new( %{$Self} );
+
+            if ($CodeObject) {
+
+                # start methode
+                if ( !$CodeObject-&gt;$FunctionName(%{$Self}) ) {
+                    $Self-&gt;{LogObject}-&gt;Log(
+                        Priority =&gt; 'error',
+                        Message  =&gt; "Could not call method $FunctionName() on $CodeModule.pm."
+                    );
+                }
+            }
+
+            # error handling
+            else {
+                $Self-&gt;{LogObject}-&gt;Log(
+                    Priority =&gt; 'error',
+                    Message  =&gt; "Could not call method new() on $CodeModule.pm."
+                );
+            }
+        }
+
+    </CodeUninstall>
     <IntroInstall Type="pre" Title="Install Information" Lang="en">
         &lt;br&gt;
         WELCOME&lt;br&gt;
