@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem.pm - all config item function
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.2 2008-07-05 18:01:02 mh Exp $
+# $Id: ITSMConfigItem.pm,v 1.3 2008-07-11 15:17:26 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -24,7 +24,7 @@ use Kernel::System::Time;
 use Kernel::System::XML;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.2 $) [1];
+$VERSION = qw($Revision: 1.3 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition', 'Kernel::System::ITSMConfigItem::Number',
@@ -33,7 +33,7 @@ $VERSION = qw($Revision: 1.2 $) [1];
 
 =head1 NAME
 
-Kernel::System::ConfigItem - config item lib
+Kernel::System::ITSMConfigItem - config item lib
 
 =head1 SYNOPSIS
 
@@ -63,7 +63,7 @@ create an object
         LogObject    => $LogObject,
         MainObject   => $MainObject,
     );
-    my $ConfigItemObject = Kernel::System::ConfigItem->new(
+    my $ConfigItemObject = Kernel::System::ITSMConfigItem->new(
         ConfigObject => $ConfigObject,
         LogObject    => $LogObject,
         DBObject     => $DBObject,
@@ -1131,6 +1131,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.2 $ $Date: 2008-07-05 18:01:02 $
+$Revision: 1.3 $ $Date: 2008-07-11 15:17:26 $
 
 =cut
