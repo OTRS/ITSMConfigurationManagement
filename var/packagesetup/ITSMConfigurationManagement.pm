@@ -2,7 +2,7 @@
 # ITSMConfigurationManagement.pm - code to excecute during package installation
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigurationManagement.pm,v 1.1 2008-07-11 17:42:31 ub Exp $
+# $Id: ITSMConfigurationManagement.pm,v 1.2 2008-07-12 15:52:20 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -17,9 +17,10 @@ use warnings;
 use Kernel::System::Group;
 use Kernel::System::GeneralCatalog;
 use Kernel::System::ITSMConfigItem;
+use Kernel::System::Valid;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.1 $) [1];
+$VERSION = qw($Revision: 1.2 $) [1];
 
 =head1 NAME
 
@@ -74,6 +75,7 @@ sub new {
     $Self->{GroupObject}          = Kernel::System::Group->new( %{$Self} );
     $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
     $Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new( %{$Self} );
+    $Self->{ValidObject}          = Kernel::System::Valid->new( %{$Self} );
 
     return $Self;
 }
@@ -89,31 +91,11 @@ run the code install part
 sub CodeInstall {
     my ( $Self, %Param ) = @_;
 
-    # add group and user
-    {
-        # add group itsm-configitem
-        $Self->{GroupObject}->GroupAdd(
-            Name    => 'itsm-configitem',
-            Comment => 'Group for ITSM ConfigItem mask access in the agent interface.',
-            ValidID => 1,
-            UserID  => 1,
-        );
-
-        # add user root to itsm-configitem admin group
-        $Self->{GroupObject}->GroupMemberAdd(
-            GID        => $Self->{GroupObject}->GroupLookup(Group => 'itsm-configitem'),
-            UID        => 1,
-            Permission => {
-                ro        => 1,
-                move_into => 1,
-                create    => 1,
-                owner     => 1,
-                priority  => 1,
-                rw        => 1,
-            },
-            UserID => 1,
-        );
-    }
+    # add the group itsm-configitem
+    $Self->_GroupAdd(
+        Name        => 'itsm-configitem',
+        Description => 'Group for ITSM ConfigItem mask access in the agent interface.',
+    );
 
     # install stats
     $Self->_AddConfigItemDefinitions();
@@ -132,31 +114,11 @@ run the code reinstall part
 sub CodeReinstall {
     my ( $Self, %Param ) = @_;
 
-    # add group and user
-    {
-        # add group itsm-configitem
-        $Self->{GroupObject}->GroupAdd(
-            Name    => 'itsm-configitem',
-            Comment => 'Group for ITSM ConfigItem mask access in the agent interface.',
-            ValidID => 1,
-            UserID  => 1,
-        );
-
-        # add user root to itsm-configitem admin group
-        $Self->{GroupObject}->GroupMemberAdd(
-            GID        => $Self->{GroupObject}->GroupLookup(Group => 'itsm-configitem'),
-            UID        => 1,
-            Permission => {
-                ro        => 1,
-                move_into => 1,
-                create    => 1,
-                owner     => 1,
-                priority  => 1,
-                rw        => 1,
-            },
-            UserID => 1,
-        );
-    }
+    # add the group itsm-configitem
+    $Self->_GroupAdd(
+        Name        => 'itsm-configitem',
+        Description => 'Group for ITSM ConfigItem mask access in the agent interface.',
+    );
 
     # install stats
     $Self->_AddConfigItemDefinitions();
@@ -175,32 +137,6 @@ run the code upgrade part
 sub CodeUpgrade {
     my ( $Self, %Param ) = @_;
 
-    # add group and user
-    {
-        # add group itsm-configitem
-        $Self->{GroupObject}->GroupAdd(
-            Name    => 'itsm-configitem',
-            Comment => 'Group for ITSM ConfigItem mask access in the agent interface.',
-            ValidID => 1,
-            UserID  => 1,
-        );
-
-        # add user root to itsm-configitem admin group
-        $Self->{GroupObject}->GroupMemberAdd(
-            GID        => $Self->{GroupObject}->GroupLookup(Group => 'itsm-configitem'),
-            UID        => 1,
-            Permission => {
-                ro        => 1,
-                move_into => 1,
-                create    => 1,
-                owner     => 1,
-                priority  => 1,
-                rw        => 1,
-            },
-            UserID => 1,
-        );
-    }
-
     # install stats
     $Self->_AddConfigItemDefinitions();
 
@@ -217,6 +153,137 @@ run the code uninstall part
 
 sub CodeUninstall {
     my ( $Self, %Param ) = @_;
+
+    # deactivate the group itsm-configitem
+    $Self->_GroupDeactivate(
+        Name => 'itsm-configitem',
+    );
+
+    return 1;
+}
+
+=item _GroupAdd()
+
+add a group
+
+    my $Result = $CodeObject->_GroupAdd(
+        Name        => 'the-group-name',
+        Description => 'The group description.',
+    );
+
+=cut
+
+sub _GroupAdd {
+    my ( $Self, %Param ) = @_;
+
+    # check needed stuff
+    for my $Argument (qw(Name Description)) {
+        if ( !$Param{$Argument} ) {
+            $Self->{LogObject}->Log(
+                Priority => 'error',
+                Message  => "Need $Argument!",
+            );
+            return;
+        }
+    }
+
+    # get valid list
+    my %ValidList = $Self->{ValidObject}->ValidList();
+    my %ValidListReverse = reverse %ValidList;
+
+    # check if group already exists
+    my $GroupID = $Self->{GroupObject}->GroupLookup(
+        Group => $Param{Name},
+    );
+
+    # reactivate the group
+    if ($GroupID) {
+
+        # get current group data
+        my %GroupData = $Self->{GroupObject}->GroupGet(
+            ID => $GroupID,
+        );
+
+        # reactivate group
+        $Self->{GroupObject}->GroupUpdate(
+            %GroupData,
+            ValidID => $ValidListReverse{valid},
+        );
+
+        return 1;
+    }
+
+    # add the group
+    else {
+        return if !$Self->{GroupObject}->GroupAdd(
+            Name    => $Param{Name},
+            Comment => $Param{Description},
+            ValidID => $ValidListReverse{valid},
+            UserID  => 1,
+        );
+    }
+
+    # add user root to the group
+    $Self->{GroupObject}->GroupMemberAdd(
+        GID        => $Self->{GroupObject}->GroupLookup(Group => $Param{Name}),
+        UID        => 1,
+        Permission => {
+            ro        => 1,
+            move_into => 1,
+            create    => 1,
+            owner     => 1,
+            priority  => 1,
+            rw        => 1,
+        },
+        UserID => 1,
+    );
+
+    return 1;
+}
+
+=item _GroupDeactivate()
+
+deactivate a group
+
+    my $Result = $CodeObject->_GroupDeactivate(
+        Name => 'the-group-name',
+    );
+
+=cut
+
+sub _GroupDeactivate {
+    my ( $Self, %Param ) = @_;
+
+    # check needed stuff
+    if ( !$Param{Name} ) {
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => 'Need Name!',
+        );
+        return;
+    }
+
+    # lookup group id
+    my $GroupID = $Self->{GroupObject}->GroupLookup(
+        Group => $Param{Name},
+    );
+
+    return if !$GroupID;
+
+    # get valid list
+    my %ValidList = $Self->{ValidObject}->ValidList();
+    my %ValidListReverse = reverse %ValidList;
+
+    # get current group data
+    my %GroupData = $Self->{GroupObject}->GroupGet(
+        ID => $GroupID,
+    );
+
+    # deactivate group
+    $Self->{GroupObject}->GroupUpdate(
+        %GroupData,
+        ValidID => $ValidListReverse{invalid},
+    );
 
     return 1;
 }
@@ -856,6 +923,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.1 $ $Date: 2008-07-11 17:42:31 $
+$Revision: 1.2 $ $Date: 2008-07-12 15:52:20 $
 
 =cut
