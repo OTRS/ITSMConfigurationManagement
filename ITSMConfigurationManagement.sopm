@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <otrs_package version="1.0">
-    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.7 2008-07-13 13:24:15 mh Exp $</CVS>
+    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.8 2008-07-14 13:55:38 mh Exp $</CVS>
     <Name>ITSMConfigurationManagement</Name>
     <Version>0.0.0</Version>
     <Framework>2.3.x</Framework>
@@ -92,6 +92,14 @@
             <Index Name="configitem_cur_inci_state_id">
                 <IndexColumn Name="cur_inci_state_id"/>
             </Index>
+            <ForeignKey ForeignTable="general_catalog">
+                <Reference Local="class_id" Foreign="id"/>
+                <Reference Local="cur_depl_state_id" Foreign="id"/>
+                <Reference Local="cur_inci_state_id" Foreign="id"/>
+            </ForeignKey>
+            <ForeignKey ForeignTable="configitem_version">
+                <Reference Local="last_version_id" Foreign="id"/>
+            </ForeignKey>
             <ForeignKey ForeignTable="users">
                 <Reference Local="create_by" Foreign="id"/>
                 <Reference Local="change_by" Foreign="id"/>
@@ -104,6 +112,9 @@
             <Column Name="version" Required="true" Type="INTEGER"/>
             <Column Name="create_time" Required="true" Type="DATE"/>
             <Column Name="create_by" Required="true" Type="INTEGER"/>
+            <ForeignKey ForeignTable="general_catalog">
+                <Reference Local="class_id" Foreign="id"/>
+            </ForeignKey>
             <ForeignKey ForeignTable="users">
                 <Reference Local="create_by" Foreign="id"/>
             </ForeignKey>
@@ -132,6 +143,10 @@
             <ForeignKey ForeignTable="configitem_definition">
                 <Reference Local="definition_id" Foreign="id"/>
             </ForeignKey>
+            <ForeignKey ForeignTable="general_catalog">
+                <Reference Local="depl_state_id" Foreign="id"/>
+                <Reference Local="inci_state_id" Foreign="id"/>
+            </ForeignKey>
             <ForeignKey ForeignTable="users">
                 <Reference Local="create_by" Foreign="id"/>
             </ForeignKey>
@@ -140,6 +155,9 @@
             <Column Name="class_id" Required="true" PrimaryKey="true" Type="INTEGER"/>
             <Column Name="counter_type" Required="true" Size="50" Type="VARCHAR"/>
             <Column Name="counter" Required="true" Size="50" Type="VARCHAR"/>
+            <ForeignKey ForeignTable="general_catalog">
+                <Reference Local="class_id" Foreign="id"/>
+            </ForeignKey>
         </TableCreate>
         <Insert Table="general_catalog">
             <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Class</Data>
