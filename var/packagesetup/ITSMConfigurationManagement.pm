@@ -2,7 +2,7 @@
 # ITSMConfigurationManagement.pm - code to excecute during package installation
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigurationManagement.pm,v 1.3 2008-07-14 13:46:30 mh Exp $
+# $Id: ITSMConfigurationManagement.pm,v 1.4 2008-07-14 14:15:37 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -17,10 +17,11 @@ use warnings;
 use Kernel::System::Group;
 use Kernel::System::GeneralCatalog;
 use Kernel::System::ITSMConfigItem;
+use Kernel::System::LinkObject;
 use Kernel::System::Valid;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.3 $) [1];
+$VERSION = qw($Revision: 1.4 $) [1];
 
 =head1 NAME
 
@@ -75,6 +76,7 @@ sub new {
     $Self->{GroupObject}          = Kernel::System::Group->new( %{$Self} );
     $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
     $Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new( %{$Self} );
+    $Self->{LinkObject}           = Kernel::System::LinkObject->new( %{$Self} );
     $Self->{ValidObject}          = Kernel::System::Valid->new( %{$Self} );
 
     return $Self;
@@ -153,6 +155,9 @@ run the code uninstall part
 
 sub CodeUninstall {
     my ( $Self, %Param ) = @_;
+
+    # delete all links with config items
+    $Self->_LinkDelete();
 
     # deactivate the group itsm-configitem
     $Self->_GroupDeactivate(
@@ -317,395 +322,422 @@ sub _AddConfigItemDefinitions {
     # config item definitions
     my %Definition = (
         Computer => "[
+    {
+        Key => 'Vendor',
+        Name => 'Vendor',
+        Searchable => 1,
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 50,
+        },
+    },
+    {
+        Key => 'Model',
+        Name => 'Model',
+        Searchable => 1,
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 50,
+        },
+    },
+    {
+        Key => 'Description',
+        Name => 'Description',
+        Searchable => 1,
+        Input => {
+            Type => 'TextArea',
+        },
+    },
+    {
+        Key => 'Type',
+        Name => 'Type',
+        Searchable => 1,
+        Input => {
+            Type => 'GeneralCatalog',
+            Class => 'ITSM::ConfigItem::Computer::Type',
+            Translation => 1,
+        },
+    },
+    {
+        Key => 'Owner',
+        Name => 'Owner',
+        Searchable => 1,
+        Input => {
+            Type => 'Customer',
+        },
+    },
+    {
+        Key => 'SerialNumber',
+        Name => 'Serial Number',
+        Searchable => 1,
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 100,
+        },
+    },
+    {
+        Key => 'OperatingSystem',
+        Name => 'Operating System',
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 100,
+        },
+    },
+    {
+        Key => 'CPU',
+        Name => 'CPU',
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 100,
+        },
+        CountMax => 16,
+    },
+    {
+        Key => 'Ram',
+        Name => 'Ram',
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 100,
+        },
+        CountMax => 10,
+    },
+    {
+        Key => 'HardDisk',
+        Name => 'Hard Disk',
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 100,
+        },
+        CountMax => 10,
+        Sub => [
             {
-                Key => 'Vendor',
-                Name => 'Vendor',
-                Searchable => 1,
+                Key => 'Capacity',
+                Name => 'Capacity',
                 Input => {
                     Type => 'Text',
-                    Size => 50,
-                    MaxLength => 50,
+                    Size => 20,
+                    MaxLength => 10,
                 },
             },
+        ],
+    },
+    {
+        Key => 'FQDN',
+        Name => 'FQDN',
+        Searchable => 1,
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 100,
+        },
+    },
+    {
+        Key => 'NIC',
+        Name => 'Network Adapter',
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 100,
+            Required => 1,
+        },
+        CountMin => 0,
+        CountMax => 10,
+        CountDefault => 1,
+        Sub => [
             {
-                Key => 'Model',
-                Name => 'Model',
-                Searchable => 1,
-                Input => {
-                    Type => 'Text',
-                    Size => 50,
-                    MaxLength => 50,
-                },
-            },
-            {
-                Key => 'Description',
-                Name => 'Description',
-                Searchable => 1,
-                Input => {
-                    Type => 'TextArea',
-                },
-            },
-            {
-                Key => 'Type',
-                Name => 'Type',
-                Searchable => 1,
+                Key => 'IPoverDHCP',
+                Name => 'IP over DHCP',
                 Input => {
                     Type => 'GeneralCatalog',
-                    Class => 'ITSM::ConfigItem::Computer::Type',
+                    Class => 'ITSM::ConfigItem::YesNo',
                     Translation => 1,
+                    Required => 1,
                 },
             },
             {
-                Key => 'Owner',
-                Name => 'Owner',
-                Searchable => 1,
-                Input => {
-                    Type => 'Customer',
-                },
-            },
-            {
-                Key => 'SerialNumber',
-                Name => 'Serial Number',
+                Key => 'IPAddress',
+                Name => 'IP Address',
                 Searchable => 1,
                 Input => {
                     Type => 'Text',
-                    Size => 50,
-                    MaxLength => 100,
-                },
-            },
-            {
-                Key => 'OperatingSystem',
-                Name => 'Operating System',
-                Input => {
-                    Type => 'Text',
-                    Size => 50,
-                    MaxLength => 100,
-                },
-            },
-            {
-                Key => 'CPU',
-                Name => 'CPU',
-                Input => {
-                    Type => 'Text',
-                    Size => 50,
-                    MaxLength => 100,
-                },
-                CountMax => 16,
-            },
-            {
-                Key => 'Ram',
-                Name => 'Ram',
-                Input => {
-                    Type => 'Text',
-                    Size => 50,
-                    MaxLength => 100,
-                },
-                CountMax => 10,
-            },
-            {
-                Key => 'HardDisk',
-                Name => 'Hard Disk',
-                Input => {
-                    Type => 'Text',
-                    Size => 50,
-                    MaxLength => 100,
-                },
-                CountMax => 10,
-                Sub => [
-                    {
-                        Key => 'Capacity',
-                        Name => 'Capacity',
-                        Input => {
-                            Type => 'Text',
-                            Size => 20,
-                            MaxLength => 10,
-                        },
-                    },
-                ],
-            },
-            {
-                Key => 'FQDN',
-                Name => 'FQDN',
-                Searchable => 1,
-                Input => {
-                    Type => 'Text',
-                    Size => 50,
-                    MaxLength => 100,
-                },
-            },
-            {
-                Key => 'NIC',
-                Name => 'Network Adapter',
-                Input => {
-                    Type => 'Text',
-                    Size => 50,
-                    MaxLength => 100,
+                    Size => 40,
+                    MaxLength => 40,
                     Required => 1,
                 },
                 CountMin => 0,
-                CountMax => 10,
-                CountDefault => 1,
-                Sub => [
-                    {
-                        Key => 'IPoverDHCP',
-                        Name => 'IP over DHCP',
-                        Input => {
-                            Type => 'GeneralCatalog',
-                            Class => 'ITSM::ConfigItem::YesNo',
-                            Translation => 1,
-                            Required => 1,
-                        },
-                    },
-                    {
-                        Key => 'IPAddress',
-                        Name => 'IP Address',
-                        Searchable => 1,
-                        Input => {
-                            Type => 'Text',
-                            Size => 40,
-                            MaxLength => 40,
-                            Required => 1,
-                        },
-                        CountMin => 0,
-                        CountMax => 20,
-                        CountDefault => 0,
-                    },
-                ],
-            },
-            {
-                Key => 'GraphicAdapter',
-                Name => 'Graphic Adapter',
-                Input => {
-                    Type => 'Text',
-                    Size => 50,
-                    MaxLength => 100,
-                },
-            },
-            {
-                Key => 'OtherEquipment',
-                Name => 'Other Equipment',
-                Input => {
-                    Type => 'TextArea',
-                    Required => 1,
-                },
-                CountMin => 0,
+                CountMax => 20,
                 CountDefault => 0,
             },
-            {
-                Key => 'WarrantyExpirationDate',
-                Name => 'Warranty Expiration Date',
-                Searchable => 1,
-                Input => {
-                    Type => 'Date',
-                },
-            },
-            {
-                Key => 'InstallDate',
-                Name => 'Install Date',
-                Searchable => 1,
-                Input => {
-                    Type => 'Date',
-                    Required => 1,
-                },
-                CountMin => 0,
-                CountDefault => 0,
-            },
-            {
-                Key => 'Note',
-                Name => 'Note',
-                Searchable => 1,
-                Input => {
-                    Type => 'TextArea',
-                    Required => 1,
-                },
-                CountMin => 0,
-                CountDefault => 0,
-            },
-        ];",
+        ],
+    },
+    {
+        Key => 'GraphicAdapter',
+        Name => 'Graphic Adapter',
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 100,
+        },
+    },
+    {
+        Key => 'OtherEquipment',
+        Name => 'Other Equipment',
+        Input => {
+            Type => 'TextArea',
+            Required => 1,
+        },
+        CountMin => 0,
+        CountDefault => 0,
+    },
+    {
+        Key => 'WarrantyExpirationDate',
+        Name => 'Warranty Expiration Date',
+        Searchable => 1,
+        Input => {
+            Type => 'Date',
+        },
+    },
+    {
+        Key => 'InstallDate',
+        Name => 'Install Date',
+        Searchable => 1,
+        Input => {
+            Type => 'Date',
+            Required => 1,
+        },
+        CountMin => 0,
+        CountDefault => 0,
+    },
+    {
+        Key => 'Note',
+        Name => 'Note',
+        Searchable => 1,
+        Input => {
+            Type => 'TextArea',
+            Required => 1,
+        },
+        CountMin => 0,
+        CountDefault => 0,
+    },
+];",
         Hardware => "[
-            {
-                Key => 'Vendor',
-                Name => 'Vendor',
-                Searchable => 1,
-                Input => {
-                    Type => 'Text',
-                    Size => 50,
-                    MaxLength => 50,
-                },
-            },
-            {
-                Key => 'Model',
-                Name => 'Model',
-                Searchable => 1,
-                Input => {
-                    Type => 'Text',
-                    Size => 50,
-                    MaxLength => 50,
-                },
-            },
-            {
-                Key => 'Description',
-                Name => 'Description',
-                Searchable => 1,
-                Input => {
-                    Type => 'TextArea',
-                },
-            },
-            {
-                Key => 'Type',
-                Name => 'Type',
-                Searchable => 1,
-                Input => {
-                    Type => 'GeneralCatalog',
-                    Class => 'ITSM::ConfigItem::Hardware::Type',
-                    Translation => 1,
-                },
-            },
-            {
-                Key => 'Owner',
-                Name => 'Owner',
-                Searchable => 1,
-                Input => {
-                    Type => 'Customer',
-                },
-            },
-            {
-                Key => 'SerialNumber',
-                Name => 'Serial Number',
-                Searchable => 1,
-                Input => {
-                    Type => 'Text',
-                    Size => 50,
-                    MaxLength => 100,
-                },
-            },
-            {
-                Key => 'WarrantyExpirationDate',
-                Name => 'Warranty Expiration Date',
-                Searchable => 1,
-                Input => {
-                    Type => 'Date',
-                },
-            },
-            {
-                Key => 'InstallDate',
-                Name => 'Install Date',
-                Searchable => 1,
-                Input => {
-                    Type => 'Date',
-                    Required => 1,
-                },
-                CountMin => 0,
-                CountMax => 1,
-                CountDefault => 0,
-            },
-            {
-                Key => 'Note',
-                Name => 'Note',
-                Searchable => 1,
-                Input => {
-                    Type => 'TextArea',
-                    Required => 1,
-                },
-                CountMin => 0,
-                CountMax => 1,
-                CountDefault => 0,
-            },
-        ];",
+    {
+        Key => 'Vendor',
+        Name => 'Vendor',
+        Searchable => 1,
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 50,
+        },
+    },
+    {
+        Key => 'Model',
+        Name => 'Model',
+        Searchable => 1,
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 50,
+        },
+    },
+    {
+        Key => 'Description',
+        Name => 'Description',
+        Searchable => 1,
+        Input => {
+            Type => 'TextArea',
+        },
+    },
+    {
+        Key => 'Type',
+        Name => 'Type',
+        Searchable => 1,
+        Input => {
+            Type => 'GeneralCatalog',
+            Class => 'ITSM::ConfigItem::Hardware::Type',
+            Translation => 1,
+        },
+    },
+    {
+        Key => 'Owner',
+        Name => 'Owner',
+        Searchable => 1,
+        Input => {
+            Type => 'Customer',
+        },
+    },
+    {
+        Key => 'SerialNumber',
+        Name => 'Serial Number',
+        Searchable => 1,
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 100,
+        },
+    },
+    {
+        Key => 'WarrantyExpirationDate',
+        Name => 'Warranty Expiration Date',
+        Searchable => 1,
+        Input => {
+            Type => 'Date',
+        },
+    },
+    {
+        Key => 'InstallDate',
+        Name => 'Install Date',
+        Searchable => 1,
+        Input => {
+            Type => 'Date',
+            Required => 1,
+        },
+        CountMin => 0,
+        CountMax => 1,
+        CountDefault => 0,
+    },
+    {
+        Key => 'Note',
+        Name => 'Note',
+        Searchable => 1,
+        Input => {
+            Type => 'TextArea',
+            Required => 1,
+        },
+        CountMin => 0,
+        CountMax => 1,
+        CountDefault => 0,
+    },
+];",
         Location => "[
+    {
+        Key => 'Type',
+        Name => 'Type',
+        Searchable => 1,
+        Input => {
+            Type => 'GeneralCatalog',
+            Class => 'ITSM::Location::Type',
+            Translation => 1,
+        },
+    },
+    {
+        Key => 'Phone1',
+        Name => 'Phone 1',
+        Searchable => 1,
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 100,
+        },
+    },
+    {
+        Key => 'Phone2',
+        Name => 'Phone 2',
+        Searchable => 1,
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 100,
+        },
+    },
+    {
+        Key => 'Fax',
+        Name => 'Fax',
+        Searchable => 1,
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 100,
+        },
+    },
+    {
+        Key => 'E-Mail',
+        Name => 'E-Mail',
+        Searchable => 1,
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 100,
+        },
+    },
+    {
+        Key => 'Address',
+        Name => 'Address',
+        Searchable => 1,
+        Input => {
+            Type => 'TextArea',
+        },
+    },
+    {
+        Key => 'Note',
+        Name => 'Note',
+        Searchable => 1,
+        Input => {
+            Type => 'TextArea',
+            Required => 1,
+        },
+        CountMin => 0,
+        CountDefault => 0,
+    },
+];",
+        Network => "[
+    {
+        Key => 'Description',
+        Name => 'Description',
+        Searchable => 1,
+        Input => {
+            Type => 'TextArea',
+        },
+    },
+    {
+        Key => 'Type',
+        Name => 'Type',
+        Searchable => 1,
+        Input => {
+            Type => 'GeneralCatalog',
+            Class => 'ITSM::ConfigItem::Network::Type',
+            Translation => 1,
+        },
+    },
+    {
+        Key => 'NetworkAddress',
+        Name => 'Network Address',
+        Searchable => 1,
+        Input => {
+            Type => 'Text',
+            Size => 30,
+            MaxLength => 20,
+            Required => 1,
+        },
+        CountMin => 0,
+        CountMax => 100,
+        CountDefault => 1,
+        Sub => [
             {
-                Key => 'Type',
-                Name => 'Type',
-                Searchable => 1,
-                Input => {
-                    Type => 'GeneralCatalog',
-                    Class => 'ITSM::Location::Type',
-                    Translation => 1,
-                },
-            },
-            {
-                Key => 'Phone1',
-                Name => 'Phone 1',
-                Searchable => 1,
+                Key => 'SubnetMask',
+                Name => 'Subnet Mask',
                 Input => {
                     Type => 'Text',
-                    Size => 50,
-                    MaxLength => 100,
-                },
-            },
-            {
-                Key => 'Phone2',
-                Name => 'Phone 2',
-                Searchable => 1,
-                Input => {
-                    Type => 'Text',
-                    Size => 50,
-                    MaxLength => 100,
-                },
-            },
-            {
-                Key => 'Fax',
-                Name => 'Fax',
-                Searchable => 1,
-                Input => {
-                    Type => 'Text',
-                    Size => 50,
-                    MaxLength => 100,
-                },
-            },
-            {
-                Key => 'E-Mail',
-                Name => 'E-Mail',
-                Searchable => 1,
-                Input => {
-                    Type => 'Text',
-                    Size => 50,
-                    MaxLength => 100,
-                },
-            },
-            {
-                Key => 'Address',
-                Name => 'Address',
-                Searchable => 1,
-                Input => {
-                    Type => 'TextArea',
-                },
-            },
-            {
-                Key => 'Note',
-                Name => 'Note',
-                Searchable => 1,
-                Input => {
-                    Type => 'TextArea',
+                    Size => 30,
+                    MaxLength => 20,
+                    ValueDefault => '255.255.255.0',
                     Required => 1,
                 },
                 CountMin => 0,
+                CountMax => 1,
                 CountDefault => 0,
             },
-        ];",
-        Network => "[
             {
-                Key => 'Description',
-                Name => 'Description',
-                Searchable => 1,
-                Input => {
-                    Type => 'TextArea',
-                },
-            },
-            {
-                Key => 'Type',
-                Name => 'Type',
-                Searchable => 1,
-                Input => {
-                    Type => 'GeneralCatalog',
-                    Class => 'ITSM::ConfigItem::Network::Type',
-                    Translation => 1,
-                },
-            },
-            {
-                Key => 'NetworkAddress',
-                Name => 'Network Address',
-                Searchable => 1,
+                Key => 'Gateway',
+                Name => 'Gateway',
                 Input => {
                     Type => 'Text',
                     Size => 30,
@@ -713,181 +745,154 @@ sub _AddConfigItemDefinitions {
                     Required => 1,
                 },
                 CountMin => 0,
-                CountMax => 100,
-                CountDefault => 1,
-                Sub => [
-                    {
-                        Key => 'SubnetMask',
-                        Name => 'Subnet Mask',
-                        Input => {
-                            Type => 'Text',
-                            Size => 30,
-                            MaxLength => 20,
-                            ValueDefault => '255.255.255.0',
-                            Required => 1,
-                        },
-                        CountMin => 0,
-                        CountMax => 1,
-                        CountDefault => 0,
-                    },
-                    {
-                        Key => 'Gateway',
-                        Name => 'Gateway',
-                        Input => {
-                            Type => 'Text',
-                            Size => 30,
-                            MaxLength => 20,
-                            Required => 1,
-                        },
-                        CountMin => 0,
-                        CountMax => 10,
-                        CountDefault => 0,
-                    },
-                ],
-            },
-            {
-                Key => 'Note',
-                Name => 'Note',
-                Searchable => 1,
-                Input => {
-                    Type => 'TextArea',
-                    Required => 1,
-                },
-                CountMin => 0,
-                CountMax => 1,
+                CountMax => 10,
                 CountDefault => 0,
             },
-        ];",
+        ],
+    },
+    {
+        Key => 'Note',
+        Name => 'Note',
+        Searchable => 1,
+        Input => {
+            Type => 'TextArea',
+            Required => 1,
+        },
+        CountMin => 0,
+        CountMax => 1,
+        CountDefault => 0,
+    },
+];",
         Software => "[
+    {
+        Key => 'Vendor',
+        Name => 'Vendor',
+        Searchable => 1,
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 50,
+        },
+    },
+    {
+        Key => 'Version',
+        Name => 'Version',
+        Searchable => 1,
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 50,
+        },
+    },
+    {
+        Key => 'Description',
+        Name => 'Description',
+        Searchable => 1,
+        Input => {
+            Type => 'TextArea',
+        },
+    },
+    {
+        Key => 'Type',
+        Name => 'Type',
+        Searchable => 1,
+        Input => {
+            Type => 'GeneralCatalog',
+            Class => 'ITSM::ConfigItem::Software::Type',
+            Translation => 1,
+        },
+    },
+    {
+        Key => 'Owner',
+        Name => 'Owner',
+        Searchable => 1,
+        Input => {
+            Type => 'Customer',
+        },
+    },
+    {
+        Key => 'SerialNumber',
+        Name => 'Serial Number',
+        Searchable => 1,
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 50,
+        },
+    },
+    {
+        Key => 'LicenceType',
+        Name => 'Licence Type',
+        Searchable => 1,
+        Input => {
+            Type => 'GeneralCatalog',
+            Class => 'ITSM::ConfigItem::Software::LicenceType',
+            Translation => 1,
+        },
+    },
+    {
+        Key => 'LicenceKey',
+        Name => 'Licence Key',
+        Searchable => 1,
+        Input => {
+            Type => 'Text',
+            Size => 50,
+            MaxLength => 50,
+            Required => 1,
+        },
+        CountMin => 0,
+        CountMax => 100,
+        CountDefault => 0,
+        Sub => [
             {
-                Key => 'Vendor',
-                Name => 'Vendor',
-                Searchable => 1,
+                Key => 'Quantity',
+                Name => 'Quantity',
                 Input => {
-                    Type => 'Text',
-                    Size => 50,
-                    MaxLength => 50,
-                },
-            },
-            {
-                Key => 'Version',
-                Name => 'Version',
-                Searchable => 1,
-                Input => {
-                    Type => 'Text',
-                    Size => 50,
-                    MaxLength => 50,
-                },
-            },
-            {
-                Key => 'Description',
-                Name => 'Description',
-                Searchable => 1,
-                Input => {
-                    Type => 'TextArea',
-                },
-            },
-            {
-                Key => 'Type',
-                Name => 'Type',
-                Searchable => 1,
-                Input => {
-                    Type => 'GeneralCatalog',
-                    Class => 'ITSM::ConfigItem::Software::Type',
-                    Translation => 1,
-                },
-            },
-            {
-                Key => 'Owner',
-                Name => 'Owner',
-                Searchable => 1,
-                Input => {
-                    Type => 'Customer',
-                },
-            },
-            {
-                Key => 'SerialNumber',
-                Name => 'Serial Number',
-                Searchable => 1,
-                Input => {
-                    Type => 'Text',
-                    Size => 50,
-                    MaxLength => 50,
-                },
-            },
-            {
-                Key => 'LicenceType',
-                Name => 'Licence Type',
-                Searchable => 1,
-                Input => {
-                    Type => 'GeneralCatalog',
-                    Class => 'ITSM::ConfigItem::Software::LicenceType',
-                    Translation => 1,
-                },
-            },
-            {
-                Key => 'LicenceKey',
-                Name => 'Licence Key',
-                Searchable => 1,
-                Input => {
-                    Type => 'Text',
-                    Size => 50,
-                    MaxLength => 50,
-                    Required => 1,
-                },
-                CountMin => 0,
-                CountMax => 100,
-                CountDefault => 0,
-                Sub => [
-                    {
-                        Key => 'Quantity',
-                        Name => 'Quantity',
-                        Input => {
-                            Type => 'Integer',
-                            ValueMin => 1,
-                            ValueMax => 1000,
-                            ValueDefault => 1,
-                            Required => 1,
-                        },
-                        CountMin => 0,
-                        CountMax => 1,
-                        CountDefault => 0,
-                    },
-                    {
-                        Key => 'ExpirationDate',
-                        Name => 'Expiration Date',
-                        Input => {
-                            Type => 'Date',
-                            Required => 1,
-                        },
-                        CountMin => 0,
-                        CountMax => 1,
-                        CountDefault => 0,
-                    },
-                ],
-            },
-            {
-                Key => 'Media',
-                Name => 'Media',
-                Input => {
-                    Type => 'Text',
-                    Size => 40,
-                    MaxLength => 20,
-                },
-            },
-            {
-                Key => 'Note',
-                Name => 'Note',
-                Searchable => 1,
-                Input => {
-                    Type => 'TextArea',
+                    Type => 'Integer',
+                    ValueMin => 1,
+                    ValueMax => 1000,
+                    ValueDefault => 1,
                     Required => 1,
                 },
                 CountMin => 0,
                 CountMax => 1,
                 CountDefault => 0,
             },
-        ];",
+            {
+                Key => 'ExpirationDate',
+                Name => 'Expiration Date',
+                Input => {
+                    Type => 'Date',
+                    Required => 1,
+                },
+                CountMin => 0,
+                CountMax => 1,
+                CountDefault => 0,
+            },
+        ],
+    },
+    {
+        Key => 'Media',
+        Name => 'Media',
+        Input => {
+            Type => 'Text',
+            Size => 40,
+            MaxLength => 20,
+        },
+    },
+    {
+        Key => 'Note',
+        Name => 'Note',
+        Searchable => 1,
+        Input => {
+            Type => 'TextArea',
+            Required => 1,
+        },
+        CountMin => 0,
+        CountMax => 1,
+        CountDefault => 0,
+    },
+];",
     );
 
     # get list of installed config item classes
@@ -922,6 +927,35 @@ sub _AddConfigItemDefinitions {
     return 1;
 }
 
+=item _LinkDelete()
+
+delete all existing links to config items
+
+    my $Result = $CodeObject->_LinkDelete();
+
+=cut
+
+sub _LinkDelete {
+    my ( $Self, %Param ) = @_;
+
+    # get all config items
+    my $ConfigItemIDs = $Self->{ConfigItemObject}->ConfigItemSearch();
+
+    return if !$ConfigItemIDs;
+    return if ref $ConfigItemIDs ne 'ARRAY';
+
+    # delete the config item links
+    for my $ConfigItemID ( @{$ConfigItemIDs} ) {
+        $Self->{LinkObject}->LinkDeleteAll(
+            Object => 'ITSMConfigItem',
+            Key    => $ConfigItemID,
+            UserID => 1,
+        );
+    }
+
+    return 1;
+}
+
 1;
 
 =back
@@ -938,6 +972,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.3 $ $Date: 2008-07-14 13:46:30 $
+$Revision: 1.4 $ $Date: 2008-07-14 14:15:37 $
 
 =cut
