@@ -2,7 +2,7 @@
 # ITSMConfigurationManagement.pm - code to excecute during package installation
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigurationManagement.pm,v 1.2 2008-07-12 15:52:20 mh Exp $
+# $Id: ITSMConfigurationManagement.pm,v 1.3 2008-07-14 13:46:30 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -20,7 +20,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::Valid;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.2 $) [1];
+$VERSION = qw($Revision: 1.3 $) [1];
 
 =head1 NAME
 
@@ -188,12 +188,15 @@ sub _GroupAdd {
     }
 
     # get valid list
-    my %ValidList = $Self->{ValidObject}->ValidList();
+    my %ValidList = $Self->{ValidObject}->ValidList(
+        UserID => 1,
+    );
     my %ValidListReverse = reverse %ValidList;
 
     # check if group already exists
     my $GroupID = $Self->{GroupObject}->GroupLookup(
-        Group => $Param{Name},
+        Group  => $Param{Name},
+        UserID => 1,
     );
 
     # reactivate the group
@@ -201,13 +204,15 @@ sub _GroupAdd {
 
         # get current group data
         my %GroupData = $Self->{GroupObject}->GroupGet(
-            ID => $GroupID,
+            ID     => $GroupID,
+            UserID => 1,
         );
 
         # reactivate group
         $Self->{GroupObject}->GroupUpdate(
             %GroupData,
             ValidID => $ValidListReverse{valid},
+            UserID  => 1,
         );
 
         return 1;
@@ -223,9 +228,15 @@ sub _GroupAdd {
         );
     }
 
+    # lookup the new group id
+    my $NewGroupID = $Self->{GroupObject}->GroupLookup(
+        Group  => $Param{Name},
+        UserID => 1,
+    );
+
     # add user root to the group
     $Self->{GroupObject}->GroupMemberAdd(
-        GID        => $Self->{GroupObject}->GroupLookup(Group => $Param{Name}),
+        GID        => $NewGroupID,
         UID        => 1,
         Permission => {
             ro        => 1,
@@ -271,18 +282,22 @@ sub _GroupDeactivate {
     return if !$GroupID;
 
     # get valid list
-    my %ValidList = $Self->{ValidObject}->ValidList();
+    my %ValidList = $Self->{ValidObject}->ValidList(
+        UserID => 1,
+    );
     my %ValidListReverse = reverse %ValidList;
 
     # get current group data
     my %GroupData = $Self->{GroupObject}->GroupGet(
-        ID => $GroupID,
+        ID     => $GroupID,
+        UserID => 1,
     );
 
     # deactivate group
     $Self->{GroupObject}->GroupUpdate(
         %GroupData,
         ValidID => $ValidListReverse{invalid},
+        UserID  => 1,
     );
 
     return 1;
@@ -879,7 +894,7 @@ sub _AddConfigItemDefinitions {
     my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
         Class => 'ITSM::ConfigItem::Class',
     );
-    my %ReverseClassList = reverse %{ $ClassList };
+    my %ReverseClassList = reverse %{$ClassList};
 
     CLASSNAME:
     for my $ClassName ( sort { lc($a) cmp lc($b) } keys %Definition ) {
@@ -894,7 +909,7 @@ sub _AddConfigItemDefinitions {
             DefinitionID => $ClassID,
         );
 
-        next CLASSNAME if %{ $DefinitionRef };
+        next CLASSNAME if %{$DefinitionRef};
 
         # add the new definition
         $Self->{ConfigItemObject}->DefinitionAdd(
@@ -923,6 +938,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.2 $ $Date: 2008-07-12 15:52:20 $
+$Revision: 1.3 $ $Date: 2008-07-14 13:46:30 $
 
 =cut
