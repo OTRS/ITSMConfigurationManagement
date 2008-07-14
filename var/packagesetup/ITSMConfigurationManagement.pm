@@ -2,7 +2,7 @@
 # ITSMConfigurationManagement.pm - code to excecute during package installation
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigurationManagement.pm,v 1.4 2008-07-14 14:15:37 mh Exp $
+# $Id: ITSMConfigurationManagement.pm,v 1.5 2008-07-14 15:04:43 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -21,7 +21,7 @@ use Kernel::System::LinkObject;
 use Kernel::System::Valid;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.4 $) [1];
+$VERSION = qw($Revision: 1.5 $) [1];
 
 =head1 NAME
 
@@ -99,8 +99,11 @@ sub CodeInstall {
         Description => 'Group for ITSM ConfigItem mask access in the agent interface.',
     );
 
-    # install stats
+    # install config item definitions
     $Self->_AddConfigItemDefinitions();
+
+    # install stats
+    $Self->_StatsInstall();
 
     return 1;
 }
@@ -122,8 +125,11 @@ sub CodeReinstall {
         Description => 'Group for ITSM ConfigItem mask access in the agent interface.',
     );
 
-    # install stats
+    # install config item definitions
     $Self->_AddConfigItemDefinitions();
+
+    # install stats
+    $Self->_StatsInstall();
 
     return 1;
 }
@@ -139,7 +145,7 @@ run the code upgrade part
 sub CodeUpgrade {
     my ( $Self, %Param ) = @_;
 
-    # install stats
+    # install config item definitions
     $Self->_AddConfigItemDefinitions();
 
     return 1;
@@ -927,6 +933,30 @@ sub _AddConfigItemDefinitions {
     return 1;
 }
 
+=item _StatsInstall()
+
+installs stats
+
+    my $Result = $CodeObject->_StatsInstall();
+
+=cut
+
+sub _StatsInstall {
+    my ( $Self, %Param ) = @_;
+
+    my $ModuleName = 'var::packagesetup::ITSMServiceLevelManagement';
+
+    return 1 if !$Self->{MainObject}->Require($ModuleName);
+
+    # create new instance
+    my $CodeObject = $ModuleName->new( %{$Self} );
+
+    # install the stats
+    $CodeObject->_StatsInstall();
+
+    return 1;
+}
+
 =item _LinkDelete()
 
 delete all existing links to config items
@@ -972,6 +1002,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.4 $ $Date: 2008-07-14 14:15:37 $
+$Revision: 1.5 $ $Date: 2008-07-14 15:04:43 $
 
 =cut
