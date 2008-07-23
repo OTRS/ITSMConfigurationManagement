@@ -2,7 +2,7 @@
 # ITSMConfigurationManagement.pm - code to excecute during package installation
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigurationManagement.pm,v 1.5 2008-07-14 15:04:43 mh Exp $
+# $Id: ITSMConfigurationManagement.pm,v 1.6 2008-07-23 16:01:46 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -14,14 +14,21 @@ package var::packagesetup::ITSMConfigurationManagement;
 use strict;
 use warnings;
 
-use Kernel::System::Group;
+use Kernel::Config;
+use Kernel::System::Config;
+use Kernel::System::CSV;
 use Kernel::System::GeneralCatalog;
+use Kernel::System::Group;
 use Kernel::System::ITSMConfigItem;
 use Kernel::System::LinkObject;
+use Kernel::System::State;
+use Kernel::System::Stats;
+use Kernel::System::Type;
+use Kernel::System::User;
 use Kernel::System::Valid;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.5 $) [1];
+$VERSION = qw($Revision: 1.6 $) [1];
 
 =head1 NAME
 
@@ -73,11 +80,49 @@ sub new {
     for my $Object (qw(ConfigObject LogObject MainObject TimeObject DBObject XMLObject)) {
         $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
     }
+
+    # create needed sysconfig object
+    $Self->{SysConfigObject} = Kernel::System::Config->new( %{$Self} );
+
+    # rebuild ZZZ* files
+    $Self->{SysConfigObject}->WriteDefault();
+
+    # define the ZZZ files
+    my @ZZZFiles = (
+        'ZZZAAuto.pm',
+        'ZZZAuto.pm',
+    );
+
+    # reload the ZZZ files (mod_perl workaround)
+    for my $ZZZFile (@ZZZFiles) {
+
+        PREFIX:
+        for my $Prefix (@INC) {
+            my $File = $Prefix . '/Kernel/Config/Files/' . $ZZZFile;
+            next PREFIX if !-f $File;
+            do $File;
+            last PREFIX;
+        }
+    }
+
+    # create needed objects
+    $Self->{ConfigObject}         = Kernel::Config->new();
+    $Self->{CSVObject}            = Kernel::System::CSV->new( %{$Self} );
     $Self->{GroupObject}          = Kernel::System::Group->new( %{$Self} );
+    $Self->{UserObject}           = Kernel::System::User->new( %{$Self} );
+    $Self->{StateObject}          = Kernel::System::State->new( %{$Self} );
+    $Self->{TypeObject}           = Kernel::System::Type->new( %{$Self} );
+    $Self->{ValidObject}          = Kernel::System::Valid->new( %{$Self} );
     $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
     $Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new( %{$Self} );
     $Self->{LinkObject}           = Kernel::System::LinkObject->new( %{$Self} );
-    $Self->{ValidObject}          = Kernel::System::Valid->new( %{$Self} );
+    $Self->{StatsObject}          = Kernel::System::Stats->new(
+        %{$Self},
+        UserID => 1,
+    );
+
+    # define file prefix for stats
+    $Self->{FilePrefix} = 'ITSMStats';
 
     return $Self;
 }
@@ -103,7 +148,9 @@ sub CodeInstall {
     $Self->_AddConfigItemDefinitions();
 
     # install stats
-    $Self->_StatsInstall();
+    $Self->{StatsObject}->StatsInstall(
+        FilePrefix => $Self->{FilePrefix},
+    );
 
     return 1;
 }
@@ -129,7 +176,9 @@ sub CodeReinstall {
     $Self->_AddConfigItemDefinitions();
 
     # install stats
-    $Self->_StatsInstall();
+    $Self->{StatsObject}->StatsInstall(
+        FilePrefix => $Self->{FilePrefix},
+    );
 
     return 1;
 }
@@ -933,30 +982,6 @@ sub _AddConfigItemDefinitions {
     return 1;
 }
 
-=item _StatsInstall()
-
-installs stats
-
-    my $Result = $CodeObject->_StatsInstall();
-
-=cut
-
-sub _StatsInstall {
-    my ( $Self, %Param ) = @_;
-
-    my $ModuleName = 'var::packagesetup::ITSMServiceLevelManagement';
-
-    return 1 if !$Self->{MainObject}->Require($ModuleName);
-
-    # create new instance
-    my $CodeObject = $ModuleName->new( %{$Self} );
-
-    # install the stats
-    $CodeObject->_StatsInstall();
-
-    return 1;
-}
-
 =item _LinkDelete()
 
 delete all existing links to config items
@@ -1002,6 +1027,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.5 $ $Date: 2008-07-14 15:04:43 $
+$Revision: 1.6 $ $Date: 2008-07-23 16:01:46 $
 
 =cut

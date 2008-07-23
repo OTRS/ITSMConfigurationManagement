@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <otrs_package version="1.0">
-    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.13 2008-07-18 13:52:34 ub Exp $</CVS>
+    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.14 2008-07-23 16:01:26 mh Exp $</CVS>
     <Name>ITSMConfigurationManagement</Name>
     <Version>0.0.0</Version>
     <Framework>2.3.x</Framework>
@@ -1006,7 +1006,33 @@
         }
 
     </CodeUninstall>
+    <CodeUninstall Type="post">
+
+        # cleanup stats list
+        {
+
+            # load required modules
+            $Self-&gt;{MainObject}-&gt;Require('Kernel::System::CSV');
+            $Self-&gt;{MainObject}-&gt;Require('Kernel::System::Group');
+            $Self-&gt;{MainObject}-&gt;Require('Kernel::System::User');
+            $Self-&gt;{MainObject}-&gt;Require('Kernel::System::Stats');
+
+            # create needed objects
+            $Self-&gt;{CSVObject}   = Kernel::System::CSV-&gt;new( %{$Self} );
+            $Self-&gt;{GroupObject} = Kernel::System::Group-&gt;new( %{$Self} );
+            $Self-&gt;{UserObject}  = Kernel::System::User-&gt;new( %{$Self} );
+            $Self-&gt;{StatsObject} = Kernel::System::Stats-&gt;new(
+                %{$Self},
+                UserID =&gt; 1,
+            );
+
+            # cleanup stats list
+            $Self-&gt;{StatsObject}-&gt;StatsCleanUp();
+        }
+
+    </CodeUninstall>
     <IntroInstall Type="pre" Title="Install Information" Lang="en">
+
         &lt;br&gt;
         WELCOME&lt;br&gt;
         &lt;br&gt;
@@ -1020,8 +1046,10 @@
         &lt;br&gt;
         ((enjoy))&lt;br&gt;
         &lt;br&gt;
+
     </IntroInstall>
     <IntroInstall Type="pre" Title="Installation Information" Lang="de">
+
         &lt;br&gt;
         WILLKOMMEN&lt;br&gt;
         &lt;br&gt;
@@ -1035,8 +1063,10 @@
         &lt;br&gt;
         ((enjoy))&lt;br&gt;
         &lt;br&gt;
+
     </IntroInstall>
     <IntroUpgrade Type="pre" Title="Upgrade Information" Lang="en">
+
         &lt;br&gt;
         WELCOME&lt;br&gt;
         &lt;br&gt;
@@ -1050,8 +1080,10 @@
         &lt;br&gt;
         ((enjoy))&lt;br&gt;
         &lt;br&gt;
+
     </IntroUpgrade>
     <IntroUpgrade Type="pre" Title="Upgrade Information" Lang="de">
+
         &lt;br&gt;
         WILLKOMMEN&lt;br&gt;
         &lt;br&gt;
@@ -1065,5 +1097,6 @@
         &lt;br&gt;
         ((enjoy))&lt;br&gt;
         &lt;br&gt;
+
     </IntroUpgrade>
 </otrs_package>
