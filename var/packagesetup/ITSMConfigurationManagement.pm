@@ -2,7 +2,7 @@
 # ITSMConfigurationManagement.pm - code to excecute during package installation
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigurationManagement.pm,v 1.6 2008-07-23 16:01:46 mh Exp $
+# $Id: ITSMConfigurationManagement.pm,v 1.7 2008-07-26 17:27:32 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -28,7 +28,7 @@ use Kernel::System::User;
 use Kernel::System::Valid;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.6 $) [1];
+$VERSION = qw($Revision: 1.7 $) [1];
 
 =head1 NAME
 
@@ -679,7 +679,7 @@ sub _AddConfigItemDefinitions {
         Searchable => 1,
         Input => {
             Type => 'GeneralCatalog',
-            Class => 'ITSM::Location::Type',
+            Class => 'ITSM::ConfigItem::Location::Type',
             Translation => 1,
         },
     },
@@ -1027,6 +1027,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.6 $ $Date: 2008-07-23 16:01:46 $
+$Revision: 1.7 $ $Date: 2008-07-26 17:27:32 $
 
 =cut
