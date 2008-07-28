@@ -2,7 +2,7 @@
 # ITSMConfigurationManagement.pm - code to excecute during package installation
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigurationManagement.pm,v 1.7 2008-07-26 17:27:32 mh Exp $
+# $Id: ITSMConfigurationManagement.pm,v 1.8 2008-07-28 09:45:26 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -28,7 +28,7 @@ use Kernel::System::User;
 use Kernel::System::Valid;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.7 $) [1];
+$VERSION = qw($Revision: 1.8 $) [1];
 
 =head1 NAME
 
@@ -965,11 +965,11 @@ sub _AddConfigItemDefinitions {
         next CLASSNAME if !$ClassID;
 
         # check if definition already exists
-        my $DefinitionRef = $Self->{ConfigItemObject}->DefinitionGet(
+        my $DefinitionList = $Self->{ConfigItemObject}->DefinitionList(
             DefinitionID => $ClassID,
         );
 
-        next CLASSNAME if %{$DefinitionRef};
+        next CLASSNAME if $DefinitionList && ref $DefinitionList eq 'ARRAY' && @{$DefinitionList};
 
         # add the new definition
         $Self->{ConfigItemObject}->DefinitionAdd(
@@ -1027,6 +1027,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.7 $ $Date: 2008-07-26 17:27:32 $
+$Revision: 1.8 $ $Date: 2008-07-28 09:45:26 $
 
 =cut
