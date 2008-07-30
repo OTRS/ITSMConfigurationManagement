@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <otrs_package version="1.0">
-    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.17 2008-07-28 08:43:27 mh Exp $</CVS>
+    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.18 2008-07-30 17:34:37 ub Exp $</CVS>
     <Name>ITSMConfigurationManagement</Name>
     <Version>0.0.0</Version>
     <Framework>2.3.x</Framework>
@@ -1045,12 +1045,13 @@
     <IntroInstall Type="pre" Title="Install Information" Lang="en">
 
         &lt;br&gt;
-        WELCOME&lt;br&gt;
+        &lt;b&gt;WELCOME&lt;/b&gt;
+        &lt;br&gt;
         &lt;br&gt;
         You are about to install the OTRS module ITSMConfigurationManagement.&lt;br&gt;
         &lt;br&gt;
         &lt;br&gt;
-        REQUIRED OTRS PACKAGES
+        &lt;b&gt;REQUIRED OTRS PACKAGES&lt;/b&gt;
         &lt;ul&gt;
         &lt;li&gt;ITSMCore 1.1.93&lt;/li&gt;
         &lt;/ul&gt;
@@ -1062,12 +1063,13 @@
     <IntroInstall Type="pre" Title="Installation Information" Lang="de">
 
         &lt;br&gt;
-        WILLKOMMEN&lt;br&gt;
+        &lt;b&gt;WILLKOMMEN&lt;/b&gt;
+        &lt;br&gt;
         &lt;br&gt;
         Sie sind im Begriff das OTRS-Modul ITSMConfigurationManagement zu installieren.&lt;br&gt;
         &lt;br&gt;
         &lt;br&gt;
-        BENÖTIGTE OTRS-PAKETE
+        &lt;b&gt;BENÖTIGTE OTRS-PAKETE&lt;/b&gt;
         &lt;ul&gt;
         &lt;li&gt;ITSMCore 1.1.93&lt;/li&gt;
         &lt;/ul&gt;
@@ -1076,15 +1078,31 @@
         &lt;br&gt;
 
     </IntroInstall>
+    <IntroInstall Type="post" Title="Installation Information" Lang="de">
+
+        &lt;br&gt;
+        &lt;b&gt;HINWEIS&lt;/b&gt;
+        &lt;br&gt;
+        &lt;br&gt;
+        Um Benutzern Zugriff auf das Config-Item-Menü zu gewähren, müssen diese Mitglied der neuen Gruppe 'itsm-configitem' sein.
+        &lt;br&gt;
+        Die von diesem Paket hinzugefügten Menü-Punkte sind erst nach einem erneuten Anmeldevorgang im System sichtbar.
+        &lt;br&gt;
+        &lt;br&gt;
+        ((enjoy))&lt;br&gt;
+        &lt;br&gt;
+
+    </IntroInstall>
     <IntroUpgrade Type="pre" Title="Upgrade Information" Lang="en">
 
         &lt;br&gt;
-        WELCOME&lt;br&gt;
+        &lt;b&gt;WELCOME&lt;/b&gt;
+        &lt;br&gt;
         &lt;br&gt;
         You are about to upgrade the OTRS module ITSMConfigurationManagement.&lt;br&gt;
         &lt;br&gt;
         &lt;br&gt;
-        REQUIRED OTRS PACKAGES
+        &lt;b&gt;REQUIRED OTRS PACKAGES&lt;/b&gt;
         &lt;ul&gt;
         &lt;li&gt;ITSMCore 1.1.93&lt;/li&gt;
         &lt;/ul&gt;
@@ -1096,12 +1114,13 @@
     <IntroUpgrade Type="pre" Title="Upgrade Information" Lang="de">
 
         &lt;br&gt;
-        WILLKOMMEN&lt;br&gt;
+        &lt;b&gt;WILLKOMMEN&lt;/b&gt;
+        &lt;br&gt;
         &lt;br&gt;
         Sie sind im Begriff das OTRS-Modul ITSMConfigurationManagement zu aktualisieren.&lt;br&gt;
         &lt;br&gt;
         &lt;br&gt;
-        BENÖTIGTE OTRS-PAKETE
+        &lt;b&gt;BENÖTIGTE OTRS-PAKETE&lt;/b&gt;
         &lt;ul&gt;
         &lt;li&gt;ITSMCore 1.1.93&lt;/li&gt;
         &lt;/ul&gt;
@@ -1110,4 +1129,30 @@
         &lt;br&gt;
 
     </IntroUpgrade>
+    <IntroUninstall Type="pre" Title="Uninstallation Information" Lang="de">
+
+        &lt;br&gt;
+        &lt;b&gt;ACHTUNG&lt;/b&gt;
+        &lt;br&gt;
+        &lt;br&gt;
+        Bei der Deinstallation werden die von diesem Paket angelegten Datenbank-Tabellen gelöscht.
+        &lt;br&gt;
+        Alle darin enthaltenen Daten gehen unwiderruflich verloren!
+        &lt;br&gt;
+        &lt;br&gt;
+        Die von diesem Paket angelegte Gruppe 'itsm-configitem' wird deaktiviert.
+        &lt;br&gt;
+        Sie kann jederzeit im Admin-Bereich wieder aktiviert werden.
+        &lt;br&gt;
+        &lt;br&gt;
+        Alle Verknüpfungen zu ConfigItem-Objekten werden unwiderruflich gelöscht!
+        &lt;br&gt;
+        &lt;br&gt;
+        Nach der Deinstallation sind die zu diesem Paket zugehörigen Statistiken nicht mehr verfügbar.
+        &lt;br&gt;
+        &lt;br&gt;
+        ((enjoy))&lt;br&gt;
+        &lt;br&gt;
+
+    </IntroUninstall>
 </otrs_package>
