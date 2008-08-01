@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItem.pm - the OTRS::ITSM config item module
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItem.pm,v 1.1.1.1 2008-07-05 16:24:13 mh Exp $
+# $Id: AgentITSMConfigItem.pm,v 1.2 2008-08-01 12:08:58 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.1.1.1 $) [1];
+$VERSION = qw($Revision: 1.2 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -179,8 +179,14 @@ sub Run {
         Value     => "Action=$Self->{Action}&ClassID=$ClassID&Page=$Page",
     );
 
+    # investigate refresh
+    my $Refresh = $Self->{UserRefreshTime} ? 60 * $Self->{UserRefreshTime} : undef;
+
     # output header
-    my $Output = $Self->{LayoutObject}->Header( Title => 'Overview' );
+    my $Output = $Self->{LayoutObject}->Header(
+        Title   => 'Overview',
+        Refresh => $Refresh,
+    );
     $Output .= $Self->{LayoutObject}->NavigationBar();
 
     # start template output
