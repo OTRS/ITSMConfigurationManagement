@@ -2,7 +2,7 @@
 # ITSMConfigurationManagement.pm - code to excecute during package installation
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigurationManagement.pm,v 1.9 2008-07-28 10:12:16 mh Exp $
+# $Id: ITSMConfigurationManagement.pm,v 1.10 2008-08-02 11:44:56 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -28,7 +28,7 @@ use Kernel::System::User;
 use Kernel::System::Valid;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.9 $) [1];
+$VERSION = qw($Revision: 1.10 $) [1];
 
 =head1 NAME
 
@@ -147,6 +147,15 @@ sub CodeInstall {
     # install config item definitions
     $Self->_AddConfigItemDefinitions();
 
+    # fillup empty last_version_id rows in configitem table
+    $Self->_FillupEmptyLastVersionID();
+
+    # fillup empty inci_state_id rows in configitem_version table
+    $Self->_FillupEmptyVersionIncidentStateID();
+
+    # fillup empty cur_depl_state_id or cur_inci_state_id rows in configitem table
+    $Self->_FillupEmptyIncidentAndDeploymentStateID();
+
     # install stats
     $Self->{StatsObject}->StatsInstall(
         FilePrefix => $Self->{FilePrefix},
@@ -175,6 +184,15 @@ sub CodeReinstall {
     # install config item definitions
     $Self->_AddConfigItemDefinitions();
 
+    # fillup empty last_version_id rows in configitem table
+    $Self->_FillupEmptyLastVersionID();
+
+    # fillup empty inci_state_id rows in configitem_version table
+    $Self->_FillupEmptyVersionIncidentStateID();
+
+    # fillup empty cur_depl_state_id or cur_inci_state_id rows in configitem table
+    $Self->_FillupEmptyIncidentAndDeploymentStateID();
+
     # install stats
     $Self->{StatsObject}->StatsInstall(
         FilePrefix => $Self->{FilePrefix},
@@ -196,6 +214,20 @@ sub CodeUpgrade {
 
     # install config item definitions
     $Self->_AddConfigItemDefinitions();
+
+    # fillup empty last_version_id rows in configitem table
+    $Self->_FillupEmptyLastVersionID();
+
+    # fillup empty inci_state_id rows in configitem_version table
+    $Self->_FillupEmptyVersionIncidentStateID();
+
+    # fillup empty cur_depl_state_id or cur_inci_state_id rows in configitem table
+    $Self->_FillupEmptyIncidentAndDeploymentStateID();
+
+    # install stats
+    $Self->{StatsObject}->StatsInstall(
+        FilePrefix => $Self->{FilePrefix},
+    );
 
     return 1;
 }
@@ -1012,6 +1044,144 @@ sub _LinkDelete {
     return 1;
 }
 
+=item _FillupEmptyLastVersionID()
+
+fillup empty entries in the last_version_id column of the configitem table
+
+    my $Result = $CodeObject->_FillupEmptyLastVersionID();
+
+=cut
+
+sub _FillupEmptyLastVersionID {
+    my ( $Self, %Param ) = @_;
+
+    # get config items with empty last_version_id
+    $Self->{DBObject}->Prepare(
+        SQL => "SELECT id FROM configitem WHERE "
+            . "last_version_id = 0 OR last_version_id IS NULL",
+    );
+
+    # fetch the result
+    my @ConfigItemIDs;
+    while ( my @Row = $Self->{DBObject}->FetchrowArray() ) {
+        push @ConfigItemIDs, $Row[0];
+    }
+
+    CONFIGITEMID:
+    for my $ConfigItemID (@ConfigItemIDs) {
+
+        # get the last version of this config item
+        $Self->{DBObject}->Prepare(
+            SQL => "SELECT id FROM configitem_version "
+                . "WHERE configitem_id = $ConfigItemID ORDER BY id DESC",
+            Limit => 1,
+        );
+
+        # fetch the result
+        my $VersionID;
+        while ( my @Row = $Self->{DBObject}->FetchrowArray() ) {
+            $VersionID = $Row[0];
+        }
+
+        next CONFIGITEMID if !$VersionID;
+
+        # update inci_state_id
+        $Self->{DBObject}->Do(
+            SQL => "UPDATE configitem "
+                . "SET last_version_id = $VersionID "
+                . "WHERE id = $ConfigItemID",
+        );
+    }
+
+    return 1;
+}
+
+=item _FillupEmptyVersionIncidentStateID()
+
+fillup empty entries in the inci_state_id column of the configitem_version table
+
+    my $Result = $CodeObject->_FillupEmptyVersionIncidentStateID();
+
+=cut
+
+sub _FillupEmptyVersionIncidentStateID {
+    my ( $Self, %Param ) = @_;
+
+    # get operational incident state list
+    my $InciStateList = $Self->{GeneralCatalogObject}->ItemList(
+        Class         => 'ITSM::Core::IncidentState',
+        Functionality => 'operational',
+    );
+
+    # error handling
+    if ( !$InciStateList || ref $InciStateList ne 'HASH' || !%{$InciStateList} ) {
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => "Can't find any item in general catalog class ITSM::Core::IncidentState!",
+        );
+        return;
+    }
+
+    # sort ids
+    my @InciStateKeyList = sort keys %{$InciStateList};
+
+    # update inci_state_id
+    return $Self->{DBObject}->Do(
+        SQL => "UPDATE configitem_version "
+            . "SET inci_state_id = $InciStateKeyList[0] "
+            . "WHERE inci_state_id = 0 OR inci_state_id IS NULL",
+    );
+}
+
+=item _FillupEmptyIncidentAndDeploymentStateID()
+
+fillup empty entries in the cur_depl_state_id or cur_inci_state_id column of the configitem table
+
+    my $Result = $CodeObject->_FillupEmptyIncidentAndDeploymentStateID();
+
+=cut
+
+sub _FillupEmptyIncidentAndDeploymentStateID {
+    my ( $Self, %Param ) = @_;
+
+    # get config items with empty cur_depl_state_id or cur_inci_state_id
+    $Self->{DBObject}->Prepare(
+        SQL => "SELECT id FROM configitem WHERE "
+            . "cur_depl_state_id = 0 OR cur_depl_state_id IS NULL OR "
+            . "cur_inci_state_id = 0 OR cur_inci_state_id IS NULL",
+    );
+
+    # fetch the result
+    my @ConfigItemIDs;
+    while ( my @Row = $Self->{DBObject}->FetchrowArray() ) {
+        push @ConfigItemIDs, $Row[0];
+    }
+
+    CONFIGITEMID:
+    for my $ConfigItemID (@ConfigItemIDs) {
+
+        # get last version
+        my $LastVersion = $Self->{ConfigItemObject}->VersionGet(
+            ConfigItemID => $ConfigItemID,
+        );
+
+        next CONFIGITEMID if !$LastVersion;
+        next CONFIGITEMID if ref $LastVersion ne 'HASH';
+        next CONFIGITEMID if !$LastVersion->{DeplStateID};
+        next CONFIGITEMID if !$LastVersion->{InciStateID};
+
+        # complete config item
+        $Self->{DBObject}->Do(
+            SQL => "UPDATE configitem SET "
+                . "cur_depl_state_id = $LastVersion->{DeplStateID}, "
+                . "cur_inci_state_id = $LastVersion->{InciStateID} "
+                . "WHERE id = $ConfigItemID",
+        );
+    }
+
+    return 1;
+}
+
 1;
 
 =back
@@ -1028,6 +1198,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.9 $ $Date: 2008-07-28 10:12:16 $
+$Revision: 1.10 $ $Date: 2008-08-02 11:44:56 $
 
 =cut

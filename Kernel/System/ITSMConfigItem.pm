@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem.pm - all config item function
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.3 2008-07-11 15:17:26 ub Exp $
+# $Id: ITSMConfigItem.pm,v 1.4 2008-08-02 11:44:56 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -24,7 +24,7 @@ use Kernel::System::Time;
 use Kernel::System::XML;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.3 $) [1];
+$VERSION = qw($Revision: 1.4 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition', 'Kernel::System::ITSMConfigItem::Number',
@@ -102,118 +102,6 @@ count all records of a config item class
 
 sub ConfigItemCount {
     my ( $Self, %Param ) = @_;
-
-    # WORKAROUND: set empty last_version_id in configitem table
-    {
-
-        # get config items with empty last_version_id
-        $Self->{DBObject}->Prepare(
-            SQL => "SELECT id FROM configitem WHERE "
-                . "last_version_id = 0 OR last_version_id IS NULL",
-        );
-
-        # fetch the result
-        my @ConfigItemIDs;
-        while ( my @Row = $Self->{DBObject}->FetchrowArray() ) {
-            push @ConfigItemIDs, $Row[0];
-        }
-
-        CONFIGITEMID:
-        for my $ConfigItemID (@ConfigItemIDs) {
-
-            # get the last version of this config item
-            $Self->{DBObject}->Prepare(
-                SQL => "SELECT id FROM configitem_version "
-                    . "WHERE configitem_id = $ConfigItemID ORDER BY id DESC",
-                Limit => 1,
-            );
-
-            # fetch the result
-            my $VersionID;
-            while ( my @Row = $Self->{DBObject}->FetchrowArray() ) {
-                $VersionID = $Row[0];
-            }
-
-            next CONFIGITEMID if !$VersionID;
-
-            # update inci_state_id
-            $Self->{DBObject}->Do(
-                SQL => "UPDATE configitem "
-                    . "SET last_version_id = $VersionID "
-                    . "WHERE id = $ConfigItemID",
-            );
-        }
-    }
-
-    # WORKAROUND: set empty inci_state_id in configitem_version table
-    {
-
-        # define incident class
-        my $InciStateClass = 'ITSM::Core::IncidentState';
-
-        # get operational incident state list
-        my $InciStateList = $Self->{GeneralCatalogObject}->ItemList(
-            Class         => $InciStateClass,
-            Functionality => 'operational',
-        );
-
-        # error handling
-        if ( !%{$InciStateList} ) {
-            $Self->{LogObject}->Log(
-                Priority => 'error',
-                Message  => "Can't find any item in general catalog class $InciStateClass!",
-            );
-            return;
-        }
-
-        my @InciStateKeyList = sort keys %{$InciStateList};
-
-        # update inci_state_id
-        $Self->{DBObject}->Do(
-            SQL => "UPDATE configitem_version "
-                . "SET inci_state_id = $InciStateKeyList[0] "
-                . "WHERE inci_state_id = 0 OR inci_state_id IS NULL",
-        );
-    }
-
-    # WORKAROUND: set empty cur_depl_state_id or cur_inci_state_id in configitem table
-    {
-
-        # get config items with empty cur_depl_state_id or cur_inci_state_id
-        $Self->{DBObject}->Prepare(
-            SQL => "SELECT id FROM configitem WHERE "
-                . "cur_depl_state_id = 0 OR cur_depl_state_id IS NULL OR "
-                . "cur_inci_state_id = 0 OR cur_inci_state_id IS NULL",
-        );
-
-        # fetch the result
-        my @ConfigItemIDs;
-        while ( my @Row = $Self->{DBObject}->FetchrowArray() ) {
-            push @ConfigItemIDs, $Row[0];
-        }
-
-        CONFIGITEMID:
-        for my $ConfigItemID (@ConfigItemIDs) {
-
-            # get last version
-            my $LastVersion = $Self->VersionGet(
-                ConfigItemID => $ConfigItemID,
-            );
-
-            next CONFIGITEMID if !$LastVersion;
-            next CONFIGITEMID if ref $LastVersion ne 'HASH';
-            next CONFIGITEMID if !$LastVersion->{DeplStateID};
-            next CONFIGITEMID if !$LastVersion->{InciStateID};
-
-            # complete config item
-            $Self->{DBObject}->Do(
-                SQL => "UPDATE configitem SET "
-                    . "cur_depl_state_id = $LastVersion->{DeplStateID}, "
-                    . "cur_inci_state_id = $LastVersion->{InciStateID} "
-                    . "WHERE id = $ConfigItemID",
-            );
-        }
-    }
 
     # check needed stuff
     if ( !$Param{ClassID} ) {
@@ -1131,6 +1019,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.3 $ $Date: 2008-07-11 15:17:26 $
+$Revision: 1.4 $ $Date: 2008-08-02 11:44:56 $
 
 =cut
