@@ -2,7 +2,7 @@
 # Kernel/System/LinkObject/ITSMConfigItem.pm - to link config item objects
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.3 2008-07-07 11:52:57 mh Exp $
+# $Id: ITSMConfigItem.pm,v 1.4 2008-08-02 15:07:03 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -17,7 +17,7 @@ use warnings;
 use Kernel::System::ITSMConfigItem;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.3 $) [1];
+$VERSION = qw($Revision: 1.4 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -214,7 +214,7 @@ sub ObjectSearch {
         PreviousVersionSearch => 0,
         UsingWildcards        => 1,
         OrderBy               => 'Number',
-        Limit                 => 100,
+        Limit                 => 50,
         UserID                => $Param{UserID},
     );
 
