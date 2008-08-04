@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem.pm - all config item function
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.4 2008-08-02 11:44:56 mh Exp $
+# $Id: ITSMConfigItem.pm,v 1.5 2008-08-04 15:46:07 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -24,7 +24,7 @@ use Kernel::System::Time;
 use Kernel::System::XML;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.4 $) [1];
+$VERSION = qw($Revision: 1.5 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition', 'Kernel::System::ITSMConfigItem::Number',
@@ -737,6 +737,8 @@ sub ConfigItemSearch {
         # create string
         my $InString = join q{, }, @{ $Param{$ArrayParam} };
 
+        next ARRAYPARAM if !$InString;
+
         push @SQLWhere, "$ArrayParams{ $ArrayParam } IN ($InString)";
     }
 
@@ -1019,6 +1021,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.4 $ $Date: 2008-08-02 11:44:56 $
+$Revision: 1.5 $ $Date: 2008-08-04 15:46:07 $
 
 =cut
