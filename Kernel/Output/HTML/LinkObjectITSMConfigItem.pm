@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/LinkObjectITSMConfigItem.pm - layout backend module
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: LinkObjectITSMConfigItem.pm,v 1.3 2008-07-07 11:52:57 mh Exp $
+# $Id: LinkObjectITSMConfigItem.pm,v 1.4 2008-08-04 15:46:57 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -18,7 +18,7 @@ use Kernel::Output::HTML::Layout;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.3 $) [1];
+$VERSION = qw($Revision: 1.4 $) [1];
 
 =head1 NAME
 
@@ -472,7 +472,9 @@ sub SelectableObjectList {
     return if !$ClassList;
     return if ref $ClassList ne 'HASH';
 
-    my $Counter = 0;
+    # get the config with the default subobjects
+    my $DefaultSubobject = $Self->{ConfigObject}->Get('LinkObject::DefaultSubObject') || {};
+
     for my $ClassID ( sort { lc $ClassList->{$a} cmp lc $ClassList->{$b} } keys %{$ClassList} ) {
 
         my $Class = $ClassList->{$ClassID} || '';
@@ -485,8 +487,17 @@ sub SelectableObjectList {
             if ( $Param{Selected} eq $Identifier ) {
                 $Selected = 1;
             }
-            elsif ( $Param{Selected} eq $Self->{ObjectData}->{Object} && !$Counter ) {
-                $Selected = 1;
+            elsif ( $Param{Selected} eq $Self->{ObjectData}->{Object}
+                && $DefaultSubobject->{ $Self->{ObjectData}->{Object} }
+            ) {
+
+                # extract default class name
+                my $DefaultClass = $DefaultSubobject->{ITSMConfigItem} || '';
+
+                # check class
+                if ( $DefaultClass eq $Class ) {
+                    $Selected = 1;
+                }
             }
         }
 
@@ -498,9 +509,6 @@ sub SelectableObjectList {
         );
 
         push @ObjectSelectList, \%Row;
-    }
-    continue {
-        $Counter++;
     }
 
     return @ObjectSelectList;
@@ -674,6 +682,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.3 $ $Date: 2008-07-07 11:52:57 $
+$Revision: 1.4 $ $Date: 2008-08-04 15:46:57 $
 
 =cut

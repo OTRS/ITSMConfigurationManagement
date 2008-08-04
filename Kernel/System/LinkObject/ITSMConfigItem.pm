@@ -2,7 +2,7 @@
 # Kernel/System/LinkObject/ITSMConfigItem.pm - to link config item objects
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.4 2008-08-02 15:07:03 mh Exp $
+# $Id: ITSMConfigItem.pm,v 1.5 2008-08-04 15:46:57 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -14,10 +14,11 @@ package Kernel::System::LinkObject::ITSMConfigItem;
 use strict;
 use warnings;
 
+use Kernel::System::GeneralCatalog;
 use Kernel::System::ITSMConfigItem;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.4 $) [1];
+$VERSION = qw($Revision: 1.5 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -30,6 +31,7 @@ sub new {
     for (qw(DBObject ConfigObject LogObject MainObject TimeObject LinkObject)) {
         $Self->{$_} = $Param{$_} || die "Got no $_!";
     }
+    $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
     $Self->{ConfigItemObject} = Kernel::System::ITSMConfigItem->new( %{$Self} );
 
     return $Self;
@@ -203,8 +205,28 @@ sub ObjectSearch {
         }
     }
 
-    my %SearchList;
-    return %SearchList if !$Param{SubObject};
+    if ( !$Param{SubObject} ) {
+
+        # get the config with the default subobjects
+        my $DefaultSubobject = $Self->{ConfigObject}->Get('LinkObject::DefaultSubObject') || {};
+
+        # extract default class name
+        my $DefaultClass = $DefaultSubobject->{ITSMConfigItem} || '';
+
+        # get class list
+        my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
+            Class => 'ITSM::ConfigItem::Class',
+        );
+
+        return if !$ClassList;
+        return if ref $ClassList ne 'HASH';
+
+        # lookup the class id
+        my %ClassListReverse = reverse %{$ClassList};
+        $Param{SubObject} = $ClassListReverse{$DefaultClass} || '';
+    }
+
+    return if !$Param{SubObject};
 
     # search the config items
     my $ConfigItemIDs = $Self->{ConfigItemObject}->ConfigItemSearchExtended(
@@ -218,6 +240,7 @@ sub ObjectSearch {
         UserID                => $Param{UserID},
     );
 
+    my %SearchList;
     CONFIGITEMID:
     for my $ConfigItemID ( @{$ConfigItemIDs} ) {
 
