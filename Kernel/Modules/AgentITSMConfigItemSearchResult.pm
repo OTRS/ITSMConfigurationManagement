@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemSearchResult.pm - the OTRS::ITSM config item search result module
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearchResult.pm,v 1.1.1.1 2008-07-05 16:24:13 mh Exp $
+# $Id: AgentITSMConfigItemSearchResult.pm,v 1.2 2008-08-06 13:13:59 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.1.1.1 $) [1];
+$VERSION = qw($Revision: 1.2 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -44,7 +44,7 @@ sub Run {
 
     # get class id
     my %SearchAttribute;
-    $SearchAttribute{ClassID} = $Self->{ParamObject}->GetParam( Param => "ClassID" );
+    $SearchAttribute{ClassID} = $Self->{ParamObject}->GetParam( Param => 'ClassID' );
 
     if ( !$SearchAttribute{ClassID} ) {
         return $Self->{LayoutObject}->ErrorScreen(
@@ -131,9 +131,9 @@ sub Run {
         $Self->{LayoutObject}->Block(
             Name => 'Row',
             Data => {
-                CssClass => $CssClass,
                 %{$LastVersion},
                 CurInciSignal => $InciSignals{ $LastVersion->{CurInciStateType} },
+                CssClass      => $CssClass,
             },
         );
     }

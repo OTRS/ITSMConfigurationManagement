@@ -2,7 +2,7 @@
 # Kernel/Modules/AdminITSMConfigItem.pm - admin frontend to manage config items
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: AdminITSMConfigItem.pm,v 1.1.1.1 2008-07-05 16:24:13 mh Exp $
+# $Id: AdminITSMConfigItem.pm,v 1.2 2008-08-06 13:13:59 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::GeneralCatalog;
 use Kernel::System::ITSMConfigItem;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.1.1.1 $) [1];
+$VERSION = qw($Revision: 1.2 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -42,20 +42,23 @@ sub new {
 sub Run {
     my ( $Self, %Param ) = @_;
 
+    # get class list
+    my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
+        Class => 'ITSM::ConfigItem::Class',
+    );
+    return $Self->{LayoutObject}->ErrorScreen() if !$ClassList;
+    return $Self->{LayoutObject}->ErrorScreen() if ref $ClassList ne 'HASH';
+    return $Self->{LayoutObject}->ErrorScreen() if !%{$ClassList};
+
     # ------------------------------------------------------------ #
     # definition list
     # ------------------------------------------------------------ #
     if ( $Self->{Subaction} eq 'DefinitionList' ) {
 
         # get class id
-        my $ClassID = $Self->{ParamObject}->GetParam( Param => "ClassID" );
+        my $ClassID = $Self->{ParamObject}->GetParam( Param => 'ClassID' );
 
         return $Self->{LayoutObject}->Redirect( OP => "Action=$Self->{Action}" ) if !$ClassID;
-
-        # get class list
-        my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
-            Class => 'ITSM::ConfigItem::Class',
-        );
 
         # generate ClassOptionStrg
         my $ClassOptionStrg = $Self->{LayoutObject}->BuildSelection(
@@ -131,14 +134,9 @@ sub Run {
     elsif ( $Self->{Subaction} eq 'DefinitionView' ) {
 
         # get definition id
-        my $DefinitionID = $Self->{ParamObject}->GetParam( Param => "DefinitionID" );
+        my $DefinitionID = $Self->{ParamObject}->GetParam( Param => 'DefinitionID' );
 
         return $Self->{LayoutObject}->Redirect( OP => "Action=$Self->{Action}" ) if !$DefinitionID;
-
-        # get class list
-        my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
-            Class => 'ITSM::ConfigItem::Class',
-        );
 
         # get definition
         my $Definition = $Self->{ConfigItemObject}->DefinitionGet(
@@ -176,7 +174,6 @@ sub Run {
         $Self->{LayoutObject}->Block(
             Name => 'DefinitionView',
             Data => {
-                Class => $ClassList->{ $Definition->{ClassID} },
                 %UserData,
                 %{$Definition},
             },
@@ -202,14 +199,9 @@ sub Run {
     elsif ( $Self->{Subaction} eq 'DefinitionChange' ) {
 
         # get class id
-        my $ClassID = $Self->{ParamObject}->GetParam( Param => "ClassID" );
+        my $ClassID = $Self->{ParamObject}->GetParam( Param => 'ClassID' );
 
         return $Self->{LayoutObject}->Redirect( OP => "Action=$Self->{Action}" ) if !$ClassID;
-
-        # get class list
-        my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
-            Class => 'ITSM::ConfigItem::Class',
-        );
 
         # get definition
         my $Definition = $Self->{ConfigItemObject}->DefinitionGet(
@@ -237,9 +229,7 @@ sub Run {
         $Self->{LayoutObject}->Block(
             Name => 'DefinitionChange',
             Data => {
-                Class => $ClassList->{$ClassID},
                 %{$Definition},
-                ClassID => $ClassID,
             },
         );
 
@@ -288,11 +278,6 @@ sub Run {
     # config item class overview
     # ------------------------------------------------------------ #
     else {
-
-        # get class list
-        my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
-            Class => 'ITSM::ConfigItem::Class',
-        );
 
         # generate ClassOptionStrg
         my $ClassOptionStrg = $Self->{LayoutObject}->BuildSelection(

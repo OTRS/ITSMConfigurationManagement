@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Definition.pm - sub module of ITSMConfigItem.pm with definition functions
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: Definition.pm,v 1.1.1.1 2008-07-05 16:24:13 mh Exp $
+# $Id: Definition.pm,v 1.2 2008-08-06 13:14:00 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.1.1.1 $) [1];
+$VERSION = qw($Revision: 1.2 $) [1];
 
 =head1 NAME
 
@@ -81,6 +81,7 @@ return a config item definition as hash reference
 Return
     $Definition{DefinitionID}
     $Definition{ClassID}
+    $Definition{Class}
     $Definition{Definition}
     $Definition{DefinitionRef}
     $Definition{Version}
@@ -162,6 +163,14 @@ sub DefinitionGet {
     else {
         $Definition{DefinitionRef} = '';
     }
+
+    # get class list
+    my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
+        Class => 'ITSM::ConfigItem::Class',
+    );
+
+    # add class
+    $Definition{Class} = $ClassList->{ $Definition{ClassID} };
 
     # cache the result
     $Self->{Cache}->{DefinitionGet}->{ $Definition{DefinitionID} } = \%Definition;
@@ -372,6 +381,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.1.1.1 $ $Date: 2008-07-05 16:24:13 $
+$Revision: 1.2 $ $Date: 2008-08-06 13:14:00 $
 
 =cut

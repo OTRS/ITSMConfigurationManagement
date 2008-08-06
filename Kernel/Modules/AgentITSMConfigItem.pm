@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItem.pm - the OTRS::ITSM config item module
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItem.pm,v 1.2 2008-08-01 12:08:58 mh Exp $
+# $Id: AgentITSMConfigItem.pm,v 1.3 2008-08-06 13:13:59 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.2 $) [1];
+$VERSION = qw($Revision: 1.3 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -43,7 +43,7 @@ sub Run {
     my ( $Self, %Param ) = @_;
 
     # get page
-    my $Page = $Self->{ParamObject}->GetParam( Param => "Page" ) || 1;
+    my $Page = $Self->{ParamObject}->GetParam( Param => 'Page' ) || 1;
 
     # get class list
     my $ClassList = $Self->{GeneralCatalogObject}->ItemList(

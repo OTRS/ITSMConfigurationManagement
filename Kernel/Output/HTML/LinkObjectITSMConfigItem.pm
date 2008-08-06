@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/LinkObjectITSMConfigItem.pm - layout backend module
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: LinkObjectITSMConfigItem.pm,v 1.4 2008-08-04 15:46:57 mh Exp $
+# $Id: LinkObjectITSMConfigItem.pm,v 1.5 2008-08-06 13:14:00 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -18,7 +18,7 @@ use Kernel::Output::HTML::Layout;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.4 $) [1];
+$VERSION = qw($Revision: 1.5 $) [1];
 
 =head1 NAME
 
@@ -487,9 +487,11 @@ sub SelectableObjectList {
             if ( $Param{Selected} eq $Identifier ) {
                 $Selected = 1;
             }
-            elsif ( $Param{Selected} eq $Self->{ObjectData}->{Object}
+            elsif (
+                $Param{Selected} eq $Self->{ObjectData}->{Object}
                 && $DefaultSubobject->{ $Self->{ObjectData}->{Object} }
-            ) {
+                )
+            {
 
                 # extract default class name
                 my $DefaultClass = $DefaultSubobject->{ITSMConfigItem} || '';
@@ -682,6 +684,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.4 $ $Date: 2008-08-04 15:46:57 $
+$Revision: 1.5 $ $Date: 2008-08-06 13:14:00 $
 
 =cut

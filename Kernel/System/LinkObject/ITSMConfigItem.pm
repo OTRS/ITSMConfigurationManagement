@@ -2,7 +2,7 @@
 # Kernel/System/LinkObject/ITSMConfigItem.pm - to link config item objects
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.5 2008-08-04 15:46:57 mh Exp $
+# $Id: ITSMConfigItem.pm,v 1.6 2008-08-06 13:14:00 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::GeneralCatalog;
 use Kernel::System::ITSMConfigItem;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.5 $) [1];
+$VERSION = qw($Revision: 1.6 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -32,7 +32,7 @@ sub new {
         $Self->{$_} = $Param{$_} || die "Got no $_!";
     }
     $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
-    $Self->{ConfigItemObject} = Kernel::System::ITSMConfigItem->new( %{$Self} );
+    $Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new( %{$Self} );
 
     return $Self;
 }

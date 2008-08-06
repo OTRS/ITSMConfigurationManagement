@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemEdit.pm - the OTRS::ITSM config item edit module
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.pm,v 1.1.1.1 2008-07-05 16:24:13 mh Exp $
+# $Id: AgentITSMConfigItemEdit.pm,v 1.2 2008-08-06 13:13:59 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.1.1.1 $) [1];
+$VERSION = qw($Revision: 1.2 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -42,12 +42,11 @@ sub new {
 sub Run {
     my ( $Self, %Param ) = @_;
 
-    my $ConfigItem = ();
-
     # get configitem id and class id
-    $ConfigItem->{ConfigItemID} = $Self->{ParamObject}->GetParam( Param => "ConfigItemID" ) || 0;
-    $ConfigItem->{ClassID}      = $Self->{ParamObject}->GetParam( Param => "ClassID" )      || 0;
-    my $DuplicateID = $Self->{ParamObject}->GetParam( Param => "DuplicateID" ) || 0;
+    my $ConfigItem = {};
+    $ConfigItem->{ConfigItemID} = $Self->{ParamObject}->GetParam( Param => 'ConfigItemID' ) || 0;
+    $ConfigItem->{ClassID}      = $Self->{ParamObject}->GetParam( Param => 'ClassID' )      || 0;
+    my $DuplicateID = $Self->{ParamObject}->GetParam( Param => 'DuplicateID' ) || 0;
 
     # get needed data
     if ( $ConfigItem->{ConfigItemID} && $ConfigItem->{ConfigItemID} ne 'NEW' ) {
@@ -101,11 +100,10 @@ sub Run {
     }
 
     # get submit save
-    my $SubmitSave = $Self->{ParamObject}->GetParam( Param => "SubmitSave" );
-
-    my $Version = {};
+    my $SubmitSave = $Self->{ParamObject}->GetParam( Param => 'SubmitSave' );
 
     # get xml data
+    my $Version = {};
     if ( $Self->{Subaction} eq 'VersionSave' ) {
         my $AllRequired = 1;
 
@@ -265,6 +263,7 @@ sub Run {
         },
     );
     $Output .= $Self->{LayoutObject}->Footer();
+
     return $Output;
 }
 
@@ -277,7 +276,7 @@ sub _XMLFormGet {
     return if ref $Param{XMLDefinition} ne 'ARRAY';
     return if ref $Param{AllRequired} ne 'SCALAR';
 
-    my $FormData = ();
+    my $FormData = {};
 
     ITEM:
     for my $Item ( @{ $Param{XMLDefinition} } ) {
@@ -337,6 +336,7 @@ sub _XMLFormGet {
             }
         }
     }
+
     return $FormData;
 }
 
@@ -347,7 +347,7 @@ sub _XMLDefaultSet {
     return if !$Param{XMLDefinition};
     return if ref $Param{XMLDefinition} ne 'ARRAY';
 
-    my $DefaultData = ();
+    my $DefaultData = {};
 
     for my $Item ( @{ $Param{XMLDefinition} } ) {
         for my $Counter ( 1 .. $Item->{CountDefault} ) {
