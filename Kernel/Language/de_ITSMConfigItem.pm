@@ -2,7 +2,7 @@
 # Kernel/Language/de_ITSMConfigItem.pm - the german translation of ITSMConfigItem
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: de_ITSMConfigItem.pm,v 1.2 2008-08-06 07:17:33 ub Exp $
+# $Id: de_ITSMConfigItem.pm,v 1.3 2008-08-06 10:44:41 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.2 $) [1];
+$VERSION = qw($Revision: 1.3 $) [1];
 
 sub Data {
     my $Self = shift;
@@ -38,7 +38,7 @@ sub Data {
     $Lang->{'Also search in previous versions?'} = 'Auch in früheren Versionen suchen?';
     $Lang->{'Config Items shown'}                = 'Config Items angezeigt';
     $Lang->{'Config Items available'}            = 'Config Items verfügbar';
-    $Lang->{'Search Config Items'}               = 'Config Item-Suche';
+    $Lang->{'Search Config Items'}               = 'Config Item Suche';
     $Lang->{'Deployment State'}                  = 'Verwendungsstatus';
     $Lang->{'Current Deployment State'}          = 'Aktueller Verwendungsstatus';
     $Lang->{'Incident State'}                    = 'Vorfallsstatus';
