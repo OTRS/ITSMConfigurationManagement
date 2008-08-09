@@ -2,7 +2,7 @@
 # AgentITSMConfigItemEdit.dtl - provides HTML form for AgentITSMConfigItemEdit
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.dtl,v 1.1.1.1 2008-07-05 16:24:13 mh Exp $
+# $Id: AgentITSMConfigItemEdit.dtl,v 1.2 2008-08-09 11:04:59 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -17,7 +17,7 @@
   </tr>
   <tr>
     <td class="menu">
-      <a href="$Env{"Baselink"}$Env{"ITSMConfigItemLastScreenView"}">$Text{"Back"}</a>
+      <a href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom&ConfigItemID=$QData{"ConfigItemID"}" onclick="javascript:history.back(); return false;">$Text{"Back"}</a>
     </td>
   </tr>
   <tr>

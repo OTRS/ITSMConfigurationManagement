@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemAdd.pm - the OTRS::ITSM config item add module
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemAdd.pm,v 1.1.1.1 2008-07-05 16:24:13 mh Exp $
+# $Id: AgentITSMConfigItemAdd.pm,v 1.2 2008-08-09 11:04:59 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -17,7 +17,7 @@ use warnings;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.1.1.1 $) [1];
+$VERSION = qw($Revision: 1.2 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -50,13 +50,6 @@ sub Run {
         my $ClassID = $Self->{ParamObject}->GetParam( Param => 'ClassID' );
 
         return $Self->{LayoutObject}->Redirect( OP => "Action=$Self->{Action}" ) if !$ClassID;
-
-        # update session
-        $Self->{SessionObject}->UpdateSessionID(
-            SessionID => $Self->{SessionID},
-            Key       => 'ITSMConfigItemLastScreenView',
-            Value     => "Action=$Self->{Action}",
-        );
 
         return $Self->{LayoutObject}->Redirect(
             OP => "Action=AgentITSMConfigItemEdit&ClassID=$ClassID",
