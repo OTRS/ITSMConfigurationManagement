@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem.pm - all config item function
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.6 2008-08-06 13:14:00 mh Exp $
+# $Id: ITSMConfigItem.pm,v 1.7 2008-08-09 09:45:41 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -24,7 +24,7 @@ use Kernel::System::Time;
 use Kernel::System::XML;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.6 $) [1];
+$VERSION = qw($Revision: 1.7 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',
@@ -996,13 +996,11 @@ sub _PrepareLikeString {
     return if !$Value;
     return if ref $Value ne 'SCALAR';
 
+    # Quote
+    ${$Value} = $Self->{DBObject}->Quote( ${$Value}, 'Like' );
+
     # replace * with %
     ${$Value} =~ s{ \*+ }{%}xmsg;
-
-    # Hotfix for MSSQL bug# 2227
-    return if $Self->{DBObject}->GetDatabaseFunction('Type') ne 'mssql';
-
-    ${$Value} =~ s{ \[ }{[[]}xmsg;
 
     return;
 }
@@ -1023,6 +1021,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.6 $ $Date: 2008-08-06 13:14:00 $
+$Revision: 1.7 $ $Date: 2008-08-09 09:45:41 $
 
 =cut

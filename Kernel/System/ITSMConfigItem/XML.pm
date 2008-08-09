@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/XML.pm - sub module of ITSMConfigItem.pm with xml functions
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: XML.pm,v 1.1.1.1 2008-07-05 16:24:13 mh Exp $
+# $Id: XML.pm,v 1.2 2008-08-09 09:48:26 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.1.1.1 $) [1];
+$VERSION = qw($Revision: 1.2 $) [1];
 
 =head1 NAME
 
@@ -280,8 +280,10 @@ sub _XMLVersionSearch {
 
     # prepare like string
     for my $Row ( @{ $Param{What} } ) {
-        for my $Value ( values %{$Row} ) {
-            $Self->_PrepareLikeString( \$Value );
+        for my $Array ( values %{$Row} ) {
+            for my $Value ( @{$Array} ) {
+                $Self->_PrepareLikeString( \$Value );
+            }
         }
     }
 
@@ -558,6 +560,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.1.1.1 $ $Date: 2008-07-05 16:24:13 $
+$Revision: 1.2 $ $Date: 2008-08-09 09:48:26 $
 
 =cut
