@@ -2,7 +2,7 @@
 # Kernel/Language/bg_ITSMConfigItem.pm - the Bulgarian translation of ITSMConfigItem
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: bg_ITSMConfigItem.pm,v 1.1.1.1 2008-07-05 16:24:13 mh Exp $
+# $Id: bg_ITSMConfigItem.pm,v 1.2 2008-08-11 08:11:41 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.1.1.1 $) [1];
+$VERSION = qw($Revision: 1.2 $) [1];
 
 sub Data {
     my $Self = shift;
@@ -38,6 +38,7 @@ sub Data {
     $Lang->{'Also search in previous versions?'}        = 'Да търси и в предишните версии?';
     $Lang->{'Config Items shown'}                       = 'Показани конфигур.единици';
     $Lang->{'Config Items available'}                   = 'Достъпни конфигур.единици';
+    $Lang->{'Search Config Items'}                      = '';
     $Lang->{'Deployment State'}                         = '';
     $Lang->{'Current Deployment State'}                 = '';
     $Lang->{'Incident State'}                           = '';
@@ -57,6 +58,8 @@ sub Data {
     $Lang->{'Retired'}                                  = 'Излязъл от употреба';
     $Lang->{'Review'}                                   = 'Преглеждан';
     $Lang->{'Test/QA'}                                  = 'Тест/Качествен контрол';
+    $Lang->{'Operational'}                              = '';
+    $Lang->{'Incident'}                                 = '';
     $Lang->{'Desktop'}                                  = 'Настолен';
     $Lang->{'Laptop'}                                   = 'Преносим';
     $Lang->{'Other'}                                    = 'Други';

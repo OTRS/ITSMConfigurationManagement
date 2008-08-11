@@ -2,7 +2,7 @@
 # Kernel/Language/cz_ITSMConfigItem.pm - the czech translation of ITSMConfigItem
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: cz_ITSMConfigItem.pm,v 1.1.1.1 2008-07-05 16:24:13 mh Exp $
+# $Id: cz_ITSMConfigItem.pm,v 1.2 2008-08-11 08:11:41 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.1.1.1 $) [1];
+$VERSION = qw($Revision: 1.2 $) [1];
 
 sub Data {
     my $Self = shift;
@@ -38,6 +38,7 @@ sub Data {
     $Lang->{'Also search in previous versions?'}        = 'Hledat v předchozích verzích?';
     $Lang->{'Config Items shown'}                       = 'Ukazané konfig.jednotky';
     $Lang->{'Config Items available'}                   = 'Dostupné konfig.jednotky';
+    $Lang->{'Search Config Items'}                      = '';
     $Lang->{'Deployment State'}                         = '';
     $Lang->{'Current Deployment State'}                 = '';
     $Lang->{'Incident State'}                           = '';
@@ -57,6 +58,8 @@ sub Data {
     $Lang->{'Retired'}                                  = 'Mimo provoz';
     $Lang->{'Review'}                                   = 'Prohlížen';
     $Lang->{'Test/QA'}                                  = 'Test/Kontrola kvality';
+    $Lang->{'Operational'}                              = '';
+    $Lang->{'Incident'}                                 = '';
     $Lang->{'Desktop'}                                  = 'Stolní';
     $Lang->{'Laptop'}                                   = 'Mobilní';
     $Lang->{'Other'}                                    = 'Ostatní';
