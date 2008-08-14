@@ -1,8 +1,9 @@
 # --
 # Kernel/Language/cz_ITSMConfigItem.pm - the czech translation of ITSMConfigItem
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
+# Copyright (C) 2007-2008 Milen Koutev
 # --
-# $Id: cz_ITSMConfigItem.pm,v 1.2 2008-08-11 08:11:41 mh Exp $
+# $Id: cz_ITSMConfigItem.pm,v 1.3 2008-08-14 11:50:28 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -15,7 +16,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.2 $) [1];
+$VERSION = qw($Revision: 1.3 $) [1];
 
 sub Data {
     my $Self = shift;
