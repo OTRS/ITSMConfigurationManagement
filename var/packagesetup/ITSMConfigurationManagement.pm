@@ -2,7 +2,7 @@
 # ITSMConfigurationManagement.pm - code to excecute during package installation
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigurationManagement.pm,v 1.10 2008-08-02 11:44:56 mh Exp $
+# $Id: ITSMConfigurationManagement.pm,v 1.11 2008-08-15 11:54:22 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -28,7 +28,7 @@ use Kernel::System::User;
 use Kernel::System::Valid;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.10 $) [1];
+$VERSION = qw($Revision: 1.11 $) [1];
 
 =head1 NAME
 
@@ -61,7 +61,7 @@ create an object
         ConfigObject => $ConfigObject,
         LogObject    => $LogObject,
     );
-    my $CodeObject = ITSMConfigurationManagement->new(
+    my $CodeObject = var::packagesetup::ITSMConfigurationManagement->new(
         ConfigObject => $ConfigObject,
         LogObject    => $LogObject,
         MainObject   => $MainObject,
@@ -1198,6 +1198,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.10 $ $Date: 2008-08-02 11:44:56 $
+$Revision: 1.11 $ $Date: 2008-08-15 11:54:22 $
 
 =cut
