@@ -3,7 +3,7 @@
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # Copyright (C) 2008 Egor Tsilenko <bg8s at symlink.ru>
 # --
-# $Id: ru_ITSMConfigItem.pm,v 1.1 2008-08-15 14:48:31 mh Exp $
+# $Id: ru_ITSMConfigItem.pm,v 1.2 2008-08-20 11:16:23 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -16,7 +16,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.1 $) [1];
+$VERSION = qw($Revision: 1.2 $) [1];
 
 sub Data {
     my $Self = shift;
@@ -34,7 +34,8 @@ sub Data {
     $Lang->{'Hide Versions'}          = 'Скрыть версии';
     $Lang->{'Last changed by'}        = 'Автор последнего изменения';
     $Lang->{'Last changed'}           = 'Время последнего изменения';
-    $Lang->{'Change of definition failed! See System Log for details.'} = 'Невозможно изменить описание! Для подробной информации смотри System Log.';
+    $Lang->{'Change of definition failed! See System Log for details.'}
+        = 'Невозможно изменить описание! Для подробной информации смотри System Log.';
     $Lang->{'Also search in previous versions?'} = 'Искать в предыдущих версиях?';
     $Lang->{'Config Items shown'}                = 'Показано основных средств';
     $Lang->{'Config Items available'}            = 'Доступно основных средств';
@@ -44,7 +45,8 @@ sub Data {
     $Lang->{'Incident State'}                    = 'Состояние инцидента';
     $Lang->{'Current Incident State'}            = 'Текущее состояние инцидента';
     $Lang->{'The name of this config item'}      = 'Имя этого учетного элемента';
-    $Lang->{'The deployment state of this config item'} = 'Состояние использования этого основного средства';
+    $Lang->{'The deployment state of this config item'}
+        = 'Состояние использования этого основного средства';
     $Lang->{'The incident state of this config item'} = 'Статус';
     $Lang->{'Last Change'}                            = 'Время последнего изменения';
     $Lang->{'Duplicate'}                              = 'Резерв';
