@@ -3,7 +3,7 @@
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # Copyright (C) 2008 Aquiles Cohen
 # --
-# $Id: es_ITSMConfigItem.pm,v 1.3 2008-08-14 11:50:28 mh Exp $
+# $Id: es_ITSMConfigItem.pm,v 1.4 2008-08-20 11:17:03 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -16,7 +16,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.3 $) [1];
+$VERSION = qw($Revision: 1.4 $) [1];
 
 sub Data {
     my $Self = shift;
@@ -27,13 +27,13 @@ sub Data {
 
     $Lang->{'Config Item'}            = 'Elemento de Configuración';
     $Lang->{'Config Item-Area'}       = 'Area de Configuración de Elementos';
-    $Lang->{'Config Item Management'} = 'Administración de Elementos de Configuración';
-    $Lang->{'Change Definition'}      = 'Cambiar Definición';
+    $Lang->{'Config Item Management'} = 'Gestión de Elementos de Configuración';
+    $Lang->{'Change Definition'}      = 'Modificar Definición';
     $Lang->{'Class'}                  = 'Clase';
     $Lang->{'Show Versions'}          = 'Mostrar Versiones';
     $Lang->{'Hide Versions'}          = 'Ocultar Versiones';
-    $Lang->{'Last changed by'}        = 'Ultima actualización por';
-    $Lang->{'Last changed'}           = 'Ultima actualización';
+    $Lang->{'Last changed by'}        = 'Ultima modificación por';
+    $Lang->{'Last changed'}           = 'Ultima modificación';
     $Lang->{'Change of definition failed! See System Log for details.'}
         = 'Actualización de definiciones fallida! Revisar el Log del Sistema para consultar detalles';
     $Lang->{'Also search in previous versions?'} = 'buscar en versiones anteriores?';
@@ -49,7 +49,7 @@ sub Data {
         = 'El estado de implementación de este elemento de configuración';
     $Lang->{'The incident state of this config item'}
         = 'El estado de este elemento de configuración';
-    $Lang->{'Last Change'}                   = 'Ultima actualización';
+    $Lang->{'Last Change'}                   = 'Ultima modificación';
     $Lang->{'Duplicate'}                     = 'Duplicado';
     $Lang->{'Expired'}                       = 'Expirado';
     $Lang->{'Inactive'}                      = 'Inactivo';
@@ -138,9 +138,9 @@ sub Data {
     $Lang->{'Subnet Mask'}                   = 'Mascara de Subred';
     $Lang->{'Gateway'}                       = 'Puerta de enlace';
     $Lang->{'Licence Type'}                  = 'Tipo de Licencia';
-    $Lang->{'Licence Key'}                   = 'Llave de Licencia';
-    $Lang->{'Licence Key::Quantity'}         = 'Llave de Licencia::Cantidad';
-    $Lang->{'Licence Key::Expiration Date'}  = 'Llave de Licencia::Fecha de Expiración';
+    $Lang->{'Licence Key'}                   = 'Clave de Licencia';
+    $Lang->{'Licence Key::Quantity'}         = 'Clave de Licencia::Cantidad';
+    $Lang->{'Licence Key::Expiration Date'}  = 'Clave de Licencia::Fecha de Expiración';
     $Lang->{'Quantity'}                      = 'Cantidad';
     $Lang->{'Expiration Date'}               = 'Fecha de Expiración';
     $Lang->{'Media'}                         = 'Medio';
