@@ -2,7 +2,7 @@
 # ITSMConfigurationManagement.pm - code to excecute during package installation
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigurationManagement.pm,v 1.11 2008-08-15 11:54:22 mh Exp $
+# $Id: ITSMConfigurationManagement.pm,v 1.12 2008-08-29 08:36:37 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -28,7 +28,7 @@ use Kernel::System::User;
 use Kernel::System::Valid;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.11 $) [1];
+$VERSION = qw($Revision: 1.12 $) [1];
 
 =head1 NAME
 
@@ -51,7 +51,9 @@ create an object
     use Kernel::Config;
     use Kernel::System::Log;
     use Kernel::System::Main;
+    use Kernel::System::Time;
     use Kernel::System::DB;
+    use Kernel::System::XML;
 
     my $ConfigObject = Kernel::Config->new();
     my $LogObject    = Kernel::System::Log->new(
@@ -61,10 +63,28 @@ create an object
         ConfigObject => $ConfigObject,
         LogObject    => $LogObject,
     );
+    my $TimeObject = Kernel::System::Time->new(
+        ConfigObject => $ConfigObject,
+        LogObject    => $LogObject,
+    );
+    my $DBObject = Kernel::System::DB->new(
+        ConfigObject => $ConfigObject,
+        LogObject    => $LogObject,
+        MainObject   => $MainObject,
+    );
+    my $XMLObject = Kernel::System::XML->new(
+        ConfigObject => $ConfigObject,
+        LogObject    => $LogObject,
+        DBObject     => $DBObject,
+        MainObject   => $MainObject,
+    );
     my $CodeObject = var::packagesetup::ITSMConfigurationManagement->new(
         ConfigObject => $ConfigObject,
         LogObject    => $LogObject,
         MainObject   => $MainObject,
+        TimeObject   => $TimeObject,
+        DBObject     => $DBObject,
+        XMLObject    => $XMLObject,
     );
 
 =cut
@@ -1198,6 +1218,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.11 $ $Date: 2008-08-15 11:54:22 $
+$Revision: 1.12 $ $Date: 2008-08-29 08:36:37 $
 
 =cut
