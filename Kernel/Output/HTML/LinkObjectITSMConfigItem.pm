@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/LinkObjectITSMConfigItem.pm - layout backend module
 # Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
 # --
-# $Id: LinkObjectITSMConfigItem.pm,v 1.5 2008-08-06 13:14:00 mh Exp $
+# $Id: LinkObjectITSMConfigItem.pm,v 1.6 2008-08-29 15:40:10 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -18,7 +18,7 @@ use Kernel::Output::HTML::Layout;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.5 $) [1];
+$VERSION = qw($Revision: 1.6 $) [1];
 
 =head1 NAME
 
@@ -51,7 +51,8 @@ sub new {
 
     # check needed objects
     for my $Object (
-        qw(ConfigObject LogObject MainObject DBObject UserObject EncodeObject QueueObject GroupObject ParamObject TimeObject UserID)
+        qw(ConfigObject LogObject MainObject DBObject UserObject EncodeObject
+        QueueObject GroupObject ParamObject TimeObject LanguageObject UserLanguage UserID)
         )
     {
         $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
@@ -684,6 +685,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.5 $ $Date: 2008-08-06 13:14:00 $
+$Revision: 1.6 $ $Date: 2008-08-29 15:40:10 $
 
 =cut
