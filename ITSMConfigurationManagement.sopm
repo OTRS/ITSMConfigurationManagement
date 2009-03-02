@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <otrs_package version="1.0">
-    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.32 2009-01-20 14:36:10 mh Exp $</CVS>
+    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.33 2009-03-02 09:47:41 mh Exp $</CVS>
     <Name>ITSMConfigurationManagement</Name>
     <Version>0.0.0</Version>
     <Framework>2.3.x</Framework>
-    <PackageRequired Version="1.2.2">ITSMCore</PackageRequired>
+    <PackageRequired Version="1.2.3">ITSMCore</PackageRequired>
     <Vendor>OTRS AG</Vendor>
     <URL>http://otrs.org/</URL>
-    <License>GNU GENERAL PUBLIC LICENSE Version 2, June 1991</License>
+    <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
     <Description Lang="en">The OTRS::ITSM Configuration Management package.</Description>
     <Description Lang="de">Das OTRS::ITSM Configuration Management Paket.</Description>
     <Filelist>
