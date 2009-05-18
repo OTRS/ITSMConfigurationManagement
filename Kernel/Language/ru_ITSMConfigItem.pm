@@ -1,13 +1,13 @@
 # --
 # Kernel/Language/ru_ITSMConfigItem.pm - the russian translation of ITSMConfigItem
-# Copyright (C) 2001-2008 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # Copyright (C) 2008 Egor Tsilenko <bg8s at symlink.ru>
 # --
-# $Id: ru_ITSMConfigItem.pm,v 1.2 2008-08-20 11:16:23 mh Exp $
+# $Id: ru_ITSMConfigItem.pm,v 1.3 2009-05-18 09:56:41 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
-# the enclosed file COPYING for license information (GPL). If you
-# did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
 package Kernel::Language::ru_ITSMConfigItem;
@@ -16,7 +16,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.2 $) [1];
+$VERSION = qw($Revision: 1.3 $) [1];
 
 sub Data {
     my $Self = shift;
