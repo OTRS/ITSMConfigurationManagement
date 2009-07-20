@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <otrs_package version="1.0">
-    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.35 2009-05-18 10:00:03 mh Exp $</CVS>
+    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.35.2.1 2009-07-20 10:41:40 ub Exp $</CVS>
     <Name>ITSMConfigurationManagement</Name>
     <Version>0.0.0</Version>
     <Framework>2.3.x</Framework>
@@ -18,6 +18,7 @@
         <File Permission="644" Location="Kernel/Language/cz_ITSMConfigItem.pm"/>
         <File Permission="644" Location="Kernel/Language/de_ITSMConfigItem.pm"/>
         <File Permission="644" Location="Kernel/Language/es_ITSMConfigItem.pm"/>
+        <File Permission="644" Location="Kernel/Language/fa_ITSMConfigItem.pm"/>
         <File Permission="644" Location="Kernel/Language/it_ITSMConfigItem.pm"/>
         <File Permission="644" Location="Kernel/Language/pl_ITSMConfigItem.pm"/>
         <File Permission="644" Location="Kernel/Language/ru_ITSMConfigItem.pm"/>
