@@ -2,7 +2,7 @@
 # Kernel/System/Stats/Dynamic/ITSMConfigItem.pm - all dynamic itsm config item stats functions
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.2 2009-05-18 09:59:04 mh Exp $
+# $Id: ITSMConfigItem.pm,v 1.3 2009-07-20 23:26:37 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::GeneralCatalog;
 use Kernel::System::ITSMConfigItem;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.2 $) [1];
+$VERSION = qw($Revision: 1.3 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -28,7 +28,7 @@ sub new {
     bless( $Self, $Type );
 
     # check needed objects
-    for my $Object (qw(DBObject ConfigObject LogObject UserObject MainObject)) {
+    for my $Object (qw(DBObject ConfigObject EncodeObject LogObject UserObject MainObject)) {
         $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
     }
     $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );

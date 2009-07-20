@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/XML/Type/Integer.pm - xml backend module
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: Integer.pm,v 1.2 2009-05-18 09:59:04 mh Exp $
+# $Id: Integer.pm,v 1.3 2009-07-20 23:26:03 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.2 $) [1];
+$VERSION = qw($Revision: 1.3 $) [1];
 
 =head1 NAME
 
@@ -34,23 +34,37 @@ All xml functions of integer objects
 create an object
 
     use Kernel::Config;
+    use Kernel::System::Encode;
     use Kernel::System::Log;
     use Kernel::System::DB;
-    use Kernel::System::ConfigItem;
+    use Kernel::System::Main;
+    use Kernel::System::ITSMConfigItem;
 
     my $ConfigObject = Kernel::Config->new();
+    my $EncodeObject = Kernel::System::Encode->new(
+        ConfigObject => $ConfigObject,
+    );
     my $LogObject = Kernel::System::Log->new(
         ConfigObject => $ConfigObject,
+        EncodeObject => $EncodeObject,
+    );
+    my $MainObject = Kernel::System::Main->new(
+        ConfigObject => $ConfigObject,
+        LogObject    => $LogObject,
+        EncodeObject => $EncodeObject,
     );
     my $DBObject = Kernel::System::DB->new(
         ConfigObject => $ConfigObject,
+        EncodeObject => $EncodeObject,
         LogObject    => $LogObject,
         MainObject   => $MainObject,
     );
-    my $ConfigItemObject = Kernel::System::ConfigItem->new(
+    my $ConfigItemObject = Kernel::System::ITSMConfigItem->new(
         ConfigObject => $ConfigObject,
+        EncodeObject => $EncodeObject,
         LogObject    => $LogObject,
         DBObject     => $DBObject,
+        MainObject   => $MainObject,
     );
     $BackendObject = $ConfigItemObject->_LoadXMLTypeBackend(
         Type => 'Integer',
@@ -66,7 +80,7 @@ sub new {
     bless( $Self, $Type );
 
     # check needed objects
-    for my $Object (qw(DBObject ConfigObject LogObject MainObject)) {
+    for my $Object (qw(DBObject ConfigObject EncodeObject LogObject MainObject)) {
         $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
     }
 
@@ -187,6 +201,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.2 $ $Date: 2009-05-18 09:59:04 $
+$Revision: 1.3 $ $Date: 2009-07-20 23:26:03 $
 
 =cut

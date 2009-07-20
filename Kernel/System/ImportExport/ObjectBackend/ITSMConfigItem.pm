@@ -2,7 +2,7 @@
 # Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm - import/export backend for ITSMConfigItem
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.2 2009-05-18 09:59:04 mh Exp $
+# $Id: ITSMConfigItem.pm,v 1.3 2009-07-20 23:22:00 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -19,7 +19,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::Time;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.2 $) [1];
+$VERSION = qw($Revision: 1.3 $) [1];
 
 =head1 NAME
 
@@ -38,26 +38,33 @@ All functions to import and export ITSM config items
 create an object
 
     use Kernel::Config;
+    use Kernel::System::Encode;
     use Kernel::System::DB;
     use Kernel::System::Log;
     use Kernel::System::Main;
     use Kernel::System::ImportExport::ObjectBackend::ITSMConfigItem;
 
     my $ConfigObject = Kernel::Config->new();
+    my $EncodeObject = Kernel::System::Encode->new(
+        ConfigObject => $ConfigObject,
+    );
     my $LogObject = Kernel::System::Log->new(
         ConfigObject => $ConfigObject,
     );
     my $MainObject = Kernel::System::Main->new(
         ConfigObject => $ConfigObject,
+        EncodeObject => $EncodeObject,
         LogObject    => $LogObject,
     );
     my $DBObject = Kernel::System::DB->new(
         ConfigObject => $ConfigObject,
+        EncodeObject => $EncodeObject,
         LogObject    => $LogObject,
         MainObject   => $MainObject,
     );
     my $BackendObject = Kernel::System::ImportExport::ObjectBackend::ITSMConfigItem->new(
         ConfigObject       => $ConfigObject,
+        EncodeObject       => $EncodeObject,
         LogObject          => $LogObject,
         DBObject           => $DBObject,
         MainObject         => $MainObject,
@@ -74,7 +81,7 @@ sub new {
     bless( $Self, $Type );
 
     # check needed objects
-    for my $Object (qw(ConfigObject LogObject DBObject MainObject ImportExportObject)) {
+    for my $Object (qw(ConfigObject EncodeObject LogObject DBObject MainObject ImportExportObject)) {
         $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
     }
 
@@ -1469,6 +1476,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.2 $ $Date: 2009-05-18 09:59:04 $
+$Revision: 1.3 $ $Date: 2009-07-20 23:22:00 $
 
 =cut

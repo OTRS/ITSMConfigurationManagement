@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem.pm - all config item function
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.8 2009-05-18 09:59:04 mh Exp $
+# $Id: ITSMConfigItem.pm,v 1.9 2009-07-20 23:21:38 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -24,7 +24,7 @@ use Kernel::System::Time;
 use Kernel::System::XML;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.8 $) [1];
+$VERSION = qw($Revision: 1.9 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',
@@ -52,23 +52,37 @@ All config item functions.
 create an object
 
     use Kernel::Config;
+    use Kernel::System::Encode;
     use Kernel::System::Log;
     use Kernel::System::DB;
+    use Kernel::System::Main;
     use Kernel::System::ITSMConfigItem;
 
     my $ConfigObject = Kernel::Config->new();
+    my $EncodeObject = Kernel::System::Encode->new(
+        ConfigObject => $ConfigObject,
+    );
     my $LogObject = Kernel::System::Log->new(
         ConfigObject => $ConfigObject,
+        EncodeObject => $EncodeObject,
+    );
+    my $MainObject = Kernel::System::Main->new(
+        ConfigObject => $ConfigObject,
+        LogObject    => $LogObject,
+        EncodeObject => $EncodeObject,
     );
     my $DBObject = Kernel::System::DB->new(
         ConfigObject => $ConfigObject,
+        EncodeObject => $EncodeObject,
         LogObject    => $LogObject,
         MainObject   => $MainObject,
     );
     my $ConfigItemObject = Kernel::System::ITSMConfigItem->new(
         ConfigObject => $ConfigObject,
+        EncodeObject => $EncodeObject,
         LogObject    => $LogObject,
         DBObject     => $DBObject,
+        MainObject   => $MainObject,
     );
 
 =cut
@@ -81,7 +95,7 @@ sub new {
     bless( $Self, $Type );
 
     # check needed objects
-    for my $Object (qw(DBObject ConfigObject LogObject MainObject)) {
+    for my $Object (qw(DBObject ConfigObject EncodeObject LogObject MainObject)) {
         $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
     }
     $Self->{TimeObject}           = Kernel::System::Time->new( %{$Self} );
@@ -1021,6 +1035,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.8 $ $Date: 2009-05-18 09:59:04 $
+$Revision: 1.9 $ $Date: 2009-07-20 23:21:38 $
 
 =cut
