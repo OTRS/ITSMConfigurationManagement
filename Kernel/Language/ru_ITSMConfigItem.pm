@@ -3,7 +3,7 @@
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # Copyright (C) 2008 Egor Tsilenko <bg8s at symlink.ru>
 # --
-# $Id: ru_ITSMConfigItem.pm,v 1.3 2009-05-18 09:56:41 mh Exp $
+# $Id: ru_ITSMConfigItem.pm,v 1.3.2.1 2009-07-20 13:08:28 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -16,7 +16,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.3 $) [1];
+$VERSION = qw($Revision: 1.3.2.1 $) [1];
 
 sub Data {
     my $Self = shift;
@@ -145,6 +145,17 @@ sub Data {
     $Lang->{'Media'}                                  = 'Мультимедийные средства';
     $Lang->{'Maximum number of one element'}          = 'Максимальное количество одного элемента';
     $Lang->{'Identifier'}                             = 'Идентификатор';
+    $Lang->{'Phone 1'}                                = '';
+    $Lang->{'Phone 2'}                                = '';
+    $Lang->{'Address'}                                = '';
+    $Lang->{'Building'}                               = '';
+    $Lang->{'Floor'}                                  = '';
+    $Lang->{'IT Facility'}                            = '';
+    $Lang->{'Office'}                                 = '';
+    $Lang->{'Outlet'}                                 = '';
+    $Lang->{'Rack'}                                   = '';
+    $Lang->{'Room'}                                   = '';
+    $Lang->{'Workplace'}                              = '';
 
     return 1;
 }
