@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/XML/Type/Customer.pm - xml backend module
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: Customer.pm,v 1.3 2009-07-20 23:25:25 ub Exp $
+# $Id: Customer.pm,v 1.4 2009-07-21 00:43:49 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -17,7 +17,7 @@ use warnings;
 use Kernel::System::CustomerUser;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.3 $) [1];
+$VERSION = qw($Revision: 1.4 $) [1];
 
 =head1 NAME
 
@@ -82,7 +82,7 @@ sub new {
     bless( $Self, $Type );
 
     # check needed objects
-    for my $Object (qw(DBObject ConfigObject Encodeobject LogObject MainObject)) {
+    for my $Object (qw(DBObject ConfigObject EncodeObject LogObject MainObject)) {
         $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
     }
     $Self->{CustomerUserObject} = Kernel::System::CustomerUser->new( %{$Self} );
@@ -237,6 +237,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.3 $ $Date: 2009-07-20 23:25:25 $
+$Revision: 1.4 $ $Date: 2009-07-21 00:43:49 $
 
 =cut
