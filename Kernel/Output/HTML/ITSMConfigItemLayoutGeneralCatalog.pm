@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/ITSMConfigItemLayoutGeneralCatalog.pm - layout backend module
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutGeneralCatalog.pm,v 1.2 2009-05-18 10:00:35 mh Exp $
+# $Id: ITSMConfigItemLayoutGeneralCatalog.pm,v 1.3 2009-07-21 00:44:57 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -17,7 +17,7 @@ use warnings;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.2 $) [1];
+$VERSION = qw($Revision: 1.3 $) [1];
 
 =head1 NAME
 
@@ -49,7 +49,7 @@ sub new {
     bless( $Self, $Type );
 
     # check needed objects
-    for my $Object (qw(ConfigObject LogObject MainObject ParamObject DBObject LayoutObject)) {
+    for my $Object (qw(ConfigObject EncodeObject LogObject MainObject ParamObject DBObject LayoutObject)) {
         $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
     }
     $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
@@ -272,6 +272,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.2 $ $Date: 2009-05-18 10:00:35 $
+$Revision: 1.3 $ $Date: 2009-07-21 00:44:57 $
 
 =cut
