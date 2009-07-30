@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/History.pm - module for ITSMConfigItem.pm with history functions
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: History.pm,v 1.1 2009-07-30 11:44:24 reb Exp $
+# $Id: History.pm,v 1.2 2009-07-30 11:46:17 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.1 $) [1];
+$VERSION = qw($Revision: 1.2 $) [1];
 
 =head1 NAME
 
@@ -125,7 +125,7 @@ sub HistoryGet {
         }
     }
 
-    my $SQL = qq~SELECT ch.id, ch.config_item_id, ch.comment, ch.type_id,
+    my $SQL = qq~SELECT ch.id, ch.config_item_id, ch.content, ch.type_id,
                         ch.create_by, ch.create_time, cht.name
                     FROM configitem_history ch, configitem_history_type cht
                     WHERE ch.type_id = cht.id AND
@@ -207,7 +207,7 @@ sub HistoryEntryGet {
         }
     }
 
-    my $SQL = qq~SELECT ch.id, ch.config_item_id, ch.comment, ch.type_id,
+    my $SQL = qq~SELECT ch.id, ch.config_item_id, ch.content, ch.type_id,
                         ch.create_by, ch.create_time, cht.name
                     FROM configitem_history ch, configitem_history_type cht
                     WHERE ch.type_id = cht.id AND
@@ -343,7 +343,7 @@ sub HistoryAdd {
     }
 
     my $InsertSQL = qq~INSERT INTO configitem_history (
-                            config_item_id, comment, create_by, create_time, type_id )
+                            config_item_id, content, create_by, create_time, type_id )
                         VALUES ( ?, ?, ?, current_timestamp, ? )~;
 
     $Self->{DBObject}->Do(
@@ -431,6 +431,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.1 $ $Date: 2009-07-30 11:44:24 $
+$Revision: 1.2 $ $Date: 2009-07-30 11:46:17 $
 
 =cut
