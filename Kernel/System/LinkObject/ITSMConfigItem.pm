@@ -2,7 +2,7 @@
 # Kernel/System/LinkObject/ITSMConfigItem.pm - to link config item objects
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.8 2009-07-20 23:26:37 ub Exp $
+# $Id: ITSMConfigItem.pm,v 1.9 2009-07-30 11:44:24 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::GeneralCatalog;
 use Kernel::System::ITSMConfigItem;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.8 $) [1];
+$VERSION = qw($Revision: 1.9 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -347,6 +347,16 @@ sub LinkAddPost {
         }
     }
 
+    my $Key    = $Param{TargetKey} || $Param{SourceKey};
+    my $Object = $Param{TargetObject} || $Param{SourceObject};
+
+    $Self->{ConfigItemObject}->ConfigItemEventHandlerPost(
+        ConfigItemID => $Param{Key},
+        Event        => 'LinkAdd',
+        UserID       => $Param{UserID},
+        Comment      => $Key . '%%' . $Object,
+    );
+
     return 1 if $Param{State} eq 'Temporary';
 
     return 1;
@@ -436,6 +446,16 @@ sub LinkDeletePost {
             return;
         }
     }
+
+    my $Key    = $Param{TargetKey}    || $Param{SourceKey};
+    my $Object = $Param{TargetObject} || $Param{SourceObject};
+
+    $Self->{ConfigItemObject}->ConfigItemEventHandlerPost(
+        ConfigItemID => $Param{Key},
+        Event        => 'LinkDelete',
+        UserID       => $Param{UserID},
+        Comment      => $Key . '%%' . $Object,
+    );
 
     return 1 if $Param{State} eq 'Temporary';
 

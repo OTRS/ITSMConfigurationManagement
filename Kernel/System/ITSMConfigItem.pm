@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem.pm - all config item function
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.9 2009-07-20 23:21:38 ub Exp $
+# $Id: ITSMConfigItem.pm,v 1.10 2009-07-30 11:44:24 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -24,7 +24,7 @@ use Kernel::System::Time;
 use Kernel::System::XML;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.9 $) [1];
+$VERSION = qw($Revision: 1.10 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',
@@ -438,6 +438,12 @@ sub ConfigItemAdd {
         $ConfigItemID = $Row[0];
     }
 
+    $Self->ConfigItemEventHandlerPost(
+        ConfigItemID => $ConfigItemID,
+        Event        => 'NewConfigItem',
+        UserID       => $Param{UserID},
+    );
+
     return $ConfigItemID;
 }
 
@@ -476,6 +482,12 @@ sub ConfigItemDelete {
     for my $Argument (qw(ConfigItemID UserID)) {
         $Param{$Argument} = $Self->{DBObject}->Quote( $Param{$Argument}, 'Integer' );
     }
+
+    $Self->ConfigItemEventHandlerPost(
+        ConfigItemID => $Param{ConfigItemID},
+        Event        => 'DeleteConfigItem',
+        UserID       => $Param{UserID},
+    );
 
     # delete config item
     return $Self->{DBObject}->Do(
@@ -1019,6 +1031,55 @@ sub _PrepareLikeString {
     return;
 }
 
+=item ConfigItemEventHandlerPost()
+
+call config item event post handler, returns true if it's executed successfully
+
+    $ConfigItemObject->ConfigItemEventHandlerPost(
+        ConfigItemID => 123,
+        Event        => 'NewConfigItem',
+        UserID       => 123,
+    );
+
+events available:
+
+NewConfigItem, VersionAdd, DeploymentStateChange, IncidentStateChange, DeleteConfigItem,
+LinkAdd, LinkDelete, DefinitionChange, NameChange
+
+=cut
+
+sub ConfigItemEventHandlerPost {
+    my ( $Self, %Param ) = @_;
+
+    # check needed stuff
+    for (qw(ConfigItemID Event UserID)) {
+        if ( !$Param{$_} ) {
+            $Self->{LogObject}->Log( Priority => 'error', Message => "Need $_!" );
+            return;
+        }
+    }
+
+    # load ticket event module
+    my $Modules = $Self->{ConfigObject}->Get('ITSMConfigItem::EventModulePost');
+
+    return if !$Modules;
+
+    for my $Module ( sort keys %{$Modules} ) {
+        my $Event = $Modules->{$Module}->{Event};
+        if ( !$Event || $Param{Event} =~ m{ \Q $Event \E }xmsi ) {
+            my $ModuleName = $Modules->{$Module}->{Module};
+            next if !$Self->{MainObject}->Require( $ModuleName );
+            my $Generic = $ModuleName->new(
+                %{$Self},
+                ConfigItemObject => $Self,
+            );
+            $Generic->Run( %Param, Config => $Modules->{$Module}, );
+        }
+    }
+
+    return 1;
+}
+
 1;
 
 =back
@@ -1035,6 +1096,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.9 $ $Date: 2009-07-20 23:21:38 $
+$Revision: 1.10 $ $Date: 2009-07-30 11:44:24 $
 
 =cut

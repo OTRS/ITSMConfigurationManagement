@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Version.pm - sub module of ITSMConfigItem.pm with version functions
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: Version.pm,v 1.2 2009-05-18 09:59:04 mh Exp $
+# $Id: Version.pm,v 1.3 2009-07-30 11:44:24 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.2 $) [1];
+$VERSION = qw($Revision: 1.3 $) [1];
 
 =head1 NAME
 
@@ -501,6 +501,12 @@ sub VersionAdd {
         ConfigItemID => $Param{ConfigItemID},
     );
 
+    $Self->ConfigItemEventHandlerPost(
+        ConfigItemID => $Param{ConfigItemID},
+        Event        => 'VersionAdd',
+        UserID       => $Param{UserID},
+    );
+
     return $VersionID;
 }
 
@@ -721,6 +727,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.2 $ $Date: 2009-05-18 09:59:04 $
+$Revision: 1.3 $ $Date: 2009-07-30 11:44:24 $
 
 =cut
