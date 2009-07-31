@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <otrs_package version="1.0">
-    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.44 2009-07-31 12:38:38 reb Exp $</CVS>
+    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.45 2009-07-31 13:25:14 reb Exp $</CVS>
     <Name>ITSMConfigurationManagement</Name>
     <Version>0.0.0</Version>
     <Framework>2.4.x</Framework>
@@ -871,18 +871,7 @@
             <Data Key="change_time">current_timestamp</Data>
             <Data Key="change_by">1</Data>
         </Insert>
-    </DatabaseInstall>
-    <DatabaseUpgrade Type="post">
-        <Insert Table="general_catalog" Version="1.1.90">
-            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Class</Data>
-            <Data Key="name" Type="Quote">Location</Data>
-            <Data Key="valid_id">1</Data>
-            <Data Key="create_time">current_timestamp</Data>
-            <Data Key="create_by">1</Data>
-            <Data Key="change_time">current_timestamp</Data>
-            <Data Key="change_by">1</Data>
-        </Insert>
-        <TableCreate Name="configitem_history_type" Version="1.3.0">
+        <TableCreate Name="configitem_history_type">
             <Column Name="id" Required="true" PrimaryKey="true" AutoIncrement="true" Type="INTEGER"/>
             <Column Name="name" Required="true" Size="255" Type="VARCHAR"/>
             <Column Name="comments" Size="255" Type="VARCHAR"/>
@@ -895,7 +884,7 @@
                 <Reference Local="valid_id" Foreign="id"/>
             </ForeignKey>
         </TableCreate>
-        <TableCreate Name="configitem_history" Version="1.3.0">
+        <TableCreate Name="configitem_history">
             <Column Name="id" Required="true" PrimaryKey="true" AutoIncrement="true" Type="BIGINT"/>
             <Column Name="config_item_id" Required="true" Type="BIGINT"/>
             <Column Name="type_id" Required="true" Type="INTEGER"/>
@@ -982,6 +971,124 @@
             <Data Key="change_by">1</Data>
         </Insert>
         <Insert Table="configitem_history_type">
+            <Data Key="name" Type="Quote">DeploymentStateChange</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+    </DatabaseInstall>
+    <DatabaseUpgrade Type="post">
+        <Insert Table="general_catalog" Version="1.1.90">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Class</Data>
+            <Data Key="name" Type="Quote">Location</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <TableCreate Name="configitem_history_type" Version="1.9.71">
+            <Column Name="id" Required="true" PrimaryKey="true" AutoIncrement="true" Type="INTEGER"/>
+            <Column Name="name" Required="true" Size="255" Type="VARCHAR"/>
+            <Column Name="comments" Size="255" Type="VARCHAR"/>
+            <Column Name="valid_id" Required="true" Type="INTEGER"/>
+            <Column Name="create_time" Required="true" Type="DATE"/>
+            <Column Name="create_by" Required="true" Type="INTEGER"/>
+            <Column Name="change_time" Type="DATE"/>
+            <Column Name="change_by" Type="INTEGER"/>
+            <ForeignKey ForeignTable="valid">
+                <Reference Local="valid_id" Foreign="id"/>
+            </ForeignKey>
+        </TableCreate>
+        <TableCreate Name="configitem_history" Version="1.9.71">
+            <Column Name="id" Required="true" PrimaryKey="true" AutoIncrement="true" Type="BIGINT"/>
+            <Column Name="config_item_id" Required="true" Type="BIGINT"/>
+            <Column Name="type_id" Required="true" Type="INTEGER"/>
+            <Column Name="content" Required="true" Size="255" Type="VARCHAR"/>
+            <Column Name="create_time" Required="true" Type="DATE"/>
+            <Column Name="create_by" Required="true" Type="INTEGER"/>
+            <ForeignKey ForeignTable="configitem">
+                <Reference Local="config_item_id" Foreign="id"/>
+            </ForeignKey>
+            <ForeignKey ForeignTable="configitem_history_type">
+                <Reference Local="type_id" Foreign="id"/>
+            </ForeignKey>
+        </TableCreate>
+        <Insert Table="configitem_history_type" Version="1.9.71">
+            <Data Key="name" Type="Quote">NewConfigItem</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="configitem_history_type" Version="1.9.71">
+            <Data Key="name" Type="Quote">DeleteConfigItem</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="configitem_history_type" Version="1.9.71">
+            <Data Key="name" Type="Quote">LinkAdd</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="configitem_history_type" Version="1.9.71">
+            <Data Key="name" Type="Quote">LinkDelete</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="configitem_history_type" Version="1.9.71">
+            <Data Key="name" Type="Quote">NameChange</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="configitem_history_type" Version="1.9.71">
+            <Data Key="name" Type="Quote">VersionAdd</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="configitem_history_type" Version="1.9.71">
+            <Data Key="name" Type="Quote">ValueChange</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="configitem_history_type" Version="1.9.71">
+            <Data Key="name" Type="Quote">DefinitionChange</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="configitem_history_type" Version="1.9.71">
+            <Data Key="name" Type="Quote">IncidentStateChange</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="configitem_history_type" Version="1.9.71">
             <Data Key="name" Type="Quote">DeploymentStateChange</Data>
             <Data Key="valid_id">1</Data>
             <Data Key="create_time">current_timestamp</Data>
