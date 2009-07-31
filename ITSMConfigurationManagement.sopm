@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <otrs_package version="1.0">
-    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.43 2009-07-31 12:18:28 reb Exp $</CVS>
+    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.44 2009-07-31 12:38:38 reb Exp $</CVS>
     <Name>ITSMConfigurationManagement</Name>
     <Version>0.0.0</Version>
     <Framework>2.4.x</Framework>
@@ -1190,7 +1190,7 @@
         Sie sind im Begriff das OTRS-Paket ITSMConfigurationManagement zu installieren.&lt;br&gt;
         &lt;br&gt;
         &lt;br&gt;
-        &lt;b&gt;BENÃƒâ€“TIGTE OTRS-PAKETE&lt;/b&gt;
+        &lt;b&gt;BENÖTIGTE OTRS-PAKETE&lt;/b&gt;
         &lt;ul&gt;
         &lt;li&gt;ITSMCore 1.3.1&lt;/li&gt;
         &lt;/ul&gt;
@@ -1221,10 +1221,10 @@
         &lt;b&gt;HINWEIS&lt;/b&gt;
         &lt;br&gt;
         &lt;br&gt;
-        Um Benutzern Zugriff auf das ConfigItem-MenÃƒÂ¼ zu gewÃƒÂ¤hren, mÃƒÂ¼ssen diese Mitglied der neuen Gruppe 'itsm-configitem' sein.
+        Um Benutzern Zugriff auf das ConfigItem-Menü zu gewähren, müssen diese Mitglied der neuen Gruppe 'itsm-configitem' sein.
         &lt;br&gt;
         &lt;br&gt;
-        Die von diesem Paket hinzugefÃƒÂ¼gten MenÃƒÂ¼-Punkte sind erst nach einem erneuten Anmeldevorgang im System sichtbar.
+        Die von diesem Paket hinzugefügten Menü-Punkte sind erst nach einem erneuten Anmeldevorgang im System sichtbar.
         &lt;br&gt;
         &lt;br&gt;
         ((enjoy))&lt;br&gt;
@@ -1258,7 +1258,7 @@
         Sie sind im Begriff das OTRS-Paket ITSMConfigurationManagement zu aktualisieren.&lt;br&gt;
         &lt;br&gt;
         &lt;br&gt;
-        &lt;b&gt;BENÃƒâ€“TIGTE OTRS-PAKETE&lt;/b&gt;
+        &lt;b&gt;BENÖTIGTE OTRS-PAKETE&lt;/b&gt;
         &lt;ul&gt;
         &lt;li&gt;ITSMCore 1.3.1&lt;/li&gt;
         &lt;/ul&gt;
@@ -1297,7 +1297,7 @@
         &lt;b&gt;ACHTUNG&lt;/b&gt;
         &lt;br&gt;
         &lt;br&gt;
-        Bei der Deinstallation werden die von diesem Paket angelegten Datenbank-Tabellen gelÃƒÂ¶scht.
+        Bei der Deinstallation werden die von diesem Paket angelegten Datenbank-Tabellen gelöscht.
         Alle darin enthaltenen Daten gehen unwiderruflich verloren!
         &lt;br&gt;
         &lt;br&gt;
@@ -1305,10 +1305,10 @@
         Sie kann jederzeit im Admin-Bereich wieder aktiviert werden.
         &lt;br&gt;
         &lt;br&gt;
-        Alle VerknÃƒÂ¼pfungen zu ConfigItem-Objekten werden unwiderruflich gelÃƒÂ¶scht!
+        Alle Verknüpfungen zu ConfigItem-Objekten werden unwiderruflich gelöscht!
         &lt;br&gt;
         &lt;br&gt;
-        Nach der Deinstallation sind die zu diesem Paket zugehÃƒÂ¶rigen Statistiken nicht mehr verfÃƒÂ¼gbar.
+        Nach der Deinstallation sind die zu diesem Paket zugehörigen Statistiken nicht mehr verfügbar.
         &lt;br&gt;
         &lt;br&gt;
         ((enjoy))&lt;br&gt;
