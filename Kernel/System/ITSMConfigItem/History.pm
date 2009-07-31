@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/History.pm - module for ITSMConfigItem.pm with history functions
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: History.pm,v 1.2 2009-07-30 11:46:17 reb Exp $
+# $Id: History.pm,v 1.3 2009-07-31 12:19:51 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.2 $) [1];
+$VERSION = qw($Revision: 1.3 $) [1];
 
 =head1 NAME
 
@@ -129,7 +129,8 @@ sub HistoryGet {
                         ch.create_by, ch.create_time, cht.name
                     FROM configitem_history ch, configitem_history_type cht
                     WHERE ch.type_id = cht.id AND
-                        ch.config_item_id = ?~;
+                        ch.config_item_id = ?
+                    ORDER BY ch.id~;
 
     $Self->{DBObject}->Prepare(
         SQL  => $SQL,
@@ -431,6 +432,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.2 $ $Date: 2009-07-30 11:46:17 $
+$Revision: 1.3 $ $Date: 2009-07-31 12:19:51 $
 
 =cut

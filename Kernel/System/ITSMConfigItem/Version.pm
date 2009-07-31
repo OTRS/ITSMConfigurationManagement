@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Version.pm - sub module of ITSMConfigItem.pm with version functions
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: Version.pm,v 1.3 2009-07-30 11:44:24 reb Exp $
+# $Id: Version.pm,v 1.4 2009-07-31 12:19:51 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.3 $) [1];
+$VERSION = qw($Revision: 1.4 $) [1];
 
 =head1 NAME
 
@@ -392,6 +392,10 @@ sub VersionAdd {
         }
     }
 
+    my $OldVersionInfo = $Self->VersionGet(
+        ConfigItemID => $Param{ConfigItemID},
+    );
+
     # get deployment state list
     my $DeplStateList = $Self->{GeneralCatalogObject}->ItemList(
         Class => 'ITSM::ConfigItem::DeploymentState',
@@ -496,15 +500,68 @@ sub VersionAdd {
             . "WHERE id = $Param{ConfigItemID}"
     );
 
-    # recalculate the current incident state of alle linked config items
-    $Self->CurInciStateRecalc(
-        ConfigItemID => $Param{ConfigItemID},
-    );
-
     $Self->ConfigItemEventHandlerPost(
         ConfigItemID => $Param{ConfigItemID},
         Event        => 'VersionAdd',
         UserID       => $Param{UserID},
+        NewValue     => $VersionID,
+    );
+
+    $Self->_CheckValues( %Param );
+
+    # check old and new definition_id
+    my $OldDefinitionID = $OldVersionInfo->{DefinitionID};
+    my $NewDefinitionID = $Param{DefinitionID};
+
+    if ( $OldDefinitionID ne $NewDefinitionID ) {
+        $Self->ConfigItemEventHandlerPost(
+            ConfigItemID => $Param{ConfigItemID},
+            Event        => 'DefinitionChange',
+            UserID       => $Param{UserID},
+            NewValue     => $NewDefinitionID,
+        );
+    }
+
+    # check old and new definition_id
+    my $OldName = $OldVersionInfo->{Name};
+    my $NewName = $Param{Name};
+
+    if ( $OldName ne $NewName ) {
+        $Self->ConfigItemEventHandlerPost(
+            ConfigItemID => $Param{ConfigItemID},
+            Event        => 'NameChange',
+            UserID       => $Param{UserID},
+            NewValue     => $NewName,
+        );
+    }
+
+    # if incistate is updated
+    my $LastInciStateID = $OldVersionInfo->{CurInciStateID};
+    my $CurInciStateID  = $Param{InciStateID};
+    if ( $LastInciStateID ne $CurInciStateID ) {
+        $Self->ConfigItemEventHandlerPost(
+            ConfigItemID => $Param{ConfigItemID},
+            Event        => 'IncidentStateChange',
+            UserID       => $Param{UserID},
+            NewValue     => $CurInciStateID . '%%' . $OldVersionInfo->{CurInciState},
+        );
+    }
+
+    # if depl_state is updated
+    my $LastDeplStateID = $OldVersionInfo->{CurDeplStateID};
+    my $CurDeplStateID  = $Param{DeplStateID};
+    if ( $LastDeplStateID ne $CurDeplStateID ) {
+        $Self->ConfigItemEventHandlerPost(
+            ConfigItemID => $Param{ConfigItemID},
+            Event        => 'DeploymentStateChange',
+            UserID       => $Param{UserID},
+            NewValue     => $CurDeplStateID . '%%' . $OldVersionInfo->{CurDeplState},
+        );
+    }
+
+    # recalculate the current incident state of alle linked config items
+    $Self->CurInciStateRecalc(
+        ConfigItemID => $Param{ConfigItemID},
     );
 
     return $VersionID;
@@ -711,6 +768,96 @@ sub VersionSearch {
     return \@ConfigItemList;
 }
 
+sub _CheckValues {
+    my ( $Self, %Params ) = @_;
+
+    my $VersionList = $Self->VersionList(
+        ConfigItemID => $Params{ConfigItemID},
+    );
+
+    if ( scalar @{$VersionList} > 1 ) {
+        my %ChangedValues = $Self->_FindChangedValues(
+            %Params,
+            NewVersionID => $VersionList->[-1],
+            OldVersionID => $VersionList->[-2],
+        );
+
+        for my $Key ( keys %ChangedValues ) {
+            $Self->ConfigItemEventHandlerPost(
+                ConfigItemID => $Params{ConfigItemID},
+                Event        => 'ValueChange',
+                UserID       => $Params{UserID},
+                NewValue     => $VersionList->[-1],
+                Comment      => $Key . '%%' . $ChangedValues{$Key},
+            );
+        }
+    }
+
+    return 1;
+}
+
+sub _FindChangedValues {
+    my ( $Self, %Params ) = @_;
+
+    my $CurrentVersion = $Self->VersionGet(
+        VersionID => $Params{NewVersionID},
+    );
+    my $OldVersion     = $Self->VersionGet(
+        VersionID => $Params{OldVersionID},
+    );
+
+    my $CurrentXMLData = $CurrentVersion->{XMLData};
+    my $OldXMLData     = $OldVersion->{XMLData};
+
+    my @TagKeysNew     = $Self->_GrabTagKeys( $CurrentXMLData );
+    my @TagKeysOld     = $Self->_GrabTagKeys( $OldXMLData );
+
+    # save all existing tag keys in one hash
+    my %TagKeys;
+    @TagKeys{ @TagKeysNew, @TagKeysOld } = ( @TagKeysNew, @TagKeysOld );
+
+    my %Changes;
+
+    # do the check
+    for my $Key ( keys %TagKeys ) {
+        my $NewValue = eval '$CurrentXMLData->' . $Key . '->{Content}';
+        my $OldValue = eval '$OldXMLData ->' . $Key . '->{Content}';
+
+        next if $NewValue eq $OldValue;
+
+        $Changes{$Key} = join '%%', $OldValue, $NewValue;
+    }
+
+    return %Changes;
+}
+
+sub _GrabTagKeys {
+    my ( $Self, $Ref ) = @_;
+
+    my @TagKeys;
+    my $Type = ref $Ref;
+
+    if ( $Type && $Type eq 'ARRAY' ) {
+        for my $Elem ( @{$Ref} ) {
+            next if !$Elem;
+            my $ElemType = ref $Elem;
+            push @TagKeys, $Self->_GrabTagKeys( $Elem ) if $ElemType;
+        }
+    }
+    elsif ( $Type && $Type eq 'HASH' ) {
+        for my $Key ( keys %{$Ref} ) {
+            if ( $Key eq 'TagKey' ) {
+                push @TagKeys, $Ref->{$Key};
+            }
+            elsif ( ref $Ref->{$Key} ) {
+                push @TagKeys, $Self->_GrabTagKeys( $Ref->{$Key} );
+            }
+        }
+    }
+
+    return @TagKeys;
+}
+
 1;
 
 =back
@@ -727,6 +874,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.3 $ $Date: 2009-07-30 11:44:24 $
+$Revision: 1.4 $ $Date: 2009-07-31 12:19:51 $
 
 =cut

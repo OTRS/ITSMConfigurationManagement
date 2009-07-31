@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemHistory.pm - ticket history
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemHistory.pm,v 1.1 2009-07-30 11:42:50 reb Exp $
+# $Id: AgentITSMConfigItemHistory.pm,v 1.2 2009-07-31 12:19:51 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem::History;
 use Kernel::System::ITSMConfigItem;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.1 $) [1];
+$VERSION = qw($Revision: 1.2 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -107,9 +107,6 @@ sub Run {
             if ( !$Data{Comment} ) {
                 $Data{Comment} = '" ';
             }
-            $Data{Comment} = $Self->{LayoutObject}->{LanguageObject}->Get(
-                'History::' . $Data{HistoryType} . '", ' . $Data{Comment}
-            );
 
             # remove not needed place holder
             $Data{Comment} =~ s/\%s//g;
