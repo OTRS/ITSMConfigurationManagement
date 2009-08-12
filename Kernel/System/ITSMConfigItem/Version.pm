@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Version.pm - sub module of ITSMConfigItem.pm with version functions
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: Version.pm,v 1.5 2009-08-12 10:12:38 reb Exp $
+# $Id: Version.pm,v 1.6 2009-08-12 13:16:52 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.5 $) [1];
+$VERSION = qw($Revision: 1.6 $) [1];
 
 =head1 NAME
 
@@ -211,13 +211,30 @@ sub VersionGet {
     if ( $Param{VersionID} ) {
 
         my $Cache = 1;
-        if ( exists $Param{Cache} ) {
-            $Cache = $Param{Cache};
-        }
 
-        # check if result is already cached
-        return $Self->{Cache}->{VersionGet}->{ $Param{VersionID} }
-            if $Self->{Cache}->{VersionGet}->{ $Param{VersionID} } && $Cache;
+        my $CachedVersion = $Self->{Cache}->{VersionGet}->{ $Param{VersionID} };
+
+        if ( $CachedVersion ) {
+
+            $Self->{DBObject}->Prepare(
+                SQL => "SELECT configitem_id FROM configitem_version WHERE id = ?",
+                Limit => 1,
+                Bind  => [ \$Param{VersionID} ],
+            );
+
+            my $ConfigItem = $Self->ConfigItemGet(
+                ConfigItemID => ( $Self->{DBObject}->FetchrowArray() )[0],
+                Cache        => 0,
+            );
+
+            if ( $ConfigItem->{CurDeplStateID} == $CachedVersion->{CurDeplStateID} &&
+                    $ConfigItem->{CurInciStateID} == $CachedVersion->{CurInciStateID} &&
+                    $ConfigItem->{LastVersionID} == $CachedVersion->{LastVersionID} )
+            {
+                # check if result is already cached
+                return $Self->{Cache}->{VersionGet}->{ $Param{VersionID} };
+            }
+        }
 
         # quote
         $Param{VersionID} = $Self->{DBObject}->Quote( $Param{VersionID}, 'Integer' );
@@ -923,6 +940,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.5 $ $Date: 2009-08-12 10:12:38 $
+$Revision: 1.6 $ $Date: 2009-08-12 13:16:52 $
 
 =cut

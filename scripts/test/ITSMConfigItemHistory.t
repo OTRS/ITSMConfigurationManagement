@@ -2,7 +2,7 @@
 # ITSMConfigItemHistory.t - config item tests
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemHistory.t,v 1.1 2009-08-12 10:12:38 reb Exp $
+# $Id: ITSMConfigItemHistory.t,v 1.2 2009-08-12 13:16:53 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -497,7 +497,6 @@ for my $Test ( @{$ConfigItemTests} ) {
         my $VersionData = $Self->{ConfigItemObject}->VersionGet(
             VersionID  => $VersionID,
             XMLDataGet => 1,
-            Cache      => 0,
         );
 
         if ( !$VersionData ) {
