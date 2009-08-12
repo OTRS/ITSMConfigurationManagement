@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Version.pm - sub module of ITSMConfigItem.pm with version functions
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: Version.pm,v 1.4 2009-07-31 12:19:51 reb Exp $
+# $Id: Version.pm,v 1.5 2009-08-12 10:12:38 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.4 $) [1];
+$VERSION = qw($Revision: 1.5 $) [1];
 
 =head1 NAME
 
@@ -210,9 +210,14 @@ sub VersionGet {
 
     if ( $Param{VersionID} ) {
 
+        my $Cache = 1;
+        if ( exists $Param{Cache} ) {
+            $Cache = $Param{Cache};
+        }
+
         # check if result is already cached
         return $Self->{Cache}->{VersionGet}->{ $Param{VersionID} }
-            if $Self->{Cache}->{VersionGet}->{ $Param{VersionID} };
+            if $Self->{Cache}->{VersionGet}->{ $Param{VersionID} } && $Cache;
 
         # quote
         $Param{VersionID} = $Self->{DBObject}->Quote( $Param{VersionID}, 'Integer' );
@@ -510,8 +515,8 @@ sub VersionAdd {
     $Self->_CheckValues( %Param );
 
     # check old and new definition_id
-    my $OldDefinitionID = $OldVersionInfo->{DefinitionID};
-    my $NewDefinitionID = $Param{DefinitionID};
+    my $OldDefinitionID = $OldVersionInfo->{DefinitionID} || '';
+    my $NewDefinitionID = $Param{DefinitionID}            || '';
 
     if ( $OldDefinitionID ne $NewDefinitionID ) {
         $Self->ConfigItemEventHandlerPost(
@@ -523,8 +528,8 @@ sub VersionAdd {
     }
 
     # check old and new definition_id
-    my $OldName = $OldVersionInfo->{Name};
-    my $NewName = $Param{Name};
+    my $OldName = $OldVersionInfo->{Name} || '';
+    my $NewName = $Param{Name}            || '';
 
     if ( $OldName ne $NewName ) {
         $Self->ConfigItemEventHandlerPost(
@@ -536,26 +541,28 @@ sub VersionAdd {
     }
 
     # if incistate is updated
-    my $LastInciStateID = $OldVersionInfo->{CurInciStateID};
-    my $CurInciStateID  = $Param{InciStateID};
+    my $LastInciStateID = $OldVersionInfo->{InciStateID} || '';
+    my $CurInciStateID  = $Param{InciStateID}            || '';
+
     if ( $LastInciStateID ne $CurInciStateID ) {
         $Self->ConfigItemEventHandlerPost(
             ConfigItemID => $Param{ConfigItemID},
             Event        => 'IncidentStateChange',
             UserID       => $Param{UserID},
-            NewValue     => $CurInciStateID . '%%' . $OldVersionInfo->{CurInciState},
+            NewValue     => $CurInciStateID . '%%' . $LastInciStateID
         );
     }
 
     # if depl_state is updated
-    my $LastDeplStateID = $OldVersionInfo->{CurDeplStateID};
-    my $CurDeplStateID  = $Param{DeplStateID};
+    my $LastDeplStateID = $OldVersionInfo->{DeplStateID} || '';
+    my $CurDeplStateID  = $Param{DeplStateID}            || '';
+
     if ( $LastDeplStateID ne $CurDeplStateID ) {
         $Self->ConfigItemEventHandlerPost(
             ConfigItemID => $Param{ConfigItemID},
             Event        => 'DeploymentStateChange',
             UserID       => $Param{UserID},
-            NewValue     => $CurDeplStateID . '%%' . $OldVersionInfo->{CurDeplState},
+            NewValue     => $CurDeplStateID . '%%' . $LastDeplStateID,
         );
     }
 
@@ -768,6 +775,18 @@ sub VersionSearch {
     return \@ConfigItemList;
 }
 
+=item _CheckValues()
+
+This method calles for each change value of the config item the event handler.
+Please note that this only handles values inside the XML structure, not general
+attributes like "CurInciState".
+
+    $ConfigItemObject->_CheckValues(
+        ConfigItemID => 123,
+    );
+
+=cut
+
 sub _CheckValues {
     my ( $Self, %Params ) = @_;
 
@@ -796,6 +815,20 @@ sub _CheckValues {
     return 1;
 }
 
+=item _FindChangedValues()
+
+C<_FindChangedValues> checks for each found TagKey, if its value changed in the
+current version. If so, the TagKey and the new value is stored in a hash. This
+hash is returned...
+
+    $ConfigItemObject->_FindChangedValues(
+        ConfigItemID => 123,
+        NewVersionID => 12345,
+        OldVersionID => 12344,
+    );
+
+=cut
+
 sub _FindChangedValues {
     my ( $Self, %Params ) = @_;
 
@@ -819,17 +852,28 @@ sub _FindChangedValues {
     my %Changes;
 
     # do the check
-    for my $Key ( keys %TagKeys ) {
+    KEY: for my $Key ( keys %TagKeys ) {
         my $NewValue = eval '$CurrentXMLData->' . $Key . '->{Content}';
         my $OldValue = eval '$OldXMLData ->' . $Key . '->{Content}';
 
-        next if $NewValue eq $OldValue;
+        next KEY if $NewValue eq $OldValue;
 
         $Changes{$Key} = join '%%', $OldValue, $NewValue;
     }
 
     return %Changes;
 }
+
+=item _GrabTagKeys()
+
+This method checks a perl datastructure for the Hash key 'TagKey' and returns a
+list of all TagKeys.
+
+    my @List = $ConfigItemObject->_GrabTagKeys(
+        $XMLHashReferenz,
+    );
+
+=cut
 
 sub _GrabTagKeys {
     my ( $Self, $Ref ) = @_;
@@ -838,13 +882,17 @@ sub _GrabTagKeys {
     my $Type = ref $Ref;
 
     if ( $Type && $Type eq 'ARRAY' ) {
-        for my $Elem ( @{$Ref} ) {
-            next if !$Elem;
+
+        ELEM: for my $Elem ( @{$Ref} ) {
+            next ELEM if !$Elem;
             my $ElemType = ref $Elem;
-            push @TagKeys, $Self->_GrabTagKeys( $Elem ) if $ElemType;
+            next ELEM if !$ElemType;
+            push @TagKeys, $Self->_GrabTagKeys( $Elem );
         }
+
     }
     elsif ( $Type && $Type eq 'HASH' ) {
+
         for my $Key ( keys %{$Ref} ) {
             if ( $Key eq 'TagKey' ) {
                 push @TagKeys, $Ref->{$Key};
@@ -853,6 +901,7 @@ sub _GrabTagKeys {
                 push @TagKeys, $Self->_GrabTagKeys( $Ref->{$Key} );
             }
         }
+
     }
 
     return @TagKeys;
@@ -874,6 +923,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.4 $ $Date: 2009-07-31 12:19:51 $
+$Revision: 1.5 $ $Date: 2009-08-12 10:12:38 $
 
 =cut

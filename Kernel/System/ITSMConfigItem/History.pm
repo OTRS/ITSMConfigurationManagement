@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/History.pm - module for ITSMConfigItem.pm with history functions
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: History.pm,v 1.3 2009-07-31 12:19:51 reb Exp $
+# $Id: History.pm,v 1.4 2009-08-12 10:12:38 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.3 $) [1];
+$VERSION = qw($Revision: 1.4 $) [1];
 
 =head1 NAME
 
@@ -43,6 +43,7 @@ create an object
     use Kernel::System::Log;
     use Kernel::System::DB;
     use Kernel::System::Main;
+    use Kernel::System::ITSMConfigItem;
     use Kernel::System::ITSMConfigItem::History;
 
     my $ConfigObject = Kernel::Config->new();
@@ -64,10 +65,19 @@ create an object
         LogObject    => $LogObject,
         MainObject   => $MainObject,
     );
+    my $ConfigItemObject = Kernel::System::ITSMConfigItem->new(
+        ConfigObject => $ConfigObject,
+        EncodeObject => $EncodeObject,
+        LogObject    => $LogObject,
+        DBObject     => $DBObject,
+        MainObject   => $MainObject,
+    );
     my $HistoryObject = Kernel::System::ITSMConfigItem::History->new(
         ConfigObject => $ConfigObject,
         LogObject    => $LogObject,
         DBObject     => $DBObject,
+        EncodeObject => $EncodeObject,
+        MainObject   => $MainObject,
     );
 
 =cut
@@ -184,8 +194,8 @@ The hash reference contain information about:
     * HistoryType
     * HistoryTypeID
     * Comment
-    * CreatedBy
-    * CreatedTime
+    * CreateBy
+    * CreateTime
     * UserID
     * UserLogin
     * UserLastname
@@ -432,6 +442,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.3 $ $Date: 2009-07-31 12:19:51 $
+$Revision: 1.4 $ $Date: 2009-08-12 10:12:38 $
 
 =cut

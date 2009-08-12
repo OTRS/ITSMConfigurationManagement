@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem.pm - all config item function
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.10 2009-07-30 11:44:24 reb Exp $
+# $Id: ITSMConfigItem.pm,v 1.11 2009-08-12 10:12:37 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -24,7 +24,7 @@ use Kernel::System::Time;
 use Kernel::System::XML;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.10 $) [1];
+$VERSION = qw($Revision: 1.11 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',
@@ -1044,7 +1044,7 @@ call config item event post handler, returns true if it's executed successfully
 events available:
 
 NewConfigItem, VersionAdd, DeploymentStateChange, IncidentStateChange, DeleteConfigItem,
-LinkAdd, LinkDelete, DefinitionChange, NameChange
+LinkAdd, LinkDelete, DefinitionChange, NameChange, ValueChange
 
 =cut
 
@@ -1096,6 +1096,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.10 $ $Date: 2009-07-30 11:44:24 $
+$Revision: 1.11 $ $Date: 2009-08-12 10:12:37 $
 
 =cut
