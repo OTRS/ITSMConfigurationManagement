@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem.pm - all config item function
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.11 2009-08-12 10:12:37 reb Exp $
+# $Id: ITSMConfigItem.pm,v 1.12 2009-08-17 13:16:52 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -24,7 +24,7 @@ use Kernel::System::Time;
 use Kernel::System::XML;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.11 $) [1];
+$VERSION = qw($Revision: 1.12 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',
@@ -438,9 +438,10 @@ sub ConfigItemAdd {
         $ConfigItemID = $Row[0];
     }
 
+    # trigger ConfigItemCreate
     $Self->ConfigItemEventHandlerPost(
         ConfigItemID => $ConfigItemID,
-        Event        => 'NewConfigItem',
+        Event        => 'ConfigItemCreate',
         UserID       => $Param{UserID},
     );
 
@@ -483,9 +484,10 @@ sub ConfigItemDelete {
         $Param{$Argument} = $Self->{DBObject}->Quote( $Param{$Argument}, 'Integer' );
     }
 
+    # trigger ConfigItemDelete event
     $Self->ConfigItemEventHandlerPost(
         ConfigItemID => $Param{ConfigItemID},
-        Event        => 'DeleteConfigItem',
+        Event        => 'ConfigItemDelete',
         UserID       => $Param{UserID},
     );
 
@@ -1043,8 +1045,8 @@ call config item event post handler, returns true if it's executed successfully
 
 events available:
 
-NewConfigItem, VersionAdd, DeploymentStateChange, IncidentStateChange, DeleteConfigItem,
-LinkAdd, LinkDelete, DefinitionChange, NameChange, ValueChange
+ConfigItemCreate, VersionCreate, DeploymentStateUpdate, IncidentStateUpdate,
+ConfigItemDelete, LinkAdd, LinkDelete, DefinitionUpdate, NameUpdate, ValueUpdate
 
 =cut
 
@@ -1059,20 +1061,22 @@ sub ConfigItemEventHandlerPost {
         }
     }
 
-    # load ticket event module
+    # load config item event module
     my $Modules = $Self->{ConfigObject}->Get('ITSMConfigItem::EventModulePost');
 
     return if !$Modules;
 
+    # try to load the event modules
     for my $Module ( sort keys %{$Modules} ) {
         my $Event = $Modules->{$Module}->{Event};
         if ( !$Event || $Param{Event} =~ m{ \Q $Event \E }xmsi ) {
             my $ModuleName = $Modules->{$Module}->{Module};
-            next if !$Self->{MainObject}->Require( $ModuleName );
+            next if !$Self->{MainObject}->Require($ModuleName);
             my $Generic = $ModuleName->new(
                 %{$Self},
                 ConfigItemObject => $Self,
             );
+            # run event handler
             $Generic->Run( %Param, Config => $Modules->{$Module}, );
         }
     }
@@ -1096,6 +1100,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.11 $ $Date: 2009-08-12 10:12:37 $
+$Revision: 1.12 $ $Date: 2009-08-17 13:16:52 $
 
 =cut

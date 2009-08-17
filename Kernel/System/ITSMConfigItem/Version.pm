@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Version.pm - sub module of ITSMConfigItem.pm with version functions
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: Version.pm,v 1.6 2009-08-12 13:16:52 reb Exp $
+# $Id: Version.pm,v 1.7 2009-08-17 13:14:33 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.6 $) [1];
+$VERSION = qw($Revision: 1.7 $) [1];
 
 =head1 NAME
 
@@ -212,21 +212,30 @@ sub VersionGet {
 
         my $Cache = 1;
 
+        # get the result of the last call
         my $CachedVersion = $Self->{Cache}->{VersionGet}->{ $Param{VersionID} };
 
-        if ( $CachedVersion ) {
-
+        # if last call was cached, check if the values are still valid
+        if ($CachedVersion) {
             $Self->{DBObject}->Prepare(
-                SQL => "SELECT configitem_id FROM configitem_version WHERE id = ?",
+                SQL   => "SELECT configitem_id FROM configitem_version WHERE id = ?",
                 Limit => 1,
                 Bind  => [ \$Param{VersionID} ],
             );
 
+            my $LocalConfigItemID;
+
+            while ( my @Row = $Self->{DBObject}->FetchrowArray() ) {
+                $LocalConfigItemID = $Row[0];
+            }
+
+            # get the current values
             my $ConfigItem = $Self->ConfigItemGet(
-                ConfigItemID => ( $Self->{DBObject}->FetchrowArray() )[0],
+                ConfigItemID => $LocalConfigItemID,
                 Cache        => 0,
             );
 
+            # check if anything changed
             if ( $ConfigItem->{CurDeplStateID} == $CachedVersion->{CurDeplStateID} &&
                     $ConfigItem->{CurInciStateID} == $CachedVersion->{CurInciStateID} &&
                     $ConfigItem->{LastVersionID} == $CachedVersion->{LastVersionID} )
@@ -414,6 +423,8 @@ sub VersionAdd {
         }
     }
 
+    # get old version info for comparisons with current version
+    # this is needed to trigger some events
     my $OldVersionInfo = $Self->VersionGet(
         ConfigItemID => $Param{ConfigItemID},
     );
@@ -522,14 +533,16 @@ sub VersionAdd {
             . "WHERE id = $Param{ConfigItemID}"
     );
 
+    # trigger VersionCreate event
     $Self->ConfigItemEventHandlerPost(
         ConfigItemID => $Param{ConfigItemID},
-        Event        => 'VersionAdd',
+        Event        => 'VersionCreate',
         UserID       => $Param{UserID},
         NewValue     => $VersionID,
     );
 
-    $Self->_CheckValues( %Param );
+    # compare current and old values
+    $Self->_CheckValues(%Param);
 
     # check old and new definition_id
     my $OldDefinitionID = $OldVersionInfo->{DefinitionID} || '';
@@ -538,7 +551,7 @@ sub VersionAdd {
     if ( $OldDefinitionID ne $NewDefinitionID ) {
         $Self->ConfigItemEventHandlerPost(
             ConfigItemID => $Param{ConfigItemID},
-            Event        => 'DefinitionChange',
+            Event        => 'DefinitionUpdate',
             UserID       => $Param{UserID},
             NewValue     => $NewDefinitionID,
         );
@@ -551,7 +564,7 @@ sub VersionAdd {
     if ( $OldName ne $NewName ) {
         $Self->ConfigItemEventHandlerPost(
             ConfigItemID => $Param{ConfigItemID},
-            Event        => 'NameChange',
+            Event        => 'NameUpdate',
             UserID       => $Param{UserID},
             NewValue     => $NewName,
         );
@@ -564,7 +577,7 @@ sub VersionAdd {
     if ( $LastInciStateID ne $CurInciStateID ) {
         $Self->ConfigItemEventHandlerPost(
             ConfigItemID => $Param{ConfigItemID},
-            Event        => 'IncidentStateChange',
+            Event        => 'IncidentStateUpdate',
             UserID       => $Param{UserID},
             NewValue     => $CurInciStateID . '%%' . $LastInciStateID
         );
@@ -577,7 +590,7 @@ sub VersionAdd {
     if ( $LastDeplStateID ne $CurDeplStateID ) {
         $Self->ConfigItemEventHandlerPost(
             ConfigItemID => $Param{ConfigItemID},
-            Event        => 'DeploymentStateChange',
+            Event        => 'DeploymentStateUpdate',
             UserID       => $Param{UserID},
             NewValue     => $CurDeplStateID . '%%' . $LastDeplStateID,
         );
@@ -807,21 +820,26 @@ attributes like "CurInciState".
 sub _CheckValues {
     my ( $Self, %Params ) = @_;
 
+    # get a list with all versionnumbers that exist for the
+    # given config item
     my $VersionList = $Self->VersionList(
         ConfigItemID => $Params{ConfigItemID},
     );
 
+    # do the comparison only when the item is not a new one
     if ( scalar @{$VersionList} > 1 ) {
+        # find all changed values
         my %ChangedValues = $Self->_FindChangedValues(
             %Params,
             NewVersionID => $VersionList->[-1],
             OldVersionID => $VersionList->[-2],
         );
 
+        # trigger ValueUpdate event for each changed value
         for my $Key ( keys %ChangedValues ) {
             $Self->ConfigItemEventHandlerPost(
                 ConfigItemID => $Params{ConfigItemID},
-                Event        => 'ValueChange',
+                Event        => 'ValueUpdate',
                 UserID       => $Params{UserID},
                 NewValue     => $VersionList->[-1],
                 Comment      => $Key . '%%' . $ChangedValues{$Key},
@@ -849,18 +867,22 @@ hash is returned...
 sub _FindChangedValues {
     my ( $Self, %Params ) = @_;
 
+    # get the current version
     my $CurrentVersion = $Self->VersionGet(
         VersionID => $Params{NewVersionID},
     );
-    my $OldVersion     = $Self->VersionGet(
+
+    # get old version
+    my $OldVersion = $Self->VersionGet(
         VersionID => $Params{OldVersionID},
     );
 
     my $CurrentXMLData = $CurrentVersion->{XMLData};
     my $OldXMLData     = $OldVersion->{XMLData};
 
-    my @TagKeysNew     = $Self->_GrabTagKeys( $CurrentXMLData );
-    my @TagKeysOld     = $Self->_GrabTagKeys( $OldXMLData );
+    # get all tagkeys in xml data
+    my @TagKeysNew = $Self->_GrabTagKeys( Data => $CurrentXMLData );
+    my @TagKeysOld = $Self->_GrabTagKeys( Data => $OldXMLData );
 
     # save all existing tag keys in one hash
     my %TagKeys;
@@ -869,7 +891,8 @@ sub _FindChangedValues {
     my %Changes;
 
     # do the check
-    KEY: for my $Key ( keys %TagKeys ) {
+    KEY:
+    for my $Key ( keys %TagKeys ) {
         my $NewValue = eval '$CurrentXMLData->' . $Key . '->{Content}';
         my $OldValue = eval '$OldXMLData ->' . $Key . '->{Content}';
 
@@ -893,29 +916,26 @@ list of all TagKeys.
 =cut
 
 sub _GrabTagKeys {
-    my ( $Self, $Ref ) = @_;
+    my ( $Self, %Params ) = @_;
 
     my @TagKeys;
-    my $Type = ref $Ref;
 
-    if ( $Type && $Type eq 'ARRAY' ) {
-
-        ELEM: for my $Elem ( @{$Ref} ) {
+    if ( $Params{Data} && ref($Params{Data}) && ref($Params{Data}) eq 'ARRAY' ) {
+        ELEM:
+        for my $Elem ( @{ $Params{Data} } ) {
             next ELEM if !$Elem;
-            my $ElemType = ref $Elem;
-            next ELEM if !$ElemType;
-            push @TagKeys, $Self->_GrabTagKeys( $Elem );
+            next ELEM if !ref($Elem);
+            push @TagKeys, $Self->_GrabTagKeys( Data => $Elem );
         }
 
     }
-    elsif ( $Type && $Type eq 'HASH' ) {
-
-        for my $Key ( keys %{$Ref} ) {
+    elsif ( $Params{Data} && ref($Params{Data}) && ref($Params{Data}) eq 'HASH' ) {
+        for my $Key ( keys %{ $Params{Data} } ) {
             if ( $Key eq 'TagKey' ) {
-                push @TagKeys, $Ref->{$Key};
+                push @TagKeys, $Params{Data}->{$Key};
             }
             elsif ( ref $Ref->{$Key} ) {
-                push @TagKeys, $Self->_GrabTagKeys( $Ref->{$Key} );
+                push @TagKeys, $Self->_GrabTagKeys( Data => $Params{Data}->{$Key} );
             }
         }
 
@@ -940,6 +960,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.6 $ $Date: 2009-08-12 13:16:52 $
+$Revision: 1.7 $ $Date: 2009-08-17 13:14:33 $
 
 =cut

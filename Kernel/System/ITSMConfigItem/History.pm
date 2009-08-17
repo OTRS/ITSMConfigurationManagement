@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/History.pm - module for ITSMConfigItem.pm with history functions
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: History.pm,v 1.4 2009-08-12 10:12:38 reb Exp $
+# $Id: History.pm,v 1.5 2009-08-17 13:14:33 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.4 $) [1];
+$VERSION = qw($Revision: 1.5 $) [1];
 
 =head1 NAME
 
@@ -128,13 +128,14 @@ sub HistoryGet {
     my ( $Self, %Params ) = @_;
 
     # check needed stuff
-    for my $Needed ( qw(ConfigItemID) ) {
+    for my $Needed (qw(ConfigItemID)) {
         if ( !$Params{$Needed} ) {
             $Self->{LogObject}->Log( Priority => 'error', Message => "Need $Needed!" );
             return;
         }
     }
 
+    # fetch some data from history for given config item
     my $SQL = qq~SELECT ch.id, ch.config_item_id, ch.content, ch.type_id,
                         ch.create_by, ch.create_time, cht.name
                     FROM configitem_history ch, configitem_history_type cht
@@ -149,12 +150,13 @@ sub HistoryGet {
 
     my @Entries;
 
+    # create new user object
     my $UserObject = Kernel::System::User->new(
         %{$Self},
     );
 
+    # save data from history in array
     while ( my @Row = $Self->{DBObject}->FetchrowArray() ) {
-
         my %Tmp = (
             HistoryEntryID => $Row[0],
             ConfigItemID   => $Row[1],
@@ -168,17 +170,19 @@ sub HistoryGet {
         push @Entries, \%Tmp;
     }
 
-    for my $Entry ( @Entries ) {
-
+    # get more information about user who created history entries
+    for my $Entry (@Entries) {
+        # get user information
         my %UserInfo = $UserObject->GetUserData(
             UserID => $Entry->{CreateBy},
             Cached => 1
         );
 
-        $Entry->{UserID}         = $UserInfo{UserID};
-        $Entry->{UserLogin}      = $UserInfo{UserLogin};
-        $Entry->{UserFirstname}  = $UserInfo{UserFirstname};
-        $Entry->{UserLastname}   = $UserInfo{UserLastname};
+        # save additional information for history entry
+        $Entry->{UserID}        = $UserInfo{UserID};
+        $Entry->{UserLogin}     = $UserInfo{UserLogin};
+        $Entry->{UserFirstname} = $UserInfo{UserFirstname};
+        $Entry->{UserLastname}  = $UserInfo{UserLastname};
     }
 
     return \@Entries;
@@ -211,13 +215,14 @@ sub HistoryEntryGet {
     my ( $Self, %Params ) = @_;
 
     # check needed stuff
-    for my $Needed ( qw(HistoryEntryID) ) {
+    for my $Needed (qw(HistoryEntryID)) {
         if ( !$Params{$Needed} ) {
             $Self->{LogObject}->Log( Priority => 'error', Message => "Need $Needed!" );
             return;
         }
     }
 
+    # fetch a single entry from history
     my $SQL = qq~SELECT ch.id, ch.config_item_id, ch.content, ch.type_id,
                         ch.create_by, ch.create_time, cht.name
                     FROM configitem_history ch, configitem_history_type cht
@@ -231,12 +236,13 @@ sub HistoryEntryGet {
 
     my %Entry;
 
+    # create new user object
     my $UserObject = Kernel::System::User->new(
         %{$Self},
     );
 
     while ( my @Row = $Self->{DBObject}->FetchrowArray() ) {
-
+        # get user data for this entry
         my %UserInfo = $UserObject->GetUserData(
             UserID => $Row[4],
             Cached => 1
@@ -278,15 +284,16 @@ sub HistoryAdd {
     my ( $Self, %Params ) = @_;
 
     # check needed stuff
-    for my $Needed ( qw(ConfigItemID UserID Comment) ) {
+    for my $Needed (qw(ConfigItemID UserID Comment)) {
         if ( !$Params{$Needed} ) {
             $Self->{LogObject}->Log( Priority => 'error', Message => "Need $Needed!" );
             return;
         }
     }
 
-    if ( ! ( $Params{HistoryType} || $Params{HistoryTypeID} ) ) {
-        $Self->{LogObject}->Log( Priority => 'error', Message => "Need HistoryType or HistoryTypeID!" );
+    if ( !( $Params{HistoryType} || $Params{HistoryTypeID} ) ) {
+        $Self->{LogObject}
+            ->Log( Priority => 'error', Message => "Need HistoryType or HistoryTypeID!" );
         return;
     }
 
@@ -305,14 +312,14 @@ sub HistoryAdd {
         }
 
         if ( !$Id ) {
-            $Self->{LogObject}->Log( Priority => 'error', Message => "Invalid history type given!" );
+            $Self->{LogObject}
+                ->Log( Priority => 'error', Message => "Invalid history type given!" );
             return;
         }
 
-        $Self->{LogObject}->Log( Priority => 'notice', Message => $Params{HistoryType} . ' => ' . $Id );
-
         $Params{HistoryTypeID} = $Id;
     }
+    # if history type is given
     elsif ( $Params{HistoryTypeID} ) {
         my $SQL = qq~SELECT id FROM configitem_history_type WHERE id = ? AND valid_id = 1~;
         $Self->{DBObject}->Prepare(
@@ -327,13 +334,15 @@ sub HistoryAdd {
         }
 
         if ( !$Id ) {
-            $Self->{LogObject}->Log( Priority => 'error', Message => "Invalid history type id given!" );
+            $Self->{LogObject}
+                ->Log( Priority => 'error', Message => "Invalid history type id given!" );
             return;
         }
 
         $Params{HistoryTypeID} = $Id;
     }
 
+    # check if given config item id points to an existing config item id
     if ( $Params{ConfigItemID} ) {
         my $SQL = qq~SELECT id FROM configitem WHERE id = ?~;
         $Self->{DBObject}->Prepare(
@@ -348,11 +357,13 @@ sub HistoryAdd {
         }
 
         if ( !$Id ) {
-            $Self->{LogObject}->Log( Priority => 'error', Message => "Invalid config item id given!" );
+            $Self->{LogObject}
+                ->Log( Priority => 'error', Message => "Invalid config item id given!" );
             return;
         }
     }
 
+    # insert history entry
     my $InsertSQL = qq~INSERT INTO configitem_history (
                             config_item_id, content, create_by, create_time, type_id )
                         VALUES ( ?, ?, ?, current_timestamp, ? )~;
@@ -382,13 +393,14 @@ sub HistoryDelete {
     my ( $Self, %Params ) = @_;
 
     # check needed stuff
-    for my $Needed ( qw(ConfigItemID) ) {
+    for my $Needed (qw(ConfigItemID)) {
         if ( !$Params{$Needed} ) {
             $Self->{LogObject}->Log( Priority => 'error', Message => "Need $Needed!" );
             return;
         }
     }
 
+    # delete history for given config item
     my $SQL = qq~DELETE FROM configitem_history WHERE config_item_id = ?~;
 
     $Self->{DBObject}->Do(
@@ -411,7 +423,7 @@ sub HistoryEntryDelete {
     my ( $Self, %Params ) = @_;
 
     # check needed stuff
-    for my $Needed ( qw(HistoryEntryID) ) {
+    for my $Needed (qw(HistoryEntryID)) {
         if ( !$Params{$Needed} ) {
             $Self->{LogObject}->Log( Priority => 'error', Message => "Need $Needed!" );
             return;
@@ -442,6 +454,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.4 $ $Date: 2009-08-12 10:12:38 $
+$Revision: 1.5 $ $Date: 2009-08-17 13:14:33 $
 
 =cut

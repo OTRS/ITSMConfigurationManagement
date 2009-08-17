@@ -2,7 +2,7 @@
 # Kernel/System/LinkObject/ITSMConfigItem.pm - to link config item objects
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.9 2009-07-30 11:44:24 reb Exp $
+# $Id: ITSMConfigItem.pm,v 1.10 2009-08-17 13:13:58 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::GeneralCatalog;
 use Kernel::System::ITSMConfigItem;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.9 $) [1];
+$VERSION = qw($Revision: 1.10 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -347,7 +347,8 @@ sub LinkAddPost {
         }
     }
 
-    my $Key    = $Param{TargetKey} || $Param{SourceKey};
+    # trigger LinkAdd event
+    my $Key    = $Param{TargetKey}    || $Param{SourceKey};
     my $Object = $Param{TargetObject} || $Param{SourceObject};
 
     $Self->{ConfigItemObject}->ConfigItemEventHandlerPost(
@@ -447,6 +448,7 @@ sub LinkDeletePost {
         }
     }
 
+    # trigger LinkDelete event
     my $Key    = $Param{TargetKey}    || $Param{SourceKey};
     my $Object = $Param{TargetObject} || $Param{SourceObject};
 

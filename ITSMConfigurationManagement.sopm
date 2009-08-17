@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <otrs_package version="1.0">
-    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.49 2009-08-12 13:16:52 reb Exp $</CVS>
+    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.50 2009-08-17 13:13:57 reb Exp $</CVS>
     <Name>ITSMConfigurationManagement</Name>
     <Version>0.0.0</Version>
     <Framework>2.4.x</Framework>
@@ -1103,9 +1103,9 @@
         <TableDrop Name="configitem_counter"/>
         <TableDrop Name="configitem_version"/>
         <TableDrop Name="configitem_definition"/>
-        <TableDrop Name="configitem"/>
-        <TableDrop Name="configitem_history"/>
         <TableDrop Name="configitem_history_type"/>
+        <TableDrop Name="configitem_history"/>
+        <TableDrop Name="configitem"/>
     </DatabaseUninstall>
     <CodeInstall Type="post">
 

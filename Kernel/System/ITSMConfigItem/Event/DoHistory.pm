@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Event/DoHistory.pm - a event module for default ticket free text settings
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: DoHistory.pm,v 1.2 2009-07-31 12:19:52 reb Exp $
+# $Id: DoHistory.pm,v 1.3 2009-08-17 13:14:33 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -16,7 +16,7 @@ use warnings;
 use Kernel::System::ITSMConfigItem::History;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.2 $) [1];
+$VERSION = qw($Revision: 1.3 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -51,21 +51,21 @@ sub Run {
     $Param{HistoryType} = $Param{Event};
 
     my %Dispatcher = (
-        NewConfigItem         => \&_NewConfigItem,
-        DeleteConfigItem      => \&_DeleteConfigItem,
+        ConfigItemCreate      => \&_NewConfigItem,
+        ConfigItemDelete      => \&_DeleteConfigItem,
         LinkAdd               => \&_LinkAdd,
         LinkDelete            => \&_LinkDelete,
-        NameChange            => \&_NameChange,
-        IncidentStateChange   => \&_InciStateChange,
-        DeploymentStateChange => \&_DeplStateChange,
-        DefinitionChange      => \&_DefinitionChange,
-        VersionAdd            => \&_VersionAdd,
-        ValueChange           => \&_ValueChange,
+        NameUpdate            => \&_NameChange,
+        IncidentStateUpdate   => \&_InciStateChange,
+        DeploymentStateUpdate => \&_DeplStateChange,
+        DefinitionUpdate      => \&_DefinitionChange,
+        VersionCreate         => \&_VersionAdd,
+        ValueUpdate           => \&_ValueChange,
     );
 
     if ( exists $Dispatcher{ $Param{Event} } ) {
         my $Sub = $Dispatcher{ $Param{Event} };
-        $Self->$Sub( %Param );
+        $Self->$Sub(%Param);
     }
 
     return 1;
@@ -177,7 +177,7 @@ sub _VersionAdd {
         ConfigItemID => $Params{ConfigItemID},
     );
 
-    my $NewVersion  = $VersionList->[-1];
+    my $NewVersion = $VersionList->[-1];
 
     $Self->{HistoryObject}->HistoryAdd(
         %Params,
@@ -199,6 +199,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Id: DoHistory.pm,v 1.2 2009-07-31 12:19:52 reb Exp $
+$Id: DoHistory.pm,v 1.3 2009-08-17 13:14:33 reb Exp $
 
 =cut
