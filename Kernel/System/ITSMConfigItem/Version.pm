@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Version.pm - sub module of ITSMConfigItem.pm with version functions
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: Version.pm,v 1.7 2009-08-17 13:14:33 reb Exp $
+# $Id: Version.pm,v 1.8 2009-08-17 13:21:07 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.7 $) [1];
+$VERSION = qw($Revision: 1.8 $) [1];
 
 =head1 NAME
 
@@ -934,7 +934,7 @@ sub _GrabTagKeys {
             if ( $Key eq 'TagKey' ) {
                 push @TagKeys, $Params{Data}->{$Key};
             }
-            elsif ( ref $Ref->{$Key} ) {
+            elsif ( ref $Params{Data}->{$Key} ) {
                 push @TagKeys, $Self->_GrabTagKeys( Data => $Params{Data}->{$Key} );
             }
         }
@@ -960,6 +960,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.7 $ $Date: 2009-08-17 13:14:33 $
+$Revision: 1.8 $ $Date: 2009-08-17 13:21:07 $
 
 =cut
