@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <otrs_package version="1.0">
-    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.50 2009-08-17 13:13:57 reb Exp $</CVS>
+    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.51 2009-08-17 13:37:10 reb Exp $</CVS>
     <Name>ITSMConfigurationManagement</Name>
     <Version>0.0.0</Version>
     <Framework>2.4.x</Framework>
@@ -901,7 +901,7 @@
             </ForeignKey>
         </TableCreate>
         <Insert Table="configitem_history_type">
-            <Data Key="name" Type="Quote">NewConfigItem</Data>
+            <Data Key="name" Type="Quote">ConfigItemCreate</Data>
             <Data Key="valid_id">1</Data>
             <Data Key="create_time">current_timestamp</Data>
             <Data Key="create_by">1</Data>
@@ -909,7 +909,7 @@
             <Data Key="change_by">1</Data>
         </Insert>
         <Insert Table="configitem_history_type">
-            <Data Key="name" Type="Quote">DeleteConfigItem</Data>
+            <Data Key="name" Type="Quote">ConfigItemDelete</Data>
             <Data Key="valid_id">1</Data>
             <Data Key="create_time">current_timestamp</Data>
             <Data Key="create_by">1</Data>
@@ -933,7 +933,7 @@
             <Data Key="change_by">1</Data>
         </Insert>
         <Insert Table="configitem_history_type">
-            <Data Key="name" Type="Quote">NameChange</Data>
+            <Data Key="name" Type="Quote">NameUpdate</Data>
             <Data Key="valid_id">1</Data>
             <Data Key="create_time">current_timestamp</Data>
             <Data Key="create_by">1</Data>
@@ -941,7 +941,7 @@
             <Data Key="change_by">1</Data>
         </Insert>
         <Insert Table="configitem_history_type">
-            <Data Key="name" Type="Quote">VersionAdd</Data>
+            <Data Key="name" Type="Quote">VersionCreate</Data>
             <Data Key="valid_id">1</Data>
             <Data Key="create_time">current_timestamp</Data>
             <Data Key="create_by">1</Data>
@@ -949,7 +949,7 @@
             <Data Key="change_by">1</Data>
         </Insert>
         <Insert Table="configitem_history_type">
-            <Data Key="name" Type="Quote">ValueChange</Data>
+            <Data Key="name" Type="Quote">ValueUpdate</Data>
             <Data Key="valid_id">1</Data>
             <Data Key="create_time">current_timestamp</Data>
             <Data Key="create_by">1</Data>
@@ -957,7 +957,7 @@
             <Data Key="change_by">1</Data>
         </Insert>
         <Insert Table="configitem_history_type">
-            <Data Key="name" Type="Quote">DefinitionChange</Data>
+            <Data Key="name" Type="Quote">DefinitionUpdate</Data>
             <Data Key="valid_id">1</Data>
             <Data Key="create_time">current_timestamp</Data>
             <Data Key="create_by">1</Data>
@@ -965,7 +965,7 @@
             <Data Key="change_by">1</Data>
         </Insert>
         <Insert Table="configitem_history_type">
-            <Data Key="name" Type="Quote">IncidentStateChange</Data>
+            <Data Key="name" Type="Quote">IncidentStateUpdate</Data>
             <Data Key="valid_id">1</Data>
             <Data Key="create_time">current_timestamp</Data>
             <Data Key="create_by">1</Data>
@@ -973,7 +973,7 @@
             <Data Key="change_by">1</Data>
         </Insert>
         <Insert Table="configitem_history_type">
-            <Data Key="name" Type="Quote">DeploymentStateChange</Data>
+            <Data Key="name" Type="Quote">DeploymentStateUpdate</Data>
             <Data Key="valid_id">1</Data>
             <Data Key="create_time">current_timestamp</Data>
             <Data Key="create_by">1</Data>
@@ -1019,7 +1019,7 @@
             </ForeignKey>
         </TableCreate>
         <Insert Table="configitem_history_type" Version="1.9.71">
-            <Data Key="name" Type="Quote">NewConfigItem</Data>
+            <Data Key="name" Type="Quote">ConfigItemCreate</Data>
             <Data Key="valid_id">1</Data>
             <Data Key="create_time">current_timestamp</Data>
             <Data Key="create_by">1</Data>
@@ -1027,7 +1027,7 @@
             <Data Key="change_by">1</Data>
         </Insert>
         <Insert Table="configitem_history_type" Version="1.9.71">
-            <Data Key="name" Type="Quote">DeleteConfigItem</Data>
+            <Data Key="name" Type="Quote">ConfigItemDelete</Data>
             <Data Key="valid_id">1</Data>
             <Data Key="create_time">current_timestamp</Data>
             <Data Key="create_by">1</Data>
@@ -1051,7 +1051,7 @@
             <Data Key="change_by">1</Data>
         </Insert>
         <Insert Table="configitem_history_type" Version="1.9.71">
-            <Data Key="name" Type="Quote">NameChange</Data>
+            <Data Key="name" Type="Quote">NameUpdate</Data>
             <Data Key="valid_id">1</Data>
             <Data Key="create_time">current_timestamp</Data>
             <Data Key="create_by">1</Data>
@@ -1059,7 +1059,7 @@
             <Data Key="change_by">1</Data>
         </Insert>
         <Insert Table="configitem_history_type" Version="1.9.71">
-            <Data Key="name" Type="Quote">VersionAdd</Data>
+            <Data Key="name" Type="Quote">VersionCreate</Data>
             <Data Key="valid_id">1</Data>
             <Data Key="create_time">current_timestamp</Data>
             <Data Key="create_by">1</Data>
@@ -1067,7 +1067,7 @@
             <Data Key="change_by">1</Data>
         </Insert>
         <Insert Table="configitem_history_type" Version="1.9.71">
-            <Data Key="name" Type="Quote">ValueChange</Data>
+            <Data Key="name" Type="Quote">ValueUpdate</Data>
             <Data Key="valid_id">1</Data>
             <Data Key="create_time">current_timestamp</Data>
             <Data Key="create_by">1</Data>
@@ -1075,7 +1075,7 @@
             <Data Key="change_by">1</Data>
         </Insert>
         <Insert Table="configitem_history_type" Version="1.9.71">
-            <Data Key="name" Type="Quote">DefinitionChange</Data>
+            <Data Key="name" Type="Quote">DefinitionUpdate</Data>
             <Data Key="valid_id">1</Data>
             <Data Key="create_time">current_timestamp</Data>
             <Data Key="create_by">1</Data>
@@ -1083,7 +1083,7 @@
             <Data Key="change_by">1</Data>
         </Insert>
         <Insert Table="configitem_history_type" Version="1.9.71">
-            <Data Key="name" Type="Quote">IncidentStateChange</Data>
+            <Data Key="name" Type="Quote">IncidentStateUpdate</Data>
             <Data Key="valid_id">1</Data>
             <Data Key="create_time">current_timestamp</Data>
             <Data Key="create_by">1</Data>
@@ -1091,7 +1091,7 @@
             <Data Key="change_by">1</Data>
         </Insert>
         <Insert Table="configitem_history_type" Version="1.9.71">
-            <Data Key="name" Type="Quote">DeploymentStateChange</Data>
+            <Data Key="name" Type="Quote">DeploymentStateUpdate</Data>
             <Data Key="valid_id">1</Data>
             <Data Key="create_time">current_timestamp</Data>
             <Data Key="create_by">1</Data>

@@ -2,7 +2,7 @@
 # ITSMConfigItemHistory.t - config item tests
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemHistory.t,v 1.2 2009-08-12 13:16:53 reb Exp $
+# $Id: ITSMConfigItemHistory.t,v 1.3 2009-08-17 13:37:10 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -283,58 +283,58 @@ my $ConfigItemTests = [
             ],
             HistoryGet => [
                 {
-                    HistoryType   => 'NewConfigItem',
+                    HistoryType   => 'ConfigItemCreate',
                     HistoryTypeID => 1,
                     CreateBy      => 1,
                 },
                 {
-                    HistoryType   => 'VersionAdd',
+                    HistoryType   => 'VersionCreate',
                     HistoryTypeID => 6,
                     CreateBy      => 1,
                 },
                 {
-                    HistoryType   => 'DefinitionChange',
+                    HistoryType   => 'DefinitionUpdate',
                     HistoryTypeID => 8,
                     Comment       => $ConfigItemDefinitionIDs[0],
                     CreateBy      => 1,
                 },
                 {
-                    HistoryType   => 'NameChange',
+                    HistoryType   => 'NameUpdate',
                     HistoryTypeID => 5,
                     Comment       => 'UnitTest - Class 1 ConfigItem 1 Version 1',
                     CreateBy      => 1,
                 },
                 {
-                    HistoryType   => 'IncidentStateChange',
+                    HistoryType   => 'IncidentStateUpdate',
                     HistoryTypeID => 9,
                     Comment       => $InciStateListReverse{Operational} . '%%',
                     CreateBy      => 1,
                 },
                 {
-                    HistoryType   => 'DeploymentStateChange',
+                    HistoryType   => 'DeploymentStateUpdate',
                     HistoryTypeID => 10,
                     Comment       => $DeplStateListReverse{Planned} . '%%',
                     CreateBy      => 1,
                 },
                 {
-                    HistoryType   => 'VersionAdd',
+                    HistoryType   => 'VersionCreate',
                     HistoryTypeID => 6,
                     CreateBy      => 1,
                 },
                 {
-                    HistoryType   => 'NameChange',
+                    HistoryType   => 'NameUpdate',
                     HistoryTypeID => 5,
                     Comment       => 'UnitTest - Class 1 ConfigItem 1 Version 2',
                     CreateBy      => 1,
                 },
                 {
-                    HistoryType   => 'IncidentStateChange',
+                    HistoryType   => 'IncidentStateUpdate',
                     HistoryTypeID => 9,
                     Comment       => $InciStateListReverse{Incident} . '%%' . $InciStateListReverse{Operational},
                     CreateBy      => 1,
                 },
                 {
-                    HistoryType   => 'DeploymentStateChange',
+                    HistoryType   => 'DeploymentStateUpdate',
                     HistoryTypeID => 10,
                     Comment       => $DeplStateListReverse{Maintenance} . '%%' . $DeplStateListReverse{Planned},
                     CreateBy      => 1,
