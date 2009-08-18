@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Definition.pm - sub module of ITSMConfigItem.pm with definition functions
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: Definition.pm,v 1.3 2009-05-18 09:59:04 mh Exp $
+# $Id: Definition.pm,v 1.4 2009-08-18 22:11:52 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.3 $) [1];
+$VERSION = qw($Revision: 1.4 $) [1];
 
 =head1 NAME
 
@@ -46,17 +46,18 @@ sub DefinitionList {
 
     # check needed stuff
     if ( !$Param{ClassID} ) {
-        $Self->{LogObject}->Log( Priority => 'error', Message => 'Need ClassID!' );
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => 'Need ClassID!',
+        );
         return;
     }
 
-    # quote
-    $Param{ClassID} = $Self->{DBObject}->Quote( $Param{ClassID}, 'Integer' );
-
     # ask database
     $Self->{DBObject}->Prepare(
-        SQL => "SELECT id, configitem_definition, version, create_time, create_by "
-            . "FROM configitem_definition WHERE class_id = $Param{ClassID} ORDER BY version",
+        SQL => 'SELECT id, configitem_definition, version, create_time, create_by '
+            . 'FROM configitem_definition WHERE class_id = ? ORDER BY version',
+        Bind => [ \$Param{ClassID} ],
     );
 
     my @DefinitionList;
@@ -105,7 +106,10 @@ sub DefinitionGet {
 
     # check needed stuff
     if ( !$Param{DefinitionID} && !$Param{ClassID} ) {
-        $Self->{LogObject}->Log( Priority => 'error', Message => 'Need DefinitionID or ClassID!' );
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => 'Need DefinitionID or ClassID!',
+        );
         return;
     }
 
@@ -115,26 +119,22 @@ sub DefinitionGet {
         return $Self->{Cache}->{DefinitionGet}->{ $Param{DefinitionID} }
             if $Self->{Cache}->{DefinitionGet}->{ $Param{DefinitionID} };
 
-        # quote
-        $Param{DefinitionID} = $Self->{DBObject}->Quote( $Param{DefinitionID}, 'Integer' );
-
         # ask database
         $Self->{DBObject}->Prepare(
-            SQL => "SELECT id, class_id, configitem_definition, version, create_time, create_by "
-                . "FROM configitem_definition WHERE id = $Param{DefinitionID}",
+            SQL => 'SELECT id, class_id, configitem_definition, version, create_time, create_by '
+                . 'FROM configitem_definition WHERE id = ?',
+            Bind  => [ \$Param{DefinitionID} ],
             Limit => 1,
         );
     }
     else {
 
-        # quote
-        $Param{ClassID} = $Self->{DBObject}->Quote( $Param{ClassID}, 'Integer' );
-
         # ask database
         $Self->{DBObject}->Prepare(
-            SQL => "SELECT id, class_id, configitem_definition, version, create_time, create_by "
-                . "FROM configitem_definition "
-                . "WHERE class_id = $Param{ClassID} ORDER BY version DESC",
+            SQL => 'SELECT id, class_id, configitem_definition, version, create_time, create_by '
+                . 'FROM configitem_definition '
+                . 'WHERE class_id = ? ORDER BY version DESC',
+            Bind  => [ \$Param{ClassID} ],
             Limit => 1,
         );
     }
@@ -198,7 +198,7 @@ sub DefinitionAdd {
         if ( !$Param{$Argument} ) {
             $Self->{LogObject}->Log(
                 Priority => 'error',
-                Message  => "Need $Argument!"
+                Message  => "Need $Argument!",
             );
             return;
         }
@@ -232,26 +232,22 @@ sub DefinitionAdd {
         $Version++;
     }
 
-    # quote
-    for my $Argument (qw(ClassID UserID)) {
-        $Param{$Argument} = $Self->{DBObject}->Quote( $Param{$Argument}, 'Integer' );
-    }
-
     # insert new definition
     my $Success = $Self->{DBObject}->Do(
-        SQL => "INSERT INTO configitem_definition "
-            . "(class_id, configitem_definition, version, create_time, create_by) VALUES "
-            . "($Param{ClassID}, ?, $Version, current_timestamp, $Param{UserID})",
-        Bind => [ \$Param{Definition} ],
+        SQL => 'INSERT INTO configitem_definition '
+            . '(class_id, configitem_definition, version, create_time, create_by) VALUES '
+            . '(?, ?, ?, current_timestamp, ?)',
+        Bind => [ \$Param{ClassID}, \$Param{Definition}, \$Version, \$Param{UserID} ],
     );
 
     return if !$Success;
 
     # get id of new definition
     $Self->{DBObject}->Prepare(
-        SQL => "SELECT id FROM configitem_definition WHERE "
-            . "class_id = $Param{ClassID} AND version = $Version "
-            . "ORDER BY version DESC",
+        SQL => 'SELECT id FROM configitem_definition WHERE '
+            . 'class_id = ? AND version = ? '
+            . 'ORDER BY version DESC',
+        Bind => [ \$Param{ClassID}, \$Version ],
         Limit => 1,
     );
 
@@ -279,7 +275,10 @@ sub DefinitionCheck {
 
     # check needed stuff
     if ( !$Param{Definition} ) {
-        $Self->{LogObject}->Log( Priority => 'error', Message => 'Need Definition!' );
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => 'Need Definition!',
+        );
         return;
     }
 
@@ -288,7 +287,7 @@ sub DefinitionCheck {
     if ( !$Definition ) {
         $Self->{LogObject}->Log(
             Priority => 'error',
-            Message  => 'Invalid Definition! You have an syntax error in the definition.'
+            Message  => 'Invalid Definition! You have an syntax error in the definition.',
         );
         return;
     }
@@ -296,7 +295,7 @@ sub DefinitionCheck {
     if ( ref $Definition ne 'ARRAY' ) {
         $Self->{LogObject}->Log(
             Priority => 'error',
-            Message  => 'Invalid Definition! Definition is not an array reference.'
+            Message  => 'Invalid Definition! Definition is not an array reference.',
         );
         return;
     }
@@ -321,7 +320,10 @@ sub _DefinitionPrepare {
 
     # check definition
     if ( !$Param{DefinitionRef} ) {
-        $Self->{LogObject}->Log( Priority => 'error', Message => 'Need DefinitionRef!' );
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => 'Need DefinitionRef!',
+        );
         return;
     }
 
@@ -381,6 +383,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.3 $ $Date: 2009-05-18 09:59:04 $
+$Revision: 1.4 $ $Date: 2009-08-18 22:11:52 $
 
 =cut

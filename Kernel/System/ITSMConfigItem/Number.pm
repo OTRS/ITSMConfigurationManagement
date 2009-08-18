@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Number.pm - sub module of ITSMConfigItem.pm with number functions
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: Number.pm,v 1.2 2009-05-18 09:59:04 mh Exp $
+# $Id: Number.pm,v 1.3 2009-08-18 22:11:52 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.2 $) [1];
+$VERSION = qw($Revision: 1.3 $) [1];
 
 =head1 NAME
 
@@ -65,12 +65,10 @@ sub ConfigItemNumberLookup {
         return $Self->{Cache}->{ConfigItemNumberLookup}->{ID}->{ $Param{ConfigItemID} }
             if $Self->{Cache}->{ConfigItemNumberLookup}->{ID}->{ $Param{ConfigItemID} };
 
-        # quote
-        $Param{ConfigItemID} = $Self->{DBObject}->Quote( $Param{ConfigItemID}, 'Integer' );
-
         # ask database
         $Self->{DBObject}->Prepare(
-            SQL   => "SELECT configitem_number FROM configitem WHERE id = $Param{ConfigItemID}",
+            SQL   => 'SELECT configitem_number FROM configitem WHERE id = ?',
+            Bind  => [ \$Param{ConfigItemID} ],
             Limit => 1,
         );
 
@@ -96,7 +94,8 @@ sub ConfigItemNumberLookup {
 
     # ask database
     $Self->{DBObject}->Prepare(
-        SQL   => "SELECT id FROM configitem WHERE configitem_number = '$Param{ConfigItemNumber}'",
+        SQL   => 'SELECT id FROM configitem WHERE configitem_number = ?',
+        Bind  => [ \$Param{ConfigItemNumber} ],
         Limit => 1,
     );
 
@@ -132,7 +131,7 @@ sub ConfigItemNumberCreate {
         if ( !$Param{$Argument} ) {
             $Self->{LogObject}->Log(
                 Priority => 'error',
-                Message  => "Need $Argument!"
+                Message  => "Need $Argument!",
             );
             return;
         }
@@ -175,20 +174,17 @@ sub CurrentCounterGet {
         if ( !$Param{$Argument} ) {
             $Self->{LogObject}->Log(
                 Priority => 'error',
-                Message  => "Need $Argument!"
+                Message  => "Need $Argument!",
             );
             return;
         }
     }
 
-    # quote
-    $Param{Type} = $Self->{DBObject}->Quote( $Param{Type} );
-    $Param{ClassID} = $Self->{DBObject}->Quote( $Param{ClassID}, 'Integer' );
-
     # ask the database
     $Self->{DBObject}->Prepare(
-        SQL => "SELECT counter FROM configitem_counter WHERE "
-            . "class_id = $Param{ClassID} AND counter_type = '$Param{Type}'",
+        SQL => 'SELECT counter FROM configitem_counter WHERE '
+            . 'class_id = ? AND counter_type = ?',
+        Bind => [ \$Param{ClassID}, \$Param{Type} ],
         Limit => 1,
     );
 
@@ -221,27 +217,23 @@ sub CurrentCounterSet {
         if ( !$Param{$Argument} ) {
             $Self->{LogObject}->Log(
                 Priority => 'error',
-                Message  => "Need $Argument!"
+                Message  => "Need $Argument!",
             );
             return;
         }
     }
 
-    # quote
-    for my $Argument (qw(Type Counter)) {
-        $Param{$Argument} = $Self->{DBObject}->Quote( $Param{$Argument} );
-    }
-    $Param{ClassID} = $Self->{DBObject}->Quote( $Param{ClassID}, 'Integer' );
-
     # delete old counter
     $Self->{DBObject}->Do(
-        SQL => "DELETE FROM configitem_counter WHERE class_id = $Param{ClassID}",
+        SQL  => 'DELETE FROM configitem_counter WHERE class_id = ?',
+        Bind => [ \$Param{ClassID} ],
     );
 
     # set new counter
     $Self->{DBObject}->Do(
-        SQL => "INSERT INTO configitem_counter (class_id, counter_type, counter) "
-            . "VALUES ($Param{ClassID}, '$Param{Type}', '$Param{Counter}')"
+        SQL => 'INSERT INTO configitem_counter '
+            . '(class_id, counter_type, counter) VALUES (?, ?, ?)',
+        Bind => [ \$Param{ClassID}, \$Param{Type}, \$Param{Counter} ],
     );
 
     return 1;
@@ -263,6 +255,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.2 $ $Date: 2009-05-18 09:59:04 $
+$Revision: 1.3 $ $Date: 2009-08-18 22:11:52 $
 
 =cut

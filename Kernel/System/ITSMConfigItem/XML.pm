@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/XML.pm - sub module of ITSMConfigItem.pm with xml functions
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: XML.pm,v 1.5 2009-05-18 09:59:04 mh Exp $
+# $Id: XML.pm,v 1.6 2009-08-18 22:11:52 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.5 $) [1];
+$VERSION = qw($Revision: 1.6 $) [1];
 
 =head1 NAME
 
@@ -47,7 +47,10 @@ sub XMLValueLookup {
 
     # check needed stuff
     if ( !$Param{Item} || ( $Param{Item} && ref $Param{Item} ne 'HASH' ) ) {
-        $Self->{LogObject}->Log( Priority => 'error', Message => 'Need Item!' );
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => 'Need Item!',
+        );
         return;
     }
 
@@ -79,7 +82,10 @@ sub XMLStatsAttributeCreate {
 
     # check needed stuff
     if ( !$Param{Item} ) {
-        $Self->{LogObject}->Log( Priority => 'error', Message => 'Need Item!' );
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => 'Need Item!',
+        );
         return;
     }
 
@@ -112,7 +118,10 @@ sub XMLExportSearchValuePrepare {
 
     # check needed stuff
     if ( !$Param{Item} || ( $Param{Item} && ref $Param{Item} ne 'HASH' ) ) {
-        $Self->{LogObject}->Log( Priority => 'error', Message => 'Need Item!' );
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => 'Need Item!',
+        );
         return;
     }
 
@@ -145,7 +154,10 @@ sub XMLExportValuePrepare {
 
     # check needed stuff
     if ( !$Param{Item} || ( $Param{Item} && ref $Param{Item} ne 'HASH' ) ) {
-        $Self->{LogObject}->Log( Priority => 'error', Message => 'Need Item!' );
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => 'Need Item!',
+        );
         return;
     }
 
@@ -178,7 +190,10 @@ sub XMLImportSearchValuePrepare {
 
     # check needed stuff
     if ( !$Param{Item} || ( $Param{Item} && ref $Param{Item} ne 'HASH' ) ) {
-        $Self->{LogObject}->Log( Priority => 'error', Message => 'Need Item!' );
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => 'Need Item!',
+        );
         return;
     }
 
@@ -211,7 +226,10 @@ sub XMLImportValuePrepare {
 
     # check needed stuff
     if ( !$Param{Item} || ( $Param{Item} && ref $Param{Item} ne 'HASH' ) ) {
-        $Self->{LogObject}->Log( Priority => 'error', Message => 'Need Item!' );
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => 'Need Item!',
+        );
         return;
     }
 
@@ -273,7 +291,7 @@ sub _XMLVersionSearch {
     if ( !$Param{What} || ref $Param{What} ne 'ARRAY' ) {
         $Self->{LogObject}->Log(
             Priority => 'error',
-            Message  => "Need What as array reference!"
+            Message  => "Need What as array reference!",
         );
         return;
     }
@@ -571,6 +589,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.5 $ $Date: 2009-05-18 09:59:04 $
+$Revision: 1.6 $ $Date: 2009-08-18 22:11:52 $
 
 =cut

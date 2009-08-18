@@ -2,7 +2,7 @@
 # Kernel/System/LinkObject/ITSMConfigItem.pm - to link config item objects
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.10 2009-08-17 13:13:58 reb Exp $
+# $Id: ITSMConfigItem.pm,v 1.11 2009-08-18 22:11:52 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::GeneralCatalog;
 use Kernel::System::ITSMConfigItem;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.10 $) [1];
+$VERSION = qw($Revision: 1.11 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -28,9 +28,13 @@ sub new {
     bless( $Self, $Type );
 
     # check needed objects
-    for (qw(DBObject ConfigObject EncodeObject LogObject MainObject TimeObject LinkObject)) {
-        $Self->{$_} = $Param{$_} || die "Got no $_!";
+    for my $Object (
+        qw(DBObject ConfigObject EncodeObject LogObject MainObject TimeObject LinkObject)
+        )
+    {
+        $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
     }
+
     $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
     $Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new( %{$Self} );
 
@@ -302,8 +306,6 @@ sub LinkAddPre {
         }
     }
 
-    return 1 if $Param{State} eq 'Temporary';
-
     return 1;
 }
 
@@ -358,8 +360,6 @@ sub LinkAddPost {
         Comment      => $Key . '%%' . $Object,
     );
 
-    return 1 if $Param{State} eq 'Temporary';
-
     return 1;
 }
 
@@ -402,8 +402,6 @@ sub LinkDeletePre {
             return;
         }
     }
-
-    return 1 if $Param{State} eq 'Temporary';
 
     return 1;
 }
@@ -458,8 +456,6 @@ sub LinkDeletePost {
         UserID       => $Param{UserID},
         Comment      => $Key . '%%' . $Object,
     );
-
-    return 1 if $Param{State} eq 'Temporary';
 
     return 1;
 }

@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/XML/Type/Text.pm - xml backend module
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: Text.pm,v 1.3 2009-07-20 23:26:03 ub Exp $
+# $Id: Text.pm,v 1.4 2009-08-18 22:11:52 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.3 $) [1];
+$VERSION = qw($Revision: 1.4 $) [1];
 
 =head1 NAME
 
@@ -123,7 +123,7 @@ sub StatsAttributeCreate {
         if ( !$Param{$Argument} ) {
             $Self->{LogObject}->Log(
                 Priority => 'error',
-                Message  => "Need $Argument!"
+                Message  => "Need $Argument!",
             );
             return;
         }
@@ -228,6 +228,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.3 $ $Date: 2009-07-20 23:26:03 $
+$Revision: 1.4 $ $Date: 2009-08-18 22:11:52 $
 
 =cut
