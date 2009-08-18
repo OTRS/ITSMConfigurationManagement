@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemHistory.pm - ticket history
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemHistory.pm,v 1.2 2009-07-31 12:19:51 reb Exp $
+# $Id: AgentITSMConfigItemHistory.pm,v 1.3 2009-08-18 22:18:19 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem::History;
 use Kernel::System::ITSMConfigItem;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.2 $) [1];
+$VERSION = qw($Revision: 1.3 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -28,8 +28,11 @@ sub new {
     bless( $Self, $Type );
 
     # check needed objects
-    for ( qw( DBObject LayoutObject LogObject UserObject ConfigObject
-                ParamObject EncodeObject MainObject ) ) {
+    for (
+        qw( DBObject LayoutObject LogObject UserObject ConfigObject
+        ParamObject EncodeObject MainObject )
+        )
+    {
         if ( !$Self->{$_} ) {
             $Self->{LayoutObject}->FatalError( Message => "Got no $_!" );
         }
@@ -87,9 +90,9 @@ sub Run {
         );
 
         if ( $Data{HistoryType} eq 'VersionAdd' ) {
-            $Data{Comment}   =~ s/\D//g;
+            $Data{Comment} =~ s/\D//g;
             $Data{VersionID} = $Data{Comment};
-            $Version         = $Data{Comment};
+            $Version = $Data{Comment};
         }
 
         # replace text
@@ -131,9 +134,9 @@ sub Run {
     $Output .= $Self->{LayoutObject}->Output(
         TemplateFile => 'AgentITSMConfigItemHistory',
         Data         => {
-            Name          => $ConfigItemName,
-            ConfigItemID  => $Self->{ConfigItemID},
-            VersionID     => $Self->{ParamObject}->GetParam( Param => 'VersionID' ),
+            Name         => $ConfigItemName,
+            ConfigItemID => $Self->{ConfigItemID},
+            VersionID    => $Self->{ParamObject}->GetParam( Param => 'VersionID' ),
         },
     );
     $Output .= $Self->{LayoutObject}->Footer();

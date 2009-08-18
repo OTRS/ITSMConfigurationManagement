@@ -2,7 +2,7 @@
 # Kernel/System/LinkObject/ITSMConfigItem.pm - to link config item objects
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.11 2009-08-18 22:11:52 mh Exp $
+# $Id: ITSMConfigItem.pm,v 1.12 2009-08-18 22:18:19 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::GeneralCatalog;
 use Kernel::System::ITSMConfigItem;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.11 $) [1];
+$VERSION = qw($Revision: 1.12 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -306,6 +306,8 @@ sub LinkAddPre {
         }
     }
 
+    return 1 if $Param{State} eq 'Temporary';
+
     return 1;
 }
 
@@ -360,6 +362,8 @@ sub LinkAddPost {
         Comment      => $Key . '%%' . $Object,
     );
 
+    return 1 if $Param{State} eq 'Temporary';
+
     return 1;
 }
 
@@ -402,6 +406,8 @@ sub LinkDeletePre {
             return;
         }
     }
+
+    return 1 if $Param{State} eq 'Temporary';
 
     return 1;
 }
@@ -456,6 +462,8 @@ sub LinkDeletePost {
         UserID       => $Param{UserID},
         Comment      => $Key . '%%' . $Object,
     );
+
+    return 1 if $Param{State} eq 'Temporary';
 
     return 1;
 }
