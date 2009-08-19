@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/History.pm - module for ITSMConfigItem.pm with history functions
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: History.pm,v 1.6 2009-08-19 12:52:18 reb Exp $
+# $Id: History.pm,v 1.7 2009-08-19 22:32:16 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -17,7 +17,7 @@ use warnings;
 use Kernel::System::User;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.6 $) [1];
+$VERSION = qw($Revision: 1.7 $) [1];
 
 =head1 NAME
 
@@ -60,8 +60,8 @@ create an object
     );
     my $MainObject = Kernel::System::Main->new(
         ConfigObject => $ConfigObject,
-        LogObject    => $LogObject,
         EncodeObject => $EncodeObject,
+        LogObject    => $LogObject,
     );
     my $DBObject = Kernel::System::DB->new(
         ConfigObject => $ConfigObject,
@@ -145,9 +145,8 @@ sub HistoryGet {
     }
 
     # if cached result exists, return that result
-    if ( $Self->{Cache}->{CIVersions}->{ $Param{ConfigItemID} } ) {
-        return $Self->{Cache}->{CIVersions}->{ $Param{ConfigItemID} };
-    }
+    return $Self->{Cache}->{CIVersions}->{ $Param{ConfigItemID} }
+        if $Self->{Cache}->{CIVersions}->{ $Param{ConfigItemID} };
 
     # fetch some data from history for given config item
     return if !$Self->{DBObject}->Prepare(
@@ -473,9 +472,8 @@ sub HistoryTypeLookup {
     }
 
     # if result is cached return that result
-    if ( $Self->{Cache}->{HistoryTypeLookup}->{ $Param{$Key} } ) {
-        return $Self->{Cache}->{HistoryTypeLookup}->{ $Param{$Key} };
-    }
+    return $Self->{Cache}->{HistoryTypeLookup}->{ $Param{$Key} }
+        if $Self->{Cache}->{HistoryTypeLookup}->{ $Param{$Key} };
 
     # set the appropriate SQL statement
     my $SQL = 'SELECT name FROM configitem_history_type WHERE id = ?';
@@ -517,9 +515,8 @@ sub ConfigItemLookup {
     }
 
     # if result is cached return that result
-    if ( $Self->{Cache}->{ConfigItemLookup}->{ $Param{ConfigItemID} } ) {
-        return $Self->{Cache}->{ConfigItemLookup}->{ $Param{ConfigItemID} };
-    }
+    return $Self->{Cache}->{ConfigItemLookup}->{ $Param{ConfigItemID} }
+        if $Self->{Cache}->{ConfigItemLookup}->{ $Param{ConfigItemID} };
 
     # fetch the requested value
     my $Value;
@@ -553,6 +550,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.6 $ $Date: 2009-08-19 12:52:18 $
+$Revision: 1.7 $ $Date: 2009-08-19 22:32:16 $
 
 =cut

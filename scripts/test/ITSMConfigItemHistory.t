@@ -2,7 +2,7 @@
 # ITSMConfigItemHistory.t - config item tests
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemHistory.t,v 1.3 2009-08-17 13:37:10 reb Exp $
+# $Id: ITSMConfigItemHistory.t,v 1.4 2009-08-19 22:32:16 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -86,7 +86,8 @@ if ( !$ItemID ) {
 }
 
 # define the first test definition (all provided data types)
-my @ConfigItemDefinitions = ( " [
+my @ConfigItemDefinitions = (
+    " [
     {
         Key        => 'Customer1',
         Name       => 'Customer 1',
@@ -198,6 +199,7 @@ my %GeneralCatalogListReverse = reverse %{$GeneralCatalogList};
 # ------------------------------------------------------------ #
 
 my $ConfigItemTests = [
+
     # all required values are given (check the calculation of deployment and incident state)
     {
         SourceData => {
@@ -330,16 +332,18 @@ my $ConfigItemTests = [
                 {
                     HistoryType   => 'IncidentStateUpdate',
                     HistoryTypeID => 9,
-                    Comment       => $InciStateListReverse{Incident} . '%%' . $InciStateListReverse{Operational},
-                    CreateBy      => 1,
+                    Comment       => $InciStateListReverse{Incident} . '%%'
+                        . $InciStateListReverse{Operational},
+                    CreateBy => 1,
                 },
                 {
                     HistoryType   => 'DeploymentStateUpdate',
                     HistoryTypeID => 10,
-                    Comment       => $DeplStateListReverse{Maintenance} . '%%' . $DeplStateListReverse{Planned},
-                    CreateBy      => 1,
+                    Comment       => $DeplStateListReverse{Maintenance} . '%%'
+                        . $DeplStateListReverse{Planned},
+                    CreateBy => 1,
                 },
-            ]
+            ],
         },
     },
 ];
@@ -588,6 +592,7 @@ for my $Test ( @{$ConfigItemTests} ) {
             next CHECKNR unless $Check && $Data;
 
             for my $Key ( keys %{$Check} ) {
+
                 # check history data
                 $Self->Is(
                     $Check->{$Key},
