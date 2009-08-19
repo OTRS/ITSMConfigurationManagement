@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Version.pm - sub module of ITSMConfigItem.pm with version functions
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: Version.pm,v 1.8 2009-08-17 13:21:07 reb Exp $
+# $Id: Version.pm,v 1.9 2009-08-19 12:52:18 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.8 $) [1];
+$VERSION = qw($Revision: 1.9 $) [1];
 
 =head1 NAME
 
@@ -236,10 +236,14 @@ sub VersionGet {
             );
 
             # check if anything changed
-            if ( $ConfigItem->{CurDeplStateID} == $CachedVersion->{CurDeplStateID} &&
-                    $ConfigItem->{CurInciStateID} == $CachedVersion->{CurInciStateID} &&
-                    $ConfigItem->{LastVersionID} == $CachedVersion->{LastVersionID} )
+            if (
+                $ConfigItem->{CurDeplStateID} == $CachedVersion->{CurDeplStateID}
+                &&
+                $ConfigItem->{CurInciStateID} == $CachedVersion->{CurInciStateID} &&
+                $ConfigItem->{LastVersionID} == $CachedVersion->{LastVersionID}
+                )
             {
+
                 # check if result is already cached
                 return $Self->{Cache}->{VersionGet}->{ $Param{VersionID} };
             }
@@ -538,7 +542,7 @@ sub VersionAdd {
         ConfigItemID => $Param{ConfigItemID},
         Event        => 'VersionCreate',
         UserID       => $Param{UserID},
-        NewValue     => $VersionID,
+        Comment      => $VersionID,
     );
 
     # compare current and old values
@@ -553,7 +557,7 @@ sub VersionAdd {
             ConfigItemID => $Param{ConfigItemID},
             Event        => 'DefinitionUpdate',
             UserID       => $Param{UserID},
-            NewValue     => $NewDefinitionID,
+            Comment      => $NewDefinitionID,
         );
     }
 
@@ -566,7 +570,7 @@ sub VersionAdd {
             ConfigItemID => $Param{ConfigItemID},
             Event        => 'NameUpdate',
             UserID       => $Param{UserID},
-            NewValue     => $NewName,
+            Comment      => $NewName,
         );
     }
 
@@ -579,7 +583,7 @@ sub VersionAdd {
             ConfigItemID => $Param{ConfigItemID},
             Event        => 'IncidentStateUpdate',
             UserID       => $Param{UserID},
-            NewValue     => $CurInciStateID . '%%' . $LastInciStateID
+            Comment      => $CurInciStateID . '%%' . $LastInciStateID
         );
     }
 
@@ -592,7 +596,7 @@ sub VersionAdd {
             ConfigItemID => $Param{ConfigItemID},
             Event        => 'DeploymentStateUpdate',
             UserID       => $Param{UserID},
-            NewValue     => $CurDeplStateID . '%%' . $LastDeplStateID,
+            Comment      => $CurDeplStateID . '%%' . $LastDeplStateID,
         );
     }
 
@@ -828,6 +832,7 @@ sub _CheckValues {
 
     # do the comparison only when the item is not a new one
     if ( scalar @{$VersionList} > 1 ) {
+
         # find all changed values
         my %ChangedValues = $Self->_FindChangedValues(
             %Params,
@@ -920,7 +925,7 @@ sub _GrabTagKeys {
 
     my @TagKeys;
 
-    if ( $Params{Data} && ref($Params{Data}) && ref($Params{Data}) eq 'ARRAY' ) {
+    if ( $Params{Data} && ref( $Params{Data} ) && ref( $Params{Data} ) eq 'ARRAY' ) {
         ELEM:
         for my $Elem ( @{ $Params{Data} } ) {
             next ELEM if !$Elem;
@@ -929,7 +934,7 @@ sub _GrabTagKeys {
         }
 
     }
-    elsif ( $Params{Data} && ref($Params{Data}) && ref($Params{Data}) eq 'HASH' ) {
+    elsif ( $Params{Data} && ref( $Params{Data} ) && ref( $Params{Data} ) eq 'HASH' ) {
         for my $Key ( keys %{ $Params{Data} } ) {
             if ( $Key eq 'TagKey' ) {
                 push @TagKeys, $Params{Data}->{$Key};
@@ -960,6 +965,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.8 $ $Date: 2009-08-17 13:21:07 $
+$Revision: 1.9 $ $Date: 2009-08-19 12:52:18 $
 
 =cut
