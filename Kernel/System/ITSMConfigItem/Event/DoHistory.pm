@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Event/DoHistory.pm - a event module for config items
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: DoHistory.pm,v 1.5 2009-08-19 12:55:41 reb Exp $
+# $Id: DoHistory.pm,v 1.6 2009-08-19 13:23:15 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -17,7 +17,7 @@ use warnings;
 use Kernel::System::ITSMConfigItem::History;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.5 $) [1];
+$VERSION = qw($Revision: 1.6 $) [1];
 
 =head1 NAME
 
@@ -125,6 +125,12 @@ This method handles the event.
 sub Run {
     my ( $Self, %Param ) = @_;
 
+    # as DefinitionCreate does not belong to an item, we don't create
+    # a history entry
+    if ( $Param{Event} && $Param{Event} eq 'DefinitionCreate' ) {
+        return;
+    }
+
     # check needed stuff
     for my $Needed (qw(ConfigItemID Event UserID Comment)) {
         if ( !$Param{$Needed} ) {
@@ -151,6 +157,7 @@ sub Run {
         DefinitionUpdate      => \&_HistoryAdd,
         VersionCreate         => \&_HistoryAdd,
         ValueUpdate           => \&_HistoryAdd,
+        DefinitionCreate      => \&_HistoryAdd,
     );
 
     # error handling
@@ -218,6 +225,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Id: DoHistory.pm,v 1.5 2009-08-19 12:55:41 reb Exp $
+$Id: DoHistory.pm,v 1.6 2009-08-19 13:23:15 reb Exp $
 
 =cut

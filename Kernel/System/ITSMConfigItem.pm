@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem.pm - all config item function
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.13 2009-08-19 12:52:18 reb Exp $
+# $Id: ITSMConfigItem.pm,v 1.14 2009-08-19 13:23:15 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -24,7 +24,7 @@ use Kernel::System::Time;
 use Kernel::System::XML;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.13 $) [1];
+$VERSION = qw($Revision: 1.14 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',
@@ -1049,6 +1049,7 @@ events available:
 
 ConfigItemCreate, VersionCreate, DeploymentStateUpdate, IncidentStateUpdate,
 ConfigItemDelete, LinkAdd, LinkDelete, DefinitionUpdate, NameUpdate, ValueUpdate
+DefinitionCreate
 
 =cut
 
@@ -1056,7 +1057,7 @@ sub ConfigItemEventHandlerPost {
     my ( $Self, %Param ) = @_;
 
     # check needed stuff
-    for my $Needed (qw(ConfigItemID Event UserID)) {
+    for my $Needed (qw(Event UserID)) {
         if ( !$Param{$Needed} ) {
             $Self->{LogObject}->Log(
                 Priority => 'error',
@@ -1064,6 +1065,15 @@ sub ConfigItemEventHandlerPost {
             );
             return;
         }
+    }
+
+    # if it is not a DefinitionCreate event, the config item id is needed
+    if ( $Param{Event} ne 'DefinitionCreate' && !$Param{ConfigItemID} ) {
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => "Need ConfigItemID!",
+        );
+        return;
     }
 
     # load config item event module
@@ -1115,6 +1125,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.13 $ $Date: 2009-08-19 12:52:18 $
+$Revision: 1.14 $ $Date: 2009-08-19 13:23:15 $
 
 =cut
