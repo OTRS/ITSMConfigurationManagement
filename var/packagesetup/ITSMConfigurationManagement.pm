@@ -2,7 +2,7 @@
 # ITSMConfigurationManagement.pm - code to excecute during package installation
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigurationManagement.pm,v 1.13 2009-07-20 23:25:03 ub Exp $
+# $Id: ITSMConfigurationManagement.pm,v 1.14 2009-08-19 22:48:14 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -28,7 +28,7 @@ use Kernel::System::User;
 use Kernel::System::Valid;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.13 $) [1];
+$VERSION = qw($Revision: 1.14 $) [1];
 
 =head1 NAME
 
@@ -107,7 +107,10 @@ sub new {
     bless( $Self, $Type );
 
     # check needed objects
-    for my $Object (qw(ConfigObject EncodeObject LogObject MainObject TimeObject DBObject XMLObject)) {
+    for my $Object (
+        qw(ConfigObject EncodeObject LogObject MainObject TimeObject DBObject XMLObject)
+        )
+    {
         $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
     }
 
@@ -1019,7 +1022,7 @@ sub _AddConfigItemDefinitions {
     my %ReverseClassList = reverse %{$ClassList};
 
     CLASSNAME:
-    for my $ClassName ( sort { lc($a) cmp lc($b) } keys %Definition ) {
+    for my $ClassName ( sort { lc $a cmp lc $b } keys %Definition ) {
 
         # check if class exists
         my $ClassID = $ReverseClassList{$ClassName};
@@ -1087,8 +1090,8 @@ sub _FillupEmptyLastVersionID {
 
     # get config items with empty last_version_id
     $Self->{DBObject}->Prepare(
-        SQL => "SELECT id FROM configitem WHERE "
-            . "last_version_id = 0 OR last_version_id IS NULL",
+        SQL => 'SELECT id FROM configitem WHERE '
+            . 'last_version_id = 0 OR last_version_id IS NULL',
     );
 
     # fetch the result
@@ -1102,8 +1105,9 @@ sub _FillupEmptyLastVersionID {
 
         # get the last version of this config item
         $Self->{DBObject}->Prepare(
-            SQL => "SELECT id FROM configitem_version "
-                . "WHERE configitem_id = $ConfigItemID ORDER BY id DESC",
+            SQL => 'SELECT id FROM configitem_version '
+                . 'WHERE configitem_id = ? ORDER BY id DESC',
+            Bind  => [ \$ConfigItemID ],
             Limit => 1,
         );
 
@@ -1117,9 +1121,10 @@ sub _FillupEmptyLastVersionID {
 
         # update inci_state_id
         $Self->{DBObject}->Do(
-            SQL => "UPDATE configitem "
-                . "SET last_version_id = $VersionID "
-                . "WHERE id = $ConfigItemID",
+            SQL => 'UPDATE configitem '
+                . 'SET last_version_id = ? '
+                . 'WHERE id = ?',
+            Bind => [ \$VersionID, \$ConfigItemID ],
         );
     }
 
@@ -1157,9 +1162,10 @@ sub _FillupEmptyVersionIncidentStateID {
 
     # update inci_state_id
     return $Self->{DBObject}->Do(
-        SQL => "UPDATE configitem_version "
-            . "SET inci_state_id = $InciStateKeyList[0] "
-            . "WHERE inci_state_id = 0 OR inci_state_id IS NULL",
+        SQL => 'UPDATE configitem_version '
+            . 'SET inci_state_id = ? '
+            . 'WHERE inci_state_id = 0 OR inci_state_id IS NULL',
+        Bind => [ \$InciStateKeyList[0] ],
     );
 }
 
@@ -1176,9 +1182,9 @@ sub _FillupEmptyIncidentAndDeploymentStateID {
 
     # get config items with empty cur_depl_state_id or cur_inci_state_id
     $Self->{DBObject}->Prepare(
-        SQL => "SELECT id FROM configitem WHERE "
-            . "cur_depl_state_id = 0 OR cur_depl_state_id IS NULL OR "
-            . "cur_inci_state_id = 0 OR cur_inci_state_id IS NULL",
+        SQL => 'SELECT id FROM configitem WHERE '
+            . 'cur_depl_state_id = 0 OR cur_depl_state_id IS NULL OR '
+            . 'cur_inci_state_id = 0 OR cur_inci_state_id IS NULL',
     );
 
     # fetch the result
@@ -1202,10 +1208,15 @@ sub _FillupEmptyIncidentAndDeploymentStateID {
 
         # complete config item
         $Self->{DBObject}->Do(
-            SQL => "UPDATE configitem SET "
-                . "cur_depl_state_id = $LastVersion->{DeplStateID}, "
-                . "cur_inci_state_id = $LastVersion->{InciStateID} "
-                . "WHERE id = $ConfigItemID",
+            SQL => 'UPDATE configitem SET '
+                . 'cur_depl_state_id = ?, '
+                . 'cur_inci_state_id = ? '
+                . 'WHERE id = ?',
+            Bind => [
+                \$LastVersion->{DeplStateID},
+                \$LastVersion->{InciStateID},
+                \$ConfigItemID,
+            ],
         );
     }
 
@@ -1218,16 +1229,16 @@ sub _FillupEmptyIncidentAndDeploymentStateID {
 
 =head1 TERMS AND CONDITIONS
 
-This Software is part of the OTRS project (http://otrs.org/).
+This software is part of the OTRS project (http://otrs.org/).
 
 This software comes with ABSOLUTELY NO WARRANTY. For details, see
-the enclosed file COPYING for license information (GPL). If you
-did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
+the enclosed file COPYING for license information (AGPL). If you
+did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =cut
 
 =head1 VERSION
 
-$Revision: 1.13 $ $Date: 2009-07-20 23:25:03 $
+$Revision: 1.14 $ $Date: 2009-08-19 22:48:14 $
 
 =cut
