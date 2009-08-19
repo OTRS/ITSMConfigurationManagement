@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Version.pm - sub module of ITSMConfigItem.pm with version functions
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: Version.pm,v 1.9 2009-08-19 12:52:18 reb Exp $
+# $Id: Version.pm,v 1.10 2009-08-19 22:31:31 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.9 $) [1];
+$VERSION = qw($Revision: 1.10 $) [1];
 
 =head1 NAME
 
@@ -46,7 +46,10 @@ sub VersionZoomList {
 
     # check needed stuff
     if ( !$Param{ConfigItemID} ) {
-        $Self->{LogObject}->Log( Priority => 'error', Message => 'Need ConfigItemID!' );
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => 'Need ConfigItemID!',
+        );
         return;
     }
 
@@ -55,14 +58,11 @@ sub VersionZoomList {
         ConfigItemID => $Param{ConfigItemID},
     );
 
-    # quote
-    $Param{ConfigItemID} = $Self->{DBObject}->Quote( $Param{ConfigItemID}, 'Integer' );
-
     # get version zoom list
     $Self->{DBObject}->Prepare(
-        SQL => "SELECT id, name, depl_state_id, inci_state_id, create_time, create_by "
-            . "FROM configitem_version "
-            . "WHERE configitem_id = $Param{ConfigItemID} ORDER BY id"
+        SQL => 'SELECT id, name, depl_state_id, inci_state_id, create_time, create_by '
+            . 'FROM configitem_version WHERE configitem_id = ? ORDER BY id',
+        Bind => [ \$Param{ConfigItemID} ],
     );
 
     # fetch the result
@@ -127,17 +127,17 @@ sub VersionList {
 
     # check needed stuff
     if ( !$Param{ConfigItemID} ) {
-        $Self->{LogObject}->Log( Priority => 'error', Message => 'Need ConfigItemID!' );
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => 'Need ConfigItemID!',
+        );
         return;
     }
 
-    # quote
-    $Param{ConfigItemID} = $Self->{DBObject}->Quote( $Param{ConfigItemID}, 'Integer' );
-
     # get version list
     $Self->{DBObject}->Prepare(
-        SQL => "SELECT id FROM configitem_version "
-            . "WHERE configitem_id = $Param{ConfigItemID} ORDER BY id",
+        SQL  => 'SELECT id FROM configitem_version WHERE configitem_id = ? ORDER BY id',
+        Bind => [ \$Param{ConfigItemID} ],
     );
 
     # fetch the result
@@ -218,9 +218,9 @@ sub VersionGet {
         # if last call was cached, check if the values are still valid
         if ($CachedVersion) {
             $Self->{DBObject}->Prepare(
-                SQL   => "SELECT configitem_id FROM configitem_version WHERE id = ?",
-                Limit => 1,
+                SQL   => 'SELECT configitem_id FROM configitem_version WHERE id = ?',
                 Bind  => [ \$Param{VersionID} ],
+                Limit => 1,
             );
 
             my $LocalConfigItemID;
@@ -235,42 +235,31 @@ sub VersionGet {
                 Cache        => 0,
             );
 
-            # check if anything changed
-            if (
-                $ConfigItem->{CurDeplStateID} == $CachedVersion->{CurDeplStateID}
-                &&
-                $ConfigItem->{CurInciStateID} == $CachedVersion->{CurInciStateID} &&
-                $ConfigItem->{LastVersionID} == $CachedVersion->{LastVersionID}
-                )
-            {
-
-                # check if result is already cached
-                return $Self->{Cache}->{VersionGet}->{ $Param{VersionID} };
-            }
+            # check if result is already cached
+            return $Self->{Cache}->{VersionGet}->{ $Param{VersionID} }
+                if $ConfigItem->{CurDeplStateID} == $CachedVersion->{CurDeplStateID}
+                    && $ConfigItem->{CurInciStateID} == $CachedVersion->{CurInciStateID}
+                    && $ConfigItem->{LastVersionID} == $CachedVersion->{LastVersionID};
         }
-
-        # quote
-        $Param{VersionID} = $Self->{DBObject}->Quote( $Param{VersionID}, 'Integer' );
 
         # get version
         $Self->{DBObject}->Prepare(
-            SQL => "SELECT id, configitem_id, name, definition_id, "
-                . "depl_state_id, inci_state_id, create_time, create_by "
-                . "FROM configitem_version WHERE id = $Param{VersionID}",
+            SQL => 'SELECT id, configitem_id, name, definition_id, '
+                . 'depl_state_id, inci_state_id, create_time, create_by '
+                . 'FROM configitem_version WHERE id = ?',
+            Bind  => [ \$Param{VersionID} ],
             Limit => 1,
         );
     }
     else {
 
-        # quote
-        $Param{ConfigItemID} = $Self->{DBObject}->Quote( $Param{ConfigItemID}, 'Integer' );
-
         # get version
         $Self->{DBObject}->Prepare(
-            SQL => "SELECT id, configitem_id, name, definition_id, "
-                . "depl_state_id, inci_state_id, create_time, create_by "
-                . "FROM configitem_version "
-                . "WHERE configitem_id = $Param{ConfigItemID} ORDER BY id DESC",
+            SQL => 'SELECT id, configitem_id, name, definition_id, '
+                . 'depl_state_id, inci_state_id, create_time, create_by '
+                . 'FROM configitem_version '
+                . 'WHERE configitem_id = ? ORDER BY id DESC',
+            Bind  => [ \$Param{ConfigItemID} ],
             Limit => 1,
         );
     }
@@ -374,7 +363,10 @@ sub VersionConfigItemIDGet {
 
     # check needed stuff
     if ( !$Param{VersionID} ) {
-        $Self->{LogObject}->Log( Priority => 'error', Message => 'Need VersionID!' );
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => 'Need VersionID!',
+        );
         return;
     }
 
@@ -384,7 +376,8 @@ sub VersionConfigItemIDGet {
 
     # get config item id
     $Self->{DBObject}->Prepare(
-        SQL   => "SELECT configitem_id FROM configitem_version WHERE id = $Param{VersionID}",
+        SQL   => 'SELECT configitem_id FROM configitem_version WHERE id = ?',
+        Bind  => [ \$Param{VersionID} ],
         Limit => 1,
     );
 
@@ -422,7 +415,10 @@ sub VersionAdd {
     # check needed stuff
     for my $Attribute (qw(ConfigItemID Name DefinitionID DeplStateID InciStateID UserID)) {
         if ( !$Param{$Attribute} ) {
-            $Self->{LogObject}->Log( Priority => 'error', Message => "Need $Attribute!" );
+            $Self->{LogObject}->Log(
+                Priority => 'error',
+                Message  => "Need $Attribute!",
+            );
             return;
         }
     }
@@ -446,7 +442,7 @@ sub VersionAdd {
 
         $Self->{LogObject}->Log(
             Priority => 'error',
-            Message  => "No valid deployment state id given!",
+            Message  => 'No valid deployment state id given!',
         );
         return;
     }
@@ -464,7 +460,7 @@ sub VersionAdd {
 
         $Self->{LogObject}->Log(
             Priority => 'error',
-            Message  => "No valid incident state id given!",
+            Message  => 'No valid incident state id given!',
         );
         return;
     }
@@ -485,19 +481,27 @@ sub VersionAdd {
 
     # insert new version
     my $Success = $Self->{DBObject}->Do(
-        SQL => "INSERT INTO configitem_version "
-            . "(configitem_id, name, definition_id, "
-            . "depl_state_id, inci_state_id, create_time, create_by) VALUES "
-            . "($Param{ConfigItemID}, '$Param{Name}', $Param{DefinitionID}, "
-            . "$Param{DeplStateID}, $Param{InciStateID}, current_timestamp, $Param{UserID})"
+        SQL => 'INSERT INTO configitem_version '
+            . '(configitem_id, name, definition_id, '
+            . 'depl_state_id, inci_state_id, create_time, create_by) VALUES '
+            . '(?, ?, ?, ?, ?, current_timestamp, ?)',
+        Bind => [
+            \$Param{ConfigItemID},
+            \$Param{Name},
+            \$Param{DefinitionID},
+            \$Param{DeplStateID},
+            \$Param{InciStateID},
+            \$Param{UserID},
+        ],
     );
 
     return if !$Success;
 
     # get id of new version
     $Self->{DBObject}->Prepare(
-        SQL => "SELECT id, create_time FROM configitem_version WHERE "
-            . "configitem_id = $Param{ConfigItemID} ORDER BY id DESC",
+        SQL => 'SELECT id, create_time FROM configitem_version WHERE '
+            . 'configitem_id = ? ORDER BY id DESC',
+        Bind  => [ \$Param{ConfigItemID} ],
         Limit => 1,
     );
 
@@ -530,11 +534,18 @@ sub VersionAdd {
 
     # update last_version_id, cur_depl_state_id, cur_inci_state_id, change_time and change_by
     $Self->{DBObject}->Do(
-        SQL => "UPDATE configitem SET last_version_id = $VersionID,"
-            . "cur_depl_state_id = $Param{DeplStateID}, "
-            . "cur_inci_state_id = $Param{InciStateID}, "
-            . "change_time = '$CreateTime', change_by = $Param{UserID} "
-            . "WHERE id = $Param{ConfigItemID}"
+        SQL => 'UPDATE configitem SET last_version_id = ?, '
+            . 'cur_depl_state_id = ?, cur_inci_state_id = ?, '
+            . 'change_time = ?, change_by = ? '
+            . 'WHERE id = ?',
+        Bind => [
+            \$VersionID,
+            \$Param{DeplStateID},
+            \$Param{InciStateID},
+            \$CreateTime,
+            \$Param{UserID},
+            \$Param{ConfigItemID},
+        ],
     );
 
     # trigger VersionCreate event
@@ -633,7 +644,7 @@ sub VersionDelete {
     if ( !$Param{UserID} ) {
         $Self->{LogObject}->Log(
             Priority => 'error',
-            Message  => "Need UserID!",
+            Message  => 'Need UserID!',
         );
         return;
     }
@@ -893,9 +904,8 @@ sub _FindChangedValues {
     my %TagKeys;
     @TagKeys{ @TagKeysNew, @TagKeysOld } = ( @TagKeysNew, @TagKeysOld );
 
-    my %Changes;
-
     # do the check
+    my %Changes;
     KEY:
     for my $Key ( keys %TagKeys ) {
         my $NewValue = eval '$CurrentXMLData->' . $Key . '->{Content}';
@@ -923,19 +933,25 @@ list of all TagKeys.
 sub _GrabTagKeys {
     my ( $Self, %Params ) = @_;
 
-    my @TagKeys;
+    return () if !$Params{Data};
 
-    if ( $Params{Data} && ref( $Params{Data} ) && ref( $Params{Data} ) eq 'ARRAY' ) {
+    my @TagKeys;
+    if ( ref $Params{Data} eq 'ARRAY' ) {
+
         ELEM:
         for my $Elem ( @{ $Params{Data} } ) {
+
             next ELEM if !$Elem;
-            next ELEM if !ref($Elem);
+            next ELEM if !ref $Elem;
+
             push @TagKeys, $Self->_GrabTagKeys( Data => $Elem );
         }
-
     }
-    elsif ( $Params{Data} && ref( $Params{Data} ) && ref( $Params{Data} ) eq 'HASH' ) {
+
+    elsif ( ref $Params{Data} eq 'HASH' ) {
+
         for my $Key ( keys %{ $Params{Data} } ) {
+
             if ( $Key eq 'TagKey' ) {
                 push @TagKeys, $Params{Data}->{$Key};
             }
@@ -943,7 +959,6 @@ sub _GrabTagKeys {
                 push @TagKeys, $Self->_GrabTagKeys( Data => $Params{Data}->{$Key} );
             }
         }
-
     }
 
     return @TagKeys;
@@ -965,6 +980,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.9 $ $Date: 2009-08-19 12:52:18 $
+$Revision: 1.10 $ $Date: 2009-08-19 22:31:31 $
 
 =cut

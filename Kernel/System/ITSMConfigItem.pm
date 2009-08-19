@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem.pm - all config item function
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.14 2009-08-19 13:23:15 reb Exp $
+# $Id: ITSMConfigItem.pm,v 1.15 2009-08-19 22:31:31 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -24,7 +24,7 @@ use Kernel::System::Time;
 use Kernel::System::XML;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.14 $) [1];
+$VERSION = qw($Revision: 1.15 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',
@@ -68,8 +68,8 @@ create an object
     );
     my $MainObject = Kernel::System::Main->new(
         ConfigObject => $ConfigObject,
-        LogObject    => $LogObject,
         EncodeObject => $EncodeObject,
+        LogObject    => $LogObject,
     );
     my $DBObject = Kernel::System::DB->new(
         ConfigObject => $ConfigObject,
@@ -98,6 +98,7 @@ sub new {
     for my $Object (qw(DBObject ConfigObject EncodeObject LogObject MainObject)) {
         $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
     }
+
     $Self->{TimeObject}           = Kernel::System::Time->new( %{$Self} );
     $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
     $Self->{LinkObject}           = Kernel::System::LinkObject->new( %{$Self} );
@@ -121,7 +122,10 @@ sub ConfigItemCount {
 
     # check needed stuff
     if ( !$Param{ClassID} ) {
-        $Self->{LogObject}->Log( Priority => 'error', Message => 'Need ClassID!' );
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => 'Need ClassID!',
+        );
         return;
     }
 
@@ -133,16 +137,14 @@ sub ConfigItemCount {
 
     return 0 if !%{$StateList};
 
-    # quote
-    $Param{ClassID} = $Self->{DBObject}->Quote( $Param{ClassID}, 'Integer' );
-
     # create state string
     my $DeplStateString = join q{, }, keys %{$StateList};
 
     # ask database
     $Self->{DBObject}->Prepare(
-        SQL => "SELECT COUNT(id) FROM configitem WHERE class_id = $Param{ClassID} AND "
+        SQL => "SELECT COUNT(id) FROM configitem WHERE class_id = ? AND "
             . "cur_depl_state_id IN ( $DeplStateString )",
+        Bind  => [ \$Param{ClassID} ],
         Limit => 1,
     );
 
@@ -172,12 +174,14 @@ sub ConfigItemResultList {
 
     # check needed stuff
     if ( !$Param{ClassID} ) {
-        $Self->{LogObject}->Log( Priority => 'error', Message => 'Need ClassID!' );
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => 'Need ClassID!',
+        );
         return;
     }
 
     # quote
-    $Param{ClassID} = $Self->{DBObject}->Quote( $Param{ClassID}, 'Integer' );
     if ( $Param{Start} ) {
         $Param{Start} = $Self->{DBObject}->Quote( $Param{Start}, 'Integer' );
     }
@@ -197,8 +201,9 @@ sub ConfigItemResultList {
     # ask database
     $Self->{DBObject}->Prepare(
         SQL => "SELECT id FROM configitem "
-            . "WHERE class_id = $Param{ClassID} AND cur_depl_state_id IN ( $DeplStateString ) "
+            . "WHERE class_id = ? AND cur_depl_state_id IN ( $DeplStateString ) "
             . "ORDER BY change_time DESC",
+        Bind => [ \$Param{ClassID} ],
         %Param,
     );
 
@@ -257,7 +262,10 @@ sub ConfigItemGet {
 
     # check needed stuff
     if ( !$Param{ConfigItemID} ) {
-        $Self->{LogObject}->Log( Priority => 'error', Message => 'Need ConfigItemID!' );
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => 'Need ConfigItemID!',
+        );
         return;
     }
 
@@ -270,15 +278,13 @@ sub ConfigItemGet {
     return $Self->{Cache}->{ConfigItemGet}->{ $Param{ConfigItemID} }
         if $Param{Cache} && $Self->{Cache}->{ConfigItemGet}->{ $Param{ConfigItemID} };
 
-    # quote
-    $Param{ConfigItemID} = $Self->{DBObject}->Quote( $Param{ConfigItemID}, 'Integer' );
-
     # ask database
     $Self->{DBObject}->Prepare(
-        SQL => "SELECT id, configitem_number, class_id, last_version_id, "
-            . "cur_depl_state_id, cur_inci_state_id, "
-            . "create_time, create_by, change_time, change_by "
-            . "FROM configitem WHERE id = $Param{ConfigItemID}",
+        SQL => 'SELECT id, configitem_number, class_id, last_version_id, '
+            . 'cur_depl_state_id, cur_inci_state_id, '
+            . 'create_time, create_by, change_time, change_by '
+            . 'FROM configitem WHERE id = ?',
+        Bind  => [ \$Param{ConfigItemID} ],
         Limit => 1,
     );
 
@@ -357,7 +363,7 @@ sub ConfigItemAdd {
         if ( !$Param{$Argument} ) {
             $Self->{LogObject}->Log(
                 Priority => 'error',
-                Message  => "Need $Argument!"
+                Message  => "Need $Argument!",
             );
             return;
         }
@@ -376,21 +382,13 @@ sub ConfigItemAdd {
 
         $Self->{LogObject}->Log(
             Priority => 'error',
-            Message  => "No valid class id given!",
+            Message  => 'No valid class id given!',
         );
         return;
     }
 
-    # quote
-    for my $Argument (qw(ClassID UserID)) {
-        $Param{$Argument} = $Self->{DBObject}->Quote( $Param{$Argument}, 'Integer' );
-    }
-
     # create config item number
     if ( $Param{Number} ) {
-
-        # quote
-        $Param{Number} = $Self->{DBObject}->Quote( $Param{Number} );
 
         # find existing config item number
         my $Exists = $Self->ConfigItemNumberLookup(
@@ -416,19 +414,19 @@ sub ConfigItemAdd {
 
     # insert new config item
     my $Success = $Self->{DBObject}->Do(
-        SQL => "INSERT INTO configitem "
-            . "(configitem_number, class_id, create_time, create_by, change_time, change_by) "
-            . "VALUES ('$Param{Number}', $Param{ClassID}, current_timestamp, "
-            . "$Param{UserID}, current_timestamp, $Param{UserID})"
+        SQL => 'INSERT INTO configitem '
+            . '(configitem_number, class_id, create_time, create_by, change_time, change_by) '
+            . 'VALUES (?, ?, current_timestamp, ?, current_timestamp, ?)',
+        Bind => [ \$Param{Number}, \$Param{ClassID}, \$Param{UserID}, \$Param{UserID} ],
     );
 
     return if !$Success;
 
     # find id of new item
     $Self->{DBObject}->Prepare(
-        SQL => "SELECT id FROM configitem WHERE "
-            . "configitem_number = '$Param{Number}' AND class_id = $Param{ClassID} "
-            . " ORDER BY id DESC",
+        SQL => 'SELECT id FROM configitem WHERE '
+            . 'configitem_number = ? AND class_id = ? ORDER BY id DESC',
+        Bind => [ \$Param{Number}, \$Param{ClassID} ],
         Limit => 1,
     );
 
@@ -468,7 +466,7 @@ sub ConfigItemDelete {
         if ( !$Param{$Argument} ) {
             $Self->{LogObject}->Log(
                 Priority => 'error',
-                Message  => "Need $Argument!"
+                Message  => "Need $Argument!",
             );
             return;
         }
@@ -480,11 +478,6 @@ sub ConfigItemDelete {
         UserID       => $Param{UserID},
     );
 
-    # quote
-    for my $Argument (qw(ConfigItemID UserID)) {
-        $Param{$Argument} = $Self->{DBObject}->Quote( $Param{$Argument}, 'Integer' );
-    }
-
     # trigger ConfigItemDelete event
     $Self->ConfigItemEventHandlerPost(
         ConfigItemID => $Param{ConfigItemID},
@@ -495,7 +488,8 @@ sub ConfigItemDelete {
 
     # delete config item
     return $Self->{DBObject}->Do(
-        SQL => "DELETE FROM configitem WHERE id = $Param{ConfigItemID}",
+        SQL  => 'DELETE FROM configitem WHERE id = ?',
+        Bind => [ \$Param{ConfigItemID} ],
     );
 }
 
@@ -855,7 +849,10 @@ sub CurInciStateRecalc {
 
     # check needed stuff
     if ( !$Param{ConfigItemID} ) {
-        $Self->{LogObject}->Log( Priority => 'error', Message => 'Need ConfigItemID!' );
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => 'Need ConfigItemID!',
+        );
         return;
     }
 
@@ -1125,6 +1122,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.14 $ $Date: 2009-08-19 13:23:15 $
+$Revision: 1.15 $ $Date: 2009-08-19 22:31:31 $
 
 =cut
