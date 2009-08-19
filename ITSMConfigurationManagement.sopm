@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <otrs_package version="1.0">
-    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.51 2009-08-17 13:37:10 reb Exp $</CVS>
+    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.52 2009-08-19 12:52:18 reb Exp $</CVS>
     <Name>ITSMConfigurationManagement</Name>
     <Version>0.0.0</Version>
     <Framework>2.4.x</Framework>
@@ -168,6 +168,33 @@
             <Column Name="counter" Required="true" Size="50" Type="VARCHAR"/>
             <ForeignKey ForeignTable="general_catalog">
                 <Reference Local="class_id" Foreign="id"/>
+            </ForeignKey>
+        </TableCreate>
+        <TableCreate Name="configitem_history_type">
+            <Column Name="id" Required="true" PrimaryKey="true" AutoIncrement="true" Type="INTEGER"/>
+            <Column Name="name" Required="true" Size="255" Type="VARCHAR"/>
+            <Column Name="comments" Size="255" Type="VARCHAR"/>
+            <Column Name="valid_id" Required="true" Type="SMALLINT"/>
+            <Column Name="create_time" Required="true" Type="DATE"/>
+            <Column Name="create_by" Required="true" Type="INTEGER"/>
+            <Column Name="change_time" Type="DATE"/>
+            <Column Name="change_by" Type="INTEGER"/>
+            <ForeignKey ForeignTable="valid">
+                <Reference Local="valid_id" Foreign="id"/>
+            </ForeignKey>
+        </TableCreate>
+        <TableCreate Name="configitem_history">
+            <Column Name="id" Required="true" PrimaryKey="true" AutoIncrement="true" Type="BIGINT"/>
+            <Column Name="configitem_id" Required="true" Type="BIGINT"/>
+            <Column Name="type_id" Required="true" Type="INTEGER"/>
+            <Column Name="content" Required="true" Size="255" Type="VARCHAR"/>
+            <Column Name="create_time" Required="true" Type="DATE"/>
+            <Column Name="create_by" Required="true" Type="INTEGER"/>
+            <ForeignKey ForeignTable="configitem">
+                <Reference Local="configitem_id" Foreign="id"/>
+            </ForeignKey>
+            <ForeignKey ForeignTable="configitem_history_type">
+                <Reference Local="type_id" Foreign="id"/>
             </ForeignKey>
         </TableCreate>
         <Insert Table="general_catalog">
@@ -873,33 +900,6 @@
             <Data Key="change_time">current_timestamp</Data>
             <Data Key="change_by">1</Data>
         </Insert>
-        <TableCreate Name="configitem_history_type">
-            <Column Name="id" Required="true" PrimaryKey="true" AutoIncrement="true" Type="INTEGER"/>
-            <Column Name="name" Required="true" Size="255" Type="VARCHAR"/>
-            <Column Name="comments" Size="255" Type="VARCHAR"/>
-            <Column Name="valid_id" Required="true" Type="SMALLINT"/>
-            <Column Name="create_time" Required="true" Type="DATE"/>
-            <Column Name="create_by" Required="true" Type="INTEGER"/>
-            <Column Name="change_time" Type="DATE"/>
-            <Column Name="change_by" Type="INTEGER"/>
-            <ForeignKey ForeignTable="valid">
-                <Reference Local="valid_id" Foreign="id"/>
-            </ForeignKey>
-        </TableCreate>
-        <TableCreate Name="configitem_history">
-            <Column Name="id" Required="true" PrimaryKey="true" AutoIncrement="true" Type="BIGINT"/>
-            <Column Name="config_item_id" Required="true" Type="BIGINT"/>
-            <Column Name="type_id" Required="true" Type="INTEGER"/>
-            <Column Name="content" Required="true" Size="255" Type="VARCHAR"/>
-            <Column Name="create_time" Required="true" Type="DATE"/>
-            <Column Name="create_by" Required="true" Type="INTEGER"/>
-            <ForeignKey ForeignTable="configitem">
-                <Reference Local="config_item_id" Foreign="id"/>
-            </ForeignKey>
-            <ForeignKey ForeignTable="configitem_history_type">
-                <Reference Local="type_id" Foreign="id"/>
-            </ForeignKey>
-        </TableCreate>
         <Insert Table="configitem_history_type">
             <Data Key="name" Type="Quote">ConfigItemCreate</Data>
             <Data Key="valid_id">1</Data>
@@ -982,15 +982,6 @@
         </Insert>
     </DatabaseInstall>
     <DatabaseUpgrade Type="post">
-        <Insert Table="general_catalog" Version="1.1.90">
-            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Class</Data>
-            <Data Key="name" Type="Quote">Location</Data>
-            <Data Key="valid_id">1</Data>
-            <Data Key="create_time">current_timestamp</Data>
-            <Data Key="create_by">1</Data>
-            <Data Key="change_time">current_timestamp</Data>
-            <Data Key="change_by">1</Data>
-        </Insert>
         <TableCreate Name="configitem_history_type" Version="1.9.71">
             <Column Name="id" Required="true" PrimaryKey="true" AutoIncrement="true" Type="INTEGER"/>
             <Column Name="name" Required="true" Size="255" Type="VARCHAR"/>
@@ -1006,18 +997,27 @@
         </TableCreate>
         <TableCreate Name="configitem_history" Version="1.9.71">
             <Column Name="id" Required="true" PrimaryKey="true" AutoIncrement="true" Type="BIGINT"/>
-            <Column Name="config_item_id" Required="true" Type="BIGINT"/>
+            <Column Name="configitem_id" Required="true" Type="BIGINT"/>
             <Column Name="type_id" Required="true" Type="INTEGER"/>
             <Column Name="content" Required="true" Size="255" Type="VARCHAR"/>
             <Column Name="create_time" Required="true" Type="DATE"/>
             <Column Name="create_by" Required="true" Type="INTEGER"/>
             <ForeignKey ForeignTable="configitem">
-                <Reference Local="config_item_id" Foreign="id"/>
+                <Reference Local="configitem_id" Foreign="id"/>
             </ForeignKey>
             <ForeignKey ForeignTable="configitem_history_type">
                 <Reference Local="type_id" Foreign="id"/>
             </ForeignKey>
         </TableCreate>
+        <Insert Table="general_catalog" Version="1.1.90">
+            <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Class</Data>
+            <Data Key="name" Type="Quote">Location</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
         <Insert Table="configitem_history_type" Version="1.9.71">
             <Data Key="name" Type="Quote">ConfigItemCreate</Data>
             <Data Key="valid_id">1</Data>
@@ -1103,8 +1103,8 @@
         <TableDrop Name="configitem_counter"/>
         <TableDrop Name="configitem_version"/>
         <TableDrop Name="configitem_definition"/>
-        <TableDrop Name="configitem_history_type"/>
         <TableDrop Name="configitem_history"/>
+        <TableDrop Name="configitem_history_type"/>
         <TableDrop Name="configitem"/>
     </DatabaseUninstall>
     <CodeInstall Type="post">

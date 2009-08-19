@@ -1,8 +1,8 @@
 # --
-# Kernel/System/ITSMConfigItem/Event/DoHistory.pm - a event module for default ticket free text settings
+# Kernel/System/ITSMConfigItem/Event/DoHistory.pm - a event module for config items
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: DoHistory.pm,v 1.3 2009-08-17 13:14:33 reb Exp $
+# $Id: DoHistory.pm,v 1.4 2009-08-19 12:52:18 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -10,13 +10,83 @@
 # --
 
 package Kernel::System::ITSMConfigItem::Event::DoHistory;
+
 use strict;
 use warnings;
 
 use Kernel::System::ITSMConfigItem::History;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.3 $) [1];
+$VERSION = qw($Revision: 1.4 $) [1];
+
+=head1 NAME
+
+Kernel::System::ITSMConfigItem - config item lib
+
+=head1 SYNOPSIS
+
+All config item functions.
+
+=head1 PUBLIC INTERFACE
+
+=over 4
+
+=cut
+
+=item new()
+
+create an object
+
+    use Kernel::Config;
+    use Kernel::System::Encode;
+    use Kernel::System::Log;
+    use Kernel::System::DB;
+    use Kernel::System::Main;
+    use Kernel::System::Time;
+    use Kernel::System::ITSMConfigItem;
+    use Kernel::System::ITSMConfigItem::Event::DoHistory;
+
+    my $ConfigObject = Kernel::Config->new();
+    my $EncodeObject = Kernel::System::Encode->new(
+        ConfigObject => $ConfigObject,
+    );
+    my $LogObject = Kernel::System::Log->new(
+        ConfigObject => $ConfigObject,
+        EncodeObject => $EncodeObject,
+    );
+    my $TimeObject = Kernel::System::Time->new(
+        ConfigObject => $ConfigObject,
+        LogObject    => $LogObject,
+    );
+    my $MainObject = Kernel::System::Main->new(
+        ConfigObject => $ConfigObject,
+        LogObject    => $LogObject,
+        EncodeObject => $EncodeObject,
+    );
+    my $DBObject = Kernel::System::DB->new(
+        ConfigObject => $ConfigObject,
+        EncodeObject => $EncodeObject,
+        LogObject    => $LogObject,
+        MainObject   => $MainObject,
+    );
+    my $ConfigItemObject = Kernel::System::ITSMConfigItem->new(
+        ConfigObject => $ConfigObject,
+        EncodeObject => $EncodeObject,
+        LogObject    => $LogObject,
+        DBObject     => $DBObject,
+        MainObject   => $MainObject,
+    );
+    my $DoHistoryObject = Kernel::System::ITSMConfigItem::Event::DoHistory->new(
+        ConfigItemObject => $ConfigItemObject,
+        ConfigObject     => $ConfigObject,
+        DBObject         => $DBObject,
+        EncodeObject     => $EncodeObject,
+        LogObject        => $LogObject,
+        MainObject       => $MainObject,
+        TimeObject       => $TimeObject,
+    );
+
+=cut
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -26,168 +96,117 @@ sub new {
     bless( $Self, $Type );
 
     # get needed objects
-    for (qw(ConfigObject ConfigItemObject LogObject DBObject MainObject EncodeObject)) {
-        $Self->{$_} = $Param{$_} || die "Got no $_!";
+    for my $Needed (
+        qw(ConfigObject ConfigItemObject LogObject DBObject
+        MainObject EncodeObject TimeObject)
+        )
+    {
+        $Self->{$Needed} = $Param{$Needed} || die "Got no $Needed!";
     }
 
-    $Self->{HistoryObject} = Kernel::System::ITSMConfigItem::History->new(
-        %{$Self},
-    );
+    $Self->{HistoryObject} = Kernel::System::ITSMConfigItem::History->new( %{$Self} );
 
     return $Self;
 }
+
+=item Run()
+
+This method handles the event.
+
+    $DoHistoryObject->Run(
+        Event        => 'ConfigItemCreate',
+        Comment      => 'new value: 1',
+        ConfigItemID => 123,
+        UserID       => 1,
+    );
+
+=cut
 
 sub Run {
     my ( $Self, %Param ) = @_;
 
     # check needed stuff
-    for (qw(ConfigItemID Event UserID)) {
-        if ( !$Param{$_} ) {
-            $Self->{LogObject}->Log( Priority => 'error', Message => "Need $_!" );
+    for my $Needed (qw(ConfigItemID Event UserID Comment)) {
+        if ( !$Param{$Needed} ) {
+            $Self->{LogObject}->Log(
+                Priority => 'error',
+                Message  => "Need $Needed!",
+            );
             return;
         }
     }
 
+    # due to consistency with ticket history, we need HistoryType
     $Param{HistoryType} = $Param{Event};
 
+    # dispatch table for all events
     my %Dispatcher = (
-        ConfigItemCreate      => \&_NewConfigItem,
-        ConfigItemDelete      => \&_DeleteConfigItem,
-        LinkAdd               => \&_LinkAdd,
-        LinkDelete            => \&_LinkDelete,
-        NameUpdate            => \&_NameChange,
-        IncidentStateUpdate   => \&_InciStateChange,
-        DeploymentStateUpdate => \&_DeplStateChange,
-        DefinitionUpdate      => \&_DefinitionChange,
-        VersionCreate         => \&_VersionAdd,
-        ValueUpdate           => \&_ValueChange,
+        ConfigItemCreate      => \&_HistoryAdd,
+        ConfigItemDelete      => \&_ConfigItemDelete,
+        LinkAdd               => \&_HistoryAdd,
+        LinkDelete            => \&_HistoryAdd,
+        NameUpdate            => \&_HistoryAdd,
+        IncidentStateUpdate   => \&_HistoryAdd,
+        DeploymentStateUpdate => \&_HistoryAdd,
+        DefinitionUpdate      => \&_HistoryAdd,
+        VersionCreate         => \&_HistoryAdd,
+        ValueUpdate           => \&_HistoryAdd,
     );
 
-    if ( exists $Dispatcher{ $Param{Event} } ) {
-        my $Sub = $Dispatcher{ $Param{Event} };
-        $Self->$Sub(%Param);
+    # error handling
+    if ( !exists $Dispatcher{ $Param{Event} } ) {
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => 'non existant history type: ' . $Param{Event},
+        );
+
+        return;
     }
 
-    return 1;
-}
-
-sub _NewConfigItem {
-    my ( $Self, %Params ) = @_;
-
-    my $ConfigItemData = $Self->{ConfigItemObject}->ConfigItemGet(
-        ConfigItemID => $Params{ConfigItemID},
-    );
-
-    $Self->{HistoryObject}->HistoryAdd(
-        %Params,
-        Comment => $Params{ConfigItemID} . '%%' . $ConfigItemData->{Number},
-    );
+    # call callback
+    my $Sub = $Dispatcher{ $Param{Event} };
+    $Self->$Sub(%Param);
 
     return 1;
 }
 
-sub _DeleteConfigItem {
-    my ( $Self, %Params ) = @_;
+=item _ConfigItemDelete()
 
+history's event handler for ConfigItemDelete
+
+=cut
+
+sub _ConfigItemDelete {
+    my ( $Self, %Param ) = @_;
+
+    # delete history
     $Self->{HistoryObject}->HistoryDelete(
-        ConfigItemID => $Params{ConfigItemID},
+        ConfigItemID => $Param{ConfigItemID},
     );
 
     return 1;
 }
 
-sub _LinkAdd {
-    my ( $Self, %Params ) = @_;
+=item _HistoryAdd()
 
+history's default event handler.
+
+=cut
+
+sub _HistoryAdd {
+    my ( $Self, %Param ) = @_;
+
+    # add history entry
     $Self->{HistoryObject}->HistoryAdd(
-        %Params,
-    );
-
-    return 1;
-}
-
-sub _LinkDelete {
-    my ( $Self, %Params ) = @_;
-
-    $Self->{HistoryObject}->HistoryAdd(
-        %Params,
-    );
-
-    return 1;
-}
-
-sub _NameChange {
-    my ( $Self, %Params ) = @_;
-
-    $Self->{HistoryObject}->HistoryAdd(
-        %Params,
-        Comment => $Params{NewValue},
-    );
-
-    return 1;
-}
-
-sub _InciStateChange {
-    my ( $Self, %Params ) = @_;
-
-    $Self->{HistoryObject}->HistoryAdd(
-        %Params,
-        Comment => $Params{NewValue},
-    );
-
-    return 1;
-}
-
-sub _DeplStateChange {
-    my ( $Self, %Params ) = @_;
-
-    $Self->{HistoryObject}->HistoryAdd(
-        %Params,
-        Comment => $Params{NewValue},
-    );
-
-    return 1;
-}
-
-sub _ValueChange {
-    my ( $Self, %Params ) = @_;
-
-    $Self->{HistoryObject}->HistoryAdd(
-        %Params,
-    );
-
-    return 1;
-}
-
-sub _DefinitionChange {
-    my ( $Self, %Params ) = @_;
-
-    $Self->{HistoryObject}->HistoryAdd(
-        %Params,
-        Comment => $Params{NewValue},
-    );
-
-    return 1;
-}
-
-sub _VersionAdd {
-    my ( $Self, %Params ) = @_;
-
-    my $VersionList = $Self->{ConfigItemObject}->VersionList(
-        ConfigItemID => $Params{ConfigItemID},
-    );
-
-    my $NewVersion = $VersionList->[-1];
-
-    $Self->{HistoryObject}->HistoryAdd(
-        %Params,
-        Comment => $NewVersion,
+        %Param,
     );
 
     return 1;
 }
 
 1;
+
+=back
 
 =head1 TERMS AND CONDITIONS
 
@@ -199,6 +218,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Id: DoHistory.pm,v 1.3 2009-08-17 13:14:33 reb Exp $
+$Id: DoHistory.pm,v 1.4 2009-08-19 12:52:18 reb Exp $
 
 =cut

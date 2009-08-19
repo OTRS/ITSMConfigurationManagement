@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem.pm - all config item function
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.12 2009-08-17 13:16:52 reb Exp $
+# $Id: ITSMConfigItem.pm,v 1.13 2009-08-19 12:52:18 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -24,7 +24,7 @@ use Kernel::System::Time;
 use Kernel::System::XML;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.12 $) [1];
+$VERSION = qw($Revision: 1.13 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',
@@ -443,6 +443,7 @@ sub ConfigItemAdd {
         ConfigItemID => $ConfigItemID,
         Event        => 'ConfigItemCreate',
         UserID       => $Param{UserID},
+        Comment      => $ConfigItemID . '%%' . $Param{Number},
     );
 
     return $ConfigItemID;
@@ -489,6 +490,7 @@ sub ConfigItemDelete {
         ConfigItemID => $Param{ConfigItemID},
         Event        => 'ConfigItemDelete',
         UserID       => $Param{UserID},
+        Comment      => $Param{ConfigItemID},
     );
 
     # delete config item
@@ -1054,9 +1056,12 @@ sub ConfigItemEventHandlerPost {
     my ( $Self, %Param ) = @_;
 
     # check needed stuff
-    for (qw(ConfigItemID Event UserID)) {
-        if ( !$Param{$_} ) {
-            $Self->{LogObject}->Log( Priority => 'error', Message => "Need $_!" );
+    for my $Needed (qw(ConfigItemID Event UserID)) {
+        if ( !$Param{$Needed} ) {
+            $Self->{LogObject}->Log(
+                Priority => 'error',
+                Message  => "Need $Needed!",
+            );
             return;
         }
     }
@@ -1065,20 +1070,30 @@ sub ConfigItemEventHandlerPost {
     my $Modules = $Self->{ConfigObject}->Get('ITSMConfigItem::EventModulePost');
 
     return if !$Modules;
+    return if ref $Modules ne 'HASH';
 
     # try to load the event modules
+    MODULE:
     for my $Module ( sort keys %{$Modules} ) {
+
         my $Event = $Modules->{$Module}->{Event};
-        if ( !$Event || $Param{Event} =~ m{ \Q $Event \E }xmsi ) {
-            my $ModuleName = $Modules->{$Module}->{Module};
-            next if !$Self->{MainObject}->Require($ModuleName);
-            my $Generic = $ModuleName->new(
-                %{$Self},
-                ConfigItemObject => $Self,
-            );
-            # run event handler
-            $Generic->Run( %Param, Config => $Modules->{$Module}, );
-        }
+
+        next MODULE if $Event && $Param{Event} !~ m{ \Q $Event \E }xmsi;
+
+        my $ModuleName = $Modules->{$Module}->{Module};
+
+        next MODULE if !$Self->{MainObject}->Require($ModuleName);
+
+        my $Generic = $ModuleName->new(
+            %{$Self},
+            ConfigItemObject => $Self,
+        );
+
+        # run event handler
+        $Generic->Run(
+            %Param,
+            Config => $Modules->{$Module},
+        );
     }
 
     return 1;
@@ -1100,6 +1115,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.12 $ $Date: 2009-08-17 13:16:52 $
+$Revision: 1.13 $ $Date: 2009-08-19 12:52:18 $
 
 =cut
