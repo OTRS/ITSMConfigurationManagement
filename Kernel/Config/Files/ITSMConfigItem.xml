@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <otrs_config version="1.0" init="Config">
-    <CVS>$Id: ITSMConfigItem.xml,v 1.4 2009-07-30 11:42:50 reb Exp $</CVS>
+    <CVS>$Id: ITSMConfigItem.xml,v 1.5 2009-08-20 14:11:15 mh Exp $</CVS>
     <ConfigItem Name="Frontend::Module###AdminITSMConfigItem" Required="0" Valid="1">
         <Description Lang="en">Frontend module registration for the AdminITSMConfigItem configuration in the admin area.</Description>
         <Description Lang="de">Frontendmodul-Registration der AdminITSMConfigItem Konfiguration im Admin-Bereich.</Description>
@@ -191,7 +191,22 @@
             </Hash>
         </Setting>
     </ConfigItem>
-    <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###200-Edit" Required="0" Valid="1">
+    <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###200-History" Required="0" Valid="1">
+        <Description Lang="en">Module to show back link in config item menu.</Description>
+        <Description Lang="de">Über dieses Modul wird der Zurück-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="Module">Kernel::Output::HTML::ITSMConfigItemMenuGeneric</Item>
+                <Item Key="Name">History</Item>
+                <Item Key="Description">History</Item>
+                <Item Key="Action">AgentITSMConfigItemEdit</Item>
+                <Item Key="Link">Action=AgentITSMConfigItemHistory&amp;ConfigItemID=$QData{"ConfigItemID"}&amp;VersionID=$QData{"VersionID"}</Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###300-Edit" Required="0" Valid="1">
         <Description Lang="en">Module to show edit link in config item menu.</Description>
         <Description Lang="de">Über dieses Modul wird der Bearbeiten-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
         <Group>ITSM Configuration Management</Group>
@@ -206,7 +221,7 @@
             </Hash>
         </Setting>
     </ConfigItem>
-    <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###300-Print" Required="0" Valid="1">
+    <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###400-Print" Required="0" Valid="1">
         <Description Lang="en">Module to show print link in config item menu.</Description>
         <Description Lang="de">Über dieses Modul wird der Drucken-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
         <Group>ITSM Configuration Management</Group>
@@ -222,7 +237,7 @@
             </Hash>
         </Setting>
     </ConfigItem>
-    <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###400-Link" Required="0" Valid="1">
+    <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###500-Link" Required="0" Valid="1">
         <Description Lang="en">Module to show the link link in config item menu.</Description>
         <Description Lang="de">Über dieses Modul wird der Verknüpfen-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
         <Group>ITSM Configuration Management</Group>
@@ -237,7 +252,7 @@
             </Hash>
         </Setting>
     </ConfigItem>
-    <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###500-Duplicate" Required="0" Valid="1">
+    <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###600-Duplicate" Required="0" Valid="1">
         <Description Lang="en">Module to show duplicate link in config item menu.</Description>
         <Description Lang="de">Über dieses Modul wird der Duplizieren-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
         <Group>ITSM Configuration Management</Group>
@@ -249,21 +264,6 @@
                 <Item Key="Description">Duplicate</Item>
                 <Item Key="Action">AgentITSMConfigItemEdit</Item>
                 <Item Key="Link">Action=AgentITSMConfigItemEdit&amp;DuplicateID=$QData{"ConfigItemID"}&amp;VersionID=$QData{"VersionID"}</Item>
-            </Hash>
-        </Setting>
-    </ConfigItem>
-    <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###600-History" Required="0" Valid="1">
-        <Description Lang="en">Module to show back link in config item menu.</Description>
-        <Description Lang="de">Über dieses Modul wird der Zurück-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
-        <Group>ITSM Configuration Management</Group>
-        <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
-        <Setting>
-            <Hash>
-                <Item Key="Module">Kernel::Output::HTML::ITSMConfigItemMenuGeneric</Item>
-                <Item Key="Name">History</Item>
-                <Item Key="Description">History</Item>
-                <Item Key="Action">AgentITSMConfigItemEdit</Item>
-                <Item Key="Link">Action=AgentITSMConfigItemHistory&amp;ConfigItemID=$QData{"ConfigItemID"}&amp;VersionID=$QData{"VersionID"}</Item>
             </Hash>
         </Setting>
     </ConfigItem>
@@ -308,7 +308,7 @@
             </Hash>
         </Setting>
     </ConfigItem>
-    <ConfigItem Name="ITSMConfigItem::EventModulePost###1-History" Required="0" Valid="1">
+    <ConfigItem Name="ITSMConfigItem::EventModulePost###100-History" Required="0" Valid="1">
         <Description Lang="en">Config item event module that enables logging to history.</Description>
         <Description Lang="de">Event-Modul für ConfigItems, das das Logging in die Historie erlaubt.</Description>
         <Group>ITSM Configuration Management</Group>
