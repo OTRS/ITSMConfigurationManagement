@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Version.pm - sub module of ITSMConfigItem.pm with version functions
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: Version.pm,v 1.11 2009-08-19 22:48:14 mh Exp $
+# $Id: Version.pm,v 1.12 2009-08-20 14:10:56 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.11 $) [1];
+$VERSION = qw($Revision: 1.12 $) [1];
 
 =head1 NAME
 
@@ -908,8 +908,8 @@ sub _FindChangedValues {
     my %Changes;
     KEY:
     for my $Key ( keys %TagKeys ) {
-        my $NewValue = eval '$CurrentXMLData->' . $Key . '->{Content}';
-        my $OldValue = eval '$OldXMLData ->' . $Key . '->{Content}';
+        my $NewValue = eval '$CurrentXMLData->' . $Key . '->{Content}' || '';
+        my $OldValue = eval '$OldXMLData ->' . $Key . '->{Content}'    || '';
 
         next KEY if $NewValue eq $OldValue;
 
@@ -980,6 +980,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.11 $ $Date: 2009-08-19 22:48:14 $
+$Revision: 1.12 $ $Date: 2009-08-20 14:10:56 $
 
 =cut
