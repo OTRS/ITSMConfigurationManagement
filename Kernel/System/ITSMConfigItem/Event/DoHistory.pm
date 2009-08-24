@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Event/DoHistory.pm - a event module for config items
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: DoHistory.pm,v 1.7 2009-08-19 22:32:16 mh Exp $
+# $Id: DoHistory.pm,v 1.8 2009-08-24 09:16:40 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -14,10 +14,8 @@ package Kernel::System::ITSMConfigItem::Event::DoHistory;
 use strict;
 use warnings;
 
-use Kernel::System::ITSMConfigItem::History;
-
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.7 $) [1];
+$VERSION = qw($Revision: 1.8 $) [1];
 
 =head1 NAME
 
@@ -104,8 +102,6 @@ sub new {
         $Self->{$Needed} = $Param{$Needed} || die "Got no $Needed!";
     }
 
-    $Self->{HistoryObject} = Kernel::System::ITSMConfigItem::History->new( %{$Self} );
-
     return $Self;
 }
 
@@ -158,6 +154,7 @@ sub Run {
         VersionCreate         => \&_HistoryAdd,
         ValueUpdate           => \&_HistoryAdd,
         DefinitionCreate      => \&_HistoryAdd,
+        VersionDelete         => \&_HistoryAdd,
     );
 
     # error handling
@@ -187,7 +184,7 @@ sub _ConfigItemDelete {
     my ( $Self, %Param ) = @_;
 
     # delete history
-    $Self->{HistoryObject}->HistoryDelete(
+    $Self->{ConfigItemObject}->HistoryDelete(
         ConfigItemID => $Param{ConfigItemID},
     );
 
@@ -204,7 +201,7 @@ sub _HistoryAdd {
     my ( $Self, %Param ) = @_;
 
     # add history entry
-    $Self->{HistoryObject}->HistoryAdd(
+    $Self->{ConfigItemObject}->HistoryAdd(
         %Param,
     );
 
@@ -225,6 +222,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Id: DoHistory.pm,v 1.7 2009-08-19 22:32:16 mh Exp $
+$Id: DoHistory.pm,v 1.8 2009-08-24 09:16:40 reb Exp $
 
 =cut

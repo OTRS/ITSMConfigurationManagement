@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem.pm - all config item function
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.16 2009-08-19 22:48:14 mh Exp $
+# $Id: ITSMConfigItem.pm,v 1.17 2009-08-24 09:16:40 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -16,18 +16,21 @@ use warnings;
 
 use Kernel::System::GeneralCatalog;
 use Kernel::System::ITSMConfigItem::Definition;
+use Kernel::System::ITSMConfigItem::History;
 use Kernel::System::ITSMConfigItem::Number;
 use Kernel::System::ITSMConfigItem::Version;
 use Kernel::System::ITSMConfigItem::XML;
 use Kernel::System::LinkObject;
 use Kernel::System::Time;
+use Kernel::System::User;
 use Kernel::System::XML;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.16 $) [1];
+$VERSION = qw($Revision: 1.17 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',
+    'Kernel::System::ITSMConfigItem::History',
     'Kernel::System::ITSMConfigItem::Number',
     'Kernel::System::ITSMConfigItem::Version',
     'Kernel::System::ITSMConfigItem::XML',
@@ -102,6 +105,7 @@ sub new {
     $Self->{TimeObject}           = Kernel::System::Time->new( %{$Self} );
     $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
     $Self->{LinkObject}           = Kernel::System::LinkObject->new( %{$Self} );
+    $Self->{UserObject}           = Kernel::System::User->new( %{$Self} );
     $Self->{XMLObject}            = Kernel::System::XML->new( %{$Self} );
 
     return $Self;
@@ -1032,6 +1036,64 @@ sub _PrepareLikeString {
     return;
 }
 
+=item ConfigItemLookup()
+
+This method does a lookup for a configitem. If a configitem id is given,
+it returns the number of the configitem. If a configitem number is given,
+the appropriate id is returned.
+
+    my $Name = $ConfigItemObject->ConfigItemLookup(
+        ConfigItemID => 1234,
+    );
+
+    my $Id = $HistoryObject->ConfigItemLookup(
+        ConfigItemNumber => 1000001,
+    );
+
+=cut
+
+sub ConfigItemLookup {
+    my ( $Self, %Param ) = @_;
+
+    my ($Key) = grep { $Param{$_} } qw(ConfigItemID ConfigItemNumber);
+
+    # check for needed stuff
+    if ( !$Key ) {
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => 'Need ConfigItemID or ConfigItemNumber!',
+        );
+        return;
+    }
+
+    # if result is cached return that result
+    return $Self->{Cache}->{ConfigItemLookup}->{$Key}->{ $Param{$Key} }
+        if $Self->{Cache}->{ConfigItemLookup}->{$Key}->{ $Param{$Key} };
+
+    # set the appropriate SQL statement
+    my $SQL = 'SELECT configitem_number FROM configitem WHERE id = ?';
+
+    if ( $Key eq 'ConfigItemNumber' ) {
+        $SQL = 'SELECT id FROM configitem WHERE configitem_number = ?';
+    }
+
+    # fetch the requested value
+    return if !$Self->{DBObject}->Prepare(
+        SQL   => $SQL,
+        Bind  => [ \$Param{$Key} ],
+        Limit => 1,
+    );
+
+    my $Value;
+    while ( my @Row = $Self->{DBObject}->FetchrowArray() ) {
+        $Value = $Row[0];
+    }
+
+    $Self->{Cache}->{ConfigItemLookup}->{$Key}->{ $Param{$Key} } = $Value;
+
+    return $Value;
+}
+
 =item ConfigItemEventHandlerPost()
 
 call config item event post handler, returns true if it's executed successfully
@@ -1046,7 +1108,7 @@ events available:
 
 ConfigItemCreate, VersionCreate, DeploymentStateUpdate, IncidentStateUpdate,
 ConfigItemDelete, LinkAdd, LinkDelete, DefinitionUpdate, NameUpdate, ValueUpdate
-DefinitionCreate
+DefinitionCreate, VersionDelete
 
 =cut
 
@@ -1122,6 +1184,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.16 $ $Date: 2009-08-19 22:48:14 $
+$Revision: 1.17 $ $Date: 2009-08-24 09:16:40 $
 
 =cut

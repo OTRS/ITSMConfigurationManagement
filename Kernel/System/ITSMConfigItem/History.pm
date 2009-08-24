@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/History.pm - module for ITSMConfigItem.pm with history functions
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: History.pm,v 1.8 2009-08-19 22:48:14 mh Exp $
+# $Id: History.pm,v 1.9 2009-08-24 09:16:40 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -14,10 +14,8 @@ package Kernel::System::ITSMConfigItem::History;
 use strict;
 use warnings;
 
-use Kernel::System::User;
-
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.8 $) [1];
+$VERSION = qw($Revision: 1.9 $) [1];
 
 =head1 NAME
 
@@ -32,78 +30,6 @@ All history functions.
 =over 4
 
 =cut
-
-=item new()
-
-create an object
-
-    use Kernel::Config;
-    use Kernel::System::Encode;
-    use Kernel::System::Log;
-    use Kernel::System::DB;
-    use Kernel::System::Main;
-    use Kernel::System::Time;
-    use Kernel::System::ITSMConfigItem;
-    use Kernel::System::ITSMConfigItem::History;
-
-    my $ConfigObject = Kernel::Config->new();
-    my $EncodeObject = Kernel::System::Encode->new(
-        ConfigObject => $ConfigObject,
-    );
-    my $LogObject = Kernel::System::Log->new(
-        ConfigObject => $ConfigObject,
-        EncodeObject => $EncodeObject,
-    );
-    my $TimeObject = Kernel::System::Time->new(
-        ConfigObject => $ConfigObject,
-        LogObject    => $LogObject,
-    );
-    my $MainObject = Kernel::System::Main->new(
-        ConfigObject => $ConfigObject,
-        EncodeObject => $EncodeObject,
-        LogObject    => $LogObject,
-    );
-    my $DBObject = Kernel::System::DB->new(
-        ConfigObject => $ConfigObject,
-        EncodeObject => $EncodeObject,
-        LogObject    => $LogObject,
-        MainObject   => $MainObject,
-    );
-    my $ConfigItemObject = Kernel::System::ITSMConfigItem->new(
-        ConfigObject => $ConfigObject,
-        EncodeObject => $EncodeObject,
-        LogObject    => $LogObject,
-        DBObject     => $DBObject,
-        MainObject   => $MainObject,
-    );
-    my $HistoryObject = Kernel::System::ITSMConfigItem::History->new(
-        ConfigObject => $ConfigObject,
-        LogObject    => $LogObject,
-        DBObject     => $DBObject,
-        EncodeObject => $EncodeObject,
-        MainObject   => $MainObject,
-        TimeObject   => $TimeObject,
-    );
-
-=cut
-
-sub new {
-    my ( $Type, %Param ) = @_;
-
-    # allocate new hash for object
-    my $Self = {};
-    bless( $Self, $Type );
-
-    # check needed objects
-    for my $Object (qw(DBObject ConfigObject LogObject MainObject EncodeObject TimeObject)) {
-        $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
-    }
-
-    # create user object that is needed for more details of the created_by column
-    $Self->{UserObject} = Kernel::System::User->new( %{$Self} );
-
-    return $Self;
-}
 
 =item HistoryGet()
 
@@ -124,7 +50,7 @@ These hash references contain information about:
     $Info{UserLastname}
     $Info{UserFirstname}
 
-    my $Info = $HistoryObject->HistoryGet(
+    my $Info = $ConfigItemObject->HistoryGet(
         ConfigItemID => 1234,
     );
 
@@ -213,7 +139,7 @@ The hash reference contain information about:
     $Info{UserLastname}
     $Info{UserFirstname}
 
-    my $Info = $HistoryObject->HistoryEntryGet(
+    my $Info = $ConfigItemObject->HistoryEntryGet(
         HistoryEntryID => 1234,
     );
 
@@ -283,7 +209,7 @@ sub HistoryEntryGet {
 
 Adds a single history entry to the history.
 
-    $HistoryObject->HistoryAdd(
+    $ConfigItemObject->HistoryAdd(
         ConfigItemID  => 1234,
         HistoryType   => 'NewConfigItem', # either HistoryType or HistoryTypeID is needed
         HistoryTypeID => 1,
@@ -376,7 +302,7 @@ sub HistoryAdd {
 
 Deletes complete history for a given config item
 
-    $HistoryObject->HistoryDelete(
+    $ConfigItemObject->HistoryDelete(
         ConfigItemID => 123,
     );
 
@@ -414,7 +340,7 @@ sub HistoryDelete {
 
 Deletes a single history entry.
 
-    $HistoryObject->HistoryEntryDelete(
+    $ConfigItemObject->HistoryEntryDelete(
         HistoryEntryID => 123,
     );
 
@@ -447,11 +373,11 @@ This method does a lookup for a history type. If a history type id is given,
 it returns the name of the history type. If a history type is given, the appropriate
 id is returned.
 
-    my $Name = $HistoryObject->HistoryTypeLookup(
+    my $Name = $ConfigItemObject->HistoryTypeLookup(
         HistoryTypeID => 1234,
     );
 
-    my $Id = $HistoryObject->HistoryTypeLookup(
+    my $Id = $ConfigItemObject->HistoryTypeLookup(
         HistoryType => 'ConfigItemCreate',
     );
 
@@ -483,53 +409,19 @@ sub HistoryTypeLookup {
     }
 
     # fetch the requested value
-    my $Value;
     return if !$Self->{DBObject}->Prepare(
         SQL   => $SQL,
         Bind  => [ \$Param{$Key} ],
         Limit => 1,
     );
 
-    my %Entry;
-    while ( my @Row = $Self->{DBObject}->FetchrowArray() ) {
-        $Value = $Row[0];
-    }
-
-    return $Value;
-}
-
-=item ConfigItemLookup()
-
-=cut
-
-sub ConfigItemLookup {
-    my ( $Self, %Param ) = @_;
-
-    # check for needed stuff
-    if ( !$Param{ConfigItemID} ) {
-        $Self->{LogObject}->Log(
-            Priority => 'error',
-            Message  => 'Need ConfigItemID!',
-        );
-        return;
-    }
-
-    # if result is cached return that result
-    return $Self->{Cache}->{ConfigItemLookup}->{ $Param{ConfigItemID} }
-        if $Self->{Cache}->{ConfigItemLookup}->{ $Param{ConfigItemID} };
-
-    # fetch the requested value
     my $Value;
-    return if !$Self->{DBObject}->Prepare(
-        SQL   => 'SELECT id FROM configitem WHERE id = ?',
-        Bind  => [ \$Param{ConfigItemID} ],
-        Limit => 1,
-    );
-
-    my %Entry;
     while ( my @Row = $Self->{DBObject}->FetchrowArray() ) {
         $Value = $Row[0];
     }
+
+    # save value in cache
+    $Self->{Cache}->{HistoryTypeLookup}->{ $Param{$Key} } = $Value;
 
     return $Value;
 }
@@ -550,6 +442,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.8 $ $Date: 2009-08-19 22:48:14 $
+$Revision: 1.9 $ $Date: 2009-08-24 09:16:40 $
 
 =cut

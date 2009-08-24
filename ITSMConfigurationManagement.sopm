@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <otrs_package version="1.0">
-    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.52 2009-08-19 12:52:18 reb Exp $</CVS>
+    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.53 2009-08-24 09:16:40 reb Exp $</CVS>
     <Name>ITSMConfigurationManagement</Name>
     <Version>0.0.0</Version>
     <Framework>2.4.x</Framework>
@@ -980,6 +980,14 @@
             <Data Key="change_time">current_timestamp</Data>
             <Data Key="change_by">1</Data>
         </Insert>
+        <Insert Table="configitem_history_type">
+            <Data Key="name" Type="Quote">VersionDelete</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
     </DatabaseInstall>
     <DatabaseUpgrade Type="post">
         <TableCreate Name="configitem_history_type" Version="1.9.71">
@@ -1092,6 +1100,14 @@
         </Insert>
         <Insert Table="configitem_history_type" Version="1.9.71">
             <Data Key="name" Type="Quote">DeploymentStateUpdate</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="configitem_history_type" Version="1.9.71">
+            <Data Key="name" Type="Quote">VersionDelete</Data>
             <Data Key="valid_id">1</Data>
             <Data Key="create_time">current_timestamp</Data>
             <Data Key="create_by">1</Data>

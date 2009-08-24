@@ -2,7 +2,7 @@
 # ITSMConfigItemHistory.t - config item tests
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemHistory.t,v 1.4 2009-08-19 22:32:16 mh Exp $
+# $Id: ITSMConfigItemHistory.t,v 1.5 2009-08-24 09:16:40 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,13 +18,11 @@ use vars qw($Self);
 use Data::Dumper;
 use Kernel::System::GeneralCatalog;
 use Kernel::System::ITSMConfigItem;
-use Kernel::System::ITSMConfigItem::History;
 use Kernel::System::User;
 
 $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
 $Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new( %{$Self} );
 $Self->{UserObject}           = Kernel::System::User->new( %{$Self} );
-$Self->{HistoryObject}        = Kernel::System::ITSMConfigItem::History->new( %{$Self} );
 
 # ------------------------------------------------------------ #
 # make preparations
@@ -574,7 +572,7 @@ for my $Test ( @{$ConfigItemTests} ) {
         && @{ $Test->{ReferenceData}->{HistoryGet} }
         )
     {
-        my $CompleteHistory = $Self->{HistoryObject}->HistoryGet(
+        my $CompleteHistory = $Self->{ConfigItemObject}->HistoryGet(
             ConfigItemID => $ConfigItemID,
         );
 

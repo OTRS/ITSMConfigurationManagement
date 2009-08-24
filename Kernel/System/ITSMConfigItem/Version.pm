@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Version.pm - sub module of ITSMConfigItem.pm with version functions
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: Version.pm,v 1.12 2009-08-20 14:10:56 reb Exp $
+# $Id: Version.pm,v 1.13 2009-08-24 09:16:40 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.12 $) [1];
+$VERSION = qw($Revision: 1.13 $) [1];
 
 =head1 NAME
 
@@ -210,37 +210,9 @@ sub VersionGet {
 
     if ( $Param{VersionID} ) {
 
-        my $Cache = 1;
-
-        # get the result of the last call
-        my $CachedVersion = $Self->{Cache}->{VersionGet}->{ $Param{VersionID} };
-
-        # if last call was cached, check if the values are still valid
-        if ($CachedVersion) {
-            $Self->{DBObject}->Prepare(
-                SQL   => 'SELECT configitem_id FROM configitem_version WHERE id = ?',
-                Bind  => [ \$Param{VersionID} ],
-                Limit => 1,
-            );
-
-            my $LocalConfigItemID;
-
-            while ( my @Row = $Self->{DBObject}->FetchrowArray() ) {
-                $LocalConfigItemID = $Row[0];
-            }
-
-            # get the current values
-            my $ConfigItem = $Self->ConfigItemGet(
-                ConfigItemID => $LocalConfigItemID,
-                Cache        => 0,
-            );
-
-            # check if result is already cached
-            return $Self->{Cache}->{VersionGet}->{ $Param{VersionID} }
-                if $ConfigItem->{CurDeplStateID} == $CachedVersion->{CurDeplStateID}
-                    && $ConfigItem->{CurInciStateID} == $CachedVersion->{CurInciStateID}
-                    && $ConfigItem->{LastVersionID} == $CachedVersion->{LastVersionID};
-        }
+        # check if result is already cached
+        return $Self->{Cache}->{VersionGet}->{ $Param{VersionID} }
+            if $Self->{Cache}->{VersionGet}->{ $Param{VersionID} };
 
         # get version
         $Self->{DBObject}->Prepare(
@@ -423,12 +395,6 @@ sub VersionAdd {
         }
     }
 
-    # get old version info for comparisons with current version
-    # this is needed to trigger some events
-    my $OldVersionInfo = $Self->VersionGet(
-        ConfigItemID => $Param{ConfigItemID},
-    );
-
     # get deployment state list
     my $DeplStateList = $Self->{GeneralCatalogObject}->ItemList(
         Class => 'ITSM::ConfigItem::DeploymentState',
@@ -465,19 +431,32 @@ sub VersionAdd {
         return;
     }
 
-    # quote
-    $Param{Name} = $Self->{DBObject}->Quote( $Param{Name} );
-    for my $Attribute (qw(ConfigItemID DefinitionID DeplStateID InciStateID UserID)) {
-        $Param{$Attribute} = $Self->{DBObject}->Quote( $Param{$Attribute}, 'Integer' );
-    }
-
-    # get config item
-    my $ConfigItem = $Self->ConfigItemGet(
+    # get VersionList
+    my $VersionList = $Self->VersionList(
         ConfigItemID => $Param{ConfigItemID},
     );
 
-    return if !$ConfigItem;
-    return if ref $ConfigItem ne 'HASH';
+    my $ConfigItemInfo = {};
+
+    if ( @{$VersionList} ) {
+
+        # get old version info for comparisons with current version
+        # this is needed to trigger some events
+        $ConfigItemInfo = $Self->VersionGet(
+            ConfigItemID => $Param{ConfigItemID},
+            XMLDataGet   => 0,
+        );
+    }
+    else {
+
+        # get config item
+        $ConfigItemInfo = $Self->ConfigItemGet(
+            ConfigItemID => $Param{ConfigItemID},
+        );
+    }
+
+    return if !$ConfigItemInfo;
+    return if ref $ConfigItemInfo ne 'HASH';
 
     # insert new version
     my $Success = $Self->{DBObject}->Do(
@@ -496,6 +475,11 @@ sub VersionAdd {
     );
 
     return if !$Success;
+
+    # delete cache
+    for my $VersionID ( @{$VersionList} ) {
+        delete $Self->{Cache}->{VersionGet}->{$VersionID};
+    }
 
     # get id of new version
     $Self->{DBObject}->Prepare(
@@ -525,7 +509,7 @@ sub VersionAdd {
     # add xml data
     if ( $Param{XMLData} && ref $Param{XMLData} eq 'ARRAY' ) {
         $Self->_XMLVersionAdd(
-            ClassID      => $ConfigItem->{ClassID},
+            ClassID      => $ConfigItemInfo->{ClassID},
             ConfigItemID => $Param{ConfigItemID},
             VersionID    => $VersionID,
             XMLData      => $Param{XMLData},
@@ -560,7 +544,7 @@ sub VersionAdd {
     $Self->_CheckValues(%Param);
 
     # check old and new definition_id
-    my $OldDefinitionID = $OldVersionInfo->{DefinitionID} || '';
+    my $OldDefinitionID = $ConfigItemInfo->{DefinitionID} || '';
     my $NewDefinitionID = $Param{DefinitionID}            || '';
 
     if ( $OldDefinitionID ne $NewDefinitionID ) {
@@ -573,7 +557,7 @@ sub VersionAdd {
     }
 
     # check old and new definition_id
-    my $OldName = $OldVersionInfo->{Name} || '';
+    my $OldName = $ConfigItemInfo->{Name} || '';
     my $NewName = $Param{Name}            || '';
 
     if ( $OldName ne $NewName ) {
@@ -586,7 +570,7 @@ sub VersionAdd {
     }
 
     # if incistate is updated
-    my $LastInciStateID = $OldVersionInfo->{InciStateID} || '';
+    my $LastInciStateID = $ConfigItemInfo->{InciStateID} || '';
     my $CurInciStateID  = $Param{InciStateID}            || '';
 
     if ( $LastInciStateID ne $CurInciStateID ) {
@@ -599,7 +583,7 @@ sub VersionAdd {
     }
 
     # if depl_state is updated
-    my $LastDeplStateID = $OldVersionInfo->{DeplStateID} || '';
+    my $LastDeplStateID = $ConfigItemInfo->{DeplStateID} || '';
     my $CurDeplStateID  = $Param{DeplStateID}            || '';
 
     if ( $LastDeplStateID ne $CurDeplStateID ) {
@@ -687,10 +671,36 @@ sub VersionDelete {
     # create the version id string
     my $VersionIDString = join ',', @{$VersionList};
 
+    # get config item id for version (needed for event handling)
+    my $ConfigItemID = $Param{ConfigItemID};
+    if ( $Param{VersionID} ) {
+        $ConfigItemID = $Self->VersionConfigItemIDGet(
+            VersionID => $Param{VersionID},
+        );
+    }
+
     # delete versions
-    return $Self->{DBObject}->Do(
+    my $Success = $Self->{DBObject}->Do(
         SQL => "DELETE FROM configitem_version WHERE id IN ( $VersionIDString )",
     );
+
+    # trigger VersionDelete event when deletion was successful
+    if ($Success) {
+        for my $VersionID ( @{$VersionList} ) {
+            $Self->ConfigItemEventHandlerPost(
+                ConfigItemID => $ConfigItemID,
+                Event        => 'VersionDelete',
+                UserID       => $Param{UserID},
+                Comment      => $VersionID,
+            );
+
+            # delete cache
+            delete $Self->{Cache}->{VersionGet}->{$VersionID};
+            delete $Self->{Cache}->{VersionConfigItemIDGet}->{$VersionID};
+        }
+    }
+
+    return $Success;
 }
 
 =item VersionSearch()
@@ -980,6 +990,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.12 $ $Date: 2009-08-20 14:10:56 $
+$Revision: 1.13 $ $Date: 2009-08-24 09:16:40 $
 
 =cut
