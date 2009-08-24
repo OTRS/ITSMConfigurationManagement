@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem.pm - all config item function
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.17 2009-08-24 09:16:40 reb Exp $
+# $Id: ITSMConfigItem.pm,v 1.18 2009-08-24 11:05:55 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -26,7 +26,7 @@ use Kernel::System::User;
 use Kernel::System::XML;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.17 $) [1];
+$VERSION = qw($Revision: 1.18 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',
@@ -185,14 +185,6 @@ sub ConfigItemResultList {
         return;
     }
 
-    # quote
-    if ( $Param{Start} ) {
-        $Param{Start} = $Self->{DBObject}->Quote( $Param{Start}, 'Integer' );
-    }
-    if ( $Param{Limit} ) {
-        $Param{Limit} = $Self->{DBObject}->Quote( $Param{Limit}, 'Integer' );
-    }
-
     # get state list
     my $StateList = $Self->{GeneralCatalogObject}->ItemList(
         Class => 'ITSM::ConfigItem::DeploymentState',
@@ -207,8 +199,9 @@ sub ConfigItemResultList {
         SQL => "SELECT id FROM configitem "
             . "WHERE class_id = ? AND cur_depl_state_id IN ( $DeplStateString ) "
             . "ORDER BY change_time DESC",
-        Bind => [ \$Param{ClassID} ],
-        %Param,
+        Bind  => [ \$Param{ClassID} ],
+        Start => $Param{Start},
+        Limit => $Param{Limit},
     );
 
     # fetch the result
@@ -273,10 +266,8 @@ sub ConfigItemGet {
         return;
     }
 
-    # set cache
-    if ( !defined $Param{Cache} ) {
-        $Param{Cache} = 1;
-    }
+    # enable cache per default
+    $Param{Cache} = !defined $Param{Cache} ? 1 : 0;
 
     # check if result is already cached
     return $Self->{Cache}->{ConfigItemGet}->{ $Param{ConfigItemID} }
@@ -482,6 +473,12 @@ sub ConfigItemDelete {
         UserID       => $Param{UserID},
     );
 
+    # delete config item
+    my $Success = $Self->{DBObject}->Do(
+        SQL  => 'DELETE FROM configitem WHERE id = ?',
+        Bind => [ \$Param{ConfigItemID} ],
+    );
+
     # trigger ConfigItemDelete event
     $Self->ConfigItemEventHandlerPost(
         ConfigItemID => $Param{ConfigItemID},
@@ -490,11 +487,7 @@ sub ConfigItemDelete {
         Comment      => $Param{ConfigItemID},
     );
 
-    # delete config item
-    return $Self->{DBObject}->Do(
-        SQL  => 'DELETE FROM configitem WHERE id = ?',
-        Bind => [ \$Param{ConfigItemID} ],
-    );
+    return $Success;
 }
 
 =item ConfigItemSearchExtended()
@@ -1184,6 +1177,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.17 $ $Date: 2009-08-24 09:16:40 $
+$Revision: 1.18 $ $Date: 2009-08-24 11:05:55 $
 
 =cut
