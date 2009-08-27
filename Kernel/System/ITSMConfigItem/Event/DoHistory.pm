@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Event/DoHistory.pm - a event module for config items
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: DoHistory.pm,v 1.8 2009-08-24 09:16:40 reb Exp $
+# $Id: DoHistory.pm,v 1.9 2009-08-27 15:04:38 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.8 $) [1];
+$VERSION = qw($Revision: 1.9 $) [1];
 
 =head1 NAME
 
@@ -152,7 +152,7 @@ sub Run {
         DeploymentStateUpdate => \&_HistoryAdd,
         DefinitionUpdate      => \&_HistoryAdd,
         VersionCreate         => \&_HistoryAdd,
-        ValueUpdate           => \&_HistoryAdd,
+        ValueUpdate           => \&_ValueUpdate,
         DefinitionCreate      => \&_HistoryAdd,
         VersionDelete         => \&_HistoryAdd,
     );
@@ -208,6 +208,35 @@ sub _HistoryAdd {
     return 1;
 }
 
+=item _ValueUpdate()
+
+Add the message of value updates to history. For attributes defined in the definition
+where beautified.
+
+String like "[1]{'Version'}[1]{'HardDisk'}[1]{'Capacity'}[1]" become "HardDisk::Capacity"
+
+=cut
+
+sub _ValueUpdate {
+    my ( $Self, %Param ) = @_;
+
+    # beautify description
+    my $Comment = $Param{Comment};
+    my @Parts = split /%%/, $Comment;
+    $Parts[0] =~ s{ \A \[.*?\] \{'Version'\} \[.*?\] \{' }{}xms;
+    $Parts[0] =~ s{ '\} \[.*?\] \{' }{::}xmsg;
+    $Parts[0] =~ s{ '\} \[.*?\] \z }{}xms;
+    $Comment = join '%%', @Parts;
+
+    # add history entry
+    $Self->{ConfigItemObject}->HistoryAdd(
+        %Param,
+        Comment => $Comment,
+    );
+
+    return 1;
+}
+
 1;
 
 =back
@@ -222,6 +251,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Id: DoHistory.pm,v 1.8 2009-08-24 09:16:40 reb Exp $
+$Id: DoHistory.pm,v 1.9 2009-08-27 15:04:38 reb Exp $
 
 =cut

@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemHistory.pm - ticket history
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemHistory.pm,v 1.4 2009-08-20 14:17:48 reb Exp $
+# $Id: AgentITSMConfigItemHistory.pm,v 1.5 2009-08-27 15:04:38 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -14,11 +14,10 @@ package Kernel::Modules::AgentITSMConfigItemHistory;
 use strict;
 use warnings;
 
-use Kernel::System::ITSMConfigItem::History;
 use Kernel::System::ITSMConfigItem;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.4 $) [1];
+$VERSION = qw($Revision: 1.5 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -38,13 +37,7 @@ sub new {
         }
     }
 
-    $Self->{ConfigItemObject} = Kernel::System::ITSMConfigItem->new(
-        %{$Self},
-    );
-
-    $Self->{HistoryObject} = Kernel::System::ITSMConfigItem::History->new(
-        %{$Self},
-    );
+    $Self->{ConfigItemObject} = Kernel::System::ITSMConfigItem->new( %{$Self} );
 
     return $Self;
 }
@@ -64,12 +57,14 @@ sub Run {
         );
     }
 
+    # get all information about the config item
     my $ConfigItem = $Self->{ConfigItemObject}->ConfigItemGet(
         ConfigItemID => $Self->{ConfigItemID},
     );
     my $ConfigItemName = $ConfigItem->{Number};
 
-    my $Lines = $Self->{HistoryObject}->HistoryGet(
+    # get all entries in the history for this config item
+    my $Lines = $Self->{ConfigItemObject}->HistoryGet(
         ConfigItemID => $Self->{ConfigItemID},
     );
 
@@ -89,6 +84,7 @@ sub Run {
             VersionID => $Version,
         );
 
+        # trim the comment to only show version number
         if ( $Data{HistoryType} eq 'VersionCreate' ) {
             $Data{Comment} =~ s/\D//g;
             $Data{VersionID} = $Data{Comment};
