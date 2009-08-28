@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemHistory.pm - ticket history
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemHistory.pm,v 1.5 2009-08-27 15:04:38 reb Exp $
+# $Id: AgentITSMConfigItemHistory.pm,v 1.6 2009-08-28 14:08:17 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -17,7 +17,7 @@ use warnings;
 use Kernel::System::ITSMConfigItem;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.5 $) [1];
+$VERSION = qw($Revision: 1.6 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -89,6 +89,17 @@ sub Run {
             $Data{Comment} =~ s/\D//g;
             $Data{VersionID} = $Data{Comment};
             $Version = $Data{Comment};
+        }
+        elsif ( $Data{HistoryType} eq 'ValueUpdate' ) {
+
+            # beautify comment
+            my @Parts = split /%%/, $Data{Comment};
+            $Parts[0] =~ s{ \A \[.*?\] \{'Version'\} \[.*?\] \{' }{}xms;
+            $Parts[0] =~ s{ '\} \[.*?\] \{' }{::}xmsg;
+            $Parts[0] =~ s{ '\} \[.*?\] \z }{}xms;
+
+            # assemble parts
+            $Data{Comment} = join '%%', @Parts;
         }
 
         # replace text
