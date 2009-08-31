@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemHistory.pm - ticket history
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemHistory.pm,v 1.7 2009-08-31 14:30:08 reb Exp $
+# $Id: AgentITSMConfigItemHistory.pm,v 1.8 2009-08-31 14:56:55 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.7 $) [1];
+$VERSION = qw($Revision: 1.8 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -133,7 +133,7 @@ sub Run {
             # show names
             my @Parts = split /%%/, $Data{Comment};
             for my $Part (@Parts) {
-                $Part = $DeplStateList->{$Part};
+                $Part = $DeplStateList->{$Part} || '';
             }
 
             # assemble parts
@@ -149,7 +149,7 @@ sub Run {
             # show names
             my @Parts = split /%%/, $Data{Comment};
             for my $Part (@Parts) {
-                $Part = $DeplStateList->{$Part};
+                $Part = $DeplStateList->{$Part} || '';
             }
 
             # assemble parts
