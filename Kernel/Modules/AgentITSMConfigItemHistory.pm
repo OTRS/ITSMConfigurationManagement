@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemHistory.pm - ticket history
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemHistory.pm,v 1.6 2009-08-28 14:08:17 reb Exp $
+# $Id: AgentITSMConfigItemHistory.pm,v 1.7 2009-08-31 14:30:08 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,9 +15,10 @@ use strict;
 use warnings;
 
 use Kernel::System::ITSMConfigItem;
+use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.6 $) [1];
+$VERSION = qw($Revision: 1.7 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -37,7 +38,8 @@ sub new {
         }
     }
 
-    $Self->{ConfigItemObject} = Kernel::System::ITSMConfigItem->new( %{$Self} );
+    $Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new( %{$Self} );
+    $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
 
     return $Self;
 }
@@ -74,6 +76,11 @@ sub Run {
         @NewLines = reverse @{$Lines};
     }
 
+    # get definition for CI's class
+    my $Definition = $Self->{ConfigItemObject}->DefinitionGet(
+        ClassID => $ConfigItem->{ClassID},
+    );
+
     my $Table   = '';
     my $Counter = 1;
     my $Version = 0;
@@ -98,12 +105,59 @@ sub Run {
             $Parts[0] =~ s{ '\} \[.*?\] \{' }{::}xmsg;
             $Parts[0] =~ s{ '\} \[.*?\] \z }{}xms;
 
+            # get info about attribute
+            my $AttributeInfo = $Self->_GetAttributeInfo(
+                Definition => $Definition->{DefinitionRef},
+                Path       => $Parts[0],
+            );
+
+            if ( $AttributeInfo && $AttributeInfo->{Input}->{Type} eq 'GeneralCatalog' ) {
+                my $ItemList = $Self->{GeneralCatalogObject}->ItemList(
+                    Class => $AttributeInfo->{Input}->{Class},
+                );
+
+                $Parts[1] = $ItemList->{ $Parts[1] } || '';
+                $Parts[2] = $ItemList->{ $Parts[2] } || '';
+            }
+
+            # assemble parts
+            $Data{Comment} = join '%%', @Parts;
+        }
+        elsif ( $Data{HistoryType} eq 'DeploymentStateUpdate' ) {
+
+            # get deployment state list
+            my $DeplStateList = $Self->{GeneralCatalogObject}->ItemList(
+                Class => 'ITSM::ConfigItem::DeploymentState',
+            );
+
+            # show names
+            my @Parts = split /%%/, $Data{Comment};
+            for my $Part (@Parts) {
+                $Part = $DeplStateList->{$Part};
+            }
+
+            # assemble parts
+            $Data{Comment} = join '%%', @Parts;
+        }
+        elsif ( $Data{HistoryType} eq 'IncidentStateUpdate' ) {
+
+            # get deployment state list
+            my $DeplStateList = $Self->{GeneralCatalogObject}->ItemList(
+                Class => 'ITSM::Core::IncidentState',
+            );
+
+            # show names
+            my @Parts = split /%%/, $Data{Comment};
+            for my $Part (@Parts) {
+                $Part = $DeplStateList->{$Part};
+            }
+
             # assemble parts
             $Data{Comment} = join '%%', @Parts;
         }
 
         # replace text
-        if ( $Data{Comment} && $Data{Comment} =~ /^%%/ ) {
+        if ( $Data{Comment} ) {
             my %Info = ();
             $Data{Comment} =~ s/^%%//g;
             my @Values = split( /%%/, $Data{Comment} );
@@ -117,6 +171,9 @@ sub Run {
             if ( !$Data{Comment} ) {
                 $Data{Comment} = '" ';
             }
+            $Data{Comment} = $Self->{LayoutObject}->{LanguageObject}->Get(
+                'CIHistory::' . $Data{HistoryType} . '", ' . $Data{Comment}
+            );
 
             # remove not needed place holder
             $Data{Comment} =~ s/\%s//g;
@@ -149,6 +206,36 @@ sub Run {
     $Output .= $Self->{LayoutObject}->Footer();
 
     return $Output;
+}
+
+sub _GetAttributeInfo {
+    my ( $Self, %Param ) = @_;
+
+    # check needed stuff
+    for my $Argument (qw(Definition Path)) {
+        if ( !$Param{$Argument} ) {
+            $Self->{LogObject}->Log(
+                Priority => 'error',
+                Message  => "Need $Argument!",
+            );
+            return;
+        }
+    }
+
+    my $Subtree = $Param{Definition};
+    my $Info;
+
+    PART:
+    for my $Part ( split /::/, $Param{Path} ) {
+        my ($Found) = grep { $_->{Key} eq $Part } @{$Subtree};
+
+        last PART if !$Found;
+
+        $Subtree = $Found->{Sub};
+        $Info    = $Found;
+    }
+
+    return $Info;
 }
 
 1;

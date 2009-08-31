@@ -2,7 +2,7 @@
 # Kernel/Language/de_ITSMConfigItem.pm - the german translation of ITSMConfigItem
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: de_ITSMConfigItem.pm,v 1.5 2009-07-20 13:11:18 ub Exp $
+# $Id: de_ITSMConfigItem.pm,v 1.6 2009-08-31 14:30:07 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.5 $) [1];
+$VERSION = qw($Revision: 1.6 $) [1];
 
 sub Data {
     my $Self = shift;
@@ -155,6 +155,17 @@ sub Data {
     $Lang->{'Rack'}                                   = 'Rack';
     $Lang->{'Room'}                                   = 'Raum';
     $Lang->{'Workplace'}                              = 'Arbeitsplatz';
+    $Lang->{'CIHistory::ConfigItemCreate'}            = 'Neues ConfigItem (ID=%s)';
+    $Lang->{'CIHistory::VersionCreate'}               = 'Neue Version erzeugt (ID=%s)';
+    $Lang->{'CIHistory::DeploymentStateUpdate'}       = 'Verwendungsstatus geändert von "%s" auf "%s"';
+    $Lang->{'CIHistory::IncidentStateUpdate'}         = 'Vorfallsstatus geändert von "%s" auf "%s"';
+    $Lang->{'CIHistory::ConfigItemDelete'}            = 'ConfigItem (ID=%s) gelöscht';
+    $Lang->{'CIHistory::LinkAdd'}                     = 'Link auf %s (Typ=%s) hinzugefügt';
+    $Lang->{'CIHistory::LinkDelete'}                  = 'Link auf %s (Typ=%s) gelöscht';
+    $Lang->{'CIHistory::DefinitionUpdate'}            = 'Definition des ConfigItems aktualisiert (ID=%s)';
+    $Lang->{'CIHistory::NameUpdate'}                  = 'Name geändert von "%s" auf "%s"';
+    $Lang->{'CIHistory::ValueUpdate'}                 = 'Attribut %s von "%s" auf "%s" geändert';
+    $Lang->{'CIHistory::VersionDelete'}               = 'Version %s gelöscht';
 
     return 1;
 }
