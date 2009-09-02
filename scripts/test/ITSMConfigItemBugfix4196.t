@@ -1,8 +1,8 @@
 # --
-# ITSMConfigItemHistory.t - config item tests
+# ITSMConfigItemBugfix4196.t - config item tests
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemHistory.t,v 1.6 2009-09-02 11:04:25 reb Exp $
+# $Id: ITSMConfigItemBugfix4196.t,v 1.1 2009-09-02 11:04:25 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -221,6 +221,20 @@ my $ConfigItemTests = [
                     InciStateID  => $InciStateListReverse{Incident},
                     UserID       => 1,
                 },
+                {
+                    Name         => 'UnitTest - Class 1 ConfigItem 1 Version 2',
+                    DefinitionID => $ConfigItemDefinitionIDs[0],
+                    DeplStateID  => $DeplStateListReverse{Maintenance},
+                    InciStateID  => $InciStateListReverse{Incident},
+                    UserID       => 1,
+                },
+                {
+                    Name         => 'UnitTest - Class 1 ConfigItem 1 Version 2',
+                    DefinitionID => $ConfigItemDefinitionIDs[0],
+                    DeplStateID  => $DeplStateListReverse{Maintenance},
+                    InciStateID  => $InciStateListReverse{Incident},
+                    UserID       => 1,
+                },
             ],
         },
         ReferenceData => {
@@ -279,68 +293,6 @@ my $ConfigItemTests = [
                     CurInciStateType => 'incident',
                     XMLData          => [],
                     CreateBy         => 1,
-                },
-            ],
-            HistoryGet => [
-                {
-                    HistoryType   => 'ConfigItemCreate',
-                    HistoryTypeID => 1,
-                    CreateBy      => 1,
-                },
-                {
-                    HistoryType   => 'VersionCreate',
-                    HistoryTypeID => 6,
-                    CreateBy      => 1,
-                },
-                {
-                    HistoryType   => 'DefinitionUpdate',
-                    HistoryTypeID => 8,
-                    Comment       => $ConfigItemDefinitionIDs[0],
-                    CreateBy      => 1,
-                },
-                {
-                    HistoryType   => 'NameUpdate',
-                    HistoryTypeID => 5,
-                    Comment       => 'UnitTest - Class 1 ConfigItem 1 Version 1%%',
-                    CreateBy      => 1,
-                },
-                {
-                    HistoryType   => 'IncidentStateUpdate',
-                    HistoryTypeID => 9,
-                    Comment       => $InciStateListReverse{Operational} . '%%',
-                    CreateBy      => 1,
-                },
-                {
-                    HistoryType   => 'DeploymentStateUpdate',
-                    HistoryTypeID => 10,
-                    Comment       => $DeplStateListReverse{Planned} . '%%',
-                    CreateBy      => 1,
-                },
-                {
-                    HistoryType   => 'VersionCreate',
-                    HistoryTypeID => 6,
-                    CreateBy      => 1,
-                },
-                {
-                    HistoryType   => 'NameUpdate',
-                    HistoryTypeID => 5,
-                    Comment =>
-                        'UnitTest - Class 1 ConfigItem 1 Version 2%%UnitTest - Class 1 ConfigItem 1 Version 1',
-                    CreateBy => 1,
-                },
-                {
-                    HistoryType   => 'IncidentStateUpdate',
-                    HistoryTypeID => 9,
-                    Comment       => $InciStateListReverse{Incident} . '%%'
-                        . $InciStateListReverse{Operational},
-                    CreateBy => 1,
-                },
-                {
-                    HistoryType   => 'DeploymentStateUpdate',
-                    HistoryTypeID => 10,
-                    Comment       => $DeplStateListReverse{Maintenance} . '%%'
-                        . $DeplStateListReverse{Planned},
-                    CreateBy => 1,
                 },
             ],
         },
@@ -405,6 +357,7 @@ for my $Test ( @{$ConfigItemTests} ) {
 
     # add all defined versions
     my @VersionIDs;
+    my %VersionIDsSeen;
     if ( $SourceData->{VersionAdd} ) {
 
         for my $Version ( @{ $SourceData->{VersionAdd} } ) {
@@ -419,7 +372,7 @@ for my $Test ( @{$ConfigItemTests} ) {
             );
 
             if ($VersionID) {
-                push @VersionIDs, $VersionID;
+                push @VersionIDs, $VersionID if !$VersionIDsSeen{$VersionID}++;
             }
         }
     }
@@ -476,6 +429,12 @@ for my $Test ( @{$ConfigItemTests} ) {
             scalar @VersionIDs,
             scalar @{ $Test->{ReferenceData}->{VersionGet} },
             "Test $TestCount: VersionAdd() - correct number of versions",
+        );
+
+        $Self->Is(
+            2,
+            scalar @{ $Self->{ConfigItemObject}->VersionList( ConfigItemID => $ConfigItemID ) },
+            "Test $TestCount: version count",
         );
 
         next TEST if !$ConfigItemID;
@@ -565,42 +524,6 @@ for my $Test ( @{$ConfigItemTests} ) {
         $LastVersionIDMust,
         "Test $TestCount: last version id identical",
     );
-
-    # check history entries
-    if (
-        $Test->{ReferenceData}
-        && $Test->{ReferenceData}->{HistoryGet}
-        && @{ $Test->{ReferenceData}->{HistoryGet} }
-        )
-    {
-        my $CompleteHistory = $Self->{ConfigItemObject}->HistoryGet(
-            ConfigItemID => $ConfigItemID,
-        );
-
-        # check nr of history entries
-        $Self->Is(
-            scalar @{ $Test->{ReferenceData}->{HistoryGet} },
-            scalar @{$CompleteHistory},
-            "Test $TestCount: nr of history entries",
-        );
-
-        CHECKNR: for my $CheckNr ( 0 .. $#{$CompleteHistory} ) {
-            my $Check = $Test->{ReferenceData}->{HistoryGet}->[$CheckNr];
-            my $Data  = $CompleteHistory->[$CheckNr];
-
-            next CHECKNR unless $Check && $Data;
-
-            for my $Key ( keys %{$Check} ) {
-
-                # check history data
-                $Self->Is(
-                    $Check->{$Key},
-                    $Data->{$Key},
-                    "Test $TestCount: $Key",
-                );
-            }
-        }
-    }
 
 }
 continue {
