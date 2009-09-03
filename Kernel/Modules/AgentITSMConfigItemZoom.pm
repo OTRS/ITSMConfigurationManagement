@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemZoom.pm - the OTRS::ITSM config item zoom module
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemZoom.pm,v 1.3 2009-05-18 09:57:05 mh Exp $
+# $Id: AgentITSMConfigItemZoom.pm,v 1.3.4.1 2009-09-03 10:04:32 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -19,7 +19,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::LinkObject;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.3 $) [1];
+$VERSION = qw($Revision: 1.3.4.1 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -341,8 +341,8 @@ sub _XMLOutput {
 
             # lookup value
             my $Value = $Self->{ConfigItemObject}->XMLValueLookup(
-                Item => $Item,
-                Value => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content} || '',
+                Item  => $Item,
+                Value => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content},
             );
 
             # create output string
