@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/ITSMConfigItemLayoutInteger.pm - layout backend module
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutInteger.pm,v 1.3 2009-07-21 00:44:57 ub Exp $
+# $Id: ITSMConfigItemLayoutInteger.pm,v 1.4 2009-09-03 13:51:16 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.3 $) [1];
+$VERSION = qw($Revision: 1.4 $) [1];
 
 =head1 NAME
 
@@ -67,7 +67,11 @@ create output string
 sub OutputStringCreate {
     my ( $Self, %Param ) = @_;
 
-    return $Param{Value} || '';
+    if ( !defined $Param{Value} ) {
+        $Param{Value} = '';
+    }
+
+    return $Param{Value};
 }
 
 =item FormDataGet()
@@ -275,6 +279,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.3 $ $Date: 2009-07-21 00:44:57 $
+$Revision: 1.4 $ $Date: 2009-09-03 13:51:16 $
 
 =cut

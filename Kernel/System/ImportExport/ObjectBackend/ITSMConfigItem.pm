@@ -2,7 +2,7 @@
 # Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm - import/export backend for ITSMConfigItem
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.5 2009-08-18 22:18:19 mh Exp $
+# $Id: ITSMConfigItem.pm,v 1.6 2009-09-03 13:51:16 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -19,7 +19,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::Time;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.5 $) [1];
+$VERSION = qw($Revision: 1.6 $) [1];
 
 =head1 NAME
 
@@ -878,8 +878,8 @@ sub _ExportXMLDataPrepare {
 
             # prepare value
             $Param{XMLData2D}->{$Key} = $Self->{ConfigItemObject}->XMLExportValuePrepare(
-                Item => $Item,
-                Value => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content} || '',
+                Item  => $Item,
+                Value => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content},
             );
 
             next COUNTER if !$Item->{Sub};
@@ -1481,6 +1481,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.5 $ $Date: 2009-08-18 22:18:19 $
+$Revision: 1.6 $ $Date: 2009-09-03 13:51:16 $
 
 =cut

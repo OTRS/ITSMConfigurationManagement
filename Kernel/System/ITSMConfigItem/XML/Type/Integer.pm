@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/XML/Type/Integer.pm - xml backend module
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: Integer.pm,v 1.4 2009-08-18 22:18:19 mh Exp $
+# $Id: Integer.pm,v 1.5 2009-09-03 13:51:16 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.4 $) [1];
+$VERSION = qw($Revision: 1.5 $) [1];
 
 =head1 NAME
 
@@ -100,7 +100,7 @@ get the integer data of a version
 sub ValueLookup {
     my ( $Self, %Param ) = @_;
 
-    return $Param{Value} || '';
+    return $Param{Value};
 }
 
 =item StatsAttributeCreate()
@@ -201,6 +201,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.4 $ $Date: 2009-08-18 22:18:19 $
+$Revision: 1.5 $ $Date: 2009-09-03 13:51:16 $
 
 =cut
