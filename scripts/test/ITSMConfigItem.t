@@ -2,7 +2,7 @@
 # ITSMConfigItem.t - config item tests
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.t,v 1.4 2009-08-12 13:16:53 reb Exp $
+# $Id: ITSMConfigItem.t,v 1.5 2009-09-07 09:06:45 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -1125,6 +1125,256 @@ my $ConfigItemTests = [
             ],
         },
     },
+
+    # added to check history functions
+    # all required values are given (check the calculation of deployment and incident state)
+    {
+        SourceData => {
+            ConfigItemAdd => {
+                Number  => $ConfigItemNumbers[70],
+                ClassID => $ConfigItemClassIDs[0],
+                UserID  => 1,
+            },
+            VersionAdd => [
+                {
+                    Name         => 'UnitTest - HistoryTest',
+                    DefinitionID => $ConfigItemDefinitionIDs[0],
+                    DeplStateID  => $DeplStateListReverse{Planned},
+                    InciStateID  => $InciStateListReverse{Operational},
+                    UserID       => 1,
+                },
+                {
+                    Name         => 'UnitTest - HistoryTest Version 2',
+                    DefinitionID => $ConfigItemDefinitionIDs[0],
+                    DeplStateID  => $DeplStateListReverse{Maintenance},
+                    InciStateID  => $InciStateListReverse{Incident},
+                    UserID       => 1,
+                },
+            ],
+        },
+        ReferenceData => {
+            ConfigItemGet => {
+                Number           => $ConfigItemNumbers[70],
+                ClassID          => $ConfigItemClassIDs[0],
+                Class            => $ClassList->{ $ConfigItemClassIDs[0] },
+                CurDeplStateID   => $DeplStateListReverse{Maintenance},
+                CurDeplState     => 'Maintenance',
+                CurDeplStateType => 'productive',
+                CurInciStateID   => $InciStateListReverse{Incident},
+                CurInciState     => 'Incident',
+                CurInciStateType => 'incident',
+                CreateBy         => 1,
+                ChangeBy         => 1,
+            },
+            VersionGet => [
+                {
+                    Number           => $ConfigItemNumbers[70],
+                    ClassID          => $ConfigItemClassIDs[0],
+                    Class            => $ClassList->{ $ConfigItemClassIDs[0] },
+                    Name             => 'UnitTest - HistoryTest',
+                    DefinitionID     => $ConfigItemDefinitionIDs[0],
+                    DeplStateID      => $DeplStateListReverse{Planned},
+                    DeplState        => 'Planned',
+                    DeplStateType    => 'preproductive',
+                    CurDeplStateID   => $DeplStateListReverse{Maintenance},
+                    CurDeplState     => 'Maintenance',
+                    CurDeplStateType => 'productive',
+                    InciStateID      => $InciStateListReverse{Operational},
+                    InciState        => 'Operational',
+                    InciStateType    => 'operational',
+                    CurInciStateID   => $InciStateListReverse{Incident},
+                    CurInciState     => 'Incident',
+                    CurInciStateType => 'incident',
+                    XMLData          => [],
+                    CreateBy         => 1,
+                },
+                {
+                    Number           => $ConfigItemNumbers[70],
+                    ClassID          => $ConfigItemClassIDs[0],
+                    Class            => $ClassList->{ $ConfigItemClassIDs[0] },
+                    Name             => 'UnitTest - HistoryTest Version 2',
+                    DefinitionID     => $ConfigItemDefinitionIDs[0],
+                    DeplStateID      => $DeplStateListReverse{Maintenance},
+                    DeplState        => 'Maintenance',
+                    DeplStateType    => 'productive',
+                    CurDeplStateID   => $DeplStateListReverse{Maintenance},
+                    CurDeplState     => 'Maintenance',
+                    CurDeplStateType => 'productive',
+                    InciStateID      => $InciStateListReverse{Incident},
+                    InciState        => 'Incident',
+                    InciStateType    => 'incident',
+                    CurInciStateID   => $InciStateListReverse{Incident},
+                    CurInciState     => 'Incident',
+                    CurInciStateType => 'incident',
+                    XMLData          => [],
+                    CreateBy         => 1,
+                },
+            ],
+            HistoryGet => [
+                {
+                    HistoryType   => 'ConfigItemCreate',
+                    HistoryTypeID => 1,
+                    CreateBy      => 1,
+                },
+                {
+                    HistoryType   => 'VersionCreate',
+                    HistoryTypeID => 6,
+                    CreateBy      => 1,
+                },
+                {
+                    HistoryType   => 'DefinitionUpdate',
+                    HistoryTypeID => 8,
+                    Comment       => $ConfigItemDefinitionIDs[0],
+                    CreateBy      => 1,
+                },
+                {
+                    HistoryType   => 'NameUpdate',
+                    HistoryTypeID => 5,
+                    Comment       => 'UnitTest - HistoryTest%%',
+                    CreateBy      => 1,
+                },
+                {
+                    HistoryType   => 'IncidentStateUpdate',
+                    HistoryTypeID => 9,
+                    Comment       => $InciStateListReverse{Operational} . '%%',
+                    CreateBy      => 1,
+                },
+                {
+                    HistoryType   => 'DeploymentStateUpdate',
+                    HistoryTypeID => 10,
+                    Comment       => $DeplStateListReverse{Planned} . '%%',
+                    CreateBy      => 1,
+                },
+                {
+                    HistoryType   => 'VersionCreate',
+                    HistoryTypeID => 6,
+                    CreateBy      => 1,
+                },
+                {
+                    HistoryType   => 'NameUpdate',
+                    HistoryTypeID => 5,
+                    Comment =>
+                        'UnitTest - HistoryTest Version 2%%UnitTest - HistoryTest',
+                    CreateBy => 1,
+                },
+                {
+                    HistoryType   => 'IncidentStateUpdate',
+                    HistoryTypeID => 9,
+                    Comment       => $InciStateListReverse{Incident} . '%%'
+                        . $InciStateListReverse{Operational},
+                    CreateBy => 1,
+                },
+                {
+                    HistoryType   => 'DeploymentStateUpdate',
+                    HistoryTypeID => 10,
+                    Comment       => $DeplStateListReverse{Maintenance} . '%%'
+                        . $DeplStateListReverse{Planned},
+                    CreateBy => 1,
+                },
+            ],
+        },
+    },
+
+    # added for Bug4196
+    # all required values are given (check the calculation of deployment and incident state)
+    {
+        SourceData => {
+            ConfigItemAdd => {
+                Number  => $ConfigItemNumbers[71],
+                ClassID => $ConfigItemClassIDs[0],
+                UserID  => 1,
+            },
+            VersionAdd => [
+                {
+                    Name         => 'UnitTest - Bugfix4196',
+                    DefinitionID => $ConfigItemDefinitionIDs[0],
+                    DeplStateID  => $DeplStateListReverse{Planned},
+                    InciStateID  => $InciStateListReverse{Operational},
+                    UserID       => 1,
+                },
+                {
+                    Name         => 'UnitTest - Bugfix4196 V2',
+                    DefinitionID => $ConfigItemDefinitionIDs[0],
+                    DeplStateID  => $DeplStateListReverse{Maintenance},
+                    InciStateID  => $InciStateListReverse{Incident},
+                    UserID       => 1,
+                },
+                {
+                    Name         => 'UnitTest - Bugfix4196 V2',
+                    DefinitionID => $ConfigItemDefinitionIDs[0],
+                    DeplStateID  => $DeplStateListReverse{Maintenance},
+                    InciStateID  => $InciStateListReverse{Incident},
+                    UserID       => 1,
+                },
+                {
+                    Name         => 'UnitTest - Bugfix4196 V2',
+                    DefinitionID => $ConfigItemDefinitionIDs[0],
+                    DeplStateID  => $DeplStateListReverse{Maintenance},
+                    InciStateID  => $InciStateListReverse{Incident},
+                    UserID       => 1,
+                },
+            ],
+        },
+        ReferenceData => {
+            ConfigItemGet => {
+                Number           => $ConfigItemNumbers[71],
+                ClassID          => $ConfigItemClassIDs[0],
+                Class            => $ClassList->{ $ConfigItemClassIDs[0] },
+                CurDeplStateID   => $DeplStateListReverse{Maintenance},
+                CurDeplState     => 'Maintenance',
+                CurDeplStateType => 'productive',
+                CurInciStateID   => $InciStateListReverse{Incident},
+                CurInciState     => 'Incident',
+                CurInciStateType => 'incident',
+                CreateBy         => 1,
+                ChangeBy         => 1,
+            },
+            VersionGet => [
+                {
+                    Number           => $ConfigItemNumbers[71],
+                    ClassID          => $ConfigItemClassIDs[0],
+                    Class            => $ClassList->{ $ConfigItemClassIDs[0] },
+                    Name             => 'UnitTest - Bugfix4196',
+                    DefinitionID     => $ConfigItemDefinitionIDs[0],
+                    DeplStateID      => $DeplStateListReverse{Planned},
+                    DeplState        => 'Planned',
+                    DeplStateType    => 'preproductive',
+                    CurDeplStateID   => $DeplStateListReverse{Maintenance},
+                    CurDeplState     => 'Maintenance',
+                    CurDeplStateType => 'productive',
+                    InciStateID      => $InciStateListReverse{Operational},
+                    InciState        => 'Operational',
+                    InciStateType    => 'operational',
+                    CurInciStateID   => $InciStateListReverse{Incident},
+                    CurInciState     => 'Incident',
+                    CurInciStateType => 'incident',
+                    XMLData          => [],
+                    CreateBy         => 1,
+                },
+                {
+                    Number           => $ConfigItemNumbers[71],
+                    ClassID          => $ConfigItemClassIDs[0],
+                    Class            => $ClassList->{ $ConfigItemClassIDs[0] },
+                    Name             => 'UnitTest - Bugfix4196 V2',
+                    DefinitionID     => $ConfigItemDefinitionIDs[0],
+                    DeplStateID      => $DeplStateListReverse{Maintenance},
+                    DeplState        => 'Maintenance',
+                    DeplStateType    => 'productive',
+                    CurDeplStateID   => $DeplStateListReverse{Maintenance},
+                    CurDeplState     => 'Maintenance',
+                    CurDeplStateType => 'productive',
+                    InciStateID      => $InciStateListReverse{Incident},
+                    InciState        => 'Incident',
+                    InciStateType    => 'incident',
+                    CurInciStateID   => $InciStateListReverse{Incident},
+                    CurInciState     => 'Incident',
+                    CurInciStateType => 'incident',
+                    XMLData          => [],
+                    CreateBy         => 1,
+                },
+            ],
+        },
+    },
 ];
 
 # ------------------------------------------------------------ #
@@ -1185,6 +1435,7 @@ for my $Test ( @{$ConfigItemTests} ) {
 
     # add all defined versions
     my @VersionIDs;
+    my %VersionIDsSeen;
     if ( $SourceData->{VersionAdd} ) {
 
         for my $Version ( @{ $SourceData->{VersionAdd} } ) {
@@ -1199,7 +1450,7 @@ for my $Test ( @{$ConfigItemTests} ) {
             );
 
             if ($VersionID) {
-                push @VersionIDs, $VersionID;
+                push @VersionIDs, $VersionID if !$VersionIDsSeen{$VersionID}++;
             }
         }
     }
@@ -1345,6 +1596,42 @@ for my $Test ( @{$ConfigItemTests} ) {
         $LastVersionIDMust,
         "Test $TestCount: last version id identical",
     );
+
+    # check history entries
+    if (
+        $Test->{ReferenceData}
+        && $Test->{ReferenceData}->{HistoryGet}
+        && @{ $Test->{ReferenceData}->{HistoryGet} }
+        )
+    {
+        my $CompleteHistory = $Self->{ConfigItemObject}->HistoryGet(
+            ConfigItemID => $ConfigItemID,
+        );
+
+        # check nr of history entries
+        $Self->Is(
+            scalar @{ $Test->{ReferenceData}->{HistoryGet} },
+            scalar @{$CompleteHistory},
+            "Test $TestCount: nr of history entries",
+        );
+
+        CHECKNR: for my $CheckNr ( 0 .. $#{$CompleteHistory} ) {
+            my $Check = $Test->{ReferenceData}->{HistoryGet}->[$CheckNr];
+            my $Data  = $CompleteHistory->[$CheckNr];
+
+            next CHECKNR unless $Check && $Data;
+
+            for my $Key ( keys %{$Check} ) {
+
+                # check history data
+                $Self->Is(
+                    $Check->{$Key},
+                    $Data->{$Key},
+                    "Test $TestCount: $Key",
+                );
+            }
+        }
+    }
 }
 continue {
     $TestCount++;
