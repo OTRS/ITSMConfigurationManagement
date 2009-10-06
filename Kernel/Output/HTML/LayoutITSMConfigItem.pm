@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/LayoutITSMConfigItem.pm - provides generic HTML output for ITSMConfigItem
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: LayoutITSMConfigItem.pm,v 1.2 2009-05-18 10:00:53 mh Exp $
+# $Id: LayoutITSMConfigItem.pm,v 1.3 2009-10-06 17:04:29 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.2 $) [1];
+$VERSION = qw($Revision: 1.3 $) [1];
 
 =item ITSMConfigItemOutputStringCreate()
 
@@ -227,10 +227,6 @@ sub _ITSMLoadLayoutBackend {
         return;
     }
 
-    # check if object is already cached
-    return $Self->{Cache}->{ITSMLoadLayoutBackend}->{ $Param{Type} }
-        if $Self->{Cache}->{ITSMLoadLayoutBackend}->{ $Param{Type} };
-
     my $GenericModule = "Kernel::Output::HTML::ITSMConfigItemLayout$Param{Type}";
 
     # load the backend module
@@ -256,9 +252,6 @@ sub _ITSMLoadLayoutBackend {
         );
         return;
     }
-
-    # cache the object
-    $Self->{Cache}->{ITSMLoadLayoutBackend}->{ $Param{Type} } = $BackendObject;
 
     return $BackendObject;
 }
