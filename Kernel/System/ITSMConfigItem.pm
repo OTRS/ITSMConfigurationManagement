@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem.pm - all config item function
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.18 2009-08-24 11:05:55 mh Exp $
+# $Id: ITSMConfigItem.pm,v 1.19 2009-10-07 14:32:13 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,6 +18,7 @@ use Kernel::System::GeneralCatalog;
 use Kernel::System::ITSMConfigItem::Definition;
 use Kernel::System::ITSMConfigItem::History;
 use Kernel::System::ITSMConfigItem::Number;
+use Kernel::System::ITSMConfigItem::Permission;
 use Kernel::System::ITSMConfigItem::Version;
 use Kernel::System::ITSMConfigItem::XML;
 use Kernel::System::LinkObject;
@@ -26,12 +27,13 @@ use Kernel::System::User;
 use Kernel::System::XML;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.18 $) [1];
+$VERSION = qw($Revision: 1.19 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',
     'Kernel::System::ITSMConfigItem::History',
     'Kernel::System::ITSMConfigItem::Number',
+    'Kernel::System::ITSMConfigItem::Permission',
     'Kernel::System::ITSMConfigItem::Version',
     'Kernel::System::ITSMConfigItem::XML',
 );
@@ -135,8 +137,10 @@ sub ConfigItemCount {
 
     # get state list
     my $StateList = $Self->{GeneralCatalogObject}->ItemList(
-        Class => 'ITSM::ConfigItem::DeploymentState',
-        Functionality => [ 'preproductive', 'productive' ],
+        Class       => 'ITSM::ConfigItem::DeploymentState',
+        Preferences => {
+            Functionality => [ 'preproductive', 'productive' ],
+        },
     );
 
     return 0 if !%{$StateList};
@@ -187,8 +191,10 @@ sub ConfigItemResultList {
 
     # get state list
     my $StateList = $Self->{GeneralCatalogObject}->ItemList(
-        Class => 'ITSM::ConfigItem::DeploymentState',
-        Functionality => [ 'preproductive', 'productive' ],
+        Class       => 'ITSM::ConfigItem::DeploymentState',
+        Preferences => {
+            Functionality => [ 'preproductive', 'productive' ],
+        },
     );
 
     # create state string
@@ -878,8 +884,10 @@ sub CurInciStateRecalc {
 
     # get the incident state list of warnings
     my $WarnStateList = $Self->{GeneralCatalogObject}->ItemList(
-        Class         => 'ITSM::Core::IncidentState',
-        Functionality => 'warning',
+        Class       => 'ITSM::Core::IncidentState',
+        Preferences => {
+            Functionality => 'warning',
+        },
     );
 
     my %ReverseWarnStateList = reverse %{$WarnStateList};
@@ -1177,6 +1185,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.18 $ $Date: 2009-08-24 11:05:55 $
+$Revision: 1.19 $ $Date: 2009-10-07 14:32:13 $
 
 =cut
