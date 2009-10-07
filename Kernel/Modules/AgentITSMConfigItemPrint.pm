@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemPrint.pm - print layout for itsm config item agent interface
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemPrint.pm,v 1.3 2009-09-03 13:51:16 ub Exp $
+# $Id: AgentITSMConfigItemPrint.pm,v 1.4 2009-10-07 14:25:22 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -19,7 +19,7 @@ use Kernel::System::LinkObject;
 use Kernel::System::PDF;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.3 $) [1];
+$VERSION = qw($Revision: 1.4 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -38,6 +38,9 @@ sub new {
     $Self->{LinkObject}       = Kernel::System::LinkObject->new(%Param);
     $Self->{PDFObject}        = Kernel::System::PDF->new(%Param);
 
+    # get config of frontend module
+    $Self->{Config} = $Self->{ConfigObject}->Get("ConfigItem::Frontend::$Self->{Action}");
+
     return $Self;
 }
 
@@ -52,6 +55,23 @@ sub Run {
     if ( !$ConfigItemID || !$VersionID ) {
         return $Self->{LayoutObject}->ErrorScreen(
             Message => 'No ConfigItemID or VersionID is given!',
+            Comment => 'Please contact the admin.',
+        );
+    }
+
+    # check for access rights
+    my $HasAccess = $Self->{ConfigItemObject}->Permission(
+        Scope  => 'Item',
+        ItemID => $ConfigItemID,
+        UserID => $Self->{UserID},
+        Type   => $Self->{Config}->{Permission},
+    );
+
+    if ( !$HasAccess ) {
+
+        # error page
+        return $Self->{LayoutObject}->ErrorScreen(
+            Message => 'Can\'t show config item, no access rights given!',
             Comment => 'Please contact the admin.',
         );
     }

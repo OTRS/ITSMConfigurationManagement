@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <otrs_config version="1.0" init="Config">
-    <CVS>$Id: ITSMConfigItem.xml,v 1.5 2009-08-20 14:11:15 mh Exp $</CVS>
+    <CVS>$Id: ITSMConfigItem.xml,v 1.6 2009-10-07 14:22:33 reb Exp $</CVS>
     <ConfigItem Name="Frontend::Module###AdminITSMConfigItem" Required="0" Valid="1">
         <Description Lang="en">Frontend module registration for the AdminITSMConfigItem configuration in the admin area.</Description>
         <Description Lang="de">Frontendmodul-Registration der AdminITSMConfigItem Konfiguration im Admin-Bereich.</Description>
@@ -343,6 +343,128 @@
                 <Title>History</Title>
                 <NavBarName>Config Item</NavBarName>
             </FrontendModuleReg>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="GeneralCatalogPreferences###DeploymentStates" Required="0" Valid="1">
+        <Description Lang="en">Parameters for the deployment states in the preference view.</Description>
+        <Description Lang="de">Parameter für den Ausgabestatus in der Ansicht für die Einstellungen.</Description>
+        <Group>GeneralCatalog</Group>
+        <SubGroup>GeneralCatalog::Preferences</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="Module">Kernel::Output::HTML::GeneralCatalogPreferencesGeneric</Item>
+                <Item Key="Class">ITSM::ConfigItem::DeploymentState</Item>
+                <Item Key="Label">Deployment States</Item>
+                <Item Key="Desc">Deployment States.</Item>
+                <Item Key="Data">
+                    <Hash>
+                        <Item Key="postproductive">postproductive</Item>
+                        <Item Key="preproductive">preproductive</Item>
+                        <Item Key="productive">productive</Item>
+                    </Hash>
+                </Item>
+                <Item Key="PrefKey">Functionality</Item>
+                <Item Key="Block">Option</Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="ConfigItem::Permission::Class###010-ClassGroupCheck" Required="0" Valid="1">
+        <Description Lang="en">Module to check the group responsible for a class.</Description>
+        <Description Lang="de">Modul zum Überprüfen der Gruppe, die für eine Klasse zuständig ist.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Core::ConfigItem</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="Module">Kernel::System::ITSMConfigItem::Permission::ClassGroupCheck</Item>
+                <Item Key="Required">0</Item>
+                <Item Key="Granted">1</Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="ConfigItem::Permission::Item###010-ItemClassGroupCheck" Required="0" Valid="1">
+        <Description Lang="en">Module to check the group responsible for a configitem.</Description>
+        <Description Lang="de">Modul zum Überprüfen der Gruppe, die für ein ConfigItem zuständig ist.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Core::ConfigItem</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="Module">Kernel::System::ITSMConfigItem::Permission::ItemClassGroupCheck</Item>
+                <Item Key="Required">0</Item>
+                <Item Key="Granted">1</Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
+
+    <ConfigItem Name="ConfigItem::Frontend::AgentITSMConfigItem###Permission" Required="1" Valid="1">
+        <Description Lang="en">Required permissions to use this option.</Description>
+        <Description Lang="de">Benötigte Rechte zur Anzeige der ConfigItem Klasse.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ConfigItem</SubGroup>
+        <Setting>
+            <String Regex="">ro</String>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="ConfigItem::Frontend::AgentITSMConfigItemEdit###Permission" Required="1" Valid="1">
+        <Description Lang="en">Required permissions to use this option.</Description>
+        <Description Lang="de">Benötigte Rechte zur Anzeige der ConfigItem Klasse.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ConfigItem</SubGroup>
+        <Setting>
+            <String Regex="">rw</String>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="ConfigItem::Frontend::AgentITSMConfigItemAdd###Permission" Required="1" Valid="1">
+        <Description Lang="en">Required permissions to use this option.</Description>
+        <Description Lang="de">Benötigte Rechte zur Anzeige der ConfigItem Klasse.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ConfigItem</SubGroup>
+        <Setting>
+            <String Regex="">rw</String>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="ConfigItem::Frontend::AgentITSMConfigItemHistory###Permission" Required="1" Valid="1">
+        <Description Lang="en">Required permissions to use this option.</Description>
+        <Description Lang="de">Benötigte Rechte zur Anzeige der ConfigItem Historie.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ConfigItem</SubGroup>
+        <Setting>
+            <String Regex="">ro</String>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="ConfigItem::Frontend::AgentITSMConfigItemPrint###Permission" Required="1" Valid="1">
+        <Description Lang="en">Required permissions to use this option.</Description>
+        <Description Lang="de">Benötigte Rechte zum Drucken des ConfigItems.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ConfigItem</SubGroup>
+        <Setting>
+            <String Regex="">ro</String>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="ConfigItem::Frontend::AgentITSMConfigItemZoom###Permission" Required="1" Valid="1">
+        <Description Lang="en">Required permissions to use this option.</Description>
+        <Description Lang="de">Benötigte Rechte zur Anzeige des ConfigItems.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ConfigItem</SubGroup>
+        <Setting>
+            <String Regex="">ro</String>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="ConfigItem::Frontend::AgentITSMConfigItemSearch###Permission" Required="1" Valid="1">
+        <Description Lang="en">Required permissions to use this option.</Description>
+        <Description Lang="de">Benötigte Rechte zum Drucken des ConfigItems.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ConfigItem</SubGroup>
+        <Setting>
+            <String Regex="">ro</String>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="ConfigItem::Frontend::AgentITSMConfigItemSearchResult###Permission" Required="1" Valid="1">
+        <Description Lang="en">Required permissions to use this option.</Description>
+        <Description Lang="de">Benötigte Rechte zur Anzeige des ConfigItems.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ConfigItem</SubGroup>
+        <Setting>
+            <String Regex="">ro</String>
         </Setting>
     </ConfigItem>
 </otrs_config>

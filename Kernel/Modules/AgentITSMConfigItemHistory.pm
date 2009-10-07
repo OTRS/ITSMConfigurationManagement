@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemHistory.pm - ticket history
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemHistory.pm,v 1.8 2009-08-31 14:56:55 reb Exp $
+# $Id: AgentITSMConfigItemHistory.pm,v 1.9 2009-10-07 14:25:22 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.8 $) [1];
+$VERSION = qw($Revision: 1.9 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -41,6 +41,9 @@ sub new {
     $Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new( %{$Self} );
     $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
 
+    # get config of frontend module
+    $Self->{Config} = $Self->{ConfigObject}->Get("ConfigItem::Frontend::$Self->{Action}");
+
     return $Self;
 }
 
@@ -55,6 +58,23 @@ sub Run {
         # error page
         return $Self->{LayoutObject}->ErrorScreen(
             Message => 'Can\'t show history, no ConfigItemID is given!',
+            Comment => 'Please contact the admin.',
+        );
+    }
+
+    # check for access rights
+    my $HasAccess = $Self->{ConfigItemObject}->Permission(
+        Scope  => 'Item',
+        ItemID => $Self->{ConfigItemID},
+        UserID => $Self->{UserID},
+        Type   => $Self->{Config}->{Permission},
+    );
+
+    if ( !$HasAccess ) {
+
+        # error page
+        return $Self->{LayoutObject}->ErrorScreen(
+            Message => 'Can\'t show history, no access rights given!',
             Comment => 'Please contact the admin.',
         );
     }

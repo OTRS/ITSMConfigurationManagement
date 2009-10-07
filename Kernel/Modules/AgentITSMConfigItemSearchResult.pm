@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemSearchResult.pm - the OTRS::ITSM config item search result module
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearchResult.pm,v 1.3 2009-05-18 09:57:05 mh Exp $
+# $Id: AgentITSMConfigItemSearchResult.pm,v 1.4 2009-10-07 14:25:22 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.3 $) [1];
+$VERSION = qw($Revision: 1.4 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -36,6 +36,9 @@ sub new {
     $Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new(%Param);
     $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new(%Param);
 
+    # get config of frontend module
+    $Self->{Config} = $Self->{ConfigObject}->Get("ConfigItem::Frontend::$Self->{Action}");
+
     return $Self;
 }
 
@@ -48,7 +51,7 @@ sub Run {
 
     if ( !$SearchAttribute{ClassID} ) {
         return $Self->{LayoutObject}->ErrorScreen(
-            Message => "No CLassID is given!",
+            Message => "No ClassID is given!",
             Comment => 'Please contact the admin.',
         );
     }
@@ -116,7 +119,19 @@ sub Run {
 
     my $TotalHits = @{$SearchResultList};
     my $CssClass  = '';
+
+    CONFIGITEMID:
     for my $ConfigItemID ( @{$SearchResultList} ) {
+
+        # check for access rights
+        my $HasAccess = $Self->{ConfigItemObject}->Permission(
+            Scope  => 'Item',
+            ItemID => $ConfigItemID,
+            UserID => $Self->{UserID},
+            Type   => $Self->{Config}->{Permission},
+        );
+
+        next CONFIGITEMID if !$HasAccess;
 
         # set output class
         $CssClass = $CssClass eq 'searchpassive' ? 'searchactive' : 'searchpassive';
@@ -142,6 +157,18 @@ sub Run {
     my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
         Class => 'ITSM::ConfigItem::Class',
     );
+
+    # check for access rights
+    for my $ClassID ( keys %{$ClassList} ) {
+        my $HasAccess = $Self->{ConfigItemObject}->Permission(
+            Type    => $Self->{Config}->{Permission},
+            Scope   => 'Class',
+            ClassID => $ClassID,
+            UserID  => $Self->{UserID},
+        );
+
+        delete $ClassList->{$ClassID} if !$HasAccess;
+    }
 
     # output header
     my $Output = $Self->{LayoutObject}->Header( Title => 'Search' );

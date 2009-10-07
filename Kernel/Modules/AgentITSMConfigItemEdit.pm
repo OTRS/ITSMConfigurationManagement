@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemEdit.pm - the OTRS::ITSM config item edit module
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.pm,v 1.4 2009-09-03 13:51:16 ub Exp $
+# $Id: AgentITSMConfigItemEdit.pm,v 1.5 2009-10-07 14:25:22 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.4 $) [1];
+$VERSION = qw($Revision: 1.5 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -36,6 +36,9 @@ sub new {
     $Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new(%Param);
     $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new(%Param);
 
+    # get config of frontend module
+    $Self->{Config} = $Self->{ConfigObject}->Get("ConfigItem::Frontend::$Self->{Action}");
+
     return $Self;
 }
 
@@ -48,8 +51,18 @@ sub Run {
     $ConfigItem->{ClassID}      = $Self->{ParamObject}->GetParam( Param => 'ClassID' )      || 0;
     my $DuplicateID = $Self->{ParamObject}->GetParam( Param => 'DuplicateID' ) || 0;
 
+    my $HasAccess;
+
     # get needed data
     if ( $ConfigItem->{ConfigItemID} && $ConfigItem->{ConfigItemID} ne 'NEW' ) {
+
+        # check access for config item
+        $HasAccess = $Self->{ConfigItemObject}->Permission(
+            Scope  => 'Item',
+            ItemID => $ConfigItem->{ConfigItemID},
+            UserID => $Self->{UserID},
+            Type   => $Self->{Config}->{Permission},
+        );
 
         # get config item
         $ConfigItem = $Self->{ConfigItemObject}->ConfigItemGet(
@@ -63,6 +76,14 @@ sub Run {
             ConfigItemID => $DuplicateID,
         );
 
+        # check access for config item
+        $HasAccess = $Self->{ConfigItemObject}->Permission(
+            Scope  => 'Item',
+            ItemID => $ConfigItem->{ConfigItemID},
+            UserID => $Self->{UserID},
+            Type   => $Self->{Config}->{Permission},
+        );
+
         # set config item id and number
         $ConfigItem->{ConfigItemID} = 'NEW';
         $ConfigItem->{Number}       = 'NEW';
@@ -73,6 +94,14 @@ sub Run {
         $ConfigItem->{ConfigItemID} = 'NEW';
         $ConfigItem->{Number}       = 'NEW';
 
+        # check access for config item
+        $HasAccess = $Self->{ConfigItemObject}->Permission(
+            Scope   => 'Class',
+            ClassID => $ConfigItem->{ClassID},
+            UserID  => $Self->{UserID},
+            Type    => $Self->{Config}->{Permission},
+        );
+
         # get class list
         my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
             Class => 'ITSM::ConfigItem::Class',
@@ -82,6 +111,14 @@ sub Run {
     else {
         return $Self->{LayoutObject}->ErrorScreen(
             Message => 'No ConfigItemID, DuplicateID or ClassID is given!',
+            Comment => 'Please contact the admin.',
+        );
+    }
+
+    # if user has no access rights show error page
+    if ( !$HasAccess ) {
+        return $Self->{LayoutObject}->ErrorScreen(
+            Message => 'No access is given!',
             Comment => 'Please contact the admin.',
         );
     }
@@ -119,6 +156,7 @@ sub Run {
         $Version->{XMLData}->[1]->{Version}->[1] = $Self->_XMLFormGet(
             XMLDefinition => $XMLDefinition->{DefinitionRef},
             AllRequired   => \$AllRequired,
+            ConfigItemID  => $ConfigItem->{ConfigItemID},
         );
 
         # save version to database
@@ -217,8 +255,10 @@ sub Run {
 
     # get incident state list
     my $InciStateList = $Self->{GeneralCatalogObject}->ItemList(
-        Class => 'ITSM::Core::IncidentState',
-        Functionality => [ 'operational', 'incident' ],
+        Class       => 'ITSM::Core::IncidentState',
+        Preferences => {
+            Functionality => [ 'operational', 'incident' ],
+        },
     );
 
     # generate InciStateOptionStrg
@@ -275,6 +315,7 @@ sub _XMLFormGet {
     return if !$Param{AllRequired};
     return if ref $Param{XMLDefinition} ne 'ARRAY';
     return if ref $Param{AllRequired} ne 'SCALAR';
+    return if !$Param{ConfigItemID};
 
     my $FormData = {};
 
@@ -295,8 +336,9 @@ sub _XMLFormGet {
 
             # get param
             my $FormValues = $Self->{LayoutObject}->ITSMConfigItemFormDataGet(
-                Key  => $InputKey,
-                Item => $Item,
+                Key          => $InputKey,
+                Item         => $Item,
+                ConfigItemID => $Param{ConfigItemID},
             );
 
             if ( defined $FormValues->{Value} ) {

@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItem.pm - the OTRS::ITSM config item module
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItem.pm,v 1.5 2009-05-18 09:57:05 mh Exp $
+# $Id: AgentITSMConfigItem.pm,v 1.6 2009-10-07 14:25:22 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.5 $) [1];
+$VERSION = qw($Revision: 1.6 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -35,6 +35,9 @@ sub new {
     }
     $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new(%Param);
     $Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new(%Param);
+
+    # get config of frontend module
+    $Self->{Config} = $Self->{ConfigObject}->Get("ConfigItem::Frontend::$Self->{Action}");
 
     return $Self;
 }
@@ -53,7 +56,19 @@ sub Run {
     # output menu
     my %ClassCount;
     my $Counter = 0;
+
+    CLASSID:
     for my $ClassID ( sort { ${$ClassList}{$a} cmp ${$ClassList}{$b} } keys %{$ClassList} ) {
+
+        # show menu link only if user has access rights
+        my $HasAccess = $Self->{ConfigItemObject}->Permission(
+            Scope   => 'Class',
+            ClassID => $ClassID,
+            UserID  => $Self->{UserID},
+            Type    => $Self->{Config}->{Permission},
+        );
+
+        next CLASSID if !$HasAccess;
 
         # count all records of this class
         $ClassCount{$ClassID} = $Self->{ConfigItemObject}->ConfigItemCount(
@@ -92,6 +107,21 @@ sub Run {
     );
 
     if ($ClassID) {
+
+        # if user doesn't belong to the group that belongs to this class, show error page
+        my $HasAccess = $Self->{ConfigItemObject}->Permission(
+            Scope   => 'Class',
+            ClassID => $ClassID,
+            UserID  => $Self->{UserID},
+            Type    => $Self->{Config}->{Permission},
+        );
+
+        if ( !$HasAccess ) {
+            return $Self->{LayoutObject}->ErrorScreen(
+                Message => 'No access to Class is given!',
+                Comment => 'Please contact the admin.',
+            );
+        }
 
         # output class
         $Self->{LayoutObject}->Block(

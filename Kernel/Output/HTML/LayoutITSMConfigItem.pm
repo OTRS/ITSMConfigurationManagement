@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/LayoutITSMConfigItem.pm - provides generic HTML output for ITSMConfigItem
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: LayoutITSMConfigItem.pm,v 1.3 2009-10-06 17:04:29 ub Exp $
+# $Id: LayoutITSMConfigItem.pm,v 1.4 2009-10-07 14:22:33 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.3 $) [1];
+$VERSION = qw($Revision: 1.4 $) [1];
 
 =item ITSMConfigItemOutputStringCreate()
 
@@ -137,6 +137,7 @@ returns the values from the search html form
     my $ArrayRef = $LayoutObject->ITSMConfigItemSearchFormDataGet(
         Key => 'Item::1::Node::3',
         Item => $ItemRef,
+        ConfigItemID => 123,
     );
 
 =cut
@@ -145,7 +146,7 @@ sub ITSMConfigItemSearchFormDataGet {
     my ( $Self, %Param ) = @_;
 
     # check needed stuff
-    for my $Argument (qw(Key Item)) {
+    for my $Argument (qw(Key Item ConfigItemID)) {
         if ( !$Param{$Argument} ) {
             $Self->{LogObject}->Log(
                 Priority => 'error',

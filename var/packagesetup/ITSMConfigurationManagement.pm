@@ -2,7 +2,7 @@
 # ITSMConfigurationManagement.pm - code to excecute during package installation
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigurationManagement.pm,v 1.14 2009-08-19 22:48:14 mh Exp $
+# $Id: ITSMConfigurationManagement.pm,v 1.15 2009-10-07 14:22:32 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -28,7 +28,7 @@ use Kernel::System::User;
 use Kernel::System::Valid;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.14 $) [1];
+$VERSION = qw($Revision: 1.15 $) [1];
 
 =head1 NAME
 
@@ -189,6 +189,12 @@ sub CodeInstall {
     # fillup empty cur_depl_state_id or cur_inci_state_id rows in configitem table
     $Self->_FillupEmptyIncidentAndDeploymentStateID();
 
+    # set preferences for some config items
+    $Self->_SetPreferences();
+
+    # set default permission group
+    $Self->_SetDefaultPermission();
+
     # install stats
     $Self->{StatsObject}->StatsInstall(
         FilePrefix => $Self->{FilePrefix},
@@ -226,6 +232,12 @@ sub CodeReinstall {
     # fillup empty cur_depl_state_id or cur_inci_state_id rows in configitem table
     $Self->_FillupEmptyIncidentAndDeploymentStateID();
 
+    # set preferences for some config items
+    $Self->_SetPreferences();
+
+    # set default permission group
+    $Self->_SetDefaultPermission();
+
     # install stats
     $Self->{StatsObject}->StatsInstall(
         FilePrefix => $Self->{FilePrefix},
@@ -257,6 +269,12 @@ sub CodeUpgrade {
     # fillup empty cur_depl_state_id or cur_inci_state_id rows in configitem table
     $Self->_FillupEmptyIncidentAndDeploymentStateID();
 
+    # set preferences for some config items
+    $Self->_SetPreferences();
+
+    # set default permission group
+    $Self->_SetDefaultPermission();
+
     # install stats
     $Self->{StatsObject}->StatsInstall(
         FilePrefix => $Self->{FilePrefix},
@@ -285,6 +303,81 @@ sub CodeUninstall {
     );
 
     return 1;
+}
+
+=item _SetPreferences()
+
+    my $Result = $CodeObject->_SetPreferences()
+
+=cut
+
+sub _SetPreferences {
+    my $Self = shift;
+
+    my %Map = (
+        Expired     => 'productive',
+        Inactive    => 'postproductive',
+        Maintenance => 'productive',
+        Pilot       => 'productive',
+        Planned     => 'preproductive',
+        Production  => 'productive',
+        Repair      => 'productive',
+        Retired     => 'postproductive',
+        Review      => 'productive',
+        'Test/QA'   => 'preproductive',
+    );
+
+    NAME:
+    for my $Name ( keys %Map ) {
+        my $Item = $Self->{GeneralCatalogObject}->ItemGet(
+            Name  => $Name,
+            Class => 'ITSM::ConfigItem::DeploymentState',
+        );
+
+        next NAME if !$Item;
+
+        $Self->{GeneralCatalogObject}->GeneralCatalogPreferencesSet(
+            ItemID => $Item->{ItemID},
+            Key    => 'Functionality',
+            Value  => $Map{$Name},
+        );
+    }
+}
+
+=item _SetDefaultPermission()
+
+set the default group that has access rights
+
+=cut
+
+sub _SetDefaultPermission {
+    my $Self = shift;
+
+    # get class list
+    my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
+        Class => 'ITSM::ConfigItem::Class',
+    );
+
+    # check if group already exists
+    my $GroupID = $Self->{GroupObject}->GroupLookup(
+        Group  => 'itsm-configitem',
+        UserID => 1,
+    );
+
+    # check if a permission group is already set. If not, set default permission group
+    for my $ClassID ( keys %{$ClassList} ) {
+        my $Class = $Self->{GeneralCatalogObject}->ItemGet(
+            ItemID => $ClassID,
+        );
+
+        if ( !$Class->{Permission} ) {
+            $Self->{GeneralCatalogObject}->GeneralCatalogPreferencesSet(
+                ItemID => $Class->{ItemID},
+                Key    => 'Permission',
+                Value  => $GroupID,
+            );
+        }
+    }
 }
 
 =item _GroupAdd()
@@ -1144,8 +1237,10 @@ sub _FillupEmptyVersionIncidentStateID {
 
     # get operational incident state list
     my $InciStateList = $Self->{GeneralCatalogObject}->ItemList(
-        Class         => 'ITSM::Core::IncidentState',
-        Functionality => 'operational',
+        Class       => 'ITSM::Core::IncidentState',
+        Preferences => {
+            Functionality => 'operational',
+        },
     );
 
     # error handling
@@ -1239,6 +1334,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.14 $ $Date: 2009-08-19 22:48:14 $
+$Revision: 1.15 $ $Date: 2009-10-07 14:22:32 $
 
 =cut
