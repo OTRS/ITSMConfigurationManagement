@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/ITSMConfigItemLayoutText.pm - layout backend module
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutText.pm,v 1.3.2.1 2009-09-03 10:04:32 ub Exp $
+# $Id: ITSMConfigItemLayoutText.pm,v 1.3.2.2 2009-10-08 10:18:39 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.3.2.1 $) [1];
+$VERSION = qw($Revision: 1.3.2.2 $) [1];
 
 =head1 NAME
 
@@ -163,7 +163,7 @@ sub InputCreate {
 
     my $Value = $Param{Value};
     if ( !defined $Param{Value} ) {
-        $Value = $Param{Item}->{Input}->{ValueDefault};
+        $Value = $Param{Item}->{Input}->{ValueDefault} || '';
     }
     my $Size = $Param{Item}->{Input}->{Size} || 40;
     my $String = "<input type=\"Text\" name=\"$Param{Key}\" size=\"$Size\" ";
@@ -267,6 +267,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.3.2.1 $ $Date: 2009-09-03 10:04:32 $
+$Revision: 1.3.2.2 $ $Date: 2009-10-08 10:18:39 $
 
 =cut
