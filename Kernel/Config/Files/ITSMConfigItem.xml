@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <otrs_config version="1.0" init="Config">
-    <CVS>$Id: ITSMConfigItem.xml,v 1.7 2009-10-07 14:35:50 reb Exp $</CVS>
+    <CVS>$Id: ITSMConfigItem.xml,v 1.8 2009-10-09 11:58:50 reb Exp $</CVS>
     <ConfigItem Name="Frontend::Module###AdminITSMConfigItem" Required="0" Valid="1">
         <Description Lang="en">Frontend module registration for the AdminITSMConfigItem configuration in the admin area.</Description>
         <Description Lang="de">Frontendmodul-Registration der AdminITSMConfigItem Konfiguration im Admin-Bereich.</Description>
@@ -465,6 +465,22 @@
         <SubGroup>Frontend::Agent::ConfigItem</SubGroup>
         <Setting>
             <String Regex="">ro</String>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="GeneralCatalogPreferences###Permissions" Required="0" Valid="1">
+        <Description Lang="en">Parameters for the example permission groups of general catalog attributes.</Description>
+        <Description Lang="de">Parameter für die zugriffsberechtigte Gruppe der GeneralCatalog-Attribute.</Description>
+        <Group>GeneralCatalog</Group>
+        <SubGroup>GeneralCatalog::Preferences</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="Module">Kernel::Output::HTML::GeneralCatalogPreferencesGeneric</Item>
+                <Item Key="Label">Permission</Item>
+                <Item Key="Desc">Define the group with permissions.</Item>
+                <Item Key="Block">Permission</Item>
+                <Item Key="Class">ITSM::ConfigItem::Class</Item>
+                <Item Key="PrefKey">Permission</Item>
+            </Hash>
         </Setting>
     </ConfigItem>
 </otrs_config>
