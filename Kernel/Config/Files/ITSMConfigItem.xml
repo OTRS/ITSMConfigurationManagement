@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <otrs_config version="1.0" init="Config">
-    <CVS>$Id: ITSMConfigItem.xml,v 1.9 2009-10-13 17:31:11 ub Exp $</CVS>
+    <CVS>$Id: ITSMConfigItem.xml,v 1.10 2009-10-13 18:25:53 ub Exp $</CVS>
     <ConfigItem Name="Frontend::Module###AdminITSMConfigItem" Required="0" Valid="1">
         <Description Lang="en">Frontend module registration for the AdminITSMConfigItem configuration in the admin area.</Description>
         <Description Lang="de">Frontendmodul-Registration der AdminITSMConfigItem Konfiguration im Admin-Bereich.</Description>
@@ -312,7 +312,7 @@
         <Description Lang="en">Config item event module that enables logging to history.</Description>
         <Description Lang="de">Event-Modul für ConfigItems, das das Logging in die Historie erlaubt.</Description>
         <Group>ITSM Configuration Management</Group>
-        <SubGroup>Core</SubGroup>
+        <SubGroup>Core::ITSMConfigItem</SubGroup>
         <Setting>
             <Hash>
                 <Item Key="Module">Kernel::System::ITSMConfigItem::Event::DoHistory</Item>
@@ -372,7 +372,7 @@
         <Description Lang="en">Module to check the group responsible for a class.</Description>
         <Description Lang="de">Modul zum Überprüfen der Gruppe, die für eine Klasse zuständig ist.</Description>
         <Group>ITSM Configuration Management</Group>
-        <SubGroup>Core::ConfigItem</SubGroup>
+        <SubGroup>Core::ITSMConfigItem</SubGroup>
         <Setting>
             <Hash>
                 <Item Key="Module">Kernel::System::ITSMConfigItem::Permission::ClassGroupCheck</Item>
@@ -385,7 +385,7 @@
         <Description Lang="en">Module to check the group responsible for a configitem.</Description>
         <Description Lang="de">Modul zum Überprüfen der Gruppe, die für ein ConfigItem zuständig ist.</Description>
         <Group>ITSM Configuration Management</Group>
-        <SubGroup>Core::ConfigItem</SubGroup>
+        <SubGroup>Core::ITSMConfigItem</SubGroup>
         <Setting>
             <Hash>
                 <Item Key="Module">Kernel::System::ITSMConfigItem::Permission::ItemClassGroupCheck</Item>
@@ -398,7 +398,7 @@
         <Description Lang="en">Required permissions to use this option.</Description>
         <Description Lang="de">Benötigte Rechte zur Anzeige der ConfigItem Klasse.</Description>
         <Group>ITSM Configuration Management</Group>
-        <SubGroup>Frontend::Agent::ConfigItem</SubGroup>
+        <SubGroup>Frontend::Agent::ITSMConfigItem::Permission</SubGroup>
         <Setting>
             <String Regex="">ro</String>
         </Setting>
@@ -407,7 +407,7 @@
         <Description Lang="en">Required permissions to use this option.</Description>
         <Description Lang="de">Benötigte Rechte zur Anzeige der ConfigItem Klasse.</Description>
         <Group>ITSM Configuration Management</Group>
-        <SubGroup>Frontend::Agent::ConfigItem</SubGroup>
+        <SubGroup>Frontend::Agent::ITSMConfigItem::Permission</SubGroup>
         <Setting>
             <String Regex="">rw</String>
         </Setting>
@@ -416,7 +416,7 @@
         <Description Lang="en">Required permissions to use this option.</Description>
         <Description Lang="de">Benötigte Rechte zur Anzeige der ConfigItem Klasse.</Description>
         <Group>ITSM Configuration Management</Group>
-        <SubGroup>Frontend::Agent::ConfigItem</SubGroup>
+        <SubGroup>Frontend::Agent::ITSMConfigItem::Permission</SubGroup>
         <Setting>
             <String Regex="">rw</String>
         </Setting>
@@ -425,7 +425,7 @@
         <Description Lang="en">Required permissions to use this option.</Description>
         <Description Lang="de">Benötigte Rechte zur Anzeige der ConfigItem Historie.</Description>
         <Group>ITSM Configuration Management</Group>
-        <SubGroup>Frontend::Agent::ConfigItem</SubGroup>
+        <SubGroup>Frontend::Agent::ITSMConfigItem::Permission</SubGroup>
         <Setting>
             <String Regex="">ro</String>
         </Setting>
@@ -434,7 +434,7 @@
         <Description Lang="en">Required permissions to use this option.</Description>
         <Description Lang="de">Benötigte Rechte zum Drucken des ConfigItems.</Description>
         <Group>ITSM Configuration Management</Group>
-        <SubGroup>Frontend::Agent::ConfigItem</SubGroup>
+        <SubGroup>Frontend::Agent::ITSMConfigItem::Permission</SubGroup>
         <Setting>
             <String Regex="">ro</String>
         </Setting>
@@ -443,7 +443,7 @@
         <Description Lang="en">Required permissions to use this option.</Description>
         <Description Lang="de">Benötigte Rechte zur Anzeige des ConfigItems.</Description>
         <Group>ITSM Configuration Management</Group>
-        <SubGroup>Frontend::Agent::ConfigItem</SubGroup>
+        <SubGroup>Frontend::Agent::ITSMConfigItem::Permission</SubGroup>
         <Setting>
             <String Regex="">ro</String>
         </Setting>
@@ -452,7 +452,7 @@
         <Description Lang="en">Required permissions to use this option.</Description>
         <Description Lang="de">Benötigte Rechte zum Drucken des ConfigItems.</Description>
         <Group>ITSM Configuration Management</Group>
-        <SubGroup>Frontend::Agent::ConfigItem</SubGroup>
+        <SubGroup>Frontend::Agent::ITSMConfigItem::Permission</SubGroup>
         <Setting>
             <String Regex="">ro</String>
         </Setting>
@@ -461,7 +461,7 @@
         <Description Lang="en">Required permissions to use this option.</Description>
         <Description Lang="de">Benötigte Rechte zur Anzeige des ConfigItems.</Description>
         <Group>ITSM Configuration Management</Group>
-        <SubGroup>Frontend::Agent::ConfigItem</SubGroup>
+        <SubGroup>Frontend::Agent::ITSMConfigItem::Permission</SubGroup>
         <Setting>
             <String Regex="">ro</String>
         </Setting>
