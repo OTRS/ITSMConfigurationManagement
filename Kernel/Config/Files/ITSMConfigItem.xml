@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <otrs_config version="1.0" init="Config">
-    <CVS>$Id: ITSMConfigItem.xml,v 1.8 2009-10-09 11:58:50 reb Exp $</CVS>
+    <CVS>$Id: ITSMConfigItem.xml,v 1.9 2009-10-13 17:31:11 ub Exp $</CVS>
     <ConfigItem Name="Frontend::Module###AdminITSMConfigItem" Required="0" Valid="1">
         <Description Lang="en">Frontend module registration for the AdminITSMConfigItem configuration in the admin area.</Description>
         <Description Lang="de">Frontendmodul-Registration der AdminITSMConfigItem Konfiguration im Admin-Bereich.</Description>
@@ -368,7 +368,7 @@
             </Hash>
         </Setting>
     </ConfigItem>
-    <ConfigItem Name="ConfigItem::Permission::Class###010-ClassGroupCheck" Required="0" Valid="1">
+    <ConfigItem Name="ITSMConfigItem::Permission::Class###010-ClassGroupCheck" Required="0" Valid="1">
         <Description Lang="en">Module to check the group responsible for a class.</Description>
         <Description Lang="de">Modul zum Überprüfen der Gruppe, die für eine Klasse zuständig ist.</Description>
         <Group>ITSM Configuration Management</Group>
@@ -381,7 +381,7 @@
             </Hash>
         </Setting>
     </ConfigItem>
-    <ConfigItem Name="ConfigItem::Permission::Item###010-ItemClassGroupCheck" Required="0" Valid="1">
+    <ConfigItem Name="ITSMConfigItem::Permission::Item###010-ItemClassGroupCheck" Required="0" Valid="1">
         <Description Lang="en">Module to check the group responsible for a configitem.</Description>
         <Description Lang="de">Modul zum Überprüfen der Gruppe, die für ein ConfigItem zuständig ist.</Description>
         <Group>ITSM Configuration Management</Group>
@@ -394,8 +394,7 @@
             </Hash>
         </Setting>
     </ConfigItem>
-
-    <ConfigItem Name="ConfigItem::Frontend::AgentITSMConfigItem###Permission" Required="1" Valid="1">
+    <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItem###Permission" Required="1" Valid="1">
         <Description Lang="en">Required permissions to use this option.</Description>
         <Description Lang="de">Benötigte Rechte zur Anzeige der ConfigItem Klasse.</Description>
         <Group>ITSM Configuration Management</Group>
@@ -404,7 +403,7 @@
             <String Regex="">ro</String>
         </Setting>
     </ConfigItem>
-    <ConfigItem Name="ConfigItem::Frontend::AgentITSMConfigItemEdit###Permission" Required="1" Valid="1">
+    <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemEdit###Permission" Required="1" Valid="1">
         <Description Lang="en">Required permissions to use this option.</Description>
         <Description Lang="de">Benötigte Rechte zur Anzeige der ConfigItem Klasse.</Description>
         <Group>ITSM Configuration Management</Group>
@@ -413,7 +412,7 @@
             <String Regex="">rw</String>
         </Setting>
     </ConfigItem>
-    <ConfigItem Name="ConfigItem::Frontend::AgentITSMConfigItemAdd###Permission" Required="1" Valid="1">
+    <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemAdd###Permission" Required="1" Valid="1">
         <Description Lang="en">Required permissions to use this option.</Description>
         <Description Lang="de">Benötigte Rechte zur Anzeige der ConfigItem Klasse.</Description>
         <Group>ITSM Configuration Management</Group>
@@ -422,7 +421,7 @@
             <String Regex="">rw</String>
         </Setting>
     </ConfigItem>
-    <ConfigItem Name="ConfigItem::Frontend::AgentITSMConfigItemHistory###Permission" Required="1" Valid="1">
+    <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemHistory###Permission" Required="1" Valid="1">
         <Description Lang="en">Required permissions to use this option.</Description>
         <Description Lang="de">Benötigte Rechte zur Anzeige der ConfigItem Historie.</Description>
         <Group>ITSM Configuration Management</Group>
@@ -431,7 +430,7 @@
             <String Regex="">ro</String>
         </Setting>
     </ConfigItem>
-    <ConfigItem Name="ConfigItem::Frontend::AgentITSMConfigItemPrint###Permission" Required="1" Valid="1">
+    <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemPrint###Permission" Required="1" Valid="1">
         <Description Lang="en">Required permissions to use this option.</Description>
         <Description Lang="de">Benötigte Rechte zum Drucken des ConfigItems.</Description>
         <Group>ITSM Configuration Management</Group>
@@ -440,7 +439,7 @@
             <String Regex="">ro</String>
         </Setting>
     </ConfigItem>
-    <ConfigItem Name="ConfigItem::Frontend::AgentITSMConfigItemZoom###Permission" Required="1" Valid="1">
+    <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemZoom###Permission" Required="1" Valid="1">
         <Description Lang="en">Required permissions to use this option.</Description>
         <Description Lang="de">Benötigte Rechte zur Anzeige des ConfigItems.</Description>
         <Group>ITSM Configuration Management</Group>
@@ -449,7 +448,7 @@
             <String Regex="">ro</String>
         </Setting>
     </ConfigItem>
-    <ConfigItem Name="ConfigItem::Frontend::AgentITSMConfigItemSearch###Permission" Required="1" Valid="1">
+    <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemSearch###Permission" Required="1" Valid="1">
         <Description Lang="en">Required permissions to use this option.</Description>
         <Description Lang="de">Benötigte Rechte zum Drucken des ConfigItems.</Description>
         <Group>ITSM Configuration Management</Group>
@@ -458,7 +457,7 @@
             <String Regex="">ro</String>
         </Setting>
     </ConfigItem>
-    <ConfigItem Name="ConfigItem::Frontend::AgentITSMConfigItemSearchResult###Permission" Required="1" Valid="1">
+    <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemSearchResult###Permission" Required="1" Valid="1">
         <Description Lang="en">Required permissions to use this option.</Description>
         <Description Lang="de">Benötigte Rechte zur Anzeige des ConfigItems.</Description>
         <Group>ITSM Configuration Management</Group>
