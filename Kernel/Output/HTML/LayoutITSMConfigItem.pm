@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/LayoutITSMConfigItem.pm - provides generic HTML output for ITSMConfigItem
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: LayoutITSMConfigItem.pm,v 1.4 2009-10-07 14:22:33 reb Exp $
+# $Id: LayoutITSMConfigItem.pm,v 1.5 2009-10-13 15:45:28 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.4 $) [1];
+$VERSION = qw($Revision: 1.5 $) [1];
 
 =item ITSMConfigItemOutputStringCreate()
 
@@ -58,8 +58,9 @@ sub ITSMConfigItemOutputStringCreate {
 returns the values from the html form as hash reference
 
     my $FormDataRef = $LayoutObject->ITSMConfigItemFormDataGet(
-        Key => 'Item::1::Node::3',
-        Item => $ItemRef,
+        Key          => 'Item::1::Node::3',
+        Item         => $ItemRef,
+        ConfigItemID => 123,
     );
 
 =cut
@@ -68,7 +69,7 @@ sub ITSMConfigItemFormDataGet {
     my ( $Self, %Param ) = @_;
 
     # check needed stuff
-    for my $Argument (qw(Key Item)) {
+    for my $Argument (qw(Key Item ConfigItemID)) {
         if ( !$Param{$Argument} ) {
             $Self->{LogObject}->Log(
                 Priority => 'error',
@@ -137,7 +138,6 @@ returns the values from the search html form
     my $ArrayRef = $LayoutObject->ITSMConfigItemSearchFormDataGet(
         Key => 'Item::1::Node::3',
         Item => $ItemRef,
-        ConfigItemID => 123,
     );
 
 =cut
@@ -146,7 +146,7 @@ sub ITSMConfigItemSearchFormDataGet {
     my ( $Self, %Param ) = @_;
 
     # check needed stuff
-    for my $Argument (qw(Key Item ConfigItemID)) {
+    for my $Argument (qw(Key Item)) {
         if ( !$Param{$Argument} ) {
             $Self->{LogObject}->Log(
                 Priority => 'error',
