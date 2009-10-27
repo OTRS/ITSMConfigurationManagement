@@ -2,7 +2,7 @@
 # Kernel/System/LinkObject/ITSMConfigItem.pm - to link config item objects
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.12 2009-08-18 22:18:19 mh Exp $
+# $Id: ITSMConfigItem.pm,v 1.13 2009-10-27 09:11:17 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::GeneralCatalog;
 use Kernel::System::ITSMConfigItem;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.12 $) [1];
+$VERSION = qw($Revision: 1.13 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -306,6 +306,7 @@ sub LinkAddPre {
         }
     }
 
+    # do not trigger event for temporary links
     return 1 if $Param{State} eq 'Temporary';
 
     return 1;
@@ -351,18 +352,20 @@ sub LinkAddPost {
         }
     }
 
-    # trigger LinkAdd event
-    my $Key    = $Param{TargetKey}    || $Param{SourceKey};
+    # do not trigger event for temporary links
+    return 1 if $Param{State} eq 'Temporary';
+
+    # get information about linked object
+    my $ID     = $Param{TargetKey}    || $Param{SourceKey};
     my $Object = $Param{TargetObject} || $Param{SourceObject};
 
+    # trigger LinkAdd event
     $Self->{ConfigItemObject}->ConfigItemEventHandlerPost(
         ConfigItemID => $Param{Key},
         Event        => 'LinkAdd',
         UserID       => $Param{UserID},
-        Comment      => $Key . '%%' . $Object,
+        Comment      => $ID . '%%' . $Object,
     );
-
-    return 1 if $Param{State} eq 'Temporary';
 
     return 1;
 }
@@ -407,6 +410,7 @@ sub LinkDeletePre {
         }
     }
 
+    # do not trigger event for temporary links
     return 1 if $Param{State} eq 'Temporary';
 
     return 1;
@@ -452,18 +456,20 @@ sub LinkDeletePost {
         }
     }
 
-    # trigger LinkDelete event
-    my $Key    = $Param{TargetKey}    || $Param{SourceKey};
+    # do not trigger event for temporary links
+    return 1 if $Param{State} eq 'Temporary';
+
+    # get information about linked object
+    my $ID     = $Param{TargetKey}    || $Param{SourceKey};
     my $Object = $Param{TargetObject} || $Param{SourceObject};
 
+    # trigger LinkDelete event
     $Self->{ConfigItemObject}->ConfigItemEventHandlerPost(
         ConfigItemID => $Param{Key},
         Event        => 'LinkDelete',
         UserID       => $Param{UserID},
-        Comment      => $Key . '%%' . $Object,
+        Comment      => $ID . '%%' . $Object,
     );
-
-    return 1 if $Param{State} eq 'Temporary';
 
     return 1;
 }
