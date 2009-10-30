@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemPrint.pm - print layout for itsm config item agent interface
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemPrint.pm,v 1.5 2009-10-13 17:31:11 ub Exp $
+# $Id: AgentITSMConfigItemPrint.pm,v 1.6 2009-10-30 15:51:39 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -19,7 +19,7 @@ use Kernel::System::LinkObject;
 use Kernel::System::PDF;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.5 $) [1];
+$VERSION = qw($Revision: 1.6 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -37,6 +37,7 @@ sub new {
     $Self->{ConfigItemObject} = Kernel::System::ITSMConfigItem->new(%Param);
     $Self->{LinkObject}       = Kernel::System::LinkObject->new(%Param);
     $Self->{PDFObject}        = Kernel::System::PDF->new(%Param);
+    $Self->{HTMLUtilsObject}  = Kernel::System::HTMLUtils->new(%Param);
 
     # get config of frontend module
     $Self->{Config} = $Self->{ConfigObject}->Get("ITSMConfigItem::Frontend::$Self->{Action}");
@@ -730,6 +731,9 @@ sub _PDFOutputXMLOutput {
                 Value => $Value,
                 Item  => $Item,
             );
+
+            # convert value to ascii
+            $Value = $Self->{HTMLUtilsObject}->ToAscii( String => $Value );
 
             # new row
             my $NewRow = {
