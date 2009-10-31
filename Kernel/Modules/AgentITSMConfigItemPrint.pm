@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemPrint.pm - print layout for itsm config item agent interface
 # Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemPrint.pm,v 1.2.4.2 2009-10-30 15:53:41 ub Exp $
+# $Id: AgentITSMConfigItemPrint.pm,v 1.2.4.3 2009-10-31 17:05:25 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -17,9 +17,10 @@ use warnings;
 use Kernel::System::ITSMConfigItem;
 use Kernel::System::LinkObject;
 use Kernel::System::PDF;
+use Kernel::System::HTMLUtils;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.2.4.2 $) [1];
+$VERSION = qw($Revision: 1.2.4.3 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
