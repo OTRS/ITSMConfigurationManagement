@@ -1,8 +1,8 @@
 # --
 # Kernel/System/ITSMConfigItem/Permission/ItemClassGroupCheck.pm - check if a user can access an item
-# Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ItemClassGroupCheck.pm,v 1.1 2009-10-07 14:32:13 reb Exp $
+# $Id: ItemClassGroupCheck.pm,v 1.2 2010-01-14 23:29:40 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -17,7 +17,7 @@ use warnings;
 use Kernel::System::Group;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.1 $) [1];
+$VERSION = qw($Revision: 1.2 $) [1];
 
 =head1 NAME
 
@@ -86,7 +86,7 @@ create an object
         DBObject             => $DBObject,
         MainObject           => $MainObject,
         ConfigItemObject     => $ConfigItemObject,
-        GeneralCatalogObject => $GeneralCatalogObject
+        GeneralCatalogObject => $GeneralCatalogObject,
     );
 
 =cut
@@ -177,6 +177,6 @@ did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
 
 =head1 VERSION
 
-$Revision: 1.1 $ $Date: 2009-10-07 14:32:13 $
+$Revision: 1.2 $ $Date: 2010-01-14 23:29:40 $
 
 =cut
