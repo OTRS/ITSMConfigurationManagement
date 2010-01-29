@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/XML.pm - sub module of ITSMConfigItem.pm with xml functions
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: XML.pm,v 1.8 2010-01-29 14:11:02 ub Exp $
+# $Id: XML.pm,v 1.9 2010-01-29 14:13:57 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.8 $) [1];
+$VERSION = qw($Revision: 1.9 $) [1];
 
 =head1 NAME
 
@@ -326,11 +326,6 @@ sub _XMLVersionSearch {
         @{ $Param{ClassIDs} } = keys %{$ClassList};
     }
 
-    # quote
-    for my $ClassID ( @{ $Param{ClassIDs} } ) {
-        $Self->{DBObject}->Quote( $ClassID, 'Integer' );
-    }
-
     # search in active versions
     my %VersionIDs;
     for my $ClassID ( @{ $Param{ClassIDs} } ) {
@@ -589,6 +584,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.8 $ $Date: 2010-01-29 14:11:02 $
+$Revision: 1.9 $ $Date: 2010-01-29 14:13:57 $
 
 =cut
