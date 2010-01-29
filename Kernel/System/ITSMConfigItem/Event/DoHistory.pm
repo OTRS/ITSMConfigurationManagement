@@ -1,8 +1,8 @@
 # --
 # Kernel/System/ITSMConfigItem/Event/DoHistory.pm - a event module for config items
-# Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: DoHistory.pm,v 1.10 2009-08-28 14:08:17 reb Exp $
+# $Id: DoHistory.pm,v 1.11 2010-01-29 16:50:22 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -14,8 +14,10 @@ package Kernel::System::ITSMConfigItem::Event::DoHistory;
 use strict;
 use warnings;
 
+use Kernel::System::ITSMConfigItem;
+
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.10 $) [1];
+$VERSION = qw($Revision: 1.11 $) [1];
 
 =head1 NAME
 
@@ -41,7 +43,6 @@ create an object
     use Kernel::System::DB;
     use Kernel::System::Main;
     use Kernel::System::Time;
-    use Kernel::System::ITSMConfigItem;
     use Kernel::System::ITSMConfigItem::Event::DoHistory;
 
     my $ConfigObject = Kernel::Config->new();
@@ -67,13 +68,6 @@ create an object
         LogObject    => $LogObject,
         MainObject   => $MainObject,
     );
-    my $ConfigItemObject = Kernel::System::ITSMConfigItem->new(
-        ConfigObject => $ConfigObject,
-        EncodeObject => $EncodeObject,
-        LogObject    => $LogObject,
-        DBObject     => $DBObject,
-        MainObject   => $MainObject,
-    );
     my $DoHistoryObject = Kernel::System::ITSMConfigItem::Event::DoHistory->new(
         ConfigItemObject => $ConfigItemObject,
         ConfigObject     => $ConfigObject,
@@ -94,13 +88,12 @@ sub new {
     bless( $Self, $Type );
 
     # get needed objects
-    for my $Needed (
-        qw(ConfigObject ConfigItemObject LogObject DBObject
-        MainObject EncodeObject TimeObject)
-        )
-    {
+    for my $Needed (qw(ConfigObject LogObject DBObject MainObject EncodeObject TimeObject)) {
         $Self->{$Needed} = $Param{$Needed} || die "Got no $Needed!";
     }
+
+    # create needed objects
+    $Self->{ConfigItemObject} = Kernel::System::ITSMConfigItem->new( %{$Self} );
 
     return $Self;
 }
@@ -110,10 +103,12 @@ sub new {
 This method handles the event.
 
     $DoHistoryObject->Run(
-        Event        => 'ConfigItemCreate',
-        Comment      => 'new value: 1',
-        ConfigItemID => 123,
-        UserID       => 1,
+        Event => 'ConfigItemCreate',
+        Data  => {
+            Comment      => 'new value: 1',
+            ConfigItemID => 123,
+        },
+        UserID => 1,
     );
 
 =cut
@@ -128,7 +123,7 @@ sub Run {
     }
 
     # check needed stuff
-    for my $Needed (qw(ConfigItemID Event UserID Comment)) {
+    for my $Needed (qw(Data Event UserID)) {
         if ( !$Param{$Needed} ) {
             $Self->{LogObject}->Log(
                 Priority => 'error',
@@ -169,7 +164,10 @@ sub Run {
 
     # call callback
     my $Sub = $Dispatcher{ $Param{Event} };
-    $Self->$Sub(%Param);
+    $Self->$Sub(
+        %Param,
+        %{ $Param{Data} },
+    );
 
     return 1;
 }
@@ -222,6 +220,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Id: DoHistory.pm,v 1.10 2009-08-28 14:08:17 reb Exp $
+$Id: DoHistory.pm,v 1.11 2010-01-29 16:50:22 reb Exp $
 
 =cut

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <otrs_config version="1.0" init="Config">
-    <CVS>$Id: ITSMConfigItem.xml,v 1.10 2009-10-13 18:25:53 ub Exp $</CVS>
+    <CVS>$Id: ITSMConfigItem.xml,v 1.11 2010-01-29 16:50:20 reb Exp $</CVS>
     <ConfigItem Name="Frontend::Module###AdminITSMConfigItem" Required="0" Valid="1">
         <Description Lang="en">Frontend module registration for the AdminITSMConfigItem configuration in the admin area.</Description>
         <Description Lang="de">Frontendmodul-Registration der AdminITSMConfigItem Konfiguration im Admin-Bereich.</Description>
@@ -165,7 +165,7 @@
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###000-Back" Required="0" Valid="1">
         <Description Lang="en">Module to show back link in config item menu.</Description>
-        <Description Lang="de">Über dieses Modul wird der Zurück-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
+        <Description Lang="de">Mit diesem Modul wird der Zurück-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
         <Setting>
@@ -181,7 +181,7 @@
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###100-Versions" Required="0" Valid="1">
         <Description Lang="en">Module to show versions link in config item menu.</Description>
-        <Description Lang="de">Über dieses Modul wird der Versionen-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
+        <Description Lang="de">Mit diesem Modul wird der Versionen-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
         <Setting>
@@ -193,7 +193,7 @@
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###200-History" Required="0" Valid="1">
         <Description Lang="en">Module to show back link in config item menu.</Description>
-        <Description Lang="de">Über dieses Modul wird der Zurück-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
+        <Description Lang="de">Mit diesem Modul wird der Zurück-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
         <Setting>
@@ -208,7 +208,7 @@
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###300-Edit" Required="0" Valid="1">
         <Description Lang="en">Module to show edit link in config item menu.</Description>
-        <Description Lang="de">Über dieses Modul wird der Bearbeiten-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
+        <Description Lang="de">Mit diesem Modul wird der Bearbeiten-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
         <Setting>
@@ -223,7 +223,7 @@
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###400-Print" Required="0" Valid="1">
         <Description Lang="en">Module to show print link in config item menu.</Description>
-        <Description Lang="de">Über dieses Modul wird der Drucken-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
+        <Description Lang="de">Mit diesem Modul wird der Drucken-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
         <Setting>
@@ -239,7 +239,7 @@
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###500-Link" Required="0" Valid="1">
         <Description Lang="en">Module to show the link link in config item menu.</Description>
-        <Description Lang="de">Über dieses Modul wird der Verknüpfen-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
+        <Description Lang="de">Mit diesem Modul wird der Verknüpfen-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
         <Setting>
@@ -254,7 +254,7 @@
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###600-Duplicate" Required="0" Valid="1">
         <Description Lang="en">Module to show duplicate link in config item menu.</Description>
-        <Description Lang="de">Über dieses Modul wird der Duplizieren-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
+        <Description Lang="de">Mit diesem Modul wird der Duplizieren-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
         <Setting>
@@ -316,6 +316,8 @@
         <Setting>
             <Hash>
                 <Item Key="Module">Kernel::System::ITSMConfigItem::Event::DoHistory</Item>
+                <Item Key="Event">(ConfigItemCreate|VersionCreate|DeploymentStateUpdate|IncidentStateUpdate|ConfigItemDelete|LinkAdd|LinkDelete|DefinitionUpdate|NameUpdate|ValueUpdate|DefinitionCreate|VersionDelete)</Item>
+                <Item Key="Transaction">0</Item>
             </Hash>
         </Setting>
     </ConfigItem>

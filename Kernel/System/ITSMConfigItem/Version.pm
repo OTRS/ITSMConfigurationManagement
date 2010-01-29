@@ -1,8 +1,8 @@
 # --
 # Kernel/System/ITSMConfigItem/Version.pm - sub module of ITSMConfigItem.pm with version functions
-# Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: Version.pm,v 1.15 2009-09-02 11:04:25 reb Exp $
+# $Id: Version.pm,v 1.16 2010-01-29 16:50:22 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.15 $) [1];
+$VERSION = qw($Revision: 1.16 $) [1];
 
 =head1 NAME
 
@@ -541,11 +541,13 @@ sub VersionAdd {
     );
 
     # trigger VersionCreate event
-    $Self->ConfigItemEventHandlerPost(
-        ConfigItemID => $Param{ConfigItemID},
-        Event        => 'VersionCreate',
-        UserID       => $Param{UserID},
-        Comment      => $VersionID,
+    $Self->EventHandler(
+        Event => 'VersionCreate',
+        Data  => {
+            ConfigItemID => $Param{ConfigItemID},
+            Comment      => $VersionID,
+        },
+        UserID => $Param{UserID},
     );
 
     # compare current and old values
@@ -558,41 +560,49 @@ sub VersionAdd {
 
     # trigger definition update event
     if ( $Events->{DefinitionUpdate} ) {
-        $Self->ConfigItemEventHandlerPost(
-            ConfigItemID => $Param{ConfigItemID},
-            Event        => 'DefinitionUpdate',
-            UserID       => $Param{UserID},
-            Comment      => $Events->{DefinitionUpdate},
+        $Self->EventHandler(
+            Event => 'DefinitionUpdate',
+            Data  => {
+                ConfigItemID => $Param{ConfigItemID},
+                Comment      => $Events->{DefinitionUpdate},
+            },
+            UserID => $Param{UserID},
         );
     }
 
     # check old and new name
     if ( $Events->{NameUpdate} ) {
-        $Self->ConfigItemEventHandlerPost(
-            ConfigItemID => $Param{ConfigItemID},
-            Event        => 'NameUpdate',
-            UserID       => $Param{UserID},
-            Comment      => $Events->{NameUpdate},
+        $Self->EventHandler(
+            Event => 'NameUpdate',
+            Data  => {
+                ConfigItemID => $Param{ConfigItemID},
+                Comment      => $Events->{NameUpdate},
+            },
+            UserID => $Param{UserID},
         );
     }
 
     # trigger incident state update event
     if ( $Events->{IncidentStateUpdate} ) {
-        $Self->ConfigItemEventHandlerPost(
-            ConfigItemID => $Param{ConfigItemID},
-            Event        => 'IncidentStateUpdate',
-            UserID       => $Param{UserID},
-            Comment      => $Events->{IncidentStateUpdate},
+        $Self->EventHandler(
+            Event => 'IncidentStateUpdate',
+            Data  => {
+                ConfigItemID => $Param{ConfigItemID},
+                Comment      => $Events->{IncidentStateUpdate},
+            },
+            UserID => $Param{UserID},
         );
     }
 
     # trigger deployment state update event
     if ( $Events->{DeploymentStateUpdate} ) {
-        $Self->ConfigItemEventHandlerPost(
-            ConfigItemID => $Param{ConfigItemID},
-            Event        => 'DeploymentStateUpdate',
-            UserID       => $Param{UserID},
-            Comment      => $Events->{DeploymentStateUpdate},
+        $Self->EventHandler(
+            Event => 'DeploymentStateUpdate',
+            Data  => {
+                ConfigItemID => $Param{ConfigItemID},
+                Comment      => $Events->{DeploymentStateUpdate},
+            },
+            UserID => $Param{UserID},
         );
     }
 
@@ -765,11 +775,13 @@ sub VersionDelete {
     # trigger VersionDelete event when deletion was successful
     if ($Success) {
         for my $VersionID ( @{$VersionList} ) {
-            $Self->ConfigItemEventHandlerPost(
-                ConfigItemID => $ConfigItemID,
-                Event        => 'VersionDelete',
-                UserID       => $Param{UserID},
-                Comment      => $VersionID,
+            $Self->EventHandler(
+                Event => 'VersionDelete',
+                Data  => {
+                    ConfigItemID => $ConfigItemID,
+                    Comment      => $VersionID,
+                },
+                UserID => $Param{UserID},
             );
 
             # delete cache
@@ -936,11 +948,13 @@ sub _CheckValues {
 
     # trigger ValueUpdate event for each changed value
     for my $Key ( keys %{ $Param{UpdateValues} } ) {
-        $Self->ConfigItemEventHandlerPost(
-            ConfigItemID => $Param{ConfigItemID},
-            Event        => 'ValueUpdate',
-            UserID       => $Param{UserID},
-            Comment      => $Key . '%%' . $Param{UpdateValues}->{$Key},
+        $Self->EventHandler(
+            Event => 'ValueUpdate',
+            Data  => {
+                ConfigItemID => $Param{ConfigItemID},
+                Comment      => $Key . '%%' . $Param{UpdateValues}->{$Key},
+            },
+            UserID => $Param{UserID},
         );
     }
 
@@ -1076,6 +1090,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.15 $ $Date: 2009-09-02 11:04:25 $
+$Revision: 1.16 $ $Date: 2010-01-29 16:50:22 $
 
 =cut

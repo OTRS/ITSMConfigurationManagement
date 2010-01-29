@@ -1,8 +1,8 @@
 # --
 # Kernel/System/ITSMConfigItem.pm - all config item function
-# Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.19 2009-10-07 14:32:13 reb Exp $
+# $Id: ITSMConfigItem.pm,v 1.20 2010-01-29 16:50:22 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -14,6 +14,7 @@ package Kernel::System::ITSMConfigItem;
 use strict;
 use warnings;
 
+use Kernel::System::EventHandler;
 use Kernel::System::GeneralCatalog;
 use Kernel::System::ITSMConfigItem::Definition;
 use Kernel::System::ITSMConfigItem::History;
@@ -27,7 +28,7 @@ use Kernel::System::User;
 use Kernel::System::XML;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.19 $) [1];
+$VERSION = qw($Revision: 1.20 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',
@@ -36,6 +37,7 @@ $VERSION = qw($Revision: 1.19 $) [1];
     'Kernel::System::ITSMConfigItem::Permission',
     'Kernel::System::ITSMConfigItem::Version',
     'Kernel::System::ITSMConfigItem::XML',
+    'Kernel::System::EventHandler',
 );
 
 =head1 NAME
@@ -109,6 +111,15 @@ sub new {
     $Self->{LinkObject}           = Kernel::System::LinkObject->new( %{$Self} );
     $Self->{UserObject}           = Kernel::System::User->new( %{$Self} );
     $Self->{XMLObject}            = Kernel::System::XML->new( %{$Self} );
+
+    # init of event handler
+    $Self->EventHandlerInit(
+        Config     => 'ITSMConfigItem::EventModulePost',
+        BaseObject => 'ConfigItemObject',
+        Objects    => {
+            %{$Self},
+        },
+    );
 
     return $Self;
 }
@@ -438,11 +449,13 @@ sub ConfigItemAdd {
     }
 
     # trigger ConfigItemCreate
-    $Self->ConfigItemEventHandlerPost(
-        ConfigItemID => $ConfigItemID,
-        Event        => 'ConfigItemCreate',
-        UserID       => $Param{UserID},
-        Comment      => $ConfigItemID . '%%' . $Param{Number},
+    $Self->EventHandler(
+        Event => 'ConfigItemCreate',
+        Data  => {
+            ConfigItemID => $ConfigItemID,
+            Comment      => $ConfigItemID . '%%' . $Param{Number},
+        },
+        UserID => $Param{UserID},
     );
 
     return $ConfigItemID;
@@ -486,11 +499,13 @@ sub ConfigItemDelete {
     );
 
     # trigger ConfigItemDelete event
-    $Self->ConfigItemEventHandlerPost(
-        ConfigItemID => $Param{ConfigItemID},
-        Event        => 'ConfigItemDelete',
-        UserID       => $Param{UserID},
-        Comment      => $Param{ConfigItemID},
+    $Self->EventHandler(
+        Event => 'ConfigItemDelete',
+        Data  => {
+            ConfigItemID => $Param{ConfigItemID},
+            Comment      => $Param{ConfigItemID},
+        },
+        UserID => $Param{UserID},
     );
 
     return $Success;
@@ -1095,83 +1110,17 @@ sub ConfigItemLookup {
     return $Value;
 }
 
-=item ConfigItemEventHandlerPost()
+1;
 
-call config item event post handler, returns true if it's executed successfully
+=back
 
-    $ConfigItemObject->ConfigItemEventHandlerPost(
-        ConfigItemID => 123,
-        Event        => 'NewConfigItem',
-        UserID       => 123,
-    );
-
-events available:
+=head1 ITSM Config Item events:
 
 ConfigItemCreate, VersionCreate, DeploymentStateUpdate, IncidentStateUpdate,
 ConfigItemDelete, LinkAdd, LinkDelete, DefinitionUpdate, NameUpdate, ValueUpdate
 DefinitionCreate, VersionDelete
 
 =cut
-
-sub ConfigItemEventHandlerPost {
-    my ( $Self, %Param ) = @_;
-
-    # check needed stuff
-    for my $Needed (qw(Event UserID)) {
-        if ( !$Param{$Needed} ) {
-            $Self->{LogObject}->Log(
-                Priority => 'error',
-                Message  => "Need $Needed!",
-            );
-            return;
-        }
-    }
-
-    # if it is not a DefinitionCreate event, the config item id is needed
-    if ( $Param{Event} ne 'DefinitionCreate' && !$Param{ConfigItemID} ) {
-        $Self->{LogObject}->Log(
-            Priority => 'error',
-            Message  => "Need ConfigItemID!",
-        );
-        return;
-    }
-
-    # load config item event module
-    my $Modules = $Self->{ConfigObject}->Get('ITSMConfigItem::EventModulePost');
-
-    return if !$Modules;
-    return if ref $Modules ne 'HASH';
-
-    # try to load the event modules
-    MODULE:
-    for my $Module ( sort keys %{$Modules} ) {
-
-        my $Event = $Modules->{$Module}->{Event};
-
-        next MODULE if $Event && $Param{Event} !~ m{ \Q $Event \E }xmsi;
-
-        my $ModuleName = $Modules->{$Module}->{Module};
-
-        next MODULE if !$Self->{MainObject}->Require($ModuleName);
-
-        my $Generic = $ModuleName->new(
-            %{$Self},
-            ConfigItemObject => $Self,
-        );
-
-        # run event handler
-        $Generic->Run(
-            %Param,
-            Config => $Modules->{$Module},
-        );
-    }
-
-    return 1;
-}
-
-1;
-
-=back
 
 =head1 TERMS AND CONDITIONS
 
@@ -1185,6 +1134,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.19 $ $Date: 2009-10-07 14:32:13 $
+$Revision: 1.20 $ $Date: 2010-01-29 16:50:22 $
 
 =cut
