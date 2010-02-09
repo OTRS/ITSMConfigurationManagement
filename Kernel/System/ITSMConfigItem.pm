@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem.pm - all config item function
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.20 2010-01-29 16:50:22 reb Exp $
+# $Id: ITSMConfigItem.pm,v 1.21 2010-02-09 10:27:35 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -28,7 +28,7 @@ use Kernel::System::User;
 use Kernel::System::XML;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.20 $) [1];
+$VERSION = qw($Revision: 1.21 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',
@@ -106,6 +106,7 @@ sub new {
         $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
     }
 
+    # create additional objects
     $Self->{TimeObject}           = Kernel::System::Time->new( %{$Self} );
     $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
     $Self->{LinkObject}           = Kernel::System::LinkObject->new( %{$Self} );
@@ -940,6 +941,78 @@ sub CurInciStateRecalc {
     return 1;
 }
 
+=item ConfigItemLookup()
+
+This method does a lookup for a configitem. If a configitem id is given,
+it returns the number of the configitem. If a configitem number is given,
+the appropriate id is returned.
+
+    my $Name = $ConfigItemObject->ConfigItemLookup(
+        ConfigItemID => 1234,
+    );
+
+    my $Id = $HistoryObject->ConfigItemLookup(
+        ConfigItemNumber => 1000001,
+    );
+
+=cut
+
+sub ConfigItemLookup {
+    my ( $Self, %Param ) = @_;
+
+    my ($Key) = grep { $Param{$_} } qw(ConfigItemID ConfigItemNumber);
+
+    # check for needed stuff
+    if ( !$Key ) {
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => 'Need ConfigItemID or ConfigItemNumber!',
+        );
+        return;
+    }
+
+    # if result is cached return that result
+    return $Self->{Cache}->{ConfigItemLookup}->{$Key}->{ $Param{$Key} }
+        if $Self->{Cache}->{ConfigItemLookup}->{$Key}->{ $Param{$Key} };
+
+    # set the appropriate SQL statement
+    my $SQL = 'SELECT configitem_number FROM configitem WHERE id = ?';
+
+    if ( $Key eq 'ConfigItemNumber' ) {
+        $SQL = 'SELECT id FROM configitem WHERE configitem_number = ?';
+    }
+
+    # fetch the requested value
+    return if !$Self->{DBObject}->Prepare(
+        SQL   => $SQL,
+        Bind  => [ \$Param{$Key} ],
+        Limit => 1,
+    );
+
+    my $Value;
+    while ( my @Row = $Self->{DBObject}->FetchrowArray() ) {
+        $Value = $Row[0];
+    }
+
+    $Self->{Cache}->{ConfigItemLookup}->{$Key}->{ $Param{$Key} } = $Value;
+
+    return $Value;
+}
+
+=begin Internal:
+
+=item _FindInciConfigItems()
+
+find all config items with an incident state
+
+    $ConfigItemObject->_FindInciConfigItems(
+        ConfigItemID         => $ConfigItemID,
+        LinkType             => $LinkType,
+        ScannedConfigItemIDs => \%ScannedConfigItemIDs,
+    );
+
+=cut
+
 sub _FindInciConfigItems {
     my ( $Self, %Param ) = @_;
 
@@ -986,6 +1059,18 @@ sub _FindInciConfigItems {
 
     return 1;
 }
+
+=item _FindWarnConfigItems()
+
+find all config items with a warning
+
+    $ConfigItemObject->_FindWarnConfigItems(
+        ConfigItemID         => $ConfigItemID,
+        LinkType             => $LinkType,
+        ScannedConfigItemIDs => $ScannedConfigItemIDs,
+    );
+
+=cut
 
 sub _FindWarnConfigItems {
     my ( $Self, %Param ) = @_;
@@ -1052,65 +1137,9 @@ sub _PrepareLikeString {
     return;
 }
 
-=item ConfigItemLookup()
-
-This method does a lookup for a configitem. If a configitem id is given,
-it returns the number of the configitem. If a configitem number is given,
-the appropriate id is returned.
-
-    my $Name = $ConfigItemObject->ConfigItemLookup(
-        ConfigItemID => 1234,
-    );
-
-    my $Id = $HistoryObject->ConfigItemLookup(
-        ConfigItemNumber => 1000001,
-    );
-
-=cut
-
-sub ConfigItemLookup {
-    my ( $Self, %Param ) = @_;
-
-    my ($Key) = grep { $Param{$_} } qw(ConfigItemID ConfigItemNumber);
-
-    # check for needed stuff
-    if ( !$Key ) {
-        $Self->{LogObject}->Log(
-            Priority => 'error',
-            Message  => 'Need ConfigItemID or ConfigItemNumber!',
-        );
-        return;
-    }
-
-    # if result is cached return that result
-    return $Self->{Cache}->{ConfigItemLookup}->{$Key}->{ $Param{$Key} }
-        if $Self->{Cache}->{ConfigItemLookup}->{$Key}->{ $Param{$Key} };
-
-    # set the appropriate SQL statement
-    my $SQL = 'SELECT configitem_number FROM configitem WHERE id = ?';
-
-    if ( $Key eq 'ConfigItemNumber' ) {
-        $SQL = 'SELECT id FROM configitem WHERE configitem_number = ?';
-    }
-
-    # fetch the requested value
-    return if !$Self->{DBObject}->Prepare(
-        SQL   => $SQL,
-        Bind  => [ \$Param{$Key} ],
-        Limit => 1,
-    );
-
-    my $Value;
-    while ( my @Row = $Self->{DBObject}->FetchrowArray() ) {
-        $Value = $Row[0];
-    }
-
-    $Self->{Cache}->{ConfigItemLookup}->{$Key}->{ $Param{$Key} } = $Value;
-
-    return $Value;
-}
-
 1;
+
+=end Internal:
 
 =back
 
@@ -1134,6 +1163,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.20 $ $Date: 2010-01-29 16:50:22 $
+$Revision: 1.21 $ $Date: 2010-02-09 10:27:35 $
 
 =cut
