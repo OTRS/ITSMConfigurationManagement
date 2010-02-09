@@ -1,8 +1,8 @@
 # --
 # Kernel/Output/HTML/ITSMConfigItemLayoutCustomer.pm - layout backend module
-# Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutCustomer.pm,v 1.4 2009-08-18 22:18:19 mh Exp $
+# $Id: ITSMConfigItemLayoutCustomer.pm,v 1.5 2010-02-09 15:31:09 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -17,7 +17,7 @@ use warnings;
 use Kernel::System::CustomerUser;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.4 $) [1];
+$VERSION = qw($Revision: 1.5 $) [1];
 
 =head1 NAME
 
@@ -55,6 +55,8 @@ sub new {
     {
         $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
     }
+
+    # create additional objects
     $Self->{CustomerUserObject} = Kernel::System::CustomerUser->new( %{$Self} );
 
     return $Self;
@@ -325,6 +327,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.4 $ $Date: 2009-08-18 22:18:19 $
+$Revision: 1.5 $ $Date: 2010-02-09 15:31:09 $
 
 =cut
