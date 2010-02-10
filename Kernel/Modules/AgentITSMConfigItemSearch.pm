@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemSearch.pm - the OTRS::ITSM config item search module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.pm,v 1.7 2010-02-10 15:00:31 bes Exp $
+# $Id: AgentITSMConfigItemSearch.pm,v 1.8 2010-02-10 15:39:27 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.7 $) [1];
+$VERSION = qw($Revision: 1.8 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -113,35 +113,35 @@ sub Run {
             );
         }
 
+        # attributes used for searching and for restoring previous input
+        my %GetParam;
+
+        # get scalar search attributes
+        FORMVALUE:
+        for my $FormValue (qw(Number Name PreviousVersionSearch)) {
+
+            my $Value = $Self->{ParamObject}->GetParam( Param => $FormValue );
+
+            next FORMVALUE if !$Value;
+
+            $GetParam{$FormValue} = $Value;
+        }
+
+        # get array search attributes
+        FORMARRAY:
+        for my $FormArray (qw(DeplStateIDs InciStateIDs)) {
+
+            my @Array = $Self->{ParamObject}->GetArray( Param => $FormArray );
+
+            next FORMARRAY if !@Array;
+
+            $GetParam{$FormArray} = \@Array;
+        }
+
         # check whether the config item search should be performed
         my $SubmitSearch = $Self->{ParamObject}->GetParam( Param => 'SubmitSearch' );
 
         if ($SubmitSearch) {
-
-            # attributes used for searching
-            my %SearchAttribute;
-
-            # get scalar search attributes
-            FORMVALUE:
-            for my $FormValue (qw(Number Name PreviousVersionSearch)) {
-
-                my $Value = $Self->{ParamObject}->GetParam( Param => $FormValue );
-
-                next FORMVALUE if !$Value;
-
-                $SearchAttribute{$FormValue} = $Value;
-            }
-
-            # get array search attributes
-            FORMARRAY:
-            for my $FormArray (qw(DeplStateIDs InciStateIDs)) {
-
-                my @Array = $Self->{ParamObject}->GetArray( Param => $FormArray );
-
-                next FORMARRAY if !@Array;
-
-                $SearchAttribute{$FormArray} = \@Array;
-            }
 
             # get xml search form
             my $XMLFormData = [];
@@ -151,12 +151,12 @@ sub Run {
             );
 
             if ( @{$XMLFormData} ) {
-                $SearchAttribute{What} = $XMLFormData;
+                $GetParam{What} = $XMLFormData;
             }
 
             # start search
             my $SearchResultList = $Self->{ConfigItemObject}->ConfigItemSearchExtended(
-                %SearchAttribute,
+                %GetParam,
                 ClassIDs => [$ClassID],
             );
 
@@ -164,7 +164,7 @@ sub Run {
             $Self->{LayoutObject}->Block(
                 Name => 'Result',
                 Data => {
-                    %SearchAttribute,
+                    %GetParam,
                     TotalHits => scalar( @{$SearchResultList} ),
                     Class     => $ClassList->{$ClassID},
                     ClassID   => $ClassID,
@@ -222,12 +222,13 @@ sub Run {
                 Class => 'ITSM::ConfigItem::DeploymentState',
             );
 
-            # generate DeplStateOptionStrg
+            # generate dropdown for selecting the wanted deployment states
             my $CurDeplStateOptionStrg = $Self->{LayoutObject}->BuildSelection(
-                Data     => $DeplStateList,
-                Name     => 'DeplStateIDs',
-                Size     => 5,
-                Multiple => 1,
+                Data       => $DeplStateList,
+                Name       => 'DeplStateIDs',
+                SelectedID => $GetParam{DeplStateIDs} || [],
+                Size       => 5,
+                Multiple   => 1,
             );
 
             # get incident state list
@@ -235,12 +236,13 @@ sub Run {
                 Class => 'ITSM::Core::IncidentState',
             );
 
-            # generate InciStateOptionStrg
+            # generate dropdown for selecting the wanted incident states
             my $CurInciStateOptionStrg = $Self->{LayoutObject}->BuildSelection(
-                Data     => $InciStateList,
-                Name     => 'InciStateIDs',
-                Size     => 5,
-                Multiple => 1,
+                Data       => $InciStateList,
+                Name       => 'InciStateIDs',
+                SelectedID => $GetParam{InciStateIDs} || [],
+                Size       => 5,
+                Multiple   => 1,
             );
 
             # generate PreviousVersionOptionStrg
@@ -257,6 +259,7 @@ sub Run {
             $Self->{LayoutObject}->Block(
                 Name => 'Attribute',
                 Data => {
+                    %GetParam,
                     ClassID                   => $ClassID,
                     Class                     => $ClassList->{$ClassID},
                     CurDeplStateOptionStrg    => $CurDeplStateOptionStrg,
