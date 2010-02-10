@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemEdit.pm - the OTRS::ITSM config item edit module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.pm,v 1.7 2010-01-14 23:31:08 ub Exp $
+# $Id: AgentITSMConfigItemEdit.pm,v 1.8 2010-02-10 14:04:03 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.7 $) [1];
+$VERSION = qw($Revision: 1.8 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -131,7 +131,7 @@ sub Run {
     # abort, if no definition is defined
     if ( !$XMLDefinition->{DefinitionID} ) {
         return $Self->{LayoutObject}->ErrorScreen(
-            Message => "No Definition was definied for class $ConfigItem->{Class}!",
+            Message => "No Definition was defined for class $ConfigItem->{Class}!",
             Comment => 'Please contact the admin.',
         );
     }
