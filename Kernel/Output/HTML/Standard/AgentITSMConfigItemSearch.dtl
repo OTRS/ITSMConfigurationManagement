@@ -2,7 +2,7 @@
 # AgentITSMConfigItemSearch.dtl - provides HTML form for AgentITSMConfigItemSearch
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.dtl,v 1.4 2010-02-10 15:39:27 bes Exp $
+# $Id: AgentITSMConfigItemSearch.dtl,v 1.5 2010-02-10 15:49:21 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -30,12 +30,12 @@
                         <td class="contentbody">
                             <table width="100%" border="0" cellspacing="0" cellpadding="3">
                                 <tr>
-                                    <td width="20%" class="contentkey">
-                                        $Text{"Class"}:
-                                    </td>
-                                    <td class="contentvalue">
-                                        $Data{"ClassOptionStrg"}
-                                    </td>
+                                    <colgroup>
+                                        <col width="20%" class="contentkey">
+                                        <col class="contenvalue">
+                                    </colgroup>
+                                    <td>$Text{"Class"}:</td>
+                                    <td>$Data{"ClassOptionStrg"}</td>
                                 </tr>
                             </table>
                         </td>
@@ -78,9 +78,13 @@
                     <tr>
                         <td class="contentbody">
                             <table width="100%" border="0" cellspacing="0" cellpadding="3">
+                                <colgroup>
+                                    <col width="20%" class="contentkey">
+                                    <col class="contenvalue">
+                                </colgroup>
                                 <tr>
-                                    <td width="20%" class="contentkey">$Text{"Number"}:</td>
-                                    <td class="contentvalue"><input type="Text" name="Number" value="$QData{"Number"}" size="80" maxlength="250"></td>
+                                    <td>$Text{"Number"}:</td>
+                                    <td><input type="Text" name="Number" value="$QData{"Number"}" size="80" maxlength="250"></td>
                                 </tr>
                             </table>
                         </td>
@@ -91,24 +95,28 @@
                     <tr>
                         <td colspan="2" class="contentbody">
                             <table width="100%" border="0" cellspacing="0" cellpadding="3">
+                                <colgroup>
+                                    <col width="20%" class="contentkey">
+                                    <col class="contenvalue">
+                                </colgroup>
                                 <tr>
-                                    <td width="20%" class="contentkey">$Text{"Name"}:</td>
-                                    <td class="contentvalue"><input type="Text" name="Name" value="$QData{"Name"}" size="80" maxlength="250"></td>
+                                    <td>$Text{"Name"}:</td>
+                                    <td><input type="Text" name="Name" value="$QData{"Name"}" size="80" maxlength="250"></td>
                                 </tr>
                                 <tr>
-                                    <td width="20%" class="contentkey">$Text{"Deployment State"}:</td>
-                                    <td class="contentvalue">$Data{"CurDeplStateOptionStrg"}</td>
+                                    <td>$Text{"Deployment State"}:</td>
+                                    <td>$Data{"CurDeplStateOptionStrg"}</td>
                                 </tr>
                                 <tr>
-                                    <td width="20%" class="contentkey">$Text{"Incident State"}:</td>
-                                    <td class="contentvalue">$Data{"CurInciStateOptionStrg"}</td>
+                                    <td>$Text{"Incident State"}:</td>
+                                    <td>$Data{"CurInciStateOptionStrg"}</td>
                                 </tr>
 <!-- dtl:block:AttributeRow -->
                                 <tr>
-                                    <td width="20%" class="contentkey">
+                                    <td>
                                         <div title="$Text{"$QData{"Description"}"}">$Text{"$QData{"Name"}"}:</div>
                                     </td>
-                                    <td class="contentvalue">$Data{"InputString"}</td>
+                                    <td>$Data{"InputString"}</td>
                                 </tr>
 <!-- dtl:block:AttributeRow -->
                             </table>
@@ -120,9 +128,13 @@
                     <tr>
                         <td class="contentbody">
                             <table width="100%" border="0" cellspacing="0" cellpadding="3">
+                                <colgroup>
+                                    <col width="20%" class="contentkey">
+                                    <col class="contenvalue">
+                                </colgroup>
                                 <tr>
-                                    <td width="20%" class="contentkey">$Text{"Also search in previous versions?"}</td>
-                                    <td class="contentvalue">$Data{"PreviousVersionOptionStrg"}</td>
+                                    <td>$Text{"Also search in previous versions?"}</td>
+                                    <td>$Data{"PreviousVersionOptionStrg"}</td>
                                 </tr>
                             </table>
                         </td>
