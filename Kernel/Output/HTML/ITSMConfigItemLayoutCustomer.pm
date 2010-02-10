@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/ITSMConfigItemLayoutCustomer.pm - layout backend module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutCustomer.pm,v 1.5 2010-02-09 15:31:09 bes Exp $
+# $Id: ITSMConfigItemLayoutCustomer.pm,v 1.6 2010-02-10 15:00:31 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -17,7 +17,7 @@ use warnings;
 use Kernel::System::CustomerUser;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.5 $) [1];
+$VERSION = qw($Revision: 1.6 $) [1];
 
 =head1 NAME
 
@@ -298,17 +298,65 @@ sub SearchInputCreate {
     my ( $Self, %Param ) = @_;
 
     # check needed stuff
-    if ( !$Param{Key} ) {
-        $Self->{LogObject}->Log(
-            Priority => 'error',
-            Message  => 'Need Key!'
-        );
-        return;
+    for my $Argument (qw(Key Item)) {
+        if ( !$Param{$Argument} ) {
+            $Self->{LogObject}->Log(
+                Priority => 'error',
+                Message  => "Need $Argument!"
+            );
+            return;
+        }
     }
 
-    my $String = "<input type=\"Text\" name=\"$Param{Key}\" size=\"60\">";
+    my $Key = $Param{Key};
 
-    return $String;
+    # hash with values for the input field
+    my %FormData;
+
+    # get selected customer user
+    $FormData{Value} = $Self->{ParamObject}->GetParam( Param => $Key );
+
+    # check search button
+    if ( $Self->{ParamObject}->GetParam( Param => $Key . '::ButtonSearch' ) ) {
+        $Param{Item}->{Form}->{$Key}->{Search}
+            = $Self->{ParamObject}->GetParam( Param => $Key . '::Search' );
+    }
+
+    # check select button
+    elsif ( $Self->{ParamObject}->GetParam( Param => $Key . '::ButtonSelect' ) ) {
+        $FormData{Value} = $Self->{ParamObject}->GetParam( Param => $Key . '::Select' );
+    }
+
+    # check clear button
+    elsif ( $Self->{ParamObject}->GetParam( Param => $Key . '::ButtonClear' ) ) {
+        $FormData{Value} = '';
+    }
+    else {
+
+        # reset value if search field is emty
+        if (
+            !$Self->{ParamObject}->GetParam( Param => $Key . '::Search' )
+            && defined $FormData{Value}
+            )
+        {
+            $FormData{Value} = '';
+        }
+
+        # check required option
+        if ( $Param{Item}->{Input}->{Required} && !$FormData{Value} ) {
+            $Param{Item}->{Form}->{$Key}->{Invalid} = 1;
+            $FormData{Invalid} = 1;
+        }
+    }
+
+    # create input field, including the search and clear buttons
+    my $InputString = $Self->InputCreate(
+        %FormData,
+        Key  => $Param{Key},
+        Item => $Param{Item},
+    );
+
+    return $InputString;
 }
 
 1;
@@ -327,6 +375,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.5 $ $Date: 2010-02-09 15:31:09 $
+$Revision: 1.6 $ $Date: 2010-02-10 15:00:31 $
 
 =cut

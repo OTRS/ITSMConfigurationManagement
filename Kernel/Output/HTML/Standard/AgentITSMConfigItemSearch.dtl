@@ -1,8 +1,8 @@
 # --
 # AgentITSMConfigItemSearch.dtl - provides HTML form for AgentITSMConfigItemSearch
-# Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.dtl,v 1.2 2009-05-18 10:01:18 mh Exp $
+# $Id: AgentITSMConfigItemSearch.dtl,v 1.3 2010-02-10 15:00:31 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -11,130 +11,190 @@
 
 <!-- dtl:block:Class -->
 <table border="0" width="100%" cellspacing="0" cellpadding="3">
-  <tr>
-    <td class="mainhead">
-      $Env{"Box0"}$Text{"Search"}: $Text{"Config Item"} $Env{"Box1"}
-    </td>
-  </tr>
-  <tr>
-    <td class="mainbody" align="center">
-      <br>
-      <form action="$Env{"CGIHandle"}" method="get" name="configitemclass">
-        <input type="hidden" name="Action" value="$Env{"Action"}">
-        <input type="hidden" name="Subaction" value="Attribute">
-        <table width="800" border="0" cellspacing="0" cellpadding="3">
-          <tr>
-            <td class="contenthead">$Text{"Config Item"} $Text{"Class"}</td>
-          </tr>
-          <tr>
-            <td class="contentbody">
-              <table width="100%" border="0" cellspacing="0" cellpadding="3">
-                <tr>
-                  <td width="20%" class="contentkey">
-                    $Text{"Class"}:
-                  </td>
-                  <td class="contentvalue">
-                    $Data{"ClassOptionStrg"}
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td class="contentfooter">
-              <input class="button" type="submit" value="$Text{"Select"}">
-            </td>
-          </tr>
-        </table>
-      </form>
-      <br>
-    </td>
-  </tr>
+    <tr>
+        <td class="mainhead">
+            $Env{"Box0"}$Text{"Search"}: $Text{"Config Item"} $Env{"Box1"}
+        </td>
+    </tr>
+    <tr>
+        <td class="mainbody" align="center">
+            <br>
+            <form action="$Env{"CGIHandle"}" method="get" name="configitemclass">
+                <input type="hidden" name="Action" value="$Env{"Action"}">
+                <input type="hidden" name="Subaction" value="Attribute">
+                <table width="800" border="0" cellspacing="0" cellpadding="3">
+                    <tr>
+                        <td class="contenthead">$Text{"Config Item"} $Text{"Class"}</td>
+                    </tr>
+                    <tr>
+                        <td class="contentbody">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="3">
+                                <tr>
+                                    <td width="20%" class="contentkey">
+                                        $Text{"Class"}:
+                                    </td>
+                                    <td class="contentvalue">
+                                        $Data{"ClassOptionStrg"}
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="contentfooter">
+                            <input class="button" type="submit" name="SubmitSelect" value="$Text{"Select"}">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <br>
+        </td>
+    </tr>
 </table>
 <!-- dtl:block:Class -->
 <!-- dtl:block:Attribute -->
 <table border="0" width="100%" cellspacing="0" cellpadding="3">
-  <tr>
-    <td class="mainhead">
-      $Env{"Box0"}$Text{"Search"}: $Text{"Config Item"} $Env{"Box1"}
-    </td>
-  </tr>
-  <tr>
-    <td class="menu">
-      <a href="$Env{"Baselink"}Action=$Env{"Action"}">$Text{"Back"}</a>
-    </td>
-  </tr>
-  <tr>
-    <td class="mainbody" align="center">
-      <br>
-      <form action="$Env{"CGIHandle"}" method="post" name="compose">
-        <input type="hidden" name="Action" value="AgentITSMConfigItemSearchResult">
-        <input type="hidden" name="ClassID" value="$Data{"ClassID"}">
-        <table width="800" border="0" cellspacing="0" cellpadding="3">
-          <tr>
-            <td class="contenthead">$QData{"Class"}</td>
-          </tr>
-          <tr>
-            <td class="contentbody">
-              <table width="100%" border="0" cellspacing="0" cellpadding="3">
-                <tr>
-                  <td width="20%" class="contentkey">$Text{"Number"}:</td>
-                  <td class="contentvalue"><input type="Text" name="Number" size="80" maxlength="250"></td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td class="contenthead">&nbsp;</td>
-          </tr>
-          <tr>
-            <td colspan="2" class="contentbody">
-              <table width="100%" border="0" cellspacing="0" cellpadding="3">
-                <tr>
-                  <td width="20%" class="contentkey">$Text{"Name"}:</td>
-                  <td class="contentvalue"><input type="Text" name="Name" size="80" maxlength="250"></td>
-                </tr>
-                <tr>
-                  <td width="20%" class="contentkey">$Text{"Deployment State"}:</td>
-                  <td class="contentvalue">$Data{"CurDeplStateOptionStrg"}</td>
-                </tr>
-                <tr>
-                  <td width="20%" class="contentkey">$Text{"Incident State"}:</td>
-                  <td class="contentvalue">$Data{"CurInciStateOptionStrg"}</td>
-                </tr>
+    <tr>
+        <td class="mainhead">
+            $Env{"Box0"}$Text{"Search"}: $Text{"Config Item"} $Env{"Box1"}
+        </td>
+    </tr>
+    <tr>
+        <td class="menu">
+            <a href="$Env{"Baselink"}Action=$Env{"Action"}">$Text{"Back"}</a>
+        </td>
+    </tr>
+    <tr>
+        <td class="mainbody" align="center">
+            <br>
+            <form action="$Env{"CGIHandle"}" method="post" name="compose">
+                <input type="hidden" name="Action" value="$Env{"Action"}">
+                <input type="hidden" name="Subaction" value="Attribute">
+                <input type="hidden" name="ClassID" value="$Data{"ClassID"}">
+                <table width="800" border="0" cellspacing="0" cellpadding="3">
+                    <tr>
+                        <td class="contenthead">$QData{"Class"}</td>
+                    </tr>
+                    <tr>
+                        <td class="contentbody">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="3">
+                                <tr>
+                                    <td width="20%" class="contentkey">$Text{"Number"}:</td>
+                                    <td class="contentvalue"><input type="Text" name="Number" size="80" maxlength="250"></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="contenthead">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="contentbody">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="3">
+                                <tr>
+                                    <td width="20%" class="contentkey">$Text{"Name"}:</td>
+                                    <td class="contentvalue"><input type="Text" name="Name" size="80" maxlength="250"></td>
+                                </tr>
+                                <tr>
+                                    <td width="20%" class="contentkey">$Text{"Deployment State"}:</td>
+                                    <td class="contentvalue">$Data{"CurDeplStateOptionStrg"}</td>
+                                </tr>
+                                <tr>
+                                    <td width="20%" class="contentkey">$Text{"Incident State"}:</td>
+                                    <td class="contentvalue">$Data{"CurInciStateOptionStrg"}</td>
+                                </tr>
 <!-- dtl:block:AttributeRow -->
-                <tr>
-                  <td width="20%" class="contentkey">
-                    <div title="$Text{"$QData{"Description"}"}">$Text{"$QData{"Name"}"}:</div>
-                  </td>
-                  <td class="contentvalue">$Data{"InputString"}</td>
-                </tr>
+                                <tr>
+                                    <td width="20%" class="contentkey">
+                                        <div title="$Text{"$QData{"Description"}"}">$Text{"$QData{"Name"}"}:</div>
+                                    </td>
+                                    <td class="contentvalue">$Data{"InputString"}</td>
+                                </tr>
 <!-- dtl:block:AttributeRow -->
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td class="contenthead">&nbsp;</td>
-          </tr>
-          <tr>
-            <td class="contentbody">
-              <table width="100%" border="0" cellspacing="0" cellpadding="3">
-                <tr>
-                  <td width="20%" class="contentkey">$Text{"Also search in previous versions?"}</td>
-                  <td class="contentvalue">$Data{"PreviousVersionOptionStrg"}</td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td class="contentfooter">
-              <input class="button" type="submit" value="$Text{"Search"}">
-            </td>
-          </tr>
-        </table>
-      </form>
-      <br>
-    </td>
-  </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="contenthead">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td class="contentbody">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="3">
+                                <tr>
+                                    <td width="20%" class="contentkey">$Text{"Also search in previous versions?"}</td>
+                                    <td class="contentvalue">$Data{"PreviousVersionOptionStrg"}</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="contentfooter">
+                            <input class="button" type="submit" name="SubmitSearch" value="$Text{"Search"}">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <br>
+        </td>
+    </tr>
 </table>
 <!-- dtl:block:Attribute -->
+<!-- dtl:block:Result -->
+<table border="0" width="100%" cellspacing="0" cellpadding="3">
+    <tr>
+        <td class="mainhead">
+            $Env{"Box0"}$Text{"Overview"}: $Text{"Config Item"} $Env{"Box1"}
+        </td>
+    </tr>
+    <tr>
+        <td class="menu">
+            <a href="javascript:history.back()">
+            $Text{"Change search options"}
+            </a>
+            - $Text{"Total hits"}: <b>$Data{"TotalHits"}</b>
+        </td>
+    </tr>
+    <tr>
+        <td class="mainhead" align="center">
+            $Env{"Box0"} $Text{"Class"}: $QData{"Class"} $Env{"Box1"}
+        </td>
+    </tr>
+    <tr>
+        <td class="mainbody" align="center">
+            <br>
+            <table border="0" width="800" cellspacing="0" cellpadding="3">
+                <tr class="contenthead">
+                    <td class="contentkey" width="20">&nbsp;</td>
+                    <td class="contentkey">$Text{"Number"}</td>
+                    <td class="contentkey">$Text{"Name"}</td>
+                    <td class="contentkey">$Text{"Deployment State"}</td>
+                    <td class="contentkey">$Text{"Last Change"}</td>
+                </tr>
+<!-- dtl:block:ResultRow -->
+                <tr class="contentbody">
+                    <td class="$QData{"CssClass"}" align="right">
+                        <img border="0" src="$Config{"Frontend::ImagePath"}$QData{"CurInciSignal"}.png" title="$Text{"$QData{"CurInciState"}"}" alt="$Text{"$QData{"CurInciState"}"}">
+                    </td>
+                    <td class="$QData{"CssClass"}">
+                        <a href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom&ConfigItemID=$QData{"ConfigItemID"}">$QData{"Number"}</a>
+                    </td>
+                    <td class="$QData{"CssClass"}">
+                        $QData{"Name","40"}
+                    </td>
+                    <td class="$QData{"CssClass"}">
+                        $Text{"$QData{"CurDeplState"}"}
+                    </td>
+                    <td class="$QData{"CssClass"}">
+                        $TimeLong{"$QData{"CreateTime"}"}
+                    </td>
+                </tr>
+<!-- dtl:block:ResultRow -->
+                <tr class="contentfooter">
+                    <td colspan="5">&nbsp;</td>
+                </tr>
+            </table>
+            <br>
+        </td>
+    </tr>
+</table>
+<!-- dtl:block:Result -->
