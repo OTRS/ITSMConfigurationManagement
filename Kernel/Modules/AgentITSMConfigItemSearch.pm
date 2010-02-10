@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemSearch.pm - the OTRS::ITSM config item search module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.pm,v 1.8 2010-02-10 15:39:27 bes Exp $
+# $Id: AgentITSMConfigItemSearch.pm,v 1.9 2010-02-10 16:28:32 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.8 $) [1];
+$VERSION = qw($Revision: 1.9 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -335,14 +335,16 @@ sub _XMLSearchFormOutput {
             $InputKey = $Param{Prefix} . '::' . $InputKey;
             $Name     = $Param{PrefixName} . '::' . $Name;
         }
+        my $Value = $Self->{ParamObject}->GetParam( Param => $InputKey );
 
         # output attribute, if marked as searchable
         if ( $Item->{Searchable} ) {
 
             # create search input element
             my $InputString = $Self->{LayoutObject}->ITSMConfigItemSearchInputCreate(
-                Key  => $InputKey,
-                Item => $Item,
+                Key   => $InputKey,
+                Value => $Value,
+                Item  => $Item,
             );
 
             # output attribute row

@@ -1,8 +1,8 @@
 # --
 # Kernel/Output/HTML/ITSMConfigItemLayoutText.pm - layout backend module
-# Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutText.pm,v 1.5 2009-10-08 10:21:07 ub Exp $
+# $Id: ITSMConfigItemLayoutText.pm,v 1.6 2010-02-10 16:28:32 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.5 $) [1];
+$VERSION = qw($Revision: 1.6 $) [1];
 
 =head1 NAME
 
@@ -225,7 +225,7 @@ sub SearchFormDataGet {
 
 =item SearchInputCreate()
 
-create a serch input string
+create a search input string
 
     my $Value = $BackendObject->SearchInputCreate(
         Key => 'Item::1::Node::3',
@@ -238,15 +238,22 @@ sub SearchInputCreate {
     my ( $Self, %Param ) = @_;
 
     # check needed stuff
-    if ( !$Param{Key} ) {
-        $Self->{LogObject}->Log(
-            Priority => 'error',
-            Message  => 'Need Key!'
-        );
-        return;
+    for my $Argument (qw(Key Item)) {
+        if ( !$Param{$Argument} ) {
+            $Self->{LogObject}->Log(
+                Priority => 'error',
+                Message  => "Need $Argument!"
+            );
+            return;
+        }
     }
 
-    my $String = "<input type=\"Text\" name=\"$Param{Key}\" size=\"60\">";
+    my $Value = $Param{Value};
+    if ( !defined $Value ) {
+        $Value = '';
+    }
+
+    my $String = qq{<input type="Text" name="$Param{Key}" value="$Value" size="60">};
 
     return $String;
 }
@@ -267,6 +274,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.5 $ $Date: 2009-10-08 10:21:07 $
+$Revision: 1.6 $ $Date: 2010-02-10 16:28:32 $
 
 =cut
