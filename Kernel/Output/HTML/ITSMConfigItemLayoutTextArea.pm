@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/ITSMConfigItemLayoutTextArea.pm - layout backend module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutTextArea.pm,v 1.5 2010-02-10 16:28:32 bes Exp $
+# $Id: ITSMConfigItemLayoutTextArea.pm,v 1.6 2010-02-10 16:53:47 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.5 $) [1];
+$VERSION = qw($Revision: 1.6 $) [1];
 
 =head1 NAME
 
@@ -221,15 +221,18 @@ sub SearchInputCreate {
     my ( $Self, %Param ) = @_;
 
     # check needed stuff
-    if ( !$Param{Key} ) {
-        $Self->{LogObject}->Log(
-            Priority => 'error',
-            Message  => 'Need Key!'
-        );
-        return;
+    for my $Argument (qw(Key Item)) {
+        if ( !$Param{$Argument} ) {
+            $Self->{LogObject}->Log(
+                Priority => 'error',
+                Message  => "Need $Argument!"
+            );
+            return;
+        }
     }
 
-    my $Value = $Param{Value};
+    my $Values = $Self->SearchFormDataGet(%Param);
+    my $Value  = $Values->[0];
     if ( !defined $Value ) {
         $Value = '';
     }
@@ -255,6 +258,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.5 $ $Date: 2010-02-10 16:28:32 $
+$Revision: 1.6 $ $Date: 2010-02-10 16:53:47 $
 
 =cut

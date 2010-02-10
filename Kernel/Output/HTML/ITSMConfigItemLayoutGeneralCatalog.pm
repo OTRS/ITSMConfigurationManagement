@@ -1,8 +1,8 @@
 # --
 # Kernel/Output/HTML/ITSMConfigItemLayoutGeneralCatalog.pm - layout backend module
-# Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutGeneralCatalog.pm,v 1.4 2009-08-18 22:18:19 mh Exp $
+# $Id: ITSMConfigItemLayoutGeneralCatalog.pm,v 1.5 2010-02-10 16:53:47 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -17,7 +17,7 @@ use warnings;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.4 $) [1];
+$VERSION = qw($Revision: 1.5 $) [1];
 
 =head1 NAME
 
@@ -236,6 +236,8 @@ sub SearchInputCreate {
         }
     }
 
+    my $Values = $Self->SearchFormDataGet(%Param);
+
     # translation on or off
     my $Translation = 0;
     if ( $Param{Item}->{Input}->{Translation} ) {
@@ -254,6 +256,7 @@ sub SearchInputCreate {
         Size        => 5,
         Multiple    => 1,
         Translation => $Translation,
+        SelectedID  => $Values,
     );
 
     return $String;
@@ -275,6 +278,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.4 $ $Date: 2009-08-18 22:18:19 $
+$Revision: 1.5 $ $Date: 2010-02-10 16:53:47 $
 
 =cut
