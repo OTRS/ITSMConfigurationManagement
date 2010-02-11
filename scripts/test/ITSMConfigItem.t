@@ -1,8 +1,8 @@
 # --
 # ITSMConfigItem.t - config item tests
-# Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.t,v 1.5 2009-09-07 09:06:45 reb Exp $
+# $Id: ITSMConfigItem.t,v 1.6 2010-02-11 17:14:51 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -1068,6 +1068,98 @@ my $ConfigItemTests = [
         },
     },
 
+    # add config item only for later search tests, including XMLData
+    {
+        SourceData => {
+            ConfigItemAdd => {
+                Number  => $ConfigItemNumbers[52],
+                ClassID => $ConfigItemClassIDs[2],
+                UserID  => $UserIDs[2],
+            },
+            VersionAdd => [
+                {
+                    Name         => 'UnitTest - Class 3 ConfigItem 3 Version 1',
+                    DefinitionID => $ConfigItemDefinitionIDs[2],
+                    DeplStateID  => $DeplStateListReverse{Production},
+                    InciStateID  => $InciStateListReverse{Incident},
+                    UserID       => $UserIDs[2],
+                    XMLData      => [
+                        undef,
+                        {
+                            Version => [
+                                undef,
+                                {
+                                    Customer1 => [
+                                        undef,
+                                        {
+                                            Content => 'dummy_customer_for_unitest'
+                                        }
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        },
+        ReferenceData => {
+            ConfigItemGet => {
+                Number           => $ConfigItemNumbers[52],
+                ClassID          => $ConfigItemClassIDs[2],
+                Class            => $ClassList->{ $ConfigItemClassIDs[2] },
+                CurDeplStateID   => $DeplStateListReverse{Production},
+                CurDeplState     => 'Production',
+                CurDeplStateType => 'productive',
+                CurInciStateID   => $InciStateListReverse{Incident},
+                CurInciState     => 'Incident',
+                CurInciStateType => 'incident',
+                CreateBy         => $UserIDs[2],
+                ChangeBy         => $UserIDs[2],
+            },
+            VersionGet => [
+                {
+                    Number           => $ConfigItemNumbers[52],
+                    ClassID          => $ConfigItemClassIDs[2],
+                    Class            => $ClassList->{ $ConfigItemClassIDs[2] },
+                    Name             => 'UnitTest - Class 3 ConfigItem 3 Version 1',
+                    DefinitionID     => $ConfigItemDefinitionIDs[2],
+                    DeplStateID      => $DeplStateListReverse{Production},
+                    DeplState        => 'Production',
+                    DeplStateType    => 'productive',
+                    CurDeplStateID   => $DeplStateListReverse{Production},
+                    CurDeplState     => 'Production',
+                    CurDeplStateType => 'productive',
+                    InciStateID      => $InciStateListReverse{Incident},
+                    InciState        => 'Incident',
+                    InciStateType    => 'incident',
+                    CurInciStateID   => $InciStateListReverse{Incident},
+                    CurInciState     => 'Incident',
+                    CurInciStateType => 'incident',
+                    XMLData          => [
+                        undef,
+                        {
+                            'TagKey'  => '[1]',
+                            'Version' => [
+                                undef,
+                                {
+                                    'Customer1' => [
+                                        undef,
+                                        {
+                                            'Content' => 'dummy_customer_for_unitest',
+                                            'TagKey'  => '[1]{\'Version\'}[1]{\'Customer1\'}[1]',
+                                        }
+                                    ],
+                                    'TagKey' => '[1]{\'Version\'}[1]'
+                                }
+                                ]
+                        }
+                    ],
+                    CreateBy => $UserIDs[2],
+                },
+            ],
+        },
+    },
+
     # add config item only for later search tests
     {
         SourceData => {
@@ -1459,7 +1551,7 @@ for my $Test ( @{$ConfigItemTests} ) {
     my $ConfigItemData;
     if ( $Test->{ReferenceData} && $Test->{ReferenceData}->{ConfigItemGet} ) {
 
-        # get the confi item data
+        # get the config item data
         $ConfigItemData = $Self->{ConfigItemObject}->ConfigItemGet(
             ConfigItemID => $ConfigItemID,
         );
@@ -1641,7 +1733,7 @@ continue {
 # define general config item search tests
 # ------------------------------------------------------------ #
 
-my $ConfigItemSearchTests = [
+my @ConfigItemSearchTests = (
 
     # search ALL config items in the two test classes
     {
@@ -1652,6 +1744,7 @@ my $ConfigItemSearchTests = [
         ReferenceData => [
             $ConfigItemNumbers[50],
             $ConfigItemNumbers[51],
+            $ConfigItemNumbers[52],
             $ConfigItemNumbers[60],
         ],
     },
@@ -1697,6 +1790,7 @@ my $ConfigItemSearchTests = [
         },
         ReferenceData => [
             $ConfigItemNumbers[50],
+            $ConfigItemNumbers[52],
             $ConfigItemNumbers[60],
         ],
     },
@@ -1726,6 +1820,7 @@ my $ConfigItemSearchTests = [
         ReferenceData => [
             $ConfigItemNumbers[50],
             $ConfigItemNumbers[51],
+            $ConfigItemNumbers[52],
             $ConfigItemNumbers[60],
         ],
     },
@@ -1752,6 +1847,7 @@ my $ConfigItemSearchTests = [
         ReferenceData => [
             $ConfigItemNumbers[50],
             $ConfigItemNumbers[51],
+            $ConfigItemNumbers[52],
         ],
     },
 
@@ -1768,6 +1864,7 @@ my $ConfigItemSearchTests = [
         ReferenceData => [
             $ConfigItemNumbers[50],
             $ConfigItemNumbers[51],
+            $ConfigItemNumbers[52],
             $ConfigItemNumbers[60],
         ],
     },
@@ -1783,6 +1880,7 @@ my $ConfigItemSearchTests = [
             $ConfigItemNumbers[51],
             $ConfigItemNumbers[60],
             $ConfigItemNumbers[50],
+            $ConfigItemNumbers[52],
         ],
     },
 
@@ -1796,6 +1894,7 @@ my $ConfigItemSearchTests = [
         ReferenceData => [
             $ConfigItemNumbers[50],
             $ConfigItemNumbers[51],
+            $ConfigItemNumbers[52],
             $ConfigItemNumbers[60],
         ],
     },
@@ -1810,7 +1909,7 @@ my $ConfigItemSearchTests = [
         ReferenceData => [
             $ConfigItemNumbers[50],
             $ConfigItemNumbers[51],
-            $ConfigItemNumbers[60],
+            $ConfigItemNumbers[52],
         ],
     },
 
@@ -1849,6 +1948,7 @@ my $ConfigItemSearchTests = [
         ReferenceData => [
             $ConfigItemNumbers[50],
             $ConfigItemNumbers[51],
+            $ConfigItemNumbers[52],
             $ConfigItemNumbers[60],
         ],
     },
@@ -1861,6 +1961,7 @@ my $ConfigItemSearchTests = [
         },
         ReferenceData => [
             $ConfigItemNumbers[50],
+            $ConfigItemNumbers[52],
         ],
     },
 
@@ -1873,6 +1974,7 @@ my $ConfigItemSearchTests = [
         },
         ReferenceData => [
             $ConfigItemNumbers[50],
+            $ConfigItemNumbers[52],
             $ConfigItemNumbers[60],
         ],
     },
@@ -1885,6 +1987,7 @@ my $ConfigItemSearchTests = [
         },
         ReferenceData => [
             $ConfigItemNumbers[50],
+            $ConfigItemNumbers[52],
         ],
     },
 
@@ -1920,6 +2023,7 @@ my $ConfigItemSearchTests = [
         },
         ReferenceData => [
             $ConfigItemNumbers[50],
+            $ConfigItemNumbers[52],
         ],
     },
 
@@ -1932,6 +2036,7 @@ my $ConfigItemSearchTests = [
         ReferenceData => [
             $ConfigItemNumbers[50],
             $ConfigItemNumbers[51],
+            $ConfigItemNumbers[52],
             $ConfigItemNumbers[60],
         ],
     },
@@ -1948,6 +2053,18 @@ my $ConfigItemSearchTests = [
         ],
     },
 
+    # test the name param
+    {
+        Function   => ['VersionSearch'],
+        SearchData => {
+            Name => 'UnitTest - Class 3 ConfigItem 3 Version 1',
+            ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
+        },
+        ReferenceData => [
+            $ConfigItemNumbers[52],
+        ],
+    },
+
     # test the name param with an wildcard
     {
         Function   => ['VersionSearch'],
@@ -1957,6 +2074,7 @@ my $ConfigItemSearchTests = [
         },
         ReferenceData => [
             $ConfigItemNumbers[50],
+            $ConfigItemNumbers[52],
             $ConfigItemNumbers[60],
         ],
     },
@@ -1972,6 +2090,7 @@ my $ConfigItemSearchTests = [
         ReferenceData => [
             $ConfigItemNumbers[50],
             $ConfigItemNumbers[51],
+            $ConfigItemNumbers[52],
             $ConfigItemNumbers[60],
         ],
     },
@@ -1986,6 +2105,7 @@ my $ConfigItemSearchTests = [
         ReferenceData => [
             $ConfigItemNumbers[50],
             $ConfigItemNumbers[51],
+            $ConfigItemNumbers[52],
         ],
     },
 
@@ -2033,6 +2153,7 @@ my $ConfigItemSearchTests = [
         ReferenceData => [
             $ConfigItemNumbers[50],
             $ConfigItemNumbers[51],
+            $ConfigItemNumbers[52],
             $ConfigItemNumbers[60],
         ],
     },
@@ -2047,7 +2168,7 @@ my $ConfigItemSearchTests = [
         ReferenceData => [
             $ConfigItemNumbers[50],
             $ConfigItemNumbers[51],
-            $ConfigItemNumbers[60],
+            $ConfigItemNumbers[52],
         ],
     },
 
@@ -2089,6 +2210,7 @@ my $ConfigItemSearchTests = [
         ReferenceData => [
             $ConfigItemNumbers[50],
             $ConfigItemNumbers[51],
+            $ConfigItemNumbers[52],
             $ConfigItemNumbers[60],
         ],
     },
@@ -2102,6 +2224,7 @@ my $ConfigItemSearchTests = [
         },
         ReferenceData => [
             $ConfigItemNumbers[50],
+            $ConfigItemNumbers[52],
             $ConfigItemNumbers[60],
         ],
     },
@@ -2132,6 +2255,7 @@ my $ConfigItemSearchTests = [
         ReferenceData => [
             $ConfigItemNumbers[50],
             $ConfigItemNumbers[51],
+            $ConfigItemNumbers[52],
             $ConfigItemNumbers[60],
         ],
     },
@@ -2147,6 +2271,7 @@ my $ConfigItemSearchTests = [
         ReferenceData => [
             $ConfigItemNumbers[50],
             $ConfigItemNumbers[51],
+            $ConfigItemNumbers[52],
             $ConfigItemNumbers[60],
         ],
     },
@@ -2177,6 +2302,7 @@ my $ConfigItemSearchTests = [
         ReferenceData => [
             $ConfigItemNumbers[50],
             $ConfigItemNumbers[51],
+            $ConfigItemNumbers[52],
             $ConfigItemNumbers[60],
         ],
     },
@@ -2203,6 +2329,7 @@ my $ConfigItemSearchTests = [
         ReferenceData => [
             $ConfigItemNumbers[50],
             $ConfigItemNumbers[51],
+            $ConfigItemNumbers[52],
         ],
     },
 
@@ -2220,6 +2347,7 @@ my $ConfigItemSearchTests = [
         ReferenceData => [
             $ConfigItemNumbers[50],
             $ConfigItemNumbers[51],
+            $ConfigItemNumbers[52],
             $ConfigItemNumbers[60],
         ],
     },
@@ -2249,23 +2377,46 @@ my $ConfigItemSearchTests = [
         ReferenceData => [
             $ConfigItemNumbers[50],
             $ConfigItemNumbers[51],
+            $ConfigItemNumbers[52],
         ],
     },
-];
+
+    # test ConfigItemSearchExtended() with 'What'
+    {
+        Function   => ['ConfigItemSearchExtended'],
+        SearchData => {
+            ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
+            ChangeBy => [ $UserIDs[2] ],
+            What     => [
+                {
+                    "[1]{'Version'}[1]{'Customer1'}[1]{'Content'}" => 'dummy_customer_for_unitest',
+                },
+                ]
+
+        },
+        ReferenceData => [
+            $ConfigItemNumbers[52],
+        ],
+    },
+
+);
 
 # ------------------------------------------------------------ #
 # run general config item search tests
 # ------------------------------------------------------------ #
 
+# $SearchTestCount provides grouping of test cases
+my $SearchTestCount = 1;
+
 TEST:
-for my $Test ( @{$ConfigItemSearchTests} ) {
+for my $Test (@ConfigItemSearchTests) {
 
     # check SearchData attribute
     if ( !$Test->{SearchData} || ref $Test->{SearchData} ne 'HASH' ) {
 
         $Self->True(
             0,
-            "Test $TestCount: No SearchData found for this test.",
+            "SearchTest $SearchTestCount: No SearchData found for this test.",
         );
 
         next TEST;
@@ -2287,7 +2438,7 @@ for my $Test ( @{$ConfigItemSearchTests} ) {
 
             $Self->True(
                 $ConfigItemList && ref $ConfigItemList eq 'ARRAY',
-                "Test $TestCount: $Function() - List is an array reference.",
+                "SearchTest $SearchTestCount: $Function() - List is an array reference.",
             );
 
             next TEST if !$ConfigItemList;
@@ -2296,17 +2447,17 @@ for my $Test ( @{$ConfigItemSearchTests} ) {
 
             $Self->False(
                 $ConfigItemList,
-                "Test $TestCount: $Function() - Return false.",
+                "SearchTest $SearchTestCount: $Function() - Return false.",
             );
 
             next TEST if !$ConfigItemList;
         }
 
-        # check number of founded config items
+        # check number of found config items
         $Self->Is(
             scalar @{$ConfigItemList},
             scalar @{ $Test->{ReferenceData} },
-            "Test $TestCount: $Function() - correct number of founded config items",
+            "SearchTest $SearchTestCount: $Function() - correct number of found config items",
         );
 
         my @ReferenceList;
@@ -2342,9 +2493,12 @@ for my $Test ( @{$ConfigItemSearchTests} ) {
         $Self->Is(
             $ConfigItemString,
             $ReferenceString,
-            "Test $TestCount: $Function() - List",
+            "SearchTest $SearchTestCount: $Function() - List",
         );
     }
+}
+continue {
+    $SearchTestCount++;
 }
 
 # ------------------------------------------------------------ #
