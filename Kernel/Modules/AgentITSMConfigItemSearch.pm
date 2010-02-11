@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemSearch.pm - the OTRS::ITSM config item search module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.pm,v 1.10 2010-02-10 16:53:47 bes Exp $
+# $Id: AgentITSMConfigItemSearch.pm,v 1.11 2010-02-11 09:51:55 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.10 $) [1];
+$VERSION = qw($Revision: 1.11 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -252,7 +252,7 @@ sub Run {
                     0 => 'No',
                     1 => 'Yes',
                 },
-                SelectedID => 0,
+                SelectedID => $GetParam{PreviousVersionSearch} || '0',
             );
 
             # output attribute block
