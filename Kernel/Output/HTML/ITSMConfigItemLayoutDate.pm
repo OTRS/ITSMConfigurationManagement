@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/ITSMConfigItemLayoutDate.pm - layout backend module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutDate.pm,v 1.4 2010-02-11 09:35:56 bes Exp $
+# $Id: ITSMConfigItemLayoutDate.pm,v 1.5 2010-02-11 15:26:11 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.4 $) [1];
+$VERSION = qw($Revision: 1.5 $) [1];
 
 =head1 NAME
 
@@ -113,11 +113,7 @@ sub FormDataGet {
     my $Year  = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::Year' );
 
     if ( $Day && $Month && $Year ) {
-        $Day   = sprintf( "%02d", $Day );
-        $Month = sprintf( "%02d", $Month );
-        $Year  = sprintf( "%02d", $Year );
-
-        $FormData{Value} = $Year . '-' . $Month . '-' . $Day;
+        $FormData{Value} = sprintf '%02d-%02d-%02d', $Year, $Month, $Day;
     }
 
     # set invalid param
@@ -210,11 +206,7 @@ sub SearchFormDataGet {
 
     my $Values = [];
     if ( $Used && $Day && $Month && $Year ) {
-        $Day   = sprintf '%02d', $Day;
-        $Month = sprintf '%02d', $Month;
-        $Year  = sprintf '%02d', $Year;
-
-        my $Date = $Year . '-' . $Month . '-' . $Day;
+        my $Date = sprintf '%02d-%02d-%02d', $Year, $Month, $Day;
         push @{$Values}, $Date;
     }
 
@@ -284,6 +276,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.4 $ $Date: 2010-02-11 09:35:56 $
+$Revision: 1.5 $ $Date: 2010-02-11 15:26:11 $
 
 =cut

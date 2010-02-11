@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/ITSMConfigItemLayoutDateTime.pm - layout backend module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutDateTime.pm,v 1.4 2010-02-11 09:45:25 bes Exp $
+# $Id: ITSMConfigItemLayoutDateTime.pm,v 1.5 2010-02-11 15:26:11 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.4 $) [1];
+$VERSION = qw($Revision: 1.5 $) [1];
 
 =head1 NAME
 
@@ -111,17 +111,11 @@ sub FormDataGet {
     my $Day    = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::Day' );
     my $Month  = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::Month' );
     my $Year   = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::Year' );
-    my $Hour   = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::Hour' );
-    my $Minute = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::Minute' );
+    my $Hour   = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::Hour' ) || 0;
+    my $Minute = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::Minute' ) || 0;
 
     if ( $Day && $Month && $Year ) {
-        $Day    = sprintf '%02d', $Day;
-        $Month  = sprintf '%02d', $Month;
-        $Year   = sprintf '%02d', $Year;
-        $Hour   = sprintf '%02d', $Hour;
-        $Minute = sprintf '%02d', $Minute;
-
-        $FormData{Value} = $Year . '-' . $Month . '-' . $Day . ' ' . $Hour . ':' . $Minute;
+        $FormData{Value} = sprintf '%02d-%02d-%02d %02d:%02d', $Year, $Month, $Day, $Hour, $Minute;
     }
 
     # set invalid param
@@ -213,18 +207,12 @@ sub SearchFormDataGet {
     my $Day    = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::Day' );
     my $Month  = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::Month' );
     my $Year   = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::Year' );
-    my $Hour   = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::Hour' );
-    my $Minute = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::Minute' );
+    my $Hour   = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::Hour' ) || 0;
+    my $Minute = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::Minute' ) || 0;
 
     my $Values = [];
     if ( $Used && $Day && $Month && $Year ) {
-        $Day    = sprintf '%02d', $Day;
-        $Month  = sprintf '%02d', $Month;
-        $Year   = sprintf '%02d', $Year;
-        $Hour   = sprintf '%02d', $Hour;
-        $Minute = sprintf '%02d', $Minute;
-
-        my $Date = $Year . '-' . $Month . '-' . $Day . ' ' . $Hour . ':' . $Minute;
+        my $Date = sprintf '%02d-%02d-%02d %02d:%02d', $Year, $Month, $Day, $Hour, $Minute;
         push @{$Values}, $Date;
     }
 
@@ -296,6 +284,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.4 $ $Date: 2010-02-11 09:45:25 $
+$Revision: 1.5 $ $Date: 2010-02-11 15:26:11 $
 
 =cut
