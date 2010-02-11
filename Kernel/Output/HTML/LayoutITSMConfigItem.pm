@@ -1,8 +1,8 @@
 # --
 # Kernel/Output/HTML/LayoutITSMConfigItem.pm - provides generic HTML output for ITSMConfigItem
-# Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: LayoutITSMConfigItem.pm,v 1.5 2009-10-13 15:45:28 reb Exp $
+# $Id: LayoutITSMConfigItem.pm,v 1.6 2010-02-11 21:51:33 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.5 $) [1];
+$VERSION = qw($Revision: 1.6 $) [1];
 
 =item ITSMConfigItemOutputStringCreate()
 
@@ -23,7 +23,8 @@ returns a output string
 
     my $String = $LayoutObject->ITSMConfigItemOutputStringCreate(
         Value => 11,       # (optional)
-        Item => $ItemRef,
+        Item  => $ItemRef,
+        Print => 1,        # (optional, default 0)
     );
 
 =cut
