@@ -1,8 +1,8 @@
 # --
 # Kernel/Output/HTML/ITSMConfigItemLayoutInteger.pm - layout backend module
-# Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutInteger.pm,v 1.4 2009-09-03 13:51:16 ub Exp $
+# $Id: ITSMConfigItemLayoutInteger.pm,v 1.5 2010-02-11 09:19:59 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.4 $) [1];
+$VERSION = qw($Revision: 1.5 $) [1];
 
 =head1 NAME
 
@@ -227,36 +227,35 @@ sub SearchInputCreate {
         }
     }
 
-    # set min, max and default
+    # set min, max
     my $ValueMin = $Param{Item}->{Input}->{ValueMin} || 1;
     my $ValueMax = $Param{Item}->{Input}->{ValueMax} || 1;
     if ( $ValueMin > $ValueMax ) {
         $ValueMin = $ValueMax;
     }
-    if (
-        $Param{Item}->{Input}->{ValueDefault}
-        && (
-            $Param{Item}->{Input}->{ValueDefault} < $ValueMin
-            || $Param{Item}->{Input}->{ValueDefault} > $ValueMax
-        )
-        )
-    {
-        $Param{Item}->{Input}->{ValueDefault} = '';
+
+    # set preselected value, either from previous selection or the default
+    my $Values = $Self->SearchFormDataGet(%Param);
+    my $Value  = $Values->[0];
+    if ( !defined $Value ) {
+        $Value = $Param{Item}->{Input}->{ValueDefault};
+    }
+
+    # check whether the preselected value is within the valid range
+    if ( defined $Value && ( $Value < $ValueMin || $Value > $ValueMax ) ) {
+        $Value = '';
     }
 
     # create data array
-    my $IntegerList = [];
-    for my $Counter ( $ValueMin .. $ValueMax ) {
-        push @{$IntegerList}, $Counter;
-    }
+    my @IntegerList = ( $ValueMin .. $ValueMax );
 
     # generate string
     my $String = $Self->{LayoutObject}->BuildSelection(
-        Data        => $IntegerList,
+        Data        => \@IntegerList,
         Name        => $Param{Key},
         Size        => 5,
         Translation => 0,
-        SelectedID  => $Param{Value} || $Param{Item}->{Input}->{ValueDefault} || '',
+        SelectedID  => $Param{Value} || $Value || '',
         Multiple    => 1,
     );
 
@@ -279,6 +278,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.4 $ $Date: 2009-09-03 13:51:16 $
+$Revision: 1.5 $ $Date: 2010-02-11 09:19:59 $
 
 =cut
