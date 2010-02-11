@@ -1,8 +1,8 @@
 # --
 # Kernel/Output/HTML/ITSMConfigItemLayoutDateTime.pm - layout backend module
-# Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutDateTime.pm,v 1.3 2009-07-21 00:44:57 ub Exp $
+# $Id: ITSMConfigItemLayoutDateTime.pm,v 1.4 2010-02-11 09:45:25 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.3 $) [1];
+$VERSION = qw($Revision: 1.4 $) [1];
 
 =head1 NAME
 
@@ -115,11 +115,11 @@ sub FormDataGet {
     my $Minute = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::Minute' );
 
     if ( $Day && $Month && $Year ) {
-        $Day    = sprintf( "%02d", $Day );
-        $Month  = sprintf( "%02d", $Month );
-        $Year   = sprintf( "%02d", $Year );
-        $Hour   = sprintf( "%02d", $Hour );
-        $Minute = sprintf( "%02d", $Minute );
+        $Day    = sprintf '%02d', $Day;
+        $Month  = sprintf '%02d', $Month;
+        $Year   = sprintf '%02d', $Year;
+        $Hour   = sprintf '%02d', $Hour;
+        $Minute = sprintf '%02d', $Minute;
 
         $FormData{Value} = $Year . '-' . $Month . '-' . $Day . ' ' . $Hour . ':' . $Minute;
     }
@@ -218,11 +218,11 @@ sub SearchFormDataGet {
 
     my $Values = [];
     if ( $Used && $Day && $Month && $Year ) {
-        $Day    = sprintf( "%02d", $Day );
-        $Month  = sprintf( "%02d", $Month );
-        $Year   = sprintf( "%02d", $Year );
-        $Hour   = sprintf( "%02d", $Hour );
-        $Minute = sprintf( "%02d", $Minute );
+        $Day    = sprintf '%02d', $Day;
+        $Month  = sprintf '%02d', $Month;
+        $Year   = sprintf '%02d', $Year;
+        $Hour   = sprintf '%02d', $Hour;
+        $Minute = sprintf '%02d', $Minute;
 
         my $Date = $Year . '-' . $Month . '-' . $Day . ' ' . $Hour . ':' . $Minute;
         push @{$Values}, $Date;
@@ -256,11 +256,21 @@ sub SearchInputCreate {
         }
     }
 
+    # just for convenience
+    my $Key = $Param{Key};
+
+    # collect arguments for BuildDateSelection()
     my %Values;
-    $Values{ $Param{Key} . '::Optional' } = 1;
+    $Values{ $Key . '::Optional' } = 1;
+    $Values{ $Key . '::Used' }     = $Self->{ParamObject}->GetParam( Param => $Key . '::Used' );
+    $Values{ $Key . '::Day' }      = $Self->{ParamObject}->GetParam( Param => $Key . '::Day' );
+    $Values{ $Key . '::Month' }    = $Self->{ParamObject}->GetParam( Param => $Key . '::Month' );
+    $Values{ $Key . '::Year' }     = $Self->{ParamObject}->GetParam( Param => $Key . '::Year' );
+    $Values{ $Key . '::Hour' }     = $Self->{ParamObject}->GetParam( Param => $Key . '::Hour' );
+    $Values{ $Key . '::Minute' }   = $Self->{ParamObject}->GetParam( Param => $Key . '::Minute' );
 
     my $String = $Self->{LayoutObject}->BuildDateSelection(
-        Prefix           => $Param{Key} . '::',
+        Prefix           => $Key . '::',
         Format           => 'DateInputFormatLong',
         YearPeriodPast   => 10,
         YearPeriodFuture => 10,
@@ -286,6 +296,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.3 $ $Date: 2009-07-21 00:44:57 $
+$Revision: 1.4 $ $Date: 2010-02-11 09:45:25 $
 
 =cut
