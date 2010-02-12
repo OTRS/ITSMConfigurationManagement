@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem.pm - all config item function
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.23 2010-02-12 08:04:57 bes Exp $
+# $Id: ITSMConfigItem.pm,v 1.24 2010-02-12 11:26:21 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -28,7 +28,7 @@ use Kernel::System::User;
 use Kernel::System::XML;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.23 $) [1];
+$VERSION = qw($Revision: 1.24 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',
@@ -493,13 +493,9 @@ sub ConfigItemDelete {
         UserID       => $Param{UserID},
     );
 
-    # delete config item
-    my $Success = $Self->{DBObject}->Do(
-        SQL  => 'DELETE FROM configitem WHERE id = ?',
-        Bind => [ \$Param{ConfigItemID} ],
-    );
-
     # trigger ConfigItemDelete event
+    # this must be done before deleting the config item from the database,
+    # because of a foreign key constraint in the configitem_history table
     $Self->EventHandler(
         Event => 'ConfigItemDelete',
         Data  => {
@@ -507,6 +503,12 @@ sub ConfigItemDelete {
             Comment      => $Param{ConfigItemID},
         },
         UserID => $Param{UserID},
+    );
+
+    # delete config item
+    my $Success = $Self->{DBObject}->Do(
+        SQL  => 'DELETE FROM configitem WHERE id = ?',
+        Bind => [ \$Param{ConfigItemID} ],
     );
 
     return $Success;
@@ -1168,6 +1170,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.23 $ $Date: 2010-02-12 08:04:57 $
+$Revision: 1.24 $ $Date: 2010-02-12 11:26:21 $
 
 =cut
