@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem.pm - all config item function
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.22 2010-02-11 15:24:18 bes Exp $
+# $Id: ITSMConfigItem.pm,v 1.23 2010-02-12 08:04:57 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -28,7 +28,7 @@ use Kernel::System::User;
 use Kernel::System::XML;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.22 $) [1];
+$VERSION = qw($Revision: 1.23 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',
@@ -831,7 +831,12 @@ sub ConfigItemSearch {
     );
 
     # set order by
-    my $OrderBy = $OrderByTable{ $Param{OrderBy} } || $OrderByTable{ConfigItemID};
+    my $OrderBy = $OrderByTable{ $Param{OrderBy} } || 'id';
+
+    # make sure that there always is a defined order, this helps with testing
+    if ( $OrderBy ne 'id' ) {
+        $OrderBy .= ', id';
+    }
 
     # set limit
     if ( $Param{Limit} ) {
@@ -1163,6 +1168,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.22 $ $Date: 2010-02-11 15:24:18 $
+$Revision: 1.23 $ $Date: 2010-02-12 08:04:57 $
 
 =cut
