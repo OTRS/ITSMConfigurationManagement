@@ -2,7 +2,7 @@
 # ITSMConfigItem.t - config item tests
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.t,v 1.7 2010-02-12 07:51:40 bes Exp $
+# $Id: ITSMConfigItem.t,v 1.8 2010-02-12 08:41:15 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -248,7 +248,7 @@ $ConfigItemDefinitions[1] = " [
     },
 ] ";
 
-# define the third test definition (only for search tests)
+# define the third test definition (especially for search tests with XMLData)
 $ConfigItemDefinitions[2] = " [
     {
         Key        => 'Customer1',
@@ -256,6 +256,22 @@ $ConfigItemDefinitions[2] = " [
         Searchable => 1,
         Input      => {
             Type => 'Customer',
+        },
+    },
+    {
+        Key        => 'Date1',
+        Name       => 'Date 1',
+        Searchable => 1,
+        Input      => {
+            Type => 'Date',
+        },
+    },
+    {
+        Key        => 'DateTime1',
+        Name       => 'Date Time 1',
+        Searchable => 1,
+        Input      => {
+            Type => 'DateTime',
         },
     },
 ] ";
@@ -1092,8 +1108,20 @@ my $ConfigItemTests = [
                                     Customer1 => [
                                         undef,
                                         {
-                                            Content => 'dummy_customer_for_unitest'
-                                        }
+                                            Content => 'dummy_customer_for_unitest',
+                                        },
+                                    ],
+                                    Date1 => [
+                                        undef,
+                                        {
+                                            Content => '2010-02-12',
+                                        },
+                                    ],
+                                    DateTime1 => [
+                                        undef,
+                                        {
+                                            Content => '2010-02-12 09:14',
+                                        },
                                     ],
                                 },
                             ],
@@ -1147,12 +1175,26 @@ my $ConfigItemTests = [
                                         {
                                             'Content' => 'dummy_customer_for_unitest',
                                             'TagKey'  => '[1]{\'Version\'}[1]{\'Customer1\'}[1]',
-                                        }
+                                        },
                                     ],
-                                    'TagKey' => '[1]{\'Version\'}[1]'
-                                }
-                                ]
-                        }
+                                    'Date1' => [
+                                        undef,
+                                        {
+                                            'Content' => '2010-02-12',
+                                            'TagKey'  => '[1]{\'Version\'}[1]{\'Date1\'}[1]',
+                                        },
+                                    ],
+                                    'DateTime1' => [
+                                        undef,
+                                        {
+                                            'Content' => '2010-02-12 09:14',
+                                            'TagKey'  => '[1]{\'Version\'}[1]{\'DateTime1\'}[1]',
+                                        },
+                                    ],
+                                    'TagKey' => '[1]{\'Version\'}[1]',
+                                },
+                            ],
+                        },
                     ],
                     CreateBy => $UserIDs[2],
                 },
@@ -2381,7 +2423,7 @@ my @SearchTests = (
         ],
     },
 
-    # test ConfigItemSearchExtended() with 'What'
+    # test ConfigItemSearchExtended() with 'What' (Customer1)
     {
         Function   => ['ConfigItemSearchExtended'],
         SearchData => {
@@ -2391,7 +2433,64 @@ my @SearchTests = (
                 {
                     "[1]{'Version'}[1]{'Customer1'}[1]{'Content'}" => 'dummy_customer_for_unitest',
                 },
-                ]
+            ],
+
+        },
+        ReferenceData => [
+            $ConfigItemNumbers[52],
+        ],
+    },
+
+    # test ConfigItemSearchExtended() with 'What' (Date1)
+    {
+        Function   => ['ConfigItemSearchExtended'],
+        SearchData => {
+            ClassIDs => \@ConfigItemClassIDs,
+            What     => [
+                {
+                    "[1]{'Version'}[1]{'Date1'}[1]{'Content'}" => '2010-02-12',
+                },
+            ],
+
+        },
+        ReferenceData => [
+            $ConfigItemNumbers[52],
+        ],
+    },
+
+    # test ConfigItemSearchExtended() with 'What' (DateTime1)
+    {
+        Function   => ['ConfigItemSearchExtended'],
+        SearchData => {
+            ClassIDs => \@ConfigItemClassIDs,
+            What     => [
+                {
+                    "[1]{'Version'}[1]{'DateTime1'}[1]{'Content'}" => '2010-02-12 09:14',
+                },
+            ],
+
+        },
+        ReferenceData => [
+            $ConfigItemNumbers[52],
+        ],
+    },
+
+    # test ConfigItemSearchExtended() with 'What' (Customer1, Date1, DateTime1)
+    {
+        Function   => ['ConfigItemSearchExtended'],
+        SearchData => {
+            ClassIDs => \@ConfigItemClassIDs,
+            What     => [
+                {
+                    "[1]{'Version'}[1]{'Customer1'}[1]{'Content'}" => 'dummy_customer_for_unitest',
+                },
+                {
+                    "[1]{'Version'}[1]{'Date1'}[1]{'Content'}" => '2010-02-12',
+                },
+                {
+                    "[1]{'Version'}[1]{'DateTime1'}[1]{'Content'}" => '2010-02-12 09:14',
+                },
+            ],
 
         },
         ReferenceData => [
