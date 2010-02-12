@@ -2,7 +2,7 @@
 # ITSMConfigItem.t - config item tests
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.t,v 1.6 2010-02-11 17:14:51 bes Exp $
+# $Id: ITSMConfigItem.t,v 1.7 2010-02-12 07:51:40 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -1733,7 +1733,7 @@ continue {
 # define general config item search tests
 # ------------------------------------------------------------ #
 
-my @ConfigItemSearchTests = (
+my @SearchTests = (
 
     # search ALL config items in the two test classes
     {
@@ -2409,7 +2409,7 @@ my @ConfigItemSearchTests = (
 my $SearchTestCount = 1;
 
 TEST:
-for my $Test (@ConfigItemSearchTests) {
+for my $Test (@SearchTests) {
 
     # check SearchData attribute
     if ( !$Test->{SearchData} || ref $Test->{SearchData} ne 'HASH' ) {
