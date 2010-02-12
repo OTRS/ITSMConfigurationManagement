@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/XML.pm - sub module of ITSMConfigItem.pm with xml functions
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: XML.pm,v 1.9 2010-01-29 14:13:57 ub Exp $
+# $Id: XML.pm,v 1.10 2010-02-12 09:03:00 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.9 $) [1];
+$VERSION = qw($Revision: 1.10 $) [1];
 
 =head1 NAME
 
@@ -248,7 +248,8 @@ sub XMLImportValuePrepare {
 
 =item _XMLVersionSearch()
 
-search xml data of a version and return a hash reference
+Search xml data of a version and return a hash reference.
+The returned hash reference has C<VersionID>s as keys and C<1> as value.
 
     my $VersionIDs = $ConfigItemObject->_XMLVersionSearch(
         ClassIDs => [1, 2, 3],  # (optional)
@@ -257,21 +258,21 @@ search xml data of a version and return a hash reference
             # each array element is a and condition
             {
                 # or condition in hash
-                "[%]{'ElementA'}[%]{'ElementB'}[%]{'Content'}" => '%contentA%',
-                "[%]{'ElementA'}[%]{'ElementC'}[%]{'Content'}" => '%contentA%',
+                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => '%contentA%',
+                "[%]{'Version'}[%]{'ConfigItemAttrC'}[%]{'Content'}" => '%contentA%',
             },
             {
-                "[%]{'ElementA'}[%]{'ElementB'}[%]{'Content'}" => '%contentB%',
-                "[%]{'ElementA'}[%]{'ElementC'}[%]{'Content'}" => '%contentB%',
+                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => '%contentB%',
+                "[%]{'Version'}[%]{'ConfigItemAttrC'}[%]{'Content'}" => '%contentB%',
             }
             {
                 # use array reference if different content with same key was searched
-                "[%]{'ElementA'}[%]{'ElementB'}[%]{'Content'}" => [
+                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => [
                     '%contentC%',
                     '%contentD%',
                     '%contentE%',
                 ],
-                "[%]{'ElementA'}[%]{'ElementC'}[%]{'Content'}" => [
+                "[%]{'Version'}[%]{'ConfigItemAttrC'}[%]{'Content'}" => [
                     '%contentC%',
                     '%contentD%',
                     '%contentE%',
@@ -584,6 +585,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.9 $ $Date: 2010-01-29 14:13:57 $
+$Revision: 1.10 $ $Date: 2010-02-12 09:03:00 $
 
 =cut
