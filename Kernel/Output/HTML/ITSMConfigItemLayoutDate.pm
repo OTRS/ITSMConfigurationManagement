@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/ITSMConfigItemLayoutDate.pm - layout backend module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutDate.pm,v 1.5 2010-02-11 15:26:11 bes Exp $
+# $Id: ITSMConfigItemLayoutDate.pm,v 1.6 2010-02-15 08:42:29 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.5 $) [1];
+$VERSION = qw($Revision: 1.6 $) [1];
 
 =head1 NAME
 
@@ -215,7 +215,7 @@ sub SearchFormDataGet {
 
 =item SearchInputCreate()
 
-create a serch input string
+create a search input string
 
     my $Value = $BackendObject->SearchInputCreate(
         Key => 'Item::1::Node::3',
@@ -276,6 +276,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.5 $ $Date: 2010-02-11 15:26:11 $
+$Revision: 1.6 $ $Date: 2010-02-15 08:42:29 $
 
 =cut

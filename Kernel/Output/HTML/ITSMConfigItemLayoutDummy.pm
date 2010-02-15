@@ -1,8 +1,8 @@
 # --
 # Kernel/Output/HTML/ITSMConfigItemLayoutDummy.pm - layout backend module
-# Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutDummy.pm,v 1.3 2009-07-21 00:44:57 ub Exp $
+# $Id: ITSMConfigItemLayoutDummy.pm,v 1.4 2010-02-15 08:42:29 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.3 $) [1];
+$VERSION = qw($Revision: 1.4 $) [1];
 
 =head1 NAME
 
@@ -104,7 +104,7 @@ sub SearchFormDataGet {
 
 =item SearchInputCreate()
 
-create a serch input string
+create a search input string
 
     my $Value = $BackendObject->SearchInputCreate();
 
@@ -130,6 +130,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.3 $ $Date: 2009-07-21 00:44:57 $
+$Revision: 1.4 $ $Date: 2010-02-15 08:42:29 $
 
 =cut
