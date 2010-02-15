@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/XML.pm - sub module of ITSMConfigItem.pm with xml functions
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: XML.pm,v 1.10 2010-02-12 09:03:00 bes Exp $
+# $Id: XML.pm,v 1.11 2010-02-15 13:12:51 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.10 $) [1];
+$VERSION = qw($Revision: 1.11 $) [1];
 
 =head1 NAME
 
@@ -249,6 +249,7 @@ sub XMLImportValuePrepare {
 =item _XMLVersionSearch()
 
 Search xml data of a version and return a hash reference.
+The C<What> parameter is a bit like the parameter used in L<SQL::Abstract>.
 The returned hash reference has C<VersionID>s as keys and C<1> as value.
 
     my $VersionIDs = $ConfigItemObject->_XMLVersionSearch(
@@ -264,7 +265,7 @@ The returned hash reference has C<VersionID>s as keys and C<1> as value.
             {
                 "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => '%contentB%',
                 "[%]{'Version'}[%]{'ConfigItemAttrC'}[%]{'Content'}" => '%contentB%',
-            }
+            },
             {
                 # use array reference if different content with same key was searched
                 "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => [
@@ -277,6 +278,15 @@ The returned hash reference has C<VersionID>s as keys and C<1> as value.
                     '%contentD%',
                     '%contentE%',
                 ],
+            },
+            {
+                # use hash reference for specifying comparison ops, apart from the default 'LIKE'
+                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '<'  => 'alphabetically_lower_or_equal' },
+                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '<=' => 'alphabetically_less_or_equal' },
+                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '='  => 'exact_match' },
+                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '>=' => 'alphabetically_larger_or_equal' },
+                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '>'  => 'alphabetically_larger' },
+                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '-between'  => [ 'lower', 'upper' ] },
             },
         ],
 
@@ -305,15 +315,21 @@ sub _XMLVersionSearch {
 
             next VALUES if !$Values;
 
-            # values is an array
-            if ( ref $Values eq 'ARRAY' ) {
+            # make substitutions for selecting with 'LIKE'
+            if ( !ref $Values ) {
+                $Self->_PrepareLikeString( \$Values );
+            }
+            elsif ( ref $Values eq 'ARRAY' ) {
                 for my $Value ( @{$Values} ) {
                     $Self->_PrepareLikeString( \$Value );
                 }
                 next VALUES;
             }
+            elsif ( ref $Values eq 'HASH' ) {
 
-            $Self->_PrepareLikeString( \$Values );
+                # nothing to do,
+                # as special comparison ops do not need to be prepared for 'LIKE' comparisons
+            }
         }
     }
 
@@ -332,7 +348,7 @@ sub _XMLVersionSearch {
     for my $ClassID ( @{ $Param{ClassIDs} } ) {
 
         # start xml search
-        my @Keys = $Self->{XMLObject}->XMLHashSearch(
+        my @Keys = $Self->_XMLHashSearch(
             Type => "ITSM::ConfigItem::$ClassID",
             What => $Param{What},
         );
@@ -349,7 +365,7 @@ sub _XMLVersionSearch {
     for my $ClassID ( @{ $Param{ClassIDs} } ) {
 
         # start xml search
-        my @Keys = $Self->{XMLObject}->XMLHashSearch(
+        my @Keys = $Self->_XMLHashSearch(
             Type => "ITSM::ConfigItem::Archiv::$ClassID",
             What => $Param{What},
         );
@@ -569,6 +585,159 @@ sub _LoadXMLTypeBackend {
     return $BackendObject;
 }
 
+=item _XMLHashSearch()
+
+Search a xml hash from database.
+This method is based on Kernel::System::XMLHashSearch, but has support for some extra features.
+A specific operator can be specified in a hash.
+The syntax is based on L<SQL::Abstract>.
+
+    my @Keys = $ConfigItemObject->_XMLHashSearch(
+        Type => 'SomeType',
+        What => [
+            # each array element is a and condition
+            {
+                # or condition in hash
+                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => '%contentA%',
+                "[%]{'Version'}[%]{'ConfigItemAttrC'}[%]{'Content'}" => '%contentA%',
+            },
+            {
+                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => '%contentB%',
+                "[%]{'Version'}[%]{'ConfigItemAttrC'}[%]{'Content'}" => '%contentB%',
+            },
+            {
+                # use array reference if different content with same key was searched
+                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => ['%contentC%', '%contentD%', '%contentE%'],
+                "[%]{'Version'}[%]{'ConfigItemAttrC'}[%]{'Content'}" => ['%contentC%', '%contentD%', '%contentE%'],
+            },
+            {
+                # use hash reference for specifying comparison ops, apart from the default 'LIKE'
+                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '<'  => 'alphabetically_lower_or_equal' },
+                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '<=' => 'alphabetically_less_or_equal' },
+                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '='  => 'exact_match' },
+                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '!=' => 'exact_match' },
+                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '>=' => 'alphabetically_larger_or_equal' },
+                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '>'  => 'alphabetically_larger' },
+                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '-between'  => [ 'lower', 'upper' ] },
+            },
+        ],
+    );
+
+=cut
+
+sub _XMLHashSearch {
+    my ( $Self, %Param ) = @_;
+
+    # check needed stuff
+    if ( !$Param{Type} ) {
+        $Self->{LogObject}->Log( Priority => 'error', Message => 'Need Type!' );
+        return;
+    }
+
+    return if !$Self->{DBObject}->Prepare(
+        SQL  => 'SELECT DISTINCT(xml_key) FROM xml_storage WHERE xml_type = ?',
+        Bind => [ \$Param{Type} ],
+    );
+
+    # the keys of this hash will be returned
+    my %Hash;
+
+    # initially all keys with the correct type are possible
+    while ( my @Data = $Self->{DBObject}->FetchrowArray() ) {
+        $Hash{ $Data[0] } = 1;
+    }
+
+    if ( $Param{What} && ref $Param{What} eq 'ARRAY' ) {
+
+        my %OpIsSupported = map { $_ => 1 } ( '<', '<=', '=', '!=', '>=', '>', '-between' );
+
+        # the array elements are 'and' combined
+        for my $And ( @{ $Param{What} } ) {
+
+            # the key/value pairs are 'or' combined
+            my @OrConditions;
+            for my $Key ( sort keys %{$And} ) {
+                my $Value = $And->{$Key};
+                $Key = $Self->{DBObject}->Quote( $Key, 'Like' );
+                if ( $Value && ref $Value eq 'ARRAY' ) {
+
+                    # when an array of possible values is given,
+                    # we use 'LIKE'-conditions and combine them with 'OR'
+                    for my $Element ( @{$Value} ) {
+                        $Element = $Self->{DBObject}->Quote( $Element, 'Like' );
+                        push @OrConditions,
+                            " (xml_content_key LIKE '$Key' "
+                            . "AND xml_content_value LIKE '$Element')";
+                    }
+                }
+                elsif ( $Value && ref $Value eq 'HASH' ) {
+
+                    # a hashref indicates a specific comparison op
+                    # currently only a single op, with a single value, is supported
+                    my ($Op) = keys %{$Value};
+                    my $Element = $Value->{$Op};
+                    if ( $Op && $Op eq '-between' && ref $Element eq 'ARRAY' ) {
+                        my $LowerBound = $Self->{DBObject}->Quote( $Element->[0] );
+                        my $UpperBound = $Self->{DBObject}->Quote( $Element->[1] );
+                        push @OrConditions,
+                            " (xml_content_key LIKE '$Key' "
+                            . "AND xml_content_value >= '$LowerBound' "
+                            . "AND xml_content_value <= '$UpperBound' )";
+                    }
+                    elsif ( $Op && $OpIsSupported{$Op} && !ref $Element ) {
+                        $Element = $Self->{DBObject}->Quote($Element);
+                        push @OrConditions,
+                            " (xml_content_key LIKE '$Key' "
+                            . "AND xml_content_value $Op '$Element')";
+                    }
+                    else {
+                        $Self->{LogObject}->Log(
+                            Priority => 'error',
+                            Message  => 'Got unexpted data in search!',
+                        );
+                        push @OrConditions, '( 1 = 1 )';
+                    }
+                }
+                else {
+
+                    # when a single  possible value is given,
+                    # we use a 'LIKE'-condition
+                    $Value = $Self->{DBObject}->Quote( $Value, 'Like' );
+                    push @OrConditions,
+                        " (xml_content_key LIKE '$Key' "
+                        . "AND xml_content_value LIKE '$Value' )";
+                }
+            }
+
+            # assemble the SQL
+            my $SQL = 'SELECT DISTINCT(xml_key) FROM xml_storage WHERE xml_type = ?';
+            if (@OrConditions) {
+                $SQL .= 'AND ( ' . join( ' OR ', @OrConditions ) . ' )';
+            }
+
+            # execute
+            $Self->{DBObject}->Prepare(
+                SQL  => $SQL,
+                Bind => [ \$Param{Type} ],
+            );
+
+            # intersection between the current key set, and the keys from the last 'SELECT'
+            # only the keys which are in all results survive
+            my %HashNew;
+            while ( my @Data = $Self->{DBObject}->FetchrowArray() ) {
+                if ( $Hash{ $Data[0] } ) {
+                    $HashNew{ $Data[0] } = 1;
+                }
+            }
+            %Hash = %HashNew;
+        }
+    }
+
+    my @Keys = keys %Hash;
+
+    return @Keys;
+}
+
 1;
 
 =back
@@ -585,6 +754,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.10 $ $Date: 2010-02-12 09:03:00 $
+$Revision: 1.11 $ $Date: 2010-02-15 13:12:51 $
 
 =cut

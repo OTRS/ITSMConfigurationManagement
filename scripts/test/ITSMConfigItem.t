@@ -2,7 +2,7 @@
 # ITSMConfigItem.t - config item tests
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.t,v 1.8 2010-02-12 08:41:15 bes Exp $
+# $Id: ITSMConfigItem.t,v 1.9 2010-02-15 13:12:51 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -2498,6 +2498,276 @@ my @SearchTests = (
         ],
     },
 
+    # test ConfigItemSearchExtended() with 'What' (Date1, <, false)
+    {
+        Function   => ['ConfigItemSearchExtended'],
+        SearchData => {
+            ClassIDs => \@ConfigItemClassIDs,
+            What     => [
+                {
+                    "[1]{'Version'}[1]{'Date1'}[1]{'Content'}"
+                        => { '<' => '2010-02-12', }
+                },
+            ],
+
+        },
+        ReferenceData => [
+        ],
+    },
+
+    # test ConfigItemSearchExtended() with 'What' (Date1, <, true)
+    {
+        Function   => ['ConfigItemSearchExtended'],
+        SearchData => {
+            ClassIDs => \@ConfigItemClassIDs,
+            What     => [
+                {
+                    "[1]{'Version'}[1]{'Date1'}[1]{'Content'}"
+                        => { '<' => '2010-02-13', }
+                },
+            ],
+
+        },
+        ReferenceData => [
+            $ConfigItemNumbers[52],
+        ],
+    },
+
+    # test ConfigItemSearchExtended() with 'What' (Date1, <=, false)
+    {
+        Function   => ['ConfigItemSearchExtended'],
+        SearchData => {
+            ClassIDs => \@ConfigItemClassIDs,
+            What     => [
+                {
+                    "[1]{'Version'}[1]{'Date1'}[1]{'Content'}"
+                        => { '<=' => '2010-02-11', }
+                },
+            ],
+
+        },
+        ReferenceData => [
+        ],
+    },
+
+    # test ConfigItemSearchExtended() with 'What' (Date1, <=, true)
+    {
+        Function   => ['ConfigItemSearchExtended'],
+        SearchData => {
+            ClassIDs => \@ConfigItemClassIDs,
+            What     => [
+                {
+                    "[1]{'Version'}[1]{'Date1'}[1]{'Content'}"
+                        => { '<=' => '2010-02-12', }
+                },
+            ],
+
+        },
+        ReferenceData => [
+            $ConfigItemNumbers[52],
+        ],
+    },
+
+    # test ConfigItemSearchExtended() with 'What' (Date1, <=, true)
+    {
+        Function   => ['ConfigItemSearchExtended'],
+        SearchData => {
+            ClassIDs => \@ConfigItemClassIDs,
+            What     => [
+                {
+                    "[1]{'Version'}[1]{'Date1'}[1]{'Content'}"
+                        => { '<=' => '2010-02-13', }
+                },
+            ],
+
+        },
+        ReferenceData => [
+            $ConfigItemNumbers[52],
+        ],
+    },
+
+    # test ConfigItemSearchExtended() with 'What' (Date1, =, false)
+    {
+        Function   => ['ConfigItemSearchExtended'],
+        SearchData => {
+            ClassIDs => \@ConfigItemClassIDs,
+            What     => [
+                {
+                    "[1]{'Version'}[1]{'Date1'}[1]{'Content'}"
+                        => { '=' => '2010-02-11', }
+                },
+            ],
+        },
+        ReferenceData => [
+        ],
+    },
+
+    # test ConfigItemSearchExtended() with 'What' (Date1, =, true)
+    {
+        Function   => ['ConfigItemSearchExtended'],
+        SearchData => {
+            ClassIDs => \@ConfigItemClassIDs,
+            What     => [
+                {
+                    "[1]{'Version'}[1]{'Date1'}[1]{'Content'}"
+                        => { '=' => '2010-02-12', }
+                },
+            ],
+        },
+        ReferenceData => [
+            $ConfigItemNumbers[52],
+        ],
+    },
+
+    # test ConfigItemSearchExtended() with 'What' (Date1, !=, false)
+    {
+        Function   => ['ConfigItemSearchExtended'],
+        SearchData => {
+            ClassIDs => \@ConfigItemClassIDs,
+            What     => [
+                {
+                    "[1]{'Version'}[1]{'Date1'}[1]{'Content'}"
+                        => { '!=' => '2010-02-12', }
+                },
+            ],
+        },
+        ReferenceData => [
+        ],
+    },
+
+    # test ConfigItemSearchExtended() with 'What' (Date1, !=, true)
+    {
+        Function   => ['ConfigItemSearchExtended'],
+        SearchData => {
+            ClassIDs => \@ConfigItemClassIDs,
+            What     => [
+                {
+                    "[1]{'Version'}[1]{'Date1'}[1]{'Content'}"
+                        => { '!=' => '2010-02-13', }
+                },
+            ],
+        },
+        ReferenceData => [
+            $ConfigItemNumbers[52],
+        ],
+    },
+
+    # test ConfigItemSearchExtended() with 'What' (Date1, >=, false)
+    {
+        Function   => ['ConfigItemSearchExtended'],
+        SearchData => {
+            ClassIDs => \@ConfigItemClassIDs,
+            What     => [
+                {
+                    "[1]{'Version'}[1]{'Date1'}[1]{'Content'}"
+                        => { '>=' => '2010-02-13', }
+                },
+            ],
+        },
+        ReferenceData => [
+        ],
+    },
+
+    # test ConfigItemSearchExtended() with 'What' (Date1, >=, true)
+    {
+        Function   => ['ConfigItemSearchExtended'],
+        SearchData => {
+            ClassIDs => \@ConfigItemClassIDs,
+            What     => [
+                {
+                    "[1]{'Version'}[1]{'Date1'}[1]{'Content'}"
+                        => { '>=' => '2010-02-12', }
+                },
+            ],
+
+        },
+        ReferenceData => [
+            $ConfigItemNumbers[52],
+        ],
+    },
+
+    # test ConfigItemSearchExtended() with 'What' (Date1, >=, true)
+    {
+        Function   => ['ConfigItemSearchExtended'],
+        SearchData => {
+            ClassIDs => \@ConfigItemClassIDs,
+            What     => [
+                {
+                    "[1]{'Version'}[1]{'Date1'}[1]{'Content'}"
+                        => { '>=' => '2010-02-11', }
+                },
+            ],
+        },
+        ReferenceData => [
+            $ConfigItemNumbers[52],
+        ],
+    },
+
+    # test ConfigItemSearchExtended() with 'What' (Date1, >, false)
+    {
+        Function   => ['ConfigItemSearchExtended'],
+        SearchData => {
+            ClassIDs => \@ConfigItemClassIDs,
+            What     => [
+                {
+                    "[1]{'Version'}[1]{'Date1'}[1]{'Content'}"
+                        => { '>' => '2010-02-12', }
+                },
+            ],
+        },
+        ReferenceData => [
+        ],
+    },
+
+    # test ConfigItemSearchExtended() with 'What' (Date1, >, true)
+    {
+        Function   => ['ConfigItemSearchExtended'],
+        SearchData => {
+            ClassIDs => \@ConfigItemClassIDs,
+            What     => [
+                {
+                    "[1]{'Version'}[1]{'Date1'}[1]{'Content'}"
+                        => { '>' => '2010-02-11', }
+                },
+            ],
+        },
+        ReferenceData => [
+            $ConfigItemNumbers[52],
+        ],
+    },
+
+    # test ConfigItemSearchExtended() with 'What' (Date1, -between, false)
+    {
+        Function   => ['ConfigItemSearchExtended'],
+        SearchData => {
+            ClassIDs => \@ConfigItemClassIDs,
+            What     => [
+                {
+                    "[1]{'Version'}[1]{'Date1'}[1]{'Content'}"
+                        => { '-between' => [ '2010-01-01', '2010-01-31' ] }
+                },
+            ],
+        },
+        ReferenceData => [
+        ],
+    },
+
+    # test ConfigItemSearchExtended() with 'What' (Date1, -between, true)
+    {
+        Function   => ['ConfigItemSearchExtended'],
+        SearchData => {
+            ClassIDs => \@ConfigItemClassIDs,
+            What     => [
+                {
+                    "[1]{'Version'}[1]{'Date1'}[1]{'Content'}"
+                        => { '-between' => [ '2010-02-01', '2010-02-31' ] }
+                },
+            ],
+        },
+        ReferenceData => [
+            $ConfigItemNumbers[52],
+        ],
+    },
 );
 
 # ------------------------------------------------------------ #

@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemSearch.pm - the OTRS::ITSM config item search module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.pm,v 1.11 2010-02-11 09:51:55 bes Exp $
+# $Id: AgentITSMConfigItemSearch.pm,v 1.12 2010-02-15 13:12:50 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.11 $) [1];
+$VERSION = qw($Revision: 1.12 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -396,28 +396,31 @@ sub _XMLSearchFormGet {
             Item => $Item,
         );
 
-        # create search array
-        my @SearchValues;
-        VALUE:
-        for my $Value ( @{$Values} ) {
+        # create search key
+        my $SearchKey = $InputKey;
+        $SearchKey =~ s{ :: }{\'\}[%]\{\'}xmsg;
+        $SearchKey = "[1]{'Version'}[1]{'$SearchKey'}[%]{'Content'}";
 
-            next VALUE if !$Value;
+        # ITSMConfigItemSearchFormDataGet() can return an string, arrayref or hashref
+        if ( ref $Values eq 'ARRAY' ) {
 
-            push @SearchValues, $Value;
+            # filter empty elements
+            my @SearchValues = grep {$_} @{$Values};
+
+            if (@SearchValues) {
+                push @{ $Param{XMLFormData} },
+                    {
+                    $SearchKey => \@SearchValues,
+                    };
+            }
         }
+        elsif ($Values) {
 
-        if (@SearchValues) {
-
-            # create search key
-            my $SearchKey = $InputKey;
-            $SearchKey =~ s{ :: }{\'\}[%]\{\'}xmsg;
-
-            # create search hash
-            my $SearchHash = {
-                '[1]{\'Version\'}[1]{\'' . $SearchKey . '\'}[%]{\'Content\'}' => \@SearchValues,
-            };
-
-            push @{ $Param{XMLFormData} }, $SearchHash;
+            # e.g. for Date between searches
+            push @{ $Param{XMLFormData} },
+                {
+                $SearchKey => $Values,
+                };
         }
 
         next ITEM if !$Item->{Sub};

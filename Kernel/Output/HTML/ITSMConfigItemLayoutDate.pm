@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/ITSMConfigItemLayoutDate.pm - layout backend module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutDate.pm,v 1.6 2010-02-15 08:42:29 bes Exp $
+# $Id: ITSMConfigItemLayoutDate.pm,v 1.7 2010-02-15 13:12:51 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.6 $) [1];
+$VERSION = qw($Revision: 1.7 $) [1];
 
 =head1 NAME
 
@@ -199,15 +199,26 @@ sub SearchFormDataGet {
     }
 
     # get form data
-    my $Used  = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::Used' );
-    my $Day   = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::Day' );
-    my $Month = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::Month' );
-    my $Year  = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::Year' );
+    my $Used       = $Self->{ParamObject}->GetParam( Param => $Param{Key} );
+    my $StartDay   = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStart::Day' );
+    my $StartMonth = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStart::Month' );
+    my $StartYear  = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStart::Year' );
+    my $StopDay    = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStop::Day' );
+    my $StopMonth  = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStop::Month' );
+    my $StopYear   = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStop::Year' );
 
     my $Values = [];
-    if ( $Used && $Day && $Month && $Year ) {
-        my $Date = sprintf '%02d-%02d-%02d', $Year, $Month, $Day;
-        push @{$Values}, $Date;
+    if (
+        $Used
+        && $StartDay && $StartMonth && $StartYear
+        && $StopDay  && $StopMonth  && $StopYear
+        )
+    {
+        my $StartDate = sprintf '%02d-%02d-%02d',
+            $StartYear, $StartMonth, $StartDay;
+        my $StopDate = sprintf '%02d-%02d-%02d',
+            $StopYear, $StopMonth, $StopDay;
+        $Values = { '-between' => [ $StartDate, $StopDate ] };
     }
 
     return $Values;
@@ -239,25 +250,53 @@ sub SearchInputCreate {
     }
 
     # just for convenience
-    my $Key = $Param{Key};
+    my $Key         = $Param{Key};
+    my $PrefixStart = $Key . '::TimeStart::';
+    my $PrefixStop  = $Key . '::TimeStop::';
 
-    # collect arguments for BuildDateSelection()
-    my %Values;
-    $Values{ $Key . '::Optional' } = 1;
-    $Values{ $Key . '::Used' }     = $Self->{ParamObject}->GetParam( Param => $Key . '::Used' );
-    $Values{ $Key . '::Day' }      = $Self->{ParamObject}->GetParam( Param => $Key . '::Day' );
-    $Values{ $Key . '::Month' }    = $Self->{ParamObject}->GetParam( Param => $Key . '::Month' );
-    $Values{ $Key . '::Year' }     = $Self->{ParamObject}->GetParam( Param => $Key . '::Year' );
+    # get time related params
+    my %GetParam;
+    $GetParam{$Key} = $Self->{ParamObject}->GetParam( Param => $Key );
+    for my $TimeType ( $PrefixStart, $PrefixStop ) {
+        for my $Part (qw( Year Month Day )) {
+            my $ParamKey = $TimeType . $Part;
+            my $ParamVal = $Self->{ParamObject}->GetParam( Param => $ParamKey );
 
-    my $String = $Self->{LayoutObject}->BuildDateSelection(
-        Prefix           => $Key . '::',
-        Format           => 'DateInputFormat',
+            # remove white space on the start and end
+            if ($ParamVal) {
+                $ParamVal =~ s{ \A \s+ }{}xms;
+                $ParamVal =~ s{ \s+ \z }{}xms;
+            }
+
+            # store in %GetParam
+            $GetParam{$ParamKey} = $ParamVal;
+        }
+    }
+
+    # build selection for the start and stop time
+    my $Format                   = 'DateInputFormat';
+    my $TimeStartSelectionString = $Self->{LayoutObject}->BuildDateSelection(
+        Prefix           => $PrefixStart,
+        Format           => $Format,
         YearPeriodPast   => 10,
         YearPeriodFuture => 10,
-        %Values,
+        %GetParam,
+    );
+    my $TimeStopSelectionString = $Self->{LayoutObject}->BuildDateSelection(
+        Optional         => 0,
+        Prefix           => $PrefixStop,
+        Format           => $Format,
+        YearPeriodPast   => 10,
+        YearPeriodFuture => 10,
+        %GetParam,
     );
 
-    return $String;
+    my $Checked  = $GetParam{$Key} ? 'checked="checked"' : '';
+    my $Checkbox = qq{<input type="checkbox" name="$Key" value="checked" $Checked/>};
+    my $Between  = $Self->{LayoutObject}->{LanguageObject}->Get('Between');
+    my $And      = $Self->{LayoutObject}->{LanguageObject}->Get('and');
+
+    return "$Checkbox $Between $TimeStartSelectionString $And $TimeStopSelectionString";
 }
 
 1;
@@ -276,6 +315,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.6 $ $Date: 2010-02-15 08:42:29 $
+$Revision: 1.7 $ $Date: 2010-02-15 13:12:51 $
 
 =cut
