@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/ITSMConfigItemLayoutDate.pm - layout backend module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutDate.pm,v 1.7 2010-02-15 13:12:51 bes Exp $
+# $Id: ITSMConfigItemLayoutDate.pm,v 1.8 2010-02-15 13:54:12 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.7 $) [1];
+$VERSION = qw($Revision: 1.8 $) [1];
 
 =head1 NAME
 
@@ -23,7 +23,7 @@ Kernel::Output::HTML::ITSMConfigItemLayoutDate - layout backend module
 
 =head1 SYNOPSIS
 
-All layout functions of date objects
+All layout functions of date objects.
 
 =over 4
 
@@ -207,21 +207,19 @@ sub SearchFormDataGet {
     my $StopMonth  = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStop::Month' );
     my $StopYear   = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStop::Year' );
 
-    my $Values = [];
     if (
         $Used
         && $StartDay && $StartMonth && $StartYear
         && $StopDay  && $StopMonth  && $StopYear
         )
     {
-        my $StartDate = sprintf '%02d-%02d-%02d',
-            $StartYear, $StartMonth, $StartDay;
-        my $StopDate = sprintf '%02d-%02d-%02d',
-            $StopYear, $StopMonth, $StopDay;
-        $Values = { '-between' => [ $StartDate, $StopDate ] };
+        my $StartDate = sprintf '%02d-%02d-%02d', $StartYear, $StartMonth, $StartDay;
+        my $StopDate  = sprintf '%02d-%02d-%02d', $StopYear,  $StopMonth,  $StopDay;
+
+        return { '-between' => [ $StartDate, $StopDate ] };
     }
 
-    return $Values;
+    return [];    # no conditions by default
 }
 
 =item SearchInputCreate()
@@ -273,11 +271,11 @@ sub SearchInputCreate {
         }
     }
 
-    # build selection for the start and stop time
-    my $Format                   = 'DateInputFormat';
+    # build selection for the start and stop time,
+    # Note that searching is by date, while input is by time as well
     my $TimeStartSelectionString = $Self->{LayoutObject}->BuildDateSelection(
         Prefix           => $PrefixStart,
-        Format           => $Format,
+        Format           => 'DateInputFormat',
         YearPeriodPast   => 10,
         YearPeriodFuture => 10,
         %GetParam,
@@ -285,7 +283,7 @@ sub SearchInputCreate {
     my $TimeStopSelectionString = $Self->{LayoutObject}->BuildDateSelection(
         Optional         => 0,
         Prefix           => $PrefixStop,
-        Format           => $Format,
+        Format           => 'DateInputFormat',
         YearPeriodPast   => 10,
         YearPeriodFuture => 10,
         %GetParam,
@@ -315,6 +313,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.7 $ $Date: 2010-02-15 13:12:51 $
+$Revision: 1.8 $ $Date: 2010-02-15 13:54:12 $
 
 =cut

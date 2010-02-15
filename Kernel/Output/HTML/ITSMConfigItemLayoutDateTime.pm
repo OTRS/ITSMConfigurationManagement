@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/ITSMConfigItemLayoutDateTime.pm - layout backend module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutDateTime.pm,v 1.7 2010-02-15 13:12:51 bes Exp $
+# $Id: ITSMConfigItemLayoutDateTime.pm,v 1.8 2010-02-15 13:54:13 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.7 $) [1];
+$VERSION = qw($Revision: 1.8 $) [1];
 
 =head1 NAME
 
@@ -23,7 +23,7 @@ Kernel::Output::HTML::ITSMConfigItemLayoutDateTime - layout backend module
 
 =head1 SYNOPSIS
 
-All layout functions of datetime objects
+All layout functions of datetime objects.
 
 =over 4
 
@@ -206,34 +206,26 @@ sub SearchFormDataGet {
     my $StartDay   = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStart::Day' );
     my $StartMonth = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStart::Month' );
     my $StartYear  = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStart::Year' );
-    my $StartHour  = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStart::Hour' )
-        || 0;
-    my $StartMinute = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStart::Minute' )
-        || 0;
-    my $StopDay   = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStop::Day' );
-    my $StopMonth = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStop::Month' );
-    my $StopYear  = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStop::Year' );
-    my $StopHour = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStop::Hour' ) || 0;
-    my $StopMinute = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStop::Minute' )
-        || 0;
+    my $StopDay    = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStop::Day' );
+    my $StopMonth  = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStop::Month' );
+    my $StopYear   = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStop::Year' );
 
-    my $Values = [];
     if (
         $Used
         && $StartDay && $StartMonth && $StartYear
         && $StopDay  && $StopMonth  && $StopYear
         )
     {
-        my $StartDate = sprintf '%02d-%02d-%02d %02d:%02d',
-            $StartYear, $StartMonth, $StartDay,
-            $StartHour, $StartMinute;
-        my $StopDate = sprintf '%02d-%02d-%02d %02d:%02d',
-            $StopYear, $StopMonth, $StopDay,
-            $StopHour, $StopMinute;
-        $Values = { '-between' => [ $StartDate, $StopDate ] };
+
+        # add hour, minutes and seconds,
+        # so that that the first and the last day is selected as well
+        my $StartDate = sprintf '%02d-%02d-%02d 00:00:00', $StartYear, $StartMonth, $StartDay;
+        my $StopDate  = sprintf '%02d-%02d-%02d 23:59:59', $StopYear,  $StopMonth,  $StopDay;
+
+        return { '-between' => [ $StartDate, $StopDate ] };
     }
 
-    return $Values;
+    return [];    # no conditions by default
 }
 
 =item SearchInputCreate()
@@ -270,7 +262,7 @@ sub SearchInputCreate {
     my %GetParam;
     $GetParam{$Key} = $Self->{ParamObject}->GetParam( Param => $Key );
     for my $TimeType ( $PrefixStart, $PrefixStop ) {
-        for my $Part (qw( Year Month Day Hour Minute )) {
+        for my $Part (qw( Year Month Day )) {
             my $ParamKey = $TimeType . $Part;
             my $ParamVal = $Self->{ParamObject}->GetParam( Param => $ParamKey );
 
@@ -286,7 +278,7 @@ sub SearchInputCreate {
     }
 
     # build selection for the start and stop time
-    my $Format                   = 'DateInputFormatLong';
+    my $Format                   = 'DateInputFormat';
     my $TimeStartSelectionString = $Self->{LayoutObject}->BuildDateSelection(
         Prefix           => $PrefixStart,
         Format           => $Format,
@@ -327,6 +319,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.7 $ $Date: 2010-02-15 13:12:51 $
+$Revision: 1.8 $ $Date: 2010-02-15 13:54:13 $
 
 =cut
