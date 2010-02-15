@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/ITSMConfigItemLayoutDateTime.pm - layout backend module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutDateTime.pm,v 1.8 2010-02-15 13:54:13 bes Exp $
+# $Id: ITSMConfigItemLayoutDateTime.pm,v 1.9 2010-02-15 14:09:39 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.8 $) [1];
+$VERSION = qw($Revision: 1.9 $) [1];
 
 =head1 NAME
 
@@ -277,11 +277,10 @@ sub SearchInputCreate {
         }
     }
 
-    # build selection for the start and stop time
-    my $Format                   = 'DateInputFormat';
+    # Build selection for the start and stop time.
     my $TimeStartSelectionString = $Self->{LayoutObject}->BuildDateSelection(
         Prefix           => $PrefixStart,
-        Format           => $Format,
+        Format           => 'DateInputFormat',
         YearPeriodPast   => 10,
         YearPeriodFuture => 10,
         %GetParam,
@@ -289,7 +288,7 @@ sub SearchInputCreate {
     my $TimeStopSelectionString = $Self->{LayoutObject}->BuildDateSelection(
         Optional         => 0,
         Prefix           => $PrefixStop,
-        Format           => $Format,
+        Format           => 'DateInputFormat',
         YearPeriodPast   => 10,
         YearPeriodFuture => 10,
         %GetParam,
@@ -319,6 +318,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.8 $ $Date: 2010-02-15 13:54:13 $
+$Revision: 1.9 $ $Date: 2010-02-15 14:09:39 $
 
 =cut

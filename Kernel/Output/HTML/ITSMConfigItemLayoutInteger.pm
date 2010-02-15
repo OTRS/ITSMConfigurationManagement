@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/ITSMConfigItemLayoutInteger.pm - layout backend module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutInteger.pm,v 1.5 2010-02-11 09:19:59 bes Exp $
+# $Id: ITSMConfigItemLayoutInteger.pm,v 1.6 2010-02-15 14:09:39 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.5 $) [1];
+$VERSION = qw($Revision: 1.6 $) [1];
 
 =head1 NAME
 
@@ -197,9 +197,9 @@ sub SearchFormDataGet {
     }
 
     # get form data
-    my @Values = $Self->{ParamObject}->GetArray( Param => $Param{Key} );
+    my $Value = $Self->{ParamObject}->GetParam( Param => $Param{Key} );
 
-    return \@Values;
+    return $Value;
 }
 
 =item SearchInputCreate()
@@ -278,6 +278,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.5 $ $Date: 2010-02-11 09:19:59 $
+$Revision: 1.6 $ $Date: 2010-02-15 14:09:39 $
 
 =cut
