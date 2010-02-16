@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/XML.pm - sub module of ITSMConfigItem.pm with xml functions
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: XML.pm,v 1.12 2010-02-16 11:16:44 bes Exp $
+# $Id: XML.pm,v 1.13 2010-02-16 14:30:16 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.12 $) [1];
+$VERSION = qw($Revision: 1.13 $) [1];
 
 =head1 NAME
 
@@ -674,21 +674,23 @@ sub _XMLHashSearch {
 
                     # a hashref indicates a specific comparison op
                     # currently only a single op, with a single value, is supported
+                    # TODO: This is just a workaround for CLOBs under Oracle.
+                    # a better solution needs to be found
                     my ($Op) = keys %{$Value};
                     my $Element = $Value->{$Op};
                     if ( $Op && $Op eq '-between' && ref $Element eq 'ARRAY' ) {
                         my $LowerBound = $Self->{DBObject}->Quote( $Element->[0] );
                         my $UpperBound = $Self->{DBObject}->Quote( $Element->[1] );
                         push @OrConditions,
-                            " (xml_content_key LIKE '$Key' "
-                            . "AND xml_content_value >= '$LowerBound' "
-                            . "AND xml_content_value <= '$UpperBound' )";
+                            " ( xml_content_key LIKE '$Key' "
+                            . "AND LOWER(xml_content_value) >= LOWER('$LowerBound') "
+                            . "AND LOWER(xml_content_value) <= LOWER('$UpperBound') )";
                     }
                     elsif ( $Op && $OpIsSupported{$Op} && !ref $Element ) {
                         $Element = $Self->{DBObject}->Quote($Element);
                         push @OrConditions,
                             " (xml_content_key LIKE '$Key' "
-                            . "AND xml_content_value $Op '$Element')";
+                            . "AND LOWER(xml_content_value) $Op LOWER('$Element') )";
                     }
                     else {
                         $Self->{LogObject}->Log(
@@ -710,7 +712,7 @@ sub _XMLHashSearch {
             }
 
             # assemble the SQL
-            my $SQL = 'SELECT DISTINCT(xml_key) FROM xml_storage WHERE xml_type = ? ';
+            my $SQL = 'SELECT DISTINCT(xml_key) FROM xml_storage WHERE xml_type = ?';
             if (@OrConditions) {
                 $SQL .= 'AND ( ' . join( ' OR ', @OrConditions ) . ' )';
             }
@@ -754,6 +756,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.12 $ $Date: 2010-02-16 11:16:44 $
+$Revision: 1.13 $ $Date: 2010-02-16 14:30:16 $
 
 =cut
