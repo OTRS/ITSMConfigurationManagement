@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/XML.pm - sub module of ITSMConfigItem.pm with xml functions
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: XML.pm,v 1.11 2010-02-15 13:12:51 bes Exp $
+# $Id: XML.pm,v 1.12 2010-02-16 11:16:44 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.11 $) [1];
+$VERSION = qw($Revision: 1.12 $) [1];
 
 =head1 NAME
 
@@ -710,7 +710,7 @@ sub _XMLHashSearch {
             }
 
             # assemble the SQL
-            my $SQL = 'SELECT DISTINCT(xml_key) FROM xml_storage WHERE xml_type = ?';
+            my $SQL = 'SELECT DISTINCT(xml_key) FROM xml_storage WHERE xml_type = ? ';
             if (@OrConditions) {
                 $SQL .= 'AND ( ' . join( ' OR ', @OrConditions ) . ' )';
             }
@@ -754,6 +754,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.11 $ $Date: 2010-02-15 13:12:51 $
+$Revision: 1.12 $ $Date: 2010-02-16 11:16:44 $
 
 =cut
