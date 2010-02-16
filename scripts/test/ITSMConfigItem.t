@@ -2,7 +2,7 @@
 # ITSMConfigItem.t - config item tests
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.t,v 1.9 2010-02-15 13:12:51 bes Exp $
+# $Id: ITSMConfigItem.t,v 1.10 2010-02-16 11:23:55 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -2895,11 +2895,30 @@ for my $ItemID ( keys %{$ClassList} ) {
 }
 
 # delete the test config items
+my $DeleteTestCount = 1;
 for my $ConfigItemID (@ConfigItemIDs) {
-    $Self->{ConfigItemObject}->ConfigItemDelete(
+    my $DeleteOk = $Self->{ConfigItemObject}->ConfigItemDelete(
         ConfigItemID => $ConfigItemID,
         UserID       => 1,
     );
+    $Self->True(
+        $DeleteOk,
+        "DeleteTest $DeleteTestCount - ConfigItemDelete() (ConfigItemID=$ConfigItemID)"
+    );
+
+    # double check if config item is really deleted
+    my $ConfigItemData = $Self->{ConfigItemObject}->ConfigItemGet(
+        ConfigItemID => $ConfigItemID,
+        UserID       => 1,
+        Cache        => 0,
+    );
+    $Self->False(
+        $ConfigItemData->{ConfigItemID},
+        "DeleteTest $DeleteTestCount - double check (ConfigItemID=$ConfigItemID)",
+    );
+}
+continue {
+    $DeleteTestCount++;
 }
 
 1;
