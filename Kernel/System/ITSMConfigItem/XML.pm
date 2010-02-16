@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/XML.pm - sub module of ITSMConfigItem.pm with xml functions
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: XML.pm,v 1.14 2010-02-16 15:22:58 ub Exp $
+# $Id: XML.pm,v 1.15 2010-02-16 16:16:10 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.14 $) [1];
+$VERSION = qw($Revision: 1.15 $) [1];
 
 =head1 NAME
 
@@ -281,12 +281,12 @@ The returned hash reference has C<VersionID>s as keys and C<1> as value.
             },
             {
                 # use hash reference for specifying comparison ops, apart from the default 'LIKE'
-                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '<'  => 'alphabetically_lower_or_equal' },
-                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '<=' => 'alphabetically_less_or_equal' },
-                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '='  => 'exact_match' },
-                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '>=' => 'alphabetically_larger_or_equal' },
-                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '>'  => 'alphabetically_larger' },
-                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '-between'  => [ 'lower', 'upper' ] },
+                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '<'        => 'alphabetically_lower_or_equal' },
+                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '<='       => 'alphabetically_less_or_equal' },
+                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '='        => 'exact_match' },
+                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '>='       => 'alphabetically_larger_or_equal' },
+                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '>'        => 'alphabetically_larger' },
+                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '-between' => [ 'lower_bound', 'upper_bound' ] },
             },
         ],
 
@@ -612,13 +612,13 @@ The syntax is based on L<SQL::Abstract>.
             },
             {
                 # use hash reference for specifying comparison ops, apart from the default 'LIKE'
-                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '<'  => 'alphabetically_lower_or_equal' },
-                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '<=' => 'alphabetically_less_or_equal' },
-                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '='  => 'exact_match' },
-                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '!=' => 'exact_match' },
-                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '>=' => 'alphabetically_larger_or_equal' },
-                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '>'  => 'alphabetically_larger' },
-                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '-between'  => [ 'lower', 'upper' ] },
+                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '<'         => 'alphabetically_lower_or_equal' },
+                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '<='        => 'alphabetically_less_or_equal' },
+                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '='         => 'exact_match' },
+                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '!='        => 'exact_match' },
+                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '>='        => 'alphabetically_larger_or_equal' },
+                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '>'         => 'alphabetically_larger' },
+                "[%]{'Version'}[%]{'ConfigItemAttrB'}[%]{'Content'}" => { '-between'  => [ 'lower_bound', 'upper_bound' ] },
             },
         ],
     );
@@ -674,8 +674,16 @@ sub _XMLHashSearch {
 
                     # a hashref indicates a specific comparison op
                     # currently only a single op, with a single value, is supported
-                    # TODO: This is just a workaround for CLOBs under Oracle.
-                    # a better solution needs to be found
+
+         # Under Oracle the attribute xml_content_value is a CLOB, a Character Locator Object.
+         # While selection with LIKE is possible, the alphabetical comparison ops are not supported.
+         # See http://download.oracle.com/docs/cd/B12037_01/appdev.101/b10796/adlob_sq.htm#1006215
+         # As a workaround we cast the CLOB to a VARCHAR2 with TO_CHAR().
+                    my $xml_content_value = 'xml_content_value';
+                    if ( $Self->{DBObject}->GetDatabaseFunction('Type') eq 'oracle' ) {
+                        $xml_content_value = 'TO_CHAR(xml_content_value)';
+                    }
+
                     my ($Op) = keys %{$Value};
                     my $Element = $Value->{$Op};
                     if ( $Op && $Op eq '-between' && ref $Element eq 'ARRAY' ) {
@@ -683,19 +691,19 @@ sub _XMLHashSearch {
                         my $UpperBound = $Self->{DBObject}->Quote( $Element->[1] );
                         push @OrConditions,
                             " ( xml_content_key LIKE '$Key' "
-                            . "AND LOWER(xml_content_value) >= LOWER('$LowerBound') "
-                            . "AND LOWER(xml_content_value) <= LOWER('$UpperBound') )";
+                            . "AND $xml_content_value >= '$LowerBound' "
+                            . "AND $xml_content_value <= '$UpperBound' )";
                     }
                     elsif ( $Op && $OpIsSupported{$Op} && !ref $Element ) {
                         $Element = $Self->{DBObject}->Quote($Element);
                         push @OrConditions,
-                            " (xml_content_key LIKE '$Key' "
-                            . "AND LOWER(xml_content_value) $Op LOWER('$Element') )";
+                            " ( xml_content_key LIKE '$Key' "
+                            . "AND $xml_content_value $Op '$Element' )";
                     }
                     else {
                         $Self->{LogObject}->Log(
                             Priority => 'error',
-                            Message  => 'Got unexpted data in search!',
+                            Message  => 'Got unexpected data in search!',
                         );
                         push @OrConditions, '( 1 = 1 )';
                     }
@@ -756,6 +764,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.14 $ $Date: 2010-02-16 15:22:58 $
+$Revision: 1.15 $ $Date: 2010-02-16 16:16:10 $
 
 =cut
