@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Version.pm - sub module of ITSMConfigItem.pm with version functions
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: Version.pm,v 1.16 2010-01-29 16:50:22 reb Exp $
+# $Id: Version.pm,v 1.17 2010-02-19 12:44:30 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.16 $) [1];
+$VERSION = qw($Revision: 1.17 $) [1];
 
 =head1 NAME
 
@@ -614,83 +614,6 @@ sub VersionAdd {
     return $VersionID;
 }
 
-=item _GetEvents()
-
-This method checks what values were changed and what events have to be triggered.
-It returns a hash reference with all event names as keys that should be triggered.
-
-    my $Events = $CIObject->_GetEvents(
-        Param => {
-            DeplStateID => 123,
-        },
-        ConfigItemInfo => {
-            DeplStateID => 234,
-        },
-    );
-
-    print keys %{$Events}; # prints "DeploymentStateUpdate"
-
-=cut
-
-sub _GetEvents {
-    my ( $Self, %Param ) = @_;
-
-    # check needed stuff
-    for my $Needed (qw(ConfigItemInfo Param)) {
-        if ( !$Param{$Needed} ) {
-            $Self->{LogObject}->Log(
-                Priority => 'error',
-                Message  => "Need $Needed!",
-            );
-            return;
-        }
-    }
-
-    my $Events = {};
-
-    # check old and new name
-    my $OldName = $Param{ConfigItemInfo}->{Name} || '';
-    my $NewName = $Param{Param}->{Name}          || '';
-
-    if ( $OldName ne $NewName ) {
-        $Events->{NameUpdate} = $NewName . '%%' . $OldName;
-    }
-
-    # if depl_state is updated
-    my $LastDeplStateID = $Param{ConfigItemInfo}->{DeplStateID} || '';
-    my $CurDeplStateID  = $Param{Param}->{DeplStateID}          || '';
-
-    if ( $LastDeplStateID ne $CurDeplStateID ) {
-        $Events->{DeploymentStateUpdate} = $CurDeplStateID . '%%' . $LastDeplStateID;
-    }
-
-    # if incistate is updated
-    my $LastInciStateID = $Param{ConfigItemInfo}->{InciStateID} || '';
-    my $CurInciStateID  = $Param{Param}->{InciStateID}          || '';
-
-    if ( $LastInciStateID ne $CurInciStateID ) {
-        $Events->{IncidentStateUpdate} = $CurInciStateID . '%%' . $LastInciStateID;
-    }
-
-    # check old and new definition_id
-    my $OldDefinitionID = $Param{ConfigItemInfo}->{DefinitionID} || '';
-    my $NewDefinitionID = $Param{Param}->{DefinitionID}          || '';
-
-    if ( $OldDefinitionID ne $NewDefinitionID ) {
-        $Events->{DefinitionUpdate} = $NewDefinitionID;
-    }
-
-    # check for changes in XML data
-    if ( $Param{Param}->{XMLData} && ref $Param{Param}->{XMLData} eq 'ARRAY' ) {
-        my %Changes = $Self->_FindChangedValues( %{ $Param{Param} } );
-        if ( keys %Changes ) {
-            $Events->{ValueUpdate} = \%Changes;
-        }
-    }
-
-    return $Events;
-}
-
 =item VersionDelete()
 
 delete an existing version or versions
@@ -920,6 +843,85 @@ sub VersionSearch {
     return \@ConfigItemList;
 }
 
+=begin Internal:
+
+=item _GetEvents()
+
+This method checks what values were changed and what events have to be triggered.
+It returns a hash reference with all event names as keys that should be triggered.
+
+    my $Events = $CIObject->_GetEvents(
+        Param => {
+            DeplStateID => 123,
+        },
+        ConfigItemInfo => {
+            DeplStateID => 234,
+        },
+    );
+
+    print keys %{$Events}; # prints "DeploymentStateUpdate"
+
+=cut
+
+sub _GetEvents {
+    my ( $Self, %Param ) = @_;
+
+    # check needed stuff
+    for my $Needed (qw(ConfigItemInfo Param)) {
+        if ( !$Param{$Needed} ) {
+            $Self->{LogObject}->Log(
+                Priority => 'error',
+                Message  => "Need $Needed!",
+            );
+            return;
+        }
+    }
+
+    my $Events = {};
+
+    # check old and new name
+    my $OldName = $Param{ConfigItemInfo}->{Name} || '';
+    my $NewName = $Param{Param}->{Name}          || '';
+
+    if ( $OldName ne $NewName ) {
+        $Events->{NameUpdate} = $NewName . '%%' . $OldName;
+    }
+
+    # if depl_state is updated
+    my $LastDeplStateID = $Param{ConfigItemInfo}->{DeplStateID} || '';
+    my $CurDeplStateID  = $Param{Param}->{DeplStateID}          || '';
+
+    if ( $LastDeplStateID ne $CurDeplStateID ) {
+        $Events->{DeploymentStateUpdate} = $CurDeplStateID . '%%' . $LastDeplStateID;
+    }
+
+    # if incistate is updated
+    my $LastInciStateID = $Param{ConfigItemInfo}->{InciStateID} || '';
+    my $CurInciStateID  = $Param{Param}->{InciStateID}          || '';
+
+    if ( $LastInciStateID ne $CurInciStateID ) {
+        $Events->{IncidentStateUpdate} = $CurInciStateID . '%%' . $LastInciStateID;
+    }
+
+    # check old and new definition_id
+    my $OldDefinitionID = $Param{ConfigItemInfo}->{DefinitionID} || '';
+    my $NewDefinitionID = $Param{Param}->{DefinitionID}          || '';
+
+    if ( $OldDefinitionID ne $NewDefinitionID ) {
+        $Events->{DefinitionUpdate} = $NewDefinitionID;
+    }
+
+    # check for changes in XML data
+    if ( $Param{Param}->{XMLData} && ref $Param{Param}->{XMLData} eq 'ARRAY' ) {
+        my %Changes = $Self->_FindChangedValues( %{ $Param{Param} } );
+        if ( keys %Changes ) {
+            $Events->{ValueUpdate} = \%Changes;
+        }
+    }
+
+    return $Events;
+}
+
 =item _CheckValues()
 
 This method calles for each change value of the config item the event handler.
@@ -1076,6 +1078,8 @@ sub _GrabTagKeys {
 
 1;
 
+=end Internal:
+
 =back
 
 =head1 TERMS AND CONDITIONS
@@ -1090,6 +1094,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.16 $ $Date: 2010-01-29 16:50:22 $
+$Revision: 1.17 $ $Date: 2010-02-19 12:44:30 $
 
 =cut
