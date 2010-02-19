@@ -2,7 +2,7 @@
 # Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm - import/export backend for ITSMConfigItem
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.7 2010-02-19 10:54:00 bes Exp $
+# $Id: ITSMConfigItem.pm,v 1.8 2010-02-19 14:35:26 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -19,7 +19,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::Time;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.7 $) [1];
+$VERSION = qw($Revision: 1.8 $) [1];
 
 =head1 NAME
 
@@ -497,14 +497,12 @@ sub ExportDataGet {
 
     # add number to the search params
     if ( $SearchData->{Number} ) {
-        $SearchParams{Number} = $SearchData->{Number};
-        delete $SearchData->{Number};
+        $SearchParams{Number} = delete $SearchData->{Number};
     }
 
     # add name to the search params
     if ( $SearchData->{Name} ) {
-        $SearchParams{Name} = $SearchData->{Name};
-        delete $SearchData->{Name};
+        $SearchParams{Name} = delete $SearchData->{Name};
     }
 
     # add deployment state to the search params
@@ -808,14 +806,12 @@ sub ImportDataSave {
 
         # add number to the search params
         if ( $Identifier{Number} ) {
-            $SearchParams{Number} = $Identifier{Number};
-            delete $Identifier{Number};
+            $SearchParams{Number} = delete $Identifier{Number};
         }
 
         # add name to the search params
         if ( $Identifier{Name} ) {
-            $SearchParams{Name} = $Identifier{Name};
-            delete $Identifier{Name};
+            $SearchParams{Name} = delete $Identifier{Name};
         }
 
         # add deployment state to the search params
@@ -834,8 +830,7 @@ sub ImportDataSave {
                 return;
             }
 
-            $SearchParams{DeplStateIDs} = [$DeplStateID];
-            delete $Identifier{DeplState};
+            $SearchParams{DeplStateIDs} = [ delete $Identifier{DeplState} ];
         }
 
         # add incident state to the search params
@@ -854,8 +849,7 @@ sub ImportDataSave {
                 return;
             }
 
-            $SearchParams{InciStateIDs} = [$InciStateID];
-            delete $Identifier{InciState};
+            $SearchParams{InciStateIDs} = [ delete $Identifier{InciState} ];
         }
 
         # add all XML data to the search params
@@ -1410,7 +1404,7 @@ sub _ImportXMLSearchDataPrepare {
 
 =item _ImportXMLDataPrepare()
 
-recursion function to prepare the import XML data
+recursion function to prepare the import XML data as a hashref
 
     my $XMLData = $ObjectBackend->_ImportXMLDataPrepare(
         XMLDefinition => $ArrayRef,
@@ -1428,8 +1422,7 @@ sub _ImportXMLDataPrepare {
     return if ref $Param{XMLDefinition} ne 'ARRAY';
     return if ref $Param{XMLData2D} ne 'HASH';
 
-    my $XMLData = ();
-
+    my $XMLData;
     ITEM:
     for my $Item ( @{ $Param{XMLDefinition} } ) {
 
@@ -1485,6 +1478,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.7 $ $Date: 2010-02-19 10:54:00 $
+$Revision: 1.8 $ $Date: 2010-02-19 14:35:26 $
 
 =cut
