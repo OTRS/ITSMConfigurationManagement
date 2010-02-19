@@ -1,8 +1,8 @@
 # --
 # Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm - import/export backend for ITSMConfigItem
-# Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.6 2009-09-03 13:51:16 ub Exp $
+# $Id: ITSMConfigItem.pm,v 1.7 2010-02-19 10:54:00 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -19,7 +19,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::Time;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.6 $) [1];
+$VERSION = qw($Revision: 1.7 $) [1];
 
 =head1 NAME
 
@@ -246,78 +246,6 @@ sub MappingObjectAttributesGet {
     return $Attributes;
 }
 
-=item _MappingObjectAttributesGet()
-
-recusion function for MappingObjectAttributesGet()
-
-    $ObjectBackend->_MappingObjectAttributesGet(
-        XMLDefinition => $ArrayRef,
-        ElementList   => $ArrayRef,
-    );
-
-=cut
-
-sub _MappingObjectAttributesGet {
-    my ( $Self, %Param ) = @_;
-
-    return if !$Param{CountMax};
-    return if !$Param{XMLDefinition};
-    return if !$Param{ElementList};
-    return if ref $Param{XMLDefinition} ne 'ARRAY';
-    return if ref $Param{ElementList} ne 'ARRAY';
-
-    ITEM:
-    for my $Item ( @{ $Param{XMLDefinition} } ) {
-
-        my $CountMax = $Item->{CountMax} > $Param{CountMax} ? $Param{CountMax} : $Item->{CountMax};
-
-        COUNT:
-        for my $Count ( 1 .. $CountMax ) {
-
-            # create key string
-            my $Key = $Item->{Key} . '::' . $Count;
-
-            # add prefix to key
-            if ( $Param{KeyPrefix} ) {
-                $Key = $Param{KeyPrefix} . '::' . $Key;
-            }
-
-            # create value string
-            my $Value = $Item->{Key};
-
-            # add count if required
-            if ( $CountMax > 1 || $Item->{Sub} ) {
-                $Value .= '::' . $Count;
-            }
-
-            # add prefix to key
-            if ( $Param{ValuePrefix} ) {
-                $Value = $Param{ValuePrefix} . '::' . $Value;
-            }
-
-            # add row
-            my %Row = (
-                Key   => $Key,
-                Value => $Value,
-            );
-            push @{ $Param{ElementList} }, \%Row;
-
-            next COUNT if !$Item->{Sub};
-
-            # start recursion
-            $Self->_MappingObjectAttributesGet(
-                XMLDefinition => $Item->{Sub},
-                ElementList   => $Param{ElementList},
-                KeyPrefix     => $Key,
-                ValuePrefix   => $Value,
-                CountMax      => $CountMax,
-            );
-        }
-    }
-
-    return 1;
-}
-
 =item SearchAttributesGet()
 
 get the search object attributes of an object as array/hash reference
@@ -423,96 +351,6 @@ sub SearchAttributesGet {
     );
 
     return $AttributeList;
-}
-
-=item _SearchAttributesGet()
-
-recusion function for MappingObjectAttributesGet()
-
-    $ObjectBackend->_SearchAttributesGet(
-        XMLDefinition => $ArrayRef,
-        AttributeList => $ArrayRef,
-    );
-
-=cut
-
-sub _SearchAttributesGet {
-    my ( $Self, %Param ) = @_;
-
-    # check needed stuff
-    return if !$Param{XMLDefinition};
-    return if !$Param{AttributeList};
-    return if ref $Param{XMLDefinition} ne 'ARRAY';
-    return if ref $Param{AttributeList} ne 'ARRAY';
-
-    ITEM:
-    for my $Item ( @{ $Param{XMLDefinition} } ) {
-
-        # set prefix
-        my $Key  = $Item->{Key};
-        my $Name = $Item->{Name};
-
-        if ( $Param{KeyPrefix} ) {
-            $Key = $Param{KeyPrefix} . '::' . $Key;
-        }
-
-        if ( $Param{NamePrefix} ) {
-            $Name = $Param{NamePrefix} . '::' . $Name;
-        }
-
-        # add attribute, if marked as searchable
-        if ( $Item->{Searchable} ) {
-
-            if ( $Item->{Input}->{Type} eq 'Text' || $Item->{Input}->{Type} eq 'TextArea' ) {
-
-                my %Row = (
-                    Key   => $Key,
-                    Name  => $Name,
-                    Input => {
-                        Type        => 'Text',
-                        Translation => $Item->{Input}->{Input}->{Translation},
-                        Size        => $Item->{Input}->{Input}->{Size} || 60,
-                        MaxLength   => $Item->{Input}->{Input}->{MaxLength},
-                    },
-                );
-
-                push @{ $Param{AttributeList} }, \%Row;
-            }
-            elsif ( $Item->{Input}->{Type} eq 'GeneralCatalog' ) {
-
-                # get general catalog list
-                my $GeneralCatalogList = $Self->{GeneralCatalogObject}->ItemList(
-                    Class => $Item->{Input}->{Class},
-                ) || {};
-
-                my %Row = (
-                    Key   => $Key,
-                    Name  => $Name,
-                    Input => {
-                        Type        => 'Selection',
-                        Data        => $GeneralCatalogList,
-                        Translation => $Item->{Input}->{Input}->{Translation},
-                        Size        => 5,
-                        Multiple    => 1,
-                    },
-                );
-
-                push @{ $Param{AttributeList} }, \%Row;
-            }
-        }
-
-        next ITEM if !$Item->{Sub};
-
-        # start recursion, if "Sub" was found
-        $Self->_SearchAttributesGet(
-            XMLDefinition => $Item->{Sub},
-            AttributeList => $Param{AttributeList},
-            KeyPrefix     => $Key,
-            NamePrefix    => $Name,
-        );
-    }
-
-    return 1;
 }
 
 =item ExportDataGet()
@@ -772,129 +610,6 @@ sub ExportDataGet {
     }
 
     return \@ExportData;
-}
-
-=item _ExportXMLSearchDataPrepare()
-
-recusion function to prepare the export XML search params
-
-    $ObjectBackend->_ExportXMLSearchDataPrepare(
-        XMLDefinition => $ArrayRef,
-        What          => $ArrayRef,
-        SearchData    => $HashRef,
-    );
-
-=cut
-
-sub _ExportXMLSearchDataPrepare {
-    my ( $Self, %Param ) = @_;
-
-    # check needed stuff
-    return if !$Param{XMLDefinition};
-    return if !$Param{What};
-    return if !$Param{SearchData};
-    return if ref $Param{XMLDefinition} ne 'ARRAY';
-    return if ref $Param{What} ne 'ARRAY';
-    return if ref $Param{SearchData} ne 'HASH';
-
-    ITEM:
-    for my $Item ( @{ $Param{XMLDefinition} } ) {
-
-        # create key
-        my $Key = $Param{Prefix} ? $Param{Prefix} . '::' . $Item->{Key} : $Item->{Key};
-
-        # prepare value
-        my $Values = $Self->{ConfigItemObject}->XMLExportSearchValuePrepare(
-            Item  => $Item,
-            Value => $Param{SearchData}->{$Key},
-        );
-
-        if ($Values) {
-
-            # create search key
-            my $SearchKey = $Key;
-            $SearchKey =~ s{ :: }{\'\}[%]\{\'}xmsg;
-
-            # create search hash
-            my $SearchHash = {
-                '[1]{\'Version\'}[1]{\'' . $SearchKey . '\'}[%]{\'Content\'}' => $Values,
-            };
-
-            push @{ $Param{What} }, $SearchHash;
-        }
-
-        next ITEM if !$Item->{Sub};
-
-        # start recursion, if "Sub" was found
-        $Self->_ExportXMLSearchDataPrepare(
-            XMLDefinition => $Item->{Sub},
-            What          => $Param{What},
-            SearchData    => $Param{SearchData},
-            Prefix        => $Key,
-        );
-    }
-
-    return 1;
-}
-
-=item _ExportXMLDataPrepare()
-
-recusion function to prepare the export XML data
-
-    $ObjectBackend->_ExportXMLDataPrepare(
-        XMLDefinition => $ArrayRef,
-        XMLData       => $HashRef,
-        XMLData2D     => $HashRef,
-    );
-
-=cut
-
-sub _ExportXMLDataPrepare {
-    my ( $Self, %Param ) = @_;
-
-    # check needed stuff
-    return if !$Param{XMLDefinition};
-    return if !$Param{XMLData};
-    return if !$Param{XMLData2D};
-    return if ref $Param{XMLDefinition} ne 'ARRAY';
-    return if ref $Param{XMLData} ne 'HASH';
-    return if ref $Param{XMLData2D} ne 'HASH';
-
-    if ( $Param{Prefix} ) {
-        $Param{Prefix} .= '::';
-    }
-    $Param{Prefix} ||= '';
-
-    ITEM:
-    for my $Item ( @{ $Param{XMLDefinition} } ) {
-        COUNTER:
-        for my $Counter ( 1 .. $Item->{CountMax} ) {
-
-            # stop loop, if no content was given
-            last COUNTER if !defined $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content};
-
-            # create key
-            my $Key = $Param{Prefix} . $Item->{Key} . '::' . $Counter;
-
-            # prepare value
-            $Param{XMLData2D}->{$Key} = $Self->{ConfigItemObject}->XMLExportValuePrepare(
-                Item  => $Item,
-                Value => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content},
-            );
-
-            next COUNTER if !$Item->{Sub};
-
-            # start recursion, if "Sub" was found
-            $Self->_ExportXMLDataPrepare(
-                XMLDefinition => $Item->{Sub},
-                XMLData       => $Param{XMLData}->{ $Item->{Key} }->[$Counter],
-                XMLData2D     => $Param{XMLData2D},
-                Prefix        => $Key,
-            );
-        }
-    }
-
-    return 1;
 }
 
 =item ImportDataSave()
@@ -1320,9 +1035,296 @@ sub ImportDataSave {
     return;
 }
 
+=begin Internal:
+
+=item _MappingObjectAttributesGet()
+
+recursion function for MappingObjectAttributesGet()
+
+    $ObjectBackend->_MappingObjectAttributesGet(
+        XMLDefinition => $ArrayRef,
+        ElementList   => $ArrayRef,
+    );
+
+=cut
+
+sub _MappingObjectAttributesGet {
+    my ( $Self, %Param ) = @_;
+
+    return if !$Param{CountMax};
+    return if !$Param{XMLDefinition};
+    return if !$Param{ElementList};
+    return if ref $Param{XMLDefinition} ne 'ARRAY';
+    return if ref $Param{ElementList} ne 'ARRAY';
+
+    ITEM:
+    for my $Item ( @{ $Param{XMLDefinition} } ) {
+
+        my $CountMax = $Item->{CountMax} > $Param{CountMax} ? $Param{CountMax} : $Item->{CountMax};
+
+        COUNT:
+        for my $Count ( 1 .. $CountMax ) {
+
+            # create key string
+            my $Key = $Item->{Key} . '::' . $Count;
+
+            # add prefix to key
+            if ( $Param{KeyPrefix} ) {
+                $Key = $Param{KeyPrefix} . '::' . $Key;
+            }
+
+            # create value string
+            my $Value = $Item->{Key};
+
+            # add count if required
+            if ( $CountMax > 1 || $Item->{Sub} ) {
+                $Value .= '::' . $Count;
+            }
+
+            # add prefix to key
+            if ( $Param{ValuePrefix} ) {
+                $Value = $Param{ValuePrefix} . '::' . $Value;
+            }
+
+            # add row
+            my %Row = (
+                Key   => $Key,
+                Value => $Value,
+            );
+            push @{ $Param{ElementList} }, \%Row;
+
+            next COUNT if !$Item->{Sub};
+
+            # start recursion
+            $Self->_MappingObjectAttributesGet(
+                XMLDefinition => $Item->{Sub},
+                ElementList   => $Param{ElementList},
+                KeyPrefix     => $Key,
+                ValuePrefix   => $Value,
+                CountMax      => $CountMax,
+            );
+        }
+    }
+
+    return 1;
+}
+
+=item _SearchAttributesGet()
+
+recursion function for MappingObjectAttributesGet()
+
+    $ObjectBackend->_SearchAttributesGet(
+        XMLDefinition => $ArrayRef,
+        AttributeList => $ArrayRef,
+    );
+
+=cut
+
+sub _SearchAttributesGet {
+    my ( $Self, %Param ) = @_;
+
+    # check needed stuff
+    return if !$Param{XMLDefinition};
+    return if !$Param{AttributeList};
+    return if ref $Param{XMLDefinition} ne 'ARRAY';
+    return if ref $Param{AttributeList} ne 'ARRAY';
+
+    ITEM:
+    for my $Item ( @{ $Param{XMLDefinition} } ) {
+
+        # set prefix
+        my $Key  = $Item->{Key};
+        my $Name = $Item->{Name};
+
+        if ( $Param{KeyPrefix} ) {
+            $Key = $Param{KeyPrefix} . '::' . $Key;
+        }
+
+        if ( $Param{NamePrefix} ) {
+            $Name = $Param{NamePrefix} . '::' . $Name;
+        }
+
+        # add attribute, if marked as searchable
+        if ( $Item->{Searchable} ) {
+
+            if ( $Item->{Input}->{Type} eq 'Text' || $Item->{Input}->{Type} eq 'TextArea' ) {
+
+                my %Row = (
+                    Key   => $Key,
+                    Name  => $Name,
+                    Input => {
+                        Type        => 'Text',
+                        Translation => $Item->{Input}->{Input}->{Translation},
+                        Size        => $Item->{Input}->{Input}->{Size} || 60,
+                        MaxLength   => $Item->{Input}->{Input}->{MaxLength},
+                    },
+                );
+
+                push @{ $Param{AttributeList} }, \%Row;
+            }
+            elsif ( $Item->{Input}->{Type} eq 'GeneralCatalog' ) {
+
+                # get general catalog list
+                my $GeneralCatalogList = $Self->{GeneralCatalogObject}->ItemList(
+                    Class => $Item->{Input}->{Class},
+                ) || {};
+
+                my %Row = (
+                    Key   => $Key,
+                    Name  => $Name,
+                    Input => {
+                        Type        => 'Selection',
+                        Data        => $GeneralCatalogList,
+                        Translation => $Item->{Input}->{Input}->{Translation},
+                        Size        => 5,
+                        Multiple    => 1,
+                    },
+                );
+
+                push @{ $Param{AttributeList} }, \%Row;
+            }
+        }
+
+        next ITEM if !$Item->{Sub};
+
+        # start recursion, if "Sub" was found
+        $Self->_SearchAttributesGet(
+            XMLDefinition => $Item->{Sub},
+            AttributeList => $Param{AttributeList},
+            KeyPrefix     => $Key,
+            NamePrefix    => $Name,
+        );
+    }
+
+    return 1;
+}
+
+=item _ExportXMLSearchDataPrepare()
+
+recursion function to prepare the export XML search params
+
+    $ObjectBackend->_ExportXMLSearchDataPrepare(
+        XMLDefinition => $ArrayRef,
+        What          => $ArrayRef,
+        SearchData    => $HashRef,
+    );
+
+=cut
+
+sub _ExportXMLSearchDataPrepare {
+    my ( $Self, %Param ) = @_;
+
+    # check needed stuff
+    return if !$Param{XMLDefinition};
+    return if !$Param{What};
+    return if !$Param{SearchData};
+    return if ref $Param{XMLDefinition} ne 'ARRAY';
+    return if ref $Param{What} ne 'ARRAY';
+    return if ref $Param{SearchData} ne 'HASH';
+
+    ITEM:
+    for my $Item ( @{ $Param{XMLDefinition} } ) {
+
+        # create key
+        my $Key = $Param{Prefix} ? $Param{Prefix} . '::' . $Item->{Key} : $Item->{Key};
+
+        # prepare value
+        my $Values = $Self->{ConfigItemObject}->XMLExportSearchValuePrepare(
+            Item  => $Item,
+            Value => $Param{SearchData}->{$Key},
+        );
+
+        if ($Values) {
+
+            # create search key
+            my $SearchKey = $Key;
+            $SearchKey =~ s{ :: }{\'\}[%]\{\'}xmsg;
+
+            # create search hash
+            my $SearchHash = {
+                '[1]{\'Version\'}[1]{\'' . $SearchKey . '\'}[%]{\'Content\'}' => $Values,
+            };
+
+            push @{ $Param{What} }, $SearchHash;
+        }
+
+        next ITEM if !$Item->{Sub};
+
+        # start recursion, if "Sub" was found
+        $Self->_ExportXMLSearchDataPrepare(
+            XMLDefinition => $Item->{Sub},
+            What          => $Param{What},
+            SearchData    => $Param{SearchData},
+            Prefix        => $Key,
+        );
+    }
+
+    return 1;
+}
+
+=item _ExportXMLDataPrepare()
+
+recursion function to prepare the export XML data
+
+    $ObjectBackend->_ExportXMLDataPrepare(
+        XMLDefinition => $ArrayRef,
+        XMLData       => $HashRef,
+        XMLData2D     => $HashRef,
+    );
+
+=cut
+
+sub _ExportXMLDataPrepare {
+    my ( $Self, %Param ) = @_;
+
+    # check needed stuff
+    return if !$Param{XMLDefinition};
+    return if !$Param{XMLData};
+    return if !$Param{XMLData2D};
+    return if ref $Param{XMLDefinition} ne 'ARRAY';
+    return if ref $Param{XMLData} ne 'HASH';
+    return if ref $Param{XMLData2D} ne 'HASH';
+
+    if ( $Param{Prefix} ) {
+        $Param{Prefix} .= '::';
+    }
+    $Param{Prefix} ||= '';
+
+    ITEM:
+    for my $Item ( @{ $Param{XMLDefinition} } ) {
+        COUNTER:
+        for my $Counter ( 1 .. $Item->{CountMax} ) {
+
+            # stop loop, if no content was given
+            last COUNTER if !defined $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content};
+
+            # create key
+            my $Key = $Param{Prefix} . $Item->{Key} . '::' . $Counter;
+
+            # prepare value
+            $Param{XMLData2D}->{$Key} = $Self->{ConfigItemObject}->XMLExportValuePrepare(
+                Item  => $Item,
+                Value => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content},
+            );
+
+            next COUNTER if !$Item->{Sub};
+
+            # start recursion, if "Sub" was found
+            $Self->_ExportXMLDataPrepare(
+                XMLDefinition => $Item->{Sub},
+                XMLData       => $Param{XMLData}->{ $Item->{Key} }->[$Counter],
+                XMLData2D     => $Param{XMLData2D},
+                Prefix        => $Key,
+            );
+        }
+    }
+
+    return 1;
+}
+
 =item _ImportXMLSearchDataPrepare()
 
-recusion function to prepare the import XML search params
+recursion function to prepare the import XML search params
 
     $ObjectBackend->_ImportXMLSearchDataPrepare(
         XMLDefinition => $ArrayRef,
@@ -1408,7 +1410,7 @@ sub _ImportXMLSearchDataPrepare {
 
 =item _ImportXMLDataPrepare()
 
-recusion function to prepare the import XML data
+recursion function to prepare the import XML data
 
     my $XMLData = $ObjectBackend->_ImportXMLDataPrepare(
         XMLDefinition => $ArrayRef,
@@ -1467,6 +1469,8 @@ sub _ImportXMLDataPrepare {
 
 1;
 
+=end Internal:
+
 =back
 
 =head1 TERMS AND CONDITIONS
@@ -1481,6 +1485,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.6 $ $Date: 2009-09-03 13:51:16 $
+$Revision: 1.7 $ $Date: 2010-02-19 10:54:00 $
 
 =cut
