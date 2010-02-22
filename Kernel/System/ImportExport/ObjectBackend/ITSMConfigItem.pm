@@ -2,7 +2,7 @@
 # Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm - import/export backend for ITSMConfigItem
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.9 2010-02-22 11:53:23 bes Exp $
+# $Id: ITSMConfigItem.pm,v 1.10 2010-02-22 18:08:41 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -21,7 +21,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::Time;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.9 $) [1];
+$VERSION = qw($Revision: 1.10 $) [1];
 
 =head1 NAME
 
@@ -616,11 +616,20 @@ sub ExportDataGet {
 
 import one row of the import data
 
-    my $ConfigItemID = $ObjectBackend->ImportDataSave(
+    my ( $ConfigItemID, $RetCode ) = $ObjectBackend->ImportDataSave(
         TemplateID    => 123,
         ImportDataRow => $ArrayRef,
         UserID        => 1,
     );
+
+An empty C<ConfigItemID> indicates failure. Otherwise it indicates the
+location of the imported data.
+C<RetCode> is either 'Created', 'Updated' or 'Skipped'. 'Created' means that a new
+config item has been created. 'Updated' means that a new version has been added to
+an existing config item. 'Skipped' means that no new version has been created,
+as the new data is identical to the latest version of an existing config item.
+
+No codes have been defined for the failure case.
 
 =cut
 
@@ -892,7 +901,7 @@ sub ImportDataSave {
     my $VersionData = {};
     if ($ConfigItemID) {
 
-        # get last version
+        # get latest version
         $VersionData = $Self->{ConfigItemObject}->VersionGet(
             ConfigItemID => $ConfigItemID,
         );
@@ -979,17 +988,28 @@ sub ImportDataSave {
         $VersionData->{XMLData}->[1]->{Version}->[1] = $XMLData;
     }
 
-    # add the new config item
-    my $NewConfigItem;
-    if ( !$ConfigItemID ) {
+    my $RetCode = $ConfigItemID ? 'Changed' : 'Created';
+    my $LatestVersionID = 0;
+    if ($ConfigItemID) {
 
-        # add new config item
+        # the specified config item already exists
+        # get id of the latest version, for checking later whether a version was created
+        my $VersionList = $Self->{ConfigItemObject}->VersionList(
+            ConfigItemID => $ConfigItemID,
+        ) || [];
+        if ( scalar @{$VersionList} ) {
+            $LatestVersionID = $VersionList->[-1];
+        }
+    }
+    else {
+
+        # no config item was found, so add new config item
         $ConfigItemID = $Self->{ConfigItemObject}->ConfigItemAdd(
             ClassID => $ObjectData->{ClassID},
             UserID  => $Param{UserID},
         );
 
-        # check config item id
+        # check the new config item id
         if ( !$ConfigItemID ) {
 
             $Self->{LogObject}->Log(
@@ -998,8 +1018,6 @@ sub ImportDataSave {
             );
             return;
         }
-
-        $NewConfigItem = 1;
     }
 
     # add new version
@@ -1013,20 +1031,32 @@ sub ImportDataSave {
         UserID       => $Param{UserID},
     );
 
-    return $ConfigItemID if $VersionID;
+    # the import was successful, when we get a version id
+    if ($VersionID) {
+
+        # When VersionAdd() returns the previous latest version ID, we know that
+        # no new version has been added.
+        # The import of this config item has been skipped.
+        if ( $LatestVersionID && $VersionID == $LatestVersionID ) {
+            $RetCode = 'Skipped';
+        }
+
+        return $ConfigItemID, $RetCode;
+    }
 
     $Self->{LogObject}->Log(
         Priority => 'error',
         Message  => "Can't import this entity. Error when adding the new config item version.",
     );
 
-    return if !$NewConfigItem;
+    if ( $RetCode eq 'Created' ) {
 
-    # delete the new config item
-    $Self->{ConfigItemObject}->ConfigItemDelete(
-        ConfigItemID => $ConfigItemID,
-        UserID       => $Param{UserID},
-    );
+        # delete the new config item
+        $Self->{ConfigItemObject}->ConfigItemDelete(
+            ConfigItemID => $ConfigItemID,
+            UserID       => $Param{UserID},
+        );
+    }
 
     return;
 }
@@ -1485,6 +1515,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.9 $ $Date: 2010-02-22 11:53:23 $
+$Revision: 1.10 $ $Date: 2010-02-22 18:08:41 $
 
 =cut
