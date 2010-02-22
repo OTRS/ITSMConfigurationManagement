@@ -1,8 +1,8 @@
 # --
 # Kernel/System/Stats/Dynamic/ITSMConfigItem.pm - all dynamic itsm config item stats functions
-# Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.3 2009-07-20 23:26:37 ub Exp $
+# $Id: ITSMConfigItem.pm,v 1.4 2010-02-22 10:07:12 reb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::GeneralCatalog;
 use Kernel::System::ITSMConfigItem;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.3 $) [1];
+$VERSION = qw($Revision: 1.4 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -28,7 +28,10 @@ sub new {
     bless( $Self, $Type );
 
     # check needed objects
-    for my $Object (qw(DBObject ConfigObject EncodeObject LogObject UserObject MainObject)) {
+    for my $Object (
+        qw(DBObject ConfigObject EncodeObject LogObject UserObject MainObject TimeObject)
+        )
+    {
         $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
     }
     $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
@@ -60,6 +63,11 @@ sub GetObjectAttributes {
     my $InciStateList = $Self->{GeneralCatalogObject}->ItemList(
         Class => 'ITSM::Core::IncidentState',
     );
+
+    # get current time to fix bug#3830
+    my $TimeStamp = $Self->{TimeObject}->CurrentTimestamp();
+    my ($Date) = split /\s+/, $TimeStamp;
+    my $Today = sprintf "%s 23:59:59", $Date;
 
     # create object attribute array
     my @ObjectAttributes = (
@@ -128,6 +136,7 @@ sub GetObjectAttributes {
             Element          => 'ChangeTime',
             TimePeriodFormat => 'DateInputFormat',
             Block            => 'Time',
+            TimeStop         => $TimeStamp,
             Values           => {
                 TimeStart => 'ConfigItemChangeTimeNewerDate',
                 TimeStop  => 'ConfigItemChangeTimeOlderDate',
