@@ -2,7 +2,7 @@
 # Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm - import/export backend for ITSMConfigItem
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.8 2010-02-19 14:35:26 bes Exp $
+# $Id: ITSMConfigItem.pm,v 1.9 2010-02-22 11:53:23 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -14,12 +14,14 @@ package Kernel::System::ImportExport::ObjectBackend::ITSMConfigItem;
 use strict;
 use warnings;
 
+use List::Util qw(min);
+
 use Kernel::System::GeneralCatalog;
 use Kernel::System::ITSMConfigItem;
 use Kernel::System::Time;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.8 $) [1];
+$VERSION = qw($Revision: 1.9 $) [1];
 
 =head1 NAME
 
@@ -219,7 +221,7 @@ sub MappingObjectAttributesGet {
     $Self->_MappingObjectAttributesGet(
         XMLDefinition => $XMLDefinition->{DefinitionRef},
         ElementList   => $ElementList,
-        CountMax      => $ObjectData->{CountMax} || 10,
+        CountMaxLimit => $ObjectData->{CountMax} || 10,
     );
 
     my $Attributes = [
@@ -1033,11 +1035,15 @@ sub ImportDataSave {
 
 =item _MappingObjectAttributesGet()
 
-recursion function for MappingObjectAttributesGet()
+recursion function for MappingObjectAttributesGet().
+Definitions for object attributes are passed in C<XMLDefinition>.
+The new object attributes are appended to C<ElementList>.
+C<CountMaxLimit> limits the max length of importable arrays.
 
     $ObjectBackend->_MappingObjectAttributesGet(
         XMLDefinition => $ArrayRef,
         ElementList   => $ArrayRef,
+        CountMaxLimit => 10,
     );
 
 =cut
@@ -1045,7 +1051,7 @@ recursion function for MappingObjectAttributesGet()
 sub _MappingObjectAttributesGet {
     my ( $Self, %Param ) = @_;
 
-    return if !$Param{CountMax};
+    return if !$Param{CountMaxLimit};
     return if !$Param{XMLDefinition};
     return if !$Param{ElementList};
     return if ref $Param{XMLDefinition} ne 'ARRAY';
@@ -1054,7 +1060,8 @@ sub _MappingObjectAttributesGet {
     ITEM:
     for my $Item ( @{ $Param{XMLDefinition} } ) {
 
-        my $CountMax = $Item->{CountMax} > $Param{CountMax} ? $Param{CountMax} : $Item->{CountMax};
+        # limit the length of importable arrays, even if more elements can be set via the GUI
+        my $CountMax = min( $Item->{CountMax}, $Param{CountMaxLimit} );
 
         COUNT:
         for my $Count ( 1 .. $CountMax ) {
@@ -1095,7 +1102,7 @@ sub _MappingObjectAttributesGet {
                 ElementList   => $Param{ElementList},
                 KeyPrefix     => $Key,
                 ValuePrefix   => $Value,
-                CountMax      => $CountMax,
+                CountMaxLimit => $Param{CountMaxLimit} || '10',
             );
         }
     }
@@ -1478,6 +1485,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.8 $ $Date: 2010-02-19 14:35:26 $
+$Revision: 1.9 $ $Date: 2010-02-22 11:53:23 $
 
 =cut
