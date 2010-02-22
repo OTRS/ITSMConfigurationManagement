@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Version.pm - sub module of ITSMConfigItem.pm with version functions
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: Version.pm,v 1.17 2010-02-19 12:44:30 bes Exp $
+# $Id: Version.pm,v 1.18 2010-02-22 09:22:16 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,9 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.17 $) [1];
+$VERSION = qw($Revision: 1.18 $) [1];
+
+use Storable ();
 
 =head1 NAME
 
@@ -211,8 +213,9 @@ sub VersionGet {
     if ( $Param{VersionID} ) {
 
         # check if result is already cached
-        return $Self->{Cache}->{VersionGet}->{ $Param{VersionID} }
-            if $Self->{Cache}->{VersionGet}->{ $Param{VersionID} };
+        if ( $Self->{Cache}->{VersionGet}->{ $Param{VersionID} } ) {
+            return Storable::dclone( $Self->{Cache}->{VersionGet}->{ $Param{VersionID} } );
+        }
 
         # get version
         $Self->{DBObject}->Prepare(
@@ -317,7 +320,7 @@ sub VersionGet {
     # cache the result
     $Self->{Cache}->{VersionGet}->{ $Version{VersionID} } = \%Version;
 
-    return \%Version;
+    return Storable::dclone( \%Version );
 }
 
 =item VersionConfigItemIDGet()
@@ -1094,6 +1097,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.17 $ $Date: 2010-02-19 12:44:30 $
+$Revision: 1.18 $ $Date: 2010-02-22 09:22:16 $
 
 =cut
