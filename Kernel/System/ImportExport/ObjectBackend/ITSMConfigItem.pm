@@ -2,7 +2,7 @@
 # Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm - import/export backend for ITSMConfigItem
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.10 2010-02-22 18:08:41 bes Exp $
+# $Id: ITSMConfigItem.pm,v 1.11 2010-02-23 12:10:47 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -21,7 +21,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::Time;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.10 $) [1];
+$VERSION = qw($Revision: 1.11 $) [1];
 
 =head1 NAME
 
@@ -29,7 +29,7 @@ Kernel::System::ImportExport::ObjectBackend::ITSMConfigItem - import/export back
 
 =head1 SYNOPSIS
 
-All functions to import and export ITSM config items
+All functions to import and export ITSM config items.
 
 =over 4
 
@@ -89,6 +89,7 @@ sub new {
         $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
     }
 
+    # create additional objects
     $Self->{TimeObject}           = Kernel::System::Time->new( %{$Self} );
     $Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new( %{$Self} );
     $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
@@ -614,11 +615,14 @@ sub ExportDataGet {
 
 =item ImportDataSave()
 
-import one row of the import data
+imports a single row of the import data. The C<TemplateID> points to the definition
+of the current import. C<ImportDataRow> holds the data. C<Counter> is only used in
+error messages, for indicating which item was not imported successfully.
 
     my ( $ConfigItemID, $RetCode ) = $ObjectBackend->ImportDataSave(
         TemplateID    => 123,
         ImportDataRow => $ArrayRef,
+        Counter       => 367,
         UserID        => 1,
     );
 
@@ -629,7 +633,7 @@ config item has been created. 'Updated' means that a new version has been added 
 an existing config item. 'Skipped' means that no new version has been created,
 as the new data is identical to the latest version of an existing config item.
 
-No codes have been defined for the failure case.
+No codes have yet been defined for the failure case.
 
 =cut
 
@@ -637,7 +641,7 @@ sub ImportDataSave {
     my ( $Self, %Param ) = @_;
 
     # check needed stuff
-    for my $Argument (qw(TemplateID ImportDataRow UserID)) {
+    for my $Argument (qw(TemplateID ImportDataRow Counter UserID)) {
         if ( !$Param{$Argument} ) {
             $Self->{LogObject}->Log(
                 Priority => 'error',
@@ -651,7 +655,8 @@ sub ImportDataSave {
     if ( ref $Param{ImportDataRow} ne 'ARRAY' ) {
         $Self->{LogObject}->Log(
             Priority => 'error',
-            Message  => 'ImportDataRow must be an array reference',
+            Message =>
+                "Can't import entity $Param{Counter}: ImportDataRow must be an array reference",
         );
         return;
     }
@@ -666,7 +671,8 @@ sub ImportDataSave {
     if ( !$ObjectData || ref $ObjectData ne 'HASH' ) {
         $Self->{LogObject}->Log(
             Priority => 'error',
-            Message  => "No object data found for the template id $Param{TemplateID}",
+            Message =>
+                "Can't import entity $Param{Counter}: No object data found for the template id '$Param{TemplateID}'",
         );
         return;
     }
@@ -676,14 +682,23 @@ sub ImportDataSave {
         Class => 'ITSM::ConfigItem::Class',
     );
 
-    return if !$ClassList || ref $ClassList ne 'HASH';
+    # check the class id
+    if ( !$ClassList || ref $ClassList ne 'HASH' ) {
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message =>
+                "Can't import entity $Param{Counter}: Can't get the general catalog list ITSM::ConfigItem::Class!",
+        );
+        return;
+    }
 
     # check the class id
     if ( !$ObjectData->{ClassID} || !$ClassList->{ $ObjectData->{ClassID} } ) {
 
         $Self->{LogObject}->Log(
             Priority => 'error',
-            Message  => "No valid class id found for the template id $Param{TemplateID}",
+            Message =>
+                "Can't import entity $Param{Counter}: No valid class id found for the template id $Param{TemplateID}",
         );
         return;
     }
@@ -699,7 +714,8 @@ sub ImportDataSave {
 
         $Self->{LogObject}->Log(
             Priority => 'error',
-            Message  => "No valid mapping list found for the template id $Param{TemplateID}",
+            Message =>
+                "Can't import entity $Param{Counter}: No valid mapping list found for the template id $Param{TemplateID}",
         );
         return;
     }
@@ -722,7 +738,9 @@ sub ImportDataSave {
 
             $Self->{LogObject}->Log(
                 Priority => 'error',
-                Message  => "No valid mapping list found for the template id $Param{TemplateID}",
+                Message =>
+                    "Can't import entity $Param{Counter}: "
+                    . "No valid mapping list found for the template id $Param{TemplateID}",
             );
             return;
         }
@@ -736,7 +754,7 @@ sub ImportDataSave {
 
             $Self->{LogObject}->Log(
                 Priority => 'error',
-                Message  => "Can't import this entity. "
+                Message  => "Can't import entity $Param{Counter}: "
                     . "'$MappingObjectData->{Key}' has been used multiple times as an identifier.!",
             );
             return;
@@ -749,7 +767,7 @@ sub ImportDataSave {
 
         $Self->{LogObject}->Log(
             Priority => 'error',
-            Message  => "Can't import this entity. Identifier field is empty!",
+            Message  => "Can't import entity $Param{Counter}: Identifier field is empty!",
         );
         return;
     }
@@ -767,7 +785,9 @@ sub ImportDataSave {
 
         $Self->{LogObject}->Log(
             Priority => 'error',
-            Message  => "Can't get the general catalog list ITSM::ConfigItem::DeploymentState!",
+            Message =>
+                "Can't import entity $Param{Counter}: "
+                . "Can't get the general catalog list ITSM::ConfigItem::DeploymentState!",
         );
         return;
     }
@@ -785,7 +805,9 @@ sub ImportDataSave {
 
         $Self->{LogObject}->Log(
             Priority => 'error',
-            Message  => "Can't get the general catalog list ITSM::Core::IncidentState!",
+            Message =>
+                "Can't import entity $Param{Counter}: "
+                . "Can't get the general catalog list ITSM::Core::IncidentState!",
         );
         return;
     }
@@ -804,7 +826,9 @@ sub ImportDataSave {
 
         $Self->{LogObject}->Log(
             Priority => 'error',
-            Message  => "Can't get the definition of class id $ObjectData->{ClassID}!",
+            Message =>
+                "Can't import entity $Param{Counter}: "
+                . "Can't get the definition of class id $ObjectData->{ClassID}!",
         );
         return;
     }
@@ -835,8 +859,9 @@ sub ImportDataSave {
 
                 $Self->{LogObject}->Log(
                     Priority => 'error',
-                    Message  => "Can't import this entity. The deployment state "
-                        . "'$Identifier{DeplState}' is invalid!",
+                    Message =>
+                        "Can't import entity $Param{Counter}: "
+                        . "The deployment state '$Identifier{DeplState}' is invalid!",
                 );
                 return;
             }
@@ -854,8 +879,9 @@ sub ImportDataSave {
 
                 $Self->{LogObject}->Log(
                     Priority => 'error',
-                    Message  => "Can't import this entity. The incident state "
-                        . "'$Identifier{InciState}' is invalid!",
+                    Message =>
+                        "Can't import entity $Param{Counter}: "
+                        . "The incident state '$Identifier{InciState}' is invalid!",
                 );
                 return;
             }
@@ -889,7 +915,7 @@ sub ImportDataSave {
 
             $Self->{LogObject}->Log(
                 Priority => 'error',
-                Message  => "Can't import this entity. Identifier fields NOT unique!",
+                Message  => "Can't import entity $Param{Counter}: Identifier fields NOT unique!",
             );
             return;
         }
@@ -940,8 +966,9 @@ sub ImportDataSave {
 
                 $Self->{LogObject}->Log(
                     Priority => 'error',
-                    Message  => "Can't import this entity. The deployment state "
-                        . "'$Param{ImportDataRow}->[$Counter]' is invalid!",
+                    Message =>
+                        "Can't import entity $Param{Counter}: "
+                        . "The deployment state '$Param{ImportDataRow}->[$Counter]' is invalid!",
                 );
                 return;
             }
@@ -960,8 +987,9 @@ sub ImportDataSave {
 
                 $Self->{LogObject}->Log(
                     Priority => 'error',
-                    Message  => "Can't import this entity. The incident state "
-                        . "'$Param{ImportDataRow}->[$Counter]' is invalid!",
+                    Message =>
+                        "Can't import entity $Param{Counter}: "
+                        . "The incident state '$Param{ImportDataRow}->[$Counter]' is invalid!",
                 );
                 return;
             }
@@ -1014,7 +1042,9 @@ sub ImportDataSave {
 
             $Self->{LogObject}->Log(
                 Priority => 'error',
-                Message  => "Can't import this entity. Error when adding the new config item.",
+                Message =>
+                    "Can't import entity $Param{Counter}: "
+                    . "Error when adding the new config item.",
             );
             return;
         }
@@ -1044,11 +1074,6 @@ sub ImportDataSave {
         return $ConfigItemID, $RetCode;
     }
 
-    $Self->{LogObject}->Log(
-        Priority => 'error',
-        Message  => "Can't import this entity. Error when adding the new config item version.",
-    );
-
     if ( $RetCode eq 'Created' ) {
 
         # delete the new config item
@@ -1057,6 +1082,13 @@ sub ImportDataSave {
             UserID       => $Param{UserID},
         );
     }
+
+    $Self->{LogObject}->Log(
+        Priority => 'error',
+        Message =>
+            "Can't import entity $Param{Counter}: "
+            . "Error when adding the new config item version.",
+    );
 
     return;
 }
@@ -1515,6 +1547,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.10 $ $Date: 2010-02-22 18:08:41 $
+$Revision: 1.11 $ $Date: 2010-02-23 12:10:47 $
 
 =cut
