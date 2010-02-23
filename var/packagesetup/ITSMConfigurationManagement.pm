@@ -1,8 +1,8 @@
 # --
 # ITSMConfigurationManagement.pm - code to excecute during package installation
-# Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigurationManagement.pm,v 1.15 2009-10-07 14:22:32 reb Exp $
+# $Id: ITSMConfigurationManagement.pm,v 1.16 2010-02-23 08:34:29 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -28,7 +28,7 @@ use Kernel::System::User;
 use Kernel::System::Valid;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.15 $) [1];
+$VERSION = qw($Revision: 1.16 $) [1];
 
 =head1 NAME
 
@@ -36,7 +36,7 @@ ITSMConfigurationManagement.pm - code to excecute during package installation
 
 =head1 SYNOPSIS
 
-All functions
+Functions for installing the ITSMConfigurationManagement package.
 
 =head1 PUBLIC INTERFACE
 
@@ -138,7 +138,7 @@ sub new {
         }
     }
 
-    # create needed objects
+    # create additional objects
     $Self->{ConfigObject}         = Kernel::Config->new();
     $Self->{CSVObject}            = Kernel::System::CSV->new( %{$Self} );
     $Self->{GroupObject}          = Kernel::System::Group->new( %{$Self} );
@@ -1334,6 +1334,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.15 $ $Date: 2009-10-07 14:22:32 $
+$Revision: 1.16 $ $Date: 2010-02-23 08:34:29 $
 
 =cut
