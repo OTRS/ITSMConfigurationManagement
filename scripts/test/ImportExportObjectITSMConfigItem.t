@@ -2,7 +2,7 @@
 # ImportExportObjectITSMConfigItem.t - all import export tests for the ITSMConfigItem object backend
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ImportExportObjectITSMConfigItem.t,v 1.3 2010-02-24 08:16:01 bes Exp $
+# $Id: ImportExportObjectITSMConfigItem.t,v 1.4 2010-02-24 08:36:48 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -3289,11 +3289,24 @@ for my $Test ( @{$ImportDataTests} ) {
 
         $Self->False(
             $ConfigItemID,
-            "Test $TestCount: ImportDataSave() - return false"
+            "Test $TestCount: ImportDataSave() - return no ConfigItemID"
+        );
+        $Self->False(
+            $RetCode,
+            "Test $TestCount: ImportDataSave() - return no RetCode"
         );
 
         next TEST;
     }
+
+    $Self->True(
+        $ConfigItemID,
+        "Test $TestCount: ImportDataSave() - return ConfigItemID"
+    );
+    $Self->True(
+        $RetCode,
+        "Test $TestCount: ImportDataSave() - return RetCode"
+    );
 
     # get the version list
     my $VersionList = $Self->{ConfigItemObject}->VersionList(
