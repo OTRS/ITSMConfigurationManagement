@@ -2,7 +2,7 @@
 # Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm - import/export backend for ITSMConfigItem
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.15 2010-02-24 15:11:18 bes Exp $
+# $Id: ITSMConfigItem.pm,v 1.16 2010-02-24 17:26:55 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -21,7 +21,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::Time;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.15 $) [1];
+$VERSION = qw($Revision: 1.16 $) [1];
 
 =head1 NAME
 
@@ -702,6 +702,9 @@ sub ImportDataSave {
         return;
     }
 
+    # just for convenience
+    my $EmptyFieldsLeaveTheOldValues = $ObjectData->{EmptyFieldsLeaveTheOldValues};
+
     # get class list
     my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
         Class => 'ITSM::ConfigItem::Class',
@@ -984,9 +987,9 @@ sub ImportDataSave {
         }
     }
 
+    # set up fields in VersionData and in the XML attributes
     my %XMLData2D;
     $RowIndex = 0;
-    MAPPINGOBJECTDATA:
     for my $MappingObjectData (@MappingObjectList) {
 
         # just for convenience
@@ -1001,7 +1004,24 @@ sub ImportDataSave {
         elsif ( $Key eq 'Name' ) {
 
             # handle name
-            $VersionData->{$Key} = $Value;
+            if ( !$Value ) {
+                if ( !$EmptyFieldsLeaveTheOldValues ) {
+                    $Self->{LogObject}->Log(
+                        Priority => 'error',
+                        Message =>
+                            "Can't import entity $Param{Counter}: "
+                            . "The name '$Value' is invalid!",
+                    );
+                    return;
+                }
+                else {
+
+                    # do nothing, keep the old value
+                }
+            }
+            else {
+                $VersionData->{$Key} = $Value;
+            }
         }
         elsif ( $Key eq 'DeplState' ) {
 
@@ -1010,17 +1030,23 @@ sub ImportDataSave {
             my $DeplStateID = $DeplStateListReverse{$Value} || '';
 
             if ( !$DeplStateID ) {
+                if ( !$EmptyFieldsLeaveTheOldValues ) {
+                    $Self->{LogObject}->Log(
+                        Priority => 'error',
+                        Message =>
+                            "Can't import entity $Param{Counter}: "
+                            . "The deployment state '$Value' is invalid!",
+                    );
+                    return;
+                }
+                else {
 
-                $Self->{LogObject}->Log(
-                    Priority => 'error',
-                    Message =>
-                        "Can't import entity $Param{Counter}: "
-                        . "The deployment state '$Value' is invalid!",
-                );
-                return;
+                    # do nothing, keep the old value
+                }
             }
-
-            $VersionData->{DeplStateID} = $DeplStateID;
+            else {
+                $VersionData->{DeplStateID} = $DeplStateID;
+            }
         }
         elsif ( $Key eq 'InciState' ) {
 
@@ -1029,17 +1055,23 @@ sub ImportDataSave {
             my $InciStateID = $InciStateListReverse{$Value} || '';
 
             if ( !$InciStateID ) {
+                if ( !$EmptyFieldsLeaveTheOldValues ) {
+                    $Self->{LogObject}->Log(
+                        Priority => 'error',
+                        Message =>
+                            "Can't import entity $Param{Counter}: "
+                            . "The incident state '$Value' is invalid!",
+                    );
+                    return;
+                }
+                else {
 
-                $Self->{LogObject}->Log(
-                    Priority => 'error',
-                    Message =>
-                        "Can't import entity $Param{Counter}: "
-                        . "The incident state '$Value' is invalid!",
-                );
-                return;
+                    # do nothing, keep the old value
+                }
             }
-
-            $VersionData->{InciStateID} = $InciStateID;
+            else {
+                $VersionData->{InciStateID} = $InciStateID;
+            }
         }
         else {
 
@@ -1056,7 +1088,7 @@ sub ImportDataSave {
         XMLDefinition                => $DefinitionData->{DefinitionRef},
         XMLDataPrev                  => $VersionData->{XMLData}->[1]->{Version}->[1],
         XMLData2D                    => \%XMLData2D,
-        EmptyFieldsLeaveTheOldValues => $ObjectData->{EmptyFieldsLeaveTheOldValues},
+        EmptyFieldsLeaveTheOldValues => $EmptyFieldsLeaveTheOldValues,
     );
 
     my $RetCode = $ConfigItemID ? 'Changed' : 'Created';
@@ -1609,6 +1641,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.15 $ $Date: 2010-02-24 15:11:18 $
+$Revision: 1.16 $ $Date: 2010-02-24 17:26:55 $
 
 =cut
