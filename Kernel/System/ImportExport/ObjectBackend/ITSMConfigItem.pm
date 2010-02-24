@@ -2,7 +2,7 @@
 # Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm - import/export backend for ITSMConfigItem
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.11 2010-02-23 12:10:47 bes Exp $
+# $Id: ITSMConfigItem.pm,v 1.12 2010-02-24 13:04:55 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -21,7 +21,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::Time;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.11 $) [1];
+$VERSION = qw($Revision: 1.12 $) [1];
 
 =head1 NAME
 
@@ -41,8 +41,8 @@ create an object
 
     use Kernel::Config;
     use Kernel::System::Encode;
-    use Kernel::System::Log;
     use Kernel::System::DB;
+    use Kernel::System::Log;
     use Kernel::System::Main;
     use Kernel::System::ImportExport::ObjectBackend::ITSMConfigItem;
 
@@ -99,7 +99,7 @@ sub new {
 
 =item ObjectAttributesGet()
 
-get the object attributes of an object as array/hash reference
+get the object attributes of an object as a ref to an array of hash references
 
     my $Attributes = $ObjectBackend->ObjectAttributesGet(
         UserID => 1,
@@ -147,6 +147,13 @@ sub ObjectAttributesGet {
                 Translation  => 0,
                 Size         => 5,
                 MaxLength    => 5,
+            },
+        },
+        {
+            Key   => 'EmptyFieldsLeaveTheOldValues',
+            Name  => 'Empty fields indicate that the current values are kept',
+            Input => {
+                Type => 'Checkbox',
             },
         },
     ];
@@ -619,6 +626,12 @@ imports a single row of the import data. The C<TemplateID> points to the definit
 of the current import. C<ImportDataRow> holds the data. C<Counter> is only used in
 error messages, for indicating which item was not imported successfully.
 
+The current version of the ConfigItem will be saved.
+The new version of the ConfigItem will contain the attributes of the
+ImportDataRow plus the old attributes that are not part of the import definition.
+Thus ImportDataSave essentially only overwrites attributes, but does not delete
+any attributes.
+
     my ( $ConfigItemID, $RetCode ) = $ObjectBackend->ImportDataSave(
         TemplateID    => 123,
         ImportDataRow => $ArrayRef,
@@ -672,7 +685,8 @@ sub ImportDataSave {
         $Self->{LogObject}->Log(
             Priority => 'error',
             Message =>
-                "Can't import entity $Param{Counter}: No object data found for the template id '$Param{TemplateID}'",
+                "Can't import entity $Param{Counter}: "
+                . "No object data found for the template id '$Param{TemplateID}'",
         );
         return;
     }
@@ -915,7 +929,9 @@ sub ImportDataSave {
 
             $Self->{LogObject}->Log(
                 Priority => 'error',
-                Message  => "Can't import entity $Param{Counter}: Identifier fields NOT unique!",
+                Message =>
+                    "Can't import entity $Param{Counter}: "
+                    . "Identifier fields NOT unique!",
             );
             return;
         }
@@ -1005,16 +1021,15 @@ sub ImportDataSave {
         $Counter++;
     }
 
-    # translate xmldata from 2d hash to the multidim structure
-    my $XMLData = $Self->_ImportXMLDataPrepare(
-        XMLDefinition => $DefinitionData->{DefinitionRef},
-        XMLData2D     => \%XMLData2D,
+    # Edit XMLDataPrev, so that the values in XMLData2D take precedence.
+    $VersionData->{XMLData}->[1]->{Version}->[1]
+        ||= {};    # empty container, in case there is no previous data
+    $Self->_ImportXMLDataMerge(
+        XMLDefinition                => $DefinitionData->{DefinitionRef},
+        XMLDataPrev                  => $VersionData->{XMLData}->[1]->{Version}->[1],
+        XMLData2D                    => \%XMLData2D,
+        EmptyFieldsLeaveTheOldValues => $ObjectData->{EmptyFieldsLeaveTheOldValues},
     );
-
-    # add XML data to the version data
-    if ( $XMLData && ref $XMLData eq 'HASH' && %{$XMLData} ) {
-        $VersionData->{XMLData}->[1]->{Version}->[1] = $XMLData;
-    }
 
     my $RetCode = $ConfigItemID ? 'Changed' : 'Created';
     my $LatestVersionID = 0;
@@ -1471,30 +1486,37 @@ sub _ImportXMLSearchDataPrepare {
     return 1;
 }
 
-=item _ImportXMLDataPrepare()
+=item _ImportXMLDataMerge()
 
-recursion function to prepare the import XML data as a hashref
+recursive function to inplace edit the import XML data
 
-    my $XMLData = $ObjectBackend->_ImportXMLDataPrepare(
+    my $XMLData = $ObjectBackend->_ImportXMLDataMerge(
         XMLDefinition => $ArrayRef,
+        XMLDataPrev   => $HashRef,
         XMLData2D     => $HashRef,
     );
 
 =cut
 
-sub _ImportXMLDataPrepare {
+sub _ImportXMLDataMerge {
     my ( $Self, %Param ) = @_;
 
     # check needed stuff
     return if !$Param{XMLDefinition};
     return if !$Param{XMLData2D};
-    return if ref $Param{XMLDefinition} ne 'ARRAY';
-    return if ref $Param{XMLData2D} ne 'HASH';
+    return if !$Param{XMLDataPrev};
+    return if ref $Param{XMLDefinition} ne 'ARRAY';    # the attributes of the CI class
+    return
+        if ref $Param{XMLData2D} ne
+            'HASH';    # hash with values that should be imported, the count is part of the key
+    return if ref $Param{XMLDataPrev} ne 'HASH';    # current attributes of the CI
 
-    my $XMLData;
+    my $XMLData = $Param{XMLDataPrev};
+
     ITEM:
     for my $Item ( @{ $Param{XMLDefinition} } ) {
 
+        COUNTER:
         for my $Counter ( 1 .. $Item->{CountMax} ) {
 
             # create inputkey
@@ -1503,30 +1525,42 @@ sub _ImportXMLDataPrepare {
                 $Key = $Param{Prefix} . '::' . $Key;
             }
 
+            # start recursion, if "Sub" was found
+            if ( $Item->{Sub} ) {
+                $XMLData->{ $Item->{Key} }->[$Counter]
+                    ||= {};    # empty container, in case there is no previous data
+                $Self->_ImportXMLDataMerge(
+                    XMLDefinition                => $Item->{Sub},
+                    XMLData2D                    => $Param{XMLData2D},
+                    XMLDataPrev                  => $XMLData->{ $Item->{Key} }->[$Counter],
+                    Prefix                       => $Key,
+                    EmptyFieldsLeaveTheOldValues => $Param{EmptyFieldsLeaveTheOldValues},
+                );
+            }
+
+            # When the data point is not part of the input definition,
+            # then do not overwrite the previous setting.
+            # False values are OK.
+            next COUNTER unless exists $Param{XMLData2D}->{$Key};
+
             # prepare value
             my $Value = $Self->{ConfigItemObject}->XMLImportValuePrepare(
                 Item  => $Item,
                 Value => $Param{XMLData2D}->{$Key},
             );
+            $Value ||= '';
 
-            # start recursion, if "Sub" was found
-            if ( $Item->{Sub} ) {
-                my $SubXMLData = $Self->_ImportXMLDataPrepare(
-                    XMLDefinition => $Item->{Sub},
-                    XMLData2D     => $Param{XMLData2D},
-                    Prefix        => $Key,
-                );
+            if ( $Param{EmptyFieldsLeaveTheOldValues} ) {
 
-                $XMLData->{ $Item->{Key} }->[$Counter] = $SubXMLData;
+                # do not override old value with an empty new value
+                next COUNTER if !$Value;
             }
 
-            if ( defined $Value ) {
-                $XMLData->{ $Item->{Key} }->[$Counter]->{Content} = $Value;
-            }
+            $XMLData->{ $Item->{Key} }->[$Counter]->{Content} = $Value;
         }
     }
 
-    return $XMLData;
+    return;
 }
 
 1;
@@ -1547,6 +1581,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.11 $ $Date: 2010-02-23 12:10:47 $
+$Revision: 1.12 $ $Date: 2010-02-24 13:04:55 $
 
 =cut
