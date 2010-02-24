@@ -2,7 +2,7 @@
 # ImportExportObjectITSMConfigItem.t - all import export tests for the ITSMConfigItem object backend
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ImportExportObjectITSMConfigItem.t,v 1.4 2010-02-24 08:36:48 bes Exp $
+# $Id: ImportExportObjectITSMConfigItem.t,v 1.5 2010-02-24 18:43:47 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -115,10 +115,19 @@ my $ObjectAttributesGet1Reference = [
             MaxLength    => 5,
         },
     },
+    {
+        'Input' => {
+            'Type' => 'Checkbox'
+        },
+        'Name' => 'Empty fields indicate that the current values are kept',
+        'Key'  => 'EmptyFieldsLeaveTheOldValues',
+    }
 ];
 
 # turn off all pretty print
-$Data::Dumper::Indent = 0;
+local $Data::Dumper::Indent   = 0;
+local $Data::Dumper::Useqq    = 1;
+local $Data::Dumper::Sortkeys = 1;
 
 # dump the list from ObjectAttributesGet()
 my $ObjectAttributesGetDump1 = Data::Dumper::Dumper($ObjectAttributesGet1);
@@ -3045,6 +3054,8 @@ my $ImportDataTests = [
     },
 
     # all required values are given (special character checks)
+    # In 'UnitTest - ConfigItem 3 Version 2' 16 Attributes were imported,
+    # so there will be 8 lingering attributes.
     {
         SourceImportData => {
             ObjectData => {
@@ -3122,11 +3133,28 @@ my $ImportDataTests = [
                 'Main2::1'                                    => '"";;::..--__##',
                 'Main2::1::Main2Sub1::1'                      => 'Test Test',
                 'Main2::1::Main2Sub2::1'                      => "Test\nTest\tTest",
+
+                # lingering from 'UnitTest - ConfigItem 3 Version 2',
+                'Main1::1::Main1Sub1::1::Main1Sub1SubSub1::2' =>
+                    'Main1 (1) Main1Sub1 (1) Main1Sub1SubSub1 (2)',
+                'Main1::1::Main1Sub1::1::Main1Sub1SubSub1::3' =>
+                    'Main1 (1) Main1Sub1 (1) Main1Sub1SubSub1 (3)',
+                'Main1::1::Main1Sub1::2' => 'Main1 (1) Main1Sub1 (2)',
+                'Main1::1::Main1Sub1::2::Main1Sub1SubSub1::1' =>
+                    'Main1 (1) Main1Sub1 (2) Main1Sub1SubSub1 (1)',
+                'Main1::1::Main1Sub1::2::Main1Sub1SubSub2::1' =>
+                    'Main1 (1) Main1Sub1 (2) Main1Sub1SubSub2 (1)',
+                'Main1::1::Main1Sub1::2::Main1Sub1SubSub2::2' =>
+                    'Main1 (1) Main1Sub1 (2) Main1Sub1SubSub2 (2)',
+                'Main1::1::Main1Sub2::2' => 'Main1 (1) Main1Sub2 (2)',
+                'Main2::1::Main2Sub2::2' => 'Main2 (1) Main2Sub2 (2)',
             },
         },
     },
 
     # all required values are given (UTF-8 checks)
+    # In 'UnitTest - ConfigItem 3 Version 2' 16 Attributes were imported,
+    # so there will be 8 lingering attributes.
     {
         SourceImportData => {
             ObjectData => {
@@ -3204,6 +3232,21 @@ my $ImportDataTests = [
                 'Main2::1'                                    => 'й ф щ',
                 'Main2::1::Main2Sub1::1'                      => 'њ ё',
                 'Main2::1::Main2Sub2::1'                      => 'Ѭ Ѧ',
+
+                # lingering from 'UnitTest - ConfigItem 3 Version 2',
+                'Main1::1::Main1Sub1::1::Main1Sub1SubSub1::2' =>
+                    'Main1 (1) Main1Sub1 (1) Main1Sub1SubSub1 (2)',
+                'Main1::1::Main1Sub1::1::Main1Sub1SubSub1::3' =>
+                    'Main1 (1) Main1Sub1 (1) Main1Sub1SubSub1 (3)',
+                'Main1::1::Main1Sub1::2' => 'Main1 (1) Main1Sub1 (2)',
+                'Main1::1::Main1Sub1::2::Main1Sub1SubSub1::1' =>
+                    'Main1 (1) Main1Sub1 (2) Main1Sub1SubSub1 (1)',
+                'Main1::1::Main1Sub1::2::Main1Sub1SubSub2::1' =>
+                    'Main1 (1) Main1Sub1 (2) Main1Sub1SubSub2 (1)',
+                'Main1::1::Main1Sub1::2::Main1Sub1SubSub2::2' =>
+                    'Main1 (1) Main1Sub1 (2) Main1Sub1SubSub2 (2)',
+                'Main1::1::Main1Sub2::2' => 'Main1 (1) Main1Sub2 (2)',
+                'Main2::1::Main2Sub2::2' => 'Main2 (1) Main2Sub2 (2)',
             },
         },
     },
