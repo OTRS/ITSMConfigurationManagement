@@ -2,7 +2,7 @@
 # Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm - import/export backend for ITSMConfigItem
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.13 2010-02-24 13:19:58 bes Exp $
+# $Id: ITSMConfigItem.pm,v 1.14 2010-02-24 14:06:01 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -21,7 +21,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::Time;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.13 $) [1];
+$VERSION = qw($Revision: 1.14 $) [1];
 
 =head1 NAME
 
@@ -622,7 +622,7 @@ sub ExportDataGet {
 
 =item ImportDataSave()
 
-imports a single row of the import data. The C<TemplateID> points to the definition
+imports a single entity of the import data. The C<TemplateID> points to the definition
 of the current import. C<ImportDataRow> holds the data. C<Counter> is only used in
 error messages, for indicating which item was not imported successfully.
 
@@ -711,7 +711,8 @@ sub ImportDataSave {
         $Self->{LogObject}->Log(
             Priority => 'error',
             Message =>
-                "Can't import entity $Param{Counter}: Can't get the general catalog list ITSM::ConfigItem::Class!",
+                "Can't import entity $Param{Counter}: "
+                . "Can't get the general catalog list ITSM::ConfigItem::Class",
         );
         return;
     }
@@ -722,7 +723,8 @@ sub ImportDataSave {
         $Self->{LogObject}->Log(
             Priority => 'error',
             Message =>
-                "Can't import entity $Param{Counter}: No valid class id found for the template id $Param{TemplateID}",
+                "Can't import entity $Param{Counter}: "
+                . "No class found for the template id '$Param{TemplateID}'",
         );
         return;
     }
@@ -739,7 +741,8 @@ sub ImportDataSave {
         $Self->{LogObject}->Log(
             Priority => 'error',
             Message =>
-                "Can't import entity $Param{Counter}: No valid mapping list found for the template id $Param{TemplateID}",
+                "Can't import entity $Param{Counter}: "
+                . "No valid mapping list found for the template id '$Param{TemplateID}'",
         );
         return;
     }
@@ -764,7 +767,7 @@ sub ImportDataSave {
                 Priority => 'error',
                 Message =>
                     "Can't import entity $Param{Counter}: "
-                    . "No valid mapping list found for the template id $Param{TemplateID}",
+                    . "No mapping object data found for the mapping id '$MappingID'",
             );
             return;
         }
@@ -778,8 +781,9 @@ sub ImportDataSave {
 
             $Self->{LogObject}->Log(
                 Priority => 'error',
-                Message  => "Can't import entity $Param{Counter}: "
-                    . "'$MappingObjectData->{Key}' has been used multiple times as an identifier.!",
+                Message =>
+                    "Can't import entity $Param{Counter}: "
+                    . "'$MappingObjectData->{Key}' has been used multiple times as an identifier",
             );
             return;
         }
@@ -791,7 +795,9 @@ sub ImportDataSave {
 
         $Self->{LogObject}->Log(
             Priority => 'error',
-            Message  => "Can't import entity $Param{Counter}: Identifier field is empty!",
+            Message =>
+                "Can't import entity $Param{Counter}: "
+                . "Identifier field is empty",
         );
         return;
     }
@@ -831,7 +837,7 @@ sub ImportDataSave {
             Priority => 'error',
             Message =>
                 "Can't import entity $Param{Counter}: "
-                . "Can't get the general catalog list ITSM::Core::IncidentState!",
+                . "Can't get the general catalog list ITSM::Core::IncidentState",
         );
         return;
     }
@@ -852,7 +858,7 @@ sub ImportDataSave {
             Priority => 'error',
             Message =>
                 "Can't import entity $Param{Counter}: "
-                . "Can't get the definition of class id $ObjectData->{ClassID}!",
+                . "Can't get the definition of class id $ObjectData->{ClassID}",
         );
         return;
     }
@@ -885,7 +891,7 @@ sub ImportDataSave {
                     Priority => 'error',
                     Message =>
                         "Can't import entity $Param{Counter}: "
-                        . "The deployment state '$Identifier{DeplState}' is invalid!",
+                        . "The deployment state '$Identifier{DeplState}' is invalid",
                 );
                 return;
             }
@@ -905,7 +911,7 @@ sub ImportDataSave {
                     Priority => 'error',
                     Message =>
                         "Can't import entity $Param{Counter}: "
-                        . "The incident state '$Identifier{InciState}' is invalid!",
+                        . "The incident state '$Identifier{InciState}' is invalid",
                 );
                 return;
             }
@@ -1591,6 +1597,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.13 $ $Date: 2010-02-24 13:19:58 $
+$Revision: 1.14 $ $Date: 2010-02-24 14:06:01 $
 
 =cut
