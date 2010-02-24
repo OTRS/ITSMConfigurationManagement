@@ -2,7 +2,7 @@
 # Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm - import/export backend for ITSMConfigItem
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.14 2010-02-24 14:06:01 bes Exp $
+# $Id: ITSMConfigItem.pm,v 1.15 2010-02-24 15:11:18 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -21,7 +21,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::Time;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.14 $) [1];
+$VERSION = qw($Revision: 1.15 $) [1];
 
 =head1 NAME
 
@@ -679,7 +679,8 @@ sub ImportDataSave {
         $Self->{LogObject}->Log(
             Priority => 'error',
             Message =>
-                "Can't import entity $Param{Counter}: ImportDataRow must be an array reference",
+                "Can't import entity $Param{Counter}: "
+                . "ImportDataRow must be an array reference",
         );
         return;
     }
@@ -706,7 +707,7 @@ sub ImportDataSave {
         Class => 'ITSM::ConfigItem::Class',
     );
 
-    # check the class id
+    # check class list
     if ( !$ClassList || ref $ClassList ne 'HASH' ) {
         $Self->{LogObject}->Log(
             Priority => 'error',
@@ -749,9 +750,6 @@ sub ImportDataSave {
 
     # create the mapping object list
     my @MappingObjectList;
-    my %Identifier;
-    my $Counter = 0;
-    MAPPINGID:
     for my $MappingID ( @{$MappingList} ) {
 
         # get mapping object data
@@ -773,8 +771,16 @@ sub ImportDataSave {
         }
 
         push @MappingObjectList, $MappingObjectData;
+    }
 
-        next MAPPINGID if !$MappingObjectData->{Identifier};
+    # check and remember the Identifiers
+    # the Identifiers identify the config item that should be updated
+    my %Identifier;
+    my $RowIndex = 0;
+    MAPPINGOBJECTDATA:
+    for my $MappingObjectData (@MappingObjectList) {
+
+        next MAPPINGOBJECTDATA if !$MappingObjectData->{Identifier};
 
         # check if identifier already exists
         if ( $Identifier{ $MappingObjectData->{Key} } ) {
@@ -789,9 +795,9 @@ sub ImportDataSave {
         }
 
         # set identifier value
-        $Identifier{ $MappingObjectData->{Key} } = $Param{ImportDataRow}->[$Counter];
+        $Identifier{ $MappingObjectData->{Key} } = $Param{ImportDataRow}->[$RowIndex];
 
-        next MAPPINGID if $MappingObjectData->{Key} && $Param{ImportDataRow}->[$Counter];
+        next MAPPINGOBJECTDATA if $MappingObjectData->{Key} && $Param{ImportDataRow}->[$RowIndex];
 
         $Self->{LogObject}->Log(
             Priority => 'error',
@@ -799,10 +805,11 @@ sub ImportDataSave {
                 "Can't import entity $Param{Counter}: "
                 . "Identifier field is empty",
         );
+
         return;
     }
     continue {
-        $Counter++;
+        $RowIndex++;
     }
 
     # get deployment state list
@@ -863,7 +870,7 @@ sub ImportDataSave {
         return;
     }
 
-    # get config item ids (using the identifiers)
+    # try to get config item ids, when there are identifiers
     my $ConfigItemID;
     if (%Identifier) {
 
@@ -896,7 +903,8 @@ sub ImportDataSave {
                 return;
             }
 
-            $SearchParams{DeplStateIDs} = [ delete $Identifier{DeplState} ];
+            $SearchParams{DeplStateIDs} = [$DeplStateID];
+            delete $Identifier{DeplState};
         }
 
         # add incident state to the search params
@@ -916,7 +924,8 @@ sub ImportDataSave {
                 return;
             }
 
-            $SearchParams{InciStateIDs} = [ delete $Identifier{InciState} ];
+            $SearchParams{InciStateIDs} = [$InciStateID];
+            delete $Identifier{InciState};
         }
 
         # add all XML data to the search params
@@ -932,7 +941,7 @@ sub ImportDataSave {
             $SearchParams{What} = \@SearchParamsWhat;
         }
 
-        # search existing config item with same identifikator
+        # search existing config item with the same identifiers
         my $ConfigItemList = $Self->{ConfigItemObject}->ConfigItemSearchExtended(
             %SearchParams,
             ClassIDs              => [ $ObjectData->{ClassID} ],
@@ -976,23 +985,29 @@ sub ImportDataSave {
     }
 
     my %XMLData2D;
-    $Counter = 0;
+    $RowIndex = 0;
     MAPPINGOBJECTDATA:
     for my $MappingObjectData (@MappingObjectList) {
 
-        next MAPPINGOBJECTDATA if $MappingObjectData->{Key} eq 'Number';
+        # just for convenience
+        my $Key   = $MappingObjectData->{Key};
+        my $Value = $Param{ImportDataRow}->[ $RowIndex++ ];
 
-        # handle name
-        if ( $MappingObjectData->{Key} eq 'Name' ) {
-            $VersionData->{Name} = $Param{ImportDataRow}->[$Counter];
-            next MAPPINGOBJECTDATA;
+        if ( $Key eq 'Number' ) {
+
+            # do nothing
+            # Import does not override the config item number
         }
+        elsif ( $Key eq 'Name' ) {
 
-        # handle deployment state
-        if ( $MappingObjectData->{Key} eq 'DeplState' ) {
+            # handle name
+            $VersionData->{$Key} = $Value;
+        }
+        elsif ( $Key eq 'DeplState' ) {
 
+            # handle deployment state
             # extract deployment state id
-            my $DeplStateID = $DeplStateListReverse{ $Param{ImportDataRow}->[$Counter] } || '';
+            my $DeplStateID = $DeplStateListReverse{$Value} || '';
 
             if ( !$DeplStateID ) {
 
@@ -1000,20 +1015,18 @@ sub ImportDataSave {
                     Priority => 'error',
                     Message =>
                         "Can't import entity $Param{Counter}: "
-                        . "The deployment state '$Param{ImportDataRow}->[$Counter]' is invalid!",
+                        . "The deployment state '$Value' is invalid!",
                 );
                 return;
             }
 
             $VersionData->{DeplStateID} = $DeplStateID;
-            next MAPPINGOBJECTDATA;
         }
+        elsif ( $Key eq 'InciState' ) {
 
-        # handle incident state
-        if ( $MappingObjectData->{Key} eq 'InciState' ) {
-
+            # handle incident state
             # extract incident state id
-            my $InciStateID = $InciStateListReverse{ $Param{ImportDataRow}->[$Counter] } || '';
+            my $InciStateID = $InciStateListReverse{$Value} || '';
 
             if ( !$InciStateID ) {
 
@@ -1021,25 +1034,24 @@ sub ImportDataSave {
                     Priority => 'error',
                     Message =>
                         "Can't import entity $Param{Counter}: "
-                        . "The incident state '$Param{ImportDataRow}->[$Counter]' is invalid!",
+                        . "The incident state '$Value' is invalid!",
                 );
                 return;
             }
 
             $VersionData->{InciStateID} = $InciStateID;
-            next MAPPINGOBJECTDATA;
         }
+        else {
 
-        # handle xml data
-        $XMLData2D{ $MappingObjectData->{Key} } = $Param{ImportDataRow}->[$Counter];
+            # handle xml data
+            $XMLData2D{$Key} = $Value;
+        }
     }
-    continue {
-        $Counter++;
-    }
+
+    # set up empty container, in case there is no previous data
+    $VersionData->{XMLData}->[1]->{Version}->[1] ||= {};
 
     # Edit XMLDataPrev, so that the values in XMLData2D take precedence.
-    $VersionData->{XMLData}->[1]->{Version}->[1]
-        ||= {};    # empty container, in case there is no previous data
     $Self->_ImportXMLDataMerge(
         XMLDefinition                => $DefinitionData->{DefinitionRef},
         XMLDataPrev                  => $VersionData->{XMLData}->[1]->{Version}->[1],
@@ -1597,6 +1609,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.14 $ $Date: 2010-02-24 14:06:01 $
+$Revision: 1.15 $ $Date: 2010-02-24 15:11:18 $
 
 =cut
