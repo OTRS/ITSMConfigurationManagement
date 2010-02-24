@@ -2,7 +2,7 @@
 # Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm - import/export backend for ITSMConfigItem
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.12 2010-02-24 13:04:55 bes Exp $
+# $Id: ITSMConfigItem.pm,v 1.13 2010-02-24 13:19:58 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -21,7 +21,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::Time;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.12 $) [1];
+$VERSION = qw($Revision: 1.13 $) [1];
 
 =head1 NAME
 
@@ -626,11 +626,21 @@ imports a single row of the import data. The C<TemplateID> points to the definit
 of the current import. C<ImportDataRow> holds the data. C<Counter> is only used in
 error messages, for indicating which item was not imported successfully.
 
-The current version of the ConfigItem will be saved.
-The new version of the ConfigItem will contain the attributes of the
-ImportDataRow plus the old attributes that are not part of the import definition.
-Thus ImportDataSave essentially only overwrites attributes, but does not delete
-any attributes.
+The current version of the config item will never be deleted. When there are no
+changes in the data, the import will be skipped. When there is new or changed date,
+the a new config item or a new version is created.
+
+In the case of changed data, the new version of the config item will contain the
+attributes of the C<ImportDataRow> plus the old attributes that are
+not part of the import definition.
+Thus ImportDataSave() guarantees to not overwrite undeclared attributes.
+
+The behavior when imported attributes are empty depends on the setting in the object data.
+When C<EmptyFieldsLeaveTheOldValues> is not set, then empty values will wipe out
+the old data. This is the default behavior. When C<EmptyFieldsLeaveTheOldValues> is set,
+then empty values will leave the old values. The decision what constitute an empty value
+is a bit hairy. For example, a GeneralCatalog-field that can not be mapped to a
+general catalog id is considered to be empty, even when there is content in the import data.
 
     my ( $ConfigItemID, $RetCode ) = $ObjectBackend->ImportDataSave(
         TemplateID    => 123,
@@ -1581,6 +1591,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.12 $ $Date: 2010-02-24 13:04:55 $
+$Revision: 1.13 $ $Date: 2010-02-24 13:19:58 $
 
 =cut
