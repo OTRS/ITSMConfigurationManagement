@@ -1,8 +1,8 @@
 # --
 # ImportExportObjectITSMConfigItem.t - all import export tests for the ITSMConfigItem object backend
-# Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ImportExportObjectITSMConfigItem.t,v 1.2 2009-05-18 09:57:21 mh Exp $
+# $Id: ImportExportObjectITSMConfigItem.t,v 1.3 2010-02-24 08:16:01 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -3280,8 +3280,9 @@ for my $Test ( @{$ImportDataTests} ) {
     }
 
     # import data save
-    my $ConfigItemID = $Self->{ObjectBackendObject}->ImportDataSave(
+    my ( $ConfigItemID, $RetCode ) = $Self->{ObjectBackendObject}->ImportDataSave(
         %{ $Test->{SourceImportData}->{ImportDataSave} },
+        Counter => $TestCount,
     );
 
     if ( !$Test->{ReferenceImportData} ) {
