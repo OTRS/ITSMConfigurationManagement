@@ -2,7 +2,7 @@
 # ImportExportObjectITSMConfigItem.t - all import export tests for the ITSMConfigItem object backend
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ImportExportObjectITSMConfigItem.t,v 1.6 2010-02-25 09:42:50 bes Exp $
+# $Id: ImportExportObjectITSMConfigItem.t,v 1.7 2010-02-25 09:49:54 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -1039,7 +1039,7 @@ for my $ConfigItem (@ConfigItems) {
 # define general ExportDataGet tests
 # ------------------------------------------------------------ #
 
-my $ExportDataTests = [
+my @ExportDataTests = (
 
     # ImportDataGet doesn't contains all data (check required attributes)
     {
@@ -2040,14 +2040,14 @@ my $ExportDataTests = [
             ],
         ],
     },
-];
+);
 
 # ------------------------------------------------------------ #
 # run general ExportDataGet tests
 # ------------------------------------------------------------ #
 
 TEST:
-for my $Test ( @{$ExportDataTests} ) {
+for my $Test (@ExportDataTests) {
 
     # check SourceExportData attribute
     if ( !$Test->{SourceExportData} || ref $Test->{SourceExportData} ne 'HASH' ) {
@@ -2216,7 +2216,7 @@ continue {
 # define general ImportDataSave tests
 # ------------------------------------------------------------ #
 
-my $ImportDataTests = [
+my @ImportDataTests = (
 
     # ImportDataSave doesn't contains all data (check required attributes)
     {
@@ -3256,14 +3256,14 @@ my $ImportDataTests = [
 
     # TODO add some undef field tests
     # TODO add some required field tests
-];
+);
 
 # ------------------------------------------------------------ #
 # run general ExportDataGet tests
 # ------------------------------------------------------------ #
 
 TEST:
-for my $Test ( @{$ImportDataTests} ) {
+for my $Test (@ImportDataTests) {
 
     # check SourceImportData attribute
     if ( !$Test->{SourceImportData} || ref $Test->{SourceImportData} ne 'HASH' ) {
