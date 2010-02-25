@@ -2,7 +2,7 @@
 # Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm - import/export backend for ITSMConfigItem
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.16 2010-02-24 17:26:55 bes Exp $
+# $Id: ITSMConfigItem.pm,v 1.17 2010-02-25 11:12:10 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -21,7 +21,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::Time;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.16 $) [1];
+$VERSION = qw($Revision: 1.17 $) [1];
 
 =head1 NAME
 
@@ -1580,10 +1580,8 @@ sub _ImportXMLDataMerge {
         for my $Counter ( 1 .. $Item->{CountMax} ) {
 
             # create inputkey
-            my $Key = $Item->{Key} . '::' . $Counter;
-            if ( $Param{Prefix} ) {
-                $Key = $Param{Prefix} . '::' . $Key;
-            }
+            my $Key = $Param{Prefix} ? "$Param{Prefix}::" : '';
+            $Key .= $Item->{Key} . '::' . $Counter;
 
             # start recursion, if "Sub" was found
             if ( $Item->{Sub} ) {
@@ -1603,20 +1601,20 @@ sub _ImportXMLDataMerge {
             # False values are OK.
             next COUNTER unless exists $Param{XMLData2D}->{$Key};
 
+            if ( $Param{EmptyFieldsLeaveTheOldValues} ) {
+
+                # do not override old value with an empty field is imported
+                next COUNTER if !$Param{XMLData2D}->{$Key};
+            }
+
             # prepare value
             my $Value = $Self->{ConfigItemObject}->XMLImportValuePrepare(
                 Item  => $Item,
                 Value => $Param{XMLData2D}->{$Key},
             );
-            $Value ||= '';
-
-            if ( $Param{EmptyFieldsLeaveTheOldValues} ) {
-
-                # do not override old value with an empty new value
-                next COUNTER if !$Value;
+            if ( defined $Value ) {
+                $XMLData->{ $Item->{Key} }->[$Counter]->{Content} = $Value;
             }
-
-            $XMLData->{ $Item->{Key} }->[$Counter]->{Content} = $Value;
         }
     }
 
@@ -1641,6 +1639,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.16 $ $Date: 2010-02-24 17:26:55 $
+$Revision: 1.17 $ $Date: 2010-02-25 11:12:10 $
 
 =cut

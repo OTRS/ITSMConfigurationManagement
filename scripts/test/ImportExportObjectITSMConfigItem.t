@@ -2,7 +2,7 @@
 # ImportExportObjectITSMConfigItem.t - all import export tests for the ITSMConfigItem object backend
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ImportExportObjectITSMConfigItem.t,v 1.8 2010-02-25 10:28:53 bes Exp $
+# $Id: ImportExportObjectITSMConfigItem.t,v 1.9 2010-02-25 11:12:10 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -3263,6 +3263,9 @@ my @ImportDataTests = (
                 {
                     Key => 'Text1::1',
                 },
+                {
+                    Key => 'GeneralCatalog1::1',
+                },
             ],
             ImportDataSave => {
                 TemplateID    => $TemplateIDs[25],
@@ -3271,6 +3274,7 @@ my @ImportDataTests = (
                     'Production',
                     'Operational',
                     'Importtest 5 for behavior of empty values',
+                    'Test1',
                 ],
                 UserID => 1,
             },
@@ -3278,15 +3282,16 @@ my @ImportDataTests = (
         ReferenceImportData => {
             VersionNumber => 1,
             LastVersion   => {
-                Name       => 'UnitTest - Importtest 5',
-                DeplState  => 'Production',
-                InciState  => 'Operational',
-                'Text1::1' => 'Importtest 5 for behavior of empty values',
+                Name                 => 'UnitTest - Importtest 5',
+                DeplState            => 'Production',
+                InciState            => 'Operational',
+                'Text1::1'           => 'Importtest 5 for behavior of empty values',
+                'GeneralCatalog1::1' => $GeneralCatalogListReverse{Test1},
             },
         },
     },
 
-    # import an empty value, with EmptyFieldsLeaveTheOldValues turned on
+    # import an empty value for Text1, with EmptyFieldsLeaveTheOldValues turned on
     # no new version should be created
     {
         SourceImportData => {
@@ -3308,6 +3313,9 @@ my @ImportDataTests = (
                 {
                     Key => 'Text1::1',
                 },
+                {
+                    Key => 'GeneralCatalog1::1',
+                },
             ],
             ImportDataSave => {
                 TemplateID    => $TemplateIDs[25],
@@ -3316,6 +3324,7 @@ my @ImportDataTests = (
                     'Production',
                     'Operational',
                     '',
+                    'Test1',
                 ],
                 UserID => 1,
             },
@@ -3323,15 +3332,16 @@ my @ImportDataTests = (
         ReferenceImportData => {
             VersionNumber => 1,
             LastVersion   => {
-                Name       => 'UnitTest - Importtest 5',
-                DeplState  => 'Production',
-                InciState  => 'Operational',
-                'Text1::1' => 'Importtest 5 for behavior of empty values',
+                Name                 => 'UnitTest - Importtest 5',
+                DeplState            => 'Production',
+                InciState            => 'Operational',
+                'Text1::1'           => 'Importtest 5 for behavior of empty values',
+                'GeneralCatalog1::1' => $GeneralCatalogListReverse{Test1},
             },
         },
     },
 
-    # import an empty value, with EmptyFieldsLeaveTheOldValues turned off
+    # import an empty value for Text1, with EmptyFieldsLeaveTheOldValues turned off
     # a new version should be created
     {
         SourceImportData => {
@@ -3353,6 +3363,9 @@ my @ImportDataTests = (
                 {
                     Key => 'Text1::1',
                 },
+                {
+                    Key => 'GeneralCatalog1::1',
+                },
             ],
             ImportDataSave => {
                 TemplateID    => $TemplateIDs[25],
@@ -3361,6 +3374,7 @@ my @ImportDataTests = (
                     'Production',
                     'Operational',
                     '',
+                    'Test1',
                 ],
                 UserID => 1,
             },
@@ -3368,13 +3382,115 @@ my @ImportDataTests = (
         ReferenceImportData => {
             VersionNumber => 2,
             LastVersion   => {
-                Name       => 'UnitTest - Importtest 5',
-                DeplState  => 'Production',
-                InciState  => 'Operational',
-                'Text1::1' => '',
+                Name                 => 'UnitTest - Importtest 5',
+                DeplState            => 'Production',
+                InciState            => 'Operational',
+                'Text1::1'           => '',
+                'GeneralCatalog1::1' => $GeneralCatalogListReverse{Test1},
             },
         },
     },
+
+    # import an empty value for GeneralCatalog1, with EmptyFieldsLeaveTheOldValues turned on
+    # no new version should be created
+    {
+        SourceImportData => {
+            ObjectData => {
+                ClassID                      => $ConfigItemClassIDs[0],
+                EmptyFieldsLeaveTheOldValues => 'on',
+            },
+            MappingObjectData => [
+                {
+                    Key        => 'Name',
+                    Identifier => 1,
+                },
+                {
+                    Key => 'DeplState',
+                },
+                {
+                    Key => 'InciState',
+                },
+                {
+                    Key => 'Text1::1',
+                },
+                {
+                    Key => 'GeneralCatalog1::1',
+                },
+            ],
+            ImportDataSave => {
+                TemplateID    => $TemplateIDs[25],
+                ImportDataRow => [
+                    'UnitTest - Importtest 5',
+                    'Production',
+                    'Operational',
+                    '',
+                    '',
+                ],
+                UserID => 1,
+            },
+        },
+        ReferenceImportData => {
+            VersionNumber => 2,
+            LastVersion   => {
+                Name                 => 'UnitTest - Importtest 5',
+                DeplState            => 'Production',
+                InciState            => 'Operational',
+                'Text1::1'           => '',
+                'GeneralCatalog1::1' => $GeneralCatalogListReverse{Test1},
+            },
+        },
+    },
+
+    # import an invalid value for GeneralCatalog1, with EmptyFieldsLeaveTheOldValues turned on
+    # an error should be generated
+    {
+        SourceImportData => {
+            ObjectData => {
+                ClassID                      => $ConfigItemClassIDs[0],
+                EmptyFieldsLeaveTheOldValues => 'on',
+            },
+            MappingObjectData => [
+                {
+                    Key        => 'Name',
+                    Identifier => 1,
+                },
+                {
+                    Key => 'DeplState',
+                },
+                {
+                    Key => 'InciState',
+                },
+                {
+                    Key => 'Text1::1',
+                },
+                {
+                    Key => 'GeneralCatalog1::1',
+                },
+            ],
+            ImportDataSave => {
+                TemplateID    => $TemplateIDs[25],
+                ImportDataRow => [
+                    'UnitTest - Importtest 5',
+                    'Production',
+                    'Operational',
+                    '',
+                    'non-existent general catalog entry',
+                ],
+                UserID => 1,
+            },
+        },
+        ReferenceImportData => {
+            VersionNumber => 2,
+            LastVersion   => {
+                Name                 => 'UnitTest - Importtest 5',
+                DeplState            => 'Production',
+                InciState            => 'Operational',
+                'Text1::1'           => '',
+                'GeneralCatalog1::1' => $GeneralCatalogListReverse{Test1},
+            },
+        },
+    },
+
 );
 
 # ------------------------------------------------------------ #
