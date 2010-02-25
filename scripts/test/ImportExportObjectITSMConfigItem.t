@@ -2,7 +2,7 @@
 # ImportExportObjectITSMConfigItem.t - all import export tests for the ITSMConfigItem object backend
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ImportExportObjectITSMConfigItem.t,v 1.7 2010-02-25 09:49:54 bes Exp $
+# $Id: ImportExportObjectITSMConfigItem.t,v 1.8 2010-02-25 10:28:53 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -51,8 +51,6 @@ for ( 1 .. 30 ) {
     push @TemplateIDs, $TemplateID;
 }
 
-my $TestCount = 1;
-
 # ------------------------------------------------------------ #
 # ObjectList test 1 (check CSV item)
 # ------------------------------------------------------------ #
@@ -63,10 +61,8 @@ my $ObjectList1 = $Self->{ImportExportObject}->ObjectList();
 # check object list
 $Self->True(
     $ObjectList1 && ref $ObjectList1 eq 'HASH' && $ObjectList1->{ITSMConfigItem},
-    "Test $TestCount: ObjectList() - ITSMConfigItem exists",
+    "ObjectList() - ITSMConfigItem exists",
 );
-
-$TestCount++;
 
 # ------------------------------------------------------------ #
 # ObjectAttributesGet test 1 (check attribute hash)
@@ -88,7 +84,7 @@ $TestCount++;
     # check object attribute reference
     $Self->True(
         $ObjectAttributesGet1 && ref $ObjectAttributesGet1 eq 'ARRAY',
-        "Test $TestCount: ObjectAttributesGet() - check array reference",
+        "ObjectAttributesGet() - check array reference",
     );
 
     # get class list
@@ -139,10 +135,8 @@ $TestCount++;
 
     $Self->True(
         $ObjectAttributesGetDump1 eq $ObjectAttributesRefDump1,
-        "Test $TestCount: ObjectAttributesGet() - attributes of the row are identical",
+        "ObjectAttributesGet() - attributes of the row are identical",
     );
-
-    $TestCount++;
 }
 
 # ------------------------------------------------------------ #
@@ -158,10 +152,8 @@ my $ObjectAttributesGet2 = $Self->{ImportExportObject}->ObjectAttributesGet(
 # check false return
 $Self->False(
     $ObjectAttributesGet2,
-    "Test $TestCount: ObjectAttributesGet() - check false return",
+    "ObjectAttributesGet() - check false return",
 );
-
-$TestCount++;
 
 # ------------------------------------------------------------ #
 # MappingObjectAttributesGet test 1 (check attribute hash)
@@ -176,10 +168,8 @@ my $MappingObjectAttributesGet1 = $Self->{ImportExportObject}->MappingObjectAttr
 # check mapping object attribute reference
 $Self->True(
     $MappingObjectAttributesGet1 && ref $MappingObjectAttributesGet1 eq 'ARRAY',
-    "Test $TestCount: MappingObjectAttributesGet() - check array reference",
+    "MappingObjectAttributesGet() - check array reference",
 );
-
-$TestCount++;
 
 # ------------------------------------------------------------ #
 # MappingObjectAttributesGet test 2 (check with non existing template)
@@ -194,10 +184,8 @@ my $MappingObjectAttributesGet2 = $Self->{ImportExportObject}->MappingObjectAttr
 # check false return
 $Self->False(
     $MappingObjectAttributesGet2,
-    "Test $TestCount: MappingObjectAttributesGet() - check false return",
+    "MappingObjectAttributesGet() - check false return",
 );
-
-$TestCount++;
 
 # ------------------------------------------------------------ #
 # make preparations to test ExportDataGet() and ImportDataSave()
@@ -2046,6 +2034,7 @@ my @ExportDataTests = (
 # run general ExportDataGet tests
 # ------------------------------------------------------------ #
 
+my $ExportTestCount = 1;
 TEST:
 for my $Test (@ExportDataTests) {
 
@@ -2054,7 +2043,7 @@ for my $Test (@ExportDataTests) {
 
         $Self->True(
             0,
-            "Test $TestCount: No SourceExportData found for this test."
+            "ExportTest $ExportTestCount: No SourceExportData found for this test."
         );
 
         next TEST;
@@ -2134,7 +2123,7 @@ for my $Test (@ExportDataTests) {
 
         $Self->False(
             $ExportData,
-            "Test $TestCount: ExportDataGet() - return false"
+            "ExportTest $ExportTestCount: ExportDataGet() - return false",
         );
 
         next TEST;
@@ -2145,7 +2134,7 @@ for my $Test (@ExportDataTests) {
         # check array reference
         $Self->True(
             0,
-            "Test $TestCount: ExportDataGet() - return value is an array reference",
+            "ExportTest $ExportTestCount: ExportDataGet() - return value is an array reference",
         );
 
         next TEST;
@@ -2155,7 +2144,7 @@ for my $Test (@ExportDataTests) {
     $Self->Is(
         scalar @{$ExportData},
         scalar @{ $Test->{ReferenceExportData} },
-        "Test $TestCount: ExportDataGet() - correct number of rows",
+        "ExportTest $ExportTestCount: ExportDataGet() - correct number of rows",
     );
 
     # check content of export data
@@ -2171,7 +2160,7 @@ for my $Test (@ExportDataTests) {
             # check array reference
             $Self->True(
                 0,
-                "Test $TestCount: ExportDataGet() - export row and reference row matched",
+                "ExportTest $ExportTestCount: ExportDataGet() - export row and reference row matched",
             );
 
             next TEST;
@@ -2181,7 +2170,7 @@ for my $Test (@ExportDataTests) {
         $Self->Is(
             scalar @{$ExportRow},
             scalar @{$ReferenceRow},
-            "Test $TestCount: ExportDataGet() - correct number of columns",
+            "ExportTest $ExportTestCount: ExportDataGet() - correct number of columns",
         );
 
         my $CounterColumn = 0;
@@ -2199,7 +2188,7 @@ for my $Test (@ExportDataTests) {
             $Self->Is(
                 $Cell,
                 $ReferenceRow->[$CounterColumn],
-                "Test $TestCount: ExportDataGet() ",
+                "ExportTest $ExportTestCount: ExportDataGet() ",
             );
 
             $CounterColumn++;
@@ -2209,7 +2198,7 @@ for my $Test (@ExportDataTests) {
     }
 }
 continue {
-    $TestCount++;
+    $ExportTestCount++;
 }
 
 # ------------------------------------------------------------ #
@@ -3254,14 +3243,145 @@ my @ImportDataTests = (
         },
     },
 
-    # TODO add some undef field tests
-    # TODO add some required field tests
+    # a simple import for testing the overriding behavior of empty values
+    {
+        SourceImportData => {
+            ObjectData => {
+                ClassID => $ConfigItemClassIDs[0],
+            },
+            MappingObjectData => [
+                {
+                    Key        => 'Name',
+                    Identifier => 1,
+                },
+                {
+                    Key => 'DeplState',
+                },
+                {
+                    Key => 'InciState',
+                },
+                {
+                    Key => 'Text1::1',
+                },
+            ],
+            ImportDataSave => {
+                TemplateID    => $TemplateIDs[25],
+                ImportDataRow => [
+                    'UnitTest - Importtest 5',
+                    'Production',
+                    'Operational',
+                    'Importtest 5 for behavior of empty values',
+                ],
+                UserID => 1,
+            },
+        },
+        ReferenceImportData => {
+            VersionNumber => 1,
+            LastVersion   => {
+                Name       => 'UnitTest - Importtest 5',
+                DeplState  => 'Production',
+                InciState  => 'Operational',
+                'Text1::1' => 'Importtest 5 for behavior of empty values',
+            },
+        },
+    },
+
+    # import an empty value, with EmptyFieldsLeaveTheOldValues turned on
+    # no new version should be created
+    {
+        SourceImportData => {
+            ObjectData => {
+                ClassID                      => $ConfigItemClassIDs[0],
+                EmptyFieldsLeaveTheOldValues => 'on',
+            },
+            MappingObjectData => [
+                {
+                    Key        => 'Name',
+                    Identifier => 1,
+                },
+                {
+                    Key => 'DeplState',
+                },
+                {
+                    Key => 'InciState',
+                },
+                {
+                    Key => 'Text1::1',
+                },
+            ],
+            ImportDataSave => {
+                TemplateID    => $TemplateIDs[25],
+                ImportDataRow => [
+                    'UnitTest - Importtest 5',
+                    'Production',
+                    'Operational',
+                    '',
+                ],
+                UserID => 1,
+            },
+        },
+        ReferenceImportData => {
+            VersionNumber => 1,
+            LastVersion   => {
+                Name       => 'UnitTest - Importtest 5',
+                DeplState  => 'Production',
+                InciState  => 'Operational',
+                'Text1::1' => 'Importtest 5 for behavior of empty values',
+            },
+        },
+    },
+
+    # import an empty value, with EmptyFieldsLeaveTheOldValues turned off
+    # a new version should be created
+    {
+        SourceImportData => {
+            ObjectData => {
+                ClassID                      => $ConfigItemClassIDs[0],
+                EmptyFieldsLeaveTheOldValues => '',
+            },
+            MappingObjectData => [
+                {
+                    Key        => 'Name',
+                    Identifier => 1,
+                },
+                {
+                    Key => 'DeplState',
+                },
+                {
+                    Key => 'InciState',
+                },
+                {
+                    Key => 'Text1::1',
+                },
+            ],
+            ImportDataSave => {
+                TemplateID    => $TemplateIDs[25],
+                ImportDataRow => [
+                    'UnitTest - Importtest 5',
+                    'Production',
+                    'Operational',
+                    '',
+                ],
+                UserID => 1,
+            },
+        },
+        ReferenceImportData => {
+            VersionNumber => 2,
+            LastVersion   => {
+                Name       => 'UnitTest - Importtest 5',
+                DeplState  => 'Production',
+                InciState  => 'Operational',
+                'Text1::1' => '',
+            },
+        },
+    },
 );
 
 # ------------------------------------------------------------ #
 # run general ExportDataGet tests
 # ------------------------------------------------------------ #
 
+my $ImportTestCount = 1;
 TEST:
 for my $Test (@ImportDataTests) {
 
@@ -3270,7 +3390,7 @@ for my $Test (@ImportDataTests) {
 
         $Self->True(
             0,
-            "Test $TestCount: No SourceImportData found for this test."
+            "ImportTest $ImportTestCount: No SourceImportData found for this test."
         );
 
         next TEST;
@@ -3328,18 +3448,18 @@ for my $Test (@ImportDataTests) {
     # import data save
     my ( $ConfigItemID, $RetCode ) = $Self->{ObjectBackendObject}->ImportDataSave(
         %{ $Test->{SourceImportData}->{ImportDataSave} },
-        Counter => $TestCount,
+        Counter => $ImportTestCount,
     );
 
     if ( !$Test->{ReferenceImportData} ) {
 
         $Self->False(
             $ConfigItemID,
-            "Test $TestCount: ImportDataSave() - return no ConfigItemID"
+            "ImportTest $ImportTestCount: ImportDataSave() - return no ConfigItemID"
         );
         $Self->False(
             $RetCode,
-            "Test $TestCount: ImportDataSave() - return no RetCode"
+            "ImportTest $ImportTestCount: ImportDataSave() - return no RetCode"
         );
 
         next TEST;
@@ -3347,11 +3467,11 @@ for my $Test (@ImportDataTests) {
 
     $Self->True(
         $ConfigItemID,
-        "Test $TestCount: ImportDataSave() - return ConfigItemID"
+        "ImportTest $ImportTestCount: ImportDataSave() - return ConfigItemID"
     );
     $Self->True(
         $RetCode,
-        "Test $TestCount: ImportDataSave() - return RetCode"
+        "ImportTest $ImportTestCount: ImportDataSave() - return RetCode"
     );
 
     # get the version list
@@ -3363,7 +3483,7 @@ for my $Test (@ImportDataTests) {
     $Self->Is(
         scalar @{$VersionList},
         $Test->{ReferenceImportData}->{VersionNumber} || 0,
-        "Test $TestCount: ImportDataSave() - correct number of versions",
+        "ImportTest $ImportTestCount: ImportDataSave() - correct number of versions",
     );
 
     # get the last version
@@ -3404,7 +3524,7 @@ for my $Test (@ImportDataTests) {
         $Self->Is(
             $VersionData->{$Element},
             $Test->{ReferenceImportData}->{LastVersion}->{$Element},
-            "Test $TestCount: ImportDataSave() $Element is identical",
+            "ImportTest $ImportTestCount: ImportDataSave() $Element is identical",
         );
 
         delete $Test->{ReferenceImportData}->{LastVersion}->{$Element};
@@ -3414,7 +3534,7 @@ for my $Test (@ImportDataTests) {
     $Self->Is(
         scalar keys %XMLHash,
         scalar keys %{ $Test->{ReferenceImportData}->{LastVersion} },
-        "Test $TestCount: ImportDataSave() - correct number of XML elements",
+        "ImportTest $ImportTestCount: ImportDataSave() - correct number of XML elements",
     );
 
     # check XML elements
@@ -3452,12 +3572,12 @@ for my $Test (@ImportDataTests) {
         $Self->Is(
             $XMLHash{ '[1]{\'Version\'}[1]{\'' . $XMLKey . ']{\'Content\'}' },
             $Test->{ReferenceImportData}->{LastVersion}->{$Key},
-            "Test $TestCount: ImportDataSave() $Key is identical",
+            "ImportTest $ImportTestCount: ImportDataSave() $Key is identical",
         );
     }
 }
 continue {
-    $TestCount++;
+    $ImportTestCount++;
 }
 
 # ------------------------------------------------------------ #
