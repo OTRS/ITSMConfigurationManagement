@@ -1,8 +1,8 @@
 # --
 # Kernel/Output/HTML/ITSMConfigItemMenuGeneric.pm
-# Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemMenuGeneric.pm,v 1.4 2009-08-18 22:18:19 mh Exp $
+# $Id: ITSMConfigItemMenuGeneric.pm,v 1.5 2010-02-25 12:42:51 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.4 $) [1];
+$VERSION = qw($Revision: 1.5 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -44,24 +44,27 @@ sub Run {
         return;
     }
 
-    # set access
+    # grant access by default
     my $Access = 1;
 
     # get groups
-    my $GroupsRo
-        = $Self->{ConfigObject}->Get('Frontend::Module')->{ $Param{Config}->{Action} }->{GroupRo}
-        || [];
-    my $GroupsRw
-        = $Self->{ConfigObject}->Get('Frontend::Module')->{ $Param{Config}->{Action} }->{Group}
-        || [];
+    my $Action = $Param{Config}->{Action};
+    if ( $Action eq 'AgentLinkObject' ) {
+
+        # The Link-link is a special case, as it is not specific to ITSMConfigItem.
+        # As a workaround we hardcode that AgentLinkObject is treated like AgentITSMConfigItemEdit
+        $Action = 'AgentITSMConfigItemEdit';
+    }
+    my $GroupsRo = $Self->{ConfigObject}->Get('Frontend::Module')->{$Action}->{GroupRo} || [];
+    my $GroupsRw = $Self->{ConfigObject}->Get('Frontend::Module')->{$Action}->{Group}   || [];
 
     # check permission
-    if ( $Param{Config}->{Action} && ( @{$GroupsRo} || @{$GroupsRw} ) ) {
+    if ( $Action && ( @{$GroupsRo} || @{$GroupsRw} ) ) {
 
-        # set access
+        # deny access by default, when there are groups to check
         $Access = 0;
 
-        # find read only groups
+        # check read only groups
         ROGROUP:
         for my $RoGroup ( @{$GroupsRo} ) {
 
@@ -73,7 +76,7 @@ sub Run {
             last ROGROUP;
         }
 
-        # find read write groups
+        # check read write groups
         RWGROUP:
         for my $RwGroup ( @{$GroupsRw} ) {
 
