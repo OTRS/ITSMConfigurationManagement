@@ -2,7 +2,7 @@
 # Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm - import/export backend for ITSMConfigItem
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.17 2010-02-25 11:12:10 bes Exp $
+# $Id: ITSMConfigItem.pm,v 1.18 2010-02-25 11:38:52 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -21,7 +21,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::Time;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.17 $) [1];
+$VERSION = qw($Revision: 1.18 $) [1];
 
 =head1 NAME
 
@@ -1003,9 +1003,12 @@ sub ImportDataSave {
         }
         elsif ( $Key eq 'Name' ) {
 
-            # handle name
-            if ( !$Value ) {
-                if ( !$EmptyFieldsLeaveTheOldValues ) {
+            if ( $EmptyFieldsLeaveTheOldValues && !$Value ) {
+
+                # do nothing, keep the old value
+            }
+            else {
+                if ( !$Value ) {
                     $Self->{LogObject}->Log(
                         Priority => 'error',
                         Message =>
@@ -1014,23 +1017,21 @@ sub ImportDataSave {
                     );
                     return;
                 }
-                else {
 
-                    # do nothing, keep the old value
-                }
-            }
-            else {
                 $VersionData->{$Key} = $Value;
             }
         }
         elsif ( $Key eq 'DeplState' ) {
 
-            # handle deployment state
-            # extract deployment state id
-            my $DeplStateID = $DeplStateListReverse{$Value} || '';
+            if ( $EmptyFieldsLeaveTheOldValues && !$Value ) {
 
-            if ( !$DeplStateID ) {
-                if ( !$EmptyFieldsLeaveTheOldValues ) {
+                # do nothing, keep the old value
+            }
+            else {
+
+                # extract deployment state id
+                my $DeplStateID = $DeplStateListReverse{$Value} || '';
+                if ( !$DeplStateID ) {
                     $Self->{LogObject}->Log(
                         Priority => 'error',
                         Message =>
@@ -1039,23 +1040,21 @@ sub ImportDataSave {
                     );
                     return;
                 }
-                else {
 
-                    # do nothing, keep the old value
-                }
-            }
-            else {
                 $VersionData->{DeplStateID} = $DeplStateID;
             }
         }
         elsif ( $Key eq 'InciState' ) {
 
-            # handle incident state
-            # extract incident state id
-            my $InciStateID = $InciStateListReverse{$Value} || '';
+            if ( $EmptyFieldsLeaveTheOldValues && !$Value ) {
 
-            if ( !$InciStateID ) {
-                if ( !$EmptyFieldsLeaveTheOldValues ) {
+                # do nothing, keep the old value
+            }
+            else {
+
+                # extract the deployment state id
+                my $InciStateID = $InciStateListReverse{$Value} || '';
+                if ( !$InciStateID ) {
                     $Self->{LogObject}->Log(
                         Priority => 'error',
                         Message =>
@@ -1064,12 +1063,7 @@ sub ImportDataSave {
                     );
                     return;
                 }
-                else {
 
-                    # do nothing, keep the old value
-                }
-            }
-            else {
                 $VersionData->{InciStateID} = $InciStateID;
             }
         }
@@ -1639,6 +1633,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.17 $ $Date: 2010-02-25 11:12:10 $
+$Revision: 1.18 $ $Date: 2010-02-25 11:38:52 $
 
 =cut

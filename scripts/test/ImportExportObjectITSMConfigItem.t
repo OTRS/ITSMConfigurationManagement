@@ -2,7 +2,7 @@
 # ImportExportObjectITSMConfigItem.t - all import export tests for the ITSMConfigItem object backend
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ImportExportObjectITSMConfigItem.t,v 1.9 2010-02-25 11:12:10 bes Exp $
+# $Id: ImportExportObjectITSMConfigItem.t,v 1.10 2010-02-25 11:38:52 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -3442,7 +3442,7 @@ my @ImportDataTests = (
     },
 
     # import an invalid value for GeneralCatalog1, with EmptyFieldsLeaveTheOldValues turned on
-    # an error should be generated
+    # the old value should be kept
     {
         SourceImportData => {
             ObjectData => {
@@ -3491,6 +3491,185 @@ my @ImportDataTests = (
         },
     },
 
+    # import an empty value for DeplState, with EmptyFieldsLeaveTheOldValues turned on
+    # no new version should be created
+    {
+        SourceImportData => {
+            ObjectData => {
+                ClassID                      => $ConfigItemClassIDs[0],
+                EmptyFieldsLeaveTheOldValues => 'on',
+            },
+            MappingObjectData => [
+                {
+                    Key        => 'Name',
+                    Identifier => 1,
+                },
+                {
+                    Key => 'DeplState',
+                },
+                {
+                    Key => 'InciState',
+                },
+                {
+                    Key => 'Text1::1',
+                },
+                {
+                    Key => 'GeneralCatalog1::1',
+                },
+            ],
+            ImportDataSave => {
+                TemplateID    => $TemplateIDs[25],
+                ImportDataRow => [
+                    'UnitTest - Importtest 5',
+                    '',
+                    'Operational',
+                    '',
+                    '',
+                ],
+                UserID => 1,
+            },
+        },
+        ReferenceImportData => {
+            VersionNumber => 2,
+            LastVersion   => {
+                Name                 => 'UnitTest - Importtest 5',
+                DeplState            => 'Production',
+                InciState            => 'Operational',
+                'Text1::1'           => '',
+                'GeneralCatalog1::1' => $GeneralCatalogListReverse{Test1},
+            },
+        },
+    },
+
+    # import an invalid value for DeplState, with EmptyFieldsLeaveTheOldValues turned on
+    # an error should be generated
+    {
+        SourceImportData => {
+            ObjectData => {
+                ClassID                      => $ConfigItemClassIDs[0],
+                EmptyFieldsLeaveTheOldValues => 'on',
+            },
+            MappingObjectData => [
+                {
+                    Key        => 'Name',
+                    Identifier => 1,
+                },
+                {
+                    Key => 'DeplState',
+                },
+                {
+                    Key => 'InciState',
+                },
+                {
+                    Key => 'Text1::1',
+                },
+                {
+                    Key => 'GeneralCatalog1::1',
+                },
+            ],
+            ImportDataSave => {
+                TemplateID    => $TemplateIDs[25],
+                ImportDataRow => [
+                    'UnitTest - Importtest 5',
+                    'invalid deployment state',
+                    'Operational',
+                    '',
+                    '',
+                ],
+                UserID => 1,
+            },
+        },
+    },
+
+    # import an empty value for InciState, with EmptyFieldsLeaveTheOldValues turned on
+    # no new version should be created
+    {
+        SourceImportData => {
+            ObjectData => {
+                ClassID                      => $ConfigItemClassIDs[0],
+                EmptyFieldsLeaveTheOldValues => 'on',
+            },
+            MappingObjectData => [
+                {
+                    Key        => 'Name',
+                    Identifier => 1,
+                },
+                {
+                    Key => 'DeplState',
+                },
+                {
+                    Key => 'InciState',
+                },
+                {
+                    Key => 'Text1::1',
+                },
+                {
+                    Key => 'GeneralCatalog1::1',
+                },
+            ],
+            ImportDataSave => {
+                TemplateID    => $TemplateIDs[25],
+                ImportDataRow => [
+                    'UnitTest - Importtest 5',
+                    'Production',
+                    '',
+                    '',
+                    '',
+                ],
+                UserID => 1,
+            },
+        },
+        ReferenceImportData => {
+            VersionNumber => 2,
+            LastVersion   => {
+                Name                 => 'UnitTest - Importtest 5',
+                DeplState            => 'Production',
+                InciState            => 'Operational',
+                'Text1::1'           => '',
+                'GeneralCatalog1::1' => $GeneralCatalogListReverse{Test1},
+            },
+        },
+    },
+
+    # import an invalid value for InciState, with EmptyFieldsLeaveTheOldValues turned on
+    # an error should be generated
+    {
+        SourceImportData => {
+            ObjectData => {
+                ClassID                      => $ConfigItemClassIDs[0],
+                EmptyFieldsLeaveTheOldValues => 'on',
+            },
+            MappingObjectData => [
+                {
+                    Key        => 'Name',
+                    Identifier => 1,
+                },
+                {
+                    Key => 'DeplState',
+                },
+                {
+                    Key => 'InciState',
+                },
+                {
+                    Key => 'Text1::1',
+                },
+                {
+                    Key => 'GeneralCatalog1::1',
+                },
+            ],
+            ImportDataSave => {
+                TemplateID    => $TemplateIDs[25],
+                ImportDataRow => [
+                    'UnitTest - Importtest 5',
+                    'Production',
+                    'invalid incident state',
+                    '',
+                    '',
+                ],
+                UserID => 1,
+            },
+        },
+    },
 );
 
 # ------------------------------------------------------------ #
