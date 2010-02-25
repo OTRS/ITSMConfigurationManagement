@@ -2,7 +2,7 @@
 # ITSMConfigItem.t - config item tests
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.t,v 1.10 2010-02-16 11:23:55 bes Exp $
+# $Id: ITSMConfigItem.t,v 1.11 2010-02-25 15:35:46 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -334,6 +334,31 @@ for my $Definition (@ConfigItemDefinitions) {
     }
 
     push @ConfigItemDefinitionIDs, $DefinitionID;
+}
+
+# test DefinitionList for those simple cases
+my $Counter = 0;
+for my $ClassID (@ConfigItemClassIDs) {
+    my $DefinitionListRef = $Self->{ConfigItemObject}->DefinitionList(
+        ClassID => $ClassID,
+    );
+
+    # expect a single definition per config item class
+    $Self->Is(
+        scalar @{$DefinitionListRef},
+        1,
+        "DefinitionList() for class id $ClassID: got a single result",
+    );
+
+    # expect the remembered definition id in the first definition
+    $Self->Is(
+        $DefinitionListRef->[0]->{DefinitionID},
+        $ConfigItemDefinitionIDs[$Counter],
+        "DefinitionList() for class id $ClassID: got expected definition id",
+    );
+}
+continue {
+    $Counter++;
 }
 
 # create some random numbers
