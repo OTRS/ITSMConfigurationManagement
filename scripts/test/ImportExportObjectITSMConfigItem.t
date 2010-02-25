@@ -2,7 +2,7 @@
 # ImportExportObjectITSMConfigItem.t - all import export tests for the ITSMConfigItem object backend
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ImportExportObjectITSMConfigItem.t,v 1.5 2010-02-24 18:43:47 bes Exp $
+# $Id: ImportExportObjectITSMConfigItem.t,v 1.6 2010-02-25 09:42:50 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -72,75 +72,78 @@ $TestCount++;
 # ObjectAttributesGet test 1 (check attribute hash)
 # ------------------------------------------------------------ #
 
-# get object attributes
-my $ObjectAttributesGet1 = $Self->{ImportExportObject}->ObjectAttributesGet(
-    TemplateID => $TemplateIDs[0],
-    UserID     => 1,
-);
+{
 
-# check object attribute reference
-$Self->True(
-    $ObjectAttributesGet1 && ref $ObjectAttributesGet1 eq 'ARRAY',
-    "Test $TestCount: ObjectAttributesGet() - check array reference",
-);
+    # turn off all pretty print in Data::Dumper
+    local $Data::Dumper::Indent   = 0;
+    local $Data::Dumper::Useqq    = 1;
+    local $Data::Dumper::Sortkeys = 1;
 
-# get class list
-my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
-    Class => 'ITSM::ConfigItem::Class',
-);
+    # get object attributes
+    my $ObjectAttributesGet1 = $Self->{ImportExportObject}->ObjectAttributesGet(
+        TemplateID => $TemplateIDs[0],
+        UserID     => 1,
+    );
 
-# define the reference hash
-my $ObjectAttributesGet1Reference = [
-    {
-        Key   => 'ClassID',
-        Name  => 'Class',
-        Input => {
-            Type         => 'Selection',
-            Data         => $ClassList,
-            Required     => 1,
-            Translation  => 0,
-            PossibleNone => 1,
+    # check object attribute reference
+    $Self->True(
+        $ObjectAttributesGet1 && ref $ObjectAttributesGet1 eq 'ARRAY',
+        "Test $TestCount: ObjectAttributesGet() - check array reference",
+    );
+
+    # get class list
+    my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
+        Class => 'ITSM::ConfigItem::Class',
+    );
+
+    # define the reference hash
+    my $ObjectAttributesGet1Reference = [
+        {
+            Key   => 'ClassID',
+            Name  => 'Class',
+            Input => {
+                Type         => 'Selection',
+                Data         => $ClassList,
+                Required     => 1,
+                Translation  => 0,
+                PossibleNone => 1,
+            },
         },
-    },
-    {
-        Key   => 'CountMax',
-        Name  => 'Maximum number of one element',
-        Input => {
-            Type         => 'Text',
-            ValueDefault => '10',
-            Required     => 1,
-            Regex        => qr{ \A \d+ \z }xms,
-            Translation  => 0,
-            Size         => 5,
-            MaxLength    => 5,
+        {
+            Key   => 'CountMax',
+            Name  => 'Maximum number of one element',
+            Input => {
+                Type         => 'Text',
+                ValueDefault => '10',
+                Required     => 1,
+                Regex        => qr{ \A \d+ \z }xms,
+                Translation  => 0,
+                Size         => 5,
+                MaxLength    => 5,
+            },
         },
-    },
-    {
-        'Input' => {
-            'Type' => 'Checkbox'
-        },
-        'Name' => 'Empty fields indicate that the current values are kept',
-        'Key'  => 'EmptyFieldsLeaveTheOldValues',
-    }
-];
+        {
+            'Input' => {
+                'Type' => 'Checkbox'
+            },
+            'Name' => 'Empty fields indicate that the current values are kept',
+            'Key'  => 'EmptyFieldsLeaveTheOldValues',
+        }
+    ];
 
-# turn off all pretty print
-local $Data::Dumper::Indent   = 0;
-local $Data::Dumper::Useqq    = 1;
-local $Data::Dumper::Sortkeys = 1;
+    # dump the list from ObjectAttributesGet()
+    my $ObjectAttributesGetDump1 = Data::Dumper::Dumper($ObjectAttributesGet1);
 
-# dump the list from ObjectAttributesGet()
-my $ObjectAttributesGetDump1 = Data::Dumper::Dumper($ObjectAttributesGet1);
+    # dump the reference table
+    my $ObjectAttributesRefDump1 = Data::Dumper::Dumper($ObjectAttributesGet1Reference);
 
-# dump the reference table
-my $ObjectAttributesRefDump1 = Data::Dumper::Dumper($ObjectAttributesGet1Reference);
+    $Self->True(
+        $ObjectAttributesGetDump1 eq $ObjectAttributesRefDump1,
+        "Test $TestCount: ObjectAttributesGet() - attributes of the row are identical",
+    );
 
-$Self->True(
-    $ObjectAttributesGetDump1 eq $ObjectAttributesRefDump1,
-    "Test $TestCount: ObjectAttributesGet() - attributes of the row are identical",
-);
-
-$TestCount++;
+    $TestCount++;
+}
 
 # ------------------------------------------------------------ #
 # ObjectAttributesGet test 2 (check with non existing template)
@@ -3468,7 +3471,7 @@ $Self->{ImportExportObject}->TemplateDelete(
 );
 
 # get actual class list
-$ClassList = $Self->{GeneralCatalogObject}->ItemList(
+my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
     Class => 'ITSM::ConfigItem::Class',
 );
 
