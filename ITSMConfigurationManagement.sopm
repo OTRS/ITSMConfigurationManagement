@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <otrs_package version="1.0">
-    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.67 2010-02-23 08:36:03 bes Exp $</CVS>
+    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.68 2010-02-26 12:30:58 bes Exp $</CVS>
     <Name>ITSMConfigurationManagement</Name>
     <Version>0.0.0</Version>
     <Framework>2.4.x</Framework>
@@ -1132,83 +1132,83 @@
         <TableDrop Name="configitem_history_type"/>
         <TableDrop Name="configitem"/>
     </DatabaseUninstall>
-    <CodeInstall Type="post">
+    <CodeInstall Type="post"><![CDATA[
 
         # define function name
         my $FunctionName = 'CodeInstall';
 
         # create the package name
-        my $CodeModule = 'var::packagesetup::' . $Param{Structure}-&gt;{Name}-&gt;{Content};
+        my $CodeModule = 'var::packagesetup::' . $Param{Structure}->{Name}->{Content};
 
         # load the module
-        if ( $Self-&gt;{MainObject}-&gt;Require($CodeModule) ) {
+        if ( $Self->{MainObject}->Require($CodeModule) ) {
 
             # create new instance
-            my $CodeObject = $CodeModule-&gt;new( %{$Self} );
+            my $CodeObject = $CodeModule->new( %{$Self} );
 
             if ($CodeObject) {
 
                 # start methode
-                if ( !$CodeObject-&gt;$FunctionName(%{$Self}) ) {
-                    $Self-&gt;{LogObject}-&gt;Log(
-                        Priority =&gt; 'error',
-                        Message  =&gt; "Could not call method $FunctionName() on $CodeModule.pm."
+                if ( !$CodeObject->$FunctionName(%{$Self}) ) {
+                    $Self->{LogObject}->Log(
+                        Priority => 'error',
+                        Message  => "Could not call method $FunctionName() on $CodeModule.pm."
                     );
                 }
             }
 
             # error handling
             else {
-                $Self-&gt;{LogObject}-&gt;Log(
-                    Priority =&gt; 'error',
-                    Message  =&gt; "Could not call method new() on $CodeModule.pm."
+                $Self->{LogObject}->Log(
+                    Priority => 'error',
+                    Message  => "Could not call method new() on $CodeModule.pm."
                 );
             }
         }
 
-    </CodeInstall>
-    <CodeReinstall Type="post">
+    ]]></CodeInstall>
+    <CodeReinstall Type="post"><![CDATA[
 
         # define function name
         my $FunctionName = 'CodeReinstall';
 
         # create the package name
-        my $CodeModule = 'var::packagesetup::' . $Param{Structure}-&gt;{Name}-&gt;{Content};
+        my $CodeModule = 'var::packagesetup::' . $Param{Structure}->{Name}->{Content};
 
         # load the module
-        if ( $Self-&gt;{MainObject}-&gt;Require($CodeModule) ) {
+        if ( $Self->{MainObject}->Require($CodeModule) ) {
 
             # create new instance
-            my $CodeObject = $CodeModule-&gt;new( %{$Self} );
+            my $CodeObject = $CodeModule->new( %{$Self} );
 
             if ($CodeObject) {
 
                 # start methode
-                if ( !$CodeObject-&gt;$FunctionName(%{$Self}) ) {
-                    $Self-&gt;{LogObject}-&gt;Log(
-                        Priority =&gt; 'error',
-                        Message  =&gt; "Could not call method $FunctionName() on $CodeModule.pm."
+                if ( !$CodeObject->$FunctionName(%{$Self}) ) {
+                    $Self->{LogObject}->Log(
+                        Priority => 'error',
+                        Message  => "Could not call method $FunctionName() on $CodeModule.pm."
                     );
                 }
             }
 
             # error handling
             else {
-                $Self-&gt;{LogObject}-&gt;Log(
-                    Priority =&gt; 'error',
-                    Message  =&gt; "Could not call method new() on $CodeModule.pm."
+                $Self->{LogObject}->Log(
+                    Priority => 'error',
+                    Message  => "Could not call method new() on $CodeModule.pm."
                 );
             }
         }
 
-    </CodeReinstall>
-    <CodeUpgrade Type="post">
+    ]]></CodeReinstall>
+    <CodeUpgrade Type="post"><![CDATA[
 
         # define function name
         my $FunctionName = 'CodeUpgrade';
 
         # create the package name
-        my $CodeModule = 'var::packagesetup::' . $Param{Structure}-&gt;{Name}-&gt;{Content};
+        my $CodeModule = 'var::packagesetup::' . $Param{Structure}->{Name}->{Content};
 
         # The code module has just recently been copied to it's location in the file system.
         # In a persistent Perl environment an old version of the module might still be loaded,
@@ -1222,242 +1222,242 @@
         delete $INC{$CodeModulePath};
 
         # load the module
-        if ( $Self-&gt;{MainObject}-&gt;Require($CodeModule) ) {
+        if ( $Self->{MainObject}->Require($CodeModule) ) {
 
             # create new instance
-            my $CodeObject = $CodeModule-&gt;new( %{$Self} );
+            my $CodeObject = $CodeModule->new( %{$Self} );
 
             if ($CodeObject) {
 
                 # start methode
-                if ( !$CodeObject-&gt;$FunctionName(%{$Self}) ) {
-                    $Self-&gt;{LogObject}-&gt;Log(
-                        Priority =&gt; 'error',
-                        Message  =&gt; "Could not call method $FunctionName() on $CodeModule.pm."
+                if ( !$CodeObject->$FunctionName(%{$Self}) ) {
+                    $Self->{LogObject}->Log(
+                        Priority => 'error',
+                        Message  => "Could not call method $FunctionName() on $CodeModule.pm."
                     );
                 }
             }
 
             # error handling
             else {
-                $Self-&gt;{LogObject}-&gt;Log(
-                    Priority =&gt; 'error',
-                    Message  =&gt; "Could not call method new() on $CodeModule.pm."
+                $Self->{LogObject}->Log(
+                    Priority => 'error',
+                    Message  => "Could not call method new() on $CodeModule.pm."
                 );
             }
         }
 
-    </CodeUpgrade>
-    <CodeUninstall Type="pre">
+    ]]></CodeUpgrade>
+    <CodeUninstall Type="pre"><![CDATA[
 
         # define function name
         my $FunctionName = 'CodeUninstall';
 
         # create the package name
-        my $CodeModule = 'var::packagesetup::' . $Param{Structure}-&gt;{Name}-&gt;{Content};
+        my $CodeModule = 'var::packagesetup::' . $Param{Structure}->{Name}->{Content};
 
         # load the module
-        if ( $Self-&gt;{MainObject}-&gt;Require($CodeModule) ) {
+        if ( $Self->{MainObject}->Require($CodeModule) ) {
 
             # create new instance
-            my $CodeObject = $CodeModule-&gt;new( %{$Self} );
+            my $CodeObject = $CodeModule->new( %{$Self} );
 
             if ($CodeObject) {
 
                 # start methode
-                if ( !$CodeObject-&gt;$FunctionName(%{$Self}) ) {
-                    $Self-&gt;{LogObject}-&gt;Log(
-                        Priority =&gt; 'error',
-                        Message  =&gt; "Could not call method $FunctionName() on $CodeModule.pm."
+                if ( !$CodeObject->$FunctionName(%{$Self}) ) {
+                    $Self->{LogObject}->Log(
+                        Priority => 'error',
+                        Message  => "Could not call method $FunctionName() on $CodeModule.pm."
                     );
                 }
             }
 
             # error handling
             else {
-                $Self-&gt;{LogObject}-&gt;Log(
-                    Priority =&gt; 'error',
-                    Message  =&gt; "Could not call method new() on $CodeModule.pm."
+                $Self->{LogObject}->Log(
+                    Priority => 'error',
+                    Message  => "Could not call method new() on $CodeModule.pm."
                 );
             }
         }
 
-    </CodeUninstall>
-    <CodeUninstall Type="post">
+    ]]></CodeUninstall>
+    <CodeUninstall Type="post"><![CDATA[
 
         # cleanup stats list
         {
 
             # load required modules
-            $Self-&gt;{MainObject}-&gt;Require('Kernel::System::CSV');
-            $Self-&gt;{MainObject}-&gt;Require('Kernel::System::Group');
-            $Self-&gt;{MainObject}-&gt;Require('Kernel::System::User');
-            $Self-&gt;{MainObject}-&gt;Require('Kernel::System::Stats');
+            $Self->{MainObject}->Require('Kernel::System::CSV');
+            $Self->{MainObject}->Require('Kernel::System::Group');
+            $Self->{MainObject}->Require('Kernel::System::User');
+            $Self->{MainObject}->Require('Kernel::System::Stats');
 
             # create needed objects
-            $Self-&gt;{CSVObject}   = Kernel::System::CSV-&gt;new( %{$Self} );
-            $Self-&gt;{GroupObject} = Kernel::System::Group-&gt;new( %{$Self} );
-            $Self-&gt;{UserObject}  = Kernel::System::User-&gt;new( %{$Self} );
-            $Self-&gt;{StatsObject} = Kernel::System::Stats-&gt;new(
+            $Self->{CSVObject}   = Kernel::System::CSV->new( %{$Self} );
+            $Self->{GroupObject} = Kernel::System::Group->new( %{$Self} );
+            $Self->{UserObject}  = Kernel::System::User->new( %{$Self} );
+            $Self->{StatsObject} = Kernel::System::Stats->new(
                 %{$Self},
-                UserID =&gt; 1,
+                UserID => 1,
             );
 
             # cleanup stats list
-            $Self-&gt;{StatsObject}-&gt;StatsCleanUp();
+            $Self->{StatsObject}->StatsCleanUp();
         }
 
-    </CodeUninstall>
-    <IntroInstall Type="pre" Title="Install Information" Lang="en">
+    ]]></CodeUninstall>
+    <IntroInstall Type="pre" Title="Install Information" Lang="en"><![CDATA[
 
-        &lt;br&gt;
-        &lt;b&gt;WELCOME&lt;/b&gt;
-        &lt;br&gt;
-        &lt;br&gt;
-        You are about to install the OTRS package ITSMConfigurationManagement.&lt;br&gt;
-        &lt;br&gt;
-        &lt;br&gt;
-        &lt;b&gt;REQUIRED OTRS PACKAGES&lt;/b&gt;
-        &lt;ul&gt;
-        &lt;li&gt;ITSMCore 1.3.92&lt;/li&gt;
-        &lt;/ul&gt;
-        &lt;br&gt;
-        ((enjoy))&lt;br&gt;
-        &lt;br&gt;
+        <br>
+        <b>WELCOME</b>
+        <br>
+        <br>
+        You are about to install the OTRS package ITSMConfigurationManagement.<br>
+        <br>
+        <br>
+        <b>REQUIRED OTRS PACKAGES</b>
+        <ul>
+        <li>ITSMCore 1.3.92</li>
+        </ul>
+        <br>
+        ((enjoy))<br>
+        <br>
 
-    </IntroInstall>
-    <IntroInstall Type="pre" Title="Installation Information" Lang="de">
+    ]]></IntroInstall>
+    <IntroInstall Type="pre" Title="Installation Information" Lang="de"><![CDATA[
 
-        &lt;br&gt;
-        &lt;b&gt;WILLKOMMEN&lt;/b&gt;
-        &lt;br&gt;
-        &lt;br&gt;
-        Sie sind im Begriff das OTRS-Paket ITSMConfigurationManagement zu installieren.&lt;br&gt;
-        &lt;br&gt;
-        &lt;br&gt;
-        &lt;b&gt;BENÖTIGTE OTRS-PAKETE&lt;/b&gt;
-        &lt;ul&gt;
-        &lt;li&gt;ITSMCore 1.3.92&lt;/li&gt;
-        &lt;/ul&gt;
-        &lt;br&gt;
-        ((enjoy))&lt;br&gt;
-        &lt;br&gt;
+        <br>
+        <b>WILLKOMMEN</b>
+        <br>
+        <br>
+        Sie sind im Begriff das OTRS-Paket ITSMConfigurationManagement zu installieren.<br>
+        <br>
+        <br>
+        <b>BENÖTIGTE OTRS-PAKETE</b>
+        <ul>
+        <li>ITSMCore 1.3.92</li>
+        </ul>
+        <br>
+        ((enjoy))<br>
+        <br>
 
-    </IntroInstall>
-    <IntroInstall Type="post" Title="Installation Information" Lang="en">
+    ]]></IntroInstall>
+    <IntroInstall Type="post" Title="Installation Information" Lang="en"><![CDATA[
 
-        &lt;br&gt;
-        &lt;b&gt;NOTICE&lt;/b&gt;
-        &lt;br&gt;
-        &lt;br&gt;
+        <br>
+        <b>NOTICE</b>
+        <br>
+        <br>
         In order to grant users access to the config item menu, you need to add them as member to the group 'itsm-configitem'.
-        &lt;br&gt;
-        &lt;br&gt;
+        <br>
+        <br>
         The menu items that were added by this package will be visible after you log-in to the system again.
-        &lt;br&gt;
-        &lt;br&gt;
-        ((enjoy))&lt;br&gt;
-        &lt;br&gt;
+        <br>
+        <br>
+        ((enjoy))<br>
+        <br>
 
-    </IntroInstall>
-    <IntroInstall Type="post" Title="Installation Information" Lang="de">
+    ]]></IntroInstall>
+    <IntroInstall Type="post" Title="Installation Information" Lang="de"><![CDATA[
 
-        &lt;br&gt;
-        &lt;b&gt;HINWEIS&lt;/b&gt;
-        &lt;br&gt;
-        &lt;br&gt;
+        <br>
+        <b>HINWEIS</b>
+        <br>
+        <br>
         Um Benutzern Zugriff auf das ConfigItem-Menü zu gewähren, müssen diese Mitglied der neuen Gruppe 'itsm-configitem' sein.
-        &lt;br&gt;
-        &lt;br&gt;
+        <br>
+        <br>
         Die von diesem Paket hinzugefügten Menü-Punkte sind erst nach einem erneuten Anmeldevorgang im System sichtbar.
-        &lt;br&gt;
-        &lt;br&gt;
-        ((enjoy))&lt;br&gt;
-        &lt;br&gt;
+        <br>
+        <br>
+        ((enjoy))<br>
+        <br>
 
-    </IntroInstall>
-    <IntroUpgrade Type="pre" Title="Upgrade Information" Lang="en">
+    ]]></IntroInstall>
+    <IntroUpgrade Type="pre" Title="Upgrade Information" Lang="en"><![CDATA[
 
-        &lt;br&gt;
-        &lt;b&gt;WELCOME&lt;/b&gt;
-        &lt;br&gt;
-        &lt;br&gt;
-        You are about to upgrade the OTRS package ITSMConfigurationManagement.&lt;br&gt;
-        &lt;br&gt;
-        &lt;br&gt;
-        &lt;b&gt;REQUIRED OTRS PACKAGES&lt;/b&gt;
-        &lt;ul&gt;
-        &lt;li&gt;ITSMCore 1.3.92&lt;/li&gt;
-        &lt;/ul&gt;
-        &lt;br&gt;
-        ((enjoy))&lt;br&gt;
-        &lt;br&gt;
+        <br>
+        <b>WELCOME</b>
+        <br>
+        <br>
+        You are about to upgrade the OTRS package ITSMConfigurationManagement.<br>
+        <br>
+        <br>
+        <b>REQUIRED OTRS PACKAGES</b>
+        <ul>
+        <li>ITSMCore 1.3.92</li>
+        </ul>
+        <br>
+        ((enjoy))<br>
+        <br>
 
-    </IntroUpgrade>
-    <IntroUpgrade Type="pre" Title="Upgrade Information" Lang="de">
+    ]]></IntroUpgrade>
+    <IntroUpgrade Type="pre" Title="Upgrade Information" Lang="de"><![CDATA[
 
-        &lt;br&gt;
-        &lt;b&gt;WILLKOMMEN&lt;/b&gt;
-        &lt;br&gt;
-        &lt;br&gt;
-        Sie sind im Begriff das OTRS-Paket ITSMConfigurationManagement zu aktualisieren.&lt;br&gt;
-        &lt;br&gt;
-        &lt;br&gt;
-        &lt;b&gt;BENÖTIGTE OTRS-PAKETE&lt;/b&gt;
-        &lt;ul&gt;
-        &lt;li&gt;ITSMCore 1.3.92&lt;/li&gt;
-        &lt;/ul&gt;
-        &lt;br&gt;
-        ((enjoy))&lt;br&gt;
-        &lt;br&gt;
+        <br>
+        <b>WILLKOMMEN</b>
+        <br>
+        <br>
+        Sie sind im Begriff das OTRS-Paket ITSMConfigurationManagement zu aktualisieren.<br>
+        <br>
+        <br>
+        <b>BENÖTIGTE OTRS-PAKETE</b>
+        <ul>
+        <li>ITSMCore 1.3.92</li>
+        </ul>
+        <br>
+        ((enjoy))<br>
+        <br>
 
-    </IntroUpgrade>
-    <IntroUninstall Type="pre" Title="Uninstallation Information" Lang="en">
+    ]]></IntroUpgrade>
+    <IntroUninstall Type="pre" Title="Uninstallation Information" Lang="en"><![CDATA[
 
-        &lt;br&gt;
-        &lt;b&gt;ATTENTION&lt;/b&gt;
-        &lt;br&gt;
-        &lt;br&gt;
+        <br>
+        <b>ATTENTION</b>
+        <br>
+        <br>
         If you uninstall this package, all database tables that were created during installation will be deleted.
         All data from these tables will be irrevocably lost!
-        &lt;br&gt;
-        &lt;br&gt;
+        <br>
+        <br>
         The group 'itsm-configitem' that was created during package installation will be deactivated.
         You can activate this group again in the admin area.
-        &lt;br&gt;
-        &lt;br&gt;
+        <br>
+        <br>
         All links to config item objects will be irrevocably deleted!
-        &lt;br&gt;
-        &lt;br&gt;
+        <br>
+        <br>
         The statistics that are associated with this package, will no longer be available if the package is uninstalled.
-        &lt;br&gt;
-        &lt;br&gt;
-        ((enjoy))&lt;br&gt;
-        &lt;br&gt;
+        <br>
+        <br>
+        ((enjoy))<br>
+        <br>
 
-    </IntroUninstall>
-    <IntroUninstall Type="pre" Title="Uninstallation Information" Lang="de">
+    ]]></IntroUninstall>
+    <IntroUninstall Type="pre" Title="Uninstallation Information" Lang="de"><![CDATA[
 
-        &lt;br&gt;
-        &lt;b&gt;ACHTUNG&lt;/b&gt;
-        &lt;br&gt;
-        &lt;br&gt;
+        <br>
+        <b>ACHTUNG</b>
+        <br>
+        <br>
         Bei der Deinstallation werden die von diesem Paket angelegten Datenbank-Tabellen gelöscht.
         Alle darin enthaltenen Daten gehen unwiderruflich verloren!
-        &lt;br&gt;
-        &lt;br&gt;
+        <br>
+        <br>
         Die von diesem Paket angelegte Gruppe 'itsm-configitem' wird deaktiviert.
         Sie kann jederzeit im Admin-Bereich wieder aktiviert werden.
-        &lt;br&gt;
-        &lt;br&gt;
+        <br>
+        <br>
         Alle Verknüpfungen zu ConfigItem-Objekten werden unwiderruflich gelöscht!
-        &lt;br&gt;
-        &lt;br&gt;
+        <br>
+        <br>
         Nach der Deinstallation sind die zu diesem Paket zugehörigen Statistiken nicht mehr verfügbar.
-        &lt;br&gt;
-        &lt;br&gt;
-        ((enjoy))&lt;br&gt;
-        &lt;br&gt;
+        <br>
+        <br>
+        ((enjoy))<br>
+        <br>
 
-    </IntroUninstall>
+    ]]></IntroUninstall>
 </otrs_package>
