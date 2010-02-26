@@ -2,7 +2,7 @@
 # ImportExportObjectITSMConfigItem.t - all import export tests for the ITSMConfigItem object backend
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ImportExportObjectITSMConfigItem.t,v 1.10 2010-02-25 11:38:52 bes Exp $
+# $Id: ImportExportObjectITSMConfigItem.t,v 1.11 2010-02-26 10:20:23 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -3341,6 +3341,56 @@ my @ImportDataTests = (
         },
     },
 
+    # import undef for Text1, with EmptyFieldsLeaveTheOldValues turned on
+    # no new version should be created
+    {
+        SourceImportData => {
+            ObjectData => {
+                ClassID                      => $ConfigItemClassIDs[0],
+                EmptyFieldsLeaveTheOldValues => 'on',
+            },
+            MappingObjectData => [
+                {
+                    Key        => 'Name',
+                    Identifier => 1,
+                },
+                {
+                    Key => 'DeplState',
+                },
+                {
+                    Key => 'InciState',
+                },
+                {
+                    Key => 'Text1::1',
+                },
+                {
+                    Key => 'GeneralCatalog1::1',
+                },
+            ],
+            ImportDataSave => {
+                TemplateID    => $TemplateIDs[25],
+                ImportDataRow => [
+                    'UnitTest - Importtest 5',
+                    'Production',
+                    'Operational',
+                    undef,
+                    'Test1',
+                ],
+                UserID => 1,
+            },
+        },
+        ReferenceImportData => {
+            VersionNumber => 1,
+            LastVersion   => {
+                Name                 => 'UnitTest - Importtest 5',
+                DeplState            => 'Production',
+                InciState            => 'Operational',
+                'Text1::1'           => 'Importtest 5 for behavior of empty values',
+                'GeneralCatalog1::1' => $GeneralCatalogListReverse{Test1},
+            },
+        },
+    },
+
     # import an empty value for Text1, with EmptyFieldsLeaveTheOldValues turned off
     # a new version should be created
     {
@@ -3391,6 +3441,106 @@ my @ImportDataTests = (
         },
     },
 
+    # import a single space value for Text1, with EmptyFieldsLeaveTheOldValues turned on
+    # a new version should be created
+    {
+        SourceImportData => {
+            ObjectData => {
+                ClassID                      => $ConfigItemClassIDs[0],
+                EmptyFieldsLeaveTheOldValues => '',
+            },
+            MappingObjectData => [
+                {
+                    Key        => 'Name',
+                    Identifier => 1,
+                },
+                {
+                    Key => 'DeplState',
+                },
+                {
+                    Key => 'InciState',
+                },
+                {
+                    Key => 'Text1::1',
+                },
+                {
+                    Key => 'GeneralCatalog1::1',
+                },
+            ],
+            ImportDataSave => {
+                TemplateID    => $TemplateIDs[25],
+                ImportDataRow => [
+                    'UnitTest - Importtest 5',
+                    'Production',
+                    'Operational',
+                    ' ',
+                    'Test1',
+                ],
+                UserID => 1,
+            },
+        },
+        ReferenceImportData => {
+            VersionNumber => 3,
+            LastVersion   => {
+                Name                 => 'UnitTest - Importtest 5',
+                DeplState            => 'Production',
+                InciState            => 'Operational',
+                'Text1::1'           => ' ',
+                'GeneralCatalog1::1' => $GeneralCatalogListReverse{Test1},
+            },
+        },
+    },
+
+    # import the string '0' value for Text1, with EmptyFieldsLeaveTheOldValues turned on
+    # a new version should be created
+    {
+        SourceImportData => {
+            ObjectData => {
+                ClassID                      => $ConfigItemClassIDs[0],
+                EmptyFieldsLeaveTheOldValues => '',
+            },
+            MappingObjectData => [
+                {
+                    Key        => 'Name',
+                    Identifier => 1,
+                },
+                {
+                    Key => 'DeplState',
+                },
+                {
+                    Key => 'InciState',
+                },
+                {
+                    Key => 'Text1::1',
+                },
+                {
+                    Key => 'GeneralCatalog1::1',
+                },
+            ],
+            ImportDataSave => {
+                TemplateID    => $TemplateIDs[25],
+                ImportDataRow => [
+                    'UnitTest - Importtest 5',
+                    'Production',
+                    'Operational',
+                    '0',
+                    'Test1',
+                ],
+                UserID => 1,
+            },
+        },
+        ReferenceImportData => {
+            VersionNumber => 4,
+            LastVersion   => {
+                Name                 => 'UnitTest - Importtest 5',
+                DeplState            => 'Production',
+                InciState            => 'Operational',
+                'Text1::1'           => '0',
+                'GeneralCatalog1::1' => $GeneralCatalogListReverse{Test1},
+            },
+        },
+    },
+
     # import an empty value for GeneralCatalog1, with EmptyFieldsLeaveTheOldValues turned on
     # no new version should be created
     {
@@ -3430,12 +3580,12 @@ my @ImportDataTests = (
             },
         },
         ReferenceImportData => {
-            VersionNumber => 2,
+            VersionNumber => 4,
             LastVersion   => {
                 Name                 => 'UnitTest - Importtest 5',
                 DeplState            => 'Production',
                 InciState            => 'Operational',
-                'Text1::1'           => '',
+                'Text1::1'           => '0',
                 'GeneralCatalog1::1' => $GeneralCatalogListReverse{Test1},
             },
         },
@@ -3480,12 +3630,12 @@ my @ImportDataTests = (
             },
         },
         ReferenceImportData => {
-            VersionNumber => 2,
+            VersionNumber => 4,
             LastVersion   => {
                 Name                 => 'UnitTest - Importtest 5',
                 DeplState            => 'Production',
                 InciState            => 'Operational',
-                'Text1::1'           => '',
+                'Text1::1'           => '0',
                 'GeneralCatalog1::1' => $GeneralCatalogListReverse{Test1},
             },
         },
@@ -3530,12 +3680,12 @@ my @ImportDataTests = (
             },
         },
         ReferenceImportData => {
-            VersionNumber => 2,
+            VersionNumber => 4,
             LastVersion   => {
                 Name                 => 'UnitTest - Importtest 5',
                 DeplState            => 'Production',
                 InciState            => 'Operational',
-                'Text1::1'           => '',
+                'Text1::1'           => '0',
                 'GeneralCatalog1::1' => $GeneralCatalogListReverse{Test1},
             },
         },
@@ -3620,12 +3770,12 @@ my @ImportDataTests = (
             },
         },
         ReferenceImportData => {
-            VersionNumber => 2,
+            VersionNumber => 4,
             LastVersion   => {
                 Name                 => 'UnitTest - Importtest 5',
                 DeplState            => 'Production',
                 InciState            => 'Operational',
-                'Text1::1'           => '',
+                'Text1::1'           => '0',
                 'GeneralCatalog1::1' => $GeneralCatalogListReverse{Test1},
             },
         },

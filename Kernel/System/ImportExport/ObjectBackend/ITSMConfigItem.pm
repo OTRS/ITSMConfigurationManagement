@@ -2,7 +2,7 @@
 # Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm - import/export backend for ITSMConfigItem
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.18 2010-02-25 11:38:52 bes Exp $
+# $Id: ITSMConfigItem.pm,v 1.19 2010-02-26 10:20:23 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -21,7 +21,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::Time;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.18 $) [1];
+$VERSION = qw($Revision: 1.19 $) [1];
 
 =head1 NAME
 
@@ -638,9 +638,14 @@ Thus ImportDataSave() guarantees to not overwrite undeclared attributes.
 The behavior when imported attributes are empty depends on the setting in the object data.
 When C<EmptyFieldsLeaveTheOldValues> is not set, then empty values will wipe out
 the old data. This is the default behavior. When C<EmptyFieldsLeaveTheOldValues> is set,
-then empty values will leave the old values. The decision what constitute an empty value
-is a bit hairy. For example, a GeneralCatalog-field that can not be mapped to a
-general catalog id is considered to be empty, even when there is content in the import data.
+then empty values will leave the old values.
+
+The decision what constitute an empty value is a bit hairy.
+Here are the rules.
+Fields that are not even mentioned in the Import definition are empty. These are the 'not defined' fields.
+Empty strings and undefined values constitute empty fields.
+Fields with with only one or more whitespace characters are not empty.
+Fields with the digit '0' are not empty.
 
     my ( $ConfigItemID, $RetCode ) = $ObjectBackend->ImportDataSave(
         TemplateID    => 123,
@@ -1003,7 +1008,7 @@ sub ImportDataSave {
         }
         elsif ( $Key eq 'Name' ) {
 
-            if ( $EmptyFieldsLeaveTheOldValues && !$Value ) {
+            if ( $EmptyFieldsLeaveTheOldValues && ( !defined $Value || $Value eq '' ) ) {
 
                 # do nothing, keep the old value
             }
@@ -1023,7 +1028,7 @@ sub ImportDataSave {
         }
         elsif ( $Key eq 'DeplState' ) {
 
-            if ( $EmptyFieldsLeaveTheOldValues && !$Value ) {
+            if ( $EmptyFieldsLeaveTheOldValues && ( !defined $Value || $Value eq '' ) ) {
 
                 # do nothing, keep the old value
             }
@@ -1046,7 +1051,7 @@ sub ImportDataSave {
         }
         elsif ( $Key eq 'InciState' ) {
 
-            if ( $EmptyFieldsLeaveTheOldValues && !$Value ) {
+            if ( $EmptyFieldsLeaveTheOldValues && ( !defined $Value || $Value eq '' ) ) {
 
                 # do nothing, keep the old value
             }
@@ -1598,7 +1603,8 @@ sub _ImportXMLDataMerge {
             if ( $Param{EmptyFieldsLeaveTheOldValues} ) {
 
                 # do not override old value with an empty field is imported
-                next COUNTER if !$Param{XMLData2D}->{$Key};
+                next COUNTER if !defined $Param{XMLData2D}->{$Key};
+                next COUNTER if $Param{XMLData2D}->{$Key} eq '';
             }
 
             # prepare value
@@ -1633,6 +1639,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.18 $ $Date: 2010-02-25 11:38:52 $
+$Revision: 1.19 $ $Date: 2010-02-26 10:20:23 $
 
 =cut
