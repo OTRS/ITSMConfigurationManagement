@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Version.pm - sub module of ITSMConfigItem.pm with version functions
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: Version.pm,v 1.20 2010-03-02 10:52:57 bes Exp $
+# $Id: Version.pm,v 1.21 2010-03-02 11:00:55 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.20 $) [1];
+$VERSION = qw($Revision: 1.21 $) [1];
 
 use Storable ();
 
@@ -1077,25 +1077,25 @@ sub _FindChangedXMLValues {
 
 =item _GrabTagKeys()
 
-This method checks a perl datastructure for the Hash key 'TagKey' and returns a
-list of all TagKeys.
+recursively scans a perl datastructure for the hash key 'TagKey' and returns a
+list of all the values for that key.
 
     my @TagKeys = $ConfigItemObject->_GrabTagKeys(
-        $XMLHashReferenz,
+        Data => $XMLHashReferenz,
     );
 
 =cut
 
 sub _GrabTagKeys {
-    my ( $Self, %Params ) = @_;
+    my ( $Self, %Param ) = @_;
 
-    return () if !$Params{Data};
+    return () if !$Param{Data};
 
     my @TagKeys;
-    if ( ref $Params{Data} eq 'ARRAY' ) {
+    if ( ref $Param{Data} eq 'ARRAY' ) {
 
         ELEM:
-        for my $Elem ( @{ $Params{Data} } ) {
+        for my $Elem ( @{ $Param{Data} } ) {
 
             next ELEM if !$Elem;
             next ELEM if !ref $Elem;
@@ -1103,15 +1103,15 @@ sub _GrabTagKeys {
             push @TagKeys, $Self->_GrabTagKeys( Data => $Elem );
         }
     }
-    elsif ( ref $Params{Data} eq 'HASH' ) {
+    elsif ( ref $Param{Data} eq 'HASH' ) {
 
-        for my $Key ( keys %{ $Params{Data} } ) {
+        for my $Key ( keys %{ $Param{Data} } ) {
 
             if ( $Key eq 'TagKey' ) {
-                push @TagKeys, $Params{Data}->{$Key};
+                push @TagKeys, $Param{Data}->{$Key};
             }
-            elsif ( ref $Params{Data}->{$Key} ) {
-                push @TagKeys, $Self->_GrabTagKeys( Data => $Params{Data}->{$Key} );
+            elsif ( ref $Param{Data}->{$Key} ) {
+                push @TagKeys, $Self->_GrabTagKeys( Data => $Param{Data}->{$Key} );
             }
         }
     }
@@ -1137,6 +1137,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.20 $ $Date: 2010-03-02 10:52:57 $
+$Revision: 1.21 $ $Date: 2010-03-02 11:00:55 $
 
 =cut
