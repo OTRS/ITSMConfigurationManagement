@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Version.pm - sub module of ITSMConfigItem.pm with version functions
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: Version.pm,v 1.19 2010-03-02 10:27:46 bes Exp $
+# $Id: Version.pm,v 1.20 2010-03-02 10:52:57 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.19 $) [1];
+$VERSION = qw($Revision: 1.20 $) [1];
 
 use Storable ();
 
@@ -917,9 +917,12 @@ sub _GetEvents {
 
     # check for changes in XML data
     if ( $Param{Param}->{XMLData} && ref $Param{Param}->{XMLData} eq 'ARRAY' ) {
-        my %Changes = $Self->_FindChangedValues( %{ $Param{Param} } );
-        if ( keys %Changes ) {
-            $Events->{ValueUpdate} = \%Changes;
+        my %UpdateValues = $Self->_FindChangedXMLValues(
+            ConfigItemID => $Param{Param}->{ConfigItemID},
+            NewXMLData   => $Param{Param}->{XMLData},
+        );
+        if ( keys %UpdateValues ) {
+            $Events->{ValueUpdate} = \%UpdateValues;
         }
     }
 
@@ -974,25 +977,53 @@ sub _EventHandlerForChangedXMLValues {
     return 1;
 }
 
-=item _FindChangedValues()
+=item _FindChangedXMLValues()
 
-C<_FindChangedValues> checks for each found TagKey, if its value changed in the
-current version. If so, the TagKey and the new value is stored in a hash. This
-hash is returned...
+compares the new xml data C<NewXMLData> with the xml data of the latest version
+of the config item C<ConfigItemID>. Note that the new XML data does not contain tag keys.
+All values of the two data sets are compared.
+When a changed value is encountered, the tag key and the old and the new value are stored in a hash.
+The hash with the updata values is returned.
 
-    $ConfigItemObject->_FindChangedValues(
+    my %UpdateValues = $ConfigItemObject->_FindChangedXMLValues(
         ConfigItemID => 123,
-        NewVersionID => 12345,
-        OldVersionID => 12344,
+        NewXMLData   =>
+            [
+                undef,
+                {
+                    'Version' =>
+                        [
+                            undef,
+                            {
+                                'Owner' =>
+                                    [
+                                       undef,
+                                       {
+                                           'Content' => ''
+                                       },
+                                    ],
+                            },
+                        ],
+                },
+            ],
     );
+
+The returned hash looks like:
+
+    %UpdateValues = (
+       "[1]{'Version'}[1]{'Vendor'}[1]" => 'OldVendor%%NewVendor',
+       "[1]{'Version'}[1]{'Type'}[1]"   => '127%%128',
+    );
+
+The key is a tag key. The values contains the old and the new XML value.
 
 =cut
 
-sub _FindChangedValues {
+sub _FindChangedXMLValues {
     my ( $Self, %Param ) = @_;
 
     # check for needed stuff
-    for my $Needed (qw(ConfigItemID XMLData)) {
+    for my $Needed (qw(ConfigItemID NewXMLData)) {
         if ( !$Param{$Needed} ) {
             $Self->{LogObject}->Log(
                 Priority => 'error',
@@ -1009,27 +1040,27 @@ sub _FindChangedValues {
     );
 
     # skip the check if this is the first version of the item
-    return if scalar @{$VersionList} == 0;
+    return if !@{$VersionList};
 
     # get old version
     my $OldVersion = $Self->VersionGet(
         VersionID => $VersionList->[-1],
     );
 
-    # get an unique list of all tagkeys in old and new XML data
-    my $NewXMLData = $Param{XMLData};
+    # the short names for new and old xml data are used in the 'eval' below
+    my $NewXMLData = $Param{NewXMLData};
     my $OldXMLData = $OldVersion->{XMLData};
 
-    # get all tagkeys in xml data
+    # get all tagkeys in old and new xml data
     my @TagKeysNew = $Self->_GrabTagKeys( Data => $NewXMLData );
     my @TagKeysOld = $Self->_GrabTagKeys( Data => $OldXMLData );
 
-    # save all existing tag keys in one hash
+    # get an unique list of all tagkeys in old and new XML data
     my %TagKeys;
     @TagKeys{ @TagKeysNew, @TagKeysOld } = ( @TagKeysNew, @TagKeysOld );
 
     # do the check
-    my %Changes;
+    my %UpdateValues;
     for my $TagKey ( sort keys %TagKeys ) {
         my $NewContent = eval '$NewXMLData->' . $TagKey . '->{Content}' || '';
         my $OldContent = eval '$OldXMLData->' . $TagKey . '->{Content}' || '';
@@ -1037,11 +1068,11 @@ sub _FindChangedValues {
         if ( $NewContent ne $OldContent ) {
 
             # a change was found
-            $Changes{$TagKey} = join '%%', $OldContent, $NewContent;
+            $UpdateValues{$TagKey} = join '%%', $OldContent, $NewContent;
         }
     }
 
-    return %Changes;
+    return %UpdateValues;
 }
 
 =item _GrabTagKeys()
@@ -1106,6 +1137,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.19 $ $Date: 2010-03-02 10:27:46 $
+$Revision: 1.20 $ $Date: 2010-03-02 10:52:57 $
 
 =cut
