@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Version.pm - sub module of ITSMConfigItem.pm with version functions
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: Version.pm,v 1.18 2010-02-22 09:22:16 bes Exp $
+# $Id: Version.pm,v 1.19 2010-03-02 10:27:46 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.18 $) [1];
+$VERSION = qw($Revision: 1.19 $) [1];
 
 use Storable ();
 
@@ -555,9 +555,10 @@ sub VersionAdd {
 
     # compare current and old values
     if ( $Events->{ValueUpdate} ) {
-        $Self->_CheckValues(
-            %Param,
+        $Self->_EventHandlerForChangedXMLValues(
+            ConfigItemID => $Param{ConfigItemID},
             UpdateValues => $Events->{ValueUpdate},
+            UserID       => $Param{UserID},
         );
     }
 
@@ -925,19 +926,26 @@ sub _GetEvents {
     return $Events;
 }
 
-=item _CheckValues()
+=item _EventHandlerForChangedXMLValues()
 
-This method calles for each change value of the config item the event handler.
+This method calls the event handler for each changed value of the config item.
+The changed values are passed in C<UpdateValues> as an hashref with tagkeys as keys.
 Please note that this only handles values inside the XML structure, not general
-attributes like "CurInciState".
+attributes like C<CurInciState>.
 
-    $ConfigItemObject->_CheckValues(
+    my $Success = $ConfigItemObject->_EventHandlerForChangedXMLValues(
         ConfigItemID => 123,
+        UpdateValues =>
+            {
+               "[1]{'Version'}[1]{'Vendor'}[1]" => 'OldVendor%%NewVendor',
+               "[1]{'Version'}[1]{'Type'}[1]"   => '127%%128',
+            }
+        UserID       => 1,
     );
 
 =cut
 
-sub _CheckValues {
+sub _EventHandlerForChangedXMLValues {
     my ( $Self, %Param ) = @_;
 
     # check needed stuff
@@ -1008,11 +1016,12 @@ sub _FindChangedValues {
         VersionID => $VersionList->[-1],
     );
 
-    my $CurrentXMLData = $Param{XMLData};
-    my $OldXMLData     = $OldVersion->{XMLData};
+    # get an unique list of all tagkeys in old and new XML data
+    my $NewXMLData = $Param{XMLData};
+    my $OldXMLData = $OldVersion->{XMLData};
 
     # get all tagkeys in xml data
-    my @TagKeysNew = $Self->_GrabTagKeys( Data => $CurrentXMLData );
+    my @TagKeysNew = $Self->_GrabTagKeys( Data => $NewXMLData );
     my @TagKeysOld = $Self->_GrabTagKeys( Data => $OldXMLData );
 
     # save all existing tag keys in one hash
@@ -1021,14 +1030,15 @@ sub _FindChangedValues {
 
     # do the check
     my %Changes;
-    KEY:
-    for my $Key ( keys %TagKeys ) {
-        my $NewValue = eval '$CurrentXMLData->' . $Key . '->{Content}' || '';
-        my $OldValue = eval '$OldXMLData ->' . $Key . '->{Content}'    || '';
+    for my $TagKey ( sort keys %TagKeys ) {
+        my $NewContent = eval '$NewXMLData->' . $TagKey . '->{Content}' || '';
+        my $OldContent = eval '$OldXMLData->' . $TagKey . '->{Content}' || '';
 
-        next KEY if $NewValue eq $OldValue;
+        if ( $NewContent ne $OldContent ) {
 
-        $Changes{$Key} = join '%%', $OldValue, $NewValue;
+            # a change was found
+            $Changes{$TagKey} = join '%%', $OldContent, $NewContent;
+        }
     }
 
     return %Changes;
@@ -1039,7 +1049,7 @@ sub _FindChangedValues {
 This method checks a perl datastructure for the Hash key 'TagKey' and returns a
 list of all TagKeys.
 
-    my @List = $ConfigItemObject->_GrabTagKeys(
+    my @TagKeys = $ConfigItemObject->_GrabTagKeys(
         $XMLHashReferenz,
     );
 
@@ -1062,7 +1072,6 @@ sub _GrabTagKeys {
             push @TagKeys, $Self->_GrabTagKeys( Data => $Elem );
         }
     }
-
     elsif ( ref $Params{Data} eq 'HASH' ) {
 
         for my $Key ( keys %{ $Params{Data} } ) {
@@ -1097,6 +1106,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.18 $ $Date: 2010-02-22 09:22:16 $
+$Revision: 1.19 $ $Date: 2010-03-02 10:27:46 $
 
 =cut
