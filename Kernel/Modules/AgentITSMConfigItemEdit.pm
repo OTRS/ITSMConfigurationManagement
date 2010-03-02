@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemEdit.pm - the OTRS::ITSM config item edit module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.pm,v 1.9 2010-02-10 15:38:10 bes Exp $
+# $Id: AgentITSMConfigItemEdit.pm,v 1.10 2010-03-02 12:24:10 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.9 $) [1];
+$VERSION = qw($Revision: 1.10 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -185,7 +185,7 @@ sub Run {
         }
     }
     elsif ($DuplicateID) {
-        my $VersionID = $Self->{ParamObject}->GetParam( Param => "VersionID" );
+        my $VersionID = $Self->{ParamObject}->GetParam( Param => 'VersionID' );
         if ($VersionID) {
 
             # get version data to duplicate config item
