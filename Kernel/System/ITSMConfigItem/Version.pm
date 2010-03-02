@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Version.pm - sub module of ITSMConfigItem.pm with version functions
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: Version.pm,v 1.21 2010-03-02 11:00:55 bes Exp $
+# $Id: Version.pm,v 1.22 2010-03-02 12:17:52 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.21 $) [1];
+$VERSION = qw($Revision: 1.22 $) [1];
 
 use Storable ();
 
@@ -1051,17 +1051,17 @@ sub _FindChangedXMLValues {
     my $NewXMLData = $Param{NewXMLData};
     my $OldXMLData = $OldVersion->{XMLData};
 
-    # get all tagkeys in old and new xml data
-    my @TagKeysNew = $Self->_GrabTagKeys( Data => $NewXMLData );
-    my @TagKeysOld = $Self->_GrabTagKeys( Data => $OldXMLData );
+    # get all tagkeys in new and old XML data
+    # use a side effect of XMLHash2D(), which adds the tag keys to the passed in data structure
+    $Self->{XMLObject}->XMLHash2D( XMLHash => $NewXMLData );
+    my @TagKeys = $Self->_GrabTagKeys( Data => [ $OldXMLData, $NewXMLData ] );
 
-    # get an unique list of all tagkeys in old and new XML data
-    my %TagKeys;
-    @TagKeys{ @TagKeysNew, @TagKeysOld } = ( @TagKeysNew, @TagKeysOld );
+    # get an unique list of all tag keys
+    my %UniqueTagKeys = map { $_ => 1 } @TagKeys;
 
     # do the check
     my %UpdateValues;
-    for my $TagKey ( sort keys %TagKeys ) {
+    for my $TagKey ( sort keys %UniqueTagKeys ) {
         my $NewContent = eval '$NewXMLData->' . $TagKey . '->{Content}' || '';
         my $OldContent = eval '$OldXMLData->' . $TagKey . '->{Content}' || '';
 
@@ -1137,6 +1137,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.21 $ $Date: 2010-03-02 11:00:55 $
+$Revision: 1.22 $ $Date: 2010-03-02 12:17:52 $
 
 =cut
