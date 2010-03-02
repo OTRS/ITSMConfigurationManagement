@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem.pm - all config item function
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.24 2010-02-12 11:26:21 bes Exp $
+# $Id: ITSMConfigItem.pm,v 1.25 2010-03-02 12:25:27 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -28,7 +28,7 @@ use Kernel::System::User;
 use Kernel::System::XML;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.24 $) [1];
+$VERSION = qw($Revision: 1.25 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',
@@ -248,7 +248,13 @@ sub ConfigItemResultList {
 
 return a config item as hash reference
 
-Return
+    my $ConfigItem = $ConfigItemObject->ConfigItemGet(
+        ConfigItemID => 123,
+        Cache        => 0,    # (optional) default 1 (0|1)
+    );
+
+A hashref with the following keys is returned:
+
     $ConfigItem{ConfigItemID}
     $ConfigItem{Number}
     $ConfigItem{ClassID}
@@ -264,11 +270,6 @@ Return
     $ConfigItem{CreateBy}
     $ConfigItem{ChangeTime}
     $ConfigItem{ChangeBy}
-
-    my $ConfigItemRef = $ConfigItemObject->ConfigItemGet(
-        ConfigItemID => 123,
-        Cache        => 0,    # (optional) default 1 (0|1)
-    );
 
 =cut
 
@@ -1170,6 +1171,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.24 $ $Date: 2010-02-12 11:26:21 $
+$Revision: 1.25 $ $Date: 2010-03-02 12:25:27 $
 
 =cut
