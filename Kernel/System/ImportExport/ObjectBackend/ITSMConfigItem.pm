@@ -2,7 +2,7 @@
 # Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm - import/export backend for ITSMConfigItem
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.19 2010-02-26 10:20:23 bes Exp $
+# $Id: ITSMConfigItem.pm,v 1.20 2010-03-02 14:09:48 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -21,7 +21,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::Time;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.19 $) [1];
+$VERSION = qw($Revision: 1.20 $) [1];
 
 =head1 NAME
 
@@ -1083,12 +1083,23 @@ sub ImportDataSave {
     $VersionData->{XMLData}->[1]->{Version}->[1] ||= {};
 
     # Edit XMLDataPrev, so that the values in XMLData2D take precedence.
-    $Self->_ImportXMLDataMerge(
+    my $MergeOk = $Self->_ImportXMLDataMerge(
         XMLDefinition                => $DefinitionData->{DefinitionRef},
         XMLDataPrev                  => $VersionData->{XMLData}->[1]->{Version}->[1],
         XMLData2D                    => \%XMLData2D,
         EmptyFieldsLeaveTheOldValues => $EmptyFieldsLeaveTheOldValues,
     );
+
+    # bail out, when the was a problem in _ImportXMLDataMerge()
+    if ( !$MergeOk ) {
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message =>
+                "Can't import entity $Param{Counter}: "
+                . "Could not prepare the input!",
+        );
+        return;
+    }
 
     my $RetCode = $ConfigItemID ? 'Changed' : 'Created';
     my $LatestVersionID = 0;
@@ -1547,13 +1558,16 @@ sub _ImportXMLSearchDataPrepare {
 
 =item _ImportXMLDataMerge()
 
-recursive function to inplace edit the import XML data
+recursive function to inplace edit the import XML data.
 
-    my $XMLData = $ObjectBackend->_ImportXMLDataMerge(
+    my $MergeOk = $ObjectBackend->_ImportXMLDataMerge(
         XMLDefinition => $ArrayRef,
         XMLDataPrev   => $HashRef,
         XMLData2D     => $HashRef,
     );
+
+The return value indicates wheter the merge was successful.
+A merge fails when for example a general catalog item name can't be mapped to an id.
 
 =cut
 
@@ -1564,13 +1578,14 @@ sub _ImportXMLDataMerge {
     return if !$Param{XMLDefinition};
     return if !$Param{XMLData2D};
     return if !$Param{XMLDataPrev};
-    return if ref $Param{XMLDefinition} ne 'ARRAY';    # the attributes of the CI class
-    return
-        if ref $Param{XMLData2D} ne
-            'HASH';    # hash with values that should be imported, the count is part of the key
-    return if ref $Param{XMLDataPrev} ne 'HASH';    # current attributes of the CI
+    return if ref $Param{XMLDefinition} ne 'ARRAY';    # the attributes of the config item class
+    return if ref $Param{XMLData2D} ne 'HASH';         # hash with values that should be imported
+    return if ref $Param{XMLDataPrev} ne 'HASH';       # hash with current values of the config item
 
     my $XMLData = $Param{XMLDataPrev};
+
+    # default value for prefix
+    $Param{Prefix} ||= '';
 
     ITEM:
     for my $Item ( @{ $Param{XMLDefinition} } ) {
@@ -1579,20 +1594,21 @@ sub _ImportXMLDataMerge {
         for my $Counter ( 1 .. $Item->{CountMax} ) {
 
             # create inputkey
-            my $Key = $Param{Prefix} ? "$Param{Prefix}::" : '';
-            $Key .= $Item->{Key} . '::' . $Counter;
+            my $Key = $Param{Prefix} . $Item->{Key} . '::' . $Counter;
 
             # start recursion, if "Sub" was found
             if ( $Item->{Sub} ) {
                 $XMLData->{ $Item->{Key} }->[$Counter]
                     ||= {};    # empty container, in case there is no previous data
-                $Self->_ImportXMLDataMerge(
+                my $MergeOk = $Self->_ImportXMLDataMerge(
                     XMLDefinition                => $Item->{Sub},
                     XMLData2D                    => $Param{XMLData2D},
                     XMLDataPrev                  => $XMLData->{ $Item->{Key} }->[$Counter],
-                    Prefix                       => $Key,
+                    Prefix                       => $Key . '::',
                     EmptyFieldsLeaveTheOldValues => $Param{EmptyFieldsLeaveTheOldValues},
                 );
+
+                return if !$MergeOk;
             }
 
             # When the data point is not part of the input definition,
@@ -1612,13 +1628,16 @@ sub _ImportXMLDataMerge {
                 Item  => $Item,
                 Value => $Param{XMLData2D}->{$Key},
             );
-            if ( defined $Value ) {
-                $XMLData->{ $Item->{Key} }->[$Counter]->{Content} = $Value;
-            }
+
+            # let merge fail, when a value cannot be prepared
+            return if !defined $Value;
+
+            # save the prepared value
+            $XMLData->{ $Item->{Key} }->[$Counter]->{Content} = $Value;
         }
     }
 
-    return;
+    return 1;
 }
 
 1;
@@ -1639,6 +1658,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.19 $ $Date: 2010-02-26 10:20:23 $
+$Revision: 1.20 $ $Date: 2010-03-02 14:09:48 $
 
 =cut

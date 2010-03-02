@@ -1,8 +1,8 @@
 # --
 # Kernel/System/ITSMConfigItem/XML/Type/GeneralCatalog.pm - xml backend module
-# Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: GeneralCatalog.pm,v 1.5 2009-08-18 22:18:19 mh Exp $
+# $Id: GeneralCatalog.pm,v 1.6 2010-03-02 14:09:48 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -17,7 +17,7 @@ use warnings;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.5 $) [1];
+$VERSION = qw($Revision: 1.6 $) [1];
 
 =head1 NAME
 
@@ -261,9 +261,19 @@ sub ImportValuePrepare {
     );
 
     # reverse the list
-    my %ItemListReverse = reverse %{$ItemList};
+    my %Name2ID = reverse %{$ItemList};
 
-    return $ItemListReverse{ $Param{Value} } || undef;
+    my $GeneralCatalogID = $Name2ID{ $Param{Value} };
+
+    if ( !$GeneralCatalogID ) {
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => "General catalog lookup of'$Param{Value}' failed!",
+        );
+        return;
+    }
+
+    return $GeneralCatalogID;
 }
 
 1;
@@ -282,6 +292,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.5 $ $Date: 2009-08-18 22:18:19 $
+$Revision: 1.6 $ $Date: 2010-03-02 14:09:48 $
 
 =cut
