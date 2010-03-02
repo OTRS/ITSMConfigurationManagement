@@ -2,7 +2,7 @@
 # ImportExportObjectITSMConfigItem.t - all import export tests for the ITSMConfigItem object backend
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ImportExportObjectITSMConfigItem.t,v 1.11 2010-02-26 10:20:23 bes Exp $
+# $Id: ImportExportObjectITSMConfigItem.t,v 1.12 2010-03-02 15:34:47 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -3592,7 +3592,7 @@ my @ImportDataTests = (
     },
 
     # import an invalid value for GeneralCatalog1, with EmptyFieldsLeaveTheOldValues turned on
-    # the old value should be kept
+    # the import should fail
     {
         SourceImportData => {
             ObjectData => {
@@ -3629,14 +3629,44 @@ my @ImportDataTests = (
                 UserID => 1,
             },
         },
-        ReferenceImportData => {
-            VersionNumber => 4,
-            LastVersion   => {
-                Name                 => 'UnitTest - Importtest 5',
-                DeplState            => 'Production',
-                InciState            => 'Operational',
-                'Text1::1'           => '0',
-                'GeneralCatalog1::1' => $GeneralCatalogListReverse{Test1},
+    },
+
+    # import an invalid value for GeneralCatalog1, with EmptyFieldsLeaveTheOldValues turned off
+    # the import should fail
+    {
+        SourceImportData => {
+            ObjectData => {
+                ClassID                      => $ConfigItemClassIDs[0],
+                EmptyFieldsLeaveTheOldValues => '',
+            },
+            MappingObjectData => [
+                {
+                    Key        => 'Name',
+                    Identifier => 1,
+                },
+                {
+                    Key => 'DeplState',
+                },
+                {
+                    Key => 'InciState',
+                },
+                {
+                    Key => 'Text1::1',
+                },
+                {
+                    Key => 'GeneralCatalog1::1',
+                },
+            ],
+            ImportDataSave => {
+                TemplateID    => $TemplateIDs[25],
+                ImportDataRow => [
+                    'UnitTest - Importtest 5',
+                    'Production',
+                    'Operational',
+                    '',
+                    'non-existent general catalog entry',
+                ],
+                UserID => 1,
             },
         },
     },
