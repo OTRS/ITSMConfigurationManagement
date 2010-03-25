@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem.pm - all config item function
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.25 2010-03-02 12:25:27 bes Exp $
+# $Id: ITSMConfigItem.pm,v 1.26 2010-03-25 18:49:28 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -28,7 +28,7 @@ use Kernel::System::User;
 use Kernel::System::XML;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.25 $) [1];
+$VERSION = qw($Revision: 1.26 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',
@@ -351,7 +351,7 @@ sub ConfigItemGet {
     $ConfigItem{CurInciState}     = $InciState->{Name};
     $ConfigItem{CurInciStateType} = $InciState->{Functionality};
 
-    # cache user result
+    # cache the result
     $Self->{Cache}->{ConfigItemGet}->{ $Param{ConfigItemID} } = \%ConfigItem;
 
     return \%ConfigItem;
@@ -1171,6 +1171,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.25 $ $Date: 2010-03-02 12:25:27 $
+$Revision: 1.26 $ $Date: 2010-03-25 18:49:28 $
 
 =cut
