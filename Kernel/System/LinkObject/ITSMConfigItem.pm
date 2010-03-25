@@ -2,7 +2,7 @@
 # Kernel/System/LinkObject/ITSMConfigItem.pm - to link config item objects
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.14 2010-01-29 16:50:22 reb Exp $
+# $Id: ITSMConfigItem.pm,v 1.15 2010-03-25 18:30:16 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::GeneralCatalog;
 use Kernel::System::ITSMConfigItem;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.14 $) [1];
+$VERSION = qw($Revision: 1.15 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -359,6 +359,11 @@ sub LinkAddPost {
     my $ID     = $Param{TargetKey}    || $Param{SourceKey};
     my $Object = $Param{TargetObject} || $Param{SourceObject};
 
+    # recalculate the current incident state of this CI
+    $Self->{ConfigItemObject}->CurInciStateRecalc(
+        ConfigItemID => $Param{Key},
+    );
+
     # trigger LinkAdd event
     $Self->{ConfigItemObject}->EventHandler(
         Event => 'LinkAdd',
@@ -464,6 +469,11 @@ sub LinkDeletePost {
     # get information about linked object
     my $ID     = $Param{TargetKey}    || $Param{SourceKey};
     my $Object = $Param{TargetObject} || $Param{SourceObject};
+
+    # recalculate the current incident state of this CI
+    $Self->{ConfigItemObject}->CurInciStateRecalc(
+        ConfigItemID => $Param{Key},
+    );
 
     # trigger LinkDelete event
     $Self->{ConfigItemObject}->EventHandler(
