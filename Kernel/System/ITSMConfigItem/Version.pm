@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Version.pm - sub module of ITSMConfigItem.pm with version functions
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: Version.pm,v 1.23 2010-03-25 18:28:42 ub Exp $
+# $Id: Version.pm,v 1.24 2010-03-26 16:52:15 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.23 $) [1];
+$VERSION = qw($Revision: 1.24 $) [1];
 
 use Storable;
 
@@ -153,9 +153,9 @@ sub VersionList {
 
 =item VersionGet()
 
-return a version of a config item as hash reference
+returns a version of a config item as hash reference.
+The returned hash contains following attributes.
 
-Return
     $Version{VersionID}
     $Version{ConfigItemID}
     $Version{Number}
@@ -192,6 +192,19 @@ Return
         ConfigItemID => 123,
     );
 
+When the date from the XML storage is not needed then fetching the XML data can be
+explicitly turned off by passing XMLDataGet => 1.
+
+    my $VersionRef = $ConfigItemObject->VersionGet(
+        ConfigItemID => 123,
+        XMLDataGet   => 0,
+    );
+
+The result of this call is not cached, as the next call to VersionGet() might need
+the XML data. On the other hand, when the cache is already filled, the cached
+version hash is returned with the XML data. So you get more than you asked for, which isn't
+a bad thing.
+
 =cut
 
 sub VersionGet {
@@ -214,6 +227,8 @@ sub VersionGet {
 
         # check if result is already cached
         if ( $Self->{Cache}->{VersionGet}->{ $Param{VersionID} } ) {
+
+            # return a clone of the cache, as the caller should not be able do change the cache
             return Storable::dclone( $Self->{Cache}->{VersionGet}->{ $Param{VersionID} } );
         }
 
@@ -303,6 +318,8 @@ sub VersionGet {
     $Version{CurInciState}     = $ConfigItem->{CurInciState};
     $Version{CurInciStateType} = $ConfigItem->{CurInciStateType};
 
+    # do not cache the version without the XML data,
+    # the next caller might need the XML data
     return \%Version if !$Param{XMLDataGet};
 
     # get xml definition
@@ -320,7 +337,8 @@ sub VersionGet {
     # cache the result
     $Self->{Cache}->{VersionGet}->{ $Version{VersionID} } = \%Version;
 
-    return Storable::dclone( \%Version );
+    # return a clone of the cache, as the caller should not be able do change the cache
+    return Storable::dclone( $Self->{Cache}->{VersionGet}->{ $Param{VersionID} } );
 }
 
 =item VersionConfigItemIDGet()
@@ -1137,6 +1155,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.23 $ $Date: 2010-03-25 18:28:42 $
+$Revision: 1.24 $ $Date: 2010-03-26 16:52:15 $
 
 =cut
