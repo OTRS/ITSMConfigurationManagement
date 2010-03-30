@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Version.pm - sub module of ITSMConfigItem.pm with version functions
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: Version.pm,v 1.25 2010-03-26 17:01:45 ub Exp $
+# $Id: Version.pm,v 1.26 2010-03-30 13:24:48 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.25 $) [1];
+$VERSION = qw($Revision: 1.26 $) [1];
 
 use Storable;
 
@@ -337,8 +337,8 @@ sub VersionGet {
     # cache the result
     $Self->{Cache}->{VersionGet}->{ $Version{VersionID} } = \%Version;
 
-    # return a clone of the cache, as the caller should not be able do change the cache
-    return Storable::dclone( $Self->{Cache}->{VersionGet}->{ $Param{VersionID} } );
+    # return a clone of the cache, as the caller should not be able to change the cache
+    return Storable::dclone( $Self->{Cache}->{VersionGet}->{ $Version{VersionID} } );
 }
 
 =item VersionConfigItemIDGet()
@@ -1155,6 +1155,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.25 $ $Date: 2010-03-26 17:01:45 $
+$Revision: 1.26 $ $Date: 2010-03-30 13:24:48 $
 
 =cut
