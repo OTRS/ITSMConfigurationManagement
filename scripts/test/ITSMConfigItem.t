@@ -2,7 +2,7 @@
 # ITSMConfigItem.t - config item tests
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.t,v 1.11 2010-02-25 15:35:46 bes Exp $
+# $Id: ITSMConfigItem.t,v 1.12 2010-03-30 10:51:02 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,10 +18,12 @@ use vars qw($Self);
 use Data::Dumper;
 use Kernel::System::GeneralCatalog;
 use Kernel::System::ITSMConfigItem;
+use Kernel::System::LinkObject;
 use Kernel::System::User;
 
 $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
 $Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new( %{$Self} );
+$Self->{LinkObject}           = Kernel::System::LinkObject->new( %{$Self} );
 $Self->{UserObject}           = Kernel::System::User->new( %{$Self} );
 
 # ------------------------------------------------------------ #
@@ -276,7 +278,7 @@ $ConfigItemDefinitions[2] = " [
     },
 ] ";
 
-# define the fouth test definition (only for search tests)
+# define the fourth test definition (only for search tests)
 $ConfigItemDefinitions[3] = " [
     {
         Key        => 'Customer1',
@@ -1534,6 +1536,123 @@ my $ConfigItemTests = [
             ],
         },
     },
+
+    # added for Bug 4377 - CI-A
+    {
+        SourceData => {
+            ConfigItemAdd => {
+                Number  => $ConfigItemNumbers[72],
+                ClassID => $ConfigItemClassIDs[0],
+                UserID  => 1,
+            },
+            VersionAdd => [
+                {
+                    Name         => 'UnitTest - Bugfix4377 - CI-A',
+                    DefinitionID => $ConfigItemDefinitionIDs[0],
+                    DeplStateID  => $DeplStateListReverse{Production},
+                    InciStateID  => $InciStateListReverse{Operational},
+                    UserID       => 1,
+                },
+            ],
+        },
+        ReferenceData => {
+            ConfigItemGet => {
+                Number           => $ConfigItemNumbers[72],
+                ClassID          => $ConfigItemClassIDs[0],
+                Class            => $ClassList->{ $ConfigItemClassIDs[0] },
+                CurDeplStateID   => $DeplStateListReverse{Production},
+                CurDeplState     => 'Production',
+                CurDeplStateType => 'productive',
+                CurInciStateID   => $InciStateListReverse{Operational},
+                CurInciState     => 'Operational',
+                CurInciStateType => 'operational',
+                CreateBy         => 1,
+                ChangeBy         => 1,
+            },
+            VersionGet => [
+                {
+                    Number           => $ConfigItemNumbers[72],
+                    ClassID          => $ConfigItemClassIDs[0],
+                    Class            => $ClassList->{ $ConfigItemClassIDs[0] },
+                    Name             => 'UnitTest - Bugfix4377 - CI-A',
+                    DefinitionID     => $ConfigItemDefinitionIDs[0],
+                    DeplStateID      => $DeplStateListReverse{Production},
+                    DeplState        => 'Production',
+                    DeplStateType    => 'productive',
+                    CurDeplStateID   => $DeplStateListReverse{Production},
+                    CurDeplState     => 'Production',
+                    CurDeplStateType => 'productive',
+                    InciStateID      => $InciStateListReverse{Operational},
+                    InciState        => 'Operational',
+                    InciStateType    => 'operational',
+                    CurInciStateID   => $InciStateListReverse{Operational},
+                    CurInciState     => 'Operational',
+                    CurInciStateType => 'operational',
+                    XMLData          => [],
+                    CreateBy         => 1,
+                },
+            ],
+        },
+    },
+
+    # added for Bug 4377 - CI-B
+    {
+        SourceData => {
+            ConfigItemAdd => {
+                Number  => $ConfigItemNumbers[73],
+                ClassID => $ConfigItemClassIDs[0],
+                UserID  => 1,
+            },
+            VersionAdd => [
+                {
+                    Name         => 'UnitTest - Bugfix4377 - CI-B',
+                    DefinitionID => $ConfigItemDefinitionIDs[0],
+                    DeplStateID  => $DeplStateListReverse{Production},
+                    InciStateID  => $InciStateListReverse{Operational},
+                    UserID       => 1,
+                },
+            ],
+        },
+        ReferenceData => {
+            ConfigItemGet => {
+                Number           => $ConfigItemNumbers[73],
+                ClassID          => $ConfigItemClassIDs[0],
+                Class            => $ClassList->{ $ConfigItemClassIDs[0] },
+                CurDeplStateID   => $DeplStateListReverse{Production},
+                CurDeplState     => 'Production',
+                CurDeplStateType => 'productive',
+                CurInciStateID   => $InciStateListReverse{Operational},
+                CurInciState     => 'Operational',
+                CurInciStateType => 'operational',
+                CreateBy         => 1,
+                ChangeBy         => 1,
+            },
+            VersionGet => [
+                {
+                    Number           => $ConfigItemNumbers[73],
+                    ClassID          => $ConfigItemClassIDs[0],
+                    Class            => $ClassList->{ $ConfigItemClassIDs[0] },
+                    Name             => 'UnitTest - Bugfix4377 - CI-B',
+                    DefinitionID     => $ConfigItemDefinitionIDs[0],
+                    DeplStateID      => $DeplStateListReverse{Production},
+                    DeplState        => 'Production',
+                    DeplStateType    => 'productive',
+                    CurDeplStateID   => $DeplStateListReverse{Production},
+                    CurDeplState     => 'Production',
+                    CurDeplStateType => 'productive',
+                    InciStateID      => $InciStateListReverse{Operational},
+                    InciState        => 'Operational',
+                    InciStateType    => 'operational',
+                    CurInciStateID   => $InciStateListReverse{Operational},
+                    CurInciState     => 'Operational',
+                    CurInciStateType => 'operational',
+                    XMLData          => [],
+                    CreateBy         => 1,
+                },
+            ],
+        },
+    },
+
 ];
 
 # ------------------------------------------------------------ #
@@ -1793,6 +1912,171 @@ for my $Test ( @{$ConfigItemTests} ) {
     }
 }
 continue {
+    $TestCount++;
+}
+
+# ------------------------------------------------------------ #
+# test for bugfix 4377
+# ------------------------------------------------------------ #
+
+{
+
+    my $CI1 = $Self->{ConfigItemObject}->ConfigItemLookup(
+        ConfigItemNumber => $ConfigItemNumbers[72],
+    );
+
+    my $CI2 = $Self->{ConfigItemObject}->ConfigItemLookup(
+        ConfigItemNumber => $ConfigItemNumbers[73],
+    );
+
+    # link the CI with a CI
+    my $LinkResult = $Self->{LinkObject}->LinkAdd(
+        SourceObject => 'ITSMConfigItem',
+        SourceKey    => $CI1,
+        TargetObject => 'ITSMConfigItem',
+        TargetKey    => $CI2,
+        Type         => 'DependsOn',
+        State        => 'Valid',
+        UserID       => 1,
+    );
+
+    # update incident state of CI1
+    my $VersionID = $Self->{ConfigItemObject}->VersionAdd(
+        ConfigItemID => $CI1,
+        Name         => 'UnitTest - Bugfix4377 - CI-A',
+        DefinitionID => $ConfigItemDefinitionIDs[0],
+        DeplStateID  => $DeplStateListReverse{Production},
+        InciStateID  => $InciStateListReverse{Incident},
+        UserID       => 1,
+    );
+
+    # check if version could be added
+    $Self->True(
+        $VersionID,
+        "Test $TestCount: VersionAdd() for $CI1 - Set to 'Incident'",
+    );
+
+    # get the latest version for CI1
+    my $VersionRef = $Self->{ConfigItemObject}->VersionGet(
+        ConfigItemID => $CI1,
+    );
+
+    # check if incident state of CI1 is 'Incident'
+    $Self->Is(
+        $VersionRef->{CurInciState},
+        'Incident',
+        "Test $TestCount: Current incident state of CI $CI1",
+    );
+
+    # get the latest version for CI2
+    $VersionRef = $Self->{ConfigItemObject}->VersionGet(
+        ConfigItemID => $CI2,
+    );
+
+    # check if incident state of CI2 is 'Warning'
+    $Self->Is(
+        $VersionRef->{CurInciState},
+        'Warning',
+        "Test $TestCount: Current incident state of CI $CI2",
+    );
+
+    # update incident state of CI2 to 'Incident'
+    $VersionID = $Self->{ConfigItemObject}->VersionAdd(
+        ConfigItemID => $CI2,
+        Name         => 'UnitTest - Bugfix4377 - CI-B',
+        DefinitionID => $ConfigItemDefinitionIDs[0],
+        DeplStateID  => $DeplStateListReverse{Production},
+        InciStateID  => $InciStateListReverse{Incident},
+        UserID       => 1,
+    );
+
+    # check if version could be added
+    $Self->True(
+        $VersionID,
+        "Test $TestCount: VersionAdd() for CI $CI2 - Set to 'Incident'",
+    );
+
+    # get the latest version for CI2
+    $VersionRef = $Self->{ConfigItemObject}->VersionGet(
+        ConfigItemID => $CI2,
+    );
+
+    # check if incident state of CI2 is 'Incident'
+    $Self->Is(
+        $VersionRef->{CurInciState},
+        'Incident',
+        "Test $TestCount: Current incident state of CI $CI2",
+    );
+
+    # update incident state of CI1 to 'Operational'
+    $VersionID = $Self->{ConfigItemObject}->VersionAdd(
+        ConfigItemID => $CI1,
+        Name         => 'UnitTest - Bugfix4377 - CI-A',
+        DefinitionID => $ConfigItemDefinitionIDs[0],
+        DeplStateID  => $DeplStateListReverse{Production},
+        InciStateID  => $InciStateListReverse{Operational},
+        UserID       => 1,
+    );
+
+    # check if version could be added
+    $Self->True(
+        $VersionID,
+        "Test $TestCount: VersionAdd() for CI $CI1 - Set to 'Operational'",
+    );
+
+    # get the latest version for CI1
+    $VersionRef = $Self->{ConfigItemObject}->VersionGet(
+        ConfigItemID => $CI1,
+    );
+
+    # check if incident state of CI1 is 'Warning' (because of linked CI2 in state 'incident')
+    $Self->Is(
+        $VersionRef->{CurInciState},
+        'Warning',
+        "Test $TestCount: Current incident state of CI $CI1",
+    );
+
+    # update incident state of CI2 to 'Operational'
+    $VersionID = $Self->{ConfigItemObject}->VersionAdd(
+        ConfigItemID => $CI2,
+        Name         => 'UnitTest - Bugfix4377 - CI-B',
+        DefinitionID => $ConfigItemDefinitionIDs[0],
+        DeplStateID  => $DeplStateListReverse{Production},
+        InciStateID  => $InciStateListReverse{Operational},
+        UserID       => 1,
+    );
+
+    # check if version could be added
+    $Self->True(
+        $VersionID,
+        "Test $TestCount: VersionAdd() for CI $CI2 - Set to 'Operational'",
+    );
+
+    # get the latest version for CI1
+    $VersionRef = $Self->{ConfigItemObject}->VersionGet(
+        ConfigItemID => $CI1,
+    );
+
+    # check if incident state of CI1 is 'Operational'
+    $Self->Is(
+        $VersionRef->{CurInciState},
+        'Operational',
+        "Test $TestCount: Current incident state of CI $CI1",
+    );
+
+    # get the latest version for CI2
+    $VersionRef = $Self->{ConfigItemObject}->VersionGet(
+        ConfigItemID => $CI2,
+    );
+
+    # check if incident state of CI2 is 'Warning'
+    $Self->Is(
+        $VersionRef->{CurInciState},
+        'Operational',
+        "Test $TestCount: Current incident state of CI $CI2",
+    );
+
+    # increase the test counter
     $TestCount++;
 }
 
