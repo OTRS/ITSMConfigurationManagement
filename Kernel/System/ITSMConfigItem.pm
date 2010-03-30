@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem.pm - all config item function
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.26 2010-03-25 18:49:28 ub Exp $
+# $Id: ITSMConfigItem.pm,v 1.27 2010-03-30 10:49:22 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -28,7 +28,7 @@ use Kernel::System::User;
 use Kernel::System::XML;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.26 $) [1];
+$VERSION = qw($Revision: 1.27 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',
@@ -286,7 +286,9 @@ sub ConfigItemGet {
     }
 
     # enable cache per default
-    $Param{Cache} = !defined $Param{Cache} ? 1 : 0;
+    if ( !defined $Param{Cache} ) {
+        $Param{Cache} = 1;
+    }
 
     # check if result is already cached
     return $Self->{Cache}->{ConfigItemGet}->{ $Param{ConfigItemID} }
@@ -863,9 +865,9 @@ sub ConfigItemSearch {
 
 =item CurInciStateRecalc()
 
-return a config item list as array hash reference
+recalculates the current incident state of this config item and all linked config items
 
-    my $ConfigItemListRef = $ConfigItemObject->CurInciStateRecalc(
+    my $Success = $ConfigItemObject->CurInciStateRecalc(
         ConfigItemID => 123,
     );
 
@@ -883,7 +885,10 @@ sub CurInciStateRecalc {
         return;
     }
 
+    # get incident link type from config
     my $LinkType = $Self->{ConfigObject}->Get('ITSM::Core::IncidentLinkType');
+
+    # remember the scanned config items
     my %ScannedConfigItemIDs;
 
     # find all config items with an incident state
@@ -893,7 +898,7 @@ sub CurInciStateRecalc {
         ScannedConfigItemIDs => \%ScannedConfigItemIDs,
     );
 
-    # investigate all config items with an warning state
+    # investigate all config items with a warning state
     CONFIGITEMID:
     for my $ConfigItemID ( keys %ScannedConfigItemIDs ) {
 
@@ -959,7 +964,7 @@ the appropriate id is returned.
         ConfigItemID => 1234,
     );
 
-    my $Id = $HistoryObject->ConfigItemLookup(
+    my $Id = $ConfigItemObject->ConfigItemLookup(
         ConfigItemNumber => 1000001,
     );
 
@@ -1029,6 +1034,7 @@ sub _FindInciConfigItems {
 
     # ignore already scanned ids (infinite loop protection)
     return if $Param{ScannedConfigItemIDs}->{ $Param{ConfigItemID} };
+
     $Param{ScannedConfigItemIDs}->{ $Param{ConfigItemID} }->{Type} = 'operational';
 
     # find all linked config items (childs)
@@ -1042,8 +1048,11 @@ sub _FindInciConfigItems {
         UserID    => 1,
     );
 
+    # add own config item id to list of linked config items
+    my @ConfigItemIDs = ( $Param{ConfigItemID}, keys %LinkedConfigItemIDs );
+
     CONFIGITEMID:
-    for my $ConfigItemID ( keys %LinkedConfigItemIDs ) {
+    for my $ConfigItemID (@ConfigItemIDs) {
 
         # get config item data
         my $ConfigItem = $Self->ConfigItemGet(
@@ -1171,6 +1180,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.26 $ $Date: 2010-03-25 18:49:28 $
+$Revision: 1.27 $ $Date: 2010-03-30 10:49:22 $
 
 =cut
