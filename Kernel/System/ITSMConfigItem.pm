@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem.pm - all config item function
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.27 2010-03-30 10:49:22 ub Exp $
+# $Id: ITSMConfigItem.pm,v 1.28 2010-04-13 17:44:12 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -23,12 +23,13 @@ use Kernel::System::ITSMConfigItem::Permission;
 use Kernel::System::ITSMConfigItem::Version;
 use Kernel::System::ITSMConfigItem::XML;
 use Kernel::System::LinkObject;
+use Kernel::System::Service;
 use Kernel::System::Time;
 use Kernel::System::User;
 use Kernel::System::XML;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.27 $) [1];
+$VERSION = qw($Revision: 1.28 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',
@@ -111,6 +112,7 @@ sub new {
     $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
     $Self->{LinkObject}           = Kernel::System::LinkObject->new( %{$Self} );
     $Self->{UserObject}           = Kernel::System::User->new( %{$Self} );
+    $Self->{ServiceObject}        = Kernel::System::Service->new( %{$Self} );
     $Self->{XMLObject}            = Kernel::System::XML->new( %{$Self} );
 
     # init of event handler
@@ -924,11 +926,31 @@ sub CurInciStateRecalc {
     my $WarningStateID
         = $ReverseWarnStateList{Warning} || $ReverseWarnStateList{ $SortedWarnList[0] };
 
+    # to store the relation between services and linked CIs
+    my %ServiceCIRelation;
+
     CONFIGITEMID:
     for my $ConfigItemID ( keys %ScannedConfigItemIDs ) {
 
         # extract incident state type
         my $InciStateType = $ScannedConfigItemIDs{$ConfigItemID}{Type};
+
+        # find all linked services of this CI
+        my %LinkedServiceIDs = $Self->{LinkObject}->LinkKeyListWithData(
+            Object1 => 'ITSMConfigItem',
+            Key1    => $ConfigItemID,
+            Object2 => 'Service',
+            State   => 'Valid',
+            Type    => $LinkType,
+            UserID  => 1,
+        );
+
+        SERVICEID:
+        for my $ServiceID ( keys %LinkedServiceIDs ) {
+
+            # remember the CIs that are linked with this service
+            push @{ $ServiceCIRelation{$ServiceID} }, $ConfigItemID;
+        }
 
         next CONFIGITEMID if $InciStateType eq 'incident';
 
@@ -951,6 +973,48 @@ sub CurInciStateRecalc {
         );
     }
 
+    # set the current incident state type for each service (influenced by linked CIs)
+    SERVICEID:
+    for my $ServiceID ( keys %ServiceCIRelation ) {
+
+        # set default incident state type
+        my $CurInciStateTypeFromCIs = 'operational';
+
+        # investigate the current incident state of each config item
+        CONFIGITEMID:
+        for my $ConfigItemID ( @{ $ServiceCIRelation{$ServiceID} } ) {
+
+            # get config item data
+            my $ConfigItemData = $Self->ConfigItemGet(
+                ConfigItemID => $ConfigItemID,
+                Cache        => 0,
+            );
+
+            next CONFIGITEMID if $ConfigItemData->{CurDeplStateType} ne 'productive';
+            next CONFIGITEMID if $ConfigItemData->{CurInciStateType} eq 'operational';
+
+            # check if service must be set to 'warning'
+            if ( $ConfigItemData->{CurInciStateType} eq 'warning' ) {
+                $CurInciStateTypeFromCIs = 'warning';
+                next CONFIGITEMID;
+            }
+
+            # check if service must be set to 'incident'
+            if ( $ConfigItemData->{CurInciStateType} eq 'incident' ) {
+                $CurInciStateTypeFromCIs = 'incident';
+                last CONFIGITEMID;
+            }
+        }
+
+        # update the current incident state type from CIs of the service
+        $Self->{ServiceObject}->ServicePreferencesSet(
+            ServiceID => $ServiceID,
+            Key       => 'CurInciStateTypeFromCIs',
+            Value     => $CurInciStateTypeFromCIs,
+            UserID    => 1,
+        );
+    }
+
     return 1;
 }
 
@@ -964,7 +1028,7 @@ the appropriate id is returned.
         ConfigItemID => 1234,
     );
 
-    my $Id = $ConfigItemObject->ConfigItemLookup(
+    my $ID = $ConfigItemObject->ConfigItemLookup(
         ConfigItemNumber => 1000001,
     );
 
@@ -1180,6 +1244,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.27 $ $Date: 2010-03-30 10:49:22 $
+$Revision: 1.28 $ $Date: 2010-04-13 17:44:12 $
 
 =cut

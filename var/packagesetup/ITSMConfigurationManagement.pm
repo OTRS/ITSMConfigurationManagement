@@ -2,7 +2,7 @@
 # ITSMConfigurationManagement.pm - code to excecute during package installation
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigurationManagement.pm,v 1.16 2010-02-23 08:34:29 bes Exp $
+# $Id: ITSMConfigurationManagement.pm,v 1.17 2010-04-13 17:44:49 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -23,12 +23,13 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::LinkObject;
 use Kernel::System::State;
 use Kernel::System::Stats;
+use Kernel::System::Service;
 use Kernel::System::Type;
 use Kernel::System::User;
 use Kernel::System::Valid;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.16 $) [1];
+$VERSION = qw($Revision: 1.17 $) [1];
 
 =head1 NAME
 
@@ -144,6 +145,7 @@ sub new {
     $Self->{GroupObject}          = Kernel::System::Group->new( %{$Self} );
     $Self->{UserObject}           = Kernel::System::User->new( %{$Self} );
     $Self->{StateObject}          = Kernel::System::State->new( %{$Self} );
+    $Self->{ServiceObject}        = Kernel::System::Service->new( %{$Self} );
     $Self->{TypeObject}           = Kernel::System::Type->new( %{$Self} );
     $Self->{ValidObject}          = Kernel::System::Valid->new( %{$Self} );
     $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
@@ -195,6 +197,9 @@ sub CodeInstall {
     # set default permission group
     $Self->_SetDefaultPermission();
 
+    # fillup empty 'CurInciStateTypeFromCIs' service preferences
+    $Self->_FillupEmptyCurInciStateTypeFromCIs();
+
     # install stats
     $Self->{StatsObject}->StatsInstall(
         FilePrefix => $Self->{FilePrefix},
@@ -238,6 +243,9 @@ sub CodeReinstall {
     # set default permission group
     $Self->_SetDefaultPermission();
 
+    # fillup empty 'CurInciStateTypeFromCIs' service preferences
+    $Self->_FillupEmptyCurInciStateTypeFromCIs();
+
     # install stats
     $Self->{StatsObject}->StatsInstall(
         FilePrefix => $Self->{FilePrefix},
@@ -275,6 +283,9 @@ sub CodeUpgrade {
     # set default permission group
     $Self->_SetDefaultPermission();
 
+    # fillup empty 'CurInciStateTypeFromCIs' service preferences
+    $Self->_FillupEmptyCurInciStateTypeFromCIs();
+
     # install stats
     $Self->{StatsObject}->StatsInstall(
         FilePrefix => $Self->{FilePrefix},
@@ -301,6 +312,9 @@ sub CodeUninstall {
     $Self->_GroupDeactivate(
         Name => 'itsm-configitem',
     );
+
+    # delete 'CurInciStateTypeFromCIs' service preferences
+    $Self->_DeleteServicePreferences();
 
     return 1;
 }
@@ -1318,6 +1332,119 @@ sub _FillupEmptyIncidentAndDeploymentStateID {
     return 1;
 }
 
+=item _FillupEmptyCurInciStateTypeFromCIs()
+
+Fillup empty entries in the service preferences for the key 'CurInciStateTypeFromCIs'.
+This field stores the current incident type as influenced by linked CIs of a service.
+
+    my $Result = $CodeObject->_FillupEmptyCurInciStateTypeFromCIs();
+
+=cut
+
+sub _FillupEmptyCurInciStateTypeFromCIs {
+    my ( $Self, %Param ) = @_;
+
+    # get service list
+    my %ServiceList = $Self->{ServiceObject}->ServiceList(
+        Valid  => 0,
+        UserID => 1,
+    );
+
+    # get the incident link type
+    my $LinkType = $Self->{ConfigObject}->Get('ITSM::Core::IncidentLinkType');
+
+    SERVICEID:
+    for my $ServiceID ( keys %ServiceList ) {
+
+        # get service data
+        my %Service = $Self->{ServiceObject}->ServiceGet(
+            ServiceID => $ServiceID,
+            UserID    => 1,
+        );
+
+        # only if the CurInciStateTypeFromCIs is not set yet
+        next SERVICEID if $Service{CurInciStateTypeFromCIs};
+
+        # find all linked config items
+        my %LinkedConfigItemIDs = $Self->{LinkObject}->LinkKeyListWithData(
+            Object1 => 'Service',
+            Key1    => $ServiceID,
+            Object2 => 'ITSMConfigItem',
+            State   => 'Valid',
+            Type    => $LinkType,
+            UserID  => 1,
+        );
+
+        # set default incident state type
+        my $CurInciStateTypeFromCIs = 'operational';
+
+        # investigate the current incident state of each config item
+        CONFIGITEMID:
+        for my $ConfigItemID ( keys %LinkedConfigItemIDs ) {
+
+            # extract config item data
+            my $ConfigItemData = $LinkedConfigItemIDs{$ConfigItemID};
+
+            next CONFIGITEMID if $ConfigItemData->{CurDeplStateType} ne 'productive';
+            next CONFIGITEMID if $ConfigItemData->{CurInciStateType} eq 'operational';
+
+            # check if service must be set to 'warning'
+            if ( $ConfigItemData->{CurInciStateType} eq 'warning' ) {
+                $CurInciStateTypeFromCIs = 'warning';
+                next CONFIGITEMID;
+            }
+
+            # check if service must be set to 'incident'
+            if ( $ConfigItemData->{CurInciStateType} eq 'incident' ) {
+                $CurInciStateTypeFromCIs = 'incident';
+                last CONFIGITEMID;
+            }
+        }
+
+        # update the current incident state type from CIs of the service
+        $Self->{ServiceObject}->ServicePreferencesSet(
+            ServiceID => $ServiceID,
+            Key       => 'CurInciStateTypeFromCIs',
+            Value     => $CurInciStateTypeFromCIs,
+            UserID    => 1,
+        );
+    }
+
+    return 1;
+}
+
+=item _DeleteServicePreferences()
+
+Deletes the service preferences for the key 'CurInciStateTypeFromCIs'.
+
+    my $Result = $CodeObject->_DeleteServicePreferences();
+
+=cut
+
+sub _DeleteServicePreferences {
+    my ( $Self, %Param ) = @_;
+
+    # get service list
+    my %ServiceList = $Self->{ServiceObject}->ServiceList(
+        Valid  => 0,
+        UserID => 1,
+    );
+
+    SERVICEID:
+    for my $ServiceID ( keys %ServiceList ) {
+
+        # delete the current incident state type from CIs of the service
+        $Self->{ServiceObject}->ServicePreferencesSet(
+            ServiceID => $ServiceID,
+            Key       => 'CurInciStateTypeFromCIs',
+            Value     => '',
+            UserID    => 1,
+        );
+    }
+
+    return 1;
+}
+
 1;
 
 =back
@@ -1334,6 +1461,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.16 $ $Date: 2010-02-23 08:34:29 $
+$Revision: 1.17 $ $Date: 2010-04-13 17:44:49 $
 
 =cut
