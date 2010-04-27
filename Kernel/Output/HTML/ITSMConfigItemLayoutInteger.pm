@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/ITSMConfigItemLayoutInteger.pm - layout backend module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutInteger.pm,v 1.6 2010-02-15 14:09:39 bes Exp $
+# $Id: ITSMConfigItemLayoutInteger.pm,v 1.7 2010-04-27 11:23:12 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.6 $) [1];
+$VERSION = qw($Revision: 1.7 $) [1];
 
 =head1 NAME
 
@@ -235,10 +235,10 @@ sub SearchInputCreate {
     }
 
     # set preselected value, either from previous selection or the default
-    my $Values = $Self->SearchFormDataGet(%Param);
-    my $Value  = $Values->[0];
+    my $Value = $Self->SearchFormDataGet(%Param);
+    my $Value = $Self->SearchFormDataGet(%Param);
     if ( !defined $Value ) {
-        $Value = $Param{Item}->{Input}->{ValueDefault};
+        $Value = '';
     }
 
     # check whether the preselected value is within the valid range
@@ -278,6 +278,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.6 $ $Date: 2010-02-15 14:09:39 $
+$Revision: 1.7 $ $Date: 2010-04-27 11:23:12 $
 
 =cut

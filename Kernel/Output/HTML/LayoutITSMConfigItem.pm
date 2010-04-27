@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/LayoutITSMConfigItem.pm - provides generic HTML output for ITSMConfigItem
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: LayoutITSMConfigItem.pm,v 1.6 2010-02-11 21:51:33 ub Exp $
+# $Id: LayoutITSMConfigItem.pm,v 1.7 2010-04-27 11:23:12 bes Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.6 $) [1];
+$VERSION = qw($Revision: 1.7 $) [1];
 
 =item ITSMConfigItemOutputStringCreate()
 
