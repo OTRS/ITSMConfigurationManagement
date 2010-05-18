@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/ITSMConfigItemLayoutTextArea.pm - layout backend module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutTextArea.pm,v 1.9 2010-04-27 11:23:12 bes Exp $
+# $Id: ITSMConfigItemLayoutTextArea.pm,v 1.10 2010-05-18 18:21:09 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.9 $) [1];
+$VERSION = qw($Revision: 1.10 $) [1];
 
 =head1 NAME
 
@@ -86,16 +86,23 @@ sub OutputStringCreate {
         $Param{Value} = $Self->{LayoutObject}->{LanguageObject}->Get( $Param{Value} );
     }
 
+    my $LinkFeature    = 1;
+    my $HTMLResultMode = 1;
+
     # do not transform links in print view
-    my $LinkFeature = 1;
     if ( $Param{Print} ) {
         $LinkFeature = 0;
+
+        # do not convert whitespace and newlines in PDF mode
+        if ( $Self->{ConfigObject}->Get('PDF') ) {
+            $HTMLResultMode = 0;
+        }
     }
 
     # transform ascii to html
     $Param{Value} = $Self->{LayoutObject}->Ascii2Html(
         Text           => $Param{Value},
-        HTMLResultMode => 1,
+        HTMLResultMode => $HTMLResultMode,
         LinkFeature    => $LinkFeature,
     );
 
@@ -263,6 +270,6 @@ did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 
 =head1 VERSION
 
-$Revision: 1.9 $ $Date: 2010-04-27 11:23:12 $
+$Revision: 1.10 $ $Date: 2010-05-18 18:21:09 $
 
 =cut
