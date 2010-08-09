@@ -2,7 +2,7 @@
 # ITSMConfigurationManagement.pm - code to excecute during package installation
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigurationManagement.pm,v 1.17 2010-04-13 17:44:49 ub Exp $
+# $Id: ITSMConfigurationManagement.pm,v 1.18 2010-08-09 06:54:30 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use Kernel::Config;
-use Kernel::System::Config;
+use Kernel::System::SysConfig;
 use Kernel::System::CSV;
 use Kernel::System::GeneralCatalog;
 use Kernel::System::Group;
@@ -29,7 +29,7 @@ use Kernel::System::User;
 use Kernel::System::Valid;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.17 $) [1];
+$VERSION = qw($Revision: 1.18 $) [1];
 
 =head1 NAME
 
@@ -116,7 +116,7 @@ sub new {
     }
 
     # create needed sysconfig object
-    $Self->{SysConfigObject} = Kernel::System::Config->new( %{$Self} );
+    $Self->{SysConfigObject} = Kernel::System::SysConfig->new( %{$Self} );
 
     # rebuild ZZZ* files
     $Self->{SysConfigObject}->WriteDefault();
@@ -1451,16 +1451,16 @@ sub _DeleteServicePreferences {
 
 =head1 TERMS AND CONDITIONS
 
-This software is part of the OTRS project (http://otrs.org/).
+This software is part of the OTRS project (L<http://otrs.org/>).
 
 This software comes with ABSOLUTELY NO WARRANTY. For details, see
 the enclosed file COPYING for license information (AGPL). If you
-did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =cut
 
 =head1 VERSION
 
-$Revision: 1.17 $ $Date: 2010-04-13 17:44:49 $
+$Revision: 1.18 $ $Date: 2010-08-09 06:54:30 $
 
 =cut
