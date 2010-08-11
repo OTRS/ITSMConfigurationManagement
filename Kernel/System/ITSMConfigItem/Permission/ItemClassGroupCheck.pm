@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Permission/ItemClassGroupCheck.pm - check if a user can access an item
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ItemClassGroupCheck.pm,v 1.2 2010-01-14 23:29:40 ub Exp $
+# $Id: ItemClassGroupCheck.pm,v 1.3 2010-08-11 21:43:14 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -17,7 +17,7 @@ use warnings;
 use Kernel::System::Group;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.2 $) [1];
+$VERSION = qw($Revision: 1.3 $) [1];
 
 =head1 NAME
 
@@ -99,7 +99,10 @@ sub new {
     bless( $Self, $Type );
 
     # get needed objects
-    for my $Object (qw(ConfigObject LogObject DBObject ConfigItemObject GeneralCatalogObject)) {
+    for my $Object (
+        qw(ConfigObject LogObject DBObject MainObject EncodeObject ConfigItemObject GeneralCatalogObject)
+        )
+    {
         $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
     }
 
@@ -167,16 +170,16 @@ sub Run {
 
 =head1 TERMS AND CONDITIONS
 
-This Software is part of the OTRS project (http://otrs.org/).
+This Software is part of the OTRS project (L<http://otrs.org/>).
 
 This software comes with ABSOLUTELY NO WARRANTY. For details, see
 the enclosed file COPYING for license information (GPL). If you
-did not receive this file, see http://www.gnu.org/licenses/gpl-2.0.txt.
+did not receive this file, see L<http://www.gnu.org/licenses/gpl-2.0.txt>.
 
 =cut
 
 =head1 VERSION
 
-$Revision: 1.2 $ $Date: 2010-01-14 23:29:40 $
+$Revision: 1.3 $ $Date: 2010-08-11 21:43:14 $
 
 =cut
