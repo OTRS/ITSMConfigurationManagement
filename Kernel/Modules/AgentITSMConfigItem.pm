@@ -1,8 +1,8 @@
 # --
 # Kernel/Modules/AgentITSMConfigItem.pm - the OTRS::ITSM config item module
-# Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItem.pm,v 1.7 2009-10-13 17:31:11 ub Exp $
+# $Id: AgentITSMConfigItem.pm,v 1.8 2010-08-13 23:01:52 cg Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.7 $) [1];
+$VERSION = qw($Revision: 1.8 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -77,13 +77,6 @@ sub Run {
         $Self->{LayoutObject}->Block(
             Name => 'Menu',
         );
-
-        # output menu item split
-        if ($Counter) {
-            $Self->{LayoutObject}->Block(
-                Name => 'MenuItemSplit',
-            );
-        }
 
         # output class
         $Self->{LayoutObject}->Block(
