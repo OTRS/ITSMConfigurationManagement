@@ -1,8 +1,8 @@
 # --
 # Kernel/Modules/AdminITSMConfigItem.pm - admin frontend to manage config items
-# Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AdminITSMConfigItem.pm,v 1.4 2009-05-18 09:57:05 mh Exp $
+# $Id: AdminITSMConfigItem.pm,v 1.5 2010-08-13 20:07:10 cg Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::GeneralCatalog;
 use Kernel::System::ITSMConfigItem;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.4 $) [1];
+$VERSION = qw($Revision: 1.5 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -90,11 +90,7 @@ sub Run {
             ClassID => $ClassID,
         );
 
-        my $CssClass = '';
         for my $Definition ( reverse @{$DefinitionList} ) {
-
-            # set output class
-            $CssClass = $CssClass eq 'searchactive' ? 'searchpassive' : 'searchactive';
 
             # get user data
             my %UserData = $Self->{UserObject}->GetUserData(
@@ -108,11 +104,15 @@ sub Run {
                 Data => {
                     %UserData,
                     %{$Definition},
-                    Class    => $ClassList->{$ClassID},
-                    CssClass => $CssClass,
+                    Class => $ClassList->{$ClassID},
                 },
             );
         }
+
+        # ActionOverview
+        $Self->{LayoutObject}->Block(
+            Name => 'ActionOverview',
+        );
 
         # output header
         my $Output = $Self->{LayoutObject}->Header();
@@ -179,6 +179,11 @@ sub Run {
             },
         );
 
+        # ActionOverview
+        $Self->{LayoutObject}->Block(
+            Name => 'ActionOverview',
+        );
+
         # output header
         my $Output = $Self->{LayoutObject}->Header();
         $Output .= $Self->{LayoutObject}->NavigationBar();
@@ -238,6 +243,11 @@ sub Run {
                 ClassID => $ClassID,
                 Class   => $ClassList->{$ClassID},
             },
+        );
+
+        # ActionOverview
+        $Self->{LayoutObject}->Block(
+            Name => 'ActionOverview',
         );
 
         # output header
@@ -307,18 +317,13 @@ sub Run {
             Name => 'OverviewList',
         );
 
-        my $CssClass = '';
         for my $ClassID ( sort { $ClassList->{$a} cmp $ClassList->{$b} } keys %{$ClassList} ) {
-
-            # set output class
-            $CssClass = $CssClass eq 'searchactive' ? 'searchpassive' : 'searchactive';
 
             $Self->{LayoutObject}->Block(
                 Name => 'OverviewListRow',
                 Data => {
-                    ClassID  => $ClassID,
-                    Name     => $ClassList->{$ClassID},
-                    CssClass => $CssClass,
+                    ClassID => $ClassID,
+                    Name    => $ClassList->{$ClassID},
                 },
             );
         }
