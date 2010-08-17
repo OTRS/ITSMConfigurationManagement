@@ -2,23 +2,92 @@
 # AgentITSMConfigItem.dtl - provides HTML form for AgentITSMConfigItem
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItem.dtl,v 1.4 2010-08-13 23:01:20 cg Exp $
+# $Id: AgentITSMConfigItem.dtl,v 1.5 2010-08-17 23:04:43 cg Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-<div class="MainBox ARIARoleMain">
+<!-- dtl:block:Overview -->
+<div class="MainBox ARIARoleMain LayoutFixedSidebar SidebarFirst">
     <h1>$Text{"Overview"}: $Text{"Config Item"}</h1>
-    <div class="WidgetSimple">
-        <div class="Content">
+
+    <div class="SidebarColumn">
+        <div class="WidgetSimple">
+            <div class="Header">
+                <h2>$Text{"Actions"}</h2>
+            </div>
+            <div class='Content'>
+                <ul class="ActionList">
+<!--dtl:block:ActionAddItem-->
+                    <li>
+                        <form action="$Env{"CGIHandle"}" method="get">
+                            <input type="hidden" name="Action" value="AgentITSMConfigItemEdit"/>
+
+                            <div>$Data{"ClassOptionStrg"}</div>
+                            <button class="CallForAction Plus" type="submit" value="$Text{"Add"}">
+                                <span>$Text{"Add Config Item"}</span>
+                            </button>
+                        </form>
+                    </li>
+<!--dtl:block:ActionAddItem-->
+<!--dtl:block:ActionSearchItem-->
+                    <li>
+                        <form action="$Env{"CGIHandle"}" method="get">
+                            <input type="hidden" name="Action" value="AgentITSMConfigItemSearch"/>
+                            <input type="hidden" name="Subaction" value="Attribute"/>
+
+                            <div>$Data{"ClassOptionStrg"}</div>
+                            <button class="CallForAction" type="submit" value="$Text{"Search"}">
+                                <span>$Text{"Search Config Item"}</span>
+                            </button>
+                        </form>
+                    </li>
+<!--dtl:block:ActionSearchItem-->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="ContentColumn">
+
+        <div class="WidgetSimple">
+            <div class="ContentColumn">
+                <div class="ControlRow">
+                    <h2>Classes</h2>
+                </div>
+                <div class="ActionRow">
+                    <ul class="Actions">
+<!-- dtl:block:Menu -->
+<!-- dtl:block:MenuItem -->
+                        <li class="ActionField">
+                            <a name="$QData{"Class"}" id="$QData{"ClassID"}" href="$Env{"Baselink"}Action=$Env{"Action"}&ClassID=$QData{"ClassID"};SubAction=Reload">
+                                $QData{"Class"} ($QData{"Count"})
+                            </a>
+                        </li>
+<!-- dtl:block:MenuItem -->
+<!-- dtl:block:Menu -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+<!-- dtl:js_on_document_complete -->
+        <script type="text/javascript">//<![CDATA[
+            $('.ActionField a').bind('click', function (Event) {
+                Core.AJAX.ContentUpdate($('#ContentToUpdate'), $(this).attr('href'), function () {});
+                $('.ReloadSelect').val($(this).attr('id'));
+                return false;
+            });
+        //]]></script>
+<!-- dtl:js_on_document_complete -->
+
+        <div id="ContentToUpdate"  class="WidgetSimple">
             <div class="ControlRow">
                 <h2>
                     $Text{"Config Items shown"}: $QData{"Result"} -
                     $Text{"Page"}: $QData{"PageNull"}
-                </h2>
-                <div class="AdditionalInformation">
 <!-- dtl:block:Page -->
 <!-- dtl:block:PageNormal -->
                     <a href="$Env{"Baselink"}Action=$Env{"Action"}&ClassID=$QData{"ClassID"}&Page=$QData{"Page"}">$QData{"Page"}</a>
@@ -27,57 +96,119 @@
                     <a href="$Env{"Baselink"}Action=$Env{"Action"}&ClassID=$QData{"ClassID"}&Page=$QData{"Page"}"><strong>$QData{"Page"}</strong></a>
 <!-- dtl:block:PageBold -->
 <!-- dtl:block:Page -->
+                </h2>
+                <div class="AdditionalInformation">
                     $Text{"Config Items available"}: $QData{"ConfigItemsAvail"}
                 </div>
             </div>
-            <div class="ActionRow SpacingBottom">
-                <ul class="Actions">
-#$Text{"Class"}:
-<!-- dtl:block:Menu -->
-<!-- dtl:block:MenuItem -->
-                    <li class="$QData{"Class"}">
-                        <a href="$Env{"Baselink"}Action=$Env{"Action"}&ClassID=$QData{"ClassID"}">$QData{"Class"} ($QData{"Count"})</a>                    </li>
-<!-- dtl:block:MenuItem -->
-<!-- dtl:block:Menu -->
-                    </ul>
-                </div>
-                <div class="Clear"></div>
 <!-- dtl:block:Class -->
-                <div class="ControlRow">
-                    <h2>$Text{"Class"}: $QData{"Class"}</h2>
-                </div>
-                <div class="Content">
-                    <table class="DataTable">
-                        <thead>
-                            <tr>
-                                <th width="20">&nbsp;</th>
-                                <th>$Text{"Number"}</th>
-                                <th>$Text{"Name"}</th>
-                                <th>$Text{"Deployment State"}</th>
-                                <th width="150">$Text{"Last Change"}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-<!-- dtl:block:ClassRow -->
-                            <tr>
-                                <td title="$Text{"$Data{"CurInciState"}"}" class="Flags Fixed">
-#                                <div title="$Text{"$QData{"CurInciState"}"}" class="Flag Small">
-#                                    <span class="$Text{"$QData{"CurInciState"}"}State">$Text{"$QData{"CurInciState"}"}</span>
-#                                </div>
-#                            <img border="0" src="$Config{"Frontend::ImagePath"}$QData{"CurInciSignal"}.png" title="$Text{"$QData{"CurInciState"}"}" alt="$Text{"$QData{"CurInciState"}"}">
-                                </td>
-                                <td>
-                                    <a href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom&ConfigItemID=$QData{"ConfigItemID"}">$QData{"Number"}</a>
-                                </td>
-                                <td>$QData{"Name","40"}</td>
-                                <td>$Text{"$Data{"CurDeplState"}"}</td>
-                                <td class="W25pc">$TimeLong{"$QData{"CreateTime"}"}</td>
-                            </tr>
-<!-- dtl:block:ClassRow -->
-                        </tbody>
-                    </table>
-                </div>
-<!-- dtl:block:Class -->
+            <div class="Header">
+                <h2>
+                    $Text{"Class"}: $QData{"Class"}
+                </h2>
             </div>
+            <div class="Content">
+                <table class="DataTable">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th>$Text{"Number"}</th>
+                            <th>$Text{"Name"}</th>
+                            <th>$Text{"Deployment State"}</th>
+                            <th>$Text{"Last Change"}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+<!-- dtl:block:ClassRow -->
+                        <tr>
+                            <td title="$Text{"$Data{"CurInciState"}"}" class="Flags Fixed">
+                                <div title="$Text{"$Data{"CurInciState"}"}" class="Flag Small">
+                                    <span class="$Text{"$Data{"CurInciSignal"}"}">$Text{"$Data{"CurInciState"}"}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <a href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom&ConfigItemID=$QData{"ConfigItemID"}">$QData{"Number"}</a>
+                            </td>
+                            <td>$QData{"Name","40"}</td>
+                            <td>$Text{"$Data{"CurDeplState"}"}</td>
+                            <td class="W25pc">$TimeLong{"$QData{"CreateTime"}"}</td>
+                        </tr>
+<!-- dtl:block:ClassRow -->
+<!-- dtl:block:NoClassRow -->
+                        <tr>
+                            <td colspan="5" class="Center">$Text{"No data found."}</td>
+                        </tr>
+<!-- dtl:block:NoClassRow -->
+                    </tbody>
+                </table>
+            </div>
+<!-- dtl:block:Class -->
         </div>
     </div>
+</div>
+<!-- dtl:block:Overview -->
+
+
+
+<!-- dtl:block:Reload -->
+<div class="ControlRow">
+    <h2>
+        $Text{"Config Items shown"}: $QData{"Result"} -
+        $Text{"Page"}: $QData{"PageNull"}
+<!-- dtl:block:PageReload -->
+<!-- dtl:block:PageNormalReload -->
+        <a href="$Env{"Baselink"}Action=$Env{"Action"}&ClassID=$QData{"ClassID"}&Page=$QData{"Page"}">$QData{"Page"}</a>
+<!-- dtl:block:PageNormalReload -->
+<!-- dtl:block:PageBoldReload -->
+        <a href="$Env{"Baselink"}Action=$Env{"Action"}&ClassID=$QData{"ClassID"}&Page=$QData{"Page"}"><strong>$QData{"Page"}</strong></a>
+<!-- dtl:block:PageBoldReload -->
+<!-- dtl:block:PageReload -->
+    </h2>
+    <div class="AdditionalInformation">
+        $Text{"Config Items available"}: $QData{"ConfigItemsAvail"}
+    </div>
+</div>
+<!-- dtl:block:ClassReload -->
+<div class="Header">
+    <h2>
+        $Text{"Class"}: $QData{"Class"}
+    </h2>
+</div>
+<div class="Content">
+    <table class="DataTable">
+        <thead>
+            <tr>
+                <th>&nbsp;</th>
+                <th>$Text{"Number"}</th>
+                <th>$Text{"Name"}</th>
+                <th>$Text{"Deployment State"}</th>
+                <th>$Text{"Last Change"}</th>
+            </tr>
+        </thead>
+        <tbody>
+<!-- dtl:block:ClassRowReload -->
+            <tr>
+                <td title="$Text{"$Data{"CurInciState"}"}" class="Flags Fixed">
+                    <div title="$Text{"$Data{"CurInciState"}"}" class="Flag Small">
+                        <span class="$Text{"$Data{"CurInciSignal"}"}">$Text{"$Data{"CurInciState"}"}</span>
+                    </div>
+                </td>
+                <td>
+                    <a href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom&ConfigItemID=$QData{"ConfigItemID"}">$QData{"Number"}</a>
+                </td>
+                <td>$QData{"Name","40"}</td>
+                <td>$Text{"$Data{"CurDeplState"}"}</td>
+                <td class="W25pc">$TimeLong{"$QData{"CreateTime"}"}</td>
+            </tr>
+<!-- dtl:block:ClassRowReload -->
+<!-- dtl:block:NoClassRowReload -->
+            <tr>
+                <td colspan="5" class="Center">$Text{"No data found."}</td>
+            </tr>
+<!-- dtl:block:NoClassRowReload -->
+        </tbody>
+    </table>
+</div>
+<!-- dtl:block:ClassReload -->
+</div>
+<!-- dtl:block:Reload -->

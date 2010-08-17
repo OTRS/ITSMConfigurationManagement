@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItem.pm - the OTRS::ITSM config item module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItem.pm,v 1.8 2010-08-13 23:01:52 cg Exp $
+# $Id: AgentITSMConfigItem.pm,v 1.9 2010-08-17 23:05:11 cg Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.8 $) [1];
+$VERSION = qw($Revision: 1.9 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -48,14 +48,32 @@ sub Run {
     # get page
     my $Page = $Self->{ParamObject}->GetParam( Param => 'Page' ) || 1;
 
+    # get SubAction
+    my $MainBlockName  = $Self->{ParamObject}->GetParam( Param => 'SubAction' ) || 'Overview';
+    my $ExtraBlockName = $Self->{ParamObject}->GetParam( Param => 'SubAction' ) || '';
+
     # get class list
     my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
         Class => 'ITSM::ConfigItem::Class',
     );
 
+    if ( $MainBlockName eq 'Overview' ) {
+
+        # output Content
+        $Self->{LayoutObject}->Block(
+            Name => $MainBlockName,
+            Data => {
+                %Param,
+            },
+        );
+    }
+
     # output menu
     my %ClassCount;
     my $Counter = 0;
+
+    my $ClassIDAuto   = '';
+    my $ClassMaxValue = 0;
 
     CLASSID:
     for my $ClassID ( sort { ${$ClassList}{$a} cmp ${$ClassList}{$b} } keys %{$ClassList} ) {
@@ -88,16 +106,66 @@ sub Run {
             },
         );
 
+        # comment
+        if ( $ClassIDAuto ne '' ) {
+            if ( $ClassCount{$ClassID} > $ClassMaxValue ) {
+                $ClassMaxValue = $ClassCount{$ClassID};
+                $ClassIDAuto   = $ClassID;
+            }
+        }
+        else {
+            $ClassIDAuto = $ClassID;
+        }
+
         $Counter++;
     }
 
     # get class id
-    my $ClassID = $Self->{ParamObject}->GetParam( Param => 'ClassID' );
+    my $ClassID = $Self->{ParamObject}->GetParam( Param => 'ClassID' ) || $ClassIDAuto;
+
+    # generate ClassOptionStrg
+    my $ClassOptionStrg = $Self->{LayoutObject}->BuildSelection(
+        Data         => $ClassList,
+        Name         => 'ClassID',
+        SelectedID   => $ClassID,
+        Class        => 'W100pc ReloadSelect',
+        PossibleNone => 1,
+        Translation  => 0,
+    );
+
+    # output ActionAddItem
+    $Self->{LayoutObject}->Block(
+        Name => 'ActionAddItem',
+        Data => {
+            ClassOptionStrg => $ClassOptionStrg,
+            %Param,
+        },
+    );
+
+    # output ActionAddItem
+    $Self->{LayoutObject}->Block(
+        Name => 'ActionSearchItem',
+        Data => {
+            ClassOptionStrg => $ClassOptionStrg,
+            %Param,
+        },
+    );
 
     my %SearchResult = (
         Result           => 0,
         ConfigItemsAvail => 0,
     );
+
+    if ( $MainBlockName eq 'Reload' ) {
+
+        # output Content
+        $Self->{LayoutObject}->Block(
+            Name => $MainBlockName,
+            Data => {
+                ConfigItemsAvail => $ClassCount{$ClassID},
+            },
+        );
+    }
 
     if ($ClassID) {
 
@@ -118,9 +186,10 @@ sub Run {
 
         # output class
         $Self->{LayoutObject}->Block(
-            Name => 'Class',
+            Name => 'Class' . $ExtraBlockName,
             Data => {
-                Class => $ClassList->{$ClassID},
+                Class   => $ClassList->{$ClassID},
+                ClassID => $ClassID,
             },
         );
         $SearchResult{ConfigItemsAvail} = $ClassCount{$ClassID} || 0;
@@ -151,20 +220,22 @@ sub Run {
             incident    => 'redled',
         );
 
-        my $CssClass = '';
         for my $ConfigItem ( @{$ConfigItemResultList} ) {
-
-            # set output class
-            $CssClass = $CssClass eq 'searchpassive' ? 'searchactive' : 'searchpassive';
 
             # output class
             $Self->{LayoutObject}->Block(
-                Name => 'ClassRow',
+                Name => 'ClassRow' . $ExtraBlockName,
                 Data => {
-                    CssClass => $CssClass,
                     %{$ConfigItem},
                     CurInciSignal => $InciSignals{ $ConfigItem->{CurInciStateType} },
                 },
+            );
+        }
+
+        # Comment
+        if ( $SearchResult{ConfigItemsAvail} == 0 ) {
+            $Self->{LayoutObject}->Block(
+                Name => 'NoClassRow' . $ExtraBlockName,
             );
         }
     }
@@ -175,14 +246,14 @@ sub Run {
 
             # output page block
             $Self->{LayoutObject}->Block(
-                Name => 'Page',
+                Name => 'Page' . $ExtraBlockName,
             );
 
             my $TemplateName = $PageCount eq $Page ? 'PageBold' : 'PageNormal';
 
             # output page link
             $Self->{LayoutObject}->Block(
-                Name => $TemplateName,
+                Name => $TemplateName . $ExtraBlockName,
                 Data => {
                     ClassID => $ClassID,
                     Page    => $PageCount,
@@ -196,6 +267,16 @@ sub Run {
 
     # investigate refresh
     my $Refresh = $Self->{UserRefreshTime} ? 60 * $Self->{UserRefreshTime} : undef;
+
+    if ( $MainBlockName eq 'Reload' ) {
+
+        # start template output
+        my $Output = $Self->{LayoutObject}->Output(
+            TemplateFile => 'AgentITSMConfigItem'
+        );
+
+        return $Output;
+    }
 
     # output header
     my $Output = $Self->{LayoutObject}->Header(
