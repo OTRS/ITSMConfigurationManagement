@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <otrs_config version="1.0" init="Config">
-    <CVS>$Id: ITSMConfigItem.xml,v 1.14 2010-08-18 15:26:54 cr Exp $</CVS>
+    <CVS>$Id: ITSMConfigItem.xml,v 1.15 2010-08-18 15:28:52 cr Exp $</CVS>
     <ConfigItem Name="Frontend::Module###AdminITSMConfigItem" Required="0" Valid="1">
         <Description Lang="en">Frontend module registration for the AdminITSMConfigItem configuration in the admin area.</Description>
         <Description Lang="de">Frontendmodul-Registration der AdminITSMConfigItem Konfiguration im Admin-Bereich.</Description>
@@ -78,7 +78,6 @@
                     <CSS_IE7>Core.Agent.ITSM.Detail.css</CSS_IE7>
                     <JavaScript>thirdparty/jquery-tablesorter-2.0.3/jquery.tablesorter.js</JavaScript>
                     <JavaScript>Core.UI.Table.Sort.js</JavaScript>
-                    <JavaScript>Core.Agent.TicketZoom.js</JavaScript>
                     <JavaScript>Core.Agent.ITSM.Zoom.js</JavaScript>
                 </Loader>
             </FrontendModuleReg>
