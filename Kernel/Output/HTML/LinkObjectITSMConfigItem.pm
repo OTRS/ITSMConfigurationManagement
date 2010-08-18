@@ -1,8 +1,8 @@
 # --
 # Kernel/Output/HTML/LinkObjectITSMConfigItem.pm - layout backend module
-# Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: LinkObjectITSMConfigItem.pm,v 1.7 2009-05-18 10:00:53 mh Exp $
+# $Id: LinkObjectITSMConfigItem.pm,v 1.8 2010-08-18 15:20:18 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::Output::HTML::Layout;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.7 $) [1];
+$VERSION = qw($Revision: 1.8 $) [1];
 
 =head1 NAME
 
@@ -111,7 +111,7 @@ Return
                     {
                         Type    => 'Link',
                         Content => '123',
-                        Link    => 'Action=AgentITSMConfigItemZoom&ConfigItemID=123',
+                        Link    => 'Action=AgentITSMConfigItemZoom;ConfigItemID=123',
                     },
                     {
                         Type      => 'Text',
@@ -138,7 +138,7 @@ Return
                     {
                         Type    => 'Link',
                         Content => '234',
-                        Link    => 'Action=AgentITSMConfigItemZoom&ConfigItemID=234',
+                        Link    => 'Action=AgentITSMConfigItemZoom;ConfigItemID=234',
                     },
                     {
                         Type      => 'Text',
@@ -229,7 +229,7 @@ sub TableCreateComplex {
                 {
                     Type    => 'Link',
                     Content => $Version->{Number},
-                    Link    => '$Env{"Baselink"}Action=AgentITSMConfigItemZoom&ConfigItemID='
+                    Link    => '$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID='
                         . $ConfigItemID,
                 },
                 {
@@ -675,16 +675,16 @@ sub SearchOptionList {
 
 =head1 TERMS AND CONDITIONS
 
-This software is part of the OTRS project (http://otrs.org/).
+This software is part of the OTRS project (L<http://otrs.org/>).
 
 This software comes with ABSOLUTELY NO WARRANTY. For details, see
 the enclosed file COPYING for license information (AGPL). If you
-did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =cut
 
 =head1 VERSION
 
-$Revision: 1.7 $ $Date: 2009-05-18 10:00:53 $
+$Revision: 1.8 $ $Date: 2010-08-18 15:20:18 $
 
 =cut

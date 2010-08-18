@@ -2,7 +2,7 @@
 # AgentITSMConfigItemSearch.dtl - provides HTML form for AgentITSMConfigItemSearch
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.dtl,v 1.5 2010-02-10 15:49:21 bes Exp $
+# $Id: AgentITSMConfigItemSearch.dtl,v 1.6 2010-08-18 15:16:48 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -114,7 +114,7 @@
 <!-- dtl:block:AttributeRow -->
                                 <tr>
                                     <td>
-                                        <div title="$Text{"$QData{"Description"}"}">$Text{"$QData{"Name"}"}:</div>
+                                        <div title="$Text{"$Data{"Description"}"}">$Text{"$Data{"Name"}"}:</div>
                                     </td>
                                     <td>$Data{"InputString"}</td>
                                 </tr>
@@ -161,7 +161,7 @@
     <tr>
         <td class="menu">
             <a href="javascript:history.back()">
-            $Text{"Change search options"}
+                $Text{"Change search options"}
             </a>
             - $Text{"Total hits"}: <b>$Data{"TotalHits"}</b>
         </td>
@@ -185,16 +185,16 @@
 <!-- dtl:block:ResultRow -->
                 <tr class="contentbody">
                     <td class="$QData{"CssClass"}" align="right">
-                        <img border="0" src="$Config{"Frontend::ImagePath"}$QData{"CurInciSignal"}.png" title="$Text{"$QData{"CurInciState"}"}" alt="$Text{"$QData{"CurInciState"}"}">
+                        <img border="0" src="$Config{"Frontend::ImagePath"}$QData{"CurInciSignal"}.png" title="$Text{"$Data{"CurInciState"}"}" alt="$Text{"$Data{"CurInciState"}"}">
                     </td>
                     <td class="$QData{"CssClass"}">
-                        <a href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom&ConfigItemID=$QData{"ConfigItemID"}">$QData{"Number"}</a>
+                        <a href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$QData{"ConfigItemID"}">$QData{"Number"}</a>
                     </td>
                     <td class="$QData{"CssClass"}">
                         $QData{"Name","40"}
                     </td>
                     <td class="$QData{"CssClass"}">
-                        $Text{"$QData{"CurDeplState"}"}
+                        $Text{"$Data{"CurDeplState"}"}
                     </td>
                     <td class="$QData{"CssClass"}">
                         $TimeLong{"$QData{"CreateTime"}"}

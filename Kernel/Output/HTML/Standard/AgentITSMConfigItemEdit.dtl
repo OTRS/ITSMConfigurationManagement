@@ -1,8 +1,8 @@
 # --
 # AgentITSMConfigItemEdit.dtl - provides HTML form for AgentITSMConfigItemEdit
-# Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.dtl,v 1.3 2009-05-18 10:01:18 mh Exp $
+# $Id: AgentITSMConfigItemEdit.dtl,v 1.4 2010-08-18 15:16:48 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -10,189 +10,189 @@
 # --
 
 <table border="0" width="100%" cellspacing="0" cellpadding="3">
-  <tr>
-    <td class="mainhead">
-      $Env{"Box0"}$Text{"Edit"}: $Text{"Config Item"}: $QData{"Number"} $Env{"Box1"}
-    </td>
-  </tr>
-  <tr>
-    <td class="menu">
-      <a href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom&ConfigItemID=$QData{"ConfigItemID"}" onclick="javascript:history.back(); return false;">$Text{"Back"}</a>
-    </td>
-  </tr>
-  <tr>
-    <td class="mainbody" align="center">
-      <br>
-      <form action="$Env{"CGIHandle"}" method="post" name="compose">
-        <input type="hidden" name="Action" value="$Env{"Action"}">
-        <input type="hidden" name="Subaction" value="VersionSave">
-        <input type="hidden" name="ClassID" value="$QData{"ClassID"}">
-        <input type="hidden" name="ConfigItemID" value="$QData{"ConfigItemID"}">
-        <table border="0" width="800" cellspacing="0" cellpadding="4">
-          <tr class="contenthead">
-            <td class="contentkey">$QData{"Class"}</td>
-          </tr>
-          <tr class="contentbody">
-            <td>
-              <table border="0" width="100%" cellspacing="0" cellpadding="5">
-                <tr>
-                  <td>
-                    <table border="0" width="100%" cellspacing="0" cellpadding="0">
-                      <tr class="contentbody">
-                        <td width="18%"></td>
-                        <td width="18%"></td>
-                        <td width="18%"></td>
-                        <td width="18%"></td>
-                        <td width="17%"></td>
-                        <td width="11%"></td>
-                      </tr>
+    <tr>
+        <td class="mainhead">
+            $Env{"Box0"}$Text{"Edit"}: $Text{"Config Item"}: $QData{"Number"} $Env{"Box1"}
+        </td>
+    </tr>
+    <tr>
+        <td class="menu">
+            <a href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$QData{"ConfigItemID"}" onclick="javascript:history.back(); return false;">$Text{"Back"}</a>
+        </td>
+    </tr>
+    <tr>
+        <td class="mainbody" align="center">
+            <br>
+            <form action="$Env{"CGIHandle"}" method="post" name="compose">
+                <input type="hidden" name="Action" value="$Env{"Action"}">
+                <input type="hidden" name="Subaction" value="VersionSave">
+                <input type="hidden" name="ClassID" value="$QData{"ClassID"}">
+                <input type="hidden" name="ConfigItemID" value="$QData{"ConfigItemID"}">
+                <table border="0" width="800" cellspacing="0" cellpadding="4">
+                    <tr class="contenthead">
+                        <td class="contentkey">$QData{"Class"}</td>
+                    </tr>
+                    <tr class="contentbody">
+                        <td>
+                            <table border="0" width="100%" cellspacing="0" cellpadding="5">
+                                <tr>
+                                    <td>
+                                        <table border="0" width="100%" cellspacing="0" cellpadding="0">
+                                            <tr class="contentbody">
+                                                <td width="18%"></td>
+                                                <td width="18%"></td>
+                                                <td width="18%"></td>
+                                                <td width="18%"></td>
+                                                <td width="17%"></td>
+                                                <td width="11%"></td>
+                                            </tr>
 <!-- dtl:block:RowName -->
-                      <tr class="contentbody">
-                        <td class="contentvalue" colspan="6">
-                          <hr width="100%" size="1" color="#BBBBBB" noshade>
-                        </td>
-                      </tr>
-                      <tr class="contentbody">
-                        <td class="contentkey">
-                          <div title="$Text{"The name of this config item"}">
-                          $Text{"Name"}:
-                          <font color="red" title="$Text{"Required"}">*</font>
-                          &nbsp;
-                          </div>
-                        </td>
-                        <td class="contentvalue" colspan="5">
-                          <input type="Text" name="Name" size="80" maxlength="250" value="$QData{"Name"}">
+                                            <tr class="contentbody">
+                                                <td class="contentvalue" colspan="6">
+                                                    <hr width="100%" size="1" color="#BBBBBB" noshade>
+                                                </td>
+                                            </tr>
+                                            <tr class="contentbody">
+                                                <td class="contentkey">
+                                                    <div title="$Text{"The name of this config item"}">
+                                                        $Text{"Name"}:
+                                                        <font color="red" title="$Text{"Required"}">*</font>
+                                                        &nbsp;
+                                                    </div>
+                                                </td>
+                                                <td class="contentvalue" colspan="5">
+                                                    <input type="Text" name="Name" size="80" maxlength="250" value="$QData{"Name"}">
 <!-- dtl:block:RowNameInvalid -->
-                          <font color="red" title="$Text{"Invalid"}" size="-2">*&nbsp;$Text{"invalid"}</font>
+                                                    <font color="red" title="$Text{"Invalid"}" size="-2">*&nbsp;$Text{"invalid"}</font>
 <!-- dtl:block:RowNameInvalid -->
-                        </td>
-                      </tr>
+                                                </td>
+                                            </tr>
 <!-- dtl:block:RowName -->
 <!-- dtl:block:RowDeplState -->
-                      <tr class="contentbody">
-                        <td class="contentvalue" colspan="6">
-                          <hr width="100%" size="1" color="#BBBBBB" noshade>
-                        </td>
-                      </tr>
-                      <tr class="contentbody">
-                        <td class="contentkey">
-                          <div title="$Text{"The deployment state of this config item"}">
-                          $Text{"Deployment State"}:
-                          <font color="red" title="$Text{"Required"}">*</font>
-                          &nbsp;
-                          </div>
-                        </td>
-                        <td class="contentvalue" colspan="5">
-                          $Data{"DeplStateOptionStrg"}
+                                            <tr class="contentbody">
+                                                <td class="contentvalue" colspan="6">
+                                                    <hr width="100%" size="1" color="#BBBBBB" noshade>
+                                                </td>
+                                            </tr>
+                                            <tr class="contentbody">
+                                                <td class="contentkey">
+                                                    <div title="$Text{"The deployment state of this config item"}">
+                                                        $Text{"Deployment State"}:
+                                                        <font color="red" title="$Text{"Required"}">*</font>
+                                                        &nbsp;
+                                                    </div>
+                                                </td>
+                                                <td class="contentvalue" colspan="5">
+                                                    $Data{"DeplStateOptionStrg"}
 <!-- dtl:block:RowDeplStateInvalid -->
-                          <font color="red" title="$Text{"Invalid"}" size="-2">*&nbsp;$Text{"invalid"}</font>
+                                                    <font color="red" title="$Text{"Invalid"}" size="-2">*&nbsp;$Text{"invalid"}</font>
 <!-- dtl:block:RowDeplStateInvalid -->
-                        </td>
-                      </tr>
+                                                </td>
+                                            </tr>
 <!-- dtl:block:RowDeplState -->
 <!-- dtl:block:RowInciState -->
-                      <tr class="contentbody">
-                        <td class="contentvalue" colspan="6">
-                          <hr width="100%" size="1" color="#BBBBBB" noshade>
-                        </td>
-                      </tr>
-                      <tr class="contentbody">
-                        <td class="contentkey">
-                          <div title="$Text{"The incident state of this config item"}">
-                          $Text{"Incident State"}:
-                          <font color="red" title="$Text{"Required"}">*</font>
-                          &nbsp;
-                          </div>
-                        </td>
-                        <td class="contentvalue" colspan="5">
-                          $Data{"InciStateOptionStrg"}
+                                            <tr class="contentbody">
+                                                <td class="contentvalue" colspan="6">
+                                                    <hr width="100%" size="1" color="#BBBBBB" noshade>
+                                                </td>
+                                            </tr>
+                                            <tr class="contentbody">
+                                                <td class="contentkey">
+                                                    <div title="$Text{"The incident state of this config item"}">
+                                                        $Text{"Incident State"}:
+                                                        <font color="red" title="$Text{"Required"}">*</font>
+                                                        &nbsp;
+                                                    </div>
+                                                </td>
+                                                <td class="contentvalue" colspan="5">
+                                                    $Data{"InciStateOptionStrg"}
 <!-- dtl:block:RowInciStateInvalid -->
-                          <font color="red" title="$Text{"Invalid"}" size="-2">*&nbsp;$Text{"invalid"}</font>
+                                                    <font color="red" title="$Text{"Invalid"}" size="-2">*&nbsp;$Text{"invalid"}</font>
 <!-- dtl:block:RowInciStateInvalid -->
-                        </td>
-                      </tr>
+                                                </td>
+                                            </tr>
 <!-- dtl:block:RowInciState -->
 <!-- dtl:block:XMLRow -->
 <!-- dtl:block:XMLRowValue -->
 <!-- dtl:block:XMLRowValueRule -->
-                      <tr class="contentbody">
+                                            <tr class="contentbody">
 <!-- dtl:block:XMLRowValueRuleSpace -->
-                        <td colspan="$QData{"Colspan"}">&nbsp;</td>
+                                                <td colspan="$QData{"Colspan"}">&nbsp;</td>
 <!-- dtl:block:XMLRowValueRuleSpace -->
-                        <td class="contentvalue" colspan="$QData{"Colspan"}"><hr width="100%" size="1" color="#BBBBBB" noshade></td>
-                      </tr>
+                                                <td class="contentvalue" colspan="$QData{"Colspan"}"><hr width="100%" size="1" color="#BBBBBB" noshade></td>
+                                            </tr>
 <!-- dtl:block:XMLRowValueRule -->
 <!-- dtl:block:XMLRowValueContent -->
-                      <tr class="contentbody">
+                                            <tr class="contentbody">
 <!-- dtl:block:XMLRowValueContentSpace -->
-                        <td colspan="$QData{"Colspan"}">&nbsp;</td>
+                                                <td colspan="$QData{"Colspan"}">&nbsp;</td>
 <!-- dtl:block:XMLRowValueContentSpace -->
-                        <td class="contentkey">
-                          <div title="$Text{"$QData{"Description"}"}">
-                          $Text{"$QData{"Name"}"}:
+                                                <td class="contentkey">
+                                                    <div title="$Text{"QData{"Description"}"}">
+                                                        $Text{"$Data{"Name"}"}:
 <!-- dtl:block:XMLRowValueContentRequired -->
-                          <font color="red" title="$Text{"Required"}">*</font>
+                                                        <font color="red" title="$Text{"Required"}">*</font>
 <!-- dtl:block:XMLRowValueContentRequired -->
-                          &nbsp;
-                          </div>
-                        </td>
-                        <td class="contentvalue" colspan="$QData{"Colspan"}">
-                          $Data{"InputString"}
+                                                        &nbsp;
+                                                    </div>
+                                                </td>
+                                                <td class="contentvalue" colspan="$QData{"Colspan"}">
+                                                    $Data{"InputString"}
 <!-- dtl:block:XMLRowValueContentInvalid -->
-                          <font color="red" title="$Text{"Invalid"}" size="-2">*&nbsp;$Text{"invalid"}</font>
+                                                    <font color="red" title="$Text{"Invalid"}" size="-2">*&nbsp;$Text{"invalid"}</font>
 <!-- dtl:block:XMLRowValueContentInvalid -->
-                        </td>
+                                                </td>
 <!-- dtl:block:XMLRowValueContentDelete -->
-                        <td align="right">
-                          <input class="button" type="submit" name="$QData{"InputKey"}::Delete" value="$Text{"Delete"}">
-                        </td>
+                                                <td align="right">
+                                                    <input class="button" type="submit" name="$QData{"InputKey"}::Delete" value="$Text{"Delete"}">
+                                                </td>
 <!-- dtl:block:XMLRowValueContentDelete -->
 <!-- dtl:block:XMLRowValueContentDeleteDummy -->
-                        <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
 <!-- dtl:block:XMLRowValueContentDeleteDummy -->
-                      </tr>
+                                            </tr>
 <!-- dtl:block:XMLRowValueContent -->
 <!-- dtl:block:XMLRowValue -->
 <!-- dtl:block:XMLRowAdd -->
 <!-- dtl:block:XMLRowAddRule -->
-                      <tr class="contentbody">
+                                            <tr class="contentbody">
 <!-- dtl:block:XMLRowAddRuleSpace -->
-                        <td colspan="$QData{"Colspan"}">&nbsp;</td>
+                                                <td colspan="$QData{"Colspan"}">&nbsp;</td>
 <!-- dtl:block:XMLRowAddRuleSpace -->
-                        <td class="contentvalue" colspan="$QData{"Colspan"}"><hr width="100%" size="1" color="#BBBBBB" noshade></td>
-                      </tr>
+                                                <td class="contentvalue" colspan="$QData{"Colspan"}"><hr width="100%" size="1" color="#BBBBBB" noshade></td>
+                                            </tr>
 <!-- dtl:block:XMLRowAddRule -->
 <!-- dtl:block:XMLRowAddContent -->
-                      <tr class="contentbody">
+                                            <tr class="contentbody">
 <!-- dtl:block:XMLRowAddContentSpace -->
-                        <td colspan="$QData{"Colspan"}">&nbsp;</td>
+                                                <td colspan="$QData{"Colspan"}">&nbsp;</td>
 <!-- dtl:block:XMLRowAddContentSpace -->
-                        <td class="contentkey" colspan="1">
-                          <div title="$Text{"$QData{"Description"}"}">$Text{"$QData{"Name"}"}:</div>
-                        </td>
-                        <td class="contentvalue" colspan="$QData{"Colspan"}">
-                          <input class="button" type="submit" name="$QData{"InputKey"}::Add" value="$Text{"Add"}">
-                        </td>
-                        <td>&nbsp;</td>
-                      </tr>
+                                                <td class="contentkey" colspan="1">
+                                                    <div title="$Text{"$Data{"Description"}"}">$Text{"$Data{"Name"}"}:</div>
+                                                </td>
+                                                <td class="contentvalue" colspan="$QData{"Colspan"}">
+                                                    <input class="button" type="submit" name="$QData{"InputKey"}::Add" value="$Text{"Add"}">
+                                                </td>
+                                                <td>&nbsp;</td>
+                                            </tr>
 <!-- dtl:block:XMLRowAddContent -->
 <!-- dtl:block:XMLRowAdd -->
 <!-- dtl:block:XMLRow -->
-                      <tr class="contentbody">
-                        <td class="contentvalue" colspan="6"><hr width="100%" size="1" color="#BBBBBB" noshade></td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-          <tr class="contentfooter">
-            <td><input class="button" type="submit" name="SubmitSave" value="$Text{"Save"}"></td>
-          </tr>
-        </table>
-      </form>
-      <br>
-    </td>
-  </tr>
+                                            <tr class="contentbody">
+                                                <td class="contentvalue" colspan="6"><hr width="100%" size="1" color="#BBBBBB" noshade></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr class="contentfooter">
+                        <td><input class="button" type="submit" name="SubmitSave" value="$Text{"Save"}"></td>
+                    </tr>
+                </table>
+            </form>
+            <br>
+        </td>
+    </tr>
 </table>
