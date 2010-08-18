@@ -1,197 +1,243 @@
 # --
 # AgentITSMConfigItemZoom.dtl - provides HTML form for AgentITSMConfigItemZoom
-# Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemZoom.dtl,v 1.3 2009-08-18 22:18:19 mh Exp $
+# $Id: AgentITSMConfigItemZoom.dtl,v 1.4 2010-08-18 17:17:49 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-<table border="0" width="100%" cellspacing="0" cellpadding="3">
-  <tr>
-    <td class="mainhead">
-      $Env{"Box0"}$Text{"Zoom"} $Text{"Config Item"}: $QData{"Number"} $Env{"Box1"}
-    </td>
-  </tr>
-</table>
-<table border="0" width="100%" cellspacing="0" cellpadding="3">
-  <tr>
-    <td width="75%" class="menu">
-<!-- dtl:block:Menu -->
-<!-- dtl:block:MenuItemSplit -->
-      -
-<!-- dtl:block:MenuItemSplit -->
-<!-- dtl:block:MenuItem -->
-      <a href="$Env{"Baselink"}$Data{"Link"}" $Data{"LinkParam"} onmouseover="window.status='$JSText{"$QData{"Name"}"}'; return true;" onmouseout="window.status='';" class="menuitem">$Text{"$QData{"Name"}"}</a>
-<!-- dtl:block:MenuItem -->
-<!-- dtl:block:Menu -->
-    </td>
-    <td align="right" width="25%" class="menu"></td>
-  </tr>
-</table>
-<table border="0" width="100%" cellspacing="0" cellpadding="3">
-  <tr>
-    <td rowspan="2" valign="top" width="75%" class="mainbody">
-<!-- dtl:block:Tree -->
-      <table border="0" width="100%" cellspacing="0" cellpadding="0">
-<!-- dtl:block:TreeItem -->
-<!-- dtl:block:TreeItemActive -->
-        <tr>
-          <td>
-            <table border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td class="small" width="10">&nbsp;</td>
-                <td class="small" valign="bottom">
-                  <img border="0" src="$Config{"Frontend::ImagePath"}$QData{"InciSignal"}-small.png" title="$Text{"$QData{"InciState"}"}" alt="$Text{"$QData{"InciState"}"}">
-                </td>
-                <td class="small">
-                  &nbsp;&nbsp;|--&gt;&gt;&gt;&nbsp;
-                  <i>
-                  <b>
-                  <u>
-                  $QData{"Count"}.
-                  <a href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom&ConfigItemID=$QData{"ConfigItemID"}&VersionID=$QData{"VersionID"}&ShowVersions=$QData{"ShowVersions"}">
-                  $QData{"Name"} ($Text{"$QData{"DeplState"}"})
-                  </a>
-                  $QData{"UserLogin","30"} ($Quote{"$Data{"UserFirstname"} $Data{"UserLastname"}","30"}) - $TimeLong{"$QData{"CreateTime"}"}
-                  </u>
-                  </b>
-                  </i>
-                  &nbsp;
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-<!-- dtl:block:TreeItemActive -->
-<!-- dtl:block:TreeItemInactive -->
-        <tr>
-          <td>
-            <table border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td class="small" width="10">&nbsp;</td>
-                <td class="small" valign="bottom">
-                  <img border="0" src="$Config{"Frontend::ImagePath"}$QData{"InciSignal"}-small.png" title="$Text{"$QData{"InciState"}"}" alt="$Text{"$QData{"InciState"}"}">
-                </td>
-                <td class="small">
-                  &nbsp;&nbsp;|--&gt;&nbsp;$QData{"Count"}.
-                  <a href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom&ConfigItemID=$QData{"ConfigItemID"}&VersionID=$QData{"VersionID"}&ShowVersions=$QData{"ShowVersions"}">
-                  $QData{"Name"} ($Text{"$QData{"DeplState"}"})
-                  </a>
-                  $QData{"UserLogin","30"} ($Quote{"$Data{"UserFirstname"} $Data{"UserLastname"}","30"}) - $TimeLong{"$QData{"CreateTime"}"}
-                  &nbsp;
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-<!-- dtl:block:TreeItemInactive -->
-<!-- dtl:block:TreeItem -->
-      </table>
-<!-- dtl:block:Tree -->
-      <hr size="2">
-      <table border="0" width="100%" cellspacing="0" cellpadding="1">
-<!-- dtl:block:Data -->
-        <tr>
-          <td class="contentkey" width="25%">
-            <div title="$Text{"$QData{"Description"}"}">
-<!-- dtl:block:DataNamePre -->
-            &nbsp;&nbsp;&nbsp;&nbsp;
-<!-- dtl:block:DataNamePre -->
-            $Text{"$QData{"Name"}"}:&nbsp;&nbsp;
-            </div>
-          </td>
-          <td class="contentvalue">
-<!-- dtl:block:DataValuePre -->
-            &nbsp;&nbsp;&nbsp;&nbsp;
-<!-- dtl:block:DataValuePre -->
-            $Data{"Value"}
-          </td>
-        </tr>
-<!-- dtl:block:Data -->
-      </table>
-<!-- dtl:block:LinkTableComplex -->
-      <hr size="2">
-      <br>
-      <table width="98%" align="center" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-          <td>
-            $Data{"LinkTableStrg"}
-          </td>
-        </tr>
-      </table>
-<!-- dtl:block:LinkTableComplex -->
-      <br>
-    </td>
-    <td width="25%" valign="top" class="menu">
+<div class="MainBox ARIARoleMain">
+    <div class="ClearLeft"></div>
+    <div class="Headline">
+        <div class="Flag" title="$Text{"$Data{"CurInciState"}"}"><span class="$QData{"CurInciSignal"}"></span></div>
+        <h1 title="$Text{"Zoom"} $Text{"Configuration Item"}: $QData{"Number"} $QData{"Title", "40"}">
+            $Text{"Zoom"} $Text{"Configuration Item"}: $QData{"Number"} $QData{"Title", "60"}
+        </h1>
+    </div>
+    <div class="LayoutFixedSidebar SidebarLast">
+        <div class="SidebarColumn">
 <!-- dtl:block:Meta -->
-      <table border="0" cellspacing="1" cellpadding="0" width="100%">
-        <tr>
-          <td><b>$Text{"Class"}: </b></td>
-          <td>$QData{"Class","25"}</td>
-        </tr>
-        <tr>
-          <td colspan="2">&nbsp;</td>
-        </tr>
-        <tr>
-          <td><b>$Text{"Name"}: </b></td>
-          <td><div title="$QData{"Name"}">$QData{"Name","25"}</div></td>
-        </tr>
-        <tr>
-          <td><b>$Text{"Current Deployment State"}: </b></td>
-          <td>$Quote{"$Text{"$Data{"CurDeplState"}"}","25"}</td>
-        </tr>
-        <tr>
-          <td><b>$Text{"Current Incident State"}: </b></td>
-          <td>
-            <table border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td>
-                  <div title="$Text{"$QData{"CurInciState"}"}">
-                  $Quote{"$Text{"$Data{"CurInciState"}"}","25"}&nbsp;&nbsp;
-                  </div>
-                </td>
-                <td>
-                  <img border="0" src="$Config{"Frontend::ImagePath"}$QData{"CurInciSignal"}.png" title="$Text{"$QData{"CurInciState"}"}" alt="$Text{"$QData{"CurInciState"}"}">
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2">&nbsp;</td>
-        </tr>
-        <tr>
-          <td class="mainkey">$Text{"Created"}:</td>
-          <td class="mainvalue">$TimeLong{"$Data{"CreateTime"}"}</td>
-        </tr>
-        <tr>
-          <td class="mainkey">$Text{"Created by"}:</td>
-          <td>
-            <div title="$QData{"CreateUserLogin"} ($Quote{"$Data{"CreateUserFirstname"} $Data{"CreateUserLastname"}"})">
-            $QData{"CreateUserLogin","15"} ($Quote{"$Data{"CreateUserFirstname"} $Data{"CreateUserLastname"}","15"})
+            <div class="WidgetSimple">
+                <div class="Header">
+                    <h2>Configuration Item Information</h2>
+                </div>
+                <div class="Content">
+                    <fieldset class="TableLike FixedLabelSmall Tight">
+                        <label>$Text{"Class"}:</label>
+                        <p class="Value">$QData{"Class","25"}</p>
+                        <div class="Clear"></div>
+                        <label>$Text{"Name"}:</label>
+                        <p class="Value">$QData{"Name","25"}</p>
+                        <div class="Clear"></div>
+                        <label>$Text{"Current Deployment State"}:</label>
+                        <p class="Value">$QData{"CurDeplState","25"}</p>
+                        <div class="Clear"></div>
+                        <label>$Text{"Current Incident State"}:</label>
+                        <div class="Value" title="$QData{"CurInciState"}">
+                            <div class="Flag Small">
+                                <span class="$QData{"CurInciSignal"}"></span>
+                            </div>
+                            $QData{"CurInciState","25"}
+                        </div>
+                        <div class="Clear"></div>
+                        <label>$Text{"Created"}:</label>
+                        <p class="Value">$TimeLong{"$Data{"CreateTime"}"}</p>
+                        <div class="Clear"></div>
+                        <label>$Text{"Created by"}:</label>
+                        <p class="Value">
+                            $QData{"CreateUserLogin","15"} ($Quote{"$Data{"CreateUserFirstname"} $Data{"CreateUserLastname"}","15"})
+                        </p>
+                        <div class="Clear"></div>
+                        <label>$Text{"Last changed"}:</label>
+                        <p class="Value">$TimeLong{"$Data{"ChangeTime"}"}</p>
+                        <div class="Clear"></div>
+                        <label>$Text{"Last changed by"}:</label>
+                        <p class="Value">
+                            $QData{"ChangeUserLogin","15"} ($Quote{"$Data{"ChangeUserFirstname"} $Data{"ChangeUserLastname"}","15"})
+                        </p>
+                        <div class="Clear"></div>
+                    </fieldset>
+                </div>
             </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="mainkey">$Text{"Last changed"}:</td>
-          <td class="mainvalue">$TimeLong{"$Data{"ChangeTime"}"}</td>
-        </tr>
-        <tr>
-          <td class="mainkey">$Text{"Last changed by"}:</td>
-          <td>
-            <div title="$QData{"ChangeUserLogin"} ($Quote{"$Data{"ChangeUserFirstname"} $Data{"ChangeUserLastname"}"})">
-            $QData{"ChangeUserLogin","15"} ($Quote{"$Data{"ChangeUserFirstname"} $Data{"ChangeUserLastname"}","15"})
-            </div>
-          </td>
-        </tr>
-<!-- dtl:block:LinkTableSimple -->
-        $Data{"LinkTableStrg"}
-<!-- dtl:block:LinkTableSimple -->
-      </table>
 <!-- dtl:block:Meta -->
-    </td>
-  </tr>
-</table>
+<!-- dtl:block:LinkTableSimple -->
+            <div class="WidgetSimple DontPrint">
+                <div class="Header">
+                    <h2>$Text{"Linked Objects"}</h2>
+                </div>
+                <div class="Content">
+                    $Data{"LinkTableStrg"}
+                </div>
+            </div>
+<!-- dtl:block:LinkTableSimple -->
+        </div>
+
+        <div class="ContentColumn">
+            <div class="ControlRow">
+                <h2></h2>
+            </div>
+            <div class="ActionRow">
+                <ul class="Actions">
+<!-- dtl:block:Menu -->
+<!-- dtl:block:MenuItem -->
+                    <li>
+                        <a class = "AsPopup" href="$Env{"Baselink"}$Data{"Link"}" class="$QData{"AsPopop"}" $Data{"LinkParam"} title="$Text{"$Data{"Description"}"}">$Text{"$Data{"Name"}"}</a>
+                    </li>
+<!-- dtl:block:MenuItem -->
+<!-- dtl:block:Menu -->
+                </ul>
+            </div>
+            <div id="ITSMTree">
+<!-- dtl:block:Tree -->
+                <div id="ITSMTable"  class="FixedHeader">
+                    <div class="ControlRow">
+                        <div class="ITSMItemView Icons">
+<!-- dtl:block:Expand -->
+                            <a class="OneITSMItem Active" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"};ShowVersions=0" title="$Text{"Show one version"}"><span>$Text{"Show one version"}</span></a>
+                            <a class="AllITSMItems" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"};ShowVersions=1" title="$Text{"Show all versions"}"><span>$Text{"Show all versionss"}</span></a>
+<!-- dtl:block:Expand -->
+<!-- dtl:block:Collapse -->
+                            <a class="OneITSMItem" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"};ShowVersions=0" title="$Text{"Show one version"}"><span>$Text{"Show one versionse"}</span></a>
+                            <a class="AllITSMItems Active" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"};ShowVersions=1" title="$Text{"Show all versions"}"><span>$Text{"Show all versions"}</span></a>
+<!-- dtl:block:Collapse -->
+                        </div>
+                    </div>
+                    <div id="ITSMTableBody" class="ActionRow">
+                        <div class="Scroller">
+                            <table id="FixedTable" class="TableSmall">
+                                <thead>
+                                    <tr>
+                                        <th class="Flags" title="Incident Status"><span>Status</span></th>
+                                        <th title="Version No."><span>No.</span></th>
+                                        <th title="Configuration ItemName"><span>Name</span></th>
+                                        <th title="Created By User"><span>Created By</span></th>
+                                        <th title="Changed On Date"><span>Changed On</span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+<!-- dtl:block:TreeItem -->
+<!-- dtl:block:TreeItemInactive -->
+                                    <tr>
+                                        <td title="$QData{"CurInciState"}">
+                                            <div class="Flag Small">
+                                                <span class="$QData{"InciSignal"}">"$QData{"InciState"}"</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            $QData{"Count"}.
+                                        </td>
+                                        <td>
+                                            <a href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$QData{"ConfigItemID"};VersionID=$QData{"VersionID"};ShowVersions=$QData{"ShowVersions"}">
+                                                $QData{"Name"} ($Text{"$Data{"DeplState"}"})
+                                            </a>
+                                        </td>
+                                        <td>
+                                            $QData{"UserLogin","30"} ($Quote{"$Data{"UserFirstname"} $Data{"UserLastname"}","30"})
+
+                                        </td>
+                                        <td>
+                                            $TimeLong{"$QData{"CreateTime"}"}
+                                        </td>
+                                    </tr>
+<!-- dtl:block:TreeItemInactive -->
+<!-- dtl:block:TreeItemActive -->
+                                    <tr class="Active">
+                                        <td title="$QData{"CurInciState"}">
+                                            <div class="Flag Small">
+                                                <span class="$QData{"InciSignal"}">"$QData{"InciState"}"</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            $QData{"Count"}.
+                                        </td>
+                                        <td>
+                                            <a href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$QData{"ConfigItemID"};VersionID=$QData{"VersionID"};ShowVersions=$QData{"ShowVersions"}">
+                                                $QData{"Name"} ($Text{"$Data{"DeplState"}"})
+                                            </a>
+                                        </td>
+                                        <td>
+                                            $QData{"UserLogin","30"} ($Quote{"$Data{"UserFirstname"} $Data{"UserLastname"}","30"})
+                                        </td>
+                                        <td>
+                                            $TimeLong{"$QData{"CreateTime"}"}
+                                        </td>
+                                    </tr>
+<!-- dtl:block:TreeItemActive -->
+<!-- dtl:block:TreeItem -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="Handle ui-resizable-handle ui-resizable-s">
+                            <a href="">$Text{"Resize"}</a>
+                        </div>
+                    </div>
+                </div>
+<!-- dtl:block:Tree -->
+            </div>
+            <div id="ITSMItems">
+
+                <div class="WidgetBox SpacingTop Expanded">
+                    <div class="LightRow Header">
+                        <div class="WidgetAction Toggle"><a href="#" title="$Text{"Show or hide the content."}"><span></span></a></div>
+                        <h2>$Text{"Configuration Item Version Details"}</h2>
+                    </div>
+                    <div class="LightRow Content">
+                        <table class="DataTable">
+                            <tbody>
+<!-- dtl:block:Data -->
+                                <tr>
+                                    <td class="W25pc" title="$Text{"QData{"Description"}"}">
+<!-- dtl:block:DataNamePre -->
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+<!-- dtl:block:DataNamePre -->
+                                        <strong>$Text{"$Data{"Name"}"}:</strong>&nbsp;&nbsp;
+                                    </td>
+                                    <td>
+<!-- dtl:block:DataValuePre -->
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+<!-- dtl:block:DataValuePre -->
+                                        $Data{"Value"}
+                                    </td>
+                                </tr>
+<!-- dtl:block:Data -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="ConfigItemLinks">
+<!-- dtl:block:LinkTableComplex -->
+                <div class="WidgetSimple DontPrint SpacingTop">
+                    <div class="Header">
+                        <h2>$Text{"Linked Objects"}</h2>
+                    </div>
+                    <div class="Content">
+# object links
+                        $Data{"LinkTableStrg"}
+                    </div>
+                </div>
+
+<!-- dtl:block:LinkTableComplex -->
+            </div>
+        </div>
+        <div class="Clear"></div>
+    </div>
+</div>
+
+
+<!-- dtl:js_on_document_complete -->
+<script type="text/javascript">//<![CDATA[
+    Core.Agent.ITSM.Zoom.Init($Env{"UserConfigItemZoomTableHeight"});
+
+    $('ul.Actions a.AsPopup').bind('click', function (Event) {
+        Core.UI.Popup.OpenPopup($(this).attr('href'), 'Action');
+        return false;
+    });
+
+//]]></script>
+<!-- dtl:js_on_document_complete -->

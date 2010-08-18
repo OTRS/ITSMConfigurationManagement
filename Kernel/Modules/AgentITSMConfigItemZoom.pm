@@ -1,8 +1,8 @@
 # --
 # Kernel/Modules/AgentITSMConfigItemZoom.pm - the OTRS::ITSM config item zoom module
-# Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemZoom.pm,v 1.7 2009-10-13 17:31:11 ub Exp $
+# $Id: AgentITSMConfigItemZoom.pm,v 1.8 2010-08-18 17:17:50 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -19,7 +19,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::LinkObject;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.7 $) [1];
+$VERSION = qw($Revision: 1.8 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -161,6 +161,25 @@ sub Run {
         warning     => 'yellowled',
         incident    => 'redled',
     );
+
+    #output version tree header
+    if ( $Param{ShowVersions} ) {
+        $Self->{LayoutObject}->Block(
+            Name => 'Collapse',
+            Data => {
+                ConfigItemID => $ConfigItemID,
+            },
+            )
+    }
+    else {
+        $Self->{LayoutObject}->Block(
+            Name => 'Expand',
+            Data => {
+                ConfigItemID => $ConfigItemID,
+            },
+            )
+
+    }
 
     # output version tree
     for my $VersionHash ( @{$VersionList} ) {
@@ -337,7 +356,8 @@ sub Run {
     $Output .= $Self->{LayoutObject}->Output(
         TemplateFile => 'AgentITSMConfigItemZoom',
         Data         => {
-            %{$ConfigItem}
+            %{$ConfigItem},
+            CurInciSignal => $InciSignals{ $LastVersion->{CurInciStateType} },
         },
     );
 
