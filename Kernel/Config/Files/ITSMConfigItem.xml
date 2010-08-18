@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <otrs_config version="1.0" init="Config">
-    <CVS>$Id: ITSMConfigItem.xml,v 1.13 2010-08-18 03:52:53 cg Exp $</CVS>
+    <CVS>$Id: ITSMConfigItem.xml,v 1.14 2010-08-18 15:26:54 cr Exp $</CVS>
     <ConfigItem Name="Frontend::Module###AdminITSMConfigItem" Required="0" Valid="1">
         <Description Lang="en">Frontend module registration for the AdminITSMConfigItem configuration in the admin area.</Description>
         <Description Lang="de">Frontendmodul-Registration der AdminITSMConfigItem Konfiguration im Admin-Bereich.</Description>
@@ -71,6 +71,16 @@
                 <Description>Config Item Zoom</Description>
                 <Title>Zoom</Title>
                 <NavBarName>Config Item</NavBarName>
+                <Loader>
+                    <CSS>Core.Agent.ITSM.Default.css</CSS>
+                    <CSS>Core.Agent.ITSM.Detail.css</CSS>
+                    <CSS>Core.ITSM.Print.css</CSS>
+                    <CSS_IE7>Core.Agent.ITSM.Detail.css</CSS_IE7>
+                    <JavaScript>thirdparty/jquery-tablesorter-2.0.3/jquery.tablesorter.js</JavaScript>
+                    <JavaScript>Core.UI.Table.Sort.js</JavaScript>
+                    <JavaScript>Core.Agent.TicketZoom.js</JavaScript>
+                    <JavaScript>Core.Agent.ITSM.Zoom.js</JavaScript>
+                </Loader>
             </FrontendModuleReg>
         </Setting>
     </ConfigItem>
@@ -154,7 +164,7 @@
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###000-Back" Required="0" Valid="1">
         <Description Lang="en">Module to show back link in config item menu.</Description>
-        <Description Lang="de">Mit diesem Modul wird der Zurück-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
+        <Description Lang="de">Mit diesem Modul wird der Zurï¿½ck-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
         <Setting>
@@ -163,7 +173,7 @@
                 <Item Key="Name">Back</Item>
                 <Item Key="Description">Back</Item>
                 <Item Key="Action"></Item>
-                <Item Key="Link">Action=AgentITSMConfigItem&amp;ClassID=$QData{"ClassID"}</Item>
+                <Item Key="Link">Action=AgentITSMConfigItem;ClassID=$QData{"ClassID"}</Item>
                 <Item Key="LinkParam">onclick="javascript:history.back(); return false;"</Item>
             </Hash>
         </Setting>
@@ -182,7 +192,7 @@
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###200-History" Required="0" Valid="1">
         <Description Lang="en">Module to show back link in config item menu.</Description>
-        <Description Lang="de">Mit diesem Modul wird der Zurück-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
+        <Description Lang="de">Mit diesem Modul wird der Zurï¿½ck-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
         <Setting>
@@ -191,7 +201,7 @@
                 <Item Key="Name">History</Item>
                 <Item Key="Description">History</Item>
                 <Item Key="Action">AgentITSMConfigItemEdit</Item>
-                <Item Key="Link">Action=AgentITSMConfigItemHistory&amp;ConfigItemID=$QData{"ConfigItemID"}&amp;VersionID=$QData{"VersionID"}</Item>
+                <Item Key="Link">Action=AgentITSMConfigItemHistory;ConfigItemID=$QData{"ConfigItemID"};VersionID=$QData{"VersionID"}</Item>
             </Hash>
         </Setting>
     </ConfigItem>
@@ -206,7 +216,7 @@
                 <Item Key="Name">Edit</Item>
                 <Item Key="Description">Edit</Item>
                 <Item Key="Action">AgentITSMConfigItemEdit</Item>
-                <Item Key="Link">Action=AgentITSMConfigItemEdit&amp;ConfigItemID=$QData{"ConfigItemID"}</Item>
+                <Item Key="Link">Action=AgentITSMConfigItemEdit;ConfigItemID=$QData{"ConfigItemID"}</Item>
             </Hash>
         </Setting>
     </ConfigItem>
@@ -221,14 +231,14 @@
                 <Item Key="Name">Print</Item>
                 <Item Key="Description">Print</Item>
                 <Item Key="Action">AgentITSMConfigItemPrint</Item>
-                <Item Key="Link">Action=AgentITSMConfigItemPrint&amp;ConfigItemID=$QData{"ConfigItemID"}&amp;VersionID=$QData{"VersionID"}</Item>
+                <Item Key="Link">Action=AgentITSMConfigItemPrint;ConfigItemID=$QData{"ConfigItemID"};VersionID=$QData{"VersionID"}</Item>
                 <Item Key="LinkParam">target="print"</Item>
             </Hash>
         </Setting>
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###500-Link" Required="0" Valid="1">
         <Description Lang="en">Module to show the link link in config item menu.</Description>
-        <Description Lang="de">Mit diesem Modul wird der Verknüpfen-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
+        <Description Lang="de">Mit diesem Modul wird der Verknï¿½pfen-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
         <Setting>
@@ -237,7 +247,7 @@
                 <Item Key="Name">Link</Item>
                 <Item Key="Description">Link</Item>
                 <Item Key="Action">AgentLinkObject</Item>
-                <Item Key="Link">Action=AgentLinkObject&amp;SourceObject=ITSMConfigItem&amp;SourceKey=$QData{"ConfigItemID"}</Item>
+                <Item Key="Link">Action=AgentLinkObject;SourceObject=ITSMConfigItem;SourceKey=$QData{"ConfigItemID"}</Item>
             </Hash>
         </Setting>
     </ConfigItem>
@@ -252,13 +262,13 @@
                 <Item Key="Name">Duplicate</Item>
                 <Item Key="Description">Duplicate</Item>
                 <Item Key="Action">AgentITSMConfigItemEdit</Item>
-                <Item Key="Link">Action=AgentITSMConfigItemEdit&amp;DuplicateID=$QData{"ConfigItemID"}&amp;VersionID=$QData{"VersionID"}</Item>
+                <Item Key="Link">Action=AgentITSMConfigItemEdit;DuplicateID=$QData{"ConfigItemID"};VersionID=$QData{"VersionID"}</Item>
             </Hash>
         </Setting>
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::NumberGenerator" Required="1" Valid="1">
         <Description Lang="en">Select the config item number generator module. "AutoIncrement" increments the config item number, the SystemID, the ConfigItemClassID and the counter are used. The format is "SystemID ConfigItemClassID Counter", e.g. 1205000004, 1205000005.</Description>
-        <Description Lang="de">Auswahl des Moduls zur Generierung der ConfigItem-Nummer. "AutoIncrement" zählt die ConfigItem-Nummer automatisch hoch und verbindet sie mit der SystemID und mit der ConfigItemClassID. Es wird das Format "SystemID ConfigItemClassID Counter" verwendet, z. B. 1205000004, 1205000005.</Description>
+        <Description Lang="de">Auswahl des Moduls zur Generierung der ConfigItem-Nummer. "AutoIncrement" zï¿½hlt die ConfigItem-Nummer automatisch hoch und verbindet sie mit der SystemID und mit der ConfigItemClassID. Es wird das Format "SystemID ConfigItemClassID Counter" verwendet, z. B. 1205000004, 1205000005.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Core::ITSMConfigItem</SubGroup>
         <Setting>
@@ -276,7 +286,7 @@
     </ConfigItem>
     <ConfigItem Name="Stats::DynamicObjectRegistration###ITSMConfigItem" Required="0" Valid="1">
         <Description Lang="en">Here you can decide if the stats module may generate stats about itsm config item stuff.</Description>
-        <Description Lang="de">Hier können Sie festlegen, ob das Statistik-Modul auch Statistiken über ITSM ConfigItem Dinge generieren darf.</Description>
+        <Description Lang="de">Hier kï¿½nnen Sie festlegen, ob das Statistik-Modul auch Statistiken ï¿½ber ITSM ConfigItem Dinge generieren darf.</Description>
         <Group>Framework</Group>
         <SubGroup>Core::Stats</SubGroup>
         <Setting>
@@ -299,7 +309,7 @@
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::EventModulePost###100-History" Required="0" Valid="1">
         <Description Lang="en">Config item event module that enables logging to history.</Description>
-        <Description Lang="de">Event-Modul für ConfigItems, das das Logging in die Historie erlaubt.</Description>
+        <Description Lang="de">Event-Modul fï¿½r ConfigItems, das das Logging in die Historie erlaubt.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Core::ITSMConfigItem</SubGroup>
         <Setting>
@@ -312,7 +322,7 @@
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::HistoryOrder" Required="1" Valid="1">
         <Description Lang="en">Show history order reverse in the agent interface under config item history.</Description>
-        <Description Lang="de">Zeige die Historie normal oder rückwärts sortiert im Agent-Interface unter der ConfigItem-Historie.</Description>
+        <Description Lang="de">Zeige die Historie normal oder rï¿½ckwï¿½rts sortiert im Agent-Interface unter der ConfigItem-Historie.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::ViewHistory</SubGroup>
         <Setting>
@@ -338,7 +348,7 @@
     </ConfigItem>
     <ConfigItem Name="GeneralCatalogPreferences###DeploymentStates" Required="0" Valid="1">
         <Description Lang="en">Parameters for the deployment states in the preference view.</Description>
-        <Description Lang="de">Parameter für den Ausgabestatus in der Ansicht für die Einstellungen.</Description>
+        <Description Lang="de">Parameter fï¿½r den Ausgabestatus in der Ansicht fï¿½r die Einstellungen.</Description>
         <Group>GeneralCatalog</Group>
         <SubGroup>GeneralCatalog::Preferences</SubGroup>
         <Setting>
@@ -361,7 +371,7 @@
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Permission::Class###010-ClassGroupCheck" Required="0" Valid="1">
         <Description Lang="en">Module to check the group responsible for a class.</Description>
-        <Description Lang="de">Modul zum Überprüfen der Gruppe, die für eine Klasse zuständig ist.</Description>
+        <Description Lang="de">Modul zum ï¿½berprï¿½fen der Gruppe, die fï¿½r eine Klasse zustï¿½ndig ist.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Core::ITSMConfigItem</SubGroup>
         <Setting>
@@ -374,7 +384,7 @@
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Permission::Item###010-ItemClassGroupCheck" Required="0" Valid="1">
         <Description Lang="en">Module to check the group responsible for a configitem.</Description>
-        <Description Lang="de">Modul zum Überprüfen der Gruppe, die für ein ConfigItem zuständig ist.</Description>
+        <Description Lang="de">Modul zum ï¿½berprï¿½fen der Gruppe, die fï¿½r ein ConfigItem zustï¿½ndig ist.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Core::ITSMConfigItem</SubGroup>
         <Setting>
@@ -387,7 +397,7 @@
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItem###Permission" Required="1" Valid="1">
         <Description Lang="en">Required permissions to use this option.</Description>
-        <Description Lang="de">Benötigte Rechte zur Anzeige der ConfigItem Klasse.</Description>
+        <Description Lang="de">Benï¿½tigte Rechte zur Anzeige der ConfigItem Klasse.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::Permission</SubGroup>
         <Setting>
@@ -396,7 +406,7 @@
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemEdit###Permission" Required="1" Valid="1">
         <Description Lang="en">Required permissions to use this option.</Description>
-        <Description Lang="de">Benötigte Rechte zur Anzeige der ConfigItem Klasse.</Description>
+        <Description Lang="de">Benï¿½tigte Rechte zur Anzeige der ConfigItem Klasse.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::Permission</SubGroup>
         <Setting>
@@ -405,7 +415,7 @@
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemAdd###Permission" Required="1" Valid="1">
         <Description Lang="en">Required permissions to use this option.</Description>
-        <Description Lang="de">Benötigte Rechte zur Anzeige der ConfigItem Klasse.</Description>
+        <Description Lang="de">Benï¿½tigte Rechte zur Anzeige der ConfigItem Klasse.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::Permission</SubGroup>
         <Setting>
@@ -414,7 +424,7 @@
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemHistory###Permission" Required="1" Valid="1">
         <Description Lang="en">Required permissions to use this option.</Description>
-        <Description Lang="de">Benötigte Rechte zur Anzeige der ConfigItem Historie.</Description>
+        <Description Lang="de">Benï¿½tigte Rechte zur Anzeige der ConfigItem Historie.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::Permission</SubGroup>
         <Setting>
@@ -423,7 +433,7 @@
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemPrint###Permission" Required="1" Valid="1">
         <Description Lang="en">Required permissions to use this option.</Description>
-        <Description Lang="de">Benötigte Rechte zum Drucken des ConfigItems.</Description>
+        <Description Lang="de">Benï¿½tigte Rechte zum Drucken des ConfigItems.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::Permission</SubGroup>
         <Setting>
@@ -432,7 +442,7 @@
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemZoom###Permission" Required="1" Valid="1">
         <Description Lang="en">Required permissions to use this option.</Description>
-        <Description Lang="de">Benötigte Rechte zur Anzeige des ConfigItems.</Description>
+        <Description Lang="de">Benï¿½tigte Rechte zur Anzeige des ConfigItems.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::Permission</SubGroup>
         <Setting>
@@ -441,7 +451,7 @@
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemSearch###Permission" Required="1" Valid="1">
         <Description Lang="en">Required permissions to use this option.</Description>
-        <Description Lang="de">Benötigte Rechte zum Drucken des ConfigItems.</Description>
+        <Description Lang="de">Benï¿½tigte Rechte zum Drucken des ConfigItems.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::Permission</SubGroup>
         <Setting>
@@ -450,7 +460,7 @@
     </ConfigItem>
     <ConfigItem Name="GeneralCatalogPreferences###Permissions" Required="0" Valid="1">
         <Description Lang="en">Parameters for the example permission groups of general catalog attributes.</Description>
-        <Description Lang="de">Parameter für die zugriffsberechtigte Gruppe der GeneralCatalog-Attribute.</Description>
+        <Description Lang="de">Parameter fï¿½r die zugriffsberechtigte Gruppe der GeneralCatalog-Attribute.</Description>
         <Group>GeneralCatalog</Group>
         <SubGroup>GeneralCatalog::Preferences</SubGroup>
         <Setting>
