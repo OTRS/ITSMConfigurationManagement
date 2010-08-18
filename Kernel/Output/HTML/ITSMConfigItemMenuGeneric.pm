@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/ITSMConfigItemMenuGeneric.pm
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemMenuGeneric.pm,v 1.5 2010-02-25 12:42:51 bes Exp $
+# $Id: ITSMConfigItemMenuGeneric.pm,v 1.6 2010-08-18 15:18:54 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.5 $) [1];
+$VERSION = qw($Revision: 1.6 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -93,11 +93,6 @@ sub Run {
 
     # output menu block
     $Self->{LayoutObject}->Block( Name => 'Menu' );
-
-    # output seperator
-    if ( $Param{Counter} ) {
-        $Self->{LayoutObject}->Block( Name => 'MenuItemSplit' );
-    }
 
     # output menu item
     $Self->{LayoutObject}->Block(
