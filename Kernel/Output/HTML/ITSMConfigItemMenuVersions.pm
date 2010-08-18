@@ -1,8 +1,8 @@
 # --
 # Kernel/Output/HTML/ITSMConfigItemMenuVersions.pm
-# Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemMenuVersions.pm,v 1.4 2009-08-18 22:18:19 mh Exp $
+# $Id: ITSMConfigItemMenuVersions.pm,v 1.5 2010-08-18 15:19:23 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.4 $) [1];
+$VERSION = qw($Revision: 1.5 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -45,9 +45,6 @@ sub Run {
     }
 
     $Self->{LayoutObject}->Block( Name => 'Menu' );
-    if ( $Param{Counter} ) {
-        $Self->{LayoutObject}->Block( Name => 'MenuItemSplit' );
-    }
     if ( $Param{ShowVersions} ) {
         $Self->{LayoutObject}->Block(
             Name => 'MenuItem',
@@ -58,7 +55,7 @@ sub Run {
                 Name        => 'Hide Versions',
                 Description => 'Hide Versions',
                 Link =>
-                    'Action=AgentITSMConfigItemZoom&amp;ConfigItemID=$QData{"ConfigItemID"}&amp;ShowVersions=0',
+                    'Action=AgentITSMConfigItemZoom;ConfigItemID=$QData{"ConfigItemID"};ShowVersions=0',
             },
         );
     }
@@ -72,7 +69,7 @@ sub Run {
                 Name        => 'Show Versions',
                 Description => 'Show Versions',
                 Link =>
-                    'Action=AgentITSMConfigItemZoom&amp;ConfigItemID=$QData{"ConfigItemID"}&amp;ShowVersions=1',
+                    'Action=AgentITSMConfigItemZoom;ConfigItemID=$QData{"ConfigItemID"};ShowVersions=1',
             },
         );
     }
