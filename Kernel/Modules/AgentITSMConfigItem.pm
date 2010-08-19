@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItem.pm - the OTRS::ITSM config item module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItem.pm,v 1.9 2010-08-17 23:05:11 cg Exp $
+# $Id: AgentITSMConfigItem.pm,v 1.10 2010-08-19 17:45:39 cg Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.9 $) [1];
+$VERSION = qw($Revision: 1.10 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -264,6 +264,14 @@ sub Run {
     else {
         $SearchResult{PageNull} = 0;
     }
+
+    # output ItemsAvail
+    $Self->{LayoutObject}->Block(
+        Name => 'ItemsAvail',
+        Data => {
+            ConfigItemsAvail => $ClassCount{$ClassID},
+        },
+    );
 
     # investigate refresh
     my $Refresh = $Self->{UserRefreshTime} ? 60 * $Self->{UserRefreshTime} : undef;
