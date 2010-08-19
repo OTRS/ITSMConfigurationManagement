@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <otrs_config version="1.0" init="Config">
-    <CVS>$Id: ITSMConfigItem.xml,v 1.15 2010-08-18 15:28:52 cr Exp $</CVS>
+    <CVS>$Id: ITSMConfigItem.xml,v 1.16 2010-08-19 15:50:51 dz Exp $</CVS>
     <ConfigItem Name="Frontend::Module###AdminITSMConfigItem" Required="0" Valid="1">
         <Description Lang="en">Frontend module registration for the AdminITSMConfigItem configuration in the admin area.</Description>
         <Description Lang="de">Frontendmodul-Registration der AdminITSMConfigItem Konfiguration im Admin-Bereich.</Description>
@@ -34,7 +34,7 @@
                 <Title>Config Item</Title>
                 <NavBar>
                     <Description>Config Item-Area</Description>
-                    <Name>Config Item</Name>
+                    <Name>ConfigItem</Name>
                     <Type>Menu</Type>
                     <Block>ItemArea</Block>
                     <Image>itsm_configitem.png</Image>
