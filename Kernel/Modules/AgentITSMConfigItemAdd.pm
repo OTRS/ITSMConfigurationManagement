@@ -1,8 +1,8 @@
 # --
 # Kernel/Modules/AgentITSMConfigItemAdd.pm - the OTRS::ITSM config item add module
-# Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemAdd.pm,v 1.5 2009-10-13 17:31:11 ub Exp $
+# $Id: AgentITSMConfigItemAdd.pm,v 1.6 2010-08-19 17:58:18 cg Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.5 $) [1];
+$VERSION = qw($Revision: 1.6 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -45,71 +45,66 @@ sub new {
 sub Run {
     my ( $Self, %Param ) = @_;
 
-    # ------------------------------------------------------------ #
-    # redirect
-    # ------------------------------------------------------------ #
+    # get class list
+    my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
+        Class => 'ITSM::ConfigItem::Class',
+    );
 
-    if ( $Self->{Subaction} eq 'Redirect' ) {
-
-        # get class id
-        my $ClassID = $Self->{ParamObject}->GetParam( Param => 'ClassID' );
-
-        return $Self->{LayoutObject}->Redirect( OP => "Action=$Self->{Action}" ) if !$ClassID;
-
-        return $Self->{LayoutObject}->Redirect(
-            OP => "Action=AgentITSMConfigItemEdit&ClassID=$ClassID",
+    # check for access rights
+    for my $ClassID ( keys %{$ClassList} ) {
+        my $HasAccess = $Self->{ConfigItemObject}->Permission(
+            Type    => $Self->{Config}->{Permission},
+            Scope   => 'Class',
+            ClassID => $ClassID,
+            UserID  => $Self->{UserID},
         );
+
+        delete $ClassList->{$ClassID} if !$HasAccess;
     }
 
-    # ------------------------------------------------------------ #
-    # overview
-    # ------------------------------------------------------------ #
-    else {
+    # generate ClassOptionStrg
+    my $ClassOptionStrg = $Self->{LayoutObject}->BuildSelection(
+        Data         => $ClassList,
+        Name         => 'ClassID',
+        PossibleNone => 1,
+        Translation  => 0,
+        Class        => 'W100pc',
+    );
 
-        # get class list
-        my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
-            Class => 'ITSM::ConfigItem::Class',
+    for my $ItemID ( keys %{$ClassList} ) {
+
+        # get item data
+        my $ItemData = $Self->{GeneralCatalogObject}->ItemGet(
+            ItemID => $ItemID,
         );
 
-        # check for access rights
-        for my $ClassID ( keys %{$ClassList} ) {
-            my $HasAccess = $Self->{ConfigItemObject}->Permission(
-                Type    => $Self->{Config}->{Permission},
-                Scope   => 'Class',
-                ClassID => $ClassID,
-                UserID  => $Self->{UserID},
-            );
-
-            delete $ClassList->{$ClassID} if !$HasAccess;
-        }
-
-        # generate ClassOptionStrg
-        my $ClassOptionStrg = $Self->{LayoutObject}->BuildSelection(
-            Data         => $ClassList,
-            Name         => 'ClassID',
-            PossibleNone => 1,
-            Translation  => 0,
-            OnChange     => 'document.configitemclass.submit(); return false;',
-        );
-
-        # output header
-        my $Output = $Self->{LayoutObject}->Header( Title => 'Add' );
-        $Output .= $Self->{LayoutObject}->NavigationBar();
-
-        # output overview
-        $Output .= $Self->{LayoutObject}->Output(
-            TemplateFile => 'AgentITSMConfigItemAdd',
-            Data         => {
-                %Param,
-                ClassOptionStrg => $ClassOptionStrg,
+        # output overview item list
+        $Self->{LayoutObject}->Block(
+            Name => 'OverviewItemList',
+            Data => {
+                ClassID => $ItemID,
+                Name    => $ClassList->{$ItemID},
             },
         );
-
-        # output footer
-        $Output .= $Self->{LayoutObject}->Footer();
-
-        return $Output;
     }
+
+    # output header
+    my $Output = $Self->{LayoutObject}->Header( Title => 'Add' );
+    $Output .= $Self->{LayoutObject}->NavigationBar();
+
+    # output overview
+    $Output .= $Self->{LayoutObject}->Output(
+        TemplateFile => 'AgentITSMConfigItemAdd',
+        Data         => {
+            %Param,
+            ClassOptionStrg => $ClassOptionStrg,
+        },
+    );
+
+    # output footer
+    $Output .= $Self->{LayoutObject}->Footer();
+
+    return $Output;
 }
 
 1;
