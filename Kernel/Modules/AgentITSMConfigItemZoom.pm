@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemZoom.pm - the OTRS::ITSM config item zoom module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemZoom.pm,v 1.10 2010-08-21 17:38:46 cr Exp $
+# $Id: AgentITSMConfigItemZoom.pm,v 1.11 2010-08-21 17:45:55 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -19,7 +19,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::LinkObject;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.10 $) [1];
+$VERSION = qw($Revision: 1.11 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -412,11 +412,11 @@ sub _XMLOutput {
                 Item  => $Item,
             );
 
-            # calculate identation for left-padding css based on 15px per level and 10px as default
-            my $Identation = 10;
+            # calculate indentation for left-padding css based on 15px per level and 10px as default
+            my $Indentation = 10;
 
             if ( $Param{Level} ) {
-                $Identation += 15 * $Param{Level};
+                $Indentation += 15 * $Param{Level};
             }
 
             # output data block
@@ -426,7 +426,7 @@ sub _XMLOutput {
                     Name        => $Item->{Name},
                     Description => $Item->{Description} || $Item->{Name},
                     Value       => $Value,
-                    Identation  => $Identation,
+                    Indentation => $Indentation,
                 },
             );
 
