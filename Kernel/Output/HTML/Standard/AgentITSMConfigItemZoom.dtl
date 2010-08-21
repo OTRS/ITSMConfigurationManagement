@@ -2,7 +2,7 @@
 # AgentITSMConfigItemZoom.dtl - provides HTML form for AgentITSMConfigItemZoom
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemZoom.dtl,v 1.4 2010-08-18 17:17:49 cr Exp $
+# $Id: AgentITSMConfigItemZoom.dtl,v 1.5 2010-08-21 17:50:04 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -84,7 +84,7 @@
 <!-- dtl:block:Menu -->
 <!-- dtl:block:MenuItem -->
                     <li>
-                        <a class = "AsPopup" href="$Env{"Baselink"}$Data{"Link"}" class="$QData{"AsPopop"}" $Data{"LinkParam"} title="$Text{"$Data{"Description"}"}">$Text{"$Data{"Name"}"}</a>
+                        <a href="$Env{"Baselink"}$Data{"Link"}" class="$QData{"MenuClass"}" $Data{"LinkParam"} title="$Text{"$Data{"Description"}"}">$Text{"$Data{"Name"}"}</a>
                     </li>
 <!-- dtl:block:MenuItem -->
 <!-- dtl:block:Menu -->
@@ -110,7 +110,7 @@
                             <table id="FixedTable" class="TableSmall">
                                 <thead>
                                     <tr>
-                                        <th class="Flags" title="Incident Status"><span>Status</span></th>
+                                        <th title="Version Incident State"><span>Incident&nbsp;State</span></th>
                                         <th title="Version No."><span>No.</span></th>
                                         <th title="Configuration ItemName"><span>Name</span></th>
                                         <th title="Created By User"><span>Created By</span></th>
@@ -179,26 +179,20 @@
             </div>
             <div id="ITSMItems">
 
-                <div class="WidgetBox SpacingTop Expanded">
+                <div class="WidgetBox SpacingTop">
                     <div class="LightRow Header">
                         <div class="WidgetAction Toggle"><a href="#" title="$Text{"Show or hide the content."}"><span></span></a></div>
                         <h2>$Text{"Configuration Item Version Details"}</h2>
                     </div>
-                    <div class="LightRow Content">
+                    <div class="LightRow Content WithPadding">
                         <table class="DataTable">
                             <tbody>
 <!-- dtl:block:Data -->
                                 <tr>
-                                    <td class="W25pc" title="$Text{"QData{"Description"}"}">
-<!-- dtl:block:DataNamePre -->
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
-<!-- dtl:block:DataNamePre -->
-                                        <strong>$Text{"$Data{"Name"}"}:</strong>&nbsp;&nbsp;
+                                    <td class="W25pc" style="padding-left: $Text{"$Data{"Indentation"}"}px;" title="$Text{"$Data{"Description"}"}">
+                                        <strong>$Text{"$Data{"Name"}"}:</strong>
                                     </td>
-                                    <td>
-<!-- dtl:block:DataValuePre -->
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
-<!-- dtl:block:DataValuePre -->
+                                    <td style="padding-left: $Text{"$Data{"Indentation"}"}px;">
                                         $Data{"Value"}
                                     </td>
                                 </tr>
@@ -212,15 +206,8 @@
 
             <div id="ConfigItemLinks">
 <!-- dtl:block:LinkTableComplex -->
-                <div class="WidgetSimple DontPrint SpacingTop">
-                    <div class="Header">
-                        <h2>$Text{"Linked Objects"}</h2>
-                    </div>
-                    <div class="Content">
 # object links
-                        $Data{"LinkTableStrg"}
-                    </div>
-                </div>
+                $Data{"LinkTableStrg"}
 
 <!-- dtl:block:LinkTableComplex -->
             </div>
@@ -232,12 +219,16 @@
 
 <!-- dtl:js_on_document_complete -->
 <script type="text/javascript">//<![CDATA[
-    Core.Agent.ITSM.Zoom.Init($Env{"UserConfigItemZoomTableHeight"});
+    ITSM.Agent.Zoom.Init($Env{"UserConfigItemZoomTableHeight"});
 
     $('ul.Actions a.AsPopup').bind('click', function (Event) {
         Core.UI.Popup.OpenPopup($(this).attr('href'), 'Action');
         return false;
     });
 
+    $('ul.Actions a.HistoryBack').bind('click', function (Event) {
+        javascript:history.back();
+        return false;
+    });
 //]]></script>
 <!-- dtl:js_on_document_complete -->
