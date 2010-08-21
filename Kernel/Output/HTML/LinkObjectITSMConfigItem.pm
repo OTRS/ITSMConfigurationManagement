@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/LinkObjectITSMConfigItem.pm - layout backend module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: LinkObjectITSMConfigItem.pm,v 1.9 2010-08-18 17:53:01 en Exp $
+# $Id: LinkObjectITSMConfigItem.pm,v 1.10 2010-08-21 17:39:44 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::Output::HTML::Layout;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.9 $) [1];
+$VERSION = qw($Revision: 1.10 $) [1];
 
 =head1 NAME
 
@@ -259,7 +259,7 @@ sub TableCreateComplex {
             Blockname => $Self->{ObjectData}->{Realname} . ' (' . $Class . ')',
             Headline  => [
                 {
-                    Content => '',
+                    Content => 'Incident State',
                     Width   => 20,
                 },
                 {
@@ -685,6 +685,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.9 $ $Date: 2010-08-18 17:53:01 $
+$Revision: 1.10 $ $Date: 2010-08-21 17:39:44 $
 
 =cut

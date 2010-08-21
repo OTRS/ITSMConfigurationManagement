@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemZoom.pm - the OTRS::ITSM config item zoom module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemZoom.pm,v 1.9 2010-08-18 18:06:50 cr Exp $
+# $Id: AgentITSMConfigItemZoom.pm,v 1.10 2010-08-21 17:38:46 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -19,7 +19,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::LinkObject;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.9 $) [1];
+$VERSION = qw($Revision: 1.10 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -129,6 +129,18 @@ sub Run {
                     %{$Self},
                     ConfigItemID => $Self->{ConfigItemID},
                 );
+
+                # set classes
+                if ( $Menus{$Menu}->{Target} ) {
+
+                    if ( $Menus{$Menu}->{Target} eq 'PopUp' ) {
+                        $Menus{$Menu}->{MenuClass} = 'AsPopup';
+                    }
+                    elsif ( $Menus{$Menu}->{Target} eq 'Back' ) {
+                        $Menus{$Menu}->{MenuClass} = 'HistoryBack';
+                    }
+
+                }
 
                 # run module
                 $Counter = $Object->Run(
@@ -255,6 +267,7 @@ sub Run {
                 Name        => 'Name',
                 Description => 'The name of this config item',
                 Value       => $Version->{Name},
+                Identation  => 10,
             },
         );
 
@@ -267,6 +280,7 @@ sub Run {
                 Value       => $Self->{LayoutObject}->{LanguageObject}->Get(
                     $Version->{DeplState},
                 ),
+                Identation => 10,
             },
         );
 
@@ -279,6 +293,7 @@ sub Run {
                 Value       => $Self->{LayoutObject}->{LanguageObject}->Get(
                     $Version->{InciState},
                 ),
+                Identation => 10,
             },
         );
 
@@ -397,6 +412,13 @@ sub _XMLOutput {
                 Item  => $Item,
             );
 
+            # calculate identation for left-padding css based on 15px per level and 10px as default
+            my $Identation = 10;
+
+            if ( $Param{Level} ) {
+                $Identation += 15 * $Param{Level};
+            }
+
             # output data block
             $Self->{LayoutObject}->Block(
                 Name => 'Data',
@@ -404,16 +426,9 @@ sub _XMLOutput {
                     Name        => $Item->{Name},
                     Description => $Item->{Description} || $Item->{Name},
                     Value       => $Value,
+                    Identation  => $Identation,
                 },
             );
-
-            # output space, if level was given
-            if ( $Param{Level} ) {
-                for ( 1 .. $Param{Level} ) {
-                    $Self->{LayoutObject}->Block( Name => 'DataNamePre' );
-                    $Self->{LayoutObject}->Block( Name => 'DataValuePre' );
-                }
-            }
 
             # start recursion, if "Sub" was found
             if ( $Item->{Sub} ) {
