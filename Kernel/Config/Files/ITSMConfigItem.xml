@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <otrs_config version="1.0" init="Config">
-    <CVS>$Id: ITSMConfigItem.xml,v 1.16 2010-08-19 15:50:51 dz Exp $</CVS>
+    <CVS>$Id: ITSMConfigItem.xml,v 1.17 2010-08-21 17:29:50 cr Exp $</CVS>
     <ConfigItem Name="Frontend::Module###AdminITSMConfigItem" Required="0" Valid="1">
         <Description Lang="en">Frontend module registration for the AdminITSMConfigItem configuration in the admin area.</Description>
         <Description Lang="de">Frontendmodul-Registration der AdminITSMConfigItem Konfiguration im Admin-Bereich.</Description>
@@ -15,7 +15,8 @@
                 <NavBarModule>
                     <Module>Kernel::Output::HTML::NavBarModuleAdmin</Module>
                     <Name>Config Item</Name>
-                    <Block>Block3</Block>
+                    <Description Translatable="1">Create and manage the definitions for Configuration Items.</Description>
+                    <Block>Ticket</Block>
                     <Prio>495</Prio>
                 </NavBarModule>
             </FrontendModuleReg>
@@ -34,7 +35,7 @@
                 <Title>Config Item</Title>
                 <NavBar>
                     <Description>Config Item-Area</Description>
-                    <Name>ConfigItem</Name>
+                    <Name>Config Item</Name>
                     <Type>Menu</Type>
                     <Block>ItemArea</Block>
                     <Image>itsm_configitem.png</Image>
@@ -72,13 +73,12 @@
                 <Title>Zoom</Title>
                 <NavBarName>Config Item</NavBarName>
                 <Loader>
-                    <CSS>Core.Agent.ITSM.Default.css</CSS>
-                    <CSS>Core.Agent.ITSM.Detail.css</CSS>
-                    <CSS>Core.ITSM.Print.css</CSS>
-                    <CSS_IE7>Core.Agent.ITSM.Detail.css</CSS_IE7>
+                    <CSS>ITSM.Agent.Detail.css</CSS>
+                    <CSS>ITSM.Print.css</CSS>
+                    <CSS_IE7>ITSM.Agent.Detail.IE7.css</CSS_IE7>
                     <JavaScript>thirdparty/jquery-tablesorter-2.0.3/jquery.tablesorter.js</JavaScript>
                     <JavaScript>Core.UI.Table.Sort.js</JavaScript>
-                    <JavaScript>Core.Agent.ITSM.Zoom.js</JavaScript>
+                    <JavaScript>ITSM.Agent.Zoom.js</JavaScript>
                 </Loader>
             </FrontendModuleReg>
         </Setting>
@@ -173,7 +173,7 @@
                 <Item Key="Description">Back</Item>
                 <Item Key="Action"></Item>
                 <Item Key="Link">Action=AgentITSMConfigItem;ClassID=$QData{"ClassID"}</Item>
-                <Item Key="LinkParam">onclick="javascript:history.back(); return false;"</Item>
+                <Item Key="Target">Back</Item>
             </Hash>
         </Setting>
     </ConfigItem>
@@ -186,6 +186,7 @@
             <Hash>
                 <Item Key="Module">Kernel::Output::HTML::ITSMConfigItemMenuVersions</Item>
                 <Item Key="Name">Versions</Item>
+                <Item Key="Target"></Item>
             </Hash>
         </Setting>
     </ConfigItem>
@@ -201,6 +202,7 @@
                 <Item Key="Description">History</Item>
                 <Item Key="Action">AgentITSMConfigItemEdit</Item>
                 <Item Key="Link">Action=AgentITSMConfigItemHistory;ConfigItemID=$QData{"ConfigItemID"};VersionID=$QData{"VersionID"}</Item>
+                <Item Key="Target">PopUp</Item>
             </Hash>
         </Setting>
     </ConfigItem>
@@ -216,6 +218,7 @@
                 <Item Key="Description">Edit</Item>
                 <Item Key="Action">AgentITSMConfigItemEdit</Item>
                 <Item Key="Link">Action=AgentITSMConfigItemEdit;ConfigItemID=$QData{"ConfigItemID"}</Item>
+                <Item Key="Target">PopUp</Item>
             </Hash>
         </Setting>
     </ConfigItem>
@@ -232,6 +235,7 @@
                 <Item Key="Action">AgentITSMConfigItemPrint</Item>
                 <Item Key="Link">Action=AgentITSMConfigItemPrint;ConfigItemID=$QData{"ConfigItemID"};VersionID=$QData{"VersionID"}</Item>
                 <Item Key="LinkParam">target="print"</Item>
+                <Item Key="Target">PopUp</Item>
             </Hash>
         </Setting>
     </ConfigItem>
@@ -247,6 +251,7 @@
                 <Item Key="Description">Link</Item>
                 <Item Key="Action">AgentLinkObject</Item>
                 <Item Key="Link">Action=AgentLinkObject;SourceObject=ITSMConfigItem;SourceKey=$QData{"ConfigItemID"}</Item>
+                <Item Key="Target">PopUp</Item>
             </Hash>
         </Setting>
     </ConfigItem>
@@ -262,6 +267,7 @@
                 <Item Key="Description">Duplicate</Item>
                 <Item Key="Action">AgentITSMConfigItemEdit</Item>
                 <Item Key="Link">Action=AgentITSMConfigItemEdit;DuplicateID=$QData{"ConfigItemID"};VersionID=$QData{"VersionID"}</Item>
+                <Item Key="Target">PopUp</Item>
             </Hash>
         </Setting>
     </ConfigItem>
