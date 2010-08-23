@@ -2,7 +2,7 @@
 # AgentITSMConfigItemZoom.dtl - provides HTML form for AgentITSMConfigItemZoom
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemZoom.dtl,v 1.6 2010-08-23 15:10:18 cr Exp $
+# $Id: AgentITSMConfigItemZoom.dtl,v 1.7 2010-08-23 16:57:37 dz Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -84,7 +84,7 @@
 <!-- dtl:block:Menu -->
 <!-- dtl:block:MenuItem -->
                     <li>
-                        <a href="$Env{"Baselink"}$Data{"Link"}" class="$QData{"MenuClass"}" $Data{"LinkParam"} title="$Text{"$Data{"Description"}"}">$Text{"$Data{"Name"}"}</a>
+                        <a href="$Env{"Baselink"}$Data{"Link"}" class="$QData{"MenuClass"}" title="$Text{"$Data{"Description"}"}">$Text{"$Data{"Name"}"}</a>
                     </li>
 <!-- dtl:block:MenuItem -->
 <!-- dtl:block:Menu -->
