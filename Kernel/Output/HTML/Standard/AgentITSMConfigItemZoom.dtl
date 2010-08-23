@@ -2,7 +2,7 @@
 # AgentITSMConfigItemZoom.dtl - provides HTML form for AgentITSMConfigItemZoom
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemZoom.dtl,v 1.5 2010-08-21 17:50:04 cr Exp $
+# $Id: AgentITSMConfigItemZoom.dtl,v 1.6 2010-08-23 15:10:18 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -179,7 +179,7 @@
             </div>
             <div id="ITSMItems">
 
-                <div class="WidgetBox SpacingTop">
+                <div class="WidgetBox SpacingTop Expanded">
                     <div class="LightRow Header">
                         <div class="WidgetAction Toggle"><a href="#" title="$Text{"Show or hide the content."}"><span></span></a></div>
                         <h2>$Text{"Configuration Item Version Details"}</h2>
