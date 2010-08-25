@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemEdit.pm - the OTRS::ITSM config item edit module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.pm,v 1.11 2010-08-18 15:17:48 cr Exp $
+# $Id: AgentITSMConfigItemEdit.pm,v 1.12 2010-08-25 20:46:19 cg Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.11 $) [1];
+$VERSION = qw($Revision: 1.12 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -209,9 +209,53 @@ sub Run {
         );
     }
 
+    # Necessary stuff for Add New
+    # get class list
+    my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
+        Class => 'ITSM::ConfigItem::Class',
+    );
+
+    # check for access rights
+    for my $ClassID ( keys %{$ClassList} ) {
+        my $HasAccess = $Self->{ConfigItemObject}->Permission(
+            Type    => $Self->{Config}->{Permission},
+            Scope   => 'Class',
+            ClassID => $ClassID,
+            UserID  => $Self->{UserID},
+        );
+
+        delete $ClassList->{$ClassID} if !$HasAccess;
+    }
+
+    # generate ClassOptionStrg
+    my $ClassOptionStrg = $Self->{LayoutObject}->BuildSelection(
+        Data         => $ClassList,
+        Name         => 'ClassID',
+        PossibleNone => 1,
+        Translation  => 0,
+        Class        => 'W100pc',
+        SelectedID   => $ConfigItem->{ClassID},
+    );
+
+    # output name block
+    $Self->{LayoutObject}->Block(
+        Name => 'ActionAddItem',
+        Data => {
+            ClassOptionStrg => $ClassOptionStrg,
+        },
+    );
+
+    # End Necessary stuff for Add New
+
     my %XMLFormOutputParam;
     if ( $Version->{XMLData}->[1]->{Version}->[1] ) {
         $XMLFormOutputParam{XMLData} = $Version->{XMLData}->[1]->{Version}->[1];
+    }
+
+    # output deployment state invalid block
+    my $RowNameInvalid = '';
+    if ( !$Version->{Name} && $Self->{Subaction} eq 'VersionSave' && $SubmitSave ) {
+        $RowNameInvalid = 'ServerError'
     }
 
     # output name block
@@ -219,24 +263,27 @@ sub Run {
         Name => 'RowName',
         Data => {
             %{$Version},
+            RowNameInvalid => $RowNameInvalid,
         },
     );
-
-    # output name invalid block
-    if ( !$Version->{Name} && $Self->{Subaction} eq 'VersionSave' ) {
-        $Self->{LayoutObject}->Block( Name => 'RowNameInvalid' );
-    }
 
     # get deployment state list
     my $DeplStateList = $Self->{GeneralCatalogObject}->ItemList(
         Class => 'ITSM::ConfigItem::DeploymentState',
     );
 
+    # output deployment state invalid block
+    my $RowDeplStateInvalid = '';
+    if ( !$Version->{DeplStateID} && $Self->{Subaction} eq 'VersionSave' && $SubmitSave ) {
+        $RowDeplStateInvalid = ' ServerError'
+    }
+
     # generate DeplStateOptionStrg
     my $DeplStateOptionStrg = $Self->{LayoutObject}->BuildSelection(
         Data         => $DeplStateList,
         Name         => 'DeplStateID',
         PossibleNone => 1,
+        Class        => 'Validate_RequiredDropdown' . $RowDeplStateInvalid,
         SelectedID   => $Version->{DeplStateID},
     );
 
@@ -248,13 +295,6 @@ sub Run {
         },
     );
 
-    # output deployment state invalid block
-    if ( !$Version->{DeplStateID} && $Self->{Subaction} eq 'VersionSave' ) {
-        $Self->{LayoutObject}->Block(
-            Name => 'RowDeplStateInvalid',
-        );
-    }
-
     # get incident state list
     my $InciStateList = $Self->{GeneralCatalogObject}->ItemList(
         Class       => 'ITSM::Core::IncidentState',
@@ -263,11 +303,18 @@ sub Run {
         },
     );
 
+    # output deployment state invalid block
+    my $RowInciStateInvalid = '';
+    if ( !$Version->{InciStateID} && $Self->{Subaction} eq 'VersionSave' && $SubmitSave ) {
+        $RowInciStateInvalid = ' ServerError'
+    }
+
     # generate InciStateOptionStrg
     my $InciStateOptionStrg = $Self->{LayoutObject}->BuildSelection(
         Data         => $InciStateList,
         Name         => 'InciStateID',
         PossibleNone => 1,
+        Class        => 'Validate_RequiredDropdown' . $RowInciStateInvalid,
         SelectedID   => $Version->{InciStateID},
     );
 
@@ -278,11 +325,6 @@ sub Run {
             InciStateOptionStrg => $InciStateOptionStrg,
         },
     );
-
-    # output deployment state invalid block
-    if ( !$Version->{InciStateID} && $Self->{Subaction} eq 'VersionSave' ) {
-        $Self->{LayoutObject}->Block( Name => 'RowInciStateInvalid' );
-    }
 
     # output xml form
     if ( $XMLDefinition->{Definition} ) {
@@ -420,12 +462,16 @@ sub _XMLFormOutput {
 
     $Param{Level} ||= 0;
 
+    # get submit save
+    my $SubmitSave = $Self->{ParamObject}->GetParam( Param => 'SubmitSave' );
+
     # set data present mode
     my $DataPresentMode = 0;
     if ( $Param{XMLData} && ref $Param{XMLData} eq 'HASH' ) {
         $DataPresentMode = 1;
     }
 
+    my $ItemCounter = 1;
     ITEM:
     for my $Item ( @{ $Param{XMLDefinition} } ) {
 
@@ -468,11 +514,30 @@ sub _XMLFormOutput {
             # output row value block
             $Self->{LayoutObject}->Block( Name => 'XMLRowValue' );
 
+            # output blue required star
+            my $XMLRowValueContentRequired = 0;
+            my $LabelClass                 = '';
+            if ( $Item->{Input}->{Required} ) {
+                $XMLRowValueContentRequired = 1;
+                $LabelClass                 = 'Mandatory';
+            }
+
+            # output red invalid star
+            my $XMLRowValueContentInvalid = 0;
+            if ( $Item->{Form}->{$InputKey}->{Invalid} && $SubmitSave ) {
+                $XMLRowValueContentInvalid = 1;
+            }
+
+            my $ItemId = 'Item' . $ItemCounter++ . $Param{Prefix} . $Param{Level};
+
             # create input element
             my $InputString = $Self->{LayoutObject}->ITSMConfigItemInputCreate(
-                Key   => $InputKey,
-                Item  => $Item,
-                Value => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content},
+                Key      => $InputKey,
+                Item     => $Item,
+                Value    => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content},
+                ItemId   => $ItemId,
+                Required => $XMLRowValueContentRequired,
+                Invalid  => $XMLRowValueContentInvalid,
             );
 
             # output row value content block
@@ -480,30 +545,22 @@ sub _XMLFormOutput {
                 Name => 'XMLRowValueContent',
                 Data => {
                     Name        => $Item->{Name},
+                    ItemId      => $ItemId,
                     Description => $Item->{Description} || $Item->{Name},
                     Colspan     => 4 - $Param{Level},
                     InputString => $InputString,
+                    LabelClass  => $LabelClass,
                 },
             );
 
-            # output blue required star
             if ( $Item->{Input}->{Required} ) {
                 $Self->{LayoutObject}->Block( Name => 'XMLRowValueContentRequired' );
             }
 
-            # output red invalid star
-            if ( $Item->{Form}->{$InputKey}->{Invalid} ) {
-                $Self->{LayoutObject}->Block( Name => 'XMLRowValueContentInvalid' );
-            }
-
             # output row value content space, if level was given
             if ( $Param{Level} ) {
-                $Self->{LayoutObject}->Block(
-                    Name => 'XMLRowValueContentSpace',
-                    Data => {
-                        Colspan => $Param{Level},
-                    },
-                );
+                $Self->{LayoutObject}->Block( Name => 'XMLRowValueContentSpaceStart' );
+                $Self->{LayoutObject}->Block( Name => 'XMLRowValueContentSpaceEnd' );
             }
 
             # output delete button
