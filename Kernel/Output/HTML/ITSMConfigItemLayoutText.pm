@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/ITSMConfigItemLayoutText.pm - layout backend module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutText.pm,v 1.11 2010-05-18 18:21:09 ub Exp $
+# $Id: ITSMConfigItemLayoutText.pm,v 1.12 2010-08-25 20:49:47 cg Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.11 $) [1];
+$VERSION = qw($Revision: 1.12 $) [1];
 
 =head1 NAME
 
@@ -178,8 +178,26 @@ sub InputCreate {
     if ( !defined $Param{Value} ) {
         $Value = $Param{Item}->{Input}->{ValueDefault} || '';
     }
-    my $Size = $Param{Item}->{Input}->{Size} || 40;
-    my $String = "<input type=\"Text\" name=\"$Param{Key}\" size=\"$Size\" ";
+
+    my $Class    = '';
+    my $Size     = 'W50pc';
+    my $Required = $Param{Required};
+    my $Invalid  = $Param{Invalid};
+    my $ItemId   = $Param{ItemId};
+
+    if ($Required) {
+        $Class .= ' Validate_Required';
+    }
+
+    if ($Invalid) {
+        $Class .= ' ServerError';
+    }
+    $Class .= ' ' . $Size;
+    my $String = "<input type=\"Text\" name=\"$Param{Key}\" class=\"$Class\" ";
+
+    if ($ItemId) {
+        $String .= "id=\"$ItemId\" ";
+    }
 
     if ($Value) {
 
@@ -202,7 +220,7 @@ sub InputCreate {
         $String .= "maxlength=\"$Param{Item}->{Input}->{MaxLength}\" ";
     }
 
-    $String .= "> ";
+    $String .= "/> ";
 
     return $String;
 }
@@ -277,16 +295,16 @@ sub SearchInputCreate {
 
 =head1 TERMS AND CONDITIONS
 
-This software is part of the OTRS project (http://otrs.org/).
+This software is part of the OTRS project (L<http://otrs.org/>).
 
 This software comes with ABSOLUTELY NO WARRANTY. For details, see
 the enclosed file COPYING for license information (AGPL). If you
-did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =cut
 
 =head1 VERSION
 
-$Revision: 1.11 $ $Date: 2010-05-18 18:21:09 $
+$Revision: 1.12 $ $Date: 2010-08-25 20:49:47 $
 
 =cut
