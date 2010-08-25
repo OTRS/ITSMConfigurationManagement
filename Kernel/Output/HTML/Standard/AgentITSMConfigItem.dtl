@@ -2,7 +2,7 @@
 # AgentITSMConfigItem.dtl - provides HTML form for AgentITSMConfigItem
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItem.dtl,v 1.6 2010-08-19 17:44:55 cg Exp $
+# $Id: AgentITSMConfigItem.dtl,v 1.7 2010-08-25 18:56:36 cg Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -72,13 +72,14 @@
                 </div>
             </div>
         </div>
+
 <!-- dtl:js_on_document_complete -->
         <script type="text/javascript">//<![CDATA[
-            $('.ActionField a').bind('click', function (Event) {
+            $('.ActionField a, .Page a').live('click', function (Event) {
+                $('#ContentToUpdate').addClass('Loading');
                 Core.AJAX.ContentUpdate($('#ContentToUpdate'), $(this).attr('href'), function () {
-                        SetPagination();
+                    $('#ContentToUpdate').removeClass('Loading');
                 });
-                $('.ReloadSelect').val($(this).attr('id'));
                 return false;
             });
         //]]></script>
@@ -100,20 +101,6 @@
                     </span>
 <!-- dtl:block:PageBold -->
 <!-- dtl:block:Page -->
-<!-- dtl:js_on_document_complete -->
-        <script type="text/javascript">//<![CDATA[
-            function SetPagination(){
-                $('.Page a').bind('click', function (Event) {
-                    Core.AJAX.ContentUpdate($('#ContentToUpdate'), $(this).attr('href'), function () {
-                        SetPagination();
-                    });
-                    return false;
-                });
-            };
-            SetPagination();
-        //]]></script>
-<!-- dtl:js_on_document_complete -->
-
                     <div class="AdditionalInformation">
                         $Text{"Config Items available"}:
 <!-- dtl:block:ItemsAvail -->
