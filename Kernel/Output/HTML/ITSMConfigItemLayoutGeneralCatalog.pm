@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/ITSMConfigItemLayoutGeneralCatalog.pm - layout backend module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutGeneralCatalog.pm,v 1.5 2010-02-10 16:53:47 bes Exp $
+# $Id: ITSMConfigItemLayoutGeneralCatalog.pm,v 1.6 2010-08-25 20:50:29 cg Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -17,7 +17,7 @@ use warnings;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.5 $) [1];
+$VERSION = qw($Revision: 1.6 $) [1];
 
 =head1 NAME
 
@@ -160,6 +160,19 @@ sub InputCreate {
 
     my $SelectedID = $Param{Value} || $Param{Item}->{Input}->{ValueDefault} || '';
 
+    my $CSSClass = '';
+    my $Required = $Param{Required};
+    my $Invalid  = $Param{Invalid};
+    my $ItemId   = $Param{ItemId};
+
+    if ($Required) {
+        $CSSClass .= 'Validate_RequiredDropdown';
+    }
+
+    if ($Invalid) {
+        $CSSClass .= ' ServerError';
+    }
+
     # translation on or off
     my $Translation = 0;
     if ( $Param{Item}->{Input}->{Translation} ) {
@@ -175,9 +188,11 @@ sub InputCreate {
     my $String = $Self->{LayoutObject}->BuildSelection(
         Data         => $ClassList,
         Name         => $Param{Key},
+        ID           => $ItemId,
         PossibleNone => 1,
         Translation  => $Translation,
         SelectedID   => $SelectedID,
+        Class        => $CSSClass,
     );
 
     return $String;
@@ -268,16 +283,16 @@ sub SearchInputCreate {
 
 =head1 TERMS AND CONDITIONS
 
-This software is part of the OTRS project (http://otrs.org/).
+This software is part of the OTRS project (L<http://otrs.org/>).
 
 This software comes with ABSOLUTELY NO WARRANTY. For details, see
 the enclosed file COPYING for license information (AGPL). If you
-did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =cut
 
 =head1 VERSION
 
-$Revision: 1.5 $ $Date: 2010-02-10 16:53:47 $
+$Revision: 1.6 $ $Date: 2010-08-25 20:50:29 $
 
 =cut
