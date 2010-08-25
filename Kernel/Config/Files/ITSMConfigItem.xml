@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <otrs_config version="1.0" init="Config">
-    <CVS>$Id: ITSMConfigItem.xml,v 1.18 2010-08-25 17:24:49 cr Exp $</CVS>
+    <CVS>$Id: ITSMConfigItem.xml,v 1.19 2010-08-25 20:44:39 cg Exp $</CVS>
     <ConfigItem Name="Frontend::Module###AdminITSMConfigItem" Required="0" Valid="1">
         <Description Lang="en">Frontend module registration for the AdminITSMConfigItem configuration in the admin area.</Description>
         <Description Lang="de">Frontendmodul-Registration der AdminITSMConfigItem Konfiguration im Admin-Bereich.</Description>
@@ -56,7 +56,7 @@
                     <Prio>100</Prio>
                 </NavBar>
                 <Loader>
-                    <CSS>Core.ITSM.Default.css</CSS>
+                    <CSS>ITSM.Agent.Default.css</CSS>
                 </Loader>
             </FrontendModuleReg>
         </Setting>
