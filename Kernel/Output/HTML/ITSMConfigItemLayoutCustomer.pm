@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/ITSMConfigItemLayoutCustomer.pm - layout backend module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutCustomer.pm,v 1.7 2010-02-15 14:09:39 bes Exp $
+# $Id: ITSMConfigItemLayoutCustomer.pm,v 1.8 2010-08-25 20:49:11 cg Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -17,7 +17,7 @@ use warnings;
 use Kernel::System::CustomerUser;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.7 $) [1];
+$VERSION = qw($Revision: 1.8 $) [1];
 
 =head1 NAME
 
@@ -183,10 +183,21 @@ sub InputCreate {
     elsif ( $Param{Item}->{Input}->{ValueDefault} ) {
         $Value = $Param{Item}->{Input}->{ValueDefault};
     }
-    my $Size         = $Param{Item}->{Input}->{Size} || 50;
+    my $Class        = 'W50pc';
     my $Search       = '';
     my $StringOption = '';
     my $StringSelect = '';
+    my $Required     = $Param{Required};
+    my $Invalid      = $Param{Invalid};
+    my $ItemId       = $Param{ItemId};
+
+    if ($Required) {
+        $Class .= ' Validate_Required';
+    }
+
+    if ($Invalid) {
+        $Class .= ' ServerError';
+    }
 
     # customer search
     if ( $Param{Item}->{Form}->{ $Param{Key} }->{Search} ) {
@@ -205,10 +216,10 @@ sub InputCreate {
             $StringOption .= '<br>';
 
             # create select button
-            $StringSelect = '<input class="button" type="submit" name="'
+            $StringSelect = '<input class="DisableVal" type="submit" name="'
                 . $Param{Key}
                 . '::ButtonSelect" '
-                . 'value="$Text{"Select"}">&nbsp;';
+                . 'value="$Text{"Select"}"/>&nbsp;';
 
             # set search
             $Search = $Param{Item}->{Form}->{ $Param{Key} }->{Search};
@@ -235,22 +246,24 @@ sub InputCreate {
         = '<input type="hidden" name="'
         . $Param{Key}
         . '" value="'
-        . $Value . '">'
+        . $Value . '"/>'
         . '<input type="Text" name="'
         . $Param{Key}
-        . '::Search" size="'
-        . $Size
+        . '::Search" class="'
+        . $Class
+        . '" id="'
+        . $ItemId
         . '" value="'
-        . $Search . '">' . '<br>'
+        . $Search . '"/>' . '<br/>'
         . $StringOption
         . $StringSelect
-        . '<input class="button" type="submit" name="'
+        . '<input class="DisableVal" type="submit" name="'
         . $Param{Key}
-        . '::ButtonSearch" value="$Text{"Search"}">'
+        . '::ButtonSearch" value="$Text{"Search"}" />'
         . '&nbsp;'
-        . '<input class="button" type="submit" name="'
+        . '<input class="DisableVal" type="submit" name="'
         . $Param{Key}
-        . '::ButtonClear" value="$Text{"Clear"}">';
+        . '::ButtonClear" value="$Text{"Clear"}" />';
 
     return $String;
 }
@@ -365,16 +378,16 @@ sub SearchInputCreate {
 
 =head1 TERMS AND CONDITIONS
 
-This software is part of the OTRS project (http://otrs.org/).
+This software is part of the OTRS project (L<http://otrs.org/>).
 
 This software comes with ABSOLUTELY NO WARRANTY. For details, see
 the enclosed file COPYING for license information (AGPL). If you
-did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =cut
 
 =head1 VERSION
 
-$Revision: 1.7 $ $Date: 2010-02-15 14:09:39 $
+$Revision: 1.8 $ $Date: 2010-08-25 20:49:11 $
 
 =cut
