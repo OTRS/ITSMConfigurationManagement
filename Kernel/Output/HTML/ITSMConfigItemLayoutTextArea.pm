@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/ITSMConfigItemLayoutTextArea.pm - layout backend module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutTextArea.pm,v 1.10 2010-05-18 18:21:09 ub Exp $
+# $Id: ITSMConfigItemLayoutTextArea.pm,v 1.11 2010-08-25 20:51:14 cg Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.10 $) [1];
+$VERSION = qw($Revision: 1.11 $) [1];
 
 =head1 NAME
 
@@ -182,11 +182,26 @@ sub InputCreate {
         $Value = $Param{Item}->{Input}->{ValueDefault} || '';
     }
 
+    my $Class    = '';
+    my $Size     = 'W50pc';
+    my $Required = $Param{Required};
+    my $Invalid  = $Param{Invalid};
+    my $ItemId   = $Param{ItemId};
+
+    if ($Required) {
+        $Class .= ' Validate_Required';
+    }
+
+    if ($Invalid) {
+        $Class .= ' ServerError';
+    }
+
     # translate
     if ( $Param{Item}->{Input}->{Translation} ) {
         $Value = $Self->{LayoutObject}->{LanguageObject}->Get($Value);
     }
-    my $String = "<textarea name=\"$Param{Key}\" cols=\"$Cols\" rows=\"$Rows\">$Value</textarea>";
+    my $String
+        = "<textarea name=\"$Param{Key}\" id=\"$ItemId\" cols=\"$Cols\" rows=\"$Rows\" class=\"$Class\">$Value</textarea>";
 
     return $String;
 }
@@ -260,16 +275,16 @@ sub SearchInputCreate {
 
 =head1 TERMS AND CONDITIONS
 
-This software is part of the OTRS project (http://otrs.org/).
+This software is part of the OTRS project (L<http://otrs.org/>).
 
 This software comes with ABSOLUTELY NO WARRANTY. For details, see
 the enclosed file COPYING for license information (AGPL). If you
-did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =cut
 
 =head1 VERSION
 
-$Revision: 1.10 $ $Date: 2010-05-18 18:21:09 $
+$Revision: 1.11 $ $Date: 2010-08-25 20:51:14 $
 
 =cut
