@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemEdit.pm - the OTRS::ITSM config item edit module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.pm,v 1.12 2010-08-25 20:46:19 cg Exp $
+# $Id: AgentITSMConfigItemEdit.pm,v 1.13 2010-08-27 20:43:31 cg Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.12 $) [1];
+$VERSION = qw($Revision: 1.13 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -179,9 +179,18 @@ sub Run {
             );
 
             # redirect to zoom mask
-            return $Self->{LayoutObject}->Redirect(
-                OP => "Action=AgentITSMConfigItemZoom;ConfigItemID=$ConfigItem->{ConfigItemID}",
-            );
+
+            my $ScreenType = $Self->{ParamObject}->GetParam( Param => 'ScreenType' ) || 0;
+            if ($ScreenType) {
+                return $Self->{LayoutObject}->PopupClose(
+                    URL => "Action=AgentITSMConfigItemZoom;ConfigItemID=$ConfigItem->{ConfigItemID}"
+                );
+            }
+            else {
+                return $Self->{LayoutObject}->Redirect(
+                    OP => "Action=AgentITSMConfigItemZoom;ConfigItemID=$ConfigItem->{ConfigItemID}",
+                );
+            }
         }
     }
     elsif ($DuplicateID) {
@@ -208,44 +217,6 @@ sub Run {
             ConfigItemID => $ConfigItem->{ConfigItemID},
         );
     }
-
-    # Necessary stuff for Add New
-    # get class list
-    my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
-        Class => 'ITSM::ConfigItem::Class',
-    );
-
-    # check for access rights
-    for my $ClassID ( keys %{$ClassList} ) {
-        my $HasAccess = $Self->{ConfigItemObject}->Permission(
-            Type    => $Self->{Config}->{Permission},
-            Scope   => 'Class',
-            ClassID => $ClassID,
-            UserID  => $Self->{UserID},
-        );
-
-        delete $ClassList->{$ClassID} if !$HasAccess;
-    }
-
-    # generate ClassOptionStrg
-    my $ClassOptionStrg = $Self->{LayoutObject}->BuildSelection(
-        Data         => $ClassList,
-        Name         => 'ClassID',
-        PossibleNone => 1,
-        Translation  => 0,
-        Class        => 'W100pc',
-        SelectedID   => $ConfigItem->{ClassID},
-    );
-
-    # output name block
-    $Self->{LayoutObject}->Block(
-        Name => 'ActionAddItem',
-        Data => {
-            ClassOptionStrg => $ClassOptionStrg,
-        },
-    );
-
-    # End Necessary stuff for Add New
 
     my %XMLFormOutputParam;
     if ( $Version->{XMLData}->[1]->{Version}->[1] ) {
@@ -334,19 +305,90 @@ sub Run {
         );
     }
 
-    # output header
-    my $Output = $Self->{LayoutObject}->Header( Title => 'Edit' );
-    $Output .= $Self->{LayoutObject}->NavigationBar();
+    my $Output = '';
+    if ( ( $ConfigItem->{ConfigItemID} && $ConfigItem->{ConfigItemID} ne 'NEW' ) || $DuplicateID ) {
 
-    # start template output
-    $Output .= $Self->{LayoutObject}->Output(
-        TemplateFile => 'AgentITSMConfigItemEdit',
-        Data         => {
-            %Param,
-            %{$ConfigItem},
-        },
-    );
-    $Output .= $Self->{LayoutObject}->Footer();
+        # output block
+        $Self->{LayoutObject}->Block(
+            Name => 'StartSmall',
+            Data => {
+                %Param,
+                %{$ConfigItem},
+            },
+        );
+        $Self->{LayoutObject}->Block( Name => 'EndSmall' );
+
+        # output header
+        $Output .= $Self->{LayoutObject}->Header( Title => 'Edit', Type => 'Small' );
+
+        # start template output
+        $Output .= $Self->{LayoutObject}->Output(
+            TemplateFile => 'AgentITSMConfigItemEdit',
+            Data         => {
+                %Param,
+                %{$ConfigItem},
+            },
+        );
+        $Output .= $Self->{LayoutObject}->Footer( Type => 'Small' );
+    }
+    else {
+
+        # Necessary stuff for Add New
+        # get class list
+        my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
+            Class => 'ITSM::ConfigItem::Class',
+        );
+
+        # check for access rights
+        for my $ClassID ( keys %{$ClassList} ) {
+            my $HasAccess = $Self->{ConfigItemObject}->Permission(
+                Type    => $Self->{Config}->{Permission},
+                Scope   => 'Class',
+                ClassID => $ClassID,
+                UserID  => $Self->{UserID},
+            );
+
+            delete $ClassList->{$ClassID} if !$HasAccess;
+        }
+
+        # generate ClassOptionStrg
+        my $ClassOptionStrg = $Self->{LayoutObject}->BuildSelection(
+            Data         => $ClassList,
+            Name         => 'ClassID',
+            PossibleNone => 1,
+            Translation  => 0,
+            Class        => 'W100pc',
+            SelectedID   => $ConfigItem->{ClassID},
+        );
+
+        # End Necessary stuff for Add New
+
+        # output block
+        $Self->{LayoutObject}->Block(
+            Name => 'StartNormal',
+            Data => {
+                ClassOptionStrg => $ClassOptionStrg,
+                %Param,
+                %{$ConfigItem},
+            },
+        );
+
+        $Self->{LayoutObject}->Block( Name => 'EndNormal' );
+
+        # output header
+        $Output .= $Self->{LayoutObject}->Header( Title => 'Edit' );
+        $Output .= $Self->{LayoutObject}->NavigationBar();
+
+        # start template output
+        $Output .= $Self->{LayoutObject}->Output(
+            TemplateFile => 'AgentITSMConfigItemEdit',
+            Data         => {
+                %Param,
+                %{$ConfigItem},
+            },
+        );
+        $Output .= $Self->{LayoutObject}->Footer();
+    }
 
     return $Output;
 }
