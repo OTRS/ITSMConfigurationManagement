@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <otrs_config version="1.0" init="Config">
-    <CVS>$Id: ITSMConfigItem.xml,v 1.19 2010-08-25 20:44:39 cg Exp $</CVS>
+    <CVS>$Id: ITSMConfigItem.xml,v 1.20 2010-09-06 20:31:09 en Exp $</CVS>
     <ConfigItem Name="Frontend::Module###AdminITSMConfigItem" Required="0" Valid="1">
-        <Description Lang="en">Frontend module registration for the AdminITSMConfigItem configuration in the admin area.</Description>
-        <Description Lang="de">Frontendmodul-Registration der AdminITSMConfigItem Konfiguration im Admin-Bereich.</Description>
+        <Description Translatable="1">Frontend module registration for the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Admin::ModuleRegistration</SubGroup>
         <Setting>
@@ -23,8 +22,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="Frontend::Module###AgentITSMConfigItem" Required="0" Valid="1">
-        <Description Lang="en">Frontend module registration for the AgentITSMConfigItem object in the agent interface.</Description>
-        <Description Lang="de">Frontendmodul-Registration des AgentITSMConfigItem-Objekts im Agent-Interface.</Description>
+        <Description Translatable="1">Frontend module registration for the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ModuleRegistration</SubGroup>
         <Setting>
@@ -62,8 +60,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="Frontend::Module###AgentITSMConfigItemZoom" Required="0" Valid="1">
-        <Description Lang="en">Frontend module registration for the AgentITSMConfigItemZoom object in the agent interface.</Description>
-        <Description Lang="de">Frontendmodul-Registration des AgentITSMConfigItemZoom-Objekts im Agent-Interface.</Description>
+        <Description Translatable="1">Frontend module registration for the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ModuleRegistration</SubGroup>
         <Setting>
@@ -84,8 +81,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="Frontend::Module###AgentITSMConfigItemEdit" Required="0" Valid="1">
-        <Description Lang="en">Frontend module registration for the AgentITSMConfigItemEdit object in the agent interface.</Description>
-        <Description Lang="de">Frontendmodul-Registration des AgentITSMConfigItemEdit-Objekts im Agent-Interface.</Description>
+        <Description Translatable="1">Frontend module registration for the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ModuleRegistration</SubGroup>
         <Setting>
@@ -98,8 +94,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="Frontend::Module###AgentITSMConfigItemPrint" Required="0" Valid="1">
-        <Description Lang="en">Frontend module registration for the AgentITSMConfigItemPrint object in the agent interface.</Description>
-        <Description Lang="de">Frontendmodul-Registration des AgentITSMConfigItemPrint-Objekts im Agent-Interface.</Description>
+        <Description Translatable="1">Frontend module registration for the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ModuleRegistration</SubGroup>
         <Setting>
@@ -112,8 +107,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="Frontend::Module###AgentITSMConfigItemAdd" Required="0" Valid="1">
-        <Description Lang="en">Frontend module registration for the AgentITSMConfigItemAdd object in the agent interface.</Description>
-        <Description Lang="de">Frontendmodul-Registration des AgentITSMConfigItemAdd-Objekts im Agent-Interface.</Description>
+        <Description Translatable="1">Frontend module registration for the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ModuleRegistration</SubGroup>
         <Setting>
@@ -137,8 +131,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="Frontend::Module###AgentITSMConfigItemSearch" Required="0" Valid="1">
-        <Description Lang="en">Frontend module registration for the AgentITSMConfigItemSearch object in the agent interface.</Description>
-        <Description Lang="de">Frontendmodul-Registration des AgentITSMConfigItemSearch-Objekts im Agent-Interface.</Description>
+        <Description Translatable="1">Frontend module registration for the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ModuleRegistration</SubGroup>
         <Setting>
@@ -162,8 +155,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###000-Back" Required="0" Valid="1">
-        <Description Lang="en">Module to show back link in config item menu.</Description>
-        <Description Lang="de">Mit diesem Modul wird der Zur�ck-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
+        <Description Translatable="1">Shows a link in the menu to go back in the configuraton item zoom view of the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
         <Setting>
@@ -178,8 +170,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###100-Versions" Required="0" Valid="1">
-        <Description Lang="en">Module to show versions link in config item menu.</Description>
-        <Description Lang="de">Mit diesem Modul wird der Versionen-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
+        <Description Translatable="1">Presents a link in the menu to go show versions in the configuraton item zoom view of the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
         <Setting>
@@ -191,8 +182,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###200-History" Required="0" Valid="1">
-        <Description Lang="en">Module to show back link in config item menu.</Description>
-        <Description Lang="de">Mit diesem Modul wird der Zur�ck-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
+        <Description Translatable="1">Shows a link in the menu to access the history of a configuration item in the its zoom view of the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
         <Setting>
@@ -207,8 +197,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###300-Edit" Required="0" Valid="1">
-        <Description Lang="en">Module to show edit link in config item menu.</Description>
-        <Description Lang="de">Mit diesem Modul wird der Bearbeiten-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
+        <Description Translatable="1">Shows a link in the menu to edit a configuration item in the its zoom view of the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
         <Setting>
@@ -223,8 +212,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###400-Print" Required="0" Valid="1">
-        <Description Lang="en">Module to show print link in config item menu.</Description>
-        <Description Lang="de">Mit diesem Modul wird der Drucken-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
+        <Description Translatable="1">Shows a link in the menu to print a configuration item in the its zoom view of the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
         <Setting>
@@ -240,8 +228,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###500-Link" Required="0" Valid="1">
-        <Description Lang="en">Module to show the link link in config item menu.</Description>
-        <Description Lang="de">Mit diesem Modul wird der Verkn�pfen-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
+        <Description Translatable="1">Shows a link in the menu that allows linking a configuration item with another object in the config item zoom view of the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
         <Setting>
@@ -256,8 +243,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###600-Duplicate" Required="0" Valid="1">
-        <Description Lang="en">Module to show duplicate link in config item menu.</Description>
-        <Description Lang="de">Mit diesem Modul wird der Duplizieren-Link in der Linkleiste der ConfigItem-Ansicht angezeigt.</Description>
+        <Description Translatable="1">Shows a link in the menu to duplicate a configuration item in the its zoom view of the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
         <Setting>
@@ -272,8 +258,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::NumberGenerator" Required="1" Valid="1">
-        <Description Lang="en">Select the config item number generator module. "AutoIncrement" increments the config item number, the SystemID, the ConfigItemClassID and the counter are used. The format is "SystemID ConfigItemClassID Counter", e.g. 1205000004, 1205000005.</Description>
-        <Description Lang="de">Auswahl des Moduls zur Generierung der ConfigItem-Nummer. "AutoIncrement" z�hlt die ConfigItem-Nummer automatisch hoch und verbindet sie mit der SystemID und mit der ConfigItemClassID. Es wird das Format "SystemID ConfigItemClassID Counter" verwendet, z. B. 1205000004, 1205000005.</Description>
+        <Description Translatable="1">Selects the configuration item number generator module. "AutoIncrement" increments the configuration item number, the SystemID, the ConfigItemClassID and the counter are used. The format is "SystemID.ConfigItemClassID.Counter", e.g. 1205000004, 1205000005.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Core::ITSMConfigItem</SubGroup>
         <Setting>
@@ -281,8 +266,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="LinkObject::DefaultSubObject###ITSMConfigItem" Required="1" Valid="1">
-        <Description Lang="en">This setting defines the default subobject of the class 'ITSMConfigItem'.</Description>
-        <Description Lang="de">Definiert das Standard-Subobject der Klasse 'ITSMConfigItem'.</Description>
+        <Description Translatable="1">Defines the default subobject of the class 'ITSMConfigItem'.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Core::LinkObject</SubGroup>
         <Setting>
@@ -290,8 +274,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="Stats::DynamicObjectRegistration###ITSMConfigItem" Required="0" Valid="1">
-        <Description Lang="en">Here you can decide if the stats module may generate stats about itsm config item stuff.</Description>
-        <Description Lang="de">Hier k�nnen Sie festlegen, ob das Statistik-Modul auch Statistiken �ber ITSM ConfigItem Dinge generieren darf.</Description>
+        <Description Translatable="1">Module to genetare ITSM config item statistics.</Description>
         <Group>Framework</Group>
         <SubGroup>Core::Stats</SubGroup>
         <Setting>
@@ -301,8 +284,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="ImportExport::ObjectBackendRegistration###ITSMConfigItem" Required="0" Valid="1">
-        <Description Lang="en">Object backend module registration for the import/export modul.</Description>
-        <Description Lang="de">Objekt-Backend Modul Registration des Import/Export Moduls.</Description>
+        <Description Translatable="1">Object backend module registration for the import/export module.</Description>
         <Group>ImportExport</Group>
         <SubGroup>ObjectBackend::ModuleRegistration</SubGroup>
         <Setting>
@@ -313,8 +295,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::EventModulePost###100-History" Required="0" Valid="1">
-        <Description Lang="en">Config item event module that enables logging to history.</Description>
-        <Description Lang="de">Event-Modul f�r ConfigItems, das das Logging in die Historie erlaubt.</Description>
+        <Description Translatable="1">Config item event module that enables logging to history in the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Core::ITSMConfigItem</SubGroup>
         <Setting>
@@ -326,8 +307,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::HistoryOrder" Required="1" Valid="1">
-        <Description Lang="en">Show history order reverse in the agent interface under config item history.</Description>
-        <Description Lang="de">Zeige die Historie normal oder r�ckw�rts sortiert im Agent-Interface unter der ConfigItem-Historie.</Description>
+        <Description Translatable="1">Shows the config item history (reverse ordered) in the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::ViewHistory</SubGroup>
         <Setting>
@@ -338,8 +318,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="Frontend::Module###AgentITSMConfigItemHistory" Required="0" Valid="1">
-        <Description Lang="en">Frontend module registration for the AgentITSMConfigItemHistory object in the agent interface.</Description>
-        <Description Lang="de">Frontendmodul-Registration des AgentITSMConfigItemHistory-Objekts im Agenten-Interface.</Description>
+        <Description Translatable="1">Frontend module registration for the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ModuleRegistration</SubGroup>
         <Setting>
@@ -352,8 +331,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="GeneralCatalogPreferences###DeploymentStates" Required="0" Valid="1">
-        <Description Lang="en">Parameters for the deployment states in the preference view.</Description>
-        <Description Lang="de">Parameter f�r den Ausgabestatus in der Ansicht f�r die Einstellungen.</Description>
+        <Description Translatable="1">Parameters for the deployment states in the preferences view of the agent interface.</Description>
         <Group>GeneralCatalog</Group>
         <SubGroup>GeneralCatalog::Preferences</SubGroup>
         <Setting>
@@ -375,8 +353,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Permission::Class###010-ClassGroupCheck" Required="0" Valid="1">
-        <Description Lang="en">Module to check the group responsible for a class.</Description>
-        <Description Lang="de">Modul zum �berpr�fen der Gruppe, die f�r eine Klasse zust�ndig ist.</Description>
+        <Description Translatable="1">Module to check the group responsible for a class.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Core::ITSMConfigItem</SubGroup>
         <Setting>
@@ -388,8 +365,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Permission::Item###010-ItemClassGroupCheck" Required="0" Valid="1">
-        <Description Lang="en">Module to check the group responsible for a configitem.</Description>
-        <Description Lang="de">Modul zum �berpr�fen der Gruppe, die f�r ein ConfigItem zust�ndig ist.</Description>
+        <Description Translatable="1">Module to check the group responsible for a configuration item.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Core::ITSMConfigItem</SubGroup>
         <Setting>
@@ -401,8 +377,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItem###Permission" Required="1" Valid="1">
-        <Description Lang="en">Required permissions to use this option.</Description>
-        <Description Lang="de">Ben�tigte Rechte zur Anzeige der ConfigItem Klasse.</Description>
+        <Description Translatable="1">Required permissions to use the ITSM configuration item screen in the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::Permission</SubGroup>
         <Setting>
@@ -410,8 +385,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemEdit###Permission" Required="1" Valid="1">
-        <Description Lang="en">Required permissions to use this option.</Description>
-        <Description Lang="de">Ben�tigte Rechte zur Anzeige der ConfigItem Klasse.</Description>
+        <Description Translatable="1">Required permissions to use the edit ITSM configuration item screen in the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::Permission</SubGroup>
         <Setting>
@@ -419,8 +393,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemAdd###Permission" Required="1" Valid="1">
-        <Description Lang="en">Required permissions to use this option.</Description>
-        <Description Lang="de">Ben�tigte Rechte zur Anzeige der ConfigItem Klasse.</Description>
+        <Description Translatable="1">Required permissions to use the add ITSM configuration item screen in the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::Permission</SubGroup>
         <Setting>
@@ -428,8 +401,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemHistory###Permission" Required="1" Valid="1">
-        <Description Lang="en">Required permissions to use this option.</Description>
-        <Description Lang="de">Ben�tigte Rechte zur Anzeige der ConfigItem Historie.</Description>
+        <Description Translatable="1">Required permissions to use the history ITSM configuration item screen in the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::Permission</SubGroup>
         <Setting>
@@ -437,8 +409,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemPrint###Permission" Required="1" Valid="1">
-        <Description Lang="en">Required permissions to use this option.</Description>
-        <Description Lang="de">Ben�tigte Rechte zum Drucken des ConfigItems.</Description>
+        <Description Translatable="1">Required permissions to use the print ITSM configuration item screen in the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::Permission</SubGroup>
         <Setting>
@@ -446,8 +417,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemZoom###Permission" Required="1" Valid="1">
-        <Description Lang="en">Required permissions to use this option.</Description>
-        <Description Lang="de">Ben�tigte Rechte zur Anzeige des ConfigItems.</Description>
+        <Description Translatable="1">Required permissions to use the ITSM configuration item zoom screen in the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::Permission</SubGroup>
         <Setting>
@@ -455,8 +425,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemSearch###Permission" Required="1" Valid="1">
-        <Description Lang="en">Required permissions to use this option.</Description>
-        <Description Lang="de">Ben�tigte Rechte zum Drucken des ConfigItems.</Description>
+        <Description Translatable="1">Required permissions to use the ITSM configuration item search screen in the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::Permission</SubGroup>
         <Setting>
@@ -464,8 +433,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="GeneralCatalogPreferences###Permissions" Required="0" Valid="1">
-        <Description Lang="en">Parameters for the example permission groups of general catalog attributes.</Description>
-        <Description Lang="de">Parameter f�r die zugriffsberechtigte Gruppe der GeneralCatalog-Attribute.</Description>
+        <Description Translatable="1">Parameters for the example permission groups of the general catalog attributes.</Description>
         <Group>GeneralCatalog</Group>
         <SubGroup>GeneralCatalog::Preferences</SubGroup>
         <Setting>
@@ -480,7 +448,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="Frontend::Search###ConfigItem" Required="0" Valid="1">
-        <Description Translatable="1">Search backend router.</Description>
+        <Description Translatable="1">Configuration item search backend router of the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::SearchRouter</SubGroup>
         <Setting>

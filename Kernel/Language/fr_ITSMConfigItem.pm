@@ -1,9 +1,9 @@
 # --
 # Kernel/Language/fr_ITSMConfigItem.pm - the french translation of ITSMConfigItem
 # Copyright (C) 2001-2009 Olivier Sallou <olivier.sallou at irisa.fr>
-# Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: fr_ITSMConfigItem.pm,v 1.2 2009-08-04 12:41:06 ub Exp $
+# $Id: fr_ITSMConfigItem.pm,v 1.3 2010-09-06 20:31:09 en Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -16,7 +16,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.2 $) [1];
+$VERSION = qw($Revision: 1.3 $) [1];
 
 sub Data {
     my $Self = shift;
@@ -156,6 +156,42 @@ sub Data {
     $Lang->{'Rack'}                                   = 'Rack';
     $Lang->{'Room'}                                   = 'Pièce';
     $Lang->{'Workplace'}                              = 'Emplacement';
+    $Lang->{'CIHistory::ConfigItemCreate'}              = '';
+    $Lang->{'CIHistory::VersionCreate'}                 = '';
+    $Lang->{'CIHistory::DeploymentStateUpdate'}         = '';
+    $Lang->{'CIHistory::IncidentStateUpdate'}           = '';
+    $Lang->{'CIHistory::ConfigItemDelete'}              = '';
+    $Lang->{'CIHistory::LinkAdd'}                       = '';
+    $Lang->{'CIHistory::LinkDelete'}                    = '';
+    $Lang->{'CIHistory::DefinitionUpdate'}              = '';
+    $Lang->{'CIHistory::NameUpdate'}                    = '';
+    $Lang->{'CIHistory::ValueUpdate'}                   = '';
+    $Lang->{'CIHistory::VersionDelete'}                 = '';
+    $Lang->{'Frontend module registration for the agent interface.'} = '';
+    $Lang->{'Shows a link in the menu to go back in the configuraton item zoom view of the agent interface.'} = '';
+    $Lang->{'Presents a link in the menu to go show versions in the configuraton item zoom view of the agent interface.'} = '';
+    $Lang->{'Shows a link in the menu to access the history of a configuration item in the its zoom view of the agent interface.'} = '';
+    $Lang->{'Shows a link in the menu to edit a configuration item in the its zoom view of the agent interface.'} = '';
+    $Lang->{'Shows a link in the menu to print a configuration item in the its zoom view of the agent interface.'} = '';
+    $Lang->{'Shows a link in the menu that allows linking a configuration item with another object in the config item zoom view of the agent interface.'} = '';
+    $Lang->{'Shows a link in the menu to duplicate a configuration item in the its zoom view of the agent interface.'} = '';
+    $Lang->{'Selects the configuration item number generator module. "AutoIncrement" increments the configuration item number, the SystemID, the ConfigItemClassID and the counter are used. The format is "SystemID.ConfigItemClassID.Counter", e.g. 1205000004, 1205000005.'} = '';
+    $Lang->{'Defines the default subobject of the class \'ITSMConfigItem\'.'} = '';
+    $Lang->{'Module to genetare ITSM config item statistics.'} = '';
+    $Lang->{'Object backend module registration for the import/export module.'} = '';
+    $Lang->{'Config item event module that enables logging to history in the agent interface.'} = '';
+    $Lang->{'Shows the config item history (reverse ordered) in the agent interface.'} = '';
+    $Lang->{'Parameters for the deployment states in the preferences view of the agent interface.'} = '';
+    $Lang->{'Module to check the group responsible for a class.'} = '';
+    $Lang->{'Module to check the group responsible for a configuration item.'} = '';
+    $Lang->{'Required permissions to use the ITSM configuration item screen in the agent interface.'} = '';
+    $Lang->{'Required permissions to use the edit ITSM configuration item screen in the agent interface.'} = '';
+    $Lang->{'Required permissions to use the add ITSM configuration item screen in the agent interface.'} = '';
+    $Lang->{'Required permissions to use the history ITSM configuration item screen in the agent interface.'} = '';
+    $Lang->{'Required permissions to use the print ITSM configuration item screen in the agent interface.'} = '';
+    $Lang->{'Required permissions to use the ITSM configuration item zoom screen in the agent interface.'} = '';
+    $Lang->{'Required permissions to use the ITSM configuration item search screen in the agent interface.'} = '';
+    $Lang->{'Configuration item search backend router of the agent interface.'} = '';
 
     return 1;
 }

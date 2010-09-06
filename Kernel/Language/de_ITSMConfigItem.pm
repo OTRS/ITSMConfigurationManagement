@@ -2,7 +2,7 @@
 # Kernel/Language/de_ITSMConfigItem.pm - the german translation of ITSMConfigItem
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: de_ITSMConfigItem.pm,v 1.8 2010-02-24 13:04:55 bes Exp $
+# $Id: de_ITSMConfigItem.pm,v 1.9 2010-09-06 20:31:09 en Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.8 $) [1];
+$VERSION = qw($Revision: 1.9 $) [1];
 
 sub Data {
     my $Self = shift;
@@ -168,6 +168,30 @@ sub Data {
     $Lang->{'CIHistory::NameUpdate'}                  = 'Name geändert (neu=%s; alt=%s)';
     $Lang->{'CIHistory::ValueUpdate'}                 = 'Attribut %s von "%s" auf "%s" geändert';
     $Lang->{'CIHistory::VersionDelete'}               = 'Version %s gelöscht';
+    $Lang->{'Frontend module registration for the agent interface.'} = '';
+    $Lang->{'Shows a link in the menu to go back in the configuraton item zoom view of the agent interface.'} = '';
+    $Lang->{'Presents a link in the menu to go show versions in the configuraton item zoom view of the agent interface.'} = '';
+    $Lang->{'Shows a link in the menu to access the history of a configuration item in the its zoom view of the agent interface.'} = '';
+    $Lang->{'Shows a link in the menu to edit a configuration item in the its zoom view of the agent interface.'} = '';
+    $Lang->{'Shows a link in the menu to print a configuration item in the its zoom view of the agent interface.'} = '';
+    $Lang->{'Shows a link in the menu that allows linking a configuration item with another object in the config item zoom view of the agent interface.'} = '';
+    $Lang->{'Shows a link in the menu to duplicate a configuration item in the its zoom view of the agent interface.'} = '';
+    $Lang->{'Selects the configuration item number generator module. "AutoIncrement" increments the configuration item number, the SystemID, the ConfigItemClassID and the counter are used. The format is "SystemID.ConfigItemClassID.Counter", e.g. 1205000004, 1205000005.'}  = '';
+    $Lang->{'Defines the default subobject of the class \'ITSMConfigItem\'.'} = 'Definiert das Standard-Subobject der Klasse';
+    $Lang->{'Object backend module registration for the import/export module.'} = 'Objekt-Backend Modul Registration des Import/Export Moduls.';
+    $Lang->{'Config item event module that enables logging to history in the agent interface.'} = '';
+    $Lang->{'Shows the config item history (reverse ordered) in the agent interface.'} = '';
+    $Lang->{'Parameters for the deployment states in the preferences view of the agent interface.'} = '';
+    $Lang->{'Module to check the group responsible for a class.'} = '';
+    $Lang->{'Module to check the group responsible for a configuration item.'} = '';
+    $Lang->{'Required permissions to use the ITSM configuration item screen in the agent interface.'} = '';
+    $Lang->{'Required permissions to use the edit ITSM configuration item screen in the agent interface.'} = '';
+    $Lang->{'Required permissions to use the add ITSM configuration item screen in the agent interface.'} = '';
+    $Lang->{'Required permissions to use the history ITSM configuration item screen in the agent interface.'} = '';
+    $Lang->{'Required permissions to use the print ITSM configuration item screen in the agent interface.'} = '';
+    $Lang->{'Required permissions to use the ITSM configuration item zoom screen in the agent interface.'} = '';
+    $Lang->{'Required permissions to use the ITSM configuration item search screen in the agent interface.'} = '';
+    $Lang->{'Configuration item search backend router of the agent interface.'} = '';
 
     return 1;
 }
