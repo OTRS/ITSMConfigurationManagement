@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/ITSMConfigItemLayoutCustomer.pm - layout backend module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutCustomer.pm,v 1.8 2010-08-25 20:49:11 cg Exp $
+# $Id: ITSMConfigItemLayoutCustomer.pm,v 1.9 2010-09-06 15:43:15 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -17,7 +17,7 @@ use warnings;
 use Kernel::System::CustomerUser;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.8 $) [1];
+$VERSION = qw($Revision: 1.9 $) [1];
 
 =head1 NAME
 
@@ -187,9 +187,9 @@ sub InputCreate {
     my $Search       = '';
     my $StringOption = '';
     my $StringSelect = '';
-    my $Required     = $Param{Required};
-    my $Invalid      = $Param{Invalid};
-    my $ItemId       = $Param{ItemId};
+    my $Required     = $Param{Required} || '';
+    my $Invalid      = $Param{Invalid} || '';
+    my $ItemId       = $Param{ItemId} || '';
 
     if ($Required) {
         $Class .= ' Validate_Required';
@@ -292,8 +292,13 @@ sub SearchFormDataGet {
     }
 
     # get form data
-    my $Value = $Self->{ParamObject}->GetParam( Param => $Param{Key} );
-
+    my $Value;
+    if ( $Param{Value} ) {
+        $Value = $Param{Value};
+    }
+    else {
+        $Value = $Self->{ParamObject}->GetParam( Param => $Param{Key} );
+    }
     return $Value;
 }
 
@@ -388,6 +393,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.8 $ $Date: 2010-08-25 20:49:11 $
+$Revision: 1.9 $ $Date: 2010-09-06 15:43:15 $
 
 =cut
