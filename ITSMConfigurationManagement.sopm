@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <otrs_package version="1.0">
-    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.80 2010-09-06 22:11:00 en Exp $</CVS>
+    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.81 2010-09-07 17:31:10 en Exp $</CVS>
     <Name>ITSMConfigurationManagement</Name>
     <Version>0.0.0</Version>
     <Framework>3.0.x</Framework>
@@ -1314,232 +1314,232 @@
     ]]></CodeUninstall>
     <IntroInstall Type="pre" Title="Install Information" Lang="en"><![CDATA[
 
-        <br>
+        <br/>
         <strong>WELCOME</strong>
-        <br>
-        <br>
-        You are about to install the OTRS package ITSMConfigurationManagement.<br>
-        <br>
-        <br>
+        <br/>
+        <br/>
+        You are about to install the OTRS package ITSMConfigurationManagement.<br/>
+        <br/>
+        <br/>
         <strong>REQUIRED OTRS PACKAGES</strong>
         <ul>
         <li>ITSMCore 2.1.91</li>
         </ul>
-        <br>
-        ((enjoy))<br>
-        <br>
+        <br/>
+        ((enjoy))<br/>
+        <br/>
 
     ]]></IntroInstall>
     <IntroInstall Type="pre" Title="Installation Information" Lang="de"><![CDATA[
 
-        <br>
+        <br/>
         <strong>WILLKOMMEN</strong>
-        <br>
-        <br>
-        Sie sind im Begriff das OTRS-Paket ITSMConfigurationManagement zu installieren.<br>
-        <br>
-        <br>
+        <br/>
+        <br/>
+        Sie sind im Begriff das OTRS-Paket ITSMConfigurationManagement zu installieren.<br/>
+        <br/>
+        <br/>
         <strong>BENÖTIGTE OTRS-PAKETE</strong>
         <ul>
         <li>ITSMCore 2.1.91</li>
         </ul>
-        <br>
-        ((enjoy))<br>
-        <br>
+        <br/>
+        ((enjoy))<br/>
+        <br/>
 
     ]]></IntroInstall>
     <IntroInstall Type="pre" Title="Install Information" Lang="es"><![CDATA[
 
-        <br>
+        <br/>
         <strong>BIENVENIDO</strong>
-        <br>
-        <br>
-        Usted está punto de instalar el paquete ITSMConfigurationManagement de OTRS.<br>
-        <br>
-        <br>
+        <br/>
+        <br/>
+        Usted está punto de instalar el paquete ITSMConfigurationManagement de OTRS.<br/>
+        <br/>
+        <br/>
         <strong>PAQUETES OTRS REQUERIDOS</strong>
         <ul>
         <li>ITSMCore 2.1.91</li>
         </ul>
-        <br>
-        ((enjoy))<br>
-        <br>
+        <br/>
+        ((enjoy))<br/>
+        <br/>
 
     ]]></IntroInstall>
     <IntroInstall Type="post" Title="Installation Information" Lang="en"><![CDATA[
 
-        <br>
+        <br/>
         <strong>NOTICE</strong>
-        <br>
-        <br>
+        <br/>
+        <br/>
         In order to grant users access to the config item menu, you need to add them as member to the group 'itsm-configitem'.
-        <br>
-        <br>
+        <br/>
+        <br/>
         The menu items that were added by this package will be visible after you log-in to the system again.
-        <br>
-        <br>
-        ((enjoy))<br>
-        <br>
+        <br/>
+        <br/>
+        ((enjoy))<br/>
+        <br/>
 
     ]]></IntroInstall>
     <IntroInstall Type="post" Title="Installation Information" Lang="de"><![CDATA[
 
-        <br>
+        <br/>
         <strong>HINWEIS</strong>
-        <br>
-        <br>
+        <br/>
+        <br/>
         Um Benutzern Zugriff auf das ConfigItem-Menü zu gewähren, müssen diese Mitglied der neuen Gruppe 'itsm-configitem' sein.
-        <br>
-        <br>
+        <br/>
+        <br/>
         Die von diesem Paket hinzugefügten Menü-Punkte sind erst nach einem erneuten Anmeldevorgang im System sichtbar.
-        <br>
-        <br>
-        ((enjoy))<br>
-        <br>
+        <br/>
+        <br/>
+        ((enjoy))<br/>
+        <br/>
 
     ]]></IntroInstall>
     <IntroInstall Type="post" Title="Installation Information" Lang="es"><![CDATA[
 
-        <br>
+        <br/>
         <strong>ATENCIÓN</strong>
-        <br>
-        <br>
+        <br/>
+        <br/>
         Para permitirles a los usuarios el acceso al menú de los elementos de configuración, es necesario que se den de
         alta como miembros del grupo 'itsm-configitem'.
-        <br>
-        <br>
+        <br/>
+        <br/>
         Los elementos del menú que se agregaron por este paquete, serpan visibles después reiniciar la sesión al sistema.
-        <br>
-        <br>
+        <br/>
+        <br/>
         ((enjoy))
-        <br>
-        <br>
+        <br/>
+        <br/>
 
     ]]></IntroInstall>
     <IntroUpgrade Type="pre" Title="Upgrade Information" Lang="en"><![CDATA[
 
-        <br>
+        <br/>
         <strong>WELCOME</strong>
-        <br>
-        <br>
-        You are about to upgrade the OTRS package ITSMConfigurationManagement.<br>
-        <br>
-        <br>
+        <br/>
+        <br/>
+        You are about to upgrade the OTRS package ITSMConfigurationManagement.<br/>
+        <br/>
+        <br/>
         <strong>REQUIRED OTRS PACKAGES</strong>
         <ul>
         <li>ITSMCore 2.1.91</li>
         </ul>
-        <br>
-        ((enjoy))<br>
-        <br>
+        <br/>
+        ((enjoy))<br/>
+        <br/>
 
     ]]></IntroUpgrade>
     <IntroUpgrade Type="pre" Title="Upgrade Information" Lang="de"><![CDATA[
 
-        <br>
+        <br/>
         <strong>WILLKOMMEN</strong>
-        <br>
-        <br>
-        Sie sind im Begriff das OTRS-Paket ITSMConfigurationManagement zu aktualisieren.<br>
-        <br>
-        <br>
+        <br/>
+        <br/>
+        Sie sind im Begriff das OTRS-Paket ITSMConfigurationManagement zu aktualisieren.<br/>
+        <br/>
+        <br/>
         <strong>BENÖTIGTE OTRS-PAKETE</strong>
         <ul>
         <li>ITSMCore 2.1.91</li>
         </ul>
-        <br>
-        ((enjoy))<br>
-        <br>
+        <br/>
+        ((enjoy))<br/>
+        <br/>
 
     ]]></IntroUpgrade>
     <IntroUpgrade Type="pre" Title="Upgrade Information" Lang="es"><![CDATA[
 
-        <br>
+        <br/>
         <strong>BIENVENIDO</strong>
-        <br>
-        <br>
-        Usted está a punto de actualizar el paquete ITSMConfigurationManagement de OTRS.<br>
-        <br>
-        <br>
+        <br/>
+        <br/>
+        Usted está a punto de actualizar el paquete ITSMConfigurationManagement de OTRS.<br/>
+        <br/>
+        <br/>
         <strong>PAQUETES OTRS REQUERIDOS</strong>
         <ul>
         <li>ITSMCore 2.1.91</li>
         </ul>
-        <br>
-        ((enjoy))<br>
-        <br>
+        <br/>
+        ((enjoy))<br/>
+        <br/>
 
     ]]></IntroUpgrade>
     <IntroUninstall Type="pre" Title="Uninstallation Information" Lang="en"><![CDATA[
 
-        <br>
+        <br/>
         <strong>ATTENTION</strong>
-        <br>
-        <br>
+        <br/>
+        <br/>
         If you uninstall this package, all database tables that were created during installation will be deleted.
         All data from these tables will be irrevocably lost!
-        <br>
-        <br>
+        <br/>
+        <br/>
         The group 'itsm-configitem' that was created during package installation will be deactivated.
         You can activate this group again in the admin area.
-        <br>
-        <br>
+        <br/>
+        <br/>
         All links to config item objects will be irrevocably deleted!
-        <br>
-        <br>
+        <br/>
+        <br/>
         The statistics that are associated with this package, will no longer be available if the package is uninstalled.
-        <br>
-        <br>
-        ((enjoy))<br>
-        <br>
+        <br/>
+        <br/>
+        ((enjoy))<br/>
+        <br/>
 
     ]]></IntroUninstall>
     <IntroUninstall Type="pre" Title="Uninstallation Information" Lang="de"><![CDATA[
 
-        <br>
+        <br/>
         <strong>ACHTUNG</strong>
-        <br>
-        <br>
+        <br/>
+        <br/>
         Bei der Deinstallation werden die von diesem Paket angelegten Datenbank-Tabellen gelöscht.
         Alle darin enthaltenen Daten gehen unwiderruflich verloren!
-        <br>
-        <br>
+        <br/>
+        <br/>
         Die von diesem Paket angelegte Gruppe 'itsm-configitem' wird deaktiviert.
         Sie kann jederzeit im Admin-Bereich wieder aktiviert werden.
-        <br>
-        <br>
+        <br/>
+        <br/>
         Alle Verknüpfungen zu ConfigItem-Objekten werden unwiderruflich gelöscht!
-        <br>
-        <br>
+        <br/>
+        <br/>
         Nach der Deinstallation sind die zu diesem Paket zugehörigen Statistiken nicht mehr verfügbar.
-        <br>
-        <br>
-        ((enjoy))<br>
-        <br>
+        <br/>
+        <br/>
+        ((enjoy))<br/>
+        <br/>
 
     ]]></IntroUninstall>
     <IntroUninstall Type="pre" Title="Uninstallation Information" Lang="es"><![CDATA[
 
-        <br>
+        <br/>
         <strong>ATENCIÓN</strong>
-        <br>
-        <br>
+        <br/>
+        <br/>
         Si usted desinstala este paquete, todas las tablas de la base de datos que fueron creadas durante su instalación se eliminarán.
         ¡Todos los datos de dichas tablas se perderán irrevocablemente!
-        <br>
-        <br>
+        <br/>
+        <br/>
         El grupo 'itsm-configitem' que se creó durante la instalación de este paquete se desactivará.
         Es posible reactivar este grupo en el área de administración.
-        <br>
-        <br>
+        <br/>
+        <br/>
         ¡Todos los vínculos a objetos de elementos de configuración serán eliminados permanentemente!
-        <br>
-        <br>
+        <br/>
+        <br/>
         Si usted desinstala este paquete, las estadísticas que están asociadas a él ya no estarán disponibles.
-        <br>
-        <br>
-        ((enjoy))<br>
-        <br>
+        <br/>
+        <br/>
+        ((enjoy))<br/>
+        <br/>
 
     ]]></IntroUninstall>
 </otrs_package>
