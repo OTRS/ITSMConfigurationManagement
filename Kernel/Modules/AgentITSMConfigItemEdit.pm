@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemEdit.pm - the OTRS::ITSM config item edit module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.pm,v 1.14 2010-08-27 21:09:12 cg Exp $
+# $Id: AgentITSMConfigItemEdit.pm,v 1.15 2010-09-09 22:19:45 mp Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.14 $) [1];
+$VERSION = qw($Revision: 1.15 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -297,11 +297,25 @@ sub Run {
         },
     );
 
+    # build customer search autocomplete field
+    my $AutoCompleteConfig
+        = $Self->{ConfigObject}->Get('Ticket::Frontend::CustomerSearchAutoComplete');
+    $Self->{LayoutObject}->Block(
+        Name => 'CustomerSearchAutoComplete',
+        Data => {
+            minQueryLength      => $AutoCompleteConfig->{MinQueryLength}      || 2,
+            queryDelay          => $AutoCompleteConfig->{QueryDelay}          || 0.1,
+            typeAhead           => $AutoCompleteConfig->{TypeAhead}           || 'false',
+            maxResultsDisplayed => $AutoCompleteConfig->{MaxResultsDisplayed} || 20,
+        },
+    );
+
     # output xml form
     if ( $XMLDefinition->{Definition} ) {
         $Self->_XMLFormOutput(
             XMLDefinition => $XMLDefinition->{DefinitionRef},
             %XMLFormOutputParam,
+            ActiveAutoComplete => $AutoCompleteConfig->{Active},
         );
     }
 
@@ -572,6 +586,17 @@ sub _XMLFormOutput {
             }
 
             my $ItemId = 'Item' . $ItemCounter++ . $Param{Prefix} . $Param{Level};
+
+            if ( $Item->{Input}->{Type} eq 'Customer' ) {
+
+                $Self->{LayoutObject}->Block(
+                    Name => 'CustomerSearchInit',
+                    Data => {
+                        ItemId             => '#' . $ItemId,
+                        ActiveAutoComplete => $Param{ActiveAutoComplete},
+                        }
+                );
+            }
 
             # create input element
             my $InputString = $Self->{LayoutObject}->ITSMConfigItemInputCreate(

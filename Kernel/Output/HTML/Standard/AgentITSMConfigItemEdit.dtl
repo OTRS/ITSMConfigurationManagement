@@ -2,13 +2,12 @@
 # AgentITSMConfigItemEdit.dtl - provides HTML form for AgentITSMConfigItemEdit
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.dtl,v 1.6 2010-08-27 21:08:17 cg Exp $
+# $Id: AgentITSMConfigItemEdit.dtl,v 1.7 2010-09-09 22:16:40 mp Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
-
 
 <!--dtl:block:StartNormal-->
 <div class="MainBox ARIARoleMain LayoutFixedSidebar SidebarFirst">
@@ -41,7 +40,7 @@
             </div>
 <!--dtl:block:StartNormal-->
 
-
+$Include{"AgentITSMCustomerSearch"}
             <form action="$Env{"CGIHandle"}" method="post" name="compose" class="Validate" id="ClassItem">
 <!--dtl:block:StartSmall-->
                 <div class="WidgetPopup ARIARoleMain">
@@ -102,7 +101,7 @@
                                 <div class="Field">
                                     $Data{"InputString"}
 <!-- dtl:block:XMLRowValueContentDelete -->
-                                    <input class="DisableVal" type="submit" name="$QData{"InputKey"}::Delete" value="$Text{"Delete"}">
+                                    <button class="DisableVal" type="submit" name="$QData{"InputKey"}::Delete" value="$Text{"Delete"}">$Text{"Delete"}</button>
 <!-- dtl:block:XMLRowValueContentDelete -->
 <!-- dtl:block:XMLRowValueContentDeleteDummy -->
                                     <td>&nbsp;</td>
