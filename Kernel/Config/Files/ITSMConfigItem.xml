@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <otrs_config version="1.0" init="Config">
-    <CVS>$Id: ITSMConfigItem.xml,v 1.20 2010-09-06 20:31:09 en Exp $</CVS>
+    <CVS>$Id: ITSMConfigItem.xml,v 1.21 2010-09-09 22:07:26 cr Exp $</CVS>
     <ConfigItem Name="Frontend::Module###AdminITSMConfigItem" Required="0" Valid="1">
         <Description Translatable="1">Frontend module registration for the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
@@ -151,6 +151,15 @@
                     <AccessKey></AccessKey>
                     <Prio>300</Prio>
                 </NavBar>
+                <Loader>
+                    <CSS>ITSM.Agent.Detail.css</CSS>
+                    <CSS>ITSM.Table.css</CSS>
+                    <CSS>ITSM.Print.css</CSS>
+                    <CSS_IE7>ITSM.Agent.Detail.IE7.css</CSS_IE7>
+                    <JavaScript>thirdparty/jquery-tablesorter-2.0.3/jquery.tablesorter.js</JavaScript>
+                    <JavaScript>Core.UI.Table.Sort.js</JavaScript>
+                    <JavaScript>ITSM.Agent.Zoom.js</JavaScript>
+                </Loader>
             </FrontendModuleReg>
         </Setting>
     </ConfigItem>
@@ -453,8 +462,18 @@
         <SubGroup>Frontend::Agent::SearchRouter</SubGroup>
         <Setting>
             <Hash>
-                <Item Key="^AgentITSM">Action=AgentITSMConfigItemSearch;Subaction=AJAX</Item>
+                <Item Key="^(?:Agent|Admin)ITSMConfigItem">Action=AgentITSMConfigItemSearch;Subaction=AJAX</Item>
             </Hash>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="Loader::Agent::CommonJS###100-ConfigurationManagement" Required="1" Valid="1">
+        <Description Translatable="1">List of JS files to always be loaded for the agent interface.</Description>
+        <Group>Framework</Group>
+        <SubGroup>Core::Web</SubGroup>
+        <Setting>
+            <Array>
+                <Item>ITSM.Agent.ConfigItem.Search.js</Item>
+            </Array>
         </Setting>
     </ConfigItem>
 </otrs_config>
