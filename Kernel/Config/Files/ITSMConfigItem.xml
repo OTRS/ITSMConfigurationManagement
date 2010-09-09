@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <otrs_config version="1.0" init="Config">
-    <CVS>$Id: ITSMConfigItem.xml,v 1.22 2010-09-09 22:23:20 mp Exp $</CVS>
+    <CVS>$Id: ITSMConfigItem.xml,v 1.23 2010-09-09 22:47:55 mp Exp $</CVS>
     <ConfigItem Name="Frontend::Module###AdminITSMConfigItem" Required="0" Valid="1">
         <Description Translatable="1">Frontend module registration for the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
@@ -473,7 +473,7 @@
         <Setting>
             <Array>
                 <Item>ITSM.Agent.ConfigItem.Search.js</Item>
-                <Item>ITSM.Agent.CustomerSearch.js</Item>
+                <Item>ITSM.Agent.ConfigItem.CustomerSearch.js</Item>
             </Array>
         </Setting>
     </ConfigItem>
