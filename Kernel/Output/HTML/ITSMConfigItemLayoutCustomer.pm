@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/ITSMConfigItemLayoutCustomer.pm - layout backend module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutCustomer.pm,v 1.9 2010-09-06 15:43:15 cr Exp $
+# $Id: ITSMConfigItemLayoutCustomer.pm,v 1.10 2010-09-09 22:26:48 mp Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -17,7 +17,7 @@ use warnings;
 use Kernel::System::CustomerUser;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.9 $) [1];
+$VERSION = qw($Revision: 1.10 $) [1];
 
 =head1 NAME
 
@@ -183,13 +183,11 @@ sub InputCreate {
     elsif ( $Param{Item}->{Input}->{ValueDefault} ) {
         $Value = $Param{Item}->{Input}->{ValueDefault};
     }
-    my $Class        = 'W50pc';
-    my $Search       = '';
-    my $StringOption = '';
-    my $StringSelect = '';
-    my $Required     = $Param{Required} || '';
-    my $Invalid      = $Param{Invalid} || '';
-    my $ItemId       = $Param{ItemId} || '';
+    my $Class    = 'W50pc';
+    my $Search   = '';
+    my $Required = $Param{Required} || '';
+    my $Invalid  = $Param{Invalid} || '';
+    my $ItemId   = $Param{ItemId} || '';
 
     if ($Required) {
         $Class .= ' Validate_Required';
@@ -199,35 +197,8 @@ sub InputCreate {
         $Class .= ' ServerError';
     }
 
-    # customer search
-    if ( $Param{Item}->{Form}->{ $Param{Key} }->{Search} ) {
-
-        # start search
-        my %CustomerSearchList = $Self->{CustomerUserObject}->CustomerSearch(
-            Search => $Param{Item}->{Form}->{ $Param{Key} }->{Search},
-        );
-        if (%CustomerSearchList) {
-
-            # create option list
-            $StringOption = $Self->{LayoutObject}->BuildSelection(
-                Name => $Param{Key} . '::Select',
-                Data => \%CustomerSearchList,
-            );
-            $StringOption .= '<br>';
-
-            # create select button
-            $StringSelect = '<input class="DisableVal" type="submit" name="'
-                . $Param{Key}
-                . '::ButtonSelect" '
-                . 'value="$Text{"Select"}"/>&nbsp;';
-
-            # set search
-            $Search = $Param{Item}->{Form}->{ $Param{Key} }->{Search};
-        }
-    }
-
     # create customer string
-    elsif ($Value) {
+    if ($Value) {
 
         # get customer data
         my %CustomerSearchList = $Self->{CustomerUserObject}->CustomerSearch(
@@ -246,7 +217,10 @@ sub InputCreate {
         = '<input type="hidden" name="'
         . $Param{Key}
         . '" value="'
-        . $Value . '"/>'
+        . $Value
+        . '" id="'
+        . $ItemId . 'Selected'
+        . '"/>'
         . '<input type="Text" name="'
         . $Param{Key}
         . '::Search" class="'
@@ -254,16 +228,7 @@ sub InputCreate {
         . '" id="'
         . $ItemId
         . '" value="'
-        . $Search . '"/>' . '<br/>'
-        . $StringOption
-        . $StringSelect
-        . '<input class="DisableVal" type="submit" name="'
-        . $Param{Key}
-        . '::ButtonSearch" value="$Text{"Search"}" />'
-        . '&nbsp;'
-        . '<input class="DisableVal" type="submit" name="'
-        . $Param{Key}
-        . '::ButtonClear" value="$Text{"Clear"}" />';
+        . $Search . '"/>';
 
     return $String;
 }
@@ -393,6 +358,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.9 $ $Date: 2010-09-06 15:43:15 $
+$Revision: 1.10 $ $Date: 2010-09-09 22:26:48 $
 
 =cut
