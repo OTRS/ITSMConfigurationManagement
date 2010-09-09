@@ -1,0 +1,27 @@
+# --
+# AgentITSMCustomerSearch.dtl - provides autocomplete feature for customer search
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# --
+# $Id: AgentITSMCustomerSearch.dtl,v 1.1 2010-09-09 22:30:09 mp Exp $
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# --
+
+<!-- dtl:block:CustomerSearchAutoComplete -->
+<!-- dtl:js_on_document_complete -->
+<script type="text/javascript">//<![CDATA[
+    Core.Config.Set('Autocomplete.QueryDelay', "$QData{"queryDelay"}");
+    Core.Config.Set('Autocomplete.MaxResultsDisplayed', "$QData{"maxResultsDisplayed"}");
+    Core.Config.Set('Autocomplete.MinQueryLength', "$QData{"minQueryLength"}");
+    Core.Config.Set('Autocomplete.DynamicWidth', "$Config{"Ticket::Frontend::CustomerSearchAutoComplete::DynamicWidth"}");
+    Core.Config.Set('Autocomplete.SearchButtonText', "$JSText{"Search Customer"}");
+//]]></script>
+<!-- dtl:block:CustomerSearchInit -->
+<script type="text/javascript">//<![CDATA[
+    ITSM.Agent.CustomerSearch.Init($("$QData{"ItemId"}"), $QData{"ActiveAutoComplete"});
+//]]></script>
+<!-- dtl:block:CustomerSearchInit -->
+<!-- dtl:js_on_document_complete -->
+<!-- dtl:block:CustomerSearchAutoComplete -->
