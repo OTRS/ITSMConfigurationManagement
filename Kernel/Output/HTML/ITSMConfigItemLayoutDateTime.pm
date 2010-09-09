@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/ITSMConfigItemLayoutDateTime.pm - layout backend module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutDateTime.pm,v 1.10 2010-09-09 22:12:09 cr Exp $
+# $Id: ITSMConfigItemLayoutDateTime.pm,v 1.11 2010-09-09 22:13:24 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.10 $) [1];
+$VERSION = qw($Revision: 1.11 $) [1];
 
 =head1 NAME
 
@@ -337,7 +337,6 @@ sub SearchInputCreate {
         %GetParam,
     );
 
-    #    my $Checked  = $GetParam{$Key} ? 'checked="checked"' : '';
     my $Checkbox = qq{<input type="hidden" name="$Key" value="1"/>};
     my $Between  = $Self->{LayoutObject}->{LanguageObject}->Get('Between');
     my $And      = $Self->{LayoutObject}->{LanguageObject}->Get('and');
@@ -362,6 +361,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.10 $ $Date: 2010-09-09 22:12:09 $
+$Revision: 1.11 $ $Date: 2010-09-09 22:13:24 $
 
 =cut
