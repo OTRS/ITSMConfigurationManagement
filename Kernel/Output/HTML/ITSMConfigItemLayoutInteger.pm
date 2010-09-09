@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/ITSMConfigItemLayoutInteger.pm - layout backend module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutInteger.pm,v 1.7 2010-04-27 11:23:12 bes Exp $
+# $Id: ITSMConfigItemLayoutInteger.pm,v 1.8 2010-09-09 22:14:33 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.7 $) [1];
+$VERSION = qw($Revision: 1.8 $) [1];
 
 =head1 NAME
 
@@ -197,8 +197,13 @@ sub SearchFormDataGet {
     }
 
     # get form data
-    my $Value = $Self->{ParamObject}->GetParam( Param => $Param{Key} );
-
+    my $Value;
+    if ( $Param{Value} ) {
+        $Value = $Param{Value};
+    }
+    else {
+        my $Value = $Self->{ParamObject}->GetParam( Param => $Param{Key} );
+    }
     return $Value;
 }
 
@@ -236,7 +241,6 @@ sub SearchInputCreate {
 
     # set preselected value, either from previous selection or the default
     my $Value = $Self->SearchFormDataGet(%Param);
-    my $Value = $Self->SearchFormDataGet(%Param);
     if ( !defined $Value ) {
         $Value = '';
     }
@@ -268,16 +272,16 @@ sub SearchInputCreate {
 
 =head1 TERMS AND CONDITIONS
 
-This software is part of the OTRS project (http://otrs.org/).
+This software is part of the OTRS project (L<http://otrs.org/>).
 
 This software comes with ABSOLUTELY NO WARRANTY. For details, see
 the enclosed file COPYING for license information (AGPL). If you
-did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =cut
 
 =head1 VERSION
 
-$Revision: 1.7 $ $Date: 2010-04-27 11:23:12 $
+$Revision: 1.8 $ $Date: 2010-09-09 22:14:33 $
 
 =cut
