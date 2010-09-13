@@ -2,7 +2,7 @@
 // ITSM.Agent.ConfigItem.Search.js - provides the special module functions for the global search
 // Copyright (C) 2001-2010 OTRS AG, http://otrs.org/\n";
 // --
-// $Id: ITSM.Agent.ConfigItem.Search.js,v 1.1 2010-09-09 22:23:23 cr Exp $
+// $Id: ITSM.Agent.ConfigItem.Search.js,v 1.2 2010-09-13 22:59:59 cr Exp $
 // --
 // This software comes with ABSOLUTELY NO WARRANTY. For details, see
 // the enclosed file COPYING for license information (AGPL). If you
@@ -48,6 +48,39 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
     function ShowWaitingDialog(){
         Core.UI.Dialog.ShowContentDialog('<div class="Spacing Center"><span class="AJAXLoader" title="' + Core.Config.Get('LoadingMsg') + '"></span></div>', '', '10px', 'Center', true);
     }
+
+    /**
+     * @function
+     * @return nothing
+     *      This function add attributes for search
+     */
+
+    TargetNS.ItemAdd = function (Attribute) {
+        $('#SerachAttributesHidden').find('label').each(function () {
+            if ($(this).attr('for') === Attribute) {
+                $(this).prev().clone().appendTo('#SearchInsert');
+                $(this).clone().appendTo('#SearchInsert');
+                $(this).next().clone().appendTo('#SearchInsert');
+            }
+        });
+
+        // rebuild selection
+        Core.Agent.Search.RebuildSelection();
+
+        // set autocomple to customer type fields
+        $('#SearchInsert').find('.ITSMCustomerSearch').each(function() {
+            var InputId = $(this).attr('id') + 'Autocomplete';
+            $(this).removeClass('ITSMCustomerSearch');
+            $(this).attr('id', InputId);
+            $(this).prev().attr('id', InputId + 'Selected');
+
+            ITSM.Agent.ConfigItem.CustomerSearch.Init($('#' + InputId), Core.Config.Get('Autocomplete.Active'));
+
+            // prevent dialog closure when select a customer from the list
+            $('ul.ui-autocomplete').bind('click', function(Event) { Event.stopPropagation(); return false; });
+        });
+        return false;
+    };
 
 
     /**
@@ -95,7 +128,7 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
         // register add of attribute
         $('.Add').live('click', function () {
             var Attribute = $('#Attribute').val();
-            Core.Agent.Search.ItemAdd(Attribute)
+            TargetNS.ItemAdd(Attribute)
             return false;
         });
 

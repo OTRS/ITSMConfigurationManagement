@@ -2,7 +2,7 @@
 # AgentITSMCustomerSearch.dtl - provides autocomplete feature for customer search
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMCustomerSearch.dtl,v 1.2 2010-09-09 22:46:48 mp Exp $
+# $Id: AgentITSMCustomerSearch.dtl,v 1.3 2010-09-13 23:01:47 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,10 +18,23 @@
     Core.Config.Set('Autocomplete.DynamicWidth', "$Config{"Ticket::Frontend::CustomerSearchAutoComplete::DynamicWidth"}");
     Core.Config.Set('Autocomplete.SearchButtonText', "$JSText{"Search Customer"}");
 //]]></script>
+
 <!-- dtl:block:CustomerSearchInit -->
 <script type="text/javascript">//<![CDATA[
     ITSM.Agent.ConfigItem.CustomerSearch.Init($("$QData{"ItemId"}"), $QData{"ActiveAutoComplete"});
 //]]></script>
 <!-- dtl:block:CustomerSearchInit -->
+
 <!-- dtl:js_on_document_complete -->
 <!-- dtl:block:CustomerSearchAutoComplete -->
+
+<!-- dtl:block:CustomerSearchITSMSearchAutocomplete -->
+<script type="text/javascript">//<![CDATA[
+    Core.Config.Set('Autocomplete.Active', $QData{"active"});
+    Core.Config.Set('Autocomplete.QueryDelay', "$QData{"queryDelay"}");
+    Core.Config.Set('Autocomplete.MaxResultsDisplayed', "$QData{"maxResultsDisplayed"}");
+    Core.Config.Set('Autocomplete.MinQueryLength', "$QData{"minQueryLength"}");
+    Core.Config.Set('Autocomplete.DynamicWidth', "$Config{"Ticket::Frontend::CustomerSearchAutoComplete::DynamicWidth"}");
+    Core.Config.Set('Autocomplete.SearchButtonText', "$JSText{"Search Customer"}");
+//]]></script>
+<!-- dtl:block:CustomerSearchITSMSearchAutocomplete -->
