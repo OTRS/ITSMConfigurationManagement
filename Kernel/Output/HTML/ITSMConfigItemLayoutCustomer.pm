@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/ITSMConfigItemLayoutCustomer.pm - layout backend module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutCustomer.pm,v 1.10 2010-09-09 22:26:48 mp Exp $
+# $Id: ITSMConfigItemLayoutCustomer.pm,v 1.11 2010-09-13 23:08:16 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -17,7 +17,7 @@ use warnings;
 use Kernel::System::CustomerUser;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.10 $) [1];
+$VERSION = qw($Revision: 1.11 $) [1];
 
 =head1 NAME
 
@@ -183,7 +183,7 @@ sub InputCreate {
     elsif ( $Param{Item}->{Input}->{ValueDefault} ) {
         $Value = $Param{Item}->{Input}->{ValueDefault};
     }
-    my $Class    = 'W50pc';
+    my $Class    = 'W50pc ITSMCustomerSearch';
     my $Search   = '';
     my $Required = $Param{Required} || '';
     my $Invalid  = $Param{Invalid} || '';
@@ -296,47 +296,16 @@ sub SearchInputCreate {
     # hash with values for the input field
     my %FormData;
 
-    # get selected customer user
-    $FormData{Value} = $Self->{ParamObject}->GetParam( Param => $Key );
-
-    # check search button
-    if ( $Self->{ParamObject}->GetParam( Param => $Key . '::ButtonSearch' ) ) {
-        $Param{Item}->{Form}->{$Key}->{Search}
-            = $Self->{ParamObject}->GetParam( Param => $Key . '::Search' );
+    if ( $Param{Value} ) {
+        $FormData{Value} = $Param{Value};
     }
 
-    # check select button
-    elsif ( $Self->{ParamObject}->GetParam( Param => $Key . '::ButtonSelect' ) ) {
-        $FormData{Value} = $Self->{ParamObject}->GetParam( Param => $Key . '::Select' );
-    }
-
-    # check clear button
-    elsif ( $Self->{ParamObject}->GetParam( Param => $Key . '::ButtonClear' ) ) {
-        $FormData{Value} = '';
-    }
-    else {
-
-        # reset value if search field is emty
-        if (
-            !$Self->{ParamObject}->GetParam( Param => $Key . '::Search' )
-            && defined $FormData{Value}
-            )
-        {
-            $FormData{Value} = '';
-        }
-
-        # check required option
-        if ( $Param{Item}->{Input}->{Required} && !$FormData{Value} ) {
-            $Param{Item}->{Form}->{$Key}->{Invalid} = 1;
-            $FormData{Invalid} = 1;
-        }
-    }
-
-    # create input field, including the search and clear buttons
+    # create input field
     my $InputString = $Self->InputCreate(
         %FormData,
-        Key  => $Param{Key},
-        Item => $Param{Item},
+        Key    => $Param{Key},
+        Item   => $Param{Item},
+        ItemId => $Param{Key},
     );
 
     return $InputString;
@@ -358,6 +327,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.10 $ $Date: 2010-09-09 22:26:48 $
+$Revision: 1.11 $ $Date: 2010-09-13 23:08:16 $
 
 =cut

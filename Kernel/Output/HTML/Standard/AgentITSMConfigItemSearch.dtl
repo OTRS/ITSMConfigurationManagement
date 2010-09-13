@@ -2,7 +2,7 @@
 # AgentITSMConfigItemSearch.dtl - provides HTML form for AgentITSMConfigItemSearch
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.dtl,v 1.7 2010-09-09 22:39:14 cr Exp $
+# $Id: AgentITSMConfigItemSearch.dtl,v 1.8 2010-09-13 23:06:50 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -161,6 +161,8 @@
 //]]></script>
 <!-- dtl:block:SearchAJAX -->
 
+$Include{"AgentITSMCustomerSearch"}
+
 <!-- dtl:block:Search -->
 <!--dtl:js_on_document_complete-->
 <script type="text/javascript">//<![CDATA[
@@ -261,9 +263,8 @@
 <script type="text/javascript">//<![CDATA[
 <!-- dtl:block:SearchAJAXShow -->
     window.setTimeout(function (){
-        Core.Agent.Search.ItemAdd('$QData{"Attribute"}');
+        ITSM.Agent.ConfigItem.Search.ItemAdd('$QData{"Attribute"}');
     }, 150);
 <!-- dtl:block:SearchAJAXShow -->
 //]]></script>
-
 <!-- dtl:block:AJAXContent -->
