@@ -2,7 +2,7 @@
 # AgentITSMConfigItemSearch.dtl - provides HTML form for AgentITSMConfigItemSearch
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.dtl,v 1.8 2010-09-13 23:06:50 cr Exp $
+# $Id: AgentITSMConfigItemSearch.dtl,v 1.9 2010-09-15 17:59:29 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -17,7 +17,7 @@
             <div class="ControlRow">
                 <ul class="Tabs">
                     <li>
-                        <a href="javascript:history.back()">
+                        <a href=$Env{"Baselink"}Action=$Env{"Action"};Profile=$LQData{"Profile"};ClassID=$LQData{"ClassID"}>
                             $Text{"Change search options"}
                         </a>
                         - $Text{"Total hits"}: <b>$Data{"TotalHits"}</b>
@@ -153,20 +153,29 @@
 <div class="ContentFooter Center">
     <button id="SearchFormSubmit" class="Primary Hidden" value="Run Search">$Text{"Run Search"}</button>
 </div>
-
 <script type="text/javascript">//<![CDATA[
-    $('#SearchClassID').live('change', function(){
-        ITSM.Agent.ConfigItem.Search.RefreshSearchDialog( $('#SearchProfile').val() );
-    });
+    window.setTimeout(function (){
+        $('#SearchClassID').bind('change', function(){
+            ITSM.Agent.ConfigItem.Search.LoadProfile( $('#SearchProfile').val() );
+        });
+    }, 150);
 //]]></script>
 <!-- dtl:block:SearchAJAX -->
 
 $Include{"AgentITSMCustomerSearch"}
 
+<!-- dtl:block:SearchAJAXSetClass -->
+<script type="text/javascript">//<![CDATA[
+    window.setTimeout(function (){
+            ITSM.Agent.ConfigItem.Search.LoadProfile( "$QData{"Profile"}" );
+    }, 150);
+//]]></script>
+<!-- dtl:block:SearchAJAXSetClass -->
+
 <!-- dtl:block:Search -->
 <!--dtl:js_on_document_complete-->
 <script type="text/javascript">//<![CDATA[
-    Core.Agent.Search.OpenSearchDialog( '$Env{"Action"}' );
+    ITSM.Agent.ConfigItem.Search.OpenSearchDialog( '$Env{"Action"}', "$QData{"Profile"}", "$QData{"ClassID"}" );
 //]]></script>
 <!--dtl:js_on_document_complete-->
 <!-- dtl:block:Search -->
@@ -219,7 +228,7 @@ $Include{"AgentITSMCustomerSearch"}
         </div>
     </fieldset>
 </form>
-<fieldset class="TableLike Hidden" id="SerachAttributesHidden">
+<fieldset class="TableLike Hidden" id="SearchAttributesHidden">
     <div class="Clear"></div>
     <label for="Number">$Text{"Number"} $Text{"(e. g. 10*5155 or 105658*)"}</label>
     <div class="Field">
