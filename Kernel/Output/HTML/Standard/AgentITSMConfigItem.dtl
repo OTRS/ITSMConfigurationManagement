@@ -2,7 +2,7 @@
 # AgentITSMConfigItem.dtl - provides HTML form for AgentITSMConfigItem
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItem.dtl,v 1.7 2010-08-25 18:56:36 cg Exp $
+# $Id: AgentITSMConfigItem.dtl,v 1.8 2010-09-15 18:19:51 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -36,7 +36,6 @@
                     <li>
                         <form action="$Env{"CGIHandle"}" method="get">
                             <input type="hidden" name="Action" value="AgentITSMConfigItemSearch"/>
-                            <input type="hidden" name="Subaction" value="Attribute"/>
 
                             <div>$Data{"ClassOptionStrg"}</div>
                             <button class="CallForAction" type="submit" value="$Text{"Search"}">
