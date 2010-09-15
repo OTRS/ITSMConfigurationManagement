@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemSearch.pm - the OTRS::ITSM config item search module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.pm,v 1.15 2010-09-13 23:08:59 cr Exp $
+# $Id: AgentITSMConfigItemSearch.pm,v 1.16 2010-09-15 17:37:30 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -20,7 +20,7 @@ use Kernel::System::SearchProfile;
 use Kernel::System::CSV;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.15 $) [1];
+$VERSION = qw($Revision: 1.16 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -130,6 +130,16 @@ sub Run {
                 Profile         => $Profile,
             },
         );
+
+        # set class fields if class specified
+        if ($ClassID) {
+            $Self->{LayoutObject}->Block(
+                Name => 'SearchAJAXSetClass',
+                Data => {
+                    Profile => $Profile,
+                },
+            );
+        }
 
         # output template
         $Output = $Self->{LayoutObject}->Output(
@@ -370,7 +380,7 @@ sub Run {
 
         # store last queue screen
         my $URL
-            = "Action=AgentITSMConfigItemSearch;Subaction=Search;Profile=$Self->{Profile};"
+            = "Action=AgentITSMConfigItemSearch;Profile=$Self->{Profile};"
             . "TakeLastSearch=1;StartHit=$Self->{StartHit}";
 
         if ($ClassID) {
@@ -785,6 +795,7 @@ sub Run {
                     TotalHits => scalar( @{$SearchResultList} ),
                     Class     => $ClassList->{$ClassID},
                     ClassID   => $ClassID,
+                    URL       => $URL,
                 },
             );
 
@@ -846,13 +857,18 @@ sub Run {
     # ------------------------------------------------------------ #
     else {
 
+        my $Profile = $Self->{ParamObject}->GetParam( Param => 'Profile' );
+
         # show default search screen
         $Output = $Self->{LayoutObject}->Header();
         $Output .= $Self->{LayoutObject}->NavigationBar();
 
         $Self->{LayoutObject}->Block(
             Name => 'Search',
-            Data => \%Param,
+            Data => {
+                Profile => $Profile,
+                ClassID => $ClassID,
+            },
         );
 
         # output template
