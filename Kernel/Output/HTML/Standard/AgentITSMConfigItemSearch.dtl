@@ -2,7 +2,7 @@
 # AgentITSMConfigItemSearch.dtl - provides HTML form for AgentITSMConfigItemSearch
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.dtl,v 1.11 2010-09-21 16:19:06 cr Exp $
+# $Id: AgentITSMConfigItemSearch.dtl,v 1.12 2010-09-21 22:24:41 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -32,7 +32,7 @@
             <div class="ControlRow">
                 <ul class="Tabs">
                     <li>
-                        <a href=$Env{"Baselink"}Action=$Env{"Action"};Profile=$LQData{"Profile"};ClassID=$LQData{"ClassID"}>
+                        <a href="$Env{"Baselink"}Action=$Env{"Action"};Profile=$LQData{"Profile"};ClassID=$LQData{"ClassID"}">
                             $Text{"Change search options"}
                         </a>
                     </li>
@@ -45,8 +45,6 @@
             </div>
             <div class="ActionRow">
                 <div class="OverviewActions">
-                    <ul class="Actions">
-                    </ul>
                     <span class="Pagination">
 <!-- dtl:block:OverviewNavBarPageNavBar -->
                         $Data{"ResultLong"}
