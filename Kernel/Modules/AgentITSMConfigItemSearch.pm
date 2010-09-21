@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemSearch.pm - the OTRS::ITSM config item search module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.pm,v 1.17 2010-09-15 18:01:04 cr Exp $
+# $Id: AgentITSMConfigItemSearch.pm,v 1.18 2010-09-21 02:01:20 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -20,7 +20,7 @@ use Kernel::System::SearchProfile;
 use Kernel::System::CSV;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.17 $) [1];
+$VERSION = qw($Revision: 1.18 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -55,9 +55,9 @@ sub Run {
     # get config data
     $Self->{StartHit} = int( $Self->{ParamObject}->GetParam( Param => 'StartHit' ) || 1 );
     $Self->{SearchLimit} = $Self->{Config}->{SearchLimit} || 500;
-    $Self->{Profile}        = $Self->{ParamObject}->GetParam( Param => 'Profile' )        || '';
-    $Self->{SaveProfile}    = $Self->{ParamObject}->GetParam( Param => 'SaveProfile' )    || '';
-    $Self->{TakeLastSearch} = $Self->{ParamObject}->GetParam( Param => 'TakeLastSearch' ) || '';
+    $Self->{Profile}     = $Self->{ParamObject}->GetParam( Param => 'Profile' )     || '';
+    $Self->{SaveProfile} = $Self->{ParamObject}->GetParam( Param => 'SaveProfile' ) || '';
+    $Self->{TakeLastSearch} = $Self->{ParamObject}->GetParam( Param => 'TakeLastSearch' );
 
     # get class list
     my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
@@ -78,6 +78,18 @@ sub Run {
 
     # get class id
     my $ClassID = $Self->{ParamObject}->GetParam( Param => 'ClassID' );
+
+    # get single params
+    my %GetParam;
+
+    # load profiles string params
+    if ( ( $ClassID && $Self->{Profile} ) && $Self->{TakeLastSearch} ) {
+        %GetParam = $Self->{SearchProfileObject}->SearchProfileGet(
+            Base      => 'ConfigItemSearch' . $ClassID,
+            Name      => $Self->{Profile},
+            UserLogin => $Self->{UserLogin},
+        );
+    }
 
     # ------------------------------------------------------------ #
     # delete search profiles
@@ -106,9 +118,6 @@ sub Run {
     # init search dialog (select class)
     # ------------------------------------------------------------ #
     elsif ( $Self->{Subaction} eq 'AJAX' ) {
-
-        # attributes used for searching and for restoring previous input
-        my %GetParam;
 
         my $Profile = $Self->{ParamObject}->GetParam( Param => 'Profile' );
 
@@ -373,8 +382,10 @@ sub Run {
     # ------------------------------------------------------------ #
     elsif ( $Self->{Subaction} eq 'Search' ) {
 
+        my $SearchDialog = $Self->{ParamObject}->GetParam( Param => 'SearchDialog' );
+
         # fill up profile name (e.g. with last-search)
-        if ( !$Self->{Profile} || !$Self->{SaveProfile} ) {
+        if ( ( !$Self->{Profile} || !$Self->{SaveProfile} ) && !$Self->{TakeLastSearch} ) {
             $Self->{Profile} = 'last-search';
         }
 
@@ -435,9 +446,6 @@ sub Run {
             );
         }
 
-        # attributes used for searching and for restoring previous input
-        my %GetParam;
-
         # get scalar search attributes
         FORMVALUE:
         for my $FormValue (qw(Number Name PreviousVersionSearch ResultForm)) {
@@ -476,8 +484,9 @@ sub Run {
         # save search profile (under last-search or real profile name)
         $Self->{SaveProfile} = 1;
 
-        # remember last search values
-        if ( $Self->{SaveProfile} && $Self->{Profile} ) {
+        # remember last search values only if search is calld from a search dialog
+        # not from resuts page change
+        if ( $Self->{SaveProfile} && $Self->{Profile} && $SearchDialog ) {
 
             # remove old profile stuff
             $Self->{SearchProfileObject}->SearchProfileDelete(
@@ -516,16 +525,25 @@ sub Run {
                     }
                 }
             }
-
         }
 
-        # start search
-        my $SearchResultList = $Self->{ConfigItemObject}->ConfigItemSearchExtended(
-            %GetParam,
-            ClassIDs => [$ClassID],
-        );
+        my $SearchResultList = [];
 
-        $GetParam{ResultForm} = $Self->{ParamObject}->GetParam( Param => 'ResultForm' );
+        # start search if called from a search dialog or from a resutls page change
+        if ( $SearchDialog || $Self->{TakeLastSearch} ) {
+
+            # start search
+            $SearchResultList = $Self->{ConfigItemObject}->ConfigItemSearchExtended(
+                %GetParam,
+                ClassIDs => [$ClassID],
+            );
+        }
+
+        # get param only if called from a search dialog, otherwise it must be already in %GetParam
+        # from a loaded profile
+        if ($SearchDialog) {
+            $GetParam{ResultForm} = $Self->{ParamObject}->GetParam( Param => 'ResultForm' );
+        }
 
         # CSV output
         if ( $GetParam{ResultForm} eq 'CSV' ) {
@@ -787,15 +805,66 @@ sub Run {
         # normal HTML output
         else {
 
+            # get the total number of matched configuration items
+            $Param{Total} = scalar( @{$SearchResultList} );
+
+            # check start option, if higher then configuration items available, set
+            # it to the last ticket page (Thanks to Stefan Schmidt!)
+            my $StartHit = $Self->{ParamObject}->GetParam( Param => 'StartHit' ) || 1;
+
+            # get personal page shown count
+            my $PageShownPreferencesKey = 'UserConfigurationItemPageShown';
+            my $PageShown               = $Self->{$PageShownPreferencesKey} || 10;
+            my $Group                   = 'ConfigurationItemPageShown';
+
+            # get data selection
+            my %Data;
+            my $Config = $Self->{ConfigObject}->Get('PreferencesGroups');
+            if ( $Config && $Config->{$Group} && $Config->{$Group}->{Data} ) {
+                %Data = %{ $Config->{$Group}->{Data} };
+            }
+
+            # build shown ticket a page
+            $Param{RequestedURL}    = "Action=$Self->{Action}";
+            $Param{Group}           = $Group;
+            $Param{PreferencesKey}  = $PageShownPreferencesKey;
+            $Param{PageShownString} = $Self->{LayoutObject}->BuildSelection(
+                Name       => $PageShownPreferencesKey,
+                SelectedID => $PageShown,
+                Data       => \%Data,
+            );
+
+            # calculate max. sown page
+            if ( $StartHit > $Param{Total} ) {
+                my $Pages = int( ( $Param{Total} / $PageShown ) + 0.99999 );
+                $StartHit = ( ( $Pages - 1 ) * $PageShown ) + 1;
+            }
+
+            # build nav bar
+            my $Limit = $Param{Limit} || 20_000;
+
+            my %PageNav = $Self->{LayoutObject}->PageNavBar(
+                Limit     => $Limit,
+                StartHit  => $StartHit,
+                PageShown => $PageShown,
+                AllHits   => scalar( @{$SearchResultList} ) || 0,
+                Action    => 'Action=AgentITSMConfigItemSearch',
+                Link      => "Subaction=Search;ClassID=$ClassID;Profile=$Self->{Profile};"
+                    . "TakeLastSearch=1;",
+                IDPrefix => 'ConfigItem',
+            );
+
             # output normal result block
             $Self->{LayoutObject}->Block(
                 Name => 'Result',
                 Data => {
                     %GetParam,
-                    TotalHits => scalar( @{$SearchResultList} ),
-                    Class     => $ClassList->{$ClassID},
-                    ClassID   => $ClassID,
-                    Profile   => $Self->{Profile},
+                    RequestedURL    => $Param{RequestedURL},
+                    Group           => $Param{Group},
+                    PageShownString => $Param{PageShownString},
+                    Class           => $ClassList->{$ClassID},
+                    ClassID         => $ClassID,
+                    Profile         => $Self->{Profile},
                 },
             );
 
@@ -806,32 +875,65 @@ sub Run {
                 incident    => 'redled',
             );
 
-            # output the found config items
-            CONFIGITEMID:
-            for my $ConfigItemID ( @{$SearchResultList} ) {
-
-                # check for access rights
-                my $HasAccess = $Self->{ConfigItemObject}->Permission(
-                    Scope  => 'Item',
-                    ItemID => $ConfigItemID,
-                    UserID => $Self->{UserID},
-                    Type   => $Self->{Config}->{Permission},
-                );
-
-                next CONFIGITEMID if !$HasAccess;
-
-                # get version
-                my $LastVersion = $Self->{ConfigItemObject}->VersionGet(
-                    ConfigItemID => $ConfigItemID,
-                    XMLDataGet   => 0,
-                );
-
-                # output row
+            # output header if there is at least 1 record
+            if ( $Param{Total} > 0 ) {
                 $Self->{LayoutObject}->Block(
-                    Name => 'ResultRow',
+                    Name => 'ResultHeader',
                     Data => {
-                        %{$LastVersion},
-                        CurInciSignal => $InciSignals{ $LastVersion->{CurInciStateType} },
+                    },
+                );
+            }
+
+            # output the found config items
+            if ( $Param{Total} > 0 ) {
+                my $Counter = 0;
+
+                CONFIGITEMID:
+                for my $ConfigItemID ( @{$SearchResultList} ) {
+
+                    # check for access rights
+                    my $HasAccess = $Self->{ConfigItemObject}->Permission(
+                        Scope  => 'Item',
+                        ItemID => $ConfigItemID,
+                        UserID => $Self->{UserID},
+                        Type   => $Self->{Config}->{Permission},
+                    );
+
+                    next CONFIGITEMID if !$HasAccess;
+
+                    # output items for the selected results page
+                    $Counter++;
+                    if ( $Counter >= $StartHit && $Counter < ( $PageShown + $StartHit ) ) {
+
+                        # get version
+                        my $LastVersion = $Self->{ConfigItemObject}->VersionGet(
+                            ConfigItemID => $ConfigItemID,
+                            XMLDataGet   => 0,
+                        );
+
+                        # output row
+                        $Self->{LayoutObject}->Block(
+                            Name => 'ResultRow',
+                            Data => {
+                                %{$LastVersion},
+                                CurInciSignal =>
+                                    $InciSignals{ $LastVersion->{CurInciStateType} },
+                            },
+                        );
+                    }
+                }
+
+                if (%PageNav) {
+                    $Self->{LayoutObject}->Block(
+                        Name => 'OverviewNavBarPageNavBar',
+                        Data => \%PageNav,
+                    );
+                }
+            }
+            else {
+                $Self->{LayoutObject}->Block(
+                    Name => 'ResultRowEmpty',
+                    Data => {
                     },
                 );
             }
