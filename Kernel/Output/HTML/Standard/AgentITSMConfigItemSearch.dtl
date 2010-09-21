@@ -2,7 +2,7 @@
 # AgentITSMConfigItemSearch.dtl - provides HTML form for AgentITSMConfigItemSearch
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.dtl,v 1.10 2010-09-21 01:52:47 cr Exp $
+# $Id: AgentITSMConfigItemSearch.dtl,v 1.11 2010-09-21 16:19:06 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -47,12 +47,12 @@
                 <div class="OverviewActions">
                     <ul class="Actions">
                     </ul>
-                    <div class="Pagination">
+                    <span class="Pagination">
 <!-- dtl:block:OverviewNavBarPageNavBar -->
                         $Data{"ResultLong"}
                         $Data{"SiteNavBarLong"}
 <!-- dtl:block:OverviewNavBarPageNavBar -->
-                    </div>
+                    </span>
                     <div class="ClearLeft"></div>
                 </div>
             </div>
