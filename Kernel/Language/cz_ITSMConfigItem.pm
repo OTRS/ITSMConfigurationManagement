@@ -4,7 +4,7 @@
 # Copyright (C) 2007-2008 Milen Koutev
 # Copyright (C) 2010 O2BS.com, s r.o. Jakub Hanus
 # --
-# $Id: cz_ITSMConfigItem.pm,v 1.8 2010-09-06 20:31:09 en Exp $
+# $Id: cz_ITSMConfigItem.pm,v 1.9 2010-09-21 17:09:44 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -17,7 +17,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.8 $) [1];
+$VERSION = qw($Revision: 1.9 $) [1];
 
 sub Data {
     my $Self = shift;
@@ -192,6 +192,9 @@ sub Data {
     $Lang->{'Required permissions to use the ITSM configuration item zoom screen in the agent interface.'} = '';
     $Lang->{'Required permissions to use the ITSM configuration item search screen in the agent interface.'} = '';
     $Lang->{'Configuration item search backend router of the agent interface.'} = '';
+    $Lang->{'Parameters for the pages (in which the configuration items are shown).'} = '';
+    $Lang->{'Configuration Item Limit'} = '';
+    $Lang->{'Configuration Item limit per page'} = '';
 
     return 1;
 }

@@ -2,7 +2,7 @@
 # Kernel/Language/de_ITSMConfigItem.pm - the german translation of ITSMConfigItem
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: de_ITSMConfigItem.pm,v 1.9 2010-09-06 20:31:09 en Exp $
+# $Id: de_ITSMConfigItem.pm,v 1.10 2010-09-21 17:09:44 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.9 $) [1];
+$VERSION = qw($Revision: 1.10 $) [1];
 
 sub Data {
     my $Self = shift;
@@ -192,6 +192,9 @@ sub Data {
     $Lang->{'Required permissions to use the ITSM configuration item zoom screen in the agent interface.'} = '';
     $Lang->{'Required permissions to use the ITSM configuration item search screen in the agent interface.'} = '';
     $Lang->{'Configuration item search backend router of the agent interface.'} = '';
+    $Lang->{'Parameters for the pages (in which the configuration items are shown).'} = '';
+    $Lang->{'Configuration Item Limit'} = '';
+    $Lang->{'Configuration Item limit per page'} = '';
 
     return 1;
 }

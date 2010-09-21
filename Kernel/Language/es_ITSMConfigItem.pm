@@ -3,7 +3,7 @@
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # Copyright (C) 2008 Aquiles Cohen
 # --
-# $Id: es_ITSMConfigItem.pm,v 1.7 2010-09-06 20:31:09 en Exp $
+# $Id: es_ITSMConfigItem.pm,v 1.8 2010-09-21 17:09:44 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -16,7 +16,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.7 $) [1];
+$VERSION = qw($Revision: 1.8 $) [1];
 
 sub Data {
     my $Self = shift;
@@ -191,6 +191,9 @@ sub Data {
     $Lang->{'Required permissions to use the ITSM configuration item zoom screen in the agent interface.'} = 'Permisos necesarios para usar la ventana de detalle de los elementos de configuración en la interfaz del agente.';
     $Lang->{'Required permissions to use the ITSM configuration item search screen in the agent interface.'} = 'Permisos necesarios para usar la ventana de búsqueda de elementos de configuración en la interfaz del agente.';
     $Lang->{'Configuration item search backend router of the agent interface.'} = 'Router backend de búsqueda de elementos de configuración de la interfaz del agente.';
+    $Lang->{'Parameters for the pages (in which the configuration items are shown).'} = 'Parámetros para las páginas (donde se muestran los elementos de configuración)';
+    $Lang->{'Configuration Item Limit'} = 'Límite de Elementos de Configuración';
+    $Lang->{'Configuration Item limit per page'} = 'Límite por página de Elementos de Configuración';
 
     return 1;
 }
