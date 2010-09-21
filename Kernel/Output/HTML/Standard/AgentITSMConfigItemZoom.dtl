@@ -2,7 +2,7 @@
 # AgentITSMConfigItemZoom.dtl - provides HTML form for AgentITSMConfigItemZoom
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemZoom.dtl,v 1.7 2010-08-23 16:57:37 dz Exp $
+# $Id: AgentITSMConfigItemZoom.dtl,v 1.8 2010-09-21 22:53:31 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -36,11 +36,11 @@
                         <p class="Value">$QData{"CurDeplState","25"}</p>
                         <div class="Clear"></div>
                         <label>$Text{"Current Incident State"}:</label>
-                        <div class="Value" title="$QData{"CurInciState"}">
+                        <div class="Value" title=$Text{"$Data{"CurInciState"}"}>
                             <div class="Flag Small">
                                 <span class="$QData{"CurInciSignal"}"></span>
                             </div>
-                            $QData{"CurInciState","25"}
+                            $Text{"$Data{"CurInciState"}"}
                         </div>
                         <div class="Clear"></div>
                         <label>$Text{"Created"}:</label>
@@ -121,7 +121,7 @@
 <!-- dtl:block:TreeItem -->
 <!-- dtl:block:TreeItemInactive -->
                                     <tr>
-                                        <td title="$QData{"CurInciState"}">
+                                        <td title=$Text{"$Data{"CurInciState"}"}>
                                             <div class="Flag Small">
                                                 <span class="$QData{"InciSignal"}">"$QData{"InciState"}"</span>
                                             </div>
@@ -145,7 +145,7 @@
 <!-- dtl:block:TreeItemInactive -->
 <!-- dtl:block:TreeItemActive -->
                                     <tr class="Active">
-                                        <td title="$QData{"CurInciState"}">
+                                        <td title=$Text{"$Data{"CurInciState"}"}>
                                             <div class="Flag Small">
                                                 <span class="$QData{"InciSignal"}">"$QData{"InciState"}"</span>
                                             </div>
