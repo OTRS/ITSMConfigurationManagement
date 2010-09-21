@@ -2,7 +2,7 @@
 # AgentITSMConfigItemEdit.dtl - provides HTML form for AgentITSMConfigItemEdit
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.dtl,v 1.7 2010-09-09 22:16:40 mp Exp $
+# $Id: AgentITSMConfigItemEdit.dtl,v 1.8 2010-09-21 22:23:32 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -62,7 +62,7 @@ $Include{"AgentITSMCustomerSearch"}
 
                             <label class="Mandatory" for="Name"><span class="Marker">*</span> $Text{"Name"}: </label>
                             <div class="Field">
-                                <input type="Text" name="Name" id="Name" class="W50pc Validate_Required $QData{"RowNameInvalid"}"" maxlength="250" value="$QData{"Name"}" title="$Text{"The name of this config item"}">
+                                <input type="text" name="Name" id="Name" class="W50pc Validate_Required $QData{"RowNameInvalid"}" maxlength="250" value="$QData{"Name"}" title="$Text{"The name of this config item"}"/>
                                 <div id="NameError" class="TooltipErrorMessage" ><p>$Text{"A Config Item should have a name!"}</p></div>
                                 <div id="NameServerError" class="TooltipErrorMessage"><p>$Text{"Name is required."}</p></div>
                             </div>
@@ -104,7 +104,6 @@ $Include{"AgentITSMCustomerSearch"}
                                     <button class="DisableVal" type="submit" name="$QData{"InputKey"}::Delete" value="$Text{"Delete"}">$Text{"Delete"}</button>
 <!-- dtl:block:XMLRowValueContentDelete -->
 <!-- dtl:block:XMLRowValueContentDeleteDummy -->
-                                    <td>&nbsp;</td>
 <!-- dtl:block:XMLRowValueContentDeleteDummy -->
                                     <div id="$QData{"ItemId"}Error" class="TooltipErrorMessage" ><p>$Text{"A Config Item should have a $Data{"Name"}!"}</p></div>
                                     <div id="$QData{"ItemId"}ServerError" class="TooltipErrorMessage"><p>$Text{"$Data{"Name"} is required."}</p></div>
@@ -118,9 +117,9 @@ $Include{"AgentITSMCustomerSearch"}
 <!-- dtl:block:XMLRowAdd -->
 <!-- dtl:block:XMLRowAddContent -->
                             <div class="ContentField">
-                                <label for="">$Text{"$Data{"Name"}"}: </label>
+                                <label for="$QData{"ItemID"}">$Text{"$Data{"Name"}"}: </label>
                                 <div class="Field">
-                                    <input class="DisableVal" type="submit" name="$QData{"InputKey"}::Add" value="$Text{"Add"}" title="$Text{"$Data{"Description"}"}"/>
+                                    <input class="DisableVal" id="$QData{"ItemID"}" type="submit" name="$QData{"InputKey"}::Add" value="$Text{"Add"}" title="$Text{"$Data{"Description"}"}"/>
                                 </div>
                                 <div class="Clear"></div>
                             </div>

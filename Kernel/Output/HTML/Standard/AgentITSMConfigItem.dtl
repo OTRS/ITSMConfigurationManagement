@@ -2,7 +2,7 @@
 # AgentITSMConfigItem.dtl - provides HTML form for AgentITSMConfigItem
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItem.dtl,v 1.8 2010-09-15 18:19:51 cr Exp $
+# $Id: AgentITSMConfigItem.dtl,v 1.9 2010-09-21 22:23:01 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -61,7 +61,7 @@
 <!-- dtl:block:Menu -->
 <!-- dtl:block:MenuItem -->
                         <li class="ActionField">
-                            <a name="$QData{"Class"}" id="$QData{"ClassID"}" href="$Env{"Baselink"}Action=$Env{"Action"};ClassID=$QData{"ClassID"};SubAction=Reload">
+                            <a name="$QData{"Class"}" id="ClassID$QData{"ClassID"}" href="$Env{"Baselink"}Action=$Env{"Action"};ClassID=$QData{"ClassID"};SubAction=Reload">
                                 $QData{"Class"} ($QData{"Count"})
                             </a>
                         </li>
@@ -100,12 +100,12 @@
                     </span>
 <!-- dtl:block:PageBold -->
 <!-- dtl:block:Page -->
-                    <div class="AdditionalInformation">
+                    <span class="AdditionalInformation">
                         $Text{"Config Items available"}:
 <!-- dtl:block:ItemsAvail -->
                         $QData{"ConfigItemsAvail"}
 <!-- dtl:block:ItemsAvail -->
-                    </div>
+                    </span>
                 </h2>
             </div>
 <!-- dtl:block:Class -->
@@ -174,9 +174,9 @@
         </span>
 <!-- dtl:block:PageBoldReload -->
 <!-- dtl:block:PageReload -->
-        <div class="AdditionalInformation">
+        <span class="AdditionalInformation">
             $Text{"Config Items available"}: $QData{"ConfigItemsAvail"}
-        </div>
+        </span>
     </h2>
 </div>
 <!-- dtl:block:ClassReload -->
