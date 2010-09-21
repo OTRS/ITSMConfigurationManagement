@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/ITSMConfigItemLayoutText.pm - layout backend module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutText.pm,v 1.13 2010-09-09 22:14:59 cr Exp $
+# $Id: ITSMConfigItemLayoutText.pm,v 1.14 2010-09-21 22:22:14 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.13 $) [1];
+$VERSION = qw($Revision: 1.14 $) [1];
 
 =head1 NAME
 
@@ -193,7 +193,7 @@ sub InputCreate {
         $Class .= ' ServerError';
     }
     $Class .= ' ' . $Size;
-    my $String = "<input type=\"Text\" name=\"$Param{Key}\" class=\"$Class\" ";
+    my $String = "<input type=\"text\" name=\"$Param{Key}\" class=\"$Class\" ";
 
     if ($ItemId) {
         $String .= "id=\"$ItemId\" ";
@@ -289,7 +289,7 @@ sub SearchInputCreate {
         $Value = '';
     }
 
-    my $String = qq{<input type="Text" name="$Param{Key}" value="$Value" class="W50pc" >};
+    my $String = qq{<input type="text" name="$Param{Key}" value="$Value" class="W50pc" >};
 
     return $String;
 }
@@ -310,6 +310,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.13 $ $Date: 2010-09-09 22:14:59 $
+$Revision: 1.14 $ $Date: 2010-09-21 22:22:14 $
 
 =cut
