@@ -2,7 +2,7 @@
 # AgentITSMConfigItemSearch.dtl - provides HTML form for AgentITSMConfigItemSearch
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.dtl,v 1.9 2010-09-15 17:59:29 cr Exp $
+# $Id: AgentITSMConfigItemSearch.dtl,v 1.10 2010-09-21 01:52:47 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -10,6 +10,21 @@
 # --
 
 <!-- dtl:block:Result -->
+<div id="ContextSettingsDialogContainer" class="Hidden">
+    <form action="$Env{"CGIHandle"}" method="post" id="ContextSettingsDialog">
+        <input type="hidden" name="Action" value="AgentPreferences"/>
+        <input type="hidden" name="Subaction" value="Update"/>
+        <input type="hidden" name="Group" value="$QData{"Group"}"/>
+        <input type="hidden" name="RedirectURL" value="$QData{"RequestedURL"}"/>
+        <fieldset class="TableLike">
+            <label for="$QData{"PreferencesKey"}">$Text{"Max. shown Configuration Itms per page"}:</label>
+            <div class="Field">
+                $Data{"PageShownString"}
+            </div>
+            <div class="Clear"></div>
+        </fieldset>
+    </form>
+</div>
 <div class="OverviewBox ARIARoleMain Small">
     <h1>$Text{"Search Result for Class $Data{"Class"}:"} </h1>
     <div id="OverviewControl" class="OverviewControl">
@@ -20,7 +35,11 @@
                         <a href=$Env{"Baselink"}Action=$Env{"Action"};Profile=$LQData{"Profile"};ClassID=$LQData{"ClassID"}>
                             $Text{"Change search options"}
                         </a>
-                        - $Text{"Total hits"}: <b>$Data{"TotalHits"}</b>
+                    </li>
+                </ul>
+                <ul class="ContextFunctions">
+                    <li class="ContextSettings">
+                        <a href="#" id="ShowContextSettingsDialog" title="$Text{"Context Settings"}"><span>$Text{"Context Settings"}</span></a>
                     </li>
                 </ul>
             </div>
@@ -29,15 +48,10 @@
                     <ul class="Actions">
                     </ul>
                     <div class="Pagination">
-                        $Text{"Total hits"}: $Data{"TotalHits"}
-<!--
 <!-- dtl:block:OverviewNavBarPageNavBar -->
-                        -->
-                        $QData{"Result"} $Text{"of"} $Data{"TotalHits"} -
-                        $Text{"Page"}: $Data{"SiteNavBar"}
-<!--
+                        $Data{"ResultLong"}
+                        $Data{"SiteNavBarLong"}
 <!-- dtl:block:OverviewNavBarPageNavBar -->
-                        -->
                     </div>
                     <div class="ClearLeft"></div>
                 </div>
@@ -48,6 +62,7 @@
         <table class="TableSmall" id="FixedTable">
             <thead class="ITSMHeader">
                 <tr>
+<!-- dtl:block:ResultHeader -->
                     <th class="Flags">
                         <span>$Text{"Incident State"}</span>
                     </th>
@@ -63,6 +78,7 @@
                     <th>
                         <span>$Text{"Last Change"}</span>
                     </th>
+<!-- dtl:block:ResultHeader -->
                 </tr>
             </thead>
             <tbody>
@@ -88,13 +104,18 @@
                     </td>
                 </tr>
 <!-- dtl:block:ResultRow -->
+<!-- dtl:block:ResultRowEmpty -->
+                <tr>
+                    No results found!
+                </tr>
+<!-- dtl:block:ResultRowEmpty -->
 
             </tbody>
         </table>
     </div>
 </div>
 
-<!--dtl:js_on_document_complete-->
+<!-- dtl:js_on_document_complete -->
 <script type="text/javascript">//<![CDATA[
     Core.UI.InitTableHead($('#FixedTable thead'), $('#FixedTable tbody'));
     Core.UI.StaticTableControl($('#OverviewControl').add($('#OverviewBody')));
@@ -104,8 +125,9 @@
     $(window).resize(function() {
         Core.UI.AdjustTableHead($('#OverviewHeader thead'), $('#OverviewBody tbody'));
     });
+    Core.UI.Dialog.RegisterContentDialog($('#ShowContextSettingsDialog'), $('#ContextSettingsDialogContainer'), '$JSText{"Settings"}', '20%', 'Center', true, [{Label: '$JSText{"Submit"}', Type: 'Submit', Class: 'Primary'}]);
 //]]></script>
-<!--dtl:js_on_document_complete-->
+<!-- dtl:js_on_document_complete -->
 <!-- dtl:block:Result -->
 
 <!-- dtl:block:SearchAJAX -->
@@ -187,7 +209,7 @@ $Include{"AgentITSMCustomerSearch"}
     <input type="hidden" name="Subaction" value="Search"/>
     <input type="hidden" name="ClassID" value="$QData{"ClassID"}">
     <input type="hidden" id="SearchProfile" name="SearchProfile" value="$QData{"Profile"}">
-
+    <input type="hidden" name="SearchDialog" value='1'>
     <fieldset class="TableLike Hidden" id='ITSMSearchProfile'>
         <div class="Clear"></div>
         <label>$Text{"Search-Template"}</label>
