@@ -2,7 +2,7 @@
 # AgentITSMConfigItemHistory.dtl - provides HTML form for history
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemHistory.dtl,v 1.4 2010-08-27 21:10:09 cg Exp $
+# $Id: AgentITSMConfigItemHistory.dtl,v 1.5 2010-09-22 21:52:05 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -29,7 +29,7 @@
                 </h2>
             </div>
             <div class="Content">
-                <table class="DataTable">
+                <table summary="Configuration Item History" class="DataTable">
                     <thead>
                         <tr>
                             <th>
@@ -38,7 +38,7 @@
                             <th>
                                 $Text{"Comment"}
                             </th>
-                            <th clas="W50pc Center">
+                            <th>
                                 $Text{"Zoom"}
                             </th>
                             <th>
@@ -59,7 +59,7 @@
                                 <div title="$QData{"Comment"}">$QData{"Comment","100"}</div>
                             </td>
                             <td class="Center">
-                                <a  class="LinkZoomView AsBlock" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$Data{"ConfigItemID"}&VersionID=$Data{"VersionID"}">$Text{"Zoom view"}</a>
+                                <a  class="LinkZoomView AsBlock" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$Data{"ConfigItemID"};VersionID=$Data{"VersionID"}">$Text{"Zoom view"}</a>
                             </td>
                             <td>
                                 $Quote{"$Data{"UserLogin"}"} ($Quote{"$Data{"UserFirstname"} $Data{"UserLastname"}","20"})
