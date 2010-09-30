@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemSearch.pm - the OTRS::ITSM config item search module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.pm,v 1.19 2010-09-21 22:20:57 cr Exp $
+# $Id: AgentITSMConfigItemSearch.pm,v 1.20 2010-09-30 17:28:29 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -20,7 +20,7 @@ use Kernel::System::SearchProfile;
 use Kernel::System::CSV;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.19 $) [1];
+$VERSION = qw($Revision: 1.20 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -259,6 +259,7 @@ sub Run {
         $Param{ProfilesStrg} = $Self->{LayoutObject}->BuildSelection(
             Data       => \%Profiles,
             Name       => 'Profile',
+            ID         => 'SearchProfile',
             SelectedID => $Profile,
         );
 
