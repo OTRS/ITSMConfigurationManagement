@@ -2,8 +2,8 @@
 // ITSM.Agent.ConfigItem.Search.js - provides the special module functions for the global search
 // Copyright (C) 2001-2010 OTRS AG, http://otrs.org/\n";
 // --
-// $Id: ITSM.Agent.ConfigItem.Search.js,v 1.3 2010-09-15 17:35:50 cr Exp $
-// $OldId: Core.Agent.Search.js,v 1.22 2010/09/10 14:44:35 mg Exp $
+// $Id: ITSM.Agent.ConfigItem.Search.js,v 1.4 2010-09-30 17:21:06 cr Exp $
+// $OldId: Core.Agent.Search.js,v 1.23 2010/09/10 14:44:35 mg Exp $
 // --
 // This software comes with ABSOLUTELY NO WARRANTY. For details, see
 // the enclosed file COPYING for license information (AGPL). If you
@@ -44,8 +44,7 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
 //     * @return nothing
 //     *      This function rebuild attribute selection, only show available attributes
 //     */
-
-//    TargetNS.RebuildSelection = function () {
+//    TargetNS.AdditionalAttributeSelectionRebuild = function () {
 
 //        // get original selection
 //        var $AttributeClone = $('#AttributeOrig').clone();
@@ -70,11 +69,11 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
 
     /**
      * @function
+     * @param {String} of attribute to add.
      * @return nothing
-     *      This function add attributes for search
+     *      This function adds one attribute for search
      */
-
-    TargetNS.ItemAdd = function (Attribute) {
+    TargetNS.SearchAttributeAdd = function (Attribute) {
         $('#SearchAttributesHidden').find('label').each(function () {
             if ($(this).attr('for') === Attribute) {
                 $(this).prev().clone().appendTo('#SearchInsert');
@@ -86,22 +85,22 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
 // ---
 // ITSM
 // ---
-//                        TargetNS.ItemRemove($Element);
-                        Core.Agent.Search.ItemRemove($Element);
+//                        TargetNS.SearchAttributeRemove($Element);
+                        Core.Agent.Search.SearchAttributeRemove($Element);
 // ---
+
                         // rebuild selection
 // ---
 // ITSM
 // ---
-//                        TargetNS.RebuildSelection();
-                        Core.Agent.Search.RebuildSelection();
+//                        TargetNS.AdditionalAtributeSelectionRebuild();
+                        Core.Agent.Search.AdditionalAttributeSelectionRebuild();
 // ---
 
                         return false;
                     });
             }
         });
-
 // ---
 // ITSM
 // ---
@@ -111,43 +110,74 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
             $(this).removeClass('ITSMCustomerSearch');
             $(this).attr('id', InputId);
             $(this).prev().attr('id', InputId + 'Selected');
-
+//
             ITSM.Agent.ConfigItem.CustomerSearch.Init($('#' + InputId), Core.Config.Get('Autocomplete.Active'));
-
+//
             // prevent dialog closure when select a customer from the list
             $('ul.ui-autocomplete').bind('click', function(Event) { Event.stopPropagation(); return false; });
         });
+// ---
+
         return false;
     };
-// ---
+
+    /**
+     * @function
+     * @param {jQueryObject} $Element The jQuery object of the form  or any element within this form
+check.
+     * @return nothing
+     *      This function remove attributes from an element.
+     */
 
 // ---
 // ITSM
 // ---
-//    /**
-//     * @function
-//     * @param {jQueryObject} $Element The jQuery object of the form  or any element within this form
-//     * @return nothing
-//     *      This function remove attributes from an element
-//     */
-
-//    TargetNS.ItemRemove = function ($Element) {
+//    TargetNS.SearchAttributeRemove = function ($Element) {
 //        $Element.prev().prev().remove();
 //        $Element.prev().remove();
 //        $Element.remove();
 //    };
 // ---
 
-    // delete profile
+    /**
+     * @function
+     * @return nothing
+     *      This function rebuild attribute selection, only show available attributes.
+     */
+// ---
+// ITSM
+// ---
+//    TargetNS.AdditionalAttributeSelectionRebuild = function () {
+//
+//        // get original selection
+//        var $AttributeClone = $('#AttributeOrig').clone();
+//        $AttributeClone.attr('id', 'Attribute');
+//
+//        // strip all already used attributes
+//        $AttributeClone.find('option').each(function () {
+//            var $Attribute = $(this);
+//            $('#SearchInsert label').each(function () {
+//                if ($(this).attr('for') === $Attribute.attr('value')) {
+//                    $Attribute.remove();
+//                }
+//            });
+//        });
+//
+//        // replace selection with original selection
+//        $('#Attribute').replaceWith($AttributeClone);
+//
+//        return true;
+//    };
+// ---
 
     /**
      * @function
      * @private
-     * @param {Profile} Profile The profile that will be delete
+     * @param {String} Profile The profile name that will be delete.
      * @return nothing
-     * @description Delete a profile via an ajax requests
+     * @description Delete a profile via an ajax requests.
      */
-    function DeleteRemote(Profile) {
+    function SearchProfileDelete(Profile) {
         var Data = {
 // ---
 // ITSM
@@ -170,6 +200,12 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
         );
     }
 
+    /**
+     * @function
+     * @private
+     * @return nothing
+     * @description Shows waiting dialog until search screen is ready.
+     */
     function ShowWaitingDialog(){
         Core.UI.Dialog.ShowContentDialog('<div class="Spacing Center"><span class="AJAXLoader" title="' + Core.Config.Get('LoadingMsg') + '"></span></div>', '', '10px', 'Center', true);
     }
@@ -212,15 +248,15 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
         // hide add template block
         $('#SearchProfileAddBlock').hide();
 
-        if ($('#Profile').val() && $('#Profile').val() !== 'last-search') {
+        if ($('#SearchProfile').val() && $('#SearchProfile').val() !== 'last-search') {
             $('#SearchProfileDelete').show();
         }
 
         // register add of attribute
         $('.Add').live('click', function () {
             var Attribute = $('#Attribute').val();
-            TargetNS.ItemAdd(Attribute);
-            Core.Agent.Search.RebuildSelection();
+            TargetNS.SearchAttributeAdd(Attribute);
+            Core.Agent.Search.AdditionalAttributeSelectionRebuild();
             return false;
         });
 
@@ -249,8 +285,8 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
 
 
         // load profile
-        $('#Profile').bind('change', function () {
-            var Profile = $('#Profile').val();
+        $('#SearchProfile').bind('change', function () {
+            var Profile = $('#SearchProfile').val();
             TargetNS.LoadProfile(Profile);
             return false;
         });
@@ -273,14 +309,14 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
             }
 
             // add name to profile selection
-            $Element1 = $('#ProfileList').children().first().clone();
+            $Element1 = $('#SearchProfileList').children().first().clone();
             $Element1.text(Name);
-            $('#ProfileList').append($Element1);
-            $Element2 = $('#Profile').children().first().clone();
+            $('#SearchProfileList').append($Element1);
+            $Element2 = $('#SearchProfile').children().first().clone();
             $Element2.text(Name);
             $Element2.attr('value', Name);
             $Element2.attr('selected', 'selected');
-            $('#Profile').append($Element2);
+            $('#SearchProfile').append($Element2);
 
             // set input box to empty
             $('#SearchProfileAddName').val('');
@@ -297,24 +333,24 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
         $('#SearchProfileDelete').bind('click', function (Event) {
 
             // strip all already used attributes
-            $('#Profile').find('option:selected').each(function () {
+            $('#SearchProfile').find('option:selected').each(function () {
                 if ($(this).attr('value') !== 'last-search') {
 
                     // rebuild attributes
                     $('#SearchInsert').text('');
 
                     // remove remote
-                    DeleteRemote($(this).val());
+                    SearchProfileDelete($(this).val());
 
                     // remove local
                     $(this).remove();
 
                     // rebuild selection
-                    TargetNS.RebuildSelection();
+                    Core.Agent.Search.AdditionalAttributeSelectionRebuild();
                 }
             });
 
-            if ($('#Profile').val() && $('#Profile').val() === 'last-search') {
+            if ($('#SearchProfile').val() && $('#SearchProfile').val() === 'last-search') {
                 $('#SearchProfileDelete').hide();
             }
 
@@ -341,7 +377,6 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
         if (!Action) {
             Action = Core.Config.Get('Action');
         }
-
         if (!Profile) {
             Profile = 'last-search';
         }
@@ -377,15 +412,15 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
 //                // hide add template block
 //                $('#SearchProfileAddBlock').hide();
 
-//                if ($('#Profile').val() && $('#Profile').val() !== 'last-search') {
+//                if ($('#SearchProfile').val() && $('#SearchProfile').val() !== 'last-search') {
 //                    $('#SearchProfileDelete').show();
 //                }
 
 //                // register add of attribute
 //                $('.Add').bind('click', function () {
 //                    var Attribute = $('#Attribute').val();
-//                    TargetNS.ItemAdd(Attribute);
-//                    TargetNS.RebuildSelection();
+//                    TargetNS.SearchAttributeAdd(Attribute);
+//                    TargetNS.AdditionalAttributeSelectionRebuild();
 
 //                    return false;
 //                });
@@ -414,8 +449,8 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
 //                });
 
 //                // load profile
-//                $('#Profile').bind('change', function () {
-//                    var Profile = $('#Profile').val();
+//                $('#SearchProfile').bind('change', function () {
+//                    var Profile = $('#SearchProfile').val();
 //                    TargetNS.OpenSearchDialog(Action, Profile);
 //                    return false;
 //                });
@@ -438,14 +473,14 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
 //                    }
 
 //                    // add name to profile selection
-//                    $Element1 = $('#ProfileList').children().first().clone();
+//                    $Element1 = $('#SearchProfileList').children().first().clone();
 //                    $Element1.text(Name);
-//                    $('#ProfileList').append($Element1);
-//                    $Element2 = $('#Profile').children().first().clone();
+//                    $('#SearchProfileList').append($Element1);
+//                    $Element2 = $('#SearchProfile').children().first().clone();
 //                    $Element2.text(Name);
 //                    $Element2.attr('value', Name);
 //                    $Element2.attr('selected', 'selected');
-//                    $('#Profile').append($Element2);
+//                    $('#SearchProfile').append($Element2);
 
 //                    // set input box to empty
 //                    $('#SearchProfileAddName').val('');
@@ -462,7 +497,7 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
 //                $('#SearchProfileDelete').bind('click', function (Event) {
 
 //                    // strip all already used attributes
-//                    $('#Profile').find('option:selected').each(function () {
+//                    $('#SearchProfile').find('option:selected').each(function () {
 //                        if ($(this).attr('value') !== 'last-search') {
 
 //                            // rebuild attributes
@@ -475,14 +510,14 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
 //                            $(this).remove();
 
 //                            // show fulltext
-//                            TargetNS.ItemAdd('Fulltext');
+//                            TargetNS.SearchAttributeAdd('Fulltext');
 
 //                            // rebuild selection
-//                            TargetNS.RebuildSelection();
+//                            TargetNS.AdditionalAttributeSelectionRebuild();
 //                        }
 //                    });
 
-//                    if ($('#Profile').val() && $('#Profile').val() === 'last-search') {
+//                    if ($('#SearchProfile').val() && $('#SearchProfile').val() === 'last-search') {
 //                        $('#SearchProfileDelete').hide();
 //                    }
 
