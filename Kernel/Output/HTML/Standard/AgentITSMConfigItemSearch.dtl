@@ -2,7 +2,7 @@
 # AgentITSMConfigItemSearch.dtl - provides HTML form for AgentITSMConfigItemSearch
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.dtl,v 1.13 2010-09-22 16:28:20 cr Exp $
+# $Id: AgentITSMConfigItemSearch.dtl,v 1.14 2010-09-30 17:27:40 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -147,7 +147,7 @@
     <form action="$Env{"CGIHandle"}" method="post" id="SearchForm">
         <input type="hidden" name="Action" value="$Env{"Action"}"/>
         <input type="hidden" name="Subaction" value="Search"/>
-        <input type="hidden" id="SearchProfile" name="SearchProfile" value="$QData{"Profile"}">
+        <input type="hidden" id="SearchProfileValue" name="SearchProfileValue" value="$QData{"Profile"}">
 
         <fieldset class="TableLike Hidden" id='ITSMSearchProfile'>
             <div class="Clear"></div>
@@ -206,7 +206,7 @@ $Include{"AgentITSMConfigItemCustomerSearch"}
     <input type="hidden" name="Action" value="$Env{"Action"}"/>
     <input type="hidden" name="Subaction" value="Search"/>
     <input type="hidden" name="ClassID" value="$QData{"ClassID"}">
-    <input type="hidden" id="SearchProfile" name="SearchProfile" value="$QData{"Profile"}">
+    <input type="hidden" id="SearchProfileValue" name="SearchProfileValue" value="$QData{"Profile"}">
     <input type="hidden" name="SearchDialog" value='1'>
     <fieldset class="TableLike Hidden" id='ITSMSearchProfile'>
         <div class="Clear"></div>
@@ -290,10 +290,10 @@ $Include{"AgentITSMConfigItemCustomerSearch"}
 </fieldset>
 
 <script type="text/javascript">//<![CDATA[
-<!-- dtl:block:SearchAJAXShow -->
     window.setTimeout(function (){
-        ITSM.Agent.ConfigItem.Search.ItemAdd('$QData{"Attribute"}');
-    }, 150);
 <!-- dtl:block:SearchAJAXShow -->
+        ITSM.Agent.ConfigItem.Search.SearchAttributeAdd('$QData{"Attribute"}');
+<!-- dtl:block:SearchAJAXShow -->
+    }, 150);
 //]]></script>
 <!-- dtl:block:AJAXContent -->
