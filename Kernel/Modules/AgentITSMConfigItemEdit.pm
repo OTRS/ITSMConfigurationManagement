@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemEdit.pm - the OTRS::ITSM config item edit module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.pm,v 1.16 2010-09-21 22:20:13 cr Exp $
+# $Id: AgentITSMConfigItemEdit.pm,v 1.17 2010-09-30 13:29:46 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.16 $) [1];
+$VERSION = qw($Revision: 1.17 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -517,7 +517,8 @@ sub _XMLFormOutput {
     return if !$Param{XMLDefinition};
     return if ref $Param{XMLDefinition} ne 'ARRAY';
 
-    $Param{Level} ||= 0;
+    $Param{Level}  ||= 0;
+    $Param{Prefix} ||= '';
 
     # get submit save
     my $SubmitSave = $Self->{ParamObject}->GetParam( Param => 'SubmitSave' );
