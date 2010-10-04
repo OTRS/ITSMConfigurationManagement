@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemSearch.pm - the OTRS::ITSM config item search module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.pm,v 1.20 2010-09-30 17:28:29 cr Exp $
+# $Id: AgentITSMConfigItemSearch.pm,v 1.21 2010-10-04 23:43:37 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -20,7 +20,7 @@ use Kernel::System::SearchProfile;
 use Kernel::System::CSV;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.20 $) [1];
+$VERSION = qw($Revision: 1.21 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -95,12 +95,11 @@ sub Run {
     # delete search profiles
     # ------------------------------------------------------------ #
     if ( $Self->{Subaction} eq 'AJAXProfileDelete' ) {
-        my $Profile = $Self->{ParamObject}->GetParam( Param => 'Profile' );
 
         # remove old profile stuff
         $Self->{SearchProfileObject}->SearchProfileDelete(
             Base      => 'ConfigItemSearch' . $ClassID,
-            Name      => $Profile,
+            Name      => $Self->{Profile},
             UserLogin => $Self->{UserLogin},
         );
         my $Output = $Self->{LayoutObject}->JSONEncode(
@@ -119,8 +118,6 @@ sub Run {
     # ------------------------------------------------------------ #
     elsif ( $Self->{Subaction} eq 'AJAX' ) {
 
-        my $Profile = $Self->{ParamObject}->GetParam( Param => 'Profile' );
-
         # generate dropdown for selecting the class
         # automatically show search mask after selecting a class via AJAX
         my $ClassOptionStrg = $Self->{LayoutObject}->BuildSelection(
@@ -136,7 +133,7 @@ sub Run {
             Name => 'SearchAJAX',
             Data => {
                 ClassOptionStrg => $ClassOptionStrg,
-                Profile         => $Profile,
+                Profile         => $Self->{Profile},
             },
         );
 
@@ -145,7 +142,7 @@ sub Run {
             $Self->{LayoutObject}->Block(
                 Name => 'SearchAJAXSetClass',
                 Data => {
-                    Profile => $Profile,
+                    Profile => $Self->{Profile},
                 },
             );
         }
@@ -219,11 +216,9 @@ sub Run {
             },
         ];
 
-        my $Profile = $Self->{ParamObject}->GetParam( Param => 'Profile' );
-
         my %GetParam = $Self->{SearchProfileObject}->SearchProfileGet(
             Base      => 'ConfigItemSearch' . $ClassID,
-            Name      => $Profile,
+            Name      => $Self->{Profile},
             UserLogin => $Self->{UserLogin},
         );
 
@@ -260,7 +255,7 @@ sub Run {
             Data       => \%Profiles,
             Name       => 'Profile',
             ID         => 'SearchProfile',
-            SelectedID => $Profile,
+            SelectedID => $Self->{Profile},
         );
 
         # get deployment state list
@@ -961,8 +956,6 @@ sub Run {
     # ------------------------------------------------------------ #
     else {
 
-        my $Profile = $Self->{ParamObject}->GetParam( Param => 'Profile' );
-
         # show default search screen
         $Output = $Self->{LayoutObject}->Header();
         $Output .= $Self->{LayoutObject}->NavigationBar();
@@ -970,7 +963,7 @@ sub Run {
         $Self->{LayoutObject}->Block(
             Name => 'Search',
             Data => {
-                Profile => $Profile,
+                Profile => $Self->{Profile},
                 ClassID => $ClassID,
             },
         );
