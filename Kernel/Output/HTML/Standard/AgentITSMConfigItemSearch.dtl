@@ -2,7 +2,7 @@
 # AgentITSMConfigItemSearch.dtl - provides HTML form for AgentITSMConfigItemSearch
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.dtl,v 1.14 2010-09-30 17:27:40 cr Exp $
+# $Id: AgentITSMConfigItemSearch.dtl,v 1.15 2010-10-04 23:26:49 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -147,13 +147,12 @@
     <form action="$Env{"CGIHandle"}" method="post" id="SearchForm">
         <input type="hidden" name="Action" value="$Env{"Action"}"/>
         <input type="hidden" name="Subaction" value="Search"/>
-        <input type="hidden" id="SearchProfileValue" name="SearchProfileValue" value="$QData{"Profile"}">
 
         <fieldset class="TableLike Hidden" id='ITSMSearchProfile'>
             <div class="Clear"></div>
             <label>$Text{"Search-Template"}</label>
             <div class="Field">
-                $Data{"ProfilesStrg"}
+                <input type="hidden" id="SearchProfile" name="SearchProfile" value="$QData{"Profile"}"/>
 
                 <button id="SearchProfileNew" value="$Text{"Create New"}">$Text{"Create New"}</button>
 
@@ -206,7 +205,6 @@ $Include{"AgentITSMConfigItemCustomerSearch"}
     <input type="hidden" name="Action" value="$Env{"Action"}"/>
     <input type="hidden" name="Subaction" value="Search"/>
     <input type="hidden" name="ClassID" value="$QData{"ClassID"}">
-    <input type="hidden" id="SearchProfileValue" name="SearchProfileValue" value="$QData{"Profile"}">
     <input type="hidden" name="SearchDialog" value='1'>
     <fieldset class="TableLike Hidden" id='ITSMSearchProfile'>
         <div class="Clear"></div>
