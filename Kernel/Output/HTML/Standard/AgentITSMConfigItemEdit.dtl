@@ -2,7 +2,7 @@
 # AgentITSMConfigItemEdit.dtl - provides HTML form for AgentITSMConfigItemEdit
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.dtl,v 1.9 2010-09-22 16:28:20 cr Exp $
+# $Id: AgentITSMConfigItemEdit.dtl,v 1.10 2010-10-15 08:33:01 en Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -43,7 +43,7 @@
 $Include{"AgentITSMConfigItemCustomerSearch"}
             <form action="$Env{"CGIHandle"}" method="post" name="compose" class="Validate" id="ClassItem">
 <!--dtl:block:StartSmall-->
-                <div class="WidgetPopup ARIARoleMain">
+                <div class="LayoutPopup ARIARoleMain">
                     <div class="Header">
                         <h1>$Text{"Edit"}: $Text{"Config Item"}: $QData{"Number"} - $Text{"Class"}: $QData{"Class"}</h1>
                         <p>
@@ -128,20 +128,19 @@ $Include{"AgentITSMConfigItemCustomerSearch"}
 <!-- dtl:block:XMLRow -->
 
 <!-- dtl:block:EndNormalContent -->
-                            <div class="Field SpacingTop">
-                                <button name="SubmitSave" class="Primary" type="submit" value="$Text{"Save"}">$Text{"Submit"}</button>
-                                $Text{"or"}
-                                <a href="$Env{"Baselink"}Action=$Env{"Action"}">$Text{"Cancel"}</a>
-                            </div>
-                            <div class="Clear"></div>
                         </fieldset>
+                    </div>
+                    <div class="Footer SpacingTop">
+                        <button name="SubmitSave" class="Primary" type="submit" value="$Text{"Save"}">$Text{"Submit"}</button>
+                        $Text{"or"}
+                        <a href="$Env{"Baselink"}Action=$Env{"Action"}">$Text{"Cancel"}</a>
                     </div>
 <!-- dtl:block:EndNormalContent -->
 
 <!-- dtl:block:EndSmall -->
                 </fieldset>
             </div>
-            <div class="Footer">
+            <div class="Footer SpacingTop">
                 <button name="SubmitSave" class="Primary" type="submit" value="$Text{"Save"}">$Text{"Submit"}</button>
             </div>
         </div>

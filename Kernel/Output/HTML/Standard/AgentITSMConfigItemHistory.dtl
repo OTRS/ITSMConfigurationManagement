@@ -2,7 +2,7 @@
 # AgentITSMConfigItemHistory.dtl - provides HTML form for history
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemHistory.dtl,v 1.5 2010-09-22 21:52:05 cr Exp $
+# $Id: AgentITSMConfigItemHistory.dtl,v 1.6 2010-10-15 08:33:01 en Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -10,7 +10,7 @@
 # --
 
 <!-- start form -->
-<div class="WidgetPopup ARIARoleMain">
+<div class="LayoutPopup ARIARoleMain">
 
     <div class="Header">
         <h1>
@@ -81,6 +81,8 @@
     });
 //]]></script>
 <!--dtl:js_on_document_complete-->
+    </div>
+    <div class="Footer">
     </div>
 </div>
 <!-- end form -->
