@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <otrs_package version="1.0">
-    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.83 2010-09-22 17:56:32 cr Exp $</CVS>
+    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.84 2010-10-20 17:33:50 dz Exp $</CVS>
     <Name>ITSMConfigurationManagement</Name>
     <Version>0.0.0</Version>
     <Framework>3.0.x</Framework>
@@ -84,7 +84,6 @@
         <File Permission="644" Location="Kernel/System/Stats/Dynamic/ITSMConfigItem.pm"/>
         <File Permission="644" Location="scripts/test/ImportExportObjectITSMConfigItem.t"/>
         <File Permission="644" Location="scripts/test/ITSMConfigItem.t"/>
-        <File Permission="644" Location="var/httpd/htdocs/images/Standard/itsm_configitem.png"/>
         <File Permission="644" Location="var/httpd/htdocs/js/ITSM.Agent.ConfigItem.CustomerSearch.js"/>
         <File Permission="644" Location="var/httpd/htdocs/js/ITSM.Agent.ConfigItem.Search.js"/>
         <File Permission="644" Location="var/packagesetup/ITSMConfigurationManagement.pm"/>
