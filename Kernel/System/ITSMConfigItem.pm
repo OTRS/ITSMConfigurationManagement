@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem.pm - all config item function
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.28 2010-04-13 17:44:12 ub Exp $
+# $Id: ITSMConfigItem.pm,v 1.29 2010-10-26 10:17:40 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -29,7 +29,7 @@ use Kernel::System::User;
 use Kernel::System::XML;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.28 $) [1];
+$VERSION = qw($Revision: 1.29 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',
@@ -550,7 +550,7 @@ return a config item list as an array reference
             {
                 "[%]{'ElementA'}[%]{'ElementB'}[%]{'Content'}" => '%contentB%',
                 "[%]{'ElementA'}[%]{'ElementC'}[%]{'Content'}" => '%contentB%',
-            }
+            },
             {
                 # use array reference if different content with same key was searched
                 "[%]{'ElementA'}[%]{'ElementB'}[%]{'Content'}" => ['%contentC%', '%contentD%', '%contentE%'],
@@ -1238,12 +1238,12 @@ This software is part of the OTRS project (http://otrs.org/).
 
 This software comes with ABSOLUTELY NO WARRANTY. For details, see
 the enclosed file COPYING for license information (AGPL). If you
-did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =cut
 
 =head1 VERSION
 
-$Revision: 1.28 $ $Date: 2010-04-13 17:44:12 $
+$Revision: 1.29 $ $Date: 2010-10-26 10:17:40 $
 
 =cut
