@@ -2,7 +2,7 @@
 # AgentITSMConfigItemSearch.dtl - provides HTML form for AgentITSMConfigItemSearch
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.dtl,v 1.15 2010-10-04 23:26:49 cr Exp $
+# $Id: AgentITSMConfigItemSearch.dtl,v 1.16 2010-10-26 14:43:10 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -80,7 +80,6 @@
                 </tr>
             </thead>
             <tbody>
-
 <!-- dtl:block:ResultRow -->
                 <tr>
                     <td title="$QData{"CurInciState"}">
@@ -89,7 +88,7 @@
                         </div>
                     </td>
                     <td>
-                        <a href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$QData{"ConfigItemID"}">$QData{"Number"}</a>
+                        <a href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"}">$LQData{"Number"}</a>
                     </td>
                     <td>
                         $QData{"Name","40"}
@@ -104,10 +103,11 @@
 <!-- dtl:block:ResultRow -->
 <!-- dtl:block:ResultRowEmpty -->
                 <tr>
-                    No results found!
+                    <td colspan="5">
+                        $Text{"No results found."}
+                    </td>
                 </tr>
 <!-- dtl:block:ResultRowEmpty -->
-
             </tbody>
         </table>
     </div>
@@ -123,7 +123,22 @@
     $(window).resize(function() {
         Core.UI.AdjustTableHead($('#OverviewHeader thead'), $('#OverviewBody tbody'));
     });
-    Core.UI.Dialog.RegisterContentDialog($('#ShowContextSettingsDialog'), $('#ContextSettingsDialogContainer'), '$JSText{"Settings"}', '20%', 'Center', true, [{Label: '$JSText{"Submit"}', Type: 'Submit', Class: 'Primary'}]);
+
+    // bind the ContextSettingsDialogContainer
+    $('#ShowContextSettingsDialog').bind('click', function (Event) {
+        Core.UI.Dialog.ShowContentDialog($('#ContextSettingsDialogContainer'), '$JSText{"Settings"}', '20%', 'Center', true,
+            [
+                {
+                    Label: '$JSText{"Submit"}',
+                    Type: 'Submit',
+                    Class: 'Primary'
+                }
+            ]
+        );
+        Event.preventDefault();
+        Event.stopPropagation();
+        return false;
+    });
 //]]></script>
 <!-- dtl:js_on_document_complete -->
 <!-- dtl:block:Result -->
