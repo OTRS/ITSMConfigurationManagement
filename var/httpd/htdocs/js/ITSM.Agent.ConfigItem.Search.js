@@ -2,7 +2,7 @@
 // ITSM.Agent.ConfigItem.Search.js - provides the special module functions for the global search
 // Copyright (C) 2001-2010 OTRS AG, http://otrs.org/\n";
 // --
-// $Id: ITSM.Agent.ConfigItem.Search.js,v 1.4 2010-09-30 17:21:06 cr Exp $
+// $Id: ITSM.Agent.ConfigItem.Search.js,v 1.5 2010-10-28 17:06:42 ub Exp $
 // $OldId: Core.Agent.Search.js,v 1.23 2010/09/10 14:44:35 mg Exp $
 // --
 // This software comes with ABSOLUTELY NO WARRANTY. For details, see
@@ -37,19 +37,18 @@ ITSM.Agent.ConfigItem = ITSM.Agent.ConfigItem || {};
 // ITSM
 // ---
 //Core.Agent.Search = (function (TargetNS) {
-ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
-
+//
 //    /**
 //     * @function
 //     * @return nothing
 //     *      This function rebuild attribute selection, only show available attributes
 //     */
 //    TargetNS.AdditionalAttributeSelectionRebuild = function () {
-
+//
 //        // get original selection
 //        var $AttributeClone = $('#AttributeOrig').clone();
 //        $AttributeClone.attr('id', 'Attribute');
-
+//
 //        // strip all already used attributes
 //        $AttributeClone.find('option').each(function () {
 //            var $Attribute = $(this);
@@ -59,12 +58,15 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
 //                }
 //            });
 //        });
-
+//
 //        // replace selection with original selection
 //        $('#Attribute').replaceWith($AttributeClone);
-
+//
 //        return true;
 //    };
+
+ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
+
 // ---
 
     /**
@@ -110,9 +112,9 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
             $(this).removeClass('ITSMCustomerSearch');
             $(this).attr('id', InputId);
             $(this).prev().attr('id', InputId + 'Selected');
-//
+
             ITSM.Agent.ConfigItem.CustomerSearch.Init($('#' + InputId), Core.Config.Get('Autocomplete.Active'));
-//
+
             // prevent dialog closure when select a customer from the list
             $('ul.ui-autocomplete').bind('click', function(Event) { Event.stopPropagation(); return false; });
         });
@@ -411,20 +413,20 @@ check.
 
 //                // hide add template block
 //                $('#SearchProfileAddBlock').hide();
-
+//
 //                if ($('#SearchProfile').val() && $('#SearchProfile').val() !== 'last-search') {
 //                    $('#SearchProfileDelete').show();
 //                }
-
+//
 //                // register add of attribute
 //                $('.Add').bind('click', function () {
 //                    var Attribute = $('#Attribute').val();
 //                    TargetNS.SearchAttributeAdd(Attribute);
 //                    TargetNS.AdditionalAttributeSelectionRebuild();
-
+//
 //                    return false;
 //                });
-
+//
 //                // register return key
 //                $('#SearchForm').unbind('keypress.FilterInput').bind('keypress.FilterInput', function (Event) {
 //                    if ((Event.charCode || Event.keyCode) === 13) {
@@ -432,7 +434,7 @@ check.
 //                        return false;
 //                    }
 //                });
-
+//
 //                // register submit
 //                $('#SearchFormSubmit').bind('click', function () {
 //                    // Normal results mode will return HTML in the same window
@@ -447,31 +449,31 @@ check.
 //                    }
 //                    return false;
 //                });
-
+//
 //                // load profile
 //                $('#SearchProfile').bind('change', function () {
 //                    var Profile = $('#SearchProfile').val();
 //                    TargetNS.OpenSearchDialog(Action, Profile);
 //                    return false;
 //                });
-
+//
 //                // show add profile block or not
 //                $('#SearchProfileNew').bind('click', function (Event) {
 //                    $('#SearchProfileAddBlock').toggle();
 //                    Event.preventDefault();
 //                    return false;
 //                });
-
+//
 //                // add new profile
 //                $('#SearchProfileAddAction').bind('click', function () {
 //                    var Name, $Element1, $Element2;
-
+//
 //                    // get name
 //                    Name = $('#SearchProfileAddName').val();
 //                    if (!Name) {
 //                        return false;
 //                    }
-
+//
 //                    // add name to profile selection
 //                    $Element1 = $('#SearchProfileList').children().first().clone();
 //                    $Element1.text(Name);
@@ -481,46 +483,46 @@ check.
 //                    $Element2.attr('value', Name);
 //                    $Element2.attr('selected', 'selected');
 //                    $('#SearchProfile').append($Element2);
-
+//
 //                    // set input box to empty
 //                    $('#SearchProfileAddName').val('');
-
+//
 //                    // hide add template block
 //                    $('#SearchProfileAddBlock').hide();
-
+//
 //                    $('#SearchProfileDelete').show();
-
+//
 //                    return false;
 //                });
-
+//
 //                // delete profile
 //                $('#SearchProfileDelete').bind('click', function (Event) {
-
+//
 //                    // strip all already used attributes
 //                    $('#SearchProfile').find('option:selected').each(function () {
 //                        if ($(this).attr('value') !== 'last-search') {
-
+//
 //                            // rebuild attributes
 //                            $('#SearchInsert').text('');
-
+//
 //                            // remove remote
 //                            DeleteRemote($(this).val());
-
+//
 //                            // remove local
 //                            $(this).remove();
-
+//
 //                            // show fulltext
 //                            TargetNS.SearchAttributeAdd('Fulltext');
-
+//
 //                            // rebuild selection
 //                            TargetNS.AdditionalAttributeSelectionRebuild();
 //                        }
 //                    });
-
+//
 //                    if ($('#SearchProfile').val() && $('#SearchProfile').val() === 'last-search') {
 //                        $('#SearchProfileDelete').hide();
 //                    }
-
+//
 //                    Event.preventDefault();
 //                    return false;
 //                });
