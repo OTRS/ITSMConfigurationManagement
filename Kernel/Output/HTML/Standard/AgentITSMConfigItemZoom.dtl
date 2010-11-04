@@ -2,7 +2,7 @@
 # AgentITSMConfigItemZoom.dtl - provides HTML form for AgentITSMConfigItemZoom
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemZoom.dtl,v 1.8 2010-09-21 22:53:31 cr Exp $
+# $Id: AgentITSMConfigItemZoom.dtl,v 1.9 2010-11-04 14:31:52 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -36,7 +36,7 @@
                         <p class="Value">$QData{"CurDeplState","25"}</p>
                         <div class="Clear"></div>
                         <label>$Text{"Current Incident State"}:</label>
-                        <div class="Value" title=$Text{"$Data{"CurInciState"}"}>
+                        <div class="Value" title="$Text{"$Data{"CurInciState"}"}">
                             <div class="Flag Small">
                                 <span class="$QData{"CurInciSignal"}"></span>
                             </div>
@@ -130,7 +130,7 @@
                                             $QData{"Count"}.
                                         </td>
                                         <td>
-                                            <a href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$QData{"ConfigItemID"};VersionID=$QData{"VersionID"};ShowVersions=$QData{"ShowVersions"}">
+                                            <a href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"};VersionID=$LQData{"VersionID"};ShowVersions=$LQData{"ShowVersions"}">
                                                 $QData{"Name"} ($Text{"$Data{"DeplState"}"})
                                             </a>
                                         </td>
@@ -145,7 +145,7 @@
 <!-- dtl:block:TreeItemInactive -->
 <!-- dtl:block:TreeItemActive -->
                                     <tr class="Active">
-                                        <td title=$Text{"$Data{"CurInciState"}"}>
+                                        <td title="$Text{"$Data{"CurInciState"}"}">
                                             <div class="Flag Small">
                                                 <span class="$QData{"InciSignal"}">"$QData{"InciState"}"</span>
                                             </div>
@@ -154,7 +154,7 @@
                                             $QData{"Count"}.
                                         </td>
                                         <td>
-                                            <a href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$QData{"ConfigItemID"};VersionID=$QData{"VersionID"};ShowVersions=$QData{"ShowVersions"}">
+                                            <a href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"};VersionID=$LQData{"VersionID"};ShowVersions=$LQData{"ShowVersions"}">
                                                 $QData{"Name"} ($Text{"$Data{"DeplState"}"})
                                             </a>
                                         </td>
@@ -206,9 +206,7 @@
 
             <div id="ConfigItemLinks">
 <!-- dtl:block:LinkTableComplex -->
-# object links
                 $Data{"LinkTableStrg"}
-
 <!-- dtl:block:LinkTableComplex -->
             </div>
         </div>
