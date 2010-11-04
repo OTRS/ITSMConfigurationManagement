@@ -2,7 +2,7 @@
 # AgentITSMConfigItemZoom.dtl - provides HTML form for AgentITSMConfigItemZoom
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemZoom.dtl,v 1.10 2010-11-04 14:56:06 ub Exp $
+# $Id: AgentITSMConfigItemZoom.dtl,v 1.11 2010-11-04 15:09:48 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -74,7 +74,6 @@
             </div>
 <!-- dtl:block:LinkTableSimple -->
         </div>
-
         <div class="ContentColumn">
             <div class="ControlRow">
                 <h2></h2>
@@ -178,7 +177,6 @@
 <!-- dtl:block:Tree -->
             </div>
             <div id="ITSMItems">
-
                 <div class="WidgetBox SpacingTop Expanded">
                     <div class="LightRow Header">
                         <div class="WidgetAction Toggle"><a href="#" title="$Text{"Show or hide the content."}"><span></span></a></div>
@@ -201,11 +199,9 @@
                         </table>
                     </div>
                 </div>
-
             </div>
-
 <!-- dtl:block:LinkTableComplex -->
-            <div id="LinkedObjects">
+            <div class="Content">
                 $Data{"LinkTableStrg"}
             </div>
 <!-- dtl:block:LinkTableComplex -->
@@ -213,7 +209,6 @@
         <div class="Clear"></div>
     </div>
 </div>
-
 
 <!-- dtl:js_on_document_complete -->
 <script type="text/javascript">//<![CDATA[
