@@ -2,7 +2,7 @@
 // ITSM.Agent.ConfigItem.Search.js - provides the special module functions for the global search
 // Copyright (C) 2001-2010 OTRS AG, http://otrs.org/\n";
 // --
-// $Id: ITSM.Agent.ConfigItem.Search.js,v 1.5 2010-10-28 17:06:42 ub Exp $
+// $Id: ITSM.Agent.ConfigItem.Search.js,v 1.6 2010-11-11 09:39:26 ub Exp $
 // $OldId: Core.Agent.Search.js,v 1.23 2010/09/10 14:44:35 mg Exp $
 // --
 // This software comes with ABSOLUTELY NO WARRANTY. For details, see
@@ -223,14 +223,14 @@ check.
      */
 
     TargetNS.LoadProfile = function (Profile) {
-        var BaseLink = Core.Config.Get('Baselink') ;
-            Action = 'Action=AgentITSMConfigItemSearch;' ;
-            SubAction = 'Subaction=AJAXUpdate;' ;
-            ClassID = 'ClassID=' + $('#SearchClassID').val() + ';';
-            SearchProfile = 'Profile=' + Profile;
-            URL =  BaseLink + Action + SubAction + ClassID + SearchProfile ;
+        var BaseLink = Core.Config.Get('Baselink'),
+            Action = 'Action=AgentITSMConfigItemSearch;',
+            SubAction = 'Subaction=AJAXUpdate;',
+            ClassID = 'ClassID=' + $('#SearchClassID').val() + ';',
+            SearchProfile = 'Profile=' + Profile,
+            URL =  BaseLink + Action + SubAction + ClassID + SearchProfile;
         $('.InnerContent').addClass('Loading');
-        Core.AJAX.ContentUpdate($('#AJAXUpdate'), URL, function(){
+        Core.AJAX.ContentUpdate($('#AJAXUpdate'), URL, function() {
             TargetNS.SetSearchDialog( '$Env{"Action"}' );
             $('#ITSMSearchProfile').removeClass('Hidden');
             $('#ITSMSearchFields').removeClass('Hidden');
@@ -374,7 +374,7 @@ check.
 // ITSM
 // ---
     //TargetNS.OpenSearchDialog = function (Action, Profile){
-    TargetNS.OpenSearchDialog = function (Action, Profile, Class){
+    TargetNS.OpenSearchDialog = function (Action, Profile, Class) {
 // ---
         if (!Action) {
             Action = Core.Config.Get('Action');
