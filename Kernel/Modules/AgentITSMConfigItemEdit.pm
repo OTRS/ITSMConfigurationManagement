@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemEdit.pm - the OTRS::ITSM config item edit module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.pm,v 1.18 2010-11-18 12:29:13 ub Exp $
+# $Id: AgentITSMConfigItemEdit.pm,v 1.19 2010-11-18 12:51:38 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.18 $) [1];
+$VERSION = qw($Revision: 1.19 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -253,7 +253,7 @@ sub Run {
         Data         => $DeplStateList,
         Name         => 'DeplStateID',
         PossibleNone => 1,
-        Class        => 'Validate_RequiredDropdown' . $RowDeplStateInvalid,
+        Class        => 'Validate_Required' . $RowDeplStateInvalid,
         SelectedID   => $Version->{DeplStateID},
     );
 
@@ -284,7 +284,7 @@ sub Run {
         Data         => $InciStateList,
         Name         => 'InciStateID',
         PossibleNone => 1,
-        Class        => 'Validate_RequiredDropdown' . $RowInciStateInvalid,
+        Class        => 'Validate_Required' . $RowInciStateInvalid,
         SelectedID   => $Version->{InciStateID},
     );
 
