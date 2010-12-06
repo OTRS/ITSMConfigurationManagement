@@ -2,7 +2,7 @@
 # AgentITSMConfigItemZoom.dtl - provides HTML form for AgentITSMConfigItemZoom
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemZoom.dtl,v 1.11 2010-11-04 15:09:48 ub Exp $
+# $Id: AgentITSMConfigItemZoom.dtl,v 1.12 2010-12-06 11:59:20 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -109,11 +109,11 @@
                             <table id="FixedTable" class="TableSmall">
                                 <thead>
                                     <tr>
-                                        <th title="Version Incident State"><span>Incident&nbsp;State</span></th>
-                                        <th title="Version No."><span>No.</span></th>
-                                        <th title="Configuration ItemName"><span>Name</span></th>
-                                        <th title="Created By User"><span>Created By</span></th>
-                                        <th title="Changed On Date"><span>Changed On</span></th>
+                                        <th title="Version Incident State"><span>$Text{"Incident State"}</span></th>
+                                        <th title="Version No."><span>$Text{"Version Number"}</span></th>
+                                        <th title="Configuration ItemName"><span>$Text{"Name"}</span></th>
+                                        <th title="Created By User"><span>$Text{"Created By"}</span></th>
+                                        <th title="Changed On Date"><span>$Text{"Changed On"}</span></th>
                                     </tr>
                                 </thead>
                                 <tbody>
