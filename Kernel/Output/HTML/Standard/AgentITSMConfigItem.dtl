@@ -2,7 +2,7 @@
 # AgentITSMConfigItem.dtl - provides HTML form for AgentITSMConfigItem
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItem.dtl,v 1.9 2010-09-21 22:23:01 cr Exp $
+# $Id: AgentITSMConfigItem.dtl,v 1.10 2010-12-06 16:20:40 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -118,7 +118,7 @@
                 <table class="DataTable">
                     <thead>
                         <tr>
-                            <th>&nbsp;</th>
+                            <th>$Text{"Incident State"}</th>
                             <th>$Text{"Number"}</th>
                             <th>$Text{"Name"}</th>
                             <th>$Text{"Deployment State"}</th>
