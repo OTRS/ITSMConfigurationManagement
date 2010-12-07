@@ -2,7 +2,7 @@
 # AgentITSMConfigItemZoom.dtl - provides HTML form for AgentITSMConfigItemZoom
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemZoom.dtl,v 1.13 2010-12-06 16:19:14 ub Exp $
+# $Id: AgentITSMConfigItemZoom.dtl,v 1.14 2010-12-07 18:19:29 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -220,7 +220,7 @@
     });
 
     $('ul.Actions a.HistoryBack').bind('click', function (Event) {
-        javascript:history.back();
+        history.back();
         return false;
     });
 //]]></script>
