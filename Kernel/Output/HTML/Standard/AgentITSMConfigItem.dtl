@@ -2,7 +2,7 @@
 # AgentITSMConfigItem.dtl - provides HTML form for AgentITSMConfigItem
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItem.dtl,v 1.10 2010-12-06 16:20:40 ub Exp $
+# $Id: AgentITSMConfigItem.dtl,v 1.11 2010-12-07 15:34:19 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -189,7 +189,7 @@
     <table class="DataTable">
         <thead>
             <tr>
-                <th>&nbsp;</th>
+                <th>$Text{"Incident State"}</th>
                 <th>$Text{"Number"}</th>
                 <th>$Text{"Name"}</th>
                 <th>$Text{"Deployment State"}</th>
@@ -214,7 +214,7 @@
 <!-- dtl:block:ClassRowReload -->
 <!-- dtl:block:NoClassRowReload -->
             <tr>
-                <td colspan="5" class="Center">$Text{"No data found."}</td>
+                <td colspan="5">$Text{"No data found."}</td>
             </tr>
 <!-- dtl:block:NoClassRowReload -->
         </tbody>
