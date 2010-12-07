@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemEdit.pm - the OTRS::ITSM config item edit module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.pm,v 1.19 2010-11-18 12:51:38 ub Exp $
+# $Id: AgentITSMConfigItemEdit.pm,v 1.20 2010-12-07 23:05:04 dz Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.19 $) [1];
+$VERSION = qw($Revision: 1.20 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -568,9 +568,6 @@ sub _XMLFormOutput {
                 $InputKey = $Param{Prefix} . '::' . $InputKey;
             }
 
-            # output row value block
-            $Self->{LayoutObject}->Block( Name => 'XMLRowValue' );
-
             # output blue required star
             my $XMLRowValueContentRequired = 0;
             my $LabelClass                 = '';
@@ -610,12 +607,11 @@ sub _XMLFormOutput {
 
             # output row value content block
             $Self->{LayoutObject}->Block(
-                Name => 'XMLRowValueContent',
+                Name => 'XMLRowValue',
                 Data => {
                     Name        => $Item->{Name},
                     ItemId      => $ItemId,
                     Description => $Item->{Description} || $Item->{Name},
-                    Colspan     => 4 - $Param{Level},
                     InputString => $InputString,
                     LabelClass  => $LabelClass,
                 },
@@ -637,27 +633,6 @@ sub _XMLFormOutput {
                     Name => 'XMLRowValueContentDelete',
                     Data => {
                         InputKey => $InputKey,
-                    },
-                );
-            }
-            else {
-                $Self->{LayoutObject}->Block( Name => 'XMLRowValueContentDeleteDummy' );
-            }
-
-            # output row rule block
-            $Self->{LayoutObject}->Block(
-                Name => 'XMLRowValueRule',
-                Data => {
-                    Colspan => 6 - $Param{Level},
-                },
-            );
-
-            # output row rule space, if level was given
-            if ( $Param{Level} ) {
-                $Self->{LayoutObject}->Block(
-                    Name => 'XMLRowValueRuleSpace',
-                    Data => {
-                        Colspan => $Param{Level},
                     },
                 );
             }
@@ -704,38 +679,9 @@ sub _XMLFormOutput {
                     ItemID      => $InputKey . 'Add',
                     Name        => $Item->{Name},
                     Description => $Item->{Description} || $Item->{Name},
-                    Colspan     => 4 - $Param{Level},
                     InputKey    => $InputKey,
                 },
             );
-
-            # output row add content space, if level was given
-            if ( $Param{Level} ) {
-                $Self->{LayoutObject}->Block(
-                    Name => 'XMLRowAddContentSpace',
-                    Data => {
-                        Colspan => $Param{Level},
-                    },
-                );
-            }
-
-            # output row add rule block
-            $Self->{LayoutObject}->Block(
-                Name => 'XMLRowAddRule',
-                Data => {
-                    Colspan => 6 - $Param{Level},
-                },
-            );
-
-            # output row add rule space, if level was given
-            if ( $Param{Level} ) {
-                $Self->{LayoutObject}->Block(
-                    Name => 'XMLRowAddRuleSpace',
-                    Data => {
-                        Colspan => $Param{Level},
-                    },
-                );
-            }
         }
     }
 

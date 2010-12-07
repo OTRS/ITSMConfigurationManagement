@@ -2,7 +2,7 @@
 # AgentITSMConfigItemEdit.dtl - provides HTML form for AgentITSMConfigItemEdit
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.dtl,v 1.10 2010-10-15 08:33:01 en Exp $
+# $Id: AgentITSMConfigItemEdit.dtl,v 1.11 2010-12-07 23:05:04 dz Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -10,148 +10,116 @@
 # --
 
 <!--dtl:block:StartNormal-->
-<div class="MainBox ARIARoleMain LayoutFixedSidebar SidebarFirst">
+<div class="MainBox ARIARoleMain LayoutFixedSidebar SidebarLast">
     <h1>$Text{"Edit"}: $Text{"Config Item"}: $QData{"Number"} - $Text{"Class"}: $QData{"Class"}</h1>
-    <div class="SidebarColumn">
-        <div class="WidgetSimple">
-            <div class="Header">
-                <h2>$Text{"Actions"}</h2>
-            </div>
-            <div class='Content'>
-                <ul class="ActionList">
-                    <li>
-                        <form action="$Env{"CGIHandle"}" method="get">
-                            <input type="hidden" name="Action" value="AgentITSMConfigItemEdit"/>
-                            <div>$Data{"ClassOptionStrg"}</div>
-                            <button class="CallForAction Plus" type="submit" value="$Text{"Add"}">
-                                <span>$Text{"Add Config Item"}</span>
-                            </button>
-                        </form>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
     <div class="ContentColumn">
-        <div class="WidgetSimple">
-            <div class="Header">
-                <h2>$Text{"Class"}: $QData{"Class"}</h2>
-            </div>
 <!--dtl:block:StartNormal-->
-
 $Include{"AgentITSMConfigItemCustomerSearch"}
-            <form action="$Env{"CGIHandle"}" method="post" name="compose" class="Validate" id="ClassItem">
+        <form action="$Env{"CGIHandle"}" method="post" name="compose" class="Validate" id="ClassItem">
 <!--dtl:block:StartSmall-->
-                <div class="LayoutPopup ARIARoleMain">
-                    <div class="Header">
-                        <h1>$Text{"Edit"}: $Text{"Config Item"}: $QData{"Number"} - $Text{"Class"}: $QData{"Class"}</h1>
-                        <p>
-                            <a class="CancelClosePopup" href="#">$Text{"Cancel & close window"}</a>
-                        </p>
-                    </div>
-                    <input type="hidden" name="ScreenType" value="Popup"/>
+            <div class="LayoutPopup ARIARoleMain">
+                <div class="Header">
+                    <h1>$Text{"Edit"}: $Text{"Config Item"}: $QData{"Number"} - $Text{"Class"}: $QData{"Class"}</h1>
+                    <p>
+                        <a class="CancelClosePopup" href="#">$Text{"Cancel & close window"}</a>
+                    </p>
+                </div>
+                <input type="hidden" name="ScreenType" value="Popup"/>
 <!--dtl:block:StartSmall-->
-                    <div class="Content">
-                        <input type="hidden" name="Action" value="$Env{"Action"}"/>
-                        <input type="hidden" name="Subaction" value="VersionSave"/>
-                        <input type="hidden" name="ClassID" value="$QData{"ClassID"}"/>
-                        <input type="hidden" name="ConfigItemID" value="$QData{"ConfigItemID"}"/>
-                        <fieldset class="TableLike">
+                <div class="Content">
+                    <input type="hidden" name="Action" value="$Env{"Action"}"/>
+                    <input type="hidden" name="Subaction" value="VersionSave"/>
+                    <input type="hidden" name="ClassID" value="$QData{"ClassID"}"/>
+                    <input type="hidden" name="ConfigItemID" value="$QData{"ConfigItemID"}"/>
+                    <fieldset class="TableLike">
 <!-- dtl:block:RowName -->
 
-                            <label class="Mandatory" for="Name"><span class="Marker">*</span> $Text{"Name"}: </label>
-                            <div class="Field">
-                                <input type="text" name="Name" id="Name" class="W50pc Validate_Required $QData{"RowNameInvalid"}" maxlength="250" value="$QData{"Name"}" title="$Text{"The name of this config item"}"/>
-                                <div id="NameError" class="TooltipErrorMessage" ><p>$Text{"A Config Item should have a name!"}</p></div>
-                                <div id="NameServerError" class="TooltipErrorMessage"><p>$Text{"Name is required."}</p></div>
-                            </div>
-                            <div class="Clear"></div>
+                        <label class="Mandatory" for="Name"><span class="Marker">*</span> $Text{"Name"}: </label>
+                        <div class="Field">
+                            <input type="text" name="Name" id="Name" class="W50pc Validate_Required $QData{"RowNameInvalid"}" maxlength="250" value="$QData{"Name"}" title="$Text{"The name of this config item"}"/>
+                            <div id="NameError" class="TooltipErrorMessage" ><p>$Text{"A Config Item should have a name!"}</p></div>
+                            <div id="NameServerError" class="TooltipErrorMessage"><p>$Text{"Name is required."}</p></div>
+                        </div>
+                        <div class="Clear"></div>
 <!-- dtl:block:RowName -->
 <!-- dtl:block:RowDeplState -->
-                            <label class="Mandatory" for="DeplStateID"><span class="Marker">*</span> $Text{"Deployment state"}: </label>
-                            <div class="Field">
-                                $Data{"DeplStateOptionStrg"}
-                                <div id="DeplStateIDError" class="TooltipErrorMessage" ><p>$Text{"A Config Item should have a Deployment state!"}</p></div>
-                                <div id="DeplStateIDServerError" class="TooltipErrorMessage"><p>$Text{"Deployment state is required."}</p></div>
-                            </div>
-                            <div class="Clear"></div>
+                        <label class="Mandatory" for="DeplStateID"><span class="Marker">*</span> $Text{"Deployment state"}: </label>
+                        <div class="Field">
+                            $Data{"DeplStateOptionStrg"}
+                            <div id="DeplStateIDError" class="TooltipErrorMessage" ><p>$Text{"A Config Item should have a Deployment state!"}</p></div>
+                            <div id="DeplStateIDServerError" class="TooltipErrorMessage"><p>$Text{"Deployment state is required."}</p></div>
+                        </div>
+                        <div class="Clear"></div>
 <!-- dtl:block:RowDeplState -->
 <!-- dtl:block:RowInciState -->
-                            <label class="Mandatory" for="InciStateID"><span class="Marker">*</span> $Text{"Incident state"}: </label>
+                        <label class="Mandatory" for="InciStateID"><span class="Marker">*</span> $Text{"Incident state"}: </label>
+                        <div class="Field">
+                            $Data{"InciStateOptionStrg"}
+                            <div id="InciStateIDError" class="TooltipErrorMessage" ><p>$Text{"A Config Item should have an Incident state!"}</p></div>
+                            <div id="InciStateIDServerError" class="TooltipErrorMessage"><p>$Text{"Incident state is required."}</p></div>
+                        </div>
+                        <div class="Clear"></div>
+<!-- dtl:block:RowInciState -->
+
+<!-- dtl:block:XMLRow -->
+
+<!-- dtl:block:XMLRowValue -->
+<!-- dtl:block:XMLRowValueContentSpaceStart -->
+                        <div class="ContentField">
+<!-- dtl:block:XMLRowValueContentSpaceStart -->
+                            <label class="$QData{"LabelClass"}" for="$QData{"ItemId"}">
+<!-- dtl:block:XMLRowValueContentRequired -->
+                                <span class="Marker">*</span>
+<!-- dtl:block:XMLRowValueContentRequired -->
+                                $QData{"Name"}:
+                            </label>
                             <div class="Field">
-                                $Data{"InciStateOptionStrg"}
-                                <div id="InciStateIDError" class="TooltipErrorMessage" ><p>$Text{"A Config Item should have an Incident state!"}</p></div>
-                                <div id="InciStateIDServerError" class="TooltipErrorMessage"><p>$Text{"Incident state is required."}</p></div>
+                                $Data{"InputString"}
+<!-- dtl:block:XMLRowValueContentDelete -->
+                                <button class="DisableVal Remove" type="submit" name="$QData{"InputKey"}::Delete" value="$Text{"Delete"}">$Text{"Delete"}</button>
+<!-- dtl:block:XMLRowValueContentDelete -->
+                                <div id="$QData{"ItemId"}Error" class="TooltipErrorMessage" ><p>$Text{"A Config Item should have a $Data{"Name"}!"}</p></div>
+                                <div id="$QData{"ItemId"}ServerError" class="TooltipErrorMessage"><p>$Text{"$Data{"Name"} is required."}</p></div>
                             </div>
                             <div class="Clear"></div>
-<!-- dtl:block:RowInciState -->
-<!-- dtl:block:XMLRow -->
-<!-- dtl:block:XMLRowValue -->
-<!-- dtl:block:XMLRowValueContent -->
-<!-- dtl:block:XMLRowValueContentSpaceStart -->
-                            <div class="ContentField">
-<!-- dtl:block:XMLRowValueContentSpaceStart -->
-                                <label class="$QData{"LabelClass"}" for="$QData{"ItemId"}">
-<!-- dtl:block:XMLRowValueContentRequired -->
-                                    <span class="Marker">*</span>
-<!-- dtl:block:XMLRowValueContentRequired -->
-                                    $QData{"Name"}:
-                                </label>
-                                <div class="Field">
-                                    $Data{"InputString"}
-<!-- dtl:block:XMLRowValueContentDelete -->
-                                    <button class="DisableVal" type="submit" name="$QData{"InputKey"}::Delete" value="$Text{"Delete"}">$Text{"Delete"}</button>
-<!-- dtl:block:XMLRowValueContentDelete -->
-<!-- dtl:block:XMLRowValueContentDeleteDummy -->
-<!-- dtl:block:XMLRowValueContentDeleteDummy -->
-                                    <div id="$QData{"ItemId"}Error" class="TooltipErrorMessage" ><p>$Text{"A Config Item should have a $Data{"Name"}!"}</p></div>
-                                    <div id="$QData{"ItemId"}ServerError" class="TooltipErrorMessage"><p>$Text{"$Data{"Name"} is required."}</p></div>
-                                </div>
-                                <div class="Clear"></div>
 <!-- dtl:block:XMLRowValueContentSpaceEnd -->
-                            </div>
+                        </div>
 <!-- dtl:block:XMLRowValueContentSpaceEnd -->
-<!-- dtl:block:XMLRowValueContent -->
 <!-- dtl:block:XMLRowValue -->
+
 <!-- dtl:block:XMLRowAdd -->
 <!-- dtl:block:XMLRowAddContent -->
-                            <div class="ContentField">
-                                <label for="$QData{"ItemID"}">$Text{"$Data{"Name"}"}: </label>
-                                <div class="Field">
-                                    <input class="DisableVal" id="$QData{"ItemID"}" type="submit" name="$QData{"InputKey"}::Add" value="$Text{"Add"}" title="$Text{"$Data{"Description"}"}"/>
+                        <div class="ContentField">
+                            <label for="$QData{"ItemID"}">$Text{"$Data{"Name"}"}: </label>
+                            <div class="Field">
+                                <button class="DisableVal Add" id="$QData{"ItemID"}" type="submit" name="$QData{"InputKey"}::Add" value="$Text{"Add"}" title="$Text{"$Data{"Description"}"}"/>
                                 </div>
                                 <div class="Clear"></div>
                             </div>
 <!-- dtl:block:XMLRowAddContent -->
 <!-- dtl:block:XMLRowAdd -->
+
 <!-- dtl:block:XMLRow -->
 
 <!-- dtl:block:EndNormalContent -->
+                            <div class="Field SpacingTop">
+                                <button name="SubmitSave" class="Primary" type="submit" value="$Text{"Save"}">$Text{"Submit"}</button>
+                            </div>
                         </fieldset>
                     </div>
-                    <div class="Footer SpacingTop">
-                        <button name="SubmitSave" class="Primary" type="submit" value="$Text{"Save"}">$Text{"Submit"}</button>
-                        $Text{"or"}
-                        <a href="$Env{"Baselink"}Action=$Env{"Action"}">$Text{"Cancel"}</a>
-                    </div>
 <!-- dtl:block:EndNormalContent -->
 
 <!-- dtl:block:EndSmall -->
+                    <div class="Field SpacingTop">
+                        <button name="SubmitSave" class="Primary" type="submit" value="$Text{"Save"}">$Text{"Submit"}</button>
+                    </div>
                 </fieldset>
             </div>
-            <div class="Footer SpacingTop">
-                <button name="SubmitSave" class="Primary" type="submit" value="$Text{"Save"}">$Text{"Submit"}</button>
-            </div>
-        </div>
 <!-- dtl:block:EndSmall -->
-
-    </form>
-
+        </form>
 <!-- dtl:block:EndNormal -->
-</div>
-</div>
-<div class="Clear"></div>
+    </div>
+    <div class="Clear"></div>
 </div>
 <!-- dtl:block:EndNormal -->
 
