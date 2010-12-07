@@ -2,7 +2,7 @@
 # AgentITSMConfigItemAdd.dtl - provides HTML form for AgentITSMConfigItemAdd
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemAdd.dtl,v 1.3 2010-08-19 17:57:45 cg Exp $
+# $Id: AgentITSMConfigItemAdd.dtl,v 1.4 2010-12-07 18:15:50 en Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,22 +15,10 @@
     <div class="SidebarColumn">
         <div class="WidgetSimple">
             <div class="Header">
-                <h2>$Text{"Actions"}</h2>
+                <h2><label for="FilterConfigItems">$Text{"Filter for Config Items"}</label></h2>
             </div>
-            <div class='Content'>
-                <ul class="ActionList">
-                    <li>
-                        <form action="$Env{"CGIHandle"}" method="get">
-                            <input type="hidden" name="Action" value="AgentITSMConfigItemSearch"/>
-                            <input type="hidden" name="Subaction" value="Attribute"/>
-
-                            <div>$Data{"ClassOptionStrg"}</div>
-                            <button class="CallForAction" type="submit" value="$Text{"Search"}">
-                                <span>$Text{"Search Config Item"}</span>
-                            </button>
-                        </form>
-                    </li>
-                </ul>
+            <div class="Content">
+                <input type="text" id="FilterConfigItems" class="W50pc" name="FilterConfigItems" value="" title="$Text{"Filter for Config Items"}" />
             </div>
         </div>
     </div>
@@ -41,13 +29,16 @@
                 <h2>$Text{"List"}</h2>
             </div>
             <div class="Content">
-                <table class="DataTable">
+                <table class="DataTable" id="ConfigItems">
                     <thead>
                         <tr>
                             <th class="W100pc">Classes</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <tr class="FilterMessage Hidden">
+                            <td>$Text{"No matches found."}</td>
+                        </tr>
 <!-- dtl:block:OverviewItemList -->
                         <tr>
                             <td>
@@ -62,3 +53,9 @@
     </div>
     <div class="Clear"></div>
 </div>
+
+<!-- dtl:js_on_document_complete -->
+<script type="text/javascript">//<![CDATA[
+    Core.UI.Table.InitTableFilter($('#FilterConfigItems'), $('#ConfigItems'));
+//]]></script>
+<!-- dtl:js_on_document_complete -->

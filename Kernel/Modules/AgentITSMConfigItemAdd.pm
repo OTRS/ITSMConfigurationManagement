@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemAdd.pm - the OTRS::ITSM config item add module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemAdd.pm,v 1.6 2010-08-19 17:58:18 cg Exp $
+# $Id: AgentITSMConfigItemAdd.pm,v 1.7 2010-12-07 18:15:50 en Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.6 $) [1];
+$VERSION = qw($Revision: 1.7 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -62,15 +62,6 @@ sub Run {
         delete $ClassList->{$ClassID} if !$HasAccess;
     }
 
-    # generate ClassOptionStrg
-    my $ClassOptionStrg = $Self->{LayoutObject}->BuildSelection(
-        Data         => $ClassList,
-        Name         => 'ClassID',
-        PossibleNone => 1,
-        Translation  => 0,
-        Class        => 'W100pc',
-    );
-
     for my $ItemID ( keys %{$ClassList} ) {
 
         # get item data
@@ -97,7 +88,6 @@ sub Run {
         TemplateFile => 'AgentITSMConfigItemAdd',
         Data         => {
             %Param,
-            ClassOptionStrg => $ClassOptionStrg,
         },
     );
 
