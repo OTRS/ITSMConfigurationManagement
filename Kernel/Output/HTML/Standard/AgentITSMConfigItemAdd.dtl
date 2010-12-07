@@ -2,7 +2,7 @@
 # AgentITSMConfigItemAdd.dtl - provides HTML form for AgentITSMConfigItemAdd
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemAdd.dtl,v 1.4 2010-12-07 18:15:50 en Exp $
+# $Id: AgentITSMConfigItemAdd.dtl,v 1.5 2010-12-07 18:24:20 en Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,10 +15,10 @@
     <div class="SidebarColumn">
         <div class="WidgetSimple">
             <div class="Header">
-                <h2><label for="FilterConfigItems">$Text{"Filter for Config Items"}</label></h2>
+                <h2><label for="FilterClasses">$Text{"Filter for Classes"}</label></h2>
             </div>
             <div class="Content">
-                <input type="text" id="FilterConfigItems" class="W50pc" name="FilterConfigItems" value="" title="$Text{"Filter for Config Items"}" />
+                <input type="text" id="FilterClasses" class="W50pc" name="FilterClasses" value="" title="$Text{"Filter for Classes"}" />
             </div>
         </div>
     </div>
@@ -29,7 +29,7 @@
                 <h2>$Text{"List"}</h2>
             </div>
             <div class="Content">
-                <table class="DataTable" id="ConfigItems">
+                <table class="DataTable" id="Classes">
                     <thead>
                         <tr>
                             <th class="W100pc">Classes</th>
@@ -56,6 +56,6 @@
 
 <!-- dtl:js_on_document_complete -->
 <script type="text/javascript">//<![CDATA[
-    Core.UI.Table.InitTableFilter($('#FilterConfigItems'), $('#ConfigItems'));
+    Core.UI.Table.InitTableFilter($('#FilterClasses'), $('#Classes'));
 //]]></script>
 <!-- dtl:js_on_document_complete -->
