@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <otrs_config version="1.0" init="Config">
-    <CVS>$Id: ITSMConfigItem.xml,v 1.25 2010-10-18 17:44:58 cr Exp $</CVS>
+    <CVS>$Id: ITSMConfigItem.xml,v 1.26 2010-12-08 19:47:25 dz Exp $</CVS>
     <ConfigItem Name="Frontend::Module###AdminITSMConfigItem" Required="0" Valid="1">
         <Description Translatable="1">Frontend module registration for the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
@@ -176,18 +176,6 @@
                 <Item Key="Action"></Item>
                 <Item Key="Link">Action=AgentITSMConfigItem;ClassID=$QData{"ClassID"}</Item>
                 <Item Key="Target">Back</Item>
-            </Hash>
-        </Setting>
-    </ConfigItem>
-    <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###100-Versions" Required="0" Valid="1">
-        <Description Translatable="1">Presents a link in the menu to go show versions in the configuraton item zoom view of the agent interface.</Description>
-        <Group>ITSM Configuration Management</Group>
-        <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
-        <Setting>
-            <Hash>
-                <Item Key="Module">Kernel::Output::HTML::ITSMConfigItemMenuVersions</Item>
-                <Item Key="Name">Versions</Item>
-                <Item Key="Target"></Item>
             </Hash>
         </Setting>
     </ConfigItem>
