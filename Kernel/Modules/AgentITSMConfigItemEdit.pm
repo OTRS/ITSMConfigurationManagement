@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemEdit.pm - the OTRS::ITSM config item edit module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.pm,v 1.20 2010-12-07 23:05:04 dz Exp $
+# $Id: AgentITSMConfigItemEdit.pm,v 1.21 2010-12-08 23:27:09 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.20 $) [1];
+$VERSION = qw($Revision: 1.21 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -332,7 +332,10 @@ sub Run {
         $Self->{LayoutObject}->Block( Name => 'EndSmall' );
 
         # output header
-        $Output .= $Self->{LayoutObject}->Header( Title => 'Edit', Type => 'Small' );
+        $Output .= $Self->{LayoutObject}->Header(
+            Title => 'Edit',
+            Type  => 'Small',
+        );
 
         # start template output
         $Output .= $Self->{LayoutObject}->Output(
