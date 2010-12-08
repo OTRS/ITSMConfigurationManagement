@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemAdd.pm - the OTRS::ITSM config item add module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemAdd.pm,v 1.7 2010-12-07 18:15:50 en Exp $
+# $Id: AgentITSMConfigItemAdd.pm,v 1.8 2010-12-08 15:30:00 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.7 $) [1];
+$VERSION = qw($Revision: 1.8 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -62,7 +62,7 @@ sub Run {
         delete $ClassList->{$ClassID} if !$HasAccess;
     }
 
-    for my $ItemID ( keys %{$ClassList} ) {
+    for my $ItemID ( sort { ${$ClassList}{$a} cmp ${$ClassList}{$b} } keys %{$ClassList} ) {
 
         # get item data
         my $ItemData = $Self->{GeneralCatalogObject}->ItemGet(
