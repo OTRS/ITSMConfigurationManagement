@@ -2,7 +2,7 @@
 # AgentITSMConfigItem.dtl - provides HTML form for AgentITSMConfigItem
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItem.dtl,v 1.13 2010-12-08 22:49:38 en Exp $
+# $Id: AgentITSMConfigItem.dtl,v 1.14 2010-12-09 01:21:35 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -115,14 +115,14 @@
                     </thead>
                     <tbody>
 <!-- dtl:block:ClassRow -->
-                        <tr>
+                        <tr class="MasterAction">
                             <td title="$Text{"$Data{"CurInciState"}"}" class="Flags Fixed">
                                 <div title="$Text{"$Data{"CurInciState"}"}" class="Flag Small">
                                     <span class="$Text{"$Data{"CurInciSignal"}"}">$Text{"$Data{"CurInciState"}"}</span>
                                 </div>
                             </td>
                             <td>
-                                <a class="AsBlock" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$QData{"ConfigItemID"}">$QData{"Number"}</a>
+                                <a class="MasterActionLink" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$QData{"ConfigItemID"}">$QData{"Number"}</a>
                             </td>
                             <td>$QData{"Name","40"}</td>
                             <td>$Text{"$Data{"CurDeplState"}"}</td>
@@ -211,3 +211,11 @@
 <!-- dtl:block:ClassReload -->
 </div>
 <!-- dtl:block:Reload -->
+
+<!-- dtl:js_on_document_complete -->
+<script type="text/javascript">//<![CDATA[
+    $('.MasterAction').bind('click', function (Event) {
+        window.location = $(this).find('.MasterActionLink').attr('href');
+    });
+//]]></script>
+<!-- dtl:js_on_document_complete -->
