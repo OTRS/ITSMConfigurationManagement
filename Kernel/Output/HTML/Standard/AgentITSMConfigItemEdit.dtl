@@ -2,7 +2,7 @@
 # AgentITSMConfigItemEdit.dtl - provides HTML form for AgentITSMConfigItemEdit
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.dtl,v 1.12 2010-12-09 00:36:07 dz Exp $
+# $Id: AgentITSMConfigItemEdit.dtl,v 1.13 2010-12-09 22:58:56 dz Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -62,58 +62,62 @@ $Include{"AgentITSMConfigItemCustomerSearch"}
 <!-- dtl:block:RowInciState -->
 
 <!-- dtl:block:XMLRow -->
-
-<!-- dtl:block:XMLRowValue -->
-<!-- dtl:block:XMLRowValueContentSpaceStart -->
-                        <div class="ContentField">
-<!-- dtl:block:XMLRowValueContentSpaceStart -->
-                            <label $Data{"LabelClass"} $Data{"LabelFor"}>
-<!-- dtl:block:XMLRowValueContentRequired -->
-                                <span class="Marker">*</span>
-<!-- dtl:block:XMLRowValueContentRequired -->
-                                $QData{"Name"}:
-                            </label>
-                            <div class="Field">
-                                $Data{"InputString"}
-<!-- dtl:block:XMLRowValueContentDelete -->
-                                <button class="DisableVal Remove" type="submit" name="$QData{"InputKey"}::Delete" value="$Text{"Delete"}">$Text{"Delete"}</button>
-<!-- dtl:block:XMLRowValueContentDelete -->
-                                <div id="$QData{"ItemID"}Error" class="TooltipErrorMessage" ><p>$Text{"A Config Item should have a $Data{"Name"}!"}</p></div>
-                                <div id="$QData{"ItemID"}ServerError" class="TooltipErrorMessage"><p>$Text{"$Data{"Name"} is required."}</p></div>
-                            </div>
-                            <div class="Clear"></div>
-<!-- dtl:block:XMLRowValueContentSpaceEnd -->
-                        </div>
-<!-- dtl:block:XMLRowValueContentSpaceEnd -->
+<!-- dtl:block:XMLRowFieldsetStart -->
+                        <fieldset class="TableLike FieldContainer">
+<!-- dtl:block:XMLRowFieldsetStart -->
 <!-- dtl:block:XMLRowValue -->
 
-<!-- dtl:block:XMLRowAdd -->
+<!-- dtl:block:XMLRowValueContentSubFieldStart -->
+                            <div class="SubField" >
+<!-- dtl:block:XMLRowValueContentSubFieldStart -->
+
+                                <label $Data{"LabelClass"} $Data{"LabelFor"}>
+<!-- dtl:block:XMLRowValueContentRequired -->
+                                    <span class="Marker">*</span>
+<!-- dtl:block:XMLRowValueContentRequired -->
+                                    $QData{"Name"}:
+                                </label>
+                                <div class="Field">
+                                    $Data{"InputString"}
+<!-- dtl:block:XMLRowValueContentDelete -->
+                                    <button class="DisableVal Remove" type="submit" name="$QData{"InputKey"}::Delete" value="$Text{"Delete"}">$Text{"Delete"}</button>
+<!-- dtl:block:XMLRowValueContentDelete -->
+                                    <div id="$QData{"ItemID"}Error" class="TooltipErrorMessage" ><p>$Text{"A Config Item should have a $Data{"Name"}!"}</p></div>
+                                    <div id="$QData{"ItemID"}ServerError" class="TooltipErrorMessage"><p>$Text{"$Data{"Name"} is required."}</p></div>
+                                </div>
+<!-- dtl:block:XMLRowValue -->
+
+<!-- dtl:block:XMLSubRowAddStart -->
+                                <div $Data{"Class"}>
+<!-- dtl:block:XMLSubRowAddStart -->
 <!-- dtl:block:XMLRowAddContent -->
-                        <div class="ContentField">
-                            <label for="$QData{"ItemID"}">$Text{"$Data{"Name"}"}: </label>
-                            <div class="Field">
-                                <button class="DisableVal Add" id="$QData{"ItemID"}" type="submit" name="$QData{"InputKey"}::Add" value="$Text{"Add"}" title="$Text{"$Data{"Description"}"}"/>
+                                    <label for="$QData{"ItemID"}">$Text{"$Data{"Name"}"}: </label>
+                                    <div class="Field">
+                                        <button class="DisableVal Add" id="$QData{"ItemID"}" type="submit" name="$QData{"InputKey"}::Add" value="$Text{"Add"}" title="$Text{"$Data{"Description"}"}" ></button>
+                                    </div>
+                                    <div class="Clear"></div>
+<!-- dtl:block:XMLRowAddContent -->
+
+<!-- dtl:block:XMLSubRowAddEnd -->
                                 </div>
                                 <div class="Clear"></div>
-                            </div>
-<!-- dtl:block:XMLRowAddContent -->
-<!-- dtl:block:XMLRowAdd -->
+<!-- dtl:block:XMLSubRowAddEnd -->
 
+<!-- dtl:block:XMLRowValueContentSubFieldEnd -->
+                            </div>
+<!-- dtl:block:XMLRowValueContentSubFieldEnd -->
+<!-- dtl:block:XMLRowFieldsetEnd -->
+                        </fieldset>
+<!-- dtl:block:XMLRowFieldsetEnd -->
 <!-- dtl:block:XMLRow -->
 
-<!-- dtl:block:EndNormalContent -->
-                            <div class="Field SpacingTop">
-                                <button name="SubmitSave" class="Primary" type="submit" value="$Text{"Save"}">$Text{"Submit"}</button>
-                            </div>
-                        </fieldset>
-                    </div>
-<!-- dtl:block:EndNormalContent -->
+                        <div class="Field SpacingTop">
+                            <button name="SubmitSave" class="Primary" type="submit" value="$Text{"Save"}">$Text{"Submit"}</button>
+                        </div>
+                    </fieldset>
+                </div>
 
 <!-- dtl:block:EndSmall -->
-                    <div class="Field SpacingTop">
-                        <button name="SubmitSave" class="Primary" type="submit" value="$Text{"Save"}">$Text{"Submit"}</button>
-                    </div>
-                </fieldset>
             </div>
 <!-- dtl:block:EndSmall -->
         </form>
