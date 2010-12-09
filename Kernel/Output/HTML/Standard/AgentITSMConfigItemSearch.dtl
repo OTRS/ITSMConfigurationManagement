@@ -2,7 +2,7 @@
 # AgentITSMConfigItemSearch.dtl - provides HTML form for AgentITSMConfigItemSearch
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.dtl,v 1.16 2010-10-26 14:43:10 ub Exp $
+# $Id: AgentITSMConfigItemSearch.dtl,v 1.17 2010-12-09 11:56:04 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -188,6 +188,7 @@
     <button id="SearchFormSubmit" class="Primary Hidden" value="Run Search">$Text{"Run Search"}</button>
 </div>
 <script type="text/javascript">//<![CDATA[
+/*global ITSM: true */
     window.setTimeout(function (){
         $('#SearchClassID').bind('change', function(){
             ITSM.Agent.ConfigItem.Search.LoadProfile( $('#SearchProfile').val() );
@@ -200,6 +201,7 @@ $Include{"AgentITSMConfigItemCustomerSearch"}
 
 <!-- dtl:block:SearchAJAXSetClass -->
 <script type="text/javascript">//<![CDATA[
+/*global ITSM: true */
     window.setTimeout(function (){
             ITSM.Agent.ConfigItem.Search.LoadProfile( "$QData{"Profile"}" );
     }, 150);
@@ -209,6 +211,7 @@ $Include{"AgentITSMConfigItemCustomerSearch"}
 <!-- dtl:block:Search -->
 <!--dtl:js_on_document_complete-->
 <script type="text/javascript">//<![CDATA[
+/*global ITSM: true */
     ITSM.Agent.ConfigItem.Search.OpenSearchDialog( '$Env{"Action"}', "$QData{"Profile"}", "$QData{"ClassID"}" );
 //]]></script>
 <!--dtl:js_on_document_complete-->
@@ -303,6 +306,7 @@ $Include{"AgentITSMConfigItemCustomerSearch"}
 </fieldset>
 
 <script type="text/javascript">//<![CDATA[
+/*global ITSM: true */
     window.setTimeout(function (){
 <!-- dtl:block:SearchAJAXShow -->
         ITSM.Agent.ConfigItem.Search.SearchAttributeAdd('$QData{"Attribute"}');

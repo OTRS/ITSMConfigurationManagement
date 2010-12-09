@@ -2,7 +2,7 @@
 # AgentITSMConfigItemCustomerSearch.dtl - provides autocomplete feature for customer search
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemCustomerSearch.dtl,v 1.1 2010-09-22 16:27:33 cr Exp $
+# $Id: AgentITSMConfigItemCustomerSearch.dtl,v 1.2 2010-12-09 11:56:04 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -21,6 +21,7 @@
 
 <!-- dtl:block:CustomerSearchInit -->
 <script type="text/javascript">//<![CDATA[
+/*global ITSM: true */
     ITSM.Agent.ConfigItem.CustomerSearch.Init($("$QData{"ItemId"}"), $QData{"ActiveAutoComplete"});
 //]]></script>
 <!-- dtl:block:CustomerSearchInit -->
