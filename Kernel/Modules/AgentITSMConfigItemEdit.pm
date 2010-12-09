@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemEdit.pm - the OTRS::ITSM config item edit module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.pm,v 1.21 2010-12-08 23:27:09 ub Exp $
+# $Id: AgentITSMConfigItemEdit.pm,v 1.22 2010-12-09 00:36:07 dz Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.21 $) [1];
+$VERSION = qw($Revision: 1.22 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -585,14 +585,14 @@ sub _XMLFormOutput {
                 $XMLRowValueContentInvalid = 1;
             }
 
-            my $ItemId = 'Item' . $ItemCounter++ . $Param{Prefix} . $Param{Level};
+            my $ItemID = 'Item' . $ItemCounter++ . $Param{Prefix} . $Param{Level};
 
             if ( $Item->{Input}->{Type} eq 'Customer' ) {
 
                 $Self->{LayoutObject}->Block(
                     Name => 'CustomerSearchInit',
                     Data => {
-                        ItemId             => '#' . $ItemId,
+                        ItemID             => '#' . $ItemID,
                         ActiveAutoComplete => $Param{ActiveAutoComplete},
                         }
                 );
@@ -603,20 +603,37 @@ sub _XMLFormOutput {
                 Key      => $InputKey,
                 Item     => $Item,
                 Value    => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content},
-                ItemId   => $ItemId,
+                ItemId   => $ItemID,
                 Required => $XMLRowValueContentRequired,
                 Invalid  => $XMLRowValueContentInvalid,
             );
+
+            # ID?
+            my $LabelFor = $ItemID;
+            if ( $Item->{Input}->{Type} eq 'Date' || $Item->{Input}->{Type} eq 'DateTime' ) {
+                $LabelFor = '';
+            }
+
+            # id needed?
+            if ($LabelFor) {
+                $LabelFor = 'for="' . $LabelFor . '"';
+            }
+
+            # class needed?
+            if ($LabelClass) {
+                $LabelClass = 'class="' . $LabelClass . '"';
+            }
 
             # output row value content block
             $Self->{LayoutObject}->Block(
                 Name => 'XMLRowValue',
                 Data => {
                     Name        => $Item->{Name},
-                    ItemId      => $ItemId,
+                    ItemID      => $ItemID,
+                    LabelFor    => $LabelFor || '',
                     Description => $Item->{Description} || $Item->{Name},
                     InputString => $InputString,
-                    LabelClass  => $LabelClass,
+                    LabelClass  => $LabelClass || '',
                 },
             );
 
