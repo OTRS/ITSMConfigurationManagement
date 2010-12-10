@@ -2,7 +2,7 @@
 # AgentITSMConfigItemSearch.dtl - provides HTML form for AgentITSMConfigItemSearch
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.dtl,v 1.17 2010-12-09 11:56:04 ub Exp $
+# $Id: AgentITSMConfigItemSearch.dtl,v 1.18 2010-12-10 02:53:18 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -32,7 +32,7 @@
             <div class="ControlRow">
                 <ul class="Tabs">
                     <li>
-                        <a href="$Env{"Baselink"}Action=$Env{"Action"};Profile=$LQData{"Profile"};ClassID=$LQData{"ClassID"}">
+                        <a id='ITSMConfigItemSearch' href="$Env{"Baselink"}Action=$Env{"Action"};Profile=$LQData{"Profile"};ClassID=$LQData{"ClassID"}">
                             $Text{"Change search options"}
                         </a>
                     </li>
@@ -42,9 +42,27 @@
                         <a href="#" id="ShowContextSettingsDialog" title="$Text{"Context Settings"}"><span>$Text{"Context Settings"}</span></a>
                     </li>
                 </ul>
+<!--dtl:js_on_document_complete-->
+<script type="text/javascript">//<![CDATA[
+    $('#ITSMConfigItemSearch').bind('click', function (Event) {
+        ITSM.Agent.ConfigItem.Search.OpenSearchDialog( 'AgentITSMConfigItemSearch', '$QData{"Profile"}', '$QData{"ClassID"}' );
+        return false;
+    });
+//]]></script>
+<!--dtl:js_on_document_complete-->
             </div>
             <div class="ActionRow">
                 <div class="OverviewActions">
+                    <ul class="OverviewZoom">
+                        <li class="Active Last">
+                            <a title="Small" href="$Env{"Baselink"}Action=AgentITSMConfigItemSearch;Filter=;View=Small;TakeLastSearch=1;Subaction=Search;Profile=$LQData{"Profile"};ClassID=$LQData{"ClassID"};" class="Small">
+                                <span class="ImageMode">
+                                    <span class="NameShort">S</span>
+                                    <span class="NameLong">Small</span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
                     <span class="Pagination">
 <!-- dtl:block:OverviewNavBarPageNavBar -->
                         $Data{"ResultLong"}
@@ -145,13 +163,10 @@
 
 <!-- dtl:block:SearchAJAX -->
 <div class="InnerContent">
-    <div class="Header">
-        <h2 class="Center">$Text{"Search"}</h2>
-    </div>
     <fieldset class="TableLike">
         <div class="Clear"></div>
         <label for="Class">$Text{"Class"}</label>
-        <div class="Field">
+        <div class="Field" id='DivClassID'>
             $Data{"ClassOptionStrg"}
         </div>
     </fieldset>
@@ -224,6 +239,7 @@ $Include{"AgentITSMConfigItemCustomerSearch"}
     <input type="hidden" name="Subaction" value="Search"/>
     <input type="hidden" name="ClassID" value="$QData{"ClassID"}">
     <input type="hidden" name="SearchDialog" value='1'>
+    <input type="hidden" name="EmptySearch" value="$QData{"EmptySearch"}" id="EmptySearch"/>
     <fieldset class="TableLike Hidden" id='ITSMSearchProfile'>
         <div class="Clear"></div>
         <label>$Text{"Search-Template"}</label>
@@ -237,9 +253,14 @@ $Include{"AgentITSMConfigItemCustomerSearch"}
             <div id="SearchProfileAddBlock">
                 <input type="text" name="ProfileName" id="SearchProfileAddName"/>
                 <button type="submit" title="$Text{"Create Template"}" id="SearchProfileAddAction">$Text{"Create New Template"}</button>
-                <input type="hidden" name="SaveProfile" value="1"/>
             </div>
         </div>
+        <div class="Clear"></div>
+        <label>$Text{"Save changes in template"}:</label>
+        <div class="Field">
+            <input type="checkbox" name="SaveProfile" id="SaveProfile" value="1"/>
+        </div>
+
     </fieldset>
 
     <fieldset class="TableLike Hidden" id='ITSMSearchFields'>
@@ -266,39 +287,39 @@ $Include{"AgentITSMConfigItemCustomerSearch"}
 </form>
 <fieldset class="TableLike Hidden" id="SearchAttributesHidden">
     <div class="Clear"></div>
-    <label for="Number">$Text{"Number"} $Text{"(e. g. 10*5155 or 105658*)"}</label>
+    <label for="Number" id="LabelNumber">$Text{"Number"} $Text{"(e. g. 10*5155 or 105658*)"}:</label>
     <div class="Field">
         <input type="text" name="Number" value="$QData{"Number"}" class="W50pc" />
-        <button type="submit" class="Remove" value="Remove" title="$Text{"Remove this entry"}">$Text{"Remove"}</button>
+        <button type="button" class="Remove" value="Remove" title="$Text{"Remove this entry"}">$Text{"Remove"}</button>
     </div>
 
     <div class="Clear"></div>
-    <label for="Name">$Text{"Name"}</label>
+    <label for="Name" id="LabelName">$Text{"Name"}:</label>
     <div class="Field">
         <input type="text" name="Name" value="$QData{"Name"}" class="W50pc" />
-        <button type="submit" class="Remove" value="Remove" title="$Text{"Remove this entry"}">$Text{"Remove"}</button>
+        <button type="button" class="Remove" value="Remove" title="$Text{"Remove this entry"}">$Text{"Remove"}</button>
     </div>
 
     <div class="Clear"></div>
-    <label for="DeplStateIDs">$Text{"Deployment State"}</label>
+    <label for="DeplStateIDs" id="LabelDeplStateIDs">$Text{"Deployment State"}:</label>
     <div class="Field">
         $Data{"CurDeplStateOptionStrg"}
-        <button type="submit" class="Remove" value="Remove" title="$Text{"Remove this entry"}">$Text{"Remove"}</button>
+        <button type="button" class="Remove" value="Remove" title="$Text{"Remove this entry"}">$Text{"Remove"}</button>
     </div>
 
     <div class="Clear"></div>
-    <label for="InciStateIDs">$Text{"Incident State"}</label>
+    <label for="InciStateIDs" id="LabelInciStateIDs">$Text{"Incident State"}:</label>
     <div class="Field">
         $Data{"CurInciStateOptionStrg"}
-        <button type="submit" class="Remove" value="Remove" title="$Text{"Remove this entry"}">$Text{"Remove"}</button>
+        <button type="button" class="Remove" value="Remove" title="$Text{"Remove this entry"}">$Text{"Remove"}</button>
     </div>
 
 <!-- dtl:block:AttributeRow -->
     <div class="Clear"></div>
-    <label for="$Text{"$Data{"Key"}"}" title="$Text{"$Data{"Description"}"}">$Text{"$Data{"Name"}"}:</label>
+    <label for="$Text{"$Data{"Key"}"}" id="Label$Text{"$Data{"Key"}"}" title="$Text{"$Data{"Description"}"}">$Text{"$Data{"Name"}"}:</label>
     <div class="Field">
         $Data{"InputString"}
-        <button type="submit" class="Remove" value="Remove" title="$Text{"Remove this entry"}">$Text{"Remove"}</button>
+        <button type="button" class="Remove" value="Remove" title="$Text{"Remove this entry"}">$Text{"Remove"}</button>
     </div>
 <!-- dtl:block:AttributeRow -->
     <div class="Clear"></div>
@@ -310,7 +331,8 @@ $Include{"AgentITSMConfigItemCustomerSearch"}
     window.setTimeout(function (){
 <!-- dtl:block:SearchAJAXShow -->
         ITSM.Agent.ConfigItem.Search.SearchAttributeAdd('$QData{"Attribute"}');
+        ITSM.Agent.ConfigItem.Search.AdditionalAttributeSelectionRebuild();
 <!-- dtl:block:SearchAJAXShow -->
-    }, 150);
+    }, 0);
 //]]></script>
 <!-- dtl:block:AJAXContent -->
