@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <otrs_config version="1.0" init="Config">
-    <CVS>$Id: ITSMConfigItem.xml,v 1.27 2010-12-10 02:45:06 cr Exp $</CVS>
+    <CVS>$Id: ITSMConfigItem.xml,v 1.28 2010-12-10 17:14:57 cr Exp $</CVS>
     <ConfigItem Name="Frontend::Module###AdminITSMConfigItem" Required="0" Valid="1">
         <Description Translatable="1">Frontend module registration for the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
@@ -157,6 +157,7 @@
                     <CSS>ITSM.Agent.Detail.css</CSS>
                     <CSS>ITSM.Table.css</CSS>
                     <CSS>ITSM.Print.css</CSS>
+                    <CSS>ITSM.Agent.ConfigItem.Search.css</CSS>
                     <CSS_IE7>ITSM.Agent.Detail.IE7.css</CSS_IE7>
                     <JavaScript>thirdparty/jquery-tablesorter-2.0.3/jquery.tablesorter.js</JavaScript>
                     <JavaScript>Core.UI.Table.Sort.js</JavaScript>
