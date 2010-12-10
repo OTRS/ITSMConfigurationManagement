@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItem.pm - the OTRS::ITSM config item module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItem.pm,v 1.13 2010-12-07 17:33:06 en Exp $
+# $Id: AgentITSMConfigItem.pm,v 1.14 2010-12-10 14:37:37 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.13 $) [1];
+$VERSION = qw($Revision: 1.14 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -72,8 +72,7 @@ sub Run {
     my %ClassCount;
     my $Counter = 0;
 
-    my $ClassIDAuto   = '';
-    my $ClassMaxValue = 0;
+    my $ClassIDAuto = '';
 
     CLASSID:
     for my $ClassID ( sort { ${$ClassList}{$a} cmp ${$ClassList}{$b} } keys %{$ClassList} ) {
@@ -106,17 +105,10 @@ sub Run {
             },
         );
 
-        # comment
-        if ( $ClassIDAuto ne '' ) {
-            if ( $ClassCount{$ClassID} > $ClassMaxValue ) {
-                $ClassMaxValue = $ClassCount{$ClassID};
-                $ClassIDAuto   = $ClassID;
-            }
-        }
-        else {
-
-            $ClassMaxValue = $ClassCount{$ClassID};
-            $ClassIDAuto   = $ClassID;
+        # remember the first class id to sohow this in the overview
+        # if no class id was given
+        if ( !$ClassIDAuto ) {
+            $ClassIDAuto = $ClassID;
         }
 
         $Counter++;
