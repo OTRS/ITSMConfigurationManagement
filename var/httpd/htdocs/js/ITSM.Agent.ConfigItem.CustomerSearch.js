@@ -2,7 +2,7 @@
 // ITSM.Agent.ConfigItem.CustomerSearch.js - provides the special module functions for the customer search
 // Copyright (C) 2001-2010 OTRS AG, http://otrs.org/\n";
 // --
-// $Id: ITSM.Agent.ConfigItem.CustomerSearch.js,v 1.1 2010-09-09 22:48:51 mp Exp $
+// $Id: ITSM.Agent.ConfigItem.CustomerSearch.js,v 1.2 2010-12-10 17:13:14 cr Exp $
 // --
 // This software comes with ABSOLUTELY NO WARRANTY. For details, see
 // the enclosed file COPYING for license information (AGPL). If you
@@ -61,7 +61,7 @@ ITSM.Agent.ConfigItem.CustomerSearch = (function (TargetNS) {
                         $.each(Result, function () {
                             Data.push({
                                 label: this.CustomerValue + " (" + this.CustomerKey + ")",
-                                value: this.CustomerValuePlain
+                                value: this.CustomerValue
                             });
                         });
                         Response(Data);
