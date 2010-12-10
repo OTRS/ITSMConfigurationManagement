@@ -2,7 +2,7 @@
 // ITSM.Agent.ConfigItem.Search.js - provides the special module functions for the global search
 // Copyright (C) 2001-2010 OTRS AG, http://otrs.org/\n";
 // --
-// $Id: ITSM.Agent.ConfigItem.Search.js,v 1.7 2010-12-10 02:49:05 cr Exp $
+// $Id: ITSM.Agent.ConfigItem.Search.js,v 1.8 2010-12-10 11:34:22 ub Exp $
 // --
 // This software comes with ABSOLUTELY NO WARRANTY. For details, see
 // the enclosed file COPYING for license information (AGPL). If you
@@ -337,7 +337,7 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
         if (!Action) {
             Action ='AgentITSMConfigItemSearch';
         }
-        var Data = {
+        Data = {
             Action: Action,
             Referrer: Referrer,
             Profile: Profile,
