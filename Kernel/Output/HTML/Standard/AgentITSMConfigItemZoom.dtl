@@ -2,7 +2,7 @@
 # AgentITSMConfigItemZoom.dtl - provides HTML form for AgentITSMConfigItemZoom
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemZoom.dtl,v 1.15 2010-12-09 11:56:04 ub Exp $
+# $Id: AgentITSMConfigItemZoom.dtl,v 1.16 2010-12-10 17:55:49 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -184,11 +184,17 @@
                     </div>
                     <div class="LightRow Content WithPadding">
                         <table class="DataTable">
+                            <thead>
+                                <tr>
+                                    <th>$Text{"Key"}</th>
+                                    <th>$Text{"Value"}</th>
+                                </tr>
+                            </thead>
                             <tbody>
 <!-- dtl:block:Data -->
                                 <tr>
                                     <td class="W25pc" style="padding-left: $Text{"$Data{"Indentation"}"}px;" title="$Text{"$Data{"Description"}"}">
-                                        <strong>$Text{"$Data{"Name"}"}:</strong>
+                                        $Text{"$Data{"Name"}"}:
                                     </td>
                                     <td style="padding-left: $Text{"$Data{"Indentation"}"}px;">
                                         $Data{"Value"}
