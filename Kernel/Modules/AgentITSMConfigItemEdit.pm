@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemEdit.pm - the OTRS::ITSM config item edit module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.pm,v 1.23 2010-12-09 22:58:56 dz Exp $
+# $Id: AgentITSMConfigItemEdit.pm,v 1.24 2010-12-10 14:44:28 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.23 $) [1];
+$VERSION = qw($Revision: 1.24 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -182,7 +182,8 @@ sub Run {
             my $ScreenType = $Self->{ParamObject}->GetParam( Param => 'ScreenType' ) || 0;
             if ($ScreenType) {
                 return $Self->{LayoutObject}->PopupClose(
-                    URL => "Action=AgentITSMConfigItemZoom;ConfigItemID=$ConfigItem->{ConfigItemID}"
+                    URL =>
+                        "Action=AgentITSMConfigItemZoom;ConfigItemID=$ConfigItem->{ConfigItemID}",
                 );
             }
             else {
@@ -225,7 +226,7 @@ sub Run {
     # output deployment state invalid block
     my $RowNameInvalid = '';
     if ( !$Version->{Name} && $Self->{Subaction} eq 'VersionSave' && $SubmitSave ) {
-        $RowNameInvalid = 'ServerError'
+        $RowNameInvalid = 'ServerError';
     }
 
     # output name block
@@ -245,7 +246,7 @@ sub Run {
     # output deployment state invalid block
     my $RowDeplStateInvalid = '';
     if ( !$Version->{DeplStateID} && $Self->{Subaction} eq 'VersionSave' && $SubmitSave ) {
-        $RowDeplStateInvalid = ' ServerError'
+        $RowDeplStateInvalid = ' ServerError';
     }
 
     # generate DeplStateOptionStrg
@@ -276,7 +277,7 @@ sub Run {
     # output deployment state invalid block
     my $RowInciStateInvalid = '';
     if ( !$Version->{InciStateID} && $Self->{Subaction} eq 'VersionSave' && $SubmitSave ) {
-        $RowInciStateInvalid = ' ServerError'
+        $RowInciStateInvalid = ' ServerError';
     }
 
     # generate InciStateOptionStrg
