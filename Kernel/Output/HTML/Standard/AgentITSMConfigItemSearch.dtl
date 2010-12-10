@@ -2,7 +2,7 @@
 # AgentITSMConfigItemSearch.dtl - provides HTML form for AgentITSMConfigItemSearch
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.dtl,v 1.18 2010-12-10 02:53:18 cr Exp $
+# $Id: AgentITSMConfigItemSearch.dtl,v 1.19 2010-12-10 17:14:00 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -316,7 +316,7 @@ $Include{"AgentITSMConfigItemCustomerSearch"}
 
 <!-- dtl:block:AttributeRow -->
     <div class="Clear"></div>
-    <label for="$Text{"$Data{"Key"}"}" id="Label$Text{"$Data{"Key"}"}" title="$Text{"$Data{"Description"}"}">$Text{"$Data{"Name"}"}:</label>
+    <label for="$Text{"$Data{"Key"}"}" id="Label$Data{"Key"}" title="$Text{"$Data{"Description"}"}">$Text{"$Data{"Name"}"}:</label>
     <div class="Field">
         $Data{"InputString"}
         <button type="button" class="Remove" value="Remove" title="$Text{"Remove this entry"}">$Text{"Remove"}</button>
