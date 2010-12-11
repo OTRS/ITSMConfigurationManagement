@@ -2,7 +2,7 @@
 # AgentITSMConfigItemSearch.dtl - provides HTML form for AgentITSMConfigItemSearch
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.dtl,v 1.19 2010-12-10 17:14:00 cr Exp $
+# $Id: AgentITSMConfigItemSearch.dtl,v 1.20 2010-12-11 01:44:41 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -242,7 +242,7 @@ $Include{"AgentITSMConfigItemCustomerSearch"}
     <input type="hidden" name="EmptySearch" value="$QData{"EmptySearch"}" id="EmptySearch"/>
     <fieldset class="TableLike Hidden" id='ITSMSearchProfile'>
         <div class="Clear"></div>
-        <label>$Text{"Search-Template"}</label>
+        <label>$Text{"Search template"}:</label>
         <div class="Field">
             $Data{"ProfilesStrg"}
 
@@ -266,7 +266,7 @@ $Include{"AgentITSMConfigItemCustomerSearch"}
     <fieldset class="TableLike Hidden" id='ITSMSearchFields'>
         <fieldset class="TableLike" id="SearchInsert"></fieldset>
         <div class="Clear"></div>
-        <label>$Text{"Add another attribute"}</label>
+        <label>$Text{"Add another attribute"}:</label>
         <div class="Field">
             $Data{"AttributesStrg"}
             <button type="submit" class="Add" value="Add" title="Add entry">$Text{"Add"}</button>
@@ -279,7 +279,7 @@ $Include{"AgentITSMConfigItemCustomerSearch"}
         </div>
 
         <div class="Clear"></div>
-        <label>$Text{"Result Form"}:</label>
+        <label>$Text{"Output"}:</label>
         <div class="Field">
             $Data{"ResultFormStrg"}
         </div>
