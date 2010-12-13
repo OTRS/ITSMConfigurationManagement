@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemEdit.pm - the OTRS::ITSM config item edit module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.pm,v 1.25 2010-12-13 22:48:52 dz Exp $
+# $Id: AgentITSMConfigItemEdit.pm,v 1.26 2010-12-13 23:13:02 dz Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.25 $) [1];
+$VERSION = qw($Revision: 1.26 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -722,9 +722,6 @@ sub _XMLFormOutput {
                     Class       => $Class,
                 },
             );
-        }
-        if ( !$Param{Level} ) {
-            $Self->{LayoutObject}->Block( Name => 'XMLRowFieldsetEnd' );
         }
     }
 

@@ -2,7 +2,7 @@
 # AgentITSMConfigItemEdit.dtl - provides HTML form for AgentITSMConfigItemEdit
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.dtl,v 1.14 2010-12-13 22:48:52 dz Exp $
+# $Id: AgentITSMConfigItemEdit.dtl,v 1.15 2010-12-13 23:13:02 dz Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -88,7 +88,6 @@ $Include{"AgentITSMConfigItemCustomerSearch"}
                             <button class="DisableVal Add" id="$QData{"ItemID"}" type="submit" name="$QData{"InputKey"}::Add" value="$Text{"Add"}" title="$Text{"$Data{"Description"}"}" ></button>
                         </div>
 <!-- dtl:block:XMLRowAddContent -->
-                        <div class="Clear"></div>
 
 <!-- dtl:block:XMLRowFieldsetEnd -->
                     </fieldset>
