@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemEdit.pm - the OTRS::ITSM config item edit module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.pm,v 1.24 2010-12-10 14:44:28 ub Exp $
+# $Id: AgentITSMConfigItemEdit.pm,v 1.25 2010-12-13 22:48:52 dz Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.24 $) [1];
+$VERSION = qw($Revision: 1.25 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -536,13 +536,6 @@ sub _XMLFormOutput {
     ITEM:
     for my $Item ( @{ $Param{XMLDefinition} } ) {
 
-        # output row block
-        $Self->{LayoutObject}->Block( Name => 'XMLRow' );
-
-        if ( !$Param{Level} && $Item->{Sub} ) {
-            $Self->{LayoutObject}->Block( Name => 'XMLRowFieldsetStart' );
-        }
-
         # set loop
         my $Loop = $Item->{CountDefault};
         if ($DataPresentMode) {
@@ -569,6 +562,13 @@ sub _XMLFormOutput {
 
         # output content rows
         for my $Counter ( 1 .. $Loop ) {
+
+            # output row block
+            $Self->{LayoutObject}->Block( Name => 'XMLRow' );
+
+            if ( !$Param{Level} ) {
+                $Self->{LayoutObject}->Block( Name => 'XMLRowFieldsetStart' );
+            }
 
             # create inputkey and addkey
             my $InputKey = $Item->{Key} . '::' . $Counter;
@@ -624,9 +624,18 @@ sub _XMLFormOutput {
                 $LabelFor = 'for="' . $LabelFor . '"';
             }
 
+            # is this a sub field?
+            my $Class = '';
+            if ( $Param{Level} ) {
+                $Class = 'SubElement';
+            }
+
             # class needed?
             if ($LabelClass) {
-                $LabelClass = 'class="' . $LabelClass . '"';
+                $LabelClass = 'class="' . "$Class  $LabelClass" . '"';
+            }
+            else {
+                $LabelClass = 'class="' . $Class . '"';
             }
 
             # output row value content block
@@ -639,16 +648,12 @@ sub _XMLFormOutput {
                     Description => $Item->{Description} || $Item->{Name},
                     InputString => $InputString,
                     LabelClass  => $LabelClass || '',
+                    Class       => $Class || '',
                 },
             );
 
             if ( $Item->{Input}->{Required} ) {
                 $Self->{LayoutObject}->Block( Name => 'XMLRowValueContentRequired' );
-            }
-
-            # output row value content space, if level was given
-            if ( $Param{Level} ) {
-                $Self->{LayoutObject}->Block( Name => 'XMLRowValueContentSubFieldStart' );
             }
 
             # output delete button
@@ -680,8 +685,8 @@ sub _XMLFormOutput {
                 );
             }
 
-            if ( $Param{Level} ) {
-                $Self->{LayoutObject}->Block( Name => 'XMLRowValueContentSubFieldEnd' );
+            if ( !$Param{Level} ) {
+                $Self->{LayoutObject}->Block( Name => 'XMLRowFieldsetEnd' );
             }
 
             # output row to sort rows correctly
@@ -691,13 +696,13 @@ sub _XMLFormOutput {
         # output add button
         if ( $Loop < $Item->{CountMax} ) {
 
+            my $Class = '';
             if ( $Param{Level} ) {
-
-                # output row add block
-                $Self->{LayoutObject}->Block(
-                    Name => 'XMLSubRowAddStart',
-                    Data => { Class => 'class="SubField"' },
-                );
+                $Class = 'class="SubElement"';
+            }
+            else {
+                $Self->{LayoutObject}->Block( Name => 'XMLRowFieldsetEnd' );
+                $Self->{LayoutObject}->Block( Name => 'XMLRowFieldsetStart' );
             }
 
             # set prefix
@@ -714,15 +719,11 @@ sub _XMLFormOutput {
                     Name        => $Item->{Name},
                     Description => $Item->{Description} || $Item->{Name},
                     InputKey    => $InputKey,
+                    Class       => $Class,
                 },
             );
-
-            if ( $Param{Level} ) {
-                $Self->{LayoutObject}->Block( Name => 'XMLSubRowAddEnd' );
-            }
-
         }
-        if ( !$Param{Level} && $Item->{Sub} ) {
+        if ( !$Param{Level} ) {
             $Self->{LayoutObject}->Block( Name => 'XMLRowFieldsetEnd' );
         }
     }
