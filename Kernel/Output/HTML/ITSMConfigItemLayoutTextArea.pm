@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/ITSMConfigItemLayoutTextArea.pm - layout backend module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutTextArea.pm,v 1.12 2010-09-09 22:15:41 cr Exp $
+# $Id: ITSMConfigItemLayoutTextArea.pm,v 1.13 2010-12-14 18:54:41 dz Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.12 $) [1];
+$VERSION = qw($Revision: 1.13 $) [1];
 
 =head1 NAME
 
@@ -182,8 +182,7 @@ sub InputCreate {
         $Value = $Param{Item}->{Input}->{ValueDefault} || '';
     }
 
-    my $Class    = '';
-    my $Size     = 'W50pc';
+    my $Class    = 'W50pc';
     my $Required = $Param{Required};
     my $Invalid  = $Param{Invalid};
     my $ItemId   = $Param{ItemId};
@@ -285,6 +284,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.12 $ $Date: 2010-09-09 22:15:41 $
+$Revision: 1.13 $ $Date: 2010-12-14 18:54:41 $
 
 =cut
