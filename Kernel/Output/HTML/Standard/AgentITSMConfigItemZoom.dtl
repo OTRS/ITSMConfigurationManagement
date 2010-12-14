@@ -2,7 +2,7 @@
 # AgentITSMConfigItemZoom.dtl - provides HTML form for AgentITSMConfigItemZoom
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemZoom.dtl,v 1.19 2010-12-14 21:54:26 ub Exp $
+# $Id: AgentITSMConfigItemZoom.dtl,v 1.20 2010-12-14 22:04:55 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -188,7 +188,7 @@
                         <table class="DataTable">
                             <thead>
                                 <tr>
-                                    <th>$Text{"Key"}</th>
+                                    <th>$Text{"Property"}</th>
                                     <th>$Text{"Value"}</th>
                                 </tr>
                             </thead>
