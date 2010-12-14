@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemZoom.pm - the OTRS::ITSM config item zoom module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemZoom.pm,v 1.11 2010-08-21 17:45:55 cr Exp $
+# $Id: AgentITSMConfigItemZoom.pm,v 1.12 2010-12-14 21:54:09 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -19,7 +19,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::LinkObject;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.11 $) [1];
+$VERSION = qw($Revision: 1.12 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -370,6 +370,7 @@ sub Run {
     $Output .= $Self->{LayoutObject}->Output(
         TemplateFile => 'AgentITSMConfigItemZoom',
         Data         => {
+            %{$LastVersion},
             %{$ConfigItem},
             CurInciSignal => $InciSignals{ $LastVersion->{CurInciStateType} },
         },
