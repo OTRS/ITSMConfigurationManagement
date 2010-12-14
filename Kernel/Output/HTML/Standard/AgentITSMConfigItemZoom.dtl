@@ -2,7 +2,7 @@
 # AgentITSMConfigItemZoom.dtl - provides HTML form for AgentITSMConfigItemZoom
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemZoom.dtl,v 1.18 2010-12-14 21:26:18 ub Exp $
+# $Id: AgentITSMConfigItemZoom.dtl,v 1.19 2010-12-14 21:54:26 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -12,9 +12,11 @@
 <div class="MainBox ARIARoleMain">
     <div class="ClearLeft"></div>
     <div class="Headline">
-        <div class="Flag" title="$Text{"$Data{"CurInciState"}"}"><span class="$QData{"CurInciSignal"}"></span></div>
-        <h1 title="$Text{"Zoom"} $Text{"Configuration Item"}: $QData{"Number"} $QData{"Title", "40"}">
-            $Text{"Zoom"} $Text{"Configuration Item"}: $QData{"Number"} $QData{"Title", "60"}
+        <div class="Flag" title="$Text{"$Data{"CurInciState"}"}">
+            <span class="$QData{"CurInciSignal"}"></span>
+        </div>
+        <h1 title="$Text{"Configuration Item"}: $QData{"Number"} &ndash; $QData{"Name", "40"}">
+            $Text{"Configuration Item"}: $QData{"Number"} <span>&mdash;</span> $QData{"Name", "60"}
         </h1>
     </div>
     <div class="LayoutFixedSidebar SidebarLast">
