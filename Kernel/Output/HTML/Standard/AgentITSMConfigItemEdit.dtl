@@ -2,7 +2,7 @@
 # AgentITSMConfigItemEdit.dtl - provides HTML form for AgentITSMConfigItemEdit
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.dtl,v 1.16 2010-12-14 11:52:20 ub Exp $
+# $Id: AgentITSMConfigItemEdit.dtl,v 1.17 2010-12-14 11:56:39 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@
     <div class="ContentColumn">
 <!--dtl:block:StartNormal-->
 $Include{"AgentITSMConfigItemCustomerSearch"}
-        <form action="$Env{"CGIHandle"}" method="post" name="ClassItem" class="Validate" id="ClassItem">
+        <form action="$Env{"CGIHandle"}" method="post" name="ClassItem" class="Validate PreventMultipleSubmits" id="ClassItem">
 <!--dtl:block:StartSmall-->
             <div class="LayoutPopup ARIARoleMain">
                 <div class="Header">
