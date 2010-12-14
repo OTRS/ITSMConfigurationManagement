@@ -2,7 +2,7 @@
 # AgentITSMConfigItem.dtl - provides HTML form for AgentITSMConfigItem
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItem.dtl,v 1.14 2010-12-09 01:21:35 ub Exp $
+# $Id: AgentITSMConfigItem.dtl,v 1.15 2010-12-14 20:13:54 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -131,7 +131,7 @@
 <!-- dtl:block:ClassRow -->
 <!-- dtl:block:NoClassRow -->
                         <tr>
-                            <td colspan="5" class="Center">$Text{"No data found."}</td>
+                            <td colspan="5">$Text{"No data found."}</td>
                         </tr>
 <!-- dtl:block:NoClassRow -->
                     </tbody>
