@@ -2,7 +2,7 @@
 # AgentITSMConfigItemEdit.dtl - provides HTML form for AgentITSMConfigItemEdit
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.dtl,v 1.15 2010-12-13 23:13:02 dz Exp $
+# $Id: AgentITSMConfigItemEdit.dtl,v 1.16 2010-12-14 11:52:20 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -42,7 +42,7 @@ $Include{"AgentITSMConfigItemCustomerSearch"}
                         <div class="Clear"></div>
 <!-- dtl:block:RowName -->
 <!-- dtl:block:RowDeplState -->
-                        <label class="Mandatory" for="DeplStateID"><span class="Marker">*</span> $Text{"Deployment state"}: </label>
+                        <label class="Mandatory" for="DeplStateID"><span class="Marker">*</span> $Text{"Deployment State"}: </label>
                         <div class="Field">
                             $Data{"DeplStateOptionStrg"}
                             <div id="DeplStateIDError" class="TooltipErrorMessage" ><p>$Text{"A Config Item should have a Deployment state!"}</p></div>
@@ -51,7 +51,7 @@ $Include{"AgentITSMConfigItemCustomerSearch"}
                         <div class="Clear"></div>
 <!-- dtl:block:RowDeplState -->
 <!-- dtl:block:RowInciState -->
-                        <label class="Mandatory" for="InciStateID"><span class="Marker">*</span> $Text{"Incident state"}: </label>
+                        <label class="Mandatory" for="InciStateID"><span class="Marker">*</span> $Text{"Incident State"}: </label>
                         <div class="Field">
                             $Data{"InciStateOptionStrg"}
                             <div id="InciStateIDError" class="TooltipErrorMessage" ><p>$Text{"A Config Item should have an Incident state!"}</p></div>
@@ -70,7 +70,7 @@ $Include{"AgentITSMConfigItemCustomerSearch"}
 <!-- dtl:block:XMLRowValueContentRequired -->
                             <span class="Marker">*</span>
 <!-- dtl:block:XMLRowValueContentRequired -->
-                            $QData{"Name"}:
+                            $Text{"$Data{"Name"}"}:
                         </label>
                         <div class="$Data{"Class"} Field">
                             $Data{"InputString"}
