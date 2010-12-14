@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem.pm - all config item function
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.29 2010-10-26 10:17:40 ub Exp $
+# $Id: ITSMConfigItem.pm,v 1.30 2010-12-14 19:03:37 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -29,7 +29,7 @@ use Kernel::System::User;
 use Kernel::System::XML;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.29 $) [1];
+$VERSION = qw($Revision: 1.30 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',
@@ -583,7 +583,7 @@ sub ConfigItemSearchExtended {
         'ConfigItemCreateTimeNewerDate',
         'ConfigItemCreateTimeOlderDate',
         'ConfigItemChangeTimeNewerDate',
-        'ConfigItemChangeTimeOlderDate'
+        'ConfigItemChangeTimeOlderDate',
     );
 
     # check, if config item search is required
@@ -1244,6 +1244,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.29 $ $Date: 2010-10-26 10:17:40 $
+$Revision: 1.30 $ $Date: 2010-12-14 19:03:37 $
 
 =cut
