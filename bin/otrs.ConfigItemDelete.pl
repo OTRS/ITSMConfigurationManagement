@@ -3,7 +3,7 @@
 # bin/otrs.ConfigItemDelete.pl - to delete config items
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: otrs.ConfigItemDelete.pl,v 1.1 2010-12-14 18:57:47 en Exp $
+# $Id: otrs.ConfigItemDelete.pl,v 1.2 2010-12-14 19:39:30 ub Exp $
 # --
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU AFFERO General Public License as published by
@@ -30,7 +30,7 @@ use FindBin qw($RealBin);
 use lib dirname($RealBin);
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.1 $) [1];
+$VERSION = qw($Revision: 1.2 $) [1];
 
 use Getopt::Long;
 use Kernel::Config;
@@ -56,8 +56,8 @@ $CommonObject{DBObject}             = Kernel::System::DB->new(%CommonObject);
 $CommonObject{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new(%CommonObject);
 $CommonObject{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new(%CommonObject);
 
-print
-    "otrs.ConfigItemDelete.pl <Revision $VERSION> - delete config items (all, by class or by number).\n";
+print "otrs.ConfigItemDelete.pl <Revision $VERSION> - ";
+print "delete config items (all, by class or by number).\n";
 print "Copyright (C) 2001-2010 OTRS AG, http://otrs.org/\n";
 
 my $Help              = '';
@@ -79,13 +79,14 @@ if ($All) {
     my @ConfigItemsIDs = @{ $CommonObject{ConfigItemObject}->ConfigItemSearch() };
 
     # get number of config items
-    my $CICount = @ConfigItemsIDs;
+    my $CICount = scalar @ConfigItemsIDs;
 
     # if there are any CI to delete
     if ($CICount) {
-        print
-            "Are you sure that you want to delete ALL $CICount config items? This is irrevocable. [y/n] ";
-        chomp( my $Confirmation = lc(<STDIN>) );
+
+        print "Are you sure that you want to delete ALL $CICount config items? ";
+        print "This is irrevocable. [y/n] ";
+        chomp( my $Confirmation = lc <STDIN> );
 
         # if the user confirms the deletion
         if ( $Confirmation eq 'y' ) {
@@ -105,6 +106,7 @@ if ($All) {
 
 # delete listed config items
 elsif (@ConfigItemNumbers) {
+
     my @ConfigItemsIDs;
 
     for my $ConfigItemNumber (@ConfigItemNumbers) {
@@ -115,7 +117,7 @@ elsif (@ConfigItemNumbers) {
         );
 
         if ($ID) {
-            push( @ConfigItemsIDs, $ID );
+            push @ConfigItemsIDs, $ID;
         }
         else {
             print "Unable to find config item $ConfigItemNumber.\n";
@@ -131,6 +133,7 @@ elsif (@ConfigItemNumbers) {
 
 # delete config items that belong to the class
 elsif ($Class) {
+
     my @ConfigItemsIDs;
 
     # get class list
@@ -195,7 +198,7 @@ sub DeleteConfigItems {
             $DeletedCI++;
         }
     }
-    print "$DeletedCI config items have been deleted.\n";
+    print "$DeletedCI config items have been deleted.\n\n";
 
     return 1;
 }
