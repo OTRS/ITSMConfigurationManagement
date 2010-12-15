@@ -2,7 +2,7 @@
 // ITSM.Agent.ConfigItem.Search.js - provides the special module functions for the global search
 // Copyright (C) 2001-2010 OTRS AG, http://otrs.org/\n";
 // --
-// $Id: ITSM.Agent.ConfigItem.Search.js,v 1.8 2010-12-10 11:34:22 ub Exp $
+// $Id: ITSM.Agent.ConfigItem.Search.js,v 1.9 2010-12-15 04:13:24 cr Exp $
 // --
 // This software comes with ABSOLUTELY NO WARRANTY. For details, see
 // the enclosed file COPYING for license information (AGPL). If you
@@ -68,19 +68,19 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
 
                     return false;
                 });
+
+                // set autocomple to customer type fields
+                $('#SearchInsert').find('.ITSMCustomerSearch').each(function() {
+                    var InputID = $(this).attr('id') + 'Autocomplete';
+                    $(this).removeClass('ITSMCustomerSearch');
+                    $(this).attr('id', InputID);
+                    $(this).prev().attr('id', InputID + 'Selected');
+                    ITSM.Agent.CustomerSearch.Init($('#' + InputID), Core.Config.Get('Autocomplete.Active'));
+
+                    // prevent dialog closure when select a customer from the list
+                    $('ul.ui-autocomplete').bind('click', function(Event) { Event.stopPropagation(); return false; });
+                });
             }
-
-        // set autocomple to customer type fields
-        $('#SearchInsert').find('.ITSMCustomerSearch').each(function() {
-            var InputID = $(this).attr('id') + 'Autocomplete';
-            $(this).removeClass('ITSMCustomerSearch');
-            $(this).attr('id', InputID);
-            $(this).prev().attr('id', InputID + 'Selected');
-            ITSM.Agent.ConfigItem.CustomerSearch.Init($('#' + InputID), Core.Config.Get('Autocomplete.Active'));
-
-            // prevent dialog closure when select a customer from the list
-            $('ul.ui-autocomplete').bind('click', function(Event) { Event.stopPropagation(); return false; });
-        });
 
         return false;
     };

@@ -2,7 +2,7 @@
 # AgentITSMConfigItemSearch.dtl - provides HTML form for AgentITSMConfigItemSearch
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.dtl,v 1.20 2010-12-11 01:44:41 cr Exp $
+# $Id: AgentITSMConfigItemSearch.dtl,v 1.21 2010-12-15 04:13:24 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -212,7 +212,7 @@
 //]]></script>
 <!-- dtl:block:SearchAJAX -->
 
-$Include{"AgentITSMConfigItemCustomerSearch"}
+$Include{"AgentITSMCustomerSearch"}
 
 <!-- dtl:block:SearchAJAXSetClass -->
 <script type="text/javascript">//<![CDATA[

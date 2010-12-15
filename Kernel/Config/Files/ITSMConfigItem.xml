@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <otrs_config version="1.0" init="Config">
-    <CVS>$Id: ITSMConfigItem.xml,v 1.29 2010-12-10 17:34:37 cr Exp $</CVS>
+    <CVS>$Id: ITSMConfigItem.xml,v 1.30 2010-12-15 04:13:24 cr Exp $</CVS>
     <ConfigItem Name="Frontend::Module###AdminITSMConfigItem" Required="0" Valid="1">
         <Description Translatable="1">Frontend module registration for the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
@@ -463,7 +463,6 @@
         <Setting>
             <Array>
                 <Item>ITSM.Agent.ConfigItem.Search.js</Item>
-                <Item>ITSM.Agent.ConfigItem.CustomerSearch.js</Item>
             </Array>
         </Setting>
     </ConfigItem>
@@ -494,15 +493,4 @@
             </Hash>
         </Setting>
     </ConfigItem>
-    <ConfigItem Name="Loader::Agent::CommonCSS###100-ITSMConfigItem" Required="1" Valid="1">
-        <Description Translatable="1">List of CSS files to always be loaded for the agent interface.</Description>
-        <Group>Framework</Group>
-        <SubGroup>Core::Web</SubGroup>
-        <Setting>
-            <Array>
-                <Item>ITSM.Agent.ConfigItem.Search.css</Item>
-            </Array>
-        </Setting>
-    </ConfigItem>
-
 </otrs_config>
