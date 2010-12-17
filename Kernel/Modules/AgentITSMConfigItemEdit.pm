@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemEdit.pm - the OTRS::ITSM config item edit module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.pm,v 1.26 2010-12-13 23:13:02 dz Exp $
+# $Id: AgentITSMConfigItemEdit.pm,v 1.27 2010-12-17 17:47:17 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.26 $) [1];
+$VERSION = qw($Revision: 1.27 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -597,7 +597,7 @@ sub _XMLFormOutput {
                 $Self->{LayoutObject}->Block(
                     Name => 'CustomerSearchInit',
                     Data => {
-                        ItemID             => '#' . $ItemID,
+                        ItemID             => $ItemID,
                         ActiveAutoComplete => $Param{ActiveAutoComplete},
                         }
                 );
