@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <otrs_config version="1.0" init="Config">
-    <CVS>$Id: ITSMConfigItem.xml,v 1.30 2010-12-15 04:13:24 cr Exp $</CVS>
+    <CVS>$Id: ITSMConfigItem.xml,v 1.31 2010-12-17 23:53:20 cr Exp $</CVS>
     <ConfigItem Name="Frontend::Module###AdminITSMConfigItem" Required="0" Valid="1">
         <Description Translatable="1">Frontend module registration for the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
@@ -74,7 +74,7 @@
                     <CSS>ITSM.Agent.Default.css</CSS>
                     <CSS>ITSM.Print.css</CSS>
                     <CSS_IE7>ITSM.Agent.Detail.IE7.css</CSS_IE7>
-                    <JavaScript>thirdparty/jquery-tablesorter-2.0.3/jquery.tablesorter.js</JavaScript>
+                    <JavaScript>thirdparty/jquery-tablesorter-2.0.5/jquery.tablesorter.js</JavaScript>
                     <JavaScript>Core.UI.Table.Sort.js</JavaScript>
                     <JavaScript>ITSM.Agent.Zoom.js</JavaScript>
                 </Loader>
@@ -158,7 +158,7 @@
                     <CSS>ITSM.Table.css</CSS>
                     <CSS>ITSM.Print.css</CSS>
                     <CSS_IE7>ITSM.Agent.Detail.IE7.css</CSS_IE7>
-                    <JavaScript>thirdparty/jquery-tablesorter-2.0.3/jquery.tablesorter.js</JavaScript>
+                    <JavaScript>thirdparty/jquery-tablesorter-2.0.5/jquery.tablesorter.js</JavaScript>
                     <JavaScript>Core.UI.Table.Sort.js</JavaScript>
                     <JavaScript>ITSM.Agent.Zoom.js</JavaScript>
                 </Loader>
