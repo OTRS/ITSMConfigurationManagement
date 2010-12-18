@@ -2,7 +2,7 @@
 # AgentITSMConfigItemSearch.dtl - provides HTML form for AgentITSMConfigItemSearch
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.dtl,v 1.21 2010-12-15 04:13:24 cr Exp $
+# $Id: AgentITSMConfigItemSearch.dtl,v 1.22 2010-12-18 01:47:06 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -206,7 +206,12 @@
 /*global ITSM: true */
     window.setTimeout(function (){
         $('#SearchClassID').bind('change', function(){
-            ITSM.Agent.ConfigItem.Search.LoadProfile( $('#SearchProfile').val() );
+            if ( $('#SearchClassID').val() !== "" ){
+                ITSM.Agent.ConfigItem.Search.LoadProfile( $('#SearchProfile').val() );
+            }
+            else {
+                $('#SearchProfile').attr("id", "SearchProfileOld");
+            }
         });
     }, 150);
 //]]></script>
