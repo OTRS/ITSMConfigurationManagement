@@ -2,7 +2,7 @@
 // ITSM.Agent.ConfigItem.Search.js - provides the special module functions for the global search
 // Copyright (C) 2001-2010 OTRS AG, http://otrs.org/\n";
 // --
-// $Id: ITSM.Agent.ConfigItem.Search.js,v 1.11 2010-12-20 18:31:28 cr Exp $
+// $Id: ITSM.Agent.ConfigItem.Search.js,v 1.12 2010-12-20 19:59:49 cr Exp $
 // --
 // This software comes with ABSOLUTELY NO WARRANTY. For details, see
 // the enclosed file COPYING for license information (AGPL). If you
@@ -75,7 +75,7 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
                     $(this).removeClass('ITSMCustomerSearch');
                     $(this).attr('id', InputID);
                     $(this).prev().attr('id', InputID + 'Selected');
-                    ITSM.Agent.CustomerSearch.Init($('#' + InputID), parseInt( Core.Config.Get('Autocomplete.Active')),10 );
+                    ITSM.Agent.CustomerSearch.Init($('#' + InputID), parseInt( Core.Config.Get('Autocomplete.Active'),10 ));
 
                     // prevent dialog closure when select a customer from the list
                     $('ul.ui-autocomplete').bind('click', function(Event) { Event.stopPropagation(); return false; });
