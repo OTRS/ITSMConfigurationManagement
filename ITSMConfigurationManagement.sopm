@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <otrs_package version="1.0">
-    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.86 2010-12-15 04:12:18 cr Exp $</CVS>
+    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.87 2010-12-21 21:31:49 ub Exp $</CVS>
     <Name>ITSMConfigurationManagement</Name>
     <Version>0.0.0</Version>
     <Framework>3.0.x</Framework>
@@ -47,7 +47,6 @@
         <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutText.pm"/>
         <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutTextArea.pm"/>
         <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemMenuGeneric.pm"/>
-        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemMenuVersions.pm"/>
         <File Permission="644" Location="Kernel/Output/HTML/LayoutITSMConfigItem.pm"/>
         <File Permission="644" Location="Kernel/Output/HTML/LinkObjectITSMConfigItem.pm"/>
         <File Permission="644" Location="Kernel/Output/HTML/Standard/AdminITSMConfigItem.dtl"/>
