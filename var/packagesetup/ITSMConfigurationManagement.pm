@@ -2,7 +2,7 @@
 # ITSMConfigurationManagement.pm - code to excecute during package installation
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigurationManagement.pm,v 1.19 2010-12-22 18:55:26 ub Exp $
+# $Id: ITSMConfigurationManagement.pm,v 1.20 2010-12-22 19:03:42 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -30,7 +30,7 @@ use Kernel::System::User;
 use Kernel::System::Valid;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.19 $) [1];
+$VERSION = qw($Revision: 1.20 $) [1];
 
 =head1 NAME
 
@@ -144,7 +144,6 @@ sub new {
     $Self->{ConfigObject}         = Kernel::Config->new();
     $Self->{CSVObject}            = Kernel::System::CSV->new( %{$Self} );
     $Self->{GroupObject}          = Kernel::System::Group->new( %{$Self} );
-    $Self->{CacheInternalObject}  = Kernel::System::CacheInternal->new( %{$Self} );
     $Self->{UserObject}           = Kernel::System::User->new( %{$Self} );
     $Self->{StateObject}          = Kernel::System::State->new( %{$Self} );
     $Self->{ServiceObject}        = Kernel::System::Service->new( %{$Self} );
@@ -156,6 +155,11 @@ sub new {
     $Self->{StatsObject}          = Kernel::System::Stats->new(
         %{$Self},
         UserID => 1,
+    );
+    $Self->{CacheInternalObject} = Kernel::System::CacheInternal->new(
+        %{$Self},
+        Type => 'Group',
+        TTL  => 60 * 60 * 3,
     );
 
     # define file prefix for stats
@@ -1469,6 +1473,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.19 $ $Date: 2010-12-22 18:55:26 $
+$Revision: 1.20 $ $Date: 2010-12-22 19:03:42 $
 
 =cut
