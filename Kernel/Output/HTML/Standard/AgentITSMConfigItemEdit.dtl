@@ -2,7 +2,7 @@
 # AgentITSMConfigItemEdit.dtl - provides HTML form for AgentITSMConfigItemEdit
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.dtl,v 1.18 2010-12-15 04:13:24 cr Exp $
+# $Id: AgentITSMConfigItemEdit.dtl,v 1.19 2010-12-22 11:56:37 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -36,8 +36,8 @@ $Include{"AgentITSMCustomerSearch"}
                         <label class="Mandatory" for="Name"><span class="Marker">*</span> $Text{"Name"}: </label>
                         <div class="Field">
                             <input type="text" name="Name" id="Name" class="W50pc Validate_Required $QData{"RowNameInvalid"}" maxlength="250" value="$QData{"Name"}" title="$Text{"The name of this config item"}"/>
-                            <div id="NameError" class="TooltipErrorMessage" ><p>$Text{"A Config Item should have a name!"}</p></div>
-                            <div id="NameServerError" class="TooltipErrorMessage"><p>$Text{"Name is required."}</p></div>
+                            <div id="NameError" class="TooltipErrorMessage" ><p>$Text{"This field is required."}</p></div>
+                            <div id="NameServerError" class="TooltipErrorMessage"><p>$Text{"This field is required."}</p></div>
                         </div>
                         <div class="Clear"></div>
 <!-- dtl:block:RowName -->
@@ -45,8 +45,8 @@ $Include{"AgentITSMCustomerSearch"}
                         <label class="Mandatory" for="DeplStateID"><span class="Marker">*</span> $Text{"Deployment State"}: </label>
                         <div class="Field">
                             $Data{"DeplStateOptionStrg"}
-                            <div id="DeplStateIDError" class="TooltipErrorMessage" ><p>$Text{"A Config Item should have a Deployment state!"}</p></div>
-                            <div id="DeplStateIDServerError" class="TooltipErrorMessage"><p>$Text{"Deployment state is required."}</p></div>
+                            <div id="DeplStateIDError" class="TooltipErrorMessage" ><p>$Text{"This field is required."}</p></div>
+                            <div id="DeplStateIDServerError" class="TooltipErrorMessage"><p>$Text{"This field is required."}</p></div>
                         </div>
                         <div class="Clear"></div>
 <!-- dtl:block:RowDeplState -->
@@ -54,8 +54,8 @@ $Include{"AgentITSMCustomerSearch"}
                         <label class="Mandatory" for="InciStateID"><span class="Marker">*</span> $Text{"Incident State"}: </label>
                         <div class="Field">
                             $Data{"InciStateOptionStrg"}
-                            <div id="InciStateIDError" class="TooltipErrorMessage" ><p>$Text{"A Config Item should have an Incident state!"}</p></div>
-                            <div id="InciStateIDServerError" class="TooltipErrorMessage"><p>$Text{"Incident state is required."}</p></div>
+                            <div id="InciStateIDError" class="TooltipErrorMessage" ><p>$Text{"This field is required."}</p></div>
+                            <div id="InciStateIDServerError" class="TooltipErrorMessage"><p>$Text{"This field is required."}</p></div>
                         </div>
                         <div class="Clear"></div>
 <!-- dtl:block:RowInciState -->
@@ -77,8 +77,8 @@ $Include{"AgentITSMCustomerSearch"}
 <!-- dtl:block:XMLRowValueContentDelete -->
                             <button class="DisableVal Remove" type="submit" name="$QData{"InputKey"}::Delete" value="$Text{"Delete"}">$Text{"Delete"}</button>
 <!-- dtl:block:XMLRowValueContentDelete -->
-                            <div id="$QData{"ItemID"}Error" class="TooltipErrorMessage" ><p>$Text{"A Config Item should have a $Data{"Name"}!"}</p></div>
-                            <div id="$QData{"ItemID"}ServerError" class="TooltipErrorMessage"><p>$Text{"$Data{"Name"} is required."}</p></div>
+                            <div id="$QData{"ItemID"}Error" class="TooltipErrorMessage" ><p>$Text{"This field is required."}</p></div>
+                            <div id="$QData{"ItemID"}ServerError" class="TooltipErrorMessage"><p>$Text{"This field is required."}</p></div>
                         </div>
 <!-- dtl:block:XMLRowValue -->
 
