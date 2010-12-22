@@ -2,7 +2,7 @@
 # AgentITSMConfigItemEdit.dtl - provides HTML form for AgentITSMConfigItemEdit
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.dtl,v 1.19 2010-12-22 11:56:37 ub Exp $
+# $Id: AgentITSMConfigItemEdit.dtl,v 1.20 2010-12-22 22:15:11 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -115,6 +115,7 @@ $Include{"AgentITSMCustomerSearch"}
         <script type="text/javascript">//<![CDATA[
             $('.DisableVal').bind('click', function (Event) {
                 Core.Form.Validate.DisableValidation($('#ClassItem'));
+                $('#ClassItem').removeClass('PreventMultipleSubmits');
                 return true;
             });
         //]]></script>
