@@ -1,0 +1,125 @@
+# --
+# AgentITSMConfigItemOverviewSmall.dtl - html for configurtion item overview table
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# --
+# $Id: AgentITSMConfigItemOverviewSmall.dtl,v 1.1 2010-12-28 19:39:14 cr Exp $
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# --
+<!-- dtl:js_on_document_complete -->
+<script type="text/javascript">//<![CDATA[
+    Core.UI.ActionRow.Init();
+//]]></script>
+<!-- dtl:js_on_document_complete -->
+
+<div id="OverviewBody" class="Overview FixedHeader">
+    <form action="$Env{"CGIHandle"}" method="post" enctype="multipart/form-data" name="matrix">
+        <input type="hidden" name="Action" value="AgentTicketBulk"/>
+        <input type="hidden" name="ConfigItemID" value=""/>
+
+        <table id="FixedTable" class="TableSmall" summary="A generic ITSM Configuration Item table">
+            <thead>
+                <tr>
+<!-- dtl:block:RecordCurInciSignalHeader -->
+                    <th class="Fixed">
+                        <span>$Text{"State"}</span>
+                    </th>
+<!-- dtl:block:RecordCurInciSignalHeader -->
+<!-- dtl:block:RecordNumberHeader -->
+                    <th class="Number $QData{"CSS"}">
+                        <a href="$Env{"Baselink"}Action=$Env{"Action"};$Data{"LinkSort"};SortBy=Number;OrderBy=$LQData{"OrderBy"}">$Config{"ITSMConfigItem::Hook"}</a>
+                    </th>
+<!-- dtl:block:RecordNumberHeader -->
+<!-- dtl:block:RecordNameHeader -->
+                    <th class="Fixed">
+                        <span>$Text{"Name"}</span>
+                    </th>
+#                    <th class="Name $QData{"CSS"}">
+#                        <a href="$Env{"Baselink"}Action=$Env{"Action"};$Data{"LinkSort"};SortBy=Name;OrderBy=$LQData{"OrderBy"}">$Text{"Name"}</a>
+#                    </th>
+<!-- dtl:block:RecordNameHeader -->
+<!-- dtl:block:RecordCurDeplStateHeader -->
+                    <th class="CurDeplState $QData{"CSS"}">
+                        <a href="$Env{"Baselink"}Action=$Env{"Action"};$Data{"LinkSort"};SortBy=DeplStateID;OrderBy=$LQData{"OrderBy"}">$Text{"Deployment State"}</a>
+                    </th>
+<!-- dtl:block:RecordCurDeplStateHeader -->
+<!-- dtl:block:RecordCurInciStateHeader -->
+                    <th class="CurInciState $QData{"CSS"}">
+                        <a href="$Env{"Baselink"}Action=$Env{"Action"};$Data{"LinkSort"};SortBy=InciStateID;OrderBy=$LQData{"OrderBy"}">$Text{"Current Incident State"}</a>
+                    </th>
+<!-- dtl:block:RecordCurInciStateHeader -->
+<!-- dtl:block:RecordLastChangedHeader -->
+                    <th class="LastChanged $QData{"CSS"}">
+                        <a href="$Env{"Baselink"}Action=$Env{"Action"};$Data{"LinkSort"};SortBy=ChangeTime;OrderBy=$LQData{"OrderBy"}">$Text{"Last Changed"}</a>
+                    </th>
+<!-- dtl:block:RecordLastChangedHeader -->
+                </tr>
+            </thead>
+            <tbody>
+<!-- dtl:block:NoDataFoundMsg -->
+                <tr>
+                    <td colspan="$QData{"TotalColumns"}">
+                        $Text{"No data found."}
+                    </td>
+                </tr>
+<!-- dtl:block:NoDataFoundMsg -->
+<!-- dtl:block:Record -->
+                <tr class="MasterAction">
+<!-- dtl:block:RecordCurInciSignal -->
+                    <td title="$Text{"$Data{"CurInciState"}"}">
+                        <div class="Flag Small">
+                            <span class="$QData{"CurInciSignal"}">"$Text{"$Data{"CurInciState"}"}"</span>
+                        </div>
+                    </td>
+<!-- dtl:block:RecordCurInciSignal -->
+<!-- dtl:block:RecordNumber -->
+                    <td>
+<!-- dtl:block:RecordNumberLinkStart -->
+                        <a href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"}" title="$LQData{"Number"}" class="MasterActionLink">
+<!-- dtl:block:RecordNumberLinkStart -->
+                            $QData{"Number"}
+<!-- dtl:block:RecordNumberLinkEnd -->
+                        </a>
+<!-- dtl:block:RecordNumberLinkEnd -->
+                    </td>
+<!-- dtl:block:RecordNumber -->
+<!-- dtl:block:RecordName -->
+                    <td>
+                        <div title="$QData{"Name"}">$QData{"Name","40"}</div>
+                    </td>
+<!-- dtl:block:RecordName -->
+<!-- dtl:block:RecordCurDeplState -->
+                    <td>
+                        <div title="$Text{"$Data{"CurDeplState"}"}">$Text{"$Data{"CurDeplState"}"}</div>
+                    </td>
+<!-- dtl:block:RecordCurDeplState -->
+<!-- dtl:block:RecordCurInciState -->
+                    <td>
+                        <div title="$Text{"$Data{"CurInciState"}"}">$Text{"$Data{"CurInciState"}"}</div>
+                    </td>
+<!-- dtl:block:RecordCurInciState -->
+<!-- dtl:block:RecordLastChanged -->
+                    <td>
+                        <div title="$TimeLong{"$QData{"CreateTime"}"}">$TimeLong{"$QData{"CreateTime"}"}</div>
+                    </td>
+<!-- dtl:block:RecordLastChanged -->
+                </tr>
+<!-- dtl:block:Record -->
+            </tbody>
+        </table>
+    </form>
+</div>
+<!-- dtl:js_on_document_complete -->
+<script type="text/javascript">//<![CDATA[
+    Core.UI.InitTableHead($('#FixedTable thead'), $('#FixedTable tbody'));
+    Core.UI.StaticTableControl($('#OverviewControl').add($('#OverviewBody')));
+    $('.MasterAction').bind('click', function (Event) {
+        window.location = $(this).find('.MasterActionLink').attr('href');
+    });
+    $(window).resize(function() {
+        Core.UI.AdjustTableHead($('#OverviewHeader thead'), $('#OverviewBody tbody'));
+    });
+//]]></script>
+<!-- dtl:js_on_document_complete -->

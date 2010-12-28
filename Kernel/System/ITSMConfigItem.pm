@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem.pm - all config item function
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.30 2010-12-14 19:03:37 ub Exp $
+# $Id: ITSMConfigItem.pm,v 1.31 2010-12-28 19:41:36 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -29,7 +29,7 @@ use Kernel::System::User;
 use Kernel::System::XML;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.30 $) [1];
+$VERSION = qw($Revision: 1.31 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',
@@ -560,9 +560,18 @@ return a config item list as an array reference
 
         PreviousVersionSearch => 1,  # (optional) default 0 (0|1)
 
-        OrderBy => 'Number',  # (optional) default ConfigItemID
+        OrderBy => [ 'ConfigItemID', 'Number' ],                  # (optional)
+        # default: [ 'ConfigItemID' ]
         # (ConfigItemID, Number, ClassID, DeplStateID, InciStateID,
         # CreateTime, CreateBy, ChangeTime, ChangeBy)
+
+        # Additional information for OrderBy:
+        # The OrderByDirection can be specified for each OrderBy attribute.
+        # The pairing is made by the array indices.
+
+        OrderByDirection => [ 'Down', 'Up' ],                    # (optional)
+        # default: [ 'Down' ]
+        # (Down | Up)
 
         Limit          => 122,  # (optional)
         UsingWildcards => 0,    # (optional) default 1
@@ -719,9 +728,18 @@ return a config item list as an array reference
         # config items with changed time before then ....
         ConfigItemChangeTimeOlderDate => '2006-01-19 23:59:59',  # (optional)
 
-        OrderBy => 'Number',  # (optional) default ConfigItemID
+        OrderBy => [ 'ConfigItemID', 'Number' ],                  # (optional)
+        # default: [ 'ConfigItemID' ]
         # (ConfigItemID, Number, ClassID, DeplStateID, InciStateID,
         # CreateTime, CreateBy, ChangeTime, ChangeBy)
+
+        # Additional information for OrderBy:
+        # The OrderByDirection can be specified for each OrderBy attribute.
+        # The pairing is made by the array indices.
+
+        OrderByDirection => [ 'Down', 'Up' ],                    # (optional)
+        # default: [ 'Down' ]
+        # (Down | Up)
 
         Limit          => 122,  # (optional)
         UsingWildcards => 0,    # (optional) default 1
@@ -732,11 +750,114 @@ return a config item list as an array reference
 sub ConfigItemSearch {
     my ( $Self, %Param ) = @_;
 
+    # verify that all passed array parameters contain an arrayref
+    ARGUMENT:
+    for my $Argument (
+        qw(
+        OrderBy
+        OrderByDirection
+        )
+        )
+    {
+        if ( !defined $Param{$Argument} ) {
+            $Param{$Argument} ||= [];
+
+            next ARGUMENT;
+        }
+
+        if ( ref $Param{$Argument} ne 'ARRAY' ) {
+            $Self->{LogObject}->Log(
+                Priority => 'error',
+                Message  => "$Argument must be an array reference!",
+            );
+            return;
+        }
+    }
+
+    # define order table
+    my %OrderByTable = (
+        ConfigItemID => 'id',
+        Number       => 'configitem_number',
+        ClassID      => 'class_id',
+        DeplStateID  => 'cur_depl_state_id',
+        InciStateID  => 'cur_inci_state_id',
+        CreateTime   => 'create_time',
+        CreateBy     => 'create_by',
+        ChangeTime   => 'change_time',
+        ChangeBy     => 'change_by',
+    );
+
+    # check if OrderBy contains only unique valid values
+    my %OrderBySeen;
+    for my $OrderBy ( @{ $Param{OrderBy} } ) {
+
+        if ( !$OrderBy || !$OrderByTable{$OrderBy} || $OrderBySeen{$OrderBy} ) {
+
+            # found an error
+            $Self->{LogObject}->Log(
+                Priority => 'error',
+                Message  => "OrderBy contains invalid value '$OrderBy' "
+                    . 'or the value is used more than once!',
+            );
+            return;
+        }
+
+        # remember the value to check if it appears more than once
+        $OrderBySeen{$OrderBy} = 1;
+    }
+
+    # check if OrderByDirection array contains only 'Up' or 'Down'
+    DIRECTION:
+    for my $Direction ( @{ $Param{OrderByDirection} } ) {
+
+        # only 'Up' or 'Down' allowed
+        next DIRECTION if $Direction eq 'Up';
+        next DIRECTION if $Direction eq 'Down';
+
+        # found an error
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => "OrderByDirection can only contain 'Up' or 'Down'!",
+        );
+        return;
+    }
+
     # set default values
     if ( !defined $Param{UsingWildcards} ) {
         $Param{UsingWildcards} = 1;
     }
-    $Param{OrderBy} ||= 'id';
+
+    # assemble the ORDER BY clause
+    my @SQLOrderBy;
+    my $Count = 0;
+    for my $OrderBy ( @{ $Param{OrderBy} } ) {
+
+        # set the default order direction
+        my $Direction = 'DESC';
+
+        # add the given order direction
+        if ( $Param{OrderByDirection}->[$Count] ) {
+            if ( $Param{OrderByDirection}->[$Count] eq 'Up' ) {
+                $Direction = 'ASC';
+            }
+            elsif ( $Param{OrderByDirection}->[$Count] eq 'Down' ) {
+                $Direction = 'DESC';
+            }
+        }
+
+        # add SQL
+        push @SQLOrderBy, "$OrderByTable{$OrderBy} $Direction";
+
+    }
+    continue {
+        $Count++;
+    }
+
+    # if there is a possibility that the ordering is not determined
+    # we add an asending ordering by id
+    if ( !grep { $_ eq 'ConfigItemID' } ( @{ $Param{OrderBy} } ) ) {
+        push @SQLOrderBy, "$OrderByTable{ConfigItemID} ASC";
+    }
 
     # add number to sql where array
     my @SQLWhere;
@@ -824,35 +945,23 @@ sub ConfigItemSearch {
     # create where string
     my $WhereString = @SQLWhere ? ' WHERE ' . join q{ AND }, @SQLWhere : '';
 
-    # define order table
-    my %OrderByTable = (
-        ConfigItemID => 'id',
-        Number       => 'configitem_number',
-        ClassID      => 'class_id',
-        DeplStateID  => 'cur_depl_state_id',
-        InciStateID  => 'cur_inci_state_id',
-        CreateTime   => 'create_time',
-        CreateBy     => 'create_by',
-        ChangeTime   => 'change_time',
-        ChangeBy     => 'change_by',
-    );
-
-    # set order by
-    my $OrderBy = $OrderByTable{ $Param{OrderBy} } || 'id';
-
-    # make sure that there always is a defined order, this helps with testing
-    if ( $OrderBy ne 'id' ) {
-        $OrderBy .= ', id';
-    }
-
     # set limit
     if ( $Param{Limit} ) {
         $Param{Limit} = $Self->{DBObject}->Quote( $Param{Limit}, 'Integer' );
     }
 
+    my $SQL = "SELECT id FROM configitem $WhereString ";
+
+    # add the ORDER BY clause
+    if (@SQLOrderBy) {
+        $SQL .= 'ORDER BY ';
+        $SQL .= join ', ', @SQLOrderBy;
+        $SQL .= ' ';
+    }
+
     # ask database
     $Self->{DBObject}->Prepare(
-        SQL   => "SELECT id FROM configitem $WhereString ORDER BY $OrderBy ASC",
+        SQL   => $SQL,
         Limit => $Param{Limit},
     );
 
@@ -1244,6 +1353,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.30 $ $Date: 2010-12-14 19:03:37 $
+$Revision: 1.31 $ $Date: 2010-12-28 19:41:36 $
 
 =cut
