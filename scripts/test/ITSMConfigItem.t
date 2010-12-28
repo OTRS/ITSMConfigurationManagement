@@ -2,7 +2,7 @@
 # ITSMConfigItem.t - config item tests
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.t,v 1.12 2010-03-30 10:51:02 ub Exp $
+# $Id: ITSMConfigItem.t,v 1.13 2010-12-28 19:51:22 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -2225,7 +2225,8 @@ my @SearchTests = (
         Function => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
         SearchData => {
             ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
-            OrderBy => 'CreateBy',
+            OrderBy => ['CreateBy'],
+            OrderByDirection => ['Up'],
         },
         ReferenceData => [
             $ConfigItemNumbers[51],
