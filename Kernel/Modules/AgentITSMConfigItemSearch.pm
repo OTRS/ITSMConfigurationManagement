@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemSearch.pm - the OTRS::ITSM config item search module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.pm,v 1.24 2010-12-17 23:28:44 cr Exp $
+# $Id: AgentITSMConfigItemSearch.pm,v 1.25 2010-12-28 19:49:56 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -20,7 +20,7 @@ use Kernel::System::SearchProfile;
 use Kernel::System::CSV;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.24 $) [1];
+$VERSION = qw($Revision: 1.25 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -55,6 +55,12 @@ sub Run {
     # get config data
     $Self->{StartHit} = int( $Self->{ParamObject}->GetParam( Param => 'StartHit' ) || 1 );
     $Self->{SearchLimit} = $Self->{Config}->{SearchLimit} || 500;
+    $Self->{SortBy} = $Self->{ParamObject}->GetParam( Param => 'SortBy' )
+        || $Self->{Config}->{'SortBy::Default'}
+        || 'Number';
+    $Self->{OrderBy} = $Self->{ParamObject}->GetParam( Param => 'OrderBy' )
+        || $Self->{Config}->{'Order::Default'}
+        || 'Down';
     $Self->{Profile}     = $Self->{ParamObject}->GetParam( Param => 'Profile' )     || '';
     $Self->{SaveProfile} = $Self->{ParamObject}->GetParam( Param => 'SaveProfile' ) || '';
     $Self->{TakeLastSearch} = $Self->{ParamObject}->GetParam( Param => 'TakeLastSearch' );
@@ -355,7 +361,7 @@ sub Run {
 
         $AutoCompleteConfig->{DynamicWidth}
             = $Self->{ConfigObject}
-            ->Get('ITSMChange::Frontend::CustomerSearchAutoComplete::DynamicWidth');
+            ->Get('Ticket::Frontend::CustomerSearchAutoComplete::DynamicWidth');
 
         # set autocomplete parameters
         $Self->{LayoutObject}->Block(
@@ -485,8 +491,8 @@ sub Run {
         # save search profile (under last-search or real profile name)
         $Self->{SaveProfile} = 1;
 
-        # remember last search values only if search is calld from a search dialog
-        # not from resuts page change
+        # remember last search values only if search is called from a search dialog
+        # not from resuts page
         if ( $Self->{SaveProfile} && $Self->{Profile} && $SearchDialog ) {
 
             # remove old profile stuff
@@ -530,13 +536,16 @@ sub Run {
 
         my $SearchResultList = [];
 
-        # start search if called from a search dialog or from a resutls page change
+        # start search if called from a search dialog or from a resutls page
         if ( $SearchDialog || $Self->{TakeLastSearch} ) {
 
             # start search
             $SearchResultList = $Self->{ConfigItemObject}->ConfigItemSearchExtended(
                 %GetParam,
-                ClassIDs => [$ClassID],
+                OrderBy          => [ $Self->{SortBy} ],
+                OrderByDirection => [ $Self->{OrderBy} ],
+                Limit            => $Self->{SearchLimit},
+                ClassIDs         => [$ClassID],
             );
         }
 
@@ -806,150 +815,81 @@ sub Run {
         # normal HTML output
         else {
 
-            # get the total number of matched configuration items
-            $Param{Total} = scalar( @{$SearchResultList} );
-
-            # check start option, if higher then configuration items available, set
-            # it to the last ticket page (Thanks to Stefan Schmidt!)
-            my $StartHit = $Self->{ParamObject}->GetParam( Param => 'StartHit' ) || 1;
-
-            # get personal page shown count
-            my $PageShownPreferencesKey = 'UserConfigurationItemPageShown';
-            my $PageShown               = $Self->{$PageShownPreferencesKey} || 10;
-            my $Group                   = 'ConfigurationItemPageShown';
-
-            # get data selection
-            my %Data;
-            my $Config = $Self->{ConfigObject}->Get('PreferencesGroups');
-            if ( $Config && $Config->{$Group} && $Config->{$Group}->{Data} ) {
-                %Data = %{ $Config->{$Group}->{Data} };
-            }
-
-            # build shown ticket a page
-            $Param{RequestedURL}    = "Action=$Self->{Action}";
-            $Param{Group}           = $Group;
-            $Param{PreferencesKey}  = $PageShownPreferencesKey;
-            $Param{PageShownString} = $Self->{LayoutObject}->BuildSelection(
-                Name       => $PageShownPreferencesKey,
-                SelectedID => $PageShown,
-                Data       => \%Data,
-            );
-
-            # calculate max. sown page
-            if ( $StartHit > $Param{Total} ) {
-                my $Pages = int( ( $Param{Total} / $PageShown ) + 0.99999 );
-                $StartHit = ( ( $Pages - 1 ) * $PageShown ) + 1;
-            }
-
-            # build nav bar
-            my $Limit = $Param{Limit} || 20_000;
-
-            my %PageNav = $Self->{LayoutObject}->PageNavBar(
-                Limit     => $Limit,
-                StartHit  => $StartHit,
-                PageShown => $PageShown,
-                AllHits   => scalar( @{$SearchResultList} ) || 0,
-                Action    => 'Action=AgentITSMConfigItemSearch',
-                Link      => "Subaction=Search;ClassID=$ClassID;Profile=$Self->{Profile};"
-                    . "TakeLastSearch=1;",
-                IDPrefix => 'ConfigItem',
-            );
-
-            # output normal result block
-            $Self->{LayoutObject}->Block(
-                Name => 'Result',
-                Data => {
-                    %GetParam,
-                    PreferencesKey  => $Param{PreferencesKey},
-                    RequestedURL    => $Param{RequestedURL},
-                    Group           => $Param{Group},
-                    PageShownString => $Param{PageShownString},
-                    Class           => $ClassList->{$ClassID},
-                    ClassID         => $ClassID,
-                    Profile         => $Self->{Profile},
-                },
-            );
-
-            # set incident signal
-            my %InciSignals = (
-                operational => 'greenled',
-                warning     => 'yellowled',
-                incident    => 'redled',
-            );
-
-            # output header if there is at least 1 record
-            if ( $Param{Total} > 0 ) {
-                $Self->{LayoutObject}->Block(
-                    Name => 'ResultHeader',
-                    Data => {
-                    },
-                );
-            }
-
-            # output the found config items
-            if ( $Param{Total} > 0 ) {
-                my $Counter = 0;
-
-                CONFIGITEMID:
-                for my $ConfigItemID ( @{$SearchResultList} ) {
-
-                    # check for access rights
-                    my $HasAccess = $Self->{ConfigItemObject}->Permission(
-                        Scope  => 'Item',
-                        ItemID => $ConfigItemID,
-                        UserID => $Self->{UserID},
-                        Type   => $Self->{Config}->{Permission},
-                    );
-
-                    next CONFIGITEMID if !$HasAccess;
-
-                    # output items for the selected results page
-                    $Counter++;
-                    if ( $Counter >= $StartHit && $Counter < ( $PageShown + $StartHit ) ) {
-
-                        # get version
-                        my $LastVersion = $Self->{ConfigItemObject}->VersionGet(
-                            ConfigItemID => $ConfigItemID,
-                            XMLDataGet   => 0,
-                        );
-
-                        # output row
-                        $Self->{LayoutObject}->Block(
-                            Name => 'ResultRow',
-                            Data => {
-                                %{$LastVersion},
-                                CurInciSignal =>
-                                    $InciSignals{ $LastVersion->{CurInciStateType} },
-                            },
-                        );
-                    }
-                }
-
-                if (%PageNav) {
-                    $Self->{LayoutObject}->Block(
-                        Name => 'OverviewNavBarPageNavBar',
-                        Data => \%PageNav,
-                    );
-                }
-            }
-            else {
-                $Self->{LayoutObject}->Block(
-                    Name => 'ResultRowEmpty',
-                    Data => {
-                    },
-                );
-            }
-
-            # output header
-            my $Output = $Self->{LayoutObject}->Header( Title => 'Search' );
+            # start html page
+            my $Output = $Self->{LayoutObject}->Header();
             $Output .= $Self->{LayoutObject}->NavigationBar();
+            $Self->{LayoutObject}->Print( Output => \$Output );
+            $Output = '';
 
-            # output template
-            $Output .= $Self->{LayoutObject}->Output(
-                TemplateFile => 'AgentITSMConfigItemSearch',
+            $Self->{Filter} = $Self->{ParamObject}->GetParam( Param => 'Filter' ) || '';
+            $Self->{View}   = $Self->{ParamObject}->GetParam( Param => 'View' )   || '';
+
+            # show config items
+            my $LinkPage = 'Filter='
+                . $Self->{LayoutObject}->Ascii2Html( Text => $Self->{Filter} )
+                . ';View=' . $Self->{LayoutObject}->Ascii2Html( Text => $Self->{View} )
+                . ';SortBy=' . $Self->{LayoutObject}->Ascii2Html( Text => $Self->{SortBy} )
+                . ';OrderBy='
+                . $Self->{LayoutObject}->Ascii2Html( Text => $Self->{OrderBy} )
+                . ';Profile=' . $Self->{Profile} . ';TakeLastSearch=1;Subaction=Search'
+                . ';ClassID=' . $ClassID
+                . ';';
+            my $LinkSort = 'Filter='
+                . $Self->{LayoutObject}->Ascii2Html( Text => $Self->{Filter} )
+                . ';View=' . $Self->{LayoutObject}->Ascii2Html( Text => $Self->{View} )
+                . ';Profile=' . $Self->{Profile} . ';TakeLastSearch=1;Subaction=Search'
+                . ';ClassID=' . $ClassID
+                . ';';
+            my $LinkFilter = 'TakeLastSearch=1;Subaction=Search;Profile='
+                . $Self->{LayoutObject}->Ascii2Html( Text => $Self->{Profile} )
+                . ';ClassID='
+                . $Self->{LayoutObject}->Ascii2Html( Text => $ClassID )
+                . ';';
+            my $LinkBack = 'Subaction=LoadProfile;Profile='
+                . $Self->{LayoutObject}->Ascii2Html( Text => $Self->{Profile} )
+                . ';ClassID='
+                . $Self->{LayoutObject}->Ascii2Html( Text => $ClassID )
+                . ';TakeLastSearch=1;';
+
+            # find out which columns should be shown
+            my @ShowColumns;
+            if ( $Self->{Config}->{ShowColumns} ) {
+
+                # get all possible columns from config
+                my %PossibleColumn = %{ $Self->{Config}->{ShowColumns} };
+
+                # get the column names that should be shown
+                COLUMNNAME:
+                for my $Name ( keys %PossibleColumn ) {
+                    next COLUMNNAME if !$PossibleColumn{$Name};
+                    push @ShowColumns, $Name;
+                }
+            }
+
+            my $ClassName = $ClassList->{$ClassID};
+            my $Title
+                = $Self->{LayoutObject}->{LanguageObject}->Get('Config Item Search Result: Class')
+                . ' '
+                . $ClassName;
+
+            $Output .= $Self->{LayoutObject}->ITSMConfigItemListShow(
+                ConfigItemIDs => $SearchResultList,
+                Total         => scalar @{$SearchResultList},
+                View          => $Self->{View},
+                Env           => $Self,
+                LinkPage      => $LinkPage,
+                LinkSort      => $LinkSort,
+                LinkFilter    => $LinkFilter,
+                LinkBack      => $LinkBack,
+                Profile       => $Self->{Profile},
+                TitleName     => $Title,
+                ShowColumns   => \@ShowColumns,
+                SortBy        => $Self->{LayoutObject}->Ascii2Html( Text => $Self->{SortBy} ),
+                OrderBy       => $Self->{LayoutObject}->Ascii2Html( Text => $Self->{OrderBy} ),
+                ClassID       => $ClassID,
             );
 
-            # output footer
+            # build footer
             $Output .= $Self->{LayoutObject}->Footer();
 
             return $Output;
