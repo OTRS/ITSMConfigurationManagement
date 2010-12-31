@@ -2,7 +2,7 @@
 # AgentITSMConfigItemAdd.dtl - provides HTML form for AgentITSMConfigItemAdd
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemAdd.dtl,v 1.5 2010-12-07 18:24:20 en Exp $
+# $Id: AgentITSMConfigItemAdd.dtl,v 1.6 2010-12-31 18:06:57 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -13,6 +13,7 @@
     <h1>$Text{"Add"}: $Text{"Config Item"}</h1>
 
     <div class="SidebarColumn">
+
         <div class="WidgetSimple">
             <div class="Header">
                 <h2><label for="FilterClasses">$Text{"Filter for Classes"}</label></h2>
@@ -21,6 +22,18 @@
                 <input type="text" id="FilterClasses" class="W50pc" name="FilterClasses" value="" title="$Text{"Filter for Classes"}" />
             </div>
         </div>
+
+        <div class="WidgetSimple">
+            <div class="Header">
+                <h2>$Text{"Hint"}</h2>
+            </div>
+            <div class="Content">
+                <p class="FieldExplanation">
+                    $Text{"Select a Class from the list to create a new Config Item."}
+                </p>
+            </div>
+        </div>
+
     </div>
 
     <div class="ContentColumn">
