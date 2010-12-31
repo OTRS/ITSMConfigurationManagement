@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <otrs_config version="1.0" init="Config">
-    <CVS>$Id: ITSMConfigItem.xml,v 1.32 2010-12-28 19:31:25 cr Exp $</CVS>
+    <CVS>$Id: ITSMConfigItem.xml,v 1.33 2010-12-31 18:00:31 cr Exp $</CVS>
     <ConfigItem Name="Frontend::Module###AdminITSMConfigItem" Required="0" Valid="1">
         <Description Translatable="1">Frontend module registration for the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
@@ -524,8 +524,29 @@
                 <Item Key="CurInciSignal">1</Item>
                 <Item Key="Number">1</Item>
                 <Item Key="Name">1</Item>
+                <Item Key="Class">0</Item>
                 <Item Key="CurDeplState">1</Item>
+                <Item Key="CurDeplStateType">0</Item>
                 <Item Key="CurInciState">1</Item>
+                <Item Key="CurInciStateType">0</Item>
+                <Item Key="LastChanged">1</Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns" Required="1" Valid="1">
+        <Description Translatable="1">Defines the shown columns in the config item overview. This option has no effect on the position of the column. Note: Class column is always available if filter 'All' is selected</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ViewConfigItem</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="CurInciSignal">1</Item>
+                <Item Key="Number">1</Item>
+                <Item Key="Name">1</Item>
+                <Item Key="Class">0</Item>
+                <Item Key="CurDeplState">1</Item>
+                <Item Key="CurDeplStateType">0</Item>
+                <Item Key="CurInciState">1</Item>
+                <Item Key="CurInciStateType">0</Item>
                 <Item Key="LastChanged">1</Item>
             </Hash>
         </Setting>

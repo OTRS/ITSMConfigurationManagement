@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/ITSMConfigItemOverviewSmall.pm.pm
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemOverviewSmall.pm,v 1.1 2010-12-28 19:33:50 cr Exp $
+# $Id: ITSMConfigItemOverviewSmall.pm,v 1.2 2010-12-31 18:00:09 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.1 $) [1];
+$VERSION = qw($Revision: 1.2 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -88,6 +88,7 @@ sub Run {
                     = ( $Param{SortBy} eq 'InciStateID' )
                     ? 'CurInciState'
                     : ( $Param{SortBy} eq 'DeplStateID' ) ? 'CurDeplState'
+                    : ( $Param{SortBy} eq 'ClassID' )     ? 'Class'
                     : ( $Param{SortBy} eq 'ChangeTime' )  ? 'LastChanged'
                     :                                       $Param{SortBy};
             }

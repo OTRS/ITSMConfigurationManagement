@@ -2,7 +2,7 @@
 # AgentITSMConfigItemOverviewSmall.dtl - html for configurtion item overview table
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemOverviewSmall.dtl,v 1.1 2010-12-28 19:39:14 cr Exp $
+# $Id: AgentITSMConfigItemOverviewSmall.dtl,v 1.2 2010-12-31 18:00:09 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -40,16 +40,31 @@
 #                        <a href="$Env{"Baselink"}Action=$Env{"Action"};$Data{"LinkSort"};SortBy=Name;OrderBy=$LQData{"OrderBy"}">$Text{"Name"}</a>
 #                    </th>
 <!-- dtl:block:RecordNameHeader -->
+<!-- dtl:block:RecordClassHeader -->
+                    <th class="Class $QData{"CSS"}">
+                        <a href="$Env{"Baselink"}Action=$Env{"Action"};$Data{"LinkSort"};SortBy=ClassID;OrderBy=$LQData{"OrderBy"}">$Text{"Class"}</a>
+                    </th>
+<!-- dtl:block:RecordClassHeader -->
 <!-- dtl:block:RecordCurDeplStateHeader -->
                     <th class="CurDeplState $QData{"CSS"}">
                         <a href="$Env{"Baselink"}Action=$Env{"Action"};$Data{"LinkSort"};SortBy=DeplStateID;OrderBy=$LQData{"OrderBy"}">$Text{"Deployment State"}</a>
                     </th>
 <!-- dtl:block:RecordCurDeplStateHeader -->
+<!-- dtl:block:RecordCurDeplStateTypeHeader -->
+                    <th class="Fixed">
+                        <span>$Text{"Deployment State Type"}</span>
+                    </th>
+<!-- dtl:block:RecordCurDeplStateTypeHeader -->
 <!-- dtl:block:RecordCurInciStateHeader -->
                     <th class="CurInciState $QData{"CSS"}">
                         <a href="$Env{"Baselink"}Action=$Env{"Action"};$Data{"LinkSort"};SortBy=InciStateID;OrderBy=$LQData{"OrderBy"}">$Text{"Current Incident State"}</a>
                     </th>
 <!-- dtl:block:RecordCurInciStateHeader -->
+<!-- dtl:block:RecordCurInciStateTypeHeader -->
+                    <th class="Fixed">
+                        <span>$Text{"Current Incident State Type"}</span>
+                    </th>
+<!-- dtl:block:RecordCurInciStateTypeHeader -->
 <!-- dtl:block:RecordLastChangedHeader -->
                     <th class="LastChanged $QData{"CSS"}">
                         <a href="$Env{"Baselink"}Action=$Env{"Action"};$Data{"LinkSort"};SortBy=ChangeTime;OrderBy=$LQData{"OrderBy"}">$Text{"Last Changed"}</a>
@@ -90,16 +105,31 @@
                         <div title="$QData{"Name"}">$QData{"Name","40"}</div>
                     </td>
 <!-- dtl:block:RecordName -->
+<!-- dtl:block:RecordClass -->
+                    <td>
+                        <div title="$Text{"$Data{"Class"}"}">$Text{"$Data{"Class"}"}</div>
+                    </td>
+<!-- dtl:block:RecordClass -->
 <!-- dtl:block:RecordCurDeplState -->
                     <td>
                         <div title="$Text{"$Data{"CurDeplState"}"}">$Text{"$Data{"CurDeplState"}"}</div>
                     </td>
 <!-- dtl:block:RecordCurDeplState -->
+<!-- dtl:block:RecordCurDeplStateType -->
+                    <td>
+                        <div title="$Text{"$Data{"CurDeplStateType"}"}">$Text{"$Data{"CurDeplStateType"}"}</div>
+                    </td>
+<!-- dtl:block:RecordCurDeplStateType -->
 <!-- dtl:block:RecordCurInciState -->
                     <td>
                         <div title="$Text{"$Data{"CurInciState"}"}">$Text{"$Data{"CurInciState"}"}</div>
                     </td>
 <!-- dtl:block:RecordCurInciState -->
+<!-- dtl:block:RecordCurInciStateType -->
+                    <td>
+                        <div title="$Text{"$Data{"CurInciStateType"}"}">$Text{"$Data{"CurInciStateType"}"}</div>
+                    </td>
+<!-- dtl:block:RecordCurInciStateType -->
 <!-- dtl:block:RecordLastChanged -->
                     <td>
                         <div title="$TimeLong{"$QData{"CreateTime"}"}">$TimeLong{"$QData{"CreateTime"}"}</div>

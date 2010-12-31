@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItem.pm - the OTRS::ITSM config item module
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItem.pm,v 1.14 2010-12-10 14:37:37 ub Exp $
+# $Id: AgentITSMConfigItem.pm,v 1.15 2010-12-31 17:59:39 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.14 $) [1];
+$VERSION = qw($Revision: 1.15 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -39,40 +39,82 @@ sub new {
     # get config of frontend module
     $Self->{Config} = $Self->{ConfigObject}->Get("ITSMConfigItem::Frontend::$Self->{Action}");
 
+    # get default parameters
+    $Self->{Filter} = $Self->{ParamObject}->GetParam( Param => 'Filter' ) || '';
+    $Self->{View}   = $Self->{ParamObject}->GetParam( Param => 'View' )   || '';
+
     return $Self;
 }
 
 sub Run {
     my ( $Self, %Param ) = @_;
 
-    # get page
-    my $Page = $Self->{ParamObject}->GetParam( Param => 'Page' ) || 1;
+    # store last screen, used for backlinks
+    $Self->{SessionObject}->UpdateSessionID(
+        SessionID => $Self->{SessionID},
+        Key       => 'LastScreenView',
+        Value     => $Self->{RequestedURL},
+    );
 
-    # get SubAction
-    my $MainBlockName  = $Self->{ParamObject}->GetParam( Param => 'SubAction' ) || 'Overview';
-    my $ExtraBlockName = $Self->{ParamObject}->GetParam( Param => 'SubAction' ) || '';
+    # get sorting parameters
+    my $SortBy = $Self->{ParamObject}->GetParam( Param => 'SortBy' )
+        || $Self->{Config}->{'SortBy::Default'}
+        || 'Number';
+
+    # get ordering parameters
+    my $OrderBy = $Self->{ParamObject}->GetParam( Param => 'OrderBy' )
+        || $Self->{Config}->{'Order::Default'}
+        || 'Down';
+
+    # set Sort and Order by as Arrays
+    my @SortByArray  = ($SortBy);
+    my @OrderByArray = ($OrderBy);
+
+    # investigate refresh
+    my $Refresh = $Self->{UserRefreshTime} ? 60 * $Self->{UserRefreshTime} : undef;
+
+    # output header
+    my $Output = $Self->{LayoutObject}->Header(
+        Title   => 'Overview',
+        Refresh => $Refresh,
+    );
+    $Output .= $Self->{LayoutObject}->NavigationBar();
+    $Self->{LayoutObject}->Print( Output => \$Output );
+    $Output = '';
 
     # get class list
     my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
         Class => 'ITSM::ConfigItem::Class',
     );
 
-    if ( $MainBlockName eq 'Overview' ) {
+    # get possible deployment state list for config items to be shown
+    my $StateList = $Self->{GeneralCatalogObject}->ItemList(
+        Class       => 'ITSM::ConfigItem::DeploymentState',
+        Preferences => {
+            Functionality => [ 'preproductive', 'productive' ],
+        },
+    );
 
-        # output Content
-        $Self->{LayoutObject}->Block(
-            Name => $MainBlockName,
-            Data => {
-                %Param,
-            },
-        );
+    # set the deployment state IDs parameter for the search
+    my $DelpStateIDs;
+    for my $DeplStateKey ( keys %{$StateList} ) {
+        push @{$DelpStateIDs}, $DeplStateKey;
     }
 
-    # output menu
-    my %ClassCount;
-    my $Counter = 0;
-
+    # to store the default class
     my $ClassIDAuto = '';
+
+    # to store the NavBar filters
+    my %Filters;
+
+    # define position of the filter in the frontend
+    my $PrioCounter = 1000;
+
+    # to store the total number of config items in all classes that the user has access
+    my $TotalCount;
+
+    # to store all the clases that the user has access, used un search for filter 'All'
+    my $AccessClassList;
 
     CLASSID:
     for my $ClassID ( sort { ${$ClassList}{$a} cmp ${$ClassList}{$b} } keys %{$ClassList} ) {
@@ -87,205 +129,156 @@ sub Run {
 
         next CLASSID if !$HasAccess;
 
+        # insert this class to be passed as searh paramter for filter 'All'
+        push @{$AccessClassList}, $ClassID;
+
         # count all records of this class
-        $ClassCount{$ClassID} = $Self->{ConfigItemObject}->ConfigItemCount(
+        my $ClassCount = $Self->{ConfigItemObject}->ConfigItemCount(
             ClassID => $ClassID,
         );
-        $Self->{LayoutObject}->Block(
-            Name => 'Menu',
-        );
 
-        # output class
-        $Self->{LayoutObject}->Block(
-            Name => 'MenuItem',
-            Data => {
-                ClassID => $ClassID,
-                Class   => $ClassList->{$ClassID},
-                Count   => $ClassCount{$ClassID} || 0,
+        # add the config items number in this class to the total
+        $TotalCount += $ClassCount;
+
+        # increase the PrioCounter
+        $PrioCounter++;
+
+        # add filter with params for the search method
+        $Filters{$ClassID} = {
+            Name   => $ClassList->{$ClassID},
+            Prio   => $PrioCounter,
+            Count  => $ClassCount,
+            Search => {
+                ClassIDs         => [$ClassID],
+                DeplStateIDs     => $DelpStateIDs,
+                OrderBy          => \@SortByArray,
+                OrderByDirection => \@OrderByArray,
+                Limit            => 1000,
             },
-        );
+        };
 
-        # remember the first class id to sohow this in the overview
+        # remember the first class id to show this in the overview
         # if no class id was given
         if ( !$ClassIDAuto ) {
             $ClassIDAuto = $ClassID;
         }
-
-        $Counter++;
     }
 
-    # get class id
-    my $ClassID = $Self->{ParamObject}->GetParam( Param => 'ClassID' ) || $ClassIDAuto;
+    # if only one filter exists
+    if ( scalar keys %Filters == 1 ) {
 
-    # generate ClassOptionStrg
-    my $ClassOptionStrg = $Self->{LayoutObject}->BuildSelection(
-        Data         => $ClassList,
-        Name         => 'ClassID',
-        SelectedID   => $ClassID,
-        Class        => 'W100pc ReloadSelect',
-        PossibleNone => 1,
-        Translation  => 0,
-    );
+        # get the name of the only filter
+        my ($FilterName) = keys %Filters;
 
-    # output ActionAddItem
-    $Self->{LayoutObject}->Block(
-        Name => 'ActionAddItem',
-        Data => {
-            ClassOptionStrg => $ClassOptionStrg,
-            %Param,
-        },
-    );
-
-    my %SearchResult = (
-        Result           => 0,
-        ConfigItemsAvail => 0,
-    );
-
-    if ( $MainBlockName eq 'Reload' ) {
-
-        # output Content
-        $Self->{LayoutObject}->Block(
-            Name => $MainBlockName,
-            Data => {
-                ConfigItemsAvail => $ClassCount{$ClassID},
-            },
-        );
-    }
-
-    if ($ClassID) {
-
-        # if user doesn't belong to the group that belongs to this class, show error page
-        my $HasAccess = $Self->{ConfigItemObject}->Permission(
-            Scope   => 'Class',
-            ClassID => $ClassID,
-            UserID  => $Self->{UserID},
-            Type    => $Self->{Config}->{Permission},
-        );
-
-        if ( !$HasAccess ) {
-            return $Self->{LayoutObject}->ErrorScreen(
-                Message => 'No access to Class is given!',
-                Comment => 'Please contact the admin.',
-            );
-        }
-
-        # output class
-        $Self->{LayoutObject}->Block(
-            Name => 'Class' . $ExtraBlockName,
-            Data => {
-                Class   => $ClassList->{$ClassID},
-                ClassID => $ClassID,
-            },
-        );
-        $SearchResult{ConfigItemsAvail} = $ClassCount{$ClassID} || 0;
-
-        my $SearchStart = 0;
-        if ( $Page && $Page > 1 ) {
-            $SearchStart = ( $Page - 1 ) * 100;
-        }
-
-        # get config item list
-        my $ConfigItemResultList = $Self->{ConfigItemObject}->ConfigItemResultList(
-            ClassID => $ClassID,
-            Start   => $SearchStart,
-            Limit   => 100,
-        );
-
-        # set search result
-        $SearchResult{Result} = @{$ConfigItemResultList};
-        $SearchResult{Page}   = int( $SearchResult{ConfigItemsAvail} / 100 );
-        if ( ( $SearchResult{ConfigItemsAvail} / 100 ) - $SearchResult{Page} ) {
-            $SearchResult{Page}++;
-        }
-
-        # set incident signal
-        my %InciSignals = (
-            operational => 'greenled',
-            warning     => 'yellowled',
-            incident    => 'redled',
-        );
-
-        for my $ConfigItem ( @{$ConfigItemResultList} ) {
-
-            # output class
-            $Self->{LayoutObject}->Block(
-                Name => 'ClassRow' . $ExtraBlockName,
-                Data => {
-                    %{$ConfigItem},
-                    CurInciSignal => $InciSignals{ $ConfigItem->{CurInciStateType} },
-                },
-            );
-        }
-
-        # Comment
-        if ( $SearchResult{ConfigItemsAvail} == 0 ) {
-            $Self->{LayoutObject}->Block(
-                Name => 'NoClassRow' . $ExtraBlockName,
-            );
-        }
-    }
-
-    # output page
-    if ( $SearchResult{Page} ) {
-        for my $PageCount ( 1 .. $SearchResult{Page} ) {
-
-            # output page block
-            $Self->{LayoutObject}->Block(
-                Name => 'Page' . $ExtraBlockName,
-            );
-
-            my $TemplateName = $PageCount eq $Page ? 'PageBold' : 'PageNormal';
-
-            # output page link
-            $Self->{LayoutObject}->Block(
-                Name => $TemplateName . $ExtraBlockName,
-                Data => {
-                    ClassID => $ClassID,
-                    Page    => $PageCount,
-                },
-            );
-        }
+        # activate this filter
+        $Self->{Filter} = $FilterName;
     }
     else {
-        $SearchResult{PageNull} = 0;
+
+        # add default filter, which shows all items
+        $Filters{All} = {
+            Name   => 'All',
+            Prio   => 1000,
+            Count  => $TotalCount,
+            Search => {
+                ClassIDs         => $AccessClassList,
+                DeplStateIDs     => $DelpStateIDs,
+                OrderBy          => \@SortByArray,
+                OrderByDirection => \@OrderByArray,
+                Limit            => 1000,
+            },
+        };
+
+        # if no filter was selected activate the filter for the default class
+        if ( !$Self->{Filter} ) {
+            $Self->{Filter} = $ClassIDAuto;
+        }
     }
 
-    # output ItemsAvail
-    $Self->{LayoutObject}->Block(
-        Name => 'ItemsAvail',
-        Data => {
-            ConfigItemsAvail => $ClassCount{$ClassID},
-        },
-    );
-
-    # investigate refresh
-    my $Refresh = $Self->{UserRefreshTime} ? 60 * $Self->{UserRefreshTime} : undef;
-
-    if ( $MainBlockName eq 'Reload' ) {
-
-        # start template output
-        my $Output = $Self->{LayoutObject}->Output(
-            TemplateFile => 'AgentITSMConfigItem'
+    # check if filter is valid
+    if ( !$Filters{ $Self->{Filter} } ) {
+        return $Self->{LayoutObject}->ErrorScreen(
+            Message => 'No access to Class is given!',
+            Comment => 'Please contact the admin.',
         );
-
-        return $Output;
     }
 
-    # output header
-    my $Output = $Self->{LayoutObject}->Header(
-        Title   => 'Overview',
-        Refresh => $Refresh,
-    );
-    $Output .= $Self->{LayoutObject}->NavigationBar();
+    # display all navbar filters
+    my %NavBarFilter;
+    for my $Filter ( keys %Filters ) {
 
-    # start template output
-    $Output .= $Self->{LayoutObject}->Output(
-        TemplateFile => 'AgentITSMConfigItem',
-        Data         => {
-            ClassID => $ClassID,
-            %Param,
-            %SearchResult,
-        },
+        # display the navbar filter
+        $NavBarFilter{ $Filters{$Filter}->{Prio} } = {
+            Filter => $Filter,
+            %{ $Filters{$Filter} },
+        };
+    }
+
+    # search config items which match the selected filter
+    my $ConfigItemIDs = $Self->{ConfigItemObject}->ConfigItemSearchExtended(
+        %{ $Filters{ $Self->{Filter} }->{Search} },
+    );
+
+    # find out which columns should be shown
+    my @ShowColumns;
+    if ( $Self->{Config}->{ShowColumns} ) {
+
+        # get all possible columns from config
+        my %PossibleColumn = %{ $Self->{Config}->{ShowColumns} };
+
+        # show column "Class" if filter 'All' is selected
+        if ( $Self->{Filter} eq 'All' ) {
+            $PossibleColumn{Class} = '1';
+        }
+
+        # get the column names that should be shown
+        COLUMNNAME:
+        for my $Name ( keys %PossibleColumn ) {
+            next COLUMNNAME if !$PossibleColumn{$Name};
+            push @ShowColumns, $Name;
+        }
+    }
+
+    # show the list
+    my $LinkPage =
+        'Filter=' . $Self->{LayoutObject}->Ascii2Html( Text => $Self->{Filter} )
+        . ';View=' . $Self->{LayoutObject}->Ascii2Html( Text => $Self->{View} )
+        . ';SortBy=' . $Self->{LayoutObject}->Ascii2Html( Text => $SortBy )
+        . ';OrderBy=' . $Self->{LayoutObject}->Ascii2Html( Text => $OrderBy )
+        . ';';
+    my $LinkSort =
+        'Filter=' . $Self->{LayoutObject}->Ascii2Html( Text => $Self->{Filter} )
+        . ';View=' . $Self->{LayoutObject}->Ascii2Html( Text => $Self->{View} )
+        . ';';
+    my $LinkFilter =
+        'SortBy=' . $Self->{LayoutObject}->Ascii2Html( Text => $SortBy )
+        . ';OrderBy=' . $Self->{LayoutObject}->Ascii2Html( Text => $OrderBy )
+        . ';View=' . $Self->{LayoutObject}->Ascii2Html( Text => $Self->{View} )
+        . ';';
+
+    # show config item list
+    $Output .= $Self->{LayoutObject}->ITSMConfigItemListShow(
+        ConfigItemIDs => $ConfigItemIDs,
+        Total         => scalar @{$ConfigItemIDs},
+
+        View => $Self->{View},
+
+        Filter     => $Self->{Filter},
+        Filters    => \%NavBarFilter,
+        FilterLink => $LinkFilter,
+
+        TitleName => $Self->{LayoutObject}->{LanguageObject}->Get('Overview')
+            . ': ' . $Self->{LayoutObject}->{LanguageObject}->Get('ITSM ConfigItem'),
+
+        TitleValue => $Filters{ $Self->{Filter} }->{Name},
+
+        Env      => $Self,
+        LinkPage => $LinkPage,
+        LinkSort => $LinkSort,
+
+        ShowColumns => \@ShowColumns,
+        SortBy      => $Self->{LayoutObject}->Ascii2Html( Text => $SortBy ),
+        OrderBy     => $Self->{LayoutObject}->Ascii2Html( Text => $OrderBy ),
     );
 
     # add footer
