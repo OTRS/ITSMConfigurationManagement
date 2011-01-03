@@ -1,8 +1,8 @@
 # --
 # ImportExportObjectITSMConfigItem.t - all import export tests for the ITSMConfigItem object backend
-# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: ImportExportObjectITSMConfigItem.t,v 1.12 2010-03-02 15:34:47 bes Exp $
+# $Id: ImportExportObjectITSMConfigItem.t,v 1.13 2011-01-03 21:58:35 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -116,6 +116,7 @@ $Self->True(
                 Translation  => 0,
                 Size         => 5,
                 MaxLength    => 5,
+                DataType     => 'IntegerBiggerThanZero',
             },
         },
         {
