@@ -1,8 +1,8 @@
 # --
 # AgentITSMConfigItemEdit.dtl - provides HTML form for AgentITSMConfigItemEdit
-# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.dtl,v 1.20 2010-12-22 22:15:11 ub Exp $
+# $Id: AgentITSMConfigItemEdit.dtl,v 1.21 2011-01-03 11:08:06 mn Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -75,7 +75,7 @@ $Include{"AgentITSMCustomerSearch"}
                         <div class="$Data{"Class"} Field">
                             $Data{"InputString"}
 <!-- dtl:block:XMLRowValueContentDelete -->
-                            <button class="DisableVal Remove" type="submit" name="$QData{"InputKey"}::Delete" value="$Text{"Delete"}">$Text{"Delete"}</button>
+                            <button class="DisableValidation Remove" type="submit" name="$QData{"InputKey"}::Delete" value="$Text{"Delete"}">$Text{"Delete"}</button>
 <!-- dtl:block:XMLRowValueContentDelete -->
                             <div id="$QData{"ItemID"}Error" class="TooltipErrorMessage" ><p>$Text{"This field is required."}</p></div>
                             <div id="$QData{"ItemID"}ServerError" class="TooltipErrorMessage"><p>$Text{"This field is required."}</p></div>
@@ -85,7 +85,7 @@ $Include{"AgentITSMCustomerSearch"}
 <!-- dtl:block:XMLRowAddContent -->
                         <label $Data{"Class"} for="$QData{"ItemID"}">$Text{"$Data{"Name"}"}: </label>
                         <div class="Field">
-                            <button class="DisableVal Add" id="$QData{"ItemID"}" type="submit" name="$QData{"InputKey"}::Add" value="$Text{"Add"}" title="$Text{"$Data{"Description"}"}" ></button>
+                            <button class="DisableValidation Add" id="$QData{"ItemID"}" type="submit" name="$QData{"InputKey"}::Add" value="$Text{"Add"}" title="$Text{"$Data{"Description"}"}" ></button>
                         </div>
 <!-- dtl:block:XMLRowAddContent -->
 
@@ -113,10 +113,11 @@ $Include{"AgentITSMCustomerSearch"}
 
 <!-- dtl:js_on_document_complete -->
         <script type="text/javascript">//<![CDATA[
-            $('.DisableVal').bind('click', function (Event) {
+            $('.DisableValidation').bind('click', function (Event) {
                 Core.Form.Validate.DisableValidation($('#ClassItem'));
+                // fix for Safari: race condition with submit in Core.Form.Validate.js
+                // fixed in OTRS 3.0.5, this line remains here for backwards compatibility reasons
                 $('#ClassItem').removeClass('PreventMultipleSubmits');
-                return true;
             });
         //]]></script>
 <!-- dtl:js_on_document_complete -->
