@@ -1,8 +1,8 @@
 # --
 # Kernel/System/ITSMConfigItem.pm - all config item function
-# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.31 2010-12-28 19:41:36 cr Exp $
+# $Id: ITSMConfigItem.pm,v 1.32 2011-01-03 18:25:36 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -29,7 +29,7 @@ use Kernel::System::User;
 use Kernel::System::XML;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.31 $) [1];
+$VERSION = qw($Revision: 1.32 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',
@@ -827,6 +827,9 @@ sub ConfigItemSearch {
         $Param{UsingWildcards} = 1;
     }
 
+    # get like escape string needed for some databases (e.g. oracle)
+    my $LikeEscapeString = $Self->{DBObject}->GetDatabaseFunction('LikeEscapeString');
+
     # assemble the ORDER BY clause
     my @SQLOrderBy;
     my $Count = 0;
@@ -871,7 +874,8 @@ sub ConfigItemSearch {
             # prepare like string
             $Self->_PrepareLikeString( \$Param{Number} );
 
-            push @SQLWhere, "LOWER(configitem_number) LIKE LOWER('$Param{Number}')";
+            push @SQLWhere,
+                "LOWER(configitem_number) LIKE LOWER('$Param{Number}') $LikeEscapeString";
         }
         else {
             push @SQLWhere, "LOWER(configitem_number) = LOWER('$Param{Number}')";
@@ -1353,6 +1357,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.31 $ $Date: 2010-12-28 19:41:36 $
+$Revision: 1.32 $ $Date: 2011-01-03 18:25:36 $
 
 =cut

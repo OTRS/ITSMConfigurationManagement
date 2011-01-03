@@ -1,8 +1,8 @@
 # --
 # Kernel/System/ITSMConfigItem/XML.pm - sub module of ITSMConfigItem.pm with xml functions
-# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: XML.pm,v 1.17 2010-03-02 13:57:59 bes Exp $
+# $Id: XML.pm,v 1.18 2011-01-03 18:25:36 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.17 $) [1];
+$VERSION = qw($Revision: 1.18 $) [1];
 
 =head1 NAME
 
@@ -307,32 +307,6 @@ sub _XMLVersionSearch {
         return;
     }
 
-    # prepare like string
-    for my $Row ( @{ $Param{What} } ) {
-
-        VALUES:
-        for my $Values ( values %{$Row} ) {
-
-            next VALUES if !$Values;
-
-            # make substitutions for selecting with 'LIKE'
-            if ( !ref $Values ) {
-                $Self->_PrepareLikeString( \$Values );
-            }
-            elsif ( ref $Values eq 'ARRAY' ) {
-                for my $Value ( @{$Values} ) {
-                    $Self->_PrepareLikeString( \$Value );
-                }
-                next VALUES;
-            }
-            elsif ( ref $Values eq 'HASH' ) {
-
-                # nothing to do,
-                # as special comparison ops do not need to be prepared for 'LIKE' comparisons
-            }
-        }
-    }
-
     if ( !$Param{ClassIDs} || ref $Param{ClassIDs} ne 'ARRAY' || !@{ $Param{ClassIDs} } ) {
 
         # get class list
@@ -372,7 +346,7 @@ sub _XMLVersionSearch {
 
         # add all ids to version id hash
         for my $VersionID (@Keys) {
-            $VersionIDs{$VersionID} = 1
+            $VersionIDs{$VersionID} = 1;
         }
     }
 
@@ -630,9 +604,15 @@ sub _XMLHashSearch {
 
     # check needed stuff
     if ( !$Param{Type} ) {
-        $Self->{LogObject}->Log( Priority => 'error', Message => 'Need Type!' );
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => 'Need Type!',
+        );
         return;
     }
+
+    # get like escape string needed for some databases (e.g. oracle)
+    my $LikeEscapeString = $Self->{DBObject}->GetDatabaseFunction('LikeEscapeString');
 
     return if !$Self->{DBObject}->Prepare(
         SQL  => 'SELECT DISTINCT(xml_key) FROM xml_storage WHERE xml_type = ?',
@@ -658,16 +638,20 @@ sub _XMLHashSearch {
             my @OrConditions;
             for my $Key ( sort keys %{$And} ) {
                 my $Value = $And->{$Key};
-                $Key = $Self->{DBObject}->Quote( $Key, 'Like' );
+
+                $Self->_PrepareLikeString( \$Key );
+
                 if ( $Value && ref $Value eq 'ARRAY' ) {
 
                     # when an array of possible values is given,
                     # we use 'LIKE'-conditions and combine them with 'OR'
                     for my $Element ( @{$Value} ) {
-                        $Element = $Self->{DBObject}->Quote( $Element, 'Like' );
+
+                        $Self->_PrepareLikeString( \$Element );
+
                         push @OrConditions,
-                            " (xml_content_key LIKE '$Key' "
-                            . "AND xml_content_value LIKE '$Element')";
+                            " (xml_content_key LIKE '$Key' $LikeEscapeString "
+                            . "AND xml_content_value LIKE '$Element' $LikeEscapeString)";
                     }
                 }
                 elsif ( $Value && ref $Value eq 'HASH' ) {
@@ -692,14 +676,14 @@ sub _XMLHashSearch {
                         my $LowerBound = $Self->{DBObject}->Quote( $Element->[0] );
                         my $UpperBound = $Self->{DBObject}->Quote( $Element->[1] );
                         push @OrConditions,
-                            " ( xml_content_key LIKE '$Key' "
+                            " ( xml_content_key LIKE '$Key' $LikeEscapeString "
                             . "AND $xml_content_value >= '$LowerBound' "
                             . "AND $xml_content_value <= '$UpperBound' )";
                     }
                     elsif ( $Op && $OpIsSupported{$Op} && !ref $Element ) {
                         $Element = $Self->{DBObject}->Quote($Element);
                         push @OrConditions,
-                            " ( xml_content_key LIKE '$Key' "
+                            " ( xml_content_key LIKE '$Key' $LikeEscapeString "
                             . "AND $xml_content_value $Op '$Element' )";
                     }
                     else {
@@ -714,10 +698,11 @@ sub _XMLHashSearch {
 
                     # when a single  possible value is given,
                     # we use a 'LIKE'-condition
-                    $Value = $Self->{DBObject}->Quote( $Value, 'Like' );
+                    $Self->_PrepareLikeString( \$Value );
+
                     push @OrConditions,
-                        " (xml_content_key LIKE '$Key' "
-                        . "AND xml_content_value LIKE '$Value' )";
+                        " (xml_content_key LIKE '$Key' $LikeEscapeString "
+                        . "AND xml_content_value LIKE '$Value' $LikeEscapeString)";
                 }
             }
 
@@ -760,12 +745,12 @@ This software is part of the OTRS project (http://otrs.org/).
 
 This software comes with ABSOLUTELY NO WARRANTY. For details, see
 the enclosed file COPYING for license information (AGPL). If you
-did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =cut
 
 =head1 VERSION
 
-$Revision: 1.17 $ $Date: 2010-03-02 13:57:59 $
+$Revision: 1.18 $ $Date: 2011-01-03 18:25:36 $
 
 =cut
