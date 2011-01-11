@@ -1,8 +1,8 @@
 # --
 # Kernel/Modules/AgentITSMConfigItemSearch.pm - the OTRS::ITSM config item search module
-# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.pm,v 1.25 2010-12-28 19:49:56 cr Exp $
+# $Id: AgentITSMConfigItemSearch.pm,v 1.26 2011-01-11 16:37:10 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -20,7 +20,7 @@ use Kernel::System::SearchProfile;
 use Kernel::System::CSV;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.25 $) [1];
+$VERSION = qw($Revision: 1.26 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -558,15 +558,7 @@ sub Run {
         # CSV output
         if ( $GetParam{ResultForm} eq 'CSV' ) {
             my @CSVData;
-            my @CSVHead = (
-                'Class',
-                'Incident State',
-                'Name',
-                'Number',
-                'Deployment State',
-                'Version',
-                'Create Time',
-            );
+            my @CSVHead;
 
             CONFIGITEMID:
             for my $ConfigItemID ( @{$SearchResultList} ) {
@@ -587,6 +579,11 @@ sub Run {
                     XMLDataGet   => 0,
                 );
 
+                # csv quote
+                if ( !@CSVHead ) {
+                    @CSVHead = @{ $Self->{Config}->{SearchCSVData} };
+                }
+
                 # store data
                 my @Data;
                 for (qw(Class InciState Name Number DeplState VersionID CreateTime)) {
@@ -595,6 +592,25 @@ sub Run {
                 push @CSVData, \@Data;
             }
 
+            # csv quote
+            # translate non existing header may result in a garbage file
+            if ( !@CSVHead ) {
+                @CSVHead = @{ $Self->{Config}->{SearchCSVData} };
+            }
+
+            # translate headers
+            for my $Header (@CSVHead) {
+
+                # replace FAQNumber header with the current FAQHook from config
+                if ( $Header eq 'ConfigItemNumber' ) {
+                    $Header = $Self->{ConfigObject}->Get('ITSMConfigItem::Hook');
+                }
+                else {
+                    $Header = $Self->{LayoutObject}->{LanguageObject}->Get($Header);
+                }
+            }
+
+            # assable CSV data
             my $CSV = $Self->{CSVObject}->Array2CSV(
                 Head      => \@CSVHead,
                 Data      => \@CSVData,
