@@ -1,8 +1,8 @@
 # --
 # Kernel/Output/HTML/ITSMConfigItemLayoutCustomer.pm - layout backend module
-# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutCustomer.pm,v 1.12 2010-09-21 22:21:47 cr Exp $
+# $Id: ITSMConfigItemLayoutCustomer.pm,v 1.13 2011-01-12 11:21:14 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -17,7 +17,7 @@ use warnings;
 use Kernel::System::CustomerUser;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.12 $) [1];
+$VERSION = qw($Revision: 1.13 $) [1];
 
 =head1 NAME
 
@@ -103,7 +103,7 @@ sub FormDataGet {
         if ( !$Param{$Argument} ) {
             $Self->{LogObject}->Log(
                 Priority => 'error',
-                Message  => "Need $Argument!"
+                Message  => "Need $Argument!",
             );
             return;
         }
@@ -170,7 +170,7 @@ sub InputCreate {
         if ( !$Param{$Argument} ) {
             $Self->{LogObject}->Log(
                 Priority => 'error',
-                Message  => "Need $Argument!"
+                Message  => "Need $Argument!",
             );
             return;
         }
@@ -251,7 +251,7 @@ sub SearchFormDataGet {
     if ( !$Param{Key} ) {
         $Self->{LogObject}->Log(
             Priority => 'error',
-            Message  => 'Need Key!'
+            Message  => 'Need Key!',
         );
         return;
     }
@@ -285,7 +285,7 @@ sub SearchInputCreate {
         if ( !$Param{$Argument} ) {
             $Self->{LogObject}->Log(
                 Priority => 'error',
-                Message  => "Need $Argument!"
+                Message  => "Need $Argument!",
             );
             return;
         }
@@ -327,6 +327,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.12 $ $Date: 2010-09-21 22:21:47 $
+$Revision: 1.13 $ $Date: 2011-01-12 11:21:14 $
 
 =cut

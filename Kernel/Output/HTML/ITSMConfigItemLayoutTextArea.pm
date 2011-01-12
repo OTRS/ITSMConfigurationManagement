@@ -1,8 +1,8 @@
 # --
 # Kernel/Output/HTML/ITSMConfigItemLayoutTextArea.pm - layout backend module
-# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutTextArea.pm,v 1.13 2010-12-14 18:54:41 dz Exp $
+# $Id: ITSMConfigItemLayoutTextArea.pm,v 1.14 2011-01-12 11:21:14 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.13 $) [1];
+$VERSION = qw($Revision: 1.14 $) [1];
 
 =head1 NAME
 
@@ -72,7 +72,7 @@ sub OutputStringCreate {
     if ( !$Param{Item} ) {
         $Self->{LogObject}->Log(
             Priority => 'error',
-            Message  => 'Need Item!'
+            Message  => 'Need Item!',
         );
         return;
     }
@@ -128,7 +128,7 @@ sub FormDataGet {
         if ( !$Param{$Argument} ) {
             $Self->{LogObject}->Log(
                 Priority => 'error',
-                Message  => "Need $Argument!"
+                Message  => "Need $Argument!",
             );
             return;
         }
@@ -168,7 +168,7 @@ sub InputCreate {
         if ( !$Param{$Argument} ) {
             $Self->{LogObject}->Log(
                 Priority => 'error',
-                Message  => "Need $Argument!"
+                Message  => "Need $Argument!",
             );
             return;
         }
@@ -222,7 +222,7 @@ sub SearchFormDataGet {
     if ( !$Param{Key} ) {
         $Self->{LogObject}->Log(
             Priority => 'error',
-            Message  => 'Need Key!'
+            Message  => 'Need Key!',
         );
         return;
     }
@@ -252,7 +252,7 @@ sub SearchInputCreate {
         if ( !$Param{$Argument} ) {
             $Self->{LogObject}->Log(
                 Priority => 'error',
-                Message  => "Need $Argument!"
+                Message  => "Need $Argument!",
             );
             return;
         }
@@ -284,6 +284,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.13 $ $Date: 2010-12-14 18:54:41 $
+$Revision: 1.14 $ $Date: 2011-01-12 11:21:14 $
 
 =cut
