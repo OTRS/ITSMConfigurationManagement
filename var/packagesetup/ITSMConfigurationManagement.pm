@@ -1,8 +1,8 @@
 # --
 # ITSMConfigurationManagement.pm - code to excecute during package installation
-# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigurationManagement.pm,v 1.20 2010-12-22 19:03:42 ub Exp $
+# $Id: ITSMConfigurationManagement.pm,v 1.21 2011-01-14 05:33:14 ep Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -30,7 +30,7 @@ use Kernel::System::User;
 use Kernel::System::Valid;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.20 $) [1];
+$VERSION = qw($Revision: 1.21 $) [1];
 
 =head1 NAME
 
@@ -437,11 +437,16 @@ sub _GroupAdd {
     );
     my %ValidListReverse = reverse %ValidList;
 
-    # check if group already exists
-    my $GroupID = $Self->{GroupObject}->GroupLookup(
-        Group  => $Param{Name},
-        UserID => 1,
+    # get list of all groups
+    my %GroupList = $Self->{GroupObject}->GroupList(
+        Valid => $ValidListReverse{valid},
     );
+
+    # reverse the group list for easier lookup
+    my %GroupListReverse = reverse %GroupList;
+
+    # check if group already exists
+    my $GroupID = $GroupListReverse{ $Param{Name} };
 
     # reactivate the group
     if ($GroupID) {
@@ -1473,6 +1478,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.20 $ $Date: 2010-12-22 19:03:42 $
+$Revision: 1.21 $ $Date: 2011-01-14 05:33:14 $
 
 =cut
