@@ -1,10 +1,8 @@
 # --
-# Kernel/Language/cs_ITSMConfigItem.pm - the czech translation of ITSMConfigItem
-# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
-# Copyright (C) 2007-2008 Milen Koutev
-# Copyright (C) 2010 O2BS.com, s r.o. Jakub Hanus
+# Kernel/Language/cs_ITSMConfigItem.pm - translation file
+# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: cs_ITSMConfigItem.pm,v 1.1 2011-01-24 19:57:02 ub Exp $
+# $Id: cs_ITSMConfigItem.pm,v 1.2 2011-01-24 20:23:20 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -14,189 +12,229 @@
 package Kernel::Language::cs_ITSMConfigItem;
 
 use strict;
-use warnings;
-
-use vars qw($VERSION);
-$VERSION = qw($Revision: 1.1 $) [1];
 
 sub Data {
     my $Self = shift;
 
-    my $Lang = $Self->{Translation};
+    # Template: AAAITSMConfigItem
+    $Self->{Translation}->{'Address'} = 'Adresa';
+    $Self->{Translation}->{'Admin Tool'} = 'Administraèní nástroj';
+    $Self->{Translation}->{'Backup Device'} = 'Zálohovácí Zaøízení';
+    $Self->{Translation}->{'Beamer'} = 'Beamer';
+    $Self->{Translation}->{'Building'} = 'Budova';
+    $Self->{Translation}->{'CIHistory::ConfigItemCreate'} = '';
+    $Self->{Translation}->{'CIHistory::ConfigItemDelete'} = '';
+    $Self->{Translation}->{'CIHistory::DefinitionUpdate'} = '';
+    $Self->{Translation}->{'CIHistory::DeploymentStateUpdate'} = '';
+    $Self->{Translation}->{'CIHistory::IncidentStateUpdate'} = '';
+    $Self->{Translation}->{'CIHistory::LinkAdd'} = '';
+    $Self->{Translation}->{'CIHistory::LinkDelete'} = '';
+    $Self->{Translation}->{'CIHistory::NameUpdate'} = '';
+    $Self->{Translation}->{'CIHistory::ValueUpdate'} = '';
+    $Self->{Translation}->{'CIHistory::VersionCreate'} = '';
+    $Self->{Translation}->{'CIHistory::VersionDelete'} = '';
+    $Self->{Translation}->{'CPU'} = 'Procesor';
+    $Self->{Translation}->{'Camera'} = 'Kamera';
+    $Self->{Translation}->{'Capacity'} = 'Kapacita';
+    $Self->{Translation}->{'Change Definition'} = 'Zmìna Definice';
+    $Self->{Translation}->{'Change of definition failed! See System Log for details.'} = 'Zmìna definice neúspì¹ná! Viz Systémový Log pro podrobnosti.';
+    $Self->{Translation}->{'Client Application'} = 'U¾ivatelské Aplikace';
+    $Self->{Translation}->{'Client OS'} = 'U¾ivatelský Operaèní Systém';
+    $Self->{Translation}->{'Concurrent Users'} = 'Konkurenèní U¾ivatelé';
+    $Self->{Translation}->{'Config Item-Area'} = 'Konfig. Polo¾ka-Struktura';
+    $Self->{Translation}->{'Config Items available'} = 'Dostupné Konfig. Polo¾ky';
+    $Self->{Translation}->{'Config Items shown'} = 'Zobrazené Konfig. Polo¾ky';
+    $Self->{Translation}->{'Demo'} = 'Demo';
+    $Self->{Translation}->{'Desktop'} = 'Stolní';
+    $Self->{Translation}->{'Developer Licence'} = 'Licence Vývojáøe';
+    $Self->{Translation}->{'Docking Station'} = 'Dok Stanice';
+    $Self->{Translation}->{'Duplicate'} = 'Duplikace';
+    $Self->{Translation}->{'Embedded'} = 'Vestavìný';
+    $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = '';
+    $Self->{Translation}->{'Enterprise Licence'} = 'Podniková Licence ';
+    $Self->{Translation}->{'Expiration Date'} = 'Konec Platnosti';
+    $Self->{Translation}->{'Expired'} = 'Propadnuté';
+    $Self->{Translation}->{'FQDN'} = 'FQDN';
+    $Self->{Translation}->{'Floor'} = 'podla¾í';
+    $Self->{Translation}->{'Freeware'} = 'Freeware';
+    $Self->{Translation}->{'GSM'} = 'GSM';
+    $Self->{Translation}->{'Gateway'} = 'Gateway';
+    $Self->{Translation}->{'Graphic Adapter'} = 'Grafická Karta';
+    $Self->{Translation}->{'Hard Disk'} = 'Pevný Disk';
+    $Self->{Translation}->{'Hard Disk::Capacity'} = 'Pevný Disk::Kapacita';
+    $Self->{Translation}->{'Hide Versions'} = 'Skrýt Verze';
+    $Self->{Translation}->{'IP Address'} = 'IP Adresa';
+    $Self->{Translation}->{'IP over DHCP'} = 'IP z DHCP';
+    $Self->{Translation}->{'IT Facility'} = 'IT Pøíslu¹enství';
+    $Self->{Translation}->{'Inactive'} = 'Neaktivní';
+    $Self->{Translation}->{'Incident'} = 'Incident';
+    $Self->{Translation}->{'Install Date'} = 'Datum Instalace';
+    $Self->{Translation}->{'Keybord'} = 'Klávesnice';
+    $Self->{Translation}->{'LAN'} = 'LAN';
+    $Self->{Translation}->{'Laptop'} = 'Mobilní';
+    $Self->{Translation}->{'Last Change'} = 'Poslední zmìna';
+    $Self->{Translation}->{'Licence Key'} = 'Licenèní Klíè';
+    $Self->{Translation}->{'Licence Key::Expiration Date'} = 'Licenèní Klíè::Konec Platnosti';
+    $Self->{Translation}->{'Licence Key::Quantity'} = 'Licenèní Klíè::Mno¾ství';
+    $Self->{Translation}->{'Licence Type'} = 'Druh licence';
+    $Self->{Translation}->{'Maintenance'} = 'Údr¾ba';
+    $Self->{Translation}->{'Maximum number of one element'} = 'Max poèet jedné Polo¾ky';
+    $Self->{Translation}->{'Media'} = 'Médium';
+    $Self->{Translation}->{'Middleware'} = 'Støední úroveò';
+    $Self->{Translation}->{'Model'} = 'Model';
+    $Self->{Translation}->{'Modem'} = 'Modem';
+    $Self->{Translation}->{'Monitor'} = 'Monitor';
+    $Self->{Translation}->{'Mouse'} = 'My¹';
+    $Self->{Translation}->{'Network Adapter'} = 'Sí»ový Adapter';
+    $Self->{Translation}->{'Network Adapter::IP Address'} = 'Sí»ový Adapter::IP adresa';
+    $Self->{Translation}->{'Network Adapter::IP over DHCP'} = 'Sí»ový Adapter::IP z DHCP';
+    $Self->{Translation}->{'Network Address'} = 'Sí»ová Adresa';
+    $Self->{Translation}->{'Network Address::Gateway'} = 'Sí»ová Adresa::Gateway';
+    $Self->{Translation}->{'Network Address::Subnet Mask'} = 'Sí»ová Adresa::Maska Podsítì';
+    $Self->{Translation}->{'Open Source'} = 'Software s Otevøeným Kódem';
+    $Self->{Translation}->{'Operating System'} = 'Operaèní Systém';
+    $Self->{Translation}->{'Operational'} = 'Operaèní';
+    $Self->{Translation}->{'Other'} = 'Jiné';
+    $Self->{Translation}->{'Other Equipment'} = 'Jiné Vybavení';
+    $Self->{Translation}->{'Outlet'} = 'Filiálka';
+    $Self->{Translation}->{'PCMCIA Card'} = 'PCMCIA karta';
+    $Self->{Translation}->{'PDA'} = 'PDA';
+    $Self->{Translation}->{'Per Node'} = 'na Uzel';
+    $Self->{Translation}->{'Per Processor'} = 'na Procesor';
+    $Self->{Translation}->{'Per Server'} = 'na Server';
+    $Self->{Translation}->{'Per User'} = 'na U¾ivatele';
+    $Self->{Translation}->{'Phone 1'} = 'Telefon 1';
+    $Self->{Translation}->{'Phone 2'} = 'Telefon 2';
+    $Self->{Translation}->{'Pilot'} = 'Øídící';
+    $Self->{Translation}->{'Planned'} = 'Naplánováno';
+    $Self->{Translation}->{'Printer'} = 'Tiskárna';
+    $Self->{Translation}->{'Production'} = 'Produkèní';
+    $Self->{Translation}->{'Quantity'} = 'Mno¾ství';
+    $Self->{Translation}->{'Rack'} = 'Rack';
+    $Self->{Translation}->{'Ram'} = 'RAM';
+    $Self->{Translation}->{'Repair'} = 'Oprava/Obnovení';
+    $Self->{Translation}->{'Retired'} = 'Mimo provoz';
+    $Self->{Translation}->{'Review'} = 'Pøehled';
+    $Self->{Translation}->{'Room'} = 'Místnost';
+    $Self->{Translation}->{'Router'} = 'Router';
+    $Self->{Translation}->{'Scanner'} = 'Skener';
+    $Self->{Translation}->{'Search Config Items'} = 'Vyhledat Konfig. Polo¾ky';
+    $Self->{Translation}->{'Security Device'} = 'Bezpeènostní Zaøízení';
+    $Self->{Translation}->{'Serial Number'} = 'Sériové Èíslo';
+    $Self->{Translation}->{'Server'} = 'Server';
+    $Self->{Translation}->{'Server Application'} = 'Serverová Aplikace';
+    $Self->{Translation}->{'Server OS'} = 'Serverový Operaèní Systém';
+    $Self->{Translation}->{'Show Versions'} = 'Ukázat Verze';
+    $Self->{Translation}->{'Single Licence'} = 'Jednoduchá Licence';
+    $Self->{Translation}->{'Subnet Mask'} = 'Maska Podsítì';
+    $Self->{Translation}->{'Switch'} = 'Switch';
+    $Self->{Translation}->{'Telco'} = 'Telco';
+    $Self->{Translation}->{'Test/QA'} = 'Test/Kontrola kvality';
+    $Self->{Translation}->{'The deployment state of this config item'} = 'Stav Nasazení této Konfig. Polo¾ky';
+    $Self->{Translation}->{'The incident state of this config item'} = 'Stav Incidentu této Konfig. Polo¾ky';
+    $Self->{Translation}->{'Time Restricted'} = 'Èasovì omezená Licence';
+    $Self->{Translation}->{'USB Device'} = 'USB Zaøízení';
+    $Self->{Translation}->{'Unlimited'} = 'Neomezená';
+    $Self->{Translation}->{'User Tool'} = 'U¾ivatelský Nástroj';
+    $Self->{Translation}->{'Volume Licence'} = 'Svazková Licence';
+    $Self->{Translation}->{'WLAN'} = 'WLAN';
+    $Self->{Translation}->{'WLAN Access Point'} = 'Pøístupový Bod WLAN';
+    $Self->{Translation}->{'Warranty Expiration Date'} = 'Konec platnosti záruky';
+    $Self->{Translation}->{'Workplace'} = 'Pracovi¹tì';
 
-    return if ref $Lang ne 'HASH';
+    # Template: AdminITSMConfigItem
+    $Self->{Translation}->{'Config Item Management'} = 'Správa Konfiguraèních Polo¾ek';
+    $Self->{Translation}->{'Change class definition'} = '';
+    $Self->{Translation}->{'Config Item'} = 'Konfig. Polo¾ka';
+    $Self->{Translation}->{'Class'} = 'Tøída';
+    $Self->{Translation}->{'Definition'} = '';
 
-    $Lang->{'Config Item'}            = 'Konfig. Polo¾ka';
-    $Lang->{'Config Item-Area'}       = 'Konfig. Polo¾ka-Struktura';
-    $Lang->{'Config Item Management'} = 'Správa Konfiguraèních Polo¾ek';
-    $Lang->{'Change Definition'}      = 'Zmìna Definice';
-    $Lang->{'Class'}                  = 'Tøída';
-    $Lang->{'Show Versions'}          = 'Ukázat Verze';
-    $Lang->{'Hide Versions'}          = 'Skrýt Verze';
-    $Lang->{'Last changed by'}        = 'Poslední zmìna od';
-    $Lang->{'Last changed'}           = 'Poslední zmìna';
-    $Lang->{'Change of definition failed! See System Log for details.'} = 'Zmìna definice neúspì¹ná! Viz Systémový Log pro podrobnosti.';
-    $Lang->{'Also search in previous versions?'}        = 'Hledat také v pøedchozích verzích?';
-    $Lang->{'Config Items shown'}                       = 'Zobrazené Konfig. Polo¾ky';
-    $Lang->{'Config Items available'}                   = 'Dostupné Konfig. Polo¾ky';
-    $Lang->{'Search Config Items'}                      = 'Vyhledat Konfig. Polo¾ky';
-    $Lang->{'Deployment State'}                         = 'Stav Nasazení';
-    $Lang->{'Current Deployment State'}                 = 'Aktuální Stav Nasazení';
-    $Lang->{'Incident State'}                           = 'Stav Incidentu';
-    $Lang->{'Current Incident State'}                   = 'Aktuální Stav Incidentu';
-    $Lang->{'The name of this config item'}             = 'Jméno této Konfig. Polo¾ky';
-    $Lang->{'The deployment state of this config item'} = 'Stav Nasazení této Konfig. Polo¾ky';
-    $Lang->{'The incident state of this config item'}   = 'Stav Incidentu této Konfig. Polo¾ky';
+    # Template: AgentITSMConfigItemAdd
+    $Self->{Translation}->{'Filter for Classes'} = '';
+    $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = '';
 
-    $Lang->{'Last Change'}                              = 'Poslední zmìna';
-    $Lang->{'Duplicate'}                                = 'Duplikace';
-    $Lang->{'Expired'}                                  = 'Propadnuté';
-    $Lang->{'Inactive'}                                 = 'Neaktivní';
-    $Lang->{'Maintenance'}                              = 'Údr¾ba';
-    $Lang->{'Pilot'}                                    = 'Øídící';
-    $Lang->{'Planned'}                                  = 'Naplánováno';
-    $Lang->{'Production'}                               = 'Produkèní';
-    $Lang->{'Repair'}                                   = 'Oprava/Obnovení';
-    $Lang->{'Retired'}                                  = 'Mimo provoz';
-    $Lang->{'Review'}                                   = 'Pøehled';
-    $Lang->{'Test/QA'}                                  = 'Test/Kontrola kvality';
-    $Lang->{'Operational'}                              = 'Operaèní';
-    $Lang->{'Incident'}                                 = 'Incident';
-    $Lang->{'Desktop'}                                  = 'Stolní';
-    $Lang->{'Laptop'}                                   = 'Mobilní';
-    $Lang->{'Other'}                                    = 'Jiné';
-    $Lang->{'PDA'}                                      = 'PDA';
-    $Lang->{'Phone'}                                    = 'Telefon';
-    $Lang->{'Server'}                                   = 'Server';
-    $Lang->{'Backup Device'}                            = 'Zálohovácí Zaøízení';
-    $Lang->{'Beamer'}                                   = 'Beamer';
-    $Lang->{'Camera'}                                   = 'Kamera';
-    $Lang->{'Docking Station'}                          = 'Dok Stanice';
-    $Lang->{'Keybord'}                                  = 'Klávesnice';
-    $Lang->{'Modem'}                                    = 'Modem';
-    $Lang->{'Monitor'}                                  = 'Monitor';
-    $Lang->{'Mouse'}                                    = 'My¹';
-    $Lang->{'Other'}                                    = 'Jiné';
-    $Lang->{'PCMCIA Card'}                              = 'PCMCIA karta';
-    $Lang->{'Printer'}                                  = 'Tiskárna';
-    $Lang->{'Router'}                                   = 'Router';
-    $Lang->{'Scanner'}                                  = 'Skener';
-    $Lang->{'Security Device'}                          = 'Bezpeènostní Zaøízení';
-    $Lang->{'Switch'}                                   = 'Switch';
-    $Lang->{'USB Device'}                               = 'USB Zaøízení';
-    $Lang->{'WLAN Access Point'}                        = 'Pøístupový Bod WLAN';
-    $Lang->{'GSM'}                                      = 'GSM';
-    $Lang->{'LAN'}                                      = 'LAN';
-    $Lang->{'Other'}                                    = 'Jiné';
-    $Lang->{'Telco'}                                    = 'Telco';
-    $Lang->{'WLAN'}                                     = 'WLAN';
-    $Lang->{'Admin Tool'}                               = 'Administraèní nástroj';
-    $Lang->{'Client Application'}                       = 'U¾ivatelské Aplikace';
-    $Lang->{'Client OS'}                                = 'U¾ivatelský Operaèní Systém';
-    $Lang->{'Embedded'}                                 = 'Vestavìný';
-    $Lang->{'Middleware'}                               = 'Støední úroveò';
-    $Lang->{'Other'}                                    = 'Jiné';
-    $Lang->{'Server Application'}                       = 'Serverová Aplikace';
-    $Lang->{'Server OS'}                                = 'Serverový Operaèní Systém';
-    $Lang->{'User Tool'}                                = 'U¾ivatelský Nástroj';
-    $Lang->{'Concurrent Users'}                         = 'Konkurenèní U¾ivatelé';
-    $Lang->{'Demo'}                                     = 'Demo';
-    $Lang->{'Developer Licence'}                        = 'Licence Vývojáøe';
-    $Lang->{'Enterprise Licence'}                       = 'Podniková Licence ';
-    $Lang->{'Freeware'}                                 = 'Freeware';
-    $Lang->{'Open Source'}                              = 'Software s Otevøeným Kódem';
-    $Lang->{'Per Node'}                                 = 'na Uzel';
-    $Lang->{'Per Processor'}                            = 'na Procesor';
-    $Lang->{'Per Server'}                               = 'na Server';
-    $Lang->{'Per User'}                                 = 'na U¾ivatele';
-    $Lang->{'Single Licence'}                           = 'Jednoduchá Licence';
-    $Lang->{'Time Restricted'}                          = 'Èasovì omezená Licence';
-    $Lang->{'Unlimited'}                                = 'Neomezená';
-    $Lang->{'Volume Licence'}                           = 'Svazková Licence';
-    $Lang->{'Model'}                                    = 'Model';
-    $Lang->{'Serial Number'}                            = 'Sériové Èíslo';
-    $Lang->{'Operating System'}                         = 'Operaèní Systém';
-    $Lang->{'CPU'}                                      = 'Procesor';
-    $Lang->{'Ram'}                                      = 'RAM';
-    $Lang->{'Hard Disk'}                                = 'Pevný Disk';
-    $Lang->{'Hard Disk::Capacity'}                      = 'Pevný Disk::Kapacita';
-    $Lang->{'Capacity'}                                 = 'Kapacita';
-    $Lang->{'FQDN'}                                     = 'FQDN';
-    $Lang->{'Network Adapter'}                          = 'Sí»ový Adapter';
-    $Lang->{'Network Adapter::IP over DHCP'}            = 'Sí»ový Adapter::IP z DHCP';
-    $Lang->{'Network Adapter::IP Address'}              = 'Sí»ový Adapter::IP adresa';
-    $Lang->{'IP over DHCP'}                             = 'IP z DHCP';
-    $Lang->{'IP Address'}                               = 'IP Adresa';
-    $Lang->{'Graphic Adapter'}                          = 'Grafická Karta';
-    $Lang->{'Other Equipment'}                          = 'Jiné Vybavení';
-    $Lang->{'Warranty Expiration Date'}                 = 'Konec platnosti záruky';
-    $Lang->{'Install Date'}                             = 'Datum Instalace';
-    $Lang->{'Network Address'}                          = 'Sí»ová Adresa';
-    $Lang->{'Network Address::Subnet Mask'}             = 'Sí»ová Adresa::Maska Podsítì';
-    $Lang->{'Network Address::Gateway'}                 = 'Sí»ová Adresa::Gateway';
-    $Lang->{'Subnet Mask'}                              = 'Maska Podsítì';
-    $Lang->{'Gateway'}                                  = 'Gateway';
-    $Lang->{'Licence Type'}                             = 'Druh licence';
-    $Lang->{'Licence Key'}                              = 'Licenèní Klíè';
-    $Lang->{'Licence Key::Quantity'}                    = 'Licenèní Klíè::Mno¾ství';
-    $Lang->{'Licence Key::Expiration Date'}             = 'Licenèní Klíè::Konec Platnosti';
-    $Lang->{'Quantity'}                                 = 'Mno¾ství';
-    $Lang->{'Expiration Date'}                          = 'Konec Platnosti';
-    $Lang->{'Media'}                                    = 'Médium';
-    $Lang->{'Maximum number of one element'}            = 'Max poèet jedné Polo¾ky';
-    $Lang->{'Identifier'}                               = 'Identifikátor';
-    $Lang->{'Phone 1'}                                  = 'Telefon 1';
-    $Lang->{'Phone 2'}                                  = 'Telefon 2';
-    $Lang->{'Address'}                                  = 'Adresa';
-    $Lang->{'Building'}                                 = 'Budova';
-    $Lang->{'Floor'}                                    = 'podla¾í';
-    $Lang->{'IT Facility'}                              = 'IT Pøíslu¹enství';
-    $Lang->{'Office'}                                   = 'Kanceláø';
-    $Lang->{'Outlet'}                                   = 'Filiálka';
-    $Lang->{'Rack'}                                     = 'Rack';
-    $Lang->{'Room'}                                     = 'Místnost';
-    $Lang->{'Workplace'}                                = 'Pracovi¹tì';
-    $Lang->{'CIHistory::ConfigItemCreate'}              = '';
-    $Lang->{'CIHistory::VersionCreate'}                 = '';
-    $Lang->{'CIHistory::DeploymentStateUpdate'}         = '';
-    $Lang->{'CIHistory::IncidentStateUpdate'}           = '';
-    $Lang->{'CIHistory::ConfigItemDelete'}              = '';
-    $Lang->{'CIHistory::LinkAdd'}                       = '';
-    $Lang->{'CIHistory::LinkDelete'}                    = '';
-    $Lang->{'CIHistory::DefinitionUpdate'}              = '';
-    $Lang->{'CIHistory::NameUpdate'}                    = '';
-    $Lang->{'CIHistory::ValueUpdate'}                   = '';
-    $Lang->{'CIHistory::VersionDelete'}                 = '';
-    $Lang->{'Frontend module registration for the agent interface.'} = '';
-    $Lang->{'Shows a link in the menu to go back in the configuraton item zoom view of the agent interface.'} = '';
-    $Lang->{'Presents a link in the menu to go show versions in the configuraton item zoom view of the agent interface.'} = '';
-    $Lang->{'Shows a link in the menu to access the history of a configuration item in the its zoom view of the agent interface.'} = '';
-    $Lang->{'Shows a link in the menu to edit a configuration item in the its zoom view of the agent interface.'} = '';
-    $Lang->{'Shows a link in the menu to print a configuration item in the its zoom view of the agent interface.'} = '';
-    $Lang->{'Shows a link in the menu that allows linking a configuration item with another object in the config item zoom view of the agent interface.'} = '';
-    $Lang->{'Shows a link in the menu to duplicate a configuration item in the its zoom view of the agent interface.'} = '';
-    $Lang->{'Selects the configuration item number generator module. "AutoIncrement" increments the configuration item number, the SystemID, the ConfigItemClassID and the counter are used. The format is "SystemID.ConfigItemClassID.Counter", e.g. 1205000004, 1205000005.'} = '';
-    $Lang->{'Defines the default subobject of the class \'ITSMConfigItem\'.'} = '';
-    $Lang->{'Module to genetare ITSM config item statistics.'} = '';
-    $Lang->{'Object backend module registration for the import/export module.'} = '';
-    $Lang->{'Config item event module that enables logging to history in the agent interface.'} = '';
-    $Lang->{'Shows the config item history (reverse ordered) in the agent interface.'} = '';
-    $Lang->{'Parameters for the deployment states in the preferences view of the agent interface.'} = '';
-    $Lang->{'Module to check the group responsible for a class.'} = '';
-    $Lang->{'Module to check the group responsible for a configuration item.'} = '';
-    $Lang->{'Required permissions to use the ITSM configuration item screen in the agent interface.'} = '';
-    $Lang->{'Required permissions to use the edit ITSM configuration item screen in the agent interface.'} = '';
-    $Lang->{'Required permissions to use the add ITSM configuration item screen in the agent interface.'} = '';
-    $Lang->{'Required permissions to use the history ITSM configuration item screen in the agent interface.'} = '';
-    $Lang->{'Required permissions to use the print ITSM configuration item screen in the agent interface.'} = '';
-    $Lang->{'Required permissions to use the ITSM configuration item zoom screen in the agent interface.'} = '';
-    $Lang->{'Required permissions to use the ITSM configuration item search screen in the agent interface.'} = '';
-    $Lang->{'Configuration item search backend router of the agent interface.'} = '';
-    $Lang->{'Parameters for the pages (in which the configuration items are shown).'} = '';
-    $Lang->{'Configuration Item Limit'} = '';
-    $Lang->{'Configuration Item limit per page'} = '';
+    # Template: AgentITSMConfigItemEdit
+    $Self->{Translation}->{'The name of this config item'} = 'Jméno této Konfig. Polo¾ky';
+    $Self->{Translation}->{'Deployment State'} = 'Stav Nasazení';
+    $Self->{Translation}->{'Incident State'} = 'Stav Incidentu';
 
-    return 1;
+    # Template: AgentITSMConfigItemHistory
+
+    # Template: AgentITSMConfigItemOverviewNavBar
+    $Self->{Translation}->{'Context Settings'} = '';
+    $Self->{Translation}->{'Config Items per page'} = '';
+
+    # Template: AgentITSMConfigItemOverviewSmall
+    $Self->{Translation}->{'Deployment State Type'} = '';
+    $Self->{Translation}->{'Current Incident State'} = 'Aktuální Stav Incidentu';
+    $Self->{Translation}->{'Current Incident State Type'} = '';
+    $Self->{Translation}->{'Last Changed'} = '';
+
+    # Template: AgentITSMConfigItemPrint
+    $Self->{Translation}->{'ConfigItem'} = '';
+    $Self->{Translation}->{'ConfigItem-Info'} = '';
+    $Self->{Translation}->{'Current Deployment State'} = 'Aktuální Stav Nasazení';
+    $Self->{Translation}->{'Last changed'} = 'Poslední zmìna';
+    $Self->{Translation}->{'Last changed by'} = 'Poslední zmìna od';
+
+    # Template: AgentITSMConfigItemSearch
+    $Self->{Translation}->{'Search-Template'} = '';
+    $Self->{Translation}->{'Create New Template'} = '';
+    $Self->{Translation}->{'Also search in previous versions?'} = 'Hledat také v pøedchozích verzích?';
+
+    # Template: AgentITSMConfigItemSearchResultPrint
+    $Self->{Translation}->{'CreateTime'} = '';
+
+    # Template: AgentITSMConfigItemZoom
+    $Self->{Translation}->{'Configuration Item'} = '';
+    $Self->{Translation}->{'Show one version'} = '';
+    $Self->{Translation}->{'Show all versions'} = '';
+    $Self->{Translation}->{'Version Incident State'} = '';
+    $Self->{Translation}->{'Version Number'} = '';
+    $Self->{Translation}->{'Created By'} = '';
+    $Self->{Translation}->{'Changed On'} = '';
+    $Self->{Translation}->{'Show or hide the content.'} = '';
+    $Self->{Translation}->{'Configuration Item Version Details'} = '';
+    $Self->{Translation}->{'Property'} = '';
+
+    # SysConfig
+    $Self->{Translation}->{'Config item event module that enables logging to history in the agent interface.'} = '';
+    $Self->{Translation}->{'Configuration Item Limit'} = '';
+    $Self->{Translation}->{'Configuration Item limit per page'} = '';
+    $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} = '';
+    $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = '';
+    $Self->{Translation}->{'Defines an overview module to show the small view of a configuration item list.'} = '';
+    $Self->{Translation}->{'Defines the default subobject of the class \'ITSMConfigItem\'.'} = '';
+    $Self->{Translation}->{'Defines the shown columns in the config item overview. This option has no effect on the position of the column. Note: Class column is always available if filter \'All\' is selected'} = '';
+    $Self->{Translation}->{'Defines the shown columns in the config item search. This option has no effect on the position of the column.'} = '';
+    $Self->{Translation}->{'Module to check the group responsible for a class.'} = '';
+    $Self->{Translation}->{'Module to check the group responsible for a configuration item.'} = '';
+    $Self->{Translation}->{'Module to genetare ITSM config item statistics.'} = '';
+    $Self->{Translation}->{'Object backend module registration for the import/export module.'} = '';
+    $Self->{Translation}->{'Parameters for the deployment states in the preferences view of the agent interface.'} = '';
+    $Self->{Translation}->{'Parameters for the example permission groups of the general catalog attributes.'} = '';
+    $Self->{Translation}->{'Parameters for the pages (in which the configuration items are shown).'} = '';
+    $Self->{Translation}->{'Required permissions to use the ITSM configuration item screen in the agent interface.'} = '';
+    $Self->{Translation}->{'Required permissions to use the ITSM configuration item search screen in the agent interface.'} = '';
+    $Self->{Translation}->{'Required permissions to use the ITSM configuration item zoom screen in the agent interface.'} = '';
+    $Self->{Translation}->{'Required permissions to use the add ITSM configuration item screen in the agent interface.'} = '';
+    $Self->{Translation}->{'Required permissions to use the edit ITSM configuration item screen in the agent interface.'} = '';
+    $Self->{Translation}->{'Required permissions to use the history ITSM configuration item screen in the agent interface.'} = '';
+    $Self->{Translation}->{'Required permissions to use the print ITSM configuration item screen in the agent interface.'} = '';
+    $Self->{Translation}->{'Selects the configuration item number generator module. "AutoIncrement" increments the configuration item number, the SystemID, the ConfigItemClassID and the counter are used. The format is "SystemID.ConfigItemClassID.Counter", e.g. 1205000004, 1205000005.'} = '';
+    $Self->{Translation}->{'Shows a link in the menu that allows linking a configuration item with another object in the config item zoom view of the agent interface.'} = '';
+    $Self->{Translation}->{'Shows a link in the menu to access the history of a configuration item in the its zoom view of the agent interface.'} = '';
+    $Self->{Translation}->{'Shows a link in the menu to duplicate a configuration item in the its zoom view of the agent interface.'} = '';
+    $Self->{Translation}->{'Shows a link in the menu to edit a configuration item in the its zoom view of the agent interface.'} = '';
+    $Self->{Translation}->{'Shows a link in the menu to go back in the configuraton item zoom view of the agent interface.'} = '';
+    $Self->{Translation}->{'Shows a link in the menu to print a configuration item in the its zoom view of the agent interface.'} = '';
+    $Self->{Translation}->{'Shows the config item history (reverse ordered) in the agent interface.'} = '';
+    $Self->{Translation}->{'The identifier for a configuration item, e.g. ConfigItem#, MyConfigItem#. The default is ConfigItem#.'} = '';
+
+    #
+    # OBSOLETE ENTRIES FOR REFERENCE, DO NOT TRANSLATE!
+    #
+
 }
 
 1;

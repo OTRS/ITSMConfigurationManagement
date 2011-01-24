@@ -1,8 +1,8 @@
 # --
-# Kernel/Language/it_ITSMConfigItem.pm - the italian translation of ITSMConfigItem
-# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# Kernel/Language/it_ITSMConfigItem.pm - translation file
+# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: it_ITSMConfigItem.pm,v 1.4 2010-09-21 17:09:44 cr Exp $
+# $Id: it_ITSMConfigItem.pm,v 1.5 2011-01-24 20:23:20 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -12,188 +12,228 @@
 package Kernel::Language::it_ITSMConfigItem;
 
 use strict;
-use warnings;
-
-use vars qw($VERSION);
-$VERSION = qw($Revision: 1.4 $) [1];
 
 sub Data {
     my $Self = shift;
 
-    my $Lang = $Self->{Translation};
+    # Template: AAAITSMConfigItem
+    $Self->{Translation}->{'Address'} = '';
+    $Self->{Translation}->{'Admin Tool'} = 'Strumenti di Amministrazione';
+    $Self->{Translation}->{'Backup Device'} = 'Dispositivo di Copia';
+    $Self->{Translation}->{'Beamer'} = 'Video Beam';
+    $Self->{Translation}->{'Building'} = '';
+    $Self->{Translation}->{'CIHistory::ConfigItemCreate'} = '';
+    $Self->{Translation}->{'CIHistory::ConfigItemDelete'} = '';
+    $Self->{Translation}->{'CIHistory::DefinitionUpdate'} = '';
+    $Self->{Translation}->{'CIHistory::DeploymentStateUpdate'} = '';
+    $Self->{Translation}->{'CIHistory::IncidentStateUpdate'} = '';
+    $Self->{Translation}->{'CIHistory::LinkAdd'} = '';
+    $Self->{Translation}->{'CIHistory::LinkDelete'} = '';
+    $Self->{Translation}->{'CIHistory::NameUpdate'} = '';
+    $Self->{Translation}->{'CIHistory::ValueUpdate'} = '';
+    $Self->{Translation}->{'CIHistory::VersionCreate'} = '';
+    $Self->{Translation}->{'CIHistory::VersionDelete'} = '';
+    $Self->{Translation}->{'CPU'} = 'CPU';
+    $Self->{Translation}->{'Camera'} = 'Videocamera';
+    $Self->{Translation}->{'Capacity'} = 'Capacità';
+    $Self->{Translation}->{'Change Definition'} = 'Modifica Definizione';
+    $Self->{Translation}->{'Change of definition failed! See System Log for details.'} = 'Aggiornamento delle definizioni fallita! Guarda nel Log del Sistema per dettagli';
+    $Self->{Translation}->{'Client Application'} = 'Applicazione Cliente';
+    $Self->{Translation}->{'Client OS'} = 'SO Cliente';
+    $Self->{Translation}->{'Concurrent Users'} = 'Utenti concorrenti';
+    $Self->{Translation}->{'Config Item-Area'} = 'Area di Configurazione degli Elementi';
+    $Self->{Translation}->{'Config Items available'} = 'Elementi di configurazione disponibili';
+    $Self->{Translation}->{'Config Items shown'} = 'Elementi di configurazione mostrati';
+    $Self->{Translation}->{'Demo'} = 'Dimostrativo';
+    $Self->{Translation}->{'Desktop'} = 'Desktop';
+    $Self->{Translation}->{'Developer Licence'} = 'Licenza di Sviluppo';
+    $Self->{Translation}->{'Docking Station'} = 'Docking Station';
+    $Self->{Translation}->{'Duplicate'} = 'Duplicato';
+    $Self->{Translation}->{'Embedded'} = 'Embedded';
+    $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = '';
+    $Self->{Translation}->{'Enterprise Licence'} = 'Licenza Aziendale';
+    $Self->{Translation}->{'Expiration Date'} = 'Data di scadenza';
+    $Self->{Translation}->{'Expired'} = 'Scaduto';
+    $Self->{Translation}->{'FQDN'} = 'FQDN';
+    $Self->{Translation}->{'Floor'} = '';
+    $Self->{Translation}->{'Freeware'} = 'Freeware';
+    $Self->{Translation}->{'GSM'} = 'GSM';
+    $Self->{Translation}->{'Gateway'} = 'Gateway';
+    $Self->{Translation}->{'Graphic Adapter'} = 'Scheda Grafica';
+    $Self->{Translation}->{'Hard Disk'} = 'Disco Rigido';
+    $Self->{Translation}->{'Hard Disk::Capacity'} = 'Disco Rigido::Capacità';
+    $Self->{Translation}->{'Hide Versions'} = 'Nascondi Versioni';
+    $Self->{Translation}->{'IP Address'} = 'Indirizzo IP';
+    $Self->{Translation}->{'IP over DHCP'} = 'IP su DHCP';
+    $Self->{Translation}->{'IT Facility'} = '';
+    $Self->{Translation}->{'Inactive'} = 'Inattivo';
+    $Self->{Translation}->{'Install Date'} = 'Data di installazione';
+    $Self->{Translation}->{'Keybord'} = 'Tastiera';
+    $Self->{Translation}->{'LAN'} = 'LAN';
+    $Self->{Translation}->{'Laptop'} = 'Portatile';
+    $Self->{Translation}->{'Last Change'} = 'Ultima modifica';
+    $Self->{Translation}->{'Licence Key'} = 'Chiave della Licenza';
+    $Self->{Translation}->{'Licence Key::Expiration Date'} = 'Chiave della Licenza::Data di scadenza';
+    $Self->{Translation}->{'Licence Key::Quantity'} = 'Chiave della Licenza::Quantità';
+    $Self->{Translation}->{'Licence Type'} = 'Tipo di Licenza';
+    $Self->{Translation}->{'Maintenance'} = 'Manutenzione';
+    $Self->{Translation}->{'Maximum number of one element'} = 'Numero massimo di un elemento';
+    $Self->{Translation}->{'Media'} = 'Supporto';
+    $Self->{Translation}->{'Middleware'} = 'Middleware';
+    $Self->{Translation}->{'Model'} = 'Modello';
+    $Self->{Translation}->{'Modem'} = 'Modem';
+    $Self->{Translation}->{'Monitor'} = 'Monitor';
+    $Self->{Translation}->{'Mouse'} = 'Mouse';
+    $Self->{Translation}->{'Network Adapter'} = 'Adattatore di Rete';
+    $Self->{Translation}->{'Network Adapter::IP Address'} = 'Adattatore di Rete::Indirizzo IP';
+    $Self->{Translation}->{'Network Adapter::IP over DHCP'} = 'Adattatore di Rete::IP su DHCP';
+    $Self->{Translation}->{'Network Address'} = 'Indirizzo di Rete';
+    $Self->{Translation}->{'Network Address::Gateway'} = 'Indirizzo di Rete::Gateway';
+    $Self->{Translation}->{'Network Address::Subnet Mask'} = 'Indirizzo di Rete::Subnet Mask';
+    $Self->{Translation}->{'Open Source'} = 'Open Source';
+    $Self->{Translation}->{'Operating System'} = 'Sistema Operativo';
+    $Self->{Translation}->{'Operational'} = 'Operativo';
+    $Self->{Translation}->{'Other'} = 'Altro';
+    $Self->{Translation}->{'Other Equipment'} = 'Altre Apparecchiature';
+    $Self->{Translation}->{'Outlet'} = '';
+    $Self->{Translation}->{'PCMCIA Card'} = 'Scheda PCMCIA';
+    $Self->{Translation}->{'PDA'} = 'Palmare';
+    $Self->{Translation}->{'Per Node'} = 'Per Nodo';
+    $Self->{Translation}->{'Per Processor'} = 'Per Processore';
+    $Self->{Translation}->{'Per Server'} = 'Per Server';
+    $Self->{Translation}->{'Per User'} = 'Per Utente';
+    $Self->{Translation}->{'Phone 1'} = '';
+    $Self->{Translation}->{'Phone 2'} = '';
+    $Self->{Translation}->{'Pilot'} = 'Pilot';
+    $Self->{Translation}->{'Planned'} = 'Pianificato';
+    $Self->{Translation}->{'Printer'} = 'Stampante';
+    $Self->{Translation}->{'Production'} = 'Produzione';
+    $Self->{Translation}->{'Quantity'} = 'Quantità';
+    $Self->{Translation}->{'Rack'} = '';
+    $Self->{Translation}->{'Ram'} = 'Ram';
+    $Self->{Translation}->{'Repair'} = 'Riparazione';
+    $Self->{Translation}->{'Retired'} = 'Ritirato';
+    $Self->{Translation}->{'Review'} = 'Revisionato';
+    $Self->{Translation}->{'Room'} = '';
+    $Self->{Translation}->{'Router'} = 'Router';
+    $Self->{Translation}->{'Scanner'} = 'Scanner';
+    $Self->{Translation}->{'Search Config Items'} = 'Ricerca elementi di configurazione';
+    $Self->{Translation}->{'Security Device'} = 'Dispositivo di sicurezza';
+    $Self->{Translation}->{'Serial Number'} = 'Numero Seriale';
+    $Self->{Translation}->{'Server'} = 'Server';
+    $Self->{Translation}->{'Server Application'} = 'Aplicazione Server';
+    $Self->{Translation}->{'Server OS'} = 'SO Server';
+    $Self->{Translation}->{'Show Versions'} = 'Mostra Versioni';
+    $Self->{Translation}->{'Single Licence'} = 'Single Licence';
+    $Self->{Translation}->{'Subnet Mask'} = 'Subnet Mask';
+    $Self->{Translation}->{'Switch'} = 'Switch';
+    $Self->{Translation}->{'Telco'} = 'Telco';
+    $Self->{Translation}->{'Test/QA'} = 'Test';
+    $Self->{Translation}->{'The deployment state of this config item'} = 'Lo stato di implementazione di questo elemento di configurazione';
+    $Self->{Translation}->{'The incident state of this config item'} = 'Lo stato di incidente di questo elemento di configurazione';
+    $Self->{Translation}->{'Time Restricted'} = 'Limitata nel tempo';
+    $Self->{Translation}->{'USB Device'} = 'Dispositivo USB';
+    $Self->{Translation}->{'Unlimited'} = 'Illimitata';
+    $Self->{Translation}->{'User Tool'} = 'Strumenti Utente';
+    $Self->{Translation}->{'Volume Licence'} = 'Licenza per Volume';
+    $Self->{Translation}->{'WLAN'} = 'WLAN';
+    $Self->{Translation}->{'WLAN Access Point'} = 'WLAN Access Point';
+    $Self->{Translation}->{'Warranty Expiration Date'} = 'Data di scadenza della garanzia';
+    $Self->{Translation}->{'Workplace'} = '';
 
-    return if ref $Lang ne 'HASH';
+    # Template: AdminITSMConfigItem
+    $Self->{Translation}->{'Config Item Management'} = 'Gestione degli Elementi di Configurazione';
+    $Self->{Translation}->{'Change class definition'} = '';
+    $Self->{Translation}->{'Config Item'} = 'Elemento di Configurazione';
+    $Self->{Translation}->{'Class'} = 'Classe';
+    $Self->{Translation}->{'Definition'} = '';
 
-    $Lang->{'Config Item'}            = 'Elemento di Configurazione';
-    $Lang->{'Config Item-Area'}       = 'Area di Configurazione degli Elementi';
-    $Lang->{'Config Item Management'} = 'Gestione degli Elementi di Configurazione';
-    $Lang->{'Change Definition'}      = 'Modifica Definizione';
-    $Lang->{'Class'}                  = 'Classe';
-    $Lang->{'Show Versions'}          = 'Mostra Versioni';
-    $Lang->{'Hide Versions'}          = 'Nascondi Versioni';
-    $Lang->{'Last changed by'}        = 'Ultima modifica di';
-    $Lang->{'Last changed'}           = 'Ultima modifica';
-    $Lang->{'Change of definition failed! See System Log for details.'} = 'Aggiornamento delle definizioni fallita! Guarda nel Log del Sistema per dettagli';
-    $Lang->{'Also search in previous versions?'} = 'Cercare anche in versioni precedenti?';
-    $Lang->{'Config Items shown'}                = 'Elementi di configurazione mostrati';
-    $Lang->{'Config Items available'}            = 'Elementi di configurazione disponibili';
-    $Lang->{'Search Config Items'}               = 'Ricerca elementi di configurazione';
-    $Lang->{'Deployment State'}                  = 'Stato di implementazione';
-    $Lang->{'Current Deployment State'}          = 'Stato attuale di implementazione';
-    $Lang->{'Incident State'}                    = 'Stato dell\'Incidente';
-    $Lang->{'Current Incident State'}            = 'Stato attuale dell\'Incidente';
-    $Lang->{'The name of this config item'}      = 'Il nome di questo elemento di configurazione';
-    $Lang->{'The deployment state of this config item'} = 'Lo stato di implementazione di questo elemento di configurazione';
-    $Lang->{'The incident state of this config item'} = 'Lo stato di incidente di questo elemento di configurazione';
-    $Lang->{'Last Change'}                   = 'Ultima modifica';
-    $Lang->{'Duplicate'}                     = 'Duplicato';
-    $Lang->{'Expired'}                       = 'Scaduto';
-    $Lang->{'Inactive'}                      = 'Inattivo';
-    $Lang->{'Maintenance'}                   = 'Manutenzione';
-    $Lang->{'Pilot'}                         = 'Pilot';
-    $Lang->{'Planned'}                       = 'Pianificato';
-    $Lang->{'Production'}                    = 'Produzione';
-    $Lang->{'Repair'}                        = 'Riparazione';
-    $Lang->{'Retired'}                       = 'Ritirato';
-    $Lang->{'Review'}                        = 'Revisionato';
-    $Lang->{'Test/QA'}                       = 'Test';
-    $Lang->{'Operational'}                   = 'Operativo';
-    $Lang->{'Incident'}                      = 'Incidente';
-    $Lang->{'Desktop'}                       = 'Desktop';
-    $Lang->{'Laptop'}                        = 'Portatile';
-    $Lang->{'Other'}                         = 'Altro';
-    $Lang->{'PDA'}                           = 'Palmare';
-    $Lang->{'Phone'}                         = 'Telefono';
-    $Lang->{'Server'}                        = 'Server';
-    $Lang->{'Backup Device'}                 = 'Dispositivo di Copia';
-    $Lang->{'Beamer'}                        = 'Video Beam';
-    $Lang->{'Camera'}                        = 'Videocamera';
-    $Lang->{'Docking Station'}               = 'Docking Station';
-    $Lang->{'Keybord'}                       = 'Tastiera';
-    $Lang->{'Modem'}                         = 'Modem';
-    $Lang->{'Monitor'}                       = 'Monitor';
-    $Lang->{'Mouse'}                         = 'Mouse';
-    $Lang->{'Other'}                         = 'Altro';
-    $Lang->{'PCMCIA Card'}                   = 'Scheda PCMCIA';
-    $Lang->{'Printer'}                       = 'Stampante';
-    $Lang->{'Router'}                        = 'Router';
-    $Lang->{'Scanner'}                       = 'Scanner';
-    $Lang->{'Security Device'}               = 'Dispositivo di sicurezza';
-    $Lang->{'Switch'}                        = 'Switch';
-    $Lang->{'USB Device'}                    = 'Dispositivo USB';
-    $Lang->{'WLAN Access Point'}             = 'WLAN Access Point';
-    $Lang->{'GSM'}                           = 'GSM';
-    $Lang->{'LAN'}                           = 'LAN';
-    $Lang->{'Other'}                         = 'Altro';
-    $Lang->{'Telco'}                         = 'Telco';
-    $Lang->{'WLAN'}                          = 'WLAN';
-    $Lang->{'Admin Tool'}                    = 'Strumenti di Amministrazione';
-    $Lang->{'Client Application'}            = 'Applicazione Cliente';
-    $Lang->{'Client OS'}                     = 'SO Cliente';
-    $Lang->{'Embedded'}                      = 'Embedded';
-    $Lang->{'Middleware'}                    = 'Middleware';
-    $Lang->{'Other'}                         = 'Altro';
-    $Lang->{'Server Application'}            = 'Aplicazione Server';
-    $Lang->{'Server OS'}                     = 'SO Server';
-    $Lang->{'User Tool'}                     = 'Strumenti Utente';
-    $Lang->{'Concurrent Users'}              = 'Utenti concorrenti';
-    $Lang->{'Demo'}                          = 'Dimostrativo';
-    $Lang->{'Developer Licence'}             = 'Licenza di Sviluppo';
-    $Lang->{'Enterprise Licence'}            = 'Licenza Aziendale';
-    $Lang->{'Freeware'}                      = 'Freeware';
-    $Lang->{'Open Source'}                   = 'Open Source';
-    $Lang->{'Per Node'}                      = 'Per Nodo';
-    $Lang->{'Per Processor'}                 = 'Per Processore';
-    $Lang->{'Per Server'}                    = 'Per Server';
-    $Lang->{'Per User'}                      = 'Per Utente';
-    $Lang->{'Single Licence'}                = 'Single Licence';
-    $Lang->{'Time Restricted'}               = 'Limitata nel tempo';
-    $Lang->{'Unlimited'}                     = 'Illimitata';
-    $Lang->{'Volume Licence'}                = 'Licenza per Volume';
-    $Lang->{'Model'}                         = 'Modello';
-    $Lang->{'Serial Number'}                 = 'Numero Seriale';
-    $Lang->{'Operating System'}              = 'Sistema Operativo';
-    $Lang->{'CPU'}                           = 'CPU';
-    $Lang->{'Ram'}                           = 'Ram';
-    $Lang->{'Hard Disk'}                     = 'Disco Rigido';
-    $Lang->{'Hard Disk::Capacity'}           = 'Disco Rigido::Capacità';
-    $Lang->{'Capacity'}                      = 'Capacità';
-    $Lang->{'FQDN'}                          = 'FQDN';
-    $Lang->{'Network Adapter'}               = 'Adattatore di Rete';
-    $Lang->{'Network Adapter::IP over DHCP'} = 'Adattatore di Rete::IP su DHCP';
-    $Lang->{'Network Adapter::IP Address'}   = 'Adattatore di Rete::Indirizzo IP';
-    $Lang->{'IP over DHCP'}                  = 'IP su DHCP';
-    $Lang->{'IP Address'}                    = 'Indirizzo IP';
-    $Lang->{'Graphic Adapter'}               = 'Scheda Grafica';
-    $Lang->{'Other Equipment'}               = 'Altre Apparecchiature';
-    $Lang->{'Warranty Expiration Date'}      = 'Data di scadenza della garanzia';
-    $Lang->{'Install Date'}                  = 'Data di installazione';
-    $Lang->{'Network Address'}               = 'Indirizzo di Rete';
-    $Lang->{'Network Address::Subnet Mask'}  = 'Indirizzo di Rete::Subnet Mask';
-    $Lang->{'Network Address::Gateway'}      = 'Indirizzo di Rete::Gateway';
-    $Lang->{'Subnet Mask'}                   = 'Subnet Mask';
-    $Lang->{'Gateway'}                       = 'Gateway';
-    $Lang->{'Licence Type'}                  = 'Tipo di Licenza';
-    $Lang->{'Licence Key'}                   = 'Chiave della Licenza';
-    $Lang->{'Licence Key::Quantity'}         = 'Chiave della Licenza::Quantità';
-    $Lang->{'Licence Key::Expiration Date'}  = 'Chiave della Licenza::Data di scadenza';
-    $Lang->{'Quantity'}                      = 'Quantità';
-    $Lang->{'Expiration Date'}               = 'Data di scadenza';
-    $Lang->{'Media'}                         = 'Supporto';
-    $Lang->{'Maximum number of one element'} = 'Numero massimo di un elemento';
-    $Lang->{'Identifier'}                    = 'Identificativo';
-    $Lang->{'Phone 1'}                       = '';
-    $Lang->{'Phone 2'}                       = '';
-    $Lang->{'Address'}                       = '';
-    $Lang->{'Building'}                      = '';
-    $Lang->{'Floor'}                         = '';
-    $Lang->{'IT Facility'}                   = '';
-    $Lang->{'Office'}                        = '';
-    $Lang->{'Outlet'}                        = '';
-    $Lang->{'Rack'}                          = '';
-    $Lang->{'Room'}                          = '';
-    $Lang->{'Workplace'}                     = '';
-    $Lang->{'CIHistory::ConfigItemCreate'}              = '';
-    $Lang->{'CIHistory::VersionCreate'}                 = '';
-    $Lang->{'CIHistory::DeploymentStateUpdate'}         = '';
-    $Lang->{'CIHistory::IncidentStateUpdate'}           = '';
-    $Lang->{'CIHistory::ConfigItemDelete'}              = '';
-    $Lang->{'CIHistory::LinkAdd'}                       = '';
-    $Lang->{'CIHistory::LinkDelete'}                    = '';
-    $Lang->{'CIHistory::DefinitionUpdate'}              = '';
-    $Lang->{'CIHistory::NameUpdate'}                    = '';
-    $Lang->{'CIHistory::ValueUpdate'}                   = '';
-    $Lang->{'CIHistory::VersionDelete'}                 = '';
-    $Lang->{'Frontend module registration for the agent interface.'} = '';
-    $Lang->{'Shows a link in the menu to go back in the configuraton item zoom view of the agent interface.'} = '';
-    $Lang->{'Presents a link in the menu to go show versions in the configuraton item zoom view of the agent interface.'} = '';
-    $Lang->{'Shows a link in the menu to access the history of a configuration item in the its zoom view of the agent interface.'} = '';
-    $Lang->{'Shows a link in the menu to edit a configuration item in the its zoom view of the agent interface.'} = '';
-    $Lang->{'Shows a link in the menu to print a configuration item in the its zoom view of the agent interface.'} = '';
-    $Lang->{'Shows a link in the menu that allows linking a configuration item with another object in the config item zoom view of the agent interface.'} = '';
-    $Lang->{'Shows a link in the menu to duplicate a configuration item in the its zoom view of the agent interface.'} = '';
-    $Lang->{'Selects the configuration item number generator module. "AutoIncrement" increments the configuration item number, the SystemID, the ConfigItemClassID and the counter are used. The format is "SystemID.ConfigItemClassID.Counter", e.g. 1205000004, 1205000005.'} = '';
-    $Lang->{'Defines the default subobject of the class \'ITSMConfigItem\'.'} = '';
-    $Lang->{'Module to genetare ITSM config item statistics.'} = '';
-    $Lang->{'Object backend module registration for the import/export module.'} = '';
-    $Lang->{'Config item event module that enables logging to history in the agent interface.'} = '';
-    $Lang->{'Shows the config item history (reverse ordered) in the agent interface.'} = '';
-    $Lang->{'Parameters for the deployment states in the preferences view of the agent interface.'} = '';
-    $Lang->{'Module to check the group responsible for a class.'} = '';
-    $Lang->{'Module to check the group responsible for a configuration item.'} = '';
-    $Lang->{'Required permissions to use the ITSM configuration item screen in the agent interface.'} = '';
-    $Lang->{'Required permissions to use the edit ITSM configuration item screen in the agent interface.'} = '';
-    $Lang->{'Required permissions to use the add ITSM configuration item screen in the agent interface.'} = '';
-    $Lang->{'Required permissions to use the history ITSM configuration item screen in the agent interface.'} = '';
-    $Lang->{'Required permissions to use the print ITSM configuration item screen in the agent interface.'} = '';
-    $Lang->{'Required permissions to use the ITSM configuration item zoom screen in the agent interface.'} = '';
-    $Lang->{'Required permissions to use the ITSM configuration item search screen in the agent interface.'} = '';
-    $Lang->{'Configuration item search backend router of the agent interface.'} = '';
-    $Lang->{'Parameters for the pages (in which the configuration items are shown).'} = '';
-    $Lang->{'Configuration Item Limit'} = '';
-    $Lang->{'Configuration Item limit per page'} = '';
+    # Template: AgentITSMConfigItemAdd
+    $Self->{Translation}->{'Filter for Classes'} = '';
+    $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = '';
 
-    return 1;
+    # Template: AgentITSMConfigItemEdit
+    $Self->{Translation}->{'The name of this config item'} = 'Il nome di questo elemento di configurazione';
+    $Self->{Translation}->{'Deployment State'} = 'Stato di implementazione';
+    $Self->{Translation}->{'Incident State'} = 'Stato dell\'Incidente';
+
+    # Template: AgentITSMConfigItemHistory
+
+    # Template: AgentITSMConfigItemOverviewNavBar
+    $Self->{Translation}->{'Context Settings'} = '';
+    $Self->{Translation}->{'Config Items per page'} = '';
+
+    # Template: AgentITSMConfigItemOverviewSmall
+    $Self->{Translation}->{'Deployment State Type'} = '';
+    $Self->{Translation}->{'Current Incident State'} = 'Stato attuale dell\'Incidente';
+    $Self->{Translation}->{'Current Incident State Type'} = '';
+    $Self->{Translation}->{'Last Changed'} = '';
+
+    # Template: AgentITSMConfigItemPrint
+    $Self->{Translation}->{'ConfigItem'} = '';
+    $Self->{Translation}->{'ConfigItem-Info'} = '';
+    $Self->{Translation}->{'Current Deployment State'} = 'Stato attuale di implementazione';
+    $Self->{Translation}->{'Last changed'} = 'Ultima modifica';
+    $Self->{Translation}->{'Last changed by'} = 'Ultima modifica di';
+
+    # Template: AgentITSMConfigItemSearch
+    $Self->{Translation}->{'Search-Template'} = '';
+    $Self->{Translation}->{'Create New Template'} = '';
+    $Self->{Translation}->{'Also search in previous versions?'} = 'Cercare anche in versioni precedenti?';
+
+    # Template: AgentITSMConfigItemSearchResultPrint
+    $Self->{Translation}->{'CreateTime'} = '';
+
+    # Template: AgentITSMConfigItemZoom
+    $Self->{Translation}->{'Configuration Item'} = '';
+    $Self->{Translation}->{'Show one version'} = '';
+    $Self->{Translation}->{'Show all versions'} = '';
+    $Self->{Translation}->{'Version Incident State'} = '';
+    $Self->{Translation}->{'Version Number'} = '';
+    $Self->{Translation}->{'Created By'} = '';
+    $Self->{Translation}->{'Changed On'} = '';
+    $Self->{Translation}->{'Show or hide the content.'} = '';
+    $Self->{Translation}->{'Configuration Item Version Details'} = '';
+    $Self->{Translation}->{'Property'} = '';
+
+    # SysConfig
+    $Self->{Translation}->{'Config item event module that enables logging to history in the agent interface.'} = '';
+    $Self->{Translation}->{'Configuration Item Limit'} = '';
+    $Self->{Translation}->{'Configuration Item limit per page'} = '';
+    $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} = '';
+    $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = '';
+    $Self->{Translation}->{'Defines an overview module to show the small view of a configuration item list.'} = '';
+    $Self->{Translation}->{'Defines the default subobject of the class \'ITSMConfigItem\'.'} = '';
+    $Self->{Translation}->{'Defines the shown columns in the config item overview. This option has no effect on the position of the column. Note: Class column is always available if filter \'All\' is selected'} = '';
+    $Self->{Translation}->{'Defines the shown columns in the config item search. This option has no effect on the position of the column.'} = '';
+    $Self->{Translation}->{'Module to check the group responsible for a class.'} = '';
+    $Self->{Translation}->{'Module to check the group responsible for a configuration item.'} = '';
+    $Self->{Translation}->{'Module to genetare ITSM config item statistics.'} = '';
+    $Self->{Translation}->{'Object backend module registration for the import/export module.'} = '';
+    $Self->{Translation}->{'Parameters for the deployment states in the preferences view of the agent interface.'} = '';
+    $Self->{Translation}->{'Parameters for the example permission groups of the general catalog attributes.'} = '';
+    $Self->{Translation}->{'Parameters for the pages (in which the configuration items are shown).'} = '';
+    $Self->{Translation}->{'Required permissions to use the ITSM configuration item screen in the agent interface.'} = '';
+    $Self->{Translation}->{'Required permissions to use the ITSM configuration item search screen in the agent interface.'} = '';
+    $Self->{Translation}->{'Required permissions to use the ITSM configuration item zoom screen in the agent interface.'} = '';
+    $Self->{Translation}->{'Required permissions to use the add ITSM configuration item screen in the agent interface.'} = '';
+    $Self->{Translation}->{'Required permissions to use the edit ITSM configuration item screen in the agent interface.'} = '';
+    $Self->{Translation}->{'Required permissions to use the history ITSM configuration item screen in the agent interface.'} = '';
+    $Self->{Translation}->{'Required permissions to use the print ITSM configuration item screen in the agent interface.'} = '';
+    $Self->{Translation}->{'Selects the configuration item number generator module. "AutoIncrement" increments the configuration item number, the SystemID, the ConfigItemClassID and the counter are used. The format is "SystemID.ConfigItemClassID.Counter", e.g. 1205000004, 1205000005.'} = '';
+    $Self->{Translation}->{'Shows a link in the menu that allows linking a configuration item with another object in the config item zoom view of the agent interface.'} = '';
+    $Self->{Translation}->{'Shows a link in the menu to access the history of a configuration item in the its zoom view of the agent interface.'} = '';
+    $Self->{Translation}->{'Shows a link in the menu to duplicate a configuration item in the its zoom view of the agent interface.'} = '';
+    $Self->{Translation}->{'Shows a link in the menu to edit a configuration item in the its zoom view of the agent interface.'} = '';
+    $Self->{Translation}->{'Shows a link in the menu to go back in the configuraton item zoom view of the agent interface.'} = '';
+    $Self->{Translation}->{'Shows a link in the menu to print a configuration item in the its zoom view of the agent interface.'} = '';
+    $Self->{Translation}->{'Shows the config item history (reverse ordered) in the agent interface.'} = '';
+    $Self->{Translation}->{'The identifier for a configuration item, e.g. ConfigItem#, MyConfigItem#. The default is ConfigItem#.'} = '';
+
+    #
+    # OBSOLETE ENTRIES FOR REFERENCE, DO NOT TRANSLATE!
+    #
+
 }
 
 1;
