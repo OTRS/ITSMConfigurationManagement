@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <otrs_package version="1.0">
-    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.89 2011-01-12 18:29:08 ub Exp $</CVS>
+    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.90 2011-01-24 19:57:02 ub Exp $</CVS>
     <Name>ITSMConfigurationManagement</Name>
     <Version>0.0.0</Version>
     <Framework>3.0.x</Framework>
@@ -16,8 +16,8 @@
         <File Permission="644" Location="doc/itsm-configuration-management-database.png"/>
         <File Permission="644" Location="Kernel/Config/Files/ITSMConfigItem.xml"/>
         <File Permission="644" Location="Kernel/Language/bg_ITSMConfigItem.pm"/>
+        <File Permission="644" Location="Kernel/Language/cs_ITSMConfigItem.pm"/>
         <File Permission="644" Location="Kernel/Language/ct_ITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/Language/cz_ITSMConfigItem.pm"/>
         <File Permission="644" Location="Kernel/Language/da_ITSMConfigItem.pm"/>
         <File Permission="644" Location="Kernel/Language/de_ITSMConfigItem.pm"/>
         <File Permission="644" Location="Kernel/Language/en_ITSMConfigItem.pm"/>
@@ -1342,7 +1342,7 @@
         Sie sind im Begriff das OTRS-Paket ITSMConfigurationManagement zu installieren.<br/>
         <br/>
         <br/>
-        <strong>BENÖTIGTE OTRS-PAKETE</strong>
+        <strong>BENÃTIGTE OTRS-PAKETE</strong>
         <ul>
         <li>ITSMCore 2.1.92</li>
         </ul>
@@ -1357,7 +1357,7 @@
         <strong>BIENVENIDO</strong>
         <br/>
         <br/>
-        Usted está punto de instalar el paquete ITSMConfigurationManagement de OTRS.<br/>
+        Usted estÃ¡ punto de instalar el paquete ITSMConfigurationManagement de OTRS.<br/>
         <br/>
         <br/>
         <strong>PAQUETES OTRS REQUERIDOS</strong>
@@ -1391,10 +1391,10 @@
         <strong>HINWEIS</strong>
         <br/>
         <br/>
-        Um Benutzern Zugriff auf das ConfigItem-Menü zu gewähren, müssen diese Mitglied der neuen Gruppe 'itsm-configitem' sein.
+        Um Benutzern Zugriff auf das ConfigItem-MenÃ¼ zu gewÃ¤hren, mÃ¼ssen diese Mitglied der neuen Gruppe 'itsm-configitem' sein.
         <br/>
         <br/>
-        Die von diesem Paket hinzugefügten Menü-Punkte sind erst nach einem erneuten Anmeldevorgang im System sichtbar.
+        Die von diesem Paket hinzugefÃ¼gten MenÃ¼-Punkte sind erst nach einem erneuten Anmeldevorgang im System sichtbar.
         <br/>
         <br/>
         ((enjoy))<br/>
@@ -1404,14 +1404,14 @@
     <IntroInstall Type="post" Title="Installation Information" Lang="es"><![CDATA[
 
         <br/>
-        <strong>ATENCIÓN</strong>
+        <strong>ATENCIÃN</strong>
         <br/>
         <br/>
-        Para permitirles a los usuarios el acceso al menú de los elementos de configuración, es necesario que se den de
+        Para permitirles a los usuarios el acceso al menÃº de los elementos de configuraciÃ³n, es necesario que se den de
         alta como miembros del grupo 'itsm-configitem'.
         <br/>
         <br/>
-        Los elementos del menú que se agregaron por este paquete, serpan visibles después reiniciar la sesión al sistema.
+        Los elementos del menÃº que se agregaron por este paquete, serpan visibles despuÃ©s reiniciar la sesiÃ³n al sistema.
         <br/>
         <br/>
         ((enjoy))
@@ -1446,7 +1446,7 @@
         Sie sind im Begriff das OTRS-Paket ITSMConfigurationManagement zu aktualisieren.<br/>
         <br/>
         <br/>
-        <strong>BENÖTIGTE OTRS-PAKETE</strong>
+        <strong>BENÃTIGTE OTRS-PAKETE</strong>
         <ul>
         <li>ITSMCore 2.1.92</li>
         </ul>
@@ -1461,7 +1461,7 @@
         <strong>BIENVENIDO</strong>
         <br/>
         <br/>
-        Usted está a punto de actualizar el paquete ITSMConfigurationManagement de OTRS.<br/>
+        Usted estÃ¡ a punto de actualizar el paquete ITSMConfigurationManagement de OTRS.<br/>
         <br/>
         <br/>
         <strong>PAQUETES OTRS REQUERIDOS</strong>
@@ -1503,7 +1503,7 @@
         <strong>ACHTUNG</strong>
         <br/>
         <br/>
-        Bei der Deinstallation werden die von diesem Paket angelegten Datenbank-Tabellen gelöscht.
+        Bei der Deinstallation werden die von diesem Paket angelegten Datenbank-Tabellen gelÃ¶scht.
         Alle darin enthaltenen Daten gehen unwiderruflich verloren!
         <br/>
         <br/>
@@ -1511,10 +1511,10 @@
         Sie kann jederzeit im Admin-Bereich wieder aktiviert werden.
         <br/>
         <br/>
-        Alle Verknüpfungen zu ConfigItem-Objekten werden unwiderruflich gelöscht!
+        Alle VerknÃ¼pfungen zu ConfigItem-Objekten werden unwiderruflich gelÃ¶scht!
         <br/>
         <br/>
-        Nach der Deinstallation sind die zu diesem Paket zugehörigen Statistiken nicht mehr verfügbar.
+        Nach der Deinstallation sind die zu diesem Paket zugehÃ¶rigen Statistiken nicht mehr verfÃ¼gbar.
         <br/>
         <br/>
         ((enjoy))<br/>
@@ -1524,21 +1524,21 @@
     <IntroUninstall Type="pre" Title="Uninstallation Information" Lang="es"><![CDATA[
 
         <br/>
-        <strong>ATENCIÓN</strong>
+        <strong>ATENCIÃN</strong>
         <br/>
         <br/>
-        Si usted desinstala este paquete, todas las tablas de la base de datos que fueron creadas durante su instalación se eliminarán.
-        ¡Todos los datos de dichas tablas se perderán irrevocablemente!
+        Si usted desinstala este paquete, todas las tablas de la base de datos que fueron creadas durante su instalaciÃ³n se eliminarÃ¡n.
+        Â¡Todos los datos de dichas tablas se perderÃ¡n irrevocablemente!
         <br/>
         <br/>
-        El grupo 'itsm-configitem' que se creó durante la instalación de este paquete se desactivará.
-        Es posible reactivar este grupo en el área de administración.
+        El grupo 'itsm-configitem' que se creÃ³ durante la instalaciÃ³n de este paquete se desactivarÃ¡.
+        Es posible reactivar este grupo en el Ã¡rea de administraciÃ³n.
         <br/>
         <br/>
-        ¡Todos los vínculos a objetos de elementos de configuración serán eliminados permanentemente!
+        Â¡Todos los vÃ­nculos a objetos de elementos de configuraciÃ³n serÃ¡n eliminados permanentemente!
         <br/>
         <br/>
-        Si usted desinstala este paquete, las estadísticas que están asociadas a él ya no estarán disponibles.
+        Si usted desinstala este paquete, las estadÃ­sticas que estÃ¡n asociadas a Ã©l ya no estarÃ¡n disponibles.
         <br/>
         <br/>
         ((enjoy))<br/>
