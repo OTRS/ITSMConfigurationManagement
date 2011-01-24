@@ -1,8 +1,8 @@
 # --
 # AgentITSMConfigItemZoom.dtl - provides HTML form for AgentITSMConfigItemZoom
-# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemZoom.dtl,v 1.20 2010-12-14 22:04:55 ub Exp $
+# $Id: AgentITSMConfigItemZoom.dtl,v 1.21 2011-01-24 20:18:40 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -98,10 +98,10 @@
                         <div class="ITSMItemView Icons">
 <!-- dtl:block:Expand -->
                             <a class="OneITSMItem Active" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"};ShowVersions=0" title="$Text{"Show one version"}"><span>$Text{"Show one version"}</span></a>
-                            <a class="AllITSMItems" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"};ShowVersions=1" title="$Text{"Show all versions"}"><span>$Text{"Show all versionss"}</span></a>
+                            <a class="AllITSMItems" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"};ShowVersions=1" title="$Text{"Show all versions"}"><span>$Text{"Show all versions"}</span></a>
 <!-- dtl:block:Expand -->
 <!-- dtl:block:Collapse -->
-                            <a class="OneITSMItem" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"};ShowVersions=0" title="$Text{"Show one version"}"><span>$Text{"Show one versionse"}</span></a>
+                            <a class="OneITSMItem" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"};ShowVersions=0" title="$Text{"Show one version"}"><span>$Text{"Show one version"}</span></a>
                             <a class="AllITSMItems Active" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"};ShowVersions=1" title="$Text{"Show all versions"}"><span>$Text{"Show all versions"}</span></a>
 <!-- dtl:block:Collapse -->
                         </div>
