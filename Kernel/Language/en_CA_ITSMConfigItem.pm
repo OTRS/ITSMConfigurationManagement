@@ -1,22 +1,21 @@
 # --
-# Kernel/Language/en_GB_ITSMConfigItem.pm - the en_GB translation
-# Copyright (C) 2001-2009 Olivier Sallou <olivier.sallou at irisa.fr>
+# Kernel/Language/en_CA_ITSMConfigItem.pm - the en_CA translation
 # Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: en_GB_ITSMConfigItem.pm,v 1.2 2011-02-11 09:13:17 mb Exp $
+# $Id: en_CA_ITSMConfigItem.pm,v 1.1 2011-02-11 09:13:17 mb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package Kernel::Language::en_GB_ITSMConfigItem;
+package Kernel::Language::en_CA_ITSMConfigItem;
 
 use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.2 $) [1];
+$VERSION = qw($Revision: 1.1 $) [1];
 
 sub Data {
     my $Self = shift;
@@ -36,6 +35,15 @@ sub Data {
     $Lang->{'CIHistory::NameUpdate'}                  = 'Name updated (new=%s; old=%s)';
     $Lang->{'CIHistory::ValueUpdate'}                 = 'Attribute %s updated from "%s" to "%s"';
     $Lang->{'CIHistory::VersionDelete'}               = 'Version %s deleted';
+
+    $Lang->{'Developer Licence'}                      = 'Developer License';
+    $Lang->{'Enterprise Licence'}                     = 'Enterprise License';
+    $Lang->{'Single Licence'}                         = 'Single License';
+    $Lang->{'Volume Licence'}                         = 'Volume License';
+    $Lang->{'Licence Type'}                           = 'License Type';
+    $Lang->{'Licence Key'}                            = 'License Key';
+    $Lang->{'Licence Key::Quantity'}                  = 'License Key::Quantity';
+    $Lang->{'Licence Key::Expiration Date'}           = 'License Key::Expiration Date';
 
     return 1;
 }
