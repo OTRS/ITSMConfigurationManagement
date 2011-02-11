@@ -1,8 +1,8 @@
 # --
 # Kernel/Language/en_ITSMConfigItem.pm - the english translation of ITSMConfigItem
-# Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: en_ITSMConfigItem.pm,v 1.2 2009-08-31 14:38:00 reb Exp $
+# $Id: en_ITSMConfigItem.pm,v 1.3 2011-02-11 09:11:18 mb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.2 $) [1];
+$VERSION = qw($Revision: 1.3 $) [1];
 
 sub Data {
     my $Self = shift;
@@ -35,6 +35,15 @@ sub Data {
     $Lang->{'CIHistory::NameUpdate'}                  = 'Name updated (new=%s; old=%s)';
     $Lang->{'CIHistory::ValueUpdate'}                 = 'Attribute %s updated from "%s" to "%s"';
     $Lang->{'CIHistory::VersionDelete'}               = 'Version %s deleted';
+
+    $Lang->{'Developer Licence'}                      = 'Developer License';
+    $Lang->{'Enterprise Licence'}                     = 'Enterprise License';
+    $Lang->{'Single Licence'}                         = 'Single License';
+    $Lang->{'Volume Licence'}                         = 'Volume License';
+    $Lang->{'Licence Type'}                           = 'License Type';
+    $Lang->{'Licence Key'}                            = 'License Key';
+    $Lang->{'Licence Key::Quantity'}                  = 'License Key::Quantity';
+    $Lang->{'Licence Key::Expiration Date'}           = 'License Key::Expiration Date';
 
     return 1;
 }
