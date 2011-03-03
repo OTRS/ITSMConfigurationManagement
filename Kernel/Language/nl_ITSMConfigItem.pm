@@ -2,7 +2,7 @@
 # Kernel/Language/nl_ITSMConfigItem.pm - translation file
 # Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: nl_ITSMConfigItem.pm,v 1.5 2011-02-11 09:16:00 mb Exp $
+# $Id: nl_ITSMConfigItem.pm,v 1.6 2011-03-03 18:58:27 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -22,17 +22,17 @@ sub Data {
     $Self->{Translation}->{'Backup Device'} = 'Backupapparaat';
     $Self->{Translation}->{'Beamer'} = 'Beamer';
     $Self->{Translation}->{'Building'} = 'Gebouw';
-    $Self->{Translation}->{'CIHistory::ConfigItemCreate'}            = 'Nieuw configuratie-item (ID=%s)';
-    $Self->{Translation}->{'CIHistory::VersionCreate'}               = 'Nieuwe versie (ID=%s)';
-    $Self->{Translation}->{'CIHistory::DeploymentStateUpdate'}       = 'Status bijgewerkt (nieuw=%s; oud=%s)';
-    $Self->{Translation}->{'CIHistory::IncidentStateUpdate'}         = 'Incident-status bijgewerkt (nieuw=%s; oud=%s)';
-    $Self->{Translation}->{'CIHistory::ConfigItemDelete'}            = 'Configuratie-item (ID=%s) verwijderd';
-    $Self->{Translation}->{'CIHistory::LinkAdd'}                     = 'Koppeling naar %s (type=%s) toegevoegd';
-    $Self->{Translation}->{'CIHistory::LinkDelete'}                  = 'Koppeling naar %s (type=%s) verwijderd';
-    $Self->{Translation}->{'CIHistory::DefinitionUpdate'}            = 'ConfigItems\' definitie bijgewerkt (ID=%s)';
-    $Self->{Translation}->{'CIHistory::NameUpdate'}                  = 'Naam bijgewerkt (nieuw=%s; oud=%s)';
-    $Self->{Translation}->{'CIHistory::ValueUpdate'}                 = 'Attribuut %s bijgewerkt van "%s" naar "%s"';
-    $Self->{Translation}->{'CIHistory::VersionDelete'}               = 'Versie %s verwijderd';
+    $Self->{Translation}->{'CIHistory::ConfigItemCreate'} = 'Nieuw configuratie-item (ID=%s)';
+    $Self->{Translation}->{'CIHistory::ConfigItemDelete'} = 'Configuratie-item (ID=%s) verwijderd';
+    $Self->{Translation}->{'CIHistory::DefinitionUpdate'} = 'ConfigItems\' definitie bijgewerkt (ID=%s)';
+    $Self->{Translation}->{'CIHistory::DeploymentStateUpdate'} = 'Status bijgewerkt (nieuw=%s; oud=%s)';
+    $Self->{Translation}->{'CIHistory::IncidentStateUpdate'} = 'Incident-status bijgewerkt (nieuw=%s; oud=%s)';
+    $Self->{Translation}->{'CIHistory::LinkAdd'} = 'Koppeling naar %s (type=%s) toegevoegd';
+    $Self->{Translation}->{'CIHistory::LinkDelete'} = 'Koppeling naar %s (type=%s) verwijderd';
+    $Self->{Translation}->{'CIHistory::NameUpdate'} = 'Naam bijgewerkt (nieuw=%s; oud=%s)';
+    $Self->{Translation}->{'CIHistory::ValueUpdate'} = 'Attribuut %s bijgewerkt van "%s" naar "%s"';
+    $Self->{Translation}->{'CIHistory::VersionCreate'} = 'Nieuwe versie (ID=%s)';
+    $Self->{Translation}->{'CIHistory::VersionDelete'} = 'Versie %s verwijderd';
     $Self->{Translation}->{'CPU'} = 'CPU';
     $Self->{Translation}->{'Camera'} = 'Camera';
     $Self->{Translation}->{'Capacity'} = 'Capaciteit';

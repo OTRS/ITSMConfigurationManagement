@@ -2,7 +2,7 @@
 # Kernel/Language/ru_ITSMConfigItem.pm - translation file
 # Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: ru_ITSMConfigItem.pm,v 1.7 2011-01-24 20:23:19 ub Exp $
+# $Id: ru_ITSMConfigItem.pm,v 1.8 2011-03-03 18:58:27 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
