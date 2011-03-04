@@ -2,7 +2,7 @@
 # Kernel/Language/cs_ITSMConfigItem.pm - translation file
 # Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: cs_ITSMConfigItem.pm,v 1.3 2011-03-03 18:58:27 ub Exp $
+# $Id: cs_ITSMConfigItem.pm,v 1.4 2011-03-04 16:43:42 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -44,6 +44,7 @@ sub Data {
     $Self->{Translation}->{'Config Item-Area'} = 'Konfig. Polo¾ka-Struktura';
     $Self->{Translation}->{'Config Items available'} = 'Dostupné Konfig. Polo¾ky';
     $Self->{Translation}->{'Config Items shown'} = 'Zobrazené Konfig. Polo¾ky';
+    $Self->{Translation}->{'CMDB'} = '';
     $Self->{Translation}->{'Demo'} = 'Demo';
     $Self->{Translation}->{'Desktop'} = 'Stolní';
     $Self->{Translation}->{'Developer Licence'} = 'Licence Vývojáøe';
@@ -176,6 +177,7 @@ sub Data {
     $Self->{Translation}->{'Current Deployment State'} = 'Aktuální Stav Nasazení';
     $Self->{Translation}->{'Last changed'} = 'Poslední zmìna';
     $Self->{Translation}->{'Last changed by'} = 'Poslední zmìna od';
+    $Self->{Translation}->{'Linked-Object'} = '';
 
     # Template: AgentITSMConfigItemSearch
     $Self->{Translation}->{'Search-Template'} = '';
@@ -187,12 +189,14 @@ sub Data {
 
     # Template: AgentITSMConfigItemZoom
     $Self->{Translation}->{'Configuration Item'} = '';
+    $Self->{Translation}->{'Linked Objects'} = '';
     $Self->{Translation}->{'Show one version'} = '';
     $Self->{Translation}->{'Show all versions'} = '';
     $Self->{Translation}->{'Version Incident State'} = '';
     $Self->{Translation}->{'Version Number'} = '';
     $Self->{Translation}->{'Created By'} = '';
     $Self->{Translation}->{'Changed On'} = '';
+    $Self->{Translation}->{'Resize'} = '';
     $Self->{Translation}->{'Show or hide the content.'} = '';
     $Self->{Translation}->{'Configuration Item Version Details'} = '';
     $Self->{Translation}->{'Property'} = '';

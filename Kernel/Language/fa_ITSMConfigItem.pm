@@ -2,7 +2,7 @@
 # Kernel/Language/fa_ITSMConfigItem.pm - translation file
 # Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: fa_ITSMConfigItem.pm,v 1.6 2011-03-03 18:58:27 ub Exp $
+# $Id: fa_ITSMConfigItem.pm,v 1.7 2011-03-04 16:43:42 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -44,6 +44,7 @@ sub Data {
     $Self->{Translation}->{'Config Item-Area'} = 'محدوده CI';
     $Self->{Translation}->{'Config Items available'} = 'CIهای در دسترس';
     $Self->{Translation}->{'Config Items shown'} = 'CIهای نمایش داده شده';
+    $Self->{Translation}->{'CMDB'} = '';
     $Self->{Translation}->{'Demo'} = 'نسخه نمایشی';
     $Self->{Translation}->{'Desktop'} = 'رومیزی';
     $Self->{Translation}->{'Developer Licence'} = 'اجازه‌نامه توسعه دهنده';
@@ -186,12 +187,14 @@ sub Data {
 
     # Template: AgentITSMConfigItemZoom
     $Self->{Translation}->{'Configuration Item'} = '';
+    $Self->{Translation}->{'Linked Objects'} = '';
     $Self->{Translation}->{'Show one version'} = '';
     $Self->{Translation}->{'Show all versions'} = '';
     $Self->{Translation}->{'Version Incident State'} = '';
     $Self->{Translation}->{'Version Number'} = '';
     $Self->{Translation}->{'Created By'} = '';
     $Self->{Translation}->{'Changed On'} = '';
+    $Self->{Translation}->{'Resize'} = '';
     $Self->{Translation}->{'Show or hide the content.'} = '';
     $Self->{Translation}->{'Configuration Item Version Details'} = '';
     $Self->{Translation}->{'Property'} = '';

@@ -2,7 +2,7 @@
 # Kernel/Language/de_ITSMConfigItem.pm - translation file
 # Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: de_ITSMConfigItem.pm,v 1.12 2011-03-03 18:58:27 ub Exp $
+# $Id: de_ITSMConfigItem.pm,v 1.13 2011-03-04 16:43:42 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -44,6 +44,7 @@ sub Data {
     $Self->{Translation}->{'Config Item-Area'} = 'Config Item-Bereich';
     $Self->{Translation}->{'Config Items available'} = 'Config Items verfügbar';
     $Self->{Translation}->{'Config Items shown'} = 'Config Items angezeigt';
+    $Self->{Translation}->{'CMDB'} = '';
     $Self->{Translation}->{'Demo'} = 'Demo';
     $Self->{Translation}->{'Desktop'} = 'Desktop';
     $Self->{Translation}->{'Developer Licence'} = 'Entwickler Lizenz';

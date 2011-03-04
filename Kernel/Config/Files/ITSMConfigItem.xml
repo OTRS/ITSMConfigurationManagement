@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <otrs_config version="1.0" init="Config">
-    <CVS>$Id: ITSMConfigItem.xml,v 1.35 2011-02-10 23:52:18 ub Exp $</CVS>
+    <CVS>$Id: ITSMConfigItem.xml,v 1.36 2011-03-04 16:43:43 ub Exp $</CVS>
     <ConfigItem Name="Frontend::Module###AdminITSMConfigItem" Required="0" Valid="1">
         <Description Translatable="1">Frontend module registration for the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
@@ -32,8 +32,8 @@
                 <NavBarName>Config Item</NavBarName>
                 <Title>Config Item</Title>
                 <NavBar>
-                    <Description>Config Item-Area</Description>
-                    <Name>Config Item</Name>
+                    <Description>Configuration Management Database</Description>
+                    <Name>CMDB</Name>
                     <Type>Menu</Type>
                     <Block>ItemArea</Block>
                     <Image>itsm_configitem.png</Image>

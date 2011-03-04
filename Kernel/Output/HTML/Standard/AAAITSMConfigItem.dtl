@@ -2,7 +2,7 @@
 # AAAITSMConfigItem.dtl - $Text variable file
 # Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: AAAITSMConfigItem.dtl,v 1.1 2011-01-24 20:22:18 ub Exp $
+# $Id: AAAITSMConfigItem.dtl,v 1.2 2011-03-04 16:43:43 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -37,6 +37,7 @@ $Text{"Concurrent Users"}
 $Text{"Config Item-Area"}
 $Text{"Config Items available"}
 $Text{"Config Items shown"}
+$Text{"CMDB"}
 $Text{"Demo"}
 $Text{"Desktop"}
 $Text{"Developer Licence"}

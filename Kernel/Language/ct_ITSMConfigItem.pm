@@ -2,7 +2,7 @@
 # Kernel/Language/ct_ITSMConfigItem.pm - translation file
 # Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: ct_ITSMConfigItem.pm,v 1.8 2011-03-03 18:58:27 ub Exp $
+# $Id: ct_ITSMConfigItem.pm,v 1.9 2011-03-04 16:43:42 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -44,6 +44,7 @@ sub Data {
     $Self->{Translation}->{'Config Item-Area'} = 'Àrea-Element de configuració';
     $Self->{Translation}->{'Config Items available'} = 'Elements de configuració disponibles';
     $Self->{Translation}->{'Config Items shown'} = 'Elements de configuració mostrats';
+    $Self->{Translation}->{'CMDB'} = '';
     $Self->{Translation}->{'Demo'} = 'Demo';
     $Self->{Translation}->{'Desktop'} = 'Ordinador';
     $Self->{Translation}->{'Developer Licence'} = 'Llicència de desenvolupament';
@@ -186,12 +187,14 @@ sub Data {
 
     # Template: AgentITSMConfigItemZoom
     $Self->{Translation}->{'Configuration Item'} = '';
+    $Self->{Translation}->{'Linked Objects'} = '';
     $Self->{Translation}->{'Show one version'} = '';
     $Self->{Translation}->{'Show all versions'} = '';
     $Self->{Translation}->{'Version Incident State'} = '';
     $Self->{Translation}->{'Version Number'} = '';
     $Self->{Translation}->{'Created By'} = '';
     $Self->{Translation}->{'Changed On'} = '';
+    $Self->{Translation}->{'Resize'} = '';
     $Self->{Translation}->{'Show or hide the content.'} = '';
     $Self->{Translation}->{'Configuration Item Version Details'} = '';
     $Self->{Translation}->{'Property'} = '';
