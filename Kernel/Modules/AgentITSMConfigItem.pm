@@ -1,8 +1,8 @@
 # --
 # Kernel/Modules/AgentITSMConfigItem.pm - the OTRS::ITSM config item module
-# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItem.pm,v 1.15 2010-12-31 17:59:39 cr Exp $
+# $Id: AgentITSMConfigItem.pm,v 1.16 2011-03-28 17:23:47 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.15 $) [1];
+$VERSION = qw($Revision: 1.16 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -113,7 +113,7 @@ sub Run {
     # to store the total number of config items in all classes that the user has access
     my $TotalCount;
 
-    # to store all the clases that the user has access, used un search for filter 'All'
+    # to store all the clases that the user has access, used in search for filter 'All'
     my $AccessClassList;
 
     CLASSID:
