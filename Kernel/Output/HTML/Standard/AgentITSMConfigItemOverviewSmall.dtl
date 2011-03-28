@@ -1,8 +1,8 @@
 # --
 # AgentITSMConfigItemOverviewSmall.dtl - html for configurtion item overview table
-# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemOverviewSmall.dtl,v 1.2 2010-12-31 18:00:09 cr Exp $
+# $Id: AgentITSMConfigItemOverviewSmall.dtl,v 1.3 2011-03-28 11:23:50 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -147,6 +147,7 @@
     Core.UI.StaticTableControl($('#OverviewControl').add($('#OverviewBody')));
     $('.MasterAction').bind('click', function (Event) {
         window.location = $(this).find('.MasterActionLink').attr('href');
+        return false;
     });
     $(window).resize(function() {
         Core.UI.AdjustTableHead($('#OverviewHeader thead'), $('#OverviewBody tbody'));
