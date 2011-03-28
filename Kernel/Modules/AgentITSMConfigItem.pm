@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItem.pm - the OTRS::ITSM config item module
 # Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItem.pm,v 1.17 2011-03-28 17:24:57 ub Exp $
+# $Id: AgentITSMConfigItem.pm,v 1.18 2011-03-28 17:46:15 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.17 $) [1];
+$VERSION = qw($Revision: 1.18 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -96,9 +96,9 @@ sub Run {
     );
 
     # set the deployment state IDs parameter for the search
-    my $DelpStateIDs;
+    my $DeplStateIDs;
     for my $DeplStateKey ( keys %{$StateList} ) {
-        push @{$DelpStateIDs}, $DeplStateKey;
+        push @{$DeplStateIDs}, $DeplStateKey;
     }
 
     # to store the default class
@@ -150,7 +150,7 @@ sub Run {
             Count  => $ClassCount,
             Search => {
                 ClassIDs         => [$ClassID],
-                DeplStateIDs     => $DelpStateIDs,
+                DeplStateIDs     => $DeplStateIDs,
                 OrderBy          => \@SortByArray,
                 OrderByDirection => \@OrderByArray,
                 Limit            => 1000,
@@ -182,7 +182,7 @@ sub Run {
             Count  => $TotalCount,
             Search => {
                 ClassIDs         => $AccessClassList,
-                DeplStateIDs     => $DelpStateIDs,
+                DeplStateIDs     => $DeplStateIDs,
                 OrderBy          => \@SortByArray,
                 OrderByDirection => \@OrderByArray,
                 Limit            => 1000,
