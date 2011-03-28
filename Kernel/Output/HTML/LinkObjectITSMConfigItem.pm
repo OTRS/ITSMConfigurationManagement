@@ -1,8 +1,8 @@
 # --
 # Kernel/Output/HTML/LinkObjectITSMConfigItem.pm - layout backend module
-# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: LinkObjectITSMConfigItem.pm,v 1.11 2010-12-09 02:30:51 ub Exp $
+# $Id: LinkObjectITSMConfigItem.pm,v 1.12 2011-03-28 17:59:13 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -16,9 +16,10 @@ use warnings;
 
 use Kernel::Output::HTML::Layout;
 use Kernel::System::GeneralCatalog;
+use Kernel::System::ITSMConfigItem;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.11 $) [1];
+$VERSION = qw($Revision: 1.12 $) [1];
 
 =head1 NAME
 
@@ -59,6 +60,7 @@ sub new {
     }
     $Self->{LayoutObject}         = Kernel::Output::HTML::Layout->new( %{$Self} );
     $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
+    $Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new( %{$Self} );
 
     # define needed variables
     $Self->{ObjectData} = {
@@ -479,7 +481,18 @@ sub SelectableObjectList {
     # get the config with the default subobjects
     my $DefaultSubobject = $Self->{ConfigObject}->Get('LinkObject::DefaultSubObject') || {};
 
+    CLASSID:
     for my $ClassID ( sort { lc $ClassList->{$a} cmp lc $ClassList->{$b} } keys %{$ClassList} ) {
+
+        # show class only if user has access rights
+        my $HasAccess = $Self->{ConfigItemObject}->Permission(
+            Scope   => 'Class',
+            ClassID => $ClassID,
+            UserID  => $Self->{UserID},
+            Type    => 'rw',
+        );
+
+        next CLASSID if !$HasAccess;
 
         my $Class = $ClassList->{$ClassID} || '';
         my $Identifier = $Self->{ObjectData}->{Object} . '::' . $ClassID;
@@ -688,6 +701,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.11 $ $Date: 2010-12-09 02:30:51 $
+$Revision: 1.12 $ $Date: 2011-03-28 17:59:13 $
 
 =cut
