@@ -1,8 +1,8 @@
 # --
 # Kernel/System/ITSMConfigItem.pm - all config item function
-# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.28 2010-04-13 17:44:12 ub Exp $
+# $Id: ITSMConfigItem.pm,v 1.28.4.1 2011-04-04 10:51:05 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -29,7 +29,7 @@ use Kernel::System::User;
 use Kernel::System::XML;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.28 $) [1];
+$VERSION = qw($Revision: 1.28.4.1 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',
@@ -491,6 +491,13 @@ sub ConfigItemDelete {
             return;
         }
     }
+
+    # delete all links to this config item first, before deleting the versions
+    return if !$Self->{LinkObject}->LinkDeleteAll(
+        Object => 'ITSMConfigItem',
+        Key    => $Param{ConfigItemID},
+        UserID => $Param{UserID},
+    );
 
     # delete existing versions
     $Self->VersionDelete(
@@ -1238,12 +1245,12 @@ This software is part of the OTRS project (http://otrs.org/).
 
 This software comes with ABSOLUTELY NO WARRANTY. For details, see
 the enclosed file COPYING for license information (AGPL). If you
-did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =cut
 
 =head1 VERSION
 
-$Revision: 1.28 $ $Date: 2010-04-13 17:44:12 $
+$Revision: 1.28.4.1 $ $Date: 2011-04-04 10:51:05 $
 
 =cut
