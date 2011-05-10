@@ -2,7 +2,7 @@
 # Kernel/Output/HTML/LinkObjectITSMConfigItem.pm - layout backend module
 # Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: LinkObjectITSMConfigItem.pm,v 1.7.8.1 2011-03-28 18:11:33 ub Exp $
+# $Id: LinkObjectITSMConfigItem.pm,v 1.7.8.2 2011-05-10 15:23:39 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -19,7 +19,7 @@ use Kernel::System::GeneralCatalog;
 use Kernel::System::ITSMConfigItem;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.7.8.1 $) [1];
+$VERSION = qw($Revision: 1.7.8.2 $) [1];
 
 =head1 NAME
 
@@ -486,7 +486,7 @@ sub SelectableObjectList {
             Scope   => 'Class',
             ClassID => $ClassID,
             UserID  => $Self->{UserID},
-            Type    => 'rw',
+            Type    => 'ro',
         );
 
         next CLASSID if !$HasAccess;
@@ -698,6 +698,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.7.8.1 $ $Date: 2011-03-28 18:11:33 $
+$Revision: 1.7.8.2 $ $Date: 2011-05-10 15:23:39 $
 
 =cut
