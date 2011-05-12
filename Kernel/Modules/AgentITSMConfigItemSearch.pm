@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemSearch.pm - the OTRS::ITSM config item search module
 # Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.pm,v 1.26 2011-01-11 16:37:10 cr Exp $
+# $Id: AgentITSMConfigItemSearch.pm,v 1.27 2011-05-12 17:21:19 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -20,7 +20,7 @@ use Kernel::System::SearchProfile;
 use Kernel::System::CSV;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.26 $) [1];
+$VERSION = qw($Revision: 1.27 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -203,7 +203,7 @@ sub Run {
             );
         }
 
-        my @XMLAttributes = [
+        my @XMLAttributes = (
             {
                 Key   => 'Number',
                 Value => 'Number',
@@ -220,7 +220,7 @@ sub Run {
                 Key   => 'InciStateIDs',
                 Value => 'Incident State',
             },
-        ];
+        );
 
         my %GetParam = $Self->{SearchProfileObject}->SearchProfileGet(
             Base      => 'ConfigItemSearch' . $ClassID,
@@ -232,20 +232,20 @@ sub Run {
         if ( $XMLDefinition->{Definition} ) {
             $Self->_XMLSearchAttributesGet(
                 XMLDefinition => $XMLDefinition->{DefinitionRef},
-                XMLAttributes => @XMLAttributes,
+                XMLAttributes => \@XMLAttributes,
             );
         }
 
         # build attributes string for attributes list
         $Param{AttributesStrg} = $Self->{LayoutObject}->BuildSelection(
-            Data     => @XMLAttributes,
+            Data     => \@XMLAttributes,
             Name     => 'Attribute',
             Multiple => 0,
         );
 
         # build attributes string for recovery on add or subtract search fields
         $Param{AttributesOrigStrg} = $Self->{LayoutObject}->BuildSelection(
-            Data     => @XMLAttributes,
+            Data     => \@XMLAttributes,
             Name     => 'AttributeOrig',
             Multiple => 0,
         );
@@ -334,19 +334,21 @@ sub Run {
         if ( $XMLDefinition->{Definition} ) {
             $Self->_XMLSearchFormOutput(
                 XMLDefinition => $XMLDefinition->{DefinitionRef},
-                XMLAttributes => @XMLAttributes,
+                XMLAttributes => \@XMLAttributes,
                 GetParam      => \%GetParam,
             );
         }
 
         # show attributes
         my $AttributeIsUsed = 0;
+        KEY:
         for my $Key ( sort keys %GetParam ) {
-            next if !$Key;
-            next if !defined $GetParam{$Key};
-            next if $GetParam{$Key} eq '';
+            next KEY if !$Key;
+            next KEY if !defined $GetParam{$Key};
+            next KEY if $GetParam{$Key} eq '';
 
             $AttributeIsUsed = 1;
+
             $Self->{LayoutObject}->Block(
                 Name => 'SearchAJAXShow',
                 Data => {
@@ -1026,13 +1028,10 @@ sub _XMLSearchFormOutput {
                 },
             );
 
-            push @{ $Param{XMLAttributes} }, (
-                {
-                    Key   => $InputKey,
-                    Value => $Name,
-                },
-            );
-
+            push @{ $Param{XMLAttributes} }, {
+                Key   => $InputKey,
+                Value => $Name,
+            };
         }
 
         next ITEM if !$Item->{Sub};
@@ -1040,6 +1039,7 @@ sub _XMLSearchFormOutput {
         # start recursion, if "Sub" was found
         $Self->_XMLSearchFormOutput(
             XMLDefinition => $Item->{Sub},
+            XMLAttributes => $Param{XMLAttributes},
             Level         => $Param{Level} + 1,
             Prefix        => $InputKey,
             PrefixName    => $Name,
@@ -1090,25 +1090,22 @@ sub _XMLSearchFormGet {
             my @SearchValues = grep {$_} @{$Values};
 
             if (@SearchValues) {
-                push @{ $Param{XMLFormData} },
-                    {
+                push @{ $Param{XMLFormData} }, {
                     $SearchKey => \@SearchValues,
-                    };
+                };
 
-                push @{ $Param{XMLGetParam} },
-                    {
+                push @{ $Param{XMLGetParam} }, {
                     $InputKey => \@SearchValues,
-                    };
+                };
             }
 
         }
         elsif ($Values) {
 
             # e.g. for Date between searches
-            push @{ $Param{XMLFormData} },
-                {
+            push @{ $Param{XMLFormData} }, {
                 $SearchKey => $Values,
-                };
+            };
 
             if ( ref $Values eq 'HASH' ) {
                 if ( $Item->{Input}->{Type} eq 'Date' ) {
@@ -1120,8 +1117,7 @@ sub _XMLSearchFormGet {
                         my ( $StopYear,  $StopMonth,  $StopDay )  = split( /-/, $StopDate );
 
                         # store time elment values
-                        push @{ $Param{XMLGetParam} },
-                            {
+                        push @{ $Param{XMLGetParam} }, {
                             $InputKey                        => 1,
                             $InputKey . '::TimeStart::Day'   => $StartDay,
                             $InputKey . '::TimeStart::Month' => $StartMonth,
@@ -1129,7 +1125,7 @@ sub _XMLSearchFormGet {
                             $InputKey . '::TimeStop::Day'    => $StopDay,
                             $InputKey . '::TimeStop::Month'  => $StopMonth,
                             $InputKey . '::TimeStop::Year'   => $StopYear,
-                            };
+                        };
                     }
                 }
                 elsif ( $Item->{Input}->{Type} eq 'DateTime' ) {
@@ -1146,8 +1142,7 @@ sub _XMLSearchFormGet {
                         my ( $StopHour, $StopMinute, $StopSecond ) = split( /\:/, $StopTime );
 
                         # store time elment values
-                        push @{ $Param{XMLGetParam} },
-                            {
+                        push @{ $Param{XMLGetParam} }, {
                             $InputKey                         => 1,
                             $InputKey . '::TimeStart::Minute' => $StartMinute,
                             $InputKey . '::TimeStart::Hour'   => $StartHour,
@@ -1159,17 +1154,14 @@ sub _XMLSearchFormGet {
                             $InputKey . '::TimeStop::Day'     => $StopDay,
                             $InputKey . '::TimeStop::Month'   => $StopMonth,
                             $InputKey . '::TimeStop::Year'    => $StopYear,
-                            };
+                        };
                     }
-                }
-                else {
                 }
             }
             else {
-                push @{ $Param{XMLGetParam} },
-                    {
+                push @{ $Param{XMLGetParam} }, {
                     $InputKey => $Values,
-                    };
+                };
             }
 
         }
@@ -1211,12 +1203,10 @@ sub _XMLSearchAttributesGet {
 
         # store attribute, if marked as searchable
         if ( $Item->{Searchable} ) {
-            push @{ $Param{XMLAttributes} }, (
-                {
-                    Key   => $InputKey,
-                    Value => $Name,
-                },
-            );
+            push @{ $Param{XMLAttributes} }, {
+                Key   => $InputKey,
+                Value => $Name,
+            };
         }
 
         next ITEM if !$Item->{Sub};
@@ -1224,6 +1214,7 @@ sub _XMLSearchAttributesGet {
         # start recursion, if "Sub" was found
         $Self->_XMLSearchAttributesGet(
             XMLDefinition => $Item->{Sub},
+            XMLAttributes => $Param{XMLAttributes},
             Level         => $Param{Level} + 1,
             Prefix        => $InputKey,
             PrefixName    => $Name,

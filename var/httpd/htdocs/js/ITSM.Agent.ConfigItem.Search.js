@@ -1,8 +1,8 @@
 // --
 // ITSM.Agent.ConfigItem.Search.js - provides the special module functions for the global search
-// Copyright (C) 2001-2010 OTRS AG, http://otrs.org/\n";
+// Copyright (C) 2001-2011 OTRS AG, http://otrs.org/\n";
 // --
-// $Id: ITSM.Agent.ConfigItem.Search.js,v 1.12 2010-12-20 19:59:49 cr Exp $
+// $Id: ITSM.Agent.ConfigItem.Search.js,v 1.13 2011-05-12 17:21:19 ub Exp $
 // --
 // This software comes with ABSOLUTELY NO WARRANTY. For details, see
 // the enclosed file COPYING for license information (AGPL). If you
@@ -51,6 +51,11 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
      *      This function adds one attribute for search
      */
     TargetNS.SearchAttributeAdd = function (Attribute) {
+
+        // escape :: with two leading backslashes in front of each :
+        // this is necessary because jQuery can not handle a colon (:) in id attributes
+        Attribute = Attribute.replace(/::/g, '\\:\\:');
+
         var $Label = $('#SearchAttributesHidden label#Label' + Attribute);
 
         if ($Label.length) {
@@ -189,6 +194,7 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
         // register add of attribute
         $('.Add').bind('click', function () {
             var Attribute = $('#Attribute').val();
+
             TargetNS.SearchAttributeAdd(Attribute);
             TargetNS.AdditionalAttributeSelectionRebuild();
 
