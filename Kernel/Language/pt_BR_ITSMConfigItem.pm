@@ -2,7 +2,7 @@
 # Kernel/Language/pt_BR_ITSMConfigItem.pm - translation file
 # Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: pt_BR_ITSMConfigItem.pm,v 1.6 2011-03-04 16:43:42 ub Exp $
+# $Id: pt_BR_ITSMConfigItem.pm,v 1.7 2011-05-12 11:50:07 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -20,44 +20,44 @@ sub Data {
     $Self->{Translation}->{'Address'} = 'Endereço';
     $Self->{Translation}->{'Admin Tool'} = 'Ferramenta de Administração';
     $Self->{Translation}->{'Backup Device'} = 'Dispositivo de Backup';
-    $Self->{Translation}->{'Beamer'} = '';
+    $Self->{Translation}->{'Beamer'} = 'Projetor';
     $Self->{Translation}->{'Building'} = 'Prédio';
-    $Self->{Translation}->{'CIHistory::ConfigItemCreate'} = '';
-    $Self->{Translation}->{'CIHistory::ConfigItemDelete'} = '';
-    $Self->{Translation}->{'CIHistory::DefinitionUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::DeploymentStateUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::IncidentStateUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::LinkAdd'} = '';
-    $Self->{Translation}->{'CIHistory::LinkDelete'} = '';
-    $Self->{Translation}->{'CIHistory::NameUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::ValueUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::VersionCreate'} = '';
-    $Self->{Translation}->{'CIHistory::VersionDelete'} = '';
+    $Self->{Translation}->{'CIHistory::ConfigItemCreate'} = 'Novo item de configuração (ID=%s)';
+    $Self->{Translation}->{'CIHistory::ConfigItemDelete'} = 'Item de configuração (ID=%s) excluído';
+    $Self->{Translation}->{'CIHistory::DefinitionUpdate'} = 'Definição do IC atualizada (ID=%s)';
+    $Self->{Translation}->{'CIHistory::DeploymentStateUpdate'} = 'Estado de implantação alterado (novo=%s; antigo=%s)';
+    $Self->{Translation}->{'CIHistory::IncidentStateUpdate'} = 'Estado de incidente alterado (novo=%s; antigo=%s)';
+    $Self->{Translation}->{'CIHistory::LinkAdd'} = 'O link para %s (Typ=%s) foi adicionado';
+    $Self->{Translation}->{'CIHistory::LinkDelete'} = 'O link para %s (Typ=%s) excluído';
+    $Self->{Translation}->{'CIHistory::NameUpdate'} = 'Nome alterado (novo=%s; antigo=%s)';
+    $Self->{Translation}->{'CIHistory::ValueUpdate'} = 'O atributo %s de "%s" para "%s" mudou';
+    $Self->{Translation}->{'CIHistory::VersionCreate'} = 'Nova versão criada (ID=%s)';
+    $Self->{Translation}->{'CIHistory::VersionDelete'} = 'Versão %s excluída';
     $Self->{Translation}->{'CPU'} = 'Processador';
-    $Self->{Translation}->{'Camera'} = '';
+    $Self->{Translation}->{'Camera'} = 'Câmera';
     $Self->{Translation}->{'Capacity'} = 'Capacidade';
-    $Self->{Translation}->{'Change Definition'} = 'Mudar Definição';
-    $Self->{Translation}->{'Change of definition failed! See System Log for details.'} = 'Mudança da definição falhou! Consulte o Log do Sistema para detalhes.';
+    $Self->{Translation}->{'Change Definition'} = 'Alterar Definição';
+    $Self->{Translation}->{'Change of definition failed! See System Log for details.'} = 'Mudança de definição falhou! Veja o registro do sistema para mais detalhes.';
     $Self->{Translation}->{'Client Application'} = 'Aplicação Cliente';
     $Self->{Translation}->{'Client OS'} = 'SO Cliente';
     $Self->{Translation}->{'Concurrent Users'} = 'Usuários Concorrentes';
-    $Self->{Translation}->{'Config Item-Area'} = 'Itens de Configuração';
+    $Self->{Translation}->{'Config Item-Area'} = 'Área Item de Configuração';
     $Self->{Translation}->{'Config Items available'} = 'Itens de Configuração disponíveis';
     $Self->{Translation}->{'Config Items shown'} = 'Itens de Configuração visualizados';
-    $Self->{Translation}->{'CMDB'} = '';
-    $Self->{Translation}->{'Demo'} = '';
-    $Self->{Translation}->{'Desktop'} = '';
+    $Self->{Translation}->{'CMDB'} = 'BDGC';
+    $Self->{Translation}->{'Demo'} = 'Demonstração';
+    $Self->{Translation}->{'Desktop'} = 'Área ';
     $Self->{Translation}->{'Developer Licence'} = 'Licença de Desenvolvedor';
     $Self->{Translation}->{'Docking Station'} = '';
     $Self->{Translation}->{'Duplicate'} = 'Duplicar';
-    $Self->{Translation}->{'Embedded'} = '';
-    $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = '';
+    $Self->{Translation}->{'Embedded'} = 'Integrado';
+    $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Os campos vazios indicam que os valores atuais são mantidos';
     $Self->{Translation}->{'Enterprise Licence'} = 'Licença Corporativa';
     $Self->{Translation}->{'Expiration Date'} = 'Data de Expiração';
     $Self->{Translation}->{'Expired'} = 'Expirado';
     $Self->{Translation}->{'FQDN'} = '';
     $Self->{Translation}->{'Floor'} = 'Andar';
-    $Self->{Translation}->{'Freeware'} = '';
+    $Self->{Translation}->{'Freeware'} = 'Livre';
     $Self->{Translation}->{'GSM'} = '';
     $Self->{Translation}->{'Gateway'} = 'Roteador Padrão';
     $Self->{Translation}->{'Graphic Adapter'} = 'Adaptador Gráfico';
@@ -68,10 +68,11 @@ sub Data {
     $Self->{Translation}->{'IP over DHCP'} = 'DHCP';
     $Self->{Translation}->{'IT Facility'} = 'Departamento de TI';
     $Self->{Translation}->{'Inactive'} = 'Inativo';
+    $Self->{Translation}->{'Incident'} = 'Incidente';
     $Self->{Translation}->{'Install Date'} = 'Data Instalação';
     $Self->{Translation}->{'Keybord'} = 'Teclado';
     $Self->{Translation}->{'LAN'} = 'REDE';
-    $Self->{Translation}->{'Laptop'} = '';
+    $Self->{Translation}->{'Laptop'} = 'Notebook';
     $Self->{Translation}->{'Last Change'} = 'Última Alteração';
     $Self->{Translation}->{'Licence Key'} = 'Chave de Licença';
     $Self->{Translation}->{'Licence Key::Expiration Date'} = 'Chave de Licença::Data de Expiração';
@@ -91,7 +92,7 @@ sub Data {
     $Self->{Translation}->{'Network Address'} = 'Endereço de Rede';
     $Self->{Translation}->{'Network Address::Gateway'} = 'Endereço de Rede::Roteador Padrão';
     $Self->{Translation}->{'Network Address::Subnet Mask'} = 'Endereço de Rede::Máscara de Subrede';
-    $Self->{Translation}->{'Open Source'} = '';
+    $Self->{Translation}->{'Open Source'} = 'Código aberto';
     $Self->{Translation}->{'Operating System'} = 'Sistema Operacional';
     $Self->{Translation}->{'Operational'} = 'Operacional';
     $Self->{Translation}->{'Other'} = 'Outro';
@@ -128,7 +129,7 @@ sub Data {
     $Self->{Translation}->{'Single Licence'} = 'Licença Única';
     $Self->{Translation}->{'Subnet Mask'} = 'Máscara de Subrede';
     $Self->{Translation}->{'Switch'} = '';
-    $Self->{Translation}->{'Telco'} = '';
+    $Self->{Translation}->{'Telco'} = 'Telecomunicação';
     $Self->{Translation}->{'Test/QA'} = 'Teste de Qualidade';
     $Self->{Translation}->{'The deployment state of this config item'} = 'O estado de implantação deste item de configuração';
     $Self->{Translation}->{'The incident state of this config item'} = 'O estado de incidente deste item de configuração';
@@ -144,94 +145,90 @@ sub Data {
 
     # Template: AdminITSMConfigItem
     $Self->{Translation}->{'Config Item Management'} = 'Gerenciamento de Itens de Configuração';
-    $Self->{Translation}->{'Change class definition'} = '';
+    $Self->{Translation}->{'Change class definition'} = 'Mudar definição de classe';
     $Self->{Translation}->{'Config Item'} = 'Item de Configuração';
     $Self->{Translation}->{'Class'} = 'Classe';
-    $Self->{Translation}->{'Definition'} = '';
+    $Self->{Translation}->{'Definition'} = 'Definição';
 
     # Template: AgentITSMConfigItemAdd
-    $Self->{Translation}->{'Filter for Classes'} = '';
-    $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = '';
+    $Self->{Translation}->{'Filter for Classes'} = 'Filtro para Classes';
+    $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = 'Selecione uma classe a partir da lista para criar um novo item de configuração.';
 
     # Template: AgentITSMConfigItemEdit
     $Self->{Translation}->{'The name of this config item'} = 'O nome deste item de configuração';
-    $Self->{Translation}->{'Deployment State'} = 'Estado da Implantação';
-    $Self->{Translation}->{'Incident State'} = 'Estado do Incidente';
+    $Self->{Translation}->{'Deployment State'} = 'Estado de Implantação';
+    $Self->{Translation}->{'Incident State'} = 'Estado de Incidente';
 
     # Template: AgentITSMConfigItemHistory
 
     # Template: AgentITSMConfigItemOverviewNavBar
-    $Self->{Translation}->{'Context Settings'} = '';
-    $Self->{Translation}->{'Config Items per page'} = '';
+    $Self->{Translation}->{'Context Settings'} = 'Configurações de Contexto';
+    $Self->{Translation}->{'Config Items per page'} = 'Itens de configuração por página';
 
     # Template: AgentITSMConfigItemOverviewSmall
-    $Self->{Translation}->{'Deployment State Type'} = '';
+    $Self->{Translation}->{'Deployment State Type'} = 'Tipo de Estado de Implantação';
     $Self->{Translation}->{'Current Incident State'} = 'Estado do Incidente Atual';
-    $Self->{Translation}->{'Current Incident State Type'} = '';
-    $Self->{Translation}->{'Last Changed'} = '';
+    $Self->{Translation}->{'Current Incident State Type'} = 'Estado Atual de Incidente por tipo';
+    $Self->{Translation}->{'Last Changed'} = 'Última Modificação';
 
     # Template: AgentITSMConfigItemPrint
-    $Self->{Translation}->{'ConfigItem'} = '';
-    $Self->{Translation}->{'ConfigItem-Info'} = '';
-    $Self->{Translation}->{'Current Deployment State'} = 'Estado da Implantação Atual';
+    $Self->{Translation}->{'ConfigItem'} = 'Item de configuração';
+    $Self->{Translation}->{'ConfigItem-Info'} = ' Informação do Item de configuração';
+    $Self->{Translation}->{'Current Deployment State'} = 'Estado de Implantação Atual';
     $Self->{Translation}->{'Last changed'} = 'Última modificação';
     $Self->{Translation}->{'Last changed by'} = 'Última modificação por';
 
     # Template: AgentITSMConfigItemSearch
-    $Self->{Translation}->{'Search-Template'} = '';
-    $Self->{Translation}->{'Create New Template'} = '';
     $Self->{Translation}->{'Also search in previous versions?'} = 'Procurar nas verões anteriores também?';
 
     # Template: AgentITSMConfigItemSearchResultPrint
-    $Self->{Translation}->{'CreateTime'} = '';
+    $Self->{Translation}->{'CreateTime'} = 'Tempo de criação';
 
     # Template: AgentITSMConfigItemZoom
-    $Self->{Translation}->{'Configuration Item'} = '';
-    $Self->{Translation}->{'Linked Objects'} = '';
-    $Self->{Translation}->{'Show one version'} = '';
-    $Self->{Translation}->{'Show all versions'} = '';
-    $Self->{Translation}->{'Version Incident State'} = '';
-    $Self->{Translation}->{'Version Number'} = '';
-    $Self->{Translation}->{'Created By'} = '';
-    $Self->{Translation}->{'Changed On'} = '';
-    $Self->{Translation}->{'Resize'} = '';
-    $Self->{Translation}->{'Show or hide the content.'} = '';
-    $Self->{Translation}->{'Configuration Item Version Details'} = '';
-    $Self->{Translation}->{'Property'} = '';
+    $Self->{Translation}->{'Configuration Item'} = 'Item de configuração';
+    $Self->{Translation}->{'Show one version'} = 'Visualizar uma versão';
+    $Self->{Translation}->{'Show all versions'} = 'Visualizar todas as versões';
+    $Self->{Translation}->{'Version Incident State'} = 'Estado da Versão de Incidentes';
+    $Self->{Translation}->{'Version Number'} = 'Número da versão';
+    $Self->{Translation}->{'Created By'} = 'Criado por';
+    $Self->{Translation}->{'Changed On'} = 'Modificado por';
+    $Self->{Translation}->{'Show or hide the content.'} = 'Mostrar ou ocultar o conteúdo.';
+    $Self->{Translation}->{'Configuration Item Version Details'} = 'Detalhes da Versão do Item de Configuração';
+    $Self->{Translation}->{'Property'} = 'Propriedade';
 
     # SysConfig
-    $Self->{Translation}->{'Config item event module that enables logging to history in the agent interface.'} = '';
-    $Self->{Translation}->{'Configuration Item Limit'} = '';
-    $Self->{Translation}->{'Configuration Item limit per page'} = '';
-    $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} = '';
-    $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = '';
-    $Self->{Translation}->{'Defines an overview module to show the small view of a configuration item list.'} = '';
-    $Self->{Translation}->{'Defines the default subobject of the class \'ITSMConfigItem\'.'} = '';
-    $Self->{Translation}->{'Defines the shown columns in the config item overview. This option has no effect on the position of the column. Note: Class column is always available if filter \'All\' is selected'} = '';
-    $Self->{Translation}->{'Defines the shown columns in the config item search. This option has no effect on the position of the column.'} = '';
-    $Self->{Translation}->{'Module to check the group responsible for a class.'} = '';
-    $Self->{Translation}->{'Module to check the group responsible for a configuration item.'} = '';
-    $Self->{Translation}->{'Module to genetare ITSM config item statistics.'} = '';
-    $Self->{Translation}->{'Object backend module registration for the import/export module.'} = '';
-    $Self->{Translation}->{'Parameters for the deployment states in the preferences view of the agent interface.'} = '';
-    $Self->{Translation}->{'Parameters for the example permission groups of the general catalog attributes.'} = '';
-    $Self->{Translation}->{'Parameters for the pages (in which the configuration items are shown).'} = '';
-    $Self->{Translation}->{'Required permissions to use the ITSM configuration item screen in the agent interface.'} = '';
-    $Self->{Translation}->{'Required permissions to use the ITSM configuration item search screen in the agent interface.'} = '';
-    $Self->{Translation}->{'Required permissions to use the ITSM configuration item zoom screen in the agent interface.'} = '';
-    $Self->{Translation}->{'Required permissions to use the add ITSM configuration item screen in the agent interface.'} = '';
-    $Self->{Translation}->{'Required permissions to use the edit ITSM configuration item screen in the agent interface.'} = '';
-    $Self->{Translation}->{'Required permissions to use the history ITSM configuration item screen in the agent interface.'} = '';
-    $Self->{Translation}->{'Required permissions to use the print ITSM configuration item screen in the agent interface.'} = '';
-    $Self->{Translation}->{'Selects the configuration item number generator module. "AutoIncrement" increments the configuration item number, the SystemID, the ConfigItemClassID and the counter are used. The format is "SystemID.ConfigItemClassID.Counter", e.g. 1205000004, 1205000005.'} = '';
-    $Self->{Translation}->{'Shows a link in the menu that allows linking a configuration item with another object in the config item zoom view of the agent interface.'} = '';
-    $Self->{Translation}->{'Shows a link in the menu to access the history of a configuration item in the its zoom view of the agent interface.'} = '';
-    $Self->{Translation}->{'Shows a link in the menu to duplicate a configuration item in the its zoom view of the agent interface.'} = '';
-    $Self->{Translation}->{'Shows a link in the menu to edit a configuration item in the its zoom view of the agent interface.'} = '';
-    $Self->{Translation}->{'Shows a link in the menu to go back in the configuraton item zoom view of the agent interface.'} = '';
-    $Self->{Translation}->{'Shows a link in the menu to print a configuration item in the its zoom view of the agent interface.'} = '';
-    $Self->{Translation}->{'Shows the config item history (reverse ordered) in the agent interface.'} = '';
-    $Self->{Translation}->{'The identifier for a configuration item, e.g. ConfigItem#, MyConfigItem#. The default is ConfigItem#.'} = '';
+    $Self->{Translation}->{'Config item event module that enables logging to history in the agent interface.'} = 'Módulo de evento de item de configuração que permite registrar o histórico da interface do atendente.';
+    $Self->{Translation}->{'Configuration Item Limit'} = 'Limite de Item de Configuração';
+    $Self->{Translation}->{'Configuration Item limit per page'} = 'Limite de Item de Configuração por página';
+    $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} = 'Roteador de pesquisa de item de configuração da interface do atendente.';
+    $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = 'Criar e gerenciar as definições de Itens de Configuração.';
+    $Self->{Translation}->{'Defines an overview module to show the small view of a configuration item list.'} = 'Define um módulo de visão geral para mostrar a visão pequena da lista de itens de configuração.';
+    $Self->{Translation}->{'Defines the default subobject of the class \'ITSMConfigItem\'.'} = 'Define o subobjeto padrão da classe \'ITSMConfigItem\'.';
+    $Self->{Translation}->{'Defines the shown columns in the config item overview. This option has no effect on the position of the column. Note: Class column is always available if filter \'All\' is selected'} = 'Define as colunas mostradas na visão geral de item de configuração. Esta opção não tem efeito sobre a posição da coluna. Nota: A coluna de classe está sempre disponível, se o filtro \'All\' é selecionado.';
+    $Self->{Translation}->{'Defines the shown columns in the config item search. This option has no effect on the position of the column.'} = 'Define as colunas mostradas na busca de item de configuração. Esta opção não tem efeito sobre a posição da coluna.';
+    $Self->{Translation}->{'Module to check the group responsible for a class.'} = 'Módulo para verificar o grupo responsável por uma classe.';
+    $Self->{Translation}->{'Module to check the group responsible for a configuration item.'} = 'Módulo para verificar o grupo responsável por um item de configuração.';
+    $Self->{Translation}->{'Module to genetare ITSM config item statistics.'} = 'Módulo para gerar estatísticas do item de configuração ITSM.';
+    $Self->{Translation}->{'Object backend module registration for the import/export module.'} = 'Modulo de registro de objeto para o módulo de importação/exportação.';
+    $Self->{Translation}->{'Parameters for the deployment states in the preferences view of the agent interface.'} = 'Parâmetros de estado de implantação nas preferências de exibição da interface de atendente.';
+    $Self->{Translation}->{'Parameters for the example permission groups of the general catalog attributes.'} = 'Parâmetros do grupos de permissão de exemplo dos atributos do catálogo geral.';
+    $Self->{Translation}->{'Parameters for the pages (in which the configuration items are shown).'} = 'Parâmetros das páginas (nas quais os itens de configuração são mostrados).';
+    $Self->{Translation}->{'Required permissions to use the ITSM configuration item screen in the agent interface.'} = 'Permissões necessárias para usar a tela de item de configuração ITSM na interface de atendente.';
+    $Self->{Translation}->{'Required permissions to use the ITSM configuration item search screen in the agent interface.'} = 'Permissões necessárias para usar a tela de pesquisa de item de configuração ITSM na interface de atendente.';
+    $Self->{Translation}->{'Required permissions to use the ITSM configuration item zoom screen in the agent interface.'} = 'Permissões necessárias para usar a tela de detalhes do item de configuração ITSM na interface de atendente.';
+    $Self->{Translation}->{'Required permissions to use the add ITSM configuration item screen in the agent interface.'} = 'Permissões necessárias para usar a tela de adição de item de configuração ITSM na interface de atendente.';
+    $Self->{Translation}->{'Required permissions to use the edit ITSM configuration item screen in the agent interface.'} = 'Permissões necessárias para usar a tela de edição de item de configuração ITSM na interface de atendente.';
+    $Self->{Translation}->{'Required permissions to use the history ITSM configuration item screen in the agent interface.'} = 'Permissões necessárias para usar a tela de histórico de item de configuração ITSM na interface de atendente.';
+    $Self->{Translation}->{'Required permissions to use the print ITSM configuration item screen in the agent interface.'} = 'Permissões necessárias para usar a tela de impressão de item de configuração ITSM na interface do atendente.';
+    $Self->{Translation}->{'Selects the configuration item number generator module. "AutoIncrement" increments the configuration item number, the SystemID, the ConfigItemClassID and the counter are used. The format is "SystemID.ConfigItemClassID.Counter", e.g. 1205000004, 1205000005.'} = 'Seleciona o módulo de geração de número de item de configuração. "Autoincremento" incrementa o número do item de configuração, o SystemID, o ConfigItemClassID e o Counter são usados. O formato é "SystemID.ConfigItemClassID.Counter", por exemplo, 1205000004, 1205000005.';
+    $Self->{Translation}->{'Shows a link in the menu that allows linking a configuration item with another object in the config item zoom view of the agent interface.'} = 'Mostra um link no menu que permite associar um item de configuração com um outro objeto na visão de detalhes do item de configuração da interface de atendente.';
+    $Self->{Translation}->{'Shows a link in the menu to access the history of a configuration item in the its zoom view of the agent interface.'} = 'Mostra um link no menu para acessar o histórico de item de configuração na visão de detalhes do mesmo na interface de atendente.';
+    $Self->{Translation}->{'Shows a link in the menu to duplicate a configuration item in the its zoom view of the agent interface.'} = 'Mostra um link no menu para duplicar um item de configuração na visão de detalhes do mesmo na interface de atendente.';
+    $Self->{Translation}->{'Shows a link in the menu to edit a configuration item in the its zoom view of the agent interface.'} = 'Mostra um link no menu para editar um item de configuração na visão de detalhes do mesmo na interface de atendente.';
+    $Self->{Translation}->{'Shows a link in the menu to go back in the configuraton item zoom view of the agent interface.'} = 'Mostra um link no menu para retornar à tela de visão de detalhes de item de configuração da interface de atendente.';
+    $Self->{Translation}->{'Shows a link in the menu to print a configuration item in the its zoom view of the agent interface.'} = 'Mostra um link no menu para imprimir um item de configuração na visão de detalhes do mesmo na interface de atendente.';
+    $Self->{Translation}->{'Shows the config item history (reverse ordered) in the agent interface.'} = 'Mostra o histórico do item configuração (ordem reversa) na interface de atendente.';
+    $Self->{Translation}->{'The identifier for a configuration item, e.g. ConfigItem, MyConfigItem. The default is ConfigItem.'} = 'O identificador de um item de configuração, por exemplo, ConfigItem, ItemConfig, MeuItemConfig. O padrão é ConfigItem.';
 
     #
     # OBSOLETE ENTRIES FOR REFERENCE, DO NOT TRANSLATE!
