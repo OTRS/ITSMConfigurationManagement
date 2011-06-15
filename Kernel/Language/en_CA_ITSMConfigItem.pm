@@ -2,7 +2,7 @@
 # Kernel/Language/en_CA_ITSMConfigItem.pm - translation file
 # Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: en_CA_ITSMConfigItem.pm,v 1.2 2011-03-04 16:43:42 ub Exp $
+# $Id: en_CA_ITSMConfigItem.pm,v 1.3 2011-06-15 14:02:07 ep Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -1003,7 +1003,7 @@ sub Data {
     $Self->{Translation}->{'Module to generate html OpenSearch profile for short ticket search in the customer interface.'} = '';
     $Self->{Translation}->{'Module to generate ticket solution and response time statistics.'} = '';
     $Self->{Translation}->{'Module to generate ticket statistics.'} = '';
-    $Self->{Translation}->{'Module to genetare ITSM config item statistics.'} = '';
+    $Self->{Translation}->{'Module to generate ITSM config item statistics.'} = '';
     $Self->{Translation}->{'Module to inform agents, via the agent interface, about the used charset. A notification is displayed, if the default charset is not used, e.g. in tickets.'} = '';
     $Self->{Translation}->{'Module to show notifications and escalations (ShownMax: max. shown escalations, EscalationInMinutes: Show ticket which will escalation in, CacheTime: Cache of calculated escalations in seconds).'} = '';
     $Self->{Translation}->{'Module to use database filter storage.'} = '';

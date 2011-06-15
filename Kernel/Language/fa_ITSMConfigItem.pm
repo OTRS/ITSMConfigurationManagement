@@ -2,7 +2,7 @@
 # Kernel/Language/fa_ITSMConfigItem.pm - translation file
 # Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: fa_ITSMConfigItem.pm,v 1.8 2011-04-20 10:30:18 ub Exp $
+# $Id: fa_ITSMConfigItem.pm,v 1.9 2011-06-15 14:02:07 ep Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -211,7 +211,7 @@ sub Data {
     $Self->{Translation}->{'Defines the shown columns in the config item search. This option has no effect on the position of the column.'} = '';
     $Self->{Translation}->{'Module to check the group responsible for a class.'} = '';
     $Self->{Translation}->{'Module to check the group responsible for a configuration item.'} = '';
-    $Self->{Translation}->{'Module to genetare ITSM config item statistics.'} = '';
+    $Self->{Translation}->{'Module to generate ITSM config item statistics.'} = '';
     $Self->{Translation}->{'Object backend module registration for the import/export module.'} = '';
     $Self->{Translation}->{'Parameters for the deployment states in the preferences view of the agent interface.'} = '';
     $Self->{Translation}->{'Parameters for the example permission groups of the general catalog attributes.'} = '';

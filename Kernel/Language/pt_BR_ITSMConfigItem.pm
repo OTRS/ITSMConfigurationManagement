@@ -2,7 +2,7 @@
 # Kernel/Language/pt_BR_ITSMConfigItem.pm - translation file
 # Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: pt_BR_ITSMConfigItem.pm,v 1.7 2011-05-12 11:50:07 ub Exp $
+# $Id: pt_BR_ITSMConfigItem.pm,v 1.8 2011-06-15 14:02:07 ep Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -208,7 +208,7 @@ sub Data {
     $Self->{Translation}->{'Defines the shown columns in the config item search. This option has no effect on the position of the column.'} = 'Define as colunas mostradas na busca de item de configuração. Esta opção não tem efeito sobre a posição da coluna.';
     $Self->{Translation}->{'Module to check the group responsible for a class.'} = 'Módulo para verificar o grupo responsável por uma classe.';
     $Self->{Translation}->{'Module to check the group responsible for a configuration item.'} = 'Módulo para verificar o grupo responsável por um item de configuração.';
-    $Self->{Translation}->{'Module to genetare ITSM config item statistics.'} = 'Módulo para gerar estatísticas do item de configuração ITSM.';
+    $Self->{Translation}->{'Module to generate ITSM config item statistics.'} = 'Módulo para gerar estatísticas do item de configuração ITSM.';
     $Self->{Translation}->{'Object backend module registration for the import/export module.'} = 'Modulo de registro de objeto para o módulo de importação/exportação.';
     $Self->{Translation}->{'Parameters for the deployment states in the preferences view of the agent interface.'} = 'Parâmetros de estado de implantação nas preferências de exibição da interface de atendente.';
     $Self->{Translation}->{'Parameters for the example permission groups of the general catalog attributes.'} = 'Parâmetros do grupos de permissão de exemplo dos atributos do catálogo geral.';
