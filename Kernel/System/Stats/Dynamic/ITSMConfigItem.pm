@@ -1,8 +1,8 @@
 # --
 # Kernel/System/Stats/Dynamic/ITSMConfigItem.pm - all dynamic itsm config item stats functions
-# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.4 2010-02-22 10:07:12 reb Exp $
+# $Id: ITSMConfigItem.pm,v 1.5 2011-06-29 11:15:43 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::GeneralCatalog;
 use Kernel::System::ITSMConfigItem;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.4 $) [1];
+$VERSION = qw($Revision: 1.5 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -231,8 +231,8 @@ sub GetStatElement {
     my @XMLParams = grep { $_ =~ m{\A XML::}xms } keys %Param;
 
     if (@XMLParams) {
-        return 'You must defined a class in one axis.' if !$Param{ClassIDs};
-        return 'You must defined a class in one axis.' if ref $Param{ClassIDs} ne 'ARRAY';
+        return 'You must define a class in one axis.' if !$Param{ClassIDs};
+        return 'You must define a class in one axis.' if ref $Param{ClassIDs} ne 'ARRAY';
     }
 
     my %XMLClassIDs;
