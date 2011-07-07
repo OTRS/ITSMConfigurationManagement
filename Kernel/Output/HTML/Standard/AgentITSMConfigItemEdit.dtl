@@ -2,7 +2,7 @@
 # AgentITSMConfigItemEdit.dtl - provides HTML form for AgentITSMConfigItemEdit
 # Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.dtl,v 1.21 2011-01-03 11:08:06 mn Exp $
+# $Id: AgentITSMConfigItemEdit.dtl,v 1.22 2011-07-07 16:15:27 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -11,7 +11,7 @@
 
 <!--dtl:block:StartNormal-->
 <div class="MainBox ARIARoleMain LayoutFixedSidebar SidebarLast">
-    <h1>$Text{"Edit"}: $Text{"Config Item"}: $QData{"Number"} - $Text{"Class"}: $QData{"Class"}</h1>
+    <h1>$Text{"Edit"}: $Text{"Config Item"}: $Text{"$Data{"Number"}"} - $Text{"Class"}: $QData{"Class"}</h1>
     <div class="ContentColumn">
 <!--dtl:block:StartNormal-->
 $Include{"AgentITSMCustomerSearch"}
@@ -19,7 +19,7 @@ $Include{"AgentITSMCustomerSearch"}
 <!--dtl:block:StartSmall-->
             <div class="LayoutPopup ARIARoleMain">
                 <div class="Header">
-                    <h1>$Text{"Edit"}: $Text{"Config Item"}: $QData{"Number"} - $Text{"Class"}: $QData{"Class"}</h1>
+                    <h1>$Text{"Edit"}: $Text{"Config Item"}: $Text{"$Data{"Number"}"} - $Text{"Class"}: $QData{"Class"}</h1>
                     <p>
                         <a class="CancelClosePopup" href="#">$Text{"Cancel & close window"}</a>
                     </p>
