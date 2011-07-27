@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Version.pm - sub module of ITSMConfigItem.pm with version functions
 # Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: Version.pm,v 1.27 2011-01-03 18:25:36 ub Exp $
+# $Id: Version.pm,v 1.28 2011-07-27 13:00:34 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.27 $) [1];
+$VERSION = qw($Revision: 1.28 $) [1];
 
 use Storable;
 
@@ -192,7 +192,7 @@ The returned hash contains following attributes.
         ConfigItemID => 123,
     );
 
-When the date from the XML storage is not needed then fetching the XML data can be
+When the data from the XML storage is not needed then fetching the XML data can be
 explicitly turned off by passing XMLDataGet => 0.
 
     my $VersionRef = $ConfigItemObject->VersionGet(
@@ -1158,6 +1158,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.27 $ $Date: 2011-01-03 18:25:36 $
+$Revision: 1.28 $ $Date: 2011-07-27 13:00:34 $
 
 =cut
