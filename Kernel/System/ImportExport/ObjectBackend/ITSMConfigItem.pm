@@ -1,8 +1,8 @@
 # --
 # Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm - import/export backend for ITSMConfigItem
-# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.21 2010-10-19 18:58:39 dz Exp $
+# $Id: ITSMConfigItem.pm,v 1.22 2011-08-03 10:15:49 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -21,7 +21,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::Time;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.21 $) [1];
+$VERSION = qw($Revision: 1.22 $) [1];
 
 =head1 NAME
 
@@ -628,7 +628,7 @@ of the current import. C<ImportDataRow> holds the data. C<Counter> is only used 
 error messages, for indicating which item was not imported successfully.
 
 The current version of the config item will never be deleted. When there are no
-changes in the data, the import will be skipped. When there is new or changed date,
+changes in the data, the import will be skipped. When there is new or changed data,
 the a new config item or a new version is created.
 
 In the case of changed data, the new version of the config item will contain the
@@ -1659,6 +1659,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.21 $ $Date: 2010-10-19 18:58:39 $
+$Revision: 1.22 $ $Date: 2011-08-03 10:15:49 $
 
 =cut
