@@ -2,7 +2,7 @@
 # AgentITSMConfigItemZoom.dtl - provides HTML form for AgentITSMConfigItemZoom
 # Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemZoom.dtl,v 1.22 2011-07-07 16:23:04 cr Exp $
+# $Id: AgentITSMConfigItemZoom.dtl,v 1.23 2011-08-19 13:14:48 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -122,9 +122,9 @@
 <!-- dtl:block:TreeItem -->
 <!-- dtl:block:TreeItemInactive -->
                                     <tr>
-                                        <td title="$Text{"$Data{"CurInciState"}"}">
+                                        <td title="$Text{"$Data{"InciState"}"}">
                                             <div class="Flag Small">
-                                                <span class="$QData{"InciSignal"}">"$QData{"InciState"}"</span>
+                                                <span class="$QData{"InciSignal"}">$QData{"InciState"}</span>
                                             </div>
                                         </td>
                                         <td>
@@ -146,9 +146,9 @@
 <!-- dtl:block:TreeItemInactive -->
 <!-- dtl:block:TreeItemActive -->
                                     <tr class="Active">
-                                        <td title="$Text{"$Data{"CurInciState"}"}">
+                                        <td title="$Text{"$Data{"InciState"}"}">
                                             <div class="Flag Small">
-                                                <span class="$QData{"InciSignal"}">"$QData{"InciState"}"</span>
+                                                <span class="$QData{"InciSignal"}">$QData{"InciState"}</span>
                                             </div>
                                         </td>
                                         <td>
