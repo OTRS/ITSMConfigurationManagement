@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Version.pm - sub module of ITSMConfigItem.pm with version functions
 # Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: Version.pm,v 1.28 2011-07-27 13:00:34 ub Exp $
+# $Id: Version.pm,v 1.29 2011-08-22 15:22:50 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.28 $) [1];
+$VERSION = qw($Revision: 1.29 $) [1];
 
 use Storable;
 
@@ -192,7 +192,7 @@ The returned hash contains following attributes.
         ConfigItemID => 123,
     );
 
-When the data from the XML storage is not needed then fetching the XML data can be
+When the date from the XML storage is not needed then fetching the XML data can be
 explicitly turned off by passing XMLDataGet => 0.
 
     my $VersionRef = $ConfigItemObject->VersionGet(
@@ -750,8 +750,17 @@ return a config item list as an array reference
 
         PreviousVersionSearch => 1,  # (optional) default 0 (0|1)
 
-        OrderBy => 'Name',  # (optional) default ConfigItemID
-        # (ConfigItemID, Name, ClassID, DeplStateID, InciStateID)
+        OrderBy => [ 'ConfigItemID', 'Number' ],                  # (optional)
+        # default: [ 'ConfigItemID' ]
+        # (ConfigItemID, Name, Number, ClassID, DeplStateID, InciStateID)
+
+        # Additional information for OrderBy:
+        # The OrderByDirection can be specified for each OrderBy attribute.
+        # The pairing is made by the array indices.
+
+        OrderByDirection => [ 'Up', 'Down' ],                    # (optional)
+        # default: [ 'Up' ]
+        # (Down | Up)
 
         Limit          => 122,  # (optional)
         UsingWildcards => 0,    # (optional) default 1
@@ -766,7 +775,109 @@ sub VersionSearch {
     if ( !defined $Param{UsingWildcards} ) {
         $Param{UsingWildcards} = 1;
     }
-    $Param{OrderBy} ||= 'id';
+
+    # verify that all passed array parameters contain an arrayref
+    ARGUMENT:
+    for my $Argument (
+        qw(
+        OrderBy
+        OrderByDirection
+        )
+        )
+    {
+        if ( !defined $Param{$Argument} ) {
+            $Param{$Argument} ||= [];
+
+            next ARGUMENT;
+        }
+
+        if ( ref $Param{$Argument} ne 'ARRAY' ) {
+            $Self->{LogObject}->Log(
+                Priority => 'error',
+                Message  => "$Argument must be an array reference!",
+            );
+            return;
+        }
+    }
+
+    # set default order and order direction
+    if ( !@{ $Param{OrderBy} } ) {
+        $Param{OrderBy} = ['ConfigItemID'];
+    }
+    if ( !@{ $Param{OrderByDirection} } ) {
+        $Param{OrderByDirection} = ['Up'];
+    }
+
+    # define order table
+    my %OrderByTable = (
+        ConfigItemID => 'vr.configitem_id',
+        Name         => 'vr.name',
+        Number       => 'ci.configitem_number',
+        ClassID      => 'ci.class_id',
+        DeplStateID  => 'vr.depl_state_id',
+        InciStateID  => 'vr.inci_state_id',
+    );
+
+    # check if OrderBy contains only unique valid values
+    my %OrderBySeen;
+    for my $OrderBy ( @{ $Param{OrderBy} } ) {
+
+        if ( !$OrderBy || !$OrderByTable{$OrderBy} || $OrderBySeen{$OrderBy} ) {
+
+            # found an error
+            $Self->{LogObject}->Log(
+                Priority => 'error',
+                Message  => "OrderBy contains invalid value '$OrderBy' "
+                    . 'or the value is used more than once!',
+            );
+            return;
+        }
+
+        # remember the value to check if it appears more than once
+        $OrderBySeen{$OrderBy} = 1;
+    }
+
+    # check if OrderByDirection array contains only 'Up' or 'Down'
+    DIRECTION:
+    for my $Direction ( @{ $Param{OrderByDirection} } ) {
+
+        # only 'Up' or 'Down' allowed
+        next DIRECTION if $Direction eq 'Up';
+        next DIRECTION if $Direction eq 'Down';
+
+        # found an error
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => "OrderByDirection can only contain 'Up' or 'Down'!",
+        );
+        return;
+    }
+
+    # assemble the ORDER BY clause
+    my @SQLOrderBy;
+    my $Count = 0;
+    for my $OrderBy ( @{ $Param{OrderBy} } ) {
+
+        # set the default order direction
+        my $Direction = 'DESC';
+
+        # add the given order direction
+        if ( $Param{OrderByDirection}->[$Count] ) {
+            if ( $Param{OrderByDirection}->[$Count] eq 'Up' ) {
+                $Direction = 'ASC';
+            }
+            elsif ( $Param{OrderByDirection}->[$Count] eq 'Down' ) {
+                $Direction = 'DESC';
+            }
+        }
+
+        # add SQL
+        push @SQLOrderBy, "$OrderByTable{$OrderBy} $Direction";
+
+    }
+    continue {
+        $Count++;
+    }
 
     # get like escape string needed for some databases (e.g. oracle)
     my $LikeEscapeString = $Self->{DBObject}->GetDatabaseFunction('LikeEscapeString');
@@ -834,28 +945,26 @@ sub VersionSearch {
     # create where string
     my $WhereString = @SQLWhere ? ' WHERE ' . join q{ AND }, @SQLWhere : '';
 
-    # define order table
-    my %OrderByTable = (
-        ConfigItemID => 'vr.configitem_id',
-        Name         => 'vr.name',
-        ClassID      => 'ci.class_id',
-        DeplStateID  => 'vr.depl_state_id',
-        InciStateID  => 'vr.inci_state_id',
-    );
-
-    # set order by
-    my $OrderBy = $OrderByTable{ $Param{OrderBy} } || $OrderByTable{ConfigItemID};
-
     # set limit
     if ( $Param{Limit} ) {
         $Param{Limit} = $Self->{DBObject}->Quote( $Param{Limit}, 'Integer' );
     }
 
+    # build SQL
+    my $SQL = 'SELECT DISTINCT(vr.configitem_id) '
+        . 'FROM configitem ci, configitem_version vr '
+        . $WhereString;
+
+    # add the ORDER BY clause
+    if (@SQLOrderBy) {
+        $SQL .= ' ORDER BY ';
+        $SQL .= join ', ', @SQLOrderBy;
+        $SQL .= ' ';
+    }
+
     # ask the database
     $Self->{DBObject}->Prepare(
-        SQL => "SELECT DISTINCT(vr.configitem_id) "
-            . "FROM configitem ci, configitem_version vr "
-            . "$WhereString ORDER BY $OrderBy ASC",
+        SQL   => $SQL,
         Limit => $Param{Limit},
     );
 
@@ -1158,6 +1267,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.28 $ $Date: 2011-07-27 13:00:34 $
+$Revision: 1.29 $ $Date: 2011-08-22 15:22:50 $
 
 =cut
