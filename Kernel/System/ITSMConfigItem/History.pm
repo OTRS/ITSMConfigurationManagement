@@ -1,8 +1,8 @@
 # --
 # Kernel/System/ITSMConfigItem/History.pm - module for ITSMConfigItem.pm with history functions
-# Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: History.pm,v 1.9 2009-08-24 09:16:40 reb Exp $
+# $Id: History.pm,v 1.10 2011-09-27 07:00:59 ep Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.9 $) [1];
+$VERSION = qw($Revision: 1.10 $) [1];
 
 =head1 NAME
 
@@ -44,7 +44,7 @@ These hash references contain information about:
     $Info{HistoryTypeID}
     $Info{Comment}
     $Info{CreatedBy}
-    $Info{CreatedTime}
+    $Info{CreateTime}
     $Info{UserID}
     $Info{UserLogin}
     $Info{UserLastname}
@@ -436,12 +436,12 @@ This software is part of the OTRS project (http://otrs.org/).
 
 This software comes with ABSOLUTELY NO WARRANTY. For details, see
 the enclosed file COPYING for license information (AGPL). If you
-did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =cut
 
 =head1 VERSION
 
-$Revision: 1.9 $ $Date: 2009-08-24 09:16:40 $
+$Revision: 1.10 $ $Date: 2011-09-27 07:00:59 $
 
 =cut
