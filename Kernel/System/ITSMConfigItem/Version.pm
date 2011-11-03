@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Version.pm - sub module of ITSMConfigItem.pm with version functions
 # Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: Version.pm,v 1.29 2011-08-22 15:22:50 ub Exp $
+# $Id: Version.pm,v 1.30 2011-11-03 09:07:05 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.29 $) [1];
+$VERSION = qw($Revision: 1.30 $) [1];
 
 use Storable;
 
@@ -856,6 +856,7 @@ sub VersionSearch {
     # assemble the ORDER BY clause
     my @SQLOrderBy;
     my $Count = 0;
+    my @OrderBySelectColumns;
     for my $OrderBy ( @{ $Param{OrderBy} } ) {
 
         # set the default order direction
@@ -872,7 +873,8 @@ sub VersionSearch {
         }
 
         # add SQL
-        push @SQLOrderBy, "$OrderByTable{$OrderBy} $Direction";
+        push @SQLOrderBy,           "$OrderByTable{$OrderBy} $Direction";
+        push @OrderBySelectColumns, $OrderByTable{$OrderBy};
 
     }
     continue {
@@ -950,8 +952,15 @@ sub VersionSearch {
         $Param{Limit} = $Self->{DBObject}->Quote( $Param{Limit}, 'Integer' );
     }
 
+    # add the order by columns also to the selected columns
+    my $OrderBySelectString = '';
+    if (@OrderBySelectColumns) {
+        $OrderBySelectString = join ', ', @OrderBySelectColumns;
+        $OrderBySelectString = ', ' . $OrderBySelectString;
+    }
+
     # build SQL
-    my $SQL = 'SELECT DISTINCT(vr.configitem_id) '
+    my $SQL = "SELECT DISTINCT vr.configitem_id $OrderBySelectString "
         . 'FROM configitem ci, configitem_version vr '
         . $WhereString;
 
@@ -1267,6 +1276,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.29 $ $Date: 2011-08-22 15:22:50 $
+$Revision: 1.30 $ $Date: 2011-11-03 09:07:05 $
 
 =cut
