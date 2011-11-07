@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem.pm - all config item function
 # Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.33 2011-04-04 10:51:16 ub Exp $
+# $Id: ITSMConfigItem.pm,v 1.34 2011-11-07 11:22:25 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -29,7 +29,7 @@ use Kernel::System::User;
 use Kernel::System::XML;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.33 $) [1];
+$VERSION = qw($Revision: 1.34 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',
@@ -615,6 +615,15 @@ sub ConfigItemSearchExtended {
     # version search is required if Name, What or PreviousVersionSearch is given
     if ( $Param{Name} || $Param{What} || $Param{PreviousVersionSearch} ) {
         $RequiredSearch{Version} = 1;
+    }
+
+    # version search is also required if sorting by name (fix for bug #7072)
+    ORDERBY:
+    for my $OrderBy ( @{ $Param{OrderBy} } ) {
+        if ( $OrderBy eq 'Name' ) {
+            $RequiredSearch{Version} = 1;
+            last ORDERBY;
+        }
     }
 
     # xml version search is required if What is given
@@ -1364,6 +1373,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.33 $ $Date: 2011-04-04 10:51:16 $
+$Revision: 1.34 $ $Date: 2011-11-07 11:22:25 $
 
 =cut

@@ -2,7 +2,7 @@
 # AgentITSMConfigItemOverviewSmall.dtl - html for configurtion item overview table
 # Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemOverviewSmall.dtl,v 1.7 2011-11-03 14:37:09 ub Exp $
+# $Id: AgentITSMConfigItemOverviewSmall.dtl,v 1.8 2011-11-07 11:23:17 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -29,12 +29,9 @@
                 </th>
 <!-- dtl:block:RecordNumberHeader -->
 <!-- dtl:block:RecordNameHeader -->
-                <th class="Fixed">
-                    <span>$Text{"Name"}</span>
+                <th class="Name $QData{"CSS"}">
+                    <a href="$Env{"Baselink"}Action=$Env{"Action"};$Data{"LinkSort"};SortBy=Name;OrderBy=$LQData{"OrderBy"}">$Text{"Name"}</a>
                 </th>
-#                <th class="Name $QData{"CSS"}">
-#                    <a href="$Env{"Baselink"}Action=$Env{"Action"};$Data{"LinkSort"};SortBy=Name;OrderBy=$LQData{"OrderBy"}">$Text{"Name"}</a>
-#                </th>
 <!-- dtl:block:RecordNameHeader -->
 <!-- dtl:block:RecordClassHeader -->
                 <th class="Class $QData{"CSS"}">
