@@ -2,7 +2,7 @@
 # Kernel/Language/it_ITSMConfigItem.pm - translation file
 # Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: it_ITSMConfigItem.pm,v 1.8 2011-06-15 14:02:07 ep Exp $
+# $Id: it_ITSMConfigItem.pm,v 1.9 2011-11-24 16:25:59 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -35,7 +35,7 @@ sub Data {
     $Self->{Translation}->{'CIHistory::VersionDelete'} = '';
     $Self->{Translation}->{'CPU'} = 'CPU';
     $Self->{Translation}->{'Camera'} = 'Videocamera';
-    $Self->{Translation}->{'Capacity'} = 'Capacità';
+    $Self->{Translation}->{'Capacity'} = 'CapacitÃ ';
     $Self->{Translation}->{'Change Definition'} = 'Modifica Definizione';
     $Self->{Translation}->{'Change of definition failed! See System Log for details.'} = 'Aggiornamento delle definizioni fallita! Guarda nel Log del Sistema per dettagli';
     $Self->{Translation}->{'Client Application'} = 'Applicazione Cliente';
@@ -62,7 +62,7 @@ sub Data {
     $Self->{Translation}->{'Gateway'} = 'Gateway';
     $Self->{Translation}->{'Graphic Adapter'} = 'Scheda Grafica';
     $Self->{Translation}->{'Hard Disk'} = 'Disco Rigido';
-    $Self->{Translation}->{'Hard Disk::Capacity'} = 'Disco Rigido::Capacità';
+    $Self->{Translation}->{'Hard Disk::Capacity'} = 'Disco Rigido::CapacitÃ ';
     $Self->{Translation}->{'Hide Versions'} = 'Nascondi Versioni';
     $Self->{Translation}->{'IP Address'} = 'Indirizzo IP';
     $Self->{Translation}->{'IP over DHCP'} = 'IP su DHCP';
@@ -75,7 +75,7 @@ sub Data {
     $Self->{Translation}->{'Last Change'} = 'Ultima modifica';
     $Self->{Translation}->{'Licence Key'} = 'Chiave della Licenza';
     $Self->{Translation}->{'Licence Key::Expiration Date'} = 'Chiave della Licenza::Data di scadenza';
-    $Self->{Translation}->{'Licence Key::Quantity'} = 'Chiave della Licenza::Quantità';
+    $Self->{Translation}->{'Licence Key::Quantity'} = 'Chiave della Licenza::QuantitÃ ';
     $Self->{Translation}->{'Licence Type'} = 'Tipo di Licenza';
     $Self->{Translation}->{'Maintenance'} = 'Manutenzione';
     $Self->{Translation}->{'Maximum number of one element'} = 'Numero massimo di un elemento';
@@ -109,7 +109,7 @@ sub Data {
     $Self->{Translation}->{'Planned'} = 'Pianificato';
     $Self->{Translation}->{'Printer'} = 'Stampante';
     $Self->{Translation}->{'Production'} = 'Produzione';
-    $Self->{Translation}->{'Quantity'} = 'Quantità';
+    $Self->{Translation}->{'Quantity'} = 'QuantitÃ ';
     $Self->{Translation}->{'Rack'} = '';
     $Self->{Translation}->{'Ram'} = 'Ram';
     $Self->{Translation}->{'Repair'} = 'Riparazione';

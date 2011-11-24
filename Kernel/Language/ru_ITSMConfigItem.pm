@@ -2,7 +2,7 @@
 # Kernel/Language/ru_ITSMConfigItem.pm - translation file
 # Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: ru_ITSMConfigItem.pm,v 1.10 2011-06-15 14:02:07 ep Exp $
+# $Id: ru_ITSMConfigItem.pm,v 1.11 2011-11-24 16:25:59 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,9 +18,9 @@ sub Data {
 
     # Template: AAAITSMConfigItem
     $Self->{Translation}->{'Address'} = '';
-    $Self->{Translation}->{'Admin Tool'} = 'Ñèñòåìíûå óòèëèòû';
-    $Self->{Translation}->{'Backup Device'} = 'Óñòğîéñòâî áıêàïà';
-    $Self->{Translation}->{'Beamer'} = 'Ïğîåêòîğ';
+    $Self->{Translation}->{'Admin Tool'} = 'Ğ¡Ğ¸ÑÑ‚ĞµĞ¼Ğ½Ñ‹Ğµ ÑƒÑ‚Ğ¸Ğ»Ğ¸Ñ‚Ñ‹';
+    $Self->{Translation}->{'Backup Device'} = 'Ğ£ÑÑ‚Ñ€Ğ¾Ğ¹ÑÑ‚Ğ²Ğ¾ Ğ±ÑĞºĞ°Ğ¿Ğ°';
+    $Self->{Translation}->{'Beamer'} = 'ĞŸÑ€Ğ¾ĞµĞºÑ‚Ğ¾Ñ€';
     $Self->{Translation}->{'Building'} = '';
     $Self->{Translation}->{'CIHistory::ConfigItemCreate'} = '';
     $Self->{Translation}->{'CIHistory::ConfigItemDelete'} = '';
@@ -33,121 +33,121 @@ sub Data {
     $Self->{Translation}->{'CIHistory::ValueUpdate'} = '';
     $Self->{Translation}->{'CIHistory::VersionCreate'} = '';
     $Self->{Translation}->{'CIHistory::VersionDelete'} = '';
-    $Self->{Translation}->{'CPU'} = 'ÖÏÓ';
-    $Self->{Translation}->{'Camera'} = 'Êàìåğà';
-    $Self->{Translation}->{'Capacity'} = 'Îáúåì';
-    $Self->{Translation}->{'Change Definition'} = 'Èçìåíèòü îïèñàíèå';
-    $Self->{Translation}->{'Change of definition failed! See System Log for details.'} = 'Íåâîçìîæíî èçìåíèòü îïèñàíèå! Äëÿ ïîäğîáíîé èíôîğìàöèè ñìîòğè System Log.';
-    $Self->{Translation}->{'Client Application'} = 'Êëèåíòñêîå ïğèëîæåíèå';
-    $Self->{Translation}->{'Client OS'} = 'Êëèåíòñêàÿ ÎÑ';
-    $Self->{Translation}->{'Concurrent Users'} = 'Êîíêóğåíòàÿ ëèöåíçèÿ';
-    $Self->{Translation}->{'Config Item-Area'} = 'Îáçîğ îñíîâíûõ ñğåäñòâ';
-    $Self->{Translation}->{'Config Items available'} = 'Äîñòóïíî îñíîâíûõ ñğåäñòâ';
-    $Self->{Translation}->{'Config Items shown'} = 'Ïîêàçàíî îñíîâíûõ ñğåäñòâ';
+    $Self->{Translation}->{'CPU'} = 'Ğ¦ĞŸĞ£';
+    $Self->{Translation}->{'Camera'} = 'ĞšĞ°Ğ¼ĞµÑ€Ğ°';
+    $Self->{Translation}->{'Capacity'} = 'ĞĞ±ÑŠĞµĞ¼';
+    $Self->{Translation}->{'Change Definition'} = 'Ğ˜Ğ·Ğ¼ĞµĞ½Ğ¸Ñ‚ÑŒ Ğ¾Ğ¿Ğ¸ÑĞ°Ğ½Ğ¸Ğµ';
+    $Self->{Translation}->{'Change of definition failed! See System Log for details.'} = 'ĞĞµĞ²Ğ¾Ğ·Ğ¼Ğ¾Ğ¶Ğ½Ğ¾ Ğ¸Ğ·Ğ¼ĞµĞ½Ğ¸Ñ‚ÑŒ Ğ¾Ğ¿Ğ¸ÑĞ°Ğ½Ğ¸Ğµ! Ğ”Ğ»Ñ Ğ¿Ğ¾Ğ´Ñ€Ğ¾Ğ±Ğ½Ğ¾Ğ¹ Ğ¸Ğ½Ñ„Ğ¾Ñ€Ğ¼Ğ°Ñ†Ğ¸Ğ¸ ÑĞ¼Ğ¾Ñ‚Ñ€Ğ¸ System Log.';
+    $Self->{Translation}->{'Client Application'} = 'ĞšĞ»Ğ¸ĞµĞ½Ñ‚ÑĞºĞ¾Ğµ Ğ¿Ñ€Ğ¸Ğ»Ğ¾Ğ¶ĞµĞ½Ğ¸Ğµ';
+    $Self->{Translation}->{'Client OS'} = 'ĞšĞ»Ğ¸ĞµĞ½Ñ‚ÑĞºĞ°Ñ ĞĞ¡';
+    $Self->{Translation}->{'Concurrent Users'} = 'ĞšĞ¾Ğ½ĞºÑƒÑ€ĞµĞ½Ñ‚Ğ°Ñ Ğ»Ğ¸Ñ†ĞµĞ½Ğ·Ğ¸Ñ';
+    $Self->{Translation}->{'Config Item-Area'} = 'ĞĞ±Ğ·Ğ¾Ñ€ Ğ¾ÑĞ½Ğ¾Ğ²Ğ½Ñ‹Ñ… ÑÑ€ĞµĞ´ÑÑ‚Ğ²';
+    $Self->{Translation}->{'Config Items available'} = 'Ğ”Ğ¾ÑÑ‚ÑƒĞ¿Ğ½Ğ¾ Ğ¾ÑĞ½Ğ¾Ğ²Ğ½Ñ‹Ñ… ÑÑ€ĞµĞ´ÑÑ‚Ğ²';
+    $Self->{Translation}->{'Config Items shown'} = 'ĞŸĞ¾ĞºĞ°Ğ·Ğ°Ğ½Ğ¾ Ğ¾ÑĞ½Ğ¾Ğ²Ğ½Ñ‹Ñ… ÑÑ€ĞµĞ´ÑÑ‚Ğ²';
     $Self->{Translation}->{'CMDB'} = '';
-    $Self->{Translation}->{'Demo'} = 'Äåìî-âåğñèÿ';
-    $Self->{Translation}->{'Desktop'} = 'Íàñòîëüíûé ÏÊ';
-    $Self->{Translation}->{'Developer Licence'} = 'Ëèöåíçèÿ äëÿ ğàçğàáîò÷èêà';
-    $Self->{Translation}->{'Docking Station'} = 'Äîê-ñòàíöèÿ';
-    $Self->{Translation}->{'Duplicate'} = 'Ğåçåğâ';
-    $Self->{Translation}->{'Embedded'} = 'Âñòğîåííûé';
+    $Self->{Translation}->{'Demo'} = 'Ğ”ĞµĞ¼Ğ¾-Ğ²ĞµÑ€ÑĞ¸Ñ';
+    $Self->{Translation}->{'Desktop'} = 'ĞĞ°ÑÑ‚Ğ¾Ğ»ÑŒĞ½Ñ‹Ğ¹ ĞŸĞš';
+    $Self->{Translation}->{'Developer Licence'} = 'Ğ›Ğ¸Ñ†ĞµĞ½Ğ·Ğ¸Ñ Ğ´Ğ»Ñ Ñ€Ğ°Ğ·Ñ€Ğ°Ğ±Ğ¾Ñ‚Ñ‡Ğ¸ĞºĞ°';
+    $Self->{Translation}->{'Docking Station'} = 'Ğ”Ğ¾Ğº-ÑÑ‚Ğ°Ğ½Ñ†Ğ¸Ñ';
+    $Self->{Translation}->{'Duplicate'} = 'Ğ ĞµĞ·ĞµÑ€Ğ²';
+    $Self->{Translation}->{'Embedded'} = 'Ğ’ÑÑ‚Ñ€Ğ¾ĞµĞ½Ğ½Ñ‹Ğ¹';
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = '';
-    $Self->{Translation}->{'Enterprise Licence'} = 'Êîğïîğàòèâíàÿ ëèöåíçèÿ';
-    $Self->{Translation}->{'Expiration Date'} = 'Ñğîê ëèöåíçèè';
-    $Self->{Translation}->{'Expired'} = 'Óñòàğåëî';
+    $Self->{Translation}->{'Enterprise Licence'} = 'ĞšĞ¾Ñ€Ğ¿Ğ¾Ñ€Ğ°Ñ‚Ğ¸Ğ²Ğ½Ğ°Ñ Ğ»Ğ¸Ñ†ĞµĞ½Ğ·Ğ¸Ñ';
+    $Self->{Translation}->{'Expiration Date'} = 'Ğ¡Ñ€Ğ¾Ğº Ğ»Ğ¸Ñ†ĞµĞ½Ğ·Ğ¸Ğ¸';
+    $Self->{Translation}->{'Expired'} = 'Ğ£ÑÑ‚Ğ°Ñ€ĞµĞ»Ğ¾';
     $Self->{Translation}->{'FQDN'} = 'FQDN';
     $Self->{Translation}->{'Floor'} = '';
-    $Self->{Translation}->{'Freeware'} = 'Áåñïëàòíîå ÏÎ';
+    $Self->{Translation}->{'Freeware'} = 'Ğ‘ĞµÑĞ¿Ğ»Ğ°Ñ‚Ğ½Ğ¾Ğµ ĞŸĞ';
     $Self->{Translation}->{'GSM'} = 'GSM';
-    $Self->{Translation}->{'Gateway'} = 'Øëşç';
-    $Self->{Translation}->{'Graphic Adapter'} = 'Âèäåî àäàïòåğ';
-    $Self->{Translation}->{'Hard Disk'} = 'Æåñòêèé äèñê';
-    $Self->{Translation}->{'Hard Disk::Capacity'} = 'Æåñòêèé äèñê::Îáúåì';
-    $Self->{Translation}->{'Hide Versions'} = 'Ñêğûòü âåğñèè';
-    $Self->{Translation}->{'IP Address'} = 'IP àäğåñ';
-    $Self->{Translation}->{'IP over DHCP'} = 'IP ïî DHCP';
+    $Self->{Translation}->{'Gateway'} = 'Ğ¨Ğ»ÑĞ·';
+    $Self->{Translation}->{'Graphic Adapter'} = 'Ğ’Ğ¸Ğ´ĞµĞ¾ Ğ°Ğ´Ğ°Ğ¿Ñ‚ĞµÑ€';
+    $Self->{Translation}->{'Hard Disk'} = 'Ğ–ĞµÑÑ‚ĞºĞ¸Ğ¹ Ğ´Ğ¸ÑĞº';
+    $Self->{Translation}->{'Hard Disk::Capacity'} = 'Ğ–ĞµÑÑ‚ĞºĞ¸Ğ¹ Ğ´Ğ¸ÑĞº::ĞĞ±ÑŠĞµĞ¼';
+    $Self->{Translation}->{'Hide Versions'} = 'Ğ¡ĞºÑ€Ñ‹Ñ‚ÑŒ Ğ²ĞµÑ€ÑĞ¸Ğ¸';
+    $Self->{Translation}->{'IP Address'} = 'IP Ğ°Ğ´Ñ€ĞµÑ';
+    $Self->{Translation}->{'IP over DHCP'} = 'IP Ğ¿Ğ¾ DHCP';
     $Self->{Translation}->{'IT Facility'} = '';
-    $Self->{Translation}->{'Inactive'} = 'Íåàêòèâíî';
-    $Self->{Translation}->{'Incident'} = 'Èíöèäåíò';
-    $Self->{Translation}->{'Install Date'} = 'Äàòà óñòàíîâêè';
-    $Self->{Translation}->{'Keybord'} = 'Êëàâèàòóğà';
-    $Self->{Translation}->{'LAN'} = 'Ñåòåâàÿ êàğòà';
-    $Self->{Translation}->{'Laptop'} = 'Íîóòáóê';
-    $Self->{Translation}->{'Last Change'} = 'Âğåìÿ ïîñëåäíåãî èçìåíåíèÿ';
-    $Self->{Translation}->{'Licence Key'} = 'Ëèöåíçèîííûé êëş÷';
-    $Self->{Translation}->{'Licence Key::Expiration Date'} = 'Ëèöåíçèîííûé êëş÷::Ñğîê ëèöåíçèè';
-    $Self->{Translation}->{'Licence Key::Quantity'} = 'Ëèöåíçèîííûé êëş÷::Êîëè÷åñòâî';
-    $Self->{Translation}->{'Licence Type'} = 'Òèï ëèöåíçèè';
-    $Self->{Translation}->{'Maintenance'} = 'Òåõíè÷åñêîå îáñëóæèâàíèå';
-    $Self->{Translation}->{'Maximum number of one element'} = 'Ìàêñèìàëüíîå êîëè÷åñòâî îäíîãî ıëåìåíòà';
-    $Self->{Translation}->{'Media'} = 'Ìóëüòèìåäèéíûå ñğåäñòâà';
-    $Self->{Translation}->{'Middleware'} = 'Ïğîìåæóòî÷íîå ÏÎ';
-    $Self->{Translation}->{'Model'} = 'Ìîäåëü';
-    $Self->{Translation}->{'Modem'} = 'Ìîäåì';
-    $Self->{Translation}->{'Monitor'} = 'Ìîíèòîğ';
-    $Self->{Translation}->{'Mouse'} = 'Ìûøêà';
-    $Self->{Translation}->{'Network Adapter'} = 'Ñåòåâîé àäàïòåğ';
-    $Self->{Translation}->{'Network Adapter::IP Address'} = 'Ñåòåâîé àäàïòåğ::IP àäğåñ';
-    $Self->{Translation}->{'Network Adapter::IP over DHCP'} = 'Ñåòåâîé àäàïòåğ::IP ïî DHCP';
-    $Self->{Translation}->{'Network Address'} = 'Ñåòåâîé àäğåñ';
-    $Self->{Translation}->{'Network Address::Gateway'} = 'Ñåòåâîé àäğåñ::Øëşç';
-    $Self->{Translation}->{'Network Address::Subnet Mask'} = 'Ñåòåâîé àäğåñ::Ìàñêà ïîäñåòè';
-    $Self->{Translation}->{'Open Source'} = 'ÏÎ ñ îòêğûòûì êîäîì';
-    $Self->{Translation}->{'Operating System'} = 'Îïåğàöèîííàÿ ñèñòåìà';
-    $Self->{Translation}->{'Operational'} = 'Â ıêñïëóàòàöèè';
-    $Self->{Translation}->{'Other'} = 'Äğóãîå';
-    $Self->{Translation}->{'Other Equipment'} = 'Äğóãîå îáîğóäîâàíèå';
+    $Self->{Translation}->{'Inactive'} = 'ĞĞµĞ°ĞºÑ‚Ğ¸Ğ²Ğ½Ğ¾';
+    $Self->{Translation}->{'Incident'} = 'Ğ˜Ğ½Ñ†Ğ¸Ğ´ĞµĞ½Ñ‚';
+    $Self->{Translation}->{'Install Date'} = 'Ğ”Ğ°Ñ‚Ğ° ÑƒÑÑ‚Ğ°Ğ½Ğ¾Ğ²ĞºĞ¸';
+    $Self->{Translation}->{'Keybord'} = 'ĞšĞ»Ğ°Ğ²Ğ¸Ğ°Ñ‚ÑƒÑ€Ğ°';
+    $Self->{Translation}->{'LAN'} = 'Ğ¡ĞµÑ‚ĞµĞ²Ğ°Ñ ĞºĞ°Ñ€Ñ‚Ğ°';
+    $Self->{Translation}->{'Laptop'} = 'ĞĞ¾ÑƒÑ‚Ğ±ÑƒĞº';
+    $Self->{Translation}->{'Last Change'} = 'Ğ’Ñ€ĞµĞ¼Ñ Ğ¿Ğ¾ÑĞ»ĞµĞ´Ğ½ĞµĞ³Ğ¾ Ğ¸Ğ·Ğ¼ĞµĞ½ĞµĞ½Ğ¸Ñ';
+    $Self->{Translation}->{'Licence Key'} = 'Ğ›Ğ¸Ñ†ĞµĞ½Ğ·Ğ¸Ğ¾Ğ½Ğ½Ñ‹Ğ¹ ĞºĞ»ÑÑ‡';
+    $Self->{Translation}->{'Licence Key::Expiration Date'} = 'Ğ›Ğ¸Ñ†ĞµĞ½Ğ·Ğ¸Ğ¾Ğ½Ğ½Ñ‹Ğ¹ ĞºĞ»ÑÑ‡::Ğ¡Ñ€Ğ¾Ğº Ğ»Ğ¸Ñ†ĞµĞ½Ğ·Ğ¸Ğ¸';
+    $Self->{Translation}->{'Licence Key::Quantity'} = 'Ğ›Ğ¸Ñ†ĞµĞ½Ğ·Ğ¸Ğ¾Ğ½Ğ½Ñ‹Ğ¹ ĞºĞ»ÑÑ‡::ĞšĞ¾Ğ»Ğ¸Ñ‡ĞµÑÑ‚Ğ²Ğ¾';
+    $Self->{Translation}->{'Licence Type'} = 'Ğ¢Ğ¸Ğ¿ Ğ»Ğ¸Ñ†ĞµĞ½Ğ·Ğ¸Ğ¸';
+    $Self->{Translation}->{'Maintenance'} = 'Ğ¢ĞµÑ…Ğ½Ğ¸Ñ‡ĞµÑĞºĞ¾Ğµ Ğ¾Ğ±ÑĞ»ÑƒĞ¶Ğ¸Ğ²Ğ°Ğ½Ğ¸Ğµ';
+    $Self->{Translation}->{'Maximum number of one element'} = 'ĞœĞ°ĞºÑĞ¸Ğ¼Ğ°Ğ»ÑŒĞ½Ğ¾Ğµ ĞºĞ¾Ğ»Ğ¸Ñ‡ĞµÑÑ‚Ğ²Ğ¾ Ğ¾Ğ´Ğ½Ğ¾Ğ³Ğ¾ ÑĞ»ĞµĞ¼ĞµĞ½Ñ‚Ğ°';
+    $Self->{Translation}->{'Media'} = 'ĞœÑƒĞ»ÑŒÑ‚Ğ¸Ğ¼ĞµĞ´Ğ¸Ğ¹Ğ½Ñ‹Ğµ ÑÑ€ĞµĞ´ÑÑ‚Ğ²Ğ°';
+    $Self->{Translation}->{'Middleware'} = 'ĞŸÑ€Ğ¾Ğ¼ĞµĞ¶ÑƒÑ‚Ğ¾Ñ‡Ğ½Ğ¾Ğµ ĞŸĞ';
+    $Self->{Translation}->{'Model'} = 'ĞœĞ¾Ğ´ĞµĞ»ÑŒ';
+    $Self->{Translation}->{'Modem'} = 'ĞœĞ¾Ğ´ĞµĞ¼';
+    $Self->{Translation}->{'Monitor'} = 'ĞœĞ¾Ğ½Ğ¸Ñ‚Ğ¾Ñ€';
+    $Self->{Translation}->{'Mouse'} = 'ĞœÑ‹ÑˆĞºĞ°';
+    $Self->{Translation}->{'Network Adapter'} = 'Ğ¡ĞµÑ‚ĞµĞ²Ğ¾Ğ¹ Ğ°Ğ´Ğ°Ğ¿Ñ‚ĞµÑ€';
+    $Self->{Translation}->{'Network Adapter::IP Address'} = 'Ğ¡ĞµÑ‚ĞµĞ²Ğ¾Ğ¹ Ğ°Ğ´Ğ°Ğ¿Ñ‚ĞµÑ€::IP Ğ°Ğ´Ñ€ĞµÑ';
+    $Self->{Translation}->{'Network Adapter::IP over DHCP'} = 'Ğ¡ĞµÑ‚ĞµĞ²Ğ¾Ğ¹ Ğ°Ğ´Ğ°Ğ¿Ñ‚ĞµÑ€::IP Ğ¿Ğ¾ DHCP';
+    $Self->{Translation}->{'Network Address'} = 'Ğ¡ĞµÑ‚ĞµĞ²Ğ¾Ğ¹ Ğ°Ğ´Ñ€ĞµÑ';
+    $Self->{Translation}->{'Network Address::Gateway'} = 'Ğ¡ĞµÑ‚ĞµĞ²Ğ¾Ğ¹ Ğ°Ğ´Ñ€ĞµÑ::Ğ¨Ğ»ÑĞ·';
+    $Self->{Translation}->{'Network Address::Subnet Mask'} = 'Ğ¡ĞµÑ‚ĞµĞ²Ğ¾Ğ¹ Ğ°Ğ´Ñ€ĞµÑ::ĞœĞ°ÑĞºĞ° Ğ¿Ğ¾Ğ´ÑĞµÑ‚Ğ¸';
+    $Self->{Translation}->{'Open Source'} = 'ĞŸĞ Ñ Ğ¾Ñ‚ĞºÑ€Ñ‹Ñ‚Ñ‹Ğ¼ ĞºĞ¾Ğ´Ğ¾Ğ¼';
+    $Self->{Translation}->{'Operating System'} = 'ĞĞ¿ĞµÑ€Ğ°Ñ†Ğ¸Ğ¾Ğ½Ğ½Ğ°Ñ ÑĞ¸ÑÑ‚ĞµĞ¼Ğ°';
+    $Self->{Translation}->{'Operational'} = 'Ğ’ ÑĞºÑĞ¿Ğ»ÑƒĞ°Ñ‚Ğ°Ñ†Ğ¸Ğ¸';
+    $Self->{Translation}->{'Other'} = 'Ğ”Ñ€ÑƒĞ³Ğ¾Ğµ';
+    $Self->{Translation}->{'Other Equipment'} = 'Ğ”Ñ€ÑƒĞ³Ğ¾Ğµ Ğ¾Ğ±Ğ¾Ñ€ÑƒĞ´Ğ¾Ğ²Ğ°Ğ½Ğ¸Ğµ';
     $Self->{Translation}->{'Outlet'} = '';
-    $Self->{Translation}->{'PCMCIA Card'} = 'PCMCIA êàğòà';
+    $Self->{Translation}->{'PCMCIA Card'} = 'PCMCIA ĞºĞ°Ñ€Ñ‚Ğ°';
     $Self->{Translation}->{'PDA'} = 'PDA';
-    $Self->{Translation}->{'Per Node'} = 'Íà íîäó(óçåë)';
-    $Self->{Translation}->{'Per Processor'} = 'Íà ÖÏÓ';
-    $Self->{Translation}->{'Per Server'} = 'Íà ñåğâåğ';
-    $Self->{Translation}->{'Per User'} = 'Íà ïîëüçîâàòåëÿ';
+    $Self->{Translation}->{'Per Node'} = 'ĞĞ° Ğ½Ğ¾Ğ´Ñƒ(ÑƒĞ·ĞµĞ»)';
+    $Self->{Translation}->{'Per Processor'} = 'ĞĞ° Ğ¦ĞŸĞ£';
+    $Self->{Translation}->{'Per Server'} = 'ĞĞ° ÑĞµÑ€Ğ²ĞµÑ€';
+    $Self->{Translation}->{'Per User'} = 'ĞĞ° Ğ¿Ğ¾Ğ»ÑŒĞ·Ğ¾Ğ²Ğ°Ñ‚ĞµĞ»Ñ';
     $Self->{Translation}->{'Phone 1'} = '';
     $Self->{Translation}->{'Phone 2'} = '';
-    $Self->{Translation}->{'Pilot'} = 'İêñïåğèìåíò';
-    $Self->{Translation}->{'Planned'} = 'Çàïëàíèğîâàííî';
-    $Self->{Translation}->{'Printer'} = 'Ïğèíòåğ';
-    $Self->{Translation}->{'Production'} = 'Ïğîèçâîäñòâî';
-    $Self->{Translation}->{'Quantity'} = 'Êîëè÷åñòâî';
+    $Self->{Translation}->{'Pilot'} = 'Ğ­ĞºÑĞ¿ĞµÑ€Ğ¸Ğ¼ĞµĞ½Ñ‚';
+    $Self->{Translation}->{'Planned'} = 'Ğ—Ğ°Ğ¿Ğ»Ğ°Ğ½Ğ¸Ñ€Ğ¾Ğ²Ğ°Ğ½Ğ½Ğ¾';
+    $Self->{Translation}->{'Printer'} = 'ĞŸÑ€Ğ¸Ğ½Ñ‚ĞµÑ€';
+    $Self->{Translation}->{'Production'} = 'ĞŸÑ€Ğ¾Ğ¸Ğ·Ğ²Ğ¾Ğ´ÑÑ‚Ğ²Ğ¾';
+    $Self->{Translation}->{'Quantity'} = 'ĞšĞ¾Ğ»Ğ¸Ñ‡ĞµÑÑ‚Ğ²Ğ¾';
     $Self->{Translation}->{'Rack'} = '';
-    $Self->{Translation}->{'Ram'} = 'ÎÇÓ';
-    $Self->{Translation}->{'Repair'} = 'Ğåìîíò';
-    $Self->{Translation}->{'Retired'} = 'Ñïèñàíî';
-    $Self->{Translation}->{'Review'} = 'İêñïåğòèçà';
+    $Self->{Translation}->{'Ram'} = 'ĞĞ—Ğ£';
+    $Self->{Translation}->{'Repair'} = 'Ğ ĞµĞ¼Ğ¾Ğ½Ñ‚';
+    $Self->{Translation}->{'Retired'} = 'Ğ¡Ğ¿Ğ¸ÑĞ°Ğ½Ğ¾';
+    $Self->{Translation}->{'Review'} = 'Ğ­ĞºÑĞ¿ĞµÑ€Ñ‚Ğ¸Ğ·Ğ°';
     $Self->{Translation}->{'Room'} = '';
-    $Self->{Translation}->{'Router'} = 'Ìàğøğóòèçàòîğ';
-    $Self->{Translation}->{'Scanner'} = 'Ñêàíåğ';
-    $Self->{Translation}->{'Search Config Items'} = 'Ïîèñê îñíîâíûõ ñğåäñòâ';
-    $Self->{Translation}->{'Security Device'} = 'Ñìàğò-êàğòà';
-    $Self->{Translation}->{'Serial Number'} = 'Ñåğèéíûé íîìåğ';
-    $Self->{Translation}->{'Server'} = 'Ñåğâåğ';
-    $Self->{Translation}->{'Server Application'} = 'Ñåğâåğíîå ïğèëîæåíèå';
-    $Self->{Translation}->{'Server OS'} = 'Ñåğâåğíàÿ ÎÑ';
-    $Self->{Translation}->{'Show Versions'} = 'Ïîêàçàòü âåğñèè';
-    $Self->{Translation}->{'Single Licence'} = 'Îäíîêğàòíàÿ ëèöåíçèÿ';
-    $Self->{Translation}->{'Subnet Mask'} = 'Ìàñêà ïîäñåòè';
-    $Self->{Translation}->{'Switch'} = 'Êîììóòàòîğ';
+    $Self->{Translation}->{'Router'} = 'ĞœĞ°Ñ€ÑˆÑ€ÑƒÑ‚Ğ¸Ğ·Ğ°Ñ‚Ğ¾Ñ€';
+    $Self->{Translation}->{'Scanner'} = 'Ğ¡ĞºĞ°Ğ½ĞµÑ€';
+    $Self->{Translation}->{'Search Config Items'} = 'ĞŸĞ¾Ğ¸ÑĞº Ğ¾ÑĞ½Ğ¾Ğ²Ğ½Ñ‹Ñ… ÑÑ€ĞµĞ´ÑÑ‚Ğ²';
+    $Self->{Translation}->{'Security Device'} = 'Ğ¡Ğ¼Ğ°Ñ€Ñ‚-ĞºĞ°Ñ€Ñ‚Ğ°';
+    $Self->{Translation}->{'Serial Number'} = 'Ğ¡ĞµÑ€Ğ¸Ğ¹Ğ½Ñ‹Ğ¹ Ğ½Ğ¾Ğ¼ĞµÑ€';
+    $Self->{Translation}->{'Server'} = 'Ğ¡ĞµÑ€Ğ²ĞµÑ€';
+    $Self->{Translation}->{'Server Application'} = 'Ğ¡ĞµÑ€Ğ²ĞµÑ€Ğ½Ğ¾Ğµ Ğ¿Ñ€Ğ¸Ğ»Ğ¾Ğ¶ĞµĞ½Ğ¸Ğµ';
+    $Self->{Translation}->{'Server OS'} = 'Ğ¡ĞµÑ€Ğ²ĞµÑ€Ğ½Ğ°Ñ ĞĞ¡';
+    $Self->{Translation}->{'Show Versions'} = 'ĞŸĞ¾ĞºĞ°Ğ·Ğ°Ñ‚ÑŒ Ğ²ĞµÑ€ÑĞ¸Ğ¸';
+    $Self->{Translation}->{'Single Licence'} = 'ĞĞ´Ğ½Ğ¾ĞºÑ€Ğ°Ñ‚Ğ½Ğ°Ñ Ğ»Ğ¸Ñ†ĞµĞ½Ğ·Ğ¸Ñ';
+    $Self->{Translation}->{'Subnet Mask'} = 'ĞœĞ°ÑĞºĞ° Ğ¿Ğ¾Ğ´ÑĞµÑ‚Ğ¸';
+    $Self->{Translation}->{'Switch'} = 'ĞšĞ¾Ğ¼Ğ¼ÑƒÑ‚Ğ°Ñ‚Ğ¾Ñ€';
     $Self->{Translation}->{'Telco'} = '';
-    $Self->{Translation}->{'Test/QA'} = 'Òåñòèğîâàíèå';
-    $Self->{Translation}->{'The deployment state of this config item'} = 'Ñîñòîÿíèå èñïîëüçîâàíèÿ ıòîãî îñíîâíîãî ñğåäñòâà';
-    $Self->{Translation}->{'The incident state of this config item'} = 'Ñòàòóñ';
-    $Self->{Translation}->{'Time Restricted'} = 'Îãğàíè÷åííàÿ ïî âğåìåíè';
-    $Self->{Translation}->{'USB Device'} = 'USB óñòğîéñòâî';
-    $Self->{Translation}->{'Unlimited'} = 'Áåç îãğàíè÷åíèé';
-    $Self->{Translation}->{'User Tool'} = 'Ïîëüçîâàòåëüñêèå óòèëèòû';
-    $Self->{Translation}->{'Volume Licence'} = 'Êîğïîğàòèâíàÿ ëèöåíçèÿ';
+    $Self->{Translation}->{'Test/QA'} = 'Ğ¢ĞµÑÑ‚Ğ¸Ñ€Ğ¾Ğ²Ğ°Ğ½Ğ¸Ğµ';
+    $Self->{Translation}->{'The deployment state of this config item'} = 'Ğ¡Ğ¾ÑÑ‚Ğ¾ÑĞ½Ğ¸Ğµ Ğ¸ÑĞ¿Ğ¾Ğ»ÑŒĞ·Ğ¾Ğ²Ğ°Ğ½Ğ¸Ñ ÑÑ‚Ğ¾Ğ³Ğ¾ Ğ¾ÑĞ½Ğ¾Ğ²Ğ½Ğ¾Ğ³Ğ¾ ÑÑ€ĞµĞ´ÑÑ‚Ğ²Ğ°';
+    $Self->{Translation}->{'The incident state of this config item'} = 'Ğ¡Ñ‚Ğ°Ñ‚ÑƒÑ';
+    $Self->{Translation}->{'Time Restricted'} = 'ĞĞ³Ñ€Ğ°Ğ½Ğ¸Ñ‡ĞµĞ½Ğ½Ğ°Ñ Ğ¿Ğ¾ Ğ²Ñ€ĞµĞ¼ĞµĞ½Ğ¸';
+    $Self->{Translation}->{'USB Device'} = 'USB ÑƒÑÑ‚Ñ€Ğ¾Ğ¹ÑÑ‚Ğ²Ğ¾';
+    $Self->{Translation}->{'Unlimited'} = 'Ğ‘ĞµĞ· Ğ¾Ğ³Ñ€Ğ°Ğ½Ğ¸Ñ‡ĞµĞ½Ğ¸Ğ¹';
+    $Self->{Translation}->{'User Tool'} = 'ĞŸĞ¾Ğ»ÑŒĞ·Ğ¾Ğ²Ğ°Ñ‚ĞµĞ»ÑŒÑĞºĞ¸Ğµ ÑƒÑ‚Ğ¸Ğ»Ğ¸Ñ‚Ñ‹';
+    $Self->{Translation}->{'Volume Licence'} = 'ĞšĞ¾Ñ€Ğ¿Ğ¾Ñ€Ğ°Ñ‚Ğ¸Ğ²Ğ½Ğ°Ñ Ğ»Ğ¸Ñ†ĞµĞ½Ğ·Ğ¸Ñ';
     $Self->{Translation}->{'WLAN'} = 'WLAN';
-    $Self->{Translation}->{'WLAN Access Point'} = 'WLAN òî÷êà äîñòóïà';
-    $Self->{Translation}->{'Warranty Expiration Date'} = 'Ñğîê èñòå÷åíèÿ ãàğàíòèè';
+    $Self->{Translation}->{'WLAN Access Point'} = 'WLAN Ñ‚Ğ¾Ñ‡ĞºĞ° Ğ´Ğ¾ÑÑ‚ÑƒĞ¿Ğ°';
+    $Self->{Translation}->{'Warranty Expiration Date'} = 'Ğ¡Ñ€Ğ¾Ğº Ğ¸ÑÑ‚ĞµÑ‡ĞµĞ½Ğ¸Ñ Ğ³Ğ°Ñ€Ğ°Ğ½Ñ‚Ğ¸Ğ¸';
     $Self->{Translation}->{'Workplace'} = '';
 
     # Template: AdminITSMConfigItem
-    $Self->{Translation}->{'Config Item Management'} = 'Óïğàâëåíèå îñíîâíûìè ñğåäñòâàìè';
+    $Self->{Translation}->{'Config Item Management'} = 'Ğ£Ğ¿Ñ€Ğ°Ğ²Ğ»ĞµĞ½Ğ¸Ğµ Ğ¾ÑĞ½Ğ¾Ğ²Ğ½Ñ‹Ğ¼Ğ¸ ÑÑ€ĞµĞ´ÑÑ‚Ğ²Ğ°Ğ¼Ğ¸';
     $Self->{Translation}->{'Change class definition'} = '';
-    $Self->{Translation}->{'Config Item'} = 'Îñíîâíûå ñğåäñòâà';
-    $Self->{Translation}->{'Class'} = 'Êëàññ';
+    $Self->{Translation}->{'Config Item'} = 'ĞÑĞ½Ğ¾Ğ²Ğ½Ñ‹Ğµ ÑÑ€ĞµĞ´ÑÑ‚Ğ²Ğ°';
+    $Self->{Translation}->{'Class'} = 'ĞšĞ»Ğ°ÑÑ';
     $Self->{Translation}->{'Definition'} = '';
 
     # Template: AgentITSMConfigItemAdd
@@ -155,9 +155,9 @@ sub Data {
     $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = '';
 
     # Template: AgentITSMConfigItemEdit
-    $Self->{Translation}->{'The name of this config item'} = 'Èìÿ ıòîãî ó÷åòíîãî ıëåìåíòà';
-    $Self->{Translation}->{'Deployment State'} = 'Ñîñòîÿíèå èñïîëüçîâàíèÿ';
-    $Self->{Translation}->{'Incident State'} = 'Ñîñòîÿíèå èíöèäåíòà';
+    $Self->{Translation}->{'The name of this config item'} = 'Ğ˜Ğ¼Ñ ÑÑ‚Ğ¾Ğ³Ğ¾ ÑƒÑ‡ĞµÑ‚Ğ½Ğ¾Ğ³Ğ¾ ÑĞ»ĞµĞ¼ĞµĞ½Ñ‚Ğ°';
+    $Self->{Translation}->{'Deployment State'} = 'Ğ¡Ğ¾ÑÑ‚Ğ¾ÑĞ½Ğ¸Ğµ Ğ¸ÑĞ¿Ğ¾Ğ»ÑŒĞ·Ğ¾Ğ²Ğ°Ğ½Ğ¸Ñ';
+    $Self->{Translation}->{'Incident State'} = 'Ğ¡Ğ¾ÑÑ‚Ğ¾ÑĞ½Ğ¸Ğµ Ğ¸Ğ½Ñ†Ğ¸Ğ´ĞµĞ½Ñ‚Ğ°';
 
     # Template: AgentITSMConfigItemHistory
 
@@ -166,20 +166,20 @@ sub Data {
 
     # Template: AgentITSMConfigItemOverviewSmall
     $Self->{Translation}->{'Deployment State Type'} = '';
-    $Self->{Translation}->{'Current Incident State'} = 'Òåêóùåå ñîñòîÿíèå èíöèäåíòà';
+    $Self->{Translation}->{'Current Incident State'} = 'Ğ¢ĞµĞºÑƒÑ‰ĞµĞµ ÑĞ¾ÑÑ‚Ğ¾ÑĞ½Ğ¸Ğµ Ğ¸Ğ½Ñ†Ğ¸Ğ´ĞµĞ½Ñ‚Ğ°';
     $Self->{Translation}->{'Current Incident State Type'} = '';
     $Self->{Translation}->{'Last Changed'} = '';
 
     # Template: AgentITSMConfigItemPrint
     $Self->{Translation}->{'ConfigItem'} = '';
     $Self->{Translation}->{'ConfigItem-Info'} = '';
-    $Self->{Translation}->{'Current Deployment State'} = 'Òåêóùåå ñîñòîÿíèå èñïîëüçîâàíèÿ';
-    $Self->{Translation}->{'Last changed'} = 'Âğåìÿ ïîñëåäíåãî èçìåíåíèÿ';
-    $Self->{Translation}->{'Last changed by'} = 'Àâòîğ ïîñëåäíåãî èçìåíåíèÿ';
+    $Self->{Translation}->{'Current Deployment State'} = 'Ğ¢ĞµĞºÑƒÑ‰ĞµĞµ ÑĞ¾ÑÑ‚Ğ¾ÑĞ½Ğ¸Ğµ Ğ¸ÑĞ¿Ğ¾Ğ»ÑŒĞ·Ğ¾Ğ²Ğ°Ğ½Ğ¸Ñ';
+    $Self->{Translation}->{'Last changed'} = 'Ğ’Ñ€ĞµĞ¼Ñ Ğ¿Ğ¾ÑĞ»ĞµĞ´Ğ½ĞµĞ³Ğ¾ Ğ¸Ğ·Ğ¼ĞµĞ½ĞµĞ½Ğ¸Ñ';
+    $Self->{Translation}->{'Last changed by'} = 'ĞĞ²Ñ‚Ğ¾Ñ€ Ğ¿Ğ¾ÑĞ»ĞµĞ´Ğ½ĞµĞ³Ğ¾ Ğ¸Ğ·Ğ¼ĞµĞ½ĞµĞ½Ğ¸Ñ';
 
     # Template: AgentITSMConfigItemSearch
     $Self->{Translation}->{'Search-Template'} = '';
-    $Self->{Translation}->{'Also search in previous versions?'} = 'Èñêàòü â ïğåäûäóùèõ âåğñèÿõ?';
+    $Self->{Translation}->{'Also search in previous versions?'} = 'Ğ˜ÑĞºĞ°Ñ‚ÑŒ Ğ² Ğ¿Ñ€ĞµĞ´Ñ‹Ğ´ÑƒÑ‰Ğ¸Ñ… Ğ²ĞµÑ€ÑĞ¸ÑÑ…?';
 
     # Template: AgentITSMConfigItemSearchResultPrint
     $Self->{Translation}->{'CreateTime'} = '';

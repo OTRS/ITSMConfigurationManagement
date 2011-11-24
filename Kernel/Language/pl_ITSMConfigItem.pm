@@ -2,7 +2,7 @@
 # Kernel/Language/pl_ITSMConfigItem.pm - translation file
 # Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: pl_ITSMConfigItem.pm,v 1.10 2011-06-15 14:02:07 ep Exp $
+# $Id: pl_ITSMConfigItem.pm,v 1.11 2011-11-24 16:25:59 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,8 +18,8 @@ sub Data {
 
     # Template: AAAITSMConfigItem
     $Self->{Translation}->{'Address'} = '';
-    $Self->{Translation}->{'Admin Tool'} = 'Narzêdzie administratorskie';
-    $Self->{Translation}->{'Backup Device'} = 'Urz±dzenie do backupu';
+    $Self->{Translation}->{'Admin Tool'} = 'NarzÄ™dzie administratorskie';
+    $Self->{Translation}->{'Backup Device'} = 'UrzÄ…dzenie do backupu';
     $Self->{Translation}->{'Beamer'} = '';
     $Self->{Translation}->{'Building'} = '';
     $Self->{Translation}->{'CIHistory::ConfigItemCreate'} = '';
@@ -35,7 +35,7 @@ sub Data {
     $Self->{Translation}->{'CIHistory::VersionDelete'} = '';
     $Self->{Translation}->{'CPU'} = 'Procesor';
     $Self->{Translation}->{'Camera'} = 'Kamera';
-    $Self->{Translation}->{'Capacity'} = 'Pojemno¶æ';
+    $Self->{Translation}->{'Capacity'} = 'PojemnoÅ›Ä‡';
     $Self->{Translation}->{'Change Definition'} = '';
     $Self->{Translation}->{'Change of definition failed! See System Log for details.'} = '';
     $Self->{Translation}->{'Client Application'} = 'Aplikacja kliencka';
@@ -48,13 +48,13 @@ sub Data {
     $Self->{Translation}->{'Demo'} = 'Demo';
     $Self->{Translation}->{'Desktop'} = 'Desktop';
     $Self->{Translation}->{'Developer Licence'} = 'Licencja developerska';
-    $Self->{Translation}->{'Docking Station'} = 'Stacja dokuj±ca';
+    $Self->{Translation}->{'Docking Station'} = 'Stacja dokujÄ…ca';
     $Self->{Translation}->{'Duplicate'} = 'Duplikat';
     $Self->{Translation}->{'Embedded'} = '';
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = '';
     $Self->{Translation}->{'Enterprise Licence'} = '';
-    $Self->{Translation}->{'Expiration Date'} = 'Data wyga¶niêcia';
-    $Self->{Translation}->{'Expired'} = 'Wygas³o';
+    $Self->{Translation}->{'Expiration Date'} = 'Data wygaÅ›niÄ™cia';
+    $Self->{Translation}->{'Expired'} = 'WygasÅ‚o';
     $Self->{Translation}->{'FQDN'} = 'Nazwa FQDN';
     $Self->{Translation}->{'Floor'} = '';
     $Self->{Translation}->{'Freeware'} = 'Freeware';
@@ -62,7 +62,7 @@ sub Data {
     $Self->{Translation}->{'Gateway'} = 'Brama';
     $Self->{Translation}->{'Graphic Adapter'} = 'Karta graficzna';
     $Self->{Translation}->{'Hard Disk'} = 'Dysk twardy';
-    $Self->{Translation}->{'Hard Disk::Capacity'} = 'Pojemno¶æ dysku twardego';
+    $Self->{Translation}->{'Hard Disk::Capacity'} = 'PojemnoÅ›Ä‡ dysku twardego';
     $Self->{Translation}->{'Hide Versions'} = 'Ukryj wersje';
     $Self->{Translation}->{'IP Address'} = 'Adres IP';
     $Self->{Translation}->{'IP over DHCP'} = 'Adres IP z DHCP';
@@ -75,12 +75,12 @@ sub Data {
     $Self->{Translation}->{'Laptop'} = 'Laptop';
     $Self->{Translation}->{'Last Change'} = 'Ostatnia zmiana';
     $Self->{Translation}->{'Licence Key'} = 'Klucz licencyjny';
-    $Self->{Translation}->{'Licence Key::Expiration Date'} = 'Klucz licencyjny::Data wyga¶niêcia';
-    $Self->{Translation}->{'Licence Key::Quantity'} = 'Klucz licencyjny::Ilo¶æ';
+    $Self->{Translation}->{'Licence Key::Expiration Date'} = 'Klucz licencyjny::Data wygaÅ›niÄ™cia';
+    $Self->{Translation}->{'Licence Key::Quantity'} = 'Klucz licencyjny::IloÅ›Ä‡';
     $Self->{Translation}->{'Licence Type'} = 'Typ licensji';
     $Self->{Translation}->{'Maintenance'} = '';
     $Self->{Translation}->{'Maximum number of one element'} = '';
-    $Self->{Translation}->{'Media'} = 'No¶nik';
+    $Self->{Translation}->{'Media'} = 'NoÅ›nik';
     $Self->{Translation}->{'Middleware'} = 'Middleware';
     $Self->{Translation}->{'Model'} = 'Model';
     $Self->{Translation}->{'Modem'} = 'Modem';
@@ -96,21 +96,21 @@ sub Data {
     $Self->{Translation}->{'Operating System'} = 'System operacyjny';
     $Self->{Translation}->{'Operational'} = '';
     $Self->{Translation}->{'Other'} = 'Inne';
-    $Self->{Translation}->{'Other Equipment'} = 'Pozosta³e wyposa¿enie';
+    $Self->{Translation}->{'Other Equipment'} = 'PozostaÅ‚e wyposaÅ¼enie';
     $Self->{Translation}->{'Outlet'} = '';
     $Self->{Translation}->{'PCMCIA Card'} = 'Karta PCMCIA';
     $Self->{Translation}->{'PDA'} = 'PDA';
-    $Self->{Translation}->{'Per Node'} = 'Na urz±dzenie';
+    $Self->{Translation}->{'Per Node'} = 'Na urzÄ…dzenie';
     $Self->{Translation}->{'Per Processor'} = 'Na procesor';
     $Self->{Translation}->{'Per Server'} = 'Na serwer';
-    $Self->{Translation}->{'Per User'} = 'Na u¿ytkownika';
+    $Self->{Translation}->{'Per User'} = 'Na uÅ¼ytkownika';
     $Self->{Translation}->{'Phone 1'} = '';
     $Self->{Translation}->{'Phone 2'} = '';
     $Self->{Translation}->{'Pilot'} = '';
     $Self->{Translation}->{'Planned'} = 'Planowany';
     $Self->{Translation}->{'Printer'} = 'Drukarka';
     $Self->{Translation}->{'Production'} = 'Produkcja';
-    $Self->{Translation}->{'Quantity'} = 'Ilo¶æ';
+    $Self->{Translation}->{'Quantity'} = 'IloÅ›Ä‡';
     $Self->{Translation}->{'Rack'} = '';
     $Self->{Translation}->{'Ram'} = 'RAM';
     $Self->{Translation}->{'Repair'} = 'Naprawa';
@@ -125,8 +125,8 @@ sub Data {
     $Self->{Translation}->{'Server'} = 'Serwer';
     $Self->{Translation}->{'Server Application'} = 'Aplikacja serwerowa';
     $Self->{Translation}->{'Server OS'} = 'System serwerowy';
-    $Self->{Translation}->{'Show Versions'} = 'Poka¿ wersje';
-    $Self->{Translation}->{'Single Licence'} = 'Pojedyñcza licencja';
+    $Self->{Translation}->{'Show Versions'} = 'PokaÅ¼ wersje';
+    $Self->{Translation}->{'Single Licence'} = 'PojedyÅ„cza licencja';
     $Self->{Translation}->{'Subnet Mask'} = 'Maska sieci';
     $Self->{Translation}->{'Switch'} = 'Switch';
     $Self->{Translation}->{'Telco'} = 'Telco';
@@ -134,13 +134,13 @@ sub Data {
     $Self->{Translation}->{'The deployment state of this config item'} = '';
     $Self->{Translation}->{'The incident state of this config item'} = '';
     $Self->{Translation}->{'Time Restricted'} = 'Czasowo ograniczona';
-    $Self->{Translation}->{'USB Device'} = 'Urz±dzenie USB';
+    $Self->{Translation}->{'USB Device'} = 'UrzÄ…dzenie USB';
     $Self->{Translation}->{'Unlimited'} = 'Bez limitu';
-    $Self->{Translation}->{'User Tool'} = 'Narzêdzie u¿ytkownika';
+    $Self->{Translation}->{'User Tool'} = 'NarzÄ™dzie uÅ¼ytkownika';
     $Self->{Translation}->{'Volume Licence'} = 'Zbiorcza licencja';
     $Self->{Translation}->{'WLAN'} = 'WLAN';
     $Self->{Translation}->{'WLAN Access Point'} = 'Access Point';
-    $Self->{Translation}->{'Warranty Expiration Date'} = 'Data wyga¶niêcia gwarancji';
+    $Self->{Translation}->{'Warranty Expiration Date'} = 'Data wygaÅ›niÄ™cia gwarancji';
     $Self->{Translation}->{'Workplace'} = '';
 
     # Template: AdminITSMConfigItem
@@ -156,7 +156,7 @@ sub Data {
 
     # Template: AgentITSMConfigItemEdit
     $Self->{Translation}->{'The name of this config item'} = '';
-    $Self->{Translation}->{'Deployment State'} = 'Stan wdro¿enia';
+    $Self->{Translation}->{'Deployment State'} = 'Stan wdroÅ¼enia';
     $Self->{Translation}->{'Incident State'} = 'Stan zdarzenia';
 
     # Template: AgentITSMConfigItemHistory
@@ -174,13 +174,13 @@ sub Data {
     # Template: AgentITSMConfigItemPrint
     $Self->{Translation}->{'ConfigItem'} = '';
     $Self->{Translation}->{'ConfigItem-Info'} = '';
-    $Self->{Translation}->{'Current Deployment State'} = 'Aktualny stan wdro¿enia';
+    $Self->{Translation}->{'Current Deployment State'} = 'Aktualny stan wdroÅ¼enia';
     $Self->{Translation}->{'Last changed'} = 'Ostatnio zmienione';
     $Self->{Translation}->{'Last changed by'} = 'Ostatnio zmienione przez';
 
     # Template: AgentITSMConfigItemSearch
     $Self->{Translation}->{'Search-Template'} = '';
-    $Self->{Translation}->{'Also search in previous versions?'} = 'Uwzglêdniæ poprzednie wersje?';
+    $Self->{Translation}->{'Also search in previous versions?'} = 'UwzglÄ™dniÄ‡ poprzednie wersje?';
 
     # Template: AgentITSMConfigItemSearchResultPrint
     $Self->{Translation}->{'CreateTime'} = '';

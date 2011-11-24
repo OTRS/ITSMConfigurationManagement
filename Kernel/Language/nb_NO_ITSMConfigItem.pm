@@ -3,7 +3,7 @@
 # Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # Copyright (C) 2011 Eirik Wulff <eirik at epledoktor.no>
 # --
-# $Id: nb_NO_ITSMConfigItem.pm,v 1.1 2011-04-20 10:47:49 ub Exp $
+# $Id: nb_NO_ITSMConfigItem.pm,v 1.2 2011-11-24 16:25:59 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -16,13 +16,13 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.1 $) [1];
+$VERSION = qw($Revision: 1.2 $) [1];
 
 sub Data {
     my $Self = shift;
 
     # Template: AAAITSMConfigItem
-    $Self->{Translation}->{'Admin-verktøy'} = '';
+    $Self->{Translation}->{'Admin-verktÃ¸y'} = '';
     $Self->{Translation}->{'Backup Device'} = 'Backup-enhet';
     $Self->{Translation}->{'Beamer'} = '';
     $Self->{Translation}->{'Building'} = 'Bygning';
@@ -45,20 +45,20 @@ sub Data {
     $Self->{Translation}->{'Client Application'} = 'Klient-applikasjon';
     $Self->{Translation}->{'Client OS'} = 'Klient-OS';
     $Self->{Translation}->{'Concurrent Users'} = 'Samtidige brukere';
-    $Self->{Translation}->{'Config Item-Area'} = 'Konfigurasjonsenhet-område';
+    $Self->{Translation}->{'Config Item-Area'} = 'Konfigurasjonsenhet-omrÃ¥de';
     $Self->{Translation}->{'Config Items available'} = 'Tilgjengelige konfigurasjonsenheter';
     $Self->{Translation}->{'Config Items shown'} = 'Viste konfigurasjonsenheter';
     $Self->{Translation}->{'CMDB'} = 'CMDB';
     $Self->{Translation}->{'Demo'} = 'Demo';
-    $Self->{Translation}->{'Desktop'} = 'Stasjonær';
+    $Self->{Translation}->{'Desktop'} = 'StasjonÃ¦r';
     $Self->{Translation}->{'Developer Licence'} = 'Utviklerlisens';
     $Self->{Translation}->{'Docking Station'} = 'Dokkingstasjon';
-    $Self->{Translation}->{'Duplicate'} = 'Duplisér';
+    $Self->{Translation}->{'Duplicate'} = 'DuplisÃ©r';
     $Self->{Translation}->{'Embedded'} = 'Innebygd';
-    $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Tomme felter indikerer at de nåværende verdiene beholdes';
+    $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Tomme felter indikerer at de nÃ¥vÃ¦rende verdiene beholdes';
     $Self->{Translation}->{'Enterprise Licence'} = 'Enterprise-lisens';
-    $Self->{Translation}->{'Expiration Date'} = 'Utgår dato';
-    $Self->{Translation}->{'Expired'} = 'Utgått';
+    $Self->{Translation}->{'Expiration Date'} = 'UtgÃ¥r dato';
+    $Self->{Translation}->{'Expired'} = 'UtgÃ¥tt';
     $Self->{Translation}->{'FQDN'} = 'FQDN';
     $Self->{Translation}->{'Floor'} = 'Etasje';
     $Self->{Translation}->{'Freeware'} = 'Gratis programvare';
@@ -76,11 +76,11 @@ sub Data {
     $Self->{Translation}->{'Install Date'} = 'Installasjonsdato';
     $Self->{Translation}->{'Keybord'} = 'Tastatur';
     $Self->{Translation}->{'LAN'} = 'Lokalnett';
-    $Self->{Translation}->{'Laptop'} = 'Bærbar';
+    $Self->{Translation}->{'Laptop'} = 'BÃ¦rbar';
     $Self->{Translation}->{'Last Change'} = 'Sist endret';
-    $Self->{Translation}->{'Licence Key'} = 'Lisensnøkkel';
-    $Self->{Translation}->{'Licence Key::Expiration Date'} = 'Lisensnøkkel::Utgår dato';
-    $Self->{Translation}->{'Licence Key::Quantity'} = 'Lisensnøkkel::Antall';
+    $Self->{Translation}->{'Licence Key'} = 'LisensnÃ¸kkel';
+    $Self->{Translation}->{'Licence Key::Expiration Date'} = 'LisensnÃ¸kkel::UtgÃ¥r dato';
+    $Self->{Translation}->{'Licence Key::Quantity'} = 'LisensnÃ¸kkel::Antall';
     $Self->{Translation}->{'Licence Type'} = 'Lisenstype';
     $Self->{Translation}->{'Maintenance'} = 'Vedlikehold';
     $Self->{Translation}->{'Maximum number of one element'} = 'Maks. antall av ett element';
@@ -96,7 +96,7 @@ sub Data {
     $Self->{Translation}->{'Network Address'} = 'Nettverksadresse';
     $Self->{Translation}->{'Network Address::Gateway'} = 'Nettverksadresse::Ruter';
     $Self->{Translation}->{'Network Address::Subnet Mask'} = 'Nettverksadresse::Subnettmaske';
-    $Self->{Translation}->{'Open Source'} = 'Åpen kildekode';
+    $Self->{Translation}->{'Open Source'} = 'Ã…pen kildekode';
     $Self->{Translation}->{'Operating System'} = 'Operativsystem';
     $Self->{Translation}->{'Operational'} = 'Operativ';
     $Self->{Translation}->{'Other'} = 'Annet';
@@ -123,7 +123,7 @@ sub Data {
     $Self->{Translation}->{'Room'} = 'Rom';
     $Self->{Translation}->{'Router'} = 'Ruter';
     $Self->{Translation}->{'Scanner'} = 'Skanner';
-    $Self->{Translation}->{'Search Config Items'} = 'Søk konfigurasjonsenheter';
+    $Self->{Translation}->{'Search Config Items'} = 'SÃ¸k konfigurasjonsenheter';
     $Self->{Translation}->{'Security Device'} = 'Sikkerhetsenhet';
     $Self->{Translation}->{'Serial Number'} = 'Serienummer';
     $Self->{Translation}->{'Server'} = 'Tjener';
@@ -140,16 +140,16 @@ sub Data {
     $Self->{Translation}->{'Time Restricted'} = 'Tidsbegrenset';
     $Self->{Translation}->{'USB Device'} = 'USB-enhet';
     $Self->{Translation}->{'Unlimited'} = 'Ubegrenset';
-    $Self->{Translation}->{'User Tool'} = 'Brukerverktøy';
+    $Self->{Translation}->{'User Tool'} = 'BrukerverktÃ¸y';
     $Self->{Translation}->{'Volume Licence'} = 'Volumlisens';
     $Self->{Translation}->{'WLAN'} = 'WLAN';
     $Self->{Translation}->{'WLAN Access Point'} = 'WLAN-basestasjon';
-    $Self->{Translation}->{'Warranty Expiration Date'} = 'Utløpsdato for garanti';
+    $Self->{Translation}->{'Warranty Expiration Date'} = 'UtlÃ¸psdato for garanti';
     $Self->{Translation}->{'Workplace'} = 'Arbeidssted';
 
     # Template: AdminITSMConfigItem
     $Self->{Translation}->{'Config Item Management'} = 'Administrasjon av konfigurasjonsenheter';
-    $Self->{Translation}->{'Actions'} = 'Gjøremål';
+    $Self->{Translation}->{'Actions'} = 'GjÃ¸remÃ¥l';
     $Self->{Translation}->{'Add'} = 'Legg till';
     $Self->{Translation}->{'Change class definition'} = 'Endre klassedefinisjon';
     $Self->{Translation}->{'Go to overview'} = 'Til oversikt';
@@ -169,7 +169,7 @@ sub Data {
     # Template: AgentITSMConfigItemAdd
     $Self->{Translation}->{'Filter for Classes'} = 'Filter for klasser';
     $Self->{Translation}->{'Hint'} = 'Hint';
-    $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = 'Velg en klasse fra listen for å opprette en ny konfigurasjonsenhet';
+    $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = 'Velg en klasse fra listen for Ã¥ opprette en ny konfigurasjonsenhet';
     $Self->{Translation}->{'No matches found.'} = 'Ingen treff ble funnet.';
 
     # Template: AgentITSMConfigItemEdit
@@ -189,7 +189,7 @@ sub Data {
     $Self->{Translation}->{'User'} = 'Bruker';
 
     # Template: AgentITSMConfigItemOverviewNavBar
-    $Self->{Translation}->{'Change search options'} = 'Endre søkevalg';
+    $Self->{Translation}->{'Change search options'} = 'Endre sÃ¸kevalg';
     $Self->{Translation}->{'Context Settings'} = 'Kontekstvalg';
     $Self->{Translation}->{'Config Items per page'} = 'Konfigurasjonsenheter per side';
     $Self->{Translation}->{'Settings'} = 'Innstillinger';
@@ -197,28 +197,28 @@ sub Data {
     # Template: AgentITSMConfigItemOverviewSmall
     $Self->{Translation}->{'State'} = 'Tilstand';
     $Self->{Translation}->{'Deployment State Type'} = 'Type Produksjonssettingstilstand';
-    $Self->{Translation}->{'Current Incident State'} = 'Nåværende Hendelsestilstand';
-    $Self->{Translation}->{'Current Incident State Type'} = 'Nåværende type Hendelsestilstand';
+    $Self->{Translation}->{'Current Incident State'} = 'NÃ¥vÃ¦rende Hendelsestilstand';
+    $Self->{Translation}->{'Current Incident State Type'} = 'NÃ¥vÃ¦rende type Hendelsestilstand';
     $Self->{Translation}->{'Last Changed'} = 'Sist endret';
 
     # Template: AgentITSMConfigItemPrint
     $Self->{Translation}->{'ConfigItem'} = 'Konfigurasjonsenhet';
     $Self->{Translation}->{'ConfigItem-Info'} = 'Konfigurasjonsenhet-info';
-    $Self->{Translation}->{'Current Deployment State'} = 'Nåværende Produksjonssettingstilstand';
+    $Self->{Translation}->{'Current Deployment State'} = 'NÃ¥vÃ¦rende Produksjonssettingstilstand';
     $Self->{Translation}->{'Last changed'} = 'Sist endret';
     $Self->{Translation}->{'Last changed by'} = 'Sist endret av';
     $Self->{Translation}->{'Linked-Object'} = 'Koblet objekt';
 
     # Template: AgentITSMConfigItemSearch
-    $Self->{Translation}->{'Search-Template'} = 'Søkemal';
+    $Self->{Translation}->{'Search-Template'} = 'SÃ¸kemal';
     $Self->{Translation}->{'Create New'} = 'Opprett ny';
     $Self->{Translation}->{'Create Template'} = 'Opprett Mal';
     $Self->{Translation}->{'Create New Template'} = 'Opprett ny mal';
-    $Self->{Translation}->{'Run Search'} = 'Utfør søket';
-    $Self->{Translation}->{'Search template'} = 'Søkemal';
+    $Self->{Translation}->{'Run Search'} = 'UtfÃ¸r sÃ¸ket';
+    $Self->{Translation}->{'Search template'} = 'SÃ¸kemal';
     $Self->{Translation}->{'Save changes in template'} = 'Lagre endringer i mal';
     $Self->{Translation}->{'Add another attribute'} = 'Legg til flere attributter';
-    $Self->{Translation}->{'Also search in previous versions?'} = 'Også søke i tidligere versjoner?';
+    $Self->{Translation}->{'Also search in previous versions?'} = 'OgsÃ¥ sÃ¸ke i tidligere versjoner?';
     $Self->{Translation}->{'(e. g. 10*5155 or 105658*)'} = '(f.eks. 10*5155 eller 88880*)';
     $Self->{Translation}->{'Remove this entry'} = 'Slett dette innlegget';
     $Self->{Translation}->{'Remove'} = 'Slett';
@@ -229,7 +229,7 @@ sub Data {
     # Template: AgentITSMConfigItemZoom
     $Self->{Translation}->{'Configuration Item'} = 'Konfigurasjonsenhet';
     $Self->{Translation}->{'Linked Objects'} = 'Koblede objekter';
-    $Self->{Translation}->{'Show one version'} = 'Vis én versjon';
+    $Self->{Translation}->{'Show one version'} = 'Vis Ã©n versjon';
     $Self->{Translation}->{'Show all versions'} = 'Vis alle versjoner';
     $Self->{Translation}->{'Version Incident State'} = 'Hendelsestilstand for versjonen';
     $Self->{Translation}->{'Version Number'} = 'Versjon';
