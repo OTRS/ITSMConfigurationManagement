@@ -2,7 +2,7 @@
 // ITSM.Agent.ConfigItem.Search.js - provides the special module functions for the global search
 // Copyright (C) 2001-2011 OTRS AG, http://otrs.org/\n";
 // --
-// $Id: ITSM.Agent.ConfigItem.Search.js,v 1.13 2011-05-12 17:21:19 ub Exp $
+// $Id: ITSM.Agent.ConfigItem.Search.js,v 1.14 2011-12-01 13:58:51 ub Exp $
 // --
 // This software comes with ABSOLUTELY NO WARRANTY. For details, see
 // the enclosed file COPYING for license information (AGPL). If you
@@ -80,8 +80,11 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
                     $(this).removeClass('ITSMCustomerSearch');
                     $(this).attr('id', InputID);
                     $(this).prev().attr('id', InputID + 'Selected');
-                    ITSM.Agent.CustomerSearch.Init($('#' + InputID), parseInt( Core.Config.Get('Autocomplete.Active'),10 ));
 
+                    // escape : with two leading backslashes in front of each :
+                    // this is necessary because jQuery can not handle a colon (:) in id attributes
+                    ITSM.Agent.CustomerSearch.Init($('#' + InputID.replace(/:/g, '\\:')), parseInt( Core.Config.Get('Autocomplete.Active'),10 ));
+                    
                     // prevent dialog closure when select a customer from the list
                     $('ul.ui-autocomplete').bind('click', function(Event) { Event.stopPropagation(); return false; });
                 });
@@ -161,7 +164,6 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
     function ShowWaitingDialog(){
         Core.UI.Dialog.ShowContentDialog('<div class="Spacing Center"><span class="AJAXLoader" title="' + Core.Config.Get('LoadingMsg') + '"></span></div>', Core.Config.Get('LoadingMsg'), '10px', 'Center', true);
     }
-
 
     /**
      * @function
