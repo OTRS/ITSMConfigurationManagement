@@ -2,7 +2,7 @@
 # Kernel/Language/pl_ITSMConfigItem.pm - translation file
 # Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: pl_ITSMConfigItem.pm,v 1.10 2011-06-15 14:02:07 ep Exp $
+# $Id: pl_ITSMConfigItem.pm,v 1.10.2.1 2011-12-19 16:21:20 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -17,46 +17,46 @@ sub Data {
     my $Self = shift;
 
     # Template: AAAITSMConfigItem
-    $Self->{Translation}->{'Address'} = '';
+    $Self->{Translation}->{'Address'} = 'Adres';
     $Self->{Translation}->{'Admin Tool'} = 'Narzêdzie administratorskie';
     $Self->{Translation}->{'Backup Device'} = 'Urz±dzenie do backupu';
     $Self->{Translation}->{'Beamer'} = '';
-    $Self->{Translation}->{'Building'} = '';
-    $Self->{Translation}->{'CIHistory::ConfigItemCreate'} = '';
-    $Self->{Translation}->{'CIHistory::ConfigItemDelete'} = '';
-    $Self->{Translation}->{'CIHistory::DefinitionUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::DeploymentStateUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::IncidentStateUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::LinkAdd'} = '';
-    $Self->{Translation}->{'CIHistory::LinkDelete'} = '';
-    $Self->{Translation}->{'CIHistory::NameUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::ValueUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::VersionCreate'} = '';
-    $Self->{Translation}->{'CIHistory::VersionDelete'} = '';
+    $Self->{Translation}->{'Building'} = 'Budynek';
+    $Self->{Translation}->{'CIHistory::ConfigItemCreate'} = 'Nowy CI (ID=%s)';
+    $Self->{Translation}->{'CIHistory::ConfigItemDelete'} = 'Usuniêcie CI (ID=%s)';
+    $Self->{Translation}->{'CIHistory::DefinitionUpdate'} = 'Aktualizacja definicji CI (ID=%s)';
+    $Self->{Translation}->{'CIHistory::DeploymentStateUpdate'} = 'Aktualizacja stanu wdro¿enia CI (nowy=%s; stary=%s)';
+    $Self->{Translation}->{'CIHistory::IncidentStateUpdate'} = 'Aktualizacja stanu zdarzenia (nowy=%s; stary=%s)';
+    $Self->{Translation}->{'CIHistory::LinkAdd'} = 'Dodany link do %s (Typ=%s)';
+    $Self->{Translation}->{'CIHistory::LinkDelete'} = 'Usuniêty link do %s (Typ=%s)';
+    $Self->{Translation}->{'CIHistory::NameUpdate'} = 'Aktualizacja nazwy (nowa=%s; stara=%s)';
+    $Self->{Translation}->{'CIHistory::ValueUpdate'} = 'Aktualizacja warto¶ci atrybutu %s z "%s" na "%s"';
+    $Self->{Translation}->{'CIHistory::VersionCreate'} = 'Utworzenie nowej wersji (ID=%s)';
+    $Self->{Translation}->{'CIHistory::VersionDelete'} = 'Usuniêcie wersji %s';
     $Self->{Translation}->{'CPU'} = 'Procesor';
     $Self->{Translation}->{'Camera'} = 'Kamera';
     $Self->{Translation}->{'Capacity'} = 'Pojemno¶æ';
-    $Self->{Translation}->{'Change Definition'} = '';
-    $Self->{Translation}->{'Change of definition failed! See System Log for details.'} = '';
+    $Self->{Translation}->{'Change Definition'} = 'Definicja zmiany';
+    $Self->{Translation}->{'Change of definition failed! See System Log for details.'} = 'Zmiana definicji nie powiod³a siê! Szczegó³y znajduj± siê w logu systemu.';
     $Self->{Translation}->{'Client Application'} = 'Aplikacja kliencka';
     $Self->{Translation}->{'Client OS'} = 'System kliencki';
-    $Self->{Translation}->{'Concurrent Users'} = '';
-    $Self->{Translation}->{'Config Item-Area'} = '';
-    $Self->{Translation}->{'Config Items available'} = '';
-    $Self->{Translation}->{'Config Items shown'} = '';
-    $Self->{Translation}->{'CMDB'} = '';
+    $Self->{Translation}->{'Concurrent Users'} = 'Jednocze¶ni u¿ytkownicy';
+    $Self->{Translation}->{'Config Item-Area'} = 'CI-Obszar';
+    $Self->{Translation}->{'Config Items available'} = 'Dostêpne CI';
+    $Self->{Translation}->{'Config Items shown'} = 'Wy¶wietlone CI';
+    $Self->{Translation}->{'CMDB'} = 'CMDB';
     $Self->{Translation}->{'Demo'} = 'Demo';
     $Self->{Translation}->{'Desktop'} = 'Desktop';
     $Self->{Translation}->{'Developer Licence'} = 'Licencja developerska';
     $Self->{Translation}->{'Docking Station'} = 'Stacja dokuj±ca';
     $Self->{Translation}->{'Duplicate'} = 'Duplikat';
-    $Self->{Translation}->{'Embedded'} = '';
-    $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = '';
-    $Self->{Translation}->{'Enterprise Licence'} = '';
+    $Self->{Translation}->{'Embedded'} = 'Osadzony';
+    $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Puste pola znaczaj±, ¿e zatrzymane bêd± bie¿±ce warto¶ci';
+    $Self->{Translation}->{'Enterprise Licence'} = 'Licencja Enterprise';
     $Self->{Translation}->{'Expiration Date'} = 'Data wyga¶niêcia';
     $Self->{Translation}->{'Expired'} = 'Wygas³o';
     $Self->{Translation}->{'FQDN'} = 'Nazwa FQDN';
-    $Self->{Translation}->{'Floor'} = '';
+    $Self->{Translation}->{'Floor'} = 'Piêtro';
     $Self->{Translation}->{'Freeware'} = 'Freeware';
     $Self->{Translation}->{'GSM'} = 'GSM';
     $Self->{Translation}->{'Gateway'} = 'Brama';
@@ -66,9 +66,9 @@ sub Data {
     $Self->{Translation}->{'Hide Versions'} = 'Ukryj wersje';
     $Self->{Translation}->{'IP Address'} = 'Adres IP';
     $Self->{Translation}->{'IP over DHCP'} = 'Adres IP z DHCP';
-    $Self->{Translation}->{'IT Facility'} = '';
+    $Self->{Translation}->{'IT Facility'} = 'Dzia³ IT';
     $Self->{Translation}->{'Inactive'} = 'Nieaktywny';
-    $Self->{Translation}->{'Incident'} = '';
+    $Self->{Translation}->{'Incident'} = 'Zdarzenie';
     $Self->{Translation}->{'Install Date'} = 'Data instalacji';
     $Self->{Translation}->{'Keybord'} = 'Klawiatura';
     $Self->{Translation}->{'LAN'} = 'LAN';
@@ -77,9 +77,9 @@ sub Data {
     $Self->{Translation}->{'Licence Key'} = 'Klucz licencyjny';
     $Self->{Translation}->{'Licence Key::Expiration Date'} = 'Klucz licencyjny::Data wyga¶niêcia';
     $Self->{Translation}->{'Licence Key::Quantity'} = 'Klucz licencyjny::Ilo¶æ';
-    $Self->{Translation}->{'Licence Type'} = 'Typ licensji';
-    $Self->{Translation}->{'Maintenance'} = '';
-    $Self->{Translation}->{'Maximum number of one element'} = '';
+    $Self->{Translation}->{'Licence Type'} = 'Typ licencji';
+    $Self->{Translation}->{'Maintenance'} = 'Utrzymanie';
+    $Self->{Translation}->{'Maximum number of one element'} = 'Maksymalna liczba wyst±pieñ pojednyczego elemetntu';
     $Self->{Translation}->{'Media'} = 'No¶nik';
     $Self->{Translation}->{'Middleware'} = 'Middleware';
     $Self->{Translation}->{'Model'} = 'Model';
@@ -94,33 +94,33 @@ sub Data {
     $Self->{Translation}->{'Network Address::Subnet Mask'} = 'Adres sieciowy::Maska sieci';
     $Self->{Translation}->{'Open Source'} = 'Open source';
     $Self->{Translation}->{'Operating System'} = 'System operacyjny';
-    $Self->{Translation}->{'Operational'} = '';
+    $Self->{Translation}->{'Operational'} = 'Operacyjny';
     $Self->{Translation}->{'Other'} = 'Inne';
     $Self->{Translation}->{'Other Equipment'} = 'Pozosta³e wyposa¿enie';
-    $Self->{Translation}->{'Outlet'} = '';
+    $Self->{Translation}->{'Outlet'} = 'Punkt sprzeda¿y';
     $Self->{Translation}->{'PCMCIA Card'} = 'Karta PCMCIA';
     $Self->{Translation}->{'PDA'} = 'PDA';
     $Self->{Translation}->{'Per Node'} = 'Na urz±dzenie';
     $Self->{Translation}->{'Per Processor'} = 'Na procesor';
     $Self->{Translation}->{'Per Server'} = 'Na serwer';
     $Self->{Translation}->{'Per User'} = 'Na u¿ytkownika';
-    $Self->{Translation}->{'Phone 1'} = '';
-    $Self->{Translation}->{'Phone 2'} = '';
-    $Self->{Translation}->{'Pilot'} = '';
+    $Self->{Translation}->{'Phone 1'} = 'Telefon 1';
+    $Self->{Translation}->{'Phone 2'} = 'Telefon 2';
+    $Self->{Translation}->{'Pilot'} = 'Pilota¿';
     $Self->{Translation}->{'Planned'} = 'Planowany';
     $Self->{Translation}->{'Printer'} = 'Drukarka';
     $Self->{Translation}->{'Production'} = 'Produkcja';
     $Self->{Translation}->{'Quantity'} = 'Ilo¶æ';
-    $Self->{Translation}->{'Rack'} = '';
+    $Self->{Translation}->{'Rack'} = 'Rack';
     $Self->{Translation}->{'Ram'} = 'RAM';
     $Self->{Translation}->{'Repair'} = 'Naprawa';
-    $Self->{Translation}->{'Retired'} = '';
-    $Self->{Translation}->{'Review'} = '';
-    $Self->{Translation}->{'Room'} = '';
-    $Self->{Translation}->{'Router'} = 'Router';
+    $Self->{Translation}->{'Retired'} = 'Wycofany';
+    $Self->{Translation}->{'Review'} = 'Przegl±d';
+    $Self->{Translation}->{'Room'} = 'Pokój';
+    $Self->{Translation}->{'Router'} = 'Ruter';
     $Self->{Translation}->{'Scanner'} = 'Skaner';
-    $Self->{Translation}->{'Search Config Items'} = '';
-    $Self->{Translation}->{'Security Device'} = '';
+    $Self->{Translation}->{'Search Config Items'} = 'Szukaj CI';
+    $Self->{Translation}->{'Security Device'} = 'Urz±dzenie zabezpieczaj±ce';
     $Self->{Translation}->{'Serial Number'} = 'Numer seryjny';
     $Self->{Translation}->{'Server'} = 'Serwer';
     $Self->{Translation}->{'Server Application'} = 'Aplikacja serwerowa';
@@ -130,9 +130,9 @@ sub Data {
     $Self->{Translation}->{'Subnet Mask'} = 'Maska sieci';
     $Self->{Translation}->{'Switch'} = 'Switch';
     $Self->{Translation}->{'Telco'} = 'Telco';
-    $Self->{Translation}->{'Test/QA'} = '';
-    $Self->{Translation}->{'The deployment state of this config item'} = '';
-    $Self->{Translation}->{'The incident state of this config item'} = '';
+    $Self->{Translation}->{'Test/QA'} = 'Test/QA';
+    $Self->{Translation}->{'The deployment state of this config item'} = 'Stan wdro¿enia tego CI';
+    $Self->{Translation}->{'The incident state of this config item'} = 'Stan zdarzenia tego CI';
     $Self->{Translation}->{'Time Restricted'} = 'Czasowo ograniczona';
     $Self->{Translation}->{'USB Device'} = 'Urz±dzenie USB';
     $Self->{Translation}->{'Unlimited'} = 'Bez limitu';
@@ -141,69 +141,76 @@ sub Data {
     $Self->{Translation}->{'WLAN'} = 'WLAN';
     $Self->{Translation}->{'WLAN Access Point'} = 'Access Point';
     $Self->{Translation}->{'Warranty Expiration Date'} = 'Data wyga¶niêcia gwarancji';
-    $Self->{Translation}->{'Workplace'} = '';
+    $Self->{Translation}->{'Workplace'} = 'Miejsce pracy';
 
     # Template: AdminITSMConfigItem
-    $Self->{Translation}->{'Config Item Management'} = '';
-    $Self->{Translation}->{'Change class definition'} = '';
-    $Self->{Translation}->{'Config Item'} = '';
-    $Self->{Translation}->{'Class'} = '';
-    $Self->{Translation}->{'Definition'} = '';
+    $Self->{Translation}->{'Config Item Management'} = 'Zarz±dzanie CI';
+    $Self->{Translation}->{'Change class definition'} = 'Zmieñ definicjê klasy';
+    $Self->{Translation}->{'Config Item'} = 'CI';
+    $Self->{Translation}->{'ITSM ConfigItem'} = 'CI';
+    $Self->{Translation}->{'Class'} = 'Klasa';
+    $Self->{Translation}->{'Definition'} = 'Definicja';
+    $Self->{Translation}->{'Hardware'} = 'Sprzêt';
+    $Self->{Translation}->{'Computer'} = 'Komputer';
+    $Self->{Translation}->{'Network'} = 'Sieæ';
+    $Self->{Translation}->{'Software'} = 'Oprogramowanie';
 
     # Template: AgentITSMConfigItemAdd
-    $Self->{Translation}->{'Filter for Classes'} = '';
-    $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = '';
+    $Self->{Translation}->{'Filter for Classes'} = 'Filtr dla klas';
+    $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = 'Zaznacz klasê na li¶cie aby utworzyæ nowe CI.';
 
     # Template: AgentITSMConfigItemEdit
-    $Self->{Translation}->{'The name of this config item'} = '';
+    $Self->{Translation}->{'The name of this config item'} = 'Nazwa tego CI';
     $Self->{Translation}->{'Deployment State'} = 'Stan wdro¿enia';
     $Self->{Translation}->{'Incident State'} = 'Stan zdarzenia';
 
     # Template: AgentITSMConfigItemHistory
 
     # Template: AgentITSMConfigItemOverviewNavBar
-    $Self->{Translation}->{'Context Settings'} = '';
-    $Self->{Translation}->{'Config Items per page'} = '';
+    $Self->{Translation}->{'Context Settings'} = 'Ustawienia kontekstu';
+    $Self->{Translation}->{'Config Items per page'} = 'Liczba CI na stronie';
 
     # Template: AgentITSMConfigItemOverviewSmall
-    $Self->{Translation}->{'Deployment State Type'} = '';
-    $Self->{Translation}->{'Current Incident State'} = 'Aktualny stan zdarzenia';
-    $Self->{Translation}->{'Current Incident State Type'} = '';
-    $Self->{Translation}->{'Last Changed'} = '';
+    $Self->{Translation}->{'Deployment State Type'} = 'Typ stanu wdro¿enia';
+    $Self->{Translation}->{'Current Incident State'} = 'Aktualny stan';
+    $Self->{Translation}->{'Current Incident State Type'} = 'Aktualny typ stanu';
+    $Self->{Translation}->{'Last Changed'} = 'Ostatnia zmiana';
 
     # Template: AgentITSMConfigItemPrint
-    $Self->{Translation}->{'ConfigItem'} = '';
-    $Self->{Translation}->{'ConfigItem-Info'} = '';
+    $Self->{Translation}->{'ConfigItem'} = 'CI';
+    $Self->{Translation}->{'ConfigItem-Info'} = 'CI-Info';
     $Self->{Translation}->{'Current Deployment State'} = 'Aktualny stan wdro¿enia';
     $Self->{Translation}->{'Last changed'} = 'Ostatnio zmienione';
     $Self->{Translation}->{'Last changed by'} = 'Ostatnio zmienione przez';
 
     # Template: AgentITSMConfigItemSearch
-    $Self->{Translation}->{'Search-Template'} = '';
+    $Self->{Translation}->{'Search-Template'} = 'Szukaj-szablon';
     $Self->{Translation}->{'Also search in previous versions?'} = 'Uwzglêdniæ poprzednie wersje?';
+    $Self->{Translation}->{'Config Item Search Result: Class'} = 'Wynik wyszukiwania CI: klasa';
 
     # Template: AgentITSMConfigItemSearchResultPrint
-    $Self->{Translation}->{'CreateTime'} = '';
+    $Self->{Translation}->{'CreateTime'} = 'Czas utworzenia';
 
     # Template: AgentITSMConfigItemZoom
-    $Self->{Translation}->{'Configuration Item'} = '';
-    $Self->{Translation}->{'Show one version'} = '';
-    $Self->{Translation}->{'Show all versions'} = '';
-    $Self->{Translation}->{'Version Incident State'} = '';
-    $Self->{Translation}->{'Version Number'} = '';
-    $Self->{Translation}->{'Created By'} = '';
-    $Self->{Translation}->{'Changed On'} = '';
-    $Self->{Translation}->{'Resize'} = '';
-    $Self->{Translation}->{'Show or hide the content.'} = '';
-    $Self->{Translation}->{'Configuration Item Version Details'} = '';
-    $Self->{Translation}->{'Property'} = '';
+    $Self->{Translation}->{'Configuration Item'} = 'CI';
+    $Self->{Translation}->{'Show one version'} = 'Poka¿ jedn± wersjê!';
+    $Self->{Translation}->{'Show all versions'} = 'Poka¿ wszystkie wersje';
+    $Self->{Translation}->{'Version Incident State'} = 'Stan zdarzenia wersji';
+    $Self->{Translation}->{'Version Number'} = 'Numer wersji';
+    $Self->{Translation}->{'Created By'} = 'Utworzone przez';
+    $Self->{Translation}->{'Changed On'} = 'Zmienione';
+    $Self->{Translation}->{'Resize'} = 'Zmieñ rozmiar';
+    $Self->{Translation}->{'Show or hide the content.'} = 'Poka¿ ukryt± tre¶æ.';
+    $Self->{Translation}->{'Configuration Item Version Details'} = 'Szczegó³y wersji CI';
+    $Self->{Translation}->{'Property'} = 'W³a¶ciwo¶æ';
+    $Self->{Translation}->{'Configuration Item Information'} = 'Informacje o CI';
 
     # SysConfig
     $Self->{Translation}->{'Config item event module that enables logging to history in the agent interface.'} = '';
-    $Self->{Translation}->{'Configuration Item Limit'} = '';
-    $Self->{Translation}->{'Configuration Item limit per page'} = '';
+    $Self->{Translation}->{'Configuration Item Limit'} = 'Limit liczby CI';
+    $Self->{Translation}->{'Configuration Item limit per page'} = 'Limit liczby CI na stronê';
     $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} = '';
-    $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = '';
+    $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = 'Tworzenie i zarz±dzanie definicjami elementów konfiguracji.';
     $Self->{Translation}->{'Defines an overview module to show the small view of a configuration item list.'} = '';
     $Self->{Translation}->{'Defines the default subobject of the class \'ITSMConfigItem\'.'} = '';
     $Self->{Translation}->{'Defines the shown columns in the config item overview. This option has no effect on the position of the column. Note: Class column is always available if filter \'All\' is selected'} = '';
