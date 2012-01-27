@@ -1,8 +1,8 @@
 # --
 # Kernel/Output/HTML/LayoutITSMConfigItem.pm - provides generic HTML output for ITSMConfigItem
-# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: LayoutITSMConfigItem.pm,v 1.8 2010-12-28 19:45:01 cr Exp $
+# $Id: LayoutITSMConfigItem.pm,v 1.9 2012-01-27 11:08:25 mb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.8 $) [1];
+$VERSION = qw($Revision: 1.9 $) [1];
 
 =item ITSMConfigItemOutputStringCreate()
 
@@ -368,9 +368,10 @@ sub ITSMConfigItemListShow {
     $Param{Group}           = $Group;
     $Param{PreferencesKey}  = $PageShownPreferencesKey;
     $Param{PageShownString} = $Self->BuildSelection(
-        Name       => $PageShownPreferencesKey,
-        SelectedID => $PageShown,
-        Data       => \%Data,
+        Name        => $PageShownPreferencesKey,
+        SelectedID  => $PageShown,
+        Data        => \%Data,
+        Translation => 0,
     );
 
     # build navbar content

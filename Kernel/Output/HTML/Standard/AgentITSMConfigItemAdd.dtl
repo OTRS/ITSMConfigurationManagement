@@ -1,8 +1,8 @@
 # --
 # AgentITSMConfigItemAdd.dtl - provides HTML form for AgentITSMConfigItemAdd
-# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemAdd.dtl,v 1.6 2010-12-31 18:06:57 cr Exp $
+# $Id: AgentITSMConfigItemAdd.dtl,v 1.7 2012-01-27 11:06:20 mb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -45,7 +45,7 @@
                 <table class="DataTable" id="Classes">
                     <thead>
                         <tr>
-                            <th class="W100pc">Classes</th>
+                            <th class="W100pc">$Text{"Class"}</th>
                         </tr>
                     </thead>
                     <tbody>
