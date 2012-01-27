@@ -1,8 +1,8 @@
 # --
 # Kernel/Language/nl_ITSMConfigItem.pm - translation file
-# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: nl_ITSMConfigItem.pm,v 1.8 2011-06-15 14:02:07 ep Exp $
+# $Id: nl_ITSMConfigItem.pm,v 1.9 2012-01-27 11:17:17 mb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -44,7 +44,8 @@ sub Data {
     $Self->{Translation}->{'Config Item-Area'} = 'Configuratie-item-gebied';
     $Self->{Translation}->{'Config Items available'} = 'Beschikbare configuratie-items';
     $Self->{Translation}->{'Config Items shown'} = 'Getoonde configuratie-items';
-    $Self->{Translation}->{'CMDB'} = '';
+    $Self->{Translation}->{'Config Item Search Results'} = 'Zoekresultaten';
+    $Self->{Translation}->{'CMDB'} = 'CMDB';
     $Self->{Translation}->{'Demo'} = 'Demo';
     $Self->{Translation}->{'Desktop'} = 'Desktop';
     $Self->{Translation}->{'Developer Licence'} = 'Ontwikkelaarslicentie';
@@ -119,7 +120,7 @@ sub Data {
     $Self->{Translation}->{'Room'} = 'Kamer';
     $Self->{Translation}->{'Router'} = 'Router';
     $Self->{Translation}->{'Scanner'} = 'Scanner';
-    $Self->{Translation}->{'Search Config Items'} = '';
+    $Self->{Translation}->{'Search Config Items'} = 'Zoek Configuratie-items';
     $Self->{Translation}->{'Security Device'} = 'Security device';
     $Self->{Translation}->{'Serial Number'} = 'Serienummer';
     $Self->{Translation}->{'Server'} = 'Server';
@@ -145,14 +146,16 @@ sub Data {
 
     # Template: AdminITSMConfigItem
     $Self->{Translation}->{'Config Item Management'} = 'Configuratie-item beheer';
-    $Self->{Translation}->{'Change class definition'} = '';
+    $Self->{Translation}->{'Change class definition'} = 'Wijzig definitie';
     $Self->{Translation}->{'Config Item'} = 'Configuratie-item';
+    $Self->{Translation}->{'Config Items'} = 'Configuratie-items';
     $Self->{Translation}->{'Class'} = 'Klasse';
-    $Self->{Translation}->{'Definition'} = '';
+    $Self->{Translation}->{'Definition'} = 'Definitie';
 
     # Template: AgentITSMConfigItemAdd
-    $Self->{Translation}->{'Filter for Classes'} = '';
-    $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = '';
+    $Self->{Translation}->{'Class'} = 'Klasse';
+    $Self->{Translation}->{'Filter for Classes'} = 'Filter op klassen';
+    $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = 'Selecteer een klasse uit de lijst om een nieuw configuratie-item aan te maken.';
 
     # Template: AgentITSMConfigItemEdit
     $Self->{Translation}->{'The name of this config item'} = 'De naam van dit configuratie-item';
@@ -162,7 +165,7 @@ sub Data {
     # Template: AgentITSMConfigItemHistory
 
     # Template: AgentITSMConfigItemOverviewNavBar
-    $Self->{Translation}->{'Config Items per page'} = '';
+    $Self->{Translation}->{'Config Items per page'} = 'Aantal configuratie-items per pagina';
 
     # Template: AgentITSMConfigItemOverviewSmall
     $Self->{Translation}->{'Deployment State Type'} = '';
@@ -185,23 +188,22 @@ sub Data {
     $Self->{Translation}->{'CreateTime'} = '';
 
     # Template: AgentITSMConfigItemZoom
-    $Self->{Translation}->{'Configuration Item'} = '';
-    $Self->{Translation}->{'Show one version'} = '';
-    $Self->{Translation}->{'Show all versions'} = '';
-    $Self->{Translation}->{'Version Incident State'} = '';
-    $Self->{Translation}->{'Version Number'} = '';
-    $Self->{Translation}->{'Created By'} = '';
-    $Self->{Translation}->{'Changed On'} = '';
+    $Self->{Translation}->{'Configuration Item'} = 'Configuratie-item';
+    $Self->{Translation}->{'Configuration Item Information'} = 'Configuratie-item informatie';
+    $Self->{Translation}->{'Show one version'} = 'Toon één versie';
+    $Self->{Translation}->{'Show all versions'} = 'Toon alle versies';
+    $Self->{Translation}->{'Version Incident State'} = 'Versie Incident-status';
+    $Self->{Translation}->{'Version Number'} = 'Versienummer';
     $Self->{Translation}->{'Show or hide the content.'} = '';
-    $Self->{Translation}->{'Configuration Item Version Details'} = '';
-    $Self->{Translation}->{'Property'} = '';
+    $Self->{Translation}->{'Configuration Item Version Details'} = 'Configuratie-item versie details';
+    $Self->{Translation}->{'Property'} = 'Attribuut';
 
     # SysConfig
     $Self->{Translation}->{'Config item event module that enables logging to history in the agent interface.'} = '';
     $Self->{Translation}->{'Configuration Item Limit'} = '';
     $Self->{Translation}->{'Configuration Item limit per page'} = '';
     $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} = '';
-    $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = '';
+    $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = 'Aanmaken en beheren van definities voor configuratie-items.';
     $Self->{Translation}->{'Defines an overview module to show the small view of a configuration item list.'} = '';
     $Self->{Translation}->{'Defines the default subobject of the class \'ITSMConfigItem\'.'} = '';
     $Self->{Translation}->{'Defines the shown columns in the config item overview. This option has no effect on the position of the column. Note: Class column is always available if filter \'All\' is selected'} = '';
