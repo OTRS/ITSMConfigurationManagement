@@ -1,8 +1,8 @@
 # --
 # AgentITSMConfigItemZoom.dtl - provides HTML form for AgentITSMConfigItemZoom
-# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemZoom.dtl,v 1.24 2011-11-16 09:09:30 mb Exp $
+# $Id: AgentITSMConfigItemZoom.dtl,v 1.25 2012-01-27 11:07:36 mb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -29,13 +29,13 @@
                 <div class="Content">
                     <fieldset class="TableLike FixedLabelSmall Tight">
                         <label>$Text{"Class"}:</label>
-                        <p class="Value">$QData{"Class","25"}</p>
+                        <p class="Value">$Text{"$Data{"Class"}"}</p>
                         <div class="Clear"></div>
                         <label>$Text{"Name"}:</label>
                         <p class="Value">$QData{"Name","25"}</p>
                         <div class="Clear"></div>
                         <label>$Text{"Current Deployment State"}:</label>
-                        <p class="Value">$QData{"CurDeplState","25"}</p>
+                        <p class="Value">$Text{"$Data{"CurDeplState"}"}</p>
                         <div class="Clear"></div>
                         <label>$Text{"Current Incident State"}:</label>
                         <div class="Value" title="$Text{"$Data{"CurInciState"}"}">
@@ -50,7 +50,7 @@
                         <div class="Clear"></div>
                         <label>$Text{"Created by"}:</label>
                         <p class="Value">
-                            $QData{"CreateUserLogin","15"} ($Quote{"$Data{"CreateUserFirstname"} $Data{"CreateUserLastname"}","15"})
+                            $QData{"CreateUserFirstname"} $QData{"CreateUserLastname"}
                         </p>
                         <div class="Clear"></div>
                         <label>$Text{"Last changed"}:</label>
@@ -58,7 +58,7 @@
                         <div class="Clear"></div>
                         <label>$Text{"Last changed by"}:</label>
                         <p class="Value">
-                            $QData{"ChangeUserLogin","15"} ($Quote{"$Data{"ChangeUserFirstname"} $Data{"ChangeUserLastname"}","15"})
+                            $QData{"ChangeUserFirstname"} $QData{"ChangeUserLastname"}
                         </p>
                         <div class="Clear"></div>
                     </fieldset>
@@ -111,11 +111,11 @@
                             <table id="FixedTable" class="TableSmall">
                                 <thead>
                                     <tr>
-                                        <th title="$Text{"Version Incident State"}"><span>$Text{"Version Incident State"}</span></th>
-                                        <th title="$Text{"Version Number"}"><span>$Text{"Version Number"}</span></th>
-                                        <th title="$Text{"Name"}"><span>$Text{"Name"}</span></th>
-                                        <th title="$Text{"Created By"}"><span>$Text{"Created By"}</span></th>
-                                        <th title="$Text{"Changed On"}"><span>$Text{"Changed On"}</span></th>
+                                        <th><span>$Text{"Version Incident State"}</span></th>
+                                        <th><span>$Text{"Version Number"}</span></th>
+                                        <th><span>$Text{"Name"}</span></th>
+                                        <th><span>$Text{"Created by"}</span></th>
+                                        <th><span>$Text{"Changed"}</span></th>
                                     </tr>
                                 </thead>
                                 <tbody>
