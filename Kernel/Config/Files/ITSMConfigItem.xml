@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <otrs_config version="1.0" init="Config">
-    <CVS>$Id: ITSMConfigItem.xml,v 1.37 2011-06-15 14:02:06 ep Exp $</CVS>
+    <CVS>$Id: ITSMConfigItem.xml,v 1.38 2012-01-27 11:17:35 mb Exp $</CVS>
     <ConfigItem Name="Frontend::Module###AdminITSMConfigItem" Required="0" Valid="1">
         <Description Translatable="1">Frontend module registration for the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
@@ -13,7 +13,7 @@
                 <NavBarName>Admin</NavBarName>
                 <NavBarModule>
                     <Module>Kernel::Output::HTML::NavBarModuleAdmin</Module>
-                    <Name>Config Item</Name>
+                    <Name Translatable="1">Config Items</Name>
                     <Description Translatable="1">Create and manage the definitions for Configuration Items.</Description>
                     <Block>Ticket</Block>
                     <Prio>495</Prio>
