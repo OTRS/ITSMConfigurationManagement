@@ -1,8 +1,8 @@
 # --
 # Kernel/Modules/AgentITSMConfigItemSearch.pm - the OTRS::ITSM config item search module
-# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.pm,v 1.27 2011-05-12 17:21:19 ub Exp $
+# $Id: AgentITSMConfigItemSearch.pm,v 1.28 2012-01-27 11:18:15 mb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -20,7 +20,7 @@ use Kernel::System::SearchProfile;
 use Kernel::System::CSV;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.27 $) [1];
+$VERSION = qw($Revision: 1.28 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -886,9 +886,11 @@ sub Run {
 
             my $ClassName = $ClassList->{$ClassID};
             my $Title
-                = $Self->{LayoutObject}->{LanguageObject}->Get('Config Item Search Result: Class')
+                = $Self->{LayoutObject}->{LanguageObject}->Get('Config Item Search Results')
                 . ' '
-                . $ClassName;
+                . $Self->{LayoutObject}->{LanguageObject}->Get('Class')
+                . ' '
+                . $Self->{LayoutObject}->{LanguageObject}->Get($ClassName);
 
             $Output .= $Self->{LayoutObject}->ITSMConfigItemListShow(
                 ConfigItemIDs => $SearchResultList,
