@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemSearch.pm - the OTRS::ITSM config item search module
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.pm,v 1.28 2012-01-27 11:18:15 mb Exp $
+# $Id: AgentITSMConfigItemSearch.pm,v 1.29 2012-02-29 14:12:59 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -20,7 +20,7 @@ use Kernel::System::SearchProfile;
 use Kernel::System::CSV;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.28 $) [1];
+$VERSION = qw($Revision: 1.29 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -162,7 +162,7 @@ sub Run {
     }
 
     # ------------------------------------------------------------ #
-    # set sesarch fields for selected class
+    # set search fields for selected class
     # ------------------------------------------------------------ #
     elsif ( $Self->{Subaction} eq 'AJAXUpdate' ) {
 
