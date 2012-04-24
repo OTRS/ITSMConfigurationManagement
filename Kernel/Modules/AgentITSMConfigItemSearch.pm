@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemSearch.pm - the OTRS::ITSM config item search module
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.pm,v 1.29 2012-02-29 14:12:59 ub Exp $
+# $Id: AgentITSMConfigItemSearch.pm,v 1.30 2012-04-24 08:23:12 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -20,7 +20,7 @@ use Kernel::System::SearchProfile;
 use Kernel::System::CSV;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.29 $) [1];
+$VERSION = qw($Revision: 1.30 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -398,7 +398,7 @@ sub Run {
             $Self->{Profile} = 'last-search';
         }
 
-        # store last queue screen
+        # store last overview screen
         my $URL
             = "Action=AgentITSMConfigItemSearch;Profile=$Self->{Profile};"
             . "TakeLastSearch=1;StartHit=$Self->{StartHit}";
@@ -494,7 +494,7 @@ sub Run {
         $Self->{SaveProfile} = 1;
 
         # remember last search values only if search is called from a search dialog
-        # not from resuts page
+        # not from results page
         if ( $Self->{SaveProfile} && $Self->{Profile} && $SearchDialog ) {
 
             # remove old profile stuff
