@@ -1,9 +1,9 @@
 # --
 # Kernel/System/Service/PreferencesDB.pm - some user functions
-# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: PreferencesDB.pm,v 1.1 2010-04-13 17:43:37 ub Exp $
-# $OldId: PreferencesDB.pm,v 1.2 2009/02/16 11:47:34 tr Exp $
+# $Id: PreferencesDB.pm,v 1.2 2012-04-24 08:21:46 ub Exp $
+# $OldId: PreferencesDB.pm,v 1.4 2012/03/15 20:42:18 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,8 +15,10 @@ package Kernel::System::Service::PreferencesDB;
 use strict;
 use warnings;
 
+use Kernel::System::CacheInternal;
+
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.1 $) [1];
+$VERSION = qw($Revision: 1.2 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -26,15 +28,28 @@ sub new {
     bless( $Self, $Type );
 
     # check needed objects
-    for (qw(DBObject ConfigObject LogObject)) {
+    for (qw(DBObject ConfigObject LogObject EncodeObject MainObject)) {
         $Self->{$_} = $Param{$_} || die "Got no $_!";
     }
+
+    $Self->{CacheInternalObject} = Kernel::System::CacheInternal->new(
+        %{$Self},
+        Type => 'ServicePreferencesDB',
+        TTL  => 60 * 60 * 3,
+    );
 
     # preferences table data
     $Self->{PreferencesTable}          = 'service_preferences';
     $Self->{PreferencesTableKey}       = 'preferences_key';
     $Self->{PreferencesTableValue}     = 'preferences_value';
     $Self->{PreferencesTableServiceID} = 'service_id';
+
+    # create cache prefix
+    $Self->{CachePrefix} = 'ServicePreferencesDB'
+        . $Self->{PreferencesTable}
+        . $Self->{PreferencesTableKey}
+        . $Self->{PreferencesTableValue}
+        . $Self->{PreferencesTableServiceID};
 
     return $Self;
 }
@@ -44,7 +59,7 @@ sub ServicePreferencesSet {
 
     # check needed stuff
     for (qw(ServiceID Key Value)) {
-        if ( !defined( $Param{$_} ) ) {
+        if ( !defined $Param{$_} ) {
             $Self->{LogObject}->Log( Priority => 'error', Message => "Need $_!" );
             return;
         }
@@ -58,12 +73,19 @@ sub ServicePreferencesSet {
     );
 
     # insert new data
-    return $Self->{DBObject}->Do(
+    return if !$Self->{DBObject}->Do(
         SQL => "INSERT INTO $Self->{PreferencesTable} ($Self->{PreferencesTableServiceID}, "
             . " $Self->{PreferencesTableKey}, $Self->{PreferencesTableValue}) "
             . " VALUES (?, ?, ?)",
         Bind => [ \$Param{ServiceID}, \$Param{Key}, \$Param{Value} ],
     );
+
+    # delete cache
+    $Self->{CacheInternalObject}->Delete(
+        Key => $Self->{CachePrefix} . $Param{ServiceID},
+    );
+
+    return 1;
 }
 
 sub ServicePreferencesGet {
@@ -81,9 +103,13 @@ sub ServicePreferencesGet {
 # ITSM
 # ---
 #    # check if service preferences are available
-#    if ( !$Self->{ConfigObject}->Get('ServicePreferences') ) {
-#        return;
-#    }
+#    return if !$Self->{ConfigObject}->Get('ServicePreferences');
+#
+#    # read cache
+#    my $Cache = $Self->{CacheInternalObject}->Get(
+#        Key => $Self->{CachePrefix} . $Param{ServiceID},
+#    );
+#    return %{$Cache} if $Cache;
 # ---
 
     # get preferences
@@ -92,12 +118,18 @@ sub ServicePreferencesGet {
             . " FROM $Self->{PreferencesTable} WHERE $Self->{PreferencesTableServiceID} = ?",
         Bind => [ \$Param{ServiceID} ],
     );
+
     my %Data;
     while ( my @Row = $Self->{DBObject}->FetchrowArray() ) {
         $Data{ $Row[0] } = $Row[1];
     }
 
-    # return data
+    # set cache
+    $Self->{CacheInternalObject}->Set(
+        Key   => $Self->{CachePrefix} . $Param{ServiceID},
+        Value => \%Data,
+    );
+
     return %Data;
 }
 
