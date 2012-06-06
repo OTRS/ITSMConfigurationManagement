@@ -1,8 +1,8 @@
 # --
 # ITSMConfigurationManagement.pm - code to excecute during package installation
-# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigurationManagement.pm,v 1.22 2011-01-14 10:37:26 ub Exp $
+# $Id: ITSMConfigurationManagement.pm,v 1.23 2012-06-06 14:45:04 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -30,7 +30,7 @@ use Kernel::System::User;
 use Kernel::System::Valid;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.22 $) [1];
+$VERSION = qw($Revision: 1.23 $) [1];
 
 =head1 NAME
 
@@ -744,6 +744,8 @@ sub _AddConfigItemDefinitions {
         Searchable => 1,
         Input => {
             Type => 'Date',
+            YearPeriodPast => 20,
+            YearPeriodFuture => 10,
         },
     },
     {
@@ -753,6 +755,8 @@ sub _AddConfigItemDefinitions {
         Input => {
             Type => 'Date',
             Required => 1,
+            YearPeriodPast => 20,
+            YearPeriodFuture => 10,
         },
         CountMin => 0,
         CountDefault => 0,
@@ -832,6 +836,8 @@ sub _AddConfigItemDefinitions {
         Searchable => 1,
         Input => {
             Type => 'Date',
+            YearPeriodPast => 20,
+            YearPeriodFuture => 10,
         },
     },
     {
@@ -841,6 +847,8 @@ sub _AddConfigItemDefinitions {
         Input => {
             Type => 'Date',
             Required => 1,
+            YearPeriodPast => 20,
+            YearPeriodFuture => 10,
         },
         CountMin => 0,
         CountMax => 1,
@@ -1106,6 +1114,8 @@ sub _AddConfigItemDefinitions {
                 Input => {
                     Type => 'Date',
                     Required => 1,
+                    YearPeriodPast => 20,
+                    YearPeriodFuture => 10,
                 },
                 CountMin => 0,
                 CountMax => 1,
@@ -1476,6 +1486,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.22 $ $Date: 2011-01-14 10:37:26 $
+$Revision: 1.23 $ $Date: 2012-06-06 14:45:04 $
 
 =cut

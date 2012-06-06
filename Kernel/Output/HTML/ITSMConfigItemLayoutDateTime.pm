@@ -1,8 +1,8 @@
 # --
 # Kernel/Output/HTML/ITSMConfigItemLayoutDateTime.pm - layout backend module
-# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutDateTime.pm,v 1.12 2011-01-12 11:21:14 ub Exp $
+# $Id: ITSMConfigItemLayoutDateTime.pm,v 1.13 2012-06-06 14:45:04 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.12 $) [1];
+$VERSION = qw($Revision: 1.13 $) [1];
 
 =head1 NAME
 
@@ -168,8 +168,8 @@ sub InputCreate {
     my $String = $Self->{LayoutObject}->BuildDateSelection(
         Prefix           => $Param{Key} . '::',
         Format           => 'DateInputFormatLong',
-        YearPeriodPast   => 10,
-        YearPeriodFuture => 10,
+        YearPeriodPast   => $Param{Item}->{Input}->{YearPeriodPast} || 10,
+        YearPeriodFuture => $Param{Item}->{Input}->{YearPeriodFuture} || 10,
         %Values,
     );
 
@@ -361,6 +361,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.12 $ $Date: 2011-01-12 11:21:14 $
+$Revision: 1.13 $ $Date: 2012-06-06 14:45:04 $
 
 =cut
