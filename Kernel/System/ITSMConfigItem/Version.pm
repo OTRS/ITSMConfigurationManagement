@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Version.pm - sub module of ITSMConfigItem.pm with version functions
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: Version.pm,v 1.31 2012-05-07 10:12:39 ub Exp $
+# $Id: Version.pm,v 1.32 2012-06-28 21:00:13 mb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.31 $) [1];
+$VERSION = qw($Revision: 1.32 $) [1];
 
 use Storable;
 
@@ -192,7 +192,7 @@ The returned hash contains following attributes.
         ConfigItemID => 123,
     );
 
-If the data from the XML storage is not needed then fetching the XML data can be
+When the date from the XML storage is not needed then fetching the XML data can be
 explicitly turned off by passing XMLDataGet => 0.
 
     my $VersionRef = $ConfigItemObject->VersionGet(
@@ -688,38 +688,32 @@ sub VersionDelete {
 
     return 1 if !scalar @{$VersionList};
 
-    # delete the xml version data
+    my $Success;
     for my $VersionID ( @{$VersionList} ) {
+
+        # delete the xml version data
         $Self->_XMLVersionDelete(
             VersionID => $VersionID,
             UserID    => $Param{UserID},
         );
-    }
 
-    # quote
-    for my $VersionID ( @{$VersionList} ) {
-        $VersionID = $Self->{DBObject}->Quote( $VersionID, 'Integer' );
-    }
-
-    # create the version id string
-    my $VersionIDString = join ',', @{$VersionList};
-
-    # get config item id for version (needed for event handling)
-    my $ConfigItemID = $Param{ConfigItemID};
-    if ( $Param{VersionID} ) {
-        $ConfigItemID = $Self->VersionConfigItemIDGet(
-            VersionID => $Param{VersionID},
+        # delete version
+        $Success = $Self->{DBObject}->Do(
+            SQL  => "DELETE FROM configitem_version WHERE id = ?",
+            Bind => [ \$VersionID ],
         );
-    }
 
-    # delete versions
-    my $Success = $Self->{DBObject}->Do(
-        SQL => "DELETE FROM configitem_version WHERE id IN ( $VersionIDString )",
-    );
+        # trigger VersionDelete event when deletion was successful
+        if ($Success) {
 
-    # trigger VersionDelete event when deletion was successful
-    if ($Success) {
-        for my $VersionID ( @{$VersionList} ) {
+            # get config item id for version (needed for event handling)
+            my $ConfigItemID = $Param{ConfigItemID};
+            if ( $Param{VersionID} ) {
+                $ConfigItemID = $Self->VersionConfigItemIDGet(
+                    VersionID => $Param{VersionID},
+                );
+            }
+
             $Self->EventHandler(
                 Event => 'VersionDelete',
                 Data  => {
@@ -1276,6 +1270,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.31 $ $Date: 2012-05-07 10:12:39 $
+$Revision: 1.32 $ $Date: 2012-06-28 21:00:13 $
 
 =cut
