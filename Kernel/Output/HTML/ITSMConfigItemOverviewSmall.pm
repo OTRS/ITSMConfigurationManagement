@@ -1,8 +1,8 @@
 # --
 # Kernel/Output/HTML/ITSMConfigItemOverviewSmall.pm
-# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemOverviewSmall.pm,v 1.3 2011-11-02 16:09:39 mb Exp $
+# $Id: ITSMConfigItemOverviewSmall.pm,v 1.4 2012-07-23 16:40:08 des Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.3 $) [1];
+$VERSION = qw($Revision: 1.4 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -208,6 +208,15 @@ sub Run {
             Data => {
                 TotalColumns => scalar @ShowColumns,
             },
+        );
+    }
+
+    my $FixedOverviewControl
+        = $Self->{ConfigObject}->Get('ITSMConfigItem::Frontend::FixedOverviewControl');
+
+    if ($FixedOverviewControl) {
+        $Self->{LayoutObject}->Block(
+            Name => 'ActivateFixedOverviewControl',
         );
     }
 
