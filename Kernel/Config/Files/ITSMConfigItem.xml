@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <otrs_config version="1.0" init="Config">
-    <CVS>$Id: ITSMConfigItem.xml,v 1.40 2012-07-23 16:40:08 des Exp $</CVS>
+    <CVS>$Id: ITSMConfigItem.xml,v 1.41 2012-08-01 10:18:01 ub Exp $</CVS>
     <ConfigItem Name="Frontend::Module###AdminITSMConfigItem" Required="0" Valid="1">
         <Description Translatable="1">Frontend module registration for the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
@@ -508,7 +508,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::FixedOverviewControl" Required="1" Valid="1">
-        <Description Translatable="1">With this config option it is possible to deactive the fixed overview control bar in the AgentITSMConfigItem overview. In some scenarios this will be necessary, f.e. duo to small screen resolutions in comibantion with a lot of config item classes.</Description>
+        <Description Translatable="1">With this config option it is possible to deactive the fixed overview control bar in the AgentITSMConfigItem overview. In some scenarios this will be necessary, f.e. due to small screen resolutions in combination with a lot of config item classes.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItemOverview</SubGroup>
         <Setting>
