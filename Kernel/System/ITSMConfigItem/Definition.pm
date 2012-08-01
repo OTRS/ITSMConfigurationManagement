@@ -1,8 +1,8 @@
 # --
 # Kernel/System/ITSMConfigItem/Definition.pm - sub module of ITSMConfigItem.pm with definition functions
-# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: Definition.pm,v 1.8 2010-02-19 10:50:55 bes Exp $
+# $Id: Definition.pm,v 1.9 2012-08-01 05:52:24 ep Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.8 $) [1];
+$VERSION = qw($Revision: 1.9 $) [1];
 
 =head1 NAME
 
@@ -80,14 +80,14 @@ sub DefinitionList {
 return a config item definition as hash reference
 
 Return
-    $Definition{DefinitionID}
-    $Definition{ClassID}
-    $Definition{Class}
-    $Definition{Definition}
-    $Definition{DefinitionRef}
-    $Definition{Version}
-    $Definition{CreateTime}
-    $Definition{CreateBy}
+    $Definition->{DefinitionID}
+    $Definition->{ClassID}
+    $Definition->{Class}
+    $Definition->{Definition}
+    $Definition->{DefinitionRef}
+    $Definition->{Version}
+    $Definition->{CreateTime}
+    $Definition->{CreateBy}
 
     my $DefinitionRef = $ConfigItemObject->DefinitionGet(
         DefinitionID => 123,
@@ -386,12 +386,12 @@ This software is part of the OTRS project (http://otrs.org/).
 
 This software comes with ABSOLUTELY NO WARRANTY. For details, see
 the enclosed file COPYING for license information (AGPL). If you
-did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =cut
 
 =head1 VERSION
 
-$Revision: 1.8 $ $Date: 2010-02-19 10:50:55 $
+$Revision: 1.9 $ $Date: 2012-08-01 05:52:24 $
 
 =cut
