@@ -1,8 +1,8 @@
 # --
 # Kernel/Modules/AgentITSMConfigItemPrint.pm - print layout for itsm config item agent interface
-# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemPrint.pm,v 1.8 2010-02-11 21:51:33 ub Exp $
+# $Id: AgentITSMConfigItemPrint.pm,v 1.9 2012-08-23 16:40:58 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -20,7 +20,7 @@ use Kernel::System::PDF;
 use Kernel::System::HTMLUtils;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.8 $) [1];
+$VERSION = qw($Revision: 1.9 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -733,6 +733,9 @@ sub _PDFOutputXMLOutput {
                 Item  => $Item,
                 Print => 1,
             );
+
+            # replace newlines with <br/> (fix for bug# 5928)
+            $Value =~ s{ \n }{<br/>}gxms;
 
             # convert value to ascii
             $Value = $Self->{HTMLUtilsObject}->ToAscii( String => $Value );
