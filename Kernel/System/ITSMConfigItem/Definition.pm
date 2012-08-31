@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Definition.pm - sub module of ITSMConfigItem.pm with definition functions
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: Definition.pm,v 1.9 2012-08-01 05:52:24 ep Exp $
+# $Id: Definition.pm,v 1.10 2012-08-31 09:51:50 mb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.9 $) [1];
+$VERSION = qw($Revision: 1.10 $) [1];
 
 =head1 NAME
 
@@ -38,6 +38,48 @@ return a config item definition list as arrayhash reference
     my $DefinitionListRef = $ConfigItemObject->DefinitionList(
         ClassID => 123,
     );
+
+returns
+
+    my $DefinitionListRef = [
+          {
+            'Version'      => '1',
+            'CreateTime'   => '2012-06-12 14:09:43',
+            'DefinitionID' => '1',
+            'CreateBy'     => '123',
+            'Definition'   => '[
+                {
+                    Key => \'Vendor\',
+                    Name => \'Vendor\',
+                    Searchable => 1,
+                    Input => {
+                        Type => \'Text\',
+                        Size => 50,
+                        MaxLength => 50,
+                    },
+                },
+                {
+                    Key => \'Description\',
+                    Name => \'Description\',
+                    Searchable => 1,
+                    Input => {
+                        Type => \'TextArea\',
+                    },
+                },
+                {
+                    Key => \'Type\',
+                    Name => \'Type\',
+                    Searchable => 1,
+                    Input => {
+                        Type => \'GeneralCatalog\',
+                        Class => \'ITSM::ConfigItem::Computer::Type\',
+                        Translation => 1,
+                    },
+                },
+                ... etc ...
+            ];',
+          }
+        ];
 
 =cut
 
@@ -392,6 +434,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.9 $ $Date: 2012-08-01 05:52:24 $
+$Revision: 1.10 $ $Date: 2012-08-31 09:51:50 $
 
 =cut
