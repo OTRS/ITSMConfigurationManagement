@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <otrs_config version="1.0" init="Config">
-    <CVS>$Id: ITSMConfigItem.xml,v 1.41 2012-08-01 10:18:01 ub Exp $</CVS>
+    <CVS>$Id: ITSMConfigItem.xml,v 1.42 2012-10-22 22:33:40 ub Exp $</CVS>
     <ConfigItem Name="Frontend::Module###AdminITSMConfigItem" Required="0" Valid="1">
         <Description Translatable="1">Frontend module registration for the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
@@ -431,6 +431,14 @@
             <String Regex="">ro</String>
         </Setting>
     </ConfigItem>
+    <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemSearch###SearchLimit" Required="1" Valid="1">
+        <Description Translatable="1">Defines the search limit for the AgentITSMConfigItemSearch screen.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ViewConfigItemSearch</SubGroup>
+        <Setting>
+            <String Regex="">10000</String>
+        </Setting>
+    </ConfigItem>
     <ConfigItem Name="GeneralCatalogPreferences###Permissions" Required="0" Valid="1">
         <Description Translatable="1">Parameters for the example permission groups of the general catalog attributes.</Description>
         <Group>GeneralCatalog</Group>
@@ -542,6 +550,14 @@
                 <Item Key="CurInciStateType">0</Item>
                 <Item Key="LastChanged">1</Item>
             </Hash>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItem###SearchLimit" Required="1" Valid="1">
+        <Description Translatable="1">Defines the search limit for the AgentITSMConfigItem screen.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ViewConfigItem</SubGroup>
+        <Setting>
+            <String Regex="">10000</String>
         </Setting>
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns" Required="1" Valid="1">

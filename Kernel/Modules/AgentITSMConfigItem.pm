@@ -1,8 +1,8 @@
 # --
 # Kernel/Modules/AgentITSMConfigItem.pm - the OTRS::ITSM config item module
-# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItem.pm,v 1.18 2011-03-28 17:46:15 ub Exp $
+# $Id: AgentITSMConfigItem.pm,v 1.19 2012-10-22 22:33:40 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.18 $) [1];
+$VERSION = qw($Revision: 1.19 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -48,6 +48,9 @@ sub new {
 
 sub Run {
     my ( $Self, %Param ) = @_;
+
+    # get config data
+    $Self->{SearchLimit} = $Self->{Config}->{SearchLimit} || 10000;
 
     # store last screen, used for backlinks
     $Self->{SessionObject}->UpdateSessionID(
@@ -153,7 +156,7 @@ sub Run {
                 DeplStateIDs     => $DeplStateIDs,
                 OrderBy          => \@SortByArray,
                 OrderByDirection => \@OrderByArray,
-                Limit            => 1000,
+                Limit            => $Self->{SearchLimit},
             },
         };
 
@@ -185,7 +188,7 @@ sub Run {
                 DeplStateIDs     => $DeplStateIDs,
                 OrderBy          => \@SortByArray,
                 OrderByDirection => \@OrderByArray,
-                Limit            => 1000,
+                Limit            => $Self->{SearchLimit},
             },
         };
 

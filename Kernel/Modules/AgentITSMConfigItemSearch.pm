@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemSearch.pm - the OTRS::ITSM config item search module
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.pm,v 1.31 2012-10-22 20:00:41 ub Exp $
+# $Id: AgentITSMConfigItemSearch.pm,v 1.32 2012-10-22 22:33:40 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -20,7 +20,7 @@ use Kernel::System::SearchProfile;
 use Kernel::System::CSV;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.31 $) [1];
+$VERSION = qw($Revision: 1.32 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -54,7 +54,7 @@ sub Run {
 
     # get config data
     $Self->{StartHit} = int( $Self->{ParamObject}->GetParam( Param => 'StartHit' ) || 1 );
-    $Self->{SearchLimit} = $Self->{Config}->{SearchLimit} || 500;
+    $Self->{SearchLimit} = $Self->{Config}->{SearchLimit} || 10000;
     $Self->{SortBy} = $Self->{ParamObject}->GetParam( Param => 'SortBy' )
         || $Self->{Config}->{'SortBy::Default'}
         || 'Number';
