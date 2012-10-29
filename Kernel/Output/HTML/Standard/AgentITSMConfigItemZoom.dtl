@@ -2,7 +2,7 @@
 # AgentITSMConfigItemZoom.dtl - provides HTML form for AgentITSMConfigItemZoom
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemZoom.dtl,v 1.26 2012-10-29 18:54:49 ub Exp $
+# $Id: AgentITSMConfigItemZoom.dtl,v 1.27 2012-10-29 19:00:36 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -120,7 +120,7 @@
                                 </thead>
                                 <tbody>
 <!-- dtl:block:TreeItem -->
-                                    <tr class="$QData{"Active"}">
+                                    <tr class="$QData{"Active"} MasterAction">
                                         <td title="$Text{"$Data{"InciState"}"}">
                                             <div class="Flag Small">
                                                 <span class="$QData{"InciSignal"}">$QData{"InciState"}</span>
@@ -130,7 +130,7 @@
                                             $QData{"Count"}.
                                         </td>
                                         <td>
-                                            <a href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"};VersionID=$LQData{"VersionID"};ShowVersions=$LQData{"ShowVersions"}">
+                                            <a class="AsBlock MasterActionLink" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"};VersionID=$LQData{"VersionID"};ShowVersions=$LQData{"ShowVersions"}">
                                                 $QData{"Name"} ($Text{"$Data{"DeplState"}"})
                                             </a>
                                         </td>
@@ -205,6 +205,15 @@
     $('ul.Actions a.HistoryBack').bind('click', function (Event) {
         history.back();
         return false;
+    });
+
+    $('.MasterAction').bind('click', function (Event) {
+        var $MasterActionLink = $(this).find('.MasterActionLink');
+        // only act if the link was not clicked directly
+        if (Event.target !== $MasterActionLink.get(0)) {
+            window.location = $MasterActionLink.attr('href');
+            return false;
+        }
     });
 //]]></script>
 <!-- dtl:js_on_document_complete -->
