@@ -1,8 +1,8 @@
 # --
 # Kernel/Modules/AgentITSMConfigItemZoom.pm - the OTRS::ITSM config item zoom module
-# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemZoom.pm,v 1.12 2010-12-14 21:54:09 ub Exp $
+# $Id: AgentITSMConfigItemZoom.pm,v 1.13 2012-10-29 18:54:49 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -19,7 +19,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::LinkObject;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.12 $) [1];
+$VERSION = qw($Revision: 1.13 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -194,39 +194,25 @@ sub Run {
 
     # output version tree
     for my $VersionHash ( @{$VersionList} ) {
-        $Self->{LayoutObject}->Block(
-            Name => 'TreeItem',
-        );
+
         my %UserInfo = $Self->{UserObject}->GetUserData(
             UserID => $VersionHash->{CreateBy},
-            Cached => 1
+            Cached => 1,
         );
-        if ( $VersionHash->{VersionID} eq $VersionID ) {
-            $Self->{LayoutObject}->Block(
-                Name => 'TreeItemActive',
-                Data => {
-                    %Param,
-                    %UserInfo,
-                    %{$ConfigItem},
-                    %{$VersionHash},
-                    Count      => $Counter,
-                    InciSignal => $InciSignals{ $VersionHash->{InciStateType} },
-                },
-            );
-        }
-        else {
-            $Self->{LayoutObject}->Block(
-                Name => 'TreeItemInactive',
-                Data => {
-                    %Param,
-                    %UserInfo,
-                    %{$ConfigItem},
-                    %{$VersionHash},
-                    Count      => $Counter,
-                    InciSignal => $InciSignals{ $VersionHash->{InciStateType} },
-                },
-            );
-        }
+
+        $Self->{LayoutObject}->Block(
+            Name => 'TreeItem',
+            Data => {
+                %Param,
+                %UserInfo,
+                %{$ConfigItem},
+                %{$VersionHash},
+                Count      => $Counter,
+                InciSignal => $InciSignals{ $VersionHash->{InciStateType} },
+                Active     => $VersionHash->{VersionID} eq $VersionID ? 'Active' : '',
+            },
+        );
+
         $Counter++;
     }
 

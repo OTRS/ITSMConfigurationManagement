@@ -2,7 +2,7 @@
 # AgentITSMConfigItemZoom.dtl - provides HTML form for AgentITSMConfigItemZoom
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemZoom.dtl,v 1.25 2012-01-27 11:07:36 mb Exp $
+# $Id: AgentITSMConfigItemZoom.dtl,v 1.26 2012-10-29 18:54:49 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -120,32 +120,7 @@
                                 </thead>
                                 <tbody>
 <!-- dtl:block:TreeItem -->
-<!-- dtl:block:TreeItemInactive -->
-                                    <tr>
-                                        <td title="$Text{"$Data{"InciState"}"}">
-                                            <div class="Flag Small">
-                                                <span class="$QData{"InciSignal"}">$QData{"InciState"}</span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            $QData{"Count"}.
-                                        </td>
-                                        <td>
-                                            <a href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"};VersionID=$LQData{"VersionID"};ShowVersions=$LQData{"ShowVersions"}">
-                                                $QData{"Name"} ($Text{"$Data{"DeplState"}"})
-                                            </a>
-                                        </td>
-                                        <td>
-                                            $QData{"UserLogin","30"} ($Quote{"$Data{"UserFirstname"} $Data{"UserLastname"}","30"})
-
-                                        </td>
-                                        <td>
-                                            $TimeLong{"$QData{"CreateTime"}"}
-                                        </td>
-                                    </tr>
-<!-- dtl:block:TreeItemInactive -->
-<!-- dtl:block:TreeItemActive -->
-                                    <tr class="Active">
+                                    <tr class="$QData{"Active"}">
                                         <td title="$Text{"$Data{"InciState"}"}">
                                             <div class="Flag Small">
                                                 <span class="$QData{"InciSignal"}">$QData{"InciState"}</span>
@@ -166,7 +141,6 @@
                                             $TimeLong{"$QData{"CreateTime"}"}
                                         </td>
                                     </tr>
-<!-- dtl:block:TreeItemActive -->
 <!-- dtl:block:TreeItem -->
                                 </tbody>
                             </table>
