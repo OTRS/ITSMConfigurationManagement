@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem.pm - all config item function
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.35 2012-10-31 13:27:44 ub Exp $
+# $Id: ITSMConfigItem.pm,v 1.36 2012-10-31 16:34:08 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -29,7 +29,7 @@ use Kernel::System::User;
 use Kernel::System::XML;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.35 $) [1];
+$VERSION = qw($Revision: 1.36 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',
@@ -815,7 +815,10 @@ sub ConfigItemSearch {
 
     # check if OrderBy contains only unique valid values
     my %OrderBySeen;
+    ORDERBY:
     for my $OrderBy ( @{ $Param{OrderBy} } ) {
+
+        next ORDERBY if $OrderBy eq 'Name';
 
         if ( !$OrderBy || !$OrderByTable{$OrderBy} || $OrderBySeen{$OrderBy} ) {
 
@@ -859,7 +862,10 @@ sub ConfigItemSearch {
     # assemble the ORDER BY clause
     my @SQLOrderBy;
     my $Count = 0;
+    ORDERBY:
     for my $OrderBy ( @{ $Param{OrderBy} } ) {
+
+        next ORDERBY if $OrderBy eq 'Name';
 
         # set the default order direction
         my $Direction = 'DESC';
@@ -1383,6 +1389,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.35 $ $Date: 2012-10-31 13:27:44 $
+$Revision: 1.36 $ $Date: 2012-10-31 16:34:08 $
 
 =cut
