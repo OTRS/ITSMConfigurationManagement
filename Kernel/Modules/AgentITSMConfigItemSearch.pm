@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemSearch.pm - the OTRS::ITSM config item search module
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.pm,v 1.32 2012-10-22 22:33:40 ub Exp $
+# $Id: AgentITSMConfigItemSearch.pm,v 1.33 2012-10-31 13:27:04 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -20,7 +20,7 @@ use Kernel::System::SearchProfile;
 use Kernel::System::CSV;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.32 $) [1];
+$VERSION = qw($Revision: 1.33 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -455,9 +455,23 @@ sub Run {
             );
         }
 
-        # get scalar search attributes
+        # get scalar search attributes (special handling for Number and Name)
         FORMVALUE:
-        for my $FormValue (qw(Number Name PreviousVersionSearch ResultForm)) {
+        for my $FormValue (qw(Number Name)) {
+
+            my $Value = $Self->{ParamObject}->GetParam( Param => $FormValue );
+
+            # must be defined and not be an empty string
+            # BUT the number 0 is an allowed value
+            next FORMVALUE if !defined $Value;
+            next FORMVALUE if $Value eq '';
+
+            $GetParam{$FormValue} = $Value;
+        }
+
+        # get ther scalar search attributes
+        FORMVALUE:
+        for my $FormValue (qw(PreviousVersionSearch ResultForm)) {
 
             my $Value = $Self->{ParamObject}->GetParam( Param => $FormValue );
 

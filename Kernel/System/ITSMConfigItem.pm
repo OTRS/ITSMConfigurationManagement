@@ -1,8 +1,8 @@
 # --
 # Kernel/System/ITSMConfigItem.pm - all config item function
-# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.34 2011-11-07 11:22:25 ub Exp $
+# $Id: ITSMConfigItem.pm,v 1.35 2012-10-31 13:27:44 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -29,7 +29,7 @@ use Kernel::System::User;
 use Kernel::System::XML;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.34 $) [1];
+$VERSION = qw($Revision: 1.35 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',
@@ -595,7 +595,6 @@ sub ConfigItemSearchExtended {
 
     # config item search is required if one of these params is given
     my @ConfigItemSearchParams = (
-        'Number',
         'ConfigItemCreateTimeNewerDate',
         'ConfigItemCreateTimeOlderDate',
         'ConfigItemChangeTimeNewerDate',
@@ -612,8 +611,19 @@ sub ConfigItemSearchExtended {
         last CONFIGITEMPARAM;
     }
 
+    # special handling for config item number
+    # number 0 is allowed but not the empty string
+    if ( defined $Param{Number} && $Param{Number} ne '' ) {
+        $RequiredSearch{ConfigItem} = 1;
+    }
+
     # version search is required if Name, What or PreviousVersionSearch is given
-    if ( $Param{Name} || $Param{What} || $Param{PreviousVersionSearch} ) {
+    if (
+        ( defined $Param{Name} && $Param{Name} ne '' )
+        || ( defined $Param{What} && $Param{What} ne '' )
+        || $Param{PreviousVersionSearch}
+        )
+    {
         $RequiredSearch{Version} = 1;
     }
 
@@ -627,7 +637,7 @@ sub ConfigItemSearchExtended {
     }
 
     # xml version search is required if What is given
-    if ( $Param{What} ) {
+    if ( defined $Param{What} && $Param{What} ne '' ) {
         $RequiredSearch{XMLVersion} = 1;
     }
 
@@ -873,14 +883,14 @@ sub ConfigItemSearch {
     }
 
     # if there is a possibility that the ordering is not determined
-    # we add an asending ordering by id
+    # we add an ascending ordering by id
     if ( !grep { $_ eq 'ConfigItemID' } ( @{ $Param{OrderBy} } ) ) {
         push @SQLOrderBy, "$OrderByTable{ConfigItemID} ASC";
     }
 
     # add number to sql where array
     my @SQLWhere;
-    if ( $Param{Number} ) {
+    if ( defined $Param{Number} && $Param{Number} ne '' ) {
 
         # quote
         $Param{Number} = $Self->{DBObject}->Quote( $Param{Number} );
@@ -1373,6 +1383,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.34 $ $Date: 2011-11-07 11:22:25 $
+$Revision: 1.35 $ $Date: 2012-10-31 13:27:44 $
 
 =cut

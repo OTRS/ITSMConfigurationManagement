@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Version.pm - sub module of ITSMConfigItem.pm with version functions
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: Version.pm,v 1.32 2012-06-28 21:00:13 mb Exp $
+# $Id: Version.pm,v 1.33 2012-10-31 13:28:14 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.32 $) [1];
+$VERSION = qw($Revision: 1.33 $) [1];
 
 use Storable;
 
@@ -880,7 +880,7 @@ sub VersionSearch {
 
     # add name to sql where array
     my @SQLWhere;
-    if ( $Param{Name} ) {
+    if ( defined $Param{Name} && defined $Param{Name} ne '' ) {
 
         # duplicate the name
         my $Name = $Param{Name};
@@ -1270,6 +1270,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.32 $ $Date: 2012-06-28 21:00:13 $
+$Revision: 1.33 $ $Date: 2012-10-31 13:28:14 $
 
 =cut

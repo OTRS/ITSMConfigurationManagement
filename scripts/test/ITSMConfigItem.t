@@ -1,8 +1,8 @@
 # --
 # ITSMConfigItem.t - config item tests
-# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.t,v 1.13 2010-12-28 19:51:22 cr Exp $
+# $Id: ITSMConfigItem.t,v 1.14 2012-10-31 13:30:05 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -3076,6 +3076,32 @@ my @SearchTests = (
         },
         ReferenceData => [
             $ConfigItemNumbers[52],
+        ],
+    },
+
+    # test ConfigItemSearchExtended() with Name = 0 without any wildcards
+    # should return no results
+    # Bugfix# 8881
+    {
+        Function   => ['ConfigItemSearchExtended'],
+        SearchData => {
+            ClassIDs => \@ConfigItemClassIDs,
+            Name     => 0,
+        },
+        ReferenceData => [
+        ],
+    },
+
+    # test ConfigItemSearchExtended() with Number = 0 without any wildcards
+    # should return no results
+    # Bugfix# 8881
+    {
+        Function   => ['ConfigItemSearchExtended'],
+        SearchData => {
+            ClassIDs => \@ConfigItemClassIDs,
+            Number   => 0,
+        },
+        ReferenceData => [
         ],
     },
 );
