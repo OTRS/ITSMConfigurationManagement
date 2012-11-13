@@ -1,9 +1,9 @@
 #!/usr/bin/perl -w
 # --
 # bin/otrs.ITSMConfigItemDelete.pl - to delete config items
-# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: otrs.ITSMConfigItemDelete.pl,v 1.1 2010-12-14 19:41:08 ub Exp $
+# $Id: otrs.ITSMConfigItemDelete.pl,v 1.2 2012-11-13 16:27:03 ub Exp $
 # --
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU AFFERO General Public License as published by
@@ -30,7 +30,7 @@ use FindBin qw($RealBin);
 use lib dirname($RealBin);
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.1 $) [1];
+$VERSION = qw($Revision: 1.2 $) [1];
 
 use Getopt::Long;
 use Kernel::Config;
@@ -57,18 +57,20 @@ $CommonObject{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new(%Commo
 $CommonObject{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new(%CommonObject);
 
 print "otrs.ITSMConfigItemDelete.pl <Revision $VERSION> - ";
-print "delete config items (all, by class or by number).\n";
-print "Copyright (C) 2001-2010 OTRS AG, http://otrs.org/\n";
+print "delete config items (all, by class (and deployment state) or by number).\n";
+print "Copyright (C) 2001-2012 OTRS AG, http://otrs.org/\n";
 
 my $Help              = '';
 my $All               = '';
 my $Class             = '';
+my $DeploymentState   = '';
 my @ConfigItemNumbers = ();
 
 GetOptions(
     'help'                  => \$Help,
     'all'                   => \$All,
     'class=s'               => \$Class,
+    'deploymentstate=s'     => \$DeploymentState,
     'ConfigItemNumber=s{,}' => \@ConfigItemNumbers,
 );
 
@@ -141,15 +143,46 @@ elsif ($Class) {
         Class => 'ITSM::ConfigItem::Class',
     );
 
-    # invert the hash to have the classes' names as keys
+    # invert the hash to have the classes names as keys
     my %ClassName2ID = reverse %{$ClassList};
 
     if ( $ClassName2ID{$Class} ) {
         my $ID = $ClassName2ID{$Class};
 
-        # get ids of this class' config items
+        # define the search param for the class search
+        my %SearchParam = (
+            ClassIDs => [$ID],
+        );
+
+        # also a deployment state is given
+        if ($DeploymentState) {
+
+            # get deployment state list
+            my $DeploymentStateList = $CommonObject{GeneralCatalogObject}->ItemList(
+                Class => 'ITSM::ConfigItem::DeploymentState',
+            );
+
+            # invert the hash to have the deployment state names as keys
+            my %DeploymentState2ID = reverse %{$DeploymentStateList};
+
+            # if the deployment state is valid
+            if ( $DeploymentState2ID{$DeploymentState} ) {
+
+                # get the deployment state id
+                my $ID = $DeploymentState2ID{$DeploymentState};
+
+                # add search parameter
+                $SearchParam{DeplStateIDs} = [$ID];
+            }
+            else {
+                print "Unable to find deployment state $DeploymentState.\n";
+                exit 1;
+            }
+        }
+
+        # get ids of this class (and maybe deployment state) config items
         @ConfigItemsIDs
-            = @{ $CommonObject{ConfigItemObject}->ConfigItemSearch( ClassIDs => [$ID] ) };
+            = @{ $CommonObject{ConfigItemObject}->ConfigItemSearch(%SearchParam) };
     }
     else {
         print "Unable to find class name $Class.\n";
@@ -172,6 +205,8 @@ else {
     print "  --help                             display this option help\n";
     print "  --all                              delete all config items\n";
     print "  --class name                       delete all config items of this class\n";
+    print
+        "  --deploymentstate name             delete all config items with this deployment state (ONLY TOGETHER with the --class parameter)\n";
     print "  --ConfigItemNumber no1 no2 no3     delete listed config items\n";
     exit 1;
 }
