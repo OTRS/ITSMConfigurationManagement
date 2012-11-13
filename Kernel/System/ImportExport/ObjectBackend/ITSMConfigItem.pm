@@ -1,8 +1,8 @@
 # --
 # Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm - import/export backend for ITSMConfigItem
-# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.23 2011-08-03 10:16:23 ub Exp $
+# $Id: ITSMConfigItem.pm,v 1.24 2012-11-13 21:39:23 mb Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -21,7 +21,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::Time;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.23 $) [1];
+$VERSION = qw($Revision: 1.24 $) [1];
 
 =head1 NAME
 
@@ -597,14 +597,14 @@ sub ExportDataGet {
                 next MAPPINGOBJECT;
             }
 
-            # handel deployment state
+            # handle deployment state
             if ( $Key eq 'DeplState' ) {
                 $VersionData->{DeplStateID} ||= 'DUMMY';
                 push @Item, $DeplStateList->{ $VersionData->{DeplStateID} };
                 next MAPPINGOBJECT;
             }
 
-            # handel incident state
+            # handle incident state
             if ( $Key eq 'InciState' ) {
                 $VersionData->{InciStateID} ||= 'DUMMY';
                 push @Item, $InciStateList->{ $VersionData->{InciStateID} };
@@ -1659,6 +1659,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.23 $ $Date: 2011-08-03 10:16:23 $
+$Revision: 1.24 $ $Date: 2012-11-13 21:39:23 $
 
 =cut
