@@ -1,8 +1,8 @@
 # --
 # Kernel/System/ITSMConfigItem/Number.pm - sub module of ITSMConfigItem.pm with number functions
-# Copyright (C) 2001-2009 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: Number.pm,v 1.4 2009-08-19 22:48:14 mh Exp $
+# $Id: Number.pm,v 1.5 2012-11-20 19:05:54 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.4 $) [1];
+$VERSION = qw($Revision: 1.5 $) [1];
 
 =head1 NAME
 
@@ -249,12 +249,12 @@ This software is part of the OTRS project (http://otrs.org/).
 
 This software comes with ABSOLUTELY NO WARRANTY. For details, see
 the enclosed file COPYING for license information (AGPL). If you
-did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =cut
 
 =head1 VERSION
 
-$Revision: 1.4 $ $Date: 2009-08-19 22:48:14 $
+$Revision: 1.5 $ $Date: 2012-11-20 19:05:54 $
 
 =cut
