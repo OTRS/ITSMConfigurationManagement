@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemEdit.pm - the OTRS::ITSM config item edit module
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.pm,v 1.31 2012-05-07 11:54:27 ub Exp $
+# $Id: AgentITSMConfigItemEdit.pm,v 1.32 2012-11-21 10:21:40 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.31 $) [1];
+$VERSION = qw($Revision: 1.32 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -309,7 +309,7 @@ sub Run {
         Name => 'CustomerSearchAutoComplete',
         Data => {
             minQueryLength      => $AutoCompleteConfig->{MinQueryLength}      || 2,
-            queryDelay          => $AutoCompleteConfig->{QueryDelay}          || 0.1,
+            queryDelay          => $AutoCompleteConfig->{QueryDelay}          || 100,
             typeAhead           => $AutoCompleteConfig->{TypeAhead}           || 'false',
             maxResultsDisplayed => $AutoCompleteConfig->{MaxResultsDisplayed} || 20,
             dynamicWidth        => $AutoCompleteConfig->{DynamicWidth}        || 1,
