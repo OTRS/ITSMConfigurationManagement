@@ -2,8 +2,8 @@
 # Kernel/System/Service/PreferencesDB.pm - some user functions
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: PreferencesDB.pm,v 1.3 2012-08-01 12:10:20 ub Exp $
-# $OldId: PreferencesDB.pm,v 1.4.2.1 2012/07/01 23:09:45 mh Exp $
+# $Id: PreferencesDB.pm,v 1.4 2012-11-21 20:37:30 ub Exp $
+# $OldId: PreferencesDB.pm,v 1.7 2012/11/20 15:56:30 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use warnings;
 use Kernel::System::CacheInternal;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.3 $) [1];
+$VERSION = qw($Revision: 1.4 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
