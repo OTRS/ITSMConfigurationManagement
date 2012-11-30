@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemPrint.pm - print layout for itsm config item agent interface
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemPrint.pm,v 1.9 2012-08-23 16:40:58 ub Exp $
+# $Id: AgentITSMConfigItemPrint.pm,v 1.9.2.1 2012-11-30 17:07:56 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -20,7 +20,7 @@ use Kernel::System::PDF;
 use Kernel::System::HTMLUtils;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.9 $) [1];
+$VERSION = qw($Revision: 1.9.2.1 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -159,6 +159,11 @@ sub Run {
         );
     }
 
+    # get attachments
+    my @Attachments = $Self->{ConfigItemObject}->ConfigItemAttachmentList(
+        ConfigItemID => $ConfigItemID,
+    );
+
     # generate pdf output
     if ( $Self->{PDFObject} ) {
 
@@ -220,6 +225,15 @@ sub Run {
                 PageData     => \%Page,
                 LinkData     => \%LinkData,
                 LinkTypeList => \%LinkTypeList,
+            );
+        }
+
+        # output attachments
+        if (@Attachments) {
+            $Self->_PDFOutputAttachments(
+                PageData       => \%Page,
+                ConfigItemID   => $ConfigItemID,
+                AttachmentData => \@Attachments,
             );
         }
 
@@ -327,6 +341,48 @@ sub Run {
                 XMLDefinition => $Version->{XMLDefinition},
                 XMLData       => $Version->{XMLData}->[1]->{Version}->[1],
             );
+        }
+
+        if (@Attachments) {
+
+            # get the metadata of the 1st attachment
+            my $FirstAttachment = $Self->{ConfigItemObject}->ConfigItemAttachmentGet(
+                ConfigItemID => $ConfigItemID,
+                Filename     => $Attachments[0],
+            );
+
+            $Self->{LayoutObject}->Block(
+                Name => 'Attachments',
+                Data => {
+                    ConfigItemID => $ConfigItemID,
+                    Filename     => $FirstAttachment->{Filename},
+                    Filesize     => $FirstAttachment->{Filesize},
+                },
+            );
+
+            # the 1st attachment was directly rendered into the 1st row's right cell, all further
+            # attachments are rendered into a separate row
+            ATTACHMENT:
+            for my $Attachment (@Attachments) {
+
+                # skip the 1st attachment
+                next ATTACHMENT if $Attachment eq $Attachments[0];
+
+                # get the metadata of the current attachment
+                my $AttachmentData = $Self->{ConfigItemObject}->ConfigItemAttachmentGet(
+                    ConfigItemID => $ConfigItemID,
+                    Filename     => $Attachment,
+                );
+
+                $Self->{LayoutObject}->Block(
+                    Name => 'AttachmentRow',
+                    Data => {
+                        ConfigItemID => $ConfigItemID,
+                        Filename     => $AttachmentData->{Filename},
+                        Filesize     => $AttachmentData->{Filesize},
+                    },
+                );
+            }
         }
 
         # generate output
@@ -527,6 +583,93 @@ sub _PDFOutputLinkedObjects {
     # output headline
     $Self->{PDFObject}->Text(
         Text     => $Self->{LayoutObject}->{LanguageObject}->Get('Linked Objects'),
+        Height   => 7,
+        Type     => 'Cut',
+        Font     => 'ProportionalBoldItalic',
+        FontSize => 7,
+        Color    => '#666666',
+    );
+
+    # set new position
+    $Self->{PDFObject}->PositionSet(
+        Move => 'relativ',
+        Y    => -4,
+    );
+
+    # table params
+    $TableParam{Type}            = 'Cut';
+    $TableParam{Border}          = 0;
+    $TableParam{FontSize}        = 6;
+    $TableParam{BackgroundColor} = '#DDDDDD';
+    $TableParam{Padding}         = 1;
+    $TableParam{PaddingTop}      = 3;
+    $TableParam{PaddingBottom}   = 3;
+
+    # output table
+    for ( $Page{PageCount} .. $Page{MaxPages} ) {
+
+        # output table (or a fragment of it)
+        %TableParam = $Self->{PDFObject}->Table( %TableParam, );
+
+        # stop output or output next page
+        if ( $TableParam{State} ) {
+            last;
+        }
+        else {
+            $Self->{PDFObject}->PageNew(
+                %Page, FooterRight => $Page{PageText} . ' ' . $Page{PageCount},
+            );
+            $Page{PageCount}++;
+        }
+    }
+
+    return 1;
+}
+
+sub _PDFOutputAttachments {
+    my ( $Self, %Param ) = @_;
+
+    # check needed stuff
+    for (qw(PageData ConfigItemID AttachmentData)) {
+        if ( !defined( $Param{$_} ) ) {
+            $Self->{LogObject}->Log( Priority => 'error', Message => "Need $_!" );
+            return;
+        }
+    }
+
+    my %Page = %{ $Param{PageData} };
+    my %TableParam;
+    my $Row = 0;
+
+    # attachments are rendered into a separate row
+    ATTACHMENT:
+    for my $Attachment ( @{ $Param{AttachmentData} } ) {
+
+        # get the metadata of the current attachment
+        my $AttachmentData = $Self->{ConfigItemObject}->ConfigItemAttachmentGet(
+            ConfigItemID => $Param{ConfigItemID},
+            Filename     => $Attachment,
+        );
+
+        # define attachment line
+        $TableParam{CellData}[$Row][0]{Content}
+            = $AttachmentData->{Filename} . '  (' . $AttachmentData->{Filesize} . ')';
+
+        $Row++;
+    }
+
+    $TableParam{ColumnData}[0]{Width} = 80;
+    $TableParam{ColumnData}[1]{Width} = 431;
+
+    # set new position
+    $Self->{PDFObject}->PositionSet(
+        Move => 'relativ',
+        Y    => -15,
+    );
+
+    # output headline
+    $Self->{PDFObject}->Text(
+        Text     => $Self->{LayoutObject}->{LanguageObject}->Get('Attachments'),
         Height   => 7,
         Type     => 'Cut',
         Font     => 'ProportionalBoldItalic',

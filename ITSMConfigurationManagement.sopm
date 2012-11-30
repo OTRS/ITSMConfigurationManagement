@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <otrs_package version="1.0">
-    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.118 2012-11-15 07:09:35 mb Exp $</CVS>
+    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.118.2.1 2012-11-30 17:07:57 ub Exp $</CVS>
     <Name>ITSMConfigurationManagement</Name>
     <Version>0.0.0</Version>
     <Framework>3.1.x</Framework>
@@ -1004,6 +1004,22 @@
             <Data Key="change_time">current_timestamp</Data>
             <Data Key="change_by">1</Data>
         </Insert>
+        <Insert Table="configitem_history_type">
+            <Data Key="name" Type="Quote">AttachmentAdd</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="configitem_history_type">
+            <Data Key="name" Type="Quote">AttachmentDelete</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
     </DatabaseInstall>
     <DatabaseUpgrade Type="post">
         <TableCreate Name="configitem_history_type" Version="1.3.71">
@@ -1131,6 +1147,22 @@
         </Insert>
         <Insert Table="configitem_history_type" Version="1.3.71">
             <Data Key="name" Type="Quote">VersionDelete</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="configitem_history_type" Version="3.1.7">
+            <Data Key="name" Type="Quote">AttachmentAdd</Data>
+            <Data Key="valid_id">1</Data>
+            <Data Key="create_time">current_timestamp</Data>
+            <Data Key="create_by">1</Data>
+            <Data Key="change_time">current_timestamp</Data>
+            <Data Key="change_by">1</Data>
+        </Insert>
+        <Insert Table="configitem_history_type" Version="3.1.7">
+            <Data Key="name" Type="Quote">AttachmentDelete</Data>
             <Data Key="valid_id">1</Data>
             <Data Key="create_time">current_timestamp</Data>
             <Data Key="create_by">1</Data>

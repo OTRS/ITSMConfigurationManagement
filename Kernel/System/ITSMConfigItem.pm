@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem.pm - all config item function
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.36 2012-10-31 16:34:08 ub Exp $
+# $Id: ITSMConfigItem.pm,v 1.36.2.1 2012-11-30 17:07:57 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -27,9 +27,10 @@ use Kernel::System::Service;
 use Kernel::System::Time;
 use Kernel::System::User;
 use Kernel::System::XML;
+use Kernel::System::VirtualFS;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.36 $) [1];
+$VERSION = qw($Revision: 1.36.2.1 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',
@@ -114,6 +115,7 @@ sub new {
     $Self->{UserObject}           = Kernel::System::User->new( %{$Self} );
     $Self->{ServiceObject}        = Kernel::System::Service->new( %{$Self} );
     $Self->{XMLObject}            = Kernel::System::XML->new( %{$Self} );
+    $Self->{VirtualFSObject}      = Kernel::System::VirtualFS->new( %{$Self} );
 
     # init of event handler
     $Self->EventHandlerInit(
@@ -505,6 +507,32 @@ sub ConfigItemDelete {
         UserID       => $Param{UserID},
     );
 
+    # get a list of all attachments
+    my @ExistingAttachments = $Self->ConfigItemAttachmentList(
+        ConfigItemID => $Param{ConfigItemID},
+    );
+
+    # delete all attachments of this config item
+    FILENAME:
+    for my $Filename (@ExistingAttachments) {
+
+        # delete the attachment
+        my $DeletionSuccess = $Self->ConfigItemAttachmentDelete(
+            ConfigItemID => $Param{ConfigItemID},
+            Filename     => $Filename,
+            UserID       => $Param{UserID},
+        );
+
+        if ( !$DeletionSuccess ) {
+            $Self->{LogObject}->Log(
+                Priority => 'error',
+                Message  => "Unknown problem when deleting attachment $Filename of ConfigItem "
+                    . "$Param{ConfigItemID}. Please check the VirtualFS backend for stale "
+                    . "files!",
+            );
+        }
+    }
+
     # trigger ConfigItemDelete event
     # this must be done before deleting the config item from the database,
     # because of a foreign key constraint in the configitem_history table
@@ -524,6 +552,293 @@ sub ConfigItemDelete {
     );
 
     return $Success;
+}
+
+=item ConfigItemAttachmentAdd()
+
+adds an attachment to a config item
+
+    my $Success = $ConfigItemObject->ConfigItemAttachmentAdd(
+        ConfigItemID    => 1,
+        Filename        => 'filename',
+        Content         => 'content',
+        ContentType     => 'text/plain',
+        UserID          => 1,
+    );
+
+=cut
+
+sub ConfigItemAttachmentAdd {
+    my ( $Self, %Param ) = @_;
+
+    # check needed stuff
+    for my $Needed (qw(ConfigItemID Filename Content ContentType UserID)) {
+        if ( !$Param{$Needed} ) {
+            $Self->{LogObject}->Log(
+                Priority => 'error',
+                Message  => "Need $Needed!",
+            );
+
+            return;
+        }
+    }
+
+    # write to virtual fs
+    my $Success = $Self->{VirtualFSObject}->Write(
+        Filename    => "ConfigItem/$Param{ConfigItemID}/$Param{Filename}",
+        Mode        => 'binary',
+        Content     => \$Param{Content},
+        Preferences => {
+            ContentID    => $Param{ContentID},
+            ContentType  => $Param{ContentType},
+            ConfigItemID => $Param{ConfigItemID},
+            UserID       => $Param{UserID},
+        },
+    );
+
+    # check for error
+    if ($Success) {
+
+        # trigger AttachmentAdd-Event
+        $Self->EventHandler(
+            Event => 'AttachmentAddPost',
+            Data  => {
+                %Param,
+                ConfigItemID => $Param{ConfigItemID},
+                Comment      => $Param{Filename},
+                HistoryType  => 'AttachmentAdd',
+            },
+            UserID => $Param{UserID},
+        );
+    }
+    else {
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => "Cannot add attachment for config item $Param{ConfigItemID}",
+        );
+
+        return;
+    }
+
+    return 1;
+}
+
+=item ConfigItemAttachmentDelete()
+
+Delete the given file from the virtual filesystem.
+
+    my $Success = $ConfigItemObject->ConfigItemAttachmentDelete(
+        ConfigItemID => 123,               # used in event handling, e.g. for logging the history
+        Filename     => 'Projectplan.pdf', # identifies the attachment (together with the ConfigItemID)
+        UserID       => 1,
+    );
+
+=cut
+
+sub ConfigItemAttachmentDelete {
+    my ( $Self, %Param ) = @_;
+
+    # check needed stuff
+    for my $Needed (qw(ConfigItemID Filename UserID)) {
+        if ( !$Param{$Needed} ) {
+            $Self->{LogObject}->Log(
+                Priority => 'error',
+                Message  => "Need $Needed!",
+            );
+
+            return;
+        }
+    }
+
+    # add prefix
+    my $Filename = 'ConfigItem/' . $Param{ConfigItemID} . '/' . $Param{Filename};
+
+    # delete file
+    my $Success = $Self->{VirtualFSObject}->Delete(
+        Filename => $Filename,
+    );
+
+    # check for error
+    if ($Success) {
+
+        # trigger AttachmentDeletePost-Event
+        $Self->EventHandler(
+            Event => 'AttachmentDeletePost',
+            Data  => {
+                %Param,
+                ConfigItemID => $Param{ConfigItemID},
+                Comment      => $Param{Filename},
+                HistoryType  => 'AttachmentDelete',
+            },
+            UserID => $Param{UserID},
+        );
+    }
+    else {
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => "Cannot delete attachment $Filename!",
+        );
+
+        return;
+    }
+
+    return $Success;
+}
+
+=item ConfigItemAttachmentGet()
+
+This method returns information about one specific attachment.
+
+    my $Attachment = $ConfigItemObject->ConfigItemAttachmentGet(
+        ConfigItemID => 4,
+        Filename     => 'test.txt',
+    );
+
+returns
+
+    {
+        Preferences => {
+            AllPreferences => 'test',
+        },
+        Filename    => 'test.txt',
+        Content     => 'content',
+        ContentType => 'text/plain',
+        Filesize    => '123 KBytes',
+        Type        => 'attachment',
+    }
+
+=cut
+
+sub ConfigItemAttachmentGet {
+    my ( $Self, %Param ) = @_;
+
+    # check needed stuff
+    for my $Argument (qw(ConfigItemID Filename)) {
+        if ( !$Param{$Argument} ) {
+            $Self->{LogObject}->Log(
+                Priority => 'error',
+                Message  => "Need $Argument!",
+            );
+            return;
+        }
+    }
+
+    # add prefix
+    my $Filename = 'ConfigItem/' . $Param{ConfigItemID} . '/' . $Param{Filename};
+
+    # find all attachments of this config item
+    my @Attachments = $Self->{VirtualFSObject}->Find(
+        Filename    => $Filename,
+        Preferences => {
+            ConfigItemID => $Param{ConfigItemID},
+        },
+    );
+
+    # return error if file does not exist
+    if ( !@Attachments ) {
+        $Self->{LogObject}->Log(
+            Message  => "No such attachment ($Filename)!",
+            Priority => 'error',
+        );
+        return;
+    }
+
+    # get data for attachment
+    my %AttachmentData = $Self->{VirtualFSObject}->Read(
+        Filename => $Filename,
+        Mode     => 'binary',
+    );
+
+    my $AttachmentInfo = {
+        %AttachmentData,
+        Filename    => $Param{Filename},
+        Content     => ${ $AttachmentData{Content} },
+        ContentType => $AttachmentData{Preferences}->{ContentType},
+        Type        => 'attachment',
+        Filesize    => $AttachmentData{Preferences}->{Filesize},
+    };
+
+    return $AttachmentInfo;
+}
+
+=item ConfigItemAttachmentList()
+
+Returns an array with all attachments of the given config item.
+
+    my @Attachments = $ConfigItemObject->ConfigItemAttachmentList(
+        ConfigItemID => 123,
+    );
+
+returns
+
+    @Attachments = (
+        'filename.txt',
+        'other_file.pdf',
+    );
+
+=cut
+
+sub ConfigItemAttachmentList {
+    my ( $Self, %Param ) = @_;
+
+    # check needed stuff
+    if ( !$Param{ConfigItemID} ) {
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => 'Need ConfigItemID!',
+        );
+
+        return;
+    }
+
+    # find all attachments of this config item
+    my @Attachments = $Self->{VirtualFSObject}->Find(
+        Preferences => {
+            ConfigItemID => $Param{ConfigItemID},
+        },
+    );
+
+    for my $Filename (@Attachments) {
+
+        # remove extra information from filename
+        $Filename =~ s{ \A ConfigItem / \d+ / }{}xms;
+    }
+
+    return @Attachments;
+}
+
+=item ConfigItemAttachmentExists()
+
+Checks if a file with a given filename exists.
+
+    my $Exists = $ConfigItemObject->ConfigItemAttachmentExists(
+        Filename => 'test.txt',
+        ConfigItemID => 123,
+        UserID   => 1,
+    );
+
+=cut
+
+sub ConfigItemAttachmentExists {
+    my ( $Self, %Param ) = @_;
+
+    # check needed stuff
+    for my $Needed (qw(Filename ConfigItemID UserID)) {
+        if ( !$Param{$Needed} ) {
+            $Self->{LogObject}->Log(
+                Priority => 'error',
+                Message  => "Need $Needed!",
+            );
+
+            return;
+        }
+    }
+
+    return if !$Self->{VirtualFSObject}->Find(
+        Filename => 'ConfigItem/' . $Param{ConfigItemID} . '/' . $Param{Filename},
+    );
+
+    return 1;
 }
 
 =item ConfigItemSearchExtended()
@@ -1331,7 +1646,7 @@ sub _FindWarnConfigItems {
 
         next CONFIGITEMID
             if $Param{ScannedConfigItemIDs}->{$ConfigItemID}->{Type}
-                && $Param{ScannedConfigItemIDs}->{$ConfigItemID}->{Type} eq 'incident';
+            && $Param{ScannedConfigItemIDs}->{$ConfigItemID}->{Type} eq 'incident';
 
         # set warning state
         $Param{ScannedConfigItemIDs}->{$ConfigItemID}->{Type} = 'warning';
@@ -1389,6 +1704,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.36 $ $Date: 2012-10-31 16:34:08 $
+$Revision: 1.36.2.1 $ $Date: 2012-11-30 17:07:57 $
 
 =cut

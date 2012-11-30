@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemZoom.pm - the OTRS::ITSM config item zoom module
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemZoom.pm,v 1.13 2012-10-29 18:54:49 ub Exp $
+# $Id: AgentITSMConfigItemZoom.pm,v 1.13.2.1 2012-11-30 17:07:56 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -19,7 +19,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::LinkObject;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.13 $) [1];
+$VERSION = qw($Revision: 1.13.2.1 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -342,6 +342,77 @@ sub Run {
             Data => {
                 LinkTableStrg => $LinkTableStrg,
             },
+        );
+    }
+
+    my @Attachments = $Self->{ConfigItemObject}->ConfigItemAttachmentList(
+        ConfigItemID => $ConfigItemID,
+    );
+
+    if (@Attachments) {
+
+        # get the metadata of the 1st attachment
+        my $FirstAttachment = $Self->{ConfigItemObject}->ConfigItemAttachmentGet(
+            ConfigItemID => $ConfigItemID,
+            Filename     => $Attachments[0],
+        );
+
+        $Self->{LayoutObject}->Block(
+            Name => 'Attachments',
+            Data => {
+                ConfigItemID => $ConfigItemID,
+                Filename     => $FirstAttachment->{Filename},
+                Filesize     => $FirstAttachment->{Filesize},
+            },
+        );
+
+        # the 1st attachment was directly rendered into the 1st row's right cell, all further
+        # attachments are rendered into a separate row
+        ATTACHMENT:
+        for my $Attachment (@Attachments) {
+
+            # skip the 1st attachment
+            next ATTACHMENT if $Attachment eq $Attachments[0];
+
+            # get the metadata of the current attachment
+            my $AttachmentData = $Self->{ConfigItemObject}->ConfigItemAttachmentGet(
+                ConfigItemID => $ConfigItemID,
+                Filename     => $Attachment,
+            );
+
+            $Self->{LayoutObject}->Block(
+                Name => 'AttachmentRow',
+                Data => {
+                    ConfigItemID => $ConfigItemID,
+                    Filename     => $AttachmentData->{Filename},
+                    Filesize     => $AttachmentData->{Filesize},
+                },
+            );
+        }
+    }
+
+    # handle DownloadAttachment
+    if ( $Self->{Subaction} eq 'DownloadAttachment' ) {
+
+        # get data for attachment
+        my $Filename = $Self->{ParamObject}->GetParam( Param => 'Filename' );
+        my $AttachmentData = $Self->{ConfigItemObject}->ConfigItemAttachmentGet(
+            ConfigItemID => $ConfigItemID,
+            Filename     => $Filename,
+        );
+
+        # return error if file does not exist
+        if ( !$AttachmentData ) {
+            $Self->{LogObject}->Log(
+                Message  => "No such attachment ($Filename)!",
+                Priority => 'error',
+            );
+            return $Self->{LayoutObject}->ErrorScreen();
+        }
+
+        return $Self->{LayoutObject}->Attachment(
+            %{$AttachmentData},
+            Type => 'attachment',
         );
     }
 

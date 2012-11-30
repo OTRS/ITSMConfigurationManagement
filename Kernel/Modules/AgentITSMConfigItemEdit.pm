@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemEdit.pm - the OTRS::ITSM config item edit module
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.pm,v 1.32 2012-11-21 10:21:40 ub Exp $
+# $Id: AgentITSMConfigItemEdit.pm,v 1.32.2.1 2012-11-30 17:07:56 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -16,9 +16,10 @@ use warnings;
 
 use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
+use Kernel::System::Web::UploadCache;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.32 $) [1];
+$VERSION = qw($Revision: 1.32.2.1 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -37,9 +38,18 @@ sub new {
     # create additional objects
     $Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new(%Param);
     $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new(%Param);
+    $Self->{UploadCacheObject}    = Kernel::System::Web::UploadCache->new(%Param);
 
     # get config of frontend module
     $Self->{Config} = $Self->{ConfigObject}->Get("ITSMConfigItem::Frontend::$Self->{Action}");
+
+    # get form id
+    $Self->{FormID} = $Self->{ParamObject}->GetParam( Param => 'FormID' );
+
+    # create form id
+    if ( !$Self->{FormID} ) {
+        $Self->{FormID} = $Self->{UploadCacheObject}->FormIDCreate();
+    }
 
     return $Self;
 }
@@ -138,12 +148,76 @@ sub Run {
         );
     }
 
+    # when there's no ClassID it means, an existing config item is edited as the ClassID is only
+    # provided as GET param when creating a new config item
+    if ( !$Self->{ParamObject}->GetParam( Param => 'ClassID' ) ) {
+
+        # get all attachments meta data
+        my @ExistingAttachments = $Self->{ConfigItemObject}->ConfigItemAttachmentList(
+            ConfigItemID => $ConfigItem->{ConfigItemID},
+        );
+
+        # copy all existing attachments to upload cache
+        FILENAME:
+        for my $Filename (@ExistingAttachments) {
+
+            # get the existing attachment data
+            my $AttachmentData = $Self->{ConfigItemObject}->ConfigItemAttachmentGet(
+                ConfigItemID => $ConfigItem->{ConfigItemID},
+                Filename     => $Filename,
+                UserID       => $Self->{UserID},
+            );
+
+            # add attachment to the upload cache
+            $Self->{UploadCacheObject}->FormIDAddFile(
+                FormID      => $Self->{FormID},
+                Filename    => $AttachmentData->{Filename},
+                Content     => $AttachmentData->{Content},
+                ContentType => $AttachmentData->{ContentType},
+            );
+        }
+    }
+
     # get submit save
     my $SubmitSave = $Self->{ParamObject}->GetParam( Param => 'SubmitSave' );
 
     # get xml data
     my $Version = {};
     if ( $Self->{Subaction} eq 'VersionSave' ) {
+
+        # check if an attachment must be deleted
+        ATTACHMENT:
+        for my $Number ( 1 .. 32 ) {
+
+            # check if the delete button was pressed for this attachment
+            my $Delete = $Self->{ParamObject}->GetParam( Param => "AttachmentDelete$Number" );
+
+            # check next attachment if it was not pressed
+            next ATTACHMENT if !$Delete;
+
+            # remove the attachment from the upload cache
+            $Self->{UploadCacheObject}->FormIDRemoveFile(
+                FormID => $Self->{FormID},
+                FileID => $Number,
+            );
+        }
+
+        # check if there was an attachment upload
+        if ( $Self->{ParamObject}->GetParam( Param => 'AttachmentUpload' ) ) {
+
+            # get the uploaded attachment
+            my %UploadStuff = $Self->{ParamObject}->GetUploadAll(
+                Param  => 'FileUpload',
+                Source => 'string',
+            );
+
+            # add attachment to the upload cache
+            $Self->{UploadCacheObject}->FormIDAddFile(
+                FormID => $Self->{FormID},
+                %UploadStuff,
+            );
+        }
+
         my $AllRequired = 1;
 
         # get general form data
@@ -163,11 +237,91 @@ sub Run {
 
         # save version to database
         if ( $SubmitSave && $AllRequired ) {
+
             if ( $ConfigItem->{ConfigItemID} eq 'NEW' ) {
                 $ConfigItem->{ConfigItemID} = $Self->{ConfigItemObject}->ConfigItemAdd(
                     ClassID => $ConfigItem->{ClassID},
                     UserID  => $Self->{UserID},
                 );
+            }
+
+            # get all attachments from upload cache
+            my @Attachments = $Self->{UploadCacheObject}->FormIDGetAllFilesData(
+                FormID => $Self->{FormID},
+            );
+
+            # build a lookup lookup hash of the new attachments
+            my %NewAttachment;
+            for my $Attachment (@Attachments) {
+
+                # the key is the filename + filesize + content type
+                my $Key = $Attachment->{Filename}
+                    . $Attachment->{Filesize}
+                    . $Attachment->{ContentType};
+
+                # store all of the new attachment data
+                $NewAttachment{$Key} = $Attachment;
+            }
+
+            # get all attachments meta data
+            my @ExistingAttachments = $Self->{ConfigItemObject}->ConfigItemAttachmentList(
+                ConfigItemID => $ConfigItem->{ConfigItemID},
+            );
+
+            # check the existing attachments
+            FILENAME:
+            for my $Filename (@ExistingAttachments) {
+
+                # get the existing attachment data
+                my $AttachmentData = $Self->{ConfigItemObject}->ConfigItemAttachmentGet(
+                    ConfigItemID => $ConfigItem->{ConfigItemID},
+                    Filename     => $Filename,
+                    UserID       => $Self->{UserID},
+                );
+
+                # the key is the filename + filesize + content type
+                # (no content id, as existing attachments don't have it)
+                my $Key = $AttachmentData->{Filename}
+                    . $AttachmentData->{Filesize}
+                    . $AttachmentData->{ContentType};
+
+                # attachment is already existing, we can delete it from the new attachment hash
+                if ( $NewAttachment{$Key} ) {
+                    delete $NewAttachment{$Key};
+                }
+
+                # existing attachment is no longer in new attachments hash
+                else {
+
+                    # delete the existing attachment
+                    my $DeleteSuccessful = $Self->{ConfigItemObject}->ConfigItemAttachmentDelete(
+                        ConfigItemID => $ConfigItem->{ConfigItemID},
+                        Filename     => $Filename,
+                        UserID       => $Self->{UserID},
+                    );
+
+                    # check error
+                    if ( !$DeleteSuccessful ) {
+                        return $Self->{LayoutObject}->FatalError();
+                    }
+                }
+            }
+
+            # write the new attachments
+            ATTACHMENT:
+            for my $Attachment ( values %NewAttachment ) {
+
+                # add attachment
+                my $Success = $Self->{ConfigItemObject}->ConfigItemAttachmentAdd(
+                    %{$Attachment},
+                    ConfigItemID => $ConfigItem->{ConfigItemID},
+                    UserID       => $Self->{UserID},
+                );
+
+                # check error
+                if ( !$Success ) {
+                    return $Self->{LayoutObject}->FatalError();
+                }
             }
 
             # add version
@@ -325,6 +479,26 @@ sub Run {
         );
     }
 
+    # show the attachment upload button
+    $Self->{LayoutObject}->Block(
+        Name => 'AttachmentUpload',
+        Data => {%Param},
+    );
+
+    # get all attachments meta data
+    my @Attachments = $Self->{UploadCacheObject}->FormIDGetAllFilesMeta(
+        FormID => $Self->{FormID},
+    );
+
+    # show attachments
+    ATTACHMENT:
+    for my $Attachment (@Attachments) {
+        $Self->{LayoutObject}->Block(
+            Name => 'Attachment',
+            Data => $Attachment,
+        );
+    }
+
     my $Output = '';
     if ( ( $ConfigItem->{ConfigItemID} && $ConfigItem->{ConfigItemID} ne 'NEW' ) || $DuplicateID ) {
 
@@ -350,6 +524,7 @@ sub Run {
             Data         => {
                 %Param,
                 %{$ConfigItem},
+                FormID => $Self->{FormID},
             },
         );
         $Output .= $Self->{LayoutObject}->Footer( Type => 'Small' );
@@ -409,6 +584,7 @@ sub Run {
             Data         => {
                 %Param,
                 %{$ConfigItem},
+                FormID => $Self->{FormID},
             },
         );
         $Output .= $Self->{LayoutObject}->Footer();
