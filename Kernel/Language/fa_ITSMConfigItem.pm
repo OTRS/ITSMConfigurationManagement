@@ -1,8 +1,8 @@
 # --
 # Kernel/Language/fa_ITSMConfigItem.pm - translation file
-# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: fa_ITSMConfigItem.pm,v 1.9 2011-06-15 14:02:07 ep Exp $
+# $Id: fa_ITSMConfigItem.pm,v 1.10 2012-11-30 17:10:40 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -33,6 +33,8 @@ sub Data {
     $Self->{Translation}->{'CIHistory::ValueUpdate'} = '';
     $Self->{Translation}->{'CIHistory::VersionCreate'} = '';
     $Self->{Translation}->{'CIHistory::VersionDelete'} = '';
+    $Self->{Translation}->{'CIHistory::AttachmentAdd'} = '';
+    $Self->{Translation}->{'CIHistory::AttachmentDelete'} = '';
     $Self->{Translation}->{'CPU'} = 'سی‌پی‌یو';
     $Self->{Translation}->{'Camera'} = 'دوربین';
     $Self->{Translation}->{'Capacity'} = 'ظرفیت';
@@ -168,17 +170,15 @@ sub Data {
     $Self->{Translation}->{'Deployment State Type'} = 'نوع وضعیت نصب';
     $Self->{Translation}->{'Current Incident State'} = 'وضعیت جاری رخداد';
     $Self->{Translation}->{'Current Incident State Type'} = 'نوع وضعیت جاری رخداد';
-    $Self->{Translation}->{'Last Changed'} = 'آخرین تغییر';
+    $Self->{Translation}->{'Last changed'} = 'آخرین تغییر';
 
     # Template: AgentITSMConfigItemPrint
     $Self->{Translation}->{'ConfigItem'} = 'آیتم پیکربندی';
     $Self->{Translation}->{'ConfigItem-Info'} = 'اطلاعات آیتم پیکربندی';
     $Self->{Translation}->{'Current Deployment State'} = 'وضعیت فعلی نصب';
-    $Self->{Translation}->{'Last changed'} = 'آخرین تغییر';
     $Self->{Translation}->{'Last changed by'} = 'آخرین تغییر به وسیله';
 
     # Template: AgentITSMConfigItemSearch
-    $Self->{Translation}->{'Search-Template'} = 'قالب جستجو';
     $Self->{Translation}->{'Create New Template'} = 'ساختن قالب جدید';
     $Self->{Translation}->{'Also search in previous versions?'} = 'در ویرایش‌های قبلی هم جستجو انجام شود؟';
 
@@ -187,51 +187,81 @@ sub Data {
 
     # Template: AgentITSMConfigItemZoom
     $Self->{Translation}->{'Configuration Item'} = 'آیتم پیکربندی';
-    $Self->{Translation}->{'Linked Objects'} = 'آیتم‌های مرتبط';
+    $Self->{Translation}->{'Configuration Item Information'} = '';
     $Self->{Translation}->{'Show one version'} = 'نمایش یک نسخه';
     $Self->{Translation}->{'Show all versions'} = 'نمایش تمام نسخه‌ها';
     $Self->{Translation}->{'Version Incident State'} = 'وضعیت رخداد نسخه';
     $Self->{Translation}->{'Version Number'} = 'شماره نسخه';
-    $Self->{Translation}->{'Created By'} = 'ساخته شده توسط';
-    $Self->{Translation}->{'Changed On'} = 'تغییر یافته در';
-    $Self->{Translation}->{'Resize'} = 'تغییر اندازه';
-    $Self->{Translation}->{'Show or hide the content.'} = 'نمایش یا عدم نمایش محتوا';
     $Self->{Translation}->{'Configuration Item Version Details'} = 'جزئیات نسخه آیتم پیکربندی';
     $Self->{Translation}->{'Property'} = 'ویژگی';
 
     # SysConfig
-    $Self->{Translation}->{'Config item event module that enables logging to history in the agent interface.'} = 'ماژول رویداد آیتم پیکربندی که ثبت وقایع در تاریخچه را در واسط کاربری کارشناس فعال می‌سازد.';
+    $Self->{Translation}->{'Config Items'} = '';
+    $Self->{Translation}->{'Config item event module that enables logging to history in the agent interface.'} =
+        'ماژول رویداد آیتم پیکربندی که ثبت وقایع در تاریخچه را در واسط کاربری کارشناس فعال می‌سازد.';
     $Self->{Translation}->{'Configuration Item Limit'} = 'محدودیت آیتم پیکربندی';
     $Self->{Translation}->{'Configuration Item limit per page'} = 'محدودیت آیتم پیکربندی در هر صفحه';
-    $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} = '';
+    $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} =
+        '';
     $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = 'ساخت و مدیریت تعاریف آیتم‌های پیکربندی';
-    $Self->{Translation}->{'Defines an overview module to show the small view of a configuration item list.'} = '';
-    $Self->{Translation}->{'Defines the default subobject of the class \'ITSMConfigItem\'.'} = '';
-    $Self->{Translation}->{'Defines the shown columns in the config item overview. This option has no effect on the position of the column. Note: Class column is always available if filter \'All\' is selected'} = '';
-    $Self->{Translation}->{'Defines the shown columns in the config item search. This option has no effect on the position of the column.'} = '';
+    $Self->{Translation}->{'Defines an overview module to show the small view of a configuration item list.'} =
+        '';
+    $Self->{Translation}->{'Defines the default subobject of the class \'ITSMConfigItem\'.'} =
+        '';
+    $Self->{Translation}->{'Defines the search limit for the AgentITSMConfigItem screen.'} =
+        '';
+    $Self->{Translation}->{'Defines the search limit for the AgentITSMConfigItemSearch screen.'} =
+        '';
+    $Self->{Translation}->{'Defines the shown columns in the config item overview. This option has no effect on the position of the column. Note: Class column is always available if filter \'All\' is selected'} =
+        '';
+    $Self->{Translation}->{'Defines the shown columns in the config item search. This option has no effect on the position of the column.'} =
+        '';
     $Self->{Translation}->{'Module to check the group responsible for a class.'} = '';
-    $Self->{Translation}->{'Module to check the group responsible for a configuration item.'} = '';
+    $Self->{Translation}->{'Module to check the group responsible for a configuration item.'} =
+        '';
     $Self->{Translation}->{'Module to generate ITSM config item statistics.'} = '';
-    $Self->{Translation}->{'Object backend module registration for the import/export module.'} = '';
-    $Self->{Translation}->{'Parameters for the deployment states in the preferences view of the agent interface.'} = '';
-    $Self->{Translation}->{'Parameters for the example permission groups of the general catalog attributes.'} = '';
-    $Self->{Translation}->{'Parameters for the pages (in which the configuration items are shown).'} = '';
-    $Self->{Translation}->{'Required permissions to use the ITSM configuration item screen in the agent interface.'} = '';
-    $Self->{Translation}->{'Required permissions to use the ITSM configuration item search screen in the agent interface.'} = '';
-    $Self->{Translation}->{'Required permissions to use the ITSM configuration item zoom screen in the agent interface.'} = '';
-    $Self->{Translation}->{'Required permissions to use the add ITSM configuration item screen in the agent interface.'} = '';
-    $Self->{Translation}->{'Required permissions to use the edit ITSM configuration item screen in the agent interface.'} = '';
-    $Self->{Translation}->{'Required permissions to use the history ITSM configuration item screen in the agent interface.'} = '';
-    $Self->{Translation}->{'Required permissions to use the print ITSM configuration item screen in the agent interface.'} = '';
-    $Self->{Translation}->{'Selects the configuration item number generator module. "AutoIncrement" increments the configuration item number, the SystemID, the ConfigItemClassID and the counter are used. The format is "SystemID.ConfigItemClassID.Counter", e.g. 1205000004, 1205000005.'} = '';
-    $Self->{Translation}->{'Shows a link in the menu that allows linking a configuration item with another object in the config item zoom view of the agent interface.'} = '';
-    $Self->{Translation}->{'Shows a link in the menu to access the history of a configuration item in the its zoom view of the agent interface.'} = '';
-    $Self->{Translation}->{'Shows a link in the menu to duplicate a configuration item in the its zoom view of the agent interface.'} = '';
-    $Self->{Translation}->{'Shows a link in the menu to edit a configuration item in the its zoom view of the agent interface.'} = '';
-    $Self->{Translation}->{'Shows a link in the menu to go back in the configuraton item zoom view of the agent interface.'} = '';
-    $Self->{Translation}->{'Shows a link in the menu to print a configuration item in the its zoom view of the agent interface.'} = '';
-    $Self->{Translation}->{'Shows the config item history (reverse ordered) in the agent interface.'} = '';
-    $Self->{Translation}->{'The identifier for a configuration item, e.g. ConfigItem#, MyConfigItem#. The default is ConfigItem#.'} = '';
+    $Self->{Translation}->{'Object backend module registration for the import/export module.'} =
+        '';
+    $Self->{Translation}->{'Parameters for the deployment states in the preferences view of the agent interface.'} =
+        '';
+    $Self->{Translation}->{'Parameters for the example permission groups of the general catalog attributes.'} =
+        '';
+    $Self->{Translation}->{'Parameters for the pages (in which the configuration items are shown).'} =
+        '';
+    $Self->{Translation}->{'Required permissions to use the ITSM configuration item screen in the agent interface.'} =
+        '';
+    $Self->{Translation}->{'Required permissions to use the ITSM configuration item search screen in the agent interface.'} =
+        '';
+    $Self->{Translation}->{'Required permissions to use the ITSM configuration item zoom screen in the agent interface.'} =
+        '';
+    $Self->{Translation}->{'Required permissions to use the add ITSM configuration item screen in the agent interface.'} =
+        '';
+    $Self->{Translation}->{'Required permissions to use the edit ITSM configuration item screen in the agent interface.'} =
+        '';
+    $Self->{Translation}->{'Required permissions to use the history ITSM configuration item screen in the agent interface.'} =
+        '';
+    $Self->{Translation}->{'Required permissions to use the print ITSM configuration item screen in the agent interface.'} =
+        '';
+    $Self->{Translation}->{'Selects the configuration item number generator module. "AutoIncrement" increments the configuration item number, the SystemID, the ConfigItemClassID and the counter are used. The format is "SystemID.ConfigItemClassID.Counter", e.g. 1205000004, 1205000005.'} =
+        '';
+    $Self->{Translation}->{'Shows a link in the menu that allows linking a configuration item with another object in the config item zoom view of the agent interface.'} =
+        '';
+    $Self->{Translation}->{'Shows a link in the menu to access the history of a configuration item in the its zoom view of the agent interface.'} =
+        '';
+    $Self->{Translation}->{'Shows a link in the menu to duplicate a configuration item in the its zoom view of the agent interface.'} =
+        '';
+    $Self->{Translation}->{'Shows a link in the menu to edit a configuration item in the its zoom view of the agent interface.'} =
+        '';
+    $Self->{Translation}->{'Shows a link in the menu to go back in the configuraton item zoom view of the agent interface.'} =
+        '';
+    $Self->{Translation}->{'Shows a link in the menu to print a configuration item in the its zoom view of the agent interface.'} =
+        '';
+    $Self->{Translation}->{'Shows the config item history (reverse ordered) in the agent interface.'} =
+        '';
+    $Self->{Translation}->{'The identifier for a configuration item, e.g. ConfigItem#, MyConfigItem#. The default is ConfigItem#.'} =
+        '';
+    $Self->{Translation}->{'With this config option it is possible to deactive the fixed overview control bar in the AgentITSMConfigItem overview. In some scenarios this will be necessary, f.e. due to small screen resolutions in combination with a lot of config item classes.'} =
+        '';
 
     #
     # OBSOLETE ENTRIES FOR REFERENCE, DO NOT TRANSLATE!

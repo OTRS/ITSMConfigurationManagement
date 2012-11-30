@@ -2,7 +2,7 @@
 # ITSMConfigItem.t - config item tests
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.t,v 1.14 2012-10-31 13:30:05 ub Exp $
+# $Id: ITSMConfigItem.t,v 1.15 2012-11-30 17:10:41 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -3204,6 +3204,139 @@ for my $Test (@SearchTests) {
 }
 continue {
     $SearchTestCount++;
+}
+
+# ------------------------------------------------------------ #
+# testing support for attachments
+# ------------------------------------------------------------ #
+
+my $AttachmentTestConfigItemID = $ConfigItemIDs[0];
+
+# verify that initialy no attachment exists
+my @AttachmentList = $Self->{ConfigItemObject}->ConfigItemAttachmentList(
+    ConfigItemID => $AttachmentTestConfigItemID,
+);
+
+$Self->Is(
+    scalar @AttachmentList,
+    0,
+    'No attachments initially',
+);
+
+my @TestFileList = (
+    {
+        Filename    => 'first attachment',
+        Content     => 'First attachment from ITSMConfigItem.t',
+        ContentType => 'text/plain',
+    },
+    {
+        Filename    => 'second attachment',
+        Content     => 'Second attachment from ITSMConfigItem.t',
+        ContentType => 'text/plain',
+    },
+);
+
+my $FileCount;
+for my $TestFile (@TestFileList) {
+
+    $FileCount++;
+
+    my $AddOk = $Self->{ConfigItemObject}->ConfigItemAttachmentAdd(
+        %{$TestFile},
+        ConfigItemID => $AttachmentTestConfigItemID,
+        UserID       => 1,
+    );
+    $Self->True(
+        $AddOk,
+        "Attachment $FileCount: attachment added",
+    );
+
+    my @AttachmentList = $Self->{ConfigItemObject}->ConfigItemAttachmentList(
+        ConfigItemID => $AttachmentTestConfigItemID,
+        UserID       => 1,
+    );
+    $Self->Is(
+        scalar @AttachmentList,
+        $FileCount,
+        "Attachment $FileCount: number of attachments after adding",
+    );
+
+    # check whether the last added attachment is in the list
+    my %AttachmentLookup = map { $_ => 1 } @AttachmentList;
+    $Self->True(
+        $AttachmentLookup{ $TestFile->{Filename} },
+        "Attachment $FileCount: filename from ConfigItemAttachmentList()",
+    );
+
+    # get the attachment
+    my $Attachment = $Self->{ConfigItemObject}->ConfigItemAttachmentGet(
+        ConfigItemID => $AttachmentTestConfigItemID,
+        Filename     => $TestFile->{Filename},
+    );
+    $Self->True(
+        $Attachment,
+        "Attachment $FileCount: ConfigItemAttachmentGet() returned true",
+    );
+
+    # check attachment file attributes
+    for my $Attribute (qw(Filename Content ContentType)) {
+        $Self->Is(
+            $Attachment->{$Attribute},
+            $TestFile->{$Attribute},
+            "Attachment $FileCount: $Attribute from ConfigItemAttachmentGet",
+        );
+    }
+
+    # check existence of attachment
+    my $AttachmentExists = $Self->{ConfigItemObject}->ConfigItemAttachmentExists(
+        ConfigItemID => $AttachmentTestConfigItemID,
+        Filename     => $TestFile->{Filename},
+        UserID       => 1,
+    );
+    $Self->True(
+        $AttachmentExists,
+        "Attachment $FileCount: attachment exists",
+    );
+
+}
+
+# now delete the attachments
+$FileCount = 0;
+my $MaxTestFiles = scalar @TestFileList;
+for my $TestFile (@TestFileList) {
+
+    $FileCount++;
+
+    my $DeleteOk = $Self->{ConfigItemObject}->ConfigItemAttachmentDelete(
+        ConfigItemID => $AttachmentTestConfigItemID,
+        Filename     => $TestFile->{Filename},
+        UserID       => 1,
+    );
+    $Self->True(
+        $DeleteOk,
+        "Attachment $FileCount: attachment deleted",
+    );
+
+    my @AttachmentList = $Self->{ConfigItemObject}->ConfigItemAttachmentList(
+        ConfigItemID => $AttachmentTestConfigItemID,
+        UserID       => 1,
+    );
+
+    $Self->Is(
+        scalar @AttachmentList,
+        $MaxTestFiles - $FileCount,
+        "Attachment $FileCount: number of attachments after deletion",
+    );
+
+    my $AttachmentExists = $Self->{ConfigItemObject}->ConfigItemAttachmentExists(
+        Filename     => $TestFile->{Filename},
+        ConfigItemID => $AttachmentTestConfigItemID,
+        UserID       => 1,
+    );
+    $Self->False(
+        $AttachmentExists,
+        "Attachment $FileCount: attachment is gone",
+    );
 }
 
 # ------------------------------------------------------------ #

@@ -2,7 +2,7 @@
 # AgentITSMConfigItemZoom.dtl - provides HTML form for AgentITSMConfigItemZoom
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemZoom.dtl,v 1.27 2012-10-29 19:00:36 ub Exp $
+# $Id: AgentITSMConfigItemZoom.dtl,v 1.28 2012-11-30 17:10:41 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -177,6 +177,31 @@
                                     </td>
                                 </tr>
 <!-- dtl:block:Data -->
+<!-- dtl:block:Attachments -->
+                                <tr>
+                                    <td class="W25pc" title="$Text{"Attachments"}">
+                                        $Text{"Attachments"}
+                                    </td>
+                                    <td>
+                                        <a href="$Env{"Baselink"}Action=$Env{"Action"};Subaction=DownloadAttachment;Filename=$LQData{"Filename"};ConfigItemID=$LQData{"ConfigItemID"}">
+                                            $QData{"Filename"}
+                                        </a>
+                                        ($QData{"Filesize"})
+                                    </td>
+                                </tr>
+<!-- dtl:block:Attachments -->
+<!-- dtl:block:AttachmentRow -->
+                                <tr>
+                                    <td class="W25pc">
+                                    </td>
+                                    <td>
+                                        <a href="$Env{"Baselink"}Action=$Env{"Action"};Subaction=DownloadAttachment;Filename=$LQData{"Filename"};ConfigItemID=$LQData{"ConfigItemID"}">
+                                            $QData{"Filename"}
+                                        </a>
+                                        ($QData{"Filesize"})
+                                    </td>
+                                </tr>
+<!-- dtl:block:AttachmentRow -->
                             </tbody>
                         </table>
                     </div>

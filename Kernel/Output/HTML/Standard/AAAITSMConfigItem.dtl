@@ -1,8 +1,8 @@
 # --
 # AAAITSMConfigItem.dtl - $Text variable file
-# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: AAAITSMConfigItem.dtl,v 1.2 2011-03-04 16:43:43 ub Exp $
+# $Id: AAAITSMConfigItem.dtl,v 1.3 2012-11-30 17:10:41 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -26,6 +26,8 @@ $Text{"CIHistory::NameUpdate"}
 $Text{"CIHistory::ValueUpdate"}
 $Text{"CIHistory::VersionCreate"}
 $Text{"CIHistory::VersionDelete"}
+$Text{"CIHistory::AttachmentAdd"}
+$Text{"CIHistory::AttachmentDelete"}
 $Text{"CPU"}
 $Text{"Camera"}
 $Text{"Capacity"}

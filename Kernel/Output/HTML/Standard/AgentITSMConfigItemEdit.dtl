@@ -1,8 +1,8 @@
 # --
 # AgentITSMConfigItemEdit.dtl - provides HTML form for AgentITSMConfigItemEdit
-# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.dtl,v 1.22 2011-07-07 16:15:27 cr Exp $
+# $Id: AgentITSMConfigItemEdit.dtl,v 1.23 2012-11-30 17:10:41 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@
     <div class="ContentColumn">
 <!--dtl:block:StartNormal-->
 $Include{"AgentITSMCustomerSearch"}
-        <form action="$Env{"CGIHandle"}" method="post" name="ClassItem" class="Validate PreventMultipleSubmits" id="ClassItem">
+        <form action="$Env{"CGIHandle"}" method="post" enctype="multipart/form-data" name="ClassItem" class="Validate PreventMultipleSubmits" id="ClassItem">
 <!--dtl:block:StartSmall-->
             <div class="LayoutPopup ARIARoleMain">
                 <div class="Header">
@@ -31,6 +31,7 @@ $Include{"AgentITSMCustomerSearch"}
                     <input type="hidden" name="Subaction" value="VersionSave"/>
                     <input type="hidden" name="ClassID" value="$QData{"ClassID"}"/>
                     <input type="hidden" name="ConfigItemID" value="$QData{"ConfigItemID"}"/>
+                    <input type="hidden" name="FormID" value="$QData{"FormID"}"/>
                     <fieldset class="TableLike">
 <!-- dtl:block:RowName -->
                         <label class="Mandatory" for="Name"><span class="Marker">*</span> $Text{"Name"}: </label>
@@ -93,6 +94,46 @@ $Include{"AgentITSMCustomerSearch"}
                     </fieldset>
 <!-- dtl:block:XMLRowFieldsetEnd -->
 <!-- dtl:block:XMLRow -->
+
+<!-- dtl:block:AttachmentUpload -->
+                    <fieldset class="TableLike">
+                        <label>$Text{"Attachment"}:</label>
+                        <div class="Field">
+                            <ul>
+<!-- dtl:block:Attachment -->
+                                <li>
+                                    $QData{"Filename"} ($QData{"Filesize"})
+                                    <button type="submit" id="AttachmentDelete$QData{"FileID"}" name="AttachmentDelete$QData{"FileID"}" value="$Text{"Delete"}">$Text{"Delete"}</button>
+<!--dtl:js_on_document_complete-->
+<script type="text/javascript">//<![CDATA[
+    $('#AttachmentDelete$QData{"FileID"}').bind('click', function () {
+        Core.Form.Validate.DisableValidation($('#AttachmentDelete$QData{"FileID"}').closest('form'));
+    });
+//]]></script>
+<!--dtl:js_on_document_complete-->
+                                </li>
+<!-- dtl:block:Attachment -->
+                                <li>
+                                    <input name="FileUpload" id="FileUpload" type="file" size="40"/>
+                                    <input type="hidden" id="AttachmentUpload" name="AttachmentUpload" value="0" />
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="Clear"></div>
+
+<!--dtl:js_on_document_complete-->
+<script type="text/javascript">//<![CDATA[
+    $('#FileUpload').bind('change', function (Event) {
+        var $Form = $('#FileUpload').closest('form');
+        Core.Form.Validate.DisableValidation($Form);
+        $Form.find('#AttachmentUpload').val('1').end().submit();
+    });
+//]]></script>
+<!--dtl:js_on_document_complete-->
+
+                    </fieldset>
+<!-- dtl:block:AttachmentUpload -->
+
                     <fieldset class="TableLike">
                         <div class="Field SpacingTop">
                             <button name="SubmitSave" class="Primary" type="submit" value="$Text{"Save"}">$Text{"Submit"}</button>
