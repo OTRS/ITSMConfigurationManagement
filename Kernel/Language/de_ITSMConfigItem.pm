@@ -2,7 +2,7 @@
 # Kernel/Language/de_ITSMConfigItem.pm - translation file
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: de_ITSMConfigItem.pm,v 1.15.2.1 2012-11-30 17:07:57 ub Exp $
+# $Id: de_ITSMConfigItem.pm,v 1.15.2.2 2012-11-30 19:47:44 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -158,6 +158,8 @@ sub Data {
 
     # Template: AgentITSMConfigItemEdit
     $Self->{Translation}->{'The name of this config item'} = 'Der Name dieses Config Items';
+    $Self->{Translation}->{'Name is already in use by the ConfigItems with the following ID(s): %s'} =
+        'Name wird bereits von den ConfigItems mit den folgenden IDs verwendet: %s';
     $Self->{Translation}->{'Deployment State'} = 'Verwendungsstatus';
     $Self->{Translation}->{'Incident State'} = 'Vorfallsstatus';
 
@@ -196,6 +198,8 @@ sub Data {
     $Self->{Translation}->{'Property'} = 'Eigenschaft';
 
     # SysConfig
+    $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
+        'Prüfe Namen auf Eindeutigkeit innerhalb der selben ConfigItem-Klasse oder global, d.h. es werden alle ConfigItems jeglicher ConfigItem-Klasse bei der Prüfung auf einen eindeutigen Namen berücksichtigt.';
     $Self->{Translation}->{'Config Items'} = 'Config Items';
     $Self->{Translation}->{'Config item event module that enables logging to history in the agent interface.'} =
         '';
@@ -216,6 +220,8 @@ sub Data {
         '';
     $Self->{Translation}->{'Defines the shown columns in the config item search. This option has no effect on the position of the column.'} =
         '';
+    $Self->{Translation}->{'Enables/disables the functionality to check ConfigItems for unique names. Before enabling this option you should check your system for already existing config items with duplicate names. You can do this with the script bin/otrs.ITSMConfigItemListDuplicates.pl.'} =
+        '(De-)Aktiviert die Funktionalität um ConfigItems auf eindeutige Namen zu überprüfen. Bevor Sie diese Option aktivieren, sollten Sie Ihr System auf bereits vorhandene ConfigItems mit gleichem Namen überprüfen. Sie können dies mit Hilfe des scripts bin/otrs.ITSMConfigItemListDuplicates.pl tun.';
     $Self->{Translation}->{'Module to check the group responsible for a class.'} = '';
     $Self->{Translation}->{'Module to check the group responsible for a configuration item.'} =
         '';

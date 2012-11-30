@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <otrs_config version="1.0" init="Config">
-    <CVS>$Id: ITSMConfigItem.xml,v 1.43.2.1 2012-11-30 17:07:57 ub Exp $</CVS>
+    <CVS>$Id: ITSMConfigItem.xml,v 1.43.2.2 2012-11-30 19:47:45 ub Exp $</CVS>
     <ConfigItem Name="Frontend::Module###AdminITSMConfigItem" Required="0" Valid="1">
         <Description Translatable="1">Frontend module registration for the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
@@ -592,6 +592,28 @@
                 <Item>Version</Item>
                 <Item>Create Time</Item>
             </Array>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="UniqueCIName::EnableUniquenessCheck" Required="0" Valid="1">
+        <Description Translatable="1">Enables/disables the functionality to check ConfigItems for unique names. Before enabling this option you should check your system for already existing config items with duplicate names. You can do this with the script bin/otrs.ITSMConfigItemListDuplicates.pl.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Core::ITSMConfigItem</SubGroup>
+        <Setting>
+            <Option SelectedID="0">
+                <Item Key="1">Enabled</Item>
+                <Item Key="0">Disabled</Item>
+            </Option>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="UniqueCIName::UniquenessCheckScope" Required="0" Valid="1">
+        <Description Translatable="1">Check for a unique name only within the same ConfigItem class ('class') or globally ('global'), which means every existing ConfigItem is taken into account when looking for duplicates.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Core::ITSMConfigItem</SubGroup>
+        <Setting>
+            <Option SelectedID="global">
+                <Item Key="global">global</Item>
+                <Item Key="class">class</Item>
+            </Option>
         </Setting>
     </ConfigItem>
 </otrs_config>

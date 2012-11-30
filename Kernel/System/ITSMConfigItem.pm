@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem.pm - all config item function
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.36.2.1 2012-11-30 17:07:57 ub Exp $
+# $Id: ITSMConfigItem.pm,v 1.36.2.2 2012-11-30 19:47:43 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -28,9 +28,10 @@ use Kernel::System::Time;
 use Kernel::System::User;
 use Kernel::System::XML;
 use Kernel::System::VirtualFS;
+use Kernel::System::VariableCheck qw(:all);
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.36.2.1 $) [1];
+$VERSION = qw($Revision: 1.36.2.2 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',
@@ -1536,6 +1537,161 @@ sub ConfigItemLookup {
     return $Value;
 }
 
+=item UniqueNameCheck()
+
+This method checks all already existing config items, whether the given name does already exist
+within the same config item class or amongst all classes, depending on the SysConfig value of
+UniqueCIName::UniquenessCheckScope (Class or Global).
+
+This method requires 3 parameters: ConfigItemID, Name and Class
+"ConfigItemID"  is the ID of the ConfigItem, which is to be checked for uniqueness
+"Name"          is the config item name to be checked for uniqueness
+"ClassID"       is the ID of the config item's class
+
+All parameters are mandatory.
+
+my $DuplicateNames = $ConfigItemObject->UniqueNameCheck(
+    ConfigItemID => '73'
+    Name         => 'PC#005',
+    ClassID      => '32',
+);
+
+The given name is not unique
+my $NameDuplicates = [ 5, 35, 48, ];    # IDs of ConfigItems with the same name
+
+The given name is unique
+my $NameDuplicates = [];
+
+=cut
+
+sub UniqueNameCheck {
+    my ( $Self, %Param ) = @_;
+
+    # check for needed stuff
+    for my $Needed (qw(ConfigItemID Name ClassID)) {
+        if ( !$Param{$Needed} ) {
+            $Self->{LogObject}->Log(
+                Priority => 'error',
+                Message  => "Missing parameter $Needed!",
+            );
+            return;
+        }
+    }
+
+    # check ConfigItemID param for valid format
+    if (
+        !IsInteger( $Param{ConfigItemID} )
+        && ( IsStringWithData( $Param{ConfigItemID} ) && $Param{ConfigItemID} ne 'NEW' )
+        )
+    {
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => "The ConfigItemID parameter needs to be an integer or 'NEW'",
+        );
+        return;
+    }
+
+    # check Name param for valid format
+    if ( !IsStringWithData( $Param{Name} ) ) {
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => "The Name parameter needs to be a string!",
+        );
+        return;
+    }
+
+    # check ClassID param for valid format
+    if ( !IsInteger( $Param{ClassID} ) ) {
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => "The ClassID parameter needs to be an integer",
+        );
+        return;
+    }
+
+    # get class list
+    my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
+        Class => 'ITSM::ConfigItem::Class',
+    );
+
+    # check class list for validity
+    if ( !IsHashRefWithData($ClassList) ) {
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => "Unable to retrieve a valid class list!",
+        );
+        return;
+    }
+
+    # get the class name from the class list
+    my $Class = $ClassList->{ $Param{ClassID} };
+
+    # check class for validity
+    if ( !IsStringWithData($Class) ) {
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => "Unable to determine a config item class using the given ClassID!",
+        );
+        return;
+    }
+    elsif ( $Self->{ConfigObject}->{Debug} > 0 ) {
+        $Self->{LogObject}->Log(
+            Priority => 'debug',
+            Message  => "Resolved ClassID $Param{ClassID} to class $Class",
+        );
+    }
+
+    # get the uniqueness scope from SysConfig
+    my $Scope = $Self->{ConfigObject}->Get('UniqueCIName::UniquenessCheckScope');
+
+    # check scope for validity
+    if ( !IsStringWithData($Scope) ) {
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => "The configuration of UniqueCIName::UniquenessCheckScope is invalid!",
+        );
+        return;
+    }
+
+    if ( $Scope ne 'global' && $Scope ne 'class' ) {
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => "UniqueCIName::UniquenessCheckScope is $Scope, but must be either "
+                . "'global' or 'class'!",
+        );
+        return;
+    }
+
+    if ( $Self->{ConfigObject}->{Debug} > 0 ) {
+        $Self->{LogObject}->Log(
+            Priority => 'debug',
+            Message  => "The scope for checking the uniqueness is $Scope",
+        );
+    }
+
+    my %SearchCriteria;
+
+    # add the config item class to the search criteria if the uniqueness scope is not global
+    if ( $Scope ne 'global' ) {
+        $SearchCriteria{ClassIDs} = [ $Param{ClassID} ];
+    }
+
+    $SearchCriteria{Name} = $Param{Name};
+
+    # search for a config item matching the given name
+    my $ConfigItem = $Self->ConfigItemSearchExtended(%SearchCriteria);
+
+    # remove the provided ConfigItemID from the results, otherwise the duplicate check would fail
+    # because the ConfigItem itself is found as duplicate
+    my @Duplicates = map {$_} grep { $_ ne $Param{ConfigItemID} } @{$ConfigItem};
+
+    # if a config item was found, the given name is not unique
+    # if no config item was found, the given name is unique
+
+    # return the result of the config item search for duplicates
+    return \@Duplicates;
+}
+
 =begin Internal:
 
 =item _FindInciConfigItems()
@@ -1704,6 +1860,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.36.2.1 $ $Date: 2012-11-30 17:07:57 $
+$Revision: 1.36.2.2 $ $Date: 2012-11-30 19:47:43 $
 
 =cut

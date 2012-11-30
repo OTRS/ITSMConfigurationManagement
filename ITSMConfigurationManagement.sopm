@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <otrs_package version="1.0">
-    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.118.2.1 2012-11-30 17:07:57 ub Exp $</CVS>
+    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.118.2.2 2012-11-30 19:47:45 ub Exp $</CVS>
     <Name>ITSMConfigurationManagement</Name>
     <Version>0.0.0</Version>
     <Framework>3.1.x</Framework>
@@ -13,6 +13,7 @@
     <Description Lang="es">El paquete OTRS::ITSM Configuration Management.</Description>
     <Filelist>
         <File Permission="755" Location="bin/otrs.ITSMConfigItemDelete.pl"/>
+        <File Permission="755" Location="bin/otrs.ITSMConfigItemListDuplicates.pl"/>
         <File Permission="644" Location="doc/itsm-configuration-management-database.png"/>
         <File Permission="644" Location="Kernel/Config/Files/ITSMConfigItem.xml"/>
         <File Permission="644" Location="Kernel/Language/bg_ITSMConfigItem.pm"/>
@@ -92,6 +93,7 @@
         <File Permission="644" Location="Kernel/System/Stats/Dynamic/ITSMConfigItem.pm"/>
         <File Permission="644" Location="scripts/test/ImportExportObjectITSMConfigItem.t"/>
         <File Permission="644" Location="scripts/test/ITSMConfigItem.t"/>
+        <File Permission="644" Location="scripts/test/ITSMConfigItemUniqueCIName.t"/>
         <File Permission="644" Location="var/httpd/htdocs/js/ITSM.Agent.ConfigItem.Search.js"/>
         <File Permission="644" Location="var/packagesetup/ITSMConfigurationManagement.pm"/>
     </Filelist>

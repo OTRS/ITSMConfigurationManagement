@@ -2,7 +2,7 @@
 # Kernel/Language/cs_ITSMConfigItem.pm - translation file
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: cs_ITSMConfigItem.pm,v 1.6.2.1 2012-11-30 17:07:56 ub Exp $
+# $Id: cs_ITSMConfigItem.pm,v 1.6.2.2 2012-11-30 19:47:44 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -158,6 +158,8 @@ sub Data {
 
     # Template: AgentITSMConfigItemEdit
     $Self->{Translation}->{'The name of this config item'} = 'Jméno této Konfig. Položky';
+    $Self->{Translation}->{'Name is already in use by the ConfigItems with the following ID(s): %s'} =
+        '';
     $Self->{Translation}->{'Deployment State'} = 'Stav Nasazení';
     $Self->{Translation}->{'Incident State'} = 'Stav Incidentu';
 
@@ -198,6 +200,8 @@ sub Data {
     $Self->{Translation}->{'Property'} = '';
 
     # SysConfig
+    $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
+        '';
     $Self->{Translation}->{'Config Items'} = '';
     $Self->{Translation}->{'Config item event module that enables logging to history in the agent interface.'} =
         '';
@@ -217,6 +221,8 @@ sub Data {
     $Self->{Translation}->{'Defines the shown columns in the config item overview. This option has no effect on the position of the column. Note: Class column is always available if filter \'All\' is selected'} =
         '';
     $Self->{Translation}->{'Defines the shown columns in the config item search. This option has no effect on the position of the column.'} =
+        '';
+    $Self->{Translation}->{'Enables/disables the functionality to check ConfigItems for unique names. Before enabling this option you should check your system for already existing config items with duplicate names. You can do this with the script bin/otrs.ITSMConfigItemListDuplicates.pl.'} =
         '';
     $Self->{Translation}->{'Module to check the group responsible for a class.'} = '';
     $Self->{Translation}->{'Module to check the group responsible for a configuration item.'} =

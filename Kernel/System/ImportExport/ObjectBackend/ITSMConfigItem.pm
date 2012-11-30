@@ -2,7 +2,7 @@
 # Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm - import/export backend for ITSMConfigItem
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.24 2012-11-13 21:39:23 mb Exp $
+# $Id: ITSMConfigItem.pm,v 1.24.2.1 2012-11-30 19:47:45 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -19,9 +19,10 @@ use List::Util qw(min);
 use Kernel::System::GeneralCatalog;
 use Kernel::System::ITSMConfigItem;
 use Kernel::System::Time;
+use Kernel::System::VariableCheck qw(:all);
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.24 $) [1];
+$VERSION = qw($Revision: 1.24.2.1 $) [1];
 
 =head1 NAME
 
@@ -1103,6 +1104,49 @@ sub ImportDataSave {
     }
 
     my $RetCode = $ConfigItemID ? 'Changed' : 'Created';
+
+    # check if the feature to check for a unique name is enabled
+    if (
+        IsStringWithData( $VersionData->{Name} )
+        && $Self->{ConfigObject}->Get('UniqueCIName::EnableUniquenessCheck')
+        )
+    {
+
+        if ( $Self->{ConfigObject}->{Debug} > 0 ) {
+            $Self->{LogObject}->Log(
+                Priority => 'debug',
+                Message  => "Checking for duplicate names (ClassID: $ObjectData->{ClassID}, "
+                    . "Name: $VersionData->{Name}, ConfigItemID: " . $ConfigItemID || 'NEW' . ')',
+            );
+        }
+
+        my $NameDuplicates = $Self->{ConfigItemObject}->UniqueNameCheck(
+            ConfigItemID => $ConfigItemID || 'NEW',
+            ClassID      => $ObjectData->{ClassID},
+            Name         => $VersionData->{Name},
+        );
+
+        # stop processing if the name is not unique
+        if ( IsArrayRefWithData($NameDuplicates) ) {
+
+            # build a string of all duplicate IDs
+            my $NameDuplicatesString = join ', ', @{$NameDuplicates};
+
+            $Self->{LogObject}->Log(
+                Priority => 'error',
+                Message =>
+                    "The name $VersionData->{Name} is already in use by the ConfigItemID(s): "
+                    . $NameDuplicatesString,
+            );
+
+            # set the return code to also include the duplicate name
+            $RetCode = "DuplicateName '$VersionData->{Name}'";
+
+            # return undef for the config item id so it will be counted as 'Failed'
+            return undef, $RetCode;
+        }
+    }
+
     my $LatestVersionID = 0;
     if ($ConfigItemID) {
 
@@ -1659,6 +1703,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.24 $ $Date: 2012-11-13 21:39:23 $
+$Revision: 1.24.2.1 $ $Date: 2012-11-30 19:47:45 $
 
 =cut
