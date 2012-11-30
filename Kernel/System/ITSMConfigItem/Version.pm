@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Version.pm - sub module of ITSMConfigItem.pm with version functions
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: Version.pm,v 1.33 2012-10-31 13:28:14 ub Exp $
+# $Id: Version.pm,v 1.34 2012-11-30 19:49:09 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -13,9 +13,10 @@ package Kernel::System::ITSMConfigItem::Version;
 
 use strict;
 use warnings;
+use Kernel::System::VariableCheck qw(:all);
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.33 $) [1];
+$VERSION = qw($Revision: 1.34 $) [1];
 
 use Storable;
 
@@ -478,6 +479,30 @@ sub VersionAdd {
 
     return if !$ConfigItemInfo;
     return if ref $ConfigItemInfo ne 'HASH';
+
+    # check, whether the feature to check for a unique name is enabled
+    if ( $Self->{ConfigObject}->Get('UniqueCIName::EnableUniquenessCheck') ) {
+
+        my $NameDuplicates = $Self->UniqueNameCheck(
+            ConfigItemID => $Param{ConfigItemID},
+            ClassID      => $ConfigItemInfo->{ClassID},
+            Name         => $Param{Name},
+        );
+
+        # stop processing if the name is not unique
+        if ( IsArrayRefWithData($NameDuplicates) ) {
+
+            # build a string of all duplicate IDs
+            my $Duplicates = join ', ', @{$NameDuplicates};
+
+            # write an error log message containing all the duplicate IDs
+            $Self->{LogObject}->Log(
+                Priority => 'error',
+                Message  => "The name $Param{Name} is already in use (ConfigItemIDs: $Duplicates)!",
+            );
+            return;
+        }
+    }
 
     my $Events = $Self->_GetEvents(
         Param          => \%Param,
@@ -1270,6 +1295,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.33 $ $Date: 2012-10-31 13:28:14 $
+$Revision: 1.34 $ $Date: 2012-11-30 19:49:09 $
 
 =cut

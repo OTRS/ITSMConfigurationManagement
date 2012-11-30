@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemEdit.pm - the OTRS::ITSM config item edit module
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.pm,v 1.33 2012-11-30 17:10:41 ub Exp $
+# $Id: AgentITSMConfigItemEdit.pm,v 1.34 2012-11-30 19:49:09 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -17,9 +17,10 @@ use warnings;
 use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 use Kernel::System::Web::UploadCache;
+use Kernel::System::VariableCheck qw(:all);
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.33 $) [1];
+$VERSION = qw($Revision: 1.34 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -183,6 +184,7 @@ sub Run {
 
     # get xml data
     my $Version = {};
+    my $NameDuplicates;
     if ( $Self->{Subaction} eq 'VersionSave' ) {
 
         # check if an attachment must be deleted
@@ -234,6 +236,44 @@ sub Run {
             AllRequired   => \$AllRequired,
             ConfigItemID  => $ConfigItem->{ConfigItemID},
         );
+
+        # check, whether the feature to check for a unique name is enabled
+        if (
+            IsStringWithData( $Version->{Name} )
+            && $Self->{ConfigObject}->Get('UniqueCIName::EnableUniquenessCheck')
+            )
+        {
+
+            if ( $Self->{ConfigObject}->{Debug} > 0 ) {
+                $Self->{LogObject}->Log(
+                    Priority => 'debug',
+                    Message  => "Checking for duplicate names (ClassID: $ConfigItem->{ClassID}, "
+                        . "Name: $Version->{Name}, ConfigItemID: $ConfigItem->{ConfigItemID})",
+                );
+            }
+
+            $NameDuplicates = $Self->{ConfigItemObject}->UniqueNameCheck(
+                ConfigItemID => $ConfigItem->{ConfigItemID},
+                ClassID      => $ConfigItem->{ClassID},
+                Name         => $Version->{Name},
+            );
+
+            # stop processing if the name is not unique
+            if ( IsArrayRefWithData($NameDuplicates) ) {
+
+                $AllRequired = 0;
+
+                # build a string of all duplicate IDs
+                my $NameDuplicatesString = join ', ', @{$NameDuplicates};
+
+                $Self->{LogObject}->Log(
+                    Priority => 'error',
+                    Message =>
+                        "The name $Version->{Name} is already in use by the ConfigItemID(s): "
+                        . $NameDuplicatesString,
+                );
+            }
+        }
 
         # save version to database
         if ( $SubmitSave && $AllRequired ) {
@@ -383,6 +423,11 @@ sub Run {
         $RowNameInvalid = 'ServerError';
     }
 
+    # check for name duplicates
+    if ( IsArrayRefWithData($NameDuplicates) ) {
+        $RowNameInvalid = 'ServerError';
+    }
+
     # output name block
     $Self->{LayoutObject}->Block(
         Name => 'RowName',
@@ -391,6 +436,38 @@ sub Run {
             RowNameInvalid => $RowNameInvalid,
         },
     );
+
+    if ( IsStringWithData($RowNameInvalid) && !IsArrayRefWithData($NameDuplicates) ) {
+
+        if ( $Self->{ConfigObject}->{Debug} > 0 ) {
+            $Self->{LogObject}->Log(
+                Priority => 'debug',
+                Message  => "Rendering default error block",
+            );
+        }
+
+        $Self->{LayoutObject}->Block(
+            Name => 'RowNameErrorDefault',
+        );
+    }
+    elsif ( IsArrayRefWithData($NameDuplicates) ) {
+
+        my $DuplicateString = join ', ', @{$NameDuplicates};
+
+        if ( $Self->{ConfigObject}->{Debug} > 0 ) {
+            $Self->{LogObject}->Log(
+                Priority => 'debug',
+                Message  => "Rendering block for duplicates (IDs: $DuplicateString) error message",
+            );
+        }
+
+        $Self->{LayoutObject}->Block(
+            Name => 'RowNameErrorDuplicates',
+            Data => {
+                Duplicates => $DuplicateString,
+            },
+        );
+    }
 
     # get deployment state list
     my $DeplStateList = $Self->{GeneralCatalogObject}->ItemList(
