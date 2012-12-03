@@ -2,7 +2,7 @@
 # Kernel/Language/nb_NO_ITSMConfigItem.pm - translation file
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: nb_NO_ITSMConfigItem.pm,v 1.2.2.2 2012-11-30 19:47:44 ub Exp $
+# $Id: nb_NO_ITSMConfigItem.pm,v 1.2.2.3 2012-12-03 12:29:01 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -157,7 +157,7 @@ sub Data {
 
     # Template: AgentITSMConfigItemEdit
     $Self->{Translation}->{'The name of this config item'} = 'Navnet til denne konfigurasjonsenheten';
-    $Self->{Translation}->{'Name is already in use by the ConfigItems with the following ID(s): %s'} =
+    $Self->{Translation}->{'Name is already in use by the ConfigItems with the following Number(s): %s'} =
         '';
     $Self->{Translation}->{'Deployment State'} = 'Produksjonssettingstilstand';
     $Self->{Translation}->{'Incident State'} = 'Hendelsestilstand';
