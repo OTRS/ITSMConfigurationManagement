@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem.pm - all config item function
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.36.2.2 2012-11-30 19:47:43 ub Exp $
+# $Id: ITSMConfigItem.pm,v 1.36.2.3 2012-12-03 12:28:17 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -31,7 +31,7 @@ use Kernel::System::VirtualFS;
 use Kernel::System::VariableCheck qw(:all);
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.36.2.2 $) [1];
+$VERSION = qw($Revision: 1.36.2.3 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',
@@ -1485,7 +1485,7 @@ This method does a lookup for a configitem. If a configitem id is given,
 it returns the number of the configitem. If a configitem number is given,
 the appropriate id is returned.
 
-    my $Name = $ConfigItemObject->ConfigItemLookup(
+    my $Number = $ConfigItemObject->ConfigItemLookup(
         ConfigItemID => 1234,
     );
 
@@ -1860,6 +1860,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.36.2.2 $ $Date: 2012-11-30 19:47:43 $
+$Revision: 1.36.2.3 $ $Date: 2012-12-03 12:28:17 $
 
 =cut
