@@ -2,7 +2,7 @@
 # Kernel/Language/it_ITSMConfigItem.pm - translation file
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: it_ITSMConfigItem.pm,v 1.11 2012-11-30 19:49:08 ub Exp $
+# $Id: it_ITSMConfigItem.pm,v 1.12 2012-12-03 12:29:37 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -157,7 +157,7 @@ sub Data {
 
     # Template: AgentITSMConfigItemEdit
     $Self->{Translation}->{'The name of this config item'} = 'Il nome di questo elemento di configurazione';
-    $Self->{Translation}->{'Name is already in use by the ConfigItems with the following ID(s): %s'} =
+    $Self->{Translation}->{'Name is already in use by the ConfigItems with the following Number(s): %s'} =
         '';
     $Self->{Translation}->{'Deployment State'} = 'Stato di implementazione';
     $Self->{Translation}->{'Incident State'} = 'Stato dell\'Incidente';

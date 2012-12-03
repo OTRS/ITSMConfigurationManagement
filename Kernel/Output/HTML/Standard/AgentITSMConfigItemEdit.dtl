@@ -2,7 +2,7 @@
 # AgentITSMConfigItemEdit.dtl - provides HTML form for AgentITSMConfigItemEdit
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.dtl,v 1.24 2012-11-30 19:49:08 ub Exp $
+# $Id: AgentITSMConfigItemEdit.dtl,v 1.25 2012-12-03 12:29:37 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -42,7 +42,7 @@ $Include{"AgentITSMCustomerSearch"}
                             <div id="NameServerError" class="TooltipErrorMessage"><p>$Text{"This field is required."}</p></div>
 <!-- dtl:block:RowNameErrorDefault -->
 <!-- dtl:block:RowNameErrorDuplicates -->
-                            <div id="NameServerError" class="TooltipErrorMessage"><p>$Text{"Name is already in use by the ConfigItems with the following ID(s): %s", "$QData{"Duplicates"}"}</p></div>
+                            <div id="NameServerError" class="TooltipErrorMessage"><p>$Text{"Name is already in use by the ConfigItems with the following Number(s): %s", "$QData{"Duplicates"}"}</p></div>
 <!-- dtl:block:RowNameErrorDuplicates -->
                         </div>
                         <div class="Clear"></div>
