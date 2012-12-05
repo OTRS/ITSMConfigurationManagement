@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemEdit.pm - the OTRS::ITSM config item edit module
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.pm,v 1.35 2012-12-03 12:29:37 ub Exp $
+# $Id: AgentITSMConfigItemEdit.pm,v 1.36 2012-12-05 14:23:14 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -20,7 +20,7 @@ use Kernel::System::Web::UploadCache;
 use Kernel::System::VariableCheck qw(:all);
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.35 $) [1];
+$VERSION = qw($Revision: 1.36 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -614,7 +614,8 @@ sub Run {
             Data         => {
                 %Param,
                 %{$ConfigItem},
-                FormID => $Self->{FormID},
+                DuplicateID => $DuplicateID,
+                FormID      => $Self->{FormID},
             },
         );
         $Output .= $Self->{LayoutObject}->Footer( Type => 'Small' );
@@ -674,7 +675,8 @@ sub Run {
             Data         => {
                 %Param,
                 %{$ConfigItem},
-                FormID => $Self->{FormID},
+                DuplicateID => $DuplicateID,
+                FormID      => $Self->{FormID},
             },
         );
         $Output .= $Self->{LayoutObject}->Footer();

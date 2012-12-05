@@ -2,7 +2,7 @@
 # AgentITSMConfigItemEdit.dtl - provides HTML form for AgentITSMConfigItemEdit
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.dtl,v 1.25 2012-12-03 12:29:37 ub Exp $
+# $Id: AgentITSMConfigItemEdit.dtl,v 1.26 2012-12-05 14:23:14 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -31,6 +31,7 @@ $Include{"AgentITSMCustomerSearch"}
                     <input type="hidden" name="Subaction" value="VersionSave"/>
                     <input type="hidden" name="ClassID" value="$QData{"ClassID"}"/>
                     <input type="hidden" name="ConfigItemID" value="$QData{"ConfigItemID"}"/>
+                    <input type="hidden" name="DuplicateID" value="$QData{"DuplicateID"}"/>
                     <input type="hidden" name="FormID" value="$QData{"FormID"}"/>
                     <fieldset class="TableLike">
 <!-- dtl:block:RowName -->
