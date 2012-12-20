@@ -1,8 +1,8 @@
 # --
 # Kernel/Output/HTML/ITSMConfigItemLayoutGeneralCatalog.pm - layout backend module
-# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutGeneralCatalog.pm,v 1.9 2011-01-12 11:21:14 ub Exp $
+# $Id: ITSMConfigItemLayoutGeneralCatalog.pm,v 1.10 2012-12-20 16:35:15 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -17,7 +17,7 @@ use warnings;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.9 $) [1];
+$VERSION = qw($Revision: 1.10 $) [1];
 
 =head1 NAME
 
@@ -158,8 +158,6 @@ sub InputCreate {
         }
     }
 
-    my $SelectedID = $Param{Value} || $Param{Item}->{Input}->{ValueDefault} || '';
-
     my $CSSClass = '';
     my $Required = $Param{Required};
     my $Invalid  = $Param{Invalid};
@@ -183,6 +181,21 @@ sub InputCreate {
     my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
         Class => $Param{Item}->{Input}->{Class} || '',
     );
+
+    # reverse the class list
+    my %ReverseClassList = reverse %{$ClassList};
+
+    my $SelectedID;
+
+    # get the current value
+    if ( defined $Param{Value} ) {
+        $SelectedID = $Param{Value};
+    }
+
+    # get the default id by default value
+    else {
+        $SelectedID = $ReverseClassList{ $Param{Item}->{Input}->{ValueDefault} || '' } || '';
+    }
 
     # generate string
     my $String = $Self->{LayoutObject}->BuildSelection(
@@ -299,6 +312,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.9 $ $Date: 2011-01-12 11:21:14 $
+$Revision: 1.10 $ $Date: 2012-12-20 16:35:15 $
 
 =cut
