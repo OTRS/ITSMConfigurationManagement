@@ -1,8 +1,8 @@
 # --
 # Kernel/System/ITSMConfigItem/History.pm - module for ITSMConfigItem.pm with history functions
-# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: History.pm,v 1.10 2011-09-27 07:00:59 ep Exp $
+# $Id: History.pm,v 1.10.4.1 2012-12-20 10:17:54 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.10 $) [1];
+$VERSION = qw($Revision: 1.10.4.1 $) [1];
 
 =head1 NAME
 
@@ -269,11 +269,14 @@ sub HistoryAdd {
         }
     }
 
-    # check if given config item id points to an existing config item id
+    # check if given config item id points to an existing config item number
     if ( $Param{ConfigItemID} ) {
-        my $Id = $Self->ConfigItemLookup( ConfigItemID => $Param{ConfigItemID} );
 
-        if ( !$Id ) {
+        my $Number = $Self->ConfigItemLookup(
+            ConfigItemID => $Param{ConfigItemID},
+        );
+
+        if ( !$Number ) {
             $Self->{LogObject}->Log(
                 Priority => 'error',
                 Message  => 'Invalid config item id given!',
@@ -442,6 +445,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.10 $ $Date: 2011-09-27 07:00:59 $
+$Revision: 1.10.4.1 $ $Date: 2012-12-20 10:17:54 $
 
 =cut
