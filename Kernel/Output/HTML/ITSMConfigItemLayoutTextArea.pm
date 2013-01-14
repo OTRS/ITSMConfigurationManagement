@@ -1,8 +1,8 @@
 # --
 # Kernel/Output/HTML/ITSMConfigItemLayoutTextArea.pm - layout backend module
-# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutTextArea.pm,v 1.14 2011-01-12 11:21:14 ub Exp $
+# $Id: ITSMConfigItemLayoutTextArea.pm,v 1.15 2013-01-14 14:58:50 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.14 $) [1];
+$VERSION = qw($Revision: 1.15 $) [1];
 
 =head1 NAME
 
@@ -228,8 +228,13 @@ sub SearchFormDataGet {
     }
 
     # get form data
-    my $Value = $Self->{ParamObject}->GetParam( Param => $Param{Key} );
-
+    my $Value;
+    if ( $Param{Value} ) {
+        $Value = $Param{Value};
+    }
+    else {
+        $Value = $Self->{ParamObject}->GetParam( Param => $Param{Key} );
+    }
     return $Value;
 }
 
@@ -263,7 +268,7 @@ sub SearchInputCreate {
         $Value = '';
     }
 
-    my $String = qq{<input type="Text" name="$Param{Key}" value="$Value" class="W50pc">};
+    my $String = qq{<input type="text" name="$Param{Key}" value="$Value" class="W50pc">};
 
     return $String;
 }
@@ -284,6 +289,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.14 $ $Date: 2011-01-12 11:21:14 $
+$Revision: 1.15 $ $Date: 2013-01-14 14:58:50 $
 
 =cut
