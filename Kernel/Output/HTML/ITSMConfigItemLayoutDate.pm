@@ -1,8 +1,8 @@
 # --
 # Kernel/Output/HTML/ITSMConfigItemLayoutDate.pm - layout backend module
-# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutDate.pm,v 1.12 2012-06-06 14:45:04 ub Exp $
+# $Id: ITSMConfigItemLayoutDate.pm,v 1.12.2.1 2013-01-14 17:13:37 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.12 $) [1];
+$VERSION = qw($Revision: 1.12.2.1 $) [1];
 
 =head1 NAME
 
@@ -70,7 +70,7 @@ sub OutputStringCreate {
     return '' if !$Param{Value};
 
     $Param{Value} = $Self->{LayoutObject}->Output(
-        Template => '$TimeLong{"$QData{"Date"}"}',
+        Template => '$Date{"$QData{"Date"}"}',
         Data     => {
             Date => $Param{Value} . ' 00:00:00',
         },
@@ -337,6 +337,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.12 $ $Date: 2012-06-06 14:45:04 $
+$Revision: 1.12.2.1 $ $Date: 2013-01-14 17:13:37 $
 
 =cut
