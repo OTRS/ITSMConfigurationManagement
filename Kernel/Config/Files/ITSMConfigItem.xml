@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <otrs_config version="1.0" init="Config">
-    <CVS>$Id: ITSMConfigItem.xml,v 1.45 2012-11-30 19:49:09 ub Exp $</CVS>
+    <CVS>$Id: ITSMConfigItem.xml,v 1.46 2013-01-24 10:28:12 ub Exp $</CVS>
     <ConfigItem Name="Frontend::Module###AdminITSMConfigItem" Required="0" Valid="1">
         <Description Translatable="1">Frontend module registration for the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
@@ -437,6 +437,14 @@
         <SubGroup>Frontend::Agent::ViewConfigItemSearch</SubGroup>
         <Setting>
             <String Regex="">10000</String>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="ITSMConfigItem::Frontend::AdminITSMConfigItem###EditorRows" Required="1" Valid="1">
+        <Description Translatable="1">Defines the number of rows for the CI definition editor in the admin interface.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Admin::ViewConfigItemDefinition</SubGroup>
+        <Setting>
+            <String Regex="">30</String>
         </Setting>
     </ConfigItem>
     <ConfigItem Name="GeneralCatalogPreferences###Permissions" Required="0" Valid="1">

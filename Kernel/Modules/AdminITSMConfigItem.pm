@@ -1,8 +1,8 @@
 # --
 # Kernel/Modules/AdminITSMConfigItem.pm - admin frontend to manage config items
-# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
 # --
-# $Id: AdminITSMConfigItem.pm,v 1.5 2010-08-13 20:07:10 cg Exp $
+# $Id: AdminITSMConfigItem.pm,v 1.6 2013-01-24 10:28:12 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::GeneralCatalog;
 use Kernel::System::ITSMConfigItem;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.5 $) [1];
+$VERSION = qw($Revision: 1.6 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -35,6 +35,9 @@ sub new {
     }
     $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new(%Param);
     $Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new(%Param);
+
+    # get config of frontend module
+    $Self->{Config} = $Self->{ConfigObject}->Get("ITSMConfigItem::Frontend::$Self->{Action}");
 
     return $Self;
 }
@@ -242,6 +245,7 @@ sub Run {
                 %{$Definition},
                 ClassID => $ClassID,
                 Class   => $ClassList->{$ClassID},
+                Rows    => $Self->{Config}->{EditorRows} || 30,
             },
         );
 

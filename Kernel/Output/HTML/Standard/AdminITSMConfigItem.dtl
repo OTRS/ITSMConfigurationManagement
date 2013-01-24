@@ -1,8 +1,8 @@
 # --
 # AdminITSMConfigItem.dtl - provides HTML form for AdminITSMConfigItem
-# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
 # --
-# $Id: AdminITSMConfigItem.dtl,v 1.4 2011-05-19 15:11:27 ub Exp $
+# $Id: AdminITSMConfigItem.dtl,v 1.5 2013-01-24 10:28:12 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -159,7 +159,7 @@
 
                         <label for="Definition">$Text{"Definition"}: </label>
                         <div class="Field">
-                            <textarea name="Definition" id="Definition" rows="50" cols="80" wrap="off">$QData{"Definition"}</textarea>
+                            <textarea name="Definition" id="Definition" rows="$QData{"Rows"}" cols="80" wrap="off">$QData{"Definition"}</textarea>
                         </div>
                         <div class="Clear"></div>
 
