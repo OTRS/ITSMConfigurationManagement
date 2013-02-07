@@ -1,8 +1,8 @@
 # --
 # Kernel/Modules/AgentITSMConfigItem.pm - the OTRS::ITSM config item module
-# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItem.pm,v 1.19 2012-10-22 22:33:40 ub Exp $
+# $Id: AgentITSMConfigItem.pm,v 1.20 2013-02-07 08:41:02 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.19 $) [1];
+$VERSION = qw($Revision: 1.20 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -39,9 +39,12 @@ sub new {
     # get config of frontend module
     $Self->{Config} = $Self->{ConfigObject}->Get("ITSMConfigItem::Frontend::$Self->{Action}");
 
-    # get default parameters
-    $Self->{Filter} = $Self->{ParamObject}->GetParam( Param => 'Filter' ) || '';
-    $Self->{View}   = $Self->{ParamObject}->GetParam( Param => 'View' )   || '';
+    # get default parameters, try to get filter (ClassID) from session if not given as parameter
+    $Self->{Filter}
+        = $Self->{ParamObject}->GetParam( Param => 'Filter' )
+        || $Self->{AgentITSMConfigItemClassFilter}
+        || '';
+    $Self->{View} = $Self->{ParamObject}->GetParam( Param => 'View' ) || '';
 
     return $Self;
 }
@@ -57,6 +60,13 @@ sub Run {
         SessionID => $Self->{SessionID},
         Key       => 'LastScreenView',
         Value     => $Self->{RequestedURL},
+    );
+
+    # store filter (ClassID) in session
+    $Self->{SessionObject}->UpdateSessionID(
+        SessionID => $Self->{SessionID},
+        Key       => 'AgentITSMConfigItemClassFilter',
+        Value     => $Self->{Filter},
     );
 
     # get sorting parameters
