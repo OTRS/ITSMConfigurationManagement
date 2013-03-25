@@ -1,8 +1,8 @@
 # --
 # Kernel/System/LinkObject/ITSMConfigItem.pm - to link config item objects
-# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.17 2010-12-28 19:51:22 cr Exp $
+# $Id: ITSMConfigItem.pm,v 1.17.2.1 2013-03-25 19:00:54 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::GeneralCatalog;
 use Kernel::System::ITSMConfigItem;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.17 $) [1];
+$VERSION = qw($Revision: 1.17.2.1 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -102,6 +102,47 @@ sub LinkListWithData {
     }
 
     return 1;
+}
+
+=item ObjectPermission()
+
+checks read permission for a given object and UserID.
+
+    $Permission = $LinkObject->ObjectPermission(
+        Object  => 'ITSMConfigItem',
+        Key     => 123,
+        UserID  => 1,
+    );
+
+=cut
+
+sub ObjectPermission {
+    my ( $Self, %Param ) = @_;
+
+    # check needed stuff
+    for my $Argument (qw(Object Key UserID)) {
+        if ( !$Param{$Argument} ) {
+            $Self->{LogObject}->Log(
+                Priority => 'error',
+                Message  => "Need $Argument!",
+            );
+            return;
+        }
+    }
+
+    # get config of configitem zoom frontend module
+    $Self->{Config}
+        = $Self->{ConfigObject}->Get('ITSMConfigItem::Frontend::AgentITSMConfigItemZoom');
+
+    # check for access rights
+    my $Access = $Self->{ConfigItemObject}->Permission(
+        Scope  => 'Item',
+        ItemID => $Param{Key},
+        UserID => $Param{UserID},
+        Type   => $Self->{Config}->{Permission},
+    );
+
+    return $Access;
 }
 
 =item ObjectDescriptionGet()
