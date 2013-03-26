@@ -1,8 +1,8 @@
 # --
-# Kernel/Modules/AgentITSMConfigItemSearch.pm - the OTRS::ITSM config item search module
-# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
+# Kernel/Modules/AgentITSMConfigItemSearch.pm - the OTRS ITSM config item search module
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.pm,v 1.34 2012-11-21 10:21:39 ub Exp $
+# $Id: AgentITSMConfigItemSearch.pm,v 1.35 2013-03-26 14:34:27 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -20,7 +20,7 @@ use Kernel::System::SearchProfile;
 use Kernel::System::CSV;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.34 $) [1];
+$VERSION = qw($Revision: 1.35 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;

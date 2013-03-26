@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <otrs_package version="1.0">
-    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.126 2013-03-26 14:22:53 ub Exp $</CVS>
+    <CVS>$Id: ITSMConfigurationManagement.sopm,v 1.127 2013-03-26 14:34:27 ub Exp $</CVS>
     <Name>ITSMConfigurationManagement</Name>
     <Version>0.0.0</Version>
     <Framework>3.2.x</Framework>
@@ -8,9 +8,9 @@
     <Vendor>OTRS AG</Vendor>
     <URL>http://otrs.org/</URL>
     <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
-    <Description Lang="en">The OTRS::ITSM Configuration Management package.</Description>
-    <Description Lang="de">Das OTRS::ITSM Configuration Management Paket.</Description>
-    <Description Lang="es">El paquete OTRS::ITSM Configuration Management.</Description>
+    <Description Lang="en">The OTRS ITSM Configuration Management package.</Description>
+    <Description Lang="de">Das OTRS ITSM Configuration Management Paket.</Description>
+    <Description Lang="es">El paquete OTRS ITSM Configuration Management.</Description>
     <Filelist>
         <File Permission="755" Location="bin/otrs.ITSMConfigItemDelete.pl"/>
         <File Permission="755" Location="bin/otrs.ITSMConfigItemListDuplicates.pl"/>
