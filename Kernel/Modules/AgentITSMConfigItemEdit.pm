@@ -1,8 +1,8 @@
 # --
 # Kernel/Modules/AgentITSMConfigItemEdit.pm - the OTRS::ITSM config item edit module
-# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.pm,v 1.32.2.4 2012-12-05 14:23:24 ub Exp $
+# $Id: AgentITSMConfigItemEdit.pm,v 1.32.2.5 2013-04-11 16:23:21 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -20,7 +20,7 @@ use Kernel::System::Web::UploadCache;
 use Kernel::System::VariableCheck qw(:all);
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.32.2.4 $) [1];
+$VERSION = qw($Revision: 1.32.2.5 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -970,6 +970,12 @@ sub _XMLFormOutput {
 
         # output add button
         if ( $Loop < $Item->{CountMax} ) {
+
+            # if no item should be shown we need to show the add button
+            # and therefore we need to show the XMLRow block
+            if ( !$Loop ) {
+                $Self->{LayoutObject}->Block( Name => 'XMLRow' );
+            }
 
             my $Class = '';
             if ( $Param{Level} ) {
