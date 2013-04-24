@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItem.pm - the OTRS ITSM config item module
 # Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItem.pm,v 1.21 2013-03-26 14:34:27 ub Exp $
+# $Id: AgentITSMConfigItem.pm,v 1.22 2013-04-24 03:34:41 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -18,7 +18,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.21 $) [1];
+$VERSION = qw($Revision: 1.22 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -59,6 +59,13 @@ sub Run {
     $Self->{SessionObject}->UpdateSessionID(
         SessionID => $Self->{SessionID},
         Key       => 'LastScreenView',
+        Value     => $Self->{RequestedURL},
+    );
+
+    # store last screen overview
+    $Self->{SessionObject}->UpdateSessionID(
+        SessionID => $Self->{SessionID},
+        Key       => 'LastScreenOverview',
         Value     => $Self->{RequestedURL},
     );
 
