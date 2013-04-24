@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemEdit.pm - the OTRS ITSM config item edit module
 # Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.pm,v 1.38 2013-04-11 16:23:05 ub Exp $
+# $Id: AgentITSMConfigItemEdit.pm,v 1.39 2013-04-24 03:35:48 cr Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -20,7 +20,7 @@ use Kernel::System::Web::UploadCache;
 use Kernel::System::VariableCheck qw(:all);
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.38 $) [1];
+$VERSION = qw($Revision: 1.39 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -372,12 +372,11 @@ sub Run {
                 UserID       => $Self->{UserID},
             );
 
-            # redirect to zoom mask
+            # redirect to last screen
             my $ScreenType = $Self->{ParamObject}->GetParam( Param => 'ScreenType' ) || 0;
             if ($ScreenType) {
                 return $Self->{LayoutObject}->PopupClose(
-                    URL =>
-                        "Action=AgentITSMConfigItemZoom;ConfigItemID=$ConfigItem->{ConfigItemID}",
+                    URL => $Self->{LastScreenView} || 'Action=AgentDashboard',
                 );
             }
             else {
