@@ -1,9 +1,9 @@
 #!/usr/bin/perl -w
 # --
 # bin/otrs.ITSMConfigItemDelete.pl - to delete config items
-# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
 # --
-# $Id: otrs.ITSMConfigItemDelete.pl,v 1.3 2012-11-20 19:06:48 mh Exp $
+# $Id: otrs.ITSMConfigItemDelete.pl,v 1.4 2013-04-26 10:41:25 ub Exp $
 # --
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU AFFERO General Public License as published by
@@ -30,7 +30,7 @@ use FindBin qw($RealBin);
 use lib dirname($RealBin);
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.3 $) [1];
+$VERSION = qw($Revision: 1.4 $) [1];
 
 use Getopt::Long;
 use Kernel::Config;
@@ -58,7 +58,7 @@ $CommonObject{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new(%Commo
 
 print "otrs.ITSMConfigItemDelete.pl <Revision $VERSION> - ";
 print "delete config items (all, by class (and deployment state) or by number).\n";
-print "Copyright (C) 2001-2012 OTRS AG, http://otrs.org/\n";
+print "Copyright (C) 2001-2013 OTRS AG, http://otrs.org/\n";
 
 my $Help              = '';
 my $All               = '';
@@ -233,7 +233,7 @@ sub DeleteConfigItems {
             $DeletedCI++;
         }
     }
-    print "$DeletedCI config items have been deleted.\n\n";
+    print "Deletd $DeletedCI config item(s).\n\n";
 
     return 1;
 }
