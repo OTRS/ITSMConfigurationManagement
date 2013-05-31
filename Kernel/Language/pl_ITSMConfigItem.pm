@@ -1,8 +1,9 @@
 # --
 # Kernel/Language/pl_ITSMConfigItem.pm - translation file
-# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
+# Copyright (C) 2011-2012 Informatyka Boguslawski sp. z o.o. sp.k., http://www.ib.pl/
 # --
-# $Id: pl_ITSMConfigItem.pm,v 1.15 2012-12-03 12:29:37 ub Exp $
+# $Id: pl_ITSMConfigItem.pm,v 1.16 2013-05-31 09:26:57 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -33,8 +34,8 @@ sub Data {
     $Self->{Translation}->{'CIHistory::ValueUpdate'} = 'Aktualizacja wartości atrybutu %s z "%s" na "%s"';
     $Self->{Translation}->{'CIHistory::VersionCreate'} = 'Utworzenie nowej wersji (ID=%s)';
     $Self->{Translation}->{'CIHistory::VersionDelete'} = 'Usunięcie wersji %s';
-    $Self->{Translation}->{'CIHistory::AttachmentAdd'} = '';
-    $Self->{Translation}->{'CIHistory::AttachmentDelete'} = '';
+    $Self->{Translation}->{'CIHistory::AttachmentAdd'} = 'Utworzenie załącznika (%s)';
+    $Self->{Translation}->{'CIHistory::AttachmentDelete'} = 'Usunięcie załącznika (%s)';
     $Self->{Translation}->{'CPU'} = 'Procesor';
     $Self->{Translation}->{'Camera'} = 'Kamera';
     $Self->{Translation}->{'Capacity'} = 'Pojemność';
@@ -149,8 +150,13 @@ sub Data {
     $Self->{Translation}->{'Config Item Management'} = 'Zarządzanie CI';
     $Self->{Translation}->{'Change class definition'} = 'Zmień definicję klasy';
     $Self->{Translation}->{'Config Item'} = 'CI';
+    $Self->{Translation}->{'ITSM ConfigItem'} = 'CI';
     $Self->{Translation}->{'Class'} = 'Klasa';
     $Self->{Translation}->{'Definition'} = 'Definicja';
+    $Self->{Translation}->{'Hardware'} = 'Sprzęt';
+    $Self->{Translation}->{'Computer'} = 'Komputer';
+    $Self->{Translation}->{'Network'} = 'Sieć';
+    $Self->{Translation}->{'Software'} = 'Oprogramowanie';
 
     # Template: AgentITSMConfigItemAdd
     $Self->{Translation}->{'Filter for Classes'} = 'Filtr dla klas';
@@ -159,7 +165,7 @@ sub Data {
     # Template: AgentITSMConfigItemEdit
     $Self->{Translation}->{'The name of this config item'} = 'Nazwa tego CI';
     $Self->{Translation}->{'Name is already in use by the ConfigItems with the following Number(s): %s'} =
-        '';
+        'Nazwa jest już używana przez CI o następujących numerach: %s';
     $Self->{Translation}->{'Deployment State'} = 'Stan wdrożenia';
     $Self->{Translation}->{'Incident State'} = 'Stan zdarzenia';
 
@@ -182,7 +188,9 @@ sub Data {
     $Self->{Translation}->{'Last changed by'} = 'Ostatnio zmienione przez';
 
     # Template: AgentITSMConfigItemSearch
+    $Self->{Translation}->{'Search-Template'} = 'Szukaj-szablon';
     $Self->{Translation}->{'Also search in previous versions?'} = 'Uwzględnić poprzednie wersje?';
+    $Self->{Translation}->{'Config Item Search Result: Class'} = 'Wynik wyszukiwania CI: klasa';
 
     # Template: AgentITSMConfigItemSearchResultPrint
     $Self->{Translation}->{'CreateTime'} = 'Czas utworzenia';
@@ -194,10 +202,16 @@ sub Data {
     $Self->{Translation}->{'Show all versions'} = 'Pokaż wszystkie wersje';
     $Self->{Translation}->{'Version Incident State'} = 'Stan';
     $Self->{Translation}->{'Version Number'} = 'Wersja';
+    $Self->{Translation}->{'Created By'} = 'Utworzone przez';
+    $Self->{Translation}->{'Changed On'} = 'Zmienione';
+    $Self->{Translation}->{'Resize'} = 'Zmień rozmiar';
+    $Self->{Translation}->{'Show or hide the content.'} = 'Pokaż ukrytą treść.';
     $Self->{Translation}->{'Configuration Item Version Details'} = 'Szczegóły wersji CI';
     $Self->{Translation}->{'Property'} = 'Właściwość';
+    $Self->{Translation}->{'Configuration Item Information'} = 'Informacje o CI';
 
     # SysConfig
+    $Self->{Translation}->{'Config item event module that enables logging to history in the agent interface.'} = '';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         '';
     $Self->{Translation}->{'Config Items'} = '';
