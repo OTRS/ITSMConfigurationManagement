@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemEdit.pm - the OTRS ITSM config item edit module
 # Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemEdit.pm,v 1.40 2013-04-24 22:02:04 cr Exp $
+# $Id: AgentITSMConfigItemEdit.pm,v 1.41 2013-06-06 10:59:34 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -20,7 +20,7 @@ use Kernel::System::Web::UploadCache;
 use Kernel::System::VariableCheck qw(:all);
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.40 $) [1];
+$VERSION = qw($Revision: 1.41 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -662,7 +662,6 @@ sub Run {
             },
         );
 
-        $Self->{LayoutObject}->Block( Name => 'EndNormalContent' );
         $Self->{LayoutObject}->Block( Name => 'EndNormal' );
 
         # output header
