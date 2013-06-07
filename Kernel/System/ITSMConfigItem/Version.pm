@@ -1,8 +1,8 @@
 # --
 # Kernel/System/ITSMConfigItem/Version.pm - sub module of ITSMConfigItem.pm with version functions
-# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
 # --
-# $Id: Version.pm,v 1.34 2012-11-30 19:49:09 ub Exp $
+# $Id: Version.pm,v 1.35 2013-06-07 11:50:56 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -16,7 +16,7 @@ use warnings;
 use Kernel::System::VariableCheck qw(:all);
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.34 $) [1];
+$VERSION = qw($Revision: 1.35 $) [1];
 
 use Storable;
 
@@ -771,7 +771,8 @@ return a config item list as an array reference
 
         OrderBy => [ 'ConfigItemID', 'Number' ],                  # (optional)
         # default: [ 'ConfigItemID' ]
-        # (ConfigItemID, Name, Number, ClassID, DeplStateID, InciStateID)
+        # (ConfigItemID, Name, Number, ClassID, DeplStateID, InciStateID
+        # CreateTime, CreateBy, ChangeTime, ChangeBy)
 
         # Additional information for OrderBy:
         # The OrderByDirection can be specified for each OrderBy attribute.
@@ -835,6 +836,11 @@ sub VersionSearch {
         ClassID      => 'ci.class_id',
         DeplStateID  => 'vr.depl_state_id',
         InciStateID  => 'vr.inci_state_id',
+        CreateTime   => 'ci.create_time',
+        CreateBy     => 'ci.create_by',
+        ChangeTime   => 'vr.create_time'
+        ,    # the change time of the CI is the same as the create time of the version!
+        ChangeBy => 'ci.change_by',
     );
 
     # check if OrderBy contains only unique valid values
@@ -1295,6 +1301,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.34 $ $Date: 2012-11-30 19:49:09 $
+$Revision: 1.35 $ $Date: 2013-06-07 11:50:56 $
 
 =cut
