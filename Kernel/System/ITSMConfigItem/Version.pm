@@ -2,7 +2,7 @@
 # Kernel/System/ITSMConfigItem/Version.pm - sub module of ITSMConfigItem.pm with version functions
 # Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
 # --
-# $Id: Version.pm,v 1.35 2013-06-07 11:50:56 ub Exp $
+# $Id: Version.pm,v 1.36 2013-06-07 11:52:42 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -16,7 +16,7 @@ use warnings;
 use Kernel::System::VariableCheck qw(:all);
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.35 $) [1];
+$VERSION = qw($Revision: 1.36 $) [1];
 
 use Storable;
 
@@ -838,8 +838,10 @@ sub VersionSearch {
         InciStateID  => 'vr.inci_state_id',
         CreateTime   => 'ci.create_time',
         CreateBy     => 'ci.create_by',
-        ChangeTime   => 'vr.create_time'
-        ,    # the change time of the CI is the same as the create time of the version!
+
+        # the change time of the CI is the same as the create time of the version!
+        ChangeTime => 'vr.create_time',
+
         ChangeBy => 'ci.change_by',
     );
 
@@ -1301,6 +1303,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.35 $ $Date: 2013-06-07 11:50:56 $
+$Revision: 1.36 $ $Date: 2013-06-07 11:52:42 $
 
 =cut
