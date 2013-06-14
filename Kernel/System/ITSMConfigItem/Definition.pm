@@ -1,8 +1,8 @@
 # --
 # Kernel/System/ITSMConfigItem/Definition.pm - sub module of ITSMConfigItem.pm with definition functions
-# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
 # --
-# $Id: Definition.pm,v 1.10 2012-08-31 09:51:50 mb Exp $
+# $Id: Definition.pm,v 1.11 2013-06-14 10:51:03 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.10 $) [1];
+$VERSION = qw($Revision: 1.11 $) [1];
 
 =head1 NAME
 
@@ -316,7 +316,8 @@ sub DefinitionAdd {
 check the syntax of a new definition
 
     my $True = $ConfigItemObject->DefinitionCheck(
-        Definition => 'the definition code',
+        Definition      => 'the definition code',
+        CheckSubElement => 1,                 # (optional, default 0, to check sub elements recursively)
     );
 
 =cut
@@ -333,8 +334,17 @@ sub DefinitionCheck {
         return;
     }
 
-    my $Definition = eval $Param{Definition};
+    # if check sub elements is enabled, we must not evaluate the expression
+    # because this has been done in an earlier recursion step already
+    my $Definition;
+    if ( $Param{CheckSubElement} ) {
+        $Definition = $Param{Definition};
+    }
+    else {
+        $Definition = eval $Param{Definition};
+    }
 
+    # check if definition exists at all
     if ( !$Definition ) {
         $Self->{LogObject}->Log(
             Priority => 'error',
@@ -343,6 +353,7 @@ sub DefinitionCheck {
         return;
     }
 
+    # definition must be an array
     if ( ref $Definition ne 'ARRAY' ) {
         $Self->{LogObject}->Log(
             Priority => 'error',
@@ -351,7 +362,43 @@ sub DefinitionCheck {
         return;
     }
 
-    # recursion check
+    # check each definition attribute
+    for my $Attribute ( @{$Definition} ) {
+
+        # each definition attribute must be a hash reference with data
+        if ( !$Attribute || ref $Attribute ne 'HASH' || !%{$Attribute} ) {
+            $Self->{LogObject}->Log(
+                Priority => 'error',
+                Message =>
+                    'Invalid Definition! At least one definition attribute is not a hash reference.',
+            );
+            return;
+        }
+
+        # recursion check for Sub-Elements
+        for my $Key ( sort keys %{$Attribute} ) {
+
+            my $Value = $Attribute->{$Key};
+
+            if ( $Key eq 'Sub' && ref $Value eq 'ARRAY' ) {
+
+                # check the sub array
+                my $Check = $Self->DefinitionCheck(
+                    Definition      => $Value,
+                    CheckSubElement => 1,
+                );
+
+                if ( !$Check ) {
+                    $Self->{LogObject}->Log(
+                        Priority => 'error',
+                        Message =>
+                            "Invalid Sub-Definition of element with the key '$Attribute->{Key}'.",
+                    );
+                    return;
+                }
+            }
+        }
+    }
 
     return 1;
 }
@@ -434,6 +481,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.10 $ $Date: 2012-08-31 09:51:50 $
+$Revision: 1.11 $ $Date: 2013-06-14 10:51:03 $
 
 =cut
