@@ -1,8 +1,8 @@
 # --
-# Kernel/Modules/AgentITSMConfigItemSearch.pm - the OTRS::ITSM config item search module
-# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
+# Kernel/Modules/AgentITSMConfigItemSearch.pm - the OTRS ITSM config item search module
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.pm,v 1.27 2011-05-12 17:21:19 ub Exp $
+# $Id: AgentITSMConfigItemSearch.pm,v 1.27.2.1 2013-06-28 11:14:52 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -20,7 +20,7 @@ use Kernel::System::SearchProfile;
 use Kernel::System::CSV;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.27 $) [1];
+$VERSION = qw($Revision: 1.27.2.1 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -54,7 +54,7 @@ sub Run {
 
     # get config data
     $Self->{StartHit} = int( $Self->{ParamObject}->GetParam( Param => 'StartHit' ) || 1 );
-    $Self->{SearchLimit} = $Self->{Config}->{SearchLimit} || 500;
+    $Self->{SearchLimit} = $Self->{Config}->{SearchLimit} || 10000;
     $Self->{SortBy} = $Self->{ParamObject}->GetParam( Param => 'SortBy' )
         || $Self->{Config}->{'SortBy::Default'}
         || 'Number';
@@ -84,6 +84,14 @@ sub Run {
 
     # get class id
     my $ClassID = $Self->{ParamObject}->GetParam( Param => 'ClassID' );
+
+    # check if class id is valid
+    if ( $ClassID && !$ClassList->{$ClassID} ) {
+        return $Self->{LayoutObject}->ErrorScreen(
+            Message => 'Invalid ClassID!',
+            Comment => 'Please contact the admin.',
+        );
+    }
 
     # get single params
     my %GetParam;
@@ -162,7 +170,7 @@ sub Run {
     }
 
     # ------------------------------------------------------------ #
-    # set sesarch fields for selected class
+    # set search fields for selected class
     # ------------------------------------------------------------ #
     elsif ( $Self->{Subaction} eq 'AJAXUpdate' ) {
 
@@ -371,7 +379,7 @@ sub Run {
             Data => {
                 active              => $AutoCompleteConfig->{Active},
                 minQueryLength      => $AutoCompleteConfig->{MinQueryLength} || 2,
-                queryDelay          => $AutoCompleteConfig->{QueryDelay} || 0.1,
+                queryDelay          => $AutoCompleteConfig->{QueryDelay} || 100,
                 typeAhead           => $AutoCompleteConfig->{TypeAhead} || 'false',
                 maxResultsDisplayed => $AutoCompleteConfig->{MaxResultsDisplayed} || 20,
                 dynamicWidth        => $AutoCompleteConfig->{DynamicWidth} || 1,
@@ -398,10 +406,11 @@ sub Run {
             $Self->{Profile} = 'last-search';
         }
 
-        # store last queue screen
+        # store last overview screen
         my $URL
             = "Action=AgentITSMConfigItemSearch;Profile=$Self->{Profile};"
-            . "TakeLastSearch=1;StartHit=$Self->{StartHit}";
+            . "TakeLastSearch=1;StartHit=$Self->{StartHit};Subaction=Search;"
+            . "OrderBy=$Self->{OrderBy};SortBy=$Self->{SortBy}";
 
         if ($ClassID) {
             $URL .= ";ClassID=$ClassID";
@@ -494,7 +503,7 @@ sub Run {
         $Self->{SaveProfile} = 1;
 
         # remember last search values only if search is called from a search dialog
-        # not from resuts page
+        # not from results page
         if ( $Self->{SaveProfile} && $Self->{Profile} && $SearchDialog ) {
 
             # remove old profile stuff
@@ -886,9 +895,11 @@ sub Run {
 
             my $ClassName = $ClassList->{$ClassID};
             my $Title
-                = $Self->{LayoutObject}->{LanguageObject}->Get('Config Item Search Result: Class')
+                = $Self->{LayoutObject}->{LanguageObject}->Get('Config Item Search Results')
                 . ' '
-                . $ClassName;
+                . $Self->{LayoutObject}->{LanguageObject}->Get('Class')
+                . ' '
+                . $Self->{LayoutObject}->{LanguageObject}->Get($ClassName);
 
             $Output .= $Self->{LayoutObject}->ITSMConfigItemListShow(
                 ConfigItemIDs => $SearchResultList,

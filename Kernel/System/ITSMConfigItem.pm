@@ -1,8 +1,8 @@
 # --
 # Kernel/System/ITSMConfigItem.pm - all config item function
-# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.34 2011-11-07 11:22:25 ub Exp $
+# $Id: ITSMConfigItem.pm,v 1.34.2.1 2013-06-28 11:14:52 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -29,7 +29,7 @@ use Kernel::System::User;
 use Kernel::System::XML;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.34 $) [1];
+$VERSION = qw($Revision: 1.34.2.1 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',
@@ -922,9 +922,9 @@ sub ConfigItemSearch {
 
         next ARRAYPARAM if !@{ $Param{$ArrayParam} };
 
-        # quote
+        # quote as integer
         for my $OneParam ( @{ $Param{$ArrayParam} } ) {
-            $OneParam = $Self->{DBObject}->Quote($OneParam);
+            $OneParam = $Self->{DBObject}->Quote( $OneParam, 'Integer' );
         }
 
         # create string
@@ -1315,7 +1315,7 @@ sub _FindWarnConfigItems {
 
         next CONFIGITEMID
             if $Param{ScannedConfigItemIDs}->{$ConfigItemID}->{Type}
-                && $Param{ScannedConfigItemIDs}->{$ConfigItemID}->{Type} eq 'incident';
+            && $Param{ScannedConfigItemIDs}->{$ConfigItemID}->{Type} eq 'incident';
 
         # set warning state
         $Param{ScannedConfigItemIDs}->{$ConfigItemID}->{Type} = 'warning';
@@ -1373,6 +1373,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.34 $ $Date: 2011-11-07 11:22:25 $
+$Revision: 1.34.2.1 $ $Date: 2013-06-28 11:14:52 $
 
 =cut
