@@ -2,7 +2,7 @@
 # Kernel/Modules/AgentITSMConfigItemSearch.pm - the OTRS ITSM config item search module
 # Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearch.pm,v 1.36 2013-04-24 03:33:07 cr Exp $
+# $Id: AgentITSMConfigItemSearch.pm,v 1.37 2013-06-28 11:22:32 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -20,7 +20,7 @@ use Kernel::System::SearchProfile;
 use Kernel::System::CSV;
 
 use vars qw($VERSION);
-$VERSION = qw($Revision: 1.36 $) [1];
+$VERSION = qw($Revision: 1.37 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -84,6 +84,14 @@ sub Run {
 
     # get class id
     my $ClassID = $Self->{ParamObject}->GetParam( Param => 'ClassID' );
+
+    # check if class id is valid
+    if ( $ClassID && !$ClassList->{$ClassID} ) {
+        return $Self->{LayoutObject}->ErrorScreen(
+            Message => 'Invalid ClassID!',
+            Comment => 'Please contact the admin.',
+        );
+    }
 
     # get single params
     my %GetParam;
