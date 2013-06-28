@@ -1,8 +1,8 @@
 # --
 # Kernel/System/ITSMConfigItem.pm - all config item function
-# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.36.2.3 2012-12-03 12:28:17 ub Exp $
+# $Id: ITSMConfigItem.pm,v 1.36.2.4 2013-06-28 11:15:13 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -31,7 +31,7 @@ use Kernel::System::VirtualFS;
 use Kernel::System::VariableCheck qw(:all);
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.36.2.3 $) [1];
+$VERSION = qw($Revision: 1.36.2.4 $) [1];
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',
@@ -1254,9 +1254,9 @@ sub ConfigItemSearch {
 
         next ARRAYPARAM if !@{ $Param{$ArrayParam} };
 
-        # quote
+        # quote as integer
         for my $OneParam ( @{ $Param{$ArrayParam} } ) {
-            $OneParam = $Self->{DBObject}->Quote($OneParam);
+            $OneParam = $Self->{DBObject}->Quote( $OneParam, 'Integer' );
         }
 
         # create string
@@ -1860,6 +1860,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.36.2.3 $ $Date: 2012-12-03 12:28:17 $
+$Revision: 1.36.2.4 $ $Date: 2013-06-28 11:15:13 $
 
 =cut

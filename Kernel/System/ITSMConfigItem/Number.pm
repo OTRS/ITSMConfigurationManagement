@@ -1,8 +1,8 @@
 # --
 # Kernel/System/ITSMConfigItem/Number.pm - sub module of ITSMConfigItem.pm with number functions
-# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
 # --
-# $Id: Number.pm,v 1.5 2012-11-20 19:05:54 mh Exp $
+# $Id: Number.pm,v 1.5.2.1 2013-06-28 11:15:13 ub Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -15,7 +15,7 @@ use strict;
 use warnings;
 
 use vars qw(@ISA $VERSION);
-$VERSION = qw($Revision: 1.5 $) [1];
+$VERSION = qw($Revision: 1.5.2.1 $) [1];
 
 =head1 NAME
 
@@ -88,9 +88,6 @@ sub ConfigItemNumberLookup {
     # check if result is already cached
     return $Self->{Cache}->{ConfigItemNumberLookup}->{Number}->{ $Param{ConfigItemNumber} }
         if $Self->{Cache}->{ConfigItemNumberLookup}->{Number}->{ $Param{ConfigItemNumber} };
-
-    # quote
-    $Param{ConfigItemNumber} = $Self->{DBObject}->Quote( $Param{ConfigItemNumber} );
 
     # ask database
     $Self->{DBObject}->Prepare(
@@ -255,6 +252,6 @@ did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =head1 VERSION
 
-$Revision: 1.5 $ $Date: 2012-11-20 19:05:54 $
+$Revision: 1.5.2.1 $ $Date: 2013-06-28 11:15:13 $
 
 =cut
