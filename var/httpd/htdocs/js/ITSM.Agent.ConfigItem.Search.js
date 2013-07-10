@@ -1,8 +1,8 @@
 // --
 // ITSM.Agent.ConfigItem.Search.js - provides the special module functions for the global search
-// Copyright (C) 2001-2011 OTRS AG, http://otrs.org/\n";
+// Copyright (C) 2001-2013 OTRS AG, http://otrs.org/\n";
 // --
-// $Id: ITSM.Agent.ConfigItem.Search.js,v 1.14 2011-12-01 13:58:51 ub Exp $
+// $Id: ITSM.Agent.ConfigItem.Search.js,v 1.15 2013-07-10 17:17:54 ub Exp $
 // --
 // This software comes with ABSOLUTELY NO WARRANTY. For details, see
 // the enclosed file COPYING for license information (AGPL). If you
@@ -52,9 +52,8 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
      */
     TargetNS.SearchAttributeAdd = function (Attribute) {
 
-        // escape :: with two leading backslashes in front of each :
-        // this is necessary because jQuery can not handle a colon (:) in id attributes
-        Attribute = Attribute.replace(/::/g, '\\:\\:');
+        // escape possible colons (:) in element id because jQuery can not handle it in id attribute selectors
+        Attribute = Core.App.EscapeSelector(Attribute);
 
         var $Label = $('#SearchAttributesHidden label#Label' + Attribute);
 
@@ -81,10 +80,9 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
                     $(this).attr('id', InputID);
                     $(this).prev().attr('id', InputID + 'Selected');
 
-                    // escape : with two leading backslashes in front of each :
-                    // this is necessary because jQuery can not handle a colon (:) in id attributes
-                    ITSM.Agent.CustomerSearch.Init($('#' + InputID.replace(/:/g, '\\:')), parseInt( Core.Config.Get('Autocomplete.Active'),10 ));
-                    
+                    // escape possible colons (:) in element id because jQuery can not handle it in id attribute selectors
+                    ITSM.Agent.CustomerSearch.Init($('#' + Core.App.EscapeSelector(InputID)), parseInt( Core.Config.Get('Autocomplete.Active'),10 ));
+
                     // prevent dialog closure when select a customer from the list
                     $('ul.ui-autocomplete').bind('click', function(Event) { Event.stopPropagation(); return false; });
                 });
