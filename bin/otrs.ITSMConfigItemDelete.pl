@@ -141,6 +141,7 @@ elsif ($Class) {
     # get class list
     my $ClassList = $CommonObject{GeneralCatalogObject}->ItemList(
         Class => 'ITSM::ConfigItem::Class',
+        Valid => 0,
     );
 
     # invert the hash to have the classes names as keys
