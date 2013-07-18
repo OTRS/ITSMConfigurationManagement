@@ -2,8 +2,6 @@
 # Kernel/System/Stats/Dynamic/ITSMConfigItem.pm - all dynamic itsm config item stats functions
 # Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.5 2011-06-29 11:15:43 ub Exp $
-# --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
@@ -16,9 +14,6 @@ use warnings;
 
 use Kernel::System::GeneralCatalog;
 use Kernel::System::ITSMConfigItem;
-
-use vars qw($VERSION);
-$VERSION = qw($Revision: 1.5 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;

@@ -2,8 +2,6 @@
 # Kernel/System/ITSMConfigItem/XML/Type/TextArea.pm - xml backend module
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: TextArea.pm,v 1.7 2012-11-20 19:06:44 mh Exp $
-# --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
@@ -13,9 +11,6 @@ package Kernel::System::ITSMConfigItem::XML::Type::TextArea;
 
 use strict;
 use warnings;
-
-use vars qw($VERSION);
-$VERSION = qw($Revision: 1.7 $) [1];
 
 =head1 NAME
 
@@ -225,9 +220,5 @@ the enclosed file COPYING for license information (AGPL). If you
 did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =cut
-
-=head1 VERSION
-
-$Revision: 1.7 $ $Date: 2012-11-20 19:06:44 $
 
 =cut

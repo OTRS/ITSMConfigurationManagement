@@ -2,8 +2,6 @@
 # Kernel/Output/HTML/ITSMConfigItemLayoutDummy.pm - layout backend module
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutDummy.pm,v 1.5 2012-08-06 12:25:46 ub Exp $
-# --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
@@ -13,9 +11,6 @@ package Kernel::Output::HTML::ITSMConfigItemLayoutDummy;
 
 use strict;
 use warnings;
-
-use vars qw($VERSION);
-$VERSION = qw($Revision: 1.5 $) [1];
 
 =head1 NAME
 
@@ -254,9 +249,5 @@ the enclosed file COPYING for license information (AGPL). If you
 did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =cut
-
-=head1 VERSION
-
-$Revision: 1.5 $ $Date: 2012-08-06 12:25:46 $
 
 =cut

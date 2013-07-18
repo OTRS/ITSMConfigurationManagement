@@ -2,8 +2,6 @@
 // ITSM.Agent.ConfigItem.Search.js - provides the special module functions for the global search
 // Copyright (C) 2001-2013 OTRS AG, http://otrs.org/\n";
 // --
-// $Id: ITSM.Agent.ConfigItem.Search.js,v 1.15 2013-07-10 17:17:54 ub Exp $
-// --
 // This software comes with ABSOLUTELY NO WARRANTY. For details, see
 // the enclosed file COPYING for license information (AGPL). If you
 // did not receive this file, see http://www.gnu.org/licenses/agpl.txt.

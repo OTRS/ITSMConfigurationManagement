@@ -2,8 +2,6 @@
 # ITSMConfigItemUniqueCIName.t - tests the functionality for unique CI names
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemUniqueCIName.t,v 1.2 2012-11-30 19:49:08 ub Exp $
-# --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.

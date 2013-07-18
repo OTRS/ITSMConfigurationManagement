@@ -2,8 +2,6 @@
 # Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm - import/export backend for ITSMConfigItem
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.25 2012-11-30 19:49:09 ub Exp $
-# --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
@@ -20,9 +18,6 @@ use Kernel::System::GeneralCatalog;
 use Kernel::System::ITSMConfigItem;
 use Kernel::System::Time;
 use Kernel::System::VariableCheck qw(:all);
-
-use vars qw($VERSION);
-$VERSION = qw($Revision: 1.25 $) [1];
 
 =head1 NAME
 
@@ -1700,9 +1695,5 @@ the enclosed file COPYING for license information (AGPL). If you
 did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =cut
-
-=head1 VERSION
-
-$Revision: 1.25 $ $Date: 2012-11-30 19:49:09 $
 
 =cut

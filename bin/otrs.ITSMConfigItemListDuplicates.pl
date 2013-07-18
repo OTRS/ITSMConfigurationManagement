@@ -3,8 +3,6 @@
 # bin/otrs.ITSMConfigItemListDuplicates.pl - list configitems with duplicate names
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: otrs.ITSMConfigItemListDuplicates.pl,v 1.2 2012-11-30 19:49:09 ub Exp $
-# --
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU AFFERO General Public License as published by
 # the Free Software Foundation; either version 3 of the License, or
@@ -29,9 +27,6 @@ use File::Basename;
 use FindBin qw($RealBin);
 use lib dirname($RealBin);
 use lib dirname($RealBin) . '/Custom';
-
-use vars qw($VERSION);
-$VERSION = qw($Revision: 1.2 $) [1];
 
 use Getopt::Long;
 use Kernel::Config;

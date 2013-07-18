@@ -2,7 +2,6 @@
 # Kernel/System/Service/PreferencesDB.pm - some user functions
 # Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
 # --
-# $Id: PreferencesDB.pm,v 1.5 2013-03-26 14:14:06 ub Exp $
 # $OldId: PreferencesDB.pm,v 1.7 2012/11/20 15:56:30 mh Exp $
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see

@@ -2,8 +2,6 @@
 # Kernel/Output/HTML/ITSMConfigItemLayoutDateTime.pm - layout backend module
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItemLayoutDateTime.pm,v 1.13 2012-06-06 14:45:04 ub Exp $
-# --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
@@ -13,9 +11,6 @@ package Kernel::Output::HTML::ITSMConfigItemLayoutDateTime;
 
 use strict;
 use warnings;
-
-use vars qw($VERSION);
-$VERSION = qw($Revision: 1.13 $) [1];
 
 =head1 NAME
 
@@ -358,9 +353,5 @@ the enclosed file COPYING for license information (AGPL). If you
 did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
 
 =cut
-
-=head1 VERSION
-
-$Revision: 1.13 $ $Date: 2012-06-06 14:45:04 $
 
 =cut

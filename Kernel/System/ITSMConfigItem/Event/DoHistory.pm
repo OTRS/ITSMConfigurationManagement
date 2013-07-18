@@ -2,8 +2,6 @@
 # Kernel/System/ITSMConfigItem/Event/DoHistory.pm - a event module for config items
 # Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
 # --
-# $Id: DoHistory.pm,v 1.13 2012-11-30 17:10:41 ub Exp $
-# --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
@@ -15,9 +13,6 @@ use strict;
 use warnings;
 
 use Kernel::System::ITSMConfigItem;
-
-use vars qw($VERSION);
-$VERSION = qw($Revision: 1.13 $) [1];
 
 =head1 NAME
 

@@ -2,8 +2,6 @@
 # Kernel/System/LinkObject/ITSMConfigItem.pm - to link config item objects
 # Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
 # --
-# $Id: ITSMConfigItem.pm,v 1.18 2013-03-25 19:00:46 ub Exp $
-# --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
@@ -16,9 +14,6 @@ use warnings;
 
 use Kernel::System::GeneralCatalog;
 use Kernel::System::ITSMConfigItem;
-
-use vars qw($VERSION);
-$VERSION = qw($Revision: 1.18 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;

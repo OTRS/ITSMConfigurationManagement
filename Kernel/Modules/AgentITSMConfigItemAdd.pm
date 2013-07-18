@@ -2,8 +2,6 @@
 # Kernel/Modules/AgentITSMConfigItemAdd.pm - the OTRS ITSM config item add module
 # Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemAdd.pm,v 1.10 2013-03-26 14:34:27 ub Exp $
-# --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
@@ -16,9 +14,6 @@ use warnings;
 
 use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
-
-use vars qw($VERSION);
-$VERSION = qw($Revision: 1.10 $) [1];
 
 sub new {
     my ( $Type, %Param ) = @_;

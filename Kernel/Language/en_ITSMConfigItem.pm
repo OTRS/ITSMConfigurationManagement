@@ -2,8 +2,6 @@
 # Kernel/Language/en_ITSMConfigItem.pm - the english translation of ITSMConfigItem
 # Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
 # --
-# $Id: en_ITSMConfigItem.pm,v 1.3 2011-02-11 09:11:18 mb Exp $
-# --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
@@ -13,9 +11,6 @@ package Kernel::Language::en_ITSMConfigItem;
 
 use strict;
 use warnings;
-
-use vars qw($VERSION);
-$VERSION = qw($Revision: 1.3 $) [1];
 
 sub Data {
     my $Self = shift;

@@ -2,8 +2,6 @@
 # AgentITSMConfigItemSearchResultPrint.dtl - html for config item search results (print only)
 # Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
 # --
-# $Id: AgentITSMConfigItemSearchResultPrint.dtl,v 1.1 2010-09-09 22:22:28 cr Exp $
-# --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
