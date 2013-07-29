@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 # --
 # bin/otrs.ITSMConfigItemListDuplicates.pl - list configitems with duplicate names
-# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
 # --
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU AFFERO General Public License as published by
@@ -55,7 +55,7 @@ $CommonObject{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new(%Commo
 
 print "otrs.ITSMConfigItemListDuplicates.pl <Revision $VERSION> - ";
 print "(List ConfigItems which have a non-unique name).\n";
-print "Copyright (C) 2001-2012 OTRS AG, http://otrs.org/\n\n";
+print "Copyright (C) 2001-2013 OTRS AG, http://otrs.com/\n\n";
 
 my $Help      = '';
 my $Class     = '';

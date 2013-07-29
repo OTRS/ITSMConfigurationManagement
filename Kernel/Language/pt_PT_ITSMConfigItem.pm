@@ -1,6 +1,6 @@
 # --
 # Kernel/Language/pt_PT_ITSMConfigItem.pm - translation file
-# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
 # Copyright (C) 2012 FCCN - Rui Francisco <rui.francisco@fccn.pt>
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
