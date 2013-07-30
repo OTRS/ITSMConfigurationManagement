@@ -63,8 +63,6 @@
 //]]></script>
 <!-- dtl:block:SearchAJAX -->
 
-$Include{"AgentITSMCustomerSearch"}
-
 <!-- dtl:block:SearchAJAXSetClass -->
 <script type="text/javascript">//<![CDATA[
 /*global ITSM: true */

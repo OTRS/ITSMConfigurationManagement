@@ -360,27 +360,6 @@ sub Run {
             );
         }
 
-        # build customer search autocomplete field
-        my $AutoCompleteConfig
-            = $Self->{ConfigObject}->Get('Ticket::Frontend::CustomerSearchAutoComplete');
-
-        $AutoCompleteConfig->{DynamicWidth}
-            = $Self->{ConfigObject}
-            ->Get('Ticket::Frontend::CustomerSearchAutoComplete::DynamicWidth');
-
-        # set autocomplete parameters
-        $Self->{LayoutObject}->Block(
-            Name => 'CustomerSearchITSMSearchAutocomplete',
-            Data => {
-                active              => $AutoCompleteConfig->{Active},
-                minQueryLength      => $AutoCompleteConfig->{MinQueryLength} || 2,
-                queryDelay          => $AutoCompleteConfig->{QueryDelay} || 100,
-                typeAhead           => $AutoCompleteConfig->{TypeAhead} || 'false',
-                maxResultsDisplayed => $AutoCompleteConfig->{MaxResultsDisplayed} || 20,
-                dynamicWidth        => $AutoCompleteConfig->{DynamicWidth} || 1,
-            },
-        );
-
         # output template
         $Output = $Self->{LayoutObject}->Output(
             TemplateFile => 'AgentITSMConfigItemSearch',

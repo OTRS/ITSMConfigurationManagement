@@ -536,31 +536,11 @@ sub Run {
         },
     );
 
-    # build customer search autocomplete field
-    my $AutoCompleteConfig
-        = $Self->{ConfigObject}->Get('Ticket::Frontend::CustomerSearchAutoComplete');
-
-    $AutoCompleteConfig->{DynamicWidth}
-        = $Self->{ConfigObject}
-        ->Get('ITSMChange::Frontend::CustomerSearchAutoComplete::DynamicWidth');
-
-    $Self->{LayoutObject}->Block(
-        Name => 'CustomerSearchAutoComplete',
-        Data => {
-            minQueryLength      => $AutoCompleteConfig->{MinQueryLength}      || 2,
-            queryDelay          => $AutoCompleteConfig->{QueryDelay}          || 100,
-            typeAhead           => $AutoCompleteConfig->{TypeAhead}           || 'false',
-            maxResultsDisplayed => $AutoCompleteConfig->{MaxResultsDisplayed} || 20,
-            dynamicWidth        => $AutoCompleteConfig->{DynamicWidth}        || 1,
-        },
-    );
-
     # output xml form
     if ( $XMLDefinition->{Definition} ) {
         $Self->_XMLFormOutput(
             XMLDefinition => $XMLDefinition->{DefinitionRef},
             %XMLFormOutputParam,
-            ActiveAutoComplete => $AutoCompleteConfig->{Active},
         );
     }
 
@@ -865,8 +845,7 @@ sub _XMLFormOutput {
                 $Self->{LayoutObject}->Block(
                     Name => 'CustomerSearchInit',
                     Data => {
-                        ItemID             => $ItemID,
-                        ActiveAutoComplete => $Param{ActiveAutoComplete},
+                        ItemID => $ItemID,
                     },
                 );
             }
@@ -950,7 +929,6 @@ sub _XMLFormOutput {
                     %XMLFormOutputParam,
                     Level              => $Param{Level} + 1,
                     Prefix             => $InputKey,
-                    ActiveAutoComplete => $Param{ActiveAutoComplete},
                 );
             }
 

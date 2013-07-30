@@ -79,10 +79,13 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
                     $(this).prev().attr('id', InputID + 'Selected');
 
                     // escape possible colons (:) in element id because jQuery can not handle it in id attribute selectors
-                    ITSM.Agent.CustomerSearch.Init($('#' + Core.App.EscapeSelector(InputID)), parseInt( Core.Config.Get('Autocomplete.Active'),10 ));
+                    ITSM.Agent.CustomerSearch.Init( $('#' + Core.App.EscapeSelector(InputID) ) );
 
                     // prevent dialog closure when select a customer from the list
-                    $('ul.ui-autocomplete').bind('click', function(Event) { Event.stopPropagation(); return false; });
+                    $('ul.ui-autocomplete').bind('click', function(Event) {
+                        Event.stopPropagation();
+                        return false;
+                    });
                 });
             }
 
