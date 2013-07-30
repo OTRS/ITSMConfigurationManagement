@@ -91,7 +91,7 @@
             </div>
             <div id="ITSMTree">
 <!-- dtl:block:Tree -->
-                <div id="ITSMTable"  class="FixedHeader">
+                <div id="ITSMTable"  class="TicketList">
                     <div class="ControlRow">
                         <div class="ITSMItemView Icons">
 <!-- dtl:block:Expand -->
@@ -106,7 +106,7 @@
                     </div>
                     <div id="ITSMTableBody" class="ActionRow">
                         <div class="Scroller">
-                            <table id="FixedTable" class="TableSmall">
+                            <table class="TableSmall">
                                 <thead>
                                     <tr>
                                         <th><span>$Text{"Version Incident State"}</span></th>
