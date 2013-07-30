@@ -206,15 +206,6 @@ sub Run {
         );
     }
 
-    my $FixedOverviewControl
-        = $Self->{ConfigObject}->Get('ITSMConfigItem::Frontend::FixedOverviewControl');
-
-    if ($FixedOverviewControl) {
-        $Self->{LayoutObject}->Block(
-            Name => 'ActivateFixedOverviewControl',
-        );
-    }
-
     # use template
     $Output .= $Self->{LayoutObject}->Output(
         TemplateFile => 'AgentITSMConfigItemOverviewSmall',

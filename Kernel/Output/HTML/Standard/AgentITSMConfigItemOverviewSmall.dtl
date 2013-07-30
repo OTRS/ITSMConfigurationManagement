@@ -12,12 +12,12 @@
 //]]></script>
 <!-- dtl:js_on_document_complete -->
 
-<div id="OverviewBody" class="Overview FixedHeader">
-    <table id="FixedTable" class="TableSmall" summary="A generic ITSM Configuration Item table">
+<div id="OverviewBody" class="Overview TicketList">
+    <table class="TableSmall" summary="A generic ITSM Configuration Item table">
         <thead>
             <tr>
 <!-- dtl:block:RecordCurInciSignalHeader -->
-                <th class="Fixed">
+                <th>
                     <span>$Text{"State"}</span>
                 </th>
 <!-- dtl:block:RecordCurInciSignalHeader -->
@@ -42,7 +42,7 @@
                 </th>
 <!-- dtl:block:RecordCurDeplStateHeader -->
 <!-- dtl:block:RecordCurDeplStateTypeHeader -->
-                <th class="Fixed">
+                <th>
                     <span>$Text{"Deployment State Type"}</span>
                 </th>
 <!-- dtl:block:RecordCurDeplStateTypeHeader -->
@@ -52,7 +52,7 @@
                 </th>
 <!-- dtl:block:RecordCurInciStateHeader -->
 <!-- dtl:block:RecordCurInciStateTypeHeader -->
-                <th class="Fixed">
+                <th>
                     <span>$Text{"Current Incident State Type"}</span>
                 </th>
 <!-- dtl:block:RecordCurInciStateTypeHeader -->
@@ -139,7 +139,6 @@
 </div>
 <!-- dtl:js_on_document_complete -->
 <script type="text/javascript">//<![CDATA[
-    Core.UI.InitTableHead($('#FixedTable thead'), $('#FixedTable tbody'));
     $('.MasterAction').bind('click', function (Event) {
         var $MasterActionLink = $(this).find('.MasterActionLink');
         // only act if the link was not clicked directly
@@ -148,16 +147,5 @@
             return false;
         }
     });
-    $(window).resize(function() {
-        Core.UI.AdjustTableHead($('#FixedTable thead'), $('#FixedTable tbody'));
-    });
 //]]></script>
 <!-- dtl:js_on_document_complete -->
-
-<!-- dtl:block:ActivateFixedOverviewControl -->
-<!--dtl:js_on_document_complete-->
-<script type="text/javascript">//<![CDATA[
-    Core.UI.StaticTableControl($('#OverviewControl').add($('#OverviewBody')));
-//]]></script>
-<!--dtl:js_on_document_complete-->
-<!-- dtl:block:ActivateFixedOverviewControl -->

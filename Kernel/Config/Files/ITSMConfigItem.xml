@@ -522,17 +522,6 @@
             </Hash>
         </Setting>
     </ConfigItem>
-    <ConfigItem Name="ITSMConfigItem::Frontend::FixedOverviewControl" Required="1" Valid="1">
-        <Description Translatable="1">With this config option it is possible to deactive the fixed overview control bar in the AgentITSMConfigItem overview. In some scenarios this will be necessary, f.e. due to small screen resolutions in combination with a lot of config item classes.</Description>
-        <Group>ITSM Configuration Management</Group>
-        <SubGroup>Frontend::Agent::ITSMConfigItemOverview</SubGroup>
-        <Setting>
-            <Option SelectedID="1">
-                <Item Key="1">Yes</Item>
-                <Item Key="0">No</Item>
-            </Option>
-        </Setting>
-    </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Hook" Required="1" Valid="1">
         <Description Translatable="1">The identifier for a configuration item, e.g. ConfigItem#, MyConfigItem#. The default is ConfigItem#.</Description>
         <Group>ITSM Configuration Management</Group>
