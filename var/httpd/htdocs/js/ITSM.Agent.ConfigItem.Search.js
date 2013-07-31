@@ -71,7 +71,7 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
                     return false;
                 });
 
-                // set autocomple to customer type fields
+                // set autocomplete to customer type fields
                 $('#SearchInsert').find('.ITSMCustomerSearch').each(function() {
                     var InputID = $(this).attr('id') + 'Autocomplete';
                     $(this).removeClass('ITSMCustomerSearch');
