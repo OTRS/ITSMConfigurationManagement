@@ -85,18 +85,6 @@ sub Run {
     my @SortByArray  = ($SortBy);
     my @OrderByArray = ($OrderBy);
 
-    # investigate refresh
-    my $Refresh = $Self->{UserRefreshTime} ? 60 * $Self->{UserRefreshTime} : undef;
-
-    # output header
-    my $Output = $Self->{LayoutObject}->Header(
-        Title   => 'Overview',
-        Refresh => $Refresh,
-    );
-    $Output .= $Self->{LayoutObject}->NavigationBar();
-    $Self->{LayoutObject}->Print( Output => \$Output );
-    $Output = '';
-
     # get class list
     my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
         Class => 'ITSM::ConfigItem::Class',
@@ -217,6 +205,18 @@ sub Run {
             Comment => 'Please contact the admin.',
         );
     }
+
+    # investigate refresh
+    my $Refresh = $Self->{UserRefreshTime} ? 60 * $Self->{UserRefreshTime} : undef;
+
+    # output header
+    my $Output = $Self->{LayoutObject}->Header(
+        Title   => 'Overview',
+        Refresh => $Refresh,
+    );
+    $Output .= $Self->{LayoutObject}->NavigationBar();
+    $Self->{LayoutObject}->Print( Output => \$Output );
+    $Output = '';
 
     # display all navbar filters
     my %NavBarFilter;
