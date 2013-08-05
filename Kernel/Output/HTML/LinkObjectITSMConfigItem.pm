@@ -15,6 +15,7 @@ use warnings;
 use Kernel::Output::HTML::Layout;
 use Kernel::System::GeneralCatalog;
 use Kernel::System::ITSMConfigItem;
+use Kernel::System::HTMLUtils;
 
 =head1 NAME
 
@@ -56,6 +57,7 @@ sub new {
     $Self->{LayoutObject}         = Kernel::Output::HTML::Layout->new( %{$Self} );
     $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
     $Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new( %{$Self} );
+    $Self->{HTMLUtilsObject}      = Kernel::System::HTMLUtils->new( %{$Self} );
 
     # define needed variables
     $Self->{ObjectData} = {
@@ -174,6 +176,24 @@ sub TableCreateComplex {
         return;
     }
 
+    # get the column config
+    my $ColumnConfig = $Self->{ConfigObject}->Get('LinkObject::ITSMConfigItem::ShowColumnsByClass');
+
+    # get the configered columns and reorganize them by class name
+    my %ColumnByClass;
+    if ( $ColumnConfig && ref $ColumnConfig eq 'ARRAY' && @{$ColumnConfig} ) {
+        for my $Name ( @{$ColumnConfig} ) {
+
+            # extract the class name and the column name
+            if ( $Name =~ m{ \A ([^:]+) :: (.+) \z }xms ) {
+                my ($Class, $Column)  = ($1, $2);
+
+                # create new entry
+                push @{ $ColumnByClass{$Class} }, $Column;
+            }
+        }
+    }
+
     # convert the list
     my %LinkList;
     for my $LinkType ( keys %{ $Param{ObjectLinkListWithData} } ) {
@@ -205,6 +225,9 @@ sub TableCreateComplex {
         # extract config item data
         my $ConfigItemList = $LinkList{$Class};
 
+        # to store the column headline
+        my @ShowColumnsHeadlines;
+
         # create the item list
         my @ItemList;
         for my $ConfigItemID (
@@ -215,6 +238,21 @@ sub TableCreateComplex {
 
             # extract version data
             my $Version = $ConfigItemList->{$ConfigItemID}->{Data};
+
+            # make sure the column headline array is empty for each loop
+            @ShowColumnsHeadlines = ();
+
+            # get the version data, including all the XML data
+            my $VersionXMLData = $Self->{ConfigItemObject}->VersionGet(
+                ConfigItemID => $ConfigItemID,
+                XMLDataGet   => 1,
+            );
+
+            # convert the XML data into a hash
+            my $ExtendedVersionData = $Self->_XMLData2Hash(
+                XMLDefinition => $VersionXMLData->{XMLDefinition},
+                XMLData       => $VersionXMLData->{XMLData}->[1]->{Version}->[1],
+            );
 
             my @ItemColumns = (
                 {
@@ -229,6 +267,10 @@ sub TableCreateComplex {
                     Link    => '$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID='
                         . $ConfigItemID,
                 },
+            );
+
+            # these columns will be added if no class based column config is defined
+            my @AdditionalDefaultItemColumns = (
                 {
                     Type      => 'Text',
                     Content   => $Version->{Name},
@@ -244,6 +286,137 @@ sub TableCreateComplex {
                     Content => $Version->{CreateTime},
                 },
             );
+
+            # individual column config for this class exists
+            if ( $ColumnByClass{$Class} ) {
+
+                COLUMN:
+                for my $Column ( @{ $ColumnByClass{$Class} } ) {
+
+                    # process some non-xml attributes
+                    if ( $Version->{$Column} ) {
+
+                        # handle the CI name
+                        if ( $Column eq 'Name' ) {
+
+                            # add the column
+                            push @ItemColumns, {
+                                Type      => 'Text',
+                                Content   => $Version->{Name},
+                                MaxLength => 50,
+                            };
+
+                            # add the headline
+                            push @ShowColumnsHeadlines, {
+                                Content => 'Name',
+                            };
+                        }
+
+                        # special translation handling
+                        elsif ( $Column eq 'CurDeplState' ) {
+
+                            # add the column
+                            push @ItemColumns, {
+                                Type      => 'Text',
+                                Content   => $Version->{$Column},
+                                Translate => 1,
+                            };
+
+                            # add the headline
+                            push @ShowColumnsHeadlines, {
+                                Content => 'Deployment State',
+                            };
+                        }
+
+                        # special translation handling
+                        elsif ( $Column eq 'CurInciState' ) {
+
+                            # add the column
+                            push @ItemColumns, {
+                                Type      => 'Text',
+                                Content   => $Version->{$Column},
+                                Translate => 1,
+                            };
+
+                            # add the headline
+                            push @ShowColumnsHeadlines, {
+                                Content => 'Incident State',
+                            };
+                        }
+                        # special translation handling
+                        elsif ( $Column eq 'Class' ) {
+
+                            # add the column
+                            push @ItemColumns, {
+                                Type      => 'Text',
+                                Content   => $Version->{$Column},
+                                Translate => 1,
+                            };
+
+                            # add the headline
+                            push @ShowColumnsHeadlines, {
+                                Content => 'Class',
+                            };
+                        }
+
+                        # special date/time handling
+                        elsif ( $Column eq 'CreateTime' ) {
+
+                            # add the column
+                            push @ItemColumns, {
+                                Type    => 'TimeLong',
+                                Content => $Version->{CreateTime},
+                            };
+
+                            # add the headline
+                            push @ShowColumnsHeadlines, {
+                                Content => 'Created',
+                            };
+                        }
+
+                        next COLUMN;
+                    }
+
+                    # convert to ascii text in case the value contains html
+                    my $Value = $Self->{HTMLUtilsObject}->ToAscii( String => $ExtendedVersionData->{$Column}->{Value} ) || '';
+
+                    # convert all whitespace and newlines to single spaces
+                    $Value =~ s{ \s+ }{ }gxms;
+
+                    # add the column
+                    push @ItemColumns, {
+                        Type      => 'Text',
+                        Content   => $Value,
+                    };
+
+                    # add the headline
+                    push @ShowColumnsHeadlines, {
+                        Content => $ExtendedVersionData->{$Column}->{Name} || '',
+                    };
+                }
+            }
+
+            # individual column config for this class does not exist, so the default columns will be used
+            else {
+
+                # add the default columns
+                push @ItemColumns, @AdditionalDefaultItemColumns;
+
+                # add the default column headlines
+                @ShowColumnsHeadlines = (
+                    {
+                        Content => 'Name',
+                    },
+                    {
+                        Content => 'Deployment State',
+                        Width   => 130,
+                    },
+                    {
+                        Content => 'Created',
+                        Width   => 130,
+                    },
+                );
+            }
 
             push @ItemList, \@ItemColumns;
         }
@@ -263,20 +436,12 @@ sub TableCreateComplex {
                     Content => 'ConfigItem#',
                     Width   => 100,
                 },
-                {
-                    Content => 'Name',
-                },
-                {
-                    Content => 'Deployment State',
-                    Width   => 130,
-                },
-                {
-                    Content => 'Created',
-                    Width   => 130,
-                },
             ],
             ItemList => \@ItemList,
         );
+
+        # add the column headlines
+        push @{ $Block{Headline} }, @ShowColumnsHeadlines;
 
         push @BlockData, \%Block;
     }
@@ -684,6 +849,92 @@ sub SearchOptionList {
     }
 
     return @SearchOptionList;
+}
+
+=item _XMLData2Hash()
+
+returns a hash reference with all xml data of a config item
+
+Return
+
+    $Data = {
+        'HardDisk::2' => {
+            Value => 'HD2',
+            Name  => 'Hard Disk',
+         },
+        'CPU::1' => {
+            Value => '',
+            Name  => 'CPU',
+        },
+        'HardDisk::2::Capacity::1' => {
+            Value => '780 GB',
+            Name  => 'Capacity',
+        },
+    };
+
+    my $Data = $LinkObject->_XMLData2Hash(
+        XMLDefinition => $Version->{XMLDefinition},
+        XMLData       => $Version->{XMLData}->[1]->{Version}->[1],
+        Data          => \%DataHashRef,                                 # optional
+        Prefix        => 'HardDisk::1',                                 # optional
+    );
+
+=cut
+
+sub _XMLData2Hash {
+    my ( $Self, %Param ) = @_;
+
+    # check needed stuff
+    return if !$Param{XMLData};
+    return if !$Param{XMLDefinition};
+    return if ref $Param{XMLData} ne 'HASH';
+    return if ref $Param{XMLDefinition} ne 'ARRAY';
+
+    # to store the return data
+    my $Data = $Param{Data} || {};
+
+    ITEM:
+    for my $Item ( @{ $Param{XMLDefinition} } ) {
+        COUNTER:
+        for my $Counter ( 1 .. $Item->{CountMax} ) {
+
+            # lookup value
+            my $Value = $Self->{ConfigItemObject}->XMLValueLookup(
+                Item  => $Item,
+                Value => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content} || '',
+            );
+
+            # create output string
+            $Value = $Self->{LayoutObject}->ITSMConfigItemOutputStringCreate(
+                Value => $Value,
+                Item  => $Item,
+            );
+
+            # add prefix
+            my $Prefix = $Item->{Key} . '::' . $Counter;
+            if ( $Param{Prefix} ) {
+                $Prefix = $Param{Prefix} . '::' . $Prefix;
+            }
+
+            # store the item in hash
+            $Data->{$Prefix} = {
+                Name  => $Item->{Name},
+                Value => $Value,
+            };
+
+            # start recursion, if "Sub" was found
+            if ( $Item->{Sub} ) {
+                $Data = $Self->_XMLData2Hash(
+                    XMLDefinition => $Item->{Sub},
+                    XMLData       => $Param{XMLData}->{ $Item->{Key} }->[$Counter],
+                    Prefix        => $Prefix,
+                    Data          => $Data,
+                );
+            }
+        }
+    }
+
+    return $Data;
 }
 
 1;

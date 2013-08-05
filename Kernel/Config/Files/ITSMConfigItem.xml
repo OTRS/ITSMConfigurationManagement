@@ -271,6 +271,27 @@
             <String Regex="">Computer</String>
         </Setting>
     </ConfigItem>
+    <ConfigItem Name="LinkObject::ITSMConfigItem::ShowColumnsByClass" Required="0" Valid="0">
+        <Description Translatable="1">Defines the shown columns of CIs in the link table complex view, depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Core::LinkObject</SubGroup>
+        <Setting>
+            <Array>
+                <Item>Computer::Name</Item>
+                <Item>Computer::CurDeplState</Item>
+                <Item>Computer::HardDisk::1</Item>
+                <Item>Computer::HardDisk::1::Capacity::1</Item>
+                <Item>Computer::HardDisk::2</Item>
+                <Item>Computer::HardDisk::2::Capacity::1</Item>
+                <Item>Computer::HardDisk::3</Item>
+                <Item>Computer::HardDisk::3::Capacity::1</Item>
+                <Item>Computer::WarrantyExpirationDate::1</Item>
+                <Item>Computer::CreateTime</Item>
+                <Item>Location::Type::1</Item>
+                <Item>Location::Address::1</Item>
+            </Array>
+        </Setting>
+    </ConfigItem>
     <ConfigItem Name="Stats::DynamicObjectRegistration###ITSMConfigItem" Required="0" Valid="1">
         <Description Translatable="1">Module to generate ITSM config item statistics.</Description>
         <Group>Framework</Group>
@@ -430,14 +451,6 @@
             <String Regex="">ro</String>
         </Setting>
     </ConfigItem>
-    <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemSearch###SearchLimit" Required="1" Valid="1">
-        <Description Translatable="1">Defines the search limit for the AgentITSMConfigItemSearch screen.</Description>
-        <Group>ITSM Configuration Management</Group>
-        <SubGroup>Frontend::Agent::ViewConfigItemSearch</SubGroup>
-        <Setting>
-            <String Regex="">10000</String>
-        </Setting>
-    </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::AdminITSMConfigItem###EditorRows" Required="1" Valid="1">
         <Description Translatable="1">Defines the number of rows for the CI definition editor in the admin interface.</Description>
         <Group>ITSM Configuration Management</Group>
@@ -530,6 +543,14 @@
             <String Regex="">ConfigItem#</String>
         </Setting>
     </ConfigItem>
+    <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemSearch###SearchLimit" Required="1" Valid="1">
+        <Description Translatable="1">Defines the search limit for the AgentITSMConfigItemSearch screen.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ViewConfigItemSearch</SubGroup>
+        <Setting>
+            <String Regex="">10000</String>
+        </Setting>
+    </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemSearch###ShowColumns" Required="1" Valid="1">
         <Description Translatable="1">Defines the shown columns in the config item search. This option has no effect on the position of the column.</Description>
         <Group>ITSM Configuration Management</Group>
@@ -546,6 +567,49 @@
                 <Item Key="CurInciStateType">0</Item>
                 <Item Key="LastChanged">1</Item>
             </Hash>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemSearch###ShowColumnsByClass" Required="0" Valid="0">
+        <Description Translatable="1">Defines the shown columns of CIs in the config item search depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ViewConfigItemSearch</SubGroup>
+        <Setting>
+            <Array>
+                <Item>Computer::Name</Item>
+                <Item>Computer::Number</Item>
+                <Item>Computer::CurInciSignal</Item>
+                <Item>Computer::CurDeplState</Item>
+                <Item>Computer::HardDisk::1</Item>
+                <Item>Computer::HardDisk::1::Capacity::1</Item>
+                <Item>Computer::HardDisk::2</Item>
+                <Item>Computer::HardDisk::2::Capacity::1</Item>
+                <Item>Computer::HardDisk::3</Item>
+                <Item>Computer::HardDisk::3::Capacity::1</Item>
+                <Item>Computer::WarrantyExpirationDate::1</Item>
+                <Item>Computer::CreateTime</Item>
+                <Item>Location::CurInciSignal</Item>
+                <Item>Location::Number</Item>
+                <Item>Location::Type::1</Item>
+                <Item>Location::Name</Item>
+                <Item>Location::Address::1</Item>
+                <Item>Location::LastChanged</Item>
+            </Array>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemSearch###SearchCSVData" Required="1" Valid="1">
+        <Description Translatable="1">Data used to export the search result in CSV format.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ViewConfigItemSearch</SubGroup>
+        <Setting>
+            <Array>
+                <Item>Class</Item>
+                <Item>Incident State</Item>
+                <Item>Name</Item>
+                <Item>ConfigItemNumber</Item>
+                <Item>ChangeState</Item>
+                <Item>Version</Item>
+                <Item>Create Time</Item>
+            </Array>
         </Setting>
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItem###SearchLimit" Required="1" Valid="1">
@@ -574,19 +638,30 @@
             </Hash>
         </Setting>
     </ConfigItem>
-    <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemSearch###SearchCSVData" Required="1" Valid="1">
-        <Description Translatable="1">Data used to export the search result in CSV format.</Description>
+    <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumnsByClass" Required="0" Valid="0">
+        <Description Translatable="1">Defines the shown columns of CIs in the config item overview depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns.</Description>
         <Group>ITSM Configuration Management</Group>
-        <SubGroup>Frontend::Agent::ViewConfigItemSearch</SubGroup>
+        <SubGroup>Frontend::Agent::ViewConfigItem</SubGroup>
         <Setting>
             <Array>
-                <Item>Class</Item>
-                <Item>Incident State</Item>
-                <Item>Name</Item>
-                <Item>ConfigItemNumber</Item>
-                <Item>ChangeState</Item>
-                <Item>Version</Item>
-                <Item>Create Time</Item>
+                <Item>Computer::Name</Item>
+                <Item>Computer::Number</Item>
+                <Item>Computer::CurInciSignal</Item>
+                <Item>Computer::CurDeplState</Item>
+                <Item>Computer::HardDisk::1</Item>
+                <Item>Computer::HardDisk::1::Capacity::1</Item>
+                <Item>Computer::HardDisk::2</Item>
+                <Item>Computer::HardDisk::2::Capacity::1</Item>
+                <Item>Computer::HardDisk::3</Item>
+                <Item>Computer::HardDisk::3::Capacity::1</Item>
+                <Item>Computer::WarrantyExpirationDate::1</Item>
+                <Item>Computer::CreateTime</Item>
+                <Item>Location::CurInciSignal</Item>
+                <Item>Location::Number</Item>
+                <Item>Location::Type::1</Item>
+                <Item>Location::Name</Item>
+                <Item>Location::Address::1</Item>
+                <Item>Location::LastChanged</Item>
             </Array>
         </Setting>
     </ConfigItem>

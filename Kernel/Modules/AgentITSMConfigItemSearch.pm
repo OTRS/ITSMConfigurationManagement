@@ -1,6 +1,6 @@
 # --
 # Kernel/Modules/AgentITSMConfigItemSearch.pm - the OTRS ITSM config item search module
-# Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -16,6 +16,7 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
 use Kernel::System::SearchProfile;
 use Kernel::System::CSV;
+use Kernel::System::VariableCheck qw(:all);
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -882,6 +883,32 @@ sub Run {
                 }
             }
 
+            # get the configured columns and reorganize them by class name
+            if (
+                IsArrayRefWithData( $Self->{Config}->{ShowColumnsByClass} )
+                && $ClassID
+            ) {
+
+                my %ColumnByClass;
+                for my $Name ( @{ $Self->{Config}->{ShowColumnsByClass} } ) {
+
+                    # extract the class name and the column name
+                    if ( $Name =~ m{ \A ([^:]+) :: (.+) \z }xms ) {
+
+                        my ($Class, $Column)  = ($1, $2);
+
+                        # create new entry
+                        push @{ $ColumnByClass{$Class} }, $Column;
+                    }
+                }
+
+                # check if there is a specific column config for the selected class
+                my $SelectedClass = $ClassList->{ $ClassID };
+                if ( $ColumnByClass{$SelectedClass} ) {
+                    @ShowColumns = @{ $ColumnByClass{$SelectedClass} };
+                }
+            }
+
             my $ClassName = $ClassList->{$ClassID};
             my $Title
                 = $Self->{LayoutObject}->{LanguageObject}->Get('Config Item Search Results')
@@ -894,6 +921,7 @@ sub Run {
                 ConfigItemIDs => $SearchResultList,
                 Total         => scalar @{$SearchResultList},
                 View          => $Self->{View},
+                Filter        => $ClassID,
                 Env           => $Self,
                 LinkPage      => $LinkPage,
                 LinkSort      => $LinkSort,

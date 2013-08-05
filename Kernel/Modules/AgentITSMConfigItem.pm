@@ -14,6 +14,7 @@ use warnings;
 
 use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
+use Kernel::System::VariableCheck qw(:all);
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -251,6 +252,33 @@ sub Run {
         for my $Name ( keys %PossibleColumn ) {
             next COLUMNNAME if !$PossibleColumn{$Name};
             push @ShowColumns, $Name;
+        }
+    }
+
+    # get the configured columns and reorganize them by class name
+    if (
+        IsArrayRefWithData( $Self->{Config}->{ShowColumnsByClass} )
+        && $Self->{Filter}
+        && $Self->{Filter} ne 'All'
+    ) {
+
+        my %ColumnByClass;
+        for my $Name ( @{ $Self->{Config}->{ShowColumnsByClass} } ) {
+
+            # extract the class name and the column name
+            if ( $Name =~ m{ \A ([^:]+) :: (.+) \z }xms ) {
+
+                my ($Class, $Column)  = ($1, $2);
+
+                # create new entry
+                push @{ $ColumnByClass{$Class} }, $Column;
+            }
+        }
+
+        # check if there is a specific column config for the selected class
+        my $SelectedClass = $ClassList->{ $Self->{Filter} };
+        if ( $ColumnByClass{$SelectedClass} ) {
+            @ShowColumns = @{ $ColumnByClass{$SelectedClass} };
         }
     }
 

@@ -1,5 +1,5 @@
 # --
-# AgentITSMConfigItemOverviewSmall.dtl - html for configurtion item overview table
+# AgentITSMConfigItemOverviewSmall.dtl - html for configuration item overview table
 # Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
@@ -56,6 +56,11 @@
                     <span>$Text{"Current Incident State Type"}</span>
                 </th>
 <!-- dtl:block:RecordCurInciStateTypeHeader -->
+<!-- dtl:block:RecordXMLAttributeHeader -->
+                <th>
+                    <span>$Text{"$Data{"XMLAttributeHeader"}"}</span>
+                </th>
+<!-- dtl:block:RecordXMLAttributeHeader -->
 <!-- dtl:block:RecordLastChangedHeader -->
                 <th class="LastChanged $QData{"CSS"}">
                     <a href="$Env{"Baselink"}Action=$Env{"Action"};$Data{"LinkSort"};SortBy=ChangeTime;OrderBy=$LQData{"OrderBy"}">$Text{"Last changed"}</a>
@@ -127,6 +132,11 @@
                     <div title="$Text{"$Data{"CurInciStateType"}"}">$Text{"$Data{"CurInciStateType"}"}</div>
                 </td>
 <!-- dtl:block:RecordCurInciStateType -->
+<!-- dtl:block:RecordXMLAttribute -->
+                <td>
+                    <div title="$QData{"XMLAttributeData"}">$QData{"XMLAttributeData"}</div>
+                </td>
+<!-- dtl:block:RecordXMLAttribute -->
 <!-- dtl:block:RecordLastChanged -->
                 <td>
                     <div title="$TimeLong{"$QData{"CreateTime"}"}">$TimeLong{"$QData{"CreateTime"}"}</div>
