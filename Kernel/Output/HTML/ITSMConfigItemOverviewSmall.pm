@@ -290,6 +290,8 @@ sub Run {
     return $Output;
 }
 
+=over
+
 =item _XMLData2Hash()
 
 returns a hash reference with all xml data of a config item
@@ -375,5 +377,7 @@ sub _XMLData2Hash {
 
     return $Data;
 }
+
+=back
 
 1;
