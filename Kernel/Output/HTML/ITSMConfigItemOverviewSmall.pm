@@ -378,6 +378,7 @@ sub _XMLData2Hash {
     return $Data;
 }
 
+1;
+
 =back
 
-1;
