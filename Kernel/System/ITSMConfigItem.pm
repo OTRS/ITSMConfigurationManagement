@@ -28,7 +28,7 @@ use Kernel::System::XML;
 use Kernel::System::VirtualFS;
 use Kernel::System::VariableCheck qw(:all);
 
-use vars qw(@ISA $VERSION);
+use vars qw(@ISA);
 
 @ISA = (
     'Kernel::System::ITSMConfigItem::Definition',

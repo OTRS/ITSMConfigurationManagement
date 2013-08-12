@@ -51,7 +51,7 @@ $CommonObject{DBObject}             = Kernel::System::DB->new(%CommonObject);
 $CommonObject{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new(%CommonObject);
 $CommonObject{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new(%CommonObject);
 
-print "otrs.ITSMConfigItemDelete.pl <Revision $VERSION> - ";
+print "otrs.ITSMConfigItemDelete.pl";
 print "delete config items (all, by class (and deployment state) or by number).\n";
 print "Copyright (C) 2001-2013 OTRS AG, http://otrs.org/\n";
 
