@@ -180,6 +180,7 @@ sub Run {
     # get xml data
     my $Version = {};
     my $NameDuplicates;
+    my $CINameRegexErrorMessage;
     if ( $Self->{Subaction} eq 'VersionSave' ) {
 
         # check if an attachment must be deleted
@@ -267,6 +268,33 @@ sub Run {
                         "The name $Version->{Name} is already in use by the ConfigItemID(s): "
                         . $NameDuplicatesString,
                 );
+            }
+        }
+
+        # get the config option for the name regex checks
+        my $CINameRegexConfig = $Self->{ConfigObject}->Get("ITSMConfigItem::CINameRegex");
+
+        # check if the CI name is given and should be checked with a regular expression
+        if ( IsStringWithData( $Version->{Name} ) && $CINameRegexConfig ) {
+
+            # get class list
+            my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
+                Class => 'ITSM::ConfigItem::Class',
+            );
+
+            # get the class name
+            my $ClassName = $ClassList->{ $ConfigItem->{ClassID} } || '';
+
+            # get the regex for this class
+            my $CINameRegex = $CINameRegexConfig->{ $ClassName . '::' . 'CINameRegex' } || '';
+
+            # if a regex is defined and the CI name does not match the regular expression
+            if ( $CINameRegex && $Version->{Name} !~ m{ $CINameRegex }xms ) {
+
+                $AllRequired = 0;
+
+                # get the error message for this class
+                $CINameRegexErrorMessage = $CINameRegexConfig->{ $ClassName . '::' . 'CINameRegexErrorMessage' } || '';
             }
         }
 
@@ -423,6 +451,11 @@ sub Run {
         $RowNameInvalid = 'ServerError';
     }
 
+    # check for not matched name regex
+    if ( $CINameRegexErrorMessage ) {
+        $RowNameInvalid = 'ServerError';
+    }
+
     # output name block
     $Self->{LayoutObject}->Block(
         Name => 'RowName',
@@ -432,7 +465,7 @@ sub Run {
         },
     );
 
-    if ( IsStringWithData($RowNameInvalid) && !IsArrayRefWithData($NameDuplicates) ) {
+    if ( IsStringWithData($RowNameInvalid) && !IsArrayRefWithData($NameDuplicates) && !$CINameRegexErrorMessage ) {
 
         if ( $Self->{ConfigObject}->{Debug} > 0 ) {
             $Self->{LogObject}->Log(
@@ -473,6 +506,16 @@ sub Run {
             Name => 'RowNameErrorDuplicates',
             Data => {
                 Duplicates => $DuplicateString,
+            },
+        );
+    }
+
+    elsif ( $CINameRegexErrorMessage ) {
+
+        $Self->{LayoutObject}->Block(
+            Name => 'RowNameErrorRegEx',
+            Data => {
+                RegExErrorMessage => $CINameRegexErrorMessage,
             },
         );
     }
@@ -911,6 +954,32 @@ sub _XMLFormOutput {
                         InputKey => $InputKey,
                     },
                 );
+            }
+
+            # the content is invalid
+            if ( $XMLRowValueContentInvalid ) {
+
+                # show regex error message block
+                if ( $Item->{Form}->{$InputKey}->{RegExErrorMessage} ) {
+
+                    $Self->{LayoutObject}->Block(
+                        Name => 'XMLRowValueRegExError',
+                        Data => {
+                            ItemID            => $ItemID,
+                            RegExErrorMessage => $Item->{Form}->{$InputKey}->{RegExErrorMessage},
+                        },
+                    );
+                }
+
+                # otherwise show normal server error block
+                else {
+                    $Self->{LayoutObject}->Block(
+                        Name => 'XMLRowValueServerError',
+                        Data => {
+                            ItemID => $ItemID,
+                        },
+                    );
+                }
             }
 
             # start recursion, if "Sub" was found

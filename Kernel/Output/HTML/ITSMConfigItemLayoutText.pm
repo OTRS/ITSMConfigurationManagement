@@ -1,6 +1,6 @@
 # --
 # Kernel/Output/HTML/ITSMConfigItemLayoutText.pm - layout backend module
-# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -138,6 +138,14 @@ sub FormDataGet {
     if ( $Param{Item}->{Input}->{Required} && !$FormData{Value} ) {
         $FormData{Invalid} = 1;
         $Param{Item}->{Form}->{ $Param{Key} }->{Invalid} = 1;
+    }
+
+    # value was entered in the form, a regex is defined and the value does not match the regex
+    if ( $FormData{Value} && $Param{Item}->{Input}->{RegEx} && $FormData{Value} !~ m{ $Param{Item}->{Input}->{RegEx} }xms ) {
+
+        $FormData{Invalid} = 1;
+        $Param{Item}->{Form}->{ $Param{Key} }->{Invalid} = 1;
+        $Param{Item}->{Form}->{ $Param{Key} }->{RegExErrorMessage} = $Param{Item}->{Input}->{RegExErrorMessage};
     }
 
     return \%FormData;

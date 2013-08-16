@@ -43,6 +43,9 @@ $Include{"AgentITSMCustomerSearch"}
 <!-- dtl:block:RowNameErrorDuplicates -->
                             <div id="NameServerError" class="TooltipErrorMessage"><p>$Text{"Name is already in use by the ConfigItems with the following Number(s): %s", "$QData{"Duplicates"}"}</p></div>
 <!-- dtl:block:RowNameErrorDuplicates -->
+<!-- dtl:block:RowNameErrorRegEx -->
+                            <div id="NameServerError" class="TooltipErrorMessage"><p>$Text{"$Data{"RegExErrorMessage"}"}</p></div>
+<!-- dtl:block:RowNameErrorRegEx -->
                         </div>
                         <div class="Clear"></div>
 <!-- dtl:block:RowName -->
@@ -83,7 +86,12 @@ $Include{"AgentITSMCustomerSearch"}
                             <button class="DisableValidation Remove" type="submit" name="$QData{"InputKey"}::Delete" value="$Text{"Delete"}">$Text{"Delete"}</button>
 <!-- dtl:block:XMLRowValueContentDelete -->
                             <div id="$QData{"ItemID"}Error" class="TooltipErrorMessage" ><p>$Text{"This field is required."}</p></div>
+<!-- dtl:block:XMLRowValueServerError -->
                             <div id="$QData{"ItemID"}ServerError" class="TooltipErrorMessage"><p>$Text{"This field is required."}</p></div>
+<!-- dtl:block:XMLRowValueServerError -->
+<!-- dtl:block:XMLRowValueRegExError -->
+                            <div id="$QData{"ItemID"}ServerError" class="TooltipErrorMessage"><p>$Text{"$Data{"RegExErrorMessage"}"}</p></div>
+<!-- dtl:block:XMLRowValueRegExError -->
                         </div>
 <!-- dtl:block:XMLRowValue -->
 

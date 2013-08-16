@@ -569,6 +569,10 @@ sub _AddConfigItemDefinitions {
             Type => 'Text',
             Size => 50,
             MaxLength => 50,
+
+            # Example for CI attribute syntax check for text and textarea fields
+            #RegEx             => '^ABC.*',
+            #RegExErrorMessage => 'Value must start with \"ABC\"!',
         },
     },
     {

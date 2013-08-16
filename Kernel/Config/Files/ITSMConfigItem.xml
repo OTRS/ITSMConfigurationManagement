@@ -263,6 +263,19 @@
             <Option Location="Kernel/System/ITSMConfigItem/Number/*.pm" SelectedID="Kernel::System::ITSMConfigItem::Number::AutoIncrement"></Option>
         </Setting>
     </ConfigItem>
+    <ConfigItem Name="ITSMConfigItem::CINameRegex" Required="0" Valid="0">
+        <Description Translatable="1">Defines regular expressions individually for each ConfigItem class to check the ConfigItem name and to show corresponding error messages.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Core::ITSMConfigItem</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="Computer::CINameRegex">^ABC.*</Item>
+                <Item Key="Computer::CINameRegexErrorMessage">A computer name must start with ABC!</Item>
+                <Item Key="Hardware::CINameRegex">.*\d\d$</Item>
+                <Item Key="Hardware::CINameRegexErrorMessage">A hardware name must end with two digits!</Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
     <ConfigItem Name="LinkObject::DefaultSubObject###ITSMConfigItem" Required="1" Valid="1">
         <Description Translatable="1">Defines the default subobject of the class 'ITSMConfigItem'.</Description>
         <Group>ITSM Configuration Management</Group>
