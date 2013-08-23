@@ -1,6 +1,6 @@
 # --
 # Kernel/Modules/AgentITSMConfigItem.pm - the OTRS ITSM config item module
-# Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -260,7 +260,8 @@ sub Run {
         IsArrayRefWithData( $Self->{Config}->{ShowColumnsByClass} )
         && $Self->{Filter}
         && $Self->{Filter} ne 'All'
-    ) {
+        )
+    {
 
         my %ColumnByClass;
         for my $Name ( @{ $Self->{Config}->{ShowColumnsByClass} } ) {
@@ -268,7 +269,7 @@ sub Run {
             # extract the class name and the column name
             if ( $Name =~ m{ \A ([^:]+) :: (.+) \z }xms ) {
 
-                my ($Class, $Column)  = ($1, $2);
+                my ( $Class, $Column ) = ( $1, $2 );
 
                 # create new entry
                 push @{ $ColumnByClass{$Class} }, $Column;

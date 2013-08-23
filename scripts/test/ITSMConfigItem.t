@@ -1843,10 +1843,10 @@ for my $Test ( @{$ConfigItemTests} ) {
                 $Data::Dumper::Indent = 0;
 
                 # dump the attribute from VersionGet()
-                $VersionAttribute = Data::Dumper::Dumper($VersionAttribute);
+                $VersionAttribute = Data::Dumper::Dumper($VersionAttribute);    ## no critic
 
                 # dump the reference attribute
-                $ReferenceAttribute = Data::Dumper::Dumper($ReferenceAttribute);
+                $ReferenceAttribute = Data::Dumper::Dumper($ReferenceAttribute);    ## no critic
             }
 
             # check attributes
@@ -3187,10 +3187,10 @@ for my $Test (@SearchTests) {
         $Data::Dumper::Indent = 0;
 
         # dump the list from ConfigItemSearchExtended()
-        my $ConfigItemString = Data::Dumper::Dumper($ConfigItemList);
+        my $ConfigItemString = Data::Dumper::Dumper($ConfigItemList);    ## no critic
 
         # dump the reference string
-        my $ReferenceString = Data::Dumper::Dumper( \@ReferenceList );
+        my $ReferenceString = Data::Dumper::Dumper( \@ReferenceList );    ## no critic
 
         # check arrays
         $Self->Is(

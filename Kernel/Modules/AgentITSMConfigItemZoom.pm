@@ -1,6 +1,6 @@
 # --
 # Kernel/Modules/AgentITSMConfigItemZoom.pm - the OTRS ITSM config item zoom module
-# Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -226,7 +226,7 @@ sub Run {
         && $Version->{XMLDefinition}
         && $Version->{XMLData}
         && ref $Version->{XMLDefinition} eq 'ARRAY'
-        && ref $Version->{XMLData}       eq 'ARRAY'
+        && ref $Version->{XMLData} eq 'ARRAY'
         && $Version->{XMLData}->[1]
         && ref $Version->{XMLData}->[1] eq 'HASH'
         && $Version->{XMLData}->[1]->{Version}

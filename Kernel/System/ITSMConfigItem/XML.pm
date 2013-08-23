@@ -1,6 +1,6 @@
 # --
 # Kernel/System/ITSMConfigItem/XML.pm - sub module of ITSMConfigItem.pm with xml functions
-# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -660,9 +660,9 @@ sub _XMLHashSearch {
                     # See http://download.oracle.com/docs/cd/B12037_01/appdev.101/b10796/\
                     # adlob_sq.htm#1006215
                     # As a workaround we cast the CLOB to a VARCHAR2 with TO_CHAR().
-                    my $xml_content_value = 'xml_content_value';
+                    my $XMLContentValueColumn = 'xml_content_value';
                     if ( $Self->{DBObject}->GetDatabaseFunction('Type') eq 'oracle' ) {
-                        $xml_content_value = 'TO_CHAR(xml_content_value)';
+                        $XMLContentValueColumn = 'TO_CHAR(xml_content_value)';
                     }
 
                     my ($Op) = keys %{$Value};
@@ -672,14 +672,14 @@ sub _XMLHashSearch {
                         my $UpperBound = $Self->{DBObject}->Quote( $Element->[1] );
                         push @OrConditions,
                             " ( xml_content_key LIKE '$Key' $LikeEscapeString "
-                            . "AND $xml_content_value >= '$LowerBound' "
-                            . "AND $xml_content_value <= '$UpperBound' )";
+                            . "AND $XMLContentValueColumn >= '$LowerBound' "
+                            . "AND $XMLContentValueColumn <= '$UpperBound' )";
                     }
                     elsif ( $Op && $OpIsSupported{$Op} && !ref $Element ) {
                         $Element = $Self->{DBObject}->Quote($Element);
                         push @OrConditions,
                             " ( xml_content_key LIKE '$Key' $LikeEscapeString "
-                            . "AND $xml_content_value $Op '$Element' )";
+                            . "AND $XMLContentValueColumn $Op '$Element' )";
                     }
                     else {
                         $Self->{LogObject}->Log(

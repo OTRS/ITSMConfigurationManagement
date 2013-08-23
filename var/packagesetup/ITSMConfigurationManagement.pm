@@ -7,7 +7,7 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package var::packagesetup::ITSMConfigurationManagement;
+package var::packagesetup::ITSMConfigurationManagement;    ## no critic
 
 use strict;
 use warnings;

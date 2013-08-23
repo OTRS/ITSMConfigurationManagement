@@ -1,6 +1,6 @@
 # --
 # Kernel/System/ITSMConfigItem/Definition.pm - sub module of ITSMConfigItem.pm with definition functions
-# Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -186,7 +186,7 @@ sub DefinitionGet {
         $Definition{CreateTime}   = $Row[4];
         $Definition{CreateBy}     = $Row[5];
 
-        $Definition{DefinitionRef} = eval $Definition{Definition};
+        $Definition{DefinitionRef} = eval $Definition{Definition};    ## no critic
     }
 
     return {} if !$Definition{DefinitionID};
@@ -336,7 +336,7 @@ sub DefinitionCheck {
         $Definition = $Param{Definition};
     }
     else {
-        $Definition = eval $Param{Definition};
+        $Definition = eval $Param{Definition};    ## no critic
     }
 
     # check if definition exists at all

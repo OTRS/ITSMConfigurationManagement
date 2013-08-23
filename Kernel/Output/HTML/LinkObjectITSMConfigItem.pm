@@ -1,6 +1,6 @@
 # --
 # Kernel/Output/HTML/LinkObjectITSMConfigItem.pm - layout backend module
-# Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -186,7 +186,7 @@ sub TableCreateComplex {
 
             # extract the class name and the column name
             if ( $Name =~ m{ \A ([^:]+) :: (.+) \z }xms ) {
-                my ($Class, $Column)  = ($1, $2);
+                my ( $Class, $Column ) = ( $1, $2 );
 
                 # create new entry
                 push @{ $ColumnByClass{$Class} }, $Column;
@@ -343,6 +343,7 @@ sub TableCreateComplex {
                                 Content => 'Incident State',
                             };
                         }
+
                         # special translation handling
                         elsif ( $Column eq 'Class' ) {
 
@@ -378,15 +379,16 @@ sub TableCreateComplex {
                     }
 
                     # convert to ascii text in case the value contains html
-                    my $Value = $Self->{HTMLUtilsObject}->ToAscii( String => $ExtendedVersionData->{$Column}->{Value} ) || '';
+                    my $Value = $Self->{HTMLUtilsObject}
+                        ->ToAscii( String => $ExtendedVersionData->{$Column}->{Value} ) || '';
 
                     # convert all whitespace and newlines to single spaces
                     $Value =~ s{ \s+ }{ }gxms;
 
                     # add the column
                     push @ItemColumns, {
-                        Type      => 'Text',
-                        Content   => $Value,
+                        Type    => 'Text',
+                        Content => $Value,
                     };
 
                     # add the headline
@@ -396,7 +398,7 @@ sub TableCreateComplex {
                 }
             }
 
-            # individual column config for this class does not exist, so the default columns will be used
+       # individual column config for this class does not exist, so the default columns will be used
             else {
 
                 # add the default columns
@@ -900,7 +902,7 @@ sub _XMLData2Hash {
 
             # lookup value
             my $Value = $Self->{ConfigItemObject}->XMLValueLookup(
-                Item  => $Item,
+                Item => $Item,
                 Value => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content} || '',
             );
 

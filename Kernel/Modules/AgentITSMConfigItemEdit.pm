@@ -1,6 +1,6 @@
 # --
 # Kernel/Modules/AgentITSMConfigItemEdit.pm - the OTRS ITSM config item edit module
-# Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -294,7 +294,8 @@ sub Run {
                 $AllRequired = 0;
 
                 # get the error message for this class
-                $CINameRegexErrorMessage = $CINameRegexConfig->{ $ClassName . '::' . 'CINameRegexErrorMessage' } || '';
+                $CINameRegexErrorMessage
+                    = $CINameRegexConfig->{ $ClassName . '::' . 'CINameRegexErrorMessage' } || '';
             }
         }
 
@@ -452,7 +453,7 @@ sub Run {
     }
 
     # check for not matched name regex
-    if ( $CINameRegexErrorMessage ) {
+    if ($CINameRegexErrorMessage) {
         $RowNameInvalid = 'ServerError';
     }
 
@@ -465,7 +466,12 @@ sub Run {
         },
     );
 
-    if ( IsStringWithData($RowNameInvalid) && !IsArrayRefWithData($NameDuplicates) && !$CINameRegexErrorMessage ) {
+    if (
+        IsStringWithData($RowNameInvalid)
+        && !IsArrayRefWithData($NameDuplicates)
+        && !$CINameRegexErrorMessage
+        )
+    {
 
         if ( $Self->{ConfigObject}->{Debug} > 0 ) {
             $Self->{LogObject}->Log(
@@ -510,7 +516,7 @@ sub Run {
         );
     }
 
-    elsif ( $CINameRegexErrorMessage ) {
+    elsif ($CINameRegexErrorMessage) {
 
         $Self->{LayoutObject}->Block(
             Name => 'RowNameErrorRegEx',
@@ -957,7 +963,7 @@ sub _XMLFormOutput {
             }
 
             # the content is invalid
-            if ( $XMLRowValueContentInvalid ) {
+            if ($XMLRowValueContentInvalid) {
 
                 # show regex error message block
                 if ( $Item->{Form}->{$InputKey}->{RegExErrorMessage} ) {
@@ -996,8 +1002,8 @@ sub _XMLFormOutput {
                 $Self->_XMLFormOutput(
                     XMLDefinition => $Item->{Sub},
                     %XMLFormOutputParam,
-                    Level              => $Param{Level} + 1,
-                    Prefix             => $InputKey,
+                    Level  => $Param{Level} + 1,
+                    Prefix => $InputKey,
                 );
             }
 

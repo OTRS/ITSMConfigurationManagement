@@ -141,11 +141,17 @@ sub FormDataGet {
     }
 
     # value was entered in the form, a regex is defined and the value does not match the regex
-    if ( $FormData{Value} && $Param{Item}->{Input}->{RegEx} && $FormData{Value} !~ m{ $Param{Item}->{Input}->{RegEx} }xms ) {
+    if (
+        $FormData{Value}
+        && $Param{Item}->{Input}->{RegEx}
+        && $FormData{Value} !~ m{ $Param{Item}->{Input}->{RegEx} }xms
+        )
+    {
 
         $FormData{Invalid} = 1;
         $Param{Item}->{Form}->{ $Param{Key} }->{Invalid} = 1;
-        $Param{Item}->{Form}->{ $Param{Key} }->{RegExErrorMessage} = $Param{Item}->{Input}->{RegExErrorMessage};
+        $Param{Item}->{Form}->{ $Param{Key} }->{RegExErrorMessage}
+            = $Param{Item}->{Input}->{RegExErrorMessage};
     }
 
     return \%FormData;

@@ -1,6 +1,6 @@
 # --
 # Kernel/System/ITSMConfigItem/Version.pm - sub module of ITSMConfigItem.pm with version functions
-# Copyright (C) 2001-2013 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -1223,8 +1223,8 @@ sub _FindChangedXMLValues {
     # do the check
     my %UpdateValues;
     for my $TagKey ( sort keys %UniqueTagKeys ) {
-        my $NewContent = eval '$NewXMLData->' . $TagKey . '->{Content}' || '';
-        my $OldContent = eval '$OldXMLData->' . $TagKey . '->{Content}' || '';
+        my $NewContent = eval '$NewXMLData->' . $TagKey . '->{Content}' || '';    ## no critic
+        my $OldContent = eval '$OldXMLData->' . $TagKey . '->{Content}' || '';    ## no critic
 
         if ( $NewContent ne $OldContent ) {
 

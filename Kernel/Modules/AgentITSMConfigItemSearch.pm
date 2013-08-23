@@ -887,7 +887,8 @@ sub Run {
             if (
                 IsArrayRefWithData( $Self->{Config}->{ShowColumnsByClass} )
                 && $ClassID
-            ) {
+                )
+            {
 
                 my %ColumnByClass;
                 for my $Name ( @{ $Self->{Config}->{ShowColumnsByClass} } ) {
@@ -895,7 +896,7 @@ sub Run {
                     # extract the class name and the column name
                     if ( $Name =~ m{ \A ([^:]+) :: (.+) \z }xms ) {
 
-                        my ($Class, $Column)  = ($1, $2);
+                        my ( $Class, $Column ) = ( $1, $2 );
 
                         # create new entry
                         push @{ $ColumnByClass{$Class} }, $Column;
@@ -903,7 +904,7 @@ sub Run {
                 }
 
                 # check if there is a specific column config for the selected class
-                my $SelectedClass = $ClassList->{ $ClassID };
+                my $SelectedClass = $ClassList->{$ClassID};
                 if ( $ColumnByClass{$SelectedClass} ) {
                     @ShowColumns = @{ $ColumnByClass{$SelectedClass} };
                 }

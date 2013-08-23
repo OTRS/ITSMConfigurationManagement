@@ -118,7 +118,7 @@ sub Run {
 
         # get the XML column headers only if the filter is not set to 'all'
         # and if there are CIs to show
-        if ( $Param{Filter} && $Param{Filter} ne 'All' && @ConfigItemIDs) {
+        if ( $Param{Filter} && $Param{Filter} ne 'All' && @ConfigItemIDs ) {
 
             # get the version data of the first config item, including all the XML data
             # to get the column header names
@@ -137,7 +137,7 @@ sub Run {
             my @XMLShowColumns = grep /::/, @ShowColumns;
 
             COLUMN:
-            for my $Column ( @XMLShowColumns ) {
+            for my $Column (@XMLShowColumns) {
 
                 # check if column exists in CI-Data
                 next COLUMN if !$ExtendedVersionData->{$Column}->{Name};
@@ -242,13 +242,14 @@ sub Run {
                     }
 
                     COLUMN:
-                    for my $Column ( @XMLShowColumns ) {
+                    for my $Column (@XMLShowColumns) {
 
                         # check if column exists in CI-Data
                         next COLUMN if !$ExtendedVersionData->{$Column}->{Name};
 
                         # convert to ascii text in case the value contains html
-                        my $Value = $Self->{HTMLUtilsObject}->ToAscii( String => $ExtendedVersionData->{$Column}->{Value} ) || '';
+                        my $Value = $Self->{HTMLUtilsObject}
+                            ->ToAscii( String => $ExtendedVersionData->{$Column}->{Value} ) || '';
 
                         # convert all whitespace and newlines to single spaces
                         $Value =~ s{ \s+ }{ }gxms;
@@ -341,7 +342,7 @@ sub _XMLData2Hash {
 
             # lookup value
             my $Value = $Self->{ConfigItemObject}->XMLValueLookup(
-                Item  => $Item,
+                Item => $Item,
                 Value => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content} || '',
             );
 
@@ -381,4 +382,3 @@ sub _XMLData2Hash {
 1;
 
 =back
-

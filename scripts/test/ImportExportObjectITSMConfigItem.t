@@ -1,6 +1,6 @@
 # --
 # ImportExportObjectITSMConfigItem.t - all import export tests for the ITSMConfigItem object backend
-# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
+# Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -127,10 +127,11 @@ $Self->True(
     ];
 
     # dump the list from ObjectAttributesGet()
-    my $ObjectAttributesGetDump1 = Data::Dumper::Dumper($ObjectAttributesGet1);
+    my $ObjectAttributesGetDump1 = Data::Dumper::Dumper($ObjectAttributesGet1);    ## no critic
 
     # dump the reference table
-    my $ObjectAttributesRefDump1 = Data::Dumper::Dumper($ObjectAttributesGet1Reference);
+    my $ObjectAttributesRefDump1
+        = Data::Dumper::Dumper($ObjectAttributesGet1Reference);                    ## no critic
 
     $Self->True(
         $ObjectAttributesGetDump1 eq $ObjectAttributesRefDump1,

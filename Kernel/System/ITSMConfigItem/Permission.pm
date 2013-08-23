@@ -68,8 +68,8 @@ sub Permission {
     # check for existence of ItemID or ClassID dependent
     # on the Scope
     if (
-        ( $Param{Scope} eq 'Class' and !$Param{ClassID} )
-        || ( $Param{Scope} eq 'Item' and !$Param{ItemID} )
+        ( $Param{Scope} eq 'Class' && !$Param{ClassID} )
+        || ( $Param{Scope} eq 'Item' && !$Param{ItemID} )
         )
     {
         $Self->{LogObject}->Log(

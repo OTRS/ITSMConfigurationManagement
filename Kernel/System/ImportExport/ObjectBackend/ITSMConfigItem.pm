@@ -1138,7 +1138,7 @@ sub ImportDataSave {
             $RetCode = "DuplicateName '$VersionData->{Name}'";
 
             # return undef for the config item id so it will be counted as 'Failed'
-            return undef, $RetCode;
+            return undef, $RetCode;    ## no critic
         }
     }
 
