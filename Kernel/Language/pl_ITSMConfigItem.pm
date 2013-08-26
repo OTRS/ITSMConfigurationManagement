@@ -1,7 +1,6 @@
 # --
 # Kernel/Language/pl_ITSMConfigItem.pm - translation file
 # Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
-# Copyright (C) 2011-2012 Informatyka Boguslawski sp. z o.o. sp.k., http://www.ib.pl/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -68,7 +67,6 @@ sub Data {
     $Self->{Translation}->{'IP Address'} = 'Adres IP';
     $Self->{Translation}->{'IP over DHCP'} = 'Adres IP z DHCP';
     $Self->{Translation}->{'IT Facility'} = 'Dział IT';
-    $Self->{Translation}->{'Inactive'} = 'Nieaktywny';
     $Self->{Translation}->{'Incident'} = 'Zdarzenie';
     $Self->{Translation}->{'Install Date'} = 'Data instalacji';
     $Self->{Translation}->{'Keybord'} = 'Klawiatura';
@@ -148,13 +146,8 @@ sub Data {
     $Self->{Translation}->{'Config Item Management'} = 'Zarządzanie CI';
     $Self->{Translation}->{'Change class definition'} = 'Zmień definicję klasy';
     $Self->{Translation}->{'Config Item'} = 'CI';
-    $Self->{Translation}->{'ITSM ConfigItem'} = 'CI';
     $Self->{Translation}->{'Class'} = 'Klasa';
     $Self->{Translation}->{'Definition'} = 'Definicja';
-    $Self->{Translation}->{'Hardware'} = 'Sprzęt';
-    $Self->{Translation}->{'Computer'} = 'Komputer';
-    $Self->{Translation}->{'Network'} = 'Sieć';
-    $Self->{Translation}->{'Software'} = 'Oprogramowanie';
 
     # Template: AgentITSMConfigItemAdd
     $Self->{Translation}->{'Filter for Classes'} = 'Filtr dla klas';
@@ -186,9 +179,9 @@ sub Data {
     $Self->{Translation}->{'Last changed by'} = 'Ostatnio zmienione przez';
 
     # Template: AgentITSMConfigItemSearch
-    $Self->{Translation}->{'Search-Template'} = 'Szukaj-szablon';
+    $Self->{Translation}->{'Create New Template'} = '';
+    $Self->{Translation}->{'Run Search'} = '';
     $Self->{Translation}->{'Also search in previous versions?'} = 'Uwzględnić poprzednie wersje?';
-    $Self->{Translation}->{'Config Item Search Result: Class'} = 'Wynik wyszukiwania CI: klasa';
 
     # Template: AgentITSMConfigItemSearchResultPrint
     $Self->{Translation}->{'CreateTime'} = 'Czas utworzenia';
@@ -200,16 +193,10 @@ sub Data {
     $Self->{Translation}->{'Show all versions'} = 'Pokaż wszystkie wersje';
     $Self->{Translation}->{'Version Incident State'} = 'Stan';
     $Self->{Translation}->{'Version Number'} = 'Wersja';
-    $Self->{Translation}->{'Created By'} = 'Utworzone przez';
-    $Self->{Translation}->{'Changed On'} = 'Zmienione';
-    $Self->{Translation}->{'Resize'} = 'Zmień rozmiar';
-    $Self->{Translation}->{'Show or hide the content.'} = 'Pokaż ukrytą treść.';
     $Self->{Translation}->{'Configuration Item Version Details'} = 'Szczegóły wersji CI';
     $Self->{Translation}->{'Property'} = 'Właściwość';
-    $Self->{Translation}->{'Configuration Item Information'} = 'Informacje o CI';
 
     # SysConfig
-    $Self->{Translation}->{'Config item event module that enables logging to history in the agent interface.'} = '';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         '';
     $Self->{Translation}->{'Config Items'} = '';
@@ -222,7 +209,11 @@ sub Data {
     $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = 'Tworzenie i zarządzanie definicjami elementów konfiguracji.';
     $Self->{Translation}->{'Defines an overview module to show the small view of a configuration item list.'} =
         '';
+    $Self->{Translation}->{'Defines regular expressions individually for each ConfigItem class to check the ConfigItem name and to show corresponding error messages.'} =
+        '';
     $Self->{Translation}->{'Defines the default subobject of the class \'ITSMConfigItem\'.'} =
+        '';
+    $Self->{Translation}->{'Defines the number of rows for the CI definition editor in the admin interface.'} =
         '';
     $Self->{Translation}->{'Defines the search limit for the AgentITSMConfigItem screen.'} =
         '';
@@ -231,6 +222,12 @@ sub Data {
     $Self->{Translation}->{'Defines the shown columns in the config item overview. This option has no effect on the position of the column. Note: Class column is always available if filter \'All\' is selected'} =
         '';
     $Self->{Translation}->{'Defines the shown columns in the config item search. This option has no effect on the position of the column.'} =
+        '';
+    $Self->{Translation}->{'Defines the shown columns of CIs in the config item overview depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns.'} =
+        '';
+    $Self->{Translation}->{'Defines the shown columns of CIs in the config item search depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns.'} =
+        '';
+    $Self->{Translation}->{'Defines the shown columns of CIs in the link table complex view, depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown.'} =
         '';
     $Self->{Translation}->{'Enables/disables the functionality to check ConfigItems for unique names. Before enabling this option you should check your system for already existing config items with duplicate names. You can do this with the script bin/otrs.ITSMConfigItemListDuplicates.pl.'} =
         '';
@@ -278,12 +275,19 @@ sub Data {
         '';
     $Self->{Translation}->{'The identifier for a configuration item, e.g. ConfigItem#, MyConfigItem#. The default is ConfigItem#.'} =
         '';
-    $Self->{Translation}->{'With this config option it is possible to deactive the fixed overview control bar in the AgentITSMConfigItem overview. In some scenarios this will be necessary, f.e. due to small screen resolutions in combination with a lot of config item classes.'} =
-        '';
 
     #
     # OBSOLETE ENTRIES FOR REFERENCE, DO NOT TRANSLATE!
     #
+    $Self->{Translation}->{'Changed On'} = 'Zmienione';
+    $Self->{Translation}->{'Computer'} = 'Komputer';
+    $Self->{Translation}->{'Config Item Search Result: Class'} = 'Wynik wyszukiwania CI: klasa';
+    $Self->{Translation}->{'Created By'} = 'Utworzone przez';
+    $Self->{Translation}->{'Hardware'} = 'Sprzęt';
+    $Self->{Translation}->{'ITSM ConfigItem'} = 'CI';
+    $Self->{Translation}->{'Network'} = 'Sieć';
+    $Self->{Translation}->{'Search-Template'} = 'Szukaj-szablon';
+    $Self->{Translation}->{'Software'} = 'Oprogramowanie';
 
 }
 
