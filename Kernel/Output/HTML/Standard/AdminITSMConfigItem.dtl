@@ -56,7 +56,7 @@
 <!-- dtl:block:OverviewListRow -->
                         <tr>
                             <td>
-                                <a class="AsBlock" href="$Env{"Baselink"}Action=$Env{"Action"}&Subaction=DefinitionList&ClassID=$QData{"ClassID"}">$QData{"Name"}</a>
+                                <a class="AsBlock" href="$Env{"Baselink"}Action=$Env{"Action"};Subaction=DefinitionList;ClassID=$LQData{"ClassID"}">$QData{"Name"}</a>
                             </td>
                         </tr>
 <!-- dtl:block:OverviewListRow -->
@@ -82,7 +82,7 @@
 <!-- dtl:block:DefinitionListRow -->
                         <tr>
                             <td>
-                                <a class="AsBlock" href="$Env{"Baselink"}Action=$Env{"Action"}&Subaction=DefinitionView&DefinitionID=$QData{"DefinitionID"}">$QData{"Class"}</a>
+                                <a class="AsBlock" href="$Env{"Baselink"}Action=$Env{"Action"};Subaction=DefinitionView;DefinitionID=$LQData{"DefinitionID"}">$QData{"Class"}</a>
                             </td>
                             <td>$QData{"Version"}</td>
                             <td>

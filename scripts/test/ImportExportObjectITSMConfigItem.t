@@ -3974,7 +3974,7 @@ for my $Test (@ImportDataTests) {
 
     # clean the xml hash
     KEY:
-    for my $Key ( keys %XMLHash ) {
+    for my $Key ( sort keys %XMLHash ) {
 
         next KEY if $Key =~ m{ \{'Content'\} \z }xms;
 
@@ -4014,7 +4014,7 @@ for my $Test (@ImportDataTests) {
 
     # check XML elements
     ELEMENT:
-    for my $Key ( keys %{ $Test->{ReferenceImportData}->{LastVersion} } ) {
+    for my $Key ( sort keys %{ $Test->{ReferenceImportData}->{LastVersion} } ) {
 
         # duplicate key
         my $XMLKey = $Key;
@@ -4072,7 +4072,7 @@ my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
 
 # set unittest classes invalid
 ITEMID:
-for my $ItemID ( keys %{$ClassList} ) {
+for my $ItemID ( sort keys %{$ClassList} ) {
 
     next ITEMID if $ClassList->{$ItemID} !~ m{ \A UnitTest }xms;
 

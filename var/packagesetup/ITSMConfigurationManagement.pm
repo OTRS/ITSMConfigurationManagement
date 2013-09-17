@@ -27,8 +27,6 @@ use Kernel::System::Type;
 use Kernel::System::User;
 use Kernel::System::Valid;
 
-use vars qw(@ISA);
-
 =head1 NAME
 
 ITSMConfigurationManagement.pm - code to excecute during package installation
@@ -351,7 +349,7 @@ sub _SetPreferences {
     );
 
     NAME:
-    for my $Name ( keys %Map ) {
+    for my $Name ( sort keys %Map ) {
         my $Item = $Self->{GeneralCatalogObject}->ItemGet(
             Name  => $Name,
             Class => 'ITSM::ConfigItem::DeploymentState',
@@ -388,7 +386,7 @@ sub _SetDefaultPermission {
     );
 
     # check if a permission group is already set. If not, set default permission group
-    for my $ClassID ( keys %{$ClassList} ) {
+    for my $ClassID ( sort keys %{$ClassList} ) {
         my $Class = $Self->{GeneralCatalogObject}->ItemGet(
             ItemID => $ClassID,
         );
@@ -1380,7 +1378,7 @@ sub _FillupEmptyCurInciStateTypeFromCIs {
     my $LinkType = $Self->{ConfigObject}->Get('ITSM::Core::IncidentLinkType');
 
     SERVICEID:
-    for my $ServiceID ( keys %ServiceList ) {
+    for my $ServiceID ( sort keys %ServiceList ) {
 
         # get service data
         my %Service = $Self->{ServiceObject}->ServiceGet(
@@ -1406,7 +1404,7 @@ sub _FillupEmptyCurInciStateTypeFromCIs {
 
         # investigate the current incident state of each config item
         CONFIGITEMID:
-        for my $ConfigItemID ( keys %LinkedConfigItemIDs ) {
+        for my $ConfigItemID ( sort keys %LinkedConfigItemIDs ) {
 
             # extract config item data
             my $ConfigItemData = $LinkedConfigItemIDs{$ConfigItemID};
@@ -1457,7 +1455,7 @@ sub _DeleteServicePreferences {
     );
 
     SERVICEID:
-    for my $ServiceID ( keys %ServiceList ) {
+    for my $ServiceID ( sort keys %ServiceList ) {
 
         # delete the current incident state type from CIs of the service
         $Self->{ServiceObject}->ServicePreferencesSet(

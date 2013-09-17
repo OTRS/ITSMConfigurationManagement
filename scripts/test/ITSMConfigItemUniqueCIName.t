@@ -330,7 +330,7 @@ my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
 
 # set unittest classes invalid
 ITEMID:
-for my $ItemID ( keys %{$ClassList} ) {
+for my $ItemID ( sort keys %{$ClassList} ) {
 
     next ITEMID if $ClassList->{$ItemID} !~ m{ \A UnitTest }xms;
 

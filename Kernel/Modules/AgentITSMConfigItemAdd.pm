@@ -46,7 +46,7 @@ sub Run {
     );
 
     # check for access rights
-    for my $ClassID ( keys %{$ClassList} ) {
+    for my $ClassID ( sort keys %{$ClassList} ) {
         my $HasAccess = $Self->{ConfigItemObject}->Permission(
             Type    => $Self->{Config}->{Permission},
             Scope   => 'Class',

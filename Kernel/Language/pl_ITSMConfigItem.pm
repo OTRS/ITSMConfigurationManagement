@@ -10,6 +10,7 @@
 package Kernel::Language::pl_ITSMConfigItem;
 
 use strict;
+use warnings;
 
 sub Data {
     my $Self = shift;

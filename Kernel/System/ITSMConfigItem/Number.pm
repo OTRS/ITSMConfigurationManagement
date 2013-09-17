@@ -12,8 +12,6 @@ package Kernel::System::ITSMConfigItem::Number;
 use strict;
 use warnings;
 
-use vars qw(@ISA);
-
 =head1 NAME
 
 Kernel::System::ITSMConfigItem::Number - sub module of Kernel::System::ITSMConfigItem
@@ -141,7 +139,7 @@ sub ConfigItemNumberCreate {
     }
 
     # load backend
-    push @ISA, $Param{Type};
+    return if !$Self->{MainObject}->RequireBaseClass( $Param{Type} );
 
     # create number
     my $Number = $Self->_ConfigItemNumberCreate(%Param);

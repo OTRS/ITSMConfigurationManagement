@@ -634,7 +634,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns" Required="1" Valid="1">
-        <Description Translatable="1">Defines the shown columns in the config item overview. This option has no effect on the position of the column. Note: Class column is always available if filter 'All' is selected</Description>
+        <Description Translatable="1">Defines the shown columns in the config item overview. This option has no effect on the position of the column. Note: Class column is always available if filter 'All' is selected.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ViewConfigItem</SubGroup>
         <Setting>

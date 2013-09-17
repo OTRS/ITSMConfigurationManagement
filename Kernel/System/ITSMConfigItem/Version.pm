@@ -936,7 +936,7 @@ sub VersionSearch {
     );
 
     ARRAYPARAM:
-    for my $ArrayParam ( keys %ArrayParams ) {
+    for my $ArrayParam ( sort keys %ArrayParams ) {
 
         next ARRAYPARAM if !$Param{$ArrayParam};
 
@@ -1124,7 +1124,7 @@ sub _EventHandlerForChangedXMLValues {
     }
 
     # trigger ValueUpdate event for each changed value
-    for my $Key ( keys %{ $Param{UpdateValues} } ) {
+    for my $Key ( sort keys %{ $Param{UpdateValues} } ) {
         $Self->EventHandler(
             Event => 'ValueUpdate',
             Data  => {
@@ -1266,7 +1266,7 @@ sub _GrabTagKeys {
     }
     elsif ( ref $Param{Data} eq 'HASH' ) {
 
-        for my $Key ( keys %{ $Param{Data} } ) {
+        for my $Key ( sort keys %{ $Param{Data} } ) {
 
             if ( $Key eq 'TagKey' ) {
                 push @TagKeys, $Param{Data}->{$Key};

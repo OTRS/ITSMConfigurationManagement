@@ -53,7 +53,7 @@
 <!-- dtl:block:OverviewItemList -->
                         <tr>
                             <td>
-                                <a href="$Env{"Baselink"}Action=AgentITSMConfigItemEdit;ClassID=$QData{"ClassID"}">$Text{"$Data{"Name"}"}</a>
+                                <a href="$Env{"Baselink"}Action=AgentITSMConfigItemEdit;ClassID=$LQData{"ClassID"}">$Text{"$Data{"Name"}"}</a>
                             </td>
                         </tr>
 <!-- dtl:block:OverviewItemList -->

@@ -67,7 +67,7 @@ sub Run {
     );
 
     # check for access rights on the classes
-    for my $ClassID ( keys %{$ClassList} ) {
+    for my $ClassID ( sort keys %{$ClassList} ) {
         my $HasAccess = $Self->{ConfigItemObject}->Permission(
             Type    => $Self->{Config}->{Permission},
             Scope   => 'Class',
@@ -504,7 +504,7 @@ sub Run {
             );
 
             # insert new profile params
-            for my $Key ( keys %GetParam ) {
+            for my $Key ( sort keys %GetParam ) {
                 if ( $GetParam{$Key} && $Key ne 'What' ) {
                     $Self->{SearchProfileObject}->SearchProfileAdd(
                         Base      => 'ConfigItemSearch' . $ClassID,
@@ -519,7 +519,7 @@ sub Run {
             # insert new profile params also from XMLform
             if ( @{$XMLGetParam} ) {
                 for my $Parameter ( @{$XMLGetParam} ) {
-                    for my $Key ( keys %{$Parameter} ) {
+                    for my $Key ( sort keys %{$Parameter} ) {
                         if ( $Parameter->{$Key} ) {
                             $Self->{SearchProfileObject}->SearchProfileAdd(
                                 Base      => 'ConfigItemSearch' . $ClassID,
@@ -877,7 +877,7 @@ sub Run {
 
                 # get the column names that should be shown
                 COLUMNNAME:
-                for my $Name ( keys %PossibleColumn ) {
+                for my $Name ( sort keys %PossibleColumn ) {
                     next COLUMNNAME if !$PossibleColumn{$Name};
                     push @ShowColumns, $Name;
                 }

@@ -451,7 +451,7 @@ sub ITSMConfigItemListShow {
     }
 
     # loop over configured backends
-    for my $Backend ( keys %{$Backends} ) {
+    for my $Backend ( sort keys %{$Backends} ) {
 
         # build navbar view mode
         $Env->{LayoutObject}->Block(

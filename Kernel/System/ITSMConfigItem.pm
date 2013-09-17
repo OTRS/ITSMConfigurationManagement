@@ -30,16 +30,6 @@ use Kernel::System::VariableCheck qw(:all);
 
 use vars qw(@ISA);
 
-@ISA = (
-    'Kernel::System::ITSMConfigItem::Definition',
-    'Kernel::System::ITSMConfigItem::History',
-    'Kernel::System::ITSMConfigItem::Number',
-    'Kernel::System::ITSMConfigItem::Permission',
-    'Kernel::System::ITSMConfigItem::Version',
-    'Kernel::System::ITSMConfigItem::XML',
-    'Kernel::System::EventHandler',
-);
-
 =head1 NAME
 
 Kernel::System::ITSMConfigItem - config item lib
@@ -114,6 +104,16 @@ sub new {
     $Self->{ServiceObject}        = Kernel::System::Service->new( %{$Self} );
     $Self->{XMLObject}            = Kernel::System::XML->new( %{$Self} );
     $Self->{VirtualFSObject}      = Kernel::System::VirtualFS->new( %{$Self} );
+
+    @ISA = (
+        'Kernel::System::ITSMConfigItem::Definition',
+        'Kernel::System::ITSMConfigItem::History',
+        'Kernel::System::ITSMConfigItem::Number',
+        'Kernel::System::ITSMConfigItem::Permission',
+        'Kernel::System::ITSMConfigItem::Version',
+        'Kernel::System::ITSMConfigItem::XML',
+        'Kernel::System::EventHandler',
+    );
 
     # init of event handler
     $Self->EventHandlerInit(
@@ -994,7 +994,7 @@ sub ConfigItemSearchExtended {
 
         # get config item ids
         my %ConfigItemListTmp;
-        for my $VersionID ( keys %{$XMLVersionList} ) {
+        for my $VersionID ( sort keys %{$XMLVersionList} ) {
             my $ConfigItemID = $Self->VersionConfigItemIDGet(
                 VersionID => $VersionID,
             );
@@ -1237,7 +1237,7 @@ sub ConfigItemSearch {
     );
 
     ARRAYPARAM:
-    for my $ArrayParam ( keys %ArrayParams ) {
+    for my $ArrayParam ( sort keys %ArrayParams ) {
 
         next ARRAYPARAM if !$Param{$ArrayParam};
 
@@ -1273,7 +1273,7 @@ sub ConfigItemSearch {
     );
 
     TIMEPARAM:
-    for my $TimeParam ( keys %TimeParams ) {
+    for my $TimeParam ( sort keys %TimeParams ) {
 
         next TIMEPARAM if !$Param{$TimeParam};
 
@@ -1360,7 +1360,7 @@ sub CurInciStateRecalc {
 
     # investigate all config items with a warning state
     CONFIGITEMID:
-    for my $ConfigItemID ( keys %ScannedConfigItemIDs ) {
+    for my $ConfigItemID ( sort keys %ScannedConfigItemIDs ) {
 
         next CONFIGITEMID if $ScannedConfigItemIDs{$ConfigItemID}->{Type} ne 'incident';
 
@@ -1388,7 +1388,7 @@ sub CurInciStateRecalc {
     my %ServiceCIRelation;
 
     CONFIGITEMID:
-    for my $ConfigItemID ( keys %ScannedConfigItemIDs ) {
+    for my $ConfigItemID ( sort keys %ScannedConfigItemIDs ) {
 
         # extract incident state type
         my $InciStateType = $ScannedConfigItemIDs{$ConfigItemID}{Type};
@@ -1404,7 +1404,7 @@ sub CurInciStateRecalc {
         );
 
         SERVICEID:
-        for my $ServiceID ( keys %LinkedServiceIDs ) {
+        for my $ServiceID ( sort keys %LinkedServiceIDs ) {
 
             # remember the CIs that are linked with this service
             push @{ $ServiceCIRelation{$ServiceID} }, $ConfigItemID;
@@ -1433,7 +1433,7 @@ sub CurInciStateRecalc {
 
     # set the current incident state type for each service (influenced by linked CIs)
     SERVICEID:
-    for my $ServiceID ( keys %ServiceCIRelation ) {
+    for my $ServiceID ( sort keys %ServiceCIRelation ) {
 
         # set default incident state type
         my $CurInciStateTypeFromCIs = 'operational';
@@ -1788,7 +1788,7 @@ sub _FindWarnConfigItems {
     );
 
     CONFIGITEMID:
-    for my $ConfigItemID ( keys %LinkedConfigItemIDs ) {
+    for my $ConfigItemID ( sort keys %LinkedConfigItemIDs ) {
 
         # start recursion
         $Self->_FindWarnConfigItems(

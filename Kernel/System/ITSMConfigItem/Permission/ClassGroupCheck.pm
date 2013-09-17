@@ -14,8 +14,6 @@ use warnings;
 
 use Kernel::System::Group;
 
-use vars qw(@ISA);
-
 =head1 NAME
 
 Kernel::System::ITSMConfigItem::Permission::ClassGroupCheck - check if a user belongs to a group

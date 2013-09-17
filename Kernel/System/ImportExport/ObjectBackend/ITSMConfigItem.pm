@@ -1542,7 +1542,7 @@ sub _ImportXMLSearchDataPrepare {
 
         my $IdentifierKey;
         IDENTIFIERKEY:
-        for my $IdentKey ( keys %{ $Param{Identifier} } ) {
+        for my $IdentKey ( sort keys %{ $Param{Identifier} } ) {
 
             next IDENTIFIERKEY if $IdentKey !~ m{ \A $Key \z }xms;
 

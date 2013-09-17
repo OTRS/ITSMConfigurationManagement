@@ -101,7 +101,7 @@ sub Run {
 
     # set the deployment state IDs parameter for the search
     my $DeplStateIDs;
-    for my $DeplStateKey ( keys %{$StateList} ) {
+    for my $DeplStateKey ( sort keys %{$StateList} ) {
         push @{$DeplStateIDs}, $DeplStateKey;
     }
 
@@ -221,7 +221,7 @@ sub Run {
 
     # display all navbar filters
     my %NavBarFilter;
-    for my $Filter ( keys %Filters ) {
+    for my $Filter ( sort keys %Filters ) {
 
         # display the navbar filter
         $NavBarFilter{ $Filters{$Filter}->{Prio} } = {
@@ -249,7 +249,7 @@ sub Run {
 
         # get the column names that should be shown
         COLUMNNAME:
-        for my $Name ( keys %PossibleColumn ) {
+        for my $Name ( sort keys %PossibleColumn ) {
             next COLUMNNAME if !$PossibleColumn{$Name};
             push @ShowColumns, $Name;
         }

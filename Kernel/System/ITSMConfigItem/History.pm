@@ -322,7 +322,7 @@ sub HistoryDelete {
 
     # delete cached results
     delete $Self->{Cache}->{CIVersion}->{ $Param{ConfigItemID} };
-    for my $VersionNr ( keys %{ $Self->{Cache}->{Versions} } ) {
+    for my $VersionNr ( sort keys %{ $Self->{Cache}->{Versions} } ) {
         my ($CacheConfigItem) = keys %{ $Self->{Cache}->{Versions}->{$VersionNr} };
         delete $Self->{Cache}->{Versions}->{$VersionNr} if $CacheConfigItem eq $Param{ConfigItemID};
     }

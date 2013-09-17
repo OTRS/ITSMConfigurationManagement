@@ -196,18 +196,18 @@ sub TableCreateComplex {
 
     # convert the list
     my %LinkList;
-    for my $LinkType ( keys %{ $Param{ObjectLinkListWithData} } ) {
+    for my $LinkType ( sort keys %{ $Param{ObjectLinkListWithData} } ) {
 
         # extract link type List
         my $LinkTypeList = $Param{ObjectLinkListWithData}->{$LinkType};
 
-        for my $Direction ( keys %{$LinkTypeList} ) {
+        for my $Direction ( sort keys %{$LinkTypeList} ) {
 
             # extract direction list
             my $DirectionList = $Param{ObjectLinkListWithData}->{$LinkType}->{$Direction};
 
             CONFIGITEMID:
-            for my $ConfigItemID ( keys %{$DirectionList} ) {
+            for my $ConfigItemID ( sort keys %{$DirectionList} ) {
 
                 # extract class
                 my $Class = $DirectionList->{$ConfigItemID}->{Class} || '';
@@ -503,12 +503,12 @@ sub TableCreateSimple {
     }
 
     my %LinkOutputData;
-    for my $LinkType ( keys %{ $Param{ObjectLinkListWithData} } ) {
+    for my $LinkType ( sort keys %{ $Param{ObjectLinkListWithData} } ) {
 
         # extract link type List
         my $LinkTypeList = $Param{ObjectLinkListWithData}->{$LinkType};
 
-        for my $Direction ( keys %{$LinkTypeList} ) {
+        for my $Direction ( sort keys %{$LinkTypeList} ) {
 
             # extract direction list
             my $DirectionList = $Param{ObjectLinkListWithData}->{$LinkType}->{$Direction};

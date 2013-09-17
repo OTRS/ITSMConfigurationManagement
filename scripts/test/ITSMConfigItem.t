@@ -1750,7 +1750,7 @@ for my $Test ( @{$ConfigItemTests} ) {
 
         # check all config item attributes
         my $Counter = 0;
-        for my $Attribute ( keys %{ $Test->{ReferenceData}->{ConfigItemGet} } ) {
+        for my $Attribute ( sort keys %{ $Test->{ReferenceData}->{ConfigItemGet} } ) {
 
             # set content if values are undef
             if ( !defined $ConfigItemData->{$Attribute} ) {
@@ -1823,7 +1823,7 @@ for my $Test ( @{$ConfigItemTests} ) {
         $LastVersionIDMust = $VersionData->{VersionID};
 
         # check all version attributes
-        for my $Attribute ( keys %{ $Test->{ReferenceData}->{VersionGet}->[$Counter] } ) {
+        for my $Attribute ( sort keys %{ $Test->{ReferenceData}->{VersionGet}->[$Counter] } ) {
 
             # extract the needed attributes
             my $VersionAttribute   = $VersionData->{$Attribute};
@@ -1897,7 +1897,7 @@ for my $Test ( @{$ConfigItemTests} ) {
 
             next CHECKNR unless $Check && $Data;
 
-            for my $Key ( keys %{$Check} ) {
+            for my $Key ( sort keys %{$Check} ) {
 
                 # check history data
                 $Self->Is(
@@ -3348,7 +3348,7 @@ $ClassList = $Self->{GeneralCatalogObject}->ItemList(
 
 # set unittest classes invalid
 ITEMID:
-for my $ItemID ( keys %{$ClassList} ) {
+for my $ItemID ( sort keys %{$ClassList} ) {
 
     next ITEMID if $ClassList->{$ItemID} !~ m{ \A UnitTest }xms;
 
