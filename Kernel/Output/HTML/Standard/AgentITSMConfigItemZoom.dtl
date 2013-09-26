@@ -95,12 +95,12 @@
                     <div class="ControlRow">
                         <div class="ITSMItemView Icons">
 <!-- dtl:block:Expand -->
-                            <a class="OneITSMItem Active" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"};ShowVersions=0" title="$Text{"Show one version"}"><span>$Text{"Show one version"}</span></a>
-                            <a class="AllITSMItems" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"};ShowVersions=1" title="$Text{"Show all versions"}"><span>$Text{"Show all versions"}</span></a>
+                            <a class="OneITSMItem Active" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"};ShowVersions=0" title="$Text{"Show one version"}"><i class="icon-minus"></i><span>$Text{"Show one version"}</span></a>
+                            <a class="AllITSMItems" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"};ShowVersions=1" title="$Text{"Show all versions"}"><i class="icon-reorder"></i><span>$Text{"Show all versions"}</span></a>
 <!-- dtl:block:Expand -->
 <!-- dtl:block:Collapse -->
-                            <a class="OneITSMItem" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"};ShowVersions=0" title="$Text{"Show one version"}"><span>$Text{"Show one version"}</span></a>
-                            <a class="AllITSMItems Active" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"};ShowVersions=1" title="$Text{"Show all versions"}"><span>$Text{"Show all versions"}</span></a>
+                            <a class="OneITSMItem" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"};ShowVersions=0" title="$Text{"Show one version"}"><i class="icon-minus"></i><span>$Text{"Show one version"}</span></a>
+                            <a class="AllITSMItems Active" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"};ShowVersions=1" title="$Text{"Show all versions"}"><i class="icon-reorder"></i><span>$Text{"Show all versions"}</span></a>
 <!-- dtl:block:Collapse -->
                         </div>
                     </div>
