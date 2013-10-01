@@ -4,7 +4,7 @@
 <!-- nofilter(TidyAll::Plugin::OTRS::SOPM::DocumentationPresent) -->
     <Version>0.0.0</Version>
     <Framework>3.3.x</Framework>
-    <PackageRequired Version="3.2.93">ITSMCore</PackageRequired>
+    <PackageRequired Version="3.2.94">ITSMCore</PackageRequired>
     <Vendor>OTRS AG</Vendor>
     <URL>http://otrs.org/</URL>
     <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
@@ -14,6 +14,7 @@
     <Filelist>
         <File Permission="755" Location="bin/otrs.ITSMConfigItemDelete.pl"/>
         <File Permission="755" Location="bin/otrs.ITSMConfigItemListDuplicates.pl"/>
+        <File Permission="644" Location="doc/itsm-configuration-management-database.dia"/>
         <File Permission="644" Location="doc/itsm-configuration-management-database.png"/>
         <File Permission="644" Location="Kernel/Config/Files/ITSMConfigItem.xml"/>
         <File Permission="644" Location="Kernel/Language/bg_ITSMConfigItem.pm"/>
@@ -58,6 +59,7 @@
         <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemOverviewSmall.pm"/>
         <File Permission="644" Location="Kernel/Output/HTML/LayoutITSMConfigItem.pm"/>
         <File Permission="644" Location="Kernel/Output/HTML/LinkObjectITSMConfigItem.pm"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AAAITSMConfigItem.dtl"/>
         <File Permission="644" Location="Kernel/Output/HTML/Standard/AdminITSMConfigItem.dtl"/>
         <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemAdd.dtl"/>
         <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemEdit.dtl"/>
@@ -1381,7 +1383,7 @@
         <br/>
         <strong>REQUIRED OTRS PACKAGES</strong>
         <ul>
-        <li>ITSMCore 3.2.93</li>
+        <li>ITSMCore 3.2.94</li>
         </ul>
         <br/>
         ((enjoy))<br/>
@@ -1399,7 +1401,7 @@
         <br/>
         <strong>BENÖTIGTE OTRS-PAKETE</strong>
         <ul>
-        <li>ITSMCore 3.2.93</li>
+        <li>ITSMCore 3.2.94</li>
         </ul>
         <br/>
         ((enjoy))<br/>
@@ -1417,7 +1419,7 @@
         <br/>
         <strong>PAQUETES OTRS REQUERIDOS</strong>
         <ul>
-        <li>ITSMCore 3.2.93</li>
+        <li>ITSMCore 3.2.94</li>
         </ul>
         <br/>
         ((enjoy))<br/>
@@ -1485,7 +1487,7 @@
         <br/>
         <strong>REQUIRED OTRS PACKAGES</strong>
         <ul>
-        <li>ITSMCore 3.2.93</li>
+        <li>ITSMCore 3.2.94</li>
         </ul>
         <br/>
         ((enjoy))<br/>
@@ -1503,7 +1505,7 @@
         <br/>
         <strong>BENÖTIGTE OTRS-PAKETE</strong>
         <ul>
-        <li>ITSMCore 3.2.93</li>
+        <li>ITSMCore 3.2.94</li>
         </ul>
         <br/>
         ((enjoy))<br/>
@@ -1521,7 +1523,7 @@
         <br/>
         <strong>PAQUETES OTRS REQUERIDOS</strong>
         <ul>
-        <li>ITSMCore 3.2.93</li>
+        <li>ITSMCore 3.2.94</li>
         </ul>
         <br/>
         ((enjoy))<br/>
