@@ -114,22 +114,16 @@ sub Run {
         $VersionNumber++;
     }
 
-    # get user data of config item (create by)
-    my %ConfigItemCreateBy = $Self->{UserObject}->GetUserData(
-        UserID => $ConfigItem->{CreateBy},
-        Cached => 1,
-    );
-
-    # get user data of config item (change by)
-    my %ConfigItemChangeBy = $Self->{UserObject}->GetUserData(
-        UserID => $ConfigItem->{ChangeBy},
-        Cached => 1,
-    );
+    # get create & change user data
+    for my $Key (qw(Create Change)) {
+        $ConfigItem->{ $Key . 'ByName' } = $Self->{UserObject}->UserName(
+            UserID => $ConfigItem->{ $Key . 'By' },
+        );
+    }
 
     # get user data of version (create by)
-    my %VersionCreateBy = $Self->{UserObject}->GetUserData(
+    $Version->{CreateByName} = $Self->{UserObject}->UserName(
         UserID => $Version->{CreateBy},
-        Cached => 1,
     );
 
     # get linked objects
@@ -185,9 +179,7 @@ sub Run {
             . $ConfigItem->{Number};
         $Page{HeadlineLeft}  = $Version->{Name};
         $Page{HeadlineRight} = $Self->{LayoutObject}->{LanguageObject}->Get('printed by') . ' '
-            . $Self->{UserFirstname} . ' '
-            . $Self->{UserLastname} . ' ('
-            . $Self->{UserEmail} . ') '
+            . $Self->{UserFullname} . ' '
             . $Self->{LayoutObject}->Output( Template => '$Env{"Time"}' );
         $Page{FooterLeft} = $Url;
         $Page{PageText}   = $Self->{LayoutObject}->{LanguageObject}->Get('Page');
@@ -206,12 +198,10 @@ sub Run {
         );
         $Page{PageCount}++;
 
-        # output general infos
+        # output general information
         $Self->_PDFOutputGeneralInfos(
             Page       => \%Page,
             ConfigItem => $ConfigItem,
-            CreateBy   => \%ConfigItemCreateBy,
-            ChangeBy   => \%ConfigItemChangeBy,
         );
 
         # output linked objects
@@ -237,7 +227,6 @@ sub Run {
             Page          => \%Page,
             Version       => $Version,
             VersionNumber => $VersionNumber,
-            CreateBy      => \%VersionCreateBy,
         );
 
         # create file name
@@ -311,10 +300,7 @@ sub Run {
             Name => "Version",
             Data => {
                 %{$Version},
-                VersionNumber         => $VersionNumber,
-                CreateByUserLogin     => $VersionCreateBy{UserLogin},
-                CreateByUserFirstname => $VersionCreateBy{UserFirstname},
-                CreateByUserLastname  => $VersionCreateBy{UserLastname},
+                VersionNumber => $VersionNumber,
             },
         );
 
@@ -385,12 +371,6 @@ sub Run {
             TemplateFile => 'AgentITSMConfigItemPrint',
             Data         => {
                 %{$ConfigItem},
-                CreateByUserLogin     => $ConfigItemCreateBy{UserLogin},
-                CreateByUserFirstname => $ConfigItemCreateBy{UserFirstname},
-                CreateByUserLastname  => $ConfigItemCreateBy{UserLastname},
-                ChangeByUserLogin     => $ConfigItemChangeBy{UserLogin},
-                ChangeByUserFirstname => $ConfigItemChangeBy{UserFirstname},
-                ChangeByUserLastname  => $ConfigItemChangeBy{UserLastname},
             },
         );
 
@@ -406,7 +386,7 @@ sub _PDFOutputGeneralInfos {
     my ( $Self, %Param ) = @_;
 
     # check needed stuff
-    for my $Argument (qw(Page ConfigItem CreateBy ChangeBy)) {
+    for my $Argument (qw(Page ConfigItem)) {
         if ( !defined $Param{$Argument} ) {
             $Self->{LogObject}->Log(
                 Priority => 'error',
@@ -451,9 +431,7 @@ sub _PDFOutputGeneralInfos {
         },
         {
             Key   => $Self->{LayoutObject}->{LanguageObject}->Get('Created by') . ':',
-            Value => $Param{CreateBy}->{UserLogin} . ' ('
-                . $Param{CreateBy}->{UserFirstname} . ' '
-                . $Param{CreateBy}->{UserLastname} . ')',
+            Value => $Param{ConfigItem}->{CreateByName},
         },
         {
             Key   => $Self->{LayoutObject}->{LanguageObject}->Get('Last changed') . ':',
@@ -464,9 +442,7 @@ sub _PDFOutputGeneralInfos {
         },
         {
             Key   => $Self->{LayoutObject}->{LanguageObject}->Get('Last changed by') . ':',
-            Value => $Param{ChangeBy}->{UserLogin} . ' ('
-                . $Param{ChangeBy}->{UserFirstname} . ' '
-                . $Param{ChangeBy}->{UserLastname} . ')',
+            Value => $Param{ConfigItem}->{ChangeByName},
         },
     ];
 
@@ -756,9 +732,7 @@ sub _PDFOutputVersionInfos {
         },
         {
             Key   => $Self->{LayoutObject}->{LanguageObject}->Get('Created by') . ':',
-            Value => $Param{CreateBy}->{UserLogin} . ' ('
-                . $Param{CreateBy}->{UserFirstname} . ' '
-                . $Param{CreateBy}->{UserLastname} . ')',
+            Value => $Param{Version}->{CreateByName},
         },
         {
             Key   => ' ',

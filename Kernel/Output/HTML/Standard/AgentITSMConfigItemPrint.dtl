@@ -27,7 +27,7 @@
                     <td class="contentkey">$Text{"ConfigItem"}:</td>
                     <td class="contentvalue">$QData{"CurrentName"}</td>
                     <td class="contentkey">$Text{"Created by"}:</td>
-                    <td class="contentvalue">$QData{"CreateByUserLogin"} ($QData{"CreateByUserFirstname"} $QData{"CreateByUserLastname"})</td>
+                    <td class="contentvalue">$QData{"CreateByName"})</td>
                 </tr>
                 <tr>
                     <td class="contentkey">$Text{"Current Deployment State"}:</td>
@@ -39,7 +39,7 @@
                     <td class="contentkey">$Text{"Current Incident State"}:</td>
                     <td class="contentvalue">$Text{"$Data{"CurInciState"}"}</td>
                     <td class="contentkey">$Text{"Last changed by"}:</td>
-                    <td class="contentvalue">$QData{"ChangeByUserLogin"} ($QData{"ChangeByUserFirstname"} $QData{"ChangeByUserLastname"})</td>
+                    <td class="contentvalue">$QData{"ChangeByName"}</td>
                 </tr>
             </table>
         </td>
@@ -88,7 +88,7 @@
                                         </tr>
                                         <tr>
                                             <td class="contentkey">$Text{"Created by"}:</td>
-                                            <td class="contentvalue">$QData{"CreateByUserLogin"} ($QData{"CreateByUserFirstname"} $QData{"CreateByUserLastname"})</td>
+                                            <td class="contentvalue">$QData{"CreateByName"}</td>
                                         </tr>
                                         <tr>
                                             <td class="contentkey">&nbsp;</td>

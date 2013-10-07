@@ -44,6 +44,7 @@ These hash references contain information about:
     $Info{UserLogin}
     $Info{UserLastname}
     $Info{UserFirstname}
+    $Info{UserFullname}
 
     my $Info = $ConfigItemObject->HistoryGet(
         ConfigItemID => 1234,
@@ -109,6 +110,7 @@ sub HistoryGet {
         $Entry->{UserLogin}     = $UserInfo{UserLogin};
         $Entry->{UserFirstname} = $UserInfo{UserFirstname};
         $Entry->{UserLastname}  = $UserInfo{UserLastname};
+        $Entry->{UserFullname}  = $UserInfo{UserFullname};
     }
 
     # save result in cache

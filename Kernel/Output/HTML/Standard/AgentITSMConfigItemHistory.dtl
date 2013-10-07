@@ -60,7 +60,7 @@
                                 <a  class="LinkZoomView AsBlock" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$Data{"ConfigItemID"};VersionID=$Data{"VersionID"}">$Text{"Zoom view"}</a>
                             </td>
                             <td>
-                                $Quote{"$Data{"UserLogin"}"} ($Quote{"$Data{"UserFirstname"} $Data{"UserLastname"}","20"})
+                                $QData{"UserFullname"}
                             </td>
                             <td>
                                 $TimeLong{"$Data{"CreateTime"}"}

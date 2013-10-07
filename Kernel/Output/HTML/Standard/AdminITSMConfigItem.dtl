@@ -85,11 +85,7 @@
                                 <a class="AsBlock" href="$Env{"Baselink"}Action=$Env{"Action"};Subaction=DefinitionView;DefinitionID=$LQData{"DefinitionID"}">$QData{"Class"}</a>
                             </td>
                             <td>$QData{"Version"}</td>
-                            <td>
-                                <div title="$QData{"UserLogin"} ($Quote{"$Data{"UserFirstname"} $Data{"UserLastname"}"})">
-                                    $QData{"UserLogin","15"} ($Quote{"$Data{"UserFirstname"} $Data{"UserLastname"}","15"})
-                                </div>
-                            </td>
+                            <td>$QData{"CreateByUser"}</td>
                             <td>$TimeLong{"$QData{"CreateTime"}"}</td>
                         </tr>
 <!-- dtl:block:DefinitionListRow -->
@@ -118,7 +114,7 @@
 
                     <label>$Text{"Created by"}: </label>
                     <div class="Field">
-                        $QData{"UserLogin"} ($Quote{"$Data{"UserFirstname"} $Data{"UserLastname"}"})
+                        $QData{"CreateByUser"}
                     </div>
                     <div class="Clear"></div>
 

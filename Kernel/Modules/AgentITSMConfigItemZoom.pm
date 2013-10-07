@@ -190,16 +190,14 @@ sub Run {
     # output version tree
     for my $VersionHash ( @{$VersionList} ) {
 
-        my %UserInfo = $Self->{UserObject}->GetUserData(
+        $Param{CreateByUserFullName} = $Self->{UserObject}->UserName(
             UserID => $VersionHash->{CreateBy},
-            Cached => 1,
         );
 
         $Self->{LayoutObject}->Block(
             Name => 'TreeItem',
             Data => {
                 %Param,
-                %UserInfo,
                 %{$ConfigItem},
                 %{$VersionHash},
                 Count      => $Counter,
@@ -285,22 +283,11 @@ sub Run {
         );
     }
 
-    # get create user data
-    my %CreateUser = $Self->{UserObject}->GetUserData(
-        UserID => $ConfigItem->{CreateBy},
-        Cached => 1,
-    );
-    for my $Postfix (qw(UserLogin UserFirstname UserLastname)) {
-        $ConfigItem->{ 'Create' . $Postfix } = $CreateUser{$Postfix};
-    }
-
-    # get change user data
-    my %ChangeUser = $Self->{UserObject}->GetUserData(
-        UserID => $ConfigItem->{ChangeBy},
-        Cached => 1,
-    );
-    for my $Postfix (qw(UserLogin UserFirstname UserLastname)) {
-        $ConfigItem->{ 'Change' . $Postfix } = $ChangeUser{$Postfix};
+    # get create & change user data
+    for my $Key (qw(Create Change)) {
+        $ConfigItem->{ $Key . 'UserFullName' } = $Self->{UserObject}->UserName(
+            UserID => $ConfigItem->{ $Key . 'By' },
+        );
     }
 
     # output meta block

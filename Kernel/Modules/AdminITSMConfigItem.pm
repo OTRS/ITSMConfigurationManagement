@@ -91,18 +91,17 @@ sub Run {
         for my $Definition ( reverse @{$DefinitionList} ) {
 
             # get user data
-            my %UserData = $Self->{UserObject}->GetUserData(
+            my $FullName = $Self->{UserObject}->UserName(
                 UserID => $Definition->{CreateBy},
-                Cached => 1,
             );
 
             # output definition
             $Self->{LayoutObject}->Block(
                 Name => 'DefinitionListRow',
                 Data => {
-                    %UserData,
                     %{$Definition},
-                    Class => $ClassList->{$ClassID},
+                    Class        => $ClassList->{$ClassID},
+                    CreateByUser => $FullName,
                 },
             );
         }
@@ -163,17 +162,16 @@ sub Run {
         );
 
         # get user data
-        my %UserData = $Self->{UserObject}->GetUserData(
+        my $UserName = $Self->{UserObject}->UserName(
             UserID => $Definition->{CreateBy},
-            Cached => 1,
         );
 
         # output overview result
         $Self->{LayoutObject}->Block(
             Name => 'DefinitionView',
             Data => {
-                %UserData,
                 %{$Definition},
+                CreateByUser => $UserName,
             },
         );
 
