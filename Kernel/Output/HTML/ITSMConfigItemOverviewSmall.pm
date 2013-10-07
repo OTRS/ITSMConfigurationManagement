@@ -77,7 +77,7 @@ sub Run {
         for my $Column (@ShowColumns) {
 
             # create needed veriables
-            my $CSS = '';
+            my $CSS = 'OverviewHeader';
             my $OrderBy;
 
             # remove ID if necesary
@@ -95,11 +95,11 @@ sub Run {
             if ( $Param{SortBy} && ( $Param{SortBy} eq $Column ) ) {
                 if ( $Param{OrderBy} && ( $Param{OrderBy} eq 'Up' ) ) {
                     $OrderBy = 'Down';
-                    $CSS .= ' SortDescending';
+                    $CSS .= ' SortDescendingLarge';
                 }
                 else {
                     $OrderBy = 'Up';
-                    $CSS .= ' SortAscending';
+                    $CSS .= ' SortAscendingLarge';
                 }
             }
             else {
