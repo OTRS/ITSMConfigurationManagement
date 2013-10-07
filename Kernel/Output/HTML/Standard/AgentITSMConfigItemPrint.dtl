@@ -27,7 +27,7 @@
                     <td class="contentkey">$Text{"ConfigItem"}:</td>
                     <td class="contentvalue">$QData{"CurrentName"}</td>
                     <td class="contentkey">$Text{"Created by"}:</td>
-                    <td class="contentvalue">$QData{"CreateByName"})</td>
+                    <td class="contentvalue">$QData{"CreateByName"}</td>
                 </tr>
                 <tr>
                     <td class="contentkey">$Text{"Current Deployment State"}:</td>
