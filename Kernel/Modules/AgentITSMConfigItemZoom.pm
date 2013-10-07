@@ -285,7 +285,7 @@ sub Run {
 
     # get create & change user data
     for my $Key (qw(Create Change)) {
-        $ConfigItem->{ $Key . 'UserFullName' } = $Self->{UserObject}->UserName(
+        $ConfigItem->{ $Key . 'BUserFullName' } = $Self->{UserObject}->UserName(
             UserID => $ConfigItem->{ $Key . 'By' },
         );
     }
