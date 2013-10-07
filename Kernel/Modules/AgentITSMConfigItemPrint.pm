@@ -157,13 +157,6 @@ sub Run {
     if ( $Self->{PDFObject} ) {
 
         my %Page;
-        my $Url = ' ';
-
-        if ( $ENV{REQUEST_URI} ) {
-            $Url = $Self->{ConfigObject}->Get('HttpType') . '://'
-                . $Self->{ConfigObject}->Get('FQDN')
-                . $ENV{REQUEST_URI};
-        }
 
         # get maximum number of pages
         $Page{MaxPages} = $Self->{ConfigObject}->Get('PDF::MaxPages');
@@ -181,7 +174,7 @@ sub Run {
         $Page{HeadlineRight} = $Self->{LayoutObject}->{LanguageObject}->Get('printed by') . ' '
             . $Self->{UserFullname} . ' '
             . $Self->{LayoutObject}->Output( Template => '$Env{"Time"}' );
-        $Page{FooterLeft} = $Url;
+        $Page{FooterLeft} = '';
         $Page{PageText}   = $Self->{LayoutObject}->{LanguageObject}->Get('Page');
         $Page{PageCount}  = 1;
 
