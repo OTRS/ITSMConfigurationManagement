@@ -78,9 +78,7 @@ sub OutputStringCreate {
         return;
     }
 
-    if ( !defined $Param{Value} ) {
-        $Param{Value} = '';
-    }
+    $Param{Value} //= '';
 
     # translate
     if ( $Param{Item}->{Input}->{Translation} ) {
