@@ -35,7 +35,6 @@
                     <Name>CMDB</Name>
                     <Type>Menu</Type>
                     <Block>ItemArea</Block>
-                    <Image>itsm_configitem.png</Image>
                     <Link>Action=AgentITSMConfigItem</Link>
                     <NavBar>Config Item</NavBar>
                     <AccessKey></AccessKey>
@@ -44,7 +43,6 @@
                 <NavBar>
                     <Description>Overview</Description>
                     <Name>Overview</Name>
-                    <Image>overview.png</Image>
                     <Link>Action=AgentITSMConfigItem</Link>
                     <Type></Type>
                     <Block></Block>
@@ -119,7 +117,6 @@
                 <NavBar>
                     <Description>New</Description>
                     <Name>New</Name>
-                    <Image>new.png</Image>
                     <Link>Action=AgentITSMConfigItemAdd</Link>
                     <Type></Type>
                     <Block></Block>
@@ -143,7 +140,6 @@
                 <NavBar>
                     <Description>Search Config Items</Description>
                     <Name>Search</Name>
-                    <Image>search.png</Image>
                     <Link>Action=AgentITSMConfigItemSearch</Link>
                     <LinkOption>onclick="ITSM.Agent.ConfigItem.Search.OpenSearchDialog('AgentITSMConfigItemSearch'); if (event.stopPropagation) { event.stopPropagation(); } else { window.event.cancelBubble = true; } return false;"</LinkOption>
                     <NavBar>Config Item</NavBar>
