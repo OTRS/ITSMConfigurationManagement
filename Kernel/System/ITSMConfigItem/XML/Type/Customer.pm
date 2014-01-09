@@ -104,7 +104,7 @@ sub ValueLookup {
         Search => $Param{Value},
     );
 
-    return $CustomerSearchList{ $Param{Value} } || '';
+    return $CustomerSearchList{ $Param{Value} } || $Param{Value};
 }
 
 =item StatsAttributeCreate()
