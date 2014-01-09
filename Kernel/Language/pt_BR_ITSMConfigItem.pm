@@ -32,8 +32,8 @@ sub Data {
     $Self->{Translation}->{'CIHistory::ValueUpdate'} = 'O atributo %s de "%s" para "%s" mudou';
     $Self->{Translation}->{'CIHistory::VersionCreate'} = 'Nova versão criada (ID=%s)';
     $Self->{Translation}->{'CIHistory::VersionDelete'} = 'Versão %s excluída';
-    $Self->{Translation}->{'CIHistory::AttachmentAdd'} = '';
-    $Self->{Translation}->{'CIHistory::AttachmentDelete'} = '';
+    $Self->{Translation}->{'CIHistory::AttachmentAdd'} = 'Anexo (%s) adicionado';
+    $Self->{Translation}->{'CIHistory::AttachmentDelete'} = 'Anexo (%s) excluído';
     $Self->{Translation}->{'CPU'} = 'Processador';
     $Self->{Translation}->{'Camera'} = 'Câmera';
     $Self->{Translation}->{'Capacity'} = 'Capacidade';
@@ -181,8 +181,8 @@ sub Data {
     $Self->{Translation}->{'Last changed by'} = 'Última modificação por';
 
     # Template: AgentITSMConfigItemSearch
-    $Self->{Translation}->{'Create New Template'} = '';
-    $Self->{Translation}->{'Run Search'} = '';
+    $Self->{Translation}->{'Create New Template'} = 'Criar novo Modelo';
+    $Self->{Translation}->{'Run Search'} = 'Executar Pesquisa';
     $Self->{Translation}->{'Also search in previous versions?'} = 'Procurar nas verões anteriores também?';
 
     # Template: AgentITSMConfigItemSearchResultPrint
@@ -190,18 +190,19 @@ sub Data {
 
     # Template: AgentITSMConfigItemZoom
     $Self->{Translation}->{'Configuration Item'} = 'Item de configuração';
-    $Self->{Translation}->{'Configuration Item Information'} = '';
+    $Self->{Translation}->{'Configuration Item Information'} = 'Informação do Item de Configuração';
     $Self->{Translation}->{'Show one version'} = 'Visualizar uma versão';
     $Self->{Translation}->{'Show all versions'} = 'Visualizar todas as versões';
     $Self->{Translation}->{'Version Incident State'} = 'Estado da Versão de Incidentes';
     $Self->{Translation}->{'Version Number'} = 'Número da versão';
     $Self->{Translation}->{'Configuration Item Version Details'} = 'Detalhes da Versão do Item de Configuração';
+    $Self->{Translation}->{'Linked as'} = 'Associado como';
     $Self->{Translation}->{'Property'} = 'Propriedade';
 
     # SysConfig
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         '';
-    $Self->{Translation}->{'Config Items'} = '';
+    $Self->{Translation}->{'Config Items'} = 'Itens de Configuração';
     $Self->{Translation}->{'Config item event module that enables logging to history in the agent interface.'} =
         'Módulo de evento de item de configuração que permite registrar o histórico da interface do atendente.';
     $Self->{Translation}->{'Configuration Item Limit'} = 'Limite de Item de Configuração';
