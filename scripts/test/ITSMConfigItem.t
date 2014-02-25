@@ -13,7 +13,6 @@ use utf8;
 
 use vars qw($Self);
 
-use Data::Dumper;
 use Kernel::System::GeneralCatalog;
 use Kernel::System::ITSMConfigItem;
 use Kernel::System::LinkObject;
@@ -1837,20 +1836,8 @@ for my $Test ( @{$ConfigItemTests} ) {
                 $ReferenceAttribute = 'UNDEF-unittest';
             }
 
-            if ( $Attribute eq 'XMLDefinition' || $Attribute eq 'XMLData' ) {
-
-                # turn off all pretty print
-                $Data::Dumper::Indent = 0;
-
-                # dump the attribute from VersionGet()
-                $VersionAttribute = Data::Dumper::Dumper($VersionAttribute);    ## no critic
-
-                # dump the reference attribute
-                $ReferenceAttribute = Data::Dumper::Dumper($ReferenceAttribute);    ## no critic
-            }
-
             # check attributes
-            $Self->Is(
+            $Self->IsDeeply(
                 $VersionAttribute,
                 $ReferenceAttribute,
                 "Test $TestCount: VersionGet() - $Attribute",
@@ -3183,19 +3170,10 @@ for my $Test (@SearchTests) {
             push @ReferenceList, $ConfigItemID;
         }
 
-        # turn off all pretty print
-        $Data::Dumper::Indent = 0;
-
-        # dump the list from ConfigItemSearchExtended()
-        my $ConfigItemString = Data::Dumper::Dumper($ConfigItemList);    ## no critic
-
-        # dump the reference string
-        my $ReferenceString = Data::Dumper::Dumper( \@ReferenceList );    ## no critic
-
         # check arrays
-        $Self->Is(
-            $ConfigItemString,
-            $ReferenceString,
+        $Self->IsDeeply(
+            $ConfigItemList,
+            \@ReferenceList,
             "SearchTest $SearchTestCount: $Function() - List",
         );
     }

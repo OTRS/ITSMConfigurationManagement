@@ -13,7 +13,6 @@ use utf8;
 
 use vars qw($Self);
 
-use Data::Dumper;
 use Kernel::System::Encode;
 use Kernel::System::GeneralCatalog;
 use Kernel::System::ImportExport;
@@ -68,11 +67,6 @@ $Self->True(
 
 {
 
-    # turn off all pretty print in Data::Dumper
-    local $Data::Dumper::Indent   = 0;
-    local $Data::Dumper::Useqq    = 1;
-    local $Data::Dumper::Sortkeys = 1;
-
     # get object attributes
     my $ObjectAttributesGet1 = $Self->{ImportExportObject}->ObjectAttributesGet(
         TemplateID => $TemplateIDs[0],
@@ -126,15 +120,9 @@ $Self->True(
         }
     ];
 
-    # dump the list from ObjectAttributesGet()
-    my $ObjectAttributesGetDump1 = Data::Dumper::Dumper($ObjectAttributesGet1);    ## no critic
-
-    # dump the reference table
-    my $ObjectAttributesRefDump1
-        = Data::Dumper::Dumper($ObjectAttributesGet1Reference);                    ## no critic
-
-    $Self->True(
-        $ObjectAttributesGetDump1 eq $ObjectAttributesRefDump1,
+    $Self->IsDeeply(
+        $ObjectAttributesGet1,
+        $ObjectAttributesGet1Reference,
         "ObjectAttributesGet() - attributes of the row are identical",
     );
 }
