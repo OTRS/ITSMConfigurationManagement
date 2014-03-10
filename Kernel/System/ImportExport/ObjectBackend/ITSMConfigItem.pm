@@ -1654,7 +1654,7 @@ sub _ImportXMLDataMerge {
             # When the data point is not part of the input definition,
             # then do not overwrite the previous setting.
             # False values are OK.
-            next COUNTER unless exists $Param{XMLData2D}->{$Key};
+            next COUNTER if !exists $Param{XMLData2D}->{$Key};
 
             if ( $Param{EmptyFieldsLeaveTheOldValues} ) {
 

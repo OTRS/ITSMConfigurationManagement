@@ -1895,7 +1895,7 @@ for my $Test ( @{$ConfigItemTests} ) {
             my $Check = $Test->{ReferenceData}->{HistoryGet}->[$CheckNr];
             my $Data  = $CompleteHistory->[$CheckNr];
 
-            next CHECKNR unless $Check && $Data;
+            next CHECKNR if !($Check && $Data);
 
             for my $Key ( sort keys %{$Check} ) {
 
