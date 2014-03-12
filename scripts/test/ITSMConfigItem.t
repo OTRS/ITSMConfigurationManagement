@@ -2066,6 +2066,74 @@ continue {
 }
 
 # ------------------------------------------------------------ #
+# test for bugfix 10356
+# ------------------------------------------------------------ #
+
+{
+
+    my $CI1 = $Self->{ConfigItemObject}->ConfigItemLookup(
+        ConfigItemNumber => $ConfigItemNumbers[72],
+    );
+
+    # add a version, set incident state to incident
+    my $VersionID = $Self->{ConfigItemObject}->VersionAdd(
+        ConfigItemID => $CI1,
+        Name         => 'UnitTest - Bugfix10356',
+        DefinitionID => $ConfigItemDefinitionIDs[0],
+        DeplStateID  => $DeplStateListReverse{Production},
+        InciStateID  => $InciStateListReverse{Incident},
+        UserID       => 1,
+    );
+
+    # check if version could be added
+    $Self->True(
+        $VersionID,
+        "Test $TestCount: VersionAdd() for $CI1 - Set to 'Incident'",
+    );
+
+    # get the latest version for CI1
+    my $VersionRef = $Self->{ConfigItemObject}->VersionGet(
+        ConfigItemID => $CI1,
+    );
+
+    # check if incident state of CI1 is 'Incident'
+    $Self->Is(
+        $VersionRef->{CurInciState},
+        'Incident',
+        "Test $TestCount: Current incident state of CI $CI1",
+    );
+
+    # delete the last version
+    my $VersionDeleteSuccess = $Self->{ConfigItemObject}->VersionDelete(
+        VersionID => $VersionRef->{VersionID},
+        UserID    => 1,
+    );
+
+    # check if version could be deleted
+    $Self->True(
+        $VersionDeleteSuccess,
+        "Test $TestCount: VersionDelete() for $CI1'",
+    );
+
+    # get the history
+    my $HistoryRef = $Self->{ConfigItemObject}->HistoryGet(
+        ConfigItemID => $CI1,
+    );
+
+    my $LastHistoryEntry = pop @{$HistoryRef};
+
+    # check if last history entry has the correct history type
+    $Self->Is(
+        $LastHistoryEntry->{HistoryType},
+        'VersionDelete',
+        "Test $TestCount: HistoryType of last version of CI $CI1",
+    );
+
+    # increase the test counter
+    $TestCount++;
+}
+
+# ------------------------------------------------------------ #
 # define general config item search tests
 # ------------------------------------------------------------ #
 

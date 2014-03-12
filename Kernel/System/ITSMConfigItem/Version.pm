@@ -711,6 +711,14 @@ sub VersionDelete {
     my $Success;
     for my $VersionID ( @{$VersionList} ) {
 
+        # get config item id for version (needed for event handling)
+        my $ConfigItemID = $Param{ConfigItemID};
+        if ( $Param{VersionID} ) {
+            $ConfigItemID = $Self->VersionConfigItemIDGet(
+                VersionID => $Param{VersionID},
+            );
+        }
+
         # delete the xml version data
         $Self->_XMLVersionDelete(
             VersionID => $VersionID,
@@ -725,14 +733,6 @@ sub VersionDelete {
 
         # trigger VersionDelete event when deletion was successful
         if ($Success) {
-
-            # get config item id for version (needed for event handling)
-            my $ConfigItemID = $Param{ConfigItemID};
-            if ( $Param{VersionID} ) {
-                $ConfigItemID = $Self->VersionConfigItemIDGet(
-                    VersionID => $Param{VersionID},
-                );
-            }
 
             $Self->EventHandler(
                 Event => 'VersionDelete',
