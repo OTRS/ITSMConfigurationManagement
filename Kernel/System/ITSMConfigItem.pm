@@ -1391,7 +1391,7 @@ sub CurInciStateRecalc {
     for my $ConfigItemID ( sort keys %ScannedConfigItemIDs ) {
 
         # extract incident state type
-        my $InciStateType = $ScannedConfigItemIDs{$ConfigItemID}{Type};
+        my $InciStateType = $ScannedConfigItemIDs{$ConfigItemID}->{Type};
 
         # find all linked services of this CI
         my %LinkedServiceIDs = $Self->{LinkObject}->LinkKeyListWithData(
