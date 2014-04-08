@@ -1323,159 +1323,6 @@ sub ConfigItemSearch {
     return \@ConfigItemList;
 }
 
-=item CurInciStateRecalc()
-
-recalculates the current incident state of this config item and all linked config items
-
-    my $Success = $ConfigItemObject->CurInciStateRecalc(
-        ConfigItemID => 123,
-    );
-
-=cut
-
-sub CurInciStateRecalc {
-    my ( $Self, %Param ) = @_;
-
-    # check needed stuff
-    if ( !$Param{ConfigItemID} ) {
-        $Self->{LogObject}->Log(
-            Priority => 'error',
-            Message  => 'Need ConfigItemID!',
-        );
-        return;
-    }
-
-    # get incident link type from config
-    my $LinkType = $Self->{ConfigObject}->Get('ITSM::Core::IncidentLinkType');
-
-    # remember the scanned config items
-    my %ScannedConfigItemIDs;
-
-    # find all config items with an incident state
-    $Self->_FindInciConfigItems(
-        ConfigItemID         => $Param{ConfigItemID},
-        LinkType             => $LinkType,
-        ScannedConfigItemIDs => \%ScannedConfigItemIDs,
-    );
-
-    # investigate all config items with a warning state
-    CONFIGITEMID:
-    for my $ConfigItemID ( sort keys %ScannedConfigItemIDs ) {
-
-        next CONFIGITEMID if $ScannedConfigItemIDs{$ConfigItemID}->{Type} ne 'incident';
-
-        $Self->_FindWarnConfigItems(
-            ConfigItemID         => $ConfigItemID,
-            LinkType             => $LinkType,
-            ScannedConfigItemIDs => \%ScannedConfigItemIDs,
-        );
-    }
-
-    # get the incident state list of warnings
-    my $WarnStateList = $Self->{GeneralCatalogObject}->ItemList(
-        Class       => 'ITSM::Core::IncidentState',
-        Preferences => {
-            Functionality => 'warning',
-        },
-    );
-
-    my %ReverseWarnStateList = reverse %{$WarnStateList};
-    my @SortedWarnList       = sort keys %ReverseWarnStateList;
-    my $WarningStateID
-        = $ReverseWarnStateList{Warning} || $ReverseWarnStateList{ $SortedWarnList[0] };
-
-    # to store the relation between services and linked CIs
-    my %ServiceCIRelation;
-
-    CONFIGITEMID:
-    for my $ConfigItemID ( sort keys %ScannedConfigItemIDs ) {
-
-        # extract incident state type
-        my $InciStateType = $ScannedConfigItemIDs{$ConfigItemID}->{Type};
-
-        # find all linked services of this CI
-        my %LinkedServiceIDs = $Self->{LinkObject}->LinkKeyListWithData(
-            Object1 => 'ITSMConfigItem',
-            Key1    => $ConfigItemID,
-            Object2 => 'Service',
-            State   => 'Valid',
-            Type    => $LinkType,
-            UserID  => 1,
-        );
-
-        SERVICEID:
-        for my $ServiceID ( sort keys %LinkedServiceIDs ) {
-
-            # remember the CIs that are linked with this service
-            push @{ $ServiceCIRelation{$ServiceID} }, $ConfigItemID;
-        }
-
-        next CONFIGITEMID if $InciStateType eq 'incident';
-
-        my $CurInciStateID = $WarningStateID;
-        if ( $InciStateType eq 'operational' ) {
-
-            # get last version
-            my $LastVersion = $Self->VersionGet(
-                ConfigItemID => $ConfigItemID,
-                XMLDataGet   => 0,
-            );
-
-            $CurInciStateID = $LastVersion->{InciStateID};
-        }
-
-        # update current incident state
-        $Self->{DBObject}->Do(
-            SQL => "UPDATE configitem SET cur_inci_state_id = $CurInciStateID "
-                . "WHERE id = $ConfigItemID",
-        );
-    }
-
-    # set the current incident state type for each service (influenced by linked CIs)
-    SERVICEID:
-    for my $ServiceID ( sort keys %ServiceCIRelation ) {
-
-        # set default incident state type
-        my $CurInciStateTypeFromCIs = 'operational';
-
-        # investigate the current incident state of each config item
-        CONFIGITEMID:
-        for my $ConfigItemID ( @{ $ServiceCIRelation{$ServiceID} } ) {
-
-            # get config item data
-            my $ConfigItemData = $Self->ConfigItemGet(
-                ConfigItemID => $ConfigItemID,
-                Cache        => 0,
-            );
-
-            next CONFIGITEMID if $ConfigItemData->{CurDeplStateType} ne 'productive';
-            next CONFIGITEMID if $ConfigItemData->{CurInciStateType} eq 'operational';
-
-            # check if service must be set to 'warning'
-            if ( $ConfigItemData->{CurInciStateType} eq 'warning' ) {
-                $CurInciStateTypeFromCIs = 'warning';
-                next CONFIGITEMID;
-            }
-
-            # check if service must be set to 'incident'
-            if ( $ConfigItemData->{CurInciStateType} eq 'incident' ) {
-                $CurInciStateTypeFromCIs = 'incident';
-                last CONFIGITEMID;
-            }
-        }
-
-        # update the current incident state type from CIs of the service
-        $Self->{ServiceObject}->ServicePreferencesSet(
-            ServiceID => $ServiceID,
-            Key       => 'CurInciStateTypeFromCIs',
-            Value     => $CurInciStateTypeFromCIs,
-            UserID    => 1,
-        );
-    }
-
-    return 1;
-}
-
 =item ConfigItemLookup()
 
 This method does a lookup for a configitem. If a configitem id is given,
@@ -1687,6 +1534,159 @@ sub UniqueNameCheck {
 
     # return the result of the config item search for duplicates
     return \@Duplicates;
+}
+
+=item CurInciStateRecalc()
+
+recalculates the current incident state of this config item and all linked config items
+
+    my $Success = $ConfigItemObject->CurInciStateRecalc(
+        ConfigItemID => 123,
+    );
+
+=cut
+
+sub CurInciStateRecalc {
+    my ( $Self, %Param ) = @_;
+
+    # check needed stuff
+    if ( !$Param{ConfigItemID} ) {
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => 'Need ConfigItemID!',
+        );
+        return;
+    }
+
+    # get incident link type from config
+    my $LinkType = $Self->{ConfigObject}->Get('ITSM::Core::IncidentLinkType');
+
+    # remember the scanned config items
+    my %ScannedConfigItemIDs;
+
+    # find all config items with an incident state
+    $Self->_FindInciConfigItems(
+        ConfigItemID         => $Param{ConfigItemID},
+        LinkType             => $LinkType,
+        ScannedConfigItemIDs => \%ScannedConfigItemIDs,
+    );
+
+    # investigate all config items with a warning state
+    CONFIGITEMID:
+    for my $ConfigItemID ( sort keys %ScannedConfigItemIDs ) {
+
+        next CONFIGITEMID if $ScannedConfigItemIDs{$ConfigItemID}->{Type} ne 'incident';
+
+        $Self->_FindWarnConfigItems(
+            ConfigItemID         => $ConfigItemID,
+            LinkType             => $LinkType,
+            ScannedConfigItemIDs => \%ScannedConfigItemIDs,
+        );
+    }
+
+    # get the incident state list of warnings
+    my $WarnStateList = $Self->{GeneralCatalogObject}->ItemList(
+        Class       => 'ITSM::Core::IncidentState',
+        Preferences => {
+            Functionality => 'warning',
+        },
+    );
+
+    my %ReverseWarnStateList = reverse %{$WarnStateList};
+    my @SortedWarnList       = sort keys %ReverseWarnStateList;
+    my $WarningStateID
+        = $ReverseWarnStateList{Warning} || $ReverseWarnStateList{ $SortedWarnList[0] };
+
+    # to store the relation between services and linked CIs
+    my %ServiceCIRelation;
+
+    CONFIGITEMID:
+    for my $ConfigItemID ( sort keys %ScannedConfigItemIDs ) {
+
+        # extract incident state type
+        my $InciStateType = $ScannedConfigItemIDs{$ConfigItemID}->{Type};
+
+        # find all linked services of this CI
+        my %LinkedServiceIDs = $Self->{LinkObject}->LinkKeyListWithData(
+            Object1 => 'ITSMConfigItem',
+            Key1    => $ConfigItemID,
+            Object2 => 'Service',
+            State   => 'Valid',
+            Type    => $LinkType,
+            UserID  => 1,
+        );
+
+        SERVICEID:
+        for my $ServiceID ( sort keys %LinkedServiceIDs ) {
+
+            # remember the CIs that are linked with this service
+            push @{ $ServiceCIRelation{$ServiceID} }, $ConfigItemID;
+        }
+
+        next CONFIGITEMID if $InciStateType eq 'incident';
+
+        my $CurInciStateID = $WarningStateID;
+        if ( $InciStateType eq 'operational' ) {
+
+            # get last version
+            my $LastVersion = $Self->VersionGet(
+                ConfigItemID => $ConfigItemID,
+                XMLDataGet   => 0,
+            );
+
+            $CurInciStateID = $LastVersion->{InciStateID};
+        }
+
+        # update current incident state
+        $Self->{DBObject}->Do(
+            SQL => "UPDATE configitem SET cur_inci_state_id = $CurInciStateID "
+                . "WHERE id = $ConfigItemID",
+        );
+    }
+
+    # set the current incident state type for each service (influenced by linked CIs)
+    SERVICEID:
+    for my $ServiceID ( sort keys %ServiceCIRelation ) {
+
+        # set default incident state type
+        my $CurInciStateTypeFromCIs = 'operational';
+
+        # investigate the current incident state of each config item
+        CONFIGITEMID:
+        for my $ConfigItemID ( @{ $ServiceCIRelation{$ServiceID} } ) {
+
+            # get config item data
+            my $ConfigItemData = $Self->ConfigItemGet(
+                ConfigItemID => $ConfigItemID,
+                Cache        => 0,
+            );
+
+            next CONFIGITEMID if $ConfigItemData->{CurDeplStateType} ne 'productive';
+            next CONFIGITEMID if $ConfigItemData->{CurInciStateType} eq 'operational';
+
+            # check if service must be set to 'warning'
+            if ( $ConfigItemData->{CurInciStateType} eq 'warning' ) {
+                $CurInciStateTypeFromCIs = 'warning';
+                next CONFIGITEMID;
+            }
+
+            # check if service must be set to 'incident'
+            if ( $ConfigItemData->{CurInciStateType} eq 'incident' ) {
+                $CurInciStateTypeFromCIs = 'incident';
+                last CONFIGITEMID;
+            }
+        }
+
+        # update the current incident state type from CIs of the service
+        $Self->{ServiceObject}->ServicePreferencesSet(
+            ServiceID => $ServiceID,
+            Key       => 'CurInciStateTypeFromCIs',
+            Value     => $CurInciStateTypeFromCIs,
+            UserID    => 1,
+        );
+    }
+
+    return 1;
 }
 
 =begin Internal:
