@@ -1561,6 +1561,9 @@ sub CurInciStateRecalc {
     # get incident link type from config
     my $LinkType = $Self->{ConfigObject}->Get('ITSM::Core::IncidentLinkType');
 
+    # get incident link direction from config
+    my $LinkDirection = $Self->{ConfigObject}->Get('ITSM::Core::IncidentLinkType::Direction');
+
     # remember the scanned config items
     my %ScannedConfigItemIDs;
 
@@ -1575,11 +1578,13 @@ sub CurInciStateRecalc {
     CONFIGITEMID:
     for my $ConfigItemID ( sort keys %ScannedConfigItemIDs ) {
 
+        # investigate only config items with an incident state
         next CONFIGITEMID if $ScannedConfigItemIDs{$ConfigItemID}->{Type} ne 'incident';
 
         $Self->_FindWarnConfigItems(
             ConfigItemID         => $ConfigItemID,
             LinkType             => $LinkType,
+            Direction            => $LinkDirection,
             ScannedConfigItemIDs => \%ScannedConfigItemIDs,
         );
     }
@@ -1608,12 +1613,13 @@ sub CurInciStateRecalc {
 
         # find all linked services of this CI
         my %LinkedServiceIDs = $Self->{LinkObject}->LinkKeyListWithData(
-            Object1 => 'ITSMConfigItem',
-            Key1    => $ConfigItemID,
-            Object2 => 'Service',
-            State   => 'Valid',
-            Type    => $LinkType,
-            UserID  => 1,
+            Object1   => 'ITSMConfigItem',
+            Key1      => $ConfigItemID,
+            Object2   => 'Service',
+            State     => 'Valid',
+            Type      => $LinkType,
+            Direction => $LinkDirection,
+            UserID    => 1,
         );
 
         SERVICEID:
@@ -1721,7 +1727,10 @@ sub _FindInciConfigItems {
         Object2   => 'ITSMConfigItem',
         State     => 'Valid',
         Type      => $Param{LinkType},
+
+        #  Direction must ALWAYS be 'Both' as we need to include all linked CIs that could influence this one!
         Direction => 'Both',
+
         UserID    => 1,
     );
 
@@ -1761,6 +1770,7 @@ find all config items with a warning
     $ConfigItemObject->_FindWarnConfigItems(
         ConfigItemID         => $ConfigItemID,
         LinkType             => $LinkType,
+        Direction            => $LinkDirection,
         ScannedConfigItemIDs => $ScannedConfigItemIDs,
     );
 
@@ -1776,14 +1786,14 @@ sub _FindWarnConfigItems {
     return if $Param{ScannedConfigItemIDs}->{ $Param{ConfigItemID} }->{FindWarn};
     $Param{ScannedConfigItemIDs}->{ $Param{ConfigItemID} }->{FindWarn} = 1;
 
-    # find all linked config items (parents)
+    # find all linked config items
     my %LinkedConfigItemIDs = $Self->{LinkObject}->LinkKeyList(
         Object1   => 'ITSMConfigItem',
         Key1      => $Param{ConfigItemID},
         Object2   => 'ITSMConfigItem',
         State     => 'Valid',
         Type      => $Param{LinkType},
-        Direction => 'Both',
+        Direction => $Param{Direction},
         UserID    => 1,
     );
 
@@ -1794,6 +1804,7 @@ sub _FindWarnConfigItems {
         $Self->_FindWarnConfigItems(
             ConfigItemID         => $ConfigItemID,
             LinkType             => $Param{LinkType},
+            Direction            => $Param{Direction},
             ScannedConfigItemIDs => $Param{ScannedConfigItemIDs},
         );
 
