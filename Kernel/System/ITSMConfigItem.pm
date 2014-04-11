@@ -1568,14 +1568,14 @@ sub CurInciStateRecalc {
     # to store the relation between services and linked CIs
     my %ServiceCIRelation;
 
-    # remember the incident config items
-    my %IncidentConfigItemIDs;
+    # remember the scanned config items
+    my %ScannedConfigItemIDs;
 
     # find all config items with an incident state
     $Self->_FindInciConfigItems(
         ConfigItemID              => $Param{ConfigItemID},
         IncidentLinkTypeDirection => $IncidentLinkTypeDirection,
-        IncidentConfigItemIDs     => \%IncidentConfigItemIDs,
+        ScannedConfigItemIDs      => \%ScannedConfigItemIDs,
     );
 
     # calculate the new CI incident state for each configured linktype
@@ -1584,9 +1584,6 @@ sub CurInciStateRecalc {
 
         # get the direction
         my $LinkDirection = $IncidentLinkTypeDirection->{$LinkType};
-
-        # remember the scanned config items (start with a local copy of IncidentConfigItemIDs)
-        my %ScannedConfigItemIDs = ( %IncidentConfigItemIDs );
 
         # investigate all config items with a warning state
         CONFIGITEMID:
@@ -1734,7 +1731,7 @@ find all config items with an incident state
     $ConfigItemObject->_FindInciConfigItems(
         ConfigItemID              => $ConfigItemID,
         IncidentLinkTypeDirection => $IncidentLinkTypeDirection,
-        IncidentConfigItemIDs     => \%IncidentConfigItemIDs,
+        ScannedConfigItemIDs     => \%ScannedConfigItemIDs,
     );
 
 =cut
@@ -1746,9 +1743,9 @@ sub _FindInciConfigItems {
     return if !$Param{ConfigItemID};
 
     # ignore already scanned ids (infinite loop protection)
-    return if $Param{IncidentConfigItemIDs}->{ $Param{ConfigItemID} };
+    return if $Param{ScannedConfigItemIDs}->{ $Param{ConfigItemID} };
 
-    $Param{IncidentConfigItemIDs}->{ $Param{ConfigItemID} }->{Type} = 'operational';
+    $Param{ScannedConfigItemIDs}->{ $Param{ConfigItemID} }->{Type} = 'operational';
 
     # add own config item id to list of linked config items
     my %ConfigItemIDs = (
@@ -1787,7 +1784,7 @@ sub _FindInciConfigItems {
 
         # set incident state
         if ( $ConfigItem->{CurInciStateType} eq 'incident' ) {
-            $Param{IncidentConfigItemIDs}->{$ConfigItemID}->{Type} = 'incident';
+            $Param{ScannedConfigItemIDs}->{$ConfigItemID}->{Type} = 'incident';
             next CONFIGITEMID;
         }
 
@@ -1795,7 +1792,7 @@ sub _FindInciConfigItems {
         $Self->_FindInciConfigItems(
             ConfigItemID              => $ConfigItemID,
             IncidentLinkTypeDirection => $Param{IncidentLinkTypeDirection},
-            IncidentConfigItemIDs     => $Param{IncidentConfigItemIDs},
+            ScannedConfigItemIDs      => $Param{ScannedConfigItemIDs},
         );
     }
 
@@ -1823,7 +1820,12 @@ sub _FindWarnConfigItems {
     return if !$Param{ConfigItemID};
 
     # ignore already scanned ids (infinite loop protection)
-    return if $Param{ScannedConfigItemIDs}->{ $Param{ConfigItemID} }->{FindWarn} >= $Param{NumberOfLinkTypes};
+    # it is ok that a config item is investigated as many times as there are configured link types
+    if ( $Param{ScannedConfigItemIDs}->{ $Param{ConfigItemID} }->{FindWarn} && $Param{ScannedConfigItemIDs}->{ $Param{ConfigItemID} }->{FindWarn} >= $Param{NumberOfLinkTypes} ) {
+       return;
+    }
+
+    # increase the visit counter
     $Param{ScannedConfigItemIDs}->{ $Param{ConfigItemID} }->{FindWarn}++;
 
     # find all linked config items
