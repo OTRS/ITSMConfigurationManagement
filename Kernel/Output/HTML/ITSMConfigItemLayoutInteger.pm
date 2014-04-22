@@ -192,14 +192,15 @@ sub SearchFormDataGet {
     }
 
     # get form data
-    my $Value;
+    my @Values;
     if ( $Param{Value} ) {
-        $Value = $Param{Value};
+        @Values = @{ $Param{Value} };
     }
     else {
-        my $Value = $Self->{ParamObject}->GetParam( Param => $Param{Key} );
+        @Values = $Self->{ParamObject}->GetArray( Param => $Param{Key} );
     }
-    return $Value;
+
+    return \@Values;
 }
 
 =item SearchInputCreate()
@@ -235,14 +236,18 @@ sub SearchInputCreate {
     }
 
     # set preselected value, either from previous selection or the default
-    my $Value = $Self->SearchFormDataGet(%Param);
-    if ( !defined $Value ) {
-        $Value = '';
-    }
+    my $Values = $Self->SearchFormDataGet(%Param);
 
     # check whether the preselected value is within the valid range
-    if ( defined $Value && ( $Value < $ValueMin || $Value > $ValueMax ) ) {
-        $Value = '';
+    my @FilteredValues;
+    VALUE:
+    for my $Value ( @{ $Values } ) {
+        next VALUE if !defined $Value;
+        next VALUE if !$Value;
+        next VALUE if $Value < $ValueMin;
+        next VALUE if $Value > $ValueMax;
+
+        push @FilteredValues, $Value;
     }
 
     # create data array
@@ -254,7 +259,7 @@ sub SearchInputCreate {
         Name        => $Param{Key},
         Size        => 5,
         Translation => 0,
-        SelectedID  => $Param{Value} || $Value || '',
+        SelectedID  => \@FilteredValues,
         Multiple    => 1,
     );
 
