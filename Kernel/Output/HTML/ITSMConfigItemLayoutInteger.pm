@@ -241,7 +241,7 @@ sub SearchInputCreate {
     # check whether the preselected value is within the valid range
     my @FilteredValues;
     VALUE:
-    for my $Value ( @{ $Values } ) {
+    for my $Value ( @{$Values} ) {
         next VALUE if !defined $Value;
         next VALUE if !$Value;
         next VALUE if $Value < $ValueMin;
