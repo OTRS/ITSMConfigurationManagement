@@ -266,6 +266,7 @@ sub TableCreateComplex {
                     Content => $Version->{Number},
                     Link    => '$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID='
                         . $ConfigItemID,
+                    Title => "ConfigItem# $Version->{Number} ($Version->{Class}): $Version->{Name}",
                 },
             );
 
@@ -398,7 +399,8 @@ sub TableCreateComplex {
                 }
             }
 
-       # individual column config for this class does not exist, so the default columns will be used
+            # individual column config for this class does not exist,
+            # so the default columns will be used
             else {
 
                 # add the default columns
