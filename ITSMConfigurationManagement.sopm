@@ -43,6 +43,7 @@
         <File Permission="644" Location="Kernel/Modules/AdminITSMConfigItem.pm"/>
         <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItem.pm"/>
         <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItemAdd.pm"/>
+        <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItemBulk.pm"/>
         <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItemEdit.pm"/>
         <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItemHistory.pm"/>
         <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItemPrint.pm"/>
@@ -64,6 +65,7 @@
         <File Permission="644" Location="Kernel/Output/HTML/Standard/AAAITSMConfigItem.dtl"/>
         <File Permission="644" Location="Kernel/Output/HTML/Standard/AdminITSMConfigItem.dtl"/>
         <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemAdd.dtl"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemBulk.dtl"/>
         <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemEdit.dtl"/>
         <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemHistory.dtl"/>
         <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemOverviewNavBar.dtl"/>
@@ -100,6 +102,7 @@
         <File Permission="644" Location="scripts/test/ITSMConfigItem.t"/>
         <File Permission="644" Location="scripts/test/ITSMConfigItemUniqueCIName.t"/>
         <File Permission="644" Location="var/httpd/htdocs/js/ITSM.Agent.ConfigItem.Search.js"/>
+        <File Permission="644" Location="var/httpd/htdocs/js/ITSM.UI.ConfigItemActionRow.js"/>
         <File Permission="644" Location="var/packagesetup/ITSMConfigurationManagement.pm"/>
     </Filelist>
     <DatabaseInstall Type="post">

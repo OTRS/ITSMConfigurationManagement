@@ -509,6 +509,39 @@ sub ITSMConfigItemListShow {
         }
     }
 
+    # check if bulk feature is enabled
+    my $BulkFeature = 0;
+    if ( $Self->{ConfigObject}->Get('ITSMConfigItem::Frontend::BulkFeature') ) {
+        my @Groups;
+        if ( $Self->{ConfigObject}->Get('ITSMConfigItem::Frontend::BulkFeatureGroup') ) {
+            @Groups = @{ $Self->{ConfigObject}->Get('ITSMConfigItem::Frontend::BulkFeatureGroup') };
+        }
+        if ( !@Groups ) {
+            $BulkFeature = 1;
+        }
+        else {
+            GROUP:
+            for my $Group (@Groups) {
+                next GROUP if !$Env->{LayoutObject}->{"UserIsGroup[$Group]"};
+                if ( $Env->{LayoutObject}->{"UserIsGroup[$Group]"} eq 'Yes' ) {
+                    $BulkFeature = 1;
+                    last GROUP;
+                }
+            }
+        }
+    }
+
+    # show the bulk action button if feature is enabled
+    if ($BulkFeature) {
+        $Env->{LayoutObject}->Block(
+            Name => 'BulkAction',
+            Data => {
+                %PageNav,
+                %Param,
+            },
+        );
+    }
+
     # build html content
     my $OutputNavBar = $Env->{LayoutObject}->Output(
         TemplateFile => 'AgentITSMConfigItemOverviewNavBar',

@@ -97,6 +97,15 @@
             </div>
             <div class="ActionRow">
                 <div class="OverviewActions">
+
+<!-- dtl:block:BulkAction -->
+                    <ul class="Actions">
+                        <li id="ConfigItemBulkAction" class="Bulk Inactive">
+                            <a href="#">$Text{"Bulk"}</a>
+                        </li>
+                    </ul>
+<!-- dtl:block:BulkAction -->
+
                     $Data{"ActionRow"}
                     <ul class="OverviewZoom">
 

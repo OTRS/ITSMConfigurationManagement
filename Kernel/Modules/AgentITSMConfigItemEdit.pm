@@ -399,9 +399,19 @@ sub Run {
             # redirect to zoom mask
             my $ScreenType = $Self->{ParamObject}->GetParam( Param => 'ScreenType' ) || 0;
             if ($ScreenType) {
+
+                my $URL = "Action=AgentITSMConfigItemZoom;ConfigItemID=$ConfigItem->{ConfigItemID}";
+
+                # return to overview or search results instead if called Duplicate from row action
+                if (
+                    $Self->{LastScreenView} eq 'Action=AgentITSMConfigItem'
+                    || $Self->{LastScreenView} =~ m{\A Action=AgentITSMConfigItem(?: Search)?;}msx
+                    )
+                {
+                    $URL = $Self->{LastScreenView};
+                }
                 return $Self->{LayoutObject}->PopupClose(
-                    URL =>
-                        "Action=AgentITSMConfigItemZoom;ConfigItemID=$ConfigItem->{ConfigItemID}",
+                    URL => $URL,
                 );
             }
             else {
@@ -562,7 +572,7 @@ sub Run {
         },
     );
 
-    # output deployment state invalid block
+    # output incident state invalid block
     my $RowInciStateInvalid = '';
     if ( !$Version->{InciStateID} && $Self->{Subaction} eq 'VersionSave' && $SubmitSave ) {
         $RowInciStateInvalid = ' ServerError';

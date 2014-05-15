@@ -66,6 +66,146 @@ sub Run {
     # store either ConfigItem IDs Locally
     my @ConfigItemIDs = @{ $Param{ConfigItemIDs} };
 
+    # check if bulk feature is enabled
+    my $BulkFeature = 0;
+    if ( $Self->{ConfigObject}->Get('ITSMConfigItem::Frontend::BulkFeature') ) {
+        my @Groups;
+        if ( $Self->{ConfigObject}->Get('ITSMConfigItem::Frontend::BulkFeatureGroup') ) {
+            @Groups = @{ $Self->{ConfigObject}->Get('ITSMConfigItem::Frontend::BulkFeatureGroup') };
+        }
+        if ( !@Groups ) {
+            $BulkFeature = 1;
+        }
+        else {
+            GROUP:
+            for my $Group (@Groups) {
+                next GROUP if !$Self->{LayoutObject}->{"UserIsGroup[$Group]"};
+                if ( $Self->{LayoutObject}->{"UserIsGroup[$Group]"} eq 'Yes' ) {
+                    $BulkFeature = 1;
+                    last GROUP;
+                }
+            }
+        }
+    }
+
+    # get config item pre menu modules
+    my @ActionItems;
+    if ( ref $Self->{ConfigObject}->Get('ITSMConfigItem::Frontend::PreMenuModule') eq 'HASH' ) {
+        my %Menus = %{ $Self->{ConfigObject}->Get('ITSMConfigItem::Frontend::PreMenuModule') };
+
+        MENU:
+        for my $MenuKey ( sort keys %Menus ) {
+
+            # load module
+            if ( $Self->{MainObject}->Require( $Menus{$MenuKey}->{Module} ) ) {
+                my $Object = $Menus{$MenuKey}->{Module}->new(
+                    %{$Self},
+                );
+
+                # check if the menu is available
+                next MENU if ref $Menus{$MenuKey} ne 'HASH';
+
+                # set classes
+                if ( $Menus{$MenuKey}->{Target} ) {
+
+                    if ( $Menus{$MenuKey}->{Target} eq 'PopUp' ) {
+                        $Menus{$MenuKey}->{MenuClass} = 'AsPopup';
+                        $Menus{$MenuKey}->{PopupType} = 'ITSMConfigItemAction';
+                    }
+                    else {
+                        $Menus{$MenuKey}->{MenuClass} = '';
+                        $Menus{$MenuKey}->{PopupType} = '';
+                    }
+                }
+
+                # grant access by default
+                my $Access = 1;
+
+                my $Action = $Menus{$MenuKey}->{Action};
+
+                # can not execute the module due to a ConfigItem is required, then just check the
+                # permissions as in the MenuModuleGeneric
+                my $GroupsRo
+                    = $Self->{ConfigObject}->Get('Frontend::Module')->{$Action}->{GroupRo} || [];
+                my $GroupsRw
+                    = $Self->{ConfigObject}->Get('Frontend::Module')->{$Action}->{Group} || [];
+
+                # check permission
+                if ( $Action && ( @{$GroupsRo} || @{$GroupsRw} ) ) {
+
+                    # deny access by default, when there are groups to check
+                    $Access = 0;
+
+                    # check read only groups
+                    ROGROUP:
+                    for my $RoGroup ( @{$GroupsRo} ) {
+
+                        next ROGROUP if !$Self->{LayoutObject}->{"UserIsGroupRo[$RoGroup]"};
+                        next ROGROUP if $Self->{LayoutObject}->{"UserIsGroupRo[$RoGroup]"} ne 'Yes';
+
+                        # set access
+                        $Access = 1;
+                        last ROGROUP;
+                    }
+
+                    # check read write groups
+                    RWGROUP:
+                    for my $RwGroup ( @{$GroupsRw} ) {
+
+                        next RWGROUP if !$Self->{LayoutObject}->{"UserIsGroup[$RwGroup]"};
+                        next RWGROUP if $Self->{LayoutObject}->{"UserIsGroup[$RwGroup]"} ne 'Yes';
+
+                        # set access
+                        $Access = 1;
+                        last RWGROUP;
+                    }
+                }
+
+                # return if there is no access to the module
+                next MENU if !$Access;
+
+                # translate Name and Description
+                my $Description
+                    = $Self->{LayoutObject}->{LanguageObject}
+                    ->Get( $Menus{$MenuKey}->{Description} );
+                my $Name
+                    = $Self->{LayoutObject}->{LanguageObject}
+                    ->Get( $Menus{$MenuKey}->{Description} );
+
+                # generarte a web safe link
+                my $Link = $Self->{LayoutObject}->{Baselink} . $Menus{$MenuKey}->{Link};
+
+                # sanity check
+                if ( !defined $Menus{$MenuKey}->{MenuClass} ) {
+                    $Menus{$MenuKey}->{MenuClass} = '';
+                }
+
+                # generate HTML for the menu item
+                my $MenuHTML = <<"END";
+<li>
+    <a href=\"$Link\" class=\"$Menus{$MenuKey}->{MenuClass}\" title=\"$Description\">$Name</a>
+</li>
+END
+
+                $MenuHTML =~ s/\n+//g;
+                $MenuHTML =~ s/\s+/ /g;
+                $MenuHTML =~ s/<\!--.+?-->//g;
+
+                $Menus{$MenuKey}->{ID} = $Menus{$MenuKey}->{Name};
+                $Menus{$MenuKey}->{ID} =~ s/(\s|&|;)//ig;
+
+                push @ActionItems, {
+                    HTML        => $MenuHTML,
+                    ID          => $Menus{$MenuKey}->{ID},
+                    Link        => $Link,
+                    Target      => $Menus{$MenuKey}->{Target},
+                    PopupType   => $Menus{$MenuKey}->{PopupType},
+                    Description => $Description,
+                };
+            }
+        }
+    }
+
     # check ShowColumns parameter
     my @ShowColumns;
     if ( $Param{ShowColumns} && ref $Param{ShowColumns} eq 'ARRAY' ) {
@@ -74,6 +214,12 @@ sub Run {
 
     # build column header blocks
     if (@ShowColumns) {
+
+        # show the bulk action button checkboxes if feature is enabled
+        if ($BulkFeature) {
+            push @ShowColumns, 'BulkAction';
+        }
+
         for my $Column (@ShowColumns) {
 
             # create needed veriables
@@ -264,6 +410,29 @@ sub Run {
                         );
                     }
                 }
+
+                # make a deep copy of the action items to avoid changing the definition
+                my $ClonedActionItems = Storable::dclone( \@ActionItems );
+
+                # substitute DTL variables
+                for my $ActionItem ( @{$ClonedActionItems} ) {
+                    $ActionItem->{HTML} =~ s{ \$QData{"ConfigItemID"} }{$ConfigItemID}xmsg;
+                    $ActionItem->{HTML} =~ s{ \$QData{"VersionID"} }{$ConfigItem->{VersionID}}xmsg;
+                    $ActionItem->{Link} =~ s{ \$QData{"ConfigItemID"} }{$ConfigItemID}xmsg;
+                    $ActionItem->{Link} =~ s{ \$QData{"VersionID"} }{$ConfigItem->{VersionID}}xmsg;
+                }
+
+                my $JSON = $Self->{LayoutObject}->JSONEncode(
+                    Data => $ClonedActionItems,
+                );
+
+                $Self->{LayoutObject}->Block(
+                    Name => 'DocumentReadyActionRowAdd',
+                    Data => {
+                        ConfigItemID => $ConfigItemID,
+                        Data         => $JSON,
+                    },
+                );
             }
         }
     }
