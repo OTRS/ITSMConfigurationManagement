@@ -264,16 +264,13 @@ sub Run {
     {
 
         my %ColumnByClass;
+        NAME:
         for my $Name ( @{ $Self->{Config}->{ShowColumnsByClass} } ) {
+            my ( $Class, $Column ) = split /::/, $Name, 2;
 
-            # extract the class name and the column name
-            if ( $Name =~ m{ \A ([^:]+) :: (.+) \z }xms ) {
+            next NAME if !$Column;
 
-                my ( $Class, $Column ) = ( $1, $2 );
-
-                # create new entry
-                push @{ $ColumnByClass{$Class} }, $Column;
-            }
+            push @{ $ColumnByClass{$Class} }, $Column;
         }
 
         # check if there is a specific column config for the selected class

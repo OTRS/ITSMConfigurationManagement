@@ -182,15 +182,14 @@ sub TableCreateComplex {
     # get the configered columns and reorganize them by class name
     my %ColumnByClass;
     if ( $ColumnConfig && ref $ColumnConfig eq 'ARRAY' && @{$ColumnConfig} ) {
-        for my $Name ( @{$ColumnConfig} ) {
 
-            # extract the class name and the column name
-            if ( $Name =~ m{ \A ([^:]+) :: (.+) \z }xms ) {
-                my ( $Class, $Column ) = ( $1, $2 );
+        NAME:
+        for my $Name ( @{ $Self->{Config}->{ShowColumnsByClass} } ) {
+            my ( $Class, $Column ) = split /::/, $Name, 2;
 
-                # create new entry
-                push @{ $ColumnByClass{$Class} }, $Column;
-            }
+            next NAME if !$Column;
+
+            push @{ $ColumnByClass{$Class} }, $Column;
         }
     }
 
