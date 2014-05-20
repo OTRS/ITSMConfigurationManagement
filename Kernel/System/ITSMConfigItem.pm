@@ -1559,7 +1559,8 @@ sub CurInciStateRecalc {
     }
 
     # get incident link types and directions from config
-    my $IncidentLinkTypeDirection = $Self->{ConfigObject}->Get('ITSM::Core::IncidentLinkTypeDirection');
+    my $IncidentLinkTypeDirection
+        = $Self->{ConfigObject}->Get('ITSM::Core::IncidentLinkTypeDirection');
 
     # to store the new incident state for CIs
     # calculated from all incident link types
@@ -1580,7 +1581,7 @@ sub CurInciStateRecalc {
 
     # calculate the new CI incident state for each configured linktype
     LINKTYPE:
-    for my $LinkType ( sort keys %{ $IncidentLinkTypeDirection } ) {
+    for my $LinkType ( sort keys %{$IncidentLinkTypeDirection} ) {
 
         # get the direction
         my $LinkDirection = $IncidentLinkTypeDirection->{$LinkType};
@@ -1596,7 +1597,7 @@ sub CurInciStateRecalc {
                 ConfigItemID         => $ConfigItemID,
                 LinkType             => $LinkType,
                 Direction            => $LinkDirection,
-                NumberOfLinkTypes    => scalar keys %{ $IncidentLinkTypeDirection },
+                NumberOfLinkTypes    => scalar keys %{$IncidentLinkTypeDirection},
                 ScannedConfigItemIDs => \%ScannedConfigItemIDs,
             );
         }
@@ -1627,9 +1628,13 @@ sub CurInciStateRecalc {
 
             next CONFIGITEMID if $InciStateType eq 'incident';
 
-            # if nothing has been set already or if the currently set incident state is 'operational'
-            # ('operational' can always be overwritten)
-            if ( !$NewConfigItemIncidentState{$ConfigItemID} || $NewConfigItemIncidentState{$ConfigItemID} eq 'operational' ) {
+           # if nothing has been set already or if the currently set incident state is 'operational'
+           # ('operational' can always be overwritten)
+            if (
+                !$NewConfigItemIncidentState{$ConfigItemID}
+                || $NewConfigItemIncidentState{$ConfigItemID} eq 'operational'
+                )
+            {
                 $NewConfigItemIncidentState{$ConfigItemID} = $InciStateType;
             }
         }
@@ -1644,7 +1649,8 @@ sub CurInciStateRecalc {
     );
     my %ReverseWarnStateList = reverse %{$WarnStateList};
     my @SortedWarnList       = sort keys %ReverseWarnStateList;
-    my $WarningStateID       = $ReverseWarnStateList{Warning} || $ReverseWarnStateList{ $SortedWarnList[0] };
+    my $WarningStateID
+        = $ReverseWarnStateList{Warning} || $ReverseWarnStateList{ $SortedWarnList[0] };
 
     # set the new current incident state for CIs
     for my $ConfigItemID ( sort keys %NewConfigItemIncidentState ) {
@@ -1757,16 +1763,17 @@ sub _FindInciConfigItems {
 
         # find all linked config items (childs)
         my %LinkedConfigItemIDs = $Self->{LinkObject}->LinkKeyList(
-            Object1   => 'ITSMConfigItem',
-            Key1      => $Param{ConfigItemID},
-            Object2   => 'ITSMConfigItem',
-            State     => 'Valid',
-            Type      => $LinkType,
+            Object1 => 'ITSMConfigItem',
+            Key1    => $Param{ConfigItemID},
+            Object2 => 'ITSMConfigItem',
+            State   => 'Valid',
+            Type    => $LinkType,
 
-            #  Direction must ALWAYS be 'Both' as we need to include all linked CIs that could influence this one!
+            # Direction must ALWAYS be 'Both' here as we need to include
+            # all linked CIs that could influence this one!
             Direction => 'Both',
 
-            UserID    => 1,
+            UserID => 1,
         );
 
         # remember the config item ids
@@ -1821,8 +1828,13 @@ sub _FindWarnConfigItems {
 
     # ignore already scanned ids (infinite loop protection)
     # it is ok that a config item is investigated as many times as there are configured link types
-    if ( $Param{ScannedConfigItemIDs}->{ $Param{ConfigItemID} }->{FindWarn} && $Param{ScannedConfigItemIDs}->{ $Param{ConfigItemID} }->{FindWarn} >= $Param{NumberOfLinkTypes} ) {
-       return;
+    if (
+        $Param{ScannedConfigItemIDs}->{ $Param{ConfigItemID} }->{FindWarn}
+        && $Param{ScannedConfigItemIDs}->{ $Param{ConfigItemID} }->{FindWarn}
+        >= $Param{NumberOfLinkTypes}
+        )
+    {
+        return;
     }
 
     # increase the visit counter

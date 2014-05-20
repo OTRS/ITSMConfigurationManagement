@@ -54,7 +54,8 @@ $CommonObject{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new(%Commo
 print "\n";
 print "otrs.ITSMConfigItemIncidentStateRecalculate.pl\n";
 print "Recalculates the incident state of config items.\n";
-print "This is necessary after changing the sysconfig option 'ITSM::Core::IncidentLinkTypeDirection'.\n";
+print
+    "This is necessary after changing the sysconfig option 'ITSM::Core::IncidentLinkTypeDirection'.\n";
 print "Copyright (C) 2001-2014 OTRS AG, http://otrs.com/\n\n";
 
 my $Help;
@@ -64,7 +65,7 @@ GetOptions(
 );
 
 # show usage
-if ( $Help ) {
+if ($Help) {
     print "Usage: $0 [options] \n";
     print "  Options are as follows:\n";
     print "  --help  display this option help\n\n";
@@ -77,34 +78,34 @@ my $ClassList = $CommonObject{GeneralCatalogObject}->ItemList(
 );
 
 # get the valid class ids
-my @ValidClassIDs = sort keys %{ $ClassList };
+my @ValidClassIDs = sort keys %{$ClassList};
 
 # get all config items ids form all valid classes
 my $ConfigItemsIDsRef = $CommonObject{ConfigItemObject}->ConfigItemSearch(
-    ClassIDs     => \@ValidClassIDs,
+    ClassIDs => \@ValidClassIDs,
 );
 
 # get number of config items
-my $CICount = scalar @{ $ConfigItemsIDsRef };
+my $CICount = scalar @{$ConfigItemsIDsRef};
 
 print "Recalculating incident state for $CICount config items.\n";
 
 my $Count = 0;
 CONFIGITEM:
-for my $ConfigItemID ( @{ $ConfigItemsIDsRef } ) {
+for my $ConfigItemID ( @{$ConfigItemsIDsRef} ) {
 
     my $Success = $CommonObject{ConfigItemObject}->CurInciStateRecalc(
         ConfigItemID => $ConfigItemID,
     );
 
-    if (!$Success) {
+    if ( !$Success ) {
         print "... could not recalculate incident state for config item id '$ConfigItemID'!\n";
         next CONFIGITEM;
     }
 
     $Count++;
 
-    if ($Count % 100 == 0) {
+    if ( $Count % 100 == 0 ) {
         print "... $Count config items recalculated.\n";
     }
 }
@@ -112,4 +113,3 @@ for my $ConfigItemID ( @{ $ConfigItemsIDsRef } ) {
 print "\nReady. Recalculated $Count config items.\n\n";
 
 1;
-
