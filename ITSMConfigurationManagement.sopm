@@ -13,6 +13,7 @@
     <Description Lang="es">El paquete OTRS ITSM Configuration Management.</Description>
     <Filelist>
         <File Permission="755" Location="bin/otrs.ITSMConfigItemDelete.pl"/>
+        <File Permission="755" Location="bin/otrs.ITSMConfigItemIncidentStateRecalculate.pl"/>
         <File Permission="755" Location="bin/otrs.ITSMConfigItemListDuplicates.pl"/>
         <File Permission="644" Location="doc/itsm-configuration-management-database.dia"/>
         <File Permission="644" Location="doc/itsm-configuration-management-database.png"/>
