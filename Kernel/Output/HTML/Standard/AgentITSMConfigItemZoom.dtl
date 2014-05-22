@@ -18,6 +18,9 @@
         </h1>
     </div>
     <div class="LayoutFixedSidebar SidebarLast">
+
+        $Data{"StyleClasses"}
+
         <div class="SidebarColumn">
 <!-- dtl:block:Meta -->
             <div class="WidgetSimple">
@@ -26,15 +29,24 @@
                 </div>
                 <div class="Content">
                     <fieldset class="TableLike FixedLabelSmall Tight">
+
                         <label>$Text{"Class"}:</label>
                         <p class="Value">$Text{"$Data{"Class"}"}</p>
                         <div class="Clear"></div>
+
                         <label>$Text{"Name"}:</label>
                         <p class="Value">$QData{"Name","25"}</p>
                         <div class="Clear"></div>
+
                         <label>$Text{"Current Deployment State"}:</label>
-                        <p class="Value">$Text{"$Data{"CurDeplState"}"}</p>
+                        <div class="Value" title="$Text{"$Data{"CurDeplState"}"}">
+                            <div class="Flag Small">
+                                <span class="$QData{"CurDeplSignal"}"></span>
+                            </div>
+                            $Text{"$Data{"CurDeplState"}"}
+                        </div>
                         <div class="Clear"></div>
+
                         <label>$Text{"Current Incident State"}:</label>
                         <div class="Value" title="$Text{"$Data{"CurInciState"}"}">
                             <div class="Flag Small">
@@ -43,17 +55,21 @@
                             $Text{"$Data{"CurInciState"}"}
                         </div>
                         <div class="Clear"></div>
+
                         <label>$Text{"Created"}:</label>
                         <p class="Value">$TimeLong{"$Data{"CreateTime"}"}</p>
                         <div class="Clear"></div>
+
                         <label>$Text{"Created by"}:</label>
                         <p class="Value">
                             $QData{"CreateByUserFullName"}
                         </p>
                         <div class="Clear"></div>
+
                         <label>$Text{"Last changed"}:</label>
                         <p class="Value">$TimeLong{"$Data{"ChangeTime"}"}</p>
                         <div class="Clear"></div>
+
                         <label>$Text{"Last changed by"}:</label>
                         <p class="Value">
                             $QData{"ChangeByUserFullName"}
@@ -95,12 +111,24 @@
                     <div class="ControlRow">
                         <div class="ITSMItemView Icons">
 <!-- dtl:block:Expand -->
-                            <a class="OneITSMItem Active" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"};ShowVersions=0" title="$Text{"Show one version"}"><i class="icon-minus"></i><span>$Text{"Show one version"}</span></a>
-                            <a class="AllITSMItems" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"};ShowVersions=1" title="$Text{"Show all versions"}"><i class="icon-reorder"></i><span>$Text{"Show all versions"}</span></a>
+                            <a class="OneITSMItem Active" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"};ShowVersions=0" title="$Text{"Show one version"}">
+                                <i class="icon-minus"></i>
+                                <span>$Text{"Show one version"}</span>
+                            </a>
+                            <a class="AllITSMItems" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"};ShowVersions=1" title="$Text{"Show all versions"}">
+                                <i class="icon-reorder"></i>
+                                <span>$Text{"Show all versions"}</span>
+                            </a>
 <!-- dtl:block:Expand -->
 <!-- dtl:block:Collapse -->
-                            <a class="OneITSMItem" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"};ShowVersions=0" title="$Text{"Show one version"}"><i class="icon-minus"></i><span>$Text{"Show one version"}</span></a>
-                            <a class="AllITSMItems Active" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"};ShowVersions=1" title="$Text{"Show all versions"}"><i class="icon-reorder"></i><span>$Text{"Show all versions"}</span></a>
+                            <a class="OneITSMItem" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"};ShowVersions=0" title="$Text{"Show one version"}">
+                                <i class="icon-minus"></i>
+                                <span>$Text{"Show one version"}</span>
+                            </a>
+                            <a class="AllITSMItems Active" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$LQData{"ConfigItemID"};ShowVersions=1" title="$Text{"Show all versions"}">
+                                <i class="icon-reorder"></i>
+                                <span>$Text{"Show all versions"}</span>
+                            </a>
 <!-- dtl:block:Collapse -->
                         </div>
                     </div>
@@ -110,6 +138,7 @@
                                 <thead>
                                     <tr>
                                         <th><span>$Text{"Version Incident State"}</span></th>
+                                        <th><span>$Text{"Version Deployment State"}</span></th>
                                         <th><span>$Text{"Version Number"}</span></th>
                                         <th><span>$Text{"Name"}</span></th>
                                         <th><span>$Text{"Created by"}</span></th>
@@ -122,6 +151,11 @@
                                         <td title="$Text{"$Data{"InciState"}"}">
                                             <div class="Flag Small">
                                                 <span class="$QData{"InciSignal"}">$QData{"InciState"}</span>
+                                            </div>
+                                        </td>
+                                        <td title="$Text{"$Data{"DeplState"}"}">
+                                            <div class="Flag Small">
+                                                <span class="$QData{"DeplSignal"}">$QData{"DeplState"}</span>
                                             </div>
                                         </td>
                                         <td>

@@ -380,6 +380,22 @@
             </Hash>
         </Setting>
     </ConfigItem>
+    <ConfigItem Name="GeneralCatalogPreferences###DeploymentStatesColors" Required="0" Valid="1">
+        <Description Translatable="1">Parameters for the deployment states color in the preferences view of the agent interface.</Description>
+        <Group>GeneralCatalog</Group>
+        <SubGroup>GeneralCatalog::Preferences</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="Module">Kernel::Output::HTML::GeneralCatalogPreferencesGeneric</Item>
+                <Item Key="Class">ITSM::ConfigItem::DeploymentState</Item>
+                <Item Key="Label">Deployment State Color</Item>
+                <Item Key="Desc">Deployment State Color.</Item>
+                <Item Key="Data"></Item>
+                <Item Key="PrefKey">Color</Item>
+                <Item Key="Block">ColorPicker</Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Permission::Class###010-ClassGroupCheck" Required="0" Valid="1">
         <Description Translatable="1">Module to check the group responsible for a class.</Description>
         <Group>ITSM Configuration Management</Group>
@@ -568,6 +584,7 @@
         <Setting>
             <Hash>
                 <Item Key="CurInciSignal">1</Item>
+                <Item Key="CurDeplSignal">1</Item>
                 <Item Key="Number">1</Item>
                 <Item Key="Name">1</Item>
                 <Item Key="Class">0</Item>
@@ -588,6 +605,7 @@
                 <Item>Computer::Name</Item>
                 <Item>Computer::Number</Item>
                 <Item>Computer::CurInciSignal</Item>
+                <Item>Computer::CurDeplSignal</Item>
                 <Item>Computer::CurDeplState</Item>
                 <Item>Computer::HardDisk::1</Item>
                 <Item>Computer::HardDisk::1::Capacity::1</Item>
@@ -637,6 +655,7 @@
         <Setting>
             <Hash>
                 <Item Key="CurInciSignal">1</Item>
+                <Item Key="CurDeplSignal">1</Item>
                 <Item Key="Number">1</Item>
                 <Item Key="Name">1</Item>
                 <Item Key="Class">0</Item>
@@ -657,6 +676,7 @@
                 <Item>Computer::Name</Item>
                 <Item>Computer::Number</Item>
                 <Item>Computer::CurInciSignal</Item>
+                <Item>Computer::CurDeplSignal</Item>
                 <Item>Computer::CurDeplState</Item>
                 <Item>Computer::HardDisk::1</Item>
                 <Item>Computer::HardDisk::1::Capacity::1</Item>
@@ -799,4 +819,5 @@
             </Option>
         </Setting>
     </ConfigItem>
+
 </otrs_config>

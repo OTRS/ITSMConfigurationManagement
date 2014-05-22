@@ -11,6 +11,8 @@ package Kernel::Output::HTML::ITSMConfigItemOverviewSmall;
 
 use strict;
 use warnings;
+
+use Kernel::System::GeneralCatalog;
 use Kernel::System::HTMLUtils;
 
 sub new {
@@ -28,7 +30,8 @@ sub new {
         $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
     }
 
-    $Self->{HTMLUtilsObject} = Kernel::System::HTMLUtils->new( %{$Self} );
+    $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
+    $Self->{HTMLUtilsObject}      = Kernel::System::HTMLUtils->new( %{$Self} );
 
     return $Self;
 }
@@ -62,6 +65,54 @@ sub Run {
         warning     => 'yellowled',
         incident    => 'redled',
     );
+
+    # to store the color for the deployment states
+    my %DeplSignals;
+
+    # get list of deployment states
+    my $DeploymentStatesList = $Self->{GeneralCatalogObject}->ItemList(
+        Class => 'ITSM::ConfigItem::DeploymentState',
+    );
+
+    # set deployment style colors
+    my $StyleClasses = '';
+
+    ITEMID:
+    for my $ItemID ( sort keys %{$DeploymentStatesList} ) {
+
+        # get deployment state preferences
+        my %Preferences = $Self->{GeneralCatalogObject}->GeneralCatalogPreferencesGet(
+            ItemID => $ItemID,
+        );
+
+        # check if a color is defined in preferences
+        next ITEMID if !$Preferences{Color};
+
+        # get deployment state
+        my $DeplState = $DeploymentStatesList->{$ItemID};
+
+        # remove any non ascii word characters
+        $DeplState =~ s{ [^a-zA-Z0-9] }{_}msxg;
+
+        # store the original deployment state as key
+        # and the ss safe coverted deployment state as value
+        $DeplSignals{ $DeploymentStatesList->{$ItemID} } = $DeplState;
+
+        # covert to lower case
+        my $DeplStateColor = lc $Preferences{Color};
+
+        # add to style classes string
+        $StyleClasses .= "
+            .Flag span.$DeplState {
+                background-color: #$DeplStateColor;
+            }
+        ";
+    }
+
+    # wrap into style tags
+    if ($StyleClasses) {
+        $StyleClasses = "<style>$StyleClasses</style>";
+    }
 
     # store either ConfigItem IDs Locally
     my @ConfigItemIDs = @{ $Param{ConfigItemIDs} };
@@ -181,9 +232,9 @@ sub Run {
                 }
 
                 # generate HTML for the menu item
-                my $MenuHTML = <<"END";
+                my $MenuHTML =<< "END";
 <li>
-    <a href=\"$Link\" class=\"$Menus{$MenuKey}->{MenuClass}\" title=\"$Description\">$Name</a>
+    <a href="$Link" class="$Menus{$MenuKey}->{MenuClass}" title="$Description">$Name</a>
 </li>
 END
 
@@ -367,6 +418,7 @@ END
                                 %Param,
                                 %Data,
                                 CurInciSignal => $InciSignals{ $Data{CurInciStateType} },
+                                CurDeplSignal => $DeplSignals{ $Data{CurDeplState} },
                             },
                         );
 
@@ -452,8 +504,9 @@ END
         TemplateFile => 'AgentITSMConfigItemOverviewSmall',
         Data         => {
             %Param,
-            Type        => $Self->{ViewType},
-            ColumnCount => scalar @ShowColumns,
+            Type         => $Self->{ViewType},
+            ColumnCount  => scalar @ShowColumns,
+            StyleClasses => $StyleClasses,
         },
     );
 

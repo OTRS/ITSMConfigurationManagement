@@ -9,6 +9,7 @@
 
 <div id="OverviewBody" class="Overview TicketList">
     <table class="TableSmall" summary="A generic ITSM Configuration Item table">
+        $Data{"StyleClasses"}
         <thead>
             <tr>
 <!-- dtl:block:RecordBulkActionHeader -->
@@ -18,9 +19,14 @@
 <!-- dtl:block:RecordBulkActionHeader -->
 <!-- dtl:block:RecordCurInciSignalHeader -->
                 <th>
-                    <span>$Text{"State"}</span>
+                    <span>$Text{"Incident State"}</span>
                 </th>
 <!-- dtl:block:RecordCurInciSignalHeader -->
+<!-- dtl:block:RecordCurDeplSignalHeader -->
+                <th>
+                    <span>$Text{"Deployment State"}</span>
+                </th>
+<!-- dtl:block:RecordCurDeplSignalHeader -->
 <!-- dtl:block:RecordNumberHeader -->
                 <th class="Number $QData{"CSS"}">
                     <a href="$Env{"Baselink"}Action=$Env{"Action"};$Data{"LinkSort"};SortBy=Number;OrderBy=$LQData{"OrderBy"}">$Config{"ITSMConfigItem::Hook"}</a>
@@ -90,6 +96,13 @@
                     </div>
                 </td>
 <!-- dtl:block:RecordCurInciSignal -->
+<!-- dtl:block:RecordCurDeplSignal -->
+                <td title="$Text{"$Data{"CurDeplState"}"}">
+                    <div class="Flag Small">
+                        <span class="$QData{"CurDeplSignal"}">"$Text{"$Data{"CurDeplState"}"}"</span>
+                    </div>
+                </td>
+<!-- dtl:block:RecordCurDeplSignal -->
 <!-- dtl:block:RecordNumber -->
                 <td>
 <!-- dtl:block:RecordNumberLinkStart -->

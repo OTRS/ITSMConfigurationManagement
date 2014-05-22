@@ -176,6 +176,32 @@ sub TableCreateComplex {
         return;
     }
 
+    # get and remember the Deployment state colors
+    my $DeploymentStatesList = $Self->{GeneralCatalogObject}->ItemList(
+        Class => 'ITSM::ConfigItem::DeploymentState',
+    );
+
+    ITEMID:
+    for my $ItemID ( sort keys %{$DeploymentStatesList} ) {
+
+        # get deployment state preferences
+        my %Preferences = $Self->{GeneralCatalogObject}->GeneralCatalogPreferencesGet(
+            ItemID => $ItemID,
+        );
+
+        # check if a color is defined in preferences
+        next ITEMID if !$Preferences{Color};
+
+        # add color style definition
+        my $DeplState = $DeploymentStatesList->{$ItemID};
+
+        # remove any non ascii word characters
+        $DeplState =~ s{ [^a-zA-Z0-9] }{_}msxg;
+
+        # covert to lower case
+        $Self->{DeplStateColors}->{$DeplState} = lc $Preferences{Color};
+    }
+
     # get the column config
     my $ColumnConfig = $Self->{ConfigObject}->Get('LinkObject::ITSMConfigItem::ShowColumnsByClass');
 
@@ -259,6 +285,11 @@ sub TableCreateComplex {
                     Key              => $ConfigItemID,
                     Content          => $Version->{CurInciState},
                     CurInciStateType => $Version->{CurInciStateType},
+                },
+                {
+                    Type             => 'CurDeplSignal',
+                    Key              => $ConfigItemID,
+                    Content          => $Version->{CurDeplState},
                 },
                 {
                     Type    => 'Link',
@@ -436,6 +467,10 @@ sub TableCreateComplex {
                     Width   => 20,
                 },
                 {
+                    Content => 'Deployment State',
+                    Width   => 20,
+                },
+                {
                     Content => 'ConfigItem#',
                     Width   => 100,
                 },
@@ -562,29 +597,66 @@ sub ContentStringCreate {
     # extract content
     my $Content = $Param{ContentData};
 
-    return if $Content->{Type} ne 'CurInciSignal';
+    if ( $Content->{Type} ne 'CurInciSignal' && $Content->{Type} ne 'CurDeplSignal' ) {
+        return;
+    }
 
-    # set incident signal
-    my %InciSignals = (
-        incident    => 'redled',
-        operational => 'greenled',
-        unknown     => 'grayled',
-        warning     => 'yellowled',
-    );
+    my $String;
+    if ( $Content->{Type} eq 'CurInciSignal' ) {
 
-    # investigate current incident signal
-    $Content->{CurInciStateType} ||= 'unknown';
-    my $CurInciSignal = $InciSignals{ $Content->{CurInciStateType} };
-    $CurInciSignal ||= $InciSignals{unknown};
+        # set incident signal
+        my %InciSignals = (
+            incident    => 'redled',
+            operational => 'greenled',
+            unknown     => 'grayled',
+            warning     => 'yellowled',
+        );
 
-    my $String = $Self->{LayoutObject}->Output(
-        Template => '<div class="Flag Small" title="$QData{"CurInciState"}"> '
-            . '<span class="$QData{"CurInciSignal"}"></span> </div>',
-        Data => {
-            CurInciSignal => $CurInciSignal,
-            CurInciState => $Content->{Content} || '',
-        },
-    );
+        # investigate current incident signal
+        $Content->{CurInciStateType} ||= 'unknown';
+        my $CurInciSignal = $InciSignals{ $Content->{CurInciStateType} };
+        $CurInciSignal ||= $InciSignals{unknown};
+
+        $String = $Self->{LayoutObject}->Output(
+            Template => '<div class="Flag Small" title="$QData{"CurInciState"}"> '
+                . '<span class="$QData{"CurInciSignal"}"></span> </div>',
+            Data => {
+                CurInciSignal => $CurInciSignal,
+                CurInciState => $Content->{Content} || '',
+            },
+        );
+    }
+    elsif ( $Content->{Type} eq 'CurDeplSignal' ) {
+
+        # convert deployment state to a web safe CSS class
+        my $DeplState =  $Content->{Content} || '';
+        $DeplState =~ s{ [^a-zA-Z0-9] }{_}msxg;
+
+        # get the color of the deplyment state if defined
+        my $DeplStateColor = $Self->{DeplStateColors}->{$DeplState} || '';
+
+        my $Template = '<div class="Flag Small" title="$QData{"CurDeplState"}"> ';
+
+        # check if color is defined and set the style class
+        if ($DeplStateColor) {
+            $Template .= << "END";
+<style>
+    .Flag span.$DeplState {
+        background-color: #$DeplStateColor;
+    }
+</style>
+END
+        }
+
+        $Template .=  "<span class=\"DeplState $DeplState\"></span> </div>";
+
+        $String = $Self->{LayoutObject}->Output(
+            Template => $Template,
+            Data => {
+                CurDeplState => $Content->{Content} || '',
+            },
+        );
+    }
 
     return $String;
 }
