@@ -36,6 +36,7 @@ use Kernel::System::Time;
 use Kernel::System::DB;
 use Kernel::System::ITSMConfigItem;
 use Kernel::System::GeneralCatalog;
+use Kernel::System::Service;
 
 # common objects
 my %CommonObject = ();
@@ -50,6 +51,7 @@ $CommonObject{TimeObject}           = Kernel::System::Time->new(%CommonObject);
 $CommonObject{DBObject}             = Kernel::System::DB->new(%CommonObject);
 $CommonObject{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new(%CommonObject);
 $CommonObject{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new(%CommonObject);
+$CommonObject{ServiceObject}        = Kernel::System::Service->new(%CommonObject);
 
 print "\n";
 print "otrs.ITSMConfigItemIncidentStateRecalculate.pl\n";
@@ -111,5 +113,29 @@ for my $ConfigItemID ( @{$ConfigItemsIDsRef} ) {
 }
 
 print "\nReady. Recalculated $Count config items.\n\n";
+
+# get list of all services (valid and invalid)
+my %ServiceList = $CommonObject{ServiceObject}->ServiceList(
+    Valid  => 0,
+    UserID => 1,
+);
+
+my $NumberOfServices = scalar keys %ServiceList;
+
+print "Resetting ServicePreferences 'CurInciStateTypeFromCIs' for $NumberOfServices services... ";
+
+for my $ServiceID (sort keys %ServiceList) {
+
+    # update the current incident state type from CIs of the service with an empty value
+    # this is necessary to force a recalculation on a ServiceGet()
+    $CommonObject{ServiceObject}->ServicePreferencesSet(
+        ServiceID => $ServiceID,
+        Key       => 'CurInciStateTypeFromCIs',
+        Value     => '',
+        UserID    => 1,
+    );
+}
+
+print "Ready.\n\n";
 
 1;
