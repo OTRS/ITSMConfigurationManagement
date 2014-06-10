@@ -562,10 +562,12 @@ sub _XMLData2Hash {
         COUNTER:
         for my $Counter ( 1 .. $Item->{CountMax} ) {
 
+            next COUNTER if !defined $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content};
+
             # lookup value
             my $Value = $Self->{ConfigItemObject}->XMLValueLookup(
                 Item => $Item,
-                Value => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content} || '',
+                Value => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content},
             );
 
             # create output string
