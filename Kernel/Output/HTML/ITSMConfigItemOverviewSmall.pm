@@ -163,7 +163,7 @@ sub Run {
         # to store all data
         my %Data;
 
-        ConfigItemID:
+        CONFIGITEMID:
         for my $ConfigItemID (@ConfigItemIDs) {
             $Counter++;
             if (
@@ -180,7 +180,7 @@ sub Run {
                     Type   => $Self->{Config}->{Permission},
                 );
 
-                next ConfigItemID if !$HasAccess;
+                next CONFIGITEMID if !$HasAccess;
 
                 # get config item data
                 my $ConfigItem = $Self->{ConfigItemObject}->VersionGet(
@@ -188,7 +188,7 @@ sub Run {
                     XMLDataGet   => 1,
                 );
 
-                next ConfigItemID if !$ConfigItem;
+                next CONFIGITEMID if !$ConfigItem;
 
                 # convert the XML data into a hash
                 my $ExtendedVersionData = $Self->_XMLData2Hash(
@@ -340,19 +340,21 @@ sub _XMLData2Hash {
         COUNTER:
         for my $Counter ( 1 .. $Item->{CountMax} ) {
 
-            next COUNTER if !defined $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content};
-
             # lookup value
             my $Value = $Self->{ConfigItemObject}->XMLValueLookup(
                 Item => $Item,
-                Value => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content},
+                Value => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content} || '',
             );
 
-            # create output string
-            $Value = $Self->{LayoutObject}->ITSMConfigItemOutputStringCreate(
-                Value => $Value,
-                Item  => $Item,
-            );
+            # only if value is not empty
+            if ( $Value ) {
+
+                # create output string
+                $Value = $Self->{LayoutObject}->ITSMConfigItemOutputStringCreate(
+                    Value => $Value,
+                    Item  => $Item,
+                );
+            }
 
             # add prefix
             my $Prefix = $Item->{Key} . '::' . $Counter;
