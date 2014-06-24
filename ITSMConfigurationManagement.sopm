@@ -17,6 +17,12 @@
         <File Permission="644" Location="doc/itsm-configuration-management-database.dia"/>
         <File Permission="644" Location="doc/itsm-configuration-management-database.png"/>
         <File Permission="644" Location="Kernel/Config/Files/ITSMConfigItem.xml"/>
+        <File Permission="644" Location="Kernel/Config/Files/ITSMConfigItemGenericInterface.xml"/>
+        <File Permission="644" Location="Kernel/GenericInterface/Operation/ConfigItem/Common.pm"/>
+        <File Permission="644" Location="Kernel/GenericInterface/Operation/ConfigItem/ConfigItemCreate.pm"/>
+        <File Permission="644" Location="Kernel/GenericInterface/Operation/ConfigItem/ConfigItemGet.pm"/>
+        <File Permission="644" Location="Kernel/GenericInterface/Operation/ConfigItem/ConfigItemSearch.pm"/>
+        <File Permission="644" Location="Kernel/GenericInterface/Operation/ConfigItem/ConfigItemUpdate.pm"/>
         <File Permission="644" Location="Kernel/Language/bg_ITSMConfigItem.pm"/>
         <File Permission="644" Location="Kernel/Language/cs_ITSMConfigItem.pm"/>
         <File Permission="644" Location="Kernel/Language/ct_ITSMConfigItem.pm"/>
@@ -98,6 +104,11 @@
         <File Permission="644" Location="Kernel/System/LinkObject/ITSMConfigItem.pm"/>
         <File Permission="644" Location="Kernel/System/Service/PreferencesDB.pm"/>
         <File Permission="644" Location="Kernel/System/Stats/Dynamic/ITSMConfigItem.pm"/>
+        <File Permission="644" Location="scripts/test/GenericInterface/Operation/ConfigItem/ConfigItemCreate.t"/>
+        <File Permission="644" Location="scripts/test/GenericInterface/Operation/ConfigItem/ConfigItemGet.t"/>
+        <File Permission="644" Location="scripts/test/GenericInterface/Operation/ConfigItem/ConfigItemSearch.t"/>
+        <File Permission="644" Location="scripts/test/GenericInterface/Operation/ConfigItem/ConfigItemUpdate.t"/>
+        <File Permission="644" Location="scripts/GenericConfigItemConnector.yml"/>
         <File Permission="644" Location="scripts/test/ImportExportObjectITSMConfigItem.t"/>
         <File Permission="644" Location="scripts/test/ITSMConfigItem.t"/>
         <File Permission="644" Location="scripts/test/ITSMConfigItemUniqueCIName.t"/>

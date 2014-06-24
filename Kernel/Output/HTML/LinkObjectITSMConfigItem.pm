@@ -210,7 +210,7 @@ sub TableCreateComplex {
     if ( $ColumnConfig && ref $ColumnConfig eq 'ARRAY' && @{$ColumnConfig} ) {
 
         NAME:
-        for my $Name ( @{$ColumnConfig}  ) {
+        for my $Name ( @{$ColumnConfig} ) {
             my ( $Class, $Column ) = split /::/, $Name, 2;
 
             next NAME if !$Column;
