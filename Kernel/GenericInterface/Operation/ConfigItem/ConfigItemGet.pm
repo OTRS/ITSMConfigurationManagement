@@ -1,8 +1,6 @@
 # --
 # Kernel/GenericInterface/Operation/CI/ConfigItemGet.pm - GenericInterface Configuration Item Get operation backend
-# Copyright (C) 2003-2013 OTRS AG, http://otrs.com/
-# --
-# $Id: ConfigItemGet.pm,v 1.5 2013-04-24 23:15:54 cr Exp $
+# Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -20,8 +18,6 @@ use Kernel::GenericInterface::Operation::ConfigItem::Common;
 use Kernel::System::GeneralCatalog;
 use Kernel::System::ITSMConfigItem;
 use Kernel::System::VariableCheck qw(:all);
-
-use vars qw(@ISA);
 
 =head1 NAME
 

@@ -1,8 +1,6 @@
 # --
 # Kernel/GenericInterface/Operation/ConfigItem/Common.pm - ConfigItem common operation functions
-# Copyright (C) 2003-2013 OTRS AG, http://otrs.com/
-# --
-# $Id: Common.pm,v 1.4 2013-04-11 17:25:55 cr Exp $
+# Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -21,8 +19,6 @@ use Kernel::System::GenericInterface::Webservice;
 use Kernel::System::ITSMConfigItem;
 use Kernel::System::Valid;
 use Kernel::System::VariableCheck qw(:all);
-
-use vars qw(@ISA);
 
 =head1 NAME
 
@@ -1655,6 +1651,7 @@ replace user values with system ready values.
     returns:
 
     $NewValue = $ANewValue
+
 =cut
 
 sub _ReplaceValue {
@@ -1706,6 +1703,7 @@ replace internal values with user values.
     returns:
 
     $NewValue = $ANewValue
+
 =cut
 
 sub _InvertReplaceValue {

@@ -1,8 +1,6 @@
 # --
 # Kernel/GenericInterface/Operation/CI/ConfigItemUpdate.pm - GenericInterface ConfigItem ConfigItemUpdate operation backend
-# Copyright (C) 2003-2013 OTRS AG, http://otrs.com/
-# --
-# $Id: ConfigItemUpdate.pm,v 1.2 2013-04-03 14:44:37 cr Exp $
+# Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -20,8 +18,6 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::GenericInterface::Operation::Common;
 use Kernel::GenericInterface::Operation::ConfigItem::Common;
 use Kernel::System::VariableCheck qw(:all);
-
-use vars qw(@ISA);
 
 =head1 NAME
 
@@ -620,6 +616,7 @@ updates a configuration item with attachments if specified.
         Success      => 0,                         # if unexpected error
         ErrorMessage => "$Param{ErrorCode}: $Param{ErrorMessage}",
     }
+
 =cut
 
 sub _ConfigItemUpdate {

@@ -1,8 +1,6 @@
 # --
 # Kernel/GenericInterface/Operation/CI/ConfigItemSearch.pm - GenericInterface ConfigItem ConfigItemSearch operation backend
-# Copyright (C) 2003-2013 OTRS AG, http://otrs.com/
-# --
-# $Id: ConfigItemSearch.pm,v 1.3 2013-04-11 17:25:55 cr Exp $
+# Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -20,8 +18,6 @@ use Kernel::System::ITSMConfigItem;
 use Kernel::GenericInterface::Operation::Common;
 use Kernel::GenericInterface::Operation::ConfigItem::Common;
 use Kernel::System::VariableCheck qw(:all);
-
-use vars qw(@ISA);
 
 =head1 NAME
 
@@ -599,6 +595,7 @@ search a configuration items.
         Success      => 0,                         # if unexpected error
         ErrorMessage => "$Param{ErrorCode}: $Param{ErrorMessage}",
     }
+
 =cut
 
 sub _ConfigItemSearch {
@@ -1061,7 +1058,7 @@ sub _FormatSearchXMLData {
 
     # return the complete XMLData as needed for ConfigItemSearch
     my @ReturnStructure;
-    for my $SearchParam ( keys %{$NewXMLData} ) {
+    for my $SearchParam ( sort keys %{$NewXMLData} ) {
         my $SearchKey = $SearchParam;
         $SearchKey =~ s{ :: }{\'\}[%]\{\'}xmsg;
         $SearchKey = "[1]{'Version'}[1]{'$SearchKey'}[%]{'Content'}";
