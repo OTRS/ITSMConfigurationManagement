@@ -668,7 +668,7 @@ sub SelectableObjectList {
             {
 
                 # extract default class name
-                my $DefaultClass = $DefaultSubobject->{ITSMConfigItem} || '';
+                my $DefaultClass = $DefaultSubobject->{ $Self->{ObjectData}->{Object} } || '';
 
                 # check class
                 if ( $DefaultClass eq $Class ) {
