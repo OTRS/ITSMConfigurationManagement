@@ -347,7 +347,7 @@ sub _XMLData2Hash {
             );
 
             # only if value is not empty
-            if ( $Value ) {
+            if ($Value) {
 
                 # create output string
                 $Value = $Self->{LayoutObject}->ITSMConfigItemOutputStringCreate(
