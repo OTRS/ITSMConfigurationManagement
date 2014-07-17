@@ -1678,6 +1678,9 @@ sub CurInciStateRecalc {
             SQL => 'UPDATE configitem SET cur_inci_state_id = ? WHERE id = ?',
             Bind => [ \$CurInciStateID, \$ConfigItemID ],
         );
+
+        # delete the cache
+        delete $Self->{Cache}->{ConfigItemGet}->{ $ConfigItemID };
     }
 
     # set the current incident state type for each service (influenced by linked CIs)
