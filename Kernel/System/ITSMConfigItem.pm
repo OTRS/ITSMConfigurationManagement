@@ -1829,12 +1829,19 @@ sub _FindWarnConfigItems {
     # check needed stuff
     return if !$Param{ConfigItemID};
 
+    my $IncidentCount;
+    for my $ConfigItemID (sort keys %{ $Param{ScannedConfigItemIDs} } ) {
+        if ( $Param{ScannedConfigItemIDs}->{$ConfigItemID}->{Type} eq 'incident' ) {
+            $IncidentCount++;
+        }
+    }
+
     # ignore already scanned ids (infinite loop protection)
-    # it is ok that a config item is investigated as many times as there are configured link types
+    # it is ok that a config item is investigated as many times as there are configured link types * number of incident config iteems
     if (
         $Param{ScannedConfigItemIDs}->{ $Param{ConfigItemID} }->{FindWarn}
         && $Param{ScannedConfigItemIDs}->{ $Param{ConfigItemID} }->{FindWarn}
-        >= $Param{NumberOfLinkTypes}
+        >= ( $Param{NumberOfLinkTypes} * $IncidentCount )
         )
     {
         return;
