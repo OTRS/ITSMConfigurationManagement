@@ -591,11 +591,17 @@ $Self->{ConfigObject}->Set(
     Value => $OrigIncidentLinkTypeDirectionSetting,
 );
 
-delete the test config items
+# delete the test config items
 for my $ConfigItemID (@ConfigItemIDs) {
+
     my $DeleteOk = $Self->{ConfigItemObject}->ConfigItemDelete(
         ConfigItemID => $ConfigItemID,
         UserID       => 1,
+    );
+
+    $Self->True(
+        $DeleteOk,
+        "Deleted config item $ConfigItemID.",
     );
 }
 
