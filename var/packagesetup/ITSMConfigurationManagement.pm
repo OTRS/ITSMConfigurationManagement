@@ -198,9 +198,6 @@ sub CodeInstall {
     # set default permission group
     $Self->_SetDefaultPermission();
 
-    # fillup empty 'CurInciStateTypeFromCIs' service preferences
-    $Self->_FillupEmptyCurInciStateTypeFromCIs();
-
     # install stats
     $Self->{StatsObject}->StatsInstall(
         FilePrefix => $Self->{FilePrefix},
@@ -247,9 +244,6 @@ sub CodeReinstall {
     # set default permission group
     $Self->_SetDefaultPermission();
 
-    # fillup empty 'CurInciStateTypeFromCIs' service preferences
-    $Self->_FillupEmptyCurInciStateTypeFromCIs();
-
     # install stats
     $Self->{StatsObject}->StatsInstall(
         FilePrefix => $Self->{FilePrefix},
@@ -286,9 +280,6 @@ sub CodeUpgrade {
 
     # set default permission group
     $Self->_SetDefaultPermission();
-
-    # fillup empty 'CurInciStateTypeFromCIs' service preferences
-    $Self->_FillupEmptyCurInciStateTypeFromCIs();
 
     # install stats
     $Self->{StatsObject}->StatsInstall(
@@ -1350,87 +1341,6 @@ sub _FillupEmptyIncidentAndDeploymentStateID {
                 \$LastVersion->{InciStateID},
                 \$ConfigItemID,
             ],
-        );
-    }
-
-    return 1;
-}
-
-=item _FillupEmptyCurInciStateTypeFromCIs()
-
-Fillup empty entries in the service preferences for the key 'CurInciStateTypeFromCIs'.
-This field stores the current incident type as influenced by linked CIs of a service.
-
-    my $Result = $CodeObject->_FillupEmptyCurInciStateTypeFromCIs();
-
-=cut
-
-sub _FillupEmptyCurInciStateTypeFromCIs {
-    my ( $Self, %Param ) = @_;
-
-    # get service list
-    my %ServiceList = $Self->{ServiceObject}->ServiceList(
-        Valid  => 0,
-        UserID => 1,
-    );
-
-    # get the incident link type
-    my $LinkType = $Self->{ConfigObject}->Get('ITSM::Core::IncidentLinkType');
-
-    SERVICEID:
-    for my $ServiceID ( sort keys %ServiceList ) {
-
-        # get service data
-        my %Service = $Self->{ServiceObject}->ServiceGet(
-            ServiceID => $ServiceID,
-            UserID    => 1,
-        );
-
-        # only if the CurInciStateTypeFromCIs is not set yet
-        next SERVICEID if $Service{CurInciStateTypeFromCIs};
-
-        # find all linked config items
-        my %LinkedConfigItemIDs = $Self->{LinkObject}->LinkKeyListWithData(
-            Object1 => 'Service',
-            Key1    => $ServiceID,
-            Object2 => 'ITSMConfigItem',
-            State   => 'Valid',
-            Type    => $LinkType,
-            UserID  => 1,
-        );
-
-        # set default incident state type
-        my $CurInciStateTypeFromCIs = 'operational';
-
-        # investigate the current incident state of each config item
-        CONFIGITEMID:
-        for my $ConfigItemID ( sort keys %LinkedConfigItemIDs ) {
-
-            # extract config item data
-            my $ConfigItemData = $LinkedConfigItemIDs{$ConfigItemID};
-
-            next CONFIGITEMID if $ConfigItemData->{CurDeplStateType} ne 'productive';
-            next CONFIGITEMID if $ConfigItemData->{CurInciStateType} eq 'operational';
-
-            # check if service must be set to 'warning'
-            if ( $ConfigItemData->{CurInciStateType} eq 'warning' ) {
-                $CurInciStateTypeFromCIs = 'warning';
-                next CONFIGITEMID;
-            }
-
-            # check if service must be set to 'incident'
-            if ( $ConfigItemData->{CurInciStateType} eq 'incident' ) {
-                $CurInciStateTypeFromCIs = 'incident';
-                last CONFIGITEMID;
-            }
-        }
-
-        # update the current incident state type from CIs of the service
-        $Self->{ServiceObject}->ServicePreferencesSet(
-            ServiceID => $ServiceID,
-            Key       => 'CurInciStateTypeFromCIs',
-            Value     => $CurInciStateTypeFromCIs,
-            UserID    => 1,
         );
     }
 
