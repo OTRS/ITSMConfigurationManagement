@@ -1829,9 +1829,9 @@ sub _FindWarnConfigItems {
     # check needed stuff
     return if !$Param{ConfigItemID};
 
-    my $IncidentCount;
+    my $IncidentCount = 0;
     for my $ConfigItemID (sort keys %{ $Param{ScannedConfigItemIDs} } ) {
-        if ( $Param{ScannedConfigItemIDs}->{$ConfigItemID}->{Type} eq 'incident' ) {
+        if ( $Param{ScannedConfigItemIDs}->{$ConfigItemID}->{Type} && $Param{ScannedConfigItemIDs}->{$ConfigItemID}->{Type} eq 'incident' ) {
             $IncidentCount++;
         }
     }
