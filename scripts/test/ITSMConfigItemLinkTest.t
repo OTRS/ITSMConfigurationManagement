@@ -581,7 +581,6 @@ for my $LinkType ( sort keys %Links ) {
 
 }
 
-
 # ------------------------------------------------------------ #
 # clean the system
 # ------------------------------------------------------------ #
@@ -592,39 +591,38 @@ $Self->{ConfigObject}->Set(
     Value => $OrigIncidentLinkTypeDirectionSetting,
 );
 
-# delete the test config items
-# for my $ConfigItemID (@ConfigItemIDs) {
-#     my $DeleteOk = $Self->{ConfigItemObject}->ConfigItemDelete(
-#         ConfigItemID => $ConfigItemID,
-#         UserID       => 1,
-#     );
-# }
+delete the test config items
+for my $ConfigItemID (@ConfigItemIDs) {
+    my $DeleteOk = $Self->{ConfigItemObject}->ConfigItemDelete(
+        ConfigItemID => $ConfigItemID,
+        UserID       => 1,
+    );
+}
 
-# # set services to invalid
-# for my $ServiceID (@ServiceIDs) {
+# set services to invalid
+for my $ServiceID (@ServiceIDs) {
 
-#     my %Service = $Self->{ServiceObject}->ServiceGet(
-#         ServiceID => $ServiceID,
-#         UserID    => 1,
-#     );
+    my %Service = $Self->{ServiceObject}->ServiceGet(
+        ServiceID => $ServiceID,
+        UserID    => 1,
+    );
 
-#     my $Success = $Self->{ServiceObject}->ServiceUpdate(
-#         ServiceID   => $Service{ServiceID},
-#         Name        => $Service{NameShort},
-#         Comment     => $Service{Comment},
-#         ParentID    => $Service{ParentID} || 0,
-#         ValidID     => 2,
-#         TypeID      => $Service{TypeID},
-#         Criticality => $Service{Criticality},
-#         UserID      => 1,
-#     );
+    my $Success = $Self->{ServiceObject}->ServiceUpdate(
+        ServiceID   => $Service{ServiceID},
+        Name        => $Service{NameShort},
+        Comment     => $Service{Comment},
+        ParentID    => $Service{ParentID} || 0,
+        ValidID     => 2,
+        TypeID      => $Service{TypeID},
+        Criticality => $Service{Criticality},
+        UserID      => 1,
+    );
 
-#     $Self->True(
-#         $Success,
-#         "ServiceUpdate() - Invalidate service $Service{ServiceID} - $Service{Name}",
-#     );
-# }
-
+    $Self->True(
+        $Success,
+        "ServiceUpdate() - Invalidate service $Service{ServiceID} - $Service{Name}",
+    );
+}
 
 sub CheckExpectedResults {
 
