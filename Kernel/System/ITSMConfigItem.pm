@@ -994,10 +994,14 @@ sub ConfigItemSearchExtended {
 
         # get config item ids
         my %ConfigItemListTmp;
+        VERSIONID:
         for my $VersionID ( sort keys %{$XMLVersionList} ) {
             my $ConfigItemID = $Self->VersionConfigItemIDGet(
                 VersionID => $VersionID,
             );
+
+            next VERSIONID if !$ConfigItemID;
+
             $ConfigItemListTmp{$ConfigItemID} = 1;
         }
 
