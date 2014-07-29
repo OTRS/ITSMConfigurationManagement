@@ -908,7 +908,7 @@ sub VersionSearch {
 
     # add name to sql where array
     my @SQLWhere;
-    if ( defined $Param{Name} && defined $Param{Name} ne '' ) {
+    if ( defined $Param{Name} && $Param{Name} ne '' ) {
 
         # duplicate the name
         my $Name = $Param{Name};
