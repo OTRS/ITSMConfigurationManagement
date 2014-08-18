@@ -15,7 +15,6 @@ use warnings;
 use Kernel::Config;
 use Kernel::System::SysConfig;
 use Kernel::System::CSV;
-use Kernel::System::CacheInternal;
 use Kernel::System::GeneralCatalog;
 use Kernel::System::Group;
 use Kernel::System::ITSMConfigItem;
@@ -151,11 +150,6 @@ sub new {
         %{$Self},
         UserID => 1,
     );
-    $Self->{CacheInternalObject} = Kernel::System::CacheInternal->new(
-        %{$Self},
-        Type => 'Group',
-        TTL  => 60 * 60 * 3,
-    );
 
     # define file prefix for stats
     $Self->{FilePrefix} = 'ITSMStats';
@@ -202,9 +196,6 @@ sub CodeInstall {
     $Self->{StatsObject}->StatsInstall(
         FilePrefix => $Self->{FilePrefix},
     );
-
-    # delete the group cache to avoid problems with CI permissions
-    $Self->{CacheInternalObject}->CleanUp( OtherType => 'Group' );
 
     return 1;
 }
@@ -285,9 +276,6 @@ sub CodeUpgrade {
     $Self->{StatsObject}->StatsInstall(
         FilePrefix => $Self->{FilePrefix},
     );
-
-    # delete the group cache to avoid problems with CI permissions
-    $Self->{CacheInternalObject}->CleanUp( OtherType => 'Group' );
 
     return 1;
 }
