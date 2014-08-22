@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions
+    name="GenericConfigItemConnector"
+    targetNamespace="http://www.otrs.org/ConfigItemConnector/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:tns="http://www.otrs.org/ConfigItemConnector/">
+    <wsdl:documentation></wsdl:documentation>
+    <!-- Warning: This WSDL file is for Development and Test purposes ONLY! -->
+    <wsdl:types>
+        <xsd:schema
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://www.otrs.org/ConfigItemConnector/">
+            <xsd:complexType name="OTRS_ConfigItemCreate">
+                <xsd:sequence>
+                    <xsd:choice
+                        minOccurs="1"
+                        maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>UserLogin CustomerUserLogin or SessionID is mandatory</xsd:documentation>
+                        </xsd:annotation>
+                        <xsd:element
+                            name="UserLogin"
+                            type="xsd:string"
+                            minOccurs="0">
+                        </xsd:element>
+                        <xsd:element
+                            name="SessionID"
+                            type="xsd:string"
+                            minOccurs="0">
+                        </xsd:element>
+                    </xsd:choice>
+                    <xsd:element
+                        name="Password"
+                        type="xsd:string"
+                        minOccurs="0">
+                    </xsd:element>
+                    <xsd:element
+                        name="ConfigItem"
+                        type="tns:OTRS_ConfigItem_ConfigItem"
+                        maxOccurs="1"
+                        minOccurs="1">
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="OTRS_ConfigItemCreateResponse">
+                <xsd:sequence>
+                    <xsd:element
+                        name="ConfigItemID"
+                        type="xsd:positiveInteger"
+                        maxOccurs="1"
+                        minOccurs="1">
+                    </xsd:element>
+                    <xsd:element
+                        name="Number"
+                        type="xsd:string" minOccurs="1">
+                    </xsd:element>
+                    <xsd:element
+                        name="Error"
+                        type="tns:OTRS_Error"
+                        maxOccurs="1"
+                        minOccurs="0">
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="OTRS_Error">
+                <xsd:sequence>
+                    <xsd:element
+                        name="ErrorCode"
+                        type="xsd:string"
+                        minOccurs="1"
+                        maxOccurs="1">
+                    </xsd:element>
+                    <xsd:element
+                        name="ErrorMessage"
+                        type="xsd:string" minOccurs="1">
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="OTRS_ConfigItem_ConfigItem">
+                <xsd:sequence>
+                    <xsd:element
+                        name="Class"
+                        type="xsd:string">
+                    </xsd:element>
+                    <xsd:element
+                        name="Name"
+                        type="xsd:string">
+                    </xsd:element>
+                    <xsd:element
+                        name="DeplState"
+                        type="xsd:string">
+                    </xsd:element>
+                    <xsd:element
+                        name="InciState"
+                        type="xsd:string">
+                    </xsd:element>
+                    <xsd:element
+                        name="XMLData"
+                        type="tns:OTRS_XMLData">
+                    </xsd:element>
+                    <xsd:element name="Attachment" type="tns:OTRS_Attachment" maxOccurs="unbounded" minOccurs="0">
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+        
+            <xsd:complexType name="OTRS_XMLData">
+                <xsd:sequence></xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="OTRS_Attachment">
+                <xsd:sequence>
+                    <xsd:element
+                        name="Content"
+                        type="xsd:base64Binary"
+                        maxOccurs="1"
+                        minOccurs="1">
+                    </xsd:element>
+                    <xsd:element
+                        name="ContentType"
+                        type="xsd:string"
+                        maxOccurs="1"
+                        minOccurs="1">
+                    </xsd:element>
+                    <xsd:element
+                        name="Filename"
+                        type="xsd:string"
+                        maxOccurs="1"
+                        minOccurs="1">
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="OTRS_ConfigItemGet">
+                <xsd:sequence>
+                    <xsd:choice
+                        minOccurs="1"
+                        maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>
+                                UserLogin CustomerUserLogin or SessionID
+                                is mandatory
+                            </xsd:documentation>
+                        </xsd:annotation>
+                        <xsd:element
+                            name="UserLogin"
+                            type="xsd:string"
+                            minOccurs="0">
+                        </xsd:element>
+                        <xsd:element
+                            name="SessionID"
+                            type="xsd:string"
+                            minOccurs="0">
+                        </xsd:element>
+                    </xsd:choice>
+                    <xsd:element
+                        name="Password"
+                        type="xsd:string"
+                        minOccurs="0">
+                    </xsd:element>
+                    <xsd:element
+                        name="ConfigItemID"
+                        type="xsd:positiveInteger"
+                        minOccurs="1"
+                        maxOccurs="unbounded">
+                    </xsd:element>
+                    <xsd:element
+                        name="Attachments"
+                        type="xsd:boolean" minOccurs="0" maxOccurs="1">
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="OTRS_ConfigItemGetResponse">
+                <xsd:sequence>
+                    <xsd:element
+                        name="ConfigItem"
+                        type="tns:OTRS_ConfigItemGetResponse_ConfigItem" minOccurs="1" maxOccurs="unbounded">
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="OTRS_ConfigItemUpdate">
+                <xsd:sequence>
+                    <xsd:choice
+                        minOccurs="1"
+                        maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>
+                                UserLogin CustomerUserLogin or SessionID
+                                is mandatory
+                            </xsd:documentation>
+                        </xsd:annotation>
+                        <xsd:element
+                            name="UserLogin"
+                            type="xsd:string"
+                            minOccurs="0">
+                        </xsd:element>
+                        <xsd:element
+                            name="SessionID"
+                            type="xsd:string"
+                            minOccurs="0">
+                        </xsd:element>
+                    </xsd:choice>
+                    <xsd:element
+                        name="Password"
+                        type="xsd:string"
+                        minOccurs="0">
+                    </xsd:element>
+                    <xsd:element
+                        name="ConfigItemID"
+                        type="xsd:positiveInteger" minOccurs="1" maxOccurs="1">
+                    </xsd:element>
+                    <xsd:element
+                        name="ConfigItem"
+                        type="tns:OTRS_ConfigItem_ConfigItem"
+                        maxOccurs="1"
+                        minOccurs="1">
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+        
+            <xsd:complexType
+                name="OTRS_ConfigItemGetResponse_ConfigItem">
+                <xsd:sequence>
+                    <xsd:element
+                        name="ConfigItemID"
+                        type="xsd:positiveInteger"
+                        minOccurs="1"
+                        maxOccurs="1">
+                    </xsd:element>
+                    <xsd:element
+                        name="Name"
+                        type="xsd:string"
+                        minOccurs="1"
+                        maxOccurs="1">
+                    </xsd:element>
+                    <xsd:element
+                        name="Class"
+                        type="xsd:string"
+                        minOccurs="1"
+                        maxOccurs="1">
+                    </xsd:element>
+                    <xsd:element
+                        name="VersionID"
+                        type="xsd:positiveInteger"
+                        minOccurs="1"
+                        maxOccurs="1">
+                    </xsd:element>
+                    <xsd:element
+                        name="LastVersionID"
+                        type="xsd:positiveInteger"
+                        minOccurs="1"
+                        maxOccurs="1">
+                    </xsd:element>
+                    <xsd:element
+                        name="DefinitionID"
+                        type="xsd:positiveInteger"
+                        minOccurs="1"
+                        maxOccurs="1">
+                    </xsd:element>
+                    <xsd:element
+                        name="InciState"
+                        type="xsd:string"
+                        minOccurs="1"
+                        maxOccurs="1">
+                    </xsd:element>
+                    <xsd:element
+                        name="InciStateType"
+                        type="xsd:string"
+                        minOccurs="1"
+                        maxOccurs="1">
+                    </xsd:element>
+                    <xsd:element
+                        name="DeplState"
+                        type="xsd:string"
+                        minOccurs="1"
+                        maxOccurs="1">
+                    </xsd:element>
+                    <xsd:element
+                        name="DeplStateType"
+                        type="xsd:string"
+                        minOccurs="1"
+                        maxOccurs="1">
+                    </xsd:element>
+
+                    <xsd:element
+                        name="CreateTime"
+                        type="xsd:dateTime"
+                        minOccurs="1"
+                        maxOccurs="1">
+                    </xsd:element>
+                    <xsd:element
+                        name="CreateBy"
+                        type="xsd:positiveInteger"
+                        minOccurs="1"
+                        maxOccurs="1">
+                    </xsd:element>
+                    <xsd:element
+                        name="CIXMLData"
+                        type="tns:OTRS_XMLData"
+                        minOccurs="1"
+                        maxOccurs="1">
+                    </xsd:element>
+                    <xsd:element
+                        name="Attachment"
+                        type="tns:OTRS_Attachment">
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="OTRS_ConfigItem_Search">
+                <xsd:sequence>
+                    <xsd:choice
+                        minOccurs="1"
+                        maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>
+                                UserLogin CustomerUserLogin or SessionID
+                                is mandatory
+                            </xsd:documentation>
+                        </xsd:annotation>
+                        <xsd:element
+                            name="UserLogin"
+                            type="xsd:string"
+                            minOccurs="0">
+                        </xsd:element>
+                        <xsd:element
+                            name="SessionID"
+                            type="xsd:string"
+                            minOccurs="0">
+                        </xsd:element>
+                    </xsd:choice>
+                    <xsd:element
+                        name="Password"
+                        type="xsd:string"
+                        minOccurs="0">
+                    </xsd:element>
+                    <xsd:element
+                        name="ConfigItem"
+                        type="tns:OTRS_ConfigItem_Search_ConfigItem"
+                        maxOccurs="1"
+                        minOccurs="1">
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+        
+            <xsd:complexType name="OTRS_ConfigItem_Search_ConfigItem">
+                <xsd:sequence>
+                    <xsd:element
+                        name="Class"
+                        type="xsd:string"
+                        minOccurs="1"
+                        maxOccurs="1">
+                    </xsd:element>
+                    <xsd:element
+                        name="Name"
+                        type="xsd:string"
+                        minOccurs="0"
+                        maxOccurs="1">
+                    </xsd:element>
+                    <xsd:element
+                        name="InciStates"
+                        type="xsd:string"
+                        minOccurs="0"
+                        maxOccurs="unbounded">
+                    </xsd:element>
+                    <xsd:element
+                        name="DeplStates"
+                        type="xsd:string"
+                        minOccurs="0"
+                        maxOccurs="unbounded">
+                    </xsd:element>
+                    <xsd:element
+                        name="ConfigItemCreateTimeNewerDate"
+                        type="xsd:dateTime"
+                        minOccurs="0"
+                        maxOccurs="1">
+                    </xsd:element>
+                    <xsd:element
+                        name="ConfigItemCreateTimeOlderDate"
+                        type="xsd:dateTime"
+                        minOccurs="0"
+                        maxOccurs="1">
+                    </xsd:element>
+                    <xsd:element
+                        name="ConfigItemChangeTimeNewerDate"
+                        type="xsd:dateTime"
+                        minOccurs="0"
+                        maxOccurs="1">
+                    </xsd:element>
+                    <xsd:element
+                        name="ConfigItemChangeTimeOlderDate"
+                        type="xsd:dateTime"
+                        minOccurs="0"
+                        maxOccurs="1">
+                    </xsd:element>
+                    <xsd:element
+                        name="CIXMLData"
+                        type="tns:OTRS_XMLData"
+                        minOccurs="0"
+                        maxOccurs="1">
+                    </xsd:element>
+                    <xsd:element
+                        name="PreviousVersionSearch"
+                        type="xsd:boolean"
+                        minOccurs="0"
+                        maxOccurs="1">
+                    </xsd:element>
+                    <xsd:element
+                        name="OrderBy"
+                        type="xsd:string"
+                        minOccurs="0"
+                        maxOccurs="unbounded">
+                    </xsd:element>
+                    <xsd:element
+                        name="OrderByDirection"
+                        type="xsd:string"
+                        minOccurs="0"
+                        maxOccurs="unbounded">
+                    </xsd:element>
+                    <xsd:element
+                        name="Limit"
+                        type="xsd:positiveInteger" minOccurs="0" maxOccurs="1">
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="OTRS_ConifgItem_SearchResponse">
+                <xsd:sequence>
+                    <xsd:element
+                        name="ConfigItemIDs"
+                        type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="ConfigItemCreateRequest">
+        <wsdl:part
+            name="ConfigItemCreate"
+            type="tns:OTRS_ConfigItemCreate">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="ConfigItemCreateResponse">
+        <wsdl:part
+            name="ConfigItemCreateResponse" type="tns:OTRS_ConfigItemCreateResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="ConfigItemGetRequest">
+        <wsdl:part
+            name="ConfigItemGet"
+            type="tns:OTRS_ConfigItemGet">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="ConfigItemGetResponse">
+        <wsdl:part
+            name="ConfigItemGetResponse"
+            type="tns:OTRS_ConfigItemGetResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="ConfigItemUpdateRequest">
+        <wsdl:part
+            name="ConfigItemUpdate"
+            type="tns:OTRS_ConfigItemUpdate">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="ConfigItemUpdateResponse">
+        <wsdl:part
+            name="ConfigItemUpdateResponse"
+            type="tns:OTRS_ConfigItemCreateResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="ConfigItemSearchRequest">
+        <wsdl:part
+            name="ConfigItemSearch"
+            type="tns:OTRS_ConfigItem_Search">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="ConfigItemSearchResponse">
+        <wsdl:part
+            name="ConfigItemSearchResponse"
+            type="tns:OTRS_ConifgItem_SearchResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="GenericConfigItemConnector_Interface">
+        <wsdl:documentation>Warning: This WSDL file is for Development and Test purposes ONLY!
+        </wsdl:documentation>
+        <wsdl:operation name="ConfigItemCreate">
+            <wsdl:input message="tns:ConfigItemCreateRequest"></wsdl:input>
+            <wsdl:output message="tns:ConfigItemCreateResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ConfigItemGet">
+            <wsdl:input message="tns:ConfigItemGetRequest"></wsdl:input>
+            <wsdl:output message="tns:ConfigItemGetResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ConfigItemUpdate">
+            <wsdl:input message="tns:ConfigItemUpdateRequest"></wsdl:input>
+            <wsdl:output message="tns:ConfigItemUpdateResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ConfigItemSearch">
+            <wsdl:input message="tns:ConfigItemSearchRequest"></wsdl:input>
+            <wsdl:output message="tns:ConfigItemSearchResponse"></wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding
+        name="GenericConfigItemConnector_Service"
+        type="tns:GenericConfigItemConnector_Interface">
+        <soap:binding
+            style="document"
+            transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="ConfigItemCreate">
+            <soap:operation
+                soapAction="http://www.otrs.org/ConfigItemConnector/ConfigItemCreate" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ConfigItemGet">
+            <soap:operation
+                soapAction="http://www.otrs.org/ConfigItemConnector/ConfigItemGet" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ConfigItemUpdate">
+            <soap:operation
+                soapAction="http://www.otrs.org/ConfigItemConnector/ConfigItemUpdate" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ConfigItemSearch">
+            <soap:operation
+                soapAction="http://www.otrs.org/ConfigItemConnector/ConfigItemSearch" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="GenericConfigItemConnector">
+        <wsdl:port name="GenericConfigItemConnector_endPoint" binding="tns:GenericConfigItemConnector_Service">
+            <soap:address location="http://localhost/otrs/nph-genericinterface.pl/Webservice/GenericConfigItemConnector" />
+        </wsdl:port>
+    </wsdl:service></wsdl:definitions>
