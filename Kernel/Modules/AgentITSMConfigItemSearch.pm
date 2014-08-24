@@ -361,6 +361,17 @@ sub Run {
             );
         }
 
+        # if no attribute is shown, show configitem number
+        if ( !$Self->{Profile} ) {
+
+            $Self->{LayoutObject}->Block(
+                Name => 'SearchAJAXShow',
+                Data => {
+                    Attribute => 'Number',
+                },
+            );
+        }
+
         # output template
         $Output = $Self->{LayoutObject}->Output(
             TemplateFile => 'AgentITSMConfigItemSearch',

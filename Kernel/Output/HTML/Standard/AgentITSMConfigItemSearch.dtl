@@ -26,6 +26,7 @@
 
         <fieldset class="TableLike Hidden" id='ITSMSearchProfile'>
             <div class="Clear"></div>
+            <legend>$Text{"Templates"}</legend>
             <label>$Text{"Search template"}</label>
             <div class="Field">
                 <input type="hidden" id="SearchProfile" name="SearchProfile" value="$QData{"Profile"}"/>
@@ -91,6 +92,7 @@
     <input type="hidden" name="EmptySearch" value="$QData{"EmptySearch"}" id="EmptySearch"/>
     <fieldset class="TableLike Hidden" id='ITSMSearchProfile'>
         <div class="Clear"></div>
+        <legend>$Text{"Templates"}</legend>
         <label>$Text{"Search template"}:</label>
         <div class="Field">
             $Data{"ProfilesStrg"}
@@ -109,29 +111,31 @@
         <div class="Field">
             <input type="checkbox" name="SaveProfile" id="SaveProfile" value="1"/>
         </div>
-
     </fieldset>
-
     <fieldset class="TableLike Hidden" id='ITSMSearchFields'>
-        <fieldset class="TableLike" id="SearchInsert"></fieldset>
-        <div class="Clear"></div>
-        <label>$Text{"Add another attribute"}:</label>
-        <div class="Field">
-            $Data{"AttributesStrg"}
-            <button type="submit" class="Add" value="Add" title="Add entry">$Text{"Add"}</button>
-        </div>
+        <fieldset class="TableLike" id="SearchInsert">
+            <legend>$Text{"Filters in use"}</legend>
+        </fieldset>
+        <fieldset class="TableLike">
+            <legend>$Text{"Additional filters"}</legend>
+            <label>$Text{"Add another attribute"}:</label>
+            <div class="Field">
+                $Data{"AttributesStrg"}
+                <button type="submit" class="Add" value="Add" title="Add entry">$Text{"Add"}</button>
+            </div>
 
-        <div class="Clear"></div>
-        <label for="PreviousVersionSearch">$Text{"Also search in previous versions?"}</label>
-        <div class="Field">
-            $Data{"PreviousVersionOptionStrg"}
-        </div>
+            <div class="Clear"></div>
+            <label for="PreviousVersionSearch">$Text{"Also search in previous versions?"}</label>
+            <div class="Field">
+                $Data{"PreviousVersionOptionStrg"}
+            </div>
 
-        <div class="Clear"></div>
-        <label>$Text{"Output"}:</label>
-        <div class="Field">
-            $Data{"ResultFormStrg"}
-        </div>
+            <div class="Clear"></div>
+            <label>$Text{"Output"}:</label>
+            <div class="Field">
+                $Data{"ResultFormStrg"}
+            </div>
+        </fieldset>
     </fieldset>
 </form>
 <fieldset class="TableLike Hidden" id="SearchAttributesHidden">
