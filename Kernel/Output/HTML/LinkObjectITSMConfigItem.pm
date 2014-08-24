@@ -287,9 +287,9 @@ sub TableCreateComplex {
                     CurInciStateType => $Version->{CurInciStateType},
                 },
                 {
-                    Type             => 'CurDeplSignal',
-                    Key              => $ConfigItemID,
-                    Content          => $Version->{CurDeplState},
+                    Type    => 'CurDeplSignal',
+                    Key     => $ConfigItemID,
+                    Content => $Version->{CurDeplState},
                 },
                 {
                     Type    => 'Link',
@@ -629,7 +629,7 @@ sub ContentStringCreate {
     elsif ( $Content->{Type} eq 'CurDeplSignal' ) {
 
         # convert deployment state to a web safe CSS class
-        my $DeplState =  $Content->{Content} || '';
+        my $DeplState = $Content->{Content} || '';
         $DeplState =~ s{ [^a-zA-Z0-9] }{_}msxg;
 
         # get the color of the deplyment state if defined
@@ -648,11 +648,11 @@ sub ContentStringCreate {
 END
         }
 
-        $Template .=  "<span class=\"DeplState $DeplState\"></span> </div>";
+        $Template .= "<span class=\"DeplState $DeplState\"></span> </div>";
 
         $String = $Self->{LayoutObject}->Output(
             Template => $Template,
-            Data => {
+            Data     => {
                 CurDeplState => $Content->{Content} || '',
             },
         );

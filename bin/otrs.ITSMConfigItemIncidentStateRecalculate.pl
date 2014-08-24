@@ -124,7 +124,7 @@ my $NumberOfServices = scalar keys %ServiceList;
 
 print "Resetting ServicePreferences 'CurInciStateTypeFromCIs' for $NumberOfServices services... ";
 
-for my $ServiceID (sort keys %ServiceList) {
+for my $ServiceID ( sort keys %ServiceList ) {
 
     # update the current incident state type from CIs of the service with an empty value
     # this is necessary to force a recalculation on a ServiceGet()

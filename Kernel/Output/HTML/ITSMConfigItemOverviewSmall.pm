@@ -232,7 +232,7 @@ sub Run {
                 }
 
                 # generate HTML for the menu item
-                my $MenuHTML =<< "END";
+                my $MenuHTML = << "END";
 <li>
     <a href="$Link" class="$Menus{$MenuKey}->{MenuClass}" title="$Description">$Name</a>
 </li>

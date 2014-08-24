@@ -33,7 +33,7 @@ my @ServiceIDs;
 my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
     Class => 'ITSM::ConfigItem::Class',
 );
-my %ClassListReverse = reverse %{ $ClassList };
+my %ClassListReverse = reverse %{$ClassList};
 
 # get deployment state list
 my $DeplStateList = $Self->{GeneralCatalogObject}->ItemList(
@@ -55,7 +55,7 @@ my $DefinitionRef = $Self->{ConfigItemObject}->DefinitionGet(
 my %ObjectNameSuffix2ID;
 
 # create config items
-for my $NameSuffix ( 1 .. 7, qw(A B C D E F G)) {
+for my $NameSuffix ( 1 .. 7, qw(A B C D E F G) ) {
 
     # add a configitem
     my $ConfigItemID = $Self->{ConfigItemObject}->ConfigItemAdd(
@@ -76,26 +76,26 @@ for my $NameSuffix ( 1 .. 7, qw(A B C D E F G)) {
     # set a name for each configitem
     my $VersionID = $Self->{ConfigItemObject}->VersionAdd(
         ConfigItemID => $ConfigItemID,
-        Name         => $ConfigItemName . '_Hardware_' .  $NameSuffix,
+        Name         => $ConfigItemName . '_Hardware_' . $NameSuffix,
         DefinitionID => $DefinitionRef->{DefinitionID},
         DeplStateID  => $DeplStateListReverse{Production},
         InciStateID  => $InciStateListReverse{Operational},
         XMLData      => [
-                        undef,
-                        {
-                            Version => [
-                                undef,
-                                {
-                                    Vendor => [
-                                        undef,
-                                        {
-                                            Content => 'TestVendor',
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                    ],
+            undef,
+            {
+                Version => [
+                    undef,
+                    {
+                        Vendor => [
+                            undef,
+                            {
+                                Content => 'TestVendor',
+                            },
+                        ],
+                    },
+                ],
+            },
+        ],
         UserID => 1,
     );
 
@@ -127,9 +127,9 @@ for my $NameSuffix ( 1 .. 2 ) {
     push @ServiceIDs, $ServiceID;
 }
 
-
 # read the original setting for IncidentLinkTypeDirection
-my $OrigIncidentLinkTypeDirectionSetting = $Self->{ConfigObject}->Get('ITSM::Core::IncidentLinkTypeDirection');
+my $OrigIncidentLinkTypeDirectionSetting
+    = $Self->{ConfigObject}->Get('ITSM::Core::IncidentLinkTypeDirection');
 
 # set new config for IncidentLinkTypeDirection
 $Self->{ConfigObject}->Set(
@@ -184,58 +184,58 @@ my %Links = (
     DependsOn => {
         ITSMConfigItem => {
             '7' => {
-                ITSMConfigItem => [ '5' ],
+                ITSMConfigItem => ['5'],
             },
             '6' => {
-                ITSMConfigItem => [ '5' ],
+                ITSMConfigItem => ['5'],
             },
             '5' => {
-                ITSMConfigItem => [ '4' ],
+                ITSMConfigItem => ['4'],
             },
             '4' => {
-                ITSMConfigItem => [ '3' ],
+                ITSMConfigItem => ['3'],
             },
             '3' => {
                 ITSMConfigItem => [ '1', '2' ],
             },
             '1' => {
-                Service => [ '1' ],
+                Service => ['1'],
             },
         },
         Service => {
             '2' => {
-                ITSMConfigItem => [ '2' ],
-            }
+                ITSMConfigItem => ['2'],
+                }
         },
     },
     Includes => {
         ITSMConfigItem => {
             '5' => {
-                ITSMConfigItem => [ 'C' ],
+                ITSMConfigItem => ['C'],
             },
             'C' => {
-                ITSMConfigItem => [ 'D' ],
+                ITSMConfigItem => ['D'],
             },
             'D' => {
-                ITSMConfigItem => [ '7' ],
+                ITSMConfigItem => ['7'],
             },
             'B' => {
-                ITSMConfigItem => [ '2' ],
+                ITSMConfigItem => ['2'],
             },
             '2' => {
-                ITSMConfigItem => [ 'A' ],
+                ITSMConfigItem => ['A'],
             },
             '1' => {
-                ITSMConfigItem => [ 'A' ],
+                ITSMConfigItem => ['A'],
             },
             'A' => {
-                ITSMConfigItem => [ 'F' ],
+                ITSMConfigItem => ['F'],
             },
             'F' => {
-                ITSMConfigItem => [ 'G' ],
+                ITSMConfigItem => ['G'],
             },
             'E' => {
-                ITSMConfigItem => [ 'F' ],
+                ITSMConfigItem => ['F'],
             },
         },
     },
@@ -245,8 +245,11 @@ my %Links = (
 for my $LinkType ( sort keys %Links ) {
     for my $TargetObject ( sort keys %{ $Links{$LinkType} } ) {
         for my $TargetKey ( sort keys %{ $Links{$LinkType}->{$TargetObject} } ) {
-            for my $SourceObject ( sort keys %{ $Links{$LinkType}->{$TargetObject}->{$TargetKey} } ) {
-                for my $SourceKey ( @{ $Links{$LinkType}->{$TargetObject}->{$TargetKey}->{$SourceObject} } ) {
+            for my $SourceObject ( sort keys %{ $Links{$LinkType}->{$TargetObject}->{$TargetKey} } )
+            {
+                for my $SourceKey (
+                    @{ $Links{$LinkType}->{$TargetObject}->{$TargetKey}->{$SourceObject} } )
+                {
 
                     # add the links
                     my $Success = $Self->{LinkObject}->LinkAdd(
@@ -275,7 +278,7 @@ for my $LinkType ( sort keys %Links ) {
 
 {
 
-    my $NameSuffix = 6;
+    my $NameSuffix    = 6;
     my $IncidentState = 'Incident';
 
     # change incident state
@@ -285,7 +288,7 @@ for my $LinkType ( sort keys %Links ) {
         DefinitionID => $DefinitionRef->{DefinitionID},
         DeplStateID  => $DeplStateListReverse{Production},
         InciStateID  => $InciStateListReverse{$IncidentState},
-        UserID => 1,
+        UserID       => 1,
     );
 
     $Self->True(
@@ -296,20 +299,20 @@ for my $LinkType ( sort keys %Links ) {
     CheckExpectedResults(
         ExpectedIncidentStates => {
             ITSMConfigItem => {
-                    '1' => 'Warning',
-                    '2' => 'Warning',
-                    '3' => 'Warning',
-                    '4' => 'Warning',
-                    '5' => 'Warning',
-                    '6' => 'Incident',
-                    '7' => 'Operational',
-                    'A' => 'Operational',
-                    'B' => 'Operational',
-                    'C' => 'Operational',
-                    'D' => 'Operational',
-                    'E' => 'Operational',
-                    'F' => 'Operational',
-                    'G' => 'Operational',
+                '1' => 'Warning',
+                '2' => 'Warning',
+                '3' => 'Warning',
+                '4' => 'Warning',
+                '5' => 'Warning',
+                '6' => 'Incident',
+                '7' => 'Operational',
+                'A' => 'Operational',
+                'B' => 'Operational',
+                'C' => 'Operational',
+                'D' => 'Operational',
+                'E' => 'Operational',
+                'F' => 'Operational',
+                'G' => 'Operational',
             },
             Service => {
                 '1' => 'Warning',
@@ -327,7 +330,7 @@ for my $LinkType ( sort keys %Links ) {
 
 {
 
-    my $NameSuffix = 6;
+    my $NameSuffix    = 6;
     my $IncidentState = 'Operational';
 
     # change incident state
@@ -337,7 +340,7 @@ for my $LinkType ( sort keys %Links ) {
         DefinitionID => $DefinitionRef->{DefinitionID},
         DeplStateID  => $DeplStateListReverse{Production},
         InciStateID  => $InciStateListReverse{$IncidentState},
-        UserID => 1,
+        UserID       => 1,
     );
 
     $Self->True(
@@ -379,7 +382,7 @@ for my $LinkType ( sort keys %Links ) {
 
 {
 
-    my $NameSuffix = 1;
+    my $NameSuffix    = 1;
     my $IncidentState = 'Incident';
 
     # change incident state
@@ -389,7 +392,7 @@ for my $LinkType ( sort keys %Links ) {
         DefinitionID => $DefinitionRef->{DefinitionID},
         DeplStateID  => $DeplStateListReverse{Production},
         InciStateID  => $InciStateListReverse{$IncidentState},
-        UserID => 1,
+        UserID       => 1,
     );
 
     $Self->True(
@@ -400,25 +403,25 @@ for my $LinkType ( sort keys %Links ) {
     CheckExpectedResults(
         ExpectedIncidentStates => {
             ITSMConfigItem => {
-                    '1' => 'Incident',
-                    '2' => 'Operational',
-                    '3' => 'Operational',
-                    '4' => 'Operational',
-                    '5' => 'Operational',
-                    '6' => 'Operational',
-                    '7' => 'Operational',
-                    'A' => 'Warning',
-                    'B' => 'Operational',
-                    'C' => 'Operational',
-                    'D' => 'Operational',
-                    'E' => 'Operational',
-                    'F' => 'Warning',
-                    'G' => 'Warning',
-                },
-                Service => {
-                    '1' => 'Incident',
-                    '2' => 'Operational',
-                },
+                '1' => 'Incident',
+                '2' => 'Operational',
+                '3' => 'Operational',
+                '4' => 'Operational',
+                '5' => 'Operational',
+                '6' => 'Operational',
+                '7' => 'Operational',
+                'A' => 'Warning',
+                'B' => 'Operational',
+                'C' => 'Operational',
+                'D' => 'Operational',
+                'E' => 'Operational',
+                'F' => 'Warning',
+                'G' => 'Warning',
+            },
+            Service => {
+                '1' => 'Incident',
+                '2' => 'Operational',
+            },
         },
         ObjectNameSuffix2ID => \%ObjectNameSuffix2ID,
     );
@@ -431,7 +434,7 @@ for my $LinkType ( sort keys %Links ) {
 
 {
 
-    my $NameSuffix = 5;
+    my $NameSuffix    = 5;
     my $IncidentState = 'Incident';
 
     # change incident state
@@ -441,7 +444,7 @@ for my $LinkType ( sort keys %Links ) {
         DefinitionID => $DefinitionRef->{DefinitionID},
         DeplStateID  => $DeplStateListReverse{Production},
         InciStateID  => $InciStateListReverse{$IncidentState},
-        UserID => 1,
+        UserID       => 1,
     );
 
     $Self->True(
@@ -452,25 +455,25 @@ for my $LinkType ( sort keys %Links ) {
     CheckExpectedResults(
         ExpectedIncidentStates => {
             ITSMConfigItem => {
-                    '1' => 'Incident',
-                    '2' => 'Warning',
-                    '3' => 'Warning',
-                    '4' => 'Warning',
-                    '5' => 'Incident',
-                    '6' => 'Operational',
-                    '7' => 'Warning',
-                    'A' => 'Warning',
-                    'B' => 'Operational',
-                    'C' => 'Warning',
-                    'D' => 'Warning',
-                    'E' => 'Operational',
-                    'F' => 'Warning',
-                    'G' => 'Warning',
-                },
-                Service => {
-                    '1' => 'Incident',
-                    '2' => 'Operational',
-                },
+                '1' => 'Incident',
+                '2' => 'Warning',
+                '3' => 'Warning',
+                '4' => 'Warning',
+                '5' => 'Incident',
+                '6' => 'Operational',
+                '7' => 'Warning',
+                'A' => 'Warning',
+                'B' => 'Operational',
+                'C' => 'Warning',
+                'D' => 'Warning',
+                'E' => 'Operational',
+                'F' => 'Warning',
+                'G' => 'Warning',
+            },
+            Service => {
+                '1' => 'Incident',
+                '2' => 'Operational',
+            },
         },
         ObjectNameSuffix2ID => \%ObjectNameSuffix2ID,
     );
@@ -483,7 +486,7 @@ for my $LinkType ( sort keys %Links ) {
 
 {
 
-    my $NameSuffix = 1;
+    my $NameSuffix    = 1;
     my $IncidentState = 'Operational';
 
     # change incident state
@@ -493,7 +496,7 @@ for my $LinkType ( sort keys %Links ) {
         DefinitionID => $DefinitionRef->{DefinitionID},
         DeplStateID  => $DeplStateListReverse{Production},
         InciStateID  => $InciStateListReverse{$IncidentState},
-        UserID => 1,
+        UserID       => 1,
     );
 
     $Self->True(
@@ -504,25 +507,25 @@ for my $LinkType ( sort keys %Links ) {
     CheckExpectedResults(
         ExpectedIncidentStates => {
             ITSMConfigItem => {
-                    '1' => 'Warning',
-                    '2' => 'Warning',
-                    '3' => 'Warning',
-                    '4' => 'Warning',
-                    '5' => 'Incident',
-                    '6' => 'Operational',
-                    '7' => 'Warning',
-                    'A' => 'Operational',
-                    'B' => 'Operational',
-                    'C' => 'Warning',
-                    'D' => 'Warning',
-                    'E' => 'Operational',
-                    'F' => 'Operational',
-                    'G' => 'Operational',
-                },
-                Service => {
-                    '1' => 'Warning',
-                    '2' => 'Operational',
-                },
+                '1' => 'Warning',
+                '2' => 'Warning',
+                '3' => 'Warning',
+                '4' => 'Warning',
+                '5' => 'Incident',
+                '6' => 'Operational',
+                '7' => 'Warning',
+                'A' => 'Operational',
+                'B' => 'Operational',
+                'C' => 'Warning',
+                'D' => 'Warning',
+                'E' => 'Operational',
+                'F' => 'Operational',
+                'G' => 'Operational',
+            },
+            Service => {
+                '1' => 'Warning',
+                '2' => 'Operational',
+            },
         },
         ObjectNameSuffix2ID => \%ObjectNameSuffix2ID,
     );
@@ -535,7 +538,7 @@ for my $LinkType ( sort keys %Links ) {
 
 {
 
-    my $NameSuffix = 5;
+    my $NameSuffix    = 5;
     my $IncidentState = 'Operational';
 
     # change incident state
@@ -545,7 +548,7 @@ for my $LinkType ( sort keys %Links ) {
         DefinitionID => $DefinitionRef->{DefinitionID},
         DeplStateID  => $DeplStateListReverse{Production},
         InciStateID  => $InciStateListReverse{$IncidentState},
-        UserID => 1,
+        UserID       => 1,
     );
 
     $Self->True(
@@ -556,25 +559,25 @@ for my $LinkType ( sort keys %Links ) {
     CheckExpectedResults(
         ExpectedIncidentStates => {
             ITSMConfigItem => {
-                    '1' => 'Operational',
-                    '2' => 'Operational',
-                    '3' => 'Operational',
-                    '4' => 'Operational',
-                    '5' => 'Operational',
-                    '6' => 'Operational',
-                    '7' => 'Operational',
-                    'A' => 'Operational',
-                    'B' => 'Operational',
-                    'C' => 'Operational',
-                    'D' => 'Operational',
-                    'E' => 'Operational',
-                    'F' => 'Operational',
-                    'G' => 'Operational',
-                },
-                Service => {
-                    '1' => 'Operational',
-                    '2' => 'Operational',
-                },
+                '1' => 'Operational',
+                '2' => 'Operational',
+                '3' => 'Operational',
+                '4' => 'Operational',
+                '5' => 'Operational',
+                '6' => 'Operational',
+                '7' => 'Operational',
+                'A' => 'Operational',
+                'B' => 'Operational',
+                'C' => 'Operational',
+                'D' => 'Operational',
+                'E' => 'Operational',
+                'F' => 'Operational',
+                'G' => 'Operational',
+            },
+            Service => {
+                '1' => 'Operational',
+                '2' => 'Operational',
+            },
         },
         ObjectNameSuffix2ID => \%ObjectNameSuffix2ID,
     );
@@ -639,11 +642,11 @@ sub CheckExpectedResults {
     my %ObjectNameSuffix2ID    = %{ $Param{ObjectNameSuffix2ID} };
 
     # check the results
-    for my $Object (sort keys %ExpectedIncidentStates) {
+    for my $Object ( sort keys %ExpectedIncidentStates ) {
 
-        if ($Object eq 'ITSMConfigItem') {
+        if ( $Object eq 'ITSMConfigItem' ) {
 
-            for my $NameSuffix (sort keys %{ $ExpectedIncidentStates{$Object} } ) {
+            for my $NameSuffix ( sort keys %{ $ExpectedIncidentStates{$Object} } ) {
 
                 # get config item data
                 my $ConfigItem = $Self->{ConfigItemObject}->ConfigItemGet(
@@ -658,11 +661,12 @@ sub CheckExpectedResults {
                 );
             }
         }
-        elsif ($Object eq 'Service') {
+        elsif ( $Object eq 'Service' ) {
 
-            for my $NameSuffix (sort keys %{ $ExpectedIncidentStates{$Object} } ) {
+            for my $NameSuffix ( sort keys %{ $ExpectedIncidentStates{$Object} } ) {
 
-                # clean up the service get cache as we are using always the same service object in this request
+                # clean up the service get cache as we are using always
+                # the same service object in this request
                 $Self->{ServiceObject}->{CacheInternalObject}->CleanUp();
 
                 # get service data (including the current incident state)
