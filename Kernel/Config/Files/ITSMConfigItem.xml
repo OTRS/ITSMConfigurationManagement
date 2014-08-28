@@ -170,7 +170,7 @@
                 <Item Key="Name">Back</Item>
                 <Item Key="Description">Back</Item>
                 <Item Key="Action"></Item>
-                <Item Key="Link">Action=AgentITSMConfigItem;ClassID=$QData{"ClassID"}</Item>
+                <Item Key="Link">Action=AgentITSMConfigItem;ClassID=[% Data.ClassID | html %]</Item>
                 <Item Key="Target">Back</Item>
             </Hash>
         </Setting>
@@ -185,7 +185,7 @@
                 <Item Key="Name">History</Item>
                 <Item Key="Description">History</Item>
                 <Item Key="Action">AgentITSMConfigItemEdit</Item>
-                <Item Key="Link">Action=AgentITSMConfigItemHistory;ConfigItemID=$QData{"ConfigItemID"};VersionID=$QData{"VersionID"}</Item>
+                <Item Key="Link">Action=AgentITSMConfigItemHistory;ConfigItemID=[% Data.ConfigItemID | html %];VersionID=[% Data.VersionID | html %]</Item>
                 <Item Key="Target">PopUp</Item>
             </Hash>
         </Setting>
@@ -200,7 +200,7 @@
                 <Item Key="Name">Edit</Item>
                 <Item Key="Description">Edit</Item>
                 <Item Key="Action">AgentITSMConfigItemEdit</Item>
-                <Item Key="Link">Action=AgentITSMConfigItemEdit;ConfigItemID=$QData{"ConfigItemID"}</Item>
+                <Item Key="Link">Action=AgentITSMConfigItemEdit;ConfigItemID=[% Data.ConfigItemID | html %]</Item>
                 <Item Key="Target">PopUp</Item>
             </Hash>
         </Setting>
@@ -215,7 +215,7 @@
                 <Item Key="Name">Print</Item>
                 <Item Key="Description">Print</Item>
                 <Item Key="Action">AgentITSMConfigItemPrint</Item>
-                <Item Key="Link">Action=AgentITSMConfigItemPrint;ConfigItemID=$QData{"ConfigItemID"};VersionID=$QData{"VersionID"}</Item>
+                <Item Key="Link">Action=AgentITSMConfigItemPrint;ConfigItemID=[% Data.ConfigItemID | html %];VersionID=[% Data.VersionID | html %]</Item>
                 <Item Key="LinkParam">target="print"</Item>
                 <Item Key="Target">PopUp</Item>
             </Hash>
@@ -231,7 +231,7 @@
                 <Item Key="Name">Link</Item>
                 <Item Key="Description">Link</Item>
                 <Item Key="Action">AgentLinkObject</Item>
-                <Item Key="Link">Action=AgentLinkObject;SourceObject=ITSMConfigItem;SourceKey=$QData{"ConfigItemID"}</Item>
+                <Item Key="Link">Action=AgentLinkObject;SourceObject=ITSMConfigItem;SourceKey=[% Data.ConfigItemID | html %]</Item>
                 <Item Key="Target">PopUp</Item>
             </Hash>
         </Setting>
@@ -246,7 +246,7 @@
                 <Item Key="Name">Duplicate</Item>
                 <Item Key="Description">Duplicate</Item>
                 <Item Key="Action">AgentITSMConfigItemEdit</Item>
-                <Item Key="Link">Action=AgentITSMConfigItemEdit;DuplicateID=$QData{"ConfigItemID"};VersionID=$QData{"VersionID"}</Item>
+                <Item Key="Link">Action=AgentITSMConfigItemEdit;DuplicateID=[% Data.ConfigItemID | html %];VersionID=[% Data.VersionID | html %]</Item>
                 <Item Key="Target">PopUp</Item>
             </Hash>
         </Setting>
@@ -555,6 +555,7 @@
             <Hash>
                 <Item Key="Module">Kernel::Output::HTML::ITSMConfigItemOverviewSmall</Item>
                 <Item Key="Name">Small</Item>
+                <Item Key="NameShort">S</Item>
                 <Item Key="PageShown">25</Item>
                 <Item Key="Image">overviewsmall.png</Item>
                 <Item Key="ImageSelected">overviewsmall-selected.png</Item>
@@ -762,7 +763,7 @@
                 <Item Key="Name">Zoom</Item>
                 <Item Key="Description">Zoom</Item>
                 <Item Key="Action">AgentITSMConfigItemZoom</Item>
-                <Item Key="Link">Action=AgentITSMConfigItemZoom;ConfigItemID=$QData{"ConfigItemID"}</Item>
+                <Item Key="Link">Action=AgentITSMConfigItemZoom;ConfigItemID=[% Data.ConfigItemID | html %]</Item>
                 <Item Key="Target"></Item>
             </Hash>
         </Setting>
@@ -777,7 +778,7 @@
                 <Item Key="Name">History</Item>
                 <Item Key="Description">History</Item>
                 <Item Key="Action">AgentITSMConfigItemEdit</Item>
-                <Item Key="Link">Action=AgentITSMConfigItemHistory;ConfigItemID=$QData{"ConfigItemID"};VersionID=$QData{"VersionID"}</Item>
+                <Item Key="Link">Action=AgentITSMConfigItemHistory;ConfigItemID=[% Data.ConfigItemID | html %];VersionID=[% Data.VersionID | html %]</Item>
                 <Item Key="Target">PopUp</Item>
             </Hash>
         </Setting>
@@ -792,7 +793,7 @@
                 <Item Key="Name">Duplicate</Item>
                 <Item Key="Description">Duplicate</Item>
                 <Item Key="Action">AgentITSMConfigItemEdit</Item>
-                <Item Key="Link">Action=AgentITSMConfigItemEdit;DuplicateID=$QData{"ConfigItemID"};VersionID=$QData{"VersionID"};ReturnToLastScreen=1</Item>
+                <Item Key="Link">Action=AgentITSMConfigItemEdit;DuplicateID=[% Data.ConfigItemID | html %];VersionID=[% Data.VersionID | html %];ReturnToLastScreen=1</Item>
                 <Item Key="Target">PopUp</Item>
             </Hash>
         </Setting>

@@ -12,8 +12,11 @@ package Kernel::System::Stats::Dynamic::ITSMConfigItem;
 use strict;
 use warnings;
 
-use Kernel::System::GeneralCatalog;
-use Kernel::System::ITSMConfigItem;
+our @ObjectDependencies = (
+    'Kernel::System::GeneralCatalog',
+    'Kernel::System::ITSMConfigItem',
+    'Kernel::System::Time',
+);
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -22,15 +25,9 @@ sub new {
     my $Self = {};
     bless( $Self, $Type );
 
-    # check needed objects
-    for my $Object (
-        qw(DBObject ConfigObject EncodeObject LogObject UserObject MainObject TimeObject)
-        )
-    {
-        $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
-    }
-    $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
-    $Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new( %{$Self} );
+    $Self->{TimeObject}           = $Kernel::OM->Get('Kernel::System::Time');
+    $Self->{GeneralCatalogObject} = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
+    $Self->{ConfigItemObject}     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
 
     return $Self;
 }
@@ -231,6 +228,7 @@ sub GetStatElement {
     }
 
     my %XMLClassIDs;
+    PARAMKEY:
     for my $ParamKey (@XMLParams) {
 
         # extract search values
@@ -241,7 +239,7 @@ sub GetStatElement {
             $SearchValues = [$SearchValues];
         }
 
-        next if !@{$SearchValues};
+        next PARAMKEY if !@{$SearchValues};
 
         # split param key
         my ( $ClassID, $SearchKey ) = $ParamKey =~ m{ \A XML:: ( \d+ ) :: (.+) \z }xms;

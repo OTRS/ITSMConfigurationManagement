@@ -28,30 +28,21 @@ use FindBin qw($RealBin);
 use lib dirname($RealBin);
 
 use Getopt::Long;
-use Kernel::Config;
-use Kernel::System::Encode;
-use Kernel::System::Log;
-use Kernel::System::Main;
-use Kernel::System::Time;
-use Kernel::System::DB;
-use Kernel::System::ITSMConfigItem;
-use Kernel::System::GeneralCatalog;
-use Kernel::System::Service;
+
+use Kernel::System::ObjectManager;
+
+# create object manager object
+local $Kernel::OM = Kernel::System::ObjectManager->new(
+    'Kernel::System::Log' => {
+        LogPrefix => 'OTRS-ITSMConfigItemIncidentStateRecalculate.pl',
+    },
+);
 
 # common objects
-my %CommonObject = ();
-$CommonObject{ConfigObject} = Kernel::Config->new();
-$CommonObject{EncodeObject} = Kernel::System::Encode->new(%CommonObject);
-$CommonObject{LogObject}    = Kernel::System::Log->new(
-    LogPrefix => 'OTRS-ITSMConfigItemIncidentStateRecalculate.pl',
-    %CommonObject,
-);
-$CommonObject{MainObject}           = Kernel::System::Main->new(%CommonObject);
-$CommonObject{TimeObject}           = Kernel::System::Time->new(%CommonObject);
-$CommonObject{DBObject}             = Kernel::System::DB->new(%CommonObject);
-$CommonObject{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new(%CommonObject);
-$CommonObject{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new(%CommonObject);
-$CommonObject{ServiceObject}        = Kernel::System::Service->new(%CommonObject);
+my %CommonObject;
+$CommonObject{ConfigItemObject}     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+$CommonObject{GeneralCatalogObject} = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
+$CommonObject{ServiceObject}        = $Kernel::OM->Get('Kernel::System::Service');
 
 print "\n";
 print "otrs.ITSMConfigItemIncidentStateRecalculate.pl\n";

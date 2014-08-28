@@ -777,18 +777,25 @@ sub Run {
                 );
 
                 # start table output
-                $Self->{PDFObject}->PageNew( %PageParam, FooterRight => $Page . ' 1', );
-                for ( 2 .. $MaxPages ) {
+                $Self->{PDFObject}->PageNew(
+                    %PageParam,
+                    FooterRight => $Page . ' 1',
+                );
+                PAGE:
+                for my $Count ( 2 .. $MaxPages ) {
 
                     # output table (or a fragment of it)
-                    %TableParam = $Self->{PDFObject}->Table( %TableParam, );
+                    %TableParam = $Self->{PDFObject}->Table(%TableParam);
 
                     # stop output or another page
                     if ( $TableParam{State} ) {
-                        last;
+                        last PAGE;
                     }
                     else {
-                        $Self->{PDFObject}->PageNew( %PageParam, FooterRight => $Page . ' ' . $_, );
+                        $Self->{PDFObject}->PageNew(
+                            %PageParam,
+                            FooterRight => $Page . ' ' . $_,
+                        );
                     }
                 }
 

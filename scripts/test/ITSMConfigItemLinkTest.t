@@ -248,7 +248,8 @@ for my $LinkType ( sort keys %Links ) {
             for my $SourceObject ( sort keys %{ $Links{$LinkType}->{$TargetObject}->{$TargetKey} } )
             {
                 for my $SourceKey (
-                    @{ $Links{$LinkType}->{$TargetObject}->{$TargetKey}->{$SourceObject} } )
+                    @{ $Links{$LinkType}->{$TargetObject}->{$TargetKey}->{$SourceObject} }
+                    )
                 {
 
                     # add the links
@@ -665,9 +666,9 @@ sub CheckExpectedResults {
 
             for my $NameSuffix ( sort keys %{ $ExpectedIncidentStates{$Object} } ) {
 
-                # clean up the service get cache as we are using always
-                # the same service object in this request
-                $Self->{ServiceObject}->{CacheInternalObject}->CleanUp();
+                # # clean up the service get cache as we are using always
+                # # the same service object in this request
+                # $Self->{ServiceObject}->{CacheInternalObject}->CleanUp();
 
                 # get service data (including the current incident state)
                 my %ServiceData = $Self->{ServiceObject}->ServiceGet(

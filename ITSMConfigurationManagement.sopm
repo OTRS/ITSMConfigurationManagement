@@ -3,8 +3,8 @@
     <Name>ITSMConfigurationManagement</Name>
 <!-- nofilter(TidyAll::Plugin::OTRS::SOPM::DocumentationPresent) -->
     <Version>0.0.0</Version>
-    <Framework>3.3.x</Framework>
-    <PackageRequired Version="3.3.8">ITSMCore</PackageRequired>
+    <Framework>4.0.x</Framework>
+    <PackageRequired Version="3.3.91">ITSMCore</PackageRequired>
     <Vendor>OTRS AG</Vendor>
     <URL>http://otrs.org/</URL>
     <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
@@ -69,18 +69,18 @@
         <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemOverviewSmall.pm"/>
         <File Permission="644" Location="Kernel/Output/HTML/LayoutITSMConfigItem.pm"/>
         <File Permission="644" Location="Kernel/Output/HTML/LinkObjectITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AAAITSMConfigItem.dtl"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AdminITSMConfigItem.dtl"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemAdd.dtl"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemBulk.dtl"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemEdit.dtl"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemHistory.dtl"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemOverviewNavBar.dtl"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemOverviewSmall.dtl"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemPrint.dtl"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemSearch.dtl"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemSearchResultPrint.dtl"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemZoom.dtl"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AAAITSMConfigItem.tt"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AdminITSMConfigItem.tt"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemAdd.tt"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemBulk.tt"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemEdit.tt"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemHistory.tt"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemOverviewNavBar.tt"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemOverviewSmall.tt"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemPrint.tt"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemSearch.tt"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemSearchResultPrint.tt"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemZoom.tt"/>
         <File Permission="644" Location="Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm"/>
         <File Permission="644" Location="Kernel/System/ITSMConfigItem.pm"/>
         <File Permission="644" Location="Kernel/System/ITSMConfigItem/Definition.pm"/>
@@ -1204,190 +1204,61 @@
     </DatabaseUninstall>
     <CodeInstall Type="post"><![CDATA[
 
-        # define function name
-        my $FunctionName = 'CodeInstall';
-
         # create the package name
         my $CodeModule = 'var::packagesetup::' . $Param{Structure}->{Name}->{Content};
 
-        # load the module
-        if ( $Self->{MainObject}->Require($CodeModule) ) {
-
-            # create new instance
-            my $CodeObject = $CodeModule->new( %{$Self} );
-
-            if ($CodeObject) {
-
-                # start methode
-                if ( !$CodeObject->$FunctionName(%{$Self}) ) {
-                    $Self->{LogObject}->Log(
-                        Priority => 'error',
-                        Message  => "Could not call method $FunctionName() on $CodeModule.pm."
-                    );
-                }
-            }
-
-            # error handling
-            else {
-                $Self->{LogObject}->Log(
-                    Priority => 'error',
-                    Message  => "Could not call method new() on $CodeModule.pm."
-                );
-            }
-        }
+        $Kernel::OM->Get($CodeModule)->CodeInstall();
 
     ]]></CodeInstall>
     <CodeReinstall Type="post"><![CDATA[
 
-        # define function name
-        my $FunctionName = 'CodeReinstall';
-
         # create the package name
         my $CodeModule = 'var::packagesetup::' . $Param{Structure}->{Name}->{Content};
 
-        # load the module
-        if ( $Self->{MainObject}->Require($CodeModule) ) {
-
-            # create new instance
-            my $CodeObject = $CodeModule->new( %{$Self} );
-
-            if ($CodeObject) {
-
-                # start methode
-                if ( !$CodeObject->$FunctionName(%{$Self}) ) {
-                    $Self->{LogObject}->Log(
-                        Priority => 'error',
-                        Message  => "Could not call method $FunctionName() on $CodeModule.pm."
-                    );
-                }
-            }
-
-            # error handling
-            else {
-                $Self->{LogObject}->Log(
-                    Priority => 'error',
-                    Message  => "Could not call method new() on $CodeModule.pm."
-                );
-            }
-        }
+        $Kernel::OM->Get($CodeModule)->CodeReinstall();
 
     ]]></CodeReinstall>
+    <!-- It is IMPORTANT that this CodeUpgrade (Version="3.2.91") comes BEFORE the regular CodeUpgrade block without any version number! -->
     <CodeUpgrade Type="pre" Version="3.2.91"><![CDATA[
 
         # uninstall Feature AddOn OTRSCIColumns that has been integrated in OTRS ITSM 3.2.91 (OTRS ITSM 3.3.0 Beta 1)
-        $Self->_PackageUninstallMerged(
+        $Kernel::OM->Get('Kernel::System::Package')->_PackageUninstallMerged(
             Name => 'OTRSCIColumns',
         );
 
         # uninstall Feature AddOn OTRSCIAttributeSyntaxCheck that has been integrated in OTRS ITSM 3.2.91 (OTRS ITSM 3.3.0 Beta 1)
-        $Self->_PackageUninstallMerged(
+        $Kernel::OM->Get('Kernel::System::Package')->_PackageUninstallMerged(
             Name => 'OTRSCIAttributeSyntaxCheck',
         );
 
     ]]></CodeUpgrade>
     <CodeUpgrade Type="post"><![CDATA[
 
-        # define function name
-        my $FunctionName = 'CodeUpgrade';
-
         # create the package name
         my $CodeModule = 'var::packagesetup::' . $Param{Structure}->{Name}->{Content};
 
-        # The code module has just recently been copied to it's location in the file system.
-        # In a persistent Perl environment an old version of the module might still be loaded,
-        # as watchdogs like Apache2::Reload haven't had a chance to reload it.
-        # So we need to make sure that the new version is being loaded.
-        # Kernel::System::Main::Require() checks the relative file path, so we need to remove that from %INC.
-        # This is only needed in persistent Perl environment, but does no harm in a CGI environment.
-        my $CodeModulePath = $CodeModule;
-        $CodeModulePath =~ s/::/\//g;
-        $CodeModulePath .= '.pm';
-        delete $INC{$CodeModulePath};
+        # discard internally stored object, so that the next access to object creates them newly
+        $Kernel::OM->ObjectsDiscard(
+            Objects            => [$CodeModule],
+            ForcePackageReload => 1,
+        );
 
-        # load the module
-        if ( $Self->{MainObject}->Require($CodeModule) ) {
-
-            # create new instance
-            my $CodeObject = $CodeModule->new( %{$Self} );
-
-            if ($CodeObject) {
-
-                # start methode
-                if ( !$CodeObject->$FunctionName(%{$Self}) ) {
-                    $Self->{LogObject}->Log(
-                        Priority => 'error',
-                        Message  => "Could not call method $FunctionName() on $CodeModule.pm."
-                    );
-                }
-            }
-
-            # error handling
-            else {
-                $Self->{LogObject}->Log(
-                    Priority => 'error',
-                    Message  => "Could not call method new() on $CodeModule.pm."
-                );
-            }
-        }
+        $Kernel::OM->Get($CodeModule)->CodeUpgrade();
 
     ]]></CodeUpgrade>
     <CodeUninstall Type="pre"><![CDATA[
 
-        # define function name
-        my $FunctionName = 'CodeUninstall';
-
         # create the package name
         my $CodeModule = 'var::packagesetup::' . $Param{Structure}->{Name}->{Content};
 
-        # load the module
-        if ( $Self->{MainObject}->Require($CodeModule) ) {
-
-            # create new instance
-            my $CodeObject = $CodeModule->new( %{$Self} );
-
-            if ($CodeObject) {
-
-                # start methode
-                if ( !$CodeObject->$FunctionName(%{$Self}) ) {
-                    $Self->{LogObject}->Log(
-                        Priority => 'error',
-                        Message  => "Could not call method $FunctionName() on $CodeModule.pm."
-                    );
-                }
-            }
-
-            # error handling
-            else {
-                $Self->{LogObject}->Log(
-                    Priority => 'error',
-                    Message  => "Could not call method new() on $CodeModule.pm."
-                );
-            }
-        }
+        $Kernel::OM->Get($CodeModule)->CodeUninstall();
 
     ]]></CodeUninstall>
     <CodeUninstall Type="post"><![CDATA[
 
-        # cleanup stats list
         {
-
-            # load required modules
-            $Self->{MainObject}->Require('Kernel::System::CSV');
-            $Self->{MainObject}->Require('Kernel::System::Group');
-            $Self->{MainObject}->Require('Kernel::System::User');
-            $Self->{MainObject}->Require('Kernel::System::Stats');
-
-            # create needed objects
-            $Self->{CSVObject}   = Kernel::System::CSV->new( %{$Self} );
-            $Self->{GroupObject} = Kernel::System::Group->new( %{$Self} );
-            $Self->{UserObject}  = Kernel::System::User->new( %{$Self} );
-            $Self->{StatsObject} = Kernel::System::Stats->new(
-                %{$Self},
-                UserID => 1,
-            );
-
             # cleanup stats list
-            $Self->{StatsObject}->StatsCleanUp();
+            $Kernel::OM->Get('Kernel::System::Stats')->StatsCleanUp();
         }
 
     ]]></CodeUninstall>
@@ -1402,7 +1273,7 @@
         <br/>
         <strong>REQUIRED OTRS PACKAGES</strong>
         <ul>
-        <li>ITSMCore 3.3.8</li>
+        <li>ITSMCore 3.3.91</li>
         </ul>
         <br/>
         ((enjoy))<br/>
@@ -1420,7 +1291,7 @@
         <br/>
         <strong>BENÖTIGTE OTRS-PAKETE</strong>
         <ul>
-        <li>ITSMCore 3.3.8</li>
+        <li>ITSMCore 3.3.91</li>
         </ul>
         <br/>
         ((enjoy))<br/>
@@ -1438,7 +1309,7 @@
         <br/>
         <strong>PAQUETES OTRS REQUERIDOS</strong>
         <ul>
-        <li>ITSMCore 3.3.8</li>
+        <li>ITSMCore 3.3.91</li>
         </ul>
         <br/>
         ((enjoy))<br/>
@@ -1506,7 +1377,7 @@
         <br/>
         <strong>REQUIRED OTRS PACKAGES</strong>
         <ul>
-        <li>ITSMCore 3.3.8</li>
+        <li>ITSMCore 3.3.91</li>
         </ul>
         <br/>
         ((enjoy))<br/>
@@ -1524,7 +1395,7 @@
         <br/>
         <strong>BENÖTIGTE OTRS-PAKETE</strong>
         <ul>
-        <li>ITSMCore 3.3.8</li>
+        <li>ITSMCore 3.3.91</li>
         </ul>
         <br/>
         ((enjoy))<br/>
@@ -1542,7 +1413,7 @@
         <br/>
         <strong>PAQUETES OTRS REQUERIDOS</strong>
         <ul>
-        <li>ITSMCore 3.3.8</li>
+        <li>ITSMCore 3.3.91</li>
         </ul>
         <br/>
         ((enjoy))<br/>

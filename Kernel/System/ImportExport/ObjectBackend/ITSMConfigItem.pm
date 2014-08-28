@@ -13,11 +13,15 @@ use strict;
 use warnings;
 
 use List::Util qw(min);
-
-use Kernel::System::GeneralCatalog;
-use Kernel::System::ITSMConfigItem;
-use Kernel::System::Time;
 use Kernel::System::VariableCheck qw(:all);
+
+our @ObjectDependencies = (
+    'Kernel::Config',
+    'Kernel::System::GeneralCatalog',
+    'Kernel::System::ITSMConfigItem',
+    'Kernel::System::ImportExport',
+    'Kernel::System::Log',
+);
 
 =head1 NAME
 
@@ -35,40 +39,9 @@ All functions to import and export ITSM config items.
 
 create an object
 
-    use Kernel::Config;
-    use Kernel::System::Encode;
-    use Kernel::System::DB;
-    use Kernel::System::Log;
-    use Kernel::System::Main;
-    use Kernel::System::ImportExport::ObjectBackend::ITSMConfigItem;
-
-    my $ConfigObject = Kernel::Config->new();
-    my $EncodeObject = Kernel::System::Encode->new(
-        ConfigObject => $ConfigObject,
-    );
-    my $LogObject = Kernel::System::Log->new(
-        ConfigObject => $ConfigObject,
-        EncodeObject => $EncodeObject,
-    );
-    my $MainObject = Kernel::System::Main->new(
-        ConfigObject => $ConfigObject,
-        EncodeObject => $EncodeObject,
-        LogObject    => $LogObject,
-    );
-    my $DBObject = Kernel::System::DB->new(
-        ConfigObject => $ConfigObject,
-        EncodeObject => $EncodeObject,
-        LogObject    => $LogObject,
-        MainObject   => $MainObject,
-    );
-    my $BackendObject = Kernel::System::ImportExport::ObjectBackend::ITSMConfigItem->new(
-        ConfigObject       => $ConfigObject,
-        EncodeObject       => $EncodeObject,
-        LogObject          => $LogObject,
-        DBObject           => $DBObject,
-        MainObject         => $MainObject,
-        ImportExportObject => $ImportExportObject,
-    );
+    use Kernel::System::ObjectManager;
+    local $Kernel::OM = Kernel::System::ObjectManager->new();
+    my $BackendObject = $Kernel::OM->Get('Kernel::System::ImportExport::ObjectBackend::ITSMConfigItem');
 
 =cut
 
@@ -79,16 +52,12 @@ sub new {
     my $Self = {};
     bless( $Self, $Type );
 
-    # check needed objects
-    for my $Object (qw(ConfigObject EncodeObject LogObject DBObject MainObject ImportExportObject))
-    {
-        $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
-    }
-
     # create additional objects
-    $Self->{TimeObject}           = Kernel::System::Time->new( %{$Self} );
-    $Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new( %{$Self} );
-    $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
+    $Self->{ConfigObject}         = $Kernel::OM->Get('Kernel::Config');
+    $Self->{LogObject}            = $Kernel::OM->Get('Kernel::System::Log');
+    $Self->{ImportExportObject}   = $Kernel::OM->Get('Kernel::System::ImportExport');
+    $Self->{ConfigItemObject}     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+    $Self->{GeneralCatalogObject} = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
 
     return $Self;
 }

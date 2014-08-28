@@ -12,6 +12,8 @@ package Kernel::System::ITSMConfigItem::Definition;
 use strict;
 use warnings;
 
+our $ObjectManagerDisabled = 1;
+
 =head1 NAME
 
 Kernel::System::ITSMConfigItem::Definition - sub module of Kernel::System::ITSMConfigItem

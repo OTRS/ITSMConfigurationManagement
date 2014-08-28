@@ -12,7 +12,10 @@ package Kernel::System::ITSMConfigItem::Event::DoHistory;
 use strict;
 use warnings;
 
-use Kernel::System::ITSMConfigItem;
+our @ObjectDependencies = (
+    'Kernel::System::ITSMConfigItem',
+    'Kernel::System::Log',
+);
 
 =head1 NAME
 
@@ -32,46 +35,9 @@ All event handler functions for history.
 
 create an object
 
-    use Kernel::Config;
-    use Kernel::System::Encode;
-    use Kernel::System::Log;
-    use Kernel::System::DB;
-    use Kernel::System::Main;
-    use Kernel::System::Time;
-    use Kernel::System::ITSMConfigItem::Event::DoHistory;
-
-    my $ConfigObject = Kernel::Config->new();
-    my $EncodeObject = Kernel::System::Encode->new(
-        ConfigObject => $ConfigObject,
-    );
-    my $LogObject = Kernel::System::Log->new(
-        ConfigObject => $ConfigObject,
-        EncodeObject => $EncodeObject,
-    );
-    my $TimeObject = Kernel::System::Time->new(
-        ConfigObject => $ConfigObject,
-        LogObject    => $LogObject,
-    );
-    my $MainObject = Kernel::System::Main->new(
-        ConfigObject => $ConfigObject,
-        EncodeObject => $EncodeObject,
-        LogObject    => $LogObject,
-    );
-    my $DBObject = Kernel::System::DB->new(
-        ConfigObject => $ConfigObject,
-        EncodeObject => $EncodeObject,
-        LogObject    => $LogObject,
-        MainObject   => $MainObject,
-    );
-    my $DoHistoryObject = Kernel::System::ITSMConfigItem::Event::DoHistory->new(
-        ConfigItemObject => $ConfigItemObject,
-        ConfigObject     => $ConfigObject,
-        DBObject         => $DBObject,
-        EncodeObject     => $EncodeObject,
-        LogObject        => $LogObject,
-        MainObject       => $MainObject,
-        TimeObject       => $TimeObject,
-    );
+    use Kernel::System::ObjectManager;
+    local $Kernel::OM = Kernel::System::ObjectManager->new();
+    my $DoHistoryObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem::Event::DoHistory');
 
 =cut
 
@@ -82,13 +48,9 @@ sub new {
     my $Self = {};
     bless( $Self, $Type );
 
-    # get needed objects
-    for my $Needed (qw(ConfigObject LogObject DBObject MainObject EncodeObject TimeObject)) {
-        $Self->{$Needed} = $Param{$Needed} || die "Got no $Needed!";
-    }
-
     # create needed objects
-    $Self->{ConfigItemObject} = Kernel::System::ITSMConfigItem->new( %{$Self} );
+    $Self->{LogObject}        = $Kernel::OM->Get('Kernel::System::Log');
+    $Self->{ConfigItemObject} = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
 
     return $Self;
 }

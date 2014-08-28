@@ -12,6 +12,10 @@ package Kernel::System::ITSMConfigItem::XML::Type::Text;
 use strict;
 use warnings;
 
+our @ObjectDependencies = (
+    'Kernel::System::Log',
+);
+
 =head1 NAME
 
 Kernel::System::ITSMConfigItem::XML::Type::Text - xml backend module
@@ -28,42 +32,9 @@ All xml functions of text objects
 
 create an object
 
-    use Kernel::Config;
-    use Kernel::System::Encode;
-    use Kernel::System::Log;
-    use Kernel::System::DB;
-    use Kernel::System::Main;
-    use Kernel::System::ITSMConfigItem;
-
-    my $ConfigObject = Kernel::Config->new();
-    my $EncodeObject = Kernel::System::Encode->new(
-        ConfigObject => $ConfigObject,
-    );
-    my $LogObject = Kernel::System::Log->new(
-        ConfigObject => $ConfigObject,
-        EncodeObject => $EncodeObject,
-    );
-    my $MainObject = Kernel::System::Main->new(
-        ConfigObject => $ConfigObject,
-        EncodeObject => $EncodeObject,
-        LogObject    => $LogObject,
-    );
-    my $DBObject = Kernel::System::DB->new(
-        ConfigObject => $ConfigObject,
-        EncodeObject => $EncodeObject,
-        LogObject    => $LogObject,
-        MainObject   => $MainObject,
-    );
-    my $ConfigItemObject = Kernel::System::ITSMConfigItem->new(
-        ConfigObject => $ConfigObject,
-        EncodeObject => $EncodeObject,
-        LogObject    => $LogObject,
-        DBObject     => $DBObject,
-        MainObject   => $MainObject,
-    );
-    $BackendObject = $ConfigItemObject->_LoadXMLTypeBackend(
-        Type => 'Text',
-    );
+    use Kernel::System::ObjectManager;
+    local $Kernel::OM = Kernel::System::ObjectManager->new();
+    my $XMLTypeTextBackendObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem::XML::Type::Text');
 
 =cut
 
@@ -74,10 +45,7 @@ sub new {
     my $Self = {};
     bless( $Self, $Type );
 
-    # check needed objects
-    for my $Object (qw(DBObject ConfigObject EncodeObject LogObject MainObject)) {
-        $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
-    }
+    $Self->{LogObject} = $Kernel::OM->Get('Kernel::System::Log');
 
     return $Self;
 }

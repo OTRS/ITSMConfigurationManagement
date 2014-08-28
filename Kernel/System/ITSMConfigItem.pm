@@ -13,22 +13,28 @@ use strict;
 use warnings;
 
 use Kernel::System::EventHandler;
-use Kernel::System::GeneralCatalog;
 use Kernel::System::ITSMConfigItem::Definition;
 use Kernel::System::ITSMConfigItem::History;
 use Kernel::System::ITSMConfigItem::Number;
 use Kernel::System::ITSMConfigItem::Permission;
 use Kernel::System::ITSMConfigItem::Version;
 use Kernel::System::ITSMConfigItem::XML;
-use Kernel::System::LinkObject;
-use Kernel::System::Service;
-use Kernel::System::Time;
-use Kernel::System::User;
-use Kernel::System::XML;
-use Kernel::System::VirtualFS;
 use Kernel::System::VariableCheck qw(:all);
 
 use vars qw(@ISA);
+
+our @ObjectDependencies = (
+    'Kernel::Config',
+    'Kernel::System::DB',
+    'Kernel::System::GeneralCatalog',
+    'Kernel::System::LinkObject',
+    'Kernel::System::Log',
+    'Kernel::System::Main',
+    'Kernel::System::Service',
+    'Kernel::System::User',
+    'Kernel::System::VirtualFS',
+    'Kernel::System::XML',
+);
 
 =head1 NAME
 
@@ -48,39 +54,9 @@ All config item functions.
 
 create an object
 
-    use Kernel::Config;
-    use Kernel::System::Encode;
-    use Kernel::System::Log;
-    use Kernel::System::DB;
-    use Kernel::System::Main;
-    use Kernel::System::ITSMConfigItem;
-
-    my $ConfigObject = Kernel::Config->new();
-    my $EncodeObject = Kernel::System::Encode->new(
-        ConfigObject => $ConfigObject,
-    );
-    my $LogObject = Kernel::System::Log->new(
-        ConfigObject => $ConfigObject,
-        EncodeObject => $EncodeObject,
-    );
-    my $MainObject = Kernel::System::Main->new(
-        ConfigObject => $ConfigObject,
-        EncodeObject => $EncodeObject,
-        LogObject    => $LogObject,
-    );
-    my $DBObject = Kernel::System::DB->new(
-        ConfigObject => $ConfigObject,
-        EncodeObject => $EncodeObject,
-        LogObject    => $LogObject,
-        MainObject   => $MainObject,
-    );
-    my $ConfigItemObject = Kernel::System::ITSMConfigItem->new(
-        ConfigObject => $ConfigObject,
-        EncodeObject => $EncodeObject,
-        LogObject    => $LogObject,
-        DBObject     => $DBObject,
-        MainObject   => $MainObject,
-    );
+    use Kernel::System::ObjectManager;
+    local $Kernel::OM = Kernel::System::ObjectManager->new();
+    my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ConfigItem');
 
 =cut
 
@@ -91,37 +67,31 @@ sub new {
     my $Self = {};
     bless( $Self, $Type );
 
-    # check needed objects
-    for my $Object (qw(DBObject ConfigObject EncodeObject LogObject MainObject)) {
-        $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
-    }
-
     # create additional objects
-    $Self->{TimeObject}           = Kernel::System::Time->new( %{$Self} );
-    $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
-    $Self->{LinkObject}           = Kernel::System::LinkObject->new( %{$Self} );
-    $Self->{UserObject}           = Kernel::System::User->new( %{$Self} );
-    $Self->{ServiceObject}        = Kernel::System::Service->new( %{$Self} );
-    $Self->{XMLObject}            = Kernel::System::XML->new( %{$Self} );
-    $Self->{VirtualFSObject}      = Kernel::System::VirtualFS->new( %{$Self} );
+    $Self->{ConfigObject}         = $Kernel::OM->Get('Kernel::Config');
+    $Self->{DBObject}             = $Kernel::OM->Get('Kernel::System::DB');
+    $Self->{UserObject}           = $Kernel::OM->Get('Kernel::System::User');
+    $Self->{LogObject}            = $Kernel::OM->Get('Kernel::System::Log');
+    $Self->{MainObject}           = $Kernel::OM->Get('Kernel::System::Main');
+    $Self->{GeneralCatalogObject} = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
+    $Self->{LinkObject}           = $Kernel::OM->Get('Kernel::System::LinkObject');
+    $Self->{ServiceObject}        = $Kernel::OM->Get('Kernel::System::Service');
+    $Self->{VirtualFSObject}      = $Kernel::OM->Get('Kernel::System::VirtualFS');
+    $Self->{XMLObject}            = $Kernel::OM->Get('Kernel::System::XML');
 
-    @ISA = (
-        'Kernel::System::ITSMConfigItem::Definition',
-        'Kernel::System::ITSMConfigItem::History',
-        'Kernel::System::ITSMConfigItem::Number',
-        'Kernel::System::ITSMConfigItem::Permission',
-        'Kernel::System::ITSMConfigItem::Version',
-        'Kernel::System::ITSMConfigItem::XML',
-        'Kernel::System::EventHandler',
+    @ISA = qw(
+        Kernel::System::ITSMConfigItem::Definition
+        Kernel::System::ITSMConfigItem::History
+        Kernel::System::ITSMConfigItem::Number
+        Kernel::System::ITSMConfigItem::Permission
+        Kernel::System::ITSMConfigItem::Version
+        Kernel::System::ITSMConfigItem::XML
+        Kernel::System::EventHandler
     );
 
     # init of event handler
     $Self->EventHandlerInit(
-        Config     => 'ITSMConfigItem::EventModulePost',
-        BaseObject => 'ConfigItemObject',
-        Objects    => {
-            %{$Self},
-        },
+        Config => 'ITSMConfigItem::EventModulePost',
     );
 
     return $Self;
@@ -1835,8 +1805,10 @@ sub _FindWarnConfigItems {
 
     my $IncidentCount = 0;
     for my $ConfigItemID ( sort keys %{ $Param{ScannedConfigItemIDs} } ) {
-        if (   $Param{ScannedConfigItemIDs}->{$ConfigItemID}->{Type}
-            && $Param{ScannedConfigItemIDs}->{$ConfigItemID}->{Type} eq 'incident' )
+        if (
+            $Param{ScannedConfigItemIDs}->{$ConfigItemID}->{Type}
+            && $Param{ScannedConfigItemIDs}->{$ConfigItemID}->{Type} eq 'incident'
+            )
         {
             $IncidentCount++;
         }

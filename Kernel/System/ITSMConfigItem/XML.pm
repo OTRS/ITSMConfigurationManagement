@@ -12,6 +12,8 @@ package Kernel::System::ITSMConfigItem::XML;
 use strict;
 use warnings;
 
+our $ObjectManagerDisabled = 1;
+
 =head1 NAME
 
 Kernel::System::ITSMConfigItem::XML - sub module of Kernel::System::ITSMConfigItem
@@ -50,8 +52,8 @@ sub XMLValueLookup {
     }
 
     # load backend
-    my $BackendObject = $Self->_LoadXMLTypeBackend(
-        Type => $Param{Item}->{Input}->{Type},
+    my $BackendObject = $Kernel::OM->Get(
+        'Kernel::System::ITSMConfigItem::XML::Type::' . $Param{Item}->{Input}->{Type}
     );
 
     return '' if !$BackendObject;
@@ -85,8 +87,8 @@ sub XMLStatsAttributeCreate {
     }
 
     # load backend
-    my $BackendObject = $Self->_LoadXMLTypeBackend(
-        Type => $Param{Item}->{Input}->{Type},
+    my $BackendObject = $Kernel::OM->Get(
+        'Kernel::System::ITSMConfigItem::XML::Type::' . $Param{Item}->{Input}->{Type}
     );
 
     return if !$BackendObject;
@@ -121,8 +123,8 @@ sub XMLExportSearchValuePrepare {
     }
 
     # load backend
-    my $BackendObject = $Self->_LoadXMLTypeBackend(
-        Type => $Param{Item}->{Input}->{Type},
+    my $BackendObject = $Kernel::OM->Get(
+        'Kernel::System::ITSMConfigItem::XML::Type::' . $Param{Item}->{Input}->{Type}
     );
 
     return if !$BackendObject;
@@ -157,8 +159,8 @@ sub XMLExportValuePrepare {
     }
 
     # load backend
-    my $BackendObject = $Self->_LoadXMLTypeBackend(
-        Type => $Param{Item}->{Input}->{Type},
+    my $BackendObject = $Kernel::OM->Get(
+        'Kernel::System::ITSMConfigItem::XML::Type::' . $Param{Item}->{Input}->{Type}
     );
 
     return if !$BackendObject;
@@ -193,8 +195,8 @@ sub XMLImportSearchValuePrepare {
     }
 
     # load backend
-    my $BackendObject = $Self->_LoadXMLTypeBackend(
-        Type => $Param{Item}->{Input}->{Type},
+    my $BackendObject = $Kernel::OM->Get(
+        'Kernel::System::ITSMConfigItem::XML::Type::' . $Param{Item}->{Input}->{Type}
     );
 
     return if !$BackendObject;
@@ -229,8 +231,8 @@ sub XMLImportValuePrepare {
     }
 
     # load backend
-    my $BackendObject = $Self->_LoadXMLTypeBackend(
-        Type => $Param{Item}->{Input}->{Type},
+    my $BackendObject = $Kernel::OM->Get(
+        'Kernel::System::ITSMConfigItem::XML::Type::' . $Param{Item}->{Input}->{Type}
     );
 
     return if !$BackendObject;
@@ -496,62 +498,6 @@ sub _XMLVersionDelete {
     );
 
     return 1;
-}
-
-=item _LoadXMLTypeBackend()
-
-load a xml item module
-
-    $BackendObject = $ConfigItemObject->_LoadXMLTypeBackend(
-        Type => 'GeneralCatalog',
-    );
-
-=cut
-
-sub _LoadXMLTypeBackend {
-    my ( $Self, %Param ) = @_;
-
-    if ( !$Param{Type} ) {
-        $Self->{LogObject}->Log(
-            Priority => 'error',
-            Message  => 'Need Type!',
-        );
-        return;
-    }
-
-    # check if object is already cached
-    return $Self->{Cache}->{LoadXMLTypeBackend}->{ $Param{Type} }
-        if $Self->{Cache}->{LoadXMLTypeBackend}->{ $Param{Type} };
-
-    my $GenericModule = "Kernel::System::ITSMConfigItem::XML::Type::$Param{Type}";
-
-    # load the backend module
-    if ( !$Self->{MainObject}->Require($GenericModule) ) {
-        $Self->{LogObject}->Log(
-            Priority => 'error',
-            Message  => "Can't load backend module $Param{Type}!"
-        );
-        return;
-    }
-
-    # create new instance
-    my $BackendObject = $GenericModule->new(
-        %{$Self},
-        %Param,
-    );
-
-    if ( !$BackendObject ) {
-        $Self->{LogObject}->Log(
-            Priority => 'error',
-            Message  => "Can't create a new instance of backend module $Param{Type}!",
-        );
-        return;
-    }
-
-    # cache the object
-    $Self->{Cache}->{LoadXMLTypeBackend}->{ $Param{Type} } = $BackendObject;
-
-    return $BackendObject;
 }
 
 =item _XMLHashSearch()

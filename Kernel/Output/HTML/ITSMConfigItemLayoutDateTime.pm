@@ -65,7 +65,7 @@ sub OutputStringCreate {
     return '' if !$Param{Value};
 
     $Param{Value} = $Self->{LayoutObject}->Output(
-        Template => '$TimeLong{"$QData{"Date"}"}',
+        Template => '[% Data.Date | Localize("TimeLong") %]',
         Data     => {
             Date => $Param{Value} . ':00',
         },

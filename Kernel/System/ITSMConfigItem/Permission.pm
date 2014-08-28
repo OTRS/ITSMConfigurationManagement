@@ -12,6 +12,8 @@ package Kernel::System::ITSMConfigItem::Permission;
 use strict;
 use warnings;
 
+our $ObjectManagerDisabled = 1;
+
 =head1 NAME
 
 Kernel::System::ITSMConfigItem::Permission - module for ITSMConfigItem.pm with Permission functions
@@ -86,10 +88,11 @@ sub Permission {
     {
         my %Modules
             = %{ $Self->{ConfigObject}->Get( 'ITSMConfigItem::Permission::' . $Param{Scope} ) };
+        MODULE:
         for my $Module ( sort keys %Modules ) {
 
             # load module
-            next if !$Self->{MainObject}->Require( $Modules{$Module}->{Module} );
+            next MODULE if !$Self->{MainObject}->Require( $Modules{$Module}->{Module} );
 
             # create object
             my $ModuleObject = $Modules{$Module}->{Module}->new(

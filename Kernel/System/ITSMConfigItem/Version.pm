@@ -15,6 +15,8 @@ use Kernel::System::VariableCheck qw(:all);
 
 use Storable;
 
+our $ObjectManagerDisabled = 1;
+
 =head1 NAME
 
 Kernel::System::ITSMConfigItem::Version - sub module of Kernel::System::ITSMConfigItem

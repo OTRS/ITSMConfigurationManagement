@@ -29,29 +29,22 @@ use lib dirname($RealBin);
 use lib dirname($RealBin) . '/Custom';
 
 use Getopt::Long;
-use Kernel::Config;
-use Kernel::System::Encode;
-use Kernel::System::Log;
-use Kernel::System::Main;
-use Kernel::System::Time;
-use Kernel::System::DB;
-use Kernel::System::ITSMConfigItem;
-use Kernel::System::GeneralCatalog;
+
 use Kernel::System::VariableCheck qw(IsArrayRefWithData);
+use Kernel::System::ObjectManager;
+
+# create object manager object
+local $Kernel::OM = Kernel::System::ObjectManager->new(
+    'Kernel::System::Log' => {
+        LogPrefix => 'otrs.ITSMConfigItemListDuplicates.pl',
+    },
+);
 
 # common objects
-my %CommonObject = ();
-$CommonObject{ConfigObject} = Kernel::Config->new();
-$CommonObject{EncodeObject} = Kernel::System::Encode->new(%CommonObject);
-$CommonObject{LogObject}    = Kernel::System::Log->new(
-    LogPrefix => 'otrs.ITSMConfigItemListDuplicates.pl',
-    %CommonObject,
-);
-$CommonObject{MainObject}           = Kernel::System::Main->new(%CommonObject);
-$CommonObject{TimeObject}           = Kernel::System::Time->new(%CommonObject);
-$CommonObject{DBObject}             = Kernel::System::DB->new(%CommonObject);
-$CommonObject{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new(%CommonObject);
-$CommonObject{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new(%CommonObject);
+my %CommonObject;
+$CommonObject{ConfigObject}         = $Kernel::OM->Get('Kernel::Config');
+$CommonObject{ConfigItemObject}     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+$CommonObject{GeneralCatalogObject} = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
 
 print "otrs.ITSMConfigItemListDuplicates.pl";
 print "(List ConfigItems which have a non-unique name).\n";

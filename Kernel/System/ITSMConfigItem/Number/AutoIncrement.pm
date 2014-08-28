@@ -12,6 +12,8 @@ package Kernel::System::ITSMConfigItem::Number::AutoIncrement;
 use strict;
 use warnings;
 
+our $ObjectManagerDisabled = 1;
+
 =head1 NAME
 
 Kernel::System::ITSMConfigItem::Number::AutoIncrement - config item number backend module

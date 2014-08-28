@@ -12,7 +12,11 @@ package Kernel::System::ITSMConfigItem::Permission::ItemClassGroupCheck;
 use strict;
 use warnings;
 
-use Kernel::System::Group;
+our @ObjectDependencies = (
+    'Kernel::System::GeneralCatalog',
+    'Kernel::System::Group',
+    'Kernel::System::ITSMConfigItem',
+);
 
 =head1 NAME
 
@@ -32,57 +36,9 @@ All config item functions.
 
 create an object
 
-    use Kernel::Config;
-    use Kernel::System::Encode;
-    use Kernel::System::Log;
-    use Kernel::System::DB;
-    use Kernel::System::Main;
-    use Kernel::System::GeneralCatalog;
-    use Kernel::System::ITSMConfigItem;
-    use Kernel::System::ITSMConfigItem::Permission::ItemClassGroupCheck;
-
-    my $ConfigObject = Kernel::Config->new();
-    my $EncodeObject = Kernel::System::Encode->new(
-        ConfigObject => $ConfigObject,
-    );
-    my $LogObject = Kernel::System::Log->new(
-        ConfigObject => $ConfigObject,
-        EncodeObject => $EncodeObject,
-    );
-    my $MainObject = Kernel::System::Main->new(
-        ConfigObject => $ConfigObject,
-        EncodeObject => $EncodeObject,
-        LogObject    => $LogObject,
-    );
-    my $DBObject = Kernel::System::DB->new(
-        ConfigObject => $ConfigObject,
-        EncodeObject => $EncodeObject,
-        LogObject    => $LogObject,
-        MainObject   => $MainObject,
-    );
-    my $ConfigItemObject = Kernel::System::ITSMConfigItem->new(
-        ConfigObject => $ConfigObject,
-        EncodeObject => $EncodeObject,
-        LogObject    => $LogObject,
-        DBObject     => $DBObject,
-        MainObject   => $MainObject,
-    );
-    my $GeneralCatalogObject = Kernel::System::GeneralCatalog->new(
-        ConfigObject => $ConfigObject,
-        EncodeObject => $EncodeObject,
-        LogObject    => $LogObject,
-        DBObject     => $DBObject,
-        MainObject   => $MainObject,
-    );
-    my $CheckObject = Kernel::System::ITSMConfigItem::Permission::ItemClassGroupCheck->new(
-        ConfigObject         => $ConfigObject,
-        EncodeObject         => $EncodeObject,
-        LogObject            => $LogObject,
-        DBObject             => $DBObject,
-        MainObject           => $MainObject,
-        ConfigItemObject     => $ConfigItemObject,
-        GeneralCatalogObject => $GeneralCatalogObject,
-    );
+    use Kernel::System::ObjectManager;
+    local $Kernel::OM = Kernel::System::ObjectManager->new();
+    my $CheckObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem::Permission::ItemClassGroupCheck');
 
 =cut
 
@@ -93,15 +49,9 @@ sub new {
     my $Self = {};
     bless( $Self, $Type );
 
-    # get needed objects
-    for my $Object (
-        qw(ConfigObject LogObject DBObject MainObject EncodeObject ConfigItemObject GeneralCatalogObject)
-        )
-    {
-        $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
-    }
-
-    $Self->{GroupObject} = Kernel::System::Group->new( %{$Self} );
+    $Self->{GroupObject}          = $Kernel::OM->Get('Kernel::System::Group');
+    $Self->{GeneralCatalogObject} = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
+    $Self->{ConfigItemObject}     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
 
     return $Self;
 }

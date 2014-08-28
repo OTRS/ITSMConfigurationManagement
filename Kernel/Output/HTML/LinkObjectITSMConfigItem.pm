@@ -13,9 +13,20 @@ use strict;
 use warnings;
 
 use Kernel::Output::HTML::Layout;
-use Kernel::System::GeneralCatalog;
-use Kernel::System::ITSMConfigItem;
-use Kernel::System::HTMLUtils;
+
+our @ObjectDependencies = (
+    'Kernel::Config',
+    'Kernel::Language',
+    'Kernel::System::DB',
+    'Kernel::System::Encode',
+    'Kernel::System::GeneralCatalog',
+    'Kernel::System::HTMLUtils',
+    'Kernel::System::ITSMConfigItem',
+    'Kernel::System::Log',
+    'Kernel::System::Main',
+    'Kernel::System::User',
+    'Kernel::System::Web::Request',
+);
 
 =head1 NAME
 
@@ -34,7 +45,8 @@ All layout functions of link object (config item)
 create an object
 
     $BackendObject = Kernel::Output::HTML::LinkObjectITSMConfigItem->new(
-        %Param,
+        UserLanguage => 'en',
+        UserID       => 1,
     );
 
 =cut
@@ -47,17 +59,25 @@ sub new {
     bless( $Self, $Type );
 
     # check needed objects
-    for my $Object (
-        qw(ConfigObject LogObject MainObject DBObject UserObject EncodeObject
-        QueueObject GroupObject ParamObject TimeObject LanguageObject UserLanguage UserID)
-        )
-    {
-        $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
+    for my $Needed (qw(UserLanguage UserID)) {
+        $Self->{$Needed} = $Param{$Needed} || die "Got no $Needed!";
     }
-    $Self->{LayoutObject}         = Kernel::Output::HTML::Layout->new( %{$Self} );
-    $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
-    $Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new( %{$Self} );
-    $Self->{HTMLUtilsObject}      = Kernel::System::HTMLUtils->new( %{$Self} );
+
+    $Self->{ConfigObject}         = $Kernel::OM->Get('Kernel::Config');
+    $Self->{LanguageObject}       = $Kernel::OM->Get('Kernel::Language');
+    $Self->{LogObject}            = $Kernel::OM->Get('Kernel::System::Log');
+    $Self->{MainObject}           = $Kernel::OM->Get('Kernel::System::Main');
+    $Self->{DBObject}             = $Kernel::OM->Get('Kernel::System::DB');
+    $Self->{UserObject}           = $Kernel::OM->Get('Kernel::System::User');
+    $Self->{EncodeObject}         = $Kernel::OM->Get('Kernel::System::Encode');
+    $Self->{ParamObject}          = $Kernel::OM->Get('Kernel::System::Web::Request');
+    $Self->{GeneralCatalogObject} = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
+    $Self->{ConfigItemObject}     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+    $Self->{HTMLUtilsObject}      = $Kernel::OM->Get('Kernel::System::HTMLUtils');
+
+    # We need our own LayoutObject instance to avoid blockdata collisions
+    #   with the main page.
+    $Self->{LayoutObject} = Kernel::Output::HTML::Layout->new( %{$Self} );
 
     # define needed variables
     $Self->{ObjectData} = {

@@ -418,7 +418,7 @@ sub _PDFOutputGeneralInfos {
         {
             Key   => $Self->{LayoutObject}->{LanguageObject}->Get('Created') . ':',
             Value => $Self->{LayoutObject}->Output(
-                Template => '$TimeLong{"$Data{"CreateTime"}"}',
+                Template => '[% Data.CreateTime | Localize("TimeLong") %]',
                 Data     => \%{ $Param{ConfigItem} },
             ),
         },
@@ -429,7 +429,7 @@ sub _PDFOutputGeneralInfos {
         {
             Key   => $Self->{LayoutObject}->{LanguageObject}->Get('Last changed') . ':',
             Value => $Self->{LayoutObject}->Output(
-                Template => '$TimeLong{"$Data{"ChangeTime"}"}',
+                Template => '[% Data.ChangeTime | Localize("TimeLong") %]',
                 Data     => \%{ $Param{ConfigItem} },
             ),
         },
@@ -570,14 +570,15 @@ sub _PDFOutputLinkedObjects {
     $TableParam{PaddingBottom}   = 3;
 
     # output table
-    for ( $Page{PageCount} .. $Page{MaxPages} ) {
+    PAGE:
+    for my $Count ( $Page{PageCount} .. $Page{MaxPages} ) {
 
         # output table (or a fragment of it)
-        %TableParam = $Self->{PDFObject}->Table( %TableParam, );
+        %TableParam = $Self->{PDFObject}->Table(%TableParam);
 
         # stop output or output next page
         if ( $TableParam{State} ) {
-            last;
+            last PAGE;
         }
         else {
             $Self->{PDFObject}->PageNew(
@@ -594,9 +595,12 @@ sub _PDFOutputAttachments {
     my ( $Self, %Param ) = @_;
 
     # check needed stuff
-    for (qw(PageData ConfigItemID AttachmentData)) {
-        if ( !defined( $Param{$_} ) ) {
-            $Self->{LogObject}->Log( Priority => 'error', Message => "Need $_!" );
+    for my $Argument (qw(PageData ConfigItemID AttachmentData)) {
+        if ( !defined( $Param{$Argument} ) ) {
+            $Self->{LogObject}->Log(
+                Priority => 'error',
+                Message  => "Need $Argument!",
+            );
             return;
         }
     }
@@ -657,14 +661,15 @@ sub _PDFOutputAttachments {
     $TableParam{PaddingBottom}   = 3;
 
     # output table
-    for ( $Page{PageCount} .. $Page{MaxPages} ) {
+    PAGE:
+    for my $Count ( $Page{PageCount} .. $Page{MaxPages} ) {
 
         # output table (or a fragment of it)
-        %TableParam = $Self->{PDFObject}->Table( %TableParam, );
+        %TableParam = $Self->{PDFObject}->Table(%TableParam);
 
         # stop output or output next page
         if ( $TableParam{State} ) {
-            last;
+            last PAGE;
         }
         else {
             $Self->{PDFObject}->PageNew(
@@ -719,7 +724,7 @@ sub _PDFOutputVersionInfos {
         {
             Key   => $Self->{LayoutObject}->{LanguageObject}->Get('Created') . ':',
             Value => $Self->{LayoutObject}->Output(
-                Template => '$TimeLong{"$Data{"CreateTime"}"}',
+                Template => '[% Data.CreateTime | Localize("TimeLong") %]',
                 Data     => \%{ $Param{Version} },
             ),
         },
@@ -787,7 +792,7 @@ sub _PDFOutputVersionInfos {
 
     # output table
     PAGE:
-    for ( $Param{Page}->{PageCount} .. $Param{Page}->{MaxPages} ) {
+    for my $Count ( $Param{Page}->{PageCount} .. $Param{Page}->{MaxPages} ) {
 
         # output table (or a fragment of it)
         %TableParam = $Self->{PDFObject}->Table(%TableParam);

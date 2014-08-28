@@ -28,28 +28,20 @@ use FindBin qw($RealBin);
 use lib dirname($RealBin);
 
 use Getopt::Long;
-use Kernel::Config;
-use Kernel::System::Encode;
-use Kernel::System::Log;
-use Kernel::System::Main;
-use Kernel::System::Time;
-use Kernel::System::DB;
-use Kernel::System::ITSMConfigItem;
-use Kernel::System::GeneralCatalog;
+
+use Kernel::System::ObjectManager;
+
+# create object manager object
+local $Kernel::OM = Kernel::System::ObjectManager->new(
+    'Kernel::System::Log' => {
+        LogPrefix => 'OTRS-ConfigItemDelete.pl',
+    },
+);
 
 # common objects
-my %CommonObject = ();
-$CommonObject{ConfigObject} = Kernel::Config->new();
-$CommonObject{EncodeObject} = Kernel::System::Encode->new(%CommonObject);
-$CommonObject{LogObject}    = Kernel::System::Log->new(
-    LogPrefix => 'OTRS-ConfigItemDelete.pl',
-    %CommonObject,
-);
-$CommonObject{MainObject}           = Kernel::System::Main->new(%CommonObject);
-$CommonObject{TimeObject}           = Kernel::System::Time->new(%CommonObject);
-$CommonObject{DBObject}             = Kernel::System::DB->new(%CommonObject);
-$CommonObject{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new(%CommonObject);
-$CommonObject{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new(%CommonObject);
+my %CommonObject;
+$CommonObject{ConfigItemObject}     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+$CommonObject{GeneralCatalogObject} = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
 
 print "otrs.ITSMConfigItemDelete.pl\n";
 print "delete config items (all, by class (and deployment state) or by number).\n";

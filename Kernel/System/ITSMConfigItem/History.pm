@@ -12,6 +12,8 @@ package Kernel::System::ITSMConfigItem::History;
 use strict;
 use warnings;
 
+our $ObjectManagerDisabled = 1;
+
 =head1 NAME
 
 Kernel::System::ITSMConfigItem::History - module for ITSMConfigItem.pm with history functions
