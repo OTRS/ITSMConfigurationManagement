@@ -314,7 +314,8 @@ sub TableCreateComplex {
                 {
                     Type    => 'Link',
                     Content => $Version->{Number},
-                    Link    => '$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID='
+                    Link    => $Self->{LayoutObject}->{Baselink}
+                        . 'Action=AgentITSMConfigItemZoom;ConfigItemID='
                         . $ConfigItemID,
                     Title => "ConfigItem# $Version->{Number} ($Version->{Class}): $Version->{Name}",
                 },
