@@ -13,15 +13,11 @@ use utf8;
 
 use vars qw($Self);
 
-use Kernel::System::GeneralCatalog;
-use Kernel::System::ITSMConfigItem;
-use Kernel::System::LinkObject;
-use Kernel::System::Service;
-
-$Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
-$Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new( %{$Self} );
-$Self->{LinkObject}           = Kernel::System::LinkObject->new( %{$Self} );
-$Self->{ServiceObject}        = Kernel::System::Service->new( %{$Self} );
+$Self->{ConfigObject}         = $Kernel::OM->Get('Kernel::Config');
+$Self->{ServiceObject}        = $Kernel::OM->Get('Kernel::System::Service');
+$Self->{GeneralCatalogObject} = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
+$Self->{ConfigItemObject}     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+$Self->{LinkObject}           = $Kernel::OM->Get('Kernel::System::LinkObject');
 
 my $ConfigItemName = 'UnitTestConfigItemTest' . int rand 1_000_000;
 my $ServiceName    = 'UnitTestServiceTest' . int rand 1_000_000;
@@ -665,10 +661,6 @@ sub CheckExpectedResults {
         elsif ( $Object eq 'Service' ) {
 
             for my $NameSuffix ( sort keys %{ $ExpectedIncidentStates{$Object} } ) {
-
-                # # clean up the service get cache as we are using always
-                # # the same service object in this request
-                # $Self->{ServiceObject}->{CacheInternalObject}->CleanUp();
 
                 # get service data (including the current incident state)
                 my %ServiceData = $Self->{ServiceObject}->ServiceGet(
