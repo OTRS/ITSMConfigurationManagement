@@ -13,20 +13,11 @@ use utf8;
 
 use vars qw($Self);
 
-use Kernel::System::Encode;
-use Kernel::System::GeneralCatalog;
-use Kernel::System::ImportExport;
-use Kernel::System::ImportExport::ObjectBackend::ITSMConfigItem;
-use Kernel::System::ITSMConfigItem;
-use Kernel::System::XML;
-
-$Self->{EncodeObject}         = Kernel::System::Encode->new( %{$Self} );
-$Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
-$Self->{ImportExportObject}   = Kernel::System::ImportExport->new( %{$Self} );
-$Self->{ObjectBackendObject}
-    = Kernel::System::ImportExport::ObjectBackend::ITSMConfigItem->new( %{$Self} );
-$Self->{ConfigItemObject} = Kernel::System::ITSMConfigItem->new( %{$Self} );
-$Self->{XMLObject}        = Kernel::System::XML->new( %{$Self} );
+$Self->{GeneralCatalogObject} = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
+$Self->{ConfigItemObject}     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+$Self->{ImportExportObject}   = $Kernel::OM->Get('Kernel::System::ImportExport');
+$Self->{ObjectBackendObject}  = $Kernel::OM->Get('Kernel::System::ImportExport::ObjectBackend::ITSMConfigItem');
+$Self->{XMLObject}            = $Kernel::OM->Get('Kernel::System::XML');
 
 # ------------------------------------------------------------ #
 # make preparations

@@ -13,15 +13,11 @@ use utf8;
 
 use vars qw($Self);
 
-use Kernel::System::GeneralCatalog;
-use Kernel::System::ITSMConfigItem;
-use Kernel::System::LinkObject;
-use Kernel::System::User;
-
-$Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
-$Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new( %{$Self} );
-$Self->{LinkObject}           = Kernel::System::LinkObject->new( %{$Self} );
-$Self->{UserObject}           = Kernel::System::User->new( %{$Self} );
+$Self->{ConfigObject}         = $Kernel::OM->Get('Kernel::Config');
+$Self->{ConfigItemObject}     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+$Self->{GeneralCatalogObject} = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
+$Self->{LinkObject}           = $Kernel::OM->Get('Kernel::System::LinkObject');
+$Self->{UserObject}           = $Kernel::OM->Get('Kernel::System::User');
 
 # ------------------------------------------------------------ #
 # make preparations

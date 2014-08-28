@@ -13,11 +13,9 @@ use utf8;
 
 use vars qw($Self);
 
-use Kernel::System::GeneralCatalog;
-use Kernel::System::ITSMConfigItem;
-
-$Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
-$Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new( %{$Self} );
+$Self->{ConfigObject}         = $Kernel::OM->Get('Kernel::Config');
+$Self->{GeneralCatalogObject} = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
+$Self->{ConfigItemObject}     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
 
 # ------------------------------------------------------------ #
 # make preparations
