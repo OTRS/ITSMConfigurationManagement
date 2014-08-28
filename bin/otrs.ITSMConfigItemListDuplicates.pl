@@ -46,8 +46,9 @@ $CommonObject{ConfigObject}         = $Kernel::OM->Get('Kernel::Config');
 $CommonObject{ConfigItemObject}     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
 $CommonObject{GeneralCatalogObject} = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
 
-print "otrs.ITSMConfigItemListDuplicates.pl";
-print "(List ConfigItems which have a non-unique name).\n";
+print "\n";
+print "otrs.ITSMConfigItemListDuplicates.pl\n";
+print "List ConfigItems which have a non-unique name.\n";
 print "Copyright (C) 2001-2014 OTRS AG, http://otrs.com/\n\n";
 
 my $Help      = '';
@@ -61,6 +62,18 @@ GetOptions(
     'scope=s'   => \$Scope,
     'allstates' => \$AllStates,
 );
+
+# show usage
+if ($Help) {
+    print "Usage: $0 [options] \n\n";
+    print "  Options are as follows:\n";
+    print "  --help                             display this option help\n";
+    print "  --class name                       check only config items of this class\n";
+    print "  --scope (global|class)             define the scope for the uniqueness check\n";
+    print
+        "  --allstates                          also check config items in non-productive states\n\n";
+    exit 1;
+}
 
 # make sure, the supplied 'scope' is valid
 if ( $Scope && $Scope ne 'class' && $Scope ne 'global' ) {
@@ -206,17 +219,5 @@ else {
 }
 
 print "\n";
-
-# show usage
-if ($Help) {
-    print "Usage: $0 [options] \n";
-    print "  Options are as follows:\n";
-    print "  --help                             display this option help\n";
-    print "  --class name                       check only config items of this class\n";
-    print "  --scope (global|class)             define the scope for the uniqueness check\n";
-    print
-        "  --allstates                        also check config items in non-productive states\n\n";
-    exit 1;
-}
 
 1;

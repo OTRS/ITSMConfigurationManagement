@@ -59,7 +59,7 @@ GetOptions(
 
 # show usage
 if ($Help) {
-    print "Usage: $0 [options] \n";
+    print "Usage: $0 [options] \n\n";
     print "  Options are as follows:\n";
     print "  --help  display this option help\n\n";
     exit 1;

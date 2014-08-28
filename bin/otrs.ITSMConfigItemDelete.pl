@@ -188,14 +188,14 @@ elsif ($Class) {
 
 # show usage
 else {
-    print "Usage: $0 [options] \n";
+    print "Usage: $0 [options] \n\n";
     print "  Options are as follows:\n";
     print "  --help                             display this option help\n";
     print "  --all                              delete all config items\n";
     print "  --class name                       delete all config items of this class\n";
     print
         "  --deploymentstate name             delete all config items with this deployment state (ONLY TOGETHER with the --class parameter)\n";
-    print "  --ConfigItemNumber no1 no2 no3     delete listed config items\n";
+    print "  --ConfigItemNumber no1 no2 no3     delete listed config items\n\n";
     exit 1;
 }
 
@@ -221,7 +221,7 @@ sub DeleteConfigItems {
             $DeletedCI++;
         }
     }
-    print "Deletd $DeletedCI config item(s).\n\n";
+    print "Deleted $DeletedCI config item(s).\n\n";
 
     return 1;
 }
