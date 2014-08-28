@@ -557,8 +557,6 @@
                 <Item Key="Name">Small</Item>
                 <Item Key="NameShort">S</Item>
                 <Item Key="PageShown">25</Item>
-                <Item Key="Image">overviewsmall.png</Item>
-                <Item Key="ImageSelected">overviewsmall-selected.png</Item>
             </Hash>
         </Setting>
     </ConfigItem>
