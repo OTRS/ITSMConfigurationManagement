@@ -16,15 +16,10 @@ use Kernel::Output::HTML::Layout;
 
 our @ObjectDependencies = (
     'Kernel::Config',
-    'Kernel::Language',
-    'Kernel::System::DB',
-    'Kernel::System::Encode',
     'Kernel::System::GeneralCatalog',
     'Kernel::System::HTMLUtils',
     'Kernel::System::ITSMConfigItem',
     'Kernel::System::Log',
-    'Kernel::System::Main',
-    'Kernel::System::User',
     'Kernel::System::Web::Request',
 );
 
@@ -62,18 +57,6 @@ sub new {
     for my $Needed (qw(UserLanguage UserID)) {
         $Self->{$Needed} = $Param{$Needed} || die "Got no $Needed!";
     }
-
-    $Self->{ConfigObject}         = $Kernel::OM->Get('Kernel::Config');
-    $Self->{LanguageObject}       = $Kernel::OM->Get('Kernel::Language');
-    $Self->{LogObject}            = $Kernel::OM->Get('Kernel::System::Log');
-    $Self->{MainObject}           = $Kernel::OM->Get('Kernel::System::Main');
-    $Self->{DBObject}             = $Kernel::OM->Get('Kernel::System::DB');
-    $Self->{UserObject}           = $Kernel::OM->Get('Kernel::System::User');
-    $Self->{EncodeObject}         = $Kernel::OM->Get('Kernel::System::Encode');
-    $Self->{ParamObject}          = $Kernel::OM->Get('Kernel::System::Web::Request');
-    $Self->{GeneralCatalogObject} = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
-    $Self->{ConfigItemObject}     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
-    $Self->{HTMLUtilsObject}      = $Kernel::OM->Get('Kernel::System::HTMLUtils');
 
     # We need our own LayoutObject instance to avoid blockdata collisions
     #   with the main page.
@@ -189,7 +172,7 @@ sub TableCreateComplex {
 
     # check needed stuff
     if ( !$Param{ObjectLinkListWithData} || ref $Param{ObjectLinkListWithData} ne 'HASH' ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => 'Need ObjectLinkListWithData!',
         );
@@ -197,7 +180,7 @@ sub TableCreateComplex {
     }
 
     # get and remember the Deployment state colors
-    my $DeploymentStatesList = $Self->{GeneralCatalogObject}->ItemList(
+    my $DeploymentStatesList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => 'ITSM::ConfigItem::DeploymentState',
     );
 
@@ -205,9 +188,10 @@ sub TableCreateComplex {
     for my $ItemID ( sort keys %{$DeploymentStatesList} ) {
 
         # get deployment state preferences
-        my %Preferences = $Self->{GeneralCatalogObject}->GeneralCatalogPreferencesGet(
+        my %Preferences
+            = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->GeneralCatalogPreferencesGet(
             ItemID => $ItemID,
-        );
+            );
 
         # check if a color is defined in preferences
         next ITEMID if !$Preferences{Color};
@@ -223,7 +207,8 @@ sub TableCreateComplex {
     }
 
     # get the column config
-    my $ColumnConfig = $Self->{ConfigObject}->Get('LinkObject::ITSMConfigItem::ShowColumnsByClass');
+    my $ColumnConfig
+        = $Kernel::OM->Get('Kernel::Config')->Get('LinkObject::ITSMConfigItem::ShowColumnsByClass');
 
     # get the configered columns and reorganize them by class name
     my %ColumnByClass;
@@ -288,7 +273,7 @@ sub TableCreateComplex {
             @ShowColumnsHeadlines = ();
 
             # get the version data, including all the XML data
-            my $VersionXMLData = $Self->{ConfigItemObject}->VersionGet(
+            my $VersionXMLData = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->VersionGet(
                 ConfigItemID => $ConfigItemID,
                 XMLDataGet   => 1,
             );
@@ -431,8 +416,9 @@ sub TableCreateComplex {
                     }
 
                     # convert to ascii text in case the value contains html
-                    my $Value = $Self->{HTMLUtilsObject}
-                        ->ToAscii( String => $ExtendedVersionData->{$Column}->{Value} ) || '';
+                    my $Value = $Kernel::OM->Get('Kernel::System::HTMLUtils')->ToAscii(
+                        String => $ExtendedVersionData->{$Column}->{Value},
+                    ) || '';
 
                     # convert all whitespace and newlines to single spaces
                     $Value =~ s{ \s+ }{ }gxms;
@@ -552,7 +538,7 @@ sub TableCreateSimple {
 
     # check needed stuff
     if ( !$Param{ObjectLinkListWithData} || ref $Param{ObjectLinkListWithData} ne 'HASH' ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => 'Need ObjectLinkListWithData!',
         );
@@ -611,7 +597,10 @@ sub ContentStringCreate {
 
     # check needed stuff
     if ( !$Param{ContentData} ) {
-        $Self->{LogObject}->Log( Priority => 'error', Message => 'Need ContentData!' );
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
+            Priority => 'error',
+            Message  => 'Need ContentData!',
+        );
         return;
     }
 
@@ -639,8 +628,8 @@ sub ContentStringCreate {
         $CurInciSignal ||= $InciSignals{unknown};
 
         $String = $Self->{LayoutObject}->Output(
-            Template => '<div class="Flag Small" title="$QData{"CurInciState"}"> '
-                . '<span class="$QData{"CurInciSignal"}"></span> </div>',
+            Template => '<div class="Flag Small" title="[% Data.CurInciState | html %]"> '
+                . '<span class="[% Data.CurInciSignal | html %]"></span> </div>',
             Data => {
                 CurInciSignal => $CurInciSignal,
                 CurInciState => $Content->{Content} || '',
@@ -656,7 +645,7 @@ sub ContentStringCreate {
         # get the color of the deplyment state if defined
         my $DeplStateColor = $Self->{DeplStateColors}->{$DeplState} || '';
 
-        my $Template = '<div class="Flag Small" title="$QData{"CurDeplState"}"> ';
+        my $Template = '<div class="Flag Small" title="[% Data.CurDeplState | html %]"> ';
 
         # check if color is defined and set the style class
         if ($DeplStateColor) {
@@ -721,7 +710,7 @@ sub SelectableObjectList {
     my @ObjectSelectList;
 
     # get class list
-    my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
+    my $ClassList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => 'ITSM::ConfigItem::Class',
     );
 
@@ -729,13 +718,14 @@ sub SelectableObjectList {
     return if ref $ClassList ne 'HASH';
 
     # get the config with the default subobjects
-    my $DefaultSubobject = $Self->{ConfigObject}->Get('LinkObject::DefaultSubObject') || {};
+    my $DefaultSubobject
+        = $Kernel::OM->Get('Kernel::Config')->Get('LinkObject::DefaultSubObject') || {};
 
     CLASSID:
     for my $ClassID ( sort { lc $ClassList->{$a} cmp lc $ClassList->{$b} } keys %{$ClassList} ) {
 
         # show class only if user has access rights
-        my $HasAccess = $Self->{ConfigItemObject}->Permission(
+        my $HasAccess = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->Permission(
             Scope   => 'Class',
             ClassID => $ClassID,
             UserID  => $Self->{UserID},
@@ -853,7 +843,7 @@ sub SearchOptionList {
     #if ( $Param{SubObject} ) {
     #
     #    # get class list
-    #    my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
+    #    my $ClassList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
     #        Class => 'ITSM::ConfigItem::Class',
     #    );
     #
@@ -876,7 +866,8 @@ sub SearchOptionList {
         if ( $Row->{Type} eq 'Text' ) {
 
             # get form data
-            $Row->{FormData} = $Self->{ParamObject}->GetParam( Param => $Row->{FormKey} );
+            $Row->{FormData} = $Kernel::OM->Get('Kernel::System::Web::Request')
+                ->GetParam( Param => $Row->{FormKey} );
 
             # parse the input text block
             $Self->{LayoutObject}->Block(
@@ -899,7 +890,8 @@ sub SearchOptionList {
         if ( $Row->{Type} eq 'List' ) {
 
             # get form data
-            my @FormData = $Self->{ParamObject}->GetArray( Param => $Row->{FormKey} );
+            my @FormData = $Kernel::OM->Get('Kernel::System::Web::Request')
+                ->GetArray( Param => $Row->{FormKey} );
             $Row->{FormData} = \@FormData;
 
             # prepare deployment state list
@@ -907,7 +899,7 @@ sub SearchOptionList {
             if ( $Row->{Key} eq 'DeplStateIDs' ) {
 
                 # get deployment state list
-                my $DeplStateList = $Self->{GeneralCatalogObject}->ItemList(
+                my $DeplStateList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
                     Class => 'ITSM::ConfigItem::DeploymentState',
                 );
 
@@ -921,7 +913,7 @@ sub SearchOptionList {
             elsif ( $Row->{Key} eq 'InciStateIDs' ) {
 
                 # get incident state list
-                my $InciStateList = $Self->{GeneralCatalogObject}->ItemList(
+                my $InciStateList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
                     Class => 'ITSM::Core::IncidentState',
                 );
 
@@ -995,7 +987,7 @@ sub _XMLData2Hash {
         for my $Counter ( 1 .. $Item->{CountMax} ) {
 
             # lookup value
-            my $Value = $Self->{ConfigItemObject}->XMLValueLookup(
+            my $Value = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->XMLValueLookup(
                 Item => $Item,
                 Value => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content} || '',
             );

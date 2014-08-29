@@ -44,11 +44,6 @@ sub new {
     my $Self = {};
     bless( $Self, $Type );
 
-    $Self->{ConfigObject}         = $Kernel::OM->Get('Kernel::Config');
-    $Self->{LogObject}            = $Kernel::OM->Get('Kernel::System::Log');
-    $Self->{GeneralCatalogObject} = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
-    $Self->{ConfigItemObject}     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
-
     return $Self;
 }
 
@@ -69,7 +64,7 @@ sub LinkListWithData {
     # check needed stuff
     for my $Argument (qw(LinkList UserID)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );
@@ -79,7 +74,7 @@ sub LinkListWithData {
 
     # check link list
     if ( ref $Param{LinkList} ne 'HASH' ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => 'LinkList must be a hash reference!',
         );
@@ -94,7 +89,7 @@ sub LinkListWithData {
             for my $ConfigItemID ( sort keys %{ $Param{LinkList}->{$LinkType}->{$Direction} } ) {
 
                 # get last version data
-                my $VersionData = $Self->{ConfigItemObject}->VersionGet(
+                my $VersionData = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->VersionGet(
                     ConfigItemID => $ConfigItemID,
                     XMLDataGet   => 0,
                     UserID       => $Param{UserID},
@@ -133,7 +128,7 @@ sub ObjectPermission {
     # check needed stuff
     for my $Argument (qw(Object Key UserID)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );
@@ -143,10 +138,11 @@ sub ObjectPermission {
 
     # get config of configitem zoom frontend module
     $Self->{Config}
-        = $Self->{ConfigObject}->Get('ITSMConfigItem::Frontend::AgentITSMConfigItemZoom');
+        = $Kernel::OM->Get('Kernel::Config')
+        ->Get('ITSMConfigItem::Frontend::AgentITSMConfigItemZoom');
 
     # check for access rights
-    my $Access = $Self->{ConfigItemObject}->Permission(
+    my $Access = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->Permission(
         Scope  => 'Item',
         ItemID => $Param{Key},
         UserID => $Param{UserID},
@@ -179,7 +175,7 @@ sub ObjectDescriptionGet {
     # check needed stuff
     for my $Argument (qw(Object Key UserID)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );
@@ -196,7 +192,7 @@ sub ObjectDescriptionGet {
     return %Description if $Param{Mode} && $Param{Mode} eq 'Temporary';
 
     # get last version data
-    my $VersionData = $Self->{ConfigItemObject}->VersionGet(
+    my $VersionData = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->VersionGet(
         ConfigItemID => $Param{Key},
         XMLDataGet   => 0,
         UserID       => $Param{UserID},
@@ -243,7 +239,7 @@ sub ObjectSearch {
 
     # check needed stuff
     if ( !$Param{UserID} ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => 'Need UserID!',
         );
@@ -264,13 +260,14 @@ sub ObjectSearch {
     if ( !$Param{SubObject} ) {
 
         # get the config with the default subobjects
-        my $DefaultSubobject = $Self->{ConfigObject}->Get('LinkObject::DefaultSubObject') || {};
+        my $DefaultSubobject
+            = $Kernel::OM->Get('Kernel::Config')->Get('LinkObject::DefaultSubObject') || {};
 
         # extract default class name
         my $DefaultClass = $DefaultSubobject->{ITSMConfigItem} || '';
 
         # get class list
-        my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
+        my $ClassList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
             Class => 'ITSM::ConfigItem::Class',
         );
 
@@ -285,7 +282,8 @@ sub ObjectSearch {
     return if !$Param{SubObject};
 
     # search the config items
-    my $ConfigItemIDs = $Self->{ConfigItemObject}->ConfigItemSearchExtended(
+    my $ConfigItemIDs
+        = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemSearchExtended(
         %{ $Param{SearchParams} },
         %Search,
         ClassIDs              => [ $Param{SubObject} ],
@@ -295,14 +293,14 @@ sub ObjectSearch {
         OrderByDirection      => ['Up'],
         Limit                 => 50,
         UserID                => $Param{UserID},
-    );
+        );
 
     my %SearchList;
     CONFIGITEMID:
     for my $ConfigItemID ( @{$ConfigItemIDs} ) {
 
         # get last version data
-        my $VersionData = $Self->{ConfigItemObject}->VersionGet(
+        my $VersionData = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->VersionGet(
             ConfigItemID => $ConfigItemID,
             XMLDataGet   => 0,
             UserID       => $Param{UserID},
@@ -351,7 +349,7 @@ sub LinkAddPre {
     # check needed stuff
     for my $Argument (qw(Key Type State UserID)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );
@@ -397,7 +395,7 @@ sub LinkAddPost {
     # check needed stuff
     for my $Argument (qw(Key Type State UserID)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );
@@ -413,12 +411,12 @@ sub LinkAddPost {
     my $Object = $Param{TargetObject} || $Param{SourceObject};
 
     # recalculate the current incident state of this CI
-    $Self->{ConfigItemObject}->CurInciStateRecalc(
+    $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->CurInciStateRecalc(
         ConfigItemID => $Param{Key},
     );
 
     # trigger LinkAdd event
-    $Self->{ConfigItemObject}->EventHandler(
+    $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->EventHandler(
         Event => 'LinkAdd',
         Data  => {
             ConfigItemID => $Param{Key},
@@ -462,7 +460,7 @@ sub LinkDeletePre {
     # check needed stuff
     for my $Argument (qw(Key Type State UserID)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );
@@ -508,7 +506,7 @@ sub LinkDeletePost {
     # check needed stuff
     for my $Argument (qw(Key Type State UserID)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );
@@ -524,12 +522,12 @@ sub LinkDeletePost {
     my $Object = $Param{TargetObject} || $Param{SourceObject};
 
     # recalculate the current incident state of this CI
-    $Self->{ConfigItemObject}->CurInciStateRecalc(
+    $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->CurInciStateRecalc(
         ConfigItemID => $Param{Key},
     );
 
     # trigger LinkDelete event
-    $Self->{ConfigItemObject}->EventHandler(
+    $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->EventHandler(
         Event => 'LinkDelete',
         Data  => {
             ConfigItemID => $Param{Key},
