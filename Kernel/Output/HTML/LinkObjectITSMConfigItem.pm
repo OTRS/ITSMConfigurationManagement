@@ -567,7 +567,8 @@ sub TableCreateSimple {
                     Type    => 'Link',
                     Content => 'CI:' . $Version->{Number},
                     Title => "ConfigItem# $Version->{Number} ($Version->{Class}): $Version->{Name}",
-                    Link  => '$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID='
+                    Link  => $Self->{LayoutObject}->{Baselink}
+                        . 'Action=AgentITSMConfigItemZoom;ConfigItemID='
                         . $ConfigItemID,
                 );
 
