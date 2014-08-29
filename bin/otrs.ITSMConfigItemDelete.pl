@@ -43,6 +43,7 @@ my %CommonObject;
 $CommonObject{ConfigItemObject}     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
 $CommonObject{GeneralCatalogObject} = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
 
+print "\n";
 print "otrs.ITSMConfigItemDelete.pl\n";
 print "delete config items (all, by class (and deployment state) or by number).\n";
 print "Copyright (C) 2001-2014 OTRS AG, http://otrs.com/\n\n";
