@@ -41,7 +41,7 @@ sub _ConfigItemNumberCreate {
 
     # check needed stuff
     if ( !$Param{ClassID} ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => 'Need ClassID!',
         );
@@ -49,7 +49,7 @@ sub _ConfigItemNumberCreate {
     }
 
     # get system id
-    my $SystemID = $Self->{ConfigObject}->Get('SystemID');
+    my $SystemID = $Kernel::OM->Get('Kernel::Config')->Get('SystemID');
 
     # get current counter
     my $CurrentCounter = $Self->CurrentCounterGet(
