@@ -46,9 +46,6 @@ sub new {
     my $Self = {};
     bless( $Self, $Type );
 
-    $Self->{LogObject}          = $Kernel::OM->Get('Kernel::System::Log');
-    $Self->{CustomerUserObject} = $Kernel::OM->Get('Kernel::System::CustomerUser');
-
     return $Self;
 }
 
@@ -67,7 +64,7 @@ sub ValueLookup {
 
     return '' if !$Param{Value};
 
-    my %CustomerSearchList = $Self->{CustomerUserObject}->CustomerSearch(
+    my %CustomerSearchList = $Kernel::OM->Get('Kernel::System::CustomerUser')->CustomerSearch(
         Search => $Param{Value},
     );
 
@@ -92,7 +89,7 @@ sub StatsAttributeCreate {
     # check needed stuff
     for my $Argument (qw(Key Name Item)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );

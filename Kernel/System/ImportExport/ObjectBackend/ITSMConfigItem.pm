@@ -52,13 +52,6 @@ sub new {
     my $Self = {};
     bless( $Self, $Type );
 
-    # create additional objects
-    $Self->{ConfigObject}         = $Kernel::OM->Get('Kernel::Config');
-    $Self->{LogObject}            = $Kernel::OM->Get('Kernel::System::Log');
-    $Self->{ImportExportObject}   = $Kernel::OM->Get('Kernel::System::ImportExport');
-    $Self->{ConfigItemObject}     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
-    $Self->{GeneralCatalogObject} = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
-
     return $Self;
 }
 
@@ -77,7 +70,7 @@ sub ObjectAttributesGet {
 
     # check needed object
     if ( !$Param{UserID} ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => 'Need UserID!',
         );
@@ -85,7 +78,7 @@ sub ObjectAttributesGet {
     }
 
     # get class list
-    my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
+    my $ClassList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => 'ITSM::ConfigItem::Class',
     ) || {};
 
@@ -144,7 +137,7 @@ sub MappingObjectAttributesGet {
     # check needed stuff
     for my $Argument (qw(TemplateID UserID)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );
@@ -153,7 +146,7 @@ sub MappingObjectAttributesGet {
     }
 
     # get object data
-    my $ObjectData = $Self->{ImportExportObject}->ObjectDataGet(
+    my $ObjectData = $Kernel::OM->Get('Kernel::System::ImportExport')->ObjectDataGet(
         TemplateID => $Param{TemplateID},
         UserID     => $Param{UserID},
     );
@@ -163,7 +156,7 @@ sub MappingObjectAttributesGet {
     return [] if !$ObjectData->{ClassID};
 
     # get definition
-    my $XMLDefinition = $Self->{ConfigItemObject}->DefinitionGet(
+    my $XMLDefinition = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->DefinitionGet(
         ClassID => $ObjectData->{ClassID},
     );
 
@@ -239,7 +232,7 @@ sub SearchAttributesGet {
     # check needed stuff
     for my $Argument (qw(TemplateID UserID)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );
@@ -248,7 +241,7 @@ sub SearchAttributesGet {
     }
 
     # get object data
-    my $ObjectData = $Self->{ImportExportObject}->ObjectDataGet(
+    my $ObjectData = $Kernel::OM->Get('Kernel::System::ImportExport')->ObjectDataGet(
         TemplateID => $Param{TemplateID},
         UserID     => $Param{UserID},
     );
@@ -258,7 +251,7 @@ sub SearchAttributesGet {
     return [] if !$ObjectData->{ClassID};
 
     # get definition
-    my $XMLDefinition = $Self->{ConfigItemObject}->DefinitionGet(
+    my $XMLDefinition = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->DefinitionGet(
         ClassID => $ObjectData->{ClassID},
     );
 
@@ -268,12 +261,12 @@ sub SearchAttributesGet {
     return [] if ref $XMLDefinition->{DefinitionRef} ne 'ARRAY';
 
     # get deployment state list
-    my $DeplStateList = $Self->{GeneralCatalogObject}->ItemList(
+    my $DeplStateList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => 'ITSM::ConfigItem::DeploymentState',
     ) || {};
 
     # get incident state list
-    my $InciStateList = $Self->{GeneralCatalogObject}->ItemList(
+    my $InciStateList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => 'ITSM::Core::IncidentState',
     ) || {};
 
@@ -346,7 +339,7 @@ sub ExportDataGet {
     # check needed stuff
     for my $Argument (qw(TemplateID UserID)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );
@@ -355,14 +348,14 @@ sub ExportDataGet {
     }
 
     # get object data
-    my $ObjectData = $Self->{ImportExportObject}->ObjectDataGet(
+    my $ObjectData = $Kernel::OM->Get('Kernel::System::ImportExport')->ObjectDataGet(
         TemplateID => $Param{TemplateID},
         UserID     => $Param{UserID},
     );
 
     # check object data
     if ( !$ObjectData || ref $ObjectData ne 'HASH' ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => "No object data found for the template id $Param{TemplateID}",
         );
@@ -370,7 +363,7 @@ sub ExportDataGet {
     }
 
     # get class list
-    my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
+    my $ClassList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => 'ITSM::ConfigItem::Class',
     );
 
@@ -379,7 +372,7 @@ sub ExportDataGet {
     # check the class id
     if ( !$ObjectData->{ClassID} || !$ClassList->{ $ObjectData->{ClassID} } ) {
 
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => "No valid class id found for the template id $Param{TemplateID}",
         );
@@ -387,7 +380,7 @@ sub ExportDataGet {
     }
 
     # get the mapping list
-    my $MappingList = $Self->{ImportExportObject}->MappingList(
+    my $MappingList = $Kernel::OM->Get('Kernel::System::ImportExport')->MappingList(
         TemplateID => $Param{TemplateID},
         UserID     => $Param{UserID},
     );
@@ -395,7 +388,7 @@ sub ExportDataGet {
     # check the mapping list
     if ( !$MappingList || ref $MappingList ne 'ARRAY' || !@{$MappingList} ) {
 
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => "No valid mapping list found for the template id $Param{TemplateID}",
         );
@@ -407,7 +400,7 @@ sub ExportDataGet {
     for my $MappingID ( @{$MappingList} ) {
 
         # get mapping object data
-        my $MappingObjectData = $Self->{ImportExportObject}->MappingObjectDataGet(
+        my $MappingObjectData = $Kernel::OM->Get('Kernel::System::ImportExport')->MappingObjectDataGet(
             MappingID => $MappingID,
             UserID    => $Param{UserID},
         );
@@ -415,7 +408,7 @@ sub ExportDataGet {
         # check mapping object data
         if ( !$MappingObjectData || ref $MappingObjectData ne 'HASH' ) {
 
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "No valid mapping list found for the template id $Param{TemplateID}",
             );
@@ -426,7 +419,7 @@ sub ExportDataGet {
     }
 
     # get search data
-    my $SearchData = $Self->{ImportExportObject}->SearchDataGet(
+    my $SearchData = $Kernel::OM->Get('Kernel::System::ImportExport')->SearchDataGet(
         TemplateID => $Param{TemplateID},
         UserID     => $Param{UserID},
     );
@@ -434,14 +427,14 @@ sub ExportDataGet {
     return if !$SearchData || ref $SearchData ne 'HASH';
 
     # get deployment state list
-    my $DeplStateList = $Self->{GeneralCatalogObject}->ItemList(
+    my $DeplStateList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => 'ITSM::ConfigItem::DeploymentState',
     );
 
     # check deployment state list
     if ( !$DeplStateList || ref $DeplStateList ne 'HASH' ) {
 
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => "Can't get the general catalog list ITSM::ConfigItem::DeploymentState!",
         );
@@ -449,14 +442,14 @@ sub ExportDataGet {
     }
 
     # get incident state list
-    my $InciStateList = $Self->{GeneralCatalogObject}->ItemList(
+    my $InciStateList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => 'ITSM::Core::IncidentState',
     );
 
     # check incident state list
     if ( !$InciStateList || ref $InciStateList ne 'HASH' ) {
 
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => "Can't get the general catalog list ITSM::Core::IncidentState!",
         );
@@ -464,7 +457,7 @@ sub ExportDataGet {
     }
 
     # get current definition of this class
-    my $DefinitionData = $Self->{ConfigItemObject}->DefinitionGet(
+    my $DefinitionData = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->DefinitionGet(
         ClassID => $ObjectData->{ClassID},
         UserID  => $Param{UserID},
     );
@@ -509,7 +502,7 @@ sub ExportDataGet {
     }
 
     # search the config items
-    my $ConfigItemList = $Self->{ConfigItemObject}->ConfigItemSearchExtended(
+    my $ConfigItemList = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemSearchExtended(
         %SearchParams,
         ClassIDs              => [ $ObjectData->{ClassID} ],
         PreviousVersionSearch => 0,
@@ -521,7 +514,7 @@ sub ExportDataGet {
     for my $ConfigItemID ( @{$ConfigItemList} ) {
 
         # get last version
-        my $VersionData = $Self->{ConfigItemObject}->VersionGet(
+        my $VersionData = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->VersionGet(
             ConfigItemID => $ConfigItemID,
         );
 
@@ -637,7 +630,7 @@ sub ImportDataSave {
     # check needed stuff
     for my $Argument (qw(TemplateID ImportDataRow Counter UserID)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );
@@ -647,7 +640,7 @@ sub ImportDataSave {
 
     # check import data row
     if ( ref $Param{ImportDataRow} ne 'ARRAY' ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message =>
                 "Can't import entity $Param{Counter}: "
@@ -657,14 +650,14 @@ sub ImportDataSave {
     }
 
     # get object data
-    my $ObjectData = $Self->{ImportExportObject}->ObjectDataGet(
+    my $ObjectData = $Kernel::OM->Get('Kernel::System::ImportExport')->ObjectDataGet(
         TemplateID => $Param{TemplateID},
         UserID     => $Param{UserID},
     );
 
     # check object data
     if ( !$ObjectData || ref $ObjectData ne 'HASH' ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message =>
                 "Can't import entity $Param{Counter}: "
@@ -677,13 +670,13 @@ sub ImportDataSave {
     my $EmptyFieldsLeaveTheOldValues = $ObjectData->{EmptyFieldsLeaveTheOldValues};
 
     # get class list
-    my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
+    my $ClassList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => 'ITSM::ConfigItem::Class',
     );
 
     # check class list
     if ( !$ClassList || ref $ClassList ne 'HASH' ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message =>
                 "Can't import entity $Param{Counter}: "
@@ -695,7 +688,7 @@ sub ImportDataSave {
     # check the class id
     if ( !$ObjectData->{ClassID} || !$ClassList->{ $ObjectData->{ClassID} } ) {
 
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message =>
                 "Can't import entity $Param{Counter}: "
@@ -705,7 +698,7 @@ sub ImportDataSave {
     }
 
     # get the mapping list
-    my $MappingList = $Self->{ImportExportObject}->MappingList(
+    my $MappingList = $Kernel::OM->Get('Kernel::System::ImportExport')->MappingList(
         TemplateID => $Param{TemplateID},
         UserID     => $Param{UserID},
     );
@@ -713,7 +706,7 @@ sub ImportDataSave {
     # check the mapping list
     if ( !$MappingList || ref $MappingList ne 'ARRAY' || !@{$MappingList} ) {
 
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message =>
                 "Can't import entity $Param{Counter}: "
@@ -727,7 +720,7 @@ sub ImportDataSave {
     for my $MappingID ( @{$MappingList} ) {
 
         # get mapping object data
-        my $MappingObjectData = $Self->{ImportExportObject}->MappingObjectDataGet(
+        my $MappingObjectData = $Kernel::OM->Get('Kernel::System::ImportExport')->MappingObjectDataGet(
             MappingID => $MappingID,
             UserID    => $Param{UserID},
         );
@@ -735,7 +728,7 @@ sub ImportDataSave {
         # check mapping object data
         if ( !$MappingObjectData || ref $MappingObjectData ne 'HASH' ) {
 
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message =>
                     "Can't import entity $Param{Counter}: "
@@ -759,7 +752,7 @@ sub ImportDataSave {
         # check if identifier already exists
         if ( $Identifier{ $MappingObjectData->{Key} } ) {
 
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message =>
                     "Can't import entity $Param{Counter}: "
@@ -773,7 +766,7 @@ sub ImportDataSave {
 
         next MAPPINGOBJECTDATA if $MappingObjectData->{Key} && $Param{ImportDataRow}->[$RowIndex];
 
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message =>
                 "Can't import entity $Param{Counter}: "
@@ -787,14 +780,14 @@ sub ImportDataSave {
     }
 
     # get deployment state list
-    my $DeplStateList = $Self->{GeneralCatalogObject}->ItemList(
+    my $DeplStateList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => 'ITSM::ConfigItem::DeploymentState',
     );
 
     # check deployment state list
     if ( !$DeplStateList || ref $DeplStateList ne 'HASH' ) {
 
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message =>
                 "Can't import entity $Param{Counter}: "
@@ -807,14 +800,14 @@ sub ImportDataSave {
     my %DeplStateListReverse = reverse %{$DeplStateList};
 
     # get incident state list
-    my $InciStateList = $Self->{GeneralCatalogObject}->ItemList(
+    my $InciStateList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => 'ITSM::Core::IncidentState',
     );
 
     # check incident state list
     if ( !$InciStateList || ref $InciStateList ne 'HASH' ) {
 
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message =>
                 "Can't import entity $Param{Counter}: "
@@ -827,7 +820,7 @@ sub ImportDataSave {
     my %InciStateListReverse = reverse %{$InciStateList};
 
     # get current definition of this class
-    my $DefinitionData = $Self->{ConfigItemObject}->DefinitionGet(
+    my $DefinitionData = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->DefinitionGet(
         ClassID => $ObjectData->{ClassID},
         UserID  => $Param{UserID},
     );
@@ -835,7 +828,7 @@ sub ImportDataSave {
     # check definition data
     if ( !$DefinitionData || ref $DefinitionData ne 'HASH' ) {
 
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message =>
                 "Can't import entity $Param{Counter}: "
@@ -868,7 +861,7 @@ sub ImportDataSave {
 
             if ( !$DeplStateID ) {
 
-                $Self->{LogObject}->Log(
+                $Kernel::OM->Get('Kernel::System::Log')->Log(
                     Priority => 'error',
                     Message =>
                         "Can't import entity $Param{Counter}: "
@@ -889,7 +882,7 @@ sub ImportDataSave {
 
             if ( !$InciStateID ) {
 
-                $Self->{LogObject}->Log(
+                $Kernel::OM->Get('Kernel::System::Log')->Log(
                     Priority => 'error',
                     Message =>
                         "Can't import entity $Param{Counter}: "
@@ -916,7 +909,7 @@ sub ImportDataSave {
         }
 
         # search existing config item with the same identifiers
-        my $ConfigItemList = $Self->{ConfigItemObject}->ConfigItemSearchExtended(
+        my $ConfigItemList = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemSearchExtended(
             %SearchParams,
             ClassIDs              => [ $ObjectData->{ClassID} ],
             PreviousVersionSearch => 0,
@@ -926,7 +919,7 @@ sub ImportDataSave {
 
         if ( scalar @{$ConfigItemList} > 1 ) {
 
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message =>
                     "Can't import entity $Param{Counter}: "
@@ -943,7 +936,7 @@ sub ImportDataSave {
     if ($ConfigItemID) {
 
         # get latest version
-        $VersionData = $Self->{ConfigItemObject}->VersionGet(
+        $VersionData = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->VersionGet(
             ConfigItemID => $ConfigItemID,
         );
 
@@ -980,7 +973,7 @@ sub ImportDataSave {
             }
             else {
                 if ( !$Value ) {
-                    $Self->{LogObject}->Log(
+                    $Kernel::OM->Get('Kernel::System::Log')->Log(
                         Priority => 'error',
                         Message =>
                             "Can't import entity $Param{Counter}: "
@@ -1003,7 +996,7 @@ sub ImportDataSave {
                 # extract deployment state id
                 my $DeplStateID = $DeplStateListReverse{$Value} || '';
                 if ( !$DeplStateID ) {
-                    $Self->{LogObject}->Log(
+                    $Kernel::OM->Get('Kernel::System::Log')->Log(
                         Priority => 'error',
                         Message =>
                             "Can't import entity $Param{Counter}: "
@@ -1026,7 +1019,7 @@ sub ImportDataSave {
                 # extract the deployment state id
                 my $InciStateID = $InciStateListReverse{$Value} || '';
                 if ( !$InciStateID ) {
-                    $Self->{LogObject}->Log(
+                    $Kernel::OM->Get('Kernel::System::Log')->Log(
                         Priority => 'error',
                         Message =>
                             "Can't import entity $Param{Counter}: "
@@ -1058,7 +1051,7 @@ sub ImportDataSave {
 
     # bail out, when the was a problem in _ImportXMLDataMerge()
     if ( !$MergeOk ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message =>
                 "Can't import entity $Param{Counter}: "
@@ -1072,19 +1065,19 @@ sub ImportDataSave {
     # check if the feature to check for a unique name is enabled
     if (
         IsStringWithData( $VersionData->{Name} )
-        && $Self->{ConfigObject}->Get('UniqueCIName::EnableUniquenessCheck')
+        && $Kernel::OM->Get('Kernel::Config')->Get('UniqueCIName::EnableUniquenessCheck')
         )
     {
 
-        if ( $Self->{ConfigObject}->{Debug} > 0 ) {
-            $Self->{LogObject}->Log(
+        if ( $Kernel::OM->Get('Kernel::Config')->{Debug} > 0 ) {
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'debug',
                 Message  => "Checking for duplicate names (ClassID: $ObjectData->{ClassID}, "
                     . "Name: $VersionData->{Name}, ConfigItemID: " . $ConfigItemID || 'NEW' . ')',
             );
         }
 
-        my $NameDuplicates = $Self->{ConfigItemObject}->UniqueNameCheck(
+        my $NameDuplicates = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->UniqueNameCheck(
             ConfigItemID => $ConfigItemID || 'NEW',
             ClassID      => $ObjectData->{ClassID},
             Name         => $VersionData->{Name},
@@ -1096,7 +1089,7 @@ sub ImportDataSave {
             # build a string of all duplicate IDs
             my $NameDuplicatesString = join ', ', @{$NameDuplicates};
 
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message =>
                     "The name $VersionData->{Name} is already in use by the ConfigItemID(s): "
@@ -1116,7 +1109,7 @@ sub ImportDataSave {
 
         # the specified config item already exists
         # get id of the latest version, for checking later whether a version was created
-        my $VersionList = $Self->{ConfigItemObject}->VersionList(
+        my $VersionList = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->VersionList(
             ConfigItemID => $ConfigItemID,
         ) || [];
         if ( scalar @{$VersionList} ) {
@@ -1126,7 +1119,7 @@ sub ImportDataSave {
     else {
 
         # no config item was found, so add new config item
-        $ConfigItemID = $Self->{ConfigItemObject}->ConfigItemAdd(
+        $ConfigItemID = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemAdd(
             ClassID => $ObjectData->{ClassID},
             UserID  => $Param{UserID},
         );
@@ -1134,7 +1127,7 @@ sub ImportDataSave {
         # check the new config item id
         if ( !$ConfigItemID ) {
 
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message =>
                     "Can't import entity $Param{Counter}: "
@@ -1145,7 +1138,7 @@ sub ImportDataSave {
     }
 
     # add new version
-    my $VersionID = $Self->{ConfigItemObject}->VersionAdd(
+    my $VersionID = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->VersionAdd(
         ConfigItemID => $ConfigItemID,
         Name         => $VersionData->{Name},
         DefinitionID => $DefinitionData->{DefinitionID},
@@ -1171,13 +1164,13 @@ sub ImportDataSave {
     if ( $RetCode eq 'Created' ) {
 
         # delete the new config item
-        $Self->{ConfigItemObject}->ConfigItemDelete(
+        $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemDelete(
             ConfigItemID => $ConfigItemID,
             UserID       => $Param{UserID},
         );
     }
 
-    $Self->{LogObject}->Log(
+    $Kernel::OM->Get('Kernel::System::Log')->Log(
         Priority => 'error',
         Message =>
             "Can't import entity $Param{Counter}: "
@@ -1322,7 +1315,7 @@ sub _SearchAttributesGet {
             elsif ( $Item->{Input}->{Type} eq 'GeneralCatalog' ) {
 
                 # get general catalog list
-                my $GeneralCatalogList = $Self->{GeneralCatalogObject}->ItemList(
+                my $GeneralCatalogList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
                     Class => $Item->{Input}->{Class},
                 ) || {};
 
@@ -1386,7 +1379,7 @@ sub _ExportXMLSearchDataPrepare {
         my $Key = $Param{Prefix} ? $Param{Prefix} . '::' . $Item->{Key} : $Item->{Key};
 
         # prepare value
-        my $Values = $Self->{ConfigItemObject}->XMLExportSearchValuePrepare(
+        my $Values = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->XMLExportSearchValuePrepare(
             Item  => $Item,
             Value => $Param{SearchData}->{$Key},
         );
@@ -1459,7 +1452,7 @@ sub _ExportXMLDataPrepare {
             my $Key = $Param{Prefix} . $Item->{Key} . '::' . $Counter;
 
             # prepare value
-            $Param{XMLData2D}->{$Key} = $Self->{ConfigItemObject}->XMLExportValuePrepare(
+            $Param{XMLData2D}->{$Key} = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->XMLExportValuePrepare(
                 Item  => $Item,
                 Value => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content},
             );
@@ -1521,7 +1514,7 @@ sub _ImportXMLSearchDataPrepare {
         if ($IdentifierKey) {
 
             # prepare value
-            my $Value = $Self->{ConfigItemObject}->XMLImportSearchValuePrepare(
+            my $Value = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->XMLImportSearchValuePrepare(
                 Item  => $Item,
                 Value => $Param{Identifier}->{$IdentifierKey},
             );
@@ -1633,7 +1626,7 @@ sub _ImportXMLDataMerge {
             }
 
             # prepare value
-            my $Value = $Self->{ConfigItemObject}->XMLImportValuePrepare(
+            my $Value = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->XMLImportValuePrepare(
                 Item  => $Item,
                 Value => $Param{XMLData2D}->{$Key},
             );

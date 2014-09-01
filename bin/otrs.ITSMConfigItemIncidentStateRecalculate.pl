@@ -38,12 +38,6 @@ local $Kernel::OM = Kernel::System::ObjectManager->new(
     },
 );
 
-# common objects
-my %CommonObject;
-$CommonObject{ConfigItemObject}     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
-$CommonObject{GeneralCatalogObject} = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
-$CommonObject{ServiceObject}        = $Kernel::OM->Get('Kernel::System::Service');
-
 print "\n";
 print "otrs.ITSMConfigItemIncidentStateRecalculate.pl\n";
 print "Recalculates the incident state of config items.\n";
@@ -66,7 +60,7 @@ if ($Help) {
 }
 
 # get class list
-my $ClassList = $CommonObject{GeneralCatalogObject}->ItemList(
+my $ClassList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
     Class => 'ITSM::ConfigItem::Class',
 );
 
@@ -74,7 +68,7 @@ my $ClassList = $CommonObject{GeneralCatalogObject}->ItemList(
 my @ValidClassIDs = sort keys %{$ClassList};
 
 # get all config items ids form all valid classes
-my $ConfigItemsIDsRef = $CommonObject{ConfigItemObject}->ConfigItemSearch(
+my $ConfigItemsIDsRef = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemSearch(
     ClassIDs => \@ValidClassIDs,
 );
 
@@ -87,7 +81,7 @@ my $Count = 0;
 CONFIGITEM:
 for my $ConfigItemID ( @{$ConfigItemsIDsRef} ) {
 
-    my $Success = $CommonObject{ConfigItemObject}->CurInciStateRecalc(
+    my $Success = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->CurInciStateRecalc(
         ConfigItemID => $ConfigItemID,
     );
 
@@ -106,7 +100,7 @@ for my $ConfigItemID ( @{$ConfigItemsIDsRef} ) {
 print "\nReady. Recalculated $Count config items.\n\n";
 
 # get list of all services (valid and invalid)
-my %ServiceList = $CommonObject{ServiceObject}->ServiceList(
+my %ServiceList = $Kernel::OM->Get('Kernel::System::Service')->ServiceList(
     Valid  => 0,
     UserID => 1,
 );
@@ -119,7 +113,7 @@ for my $ServiceID ( sort keys %ServiceList ) {
 
     # update the current incident state type from CIs of the service with an empty value
     # this is necessary to force a recalculation on a ServiceGet()
-    $CommonObject{ServiceObject}->ServicePreferencesSet(
+    $Kernel::OM->Get('Kernel::System::Service')->ServicePreferencesSet(
         ServiceID => $ServiceID,
         Key       => 'CurInciStateTypeFromCIs',
         Value     => '',

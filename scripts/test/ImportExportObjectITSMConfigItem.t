@@ -13,12 +13,11 @@ use utf8;
 
 use vars qw($Self);
 
-$Self->{GeneralCatalogObject} = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
-$Self->{ConfigItemObject}     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
-$Self->{ImportExportObject}   = $Kernel::OM->Get('Kernel::System::ImportExport');
-$Self->{ObjectBackendObject}
-    = $Kernel::OM->Get('Kernel::System::ImportExport::ObjectBackend::ITSMConfigItem');
-$Self->{XMLObject} = $Kernel::OM->Get('Kernel::System::XML');
+my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
+my $ConfigItemObject     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+my $ImportExportObject   = $Kernel::OM->Get('Kernel::System::ImportExport');
+my $ObjectBackendObject  = $Kernel::OM->Get('Kernel::System::ImportExport::ObjectBackend::ITSMConfigItem');
+my $XMLObject            = $Kernel::OM->Get('Kernel::System::XML');
 
 # ------------------------------------------------------------ #
 # make preparations
@@ -29,7 +28,7 @@ my @TemplateIDs;
 for ( 1 .. 30 ) {
 
     # add a test template for later checks
-    my $TemplateID = $Self->{ImportExportObject}->TemplateAdd(
+    my $TemplateID = $ImportExportObject->TemplateAdd(
         Object  => 'ITSMConfigItem',
         Format  => 'UnitTest' . int rand 1_000_000,
         Name    => 'UnitTest' . int rand 1_000_000,
@@ -45,7 +44,7 @@ for ( 1 .. 30 ) {
 # ------------------------------------------------------------ #
 
 # get object list
-my $ObjectList1 = $Self->{ImportExportObject}->ObjectList();
+my $ObjectList1 = $ImportExportObject->ObjectList();
 
 # check object list
 $Self->True(
@@ -60,7 +59,7 @@ $Self->True(
 {
 
     # get object attributes
-    my $ObjectAttributesGet1 = $Self->{ImportExportObject}->ObjectAttributesGet(
+    my $ObjectAttributesGet1 = $ImportExportObject->ObjectAttributesGet(
         TemplateID => $TemplateIDs[0],
         UserID     => 1,
     );
@@ -72,7 +71,7 @@ $Self->True(
     );
 
     # get class list
-    my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
+    my $ClassList = $GeneralCatalogObject->ItemList(
         Class => 'ITSM::ConfigItem::Class',
     );
 
@@ -124,7 +123,7 @@ $Self->True(
 # ------------------------------------------------------------ #
 
 # get object attributes
-my $ObjectAttributesGet2 = $Self->{ImportExportObject}->ObjectAttributesGet(
+my $ObjectAttributesGet2 = $ImportExportObject->ObjectAttributesGet(
     TemplateID => $TemplateIDs[-1] + 1,
     UserID     => 1,
 );
@@ -140,7 +139,7 @@ $Self->False(
 # ------------------------------------------------------------ #
 
 # get mapping object attributes
-my $MappingObjectAttributesGet1 = $Self->{ImportExportObject}->MappingObjectAttributesGet(
+my $MappingObjectAttributesGet1 = $ImportExportObject->MappingObjectAttributesGet(
     TemplateID => $TemplateIDs[0],
     UserID     => 1,
 );
@@ -156,7 +155,7 @@ $Self->True(
 # ------------------------------------------------------------ #
 
 # get mapping object attributes
-my $MappingObjectAttributesGet2 = $Self->{ImportExportObject}->MappingObjectAttributesGet(
+my $MappingObjectAttributesGet2 = $ImportExportObject->MappingObjectAttributesGet(
     TemplateID => $TemplateIDs[-1] + 1,
     UserID     => 1,
 );
@@ -177,7 +176,7 @@ my $GeneralCatalogClass = 'UnitTest' . int rand 1_000_000;
 for my $Name (qw(Test1 Test2 Test3 Test4)) {
 
     # add a new item
-    my $ItemID = $Self->{GeneralCatalogObject}->ItemAdd(
+    my $ItemID = $GeneralCatalogObject->ItemAdd(
         Class   => $GeneralCatalogClass,
         Name    => $Name,
         ValidID => 1,
@@ -364,7 +363,7 @@ for my $Definition (@ConfigItemDefinitions) {
     my $ClassName = 'UnitTest' . int rand 1_000_000;
 
     # add an unittest config item class
-    my $ClassID = $Self->{GeneralCatalogObject}->ItemAdd(
+    my $ClassID = $GeneralCatalogObject->ItemAdd(
         Class   => 'ITSM::ConfigItem::Class',
         Name    => $ClassName,
         ValidID => 1,
@@ -383,7 +382,7 @@ for my $Definition (@ConfigItemDefinitions) {
     push @ConfigItemClassIDs, $ClassID;
 
     # add a definition to the class
-    my $DefinitionID = $Self->{ConfigItemObject}->DefinitionAdd(
+    my $DefinitionID = $ConfigItemObject->DefinitionAdd(
         ClassID    => $ClassID,
         Definition => $Definition,
         UserID     => 1,
@@ -408,19 +407,19 @@ for ( 1 .. 10 ) {
 }
 
 # get deployment state list
-my $DeplStateList = $Self->{GeneralCatalogObject}->ItemList(
+my $DeplStateList = $GeneralCatalogObject->ItemList(
     Class => 'ITSM::ConfigItem::DeploymentState',
 );
 my %DeplStateListReverse = reverse %{$DeplStateList};
 
 # get incident state list
-my $InciStateList = $Self->{GeneralCatalogObject}->ItemList(
+my $InciStateList = $GeneralCatalogObject->ItemList(
     Class => 'ITSM::Core::IncidentState',
 );
 my %InciStateListReverse = reverse %{$InciStateList};
 
 # get general catalog test list
-my $GeneralCatalogList = $Self->{GeneralCatalogObject}->ItemList(
+my $GeneralCatalogList = $GeneralCatalogObject->ItemList(
     Class => $GeneralCatalogClass,
 );
 my %GeneralCatalogListReverse = reverse %{$GeneralCatalogList};
@@ -968,7 +967,7 @@ my @ConfigItemIDs;
 for my $ConfigItem (@ConfigItems) {
 
     # add a config item
-    my $ConfigItemID = $Self->{ConfigItemObject}->ConfigItemAdd(
+    my $ConfigItemID = $ConfigItemObject->ConfigItemAdd(
         %{ $ConfigItem->{ConfigItem} },
     );
 
@@ -987,7 +986,7 @@ for my $ConfigItem (@ConfigItems) {
     for my $Version ( @{ $ConfigItem->{Versions} } ) {
 
         # add a version
-        my $VersionID = $Self->{ConfigItemObject}->VersionAdd(
+        my $VersionID = $ConfigItemObject->VersionAdd(
             %{$Version},
             ConfigItemID => $ConfigItemID,
         );
@@ -2038,7 +2037,7 @@ for my $Test (@ExportDataTests) {
     {
 
         # save object data
-        $Self->{ImportExportObject}->ObjectDataSave(
+        $ImportExportObject->ObjectDataSave(
             TemplateID => $Test->{SourceExportData}->{ExportDataGet}->{TemplateID},
             ObjectData => $Test->{SourceExportData}->{ObjectData},
             UserID     => 1,
@@ -2054,7 +2053,7 @@ for my $Test (@ExportDataTests) {
     {
 
         # delete all existing mapping data
-        $Self->{ImportExportObject}->MappingDelete(
+        $ImportExportObject->MappingDelete(
             TemplateID => $Test->{SourceExportData}->{ExportDataGet}->{TemplateID},
             UserID     => 1,
         );
@@ -2064,13 +2063,13 @@ for my $Test (@ExportDataTests) {
         for my $MappingObjectData ( @{ $Test->{SourceExportData}->{MappingObjectData} } ) {
 
             # add a new mapping row
-            my $MappingID = $Self->{ImportExportObject}->MappingAdd(
+            my $MappingID = $ImportExportObject->MappingAdd(
                 TemplateID => $Test->{SourceExportData}->{ExportDataGet}->{TemplateID},
                 UserID     => 1,
             );
 
             # add the mapping object data
-            $Self->{ImportExportObject}->MappingObjectDataSave(
+            $ImportExportObject->MappingObjectDataSave(
                 MappingID         => $MappingID,
                 MappingObjectData => $MappingObjectData,
                 UserID            => 1,
@@ -2087,7 +2086,7 @@ for my $Test (@ExportDataTests) {
     {
 
         # save search data
-        $Self->{ImportExportObject}->SearchDataSave(
+        $ImportExportObject->SearchDataSave(
             TemplateID => $Test->{SourceExportData}->{ExportDataGet}->{TemplateID},
             SearchData => $Test->{SourceExportData}->{SearchData},
             UserID     => 1,
@@ -2095,7 +2094,7 @@ for my $Test (@ExportDataTests) {
     }
 
     # get export data
-    my $ExportData = $Self->{ObjectBackendObject}->ExportDataGet(
+    my $ExportData = $ObjectBackendObject->ExportDataGet(
         %{ $Test->{SourceExportData}->{ExportDataGet} },
     );
 
@@ -3860,7 +3859,7 @@ for my $Test (@ImportDataTests) {
     {
 
         # save object data
-        $Self->{ImportExportObject}->ObjectDataSave(
+        $ImportExportObject->ObjectDataSave(
             TemplateID => $Test->{SourceImportData}->{ImportDataSave}->{TemplateID},
             ObjectData => $Test->{SourceImportData}->{ObjectData},
             UserID     => 1,
@@ -3876,7 +3875,7 @@ for my $Test (@ImportDataTests) {
     {
 
         # delete all existing mapping data
-        $Self->{ImportExportObject}->MappingDelete(
+        $ImportExportObject->MappingDelete(
             TemplateID => $Test->{SourceImportData}->{ImportDataSave}->{TemplateID},
             UserID     => 1,
         );
@@ -3886,13 +3885,13 @@ for my $Test (@ImportDataTests) {
         for my $MappingObjectData ( @{ $Test->{SourceImportData}->{MappingObjectData} } ) {
 
             # add a new mapping row
-            my $MappingID = $Self->{ImportExportObject}->MappingAdd(
+            my $MappingID = $ImportExportObject->MappingAdd(
                 TemplateID => $Test->{SourceImportData}->{ImportDataSave}->{TemplateID},
                 UserID     => 1,
             );
 
             # add the mapping object data
-            $Self->{ImportExportObject}->MappingObjectDataSave(
+            $ImportExportObject->MappingObjectDataSave(
                 MappingID         => $MappingID,
                 MappingObjectData => $MappingObjectData,
                 UserID            => 1,
@@ -3901,7 +3900,7 @@ for my $Test (@ImportDataTests) {
     }
 
     # import data save
-    my ( $ConfigItemID, $RetCode ) = $Self->{ObjectBackendObject}->ImportDataSave(
+    my ( $ConfigItemID, $RetCode ) = $ObjectBackendObject->ImportDataSave(
         %{ $Test->{SourceImportData}->{ImportDataSave} },
         Counter => $ImportTestCount,
     );
@@ -3930,7 +3929,7 @@ for my $Test (@ImportDataTests) {
     );
 
     # get the version list
-    my $VersionList = $Self->{ConfigItemObject}->VersionList(
+    my $VersionList = $ConfigItemObject->VersionList(
         ConfigItemID => $ConfigItemID,
     );
 
@@ -3942,13 +3941,13 @@ for my $Test (@ImportDataTests) {
     );
 
     # get the last version
-    my $VersionData = $Self->{ConfigItemObject}->VersionGet(
+    my $VersionData = $ConfigItemObject->VersionGet(
         ConfigItemID => $ConfigItemID,
         XMLDataGet   => 1,
     );
 
     # translate xmldata in a 2d hash
-    my %XMLHash = $Self->{XMLObject}->XMLHash2D(
+    my %XMLHash = $XMLObject->XMLHash2D(
         XMLHash => $VersionData->{XMLData},
     );
 
@@ -4040,13 +4039,13 @@ continue {
 # ------------------------------------------------------------ #
 
 # delete the test templates
-$Self->{ImportExportObject}->TemplateDelete(
+$ImportExportObject->TemplateDelete(
     TemplateID => \@TemplateIDs,
     UserID     => 1,
 );
 
 # get actual class list
-my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
+my $ClassList = $GeneralCatalogObject->ItemList(
     Class => 'ITSM::ConfigItem::Class',
 );
 
@@ -4057,7 +4056,7 @@ for my $ItemID ( sort keys %{$ClassList} ) {
     next ITEMID if $ClassList->{$ItemID} !~ m{ \A UnitTest }xms;
 
     # update item
-    $Self->{GeneralCatalogObject}->ItemUpdate(
+    $GeneralCatalogObject->ItemUpdate(
         ItemID  => $ItemID,
         Name    => $ClassList->{$ItemID},
         ValidID => 2,
@@ -4067,7 +4066,7 @@ for my $ItemID ( sort keys %{$ClassList} ) {
 
 # delete the test config items
 for my $ConfigItemID (@ConfigItemIDs) {
-    $Self->{ConfigItemObject}->ConfigItemDelete(
+    $ConfigItemObject->ConfigItemDelete(
         ConfigItemID => $ConfigItemID,
         UserID       => 1,
     );

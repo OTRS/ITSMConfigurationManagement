@@ -15,6 +15,7 @@ use warnings;
 our @ObjectDependencies = (
     'Kernel::System::GeneralCatalog',
     'Kernel::System::Group',
+    'Kernel::System::Log',
 );
 
 =head1 NAME
@@ -46,9 +47,6 @@ sub new {
     my $Self = {};
     bless( $Self, $Type );
 
-    $Self->{GroupObject}          = $Kernel::OM->Get('Kernel::System::Group');
-    $Self->{GeneralCatalogObject} = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
-
     return $Self;
 }
 
@@ -70,7 +68,7 @@ sub Run {
     # check needed stuff
     for my $Needed (qw(UserID Type ClassID)) {
         if ( !$Param{$Needed} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Needed!",
             );
@@ -79,10 +77,12 @@ sub Run {
     }
 
     # get Class data
-    my $ClassItem = $Self->{GeneralCatalogObject}->ItemGet( ItemID => $Param{ClassID} );
+    my $ClassItem = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemGet(
+        ItemID => $Param{ClassID},
+    );
 
     # get user groups
-    my @GroupIDs = $Self->{GroupObject}->GroupMemberList(
+    my @GroupIDs = $Kernel::OM->Get('Kernel::System::Group')->GroupMemberList(
         UserID => $Param{UserID},
         Type   => $Param{Type},
         Result => 'ID',

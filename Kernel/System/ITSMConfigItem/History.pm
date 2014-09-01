@@ -60,7 +60,7 @@ sub HistoryGet {
     # check needed stuff
     for my $Needed (qw(ConfigItemID)) {
         if ( !$Param{$Needed} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Needed!",
             );
@@ -73,7 +73,7 @@ sub HistoryGet {
         if $Self->{Cache}->{CIVersions}->{ $Param{ConfigItemID} };
 
     # fetch some data from history for given config item
-    return if !$Self->{DBObject}->Prepare(
+    return if !$Kernel::OM->Get('Kernel::System::DB')->Prepare(
         SQL => 'SELECT ch.id, ch.configitem_id, ch.content, ch.type_id, '
             . 'ch.create_by, ch.create_time, cht.name '
             . 'FROM configitem_history ch, configitem_history_type cht '
@@ -84,7 +84,7 @@ sub HistoryGet {
 
     # save data from history in array
     my @Entries;
-    while ( my @Row = $Self->{DBObject}->FetchrowArray() ) {
+    while ( my @Row = $Kernel::OM->Get('Kernel::System::DB')->FetchrowArray() ) {
         my %Tmp = (
             HistoryEntryID => $Row[0],
             ConfigItemID   => $Row[1],
@@ -102,7 +102,7 @@ sub HistoryGet {
     for my $Entry (@Entries) {
 
         # get user information
-        my %UserInfo = $Self->{UserObject}->GetUserData(
+        my %UserInfo = $Kernel::OM->Get('Kernel::System::User')->GetUserData(
             UserID => $Entry->{CreateBy},
             Cached => 1,
         );
@@ -150,7 +150,7 @@ sub HistoryEntryGet {
     # check needed stuff
     for my $Needed (qw(HistoryEntryID)) {
         if ( !$Param{$Needed} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Needed!",
             );
@@ -165,7 +165,7 @@ sub HistoryEntryGet {
     }
 
     # fetch a single entry from history
-    return if !$Self->{DBObject}->Prepare(
+    return if !$Kernel::OM->Get('Kernel::System::DB')->Prepare(
         SQL => 'SELECT ch.id, ch.configitem_id, ch.content, ch.type_id, '
             . 'ch.create_by, ch.create_time, cht.name '
             . 'FROM configitem_history ch, configitem_history_type cht '
@@ -175,7 +175,7 @@ sub HistoryEntryGet {
     );
 
     my %Entry;
-    while ( my @Row = $Self->{DBObject}->FetchrowArray() ) {
+    while ( my @Row = $Kernel::OM->Get('Kernel::System::DB')->FetchrowArray() ) {
 
         %Entry = (
             HistoryEntryID => $Row[0],
@@ -189,7 +189,7 @@ sub HistoryEntryGet {
     }
 
     # get user data for this entry
-    my %UserInfo = $Self->{UserObject}->GetUserData(
+    my %UserInfo = $Kernel::OM->Get('Kernel::System::User')->GetUserData(
         UserID => $Entry{CreateBy},
         Cached => 1,
     );
@@ -224,7 +224,7 @@ sub HistoryAdd {
     # check needed stuff
     for my $Needed (qw(ConfigItemID UserID Comment)) {
         if ( !$Param{$Needed} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Needed!",
             );
@@ -233,7 +233,7 @@ sub HistoryAdd {
     }
 
     if ( !( $Param{HistoryType} || $Param{HistoryTypeID} ) ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => 'Need HistoryType or HistoryTypeID!',
         );
@@ -245,7 +245,7 @@ sub HistoryAdd {
         my $Id = $Self->HistoryTypeLookup( HistoryType => $Param{HistoryType} );
 
         if ( !$Id ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => 'Invalid history type given!',
             );
@@ -260,7 +260,7 @@ sub HistoryAdd {
         my $Name = $Self->HistoryTypeLookup( HistoryTypeID => $Param{HistoryTypeID} );
 
         if ( !$Name ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => 'Invalid history type id given!',
             );
@@ -276,7 +276,7 @@ sub HistoryAdd {
         );
 
         if ( !$Number ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => 'Invalid config item id given!',
             );
@@ -288,7 +288,7 @@ sub HistoryAdd {
     delete $Self->{Cache}->{CIVersions}->{ $Param{ConfigItemID} };
 
     # insert history entry
-    return $Self->{DBObject}->Do(
+    return $Kernel::OM->Get('Kernel::System::DB')->Do(
         SQL => 'INSERT INTO configitem_history ( configitem_id, content, create_by, '
             . 'create_time, type_id ) VALUES ( ?, ?, ?, current_timestamp, ? )',
         Bind => [
@@ -316,7 +316,7 @@ sub HistoryDelete {
     # check needed stuff
     for my $Needed (qw(ConfigItemID)) {
         if ( !$Param{$Needed} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Needed!",
             );
@@ -332,7 +332,7 @@ sub HistoryDelete {
     }
 
     # delete history for given config item
-    return $Self->{DBObject}->Do(
+    return $Kernel::OM->Get('Kernel::System::DB')->Do(
         SQL  => 'DELETE FROM configitem_history WHERE configitem_id = ?',
         Bind => [ \$Param{ConfigItemID} ],
     );
@@ -354,7 +354,7 @@ sub HistoryEntryDelete {
     # check needed stuff
     for my $Needed (qw(HistoryEntryID)) {
         if ( !$Param{$Needed} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Needed!",
             );
@@ -363,7 +363,7 @@ sub HistoryEntryDelete {
     }
 
     # delete single entry
-    return $Self->{DBObject}->Do(
+    return $Kernel::OM->Get('Kernel::System::DB')->Do(
         SQL  => 'DELETE FROM configitem_history WHERE id = ?',
         Bind => [ \$Param{HistoryEntryID} ],
     );
@@ -392,7 +392,7 @@ sub HistoryTypeLookup {
 
     # check for needed stuff
     if ( !$Key ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => 'Need HistoryTypeID or HistoryType!',
         );
@@ -411,14 +411,14 @@ sub HistoryTypeLookup {
     }
 
     # fetch the requested value
-    return if !$Self->{DBObject}->Prepare(
+    return if !$Kernel::OM->Get('Kernel::System::DB')->Prepare(
         SQL   => $SQL,
         Bind  => [ \$Param{$Key} ],
         Limit => 1,
     );
 
     my $Value;
-    while ( my @Row = $Self->{DBObject}->FetchrowArray() ) {
+    while ( my @Row = $Kernel::OM->Get('Kernel::System::DB')->FetchrowArray() ) {
         $Value = $Row[0];
     }
 

@@ -25,10 +25,6 @@ sub new {
     my $Self = {};
     bless( $Self, $Type );
 
-    $Self->{TimeObject}           = $Kernel::OM->Get('Kernel::System::Time');
-    $Self->{GeneralCatalogObject} = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
-    $Self->{ConfigItemObject}     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
-
     return $Self;
 }
 
@@ -42,22 +38,22 @@ sub GetObjectAttributes {
     my ( $Self, %Param ) = @_;
 
     # get class list
-    my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
+    my $ClassList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => 'ITSM::ConfigItem::Class',
     );
 
     # get deployment state list
-    my $DeplStateList = $Self->{GeneralCatalogObject}->ItemList(
+    my $DeplStateList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => 'ITSM::ConfigItem::DeploymentState',
     );
 
     # get incident state list
-    my $InciStateList = $Self->{GeneralCatalogObject}->ItemList(
+    my $InciStateList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => 'ITSM::Core::IncidentState',
     );
 
     # get current time to fix bug#3830
-    my $TimeStamp = $Self->{TimeObject}->CurrentTimestamp();
+    my $TimeStamp = $Kernel::OM->Get('Kernel::System::Time')->CurrentTimestamp();
     my ($Date) = split /\s+/, $TimeStamp;
     my $Today = sprintf "%s 23:59:59", $Date;
 
@@ -141,7 +137,7 @@ sub GetObjectAttributes {
     for my $ClassID ( sort keys %{$ClassList} ) {
 
         # get xml definition hash
-        my $XMLDefinition = $Self->{ConfigItemObject}->DefinitionGet(
+        my $XMLDefinition = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->DefinitionGet(
             ClassID => $ClassID,
         );
 
@@ -186,7 +182,7 @@ sub _XMLAttributeAdd {
         my $Name = $Param{PrefixName} . $Item->{Name};
 
         # add attribute
-        my $Attribute = $Self->{ConfigItemObject}->XMLStatsAttributeCreate(
+        my $Attribute = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->XMLStatsAttributeCreate(
             Key  => $Key,
             Item => $Item,
             Name => $Name,
@@ -265,7 +261,7 @@ sub GetStatElement {
     }
 
     # start config item extended search
-    my $ConfigItemIDs = $Self->{ConfigItemObject}->ConfigItemSearchExtended(%Param);
+    my $ConfigItemIDs = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemSearchExtended(%Param);
 
     return scalar @{$ConfigItemIDs};
 }

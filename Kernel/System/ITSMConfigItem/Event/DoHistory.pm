@@ -48,10 +48,6 @@ sub new {
     my $Self = {};
     bless( $Self, $Type );
 
-    # create needed objects
-    $Self->{LogObject}        = $Kernel::OM->Get('Kernel::System::Log');
-    $Self->{ConfigItemObject} = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
-
     return $Self;
 }
 
@@ -82,7 +78,7 @@ sub Run {
     # check needed stuff
     for my $Needed (qw(Data Event UserID)) {
         if ( !$Param{$Needed} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Needed!",
             );
@@ -113,7 +109,7 @@ sub Run {
 
     # error handling
     if ( !exists $Dispatcher{ $Param{Event} } ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => 'non existant history type: ' . $Param{Event},
         );
@@ -141,7 +137,7 @@ sub _ConfigItemDelete {
     my ( $Self, %Param ) = @_;
 
     # delete history
-    $Self->{ConfigItemObject}->HistoryDelete(
+    $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->HistoryDelete(
         ConfigItemID => $Param{ConfigItemID},
     );
 
@@ -158,7 +154,7 @@ sub _HistoryAdd {
     my ( $Self, %Param ) = @_;
 
     # add history entry
-    $Self->{ConfigItemObject}->HistoryAdd(
+    $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->HistoryAdd(
         %Param,
     );
 

@@ -56,11 +56,8 @@ sub new {
     my $Self = {};
     bless( $Self, $Type );
 
-    # create needed sysconfig object
-    $Self->{SysConfigObject} = $Kernel::OM->Get('Kernel::System::SysConfig');
-
     # rebuild ZZZ* files
-    $Self->{SysConfigObject}->WriteDefault();
+    $Kernel::OM->Get('Kernel::System::SysConfig')->WriteDefault();
 
     # define the ZZZ files
     my @ZZZFiles = (
@@ -80,16 +77,6 @@ sub new {
         }
     }
 
-    # create additional objects
-    $Self->{LogObject}            = $Kernel::OM->Get('Kernel::System::Log');
-    $Self->{DBObject}             = $Kernel::OM->Get('Kernel::System::DB');
-    $Self->{GroupObject}          = $Kernel::OM->Get('Kernel::System::Group');
-    $Self->{ServiceObject}        = $Kernel::OM->Get('Kernel::System::Service');
-    $Self->{ValidObject}          = $Kernel::OM->Get('Kernel::System::Valid');
-    $Self->{GeneralCatalogObject} = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
-    $Self->{ConfigItemObject}     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
-    $Self->{LinkObject}           = $Kernel::OM->Get('Kernel::System::LinkObject');
-
     # the stats object needs a UserID parameter for the constructor
     # we need to discard any existing stats object before
     $Kernel::OM->ObjectsDiscard(
@@ -102,7 +89,6 @@ sub new {
             UserID => 1,
         },
     );
-    $Self->{StatsObject} = $Kernel::OM->Get('Kernel::System::Stats');
 
     # define file prefix for stats
     $Self->{FilePrefix} = 'ITSMStats';
@@ -146,7 +132,7 @@ sub CodeInstall {
     $Self->_SetDefaultPermission();
 
     # install stats
-    $Self->{StatsObject}->StatsInstall(
+    $Kernel::OM->Get('Kernel::System::Stats')->StatsInstall(
         FilePrefix => $Self->{FilePrefix},
     );
 
@@ -189,7 +175,7 @@ sub CodeReinstall {
     $Self->_SetDefaultPermission();
 
     # install stats
-    $Self->{StatsObject}->StatsInstall(
+    $Kernel::OM->Get('Kernel::System::Stats')->StatsInstall(
         FilePrefix => $Self->{FilePrefix},
     );
 
@@ -226,7 +212,7 @@ sub CodeUpgrade {
     $Self->_SetDefaultPermission();
 
     # install stats
-    $Self->{StatsObject}->StatsInstall(
+    $Kernel::OM->Get('Kernel::System::Stats')->StatsInstall(
         FilePrefix => $Self->{FilePrefix},
     );
 
@@ -282,14 +268,14 @@ sub _SetPreferences {
 
     NAME:
     for my $Name ( sort keys %Map ) {
-        my $Item = $Self->{GeneralCatalogObject}->ItemGet(
+        my $Item = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemGet(
             Name  => $Name,
             Class => 'ITSM::ConfigItem::DeploymentState',
         );
 
         next NAME if !$Item;
 
-        $Self->{GeneralCatalogObject}->GeneralCatalogPreferencesSet(
+        $Kernel::OM->Get('Kernel::System::GeneralCatalog')->GeneralCatalogPreferencesSet(
             ItemID => $Item->{ItemID},
             Key    => 'Functionality',
             Value  => $Map{$Name},
@@ -307,24 +293,24 @@ sub _SetDefaultPermission {
     my ( $Self, %Param ) = @_;
 
     # get class list
-    my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
+    my $ClassList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => 'ITSM::ConfigItem::Class',
     );
 
     # check if group already exists
-    my $GroupID = $Self->{GroupObject}->GroupLookup(
+    my $GroupID = $Kernel::OM->Get('Kernel::System::Group')->GroupLookup(
         Group  => 'itsm-configitem',
         UserID => 1,
     );
 
     # check if a permission group is already set. If not, set default permission group
     for my $ClassID ( sort keys %{$ClassList} ) {
-        my $Class = $Self->{GeneralCatalogObject}->ItemGet(
+        my $Class = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemGet(
             ItemID => $ClassID,
         );
 
         if ( !$Class->{Permission} ) {
-            $Self->{GeneralCatalogObject}->GeneralCatalogPreferencesSet(
+            $Kernel::OM->Get('Kernel::System::GeneralCatalog')->GeneralCatalogPreferencesSet(
                 ItemID => $Class->{ItemID},
                 Key    => 'Permission',
                 Value  => $GroupID,
@@ -350,7 +336,7 @@ sub _GroupAdd {
     # check needed stuff
     for my $Argument (qw(Name Description)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );
@@ -359,13 +345,13 @@ sub _GroupAdd {
     }
 
     # get valid list
-    my %ValidList = $Self->{ValidObject}->ValidList(
+    my %ValidList = $Kernel::OM->Get('Kernel::System::Valid')->ValidList(
         UserID => 1,
     );
     my %ValidListReverse = reverse %ValidList;
 
     # get list of all groups
-    my %GroupList = $Self->{GroupObject}->GroupList();
+    my %GroupList = $Kernel::OM->Get('Kernel::System::Group')->GroupList();
 
     # reverse the group list for easier lookup
     my %GroupListReverse = reverse %GroupList;
@@ -377,13 +363,13 @@ sub _GroupAdd {
     if ($GroupID) {
 
         # get current group data
-        my %GroupData = $Self->{GroupObject}->GroupGet(
+        my %GroupData = $Kernel::OM->Get('Kernel::System::Group')->GroupGet(
             ID     => $GroupID,
             UserID => 1,
         );
 
         # reactivate group
-        $Self->{GroupObject}->GroupUpdate(
+        $Kernel::OM->Get('Kernel::System::Group')->GroupUpdate(
             %GroupData,
             ValidID => $ValidListReverse{valid},
             UserID  => 1,
@@ -394,7 +380,7 @@ sub _GroupAdd {
 
     # add the group
     else {
-        return if !$Self->{GroupObject}->GroupAdd(
+        return if !$Kernel::OM->Get('Kernel::System::Group')->GroupAdd(
             Name    => $Param{Name},
             Comment => $Param{Description},
             ValidID => $ValidListReverse{valid},
@@ -403,13 +389,13 @@ sub _GroupAdd {
     }
 
     # lookup the new group id
-    my $NewGroupID = $Self->{GroupObject}->GroupLookup(
+    my $NewGroupID = $Kernel::OM->Get('Kernel::System::Group')->GroupLookup(
         Group  => $Param{Name},
         UserID => 1,
     );
 
     # add user root to the group
-    $Self->{GroupObject}->GroupMemberAdd(
+    $Kernel::OM->Get('Kernel::System::Group')->GroupMemberAdd(
         GID        => $NewGroupID,
         UID        => 1,
         Permission => {
@@ -441,7 +427,7 @@ sub _GroupDeactivate {
 
     # check needed stuff
     if ( !$Param{Name} ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => 'Need Name!',
         );
@@ -449,26 +435,26 @@ sub _GroupDeactivate {
     }
 
     # lookup group id
-    my $GroupID = $Self->{GroupObject}->GroupLookup(
+    my $GroupID = $Kernel::OM->Get('Kernel::System::Group')->GroupLookup(
         Group => $Param{Name},
     );
 
     return if !$GroupID;
 
     # get valid list
-    my %ValidList = $Self->{ValidObject}->ValidList(
+    my %ValidList = $Kernel::OM->Get('Kernel::System::Valid')->ValidList(
         UserID => 1,
     );
     my %ValidListReverse = reverse %ValidList;
 
     # get current group data
-    my %GroupData = $Self->{GroupObject}->GroupGet(
+    my %GroupData = $Kernel::OM->Get('Kernel::System::Group')->GroupGet(
         ID     => $GroupID,
         UserID => 1,
     );
 
     # deactivate group
-    $Self->{GroupObject}->GroupUpdate(
+    $Kernel::OM->Get('Kernel::System::Group')->GroupUpdate(
         %GroupData,
         ValidID => $ValidListReverse{invalid},
         UserID  => 1,
@@ -1079,7 +1065,7 @@ sub _AddConfigItemDefinitions {
     );
 
     # get list of installed config item classes
-    my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
+    my $ClassList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => 'ITSM::ConfigItem::Class',
     );
     my %ReverseClassList = reverse %{$ClassList};
@@ -1093,7 +1079,7 @@ sub _AddConfigItemDefinitions {
         next CLASSNAME if !$ClassID;
 
         # check if definition already exists
-        my $DefinitionList = $Self->{ConfigItemObject}->DefinitionList(
+        my $DefinitionList = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->DefinitionList(
             ClassID => $ClassID,
         );
 
@@ -1101,7 +1087,7 @@ sub _AddConfigItemDefinitions {
         next CLASSNAME if $DefinitionList && ref $DefinitionList eq 'ARRAY' && @{$DefinitionList};
 
         # add the new definition
-        $Self->{ConfigItemObject}->DefinitionAdd(
+        $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->DefinitionAdd(
             ClassID    => $ClassID,
             Definition => $Definition{$ClassName},
             UserID     => 1,
@@ -1123,14 +1109,14 @@ sub _LinkDelete {
     my ( $Self, %Param ) = @_;
 
     # get all config items
-    my $ConfigItemIDs = $Self->{ConfigItemObject}->ConfigItemSearch();
+    my $ConfigItemIDs = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemSearch();
 
     return if !$ConfigItemIDs;
     return if ref $ConfigItemIDs ne 'ARRAY';
 
     # delete the config item links
     for my $ConfigItemID ( @{$ConfigItemIDs} ) {
-        $Self->{LinkObject}->LinkDeleteAll(
+        $Kernel::OM->Get('Kernel::System::LinkObject')->LinkDeleteAll(
             Object => 'ITSMConfigItem',
             Key    => $ConfigItemID,
             UserID => 1,
@@ -1152,14 +1138,14 @@ sub _FillupEmptyLastVersionID {
     my ( $Self, %Param ) = @_;
 
     # get config items with empty last_version_id
-    $Self->{DBObject}->Prepare(
+    $Kernel::OM->Get('Kernel::System::DB')->Prepare(
         SQL => 'SELECT id FROM configitem WHERE '
             . 'last_version_id = 0 OR last_version_id IS NULL',
     );
 
     # fetch the result
     my @ConfigItemIDs;
-    while ( my @Row = $Self->{DBObject}->FetchrowArray() ) {
+    while ( my @Row = $Kernel::OM->Get('Kernel::System::DB')->FetchrowArray() ) {
         push @ConfigItemIDs, $Row[0];
     }
 
@@ -1167,7 +1153,7 @@ sub _FillupEmptyLastVersionID {
     for my $ConfigItemID (@ConfigItemIDs) {
 
         # get the last version of this config item
-        $Self->{DBObject}->Prepare(
+        $Kernel::OM->Get('Kernel::System::DB')->Prepare(
             SQL => 'SELECT id FROM configitem_version '
                 . 'WHERE configitem_id = ? ORDER BY id DESC',
             Bind  => [ \$ConfigItemID ],
@@ -1176,14 +1162,14 @@ sub _FillupEmptyLastVersionID {
 
         # fetch the result
         my $VersionID;
-        while ( my @Row = $Self->{DBObject}->FetchrowArray() ) {
+        while ( my @Row = $Kernel::OM->Get('Kernel::System::DB')->FetchrowArray() ) {
             $VersionID = $Row[0];
         }
 
         next CONFIGITEMID if !$VersionID;
 
         # update inci_state_id
-        $Self->{DBObject}->Do(
+        $Kernel::OM->Get('Kernel::System::DB')->Do(
             SQL => 'UPDATE configitem '
                 . 'SET last_version_id = ? '
                 . 'WHERE id = ?',
@@ -1206,7 +1192,7 @@ sub _FillupEmptyVersionIncidentStateID {
     my ( $Self, %Param ) = @_;
 
     # get operational incident state list
-    my $InciStateList = $Self->{GeneralCatalogObject}->ItemList(
+    my $InciStateList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class       => 'ITSM::Core::IncidentState',
         Preferences => {
             Functionality => 'operational',
@@ -1215,7 +1201,7 @@ sub _FillupEmptyVersionIncidentStateID {
 
     # error handling
     if ( !$InciStateList || ref $InciStateList ne 'HASH' || !%{$InciStateList} ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => "Can't find any item in general catalog class ITSM::Core::IncidentState!",
         );
@@ -1226,7 +1212,7 @@ sub _FillupEmptyVersionIncidentStateID {
     my @InciStateKeyList = sort keys %{$InciStateList};
 
     # update inci_state_id
-    return $Self->{DBObject}->Do(
+    return $Kernel::OM->Get('Kernel::System::DB')->Do(
         SQL => 'UPDATE configitem_version '
             . 'SET inci_state_id = ? '
             . 'WHERE inci_state_id = 0 OR inci_state_id IS NULL',
@@ -1246,7 +1232,7 @@ sub _FillupEmptyIncidentAndDeploymentStateID {
     my ( $Self, %Param ) = @_;
 
     # get config items with empty cur_depl_state_id or cur_inci_state_id
-    $Self->{DBObject}->Prepare(
+    $Kernel::OM->Get('Kernel::System::DB')->Prepare(
         SQL => 'SELECT id FROM configitem WHERE '
             . 'cur_depl_state_id = 0 OR cur_depl_state_id IS NULL OR '
             . 'cur_inci_state_id = 0 OR cur_inci_state_id IS NULL',
@@ -1254,7 +1240,7 @@ sub _FillupEmptyIncidentAndDeploymentStateID {
 
     # fetch the result
     my @ConfigItemIDs;
-    while ( my @Row = $Self->{DBObject}->FetchrowArray() ) {
+    while ( my @Row = $Kernel::OM->Get('Kernel::System::DB')->FetchrowArray() ) {
         push @ConfigItemIDs, $Row[0];
     }
 
@@ -1262,7 +1248,7 @@ sub _FillupEmptyIncidentAndDeploymentStateID {
     for my $ConfigItemID (@ConfigItemIDs) {
 
         # get last version
-        my $LastVersion = $Self->{ConfigItemObject}->VersionGet(
+        my $LastVersion = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->VersionGet(
             ConfigItemID => $ConfigItemID,
         );
 
@@ -1272,7 +1258,7 @@ sub _FillupEmptyIncidentAndDeploymentStateID {
         next CONFIGITEMID if !$LastVersion->{InciStateID};
 
         # complete config item
-        $Self->{DBObject}->Do(
+        $Kernel::OM->Get('Kernel::System::DB')->Do(
             SQL => 'UPDATE configitem SET '
                 . 'cur_depl_state_id = ?, '
                 . 'cur_inci_state_id = ? '
@@ -1300,7 +1286,7 @@ sub _DeleteServicePreferences {
     my ( $Self, %Param ) = @_;
 
     # get service list
-    my %ServiceList = $Self->{ServiceObject}->ServiceList(
+    my %ServiceList = $Kernel::OM->Get('Kernel::System::Service')->ServiceList(
         Valid  => 0,
         UserID => 1,
     );
@@ -1309,7 +1295,7 @@ sub _DeleteServicePreferences {
     for my $ServiceID ( sort keys %ServiceList ) {
 
         # delete the current incident state type from CIs of the service
-        $Self->{ServiceObject}->ServicePreferencesSet(
+        $Kernel::OM->Get('Kernel::System::Service')->ServicePreferencesSet(
             ServiceID => $ServiceID,
             Key       => 'CurInciStateTypeFromCIs',
             Value     => '',

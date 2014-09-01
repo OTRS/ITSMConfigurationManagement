@@ -38,11 +38,6 @@ local $Kernel::OM = Kernel::System::ObjectManager->new(
     },
 );
 
-# common objects
-my %CommonObject;
-$CommonObject{ConfigItemObject}     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
-$CommonObject{GeneralCatalogObject} = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
-
 print "\n";
 print "otrs.ITSMConfigItemDelete.pl\n";
 print "delete config items (all, by class (and deployment state) or by number).\n";
@@ -66,7 +61,7 @@ GetOptions(
 if ($All) {
 
     # get all config items ids
-    my @ConfigItemsIDs = @{ $CommonObject{ConfigItemObject}->ConfigItemSearch() };
+    my @ConfigItemsIDs = @{ $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemSearch() };
 
     # get number of config items
     my $CICount = scalar @ConfigItemsIDs;
@@ -102,7 +97,7 @@ elsif (@ConfigItemNumbers) {
     for my $ConfigItemNumber (@ConfigItemNumbers) {
 
         # checks the validity of the config item id
-        my $ID = $CommonObject{ConfigItemObject}->ConfigItemLookup(
+        my $ID = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemLookup(
             ConfigItemNumber => $ConfigItemNumber,
         );
 
@@ -127,7 +122,7 @@ elsif ($Class) {
     my @ConfigItemsIDs;
 
     # get class list
-    my $ClassList = $CommonObject{GeneralCatalogObject}->ItemList(
+    my $ClassList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => 'ITSM::ConfigItem::Class',
         Valid => 0,
     );
@@ -147,7 +142,7 @@ elsif ($Class) {
         if ($DeploymentState) {
 
             # get deployment state list
-            my $DeploymentStateList = $CommonObject{GeneralCatalogObject}->ItemList(
+            my $DeploymentStateList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
                 Class => 'ITSM::ConfigItem::DeploymentState',
             );
 
@@ -171,7 +166,7 @@ elsif ($Class) {
 
         # get ids of this class (and maybe deployment state) config items
         @ConfigItemsIDs
-            = @{ $CommonObject{ConfigItemObject}->ConfigItemSearch(%SearchParam) };
+            = @{ $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemSearch(%SearchParam) };
     }
     else {
         print "Unable to find class name $Class.\n";
@@ -211,7 +206,7 @@ sub DeleteConfigItems {
 
     # delete specified config items
     for my $ConfigItemID ( @{ $Param{ConfigItemsIDs} } ) {
-        my $True = $CommonObject{ConfigItemObject}->ConfigItemDelete(
+        my $True = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemDelete(
             ConfigItemID => $ConfigItemID,
             UserID       => 1,
         );

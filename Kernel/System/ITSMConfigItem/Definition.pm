@@ -85,7 +85,7 @@ sub DefinitionList {
 
     # check needed stuff
     if ( !$Param{ClassID} ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => 'Need ClassID!',
         );
@@ -93,14 +93,14 @@ sub DefinitionList {
     }
 
     # ask database
-    $Self->{DBObject}->Prepare(
+    $Kernel::OM->Get('Kernel::System::DB')->Prepare(
         SQL => 'SELECT id, configitem_definition, version, create_time, create_by '
             . 'FROM configitem_definition WHERE class_id = ? ORDER BY version',
         Bind => [ \$Param{ClassID} ],
     );
 
     my @DefinitionList;
-    while ( my @Row = $Self->{DBObject}->FetchrowArray() ) {
+    while ( my @Row = $Kernel::OM->Get('Kernel::System::DB')->FetchrowArray() ) {
         my %Definition;
         $Definition{DefinitionID} = $Row[0];
         $Definition{Definition}   = $Row[1];
@@ -145,7 +145,7 @@ sub DefinitionGet {
 
     # check needed stuff
     if ( !$Param{DefinitionID} && !$Param{ClassID} ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => 'Need DefinitionID or ClassID!',
         );
@@ -159,7 +159,7 @@ sub DefinitionGet {
             if $Self->{Cache}->{DefinitionGet}->{ $Param{DefinitionID} };
 
         # ask database
-        $Self->{DBObject}->Prepare(
+        $Kernel::OM->Get('Kernel::System::DB')->Prepare(
             SQL => 'SELECT id, class_id, configitem_definition, version, create_time, create_by '
                 . 'FROM configitem_definition WHERE id = ?',
             Bind  => [ \$Param{DefinitionID} ],
@@ -169,7 +169,7 @@ sub DefinitionGet {
     else {
 
         # ask database
-        $Self->{DBObject}->Prepare(
+        $Kernel::OM->Get('Kernel::System::DB')->Prepare(
             SQL => 'SELECT id, class_id, configitem_definition, version, create_time, create_by '
                 . 'FROM configitem_definition '
                 . 'WHERE class_id = ? ORDER BY version DESC',
@@ -180,7 +180,7 @@ sub DefinitionGet {
 
     # fetch the result
     my %Definition;
-    while ( my @Row = $Self->{DBObject}->FetchrowArray() ) {
+    while ( my @Row = $Kernel::OM->Get('Kernel::System::DB')->FetchrowArray() ) {
         $Definition{DefinitionID} = $Row[0];
         $Definition{ClassID}      = $Row[1];
         $Definition{Definition}   = $Row[2];
@@ -204,7 +204,7 @@ sub DefinitionGet {
     }
 
     # get class list
-    my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
+    my $ClassList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => 'ITSM::ConfigItem::Class',
     );
 
@@ -235,7 +235,7 @@ sub DefinitionAdd {
     # check needed stuff
     for my $Argument (qw(ClassID Definition UserID)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );
@@ -257,7 +257,7 @@ sub DefinitionAdd {
 
     # stop add, if definition was not changed
     if ( $LastDefinition->{DefinitionID} && $LastDefinition->{Definition} eq $Param{Definition} ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => "Can't add new definition! The definition was not changed.",
         );
@@ -272,7 +272,7 @@ sub DefinitionAdd {
     }
 
     # insert new definition
-    my $Success = $Self->{DBObject}->Do(
+    my $Success = $Kernel::OM->Get('Kernel::System::DB')->Do(
         SQL => 'INSERT INTO configitem_definition '
             . '(class_id, configitem_definition, version, create_time, create_by) VALUES '
             . '(?, ?, ?, current_timestamp, ?)',
@@ -282,7 +282,7 @@ sub DefinitionAdd {
     return if !$Success;
 
     # get id of new definition
-    $Self->{DBObject}->Prepare(
+    $Kernel::OM->Get('Kernel::System::DB')->Prepare(
         SQL => 'SELECT id FROM configitem_definition WHERE '
             . 'class_id = ? AND version = ? '
             . 'ORDER BY version DESC',
@@ -292,7 +292,7 @@ sub DefinitionAdd {
 
     # fetch the result
     my $DefinitionID;
-    while ( my @Row = $Self->{DBObject}->FetchrowArray() ) {
+    while ( my @Row = $Kernel::OM->Get('Kernel::System::DB')->FetchrowArray() ) {
         $DefinitionID = $Row[0];
     }
 
@@ -324,7 +324,7 @@ sub DefinitionCheck {
 
     # check needed stuff
     if ( !$Param{Definition} ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => 'Need Definition!',
         );
@@ -343,7 +343,7 @@ sub DefinitionCheck {
 
     # check if definition exists at all
     if ( !$Definition ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => 'Invalid Definition! You have an syntax error in the definition.',
         );
@@ -352,7 +352,7 @@ sub DefinitionCheck {
 
     # definition must be an array
     if ( ref $Definition ne 'ARRAY' ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => 'Invalid Definition! Definition is not an array reference.',
         );
@@ -364,7 +364,7 @@ sub DefinitionCheck {
 
         # each definition attribute must be a hash reference with data
         if ( !$Attribute || ref $Attribute ne 'HASH' || !%{$Attribute} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message =>
                     'Invalid Definition! At least one definition attribute is not a hash reference.',
@@ -386,7 +386,7 @@ sub DefinitionCheck {
                 );
 
                 if ( !$Check ) {
-                    $Self->{LogObject}->Log(
+                    $Kernel::OM->Get('Kernel::System::Log')->Log(
                         Priority => 'error',
                         Message =>
                             "Invalid Sub-Definition of element with the key '$Attribute->{Key}'.",
@@ -415,7 +415,7 @@ sub _DefinitionPrepare {
 
     # check definition
     if ( !$Param{DefinitionRef} ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => 'Need DefinitionRef!',
         );

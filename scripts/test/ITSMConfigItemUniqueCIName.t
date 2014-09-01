@@ -13,9 +13,9 @@ use utf8;
 
 use vars qw($Self);
 
-$Self->{ConfigObject}         = $Kernel::OM->Get('Kernel::Config');
-$Self->{GeneralCatalogObject} = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
-$Self->{ConfigItemObject}     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+my $ConfigObject         = $Kernel::OM->Get('Kernel::Config');
+my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
+my $ConfigItemObject     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
 
 # ------------------------------------------------------------ #
 # make preparations
@@ -34,7 +34,7 @@ my $SecondClassName = 'UnitTestClass2' . int rand 1_000_000;
 my $NamePrefix = 'UnitTestName' . int rand 1_000_000;
 
 # add both unittest config item classes
-my $FirstClassID = $Self->{GeneralCatalogObject}->ItemAdd(
+my $FirstClassID = $GeneralCatalogObject->ItemAdd(
     Class   => 'ITSM::ConfigItem::Class',
     Name    => $FirstClassName,
     ValidID => 1,
@@ -53,7 +53,7 @@ if ( !$FirstClassID ) {
 push @ConfigItemClassIDs, $FirstClassID;
 push @ConfigItemClasses,  $FirstClassName;
 
-my $SecondClassID = $Self->{GeneralCatalogObject}->ItemAdd(
+my $SecondClassID = $GeneralCatalogObject->ItemAdd(
     Class   => 'ITSM::ConfigItem::Class',
     Name    => $SecondClassName,
     ValidID => 1,
@@ -74,7 +74,7 @@ push @ConfigItemClasses,  $SecondClassName;
 
 # add an empty definition to the class. the definition doesn't need any elements, as we're only
 # testing the name which isn't part of the definition, but of the configitem itself
-my $FirstDefinitionID = $Self->{ConfigItemObject}->DefinitionAdd(
+my $FirstDefinitionID = $ConfigItemObject->DefinitionAdd(
     ClassID    => $FirstClassID,
     Definition => "[]",
     UserID     => 1,
@@ -91,7 +91,7 @@ if ( !$FirstDefinitionID ) {
 
 push @ConfigItemDefinitionIDs, $FirstDefinitionID;
 
-my $SecondDefinitionID = $Self->{ConfigItemObject}->DefinitionAdd(
+my $SecondDefinitionID = $ConfigItemObject->DefinitionAdd(
     ClassID    => $SecondClassID,
     Definition => "[]",
     UserID     => 1,
@@ -111,7 +111,7 @@ push @ConfigItemDefinitionIDs, $SecondDefinitionID;
 my @ConfigItemIDs;
 
 # add a configitem to each class
-my $FirstConfigItemID = $Self->{ConfigItemObject}->ConfigItemAdd(
+my $FirstConfigItemID = $ConfigItemObject->ConfigItemAdd(
     ClassID => $FirstClassID,
     UserID  => 1,
 );
@@ -125,7 +125,7 @@ if ( !$FirstConfigItemID ) {
 
 push @ConfigItemIDs, $FirstConfigItemID;
 
-my $SecondConfigItemID = $Self->{ConfigItemObject}->ConfigItemAdd(
+my $SecondConfigItemID = $ConfigItemObject->ConfigItemAdd(
     ClassID => $SecondClassID,
     UserID  => 1,
 );
@@ -140,7 +140,7 @@ if ( !$SecondConfigItemID ) {
 push @ConfigItemIDs, $SecondConfigItemID;
 
 # create a 3rd configitem in the 2nd class
-my $ThirdConfigItemID = $Self->{ConfigItemObject}->ConfigItemAdd(
+my $ThirdConfigItemID = $ConfigItemObject->ConfigItemAdd(
     ClassID => $SecondClassID,
     UserID  => 1,
 );
@@ -155,19 +155,19 @@ if ( !$ThirdConfigItemID ) {
 push @ConfigItemIDs, $ThirdConfigItemID;
 
 # get deployment state list
-my $DeplStateList = $Self->{GeneralCatalogObject}->ItemList(
+my $DeplStateList = $GeneralCatalogObject->ItemList(
     Class => 'ITSM::ConfigItem::DeploymentState',
 );
 my %DeplStateListReverse = reverse %{$DeplStateList};
 
 # get incident state list
-my $InciStateList = $Self->{GeneralCatalogObject}->ItemList(
+my $InciStateList = $GeneralCatalogObject->ItemList(
     Class => 'ITSM::Core::IncidentState',
 );
 my %InciStateListReverse = reverse %{$InciStateList};
 
 # set a name for each configitem
-my $FirstInitialVersionID = $Self->{ConfigItemObject}->VersionAdd(
+my $FirstInitialVersionID = $ConfigItemObject->VersionAdd(
     ConfigItemID => $FirstConfigItemID,
     Name         => $NamePrefix . 'First#001',
     DefinitionID => $FirstDefinitionID,
@@ -183,7 +183,7 @@ if ( !$FirstInitialVersionID ) {
     );
 }
 
-my $SecondInitialVersionID = $Self->{ConfigItemObject}->VersionAdd(
+my $SecondInitialVersionID = $ConfigItemObject->VersionAdd(
     ConfigItemID => $SecondConfigItemID,
     Name         => $NamePrefix . 'Second#001',
     DefinitionID => $SecondDefinitionID,
@@ -199,7 +199,7 @@ if ( !$SecondInitialVersionID ) {
     );
 }
 
-my $ThirdInitialVersionID = $Self->{ConfigItemObject}->VersionAdd(
+my $ThirdInitialVersionID = $ConfigItemObject->VersionAdd(
     ConfigItemID => $ThirdConfigItemID,
     Name         => $NamePrefix . 'Second#002',
     DefinitionID => $SecondDefinitionID,
@@ -220,19 +220,19 @@ if ( !$ThirdInitialVersionID ) {
 # ------------------------------------------------------------ #
 
 # read the original setting for the setting EnableUniquenessCheck
-my $OrigEnableSetting = $Self->{ConfigObject}->Get('UniqueCIName::EnableUniquenessCheck');
+my $OrigEnableSetting = $ConfigObject->Get('UniqueCIName::EnableUniquenessCheck');
 
 # enable the uniqueness check
-$Self->{ConfigObject}->Set(
+$ConfigObject->Set(
     Key   => 'UniqueCIName::EnableUniquenessCheck',
     Value => 1,
 );
 
 # read the original setting for the scope of the uniqueness check
-my $OrigScope = $Self->{ConfigObject}->Get('UniqueCIName::UniquenessCheckScope');
+my $OrigScope = $ConfigObject->Get('UniqueCIName::UniquenessCheckScope');
 
 # make sure, the scope for the uniqueness check is set to 'global'
-$Self->{ConfigObject}->Set(
+$ConfigObject->Set(
     Key   => 'UniqueCIName::UniquenessCheckScope',
     Value => 'global',
 );
@@ -240,7 +240,7 @@ $Self->{ConfigObject}->Set(
 my $RenameSuccess;
 
 # try to give the 1st configitem the same name as the 2nd one
-$RenameSuccess = $Self->{ConfigItemObject}->VersionAdd(
+$RenameSuccess = $ConfigItemObject->VersionAdd(
     ConfigItemID => $FirstConfigItemID,
     Name         => $NamePrefix . 'Second#001',
     DefinitionID => $FirstDefinitionID,
@@ -255,7 +255,7 @@ $Self->False(
 );
 
 # try to give the 2nd configitem the same name as the 3rd one
-$RenameSuccess = $Self->{ConfigItemObject}->VersionAdd(
+$RenameSuccess = $ConfigItemObject->VersionAdd(
     ConfigItemID => $SecondConfigItemID,
     Name         => $NamePrefix . 'Second#002',
     DefinitionID => $FirstDefinitionID,
@@ -270,13 +270,13 @@ $Self->False(
 );
 
 # set the scope for the uniqueness check to 'class'
-$Self->{ConfigObject}->Set(
+$ConfigObject->Set(
     Key   => 'UniqueCIName::UniquenessCheckScope',
     Value => 'class',
 );
 
 # try to rename First#001 again to Second#001 which should work now, due to the different class
-$RenameSuccess = $Self->{ConfigItemObject}->VersionAdd(
+$RenameSuccess = $ConfigItemObject->VersionAdd(
     ConfigItemID => $FirstConfigItemID,
     Name         => $NamePrefix . 'Second#001',
     DefinitionID => $FirstDefinitionID,
@@ -291,7 +291,7 @@ $Self->True(
 );
 
 # trying now to create a duplicate name within a class
-$RenameSuccess = $Self->{ConfigItemObject}->VersionAdd(
+$RenameSuccess = $ConfigItemObject->VersionAdd(
     ConfigItemID => $SecondConfigItemID,
     Name         => $NamePrefix . 'Second#002',
     DefinitionID => $SecondDefinitionID,
@@ -306,13 +306,13 @@ $Self->False(
 );
 
 # reset the enabled setting for the uniqueness check to its original value
-$Self->{ConfigObject}->Set(
+$ConfigObject->Set(
     Key   => 'UniqueCIName::EnableUniquenessCheck',
     Value => $OrigEnableSetting,
 );
 
 # reset the scope for the uniqueness check to its original value
-$Self->{ConfigObject}->Set(
+$ConfigObject->Set(
     Key   => 'UniqueCIName::UniquenessCheckScope',
     Value => $OrigScope,
 );
@@ -322,7 +322,7 @@ $Self->{ConfigObject}->Set(
 # ------------------------------------------------------------ #
 
 # get current class list
-my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
+my $ClassList = $GeneralCatalogObject->ItemList(
     Class => 'ITSM::ConfigItem::Class',
 );
 
@@ -333,7 +333,7 @@ for my $ItemID ( sort keys %{$ClassList} ) {
     next ITEMID if $ClassList->{$ItemID} !~ m{ \A UnitTest }xms;
 
     # update item
-    $Self->{GeneralCatalogObject}->ItemUpdate(
+    $GeneralCatalogObject->ItemUpdate(
         ItemID  => $ItemID,
         Name    => $ClassList->{$ItemID},
         ValidID => 2,
@@ -343,7 +343,7 @@ for my $ItemID ( sort keys %{$ClassList} ) {
 
 # delete the test config items
 for my $ConfigItemID (@ConfigItemIDs) {
-    my $DeleteOk = $Self->{ConfigItemObject}->ConfigItemDelete(
+    my $DeleteOk = $ConfigItemObject->ConfigItemDelete(
         ConfigItemID => $ConfigItemID,
         UserID       => 1,
     );

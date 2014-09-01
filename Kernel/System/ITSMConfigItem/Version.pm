@@ -46,7 +46,7 @@ sub VersionZoomList {
 
     # check needed stuff
     if ( !$Param{ConfigItemID} ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => 'Need ConfigItemID!',
         );
@@ -59,7 +59,7 @@ sub VersionZoomList {
     );
 
     # get version zoom list
-    $Self->{DBObject}->Prepare(
+    $Kernel::OM->Get('Kernel::System::DB')->Prepare(
         SQL => 'SELECT id, name, depl_state_id, inci_state_id, create_time, create_by '
             . 'FROM configitem_version WHERE configitem_id = ? ORDER BY id',
         Bind => [ \$Param{ConfigItemID} ],
@@ -67,7 +67,7 @@ sub VersionZoomList {
 
     # fetch the result
     my @VersionList;
-    while ( my @Row = $Self->{DBObject}->FetchrowArray() ) {
+    while ( my @Row = $Kernel::OM->Get('Kernel::System::DB')->FetchrowArray() ) {
         my %Version;
         $Version{VersionID}   = $Row[0];
         $Version{Name}        = $Row[1];
@@ -82,7 +82,7 @@ sub VersionZoomList {
     for my $Version (@VersionList) {
 
         # get deployment state functionality
-        my $DeplState = $Self->{GeneralCatalogObject}->ItemGet(
+        my $DeplState = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemGet(
             ItemID => $Version->{DeplStateID},
         );
 
@@ -90,7 +90,7 @@ sub VersionZoomList {
         $Version->{DeplStateType} = $DeplState->{Functionality};
 
         # get incident state functionality
-        my $InciState = $Self->{GeneralCatalogObject}->ItemGet(
+        my $InciState = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemGet(
             ItemID => $Version->{InciStateID},
         );
 
@@ -127,7 +127,7 @@ sub VersionList {
 
     # check needed stuff
     if ( !$Param{ConfigItemID} ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => 'Need ConfigItemID!',
         );
@@ -135,14 +135,14 @@ sub VersionList {
     }
 
     # get version list
-    $Self->{DBObject}->Prepare(
+    $Kernel::OM->Get('Kernel::System::DB')->Prepare(
         SQL  => 'SELECT id FROM configitem_version WHERE configitem_id = ? ORDER BY id',
         Bind => [ \$Param{ConfigItemID} ],
     );
 
     # fetch the result
     my @VersionList;
-    while ( my @Row = $Self->{DBObject}->FetchrowArray() ) {
+    while ( my @Row = $Kernel::OM->Get('Kernel::System::DB')->FetchrowArray() ) {
         push @VersionList, $Row[0];
     }
 
@@ -210,7 +210,7 @@ sub VersionGet {
 
     # check needed stuff
     if ( !$Param{VersionID} && !$Param{ConfigItemID} ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => 'Need VersionID or ConfigItemID!',
         );
@@ -231,7 +231,7 @@ sub VersionGet {
         }
 
         # get version
-        $Self->{DBObject}->Prepare(
+        $Kernel::OM->Get('Kernel::System::DB')->Prepare(
             SQL => 'SELECT id, configitem_id, name, definition_id, '
                 . 'depl_state_id, inci_state_id, create_time, create_by '
                 . 'FROM configitem_version WHERE id = ?',
@@ -242,7 +242,7 @@ sub VersionGet {
     else {
 
         # get version
-        $Self->{DBObject}->Prepare(
+        $Kernel::OM->Get('Kernel::System::DB')->Prepare(
             SQL => 'SELECT id, configitem_id, name, definition_id, '
                 . 'depl_state_id, inci_state_id, create_time, create_by '
                 . 'FROM configitem_version '
@@ -254,7 +254,7 @@ sub VersionGet {
 
     # fetch the result
     my %Version;
-    while ( my @Row = $Self->{DBObject}->FetchrowArray() ) {
+    while ( my @Row = $Kernel::OM->Get('Kernel::System::DB')->FetchrowArray() ) {
         $Version{VersionID}    = $Row[0];
         $Version{ConfigItemID} = $Row[1];
         $Version{Name}         = $Row[2];
@@ -267,7 +267,7 @@ sub VersionGet {
 
     # check version
     if ( !$Version{VersionID} ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => 'No such config item version!',
         );
@@ -275,7 +275,7 @@ sub VersionGet {
     }
 
     # get deployment state functionality
-    my $DeplState = $Self->{GeneralCatalogObject}->ItemGet(
+    my $DeplState = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemGet(
         ItemID => $Version{DeplStateID},
     );
 
@@ -283,7 +283,7 @@ sub VersionGet {
     $Version{DeplStateType} = $DeplState->{Functionality};
 
     # get incident state functionality
-    my $InciState = $Self->{GeneralCatalogObject}->ItemGet(
+    my $InciState = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemGet(
         ItemID => $Version{InciStateID},
     );
 
@@ -298,7 +298,7 @@ sub VersionGet {
 
     # check config item data
     if ( !$ConfigItem || ref $ConfigItem ne 'HASH' ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => "Can't get config item $Version{ConfigItemID}!",
         );
@@ -354,7 +354,7 @@ sub VersionConfigItemIDGet {
 
     # check needed stuff
     if ( !$Param{VersionID} ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => 'Need VersionID!',
         );
@@ -366,7 +366,7 @@ sub VersionConfigItemIDGet {
         if $Self->{Cache}->{VersionConfigItemIDGet}->{ $Param{VersionID} };
 
     # get config item id
-    $Self->{DBObject}->Prepare(
+    $Kernel::OM->Get('Kernel::System::DB')->Prepare(
         SQL   => 'SELECT configitem_id FROM configitem_version WHERE id = ?',
         Bind  => [ \$Param{VersionID} ],
         Limit => 1,
@@ -374,7 +374,7 @@ sub VersionConfigItemIDGet {
 
     # fetch the result
     my $ConfigItemID;
-    while ( my @Row = $Self->{DBObject}->FetchrowArray() ) {
+    while ( my @Row = $Kernel::OM->Get('Kernel::System::DB')->FetchrowArray() ) {
         $ConfigItemID = $Row[0];
     }
 
@@ -406,7 +406,7 @@ sub VersionAdd {
     # check needed stuff
     for my $Attribute (qw(ConfigItemID Name DefinitionID DeplStateID InciStateID UserID)) {
         if ( !$Param{$Attribute} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Attribute!",
             );
@@ -415,7 +415,7 @@ sub VersionAdd {
     }
 
     # get deployment state list
-    my $DeplStateList = $Self->{GeneralCatalogObject}->ItemList(
+    my $DeplStateList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => 'ITSM::ConfigItem::DeploymentState',
     );
 
@@ -425,7 +425,7 @@ sub VersionAdd {
     # check the deployment state id
     if ( !$DeplStateList->{ $Param{DeplStateID} } ) {
 
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => 'No valid deployment state id given!',
         );
@@ -433,7 +433,7 @@ sub VersionAdd {
     }
 
     # get incident state list
-    my $InciStateList = $Self->{GeneralCatalogObject}->ItemList(
+    my $InciStateList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => 'ITSM::Core::IncidentState',
     );
 
@@ -443,7 +443,7 @@ sub VersionAdd {
     # check the incident state id
     if ( !$InciStateList->{ $Param{InciStateID} } ) {
 
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => 'No valid incident state id given!',
         );
@@ -478,7 +478,7 @@ sub VersionAdd {
     return if ref $ConfigItemInfo ne 'HASH';
 
     # check, whether the feature to check for a unique name is enabled
-    if ( $Self->{ConfigObject}->Get('UniqueCIName::EnableUniquenessCheck') ) {
+    if ( $Kernel::OM->Get('Kernel::Config')->Get('UniqueCIName::EnableUniquenessCheck') ) {
 
         my $NameDuplicates = $Self->UniqueNameCheck(
             ConfigItemID => $Param{ConfigItemID},
@@ -493,7 +493,7 @@ sub VersionAdd {
             my $Duplicates = join ', ', @{$NameDuplicates};
 
             # write an error log message containing all the duplicate IDs
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "The name $Param{Name} is already in use (ConfigItemIDs: $Duplicates)!",
             );
@@ -510,7 +510,7 @@ sub VersionAdd {
     return $ReturnVersionID if !( $Events && keys %{$Events} );
 
     # insert new version
-    my $Success = $Self->{DBObject}->Do(
+    my $Success = $Kernel::OM->Get('Kernel::System::DB')->Do(
         SQL => 'INSERT INTO configitem_version '
             . '(configitem_id, name, definition_id, '
             . 'depl_state_id, inci_state_id, create_time, create_by) VALUES '
@@ -533,7 +533,7 @@ sub VersionAdd {
     }
 
     # get id of new version
-    $Self->{DBObject}->Prepare(
+    $Kernel::OM->Get('Kernel::System::DB')->Prepare(
         SQL => 'SELECT id, create_time FROM configitem_version WHERE '
             . 'configitem_id = ? ORDER BY id DESC',
         Bind  => [ \$Param{ConfigItemID} ],
@@ -543,14 +543,14 @@ sub VersionAdd {
     # fetch the result
     my $VersionID;
     my $CreateTime;
-    while ( my @Row = $Self->{DBObject}->FetchrowArray() ) {
+    while ( my @Row = $Kernel::OM->Get('Kernel::System::DB')->FetchrowArray() ) {
         $VersionID  = $Row[0];
         $CreateTime = $Row[1];
     }
 
     # check version id
     if ( !$VersionID ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => "Can't get the new version id!",
         );
@@ -568,7 +568,7 @@ sub VersionAdd {
     }
 
     # update last_version_id, cur_depl_state_id, cur_inci_state_id, change_time and change_by
-    $Self->{DBObject}->Do(
+    $Kernel::OM->Get('Kernel::System::DB')->Do(
         SQL => 'UPDATE configitem SET last_version_id = ?, '
             . 'cur_depl_state_id = ?, cur_inci_state_id = ?, '
             . 'change_time = ?, change_by = ? '
@@ -681,14 +681,14 @@ sub VersionDelete {
 
     # check needed stuff
     if ( !$Param{UserID} ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => 'Need UserID!',
         );
         return;
     }
     if ( !$Param{VersionID} && !$Param{ConfigItemID} ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => 'Need VersionID or ConfigItemID!',
         );
@@ -728,7 +728,7 @@ sub VersionDelete {
         );
 
         # delete version
-        $Success = $Self->{DBObject}->Do(
+        $Success = $Kernel::OM->Get('Kernel::System::DB')->Do(
             SQL  => "DELETE FROM configitem_version WHERE id = ?",
             Bind => [ \$VersionID ],
         );
@@ -809,7 +809,7 @@ sub VersionSearch {
         }
 
         if ( ref $Param{$Argument} ne 'ARRAY' ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "$Argument must be an array reference!",
             );
@@ -849,7 +849,7 @@ sub VersionSearch {
         if ( !$OrderBy || !$OrderByTable{$OrderBy} || $OrderBySeen{$OrderBy} ) {
 
             # found an error
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "OrderBy contains invalid value '$OrderBy' "
                     . 'or the value is used more than once!',
@@ -870,7 +870,7 @@ sub VersionSearch {
         next DIRECTION if $Direction eq 'Down';
 
         # found an error
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => "OrderByDirection can only contain 'Up' or 'Down'!",
         );
@@ -906,7 +906,7 @@ sub VersionSearch {
     }
 
     # get like escape string needed for some databases (e.g. oracle)
-    my $LikeEscapeString = $Self->{DBObject}->GetDatabaseFunction('LikeEscapeString');
+    my $LikeEscapeString = $Kernel::OM->Get('Kernel::System::DB')->GetDatabaseFunction('LikeEscapeString');
 
     # add name to sql where array
     my @SQLWhere;
@@ -916,7 +916,7 @@ sub VersionSearch {
         my $Name = $Param{Name};
 
         # quote
-        $Name = $Self->{DBObject}->Quote($Name);
+        $Name = $Kernel::OM->Get('Kernel::System::DB')->Quote($Name);
 
         if ( $Param{UsingWildcards} ) {
 
@@ -943,7 +943,7 @@ sub VersionSearch {
         next ARRAYPARAM if !$Param{$ArrayParam};
 
         if ( ref $Param{$ArrayParam} ne 'ARRAY' ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "$ArrayParam must be an array reference!",
             );
@@ -954,7 +954,7 @@ sub VersionSearch {
 
         # quote as integer
         for my $OneParam ( @{ $Param{$ArrayParam} } ) {
-            $OneParam = $Self->{DBObject}->Quote( $OneParam, 'Integer' );
+            $OneParam = $Kernel::OM->Get('Kernel::System::DB')->Quote( $OneParam, 'Integer' );
         }
 
         # create string
@@ -973,7 +973,7 @@ sub VersionSearch {
 
     # set limit, quote as integer
     if ( $Param{Limit} ) {
-        $Param{Limit} = $Self->{DBObject}->Quote( $Param{Limit}, 'Integer' );
+        $Param{Limit} = $Kernel::OM->Get('Kernel::System::DB')->Quote( $Param{Limit}, 'Integer' );
     }
 
     # add the order by columns also to the selected columns
@@ -996,14 +996,14 @@ sub VersionSearch {
     }
 
     # ask the database
-    $Self->{DBObject}->Prepare(
+    $Kernel::OM->Get('Kernel::System::DB')->Prepare(
         SQL   => $SQL,
         Limit => $Param{Limit},
     );
 
     # fetch the result
     my @ConfigItemList;
-    while ( my @Row = $Self->{DBObject}->FetchrowArray() ) {
+    while ( my @Row = $Kernel::OM->Get('Kernel::System::DB')->FetchrowArray() ) {
         push @ConfigItemList, $Row[0];
     }
 
@@ -1036,7 +1036,7 @@ sub _GetEvents {
     # check needed stuff
     for my $Needed (qw(ConfigItemInfo Param)) {
         if ( !$Param{$Needed} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Needed!",
             );
@@ -1117,7 +1117,7 @@ sub _EventHandlerForChangedXMLValues {
     # check needed stuff
     for my $Needed (qw(UpdateValues ConfigItemID UserID)) {
         if ( !$Param{$Needed} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Needed!",
             );
@@ -1188,7 +1188,7 @@ sub _FindChangedXMLValues {
     # check for needed stuff
     for my $Needed (qw(ConfigItemID NewXMLData)) {
         if ( !$Param{$Needed} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Needed!",
             );
@@ -1216,7 +1216,7 @@ sub _FindChangedXMLValues {
 
     # get all tagkeys in new and old XML data
     # use a side effect of XMLHash2D(), which adds the tag keys to the passed in data structure
-    $Self->{XMLObject}->XMLHash2D( XMLHash => $NewXMLData );
+    $Kernel::OM->Get('Kernel::System::XML')->XMLHash2D( XMLHash => $NewXMLData );
     my @TagKeys = $Self->_GrabTagKeys( Data => [ $OldXMLData, $NewXMLData ] );
 
     # get an unique list of all tag keys

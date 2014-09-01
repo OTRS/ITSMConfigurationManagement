@@ -16,6 +16,7 @@ our @ObjectDependencies = (
     'Kernel::System::GeneralCatalog',
     'Kernel::System::Group',
     'Kernel::System::ITSMConfigItem',
+    'Kernel::System::Log',
 );
 
 =head1 NAME
@@ -49,10 +50,6 @@ sub new {
     my $Self = {};
     bless( $Self, $Type );
 
-    $Self->{GroupObject}          = $Kernel::OM->Get('Kernel::System::Group');
-    $Self->{GeneralCatalogObject} = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
-    $Self->{ConfigItemObject}     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
-
     return $Self;
 }
 
@@ -74,7 +71,7 @@ sub Run {
     # check needed stuff
     for my $Needed (qw(UserID Type ItemID)) {
         if ( !$Param{$Needed} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Needed!",
             );
@@ -83,17 +80,17 @@ sub Run {
     }
 
     # get config item data
-    my $ConfigItem = $Self->{ConfigItemObject}->ConfigItemGet(
+    my $ConfigItem = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemGet(
         ConfigItemID => $Param{ItemID},
     );
 
     # get Class data
-    my $ClassItem = $Self->{GeneralCatalogObject}->ItemGet(
+    my $ClassItem = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemGet(
         ItemID => $ConfigItem->{ClassID}
     );
 
     # get user groups
-    my @GroupIDs = $Self->{GroupObject}->GroupMemberList(
+    my @GroupIDs = $Kernel::OM->Get('Kernel::System::Group')->GroupMemberList(
         UserID => $Param{UserID},
         Type   => $Param{Type},
         Result => 'ID',

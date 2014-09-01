@@ -40,12 +40,6 @@ local $Kernel::OM = Kernel::System::ObjectManager->new(
     },
 );
 
-# common objects
-my %CommonObject;
-$CommonObject{ConfigObject}         = $Kernel::OM->Get('Kernel::Config');
-$CommonObject{ConfigItemObject}     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
-$CommonObject{GeneralCatalogObject} = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
-
 print "\n";
 print "otrs.ITSMConfigItemListDuplicates.pl\n";
 print "List ConfigItems which have a non-unique name.\n";
@@ -86,7 +80,7 @@ my %SearchCriteria;
 if ($Class) {
 
     # get class list
-    my $ClassList = $CommonObject{GeneralCatalogObject}->ItemList(
+    my $ClassList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => 'ITSM::ConfigItem::Class',
     );
 
@@ -107,7 +101,7 @@ if ($Class) {
 
 if ( !$AllStates ) {
 
-    my $StateList = $CommonObject{GeneralCatalogObject}->ItemList(
+    my $StateList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class       => 'ITSM::ConfigItem::DeploymentState',
         Preferences => {
             Functionality => [ 'preproductive', 'productive' ],
@@ -120,7 +114,7 @@ if ( !$AllStates ) {
 }
 
 # get all config items ids
-my @ConfigItemIDs = @{ $CommonObject{ConfigItemObject}->ConfigItemSearch(%SearchCriteria) };
+my @ConfigItemIDs = @{ $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemSearch(%SearchCriteria) };
 
 # get number of config items
 my $CICount = scalar @ConfigItemIDs;
@@ -131,7 +125,7 @@ if ($CICount) {
     # if the scope was explicitely defined, set it, otherwise this script will fall back to the
     # value set in SysConfig
     if ($Scope) {
-        $CommonObject{ConfigObject}->Set(
+        $Kernel::OM->Get('Kernel::Config')->Set(
             Key   => 'UniqueCIName::UniquenessCheckScope',
             Value => $Scope,
         );
@@ -151,14 +145,14 @@ if ($CICount) {
     for my $ConfigItemID (@ConfigItemIDs) {
 
         # get the attributes of this config item
-        my $ConfigItem = $CommonObject{ConfigItemObject}->ConfigItemGet(
+        my $ConfigItem = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemGet(
             ConfigItemID => $ConfigItemID,
         );
 
         next CONFIGITEMID if !$ConfigItem->{LastVersionID};
 
         # get the latest version of this config item
-        my $Version = $CommonObject{ConfigItemObject}->VersionGet(
+        my $Version = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->VersionGet(
             VersionID  => $ConfigItem->{LastVersionID},
             XMLDataGet => 1,
         );
@@ -170,7 +164,7 @@ if ($CICount) {
             next CONFIGITEMID;
         }
 
-        my $Duplicates = $CommonObject{ConfigItemObject}->UniqueNameCheck(
+        my $Duplicates = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->UniqueNameCheck(
             ConfigItemID => $ConfigItemID,
             ClassID      => $ConfigItem->{ClassID},
             Name         => $Version->{Name}
@@ -185,11 +179,11 @@ if ($CICount) {
             for my $DuplicateID ( @{$Duplicates} ) {
 
                 # get the # of the duplicate
-                my $DuplicateConfigItem = $CommonObject{ConfigItemObject}->ConfigItemGet(
+                my $DuplicateConfigItem = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemGet(
                     ConfigItemID => $DuplicateID,
                 );
 
-                my $DuplicateVersion = $CommonObject{ConfigItemObject}->VersionGet(
+                my $DuplicateVersion = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->VersionGet(
                     VersionID => $DuplicateConfigItem->{LastVersionID},
                 );
 
