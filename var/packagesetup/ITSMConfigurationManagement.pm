@@ -77,10 +77,17 @@ sub new {
         }
     }
 
+    # always discard the config object before package code is executed,
+    # to make sure that the config object will be created newly, so that it
+    # will use the recently written new config from the package
+    $Kernel::OM->ObjectsDiscard(
+        Objects => [ 'Kernel::Config' ],
+    );
+
     # the stats object needs a UserID parameter for the constructor
     # we need to discard any existing stats object before
     $Kernel::OM->ObjectsDiscard(
-        Objects => ['Kernel::System::Stats'],
+        Objects => [ 'Kernel::System::Stats' ],
     );
 
     # define UserID parameter for the constructor of the stats object
