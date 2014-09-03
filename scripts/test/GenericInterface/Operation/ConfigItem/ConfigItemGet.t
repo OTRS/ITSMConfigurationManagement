@@ -10,19 +10,12 @@
 use strict;
 use warnings;
 use utf8;
+
 use vars (qw($Self));
 
-use MIME::Base64;
-use Kernel::System::ITSMConfigItem;
-use Kernel::System::GeneralCatalog;
 use Kernel::GenericInterface::Debugger;
-use Kernel::GenericInterface::Requester;
-use Kernel::System::GenericInterface::Webservice;
-use Kernel::System::UnitTest::Helper;
 use Kernel::GenericInterface::Operation::ConfigItem::ConfigItemCreate;
 use Kernel::GenericInterface::Operation::ConfigItem::ConfigItemGet;
-use Kernel::GenericInterface::Operation::ConfigItem::Common;
-use Kernel::GenericInterface::Operation::Session::SessionCreate;
 use Kernel::System::VariableCheck qw(:all);
 
 # set UserID to root
@@ -30,21 +23,17 @@ $Self->{UserID} = 1;
 
 # helper object
 # skip SSL certiciate verification
-my $HelperObject = Kernel::System::UnitTest::Helper->new(
-    %{$Self},
-    UnitTestObject             => $Self,
-    RestoreSystemConfiguration => 1,
-    SkipSSLVerify              => 1,
+$Kernel::OM->ObjectParamAdd(
+    'Kernel::System::UnitTest::Helper' => {
+        RestoreSystemConfiguration => 1,
+        SkipSSLVerify              => 1,
+    },
 );
+my $HelperObject = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
 
 my $RandomID = $HelperObject->GetRandomID();
 
-my $ConfigObject = Kernel::Config->new();
-
-my $SysConfigObject = Kernel::System::SysConfig->new(
-    %{$Self},
-    ConfigObject => $ConfigObject,
-);
+my $ConfigObject = $Kernel::OM->Get('Kernel::Config');
 
 # check if SSL Certificate verification is disabled
 $Self->Is(
@@ -54,24 +43,12 @@ $Self->Is(
 );
 
 # create ConfigItem object
-my $ConfigItemObject = Kernel::System::ITSMConfigItem->new(
-    %{$Self},
-    ConfigObject => $ConfigObject,
-);
-
-# all other objects
-my $GenberalCatalogObject = Kernel::System::GeneralCatalog->new(
-    %{$Self},
-    ConfigObject => $ConfigObject,
-);
+my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
 
 my $TestCustomerUserLogin = $HelperObject->TestCustomerUserCreate();
 
 # create webservice object
-my $WebserviceObject = Kernel::System::GenericInterface::Webservice->new(
-    %{$Self},
-    ConfigObject => $ConfigObject,
-);
+my $WebserviceObject = $Kernel::OM->Get('Kernel::System::GenericInterface::Webservice');
 $Self->Is(
     'Kernel::System::GenericInterface::Webservice',
     ref $WebserviceObject,
@@ -103,7 +80,7 @@ $Self->True(
 
 # get remote host with some precautions for certain unit test systems
 my $Host;
-my $FQDN = $Self->{ConfigObject}->Get('FQDN');
+my $FQDN = $ConfigObject->Get('FQDN');
 
 # try to resolve fqdn host
 if ( $FQDN ne 'yourhost.example.com' && gethostbyname($FQDN) ) {
@@ -122,11 +99,11 @@ if ( !$Host ) {
 
 # prepare webservice config
 my $RemoteSystem =
-    $Self->{ConfigObject}->Get('HttpType')
+    $ConfigObject->Get('HttpType')
     . '://'
     . $Host
     . '/'
-    . $Self->{ConfigObject}->Get('ScriptAlias')
+    . $ConfigObject->Get('ScriptAlias')
     . '/nph-genericinterface.pl/WebserviceID/'
     . $WebserviceID;
 
@@ -215,7 +192,7 @@ $Self->Is(
 
 # Get SessionID
 # create requester object
-my $RequesterSessionObject = Kernel::GenericInterface::Requester->new( %{$Self} );
+my $RequesterSessionObject = $Kernel::OM->Get('Kernel::GenericInterface::Requester');
 $Self->Is(
     'Kernel::GenericInterface::Requester',
     ref $RequesterSessionObject,
@@ -394,38 +371,71 @@ my @ConfigItems = (
     },
 );
 
-# create local object
-my $ConfigItemCreateObject
-    = "Kernel::GenericInterface::Operation::ConfigItem::ConfigItemCreate"->new(
-    %{$Self},
-    ConfigObject   => $ConfigObject,
-    DebuggerObject => $DebuggerObject,
-    WebserviceID   => $WebserviceID,
-    );
 
+my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
+my$ClassList = $GeneralCatalogObject->ItemList(
+    Class => 'ITSM::ConfigItem::Class',
+);
+my %ReverseClassList = reverse %{$ClassList};
+my $InciStateList = $GeneralCatalogObject->ItemList(
+    Class => 'ITSM::Core::IncidentState',
+);
+my %ReverseInciStateList = reverse %{$InciStateList};
+my $DeplStateList = $GeneralCatalogObject->ItemList(
+    Class => 'ITSM::ConfigItem::DeploymentState',
+);
+my %ReverseDeplStateList = reverse %{$DeplStateList};
 for my $ConfigItem (@ConfigItems) {
 
     # make a deep copy to avoid changing the definition
     my $ClonedConfigItem = Storable::dclone($ConfigItem);
 
-    # start requester with our webservice
-    # add new ConfigItems
-    my $CreateResult = $ConfigItemCreateObject->Run(
-        WebserviceID => $WebserviceID,
-        Invoker      => 'ConfigItemCreate',
-        Data         => {
-            UserLogin  => $UserLogin,
-            Password   => $Password,
-            ConfigItem => $ConfigItem,
-        },
+    # create new config item
+    my $ConfigItemID = $ConfigItemObject->ConfigItemAdd(
+        ClassID => $ReverseClassList{ $ConfigItem->{Class} },
+        UserID  => $Self->{UserID},
     );
-
-    my $ConfigItemID = $CreateResult->{Data}->{ConfigItemID} || '';
 
     # sanity checks
     $Self->True(
         $ConfigItemID,
-        "Added ConfigItem $ConfigItemID - $CreateResult->{Data}->{Number}",
+        "Added ConfigItem $ConfigItemID",
+    );
+
+    my $DefinitionData = $ConfigItemObject->DefinitionGet(
+        ClassID => $ReverseClassList{ $ConfigItem->{Class} },
+    );
+
+    my $LocalObject = "Kernel::GenericInterface::Operation::ConfigItem::ConfigItemCreate"->new(
+        %{$Self},
+        ConfigObject   => $ConfigObject,
+        DebuggerObject => $DebuggerObject,
+        WebserviceID   => $WebserviceID,
+    );
+
+    my $ReplacedXMLData = $LocalObject->ReplaceXMLData(
+        XMLData    => $ConfigItem->{CIXMLData},
+        Definition => $DefinitionData->{DefinitionRef},
+    );
+
+    my $XMLData = $LocalObject->FormatXMLData(
+        XMLData => $ReplacedXMLData,
+    );
+
+    my $VersionID = $ConfigItemObject->VersionAdd(
+        ConfigItemID => $ConfigItemID,
+        Name         => $ConfigItem->{Name},
+        DefinitionID => $DefinitionData->{DefinitionID},
+        DeplStateID  => $ReverseDeplStateList{ $ConfigItem->{DeplState} },
+        InciStateID  => $ReverseInciStateList{ $ConfigItem->{InciState} },
+        XMLData      => $XMLData,
+        UserID       => $Self->{UserID},
+    );
+
+    # sanity checks
+    $Self->True(
+        $ConfigItemID,
+        "Added ConfigItem $ConfigItemID",
     );
 
     my $VersionInfo = $ConfigItemObject->VersionGet(
@@ -486,7 +496,7 @@ my @Tests = (
         SuccessRequest => 1,
         SuccessGet     => 0,
         RequestData    => {
-            ConfigItemID => 'NotExisistent' . $RandomID,
+            ConfigItemID => 'NotExistent' . $RandomID,
         },
         ExpectedData => {
             Data => {
@@ -503,7 +513,7 @@ my @Tests = (
         SuccessRequest => 1,
         SuccessGet     => 0,
         RequestData    => {
-            ConfigItemID => [ 'NotExisistent' . $RandomID, ],
+            ConfigItemID => [ 'NotExistent' . $RandomID, ],
         },
         ExpectedData => {
             Data => {
@@ -622,10 +632,7 @@ for my $Test (@Tests) {
     );
 
     # create requester object
-    my $RequesterObject = Kernel::GenericInterface::Requester->new(
-        %{$Self},
-        ConfigObject => $ConfigObject,
-    );
+    my $RequesterObject = $Kernel::OM->Get('Kernel::GenericInterface::Requester');
     $Self->Is(
         'Kernel::GenericInterface::Requester',
         ref $RequesterObject,

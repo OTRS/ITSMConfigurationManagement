@@ -12,17 +12,13 @@ package Kernel::GenericInterface::Operation::ConfigItem::Common;
 use strict;
 use warnings;
 
-use Kernel::System::CustomerUser;
-use Kernel::System::CustomerCompany;
-use Kernel::System::GeneralCatalog;
-use Kernel::System::GenericInterface::Webservice;
-use Kernel::System::ITSMConfigItem;
-use Kernel::System::Valid;
 use Kernel::System::VariableCheck qw(:all);
+
+our $ObjectManagerDisabled = 1;
 
 =head1 NAME
 
-Kernel::GenericInterface::Operation::ConfigItem::Common - common operation functions
+Kernel::GenericInterface::Operation::ConfigItem::Common - Base class for all CI Operations
 
 =head1 SYNOPSIS
 
@@ -32,111 +28,45 @@ Kernel::GenericInterface::Operation::ConfigItem::Common - common operation funct
 
 =cut
 
-=item new()
+=item Init()
 
-create an object
+initialize the operation by checking the webservice configuration
 
-    use Kernel::Config;
-    use Kernel::System::Encode;
-    use Kernel::System::Log;
-    use Kernel::System::Time;
-    use Kernel::System::Main;
-    use Kernel::System::DB;
-    use Kernel::GenericInterface::Debugger;
-    use Kernel::GenericInterface::Operation::ConfigItem::Common;
+    my $Return = $CommonObject->Init(
+        WebserviceID => 1,
+    );
 
-    my $ConfigObject = Kernel::Config->new();
-    my $EncodeObject = Kernel::System::Encode->new(
-        ConfigObject => $ConfigObject,
-    );
-    my $LogObject = Kernel::System::Log->new(
-        ConfigObject => $ConfigObject,
-        EncodeObject => $EncodeObject,
-    );
-    my $TimeObject = Kernel::System::Time->new(
-        ConfigObject => $ConfigObject,
-        LogObject    => $LogObject,
-    );
-    my $MainObject = Kernel::System::Main->new(
-        ConfigObject => $ConfigObject,
-        EncodeObject => $EncodeObject,
-        LogObject    => $LogObject,
-    );
-    my $DBObject = Kernel::System::DB->new(
-        ConfigObject => $ConfigObject,
-        EncodeObject => $EncodeObject,
-        LogObject    => $LogObject,
-        MainObject   => $MainObject,
-    );
-    my $DebuggerObject = Kernel::GenericInterface::Debugger->new(
-        ConfigObject       => $ConfigObject,
-        LogObject          => $LogObject,
-        DBObject           => $DBObject,
-        MainObject         => $MainObject,
-        TimeObject         => $TimeObject,
-        EncodeObject       => $EncodeObject,
-
-        DebuggerConfig   => {
-            DebugThreshold  => 'debug',
-            TestMode        => 0,           # optional, in testing mode the data will not be
-                                            #   written to the DB
-            ...
-        },
-    my $CommonObject = Kernel::GenericInterface::Operation::ConfigItem::Common->new(
-        ConfigObject       => $ConfigObject,
-        LogObject          => $LogObject,
-        DBObject           => $DBObject,
-        MainObject         => $MainObject,
-        TimeObject         => $TimeObject,
-        EncodeObject       => $EncodeObject,
-        DebuggerObject     => $DebuggerObject,
-        WebserviceID       => $WebserviceID,             # ID of the currently used web service
-    );
+    $Return = {
+        Success => 1,                       # or 0 in case of failure,
+        ErrorMessage => 'Error Message',
+    }
 
 =cut
 
-sub new {
-    my ( $Type, %Param ) = @_;
 
-    my $Self = {};
-    bless( $Self, $Type );
+sub Init {
+    my ( $Self, %Param ) = @_;
 
-    # check needed objects
-    for my $Needed (
-        qw( DebuggerObject MainObject TimeObject ConfigObject LogObject DBObject EncodeObject WebserviceID OperationName)
-        )
-    {
-
-        if ( !$Param{$Needed} ) {
-            return {
-                Success      => 0,
-                ErrorMessage => "Got no $Needed!"
-            };
-        }
-
-        $Self->{$Needed} = $Param{$Needed};
+    # check needed
+    if ( !$Param{WebserviceID} ) {
+        return {
+            Success      => 0,
+            ErrorMessage => "Got no WebserviceID!",
+        };
     }
 
-    # create additional objects
-    $Self->{CustomerUserObject}    = Kernel::System::CustomerUser->new( %{$Self} );
-    $Self->{CustomerCompanyObject} = Kernel::System::CustomerCompany->new( %{$Self} );
-    $Self->{ConfigItemObject}      = Kernel::System::ITSMConfigItem->new( %{$Self} );
-    $Self->{GeneralCatalogObject}  = Kernel::System::GeneralCatalog->new( %{$Self} );
-    $Self->{ValidObject}           = Kernel::System::Valid->new( %{$Self} );
-    $Self->{WebserviceObject}      = Kernel::System::GenericInterface::Webservice->new( %{$Self} );
-
-    # get webservice configuration
-    $Self->{Webservice} = $Self->{WebserviceObject}->WebserviceGet(
+    my $Webservice
+        = $Kernel::OM->Get('Kernel::System::GenericInterface::Webservice')->WebserviceGet(
         ID => $Param{WebserviceID},
-    );
+        );
 
-    if ( !IsHashRefWithData( $Self->{Webservice} ) ) {
-        return $Self->_ReturnError(
-            ErrorCode => 'Webservice.InvalidConfiguration',
+    if ( !IsHashRefWithData($Webservice) ) {
+        return {
+            Success => 0,
             ErrorMessage =>
                 'Could not determine Web service configuration'
                 . ' in Kernel::GenericInterface::Operation::Ticket::Common::new()',
-        );
+        };
     }
 
     return $Self;
@@ -156,7 +86,7 @@ helper function to return an error message.
 sub ReturnError {
     my ( $Self, %Param ) = @_;
 
-    $Self->{DebuggerObject}->Error(
+    $Kernel::OM->Get('Kernel::GenericInterface::Debugger')->Error(
         Summary => $Param{ErrorCode},
         Data    => $Param{ErrorMessage},
     );
@@ -194,7 +124,7 @@ sub ValidateClass {
     return if !$Param{Class};
 
     # check for Class sent
-    my $ItemDataRef = $Self->{GeneralCatalogObject}->ItemGet(
+    my $ItemDataRef = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemGet(
         Class => 'ITSM::ConfigItem::Class',
         Name  => $Param{Class},
     );
@@ -225,7 +155,7 @@ sub ValidateDeplState {
     return if !$Param{DeplState};
 
     # check for Class sent
-    my $ItemDataRef = $Self->{GeneralCatalogObject}->ItemGet(
+    my $ItemDataRef = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemGet(
         Class => 'ITSM::ConfigItem::DeploymentState',
         Name  => $Param{DeplState},
     );
@@ -256,7 +186,7 @@ sub ValidateInciState {
     return if !$Param{InciState};
 
     # check for Class sent
-    my $ItemDataRef = $Self->{GeneralCatalogObject}->ItemGet(
+    my $ItemDataRef = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemGet(
         Class => 'ITSM::Core::IncidentState',
         Name  => $Param{InciState},
     );
@@ -332,12 +262,12 @@ sub ValidateInputDate {
     }
 
     # convert the raw data to a system time format
-    my $SystemTime = $Self->{TimeObject}->TimeStamp2SystemTime(
+    my $SystemTime = $Kernel::OM->Get('Kernel::System::Time')->TimeStamp2SystemTime(
         String => $Value,
     );
 
     # convert it back to a standard time stamp
-    my $TimeStamp = $Self->{TimeObject}->SystemTime2TimeStamp(
+    my $TimeStamp = $Kernel::OM->Get('Kernel::System::Time')->SystemTime2TimeStamp(
         SystemTime => $SystemTime,
     );
 
@@ -384,12 +314,12 @@ sub ValidateInputDateTime {
     }
 
     # convert the raw data to a system time format
-    my $SystemTime = $Self->{TimeObject}->TimeStamp2SystemTime(
+    my $SystemTime = $Kernel::OM->Get('Kernel::System::Time')->TimeStamp2SystemTime(
         String => $Value,
     );
 
     # convert it back to a standard time stamp
-    my $TimeStamp = $Self->{TimeObject}->SystemTime2TimeStamp(
+    my $TimeStamp = $Kernel::OM->Get('Kernel::System::Time')->SystemTime2TimeStamp(
         SystemTime => $SystemTime,
     );
 
@@ -444,7 +374,7 @@ sub ValidateInputGeneralCatalog {
     my $Value = $Param{Value};
 
     # get the values for the General catalog class
-    my $ItemList = $Self->{GeneralCatalogObject}->ItemList(
+    my $ItemList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => $Param{Input}->{Class},
     );
 
@@ -476,7 +406,7 @@ sub ValidateInputCustomer {
 
     return if !$Value;
 
-    my %CustomerData = $Self->{CustomerUserObject}->CustomerUserDataGet(
+    my %CustomerData = $Kernel::OM->Get('Kernel::System::CustomerUser')->CustomerUserDataGet(
         User => $Param{Value},
     );
 
@@ -487,7 +417,7 @@ sub ValidateInputCustomer {
     if ( defined $CustomerData{ValidID} ) {
 
         # return false if customer is not valid
-        return if $Self->{ValidObject}->ValidLookup( ValidID => $CustomerData{ValidID} ) ne 'valid';
+        return if $Kernel::OM->Get('Kernel::System::Valid')->ValidLookup( ValidID => $CustomerData{ValidID} ) ne 'valid';
     }
 
     return 1;
@@ -513,7 +443,7 @@ sub ValidateInputCustomerCompany {
 
     return if !$Value;
 
-    my %CompanyList = $Self->{CustomerCompanyObject}->CustomerCompanyList();
+    my %CompanyList = $Kernel::OM->Get('Kernel::System::CustomerCompany')->CustomerCompanyList();
 
     return if !$CompanyList{ $Param{Value} };
 
@@ -605,12 +535,12 @@ sub ReplaceInputDate {
     }
 
     # convert the raw data to a system time format
-    my $SystemTime = $Self->{TimeObject}->TimeStamp2SystemTime(
+    my $SystemTime = $Kernel::OM->Get('Kernel::System::Time')->TimeStamp2SystemTime(
         String => $Value,
     );
 
     # convert it back to a standard time stamp
-    my $TimeStamp = $Self->{TimeObject}->SystemTime2TimeStamp(
+    my $TimeStamp = $Kernel::OM->Get('Kernel::System::Time')->SystemTime2TimeStamp(
         SystemTime => $SystemTime,
     );
 
@@ -655,12 +585,12 @@ sub ReplaceInputDateTime {
     }
 
     # convert the raw data to a system time format
-    my $SystemTime = $Self->{TimeObject}->TimeStamp2SystemTime(
+    my $SystemTime = $Kernel::OM->Get('Kernel::System::Time')->TimeStamp2SystemTime(
         String => $Value,
     );
 
     # convert it back to a standard time stamp
-    my $TimeStamp = $Self->{TimeObject}->SystemTime2TimeStamp(
+    my $TimeStamp = $Kernel::OM->Get('Kernel::System::Time')->SystemTime2TimeStamp(
         SystemTime => $SystemTime,
     );
 
@@ -687,7 +617,7 @@ sub ReplaceInputGeneralCatalog {
     my $Value = $Param{Value};
 
     # get the values for the General catalog class
-    my $ItemList = $Self->{GeneralCatalogObject}->ItemList(
+    my $ItemList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => $Param{Input}->{Class},
     );
 
@@ -740,7 +670,7 @@ sub InvertReplaceInputGeneralCatalog {
     my $Value = $Param{Value};
 
     # get the values for the General catalog class
-    my $ItemList = $Self->{GeneralCatalogObject}->ItemList(
+    my $ItemList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => $Param{Input}->{Class},
     );
 
@@ -786,7 +716,7 @@ sub CreateAttachment {
     }
 
     # write attachment
-    my $Success = $Self->{ConfigItemObject}->ConfigItemAttachmentAdd(
+    my $Success = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemAttachmentAdd(
         %{ $Param{Attachment} },
         ConfigItemID => $Param{ConfigItemID},
         Content      => MIME::Base64::decode_base64( $Param{Attachment}->{Content} ),

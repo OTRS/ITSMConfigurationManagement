@@ -13,11 +13,14 @@ use strict;
 use warnings;
 
 use MIME::Base64;
-use Kernel::GenericInterface::Operation::Common;
-use Kernel::GenericInterface::Operation::ConfigItem::Common;
-use Kernel::System::GeneralCatalog;
-use Kernel::System::ITSMConfigItem;
 use Kernel::System::VariableCheck qw(:all);
+
+use base qw(
+    Kernel::GenericInterface::Operation::Common
+    Kernel::GenericInterface::Operation::ConfigItem::Common
+);
+
+our $ObjectManagerDisabled = 1;
 
 =head1 NAME
 
@@ -45,10 +48,7 @@ sub new {
     bless( $Self, $Type );
 
     # check needed objects
-    for my $Needed (
-        qw(DebuggerObject ConfigObject MainObject LogObject TimeObject DBObject EncodeObject WebserviceID)
-        )
-    {
+    for my $Needed (qw( DebuggerObject WebserviceID )) {
         if ( !$Param{$Needed} ) {
             return {
                 Success      => 0,
@@ -61,15 +61,7 @@ sub new {
 
     $Self->{OperationName} = 'ConfigItemGet';
 
-    # create additional objects
-    $Self->{CommonObject} = Kernel::GenericInterface::Operation::Common->new( %{$Self} );
-    $Self->{ConfigItemCommonObject}
-        = Kernel::GenericInterface::Operation::ConfigItem::Common->new( %{$Self} );
-
-    $Self->{ConfigItemObject}         = Kernel::System::ITSMConfigItem->new( %{$Self} );
-    $Self->{GeneralCatalogItemObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
-
-    $Self->{Config} = $Self->{ConfigObject}->Get('GenericInterface::Operation::ConfigItemGet');
+    $Self->{Config} = $Kernel::OM->Get('Kernel::Config')->Get('GenericInterface::Operation::ConfigItemGet');
 
     return $Self;
 }
@@ -145,19 +137,32 @@ one or more ConfigItem entries in one call.
 sub Run {
     my ( $Self, %Param ) = @_;
 
-    my ( $UserID, $UserType ) = $Self->{CommonObject}->Auth(
+    my $Result = $Self->Init(
+        WebserviceID => $Self->{WebserviceID},
+    );
+
+    if ( !$Result->{Success} ) {
+        $Self->ReturnError(
+            ErrorCode    => 'Webservice.InvalidConfiguration',
+            ErrorMessage => $Result->{ErrorMessage},
+        );
+    }
+
+    my ( $UserID, $UserType ) = $Self->Auth(
         %Param
     );
 
-    return $Self->{ConfigItemCommonObject}->ReturnError(
-        ErrorCode    => '$Self->{OperationName}.AuthFail',
-        ErrorMessage => "$Self->{OperationName}: Authorization failing!",
-    ) if !$UserID;
+    if ( !$UserID ) {
+        return $Self->ReturnError(
+            ErrorCode    => '$Self->{OperationName}.AuthFail',
+            ErrorMessage => "$Self->{OperationName}: Authorization failing!",
+        );
+    }
 
     # check needed stuff
     for my $Needed (qw(ConfigItemID)) {
         if ( !$Param{Data}->{$Needed} ) {
-            return $Self->{ConfigItemCommonObject}->ReturnError(
+            return $Self->ReturnError(
                 ErrorCode    => "$Self->{OperationName}.MissingParameter",
                 ErrorMessage => "$Self->{OperationName}: $Needed parameter is missing!",
             );
@@ -165,7 +170,7 @@ sub Run {
     }
     my $ErrorMessage = '';
 
-    # all needed vairables
+    # all needed variables
     my @ConfigItemIDs;
     if ( IsStringWithData( $Param{Data}->{ConfigItemID} ) ) {
         @ConfigItemIDs = split( /,/, $Param{Data}->{ConfigItemID} );
@@ -174,7 +179,7 @@ sub Run {
         @ConfigItemIDs = @{ $Param{Data}->{ConfigItemID} };
     }
     else {
-        return $Self->{ConfigItemCommonObject}->ReturnError(
+        return $Self->ReturnError(
             ErrorCode    => "$Self->{OperationName}.WrongStructure",
             ErrorMessage => "$Self->{OperationName}: Structure for ConfigItemID is not correct!",
         );
@@ -191,7 +196,7 @@ sub Run {
     for my $ConfigItemID (@ConfigItemIDs) {
 
         # check create permissions
-        my $Permission = $Self->{ConfigItemObject}->Permission(
+        my $Permission = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->Permission(
             Scope  => 'Item',
             ItemID => $ConfigItemID,
             UserID => $UserID,
@@ -199,19 +204,19 @@ sub Run {
         );
 
         if ( !$Permission ) {
-            return $Self->{ConfigItemCommonObject}->ReturnError(
+            return $Self->ReturnError(
                 ErrorCode    => "$Self->{OperationName}.AccessDenied",
                 ErrorMessage => "$Self->{OperationName}: Can not get configuration item!",
             );
         }
 
         # get the ConfigItem entry
-        my $ConfigItem = $Self->{ConfigItemObject}->ConfigItemGet(
+        my $ConfigItem = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemGet(
             ConfigItemID => $ConfigItemID,
             UserID       => $UserID,
         );
 
-        my $Version = $Self->{ConfigItemObject}->VersionGet(
+        my $Version = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->VersionGet(
             ConfigItemID => $ConfigItemID,
             UserID       => $UserID,
         );
@@ -221,7 +226,7 @@ sub Run {
             $ErrorMessage = 'Could not get ConfigItem data'
                 . ' in Kernel::GenericInterface::Operation::ConfigItem::ConfigItemGet::Run()';
 
-            return $Self->{ConfigItemCommonObject}->ReturnError(
+            return $Self->ReturnError(
                 ErrorCode    => '$Self->{OperationName}.InvalidParameter',
                 ErrorMessage => "$Self->{OperationName}: $ErrorMessage",
             );
@@ -237,11 +242,11 @@ sub Run {
 
         my $Definition = delete $Version->{XMLDefinition};
 
-        my $FormatedXMLData = $Self->{ConfigItemCommonObject}->InvertFormatXMLData(
+        my $FormatedXMLData = $Self->InvertFormatXMLData(
             XMLData => $Version->{XMLData}->[1]->{Version},
         );
 
-        my $ReplacedXMLData = $Self->{ConfigItemCommonObject}->InvertReplaceXMLData(
+        my $ReplacedXMLData = $Self->InvertReplaceXMLData(
             XMLData    => $FormatedXMLData,
             Definition => $Definition,
         );
@@ -256,7 +261,7 @@ sub Run {
 
         if ($Attachments) {
 
-            my @Attachments = $Self->{ConfigItemObject}->ConfigItemAttachmentList(
+            my @Attachments = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemAttachmentList(
                 ConfigItemID => $ConfigItemID,
             );
 
@@ -264,7 +269,7 @@ sub Run {
             ATTACHMENT:
             for my $Filename (@Attachments) {
                 next ATTACHMENT if !$Filename;
-                my $Attachment = $Self->{ConfigItemObject}->ConfigItemAttachmentGet(
+                my $Attachment = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemAttachmentGet(
                     ConfigItemID => $ConfigItemID,
                     Filename     => $Filename,
                 );
@@ -293,7 +298,7 @@ sub Run {
         $ErrorMessage = 'Could not get ConfigItem data'
             . ' in Kernel::GenericInterface::Operation::ConfigItem::ConfigItemGet::Run()';
 
-        return $Self->{ConfigItemCommonObject}->ReturnError(
+        return $Self->ReturnError(
             ErrorCode    => '$Self->{OperationName}.NoConfigItemData',
             ErrorMessage => "$Self->{OperationName}: $ErrorMessage",
         );

@@ -12,12 +12,14 @@ package Kernel::GenericInterface::Operation::ConfigItem::ConfigItemSearch;
 use strict;
 use warnings;
 
-use Kernel::System::GeneralCatalog;
-use Kernel::System::ITSMConfigItem;
-
-use Kernel::GenericInterface::Operation::Common;
-use Kernel::GenericInterface::Operation::ConfigItem::Common;
 use Kernel::System::VariableCheck qw(:all);
+
+use base qw(
+    Kernel::GenericInterface::Operation::Common
+    Kernel::GenericInterface::Operation::ConfigItem::Common
+);
+
+our $ObjectManagerDisabled = 1;
 
 =head1 NAME
 
@@ -45,13 +47,7 @@ sub new {
     bless( $Self, $Type );
 
     # check needed objects
-    for my $Needed (
-        qw(
-        DebuggerObject ConfigObject MainObject LogObject TimeObject DBObject EncodeObject
-        WebserviceID
-        )
-        )
-    {
+    for my $Needed (qw( DebuggerObject WebserviceID )) {
         if ( !$Param{$Needed} ) {
             return {
                 Success      => 0,
@@ -64,19 +60,12 @@ sub new {
 
     $Self->{OperationName} = 'ConfigItemSearch';
 
-    # create additional objects
-    $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
-    $Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new( %{$Self} );
-    $Self->{CommonObject}         = Kernel::GenericInterface::Operation::Common->new( %{$Self} );
-    $Self->{ConfigItemCommonObject}
-        = Kernel::GenericInterface::Operation::ConfigItem::Common->new( %{$Self} );
-
-    $Self->{Config} = $Self->{ConfigObject}->Get('GenericInterface::Operation::ConfigItemSearch');
+    $Self->{Config} = $Kernel::OM->Get('Kernel::Config')->Get('GenericInterface::Operation::ConfigItemSearch');
 
     $Self->{Config}->{DefaultValue} = 'Not Defined';
 
     # get a list of all config item classes
-    $Self->{ClassList} = $Self->{GeneralCatalogObject}->ItemList(
+    $Self->{ClassList} = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => 'ITSM::ConfigItem::Class',
     );
 
@@ -87,7 +76,7 @@ sub new {
     }
 
     # get a list of all incistates
-    $Self->{InciStateList} = $Self->{GeneralCatalogObject}->ItemList(
+    $Self->{InciStateList} = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => 'ITSM::Core::IncidentState',
     );
 
@@ -99,7 +88,7 @@ sub new {
     }
 
     # get a list of all deplstates
-    $Self->{DeplStateList} = $Self->{GeneralCatalogObject}->ItemList(
+    $Self->{DeplStateList} = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => 'ITSM::ConfigItem::DeploymentState',
     );
 
@@ -196,13 +185,24 @@ perform ConfigItemCreate Operation. This will return the created config item num
 sub Run {
     my ( $Self, %Param ) = @_;
 
+    my $Result = $Self->Init(
+        WebserviceID => $Self->{WebserviceID},
+    );
+
+    if ( !$Result->{Success} ) {
+        $Self->ReturnError(
+            ErrorCode    => 'Webservice.InvalidConfiguration',
+            ErrorMessage => $Result->{ErrorMessage},
+        );
+    }
+
     # check needed stuff
     if (
         !$Param{Data}->{UserLogin}
         && !$Param{Data}->{SessionID}
         )
     {
-        return $Self->{ConfigItemCommonObject}->ReturnError(
+        return $Self->ReturnError(
             ErrorCode => "$Self->{OperationName}.MissingParameter",
             ErrorMessage =>
                 "$Self->{OperationName}: UserLogin, CustomerUserLogin or SessionID is required!",
@@ -213,7 +213,7 @@ sub Run {
 
         if ( !$Param{Data}->{Password} )
         {
-            return $Self->{ConfigItemCommonObject}->ReturnError(
+            return $Self->ReturnError(
                 ErrorCode    => "$Self->{OperationName}.MissingParameter",
                 ErrorMessage => "$Self->{OperationName}: Password or SessionID is required!",
             );
@@ -221,10 +221,10 @@ sub Run {
     }
 
     # authenticate user
-    my ( $UserID, $UserType ) = $Self->{CommonObject}->Auth(%Param);
+    my ( $UserID, $UserType ) = $Self->Auth(%Param);
 
     if ( !$UserID ) {
-        return $Self->{ConfigItemCommonObject}->ReturnError(
+        return $Self->ReturnError(
             ErrorCode    => "$Self->{OperationName}.AuthFail",
             ErrorMessage => "$Self->{OperationName}: User could not be authenticated!",
         );
@@ -233,7 +233,7 @@ sub Run {
     # check needed hashes
     for my $Needed (qw(ConfigItem)) {
         if ( !IsHashRefWithData( $Param{Data}->{$Needed} ) ) {
-            return $Self->{ConfigItemCommonObject}->ReturnError(
+            return $Self->ReturnError(
                 ErrorCode => "$Self->{OperationName}.MissingParameter",
                 ErrorMessage =>
                     "$Self->{OperationName}: $Needed parameter is missing or not valid!",
@@ -258,7 +258,7 @@ sub Run {
 
     if ( defined $ConfigItem->{CIXMLData} ) {
         if ( !IsHashRefWithData( $ConfigItem->{CIXMLData} ) ) {
-            return $Self->{ConfigItemCommonObject}->ReturnError(
+            return $Self->ReturnError(
                 ErrorCode    => "$Self->{OperationName}.InvalidParameter",
                 ErrorMessage => "$Self->{OperationName}: ConfigItem->CIXMLData is invalid!",
             );
@@ -269,7 +269,7 @@ sub Run {
     }
 
     if ( !( $ConfigItem->{Class} ) ) {
-        return $Self->{ConfigItemCommonObject}->ReturnError(
+        return $Self->ReturnError(
             ErrorCode => "$Self->{OperationName}.MissingParameter",
             ErrorMessage =>
                 "$Self->{OperationName}: ConfigItem->Class parameter is missing!",
@@ -286,7 +286,7 @@ sub Run {
             @InciStates = @{ $ConfigItem->{InciStates} };
         }
         else {
-            return $Self->{ConfigItemCommonObject}->ReturnError(
+            return $Self->ReturnError(
                 ErrorCode => "$Self->{OperationName}.WrongStructure",
                 ErrorMessage =>
                     "$Self->{OperationName}: Structure for ConfigItem->InciStates is not correct!",
@@ -304,7 +304,7 @@ sub Run {
             @DeplStates = @{ $ConfigItem->{DeplStates} };
         }
         else {
-            return $Self->{ConfigItemCommonObject}->ReturnError(
+            return $Self->ReturnError(
                 ErrorCode    => "$Self->{OperationName}.WrongStructure",
                 ErrorMessage => "$Self->{OperationName}: Structure for DeplStates is not correct!",
             );
@@ -321,7 +321,7 @@ sub Run {
             @OrderBy = @{ $ConfigItem->{OrderBy} };
         }
         else {
-            return $Self->{ConfigItemCommonObject}->ReturnError(
+            return $Self->ReturnError(
                 ErrorCode    => "$Self->{OperationName}.WrongStructure",
                 ErrorMessage => "$Self->{OperationName}: Structure for OrderBy is not correct!",
             );
@@ -338,7 +338,7 @@ sub Run {
             @OrderByDirection = @{ $ConfigItem->{OrderByDirection} };
         }
         else {
-            return $Self->{ConfigItemCommonObject}->ReturnError(
+            return $Self->ReturnError(
                 ErrorCode => "$Self->{OperationName}.WrongStructure",
                 ErrorMessage =>
                     "$Self->{OperationName}: Structure for OrderByDirection is not correct!",
@@ -351,11 +351,11 @@ sub Run {
     my $ConfigItemCheck = $Self->_CheckConfigItem( ConfigItem => $ConfigItem );
 
     if ( !$ConfigItemCheck->{Success} ) {
-        return $Self->{ConfigItemCommonObject}->ReturnError( %{$ConfigItemCheck} );
+        return $Self->ReturnError( %{$ConfigItemCheck} );
     }
 
     # check search permissions
-    my $Permission = $Self->{ConfigItemObject}->Permission(
+    my $Permission = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->Permission(
         Scope   => 'Class',
         ClassID => $Self->{ReverseClassList}->{ $ConfigItem->{Class} },
         UserID  => $UserID,
@@ -363,7 +363,7 @@ sub Run {
     );
 
     if ( !$Permission ) {
-        return $Self->{ConfigItemCommonObject}->ReturnError(
+        return $Self->ReturnError(
             ErrorCode    => "$Self->{OperationName}.AccessDenied",
             ErrorMessage => "$Self->{OperationName}: Can not search configuration items!",
         );
@@ -481,7 +481,7 @@ sub _CheckConfigItem {
     }
 
     # check ConfigItem->Class
-    if ( !$Self->{ConfigItemCommonObject}->ValidateClass( %{$ConfigItem} ) ) {
+    if ( !$Self->ValidateClass( %{$ConfigItem} ) ) {
         return {
             ErrorCode => "$Self->{OperationName}.InvalidParameter",
             ErrorMessage =>
@@ -495,7 +495,7 @@ sub _CheckConfigItem {
         for my $InciState ( @{ $ConfigItem->{InciStates} } ) {
 
             # check ConfigItem->InciStates
-            if ( !$Self->{ConfigItemCommonObject}->ValidateInciState( InciState => $InciState ) ) {
+            if ( !$Self->ValidateInciState( InciState => $InciState ) ) {
                 return {
                     ErrorCode => "$Self->{OperationName}.InvalidParameter",
                     ErrorMessage =>
@@ -510,7 +510,7 @@ sub _CheckConfigItem {
         for my $DeplState ( @{ $ConfigItem->{DeplStates} } ) {
 
             # check ConfigItem->InciStates
-            if ( !$Self->{ConfigItemCommonObject}->ValidateDeplState( DeplState => $DeplState ) ) {
+            if ( !$Self->ValidateDeplState( DeplState => $DeplState ) ) {
                 return {
                     ErrorCode => "$Self->{OperationName}.InvalidParameter",
                     ErrorMessage =>
@@ -526,7 +526,7 @@ sub _CheckConfigItem {
     {
         if ( defined $ConfigItem->{"ConfigItem$TimeParam"} ) {
             if (
-                !$Self->{ConfigItemCommonObject}->ValidateInputDateTime(
+                !$Self->ValidateInputDateTime(
                     Value => $ConfigItem->{"ConfigItem$TimeParam"},
                 )
                 )
@@ -553,7 +553,7 @@ sub _CheckConfigItem {
     if ( IsHashRefWithData( $ConfigItem->{CIXMLData} ) ) {
 
         # get last config item defintion
-        my $DefinitionData = $Self->{ConfigItemObject}->DefinitionGet(
+        my $DefinitionData = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->DefinitionGet(
             ClassID => $Self->{ReverseClassList}->{ $ConfigItem->{Class} },
         );
 
@@ -648,12 +648,12 @@ sub _ConfigItemSearch {
     if ( IsHashRefWithData($RawXMLData) ) {
 
         # get last config item defintion
-        my $DefinitionData = $Self->{ConfigItemObject}->DefinitionGet(
+        my $DefinitionData = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->DefinitionGet(
             ClassID => $Self->{ReverseClassList}->{ $ConfigItem->{Class} },
         );
 
         # replace date, date time, customer, company and general catalog values
-        my $ReplacedXMLData = $Self->{ConfigItemCommonObject}->ReplaceXMLData(
+        my $ReplacedXMLData = $Self->ReplaceXMLData(
             XMLData    => $RawXMLData,
             Definition => $DefinitionData->{DefinitionRef},
         );
@@ -673,7 +673,7 @@ sub _ConfigItemSearch {
         Data    => \%SearchParams,
     );
 
-    my $ConfigItemIDs = $Self->{ConfigItemObject}->ConfigItemSearchExtended(%SearchParams);
+    my $ConfigItemIDs = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemSearchExtended(%SearchParams);
 
     if ( IsArrayRefWithData($ConfigItemIDs) ) {
         return {
@@ -878,7 +878,7 @@ sub _CheckValue {
     if ( $Param{Input}->{Type} eq 'Text' || $Param{Input}->{Type} eq 'TextArea' ) {
 
         # run Text validations
-        if ( !$Self->{ConfigItemCommonObject}->ValidateInputText(%Param) ) {
+        if ( !$Self->ValidateInputText(%Param) ) {
             return {
                 ErrorCode => "$Self->{OperationName}.InvalidParameter",
                 ErrorMessage =>
@@ -890,7 +890,7 @@ sub _CheckValue {
     elsif ( $Param{Input}->{Type} eq 'Date' ) {
 
         # run Date validations
-        if ( !$Self->{ConfigItemCommonObject}->ValidateInputDate(%Param) ) {
+        if ( !$Self->ValidateInputDate(%Param) ) {
             return {
                 ErrorCode => "$Self->{OperationName}.InvalidParameter",
                 ErrorMessage =>
@@ -902,7 +902,7 @@ sub _CheckValue {
     elsif ( $Param{Input}->{Type} eq 'DateTime' ) {
 
         # run DateTime validations
-        if ( !$Self->{ConfigItemCommonObject}->ValidateInputDateTime(%Param) ) {
+        if ( !$Self->ValidateInputDateTime(%Param) ) {
             return {
                 ErrorCode => "$Self->{OperationName}.InvalidParameter",
                 ErrorMessage =>
@@ -914,7 +914,7 @@ sub _CheckValue {
     elsif ( $Param{Input}->{Type} eq 'Customer' ) {
 
         # run Customer validations
-        if ( !$Self->{ConfigItemCommonObject}->ValidateInputCustomer(%Param) ) {
+        if ( !$Self->ValidateInputCustomer(%Param) ) {
             return {
                 ErrorCode => "$Self->{OperationName}.InvalidParameter",
                 ErrorMessage =>
@@ -926,7 +926,7 @@ sub _CheckValue {
     elsif ( $Param{Input}->{Type} eq 'CustomerCompany' ) {
 
         # run CustomerCompany validations
-        if ( !$Self->{ConfigItemCommonObject}->ValidateInputCustomerCompany(%Param) ) {
+        if ( !$Self->ValidateInputCustomerCompany(%Param) ) {
             return {
                 ErrorCode => "$Self->{OperationName}.InvalidParameter",
                 ErrorMessage =>
@@ -938,7 +938,7 @@ sub _CheckValue {
     elsif ( $Param{Input}->{Type} eq 'Integer' ) {
 
         # run Integer validations
-        if ( !$Self->{ConfigItemCommonObject}->ValidateInputInteger(%Param) ) {
+        if ( !$Self->ValidateInputInteger(%Param) ) {
             return {
                 ErrorCode => "$Self->{OperationName}.InvalidParameter",
                 ErrorMessage =>
@@ -950,7 +950,7 @@ sub _CheckValue {
     elsif ( $Param{Input}->{Type} eq 'GeneralCatalog' ) {
 
         # run General Catalog validations
-        if ( !$Self->{ConfigItemCommonObject}->ValidateInputGeneralCatalog(%Param) ) {
+        if ( !$Self->ValidateInputGeneralCatalog(%Param) ) {
             return {
                 ErrorCode => "$Self->{OperationName}.InvalidParameter",
                 ErrorMessage =>

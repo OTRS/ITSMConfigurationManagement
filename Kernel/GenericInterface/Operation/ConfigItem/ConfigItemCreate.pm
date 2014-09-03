@@ -12,12 +12,14 @@ package Kernel::GenericInterface::Operation::ConfigItem::ConfigItemCreate;
 use strict;
 use warnings;
 
-use Kernel::System::GeneralCatalog;
-use Kernel::System::ITSMConfigItem;
-
-use Kernel::GenericInterface::Operation::Common;
-use Kernel::GenericInterface::Operation::ConfigItem::Common;
 use Kernel::System::VariableCheck qw(:all);
+
+use base qw(
+    Kernel::GenericInterface::Operation::Common
+    Kernel::GenericInterface::Operation::ConfigItem::Common
+);
+
+our $ObjectManagerDisabled = 1;
 
 =head1 NAME
 
@@ -45,13 +47,7 @@ sub new {
     bless( $Self, $Type );
 
     # check needed objects
-    for my $Needed (
-        qw(
-        DebuggerObject ConfigObject MainObject LogObject TimeObject DBObject EncodeObject
-        WebserviceID
-        )
-        )
-    {
+    for my $Needed (qw( DebuggerObject WebserviceID )) {
         if ( !$Param{$Needed} ) {
             return {
                 Success      => 0,
@@ -64,19 +60,12 @@ sub new {
 
     $Self->{OperationName} = 'ConfigItemCreate';
 
-    # create additional objects
-    $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
-    $Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new( %{$Self} );
-    $Self->{CommonObject}         = Kernel::GenericInterface::Operation::Common->new( %{$Self} );
-    $Self->{ConfigItemCommonObject}
-        = Kernel::GenericInterface::Operation::ConfigItem::Common->new( %{$Self} );
-
-    $Self->{Config} = $Self->{ConfigObject}->Get('GenericInterface::Operation::ConfigItemCreate');
+    $Self->{Config} = $Kernel::OM->Get('Kernel::Config')->Get('GenericInterface::Operation::ConfigItemCreate');
 
     $Self->{Config}->{DefaultValue} = 'Not Defined';
 
     # get a list of all config item classes
-    $Self->{ClassList} = $Self->{GeneralCatalogObject}->ItemList(
+    $Self->{ClassList} = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => 'ITSM::ConfigItem::Class',
     );
 
@@ -87,7 +76,7 @@ sub new {
     }
 
     # get a list of all incistates
-    $Self->{InciStateList} = $Self->{GeneralCatalogObject}->ItemList(
+    $Self->{InciStateList} = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => 'ITSM::Core::IncidentState',
     );
 
@@ -99,7 +88,7 @@ sub new {
     }
 
     # get a list of all deplstates
-    $Self->{DeplStateList} = $Self->{GeneralCatalogObject}->ItemList(
+    $Self->{DeplStateList} = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => 'ITSM::ConfigItem::DeploymentState',
     );
 
@@ -180,13 +169,24 @@ perform ConfigItemCreate Operation. This will return the created config item num
 sub Run {
     my ( $Self, %Param ) = @_;
 
+    my $Result = $Self->Init(
+        WebserviceID => $Self->{WebserviceID},
+    );
+
+    if ( !$Result->{Success} ) {
+        $Self->ReturnError(
+            ErrorCode    => 'Webservice.InvalidConfiguration',
+            ErrorMessage => $Result->{ErrorMessage},
+        );
+    }
+
     # check needed stuff
     if (
         !$Param{Data}->{UserLogin}
         && !$Param{Data}->{SessionID}
         )
     {
-        return $Self->{ConfigItemCommonObject}->ReturnError(
+        return $Self->ReturnError(
             ErrorCode => "$Self->{OperationName}.MissingParameter",
             ErrorMessage =>
                 "$Self->{OperationName}: UserLogin, CustomerUserLogin or SessionID is required!",
@@ -197,7 +197,7 @@ sub Run {
 
         if ( !$Param{Data}->{Password} )
         {
-            return $Self->{ConfigItemCommonObject}->ReturnError(
+            return $Self->ReturnError(
                 ErrorCode    => "$Self->{OperationName}.MissingParameter",
                 ErrorMessage => "$Self->{OperationName}: Password or SessionID is required!",
             );
@@ -205,10 +205,10 @@ sub Run {
     }
 
     # authenticate user
-    my ( $UserID, $UserType ) = $Self->{CommonObject}->Auth(%Param);
+    my ( $UserID, $UserType ) = $Self->Auth(%Param);
 
     if ( !$UserID ) {
-        return $Self->{ConfigItemCommonObject}->ReturnError(
+        return $Self->ReturnError(
             ErrorCode    => "$Self->{OperationName}.AuthFail",
             ErrorMessage => "$Self->{OperationName}: User could not be authenticated!",
         );
@@ -217,7 +217,7 @@ sub Run {
     # check needed hashes
     for my $Needed (qw(ConfigItem)) {
         if ( !IsHashRefWithData( $Param{Data}->{$Needed} ) ) {
-            return $Self->{ConfigItemCommonObject}->ReturnError(
+            return $Self->ReturnError(
                 ErrorCode => "$Self->{OperationName}.MissingParameter",
                 ErrorMessage =>
                     "$Self->{OperationName}: $Needed parameter is missing or not valid!",
@@ -240,7 +240,7 @@ sub Run {
         }
     }
     if ( !IsHashRefWithData( $ConfigItem->{CIXMLData} ) ) {
-        return $Self->{ConfigItemCommonObject}->ReturnError(
+        return $Self->ReturnError(
             ErrorCode    => "$Self->{OperationName}.MissingParameter",
             ErrorMessage => "$Self->{OperationName}: ConfigItem->CIXMLData is missing or invalid!",
         );
@@ -253,11 +253,11 @@ sub Run {
     my $ConfigItemCheck = $Self->_CheckConfigItem( ConfigItem => $ConfigItem );
 
     if ( !$ConfigItemCheck->{Success} ) {
-        return $Self->{ConfigItemCommonObject}->ReturnError( %{$ConfigItemCheck} );
+        return $Self->ReturnError( %{$ConfigItemCheck} );
     }
 
     # check create permissions
-    my $Permission = $Self->{ConfigItemObject}->Permission(
+    my $Permission = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->Permission(
         Scope   => 'Class',
         ClassID => $Self->{ReverseClassList}->{ $ConfigItem->{Class} },
         UserID  => $UserID,
@@ -265,7 +265,7 @@ sub Run {
     );
 
     if ( !$Permission ) {
-        return $Self->{ConfigItemCommonObject}->ReturnError(
+        return $Self->ReturnError(
             ErrorCode    => "$Self->{OperationName}.AccessDenied",
             ErrorMessage => "$Self->{OperationName}: Can not create configuration items!",
         );
@@ -287,7 +287,7 @@ sub Run {
             @AttachmentList = @{$Attachment};
         }
         else {
-            return $Self->{ConfigItemCommonObject}->ReturnError(
+            return $Self->ReturnError(
                 ErrorCode => "$Self->{OperationName}.InvalidParameter",
                 ErrorMessage =>
                     "$Self->{OperationName}: ConfigItem->Attachment parameter is invalid!",
@@ -297,7 +297,7 @@ sub Run {
         # check Attachment internal structure
         for my $AttachmentItem (@AttachmentList) {
             if ( !IsHashRefWithData($AttachmentItem) ) {
-                return $Self->{ConfigItemCommonObject}->ReturnError(
+                return $Self->ReturnError(
                     ErrorCode => "$Self->{OperationName}.InvalidParameter",
                     ErrorMessage =>
                         "$Self->{OperationName}: ConfigItem->Attachment parameter is invalid!",
@@ -320,7 +320,7 @@ sub Run {
             my $AttachmentCheck = $Self->_CheckAttachment( Attachment => $AttachmentItem );
 
             if ( !$AttachmentCheck->{Success} ) {
-                return $Self->{ConfigItemCommonObject}->ReturnError( %{$AttachmentCheck} );
+                return $Self->ReturnError( %{$AttachmentCheck} );
             }
         }
     }
@@ -437,7 +437,7 @@ sub _CheckConfigItem {
     }
 
     # check ConfigItem->Class
-    if ( !$Self->{ConfigItemCommonObject}->ValidateClass( %{$ConfigItem} ) ) {
+    if ( !$Self->ValidateClass( %{$ConfigItem} ) ) {
         return {
             ErrorCode => "$Self->{OperationName}.InvalidParameter",
             ErrorMessage =>
@@ -446,7 +446,7 @@ sub _CheckConfigItem {
     }
 
     # check ConfigItem->DeplState
-    if ( !$Self->{ConfigItemCommonObject}->ValidateDeplState( %{$ConfigItem} ) ) {
+    if ( !$Self->ValidateDeplState( %{$ConfigItem} ) ) {
         return {
             ErrorCode => "$Self->{OperationName}.InvalidParameter",
             ErrorMessage =>
@@ -455,7 +455,7 @@ sub _CheckConfigItem {
     }
 
     # check ConfigItem->DeplState
-    if ( !$Self->{ConfigItemCommonObject}->ValidateInciState( %{$ConfigItem} ) ) {
+    if ( !$Self->ValidateInciState( %{$ConfigItem} ) ) {
         return {
             ErrorCode => "$Self->{OperationName}.InvalidParameter",
             ErrorMessage =>
@@ -464,11 +464,11 @@ sub _CheckConfigItem {
     }
 
     # get last config item defintion
-    my $DefinitionData = $Self->{ConfigItemObject}->DefinitionGet(
+    my $DefinitionData = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->DefinitionGet(
         ClassID => $Self->{ReverseClassList}->{ $ConfigItem->{Class} },
     );
 
-    my $XMLDataCheckResult = $Self->{ConfigItemCommonObject}->CheckXMLData(
+    my $XMLDataCheckResult = $Self->CheckXMLData(
         Definition => $DefinitionData->{DefinitionRef},
         XMLData    => $ConfigItem->{CIXMLData},
     );
@@ -534,7 +534,7 @@ sub _CheckAttachment {
             $Charset =~ s/(.+?);.*/$1/g;
         }
 
-        if ( $Charset && !$Self->{ConfigItemCommonObject}->ValidateCharset( Charset => $Charset ) )
+        if ( $Charset && !$Self->ValidateCharset( Charset => $Charset ) )
         {
             return {
                 ErrorCode    => "$Self->{OperationName}.InvalidParameter",
@@ -549,7 +549,7 @@ sub _CheckAttachment {
             $MimeType =~ s/"|'//g;
         }
 
-        if ( !$Self->{ConfigItemCommonObject}->ValidateMimeType( MimeType => $MimeType ) ) {
+        if ( !$Self->ValidateMimeType( MimeType => $MimeType ) ) {
             return {
                 ErrorCode    => "$Self->{OperationName}.InvalidParameter",
                 ErrorMessage => "$Self->{OperationName}: Attachment->ContentType is invalid!",
@@ -602,28 +602,28 @@ sub _ConfigItemCreate {
     my $RawXMLData = $ConfigItem->{CIXMLData};
 
     # get last config item defintion
-    my $DefinitionData = $Self->{ConfigItemObject}->DefinitionGet(
+    my $DefinitionData = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->DefinitionGet(
         ClassID => $Self->{ReverseClassList}->{ $ConfigItem->{Class} },
     );
 
     # replace date, date time, customer, company and general catalog values
-    my $ReplacedXMLData = $Self->{ConfigItemCommonObject}->ReplaceXMLData(
+    my $ReplacedXMLData = $Self->ReplaceXMLData(
         XMLData    => $RawXMLData,
         Definition => $DefinitionData->{DefinitionRef},
     );
 
     # create an XMLData structure suitable for VersionAdd
-    my $XMLData = $Self->{ConfigItemCommonObject}->FormatXMLData(
+    my $XMLData = $Self->FormatXMLData(
         XMLData => $ReplacedXMLData,
     );
 
     # create new config item
-    my $ConfigItemID = $Self->{ConfigItemObject}->ConfigItemAdd(
+    my $ConfigItemID = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemAdd(
         ClassID => $Self->{ReverseClassList}->{ $ConfigItem->{Class} },
         UserID  => $Param{UserID},
     );
 
-    my $VersionID = $Self->{ConfigItemObject}->VersionAdd(
+    my $VersionID = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->VersionAdd(
         ConfigItemID => $ConfigItemID,
         Name         => $ConfigItem->{Name},
         DefinitionID => $DefinitionData->{DefinitionID},
@@ -645,7 +645,7 @@ sub _ConfigItemCreate {
     if ( IsArrayRefWithData($AttachmentList) ) {
 
         for my $Attachment ( @{$AttachmentList} ) {
-            my $Result = $Self->{ConfigItemCommonObject}->CreateAttachment(
+            my $Result = $Self->CreateAttachment(
                 Attachment   => $Attachment,
                 ConfigItemID => $ConfigItemID,
                 UserID       => $Param{UserID}
@@ -665,7 +665,7 @@ sub _ConfigItemCreate {
     }
 
     # get ConfigItem data
-    my $ConfigItemData = $Self->{ConfigItemObject}->ConfigItemGet(
+    my $ConfigItemData = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemGet(
         ConfigItemID => $ConfigItemID,
     );
 

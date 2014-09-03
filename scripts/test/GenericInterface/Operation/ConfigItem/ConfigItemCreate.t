@@ -10,43 +10,31 @@
 use strict;
 use warnings;
 use utf8;
+
 use vars (qw($Self));
 
-use Socket;
 use MIME::Base64;
-use Kernel::System::ITSMConfigItem;
-use Kernel::System::GeneralCatalog;
-use Kernel::GenericInterface::Debugger;
-use Kernel::GenericInterface::Requester;
-use Kernel::System::GenericInterface::Webservice;
-use Kernel::System::UnitTest::Helper;
-use Kernel::GenericInterface::Operation::ConfigItem::ConfigItemCreate;
-use Kernel::GenericInterface::Operation::ConfigItem::Common;
-use Kernel::GenericInterface::Operation::Session::SessionCreate;
-use Kernel::System::VariableCheck qw(:all);
 
-use Kernel::System::User;
+use Kernel::GenericInterface::Debugger;
+use Kernel::GenericInterface::Operation::ConfigItem::ConfigItemCreate;
+use Kernel::System::VariableCheck qw(:all);
 
 # set UserID to root
 $Self->{UserID} = 1;
 
 # helper object
-# skip SSL certiciate verification
-my $HelperObject = Kernel::System::UnitTest::Helper->new(
-    %{$Self},
-    UnitTestObject             => $Self,
-    RestoreSystemConfiguration => 1,
-    SkipSSLVerify              => 1,
+# skip SSL certificate verification
+$Kernel::OM->ObjectParamAdd(
+    'Kernel::System::UnitTest::Helper' => {
+        RestoreSystemConfiguration => 1,
+        SkipSSLVerify              => 1,
+    },
 );
+my $HelperObject = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
 
 my $RandomID = $HelperObject->GetRandomID();
 
-my $ConfigObject = Kernel::Config->new();
-
-my $SysConfigObject = Kernel::System::SysConfig->new(
-    %{$Self},
-    ConfigObject => $ConfigObject,
-);
+my $ConfigObject = $Kernel::OM->Get('Kernel::Config');
 
 # check if SSL Certificate verification is disabled
 $Self->Is(
@@ -56,24 +44,12 @@ $Self->Is(
 );
 
 # create ConfigItem object
-my $ConfigItemObject = Kernel::System::ITSMConfigItem->new(
-    %{$Self},
-    ConfigObject => $ConfigObject,
-);
-
-# all other objects
-my $GenberalCatalogObject = Kernel::System::GeneralCatalog->new(
-    %{$Self},
-    ConfigObject => $ConfigObject,
-);
+my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
 
 my $TestCustomerUserLogin = $HelperObject->TestCustomerUserCreate();
 
 # create webservice object
-my $WebserviceObject = Kernel::System::GenericInterface::Webservice->new(
-    %{$Self},
-    ConfigObject => $ConfigObject,
-);
+my $WebserviceObject = $Kernel::OM->Get('Kernel::System::GenericInterface::Webservice');
 $Self->Is(
     'Kernel::System::GenericInterface::Webservice',
     ref $WebserviceObject,
@@ -105,7 +81,7 @@ $Self->True(
 
 # get remote host with some precautions for certain unit test systems
 my $Host;
-my $FQDN = $Self->{ConfigObject}->Get('FQDN');
+my $FQDN = $ConfigObject->Get('FQDN');
 
 # try to resolve fqdn host
 if ( $FQDN ne 'yourhost.example.com' && gethostbyname($FQDN) ) {
@@ -124,11 +100,11 @@ if ( !$Host ) {
 
 # prepare webservice config
 my $RemoteSystem =
-    $Self->{ConfigObject}->Get('HttpType')
+    $ConfigObject->Get('HttpType')
     . '://'
     . $Host
     . '/'
-    . $Self->{ConfigObject}->Get('ScriptAlias')
+    . $ConfigObject->Get('ScriptAlias')
     . '/nph-genericinterface.pl/WebserviceID/'
     . $WebserviceID;
 
@@ -206,12 +182,12 @@ my $DebuggerObject = Kernel::GenericInterface::Debugger->new(
 $Self->Is(
     ref $DebuggerObject,
     'Kernel::GenericInterface::Debugger',
-    'DebuggerObject instanciate correctly',
+    'DebuggerObject instanciated correctly',
 );
 
 # Get SessionID
 # create requester object
-my $RequesterSessionObject = Kernel::GenericInterface::Requester->new( %{$Self} );
+my $RequesterSessionObject = $Kernel::OM->Get('Kernel::GenericInterface::Requester');
 $Self->Is(
     'Kernel::GenericInterface::Requester',
     ref $RequesterSessionObject,
@@ -1108,10 +1084,7 @@ for my $Test (@Tests) {
     );
 
     # create requester object
-    my $RequesterObject = Kernel::GenericInterface::Requester->new(
-        %{$Self},
-        ConfigObject => $ConfigObject,
-    );
+    my $RequesterObject = $Kernel::OM->Get('Kernel::GenericInterface::Requester');
     $Self->Is(
         'Kernel::GenericInterface::Requester',
         ref $RequesterObject,
@@ -1208,24 +1181,16 @@ for my $Test (@Tests) {
         }
 
         # transform XML data to a comparable format
-        my $ConfigItemCommonObject = Kernel::GenericInterface::Operation::ConfigItem::Common->new(
-            %{$Self},
-            ConfigObject   => $ConfigObject,
-            DebuggerObject => $DebuggerObject,
-            WebserviceID   => $WebserviceID,
-            OperationName  => $Test->{Operation},
-        );
-
         my $Definition = $LocalVersionData->{XMLDefinition};
 
         # make a deep copy to avoid changing the result
         my $ClonedXMLData = Storable::dclone( $LocalVersionData->{XMLData} );
 
-        my $FormatedXMLData = $ConfigItemCommonObject->InvertFormatXMLData(
+        my $FormatedXMLData = $LocalObject->InvertFormatXMLData(
             XMLData => $ClonedXMLData->[1]->{Version},
         );
 
-        my $ReplacedXMLData = $ConfigItemCommonObject->InvertReplaceXMLData(
+        my $ReplacedXMLData = $LocalObject->InvertReplaceXMLData(
             XMLData    => $FormatedXMLData,
             Definition => $Definition,
         );
