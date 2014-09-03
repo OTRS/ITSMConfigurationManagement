@@ -102,14 +102,14 @@ sub ServicePreferencesGet {
 #
 #    # check if service preferences are available
 #    return if !$Kernel::OM->Get('Kernel::Config')->Get('ServicePreferences');
-#
-#    # read cache
-#    my $Cache = $Kernel::OM->Get('Kernel::System::Cache')->Get(
-#        Type => $Self->{CacheType},
-#        Key  => $Self->{CachePrefix} . $Param{ServiceID},
-#    );
-#    return %{$Cache} if $Cache;
 # ---
+
+    # read cache
+    my $Cache = $Kernel::OM->Get('Kernel::System::Cache')->Get(
+        Type => $Self->{CacheType},
+        Key  => $Self->{CachePrefix} . $Param{ServiceID},
+    );
+    return %{$Cache} if $Cache;
 
     my $DBObject = $Kernel::OM->Get('Kernel::System::DB');
 
