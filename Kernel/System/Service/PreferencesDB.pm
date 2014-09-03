@@ -2,7 +2,7 @@
 # Kernel/System/Service/PreferencesDB.pm - some user functions
 # Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
 # --
-# $origin: https://github.com/OTRS/otrs/blob/72ee17c5fb32c7f225e319f77f4dbf4913613855/Kernel/System/Service/PreferencesDB.pm
+# $origin: https://github.com/OTRS/otrs/blob/b2388aeda631b8818a068d1584acd90151d3a14e/Kernel/System/Service/PreferencesDB.pm
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -96,9 +96,6 @@ sub ServicePreferencesGet {
             return;
         }
     }
-
-    # check if service preferences are available
-    return if !$Kernel::OM->Get('Kernel::Config')->Get('ServicePreferences');
 # ---
 # ITSM
 # ---
@@ -114,7 +111,7 @@ sub ServicePreferencesGet {
 #    return %{$Cache} if $Cache;
 # ---
 
-   my $DBObject = $Kernel::OM->Get('Kernel::System::DB');
+    my $DBObject = $Kernel::OM->Get('Kernel::System::DB');
 
     # get preferences
     return if !$DBObject->Prepare(
