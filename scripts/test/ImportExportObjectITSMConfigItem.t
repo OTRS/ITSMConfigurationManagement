@@ -16,8 +16,9 @@ use vars qw($Self);
 my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
 my $ConfigItemObject     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
 my $ImportExportObject   = $Kernel::OM->Get('Kernel::System::ImportExport');
-my $ObjectBackendObject  = $Kernel::OM->Get('Kernel::System::ImportExport::ObjectBackend::ITSMConfigItem');
-my $XMLObject            = $Kernel::OM->Get('Kernel::System::XML');
+my $ObjectBackendObject
+    = $Kernel::OM->Get('Kernel::System::ImportExport::ObjectBackend::ITSMConfigItem');
+my $XMLObject = $Kernel::OM->Get('Kernel::System::XML');
 
 # ------------------------------------------------------------ #
 # make preparations

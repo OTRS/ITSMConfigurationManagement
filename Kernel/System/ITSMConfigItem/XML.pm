@@ -553,7 +553,8 @@ sub _XMLHashSearch {
     }
 
     # get like escape string needed for some databases (e.g. oracle)
-    my $LikeEscapeString = $Kernel::OM->Get('Kernel::System::DB')->GetDatabaseFunction('LikeEscapeString');
+    my $LikeEscapeString
+        = $Kernel::OM->Get('Kernel::System::DB')->GetDatabaseFunction('LikeEscapeString');
 
     return if !$Kernel::OM->Get('Kernel::System::DB')->Prepare(
         SQL  => 'SELECT DISTINCT(xml_key) FROM xml_storage WHERE xml_type = ?',
@@ -607,15 +608,19 @@ sub _XMLHashSearch {
                     # adlob_sq.htm#1006215
                     # As a workaround we cast the CLOB to a VARCHAR2 with TO_CHAR().
                     my $XMLContentValueColumn = 'xml_content_value';
-                    if ( $Kernel::OM->Get('Kernel::System::DB')->GetDatabaseFunction('Type') eq 'oracle' ) {
+                    if ( $Kernel::OM->Get('Kernel::System::DB')->GetDatabaseFunction('Type') eq
+                        'oracle' )
+                    {
                         $XMLContentValueColumn = 'TO_CHAR(xml_content_value)';
                     }
 
                     my ($Op) = keys %{$Value};
                     my $Element = $Value->{$Op};
                     if ( $Op && $Op eq '-between' && ref $Element eq 'ARRAY' ) {
-                        my $LowerBound = $Kernel::OM->Get('Kernel::System::DB')->Quote( $Element->[0] );
-                        my $UpperBound = $Kernel::OM->Get('Kernel::System::DB')->Quote( $Element->[1] );
+                        my $LowerBound
+                            = $Kernel::OM->Get('Kernel::System::DB')->Quote( $Element->[0] );
+                        my $UpperBound
+                            = $Kernel::OM->Get('Kernel::System::DB')->Quote( $Element->[1] );
                         push @OrConditions,
                             " ( xml_content_key LIKE '$Key' $LikeEscapeString "
                             . "AND $XMLContentValueColumn >= '$LowerBound' "

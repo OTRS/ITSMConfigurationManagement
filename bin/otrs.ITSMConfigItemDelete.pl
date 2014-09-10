@@ -61,7 +61,8 @@ GetOptions(
 if ($All) {
 
     # get all config items ids
-    my @ConfigItemsIDs = @{ $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemSearch() };
+    my @ConfigItemsIDs
+        = @{ $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemSearch() };
 
     # get number of config items
     my $CICount = scalar @ConfigItemsIDs;
@@ -166,7 +167,8 @@ elsif ($Class) {
 
         # get ids of this class (and maybe deployment state) config items
         @ConfigItemsIDs
-            = @{ $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemSearch(%SearchParam) };
+            = @{ $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemSearch(%SearchParam)
+            };
     }
     else {
         print "Unable to find class name $Class.\n";

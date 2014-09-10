@@ -371,17 +371,16 @@ my @ConfigItems = (
     },
 );
 
-
 my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
-my$ClassList = $GeneralCatalogObject->ItemList(
+my $ClassList            = $GeneralCatalogObject->ItemList(
     Class => 'ITSM::ConfigItem::Class',
 );
 my %ReverseClassList = reverse %{$ClassList};
-my $InciStateList = $GeneralCatalogObject->ItemList(
+my $InciStateList    = $GeneralCatalogObject->ItemList(
     Class => 'ITSM::Core::IncidentState',
 );
 my %ReverseInciStateList = reverse %{$InciStateList};
-my $DeplStateList = $GeneralCatalogObject->ItemList(
+my $DeplStateList        = $GeneralCatalogObject->ItemList(
     Class => 'ITSM::ConfigItem::DeploymentState',
 );
 my %ReverseDeplStateList = reverse %{$DeplStateList};

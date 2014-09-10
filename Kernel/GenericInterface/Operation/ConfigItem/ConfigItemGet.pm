@@ -61,7 +61,8 @@ sub new {
 
     $Self->{OperationName} = 'ConfigItemGet';
 
-    $Self->{Config} = $Kernel::OM->Get('Kernel::Config')->Get('GenericInterface::Operation::ConfigItemGet');
+    $Self->{Config}
+        = $Kernel::OM->Get('Kernel::Config')->Get('GenericInterface::Operation::ConfigItemGet');
 
     return $Self;
 }
@@ -261,18 +262,20 @@ sub Run {
 
         if ($Attachments) {
 
-            my @Attachments = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemAttachmentList(
+            my @Attachments
+                = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemAttachmentList(
                 ConfigItemID => $ConfigItemID,
-            );
+                );
 
             my @AttachmentDetails;
             ATTACHMENT:
             for my $Filename (@Attachments) {
                 next ATTACHMENT if !$Filename;
-                my $Attachment = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemAttachmentGet(
+                my $Attachment
+                    = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemAttachmentGet(
                     ConfigItemID => $ConfigItemID,
                     Filename     => $Filename,
-                );
+                    );
 
                 # next if not attachment
                 next ATTACHMENT if !IsHashRefWithData($Attachment);

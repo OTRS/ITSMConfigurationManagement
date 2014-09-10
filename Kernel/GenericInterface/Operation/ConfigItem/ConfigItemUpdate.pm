@@ -64,7 +64,8 @@ sub new {
     $Self->{GeneralCatalogObject} = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
     $Self->{ConfigItemObject}     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
 
-    $Self->{Config} = $Kernel::OM->Get('Kernel::Config')->Get('GenericInterface::Operation::ConfigItemUpdate');
+    $Self->{Config}
+        = $Kernel::OM->Get('Kernel::Config')->Get('GenericInterface::Operation::ConfigItemUpdate');
 
     $Self->{Config}->{DefaultValue} = 'Not Defined';
 

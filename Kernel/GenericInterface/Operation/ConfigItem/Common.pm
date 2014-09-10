@@ -43,7 +43,6 @@ initialize the operation by checking the webservice configuration
 
 =cut
 
-
 sub Init {
     my ( $Self, %Param ) = @_;
 
@@ -417,7 +416,9 @@ sub ValidateInputCustomer {
     if ( defined $CustomerData{ValidID} ) {
 
         # return false if customer is not valid
-        return if $Kernel::OM->Get('Kernel::System::Valid')->ValidLookup( ValidID => $CustomerData{ValidID} ) ne 'valid';
+        return
+            if $Kernel::OM->Get('Kernel::System::Valid')
+            ->ValidLookup( ValidID => $CustomerData{ValidID} ) ne 'valid';
     }
 
     return 1;

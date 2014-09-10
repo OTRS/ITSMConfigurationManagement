@@ -1132,7 +1132,8 @@ sub ConfigItemSearch {
     }
 
     # get like escape string needed for some databases (e.g. oracle)
-    my $LikeEscapeString = $Kernel::OM->Get('Kernel::System::DB')->GetDatabaseFunction('LikeEscapeString');
+    my $LikeEscapeString
+        = $Kernel::OM->Get('Kernel::System::DB')->GetDatabaseFunction('LikeEscapeString');
 
     # assemble the ORDER BY clause
     my @SQLOrderBy;

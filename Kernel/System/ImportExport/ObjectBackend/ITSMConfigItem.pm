@@ -400,10 +400,11 @@ sub ExportDataGet {
     for my $MappingID ( @{$MappingList} ) {
 
         # get mapping object data
-        my $MappingObjectData = $Kernel::OM->Get('Kernel::System::ImportExport')->MappingObjectDataGet(
+        my $MappingObjectData
+            = $Kernel::OM->Get('Kernel::System::ImportExport')->MappingObjectDataGet(
             MappingID => $MappingID,
             UserID    => $Param{UserID},
-        );
+            );
 
         # check mapping object data
         if ( !$MappingObjectData || ref $MappingObjectData ne 'HASH' ) {
@@ -502,12 +503,13 @@ sub ExportDataGet {
     }
 
     # search the config items
-    my $ConfigItemList = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemSearchExtended(
+    my $ConfigItemList
+        = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemSearchExtended(
         %SearchParams,
         ClassIDs              => [ $ObjectData->{ClassID} ],
         PreviousVersionSearch => 0,
         UserID                => $Param{UserID},
-    );
+        );
 
     my @ExportData;
     CONFIGITEMID:
@@ -720,10 +722,11 @@ sub ImportDataSave {
     for my $MappingID ( @{$MappingList} ) {
 
         # get mapping object data
-        my $MappingObjectData = $Kernel::OM->Get('Kernel::System::ImportExport')->MappingObjectDataGet(
+        my $MappingObjectData
+            = $Kernel::OM->Get('Kernel::System::ImportExport')->MappingObjectDataGet(
             MappingID => $MappingID,
             UserID    => $Param{UserID},
-        );
+            );
 
         # check mapping object data
         if ( !$MappingObjectData || ref $MappingObjectData ne 'HASH' ) {
@@ -909,13 +912,14 @@ sub ImportDataSave {
         }
 
         # search existing config item with the same identifiers
-        my $ConfigItemList = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemSearchExtended(
+        my $ConfigItemList
+            = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemSearchExtended(
             %SearchParams,
             ClassIDs              => [ $ObjectData->{ClassID} ],
             PreviousVersionSearch => 0,
             UsingWildcards        => 0,
             UserID                => $Param{UserID},
-        );
+            );
 
         if ( scalar @{$ConfigItemList} > 1 ) {
 
@@ -1315,9 +1319,10 @@ sub _SearchAttributesGet {
             elsif ( $Item->{Input}->{Type} eq 'GeneralCatalog' ) {
 
                 # get general catalog list
-                my $GeneralCatalogList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
+                my $GeneralCatalogList
+                    = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
                     Class => $Item->{Input}->{Class},
-                ) || {};
+                    ) || {};
 
                 my %Row = (
                     Key   => $Key,
@@ -1379,10 +1384,11 @@ sub _ExportXMLSearchDataPrepare {
         my $Key = $Param{Prefix} ? $Param{Prefix} . '::' . $Item->{Key} : $Item->{Key};
 
         # prepare value
-        my $Values = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->XMLExportSearchValuePrepare(
+        my $Values
+            = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->XMLExportSearchValuePrepare(
             Item  => $Item,
             Value => $Param{SearchData}->{$Key},
-        );
+            );
 
         if ($Values) {
 
@@ -1452,10 +1458,11 @@ sub _ExportXMLDataPrepare {
             my $Key = $Param{Prefix} . $Item->{Key} . '::' . $Counter;
 
             # prepare value
-            $Param{XMLData2D}->{$Key} = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->XMLExportValuePrepare(
+            $Param{XMLData2D}->{$Key}
+                = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->XMLExportValuePrepare(
                 Item  => $Item,
                 Value => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content},
-            );
+                );
 
             next COUNTER if !$Item->{Sub};
 
@@ -1514,10 +1521,11 @@ sub _ImportXMLSearchDataPrepare {
         if ($IdentifierKey) {
 
             # prepare value
-            my $Value = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->XMLImportSearchValuePrepare(
+            my $Value
+                = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->XMLImportSearchValuePrepare(
                 Item  => $Item,
                 Value => $Param{Identifier}->{$IdentifierKey},
-            );
+                );
 
             if ($Value) {
 

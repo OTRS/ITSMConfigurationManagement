@@ -60,7 +60,8 @@ sub new {
 
     $Self->{OperationName} = 'ConfigItemSearch';
 
-    $Self->{Config} = $Kernel::OM->Get('Kernel::Config')->Get('GenericInterface::Operation::ConfigItemSearch');
+    $Self->{Config}
+        = $Kernel::OM->Get('Kernel::Config')->Get('GenericInterface::Operation::ConfigItemSearch');
 
     $Self->{Config}->{DefaultValue} = 'Not Defined';
 
@@ -673,7 +674,8 @@ sub _ConfigItemSearch {
         Data    => \%SearchParams,
     );
 
-    my $ConfigItemIDs = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemSearchExtended(%SearchParams);
+    my $ConfigItemIDs = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')
+        ->ConfigItemSearchExtended(%SearchParams);
 
     if ( IsArrayRefWithData($ConfigItemIDs) ) {
         return {

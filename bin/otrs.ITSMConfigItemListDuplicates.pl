@@ -114,7 +114,8 @@ if ( !$AllStates ) {
 }
 
 # get all config items ids
-my @ConfigItemIDs = @{ $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemSearch(%SearchCriteria) };
+my @ConfigItemIDs
+    = @{ $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemSearch(%SearchCriteria) };
 
 # get number of config items
 my $CICount = scalar @ConfigItemIDs;
@@ -179,13 +180,15 @@ if ($CICount) {
             for my $DuplicateID ( @{$Duplicates} ) {
 
                 # get the # of the duplicate
-                my $DuplicateConfigItem = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemGet(
+                my $DuplicateConfigItem
+                    = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemGet(
                     ConfigItemID => $DuplicateID,
-                );
+                    );
 
-                my $DuplicateVersion = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->VersionGet(
+                my $DuplicateVersion
+                    = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->VersionGet(
                     VersionID => $DuplicateConfigItem->{LastVersionID},
-                );
+                    );
 
                 push @DuplicateData, $DuplicateVersion;
             }

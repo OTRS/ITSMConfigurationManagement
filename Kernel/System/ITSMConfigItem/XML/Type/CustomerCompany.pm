@@ -64,9 +64,10 @@ sub ValueLookup {
 
     return '' if !$Param{Value};
 
-    my %CustomerCompany = $Kernel::OM->Get('Kernel::System::CustomerCompanyObject')->CustomerCompanyGet(
+    my %CustomerCompany
+        = $Kernel::OM->Get('Kernel::System::CustomerCompanyObject')->CustomerCompanyGet(
         CustomerID => $Param{Value},
-    );
+        );
 
     return $CustomerCompany{CustomerCompanyName} || '';
 }
