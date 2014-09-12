@@ -1073,6 +1073,8 @@ sub _FormatSearchXMLData {
 
 1;
 
+=end Internal:
+
 =back
 
 =head1 TERMS AND CONDITIONS
