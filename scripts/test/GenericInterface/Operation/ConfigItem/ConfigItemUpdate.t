@@ -80,8 +80,6 @@ $Self->True(
     "Added Webservice",
 );
 
-my $ConfigObject = $Kernel::OM->Get('Kernel::Config');
-
 # get remote host with some precautions for certain unit test systems
 my $Host;
 my $FQDN = $ConfigObject->Get('FQDN');
