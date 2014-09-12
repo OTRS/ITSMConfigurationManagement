@@ -1616,23 +1616,28 @@ sub CurInciStateRecalc {
         = $ReverseWarnStateList{Warning} || $ReverseWarnStateList{ $SortedWarnList[0] };
 
     # set the new current incident state for CIs
+    CONFIGITEMID:
     for my $ConfigItemID ( sort keys %NewConfigItemIncidentState ) {
 
-        # get incident state type (can only be 'operational' or 'warning')
+        # get new incident state type (can only be 'operational' or 'warning')
         my $InciStateType = $NewConfigItemIncidentState{$ConfigItemID};
+
+        # get last version
+        my $LastVersion = $Self->VersionGet(
+            ConfigItemID => $ConfigItemID,
+            XMLDataGet   => 0,
+        );
 
         my $CurInciStateID;
         if ( $InciStateType eq 'warning' ) {
+
+            # check the current incident state type is in 'incident'
+            # then we do not want to change it to warning
+            next CONFIGITEMID if $LastVersion->{InciStateType} eq 'incident';
+
             $CurInciStateID = $WarningStateID;
         }
         elsif ( $InciStateType eq 'operational' ) {
-
-            # get last version
-            my $LastVersion = $Self->VersionGet(
-                ConfigItemID => $ConfigItemID,
-                XMLDataGet   => 0,
-            );
-
             $CurInciStateID = $LastVersion->{InciStateID};
         }
 
