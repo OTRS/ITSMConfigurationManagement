@@ -618,7 +618,7 @@ sub Run {
                     $Header = $Self->{ConfigObject}->Get('ITSMConfigItem::Hook');
                 }
                 else {
-                    $Header = $Self->{LayoutObject}->{LanguageObject}->Get($Header);
+                    $Header = $Self->{LayoutObject}->{LanguageObject}->Translate($Header);
                 }
             }
 
@@ -691,10 +691,10 @@ sub Run {
 
             # PDF Output
             if ( $Self->{PDFObject} ) {
-                my $Title = $Self->{LayoutObject}->{LanguageObject}->Get('Configuration Item') . ' '
-                    . $Self->{LayoutObject}->{LanguageObject}->Get('Search');
-                my $PrintedBy = $Self->{LayoutObject}->{LanguageObject}->Get('printed by');
-                my $Page      = $Self->{LayoutObject}->{LanguageObject}->Get('Page');
+                my $Title = $Self->{LayoutObject}->{LanguageObject}->Translate('Configuration Item') . ' '
+                    . $Self->{LayoutObject}->{LanguageObject}->Translate('Search');
+                my $PrintedBy = $Self->{LayoutObject}->{LanguageObject}->Translate('printed by');
+                my $Page      = $Self->{LayoutObject}->{LanguageObject}->Translate('Page');
                 my $Time      = $Self->{LayoutObject}->Output( Template => '$Env{"Time"}' );
 
                 # get maximum number of pages
@@ -706,25 +706,25 @@ sub Run {
                 # create the header
                 my $CellData;
                 $CellData->[0]->[0]->{Content}
-                    = $Self->{LayoutObject}->{LanguageObject}->Get('Class');
+                    = $Self->{LayoutObject}->{LanguageObject}->Translate('Class');
                 $CellData->[0]->[0]->{Font} = 'ProportionalBold';
                 $CellData->[0]->[1]->{Content}
-                    = $Self->{LayoutObject}->{LanguageObject}->Get('Incident State');
+                    = $Self->{LayoutObject}->{LanguageObject}->Translate('Incident State');
                 $CellData->[0]->[1]->{Font} = 'ProportionalBold';
                 $CellData->[0]->[2]->{Content}
-                    = $Self->{LayoutObject}->{LanguageObject}->Get('Name');
+                    = $Self->{LayoutObject}->{LanguageObject}->Translate('Name');
                 $CellData->[0]->[2]->{Font} = 'ProportionalBold';
                 $CellData->[0]->[3]->{Content}
-                    = $Self->{LayoutObject}->{LanguageObject}->Get('Number');
+                    = $Self->{LayoutObject}->{LanguageObject}->Translate('Number');
                 $CellData->[0]->[3]->{Font} = 'ProportionalBold';
                 $CellData->[0]->[4]->{Content}
-                    = $Self->{LayoutObject}->{LanguageObject}->Get('Deployment State');
+                    = $Self->{LayoutObject}->{LanguageObject}->Translate('Deployment State');
                 $CellData->[0]->[4]->{Font} = 'ProportionalBold';
                 $CellData->[0]->[5]->{Content}
-                    = $Self->{LayoutObject}->{LanguageObject}->Get('Version');
+                    = $Self->{LayoutObject}->{LanguageObject}->Translate('Version');
                 $CellData->[0]->[5]->{Font} = 'ProportionalBold';
                 $CellData->[0]->[6]->{Content}
-                    = $Self->{LayoutObject}->{LanguageObject}->Get('Create Time');
+                    = $Self->{LayoutObject}->{LanguageObject}->Translate('Create Time');
                 $CellData->[0]->[6]->{Font} = 'ProportionalBold';
 
                 # create the content array
@@ -741,7 +741,7 @@ sub Run {
                 # output 'No Result', if no content was given
                 if ( !$CellData->[0]->[0] ) {
                     $CellData->[0]->[0]->{Content}
-                        = $Self->{LayoutObject}->{LanguageObject}->Get('No Result!');
+                        = $Self->{LayoutObject}->{LanguageObject}->Translate('No Result!');
                 }
 
                 # page params
@@ -919,11 +919,11 @@ sub Run {
 
             my $ClassName = $ClassList->{$ClassID};
             my $Title
-                = $Self->{LayoutObject}->{LanguageObject}->Get('Config Item Search Results')
+                = $Self->{LayoutObject}->{LanguageObject}->Translate('Config Item Search Results')
                 . ' '
-                . $Self->{LayoutObject}->{LanguageObject}->Get('Class')
+                . $Self->{LayoutObject}->{LanguageObject}->Translate('Class')
                 . ' '
-                . $Self->{LayoutObject}->{LanguageObject}->Get($ClassName);
+                . $Self->{LayoutObject}->{LanguageObject}->Translate($ClassName);
 
             $Output .= $Self->{LayoutObject}->ITSMConfigItemListShow(
                 ConfigItemIDs => $SearchResultList,
