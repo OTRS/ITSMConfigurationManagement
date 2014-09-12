@@ -98,14 +98,14 @@
                         type="xsd:string">
                     </xsd:element>
                     <xsd:element
-                        name="XMLData"
+                        name="CIXMLData"
                         type="tns:OTRS_XMLData">
                     </xsd:element>
                     <xsd:element name="Attachment" type="tns:OTRS_Attachment" maxOccurs="unbounded" minOccurs="0">
                     </xsd:element>
                 </xsd:sequence>
             </xsd:complexType>
-        
+
             <xsd:complexType name="OTRS_XMLData">
                 <xsd:sequence></xsd:sequence>
             </xsd:complexType>
@@ -219,7 +219,7 @@
                     </xsd:element>
                 </xsd:sequence>
             </xsd:complexType>
-        
+
             <xsd:complexType
                 name="OTRS_ConfigItemGetResponse_ConfigItem">
                 <xsd:sequence>
@@ -343,7 +343,7 @@
                     </xsd:element>
                 </xsd:sequence>
             </xsd:complexType>
-        
+
             <xsd:complexType name="OTRS_ConfigItem_Search_ConfigItem">
                 <xsd:sequence>
                     <xsd:element
@@ -554,3 +554,4 @@
             <soap:address location="http://localhost/otrs/nph-genericinterface.pl/Webservice/GenericConfigItemConnector" />
         </wsdl:port>
     </wsdl:service></wsdl:definitions>
+

@@ -64,11 +64,13 @@ sub Init {
             Success => 0,
             ErrorMessage =>
                 'Could not determine Web service configuration'
-                . ' in Kernel::GenericInterface::Operation::Ticket::Common::new()',
+                . ' in Kernel::GenericInterface::Operation::ConfigItem::Common::new()',
         };
     }
 
-    return $Self;
+    return {
+        Success => 1,
+    };
 }
 
 =item ReturnError()
@@ -76,8 +78,8 @@ sub Init {
 helper function to return an error message.
 
     my $Return = $CommonObject->ReturnError(
-        ErrorCode    => ITSMConfigItem.AccessDenied,
-        ErrorMessage => 'You dont have rights to access this ticket',
+        ErrorCode    => 'ITSMConfigItem.AccessDenied',
+        ErrorMessage => 'You dont have rights to access this config item',
     );
 
 =cut
@@ -231,13 +233,13 @@ sub ValidateInputText {
 checks if the given value is valid.
 
     my $Sucess = $CommonObject->ValidateInputDate(
-        Value     => '12/12/1977',
+        Value => '12/12/1977',
     );
 
     or
 
     my $Sucess = $CommonObject->ValidateInputDate(
-        Value     => '1977-12-12',
+        Value => '1977-12-12',
     );
 
     returns
@@ -280,13 +282,13 @@ sub ValidateInputDate {
 checks if the given value is valid.
 
     my $Sucess = $CommonObject->ValidateInputDateTime(
-        Value     => '12/12/1977 12:00:00',
+        Value => '12/12/1977 12:00:00',
     );
 
     or
 
     my $Sucess = $CommonObject->ValidateInputDateTime(
-        Value     => '1977-12-12 12:00:00',
+        Value => '1977-12-12 12:00:00',
     );
 
     returns
@@ -332,7 +334,7 @@ sub ValidateInputDateTime {
 checks if the given value is valid.
 
     my $Sucess = $CommonObject->ValidateInputInteger(
-        Value     => 123,
+        Value => 123,
     );
 
     returns
@@ -358,8 +360,8 @@ sub ValidateInputInteger {
 checks if the given value is valid.
 
     my $Sucess = $CommonObject->ValidateInputGeneralCatalog(
-        Value     => 123,
-        Class     => 'Some general catalog class'
+        Value => 123,
+        Class => 'Some general catalog class'
     );
 
     returns
@@ -390,7 +392,7 @@ sub ValidateInputGeneralCatalog {
 checks if the given value is valid.
 
     my $Sucess = $CommonObject->ValidateInputCustomer(
-        Value     => 'some custoer login',
+        Value => 'some customer login',
     );
 
     returns
@@ -429,7 +431,7 @@ sub ValidateInputCustomer {
 checks if the given value is valid.
 
     my $Sucess = $CommonObject->ValidateInputCustomerCompany(
-        Value     => 'some custoer login',
+        Value => 'some customer company name',
     );
 
     returns
@@ -506,13 +508,13 @@ sub ValidateCharset {
 replaces the user value with a system valid value.
 
     my $NewValue = $CommonObject->ReplaceInputDate(
-        Value     => '12/12/1977',
+        Value => '12/12/1977',
     );
 
     or
 
     my $NewValue = $CommonObject->ReplaceInputDate(
-        Value     => '1977-12-12',
+        Value => '1977-12-12',
     );
 
     returns
@@ -553,13 +555,13 @@ sub ReplaceInputDate {
 replaces the user value with a system valid value.
 
     my $NewValue = $CommonObject->ReplaceInputDateTime(
-        Value     => '12/12/1977 12:00:00',
+        Value => '12/12/1977 12:00:00',
     );
 
     or
 
     my $NewValue = $CommonObject->ReplaceInputDateTime(
-        Value     => '1977-12-12 12:00:00',
+        Value => '1977-12-12 12:00:00',
     );
 
     returns
@@ -603,8 +605,8 @@ sub ReplaceInputDateTime {
 replaces the user value with a system valid value.
 
     my $NewValue = $CommonObject->ReplaceInputGeneralCatalog(
-        Value     => 'some value',
-        Class     => 'Some general catalog class'
+        Value => 'some value',
+        Class => 'Some general catalog class'
     );
 
     returns
@@ -633,7 +635,7 @@ sub ReplaceInputGeneralCatalog {
 replaces the system value with a user value.
 
     my $NewValue = $CommonObject->InvertReplaceInputDate(
-        Value     => '12-12-1977 00:00:00',
+        Value => '12-12-1977 00:00:00',
     );
 
     returns
@@ -656,8 +658,8 @@ sub InvertReplaceInputDate {
 replaces the system value with a user value.
 
     my $NewValue = $CommonObject->InvertReplaceInputGeneralCatalog(
-        Value     => 123,
-        Class     => 'Some general catalog class'
+        Value => 123,
+        Class => 'Some general catalog class'
     );
 
     returns
@@ -684,11 +686,11 @@ sub InvertReplaceInputGeneralCatalog {
 cretes a new attachment for the given ConfigItem.
 
     my $Result = $CommonObject->CreateAttachment(
-        Content     => $Data,                   # file content (Base64 encoded)
-        ContentType => 'some content type',
-        Filename    => 'some filename',
-        ConfigItemID   => 456,
-        UserID      => 123.
+        Content      => $Data,                   # file content (Base64 encoded)
+        ContentType  => 'some content type',
+        Filename     => 'some filename',
+        ConfigItemID => 456,
+        UserID       => 123,
     );
 
     returns
@@ -1079,7 +1081,7 @@ sub FormatXMLData {
             for my $ArrayItem ( @{ $XMLData->{$RootKey} } ) {
                 if ( ref $ArrayItem eq 'HASH' ) {
 
-                    # extract the root key from the hash and assing it to content key
+                    # extract the root key from the hash and assign it to content key
                     my $Content = delete $ArrayItem->{$RootKey};
 
                     # start recursion
@@ -1108,7 +1110,7 @@ sub FormatXMLData {
             my @NewXMLParts;
             $NewXMLParts[0] = undef;
 
-            # extract the root key from the hash and assing it to content key
+            # extract the root key from the hash and assign it to content key
             my $Content = delete $XMLData->{$RootKey}->{$RootKey};
 
             # start recursion
@@ -1281,8 +1283,10 @@ sub InvertReplaceXMLData {
 
         my $NewValue;
 
-        if ( ref $XMLData->{$ItemKey} eq 'ARRAY' ) {
+        if ( IsHashRefWithData($XMLData) && $XMLData->{$ItemKey} && ref $XMLData->{$ItemKey} eq 'ARRAY' ) {
+
             for my $ArrayItem ( @{ $XMLData->{$ItemKey} } ) {
+
                 if ( ref $ArrayItem eq 'HASH' ) {
 
                     # get the new value
@@ -1310,7 +1314,7 @@ sub InvertReplaceXMLData {
                 }
             }
         }
-        elsif ( ref $XMLData->{$ItemKey} eq 'HASH' ) {
+        elsif ( IsHashRefWithData($XMLData) && $XMLData->{$ItemKey} && ref $XMLData->{$ItemKey} eq 'HASH' ) {
             $NewValue = $Self->_InvertReplaceValue(
                 Value   => $XMLData->{$ItemKey}->{$ItemKey},
                 Input   => $DefItem->{Input},
@@ -1324,7 +1328,7 @@ sub InvertReplaceXMLData {
         else {
 
             # only perform replace if item really exits in the XMLData
-            if ( $XMLData->{$ItemKey} ) {
+            if ( IsHashRefWithData($XMLData) && $XMLData->{$ItemKey} ) {
                 $NewValue = $Self->_InvertReplaceValue(
                     Value   => $XMLData->{$ItemKey},
                     Input   => $DefItem->{Input},
@@ -1338,7 +1342,7 @@ sub InvertReplaceXMLData {
         }
 
         # replace value in the resulting XMLData
-        if ( $XMLData->{$ItemKey} ) {
+        if ( IsHashRefWithData($XMLData) && $XMLData->{$ItemKey} ) {
             $NewXMLData->{$ItemKey} = $XMLData->{$ItemKey};
         }
 

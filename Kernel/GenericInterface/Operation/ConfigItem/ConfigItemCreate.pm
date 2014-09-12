@@ -175,6 +175,7 @@ sub Run {
     );
 
     if ( !$Result->{Success} ) {
+
         $Self->ReturnError(
             ErrorCode    => 'Webservice.InvalidConfiguration',
             ErrorMessage => $Result->{ErrorMessage},
