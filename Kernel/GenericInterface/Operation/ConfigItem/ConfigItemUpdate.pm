@@ -47,11 +47,11 @@ sub new {
     bless( $Self, $Type );
 
     # check needed objects
-    for my $Needed (qw( DebuggerObject WebserviceID )) {
+    for my $Needed (qw(DebuggerObject WebserviceID)) {
         if ( !$Param{$Needed} ) {
             return {
                 Success      => 0,
-                ErrorMessage => "Got no $Needed!"
+                ErrorMessage => "Got no $Needed!",
             };
         }
 
