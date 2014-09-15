@@ -1,5 +1,5 @@
 # --
-# Kernel/GenericInterface/Operation/CI/ConfigItemSearch.pm - GenericInterface ConfigItem ConfigItemSearch operation backend
+# Kernel/GenericInterface/Operation/ConfigItem/ConfigItemSearch.pm - GenericInterface ConfigItem ConfigItemSearch operation backend
 # Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
@@ -51,7 +51,7 @@ sub new {
         if ( !$Param{$Needed} ) {
             return {
                 Success      => 0,
-                ErrorMessage => "Got no $Needed!"
+                ErrorMessage => "Got no $Needed!",
             };
         }
 
@@ -65,8 +65,10 @@ sub new {
 
     $Self->{Config}->{DefaultValue} = 'Not Defined';
 
+    my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
+
     # get a list of all config item classes
-    $Self->{ClassList} = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
+    $Self->{ClassList} = $GeneralCatalogObject->ItemList(
         Class => 'ITSM::ConfigItem::Class',
     );
 
@@ -77,7 +79,7 @@ sub new {
     }
 
     # get a list of all incistates
-    $Self->{InciStateList} = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
+    $Self->{InciStateList} = $GeneralCatalogObject->ItemList(
         Class => 'ITSM::Core::IncidentState',
     );
 
@@ -89,7 +91,7 @@ sub new {
     }
 
     # get a list of all deplstates
-    $Self->{DeplStateList} = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
+    $Self->{DeplStateList} = $GeneralCatalogObject->ItemList(
         Class => 'ITSM::ConfigItem::DeploymentState',
     );
 
@@ -646,10 +648,12 @@ sub _ConfigItemSearch {
 
     my $RawXMLData = $ConfigItem->{CIXMLData};
 
+    my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+
     if ( IsHashRefWithData($RawXMLData) ) {
 
         # get last config item defintion
-        my $DefinitionData = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->DefinitionGet(
+        my $DefinitionData = $ConfigItemObject->DefinitionGet(
             ClassID => $Self->{ReverseClassList}->{ $ConfigItem->{Class} },
         );
 
@@ -674,8 +678,7 @@ sub _ConfigItemSearch {
         Data    => \%SearchParams,
     );
 
-    my $ConfigItemIDs = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')
-        ->ConfigItemSearchExtended(%SearchParams);
+    my $ConfigItemIDs = $ConfigItemObject->ConfigItemSearchExtended(%SearchParams);
 
     if ( IsArrayRefWithData($ConfigItemIDs) ) {
         return {

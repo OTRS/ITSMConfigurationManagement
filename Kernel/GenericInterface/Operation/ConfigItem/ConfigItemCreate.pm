@@ -1,5 +1,5 @@
 # --
-# Kernel/GenericInterface/Operation/CI/ConfigItemCreate.pm - GenericInterface ConfigItem ConfigItemCreate operation backend
+# Kernel/GenericInterface/Operation/ConfigItem/ConfigItemCreate.pm - GenericInterface ConfigItem ConfigItemCreate operation backend
 # Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
@@ -51,7 +51,7 @@ sub new {
         if ( !$Param{$Needed} ) {
             return {
                 Success      => 0,
-                ErrorMessage => "Got no $Needed!"
+                ErrorMessage => "Got no $Needed!",
             };
         }
 
@@ -65,8 +65,10 @@ sub new {
 
     $Self->{Config}->{DefaultValue} = 'Not Defined';
 
+    my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
+
     # get a list of all config item classes
-    $Self->{ClassList} = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
+    $Self->{ClassList} = $GeneralCatalogObject->ItemList(
         Class => 'ITSM::ConfigItem::Class',
     );
 
@@ -77,7 +79,7 @@ sub new {
     }
 
     # get a list of all incistates
-    $Self->{InciStateList} = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
+    $Self->{InciStateList} = $GeneralCatalogObject->ItemList(
         Class => 'ITSM::Core::IncidentState',
     );
 
@@ -89,7 +91,7 @@ sub new {
     }
 
     # get a list of all deplstates
-    $Self->{DeplStateList} = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
+    $Self->{DeplStateList} = $GeneralCatalogObject->ItemList(
         Class => 'ITSM::ConfigItem::DeploymentState',
     );
 
@@ -603,8 +605,10 @@ sub _ConfigItemCreate {
 
     my $RawXMLData = $ConfigItem->{CIXMLData};
 
+    my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+
     # get last config item defintion
-    my $DefinitionData = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->DefinitionGet(
+    my $DefinitionData = $ConfigItemObject->DefinitionGet(
         ClassID => $Self->{ReverseClassList}->{ $ConfigItem->{Class} },
     );
 
@@ -620,12 +624,12 @@ sub _ConfigItemCreate {
     );
 
     # create new config item
-    my $ConfigItemID = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemAdd(
+    my $ConfigItemID = $ConfigItemObject->ConfigItemAdd(
         ClassID => $Self->{ReverseClassList}->{ $ConfigItem->{Class} },
         UserID  => $Param{UserID},
     );
 
-    my $VersionID = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->VersionAdd(
+    my $VersionID = $ConfigItemObject->VersionAdd(
         ConfigItemID => $ConfigItemID,
         Name         => $ConfigItem->{Name},
         DefinitionID => $DefinitionData->{DefinitionID},
@@ -667,7 +671,7 @@ sub _ConfigItemCreate {
     }
 
     # get ConfigItem data
-    my $ConfigItemData = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemGet(
+    my $ConfigItemData = $ConfigItemObject->ConfigItemGet(
         ConfigItemID => $ConfigItemID,
     );
 

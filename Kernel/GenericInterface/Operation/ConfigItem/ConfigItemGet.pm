@@ -1,5 +1,5 @@
 # --
-# Kernel/GenericInterface/Operation/CI/ConfigItemGet.pm - GenericInterface Configuration Item Get operation backend
+# Kernel/GenericInterface/Operation/ConfigItem/ConfigItemGet.pm - GenericInterface Configuration Item Get operation backend
 # Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
@@ -192,12 +192,14 @@ sub Run {
 
     my @Item;
 
+    my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+
     # start ConfigItem loop
     CONFIGITEM:
     for my $ConfigItemID (@ConfigItemIDs) {
 
         # check create permissions
-        my $Permission = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->Permission(
+        my $Permission = $ConfigItemObject->Permission(
             Scope  => 'Item',
             ItemID => $ConfigItemID,
             UserID => $UserID,
@@ -212,12 +214,12 @@ sub Run {
         }
 
         # get the ConfigItem entry
-        my $ConfigItem = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemGet(
+        my $ConfigItem = $ConfigItemObject->ConfigItemGet(
             ConfigItemID => $ConfigItemID,
             UserID       => $UserID,
         );
 
-        my $Version = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->VersionGet(
+        my $Version = $ConfigItemObject->VersionGet(
             ConfigItemID => $ConfigItemID,
             UserID       => $UserID,
         );
@@ -263,19 +265,20 @@ sub Run {
         if ($Attachments) {
 
             my @Attachments
-                = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemAttachmentList(
+                = $ConfigItemObject->ConfigItemAttachmentList(
                 ConfigItemID => $ConfigItemID,
                 );
 
             my @AttachmentDetails;
             ATTACHMENT:
             for my $Filename (@Attachments) {
+
                 next ATTACHMENT if !$Filename;
-                my $Attachment
-                    = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemAttachmentGet(
+
+                my $Attachment = $ConfigItemObject->ConfigItemAttachmentGet(
                     ConfigItemID => $ConfigItemID,
                     Filename     => $Filename,
-                    );
+                );
 
                 # next if not attachment
                 next ATTACHMENT if !IsHashRefWithData($Attachment);

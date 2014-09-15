@@ -1,5 +1,5 @@
 # --
-# Kernel/GenericInterface/Operation/CI/ConfigItemUpdate.pm - GenericInterface ConfigItem ConfigItemUpdate operation backend
+# Kernel/GenericInterface/Operation/ConfigItem/ConfigItemUpdate.pm - GenericInterface ConfigItem ConfigItemUpdate operation backend
 # Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
@@ -58,19 +58,18 @@ sub new {
         $Self->{$Needed} = $Param{$Needed};
     }
 
+    # define operation name
     $Self->{OperationName} = 'ConfigItemUpdate';
-
-    # create additional objects
-    $Self->{GeneralCatalogObject} = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
-    $Self->{ConfigItemObject}     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
 
     $Self->{Config}
         = $Kernel::OM->Get('Kernel::Config')->Get('GenericInterface::Operation::ConfigItemUpdate');
 
     $Self->{Config}->{DefaultValue} = 'Not Defined';
 
+    my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
+
     # get a list of all config item classes
-    $Self->{ClassList} = $Self->{GeneralCatalogObject}->ItemList(
+    $Self->{ClassList} = $GeneralCatalogObject->ItemList(
         Class => 'ITSM::ConfigItem::Class',
     );
 
@@ -81,7 +80,7 @@ sub new {
     }
 
     # get a list of all incistates
-    $Self->{InciStateList} = $Self->{GeneralCatalogObject}->ItemList(
+    $Self->{InciStateList} = $GeneralCatalogObject->ItemList(
         Class => 'ITSM::Core::IncidentState',
     );
 
@@ -93,7 +92,7 @@ sub new {
     }
 
     # get a list of all deplstates
-    $Self->{DeplStateList} = $Self->{GeneralCatalogObject}->ItemList(
+    $Self->{DeplStateList} = $GeneralCatalogObject->ItemList(
         Class => 'ITSM::ConfigItem::DeploymentState',
     );
 
@@ -245,8 +244,11 @@ sub Run {
     # check for valid ConfigItemID
     my $ConfigItemID = $Param{Data}->{ConfigItemID};
 
+    # get config item object
+    my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+
     # get ConfigItem data
-    my $ConfigItemData = $Self->{ConfigItemObject}->ConfigItemGet(
+    my $ConfigItemData = $ConfigItemObject->ConfigItemGet(
         ConfigItemID => $ConfigItemID,
     );
 
@@ -289,7 +291,7 @@ sub Run {
     }
 
     # check update permissions
-    my $Permission = $Self->{ConfigItemObject}->Permission(
+    my $Permission = $ConfigItemObject->Permission(
         Scope   => 'Class',
         ClassID => $Self->{ReverseClassList}->{ $ConfigItem->{Class} },
         UserID  => $UserID,
@@ -497,7 +499,7 @@ sub _CheckConfigItem {
     }
 
     # get last config item defintion
-    my $DefinitionData = $Self->{ConfigItemObject}->DefinitionGet(
+    my $DefinitionData = $Kernel::OM->Get('Kernel::System::ITSMConfigitem')->DefinitionGet(
         ClassID => $Self->{ReverseClassList}->{ $ConfigItem->{Class} },
     );
 
@@ -636,8 +638,11 @@ sub _ConfigItemUpdate {
 
     my $RawXMLData = $ConfigItem->{CIXMLData};
 
+    # get config item object
+    my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+
     # get last config item defintion
-    my $DefinitionData = $Self->{ConfigItemObject}->DefinitionGet(
+    my $DefinitionData = $ConfigItemObject->DefinitionGet(
         ClassID => $Self->{ReverseClassList}->{ $ConfigItem->{Class} },
     );
 
@@ -653,12 +658,12 @@ sub _ConfigItemUpdate {
     );
 
     # get the current config item version data
-    my $CurrentVersion = $Self->{ConfigItemObject}->VersionGet(
+    my $CurrentVersion = $ConfigItemObject->VersionGet(
         ConfigItemID => $ConfigItemID,
         UserID       => $Param{UserID},
     );
 
-    my $VersionID = $Self->{ConfigItemObject}->VersionAdd(
+    my $VersionID = $ConfigItemObject->VersionAdd(
         ConfigItemID => $ConfigItemID,
         Name         => $ConfigItem->{Name},
         DefinitionID => $DefinitionData->{DefinitionID},
@@ -712,7 +717,7 @@ sub _ConfigItemUpdate {
     }
 
     # get ConfigItem data
-    my $ConfigItemData = $Self->{ConfigItemObject}->ConfigItemGet(
+    my $ConfigItemData = $ConfigItemObject->ConfigItemGet(
         ConfigItemID => $ConfigItemID,
     );
 

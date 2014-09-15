@@ -175,8 +175,6 @@ $Self->True(
 
 # debugger object
 my $DebuggerObject = Kernel::GenericInterface::Debugger->new(
-    %{$Self},
-    ConfigObject   => $ConfigObject,
     DebuggerConfig => {
         DebugThreshold => 'debug',
         TestMode       => 1,
@@ -405,9 +403,7 @@ for my $ConfigItem (@ConfigItems) {
         ClassID => $ReverseClassList{ $ConfigItem->{Class} },
     );
 
-    my $LocalObject = "Kernel::GenericInterface::Operation::ConfigItem::ConfigItemCreate"->new(
-        %{$Self},
-        ConfigObject   => $ConfigObject,
+    my $LocalObject = Kernel::GenericInterface::Operation::ConfigItem::ConfigItemCreate->new(
         DebuggerObject => $DebuggerObject,
         WebserviceID   => $WebserviceID,
     );
@@ -600,8 +596,6 @@ for my $Test (@Tests) {
 
     # create local object
     my $LocalObject = "Kernel::GenericInterface::Operation::ConfigItem::$Test->{Operation}"->new(
-        %{$Self},
-        ConfigObject   => $ConfigObject,
         DebuggerObject => $DebuggerObject,
         WebserviceID   => $WebserviceID,
     );
@@ -620,7 +614,7 @@ for my $Test (@Tests) {
             UserLogin => $UserLogin,
             Password  => $Password,
             %{ $Test->{RequestData} },
-            }
+        },
     );
 
     # check result
@@ -645,7 +639,7 @@ for my $Test (@Tests) {
         Data         => {
             SessionID => $NewSessionID,
             %{ $Test->{RequestData} },
-            }
+        },
     );
 
     # check result

@@ -54,6 +54,7 @@ sub Init {
         };
     }
 
+    # get webservice configuration
     my $Webservice
         = $Kernel::OM->Get('Kernel::System::GenericInterface::Webservice')->WebserviceGet(
         ID => $Param{WebserviceID},

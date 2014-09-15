@@ -170,8 +170,6 @@ $Self->True(
 
 # debugger object
 my $DebuggerObject = Kernel::GenericInterface::Debugger->new(
-    %{$Self},
-    ConfigObject   => $ConfigObject,
     DebuggerConfig => {
         DebugThreshold => 'debug',
         TestMode       => 1,
@@ -1047,8 +1045,6 @@ for my $Test (@Tests) {
 
     # create local object
     my $LocalObject = "Kernel::GenericInterface::Operation::ConfigItem::$Test->{Operation}"->new(
-        %{$Self},
-        ConfigObject   => $ConfigObject,
         DebuggerObject => $DebuggerObject,
         WebserviceID   => $WebserviceID,
     );
@@ -1070,7 +1066,7 @@ for my $Test (@Tests) {
             UserLogin => $UserLogin,
             Password  => $Password,
             %{ $Test->{RequestData} },
-            }
+        },
     );
 
     # restore cloned data
@@ -1098,7 +1094,7 @@ for my $Test (@Tests) {
         Data         => {
             SessionID => $NewSessionID,
             %{ $Test->{RequestData} },
-            }
+        },
     );
 
     # check result
