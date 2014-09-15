@@ -499,7 +499,7 @@ sub _CheckConfigItem {
     }
 
     # get last config item defintion
-    my $DefinitionData = $Kernel::OM->Get('Kernel::System::ITSMConfigitem')->DefinitionGet(
+    my $DefinitionData = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->DefinitionGet(
         ClassID => $Self->{ReverseClassList}->{ $ConfigItem->{Class} },
     );
 
