@@ -1232,6 +1232,14 @@
         );
 
     ]]></CodeUpgrade>
+    <CodeUpgrade Type="pre" Version="3.3.91"><![CDATA[
+
+        # uninstall Feature AddOn OTRSGenericInterfaceITSMCIOperations that has been integrated in OTRS ITSM 3.3.91 (OTRS::ITSM 4 Beta 1)
+        $Kernel::OM->Get('Kernel::System::Package')->_PackageUninstallMerged(
+            Name => 'OTRSGenericInterfaceITSMCIOperations',
+        );
+
+    ]]></CodeUpgrade>
     <CodeUpgrade Type="post"><![CDATA[
 
         # create the package name
