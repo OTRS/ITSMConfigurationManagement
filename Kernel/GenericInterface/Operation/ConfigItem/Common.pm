@@ -74,38 +74,6 @@ sub Init {
     };
 }
 
-=item ReturnError()
-
-helper function to return an error message.
-
-    my $Return = $CommonObject->ReturnError(
-        ErrorCode    => 'ITSMConfigItem.AccessDenied',
-        ErrorMessage => 'You dont have rights to access this config item',
-    );
-
-=cut
-
-sub ReturnError {
-    my ( $Self, %Param ) = @_;
-
-    $Kernel::OM->Get('Kernel::GenericInterface::Debugger')->Error(
-        Summary => $Param{ErrorCode},
-        Data    => $Param{ErrorMessage},
-    );
-
-    # return structure
-    return {
-        Success      => 1,
-        ErrorMessage => "$Param{ErrorCode}: $Param{ErrorMessage}",
-        Data         => {
-            Error => {
-                ErrorCode    => $Param{ErrorCode},
-                ErrorMessage => $Param{ErrorMessage},
-            },
-        },
-    };
-}
-
 =item ValidateClass()
 
 checks if the given Class is valid.
