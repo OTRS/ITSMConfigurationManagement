@@ -13,7 +13,7 @@ use strict;
 use warnings;
 
 our @ObjectDependencies = (
-    'Kernel::System::CustomerCompanyObject',
+    'Kernel::System::CustomerCompany',
     'Kernel::System::Log',
 );
 
@@ -65,7 +65,7 @@ sub ValueLookup {
     return '' if !$Param{Value};
 
     my %CustomerCompany
-        = $Kernel::OM->Get('Kernel::System::CustomerCompanyObject')->CustomerCompanyGet(
+        = $Kernel::OM->Get('Kernel::System::CustomerCompany')->CustomerCompanyGet(
         CustomerID => $Param{Value},
         );
 
