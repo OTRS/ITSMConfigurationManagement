@@ -223,7 +223,7 @@ my @Tests = (
                     ErrorCode => 'ConfigItemCreate.MissingParameter',
                     }
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -240,7 +240,7 @@ my @Tests = (
                     ErrorCode => 'ConfigItemCreate.MissingParameter',
                     }
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -259,7 +259,7 @@ my @Tests = (
                     ErrorCode => 'ConfigItemCreate.MissingParameter',
                     }
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -278,7 +278,7 @@ my @Tests = (
                     ErrorCode => 'ConfigItemCreate.MissingParameter',
                     }
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -299,7 +299,7 @@ my @Tests = (
                     ErrorCode => 'ConfigItemCreate.MissingParameter',
                     }
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -321,12 +321,12 @@ my @Tests = (
                     ErrorCode => 'ConfigItemCreate.MissingParameter',
                     }
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
     {
-        Name           => 'Missing DeplSate',
+        Name           => 'Missing DeplState',
         SuccessRequest => 1,
         SuccessCreate  => 0,
         RequestData    => {
@@ -344,7 +344,7 @@ my @Tests = (
                     ErrorCode => 'ConfigItemCreate.MissingParameter',
                     }
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -368,7 +368,7 @@ my @Tests = (
                     ErrorCode => 'ConfigItemCreate.MissingParameter',
                     }
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -393,7 +393,7 @@ my @Tests = (
                     ErrorCode => 'ConfigItemCreate.InvalidParameter',
                     }
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -418,7 +418,7 @@ my @Tests = (
                     ErrorCode => 'ConfigItemCreate.InvalidParameter',
                     }
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -443,7 +443,7 @@ my @Tests = (
                     ErrorCode => 'ConfigItemCreate.InvalidParameter',
                     }
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -470,7 +470,7 @@ my @Tests = (
                     ErrorCode => 'ConfigItemCreate.MissingParameter',
                     }
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -497,7 +497,7 @@ my @Tests = (
                     ErrorCode => 'ConfigItemCreate.MissingParameter',
                     }
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },

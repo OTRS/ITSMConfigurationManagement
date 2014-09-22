@@ -266,9 +266,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemUpdate.MissingParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemUpdate',
     },
@@ -283,9 +283,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemUpdate.MissingParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemUpdate',
     },
@@ -302,9 +302,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemUpdate.MissingParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemUpdate',
     },
@@ -322,9 +322,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemUpdate.MissingParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemUpdate',
     },
@@ -342,9 +342,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemUpdate.MissingParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemUpdate',
     },
@@ -362,9 +362,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemUpdate.MissingParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemUpdate',
     },
@@ -384,9 +384,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemUpdate.MissingParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemUpdate',
     },
@@ -407,14 +407,14 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemUpdate.MissingParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemUpdate',
     },
     {
-        Name           => 'Missing DeplSate',
+        Name           => 'Missing DeplState',
         SuccessRequest => 1,
         SuccessUpdate  => 0,
         RequestData    => {
@@ -431,9 +431,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemUpdate.MissingParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemUpdate',
     },
@@ -456,9 +456,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemUpdate.MissingParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemUpdate',
     },
@@ -482,9 +482,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemUpdate.InvalidParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemUpdate',
     },
@@ -508,9 +508,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemUpdate.InvalidParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemUpdate',
     },
@@ -534,9 +534,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemUpdate.InvalidParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemUpdate',
     },
@@ -562,9 +562,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemUpdate.MissingParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemUpdate',
     },
@@ -590,9 +590,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemUpdate.MissingParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemUpdate',
     },
@@ -1122,21 +1122,6 @@ my @Tests = (
                     InstallDate            => '1977-12-12',
                     Note                   => 'This is a Demo CI',
                 },
-
-                # attachments should be skipped since they shoul not be an attachments with the
-                # same name this happens when updating from local and requester mode
-                #                Attachment => [
-                #                    {
-                #                        Content     => 'VGhpcyBpcyBhbiBlbmNvZGVkIHRleHQ=',
-                #                        ContentType => 'text/plain',
-                #                        Filename    => 'My Text.txt',
-                #                    },
-                #                    {
-                #                        Content     => 'VGhpcyBpcyBhbiBlbmNvZGVkIHRleHQ=',
-                #                        ContentType => 'text/plain; charset=iso-8859-1',
-                #                        Filename    => 'My Text2.txt',
-                #                    },
-                #                ],
             },
         },
         ExpectedData => {},

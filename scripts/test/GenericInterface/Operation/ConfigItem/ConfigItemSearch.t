@@ -442,9 +442,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemSearch.MissingParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemSearch',
     },
@@ -459,9 +459,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemSearch.MissingParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemSearch',
     },
@@ -476,9 +476,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemSearch.MissingParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemSearch',
     },
@@ -495,9 +495,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemSearch.MissingParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemSearch',
     },
@@ -514,9 +514,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemSearch.InvalidParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemSearch',
     },
@@ -534,9 +534,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemSearch.InvalidParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemSearch',
     },
@@ -557,9 +557,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemSearch.InvalidParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemSearch',
     },
@@ -582,9 +582,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemSearch.WrongStructure',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemSearch',
     },
@@ -605,9 +605,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemSearch.InvalidParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemSearch',
     },
@@ -629,9 +629,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemSearch.InvalidParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemSearch',
     },
@@ -655,9 +655,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemSearch.WrongStructure',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemSearch',
     },
@@ -679,9 +679,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemSearch.InvalidParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemSearch',
     },
@@ -706,9 +706,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemSearch.WrongStructure',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemSearch',
     },
@@ -734,9 +734,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemSearch.WrongStructure',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemSearch',
     },
@@ -761,9 +761,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemSearch.InvalidParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemSearch',
     },
@@ -789,9 +789,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemSearch.InvalidParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemSearch',
     },
@@ -818,9 +818,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemSearch.InvalidParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemSearch',
     },
@@ -848,9 +848,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemSearch.InvalidParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemSearch',
     },
@@ -879,9 +879,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemSearch.InvalidParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemSearch',
     },
@@ -912,9 +912,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemSearch.InvalidParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemSearch',
     },
@@ -946,9 +946,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemSearch.InvalidParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemSearch',
     },
@@ -977,9 +977,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemSearch.InvalidParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemSearch',
     },
@@ -1011,9 +1011,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemSearch.InvalidParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemSearch',
     },
@@ -1040,7 +1040,7 @@ my @Tests = (
             Data => {
                 ConfigItemIDs => [ $AddedConfigItemIDs[0], $AddedConfigItemIDs[1] ],
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemSearch',
     },
@@ -1068,7 +1068,7 @@ my @Tests = (
             Data => {
                 ConfigItemIDs => [ $AddedConfigItemIDs[0] ],
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemSearch',
     },
@@ -1088,14 +1088,14 @@ my @Tests = (
                     LicenceKey => {
                         Quantity => [ '3', '4' ],
                     },
-                    }
+                },
             },
         },
         ExpectedData => {
             Data => {
                 ConfigItemIDs => [ $AddedConfigItemIDs[2], $AddedConfigItemIDs[3] ],
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemSearch',
     },

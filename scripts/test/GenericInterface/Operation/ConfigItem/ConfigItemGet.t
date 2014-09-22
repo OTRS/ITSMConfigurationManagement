@@ -461,9 +461,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemGet.MissingParameter',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemGet',
     },
@@ -480,9 +480,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemGet.WrongStructure',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemGet',
     },
@@ -497,9 +497,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemGet.AccessDenied',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemGet',
     },
@@ -514,9 +514,9 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemGet.AccessDenied',
-                    }
+                },
             },
-            Success => 1
+            Success => 1,
         },
         Operation => 'ConfigItemGet',
     },
