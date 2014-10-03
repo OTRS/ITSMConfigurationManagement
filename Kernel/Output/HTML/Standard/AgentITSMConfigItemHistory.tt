@@ -54,7 +54,7 @@
                                 [% Data.HistoryType | html %]
                             </td>
                             <td>
-                                <div title="[% Data.Comment | html %]">[% Data.Comment | truncate(100) | html %]</div>
+                                <div>[% Data.Comment | html %]</div>
                             </td>
                             <td class="Center">
                                 <a  class="LinkZoomView AsBlock" href="[% Env("Baselink") %]Action=AgentITSMConfigItemZoom;ConfigItemID=[% Data.ConfigItemID %];VersionID=[% Data.VersionID %]">[% Translate("Zoom view") | html %]</a>
