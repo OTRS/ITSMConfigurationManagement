@@ -285,6 +285,26 @@ sub HistoryAdd {
     # delete cached results
     delete $Self->{Cache}->{CIVersions}->{ $Param{ConfigItemID} };
 
+    # shorten the comment if it is bigger than max length
+    if ( length( $Param{Comment} ) > 255 ) {
+
+       my( $Field, $Old, $New ) = split '%%', $Param{Comment}, 3;
+
+       my $Length = int((255 - length($Field) - 4) / 2);
+
+       if ( length($Old) > $Length ) {
+           my $Index = int( $Length / 2 );
+           $Old = substr( $Old, 0, $Index - 2 ) . '...' . substr( $Old, length($Old) - $Index + 2 );
+       }
+       if (length($New) > $Length) {
+           my $Index = int($Length / 2);
+           $New = substr( $New, 0, $Index - 2 ) . '...' . substr( $New, length($New) - $Index + 2 );
+       }
+       my $NewComment = $Field . '%%' . $Old . '%%' . $New;
+
+       $Param{Comment} = $NewComment;
+    }
+
     # insert history entry
     return $Self->{DBObject}->Do(
         SQL => 'INSERT INTO configitem_history ( configitem_id, content, create_by, '

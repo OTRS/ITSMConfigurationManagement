@@ -54,7 +54,7 @@
                                 $Quote{"$Data{"HistoryType"}"}
                             </td>
                             <td>
-                                <div title="$QData{"Comment"}">$QData{"Comment","100"}</div>
+                                <div>$QData{"Comment"}</div>
                             </td>
                             <td class="Center">
                                 <a  class="LinkZoomView AsBlock" href="$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID=$Data{"ConfigItemID"};VersionID=$Data{"VersionID"}">$Text{"Zoom view"}</a>
