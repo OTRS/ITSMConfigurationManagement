@@ -57,7 +57,6 @@ sub Data {
     $Self->{Translation}->{'Enterprise Licence'} = 'Enterpriselicens';
     $Self->{Translation}->{'Expiration Date'} = 'Löper ut datum';
     $Self->{Translation}->{'Expired'} = 'Löpt ut';
-    $Self->{Translation}->{'FQDN'} = 'FQDN';
     $Self->{Translation}->{'Floor'} = 'Våning';
     $Self->{Translation}->{'Freeware'} = 'Freeware';
     $Self->{Translation}->{'GSM'} = 'GSM';
@@ -95,7 +94,6 @@ sub Data {
     $Self->{Translation}->{'Network Address::Gateway'} = 'Nätverksadress::Gateway';
     $Self->{Translation}->{'Network Address::Subnet Mask'} = 'Nätverksadress::Subnätmask';
     $Self->{Translation}->{'Open Source'} = 'Öppen källkod';
-    $Self->{Translation}->{'Operating System'} = 'Operativsystem';
     $Self->{Translation}->{'Operational'} = 'Operationell';
     $Self->{Translation}->{'Other'} = 'Annan';
     $Self->{Translation}->{'Other Equipment'} = 'Annan utrustning';
@@ -118,6 +116,7 @@ sub Data {
     $Self->{Translation}->{'Repair'} = 'Reperation';
     $Self->{Translation}->{'Retired'} = 'Pensionerad';
     $Self->{Translation}->{'Review'} = 'Översyn';
+    $Self->{Translation}->{'Room'} = '';
     $Self->{Translation}->{'Router'} = 'Router';
     $Self->{Translation}->{'Scanner'} = 'Scanner';
     $Self->{Translation}->{'Search Config Items'} = 'Sök konfigurationsenheter';
@@ -155,14 +154,20 @@ sub Data {
     $Self->{Translation}->{'Filter for Classes'} = 'Filtrera klasser';
     $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = 'Välj en klass från listan för att skapa en ny konfigurationsenhet';
 
+    # Template: AgentITSMConfigItemBulk
+    $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = '';
+    $Self->{Translation}->{'Deployment state'} = '';
+    $Self->{Translation}->{'Incident state'} = '';
+    $Self->{Translation}->{'Link to another'} = '';
+    $Self->{Translation}->{'Invalid Configuration Item number!'} = '';
+    $Self->{Translation}->{'The number of another Configuration Item to link with.'} = '';
+
     # Template: AgentITSMConfigItemEdit
     $Self->{Translation}->{'The name of this config item'} = 'Namnet på denna konfigurationsenhet';
     $Self->{Translation}->{'Name is already in use by the ConfigItems with the following Number(s): %s'} =
         'Namnet används redan i konfigurationsenheter med förljande nummer: %s';
     $Self->{Translation}->{'Deployment State'} = 'Driftläge';
     $Self->{Translation}->{'Incident State'} = 'Incidentläge';
-
-    # Template: AgentITSMConfigItemHistory
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'Anpassa vy';
@@ -194,6 +199,7 @@ sub Data {
     $Self->{Translation}->{'Show one version'} = 'Visa en version';
     $Self->{Translation}->{'Show all versions'} = 'Visa alla versioner';
     $Self->{Translation}->{'Version Incident State'} = 'Incidentläge för version';
+    $Self->{Translation}->{'Version Deployment State'} = '';
     $Self->{Translation}->{'Version Number'} = 'Versionsnummer';
     $Self->{Translation}->{'Configuration Item Version Details'} = 'Versionsinformation för konfigurationsenhet';
     $Self->{Translation}->{'Property'} = 'Egenskap';
@@ -209,6 +215,14 @@ sub Data {
     $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} =
         '';
     $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = 'Skapa och hantera definitioner för konfigurationsenheter';
+    $Self->{Translation}->{'Defines Required permissions to create ITSM configuration items using the Generic Interface.'} =
+        '';
+    $Self->{Translation}->{'Defines Required permissions to get ITSM configuration items using the Generic Interface.'} =
+        '';
+    $Self->{Translation}->{'Defines Required permissions to search ITSM configuration items using the Generic Interface.'} =
+        '';
+    $Self->{Translation}->{'Defines Required permissions to update ITSM configuration items using the Generic Interface.'} =
+        '';
     $Self->{Translation}->{'Defines an overview module to show the small view of a configuration item list.'} =
         '';
     $Self->{Translation}->{'Defines regular expressions individually for each ConfigItem class to check the ConfigItem name and to show corresponding error messages.'} =
@@ -221,7 +235,7 @@ sub Data {
         '';
     $Self->{Translation}->{'Defines the search limit for the AgentITSMConfigItemSearch screen.'} =
         '';
-    $Self->{Translation}->{'Defines the shown columns in the config item overview. This option has no effect on the position of the column. Note: Class column is always available if filter \'All\' is selected'} =
+    $Self->{Translation}->{'Defines the shown columns in the config item overview. This option has no effect on the position of the column. Note: Class column is always available if filter \'All\' is selected.'} =
         '';
     $Self->{Translation}->{'Defines the shown columns in the config item search. This option has no effect on the position of the column.'} =
         '';
@@ -231,6 +245,10 @@ sub Data {
         '';
     $Self->{Translation}->{'Defines the shown columns of CIs in the link table complex view, depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown.'} =
         '';
+    $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
+        '';
+    $Self->{Translation}->{'Enables configuration item bulk action feature only for the listed groups.'} =
+        '';
     $Self->{Translation}->{'Enables/disables the functionality to check ConfigItems for unique names. Before enabling this option you should check your system for already existing config items with duplicate names. You can do this with the script bin/otrs.ITSMConfigItemListDuplicates.pl.'} =
         '';
     $Self->{Translation}->{'Module to check the group responsible for a class.'} = '';
@@ -238,6 +256,8 @@ sub Data {
         '';
     $Self->{Translation}->{'Module to generate ITSM config item statistics.'} = '';
     $Self->{Translation}->{'Object backend module registration for the import/export module.'} =
+        '';
+    $Self->{Translation}->{'Parameters for the deployment states color in the preferences view of the agent interface.'} =
         '';
     $Self->{Translation}->{'Parameters for the deployment states in the preferences view of the agent interface.'} =
         '';
@@ -261,9 +281,17 @@ sub Data {
         '';
     $Self->{Translation}->{'Selects the configuration item number generator module. "AutoIncrement" increments the configuration item number, the SystemID, the ConfigItemClassID and the counter are used. The format is "SystemID.ConfigItemClassID.Counter", e.g. 1205000004, 1205000005.'} =
         '';
+    $Self->{Translation}->{'Sets the deployment state in the configuration item bulk screen of the agent interface.'} =
+        '';
+    $Self->{Translation}->{'Sets the incident state in the configuration item bulk screen of the agent interface.'} =
+        '';
     $Self->{Translation}->{'Shows a link in the menu that allows linking a configuration item with another object in the config item zoom view of the agent interface.'} =
         '';
+    $Self->{Translation}->{'Shows a link in the menu to access the history of a configuration item in the configuration item overview of the agent interface.'} =
+        '';
     $Self->{Translation}->{'Shows a link in the menu to access the history of a configuration item in the its zoom view of the agent interface.'} =
+        '';
+    $Self->{Translation}->{'Shows a link in the menu to duplicate a configuration item in the configuration item overview of the agent interface.'} =
         '';
     $Self->{Translation}->{'Shows a link in the menu to duplicate a configuration item in the its zoom view of the agent interface.'} =
         '';
@@ -273,14 +301,12 @@ sub Data {
         '';
     $Self->{Translation}->{'Shows a link in the menu to print a configuration item in the its zoom view of the agent interface.'} =
         '';
+    $Self->{Translation}->{'Shows a link in the menu to zoom into a configuration item in the configuration item overview of the agent interface.'} =
+        '';
     $Self->{Translation}->{'Shows the config item history (reverse ordered) in the agent interface.'} =
         '';
     $Self->{Translation}->{'The identifier for a configuration item, e.g. ConfigItem#, MyConfigItem#. The default is ConfigItem#.'} =
         '';
-
-    #
-    # OBSOLETE ENTRIES FOR REFERENCE, DO NOT TRANSLATE!
-    #
 
 }
 
