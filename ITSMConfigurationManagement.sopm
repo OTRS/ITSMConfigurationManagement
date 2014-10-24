@@ -4,13 +4,13 @@
 <!-- nofilter(TidyAll::Plugin::OTRS::SOPM::DocumentationPresent) -->
     <Version>0.0.0</Version>
     <Framework>4.0.x</Framework>
-    <PackageRequired Version="3.3.93">ITSMCore</PackageRequired>
+    <PackageRequired Version="3.3.95">ITSMCore</PackageRequired>
     <Vendor>OTRS AG</Vendor>
     <URL>http://otrs.org/</URL>
     <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
-    <Description Lang="en">The OTRS ITSM Configuration Management package.</Description>
-    <Description Lang="de">Das OTRS ITSM Configuration Management Paket.</Description>
-    <Description Lang="es">El paquete OTRS ITSM Configuration Management.</Description>
+    <Description Lang="en">The OTRS::ITSM Configuration Management package.</Description>
+    <Description Lang="de">Das OTRS::ITSM Configuration Management Paket.</Description>
+    <Description Lang="es">El paquete OTRS::ITSM Configuration Management.</Description>
     <Filelist>
         <File Permission="755" Location="bin/otrs.ITSMConfigItemDelete.pl"/>
         <File Permission="755" Location="bin/otrs.ITSMConfigItemIncidentStateRecalculate.pl"/>
@@ -1221,12 +1221,12 @@
     <!-- It is IMPORTANT that this CodeUpgrade (Version="3.2.91") comes BEFORE the regular CodeUpgrade block without any version number! -->
     <CodeUpgrade Type="pre" Version="3.2.91"><![CDATA[
 
-        # uninstall Feature AddOn OTRSCIColumns that has been integrated in OTRS ITSM 3.2.91 (OTRS ITSM 3.3.0 Beta 1)
+        # uninstall Feature AddOn OTRSCIColumns that has been integrated in OTRS::ITSM 3.2.91 (OTRS::ITSM 3.3.0 Beta 1)
         $Kernel::OM->Get('Kernel::System::Package')->_PackageUninstallMerged(
             Name => 'OTRSCIColumns',
         );
 
-        # uninstall Feature AddOn OTRSCIAttributeSyntaxCheck that has been integrated in OTRS ITSM 3.2.91 (OTRS ITSM 3.3.0 Beta 1)
+        # uninstall Feature AddOn OTRSCIAttributeSyntaxCheck that has been integrated in OTRS::ITSM 3.2.91 (OTRS::ITSM 3.3.0 Beta 1)
         $Kernel::OM->Get('Kernel::System::Package')->_PackageUninstallMerged(
             Name => 'OTRSCIAttributeSyntaxCheck',
         );
@@ -1234,7 +1234,7 @@
     ]]></CodeUpgrade>
     <CodeUpgrade Type="pre" Version="3.3.91"><![CDATA[
 
-        # uninstall Feature AddOn OTRSGenericInterfaceITSMCIOperations that has been integrated in OTRS ITSM 3.3.91 (OTRS::ITSM 4 Beta 1)
+        # uninstall Feature AddOn OTRSGenericInterfaceITSMCIOperations that has been integrated in OTRS::ITSM 3.3.91 (OTRS::ITSM 4 Beta 1)
         $Kernel::OM->Get('Kernel::System::Package')->_PackageUninstallMerged(
             Name => 'OTRSGenericInterfaceITSMCIOperations',
         );
@@ -1281,7 +1281,7 @@
         <br/>
         <strong>REQUIRED OTRS PACKAGES</strong>
         <ul>
-        <li>ITSMCore 3.3.93</li>
+        <li>ITSMCore 3.3.95</li>
         </ul>
         <br/>
         ((enjoy))<br/>
@@ -1299,7 +1299,7 @@
         <br/>
         <strong>BENÖTIGTE OTRS-PAKETE</strong>
         <ul>
-        <li>ITSMCore 3.3.93</li>
+        <li>ITSMCore 3.3.95</li>
         </ul>
         <br/>
         ((enjoy))<br/>
@@ -1317,7 +1317,7 @@
         <br/>
         <strong>PAQUETES OTRS REQUERIDOS</strong>
         <ul>
-        <li>ITSMCore 3.3.93</li>
+        <li>ITSMCore 3.3.95</li>
         </ul>
         <br/>
         ((enjoy))<br/>
@@ -1385,7 +1385,7 @@
         <br/>
         <strong>REQUIRED OTRS PACKAGES</strong>
         <ul>
-        <li>ITSMCore 3.3.93</li>
+        <li>ITSMCore 3.3.95</li>
         </ul>
         <br/>
         ((enjoy))<br/>
@@ -1403,7 +1403,7 @@
         <br/>
         <strong>BENÖTIGTE OTRS-PAKETE</strong>
         <ul>
-        <li>ITSMCore 3.3.93</li>
+        <li>ITSMCore 3.3.95</li>
         </ul>
         <br/>
         ((enjoy))<br/>
@@ -1421,7 +1421,7 @@
         <br/>
         <strong>PAQUETES OTRS REQUERIDOS</strong>
         <ul>
-        <li>ITSMCore 3.3.93</li>
+        <li>ITSMCore 3.3.95</li>
         </ul>
         <br/>
         ((enjoy))<br/>
