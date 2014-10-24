@@ -190,7 +190,7 @@ The returned hash contains following attributes.
         ConfigItemID => 123,
     );
 
-When the date from the XML storage is not needed then fetching the XML data can be
+When the data from the XML storage is not needed then fetching the XML data can be
 explicitly turned off by passing XMLDataGet => 0.
 
     my $VersionRef = $ConfigItemObject->VersionGet(
