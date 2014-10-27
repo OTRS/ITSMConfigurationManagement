@@ -42,7 +42,7 @@
         <File Permission="644" Location="Kernel/Language/nl_ITSMConfigurationManagement.pm"/>
         <File Permission="644" Location="Kernel/Language/pl_ITSMConfigurationManagement.pm"/>
         <File Permission="644" Location="Kernel/Language/pt_BR_ITSMConfigurationManagement.pm"/>
-        <File Permission="644" Location="Kernel/Language/pt_PT_ITSMConfigurationManagement.pm"/>
+        <File Permission="644" Location="Kernel/Language/pt_ITSMConfigurationManagement.pm"/>
         <File Permission="644" Location="Kernel/Language/ru_ITSMConfigurationManagement.pm"/>
         <File Permission="644" Location="Kernel/Language/sv_ITSMConfigurationManagement.pm"/>
         <File Permission="644" Location="Kernel/Language/zh_CN_ITSMConfigurationManagement.pm"/>
