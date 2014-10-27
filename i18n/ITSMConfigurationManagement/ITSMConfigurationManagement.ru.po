@@ -1,0 +1,888 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ITSMConfigurationManagement\n"
+"POT-Creation-Date: 2014-08-08 19:10+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Template: AAAITSMConfigItem
+msgid "Address"
+msgstr "Адрес"
+
+#. Template: AAAITSMConfigItem
+msgid "Admin Tool"
+msgstr "Системные утилиты"
+
+#. Template: AAAITSMConfigItem
+msgid "Backup Device"
+msgstr "Устройство бэкапа"
+
+#. Template: AAAITSMConfigItem
+msgid "Beamer"
+msgstr "Проектор"
+
+#. Template: AAAITSMConfigItem
+msgid "Building"
+msgstr "Здание"
+
+#. Template: AAAITSMConfigItem
+msgid "CIHistory::ConfigItemCreate"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "CIHistory::ConfigItemDelete"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "CIHistory::DefinitionUpdate"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "CIHistory::DeploymentStateUpdate"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "CIHistory::IncidentStateUpdate"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "CIHistory::LinkAdd"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "CIHistory::LinkDelete"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "CIHistory::NameUpdate"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "CIHistory::ValueUpdate"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "CIHistory::VersionCreate"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "CIHistory::VersionDelete"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "CIHistory::AttachmentAdd"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "CIHistory::AttachmentDelete"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "CPU"
+msgstr "ЦПУ"
+
+#. Template: AAAITSMConfigItem
+msgid "Camera"
+msgstr "Камера"
+
+#. Template: AAAITSMConfigItem
+msgid "Capacity"
+msgstr "Объем"
+
+#. Template: AAAITSMConfigItem
+msgid "Change Definition"
+msgstr "Изменить описание"
+
+#. Template: AAAITSMConfigItem
+msgid "Change of definition failed! See System Log for details."
+msgstr "Невозможно изменить описание! Для подробной информации смотри System Log."
+
+#. Template: AAAITSMConfigItem
+msgid "Client Application"
+msgstr "Клиентское приложение"
+
+#. Template: AAAITSMConfigItem
+msgid "Client OS"
+msgstr "Клиентская ОС"
+
+#. Template: AAAITSMConfigItem
+msgid "Concurrent Users"
+msgstr "Конкурентая лицензия"
+
+#. Template: AAAITSMConfigItem
+msgid "Config Item-Area"
+msgstr "Обзор основных средств"
+
+#. Template: AAAITSMConfigItem
+msgid "Config Items available"
+msgstr "Доступно основных средств"
+
+#. Template: AAAITSMConfigItem
+msgid "Config Items shown"
+msgstr "Показано основных средств"
+
+#. Template: AAAITSMConfigItem
+msgid "CMDB"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "Demo"
+msgstr "Демо-версия"
+
+#. Template: AAAITSMConfigItem
+msgid "Desktop"
+msgstr "Настольный ПК"
+
+#. Template: AAAITSMConfigItem
+msgid "Developer Licence"
+msgstr "Лицензия для разработчика"
+
+#. Template: AAAITSMConfigItem
+msgid "Docking Station"
+msgstr "Док-станция"
+
+#. Template: AAAITSMConfigItem
+msgid "Duplicate"
+msgstr "Резерв"
+
+#. Template: AAAITSMConfigItem
+msgid "Embedded"
+msgstr "Встроенный"
+
+#. Template: AAAITSMConfigItem
+msgid "Empty fields indicate that the current values are kept"
+msgstr "Пустые поля показывают, что текущие значения сохранятся"
+
+#. Template: AAAITSMConfigItem
+msgid "Enterprise Licence"
+msgstr "Корпоративная лицензия"
+
+#. Template: AAAITSMConfigItem
+msgid "Expiration Date"
+msgstr "Срок лицензии"
+
+#. Template: AAAITSMConfigItem
+msgid "Expired"
+msgstr "Устарело"
+
+#. Template: AAAITSMConfigItem
+msgid "Floor"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "Freeware"
+msgstr "Бесплатное ПО"
+
+#. Template: AAAITSMConfigItem
+msgid "GSM"
+msgstr "GSM"
+
+#. Template: AAAITSMConfigItem
+msgid "Gateway"
+msgstr "Шлюз"
+
+#. Template: AAAITSMConfigItem
+msgid "Graphic Adapter"
+msgstr "Видео адаптер"
+
+#. Template: AAAITSMConfigItem
+msgid "Hard Disk"
+msgstr "Жесткий диск"
+
+#. Template: AAAITSMConfigItem
+msgid "Hard Disk::Capacity"
+msgstr "Жесткий диск::Объем"
+
+#. Template: AAAITSMConfigItem
+msgid "Hide Versions"
+msgstr "Скрыть версии"
+
+#. Template: AAAITSMConfigItem
+msgid "IP Address"
+msgstr "IP адрес"
+
+#. Template: AAAITSMConfigItem
+msgid "IP over DHCP"
+msgstr "IP по DHCP"
+
+#. Template: AAAITSMConfigItem
+msgid "IT Facility"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "Inactive"
+msgstr "Неактивно"
+
+#. Template: AAAITSMConfigItem
+msgid "Incident"
+msgstr "Инцидент"
+
+#. Template: AAAITSMConfigItem
+msgid "Install Date"
+msgstr "Дата установки"
+
+#. Template: AAAITSMConfigItem
+msgid "Keybord"
+msgstr "Клавиатура"
+
+#. Template: AAAITSMConfigItem
+msgid "LAN"
+msgstr "Сетевая карта"
+
+#. Template: AAAITSMConfigItem
+msgid "Laptop"
+msgstr "Ноутбук"
+
+#. Template: AAAITSMConfigItem
+msgid "Last Change"
+msgstr "Время последнего изменения"
+
+#. Template: AAAITSMConfigItem
+msgid "Licence Key"
+msgstr "Лицензионный ключ"
+
+#. Template: AAAITSMConfigItem
+msgid "Licence Key::Expiration Date"
+msgstr "Лицензионный ключ::Срок лицензии"
+
+#. Template: AAAITSMConfigItem
+msgid "Licence Key::Quantity"
+msgstr "Лицензионный ключ::Количество"
+
+#. Template: AAAITSMConfigItem
+msgid "Licence Type"
+msgstr "Тип лицензии"
+
+#. Template: AAAITSMConfigItem
+msgid "Maintenance"
+msgstr "Техническое обслуживание"
+
+#. Template: AAAITSMConfigItem
+msgid "Maximum number of one element"
+msgstr "Максимальное количество одного элемента"
+
+#. Template: AAAITSMConfigItem
+msgid "Media"
+msgstr "Мультимедийные средства"
+
+#. Template: AAAITSMConfigItem
+msgid "Middleware"
+msgstr "Промежуточное ПО"
+
+#. Template: AAAITSMConfigItem
+msgid "Model"
+msgstr "Модель"
+
+#. Template: AAAITSMConfigItem
+msgid "Modem"
+msgstr "Модем"
+
+#. Template: AAAITSMConfigItem
+msgid "Monitor"
+msgstr "Монитор"
+
+#. Template: AAAITSMConfigItem
+msgid "Mouse"
+msgstr "Мышка"
+
+#. Template: AAAITSMConfigItem
+msgid "Network Adapter"
+msgstr "Сетевой адаптер"
+
+#. Template: AAAITSMConfigItem
+msgid "Network Adapter::IP Address"
+msgstr "Сетевой адаптер::IP адрес"
+
+#. Template: AAAITSMConfigItem
+msgid "Network Adapter::IP over DHCP"
+msgstr "Сетевой адаптер::IP по DHCP"
+
+#. Template: AAAITSMConfigItem
+msgid "Network Address"
+msgstr "Сетевой адрес"
+
+#. Template: AAAITSMConfigItem
+msgid "Network Address::Gateway"
+msgstr "Сетевой адрес::Шлюз"
+
+#. Template: AAAITSMConfigItem
+msgid "Network Address::Subnet Mask"
+msgstr "Сетевой адрес::Маска подсети"
+
+#. Template: AAAITSMConfigItem
+msgid "Open Source"
+msgstr "ПО с открытым кодом"
+
+#. Template: AAAITSMConfigItem
+msgid "Operational"
+msgstr "В эксплуатации"
+
+#. Template: AAAITSMConfigItem
+msgid "Other"
+msgstr "Другое"
+
+#. Template: AAAITSMConfigItem
+msgid "Other Equipment"
+msgstr "Другое оборудование"
+
+#. Template: AAAITSMConfigItem
+msgid "Outlet"
+msgstr "Розетка"
+
+#. Template: AAAITSMConfigItem
+msgid "PCMCIA Card"
+msgstr "PCMCIA карта"
+
+#. Template: AAAITSMConfigItem
+msgid "PDA"
+msgstr "PDA"
+
+#. Template: AAAITSMConfigItem
+msgid "Per Node"
+msgstr "На ноду(узел)"
+
+#. Template: AAAITSMConfigItem
+msgid "Per Processor"
+msgstr "На ЦПУ"
+
+#. Template: AAAITSMConfigItem
+msgid "Per Server"
+msgstr "На сервер"
+
+#. Template: AAAITSMConfigItem
+msgid "Per User"
+msgstr "На пользователя"
+
+#. Template: AAAITSMConfigItem
+msgid "Phone 1"
+msgstr "Телефон 1"
+
+#. Template: AAAITSMConfigItem
+msgid "Phone 2"
+msgstr "Телефон 2"
+
+#. Template: AAAITSMConfigItem
+msgid "Pilot"
+msgstr "Эксперимент"
+
+#. Template: AAAITSMConfigItem
+msgid "Planned"
+msgstr "Запланированно"
+
+#. Template: AAAITSMConfigItem
+msgid "Printer"
+msgstr "Принтер"
+
+#. Template: AAAITSMConfigItem
+msgid "Production"
+msgstr "Производство"
+
+#. Template: AAAITSMConfigItem
+msgid "Quantity"
+msgstr "Количество"
+
+#. Template: AAAITSMConfigItem
+msgid "Rack"
+msgstr "Стойка"
+
+#. Template: AAAITSMConfigItem
+msgid "Ram"
+msgstr "ОЗУ"
+
+#. Template: AAAITSMConfigItem
+msgid "Repair"
+msgstr "Ремонт"
+
+#. Template: AAAITSMConfigItem
+msgid "Retired"
+msgstr "Списано"
+
+#. Template: AAAITSMConfigItem
+msgid "Review"
+msgstr "Экспертиза"
+
+#. Template: AAAITSMConfigItem
+msgid "Room"
+msgstr "Кабинет"
+
+#. Template: AAAITSMConfigItem
+msgid "Router"
+msgstr "Маршрутизатор"
+
+#. Template: AAAITSMConfigItem
+msgid "Scanner"
+msgstr "Сканер"
+
+#. Template: AAAITSMConfigItem
+msgid "Search Config Items"
+msgstr "Поиск конфигурационных единиц"
+
+#. Template: AAAITSMConfigItem
+msgid "Security Device"
+msgstr "Смарт-карта"
+
+#. Template: AAAITSMConfigItem
+msgid "Serial Number"
+msgstr "Серийный номер"
+
+#. Template: AAAITSMConfigItem
+msgid "Server"
+msgstr "Сервер"
+
+#. Template: AAAITSMConfigItem
+msgid "Server Application"
+msgstr "Серверное приложение"
+
+#. Template: AAAITSMConfigItem
+msgid "Server OS"
+msgstr "Серверная ОС"
+
+#. Template: AAAITSMConfigItem
+msgid "Show Versions"
+msgstr "Показать версии"
+
+#. Template: AAAITSMConfigItem
+msgid "Single Licence"
+msgstr "Однократная лицензия"
+
+#. Template: AAAITSMConfigItem
+msgid "Subnet Mask"
+msgstr "Маска подсети"
+
+#. Template: AAAITSMConfigItem
+msgid "Switch"
+msgstr "Коммутатор"
+
+#. Template: AAAITSMConfigItem
+msgid "Telco"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "Test/QA"
+msgstr "Тестирование"
+
+#. Template: AAAITSMConfigItem
+msgid "The deployment state of this config item"
+msgstr "Состояние использования этой КЕ"
+
+#. Template: AAAITSMConfigItem
+msgid "The incident state of this config item"
+msgstr "Состояние инцидента для этой КЕ"
+
+#. Template: AAAITSMConfigItem
+msgid "Time Restricted"
+msgstr "Ограниченная по времени"
+
+#. Template: AAAITSMConfigItem
+msgid "USB Device"
+msgstr "USB устройство"
+
+#. Template: AAAITSMConfigItem
+msgid "Unlimited"
+msgstr "Без ограничений"
+
+#. Template: AAAITSMConfigItem
+msgid "User Tool"
+msgstr "Пользовательские утилиты"
+
+#. Template: AAAITSMConfigItem
+msgid "Volume Licence"
+msgstr "Корпоративная лицензия"
+
+#. Template: AAAITSMConfigItem
+msgid "WLAN"
+msgstr "WLAN"
+
+#. Template: AAAITSMConfigItem
+msgid "WLAN Access Point"
+msgstr "WLAN точка доступа"
+
+#. Template: AAAITSMConfigItem
+msgid "Warranty Expiration Date"
+msgstr "Срок истечения гарантии"
+
+#. Template: AAAITSMConfigItem
+msgid "Workplace"
+msgstr "Рабочее место"
+
+#. Template: AdminITSMConfigItem
+msgid "Config Item Management"
+msgstr "Управление Конфигурационными единицами"
+
+#. Template: AdminITSMConfigItem
+msgid "Change class definition"
+msgstr "Изменить описание класса"
+
+#. Template: AdminITSMConfigItem
+msgid "Config Item"
+msgstr "Основные средства"
+
+#. Template: AdminITSMConfigItem
+msgid "Class"
+msgstr "Класс"
+
+#. Template: AdminITSMConfigItem
+msgid "Definition"
+msgstr "Описание"
+
+#. Template: AgentITSMConfigItemAdd
+msgid "Filter for Classes"
+msgstr "Фильтр для классов"
+
+#. Template: AgentITSMConfigItemAdd
+msgid "Select a Class from the list to create a new Config Item."
+msgstr "Выберите класс из списка для создания новой КЕ"
+
+#. Template: AgentITSMConfigItemBulk
+msgid "ITSM ConfigItem Bulk Action"
+msgstr ""
+
+#. Template: AgentITSMConfigItemBulk
+msgid "Deployment state"
+msgstr ""
+
+#. Template: AgentITSMConfigItemBulk
+msgid "Incident state"
+msgstr ""
+
+#. Template: AgentITSMConfigItemBulk
+msgid "Link to another"
+msgstr ""
+
+#. Template: AgentITSMConfigItemBulk
+msgid "Invalid Configuration Item number!"
+msgstr ""
+
+#. Template: AgentITSMConfigItemBulk
+msgid "The number of another Configuration Item to link with."
+msgstr ""
+
+#. Template: AgentITSMConfigItemEdit
+msgid "The name of this config item"
+msgstr "Имя этого учетного элемента"
+
+#. Template: AgentITSMConfigItemEdit
+msgid "Name is already in use by the ConfigItems with the following Number(s): %s"
+msgstr "Имя уже используется другой КЕ со следующим номером (ами): %s"
+
+#. Template: AgentITSMConfigItemEdit
+msgid "Deployment State"
+msgstr "Состояние использования"
+
+#. Template: AgentITSMConfigItemEdit
+msgid "Incident State"
+msgstr "Состояние инцидента"
+
+#. Template: AgentITSMConfigItemOverviewNavBar
+msgid "Context Settings"
+msgstr ""
+
+#. Template: AgentITSMConfigItemOverviewNavBar
+msgid "Config Items per page"
+msgstr "Конфигурационных единиц на страницу"
+
+#. Template: AgentITSMConfigItemOverviewSmall
+msgid "Deployment State Type"
+msgstr "Тип Состояния использования"
+
+#. Template: AgentITSMConfigItemOverviewSmall
+msgid "Current Incident State"
+msgstr "Текущее состояние инцидента"
+
+#. Template: AgentITSMConfigItemOverviewSmall
+msgid "Current Incident State Type"
+msgstr "Тип Текущего состояния инцидента"
+
+#. Template: AgentITSMConfigItemOverviewSmall
+msgid "Last changed"
+msgstr "Время последнего изменения"
+
+#. Template: AgentITSMConfigItemPrint
+msgid "ConfigItem"
+msgstr "Конфигурационная единица"
+
+#. Template: AgentITSMConfigItemPrint
+msgid "ConfigItem-Info"
+msgstr "Информация о КЕ"
+
+#. Template: AgentITSMConfigItemPrint
+msgid "Current Deployment State"
+msgstr "Текущее состояние использования"
+
+#. Template: AgentITSMConfigItemPrint
+msgid "Last changed by"
+msgstr "Автор последнего изменения"
+
+#. Template: AgentITSMConfigItemSearch
+msgid "Create New Template"
+msgstr ""
+
+#. Template: AgentITSMConfigItemSearch
+msgid "Run Search"
+msgstr ""
+
+#. Template: AgentITSMConfigItemSearch
+msgid "Also search in previous versions?"
+msgstr "Искать и в предыдущих версиях?"
+
+#. Template: AgentITSMConfigItemSearchResultPrint
+msgid "CreateTime"
+msgstr "Дата создания"
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Configuration Item"
+msgstr "Конфигурационная единица"
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Configuration Item Information"
+msgstr " Информация о Конф. ед."
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Show one version"
+msgstr "Показать одну версию"
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Show all versions"
+msgstr "Показать все версии"
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Version Incident State"
+msgstr "Состояние инцидента версии"
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Version Deployment State"
+msgstr ""
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Version Number"
+msgstr "Номер версии"
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Configuration Item Version Details"
+msgstr "Полная информация о КЕ выбранной версии"
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Property"
+msgstr ""
+
+#. SysConfig
+msgid "Check for a unique name only within the same ConfigItem class ('class') or globally ('global'), which means every existing ConfigItem is taken into account when looking for duplicates."
+msgstr "Проверка уникальности Имени внутри текущего класса КЕ('class') или глобально ('global'),что означает, что любая существующая КЕ учитывается при поиске дубликатов "
+
+#. SysConfig
+msgid "Config Items"
+msgstr "Конфигурационные единицы"
+
+#. SysConfig
+msgid "Config item event module that enables logging to history in the agent interface."
+msgstr "Config item (КЕ) event module ведущий запись в историю в агентском интерфейсе."
+
+#. SysConfig
+msgid "Configuration Item Limit"
+msgstr " Лимит КЕ"
+
+#. SysConfig
+msgid "Configuration Item limit per page"
+msgstr "Количество КЕ на страницу"
+
+#. SysConfig
+msgid "Configuration item search backend router of the agent interface."
+msgstr "Модуль поиска КЕ в агентском интерфейсе"
+
+#. SysConfig
+msgid "Create and manage the definitions for Configuration Items."
+msgstr "Создание и управление описаниями конфигурационных единиц."
+
+#. SysConfig
+msgid "Defines Required permissions to create ITSM configuration items using the Generic Interface."
+msgstr ""
+
+#. SysConfig
+msgid "Defines Required permissions to get ITSM configuration items using the Generic Interface."
+msgstr ""
+
+#. SysConfig
+msgid "Defines Required permissions to search ITSM configuration items using the Generic Interface."
+msgstr ""
+
+#. SysConfig
+msgid "Defines Required permissions to update ITSM configuration items using the Generic Interface."
+msgstr ""
+
+#. SysConfig
+msgid "Defines an overview module to show the small view of a configuration item list."
+msgstr "Задает модуль просмотра КЕ в кратком виде."
+
+#. SysConfig
+msgid "Defines regular expressions individually for each ConfigItem class to check the ConfigItem name and to show corresponding error messages."
+msgstr "Задает регулярные выражения для каждого отдельного класса для проверки имен КЕ и выдачи сообщений об ошибках."
+
+#. SysConfig
+msgid "Defines the default subobject of the class 'ITSMConfigItem'."
+msgstr "Задает умалчивамый подобъект для класса 'ITSMConfigItem'."
+
+#. SysConfig
+msgid "Defines the number of rows for the CI definition editor in the admin interface."
+msgstr "Задает количество строк для редактора описаний КЕ (CI) в интерфейсе админа."
+
+#. SysConfig
+msgid "Defines the search limit for the AgentITSMConfigItem screen."
+msgstr "Задает лимит поиска объектов для экрана AgentITSMConfigItem"
+
+#. SysConfig
+msgid "Defines the search limit for the AgentITSMConfigItemSearch screen."
+msgstr "Задает лимит поиска объектов для экрана AgentITSMConfigItemSearch"
+
+#. SysConfig
+msgid "Defines the shown columns in the config item overview. This option has no effect on the position of the column. Note: Class column is always available if filter 'All' is selected."
+msgstr "Задает список показываемых столбцов в обзоре КЕ. Этот параметр не влияет на их порядок. Помните: Столбец Класс доступен только при условии выбора в фильтре \"Все\"(All)"
+
+#. SysConfig
+msgid "Defines the shown columns in the config item search. This option has no effect on the position of the column."
+msgstr "Задает список показываемых столбцов в результатах поиска КЕ. Этот параметр не влияет на порядок их отображения."
+
+#. SysConfig
+msgid "Defines the shown columns of CIs in the config item overview depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns."
+msgstr "Задает список отображаемых столбцов при просмотре списков КЕ в зависимости от класса. Каждое имя атрибута должно иметь в качестве префикса - имя класса и два двоеточия (i.e. Computer::). Есть ряд атрибутов, общих для всех классов (например, для класса Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). Для отображения индивидуальных атрибутов, специфичных для конкретного класса из описания КЕ (CI-Definition), используется следующий синтаксис (например, для класса Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. Если нет атрибутов для конкретного класса, отображаются столбцы заданные параметром ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns."
+
+#. SysConfig
+msgid "Defines the shown columns of CIs in the config item search depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns."
+msgstr "Задает список отображаемых столбцов в результатах поиска КЕ в зависимости от выбранного класса. Каждое имя атрибута должно иметь в качестве префикса - имя класса и два двоеточия (i.e. Computer::). Есть ряд атрибутов, общих для всех классов (например, для класса Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). Для отображения индивидуальных атрибутов, специфичных для конкретного класса из описания КЕ (CI-Definition), используется следующий синтаксис (например, для класса Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. Если нет атрибутов для конкретного класса, отображаются столбцы заданные параметром ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns."
+
+#. SysConfig
+msgid "Defines the shown columns of CIs in the link table complex view, depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown."
+msgstr "Задает перечень отображаемых столбцов отображаемых КЕ в таблице при создании связи, в зависимости от класса. Каждое имя атрибута должно иметь в качестве префикса - имя класса и два двоеточия (i.e. Computer::). Есть ряд атрибутов, общих для всех классов (например, для класса Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). Для отображения индивидуальных атрибутов, специфичных для конкретного класса из описания КЕ (CI-Definition), используется следующий синтаксис (например, для класса Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. Если нет атрибутов для конкретного класса, отображаются столбцы заданные параметром ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns."
+
+#. SysConfig
+msgid "Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time."
+msgstr ""
+
+#. SysConfig
+msgid "Enables configuration item bulk action feature only for the listed groups."
+msgstr ""
+
+#. SysConfig
+msgid "Enables/disables the functionality to check ConfigItems for unique names. Before enabling this option you should check your system for already existing config items with duplicate names. You can do this with the script bin/otrs.ITSMConfigItemListDuplicates.pl."
+msgstr "Включает/выключает проверку уникальности имен КЕ. До включения этого параметра, проверьте вашу БД на наличие дубликатов имен КЕ. Вы можете сделать это с помощью скрипта bin/otrs.ITSMConfigItemListDuplicates.pl."
+
+#. SysConfig
+msgid "Module to check the group responsible for a class."
+msgstr "Модуль для проверки группы ответственной за класс"
+
+#. SysConfig
+msgid "Module to check the group responsible for a configuration item."
+msgstr "Модуль для проверки группы ответственной за КЕ"
+
+#. SysConfig
+msgid "Module to generate ITSM config item statistics."
+msgstr "Модуль формирования статистики по КЕ."
+
+#. SysConfig
+msgid "Object backend module registration for the import/export module."
+msgstr ""
+
+#. SysConfig
+msgid "Parameters for the deployment states color in the preferences view of the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid "Parameters for the deployment states in the preferences view of the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid "Parameters for the example permission groups of the general catalog attributes."
+msgstr ""
+
+#. SysConfig
+msgid "Parameters for the pages (in which the configuration items are shown)."
+msgstr "Параметры страниц (на которых отображаются КЕ)"
+
+#. SysConfig
+msgid "Required permissions to use the ITSM configuration item screen in the agent interface."
+msgstr "Требуемые права для использования обзора КЕ в CMDB агентом"
+
+#. SysConfig
+msgid "Required permissions to use the ITSM configuration item search screen in the agent interface."
+msgstr "Требуемые права для использования поиска в CMDB агентом"
+
+#. SysConfig
+msgid "Required permissions to use the ITSM configuration item zoom screen in the agent interface."
+msgstr "Требуемые права для использования полного просмотра КЕ (zoom view) в CMDB агентом"
+
+#. SysConfig
+msgid "Required permissions to use the add ITSM configuration item screen in the agent interface."
+msgstr "Требуемые права для добавления КЕ в CMDB агентом"
+
+#. SysConfig
+msgid "Required permissions to use the edit ITSM configuration item screen in the agent interface."
+msgstr "Требуемые права для редактирования содержимого КЕ в CMDB агентом"
+
+#. SysConfig
+msgid "Required permissions to use the history ITSM configuration item screen in the agent interface."
+msgstr "Требуемые права для просмотра истории содержимого КЕ в CMDB агентом"
+
+#. SysConfig
+msgid "Required permissions to use the print ITSM configuration item screen in the agent interface."
+msgstr "Требуемые права для печати характеристик КЕ в CMDB агентом"
+
+#. SysConfig
+msgid "Selects the configuration item number generator module. \"AutoIncrement\" increments the configuration item number, the SystemID, the ConfigItemClassID and the counter are used. The format is \"SystemID.ConfigItemClassID.Counter\", e.g. 1205000004, 1205000005."
+msgstr "Выбор модуля генерации номера КЕ. \"AutoIncrement\" последовательно увеличивает номер на 1.Для формирования номера используются SystemID, ConfigItemClassID и счетчик. Формат - \"SystemID.ConfigItemClassID.Counter\", т.е. 1205000004, 1205000005."
+
+#. SysConfig
+msgid "Sets the deployment state in the configuration item bulk screen of the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid "Sets the incident state in the configuration item bulk screen of the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid "Shows a link in the menu that allows linking a configuration item with another object in the config item zoom view of the agent interface."
+msgstr "Показывает пункт меню Связать (Link) для организации связи КЕ с другим объектом на экране полного (zoom view) просмотра"
+
+#. SysConfig
+msgid "Shows a link in the menu to access the history of a configuration item in the configuration item overview of the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid "Shows a link in the menu to access the history of a configuration item in the its zoom view of the agent interface."
+msgstr "Показывает пункт меню История для просмотра истории КЕ"
+
+#. SysConfig
+msgid "Shows a link in the menu to duplicate a configuration item in the configuration item overview of the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid "Shows a link in the menu to duplicate a configuration item in the its zoom view of the agent interface."
+msgstr "Показывает пункт меню Дублировать для создания новой КЕ путем копирования характеристик текущей КЕ"
+
+#. SysConfig
+msgid "Shows a link in the menu to edit a configuration item in the its zoom view of the agent interface."
+msgstr "Показывает пункт меню Редактировать для изменения характеристик КЕ"
+
+#. SysConfig
+msgid "Shows a link in the menu to go back in the configuraton item zoom view of the agent interface."
+msgstr "Показывает пункт меню Назад"
+
+#. SysConfig
+msgid "Shows a link in the menu to print a configuration item in the its zoom view of the agent interface."
+msgstr "Показывает пункт меню Печать для печати характеристик КЕ"
+
+#. SysConfig
+msgid "Shows a link in the menu to zoom into a configuration item in the configuration item overview of the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid "Shows the config item history (reverse ordered) in the agent interface."
+msgstr "Показ истории содержимого КЕ (порядок показа)"
+
+#. SysConfig
+msgid "The identifier for a configuration item, e.g. ConfigItem#, MyConfigItem#. The default is ConfigItem#."
+msgstr "Идентификатор (префикс) к номеру КЕ, т.е КЕ_№, КЕ#, Учетный_элемент_№. По умолчанию - ConfigItem# (или его перевод)."
+

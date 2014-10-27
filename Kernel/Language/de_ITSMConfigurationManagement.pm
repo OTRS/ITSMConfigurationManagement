@@ -187,7 +187,7 @@ sub Data {
 
     # Template: AgentITSMConfigItemSearch
     $Self->{Translation}->{'Create New Template'} = '';
-    $Self->{Translation}->{'Run Search'} = '';
+    $Self->{Translation}->{'Run Search'} = 'Suche ausführen';
     $Self->{Translation}->{'Also search in previous versions?'} = 'Auch in früheren Versionen suchen?';
 
     # Template: AgentITSMConfigItemSearchResultPrint

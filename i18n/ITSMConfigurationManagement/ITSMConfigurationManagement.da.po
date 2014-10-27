@@ -1,0 +1,888 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ITSMConfigurationManagement\n"
+"POT-Creation-Date: 2014-08-08 19:10+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Template: AAAITSMConfigItem
+msgid "Address"
+msgstr "Adresse"
+
+#. Template: AAAITSMConfigItem
+msgid "Admin Tool"
+msgstr "Admin værktøjer"
+
+#. Template: AAAITSMConfigItem
+msgid "Backup Device"
+msgstr "Backup enhed"
+
+#. Template: AAAITSMConfigItem
+msgid "Beamer"
+msgstr "Beamer"
+
+#. Template: AAAITSMConfigItem
+msgid "Building"
+msgstr "Bygning"
+
+#. Template: AAAITSMConfigItem
+msgid "CIHistory::ConfigItemCreate"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "CIHistory::ConfigItemDelete"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "CIHistory::DefinitionUpdate"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "CIHistory::DeploymentStateUpdate"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "CIHistory::IncidentStateUpdate"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "CIHistory::LinkAdd"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "CIHistory::LinkDelete"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "CIHistory::NameUpdate"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "CIHistory::ValueUpdate"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "CIHistory::VersionCreate"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "CIHistory::VersionDelete"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "CIHistory::AttachmentAdd"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "CIHistory::AttachmentDelete"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "CPU"
+msgstr "CPU"
+
+#. Template: AAAITSMConfigItem
+msgid "Camera"
+msgstr "Kamera"
+
+#. Template: AAAITSMConfigItem
+msgid "Capacity"
+msgstr "Kapacitet"
+
+#. Template: AAAITSMConfigItem
+msgid "Change Definition"
+msgstr "Ændre definition"
+
+#. Template: AAAITSMConfigItem
+msgid "Change of definition failed! See System Log for details."
+msgstr "Ændring af definition fejlede! Se System Log for detaljer."
+
+#. Template: AAAITSMConfigItem
+msgid "Client Application"
+msgstr "Klient aplikation"
+
+#. Template: AAAITSMConfigItem
+msgid "Client OS"
+msgstr "Klient OS"
+
+#. Template: AAAITSMConfigItem
+msgid "Concurrent Users"
+msgstr "Samtidige brugere"
+
+#. Template: AAAITSMConfigItem
+msgid "Config Item-Area"
+msgstr "Config Item-område"
+
+#. Template: AAAITSMConfigItem
+msgid "Config Items available"
+msgstr "Tilgængelige Config Items"
+
+#. Template: AAAITSMConfigItem
+msgid "Config Items shown"
+msgstr "Vis Config Items"
+
+#. Template: AAAITSMConfigItem
+msgid "CMDB"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "Demo"
+msgstr "Demo"
+
+#. Template: AAAITSMConfigItem
+msgid "Desktop"
+msgstr "Desktop"
+
+#. Template: AAAITSMConfigItem
+msgid "Developer Licence"
+msgstr "Udvikler licens"
+
+#. Template: AAAITSMConfigItem
+msgid "Docking Station"
+msgstr "Docking Station"
+
+#. Template: AAAITSMConfigItem
+msgid "Duplicate"
+msgstr "Dupliker"
+
+#. Template: AAAITSMConfigItem
+msgid "Embedded"
+msgstr "Embedded"
+
+#. Template: AAAITSMConfigItem
+msgid "Empty fields indicate that the current values are kept"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "Enterprise Licence"
+msgstr "Enterprise licens"
+
+#. Template: AAAITSMConfigItem
+msgid "Expiration Date"
+msgstr "Udløbsdato"
+
+#. Template: AAAITSMConfigItem
+msgid "Expired"
+msgstr "Udløbet"
+
+#. Template: AAAITSMConfigItem
+msgid "Floor"
+msgstr "Etage"
+
+#. Template: AAAITSMConfigItem
+msgid "Freeware"
+msgstr "Freeware"
+
+#. Template: AAAITSMConfigItem
+msgid "GSM"
+msgstr "GSM"
+
+#. Template: AAAITSMConfigItem
+msgid "Gateway"
+msgstr "Gateway"
+
+#. Template: AAAITSMConfigItem
+msgid "Graphic Adapter"
+msgstr "Grafikkort"
+
+#. Template: AAAITSMConfigItem
+msgid "Hard Disk"
+msgstr "Harddisk"
+
+#. Template: AAAITSMConfigItem
+msgid "Hard Disk::Capacity"
+msgstr "Harddisk::Kapacitet"
+
+#. Template: AAAITSMConfigItem
+msgid "Hide Versions"
+msgstr "Skjul versioner"
+
+#. Template: AAAITSMConfigItem
+msgid "IP Address"
+msgstr "IP adresse"
+
+#. Template: AAAITSMConfigItem
+msgid "IP over DHCP"
+msgstr "IP via DHCP"
+
+#. Template: AAAITSMConfigItem
+msgid "IT Facility"
+msgstr "IT facilitet"
+
+#. Template: AAAITSMConfigItem
+msgid "Inactive"
+msgstr "Inaktiv"
+
+#. Template: AAAITSMConfigItem
+msgid "Incident"
+msgstr "Incident"
+
+#. Template: AAAITSMConfigItem
+msgid "Install Date"
+msgstr "Installationsdato"
+
+#. Template: AAAITSMConfigItem
+msgid "Keybord"
+msgstr "Tastatur"
+
+#. Template: AAAITSMConfigItem
+msgid "LAN"
+msgstr "LAN"
+
+#. Template: AAAITSMConfigItem
+msgid "Laptop"
+msgstr "Laptop"
+
+#. Template: AAAITSMConfigItem
+msgid "Last Change"
+msgstr "Sidst ændret"
+
+#. Template: AAAITSMConfigItem
+msgid "Licence Key"
+msgstr "Licensnøgle"
+
+#. Template: AAAITSMConfigItem
+msgid "Licence Key::Expiration Date"
+msgstr "Licensnøgle::Udløbsdato"
+
+#. Template: AAAITSMConfigItem
+msgid "Licence Key::Quantity"
+msgstr "Licensnøgle::Mængde"
+
+#. Template: AAAITSMConfigItem
+msgid "Licence Type"
+msgstr "Licenstype"
+
+#. Template: AAAITSMConfigItem
+msgid "Maintenance"
+msgstr "Vedligeholdelse"
+
+#. Template: AAAITSMConfigItem
+msgid "Maximum number of one element"
+msgstr "Maximum antal af et element"
+
+#. Template: AAAITSMConfigItem
+msgid "Media"
+msgstr "Medie"
+
+#. Template: AAAITSMConfigItem
+msgid "Middleware"
+msgstr "Middleware"
+
+#. Template: AAAITSMConfigItem
+msgid "Model"
+msgstr "Model"
+
+#. Template: AAAITSMConfigItem
+msgid "Modem"
+msgstr "Modem"
+
+#. Template: AAAITSMConfigItem
+msgid "Monitor"
+msgstr "Monitor"
+
+#. Template: AAAITSMConfigItem
+msgid "Mouse"
+msgstr "Mus"
+
+#. Template: AAAITSMConfigItem
+msgid "Network Adapter"
+msgstr "Netkort"
+
+#. Template: AAAITSMConfigItem
+msgid "Network Adapter::IP Address"
+msgstr "Netkort::IP adresse"
+
+#. Template: AAAITSMConfigItem
+msgid "Network Adapter::IP over DHCP"
+msgstr "Netkort::IP via DHCP"
+
+#. Template: AAAITSMConfigItem
+msgid "Network Address"
+msgstr "Netværksadresse"
+
+#. Template: AAAITSMConfigItem
+msgid "Network Address::Gateway"
+msgstr "Netværksadresse::Gateway"
+
+#. Template: AAAITSMConfigItem
+msgid "Network Address::Subnet Mask"
+msgstr "Netværksadresse::Subnet maske"
+
+#. Template: AAAITSMConfigItem
+msgid "Open Source"
+msgstr "Open Source"
+
+#. Template: AAAITSMConfigItem
+msgid "Operational"
+msgstr "Operationel"
+
+#. Template: AAAITSMConfigItem
+msgid "Other"
+msgstr "Andet"
+
+#. Template: AAAITSMConfigItem
+msgid "Other Equipment"
+msgstr "Andet udstyr"
+
+#. Template: AAAITSMConfigItem
+msgid "Outlet"
+msgstr "Stikkontakt"
+
+#. Template: AAAITSMConfigItem
+msgid "PCMCIA Card"
+msgstr "PCMCIA kort"
+
+#. Template: AAAITSMConfigItem
+msgid "PDA"
+msgstr "PDA"
+
+#. Template: AAAITSMConfigItem
+msgid "Per Node"
+msgstr "Pr node"
+
+#. Template: AAAITSMConfigItem
+msgid "Per Processor"
+msgstr "Pr processor"
+
+#. Template: AAAITSMConfigItem
+msgid "Per Server"
+msgstr "Pr server"
+
+#. Template: AAAITSMConfigItem
+msgid "Per User"
+msgstr "Pr bruger"
+
+#. Template: AAAITSMConfigItem
+msgid "Phone 1"
+msgstr "Telefon 1"
+
+#. Template: AAAITSMConfigItem
+msgid "Phone 2"
+msgstr "Telefon 2"
+
+#. Template: AAAITSMConfigItem
+msgid "Pilot"
+msgstr "Pilot"
+
+#. Template: AAAITSMConfigItem
+msgid "Planned"
+msgstr "Planlagt"
+
+#. Template: AAAITSMConfigItem
+msgid "Printer"
+msgstr "Printer"
+
+#. Template: AAAITSMConfigItem
+msgid "Production"
+msgstr "Produktion"
+
+#. Template: AAAITSMConfigItem
+msgid "Quantity"
+msgstr "Mængde"
+
+#. Template: AAAITSMConfigItem
+msgid "Rack"
+msgstr "Rack"
+
+#. Template: AAAITSMConfigItem
+msgid "Ram"
+msgstr "RAM"
+
+#. Template: AAAITSMConfigItem
+msgid "Repair"
+msgstr "Reperation"
+
+#. Template: AAAITSMConfigItem
+msgid "Retired"
+msgstr "Persioneret"
+
+#. Template: AAAITSMConfigItem
+msgid "Review"
+msgstr "Anmeldelse"
+
+#. Template: AAAITSMConfigItem
+msgid "Room"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "Router"
+msgstr "Router"
+
+#. Template: AAAITSMConfigItem
+msgid "Scanner"
+msgstr "Skanner"
+
+#. Template: AAAITSMConfigItem
+msgid "Search Config Items"
+msgstr "Søg Config Item"
+
+#. Template: AAAITSMConfigItem
+msgid "Security Device"
+msgstr "Sikkerhedsenhed"
+
+#. Template: AAAITSMConfigItem
+msgid "Serial Number"
+msgstr "Serienummer"
+
+#. Template: AAAITSMConfigItem
+msgid "Server"
+msgstr "Server"
+
+#. Template: AAAITSMConfigItem
+msgid "Server Application"
+msgstr "Server aplikation"
+
+#. Template: AAAITSMConfigItem
+msgid "Server OS"
+msgstr "Server OS"
+
+#. Template: AAAITSMConfigItem
+msgid "Show Versions"
+msgstr "Vis versioner"
+
+#. Template: AAAITSMConfigItem
+msgid "Single Licence"
+msgstr "Enkeltlicens"
+
+#. Template: AAAITSMConfigItem
+msgid "Subnet Mask"
+msgstr "Subnet maske"
+
+#. Template: AAAITSMConfigItem
+msgid "Switch"
+msgstr "Switch"
+
+#. Template: AAAITSMConfigItem
+msgid "Telco"
+msgstr "Telco"
+
+#. Template: AAAITSMConfigItem
+msgid "Test/QA"
+msgstr "Test/QA"
+
+#. Template: AAAITSMConfigItem
+msgid "The deployment state of this config item"
+msgstr "Deployment tilstand for denne Config item"
+
+#. Template: AAAITSMConfigItem
+msgid "The incident state of this config item"
+msgstr "Incident tilstand for denne Config Item"
+
+#. Template: AAAITSMConfigItem
+msgid "Time Restricted"
+msgstr "Tidsbegrænset"
+
+#. Template: AAAITSMConfigItem
+msgid "USB Device"
+msgstr "USB enhed"
+
+#. Template: AAAITSMConfigItem
+msgid "Unlimited"
+msgstr "Unbegrænset"
+
+#. Template: AAAITSMConfigItem
+msgid "User Tool"
+msgstr "Bruger værktøjer"
+
+#. Template: AAAITSMConfigItem
+msgid "Volume Licence"
+msgstr "Volumen Licens"
+
+#. Template: AAAITSMConfigItem
+msgid "WLAN"
+msgstr "WLAN"
+
+#. Template: AAAITSMConfigItem
+msgid "WLAN Access Point"
+msgstr "WLAN Access Point"
+
+#. Template: AAAITSMConfigItem
+msgid "Warranty Expiration Date"
+msgstr "Udløbsdato for garanti"
+
+#. Template: AAAITSMConfigItem
+msgid "Workplace"
+msgstr "Arbejdsplads"
+
+#. Template: AdminITSMConfigItem
+msgid "Config Item Management"
+msgstr "Config Item styring"
+
+#. Template: AdminITSMConfigItem
+msgid "Change class definition"
+msgstr ""
+
+#. Template: AdminITSMConfigItem
+msgid "Config Item"
+msgstr "Config Item"
+
+#. Template: AdminITSMConfigItem
+msgid "Class"
+msgstr "Klasse"
+
+#. Template: AdminITSMConfigItem
+msgid "Definition"
+msgstr ""
+
+#. Template: AgentITSMConfigItemAdd
+msgid "Filter for Classes"
+msgstr ""
+
+#. Template: AgentITSMConfigItemAdd
+msgid "Select a Class from the list to create a new Config Item."
+msgstr ""
+
+#. Template: AgentITSMConfigItemBulk
+msgid "ITSM ConfigItem Bulk Action"
+msgstr ""
+
+#. Template: AgentITSMConfigItemBulk
+msgid "Deployment state"
+msgstr ""
+
+#. Template: AgentITSMConfigItemBulk
+msgid "Incident state"
+msgstr ""
+
+#. Template: AgentITSMConfigItemBulk
+msgid "Link to another"
+msgstr ""
+
+#. Template: AgentITSMConfigItemBulk
+msgid "Invalid Configuration Item number!"
+msgstr ""
+
+#. Template: AgentITSMConfigItemBulk
+msgid "The number of another Configuration Item to link with."
+msgstr ""
+
+#. Template: AgentITSMConfigItemEdit
+msgid "The name of this config item"
+msgstr "Navnet på denne Config Item"
+
+#. Template: AgentITSMConfigItemEdit
+msgid "Name is already in use by the ConfigItems with the following Number(s): %s"
+msgstr ""
+
+#. Template: AgentITSMConfigItemEdit
+msgid "Deployment State"
+msgstr "Deployment tilstand"
+
+#. Template: AgentITSMConfigItemEdit
+msgid "Incident State"
+msgstr "Incident tilstand"
+
+#. Template: AgentITSMConfigItemOverviewNavBar
+msgid "Context Settings"
+msgstr ""
+
+#. Template: AgentITSMConfigItemOverviewNavBar
+msgid "Config Items per page"
+msgstr ""
+
+#. Template: AgentITSMConfigItemOverviewSmall
+msgid "Deployment State Type"
+msgstr ""
+
+#. Template: AgentITSMConfigItemOverviewSmall
+msgid "Current Incident State"
+msgstr "Nuværende Incident tilstand"
+
+#. Template: AgentITSMConfigItemOverviewSmall
+msgid "Current Incident State Type"
+msgstr ""
+
+#. Template: AgentITSMConfigItemOverviewSmall
+msgid "Last changed"
+msgstr "Sidst ændret"
+
+#. Template: AgentITSMConfigItemPrint
+msgid "ConfigItem"
+msgstr ""
+
+#. Template: AgentITSMConfigItemPrint
+msgid "ConfigItem-Info"
+msgstr ""
+
+#. Template: AgentITSMConfigItemPrint
+msgid "Current Deployment State"
+msgstr "Nuværende deployment status"
+
+#. Template: AgentITSMConfigItemPrint
+msgid "Last changed by"
+msgstr "Sidst ændret af"
+
+#. Template: AgentITSMConfigItemSearch
+msgid "Create New Template"
+msgstr ""
+
+#. Template: AgentITSMConfigItemSearch
+msgid "Run Search"
+msgstr ""
+
+#. Template: AgentITSMConfigItemSearch
+msgid "Also search in previous versions?"
+msgstr "Søg også i tidligere versioner?"
+
+#. Template: AgentITSMConfigItemSearchResultPrint
+msgid "CreateTime"
+msgstr ""
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Configuration Item"
+msgstr ""
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Configuration Item Information"
+msgstr ""
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Show one version"
+msgstr ""
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Show all versions"
+msgstr ""
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Version Incident State"
+msgstr ""
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Version Deployment State"
+msgstr ""
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Version Number"
+msgstr ""
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Configuration Item Version Details"
+msgstr ""
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Property"
+msgstr ""
+
+#. SysConfig
+msgid "Check for a unique name only within the same ConfigItem class ('class') or globally ('global'), which means every existing ConfigItem is taken into account when looking for duplicates."
+msgstr ""
+
+#. SysConfig
+msgid "Config Items"
+msgstr ""
+
+#. SysConfig
+msgid "Config item event module that enables logging to history in the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid "Configuration Item Limit"
+msgstr ""
+
+#. SysConfig
+msgid "Configuration Item limit per page"
+msgstr ""
+
+#. SysConfig
+msgid "Configuration item search backend router of the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid "Create and manage the definitions for Configuration Items."
+msgstr ""
+
+#. SysConfig
+msgid "Defines Required permissions to create ITSM configuration items using the Generic Interface."
+msgstr ""
+
+#. SysConfig
+msgid "Defines Required permissions to get ITSM configuration items using the Generic Interface."
+msgstr ""
+
+#. SysConfig
+msgid "Defines Required permissions to search ITSM configuration items using the Generic Interface."
+msgstr ""
+
+#. SysConfig
+msgid "Defines Required permissions to update ITSM configuration items using the Generic Interface."
+msgstr ""
+
+#. SysConfig
+msgid "Defines an overview module to show the small view of a configuration item list."
+msgstr ""
+
+#. SysConfig
+msgid "Defines regular expressions individually for each ConfigItem class to check the ConfigItem name and to show corresponding error messages."
+msgstr ""
+
+#. SysConfig
+msgid "Defines the default subobject of the class 'ITSMConfigItem'."
+msgstr ""
+
+#. SysConfig
+msgid "Defines the number of rows for the CI definition editor in the admin interface."
+msgstr ""
+
+#. SysConfig
+msgid "Defines the search limit for the AgentITSMConfigItem screen."
+msgstr ""
+
+#. SysConfig
+msgid "Defines the search limit for the AgentITSMConfigItemSearch screen."
+msgstr ""
+
+#. SysConfig
+msgid "Defines the shown columns in the config item overview. This option has no effect on the position of the column. Note: Class column is always available if filter 'All' is selected."
+msgstr ""
+
+#. SysConfig
+msgid "Defines the shown columns in the config item search. This option has no effect on the position of the column."
+msgstr ""
+
+#. SysConfig
+msgid "Defines the shown columns of CIs in the config item overview depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns."
+msgstr ""
+
+#. SysConfig
+msgid "Defines the shown columns of CIs in the config item search depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns."
+msgstr ""
+
+#. SysConfig
+msgid "Defines the shown columns of CIs in the link table complex view, depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown."
+msgstr ""
+
+#. SysConfig
+msgid "Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time."
+msgstr ""
+
+#. SysConfig
+msgid "Enables configuration item bulk action feature only for the listed groups."
+msgstr ""
+
+#. SysConfig
+msgid "Enables/disables the functionality to check ConfigItems for unique names. Before enabling this option you should check your system for already existing config items with duplicate names. You can do this with the script bin/otrs.ITSMConfigItemListDuplicates.pl."
+msgstr ""
+
+#. SysConfig
+msgid "Module to check the group responsible for a class."
+msgstr ""
+
+#. SysConfig
+msgid "Module to check the group responsible for a configuration item."
+msgstr ""
+
+#. SysConfig
+msgid "Module to generate ITSM config item statistics."
+msgstr ""
+
+#. SysConfig
+msgid "Object backend module registration for the import/export module."
+msgstr ""
+
+#. SysConfig
+msgid "Parameters for the deployment states color in the preferences view of the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid "Parameters for the deployment states in the preferences view of the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid "Parameters for the example permission groups of the general catalog attributes."
+msgstr ""
+
+#. SysConfig
+msgid "Parameters for the pages (in which the configuration items are shown)."
+msgstr ""
+
+#. SysConfig
+msgid "Required permissions to use the ITSM configuration item screen in the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid "Required permissions to use the ITSM configuration item search screen in the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid "Required permissions to use the ITSM configuration item zoom screen in the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid "Required permissions to use the add ITSM configuration item screen in the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid "Required permissions to use the edit ITSM configuration item screen in the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid "Required permissions to use the history ITSM configuration item screen in the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid "Required permissions to use the print ITSM configuration item screen in the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid "Selects the configuration item number generator module. \"AutoIncrement\" increments the configuration item number, the SystemID, the ConfigItemClassID and the counter are used. The format is \"SystemID.ConfigItemClassID.Counter\", e.g. 1205000004, 1205000005."
+msgstr ""
+
+#. SysConfig
+msgid "Sets the deployment state in the configuration item bulk screen of the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid "Sets the incident state in the configuration item bulk screen of the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid "Shows a link in the menu that allows linking a configuration item with another object in the config item zoom view of the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid "Shows a link in the menu to access the history of a configuration item in the configuration item overview of the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid "Shows a link in the menu to access the history of a configuration item in the its zoom view of the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid "Shows a link in the menu to duplicate a configuration item in the configuration item overview of the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid "Shows a link in the menu to duplicate a configuration item in the its zoom view of the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid "Shows a link in the menu to edit a configuration item in the its zoom view of the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid "Shows a link in the menu to go back in the configuraton item zoom view of the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid "Shows a link in the menu to print a configuration item in the its zoom view of the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid "Shows a link in the menu to zoom into a configuration item in the configuration item overview of the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid "Shows the config item history (reverse ordered) in the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid "The identifier for a configuration item, e.g. ConfigItem#, MyConfigItem#. The default is ConfigItem#."
+msgstr ""
+
