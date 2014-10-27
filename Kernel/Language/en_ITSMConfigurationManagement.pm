@@ -1,5 +1,5 @@
 # --
-# Kernel/Language/en_ITSMConfigItem.pm - the english translation of ITSMConfigItem
+# Kernel/Language/en_ITSMConfigurationManagement.pm - the english translation of ITSMConfigItem
 # Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
@@ -7,7 +7,7 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package Kernel::Language::en_ITSMConfigItem;
+package Kernel::Language::en_ITSMConfigurationManagement;
 
 use strict;
 use warnings;

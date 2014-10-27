@@ -1,5 +1,5 @@
 # --
-# Kernel/Language/en_GB_ITSMConfigItem.pm - translation file
+# Kernel/Language/cs_ITSMConfigurationManagement.pm - translation file
 # Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
@@ -7,7 +7,7 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package Kernel::Language::en_GB_ITSMConfigItem;
+package Kernel::Language::cs_ITSMConfigurationManagement;
 
 use strict;
 use warnings;
@@ -17,137 +17,137 @@ sub Data {
     my $Self = shift;
 
     # Template: AAAITSMConfigItem
-    $Self->{Translation}->{'Address'} = '';
-    $Self->{Translation}->{'Admin Tool'} = '';
-    $Self->{Translation}->{'Backup Device'} = '';
-    $Self->{Translation}->{'Beamer'} = '';
-    $Self->{Translation}->{'Building'} = '';
-    $Self->{Translation}->{'CIHistory::ConfigItemCreate'} = 'New ConfigItem (ID=%s)';
-    $Self->{Translation}->{'CIHistory::ConfigItemDelete'} = 'ConfigItem (ID=%s) deleted';
-    $Self->{Translation}->{'CIHistory::DefinitionUpdate'} = 'ConfigItems\' definition updated (ID=%s)';
-    $Self->{Translation}->{'CIHistory::DeploymentStateUpdate'} = 'Deployment state updated (new=%s; old=%s)';
-    $Self->{Translation}->{'CIHistory::IncidentStateUpdate'} = 'Incident state updated (new=%s; old=%s)';
-    $Self->{Translation}->{'CIHistory::LinkAdd'} = 'Link to %s (type=%s) added';
-    $Self->{Translation}->{'CIHistory::LinkDelete'} = 'Link to %s (type=%s) deleted';
-    $Self->{Translation}->{'CIHistory::NameUpdate'} = 'Name updated (new=%s; old=%s)';
-    $Self->{Translation}->{'CIHistory::ValueUpdate'} = 'Attribute %s updated from "%s" to "%s"';
-    $Self->{Translation}->{'CIHistory::VersionCreate'} = 'New version (ID=%s)';
-    $Self->{Translation}->{'CIHistory::VersionDelete'} = 'Version %s deleted';
+    $Self->{Translation}->{'Address'} = 'Adresa';
+    $Self->{Translation}->{'Admin Tool'} = 'Administrační nástroj';
+    $Self->{Translation}->{'Backup Device'} = 'Zálohovácí Zařízení';
+    $Self->{Translation}->{'Beamer'} = 'Beamer';
+    $Self->{Translation}->{'Building'} = 'Budova';
+    $Self->{Translation}->{'CIHistory::ConfigItemCreate'} = '';
+    $Self->{Translation}->{'CIHistory::ConfigItemDelete'} = '';
+    $Self->{Translation}->{'CIHistory::DefinitionUpdate'} = '';
+    $Self->{Translation}->{'CIHistory::DeploymentStateUpdate'} = '';
+    $Self->{Translation}->{'CIHistory::IncidentStateUpdate'} = '';
+    $Self->{Translation}->{'CIHistory::LinkAdd'} = '';
+    $Self->{Translation}->{'CIHistory::LinkDelete'} = '';
+    $Self->{Translation}->{'CIHistory::NameUpdate'} = '';
+    $Self->{Translation}->{'CIHistory::ValueUpdate'} = '';
+    $Self->{Translation}->{'CIHistory::VersionCreate'} = '';
+    $Self->{Translation}->{'CIHistory::VersionDelete'} = '';
     $Self->{Translation}->{'CIHistory::AttachmentAdd'} = '';
     $Self->{Translation}->{'CIHistory::AttachmentDelete'} = '';
-    $Self->{Translation}->{'CPU'} = '';
-    $Self->{Translation}->{'Camera'} = '';
-    $Self->{Translation}->{'Capacity'} = '';
-    $Self->{Translation}->{'Change Definition'} = '';
-    $Self->{Translation}->{'Change of definition failed! See System Log for details.'} = '';
-    $Self->{Translation}->{'Client Application'} = '';
-    $Self->{Translation}->{'Client OS'} = '';
-    $Self->{Translation}->{'Concurrent Users'} = '';
-    $Self->{Translation}->{'Config Item-Area'} = '';
-    $Self->{Translation}->{'Config Items available'} = '';
-    $Self->{Translation}->{'Config Items shown'} = '';
+    $Self->{Translation}->{'CPU'} = 'Procesor';
+    $Self->{Translation}->{'Camera'} = 'Kamera';
+    $Self->{Translation}->{'Capacity'} = 'Kapacita';
+    $Self->{Translation}->{'Change Definition'} = 'Změna Definice';
+    $Self->{Translation}->{'Change of definition failed! See System Log for details.'} = 'Změna definice neúspěšná! Viz Systémový Log pro podrobnosti.';
+    $Self->{Translation}->{'Client Application'} = 'Uživatelské Aplikace';
+    $Self->{Translation}->{'Client OS'} = 'Uživatelský Operační Systém';
+    $Self->{Translation}->{'Concurrent Users'} = 'Konkurenční Uživatelé';
+    $Self->{Translation}->{'Config Item-Area'} = 'Konfig. Položka-Struktura';
+    $Self->{Translation}->{'Config Items available'} = 'Dostupné Konfig. Položky';
+    $Self->{Translation}->{'Config Items shown'} = 'Zobrazené Konfig. Položky';
     $Self->{Translation}->{'CMDB'} = '';
-    $Self->{Translation}->{'Demo'} = '';
-    $Self->{Translation}->{'Desktop'} = '';
-    $Self->{Translation}->{'Developer Licence'} = '';
-    $Self->{Translation}->{'Docking Station'} = '';
-    $Self->{Translation}->{'Duplicate'} = '';
-    $Self->{Translation}->{'Embedded'} = '';
+    $Self->{Translation}->{'Demo'} = 'Demo';
+    $Self->{Translation}->{'Desktop'} = 'Stolní';
+    $Self->{Translation}->{'Developer Licence'} = 'Licence Vývojáře';
+    $Self->{Translation}->{'Docking Station'} = 'Dok Stanice';
+    $Self->{Translation}->{'Duplicate'} = 'Duplikace';
+    $Self->{Translation}->{'Embedded'} = 'Vestavěný';
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = '';
-    $Self->{Translation}->{'Enterprise Licence'} = '';
-    $Self->{Translation}->{'Expiration Date'} = '';
-    $Self->{Translation}->{'Expired'} = '';
-    $Self->{Translation}->{'Floor'} = '';
-    $Self->{Translation}->{'Freeware'} = '';
-    $Self->{Translation}->{'GSM'} = '';
-    $Self->{Translation}->{'Gateway'} = '';
-    $Self->{Translation}->{'Graphic Adapter'} = '';
-    $Self->{Translation}->{'Hard Disk'} = '';
-    $Self->{Translation}->{'Hard Disk::Capacity'} = '';
-    $Self->{Translation}->{'Hide Versions'} = '';
-    $Self->{Translation}->{'IP Address'} = '';
-    $Self->{Translation}->{'IP over DHCP'} = '';
-    $Self->{Translation}->{'IT Facility'} = '';
-    $Self->{Translation}->{'Inactive'} = '';
-    $Self->{Translation}->{'Incident'} = '';
-    $Self->{Translation}->{'Install Date'} = '';
-    $Self->{Translation}->{'Keybord'} = '';
-    $Self->{Translation}->{'LAN'} = '';
-    $Self->{Translation}->{'Laptop'} = '';
-    $Self->{Translation}->{'Last Change'} = '';
-    $Self->{Translation}->{'Licence Key'} = '';
-    $Self->{Translation}->{'Licence Key::Expiration Date'} = '';
-    $Self->{Translation}->{'Licence Key::Quantity'} = '';
-    $Self->{Translation}->{'Licence Type'} = '';
-    $Self->{Translation}->{'Maintenance'} = '';
-    $Self->{Translation}->{'Maximum number of one element'} = '';
-    $Self->{Translation}->{'Media'} = '';
-    $Self->{Translation}->{'Middleware'} = '';
-    $Self->{Translation}->{'Model'} = '';
-    $Self->{Translation}->{'Modem'} = '';
-    $Self->{Translation}->{'Monitor'} = '';
-    $Self->{Translation}->{'Mouse'} = '';
-    $Self->{Translation}->{'Network Adapter'} = '';
-    $Self->{Translation}->{'Network Adapter::IP Address'} = '';
-    $Self->{Translation}->{'Network Adapter::IP over DHCP'} = '';
-    $Self->{Translation}->{'Network Address'} = '';
-    $Self->{Translation}->{'Network Address::Gateway'} = '';
-    $Self->{Translation}->{'Network Address::Subnet Mask'} = '';
-    $Self->{Translation}->{'Open Source'} = '';
-    $Self->{Translation}->{'Operational'} = '';
-    $Self->{Translation}->{'Other'} = '';
-    $Self->{Translation}->{'Other Equipment'} = '';
-    $Self->{Translation}->{'Outlet'} = '';
-    $Self->{Translation}->{'PCMCIA Card'} = '';
-    $Self->{Translation}->{'PDA'} = '';
-    $Self->{Translation}->{'Per Node'} = '';
-    $Self->{Translation}->{'Per Processor'} = '';
-    $Self->{Translation}->{'Per Server'} = '';
-    $Self->{Translation}->{'Per User'} = '';
-    $Self->{Translation}->{'Phone 1'} = '';
-    $Self->{Translation}->{'Phone 2'} = '';
-    $Self->{Translation}->{'Pilot'} = '';
-    $Self->{Translation}->{'Planned'} = '';
-    $Self->{Translation}->{'Printer'} = '';
-    $Self->{Translation}->{'Production'} = '';
-    $Self->{Translation}->{'Quantity'} = '';
-    $Self->{Translation}->{'Rack'} = '';
-    $Self->{Translation}->{'Ram'} = '';
-    $Self->{Translation}->{'Repair'} = '';
-    $Self->{Translation}->{'Retired'} = '';
-    $Self->{Translation}->{'Review'} = '';
-    $Self->{Translation}->{'Room'} = '';
-    $Self->{Translation}->{'Router'} = '';
-    $Self->{Translation}->{'Scanner'} = '';
-    $Self->{Translation}->{'Search Config Items'} = '';
-    $Self->{Translation}->{'Security Device'} = '';
-    $Self->{Translation}->{'Serial Number'} = '';
-    $Self->{Translation}->{'Server'} = '';
-    $Self->{Translation}->{'Server Application'} = '';
-    $Self->{Translation}->{'Server OS'} = '';
-    $Self->{Translation}->{'Show Versions'} = '';
-    $Self->{Translation}->{'Single Licence'} = '';
-    $Self->{Translation}->{'Subnet Mask'} = '';
-    $Self->{Translation}->{'Switch'} = '';
-    $Self->{Translation}->{'Telco'} = '';
-    $Self->{Translation}->{'Test/QA'} = '';
-    $Self->{Translation}->{'The deployment state of this config item'} = '';
-    $Self->{Translation}->{'The incident state of this config item'} = '';
-    $Self->{Translation}->{'Time Restricted'} = '';
-    $Self->{Translation}->{'USB Device'} = '';
-    $Self->{Translation}->{'Unlimited'} = '';
-    $Self->{Translation}->{'User Tool'} = '';
-    $Self->{Translation}->{'Volume Licence'} = '';
-    $Self->{Translation}->{'WLAN'} = '';
-    $Self->{Translation}->{'WLAN Access Point'} = '';
-    $Self->{Translation}->{'Warranty Expiration Date'} = '';
-    $Self->{Translation}->{'Workplace'} = '';
+    $Self->{Translation}->{'Enterprise Licence'} = 'Podniková Licence ';
+    $Self->{Translation}->{'Expiration Date'} = 'Konec Platnosti';
+    $Self->{Translation}->{'Expired'} = 'Propadnuté';
+    $Self->{Translation}->{'Floor'} = 'podlaží';
+    $Self->{Translation}->{'Freeware'} = 'Freeware';
+    $Self->{Translation}->{'GSM'} = 'GSM';
+    $Self->{Translation}->{'Gateway'} = 'Gateway';
+    $Self->{Translation}->{'Graphic Adapter'} = 'Grafická Karta';
+    $Self->{Translation}->{'Hard Disk'} = 'Pevný Disk';
+    $Self->{Translation}->{'Hard Disk::Capacity'} = 'Pevný Disk::Kapacita';
+    $Self->{Translation}->{'Hide Versions'} = 'Skrýt Verze';
+    $Self->{Translation}->{'IP Address'} = 'IP Adresa';
+    $Self->{Translation}->{'IP over DHCP'} = 'IP z DHCP';
+    $Self->{Translation}->{'IT Facility'} = 'IT Příslušenství';
+    $Self->{Translation}->{'Inactive'} = 'Neaktivní';
+    $Self->{Translation}->{'Incident'} = 'Incident';
+    $Self->{Translation}->{'Install Date'} = 'Datum Instalace';
+    $Self->{Translation}->{'Keybord'} = 'Klávesnice';
+    $Self->{Translation}->{'LAN'} = 'LAN';
+    $Self->{Translation}->{'Laptop'} = 'Mobilní';
+    $Self->{Translation}->{'Last Change'} = 'Poslední změna';
+    $Self->{Translation}->{'Licence Key'} = 'Licenční Klíč';
+    $Self->{Translation}->{'Licence Key::Expiration Date'} = 'Licenční Klíč::Konec Platnosti';
+    $Self->{Translation}->{'Licence Key::Quantity'} = 'Licenční Klíč::Množství';
+    $Self->{Translation}->{'Licence Type'} = 'Druh licence';
+    $Self->{Translation}->{'Maintenance'} = 'Údržba';
+    $Self->{Translation}->{'Maximum number of one element'} = 'Max počet jedné Položky';
+    $Self->{Translation}->{'Media'} = 'Médium';
+    $Self->{Translation}->{'Middleware'} = 'Střední úroveň';
+    $Self->{Translation}->{'Model'} = 'Model';
+    $Self->{Translation}->{'Modem'} = 'Modem';
+    $Self->{Translation}->{'Monitor'} = 'Monitor';
+    $Self->{Translation}->{'Mouse'} = 'Myš';
+    $Self->{Translation}->{'Network Adapter'} = 'Síťový Adapter';
+    $Self->{Translation}->{'Network Adapter::IP Address'} = 'Síťový Adapter::IP adresa';
+    $Self->{Translation}->{'Network Adapter::IP over DHCP'} = 'Síťový Adapter::IP z DHCP';
+    $Self->{Translation}->{'Network Address'} = 'Síťová Adresa';
+    $Self->{Translation}->{'Network Address::Gateway'} = 'Síťová Adresa::Gateway';
+    $Self->{Translation}->{'Network Address::Subnet Mask'} = 'Síťová Adresa::Maska Podsítě';
+    $Self->{Translation}->{'Open Source'} = 'Software s Otevřeným Kódem';
+    $Self->{Translation}->{'Operational'} = 'Operační';
+    $Self->{Translation}->{'Other'} = 'Jiné';
+    $Self->{Translation}->{'Other Equipment'} = 'Jiné Vybavení';
+    $Self->{Translation}->{'Outlet'} = 'Filiálka';
+    $Self->{Translation}->{'PCMCIA Card'} = 'PCMCIA karta';
+    $Self->{Translation}->{'PDA'} = 'PDA';
+    $Self->{Translation}->{'Per Node'} = 'na Uzel';
+    $Self->{Translation}->{'Per Processor'} = 'na Procesor';
+    $Self->{Translation}->{'Per Server'} = 'na Server';
+    $Self->{Translation}->{'Per User'} = 'na Uživatele';
+    $Self->{Translation}->{'Phone 1'} = 'Telefon 1';
+    $Self->{Translation}->{'Phone 2'} = 'Telefon 2';
+    $Self->{Translation}->{'Pilot'} = 'Řídící';
+    $Self->{Translation}->{'Planned'} = 'Naplánováno';
+    $Self->{Translation}->{'Printer'} = 'Tiskárna';
+    $Self->{Translation}->{'Production'} = 'Produkční';
+    $Self->{Translation}->{'Quantity'} = 'Množství';
+    $Self->{Translation}->{'Rack'} = 'Rack';
+    $Self->{Translation}->{'Ram'} = 'RAM';
+    $Self->{Translation}->{'Repair'} = 'Oprava/Obnovení';
+    $Self->{Translation}->{'Retired'} = 'Mimo provoz';
+    $Self->{Translation}->{'Review'} = 'Přehled';
+    $Self->{Translation}->{'Room'} = 'Místnost';
+    $Self->{Translation}->{'Router'} = 'Router';
+    $Self->{Translation}->{'Scanner'} = 'Skener';
+    $Self->{Translation}->{'Search Config Items'} = 'Vyhledat Konfig. Položky';
+    $Self->{Translation}->{'Security Device'} = 'Bezpečnostní Zařízení';
+    $Self->{Translation}->{'Serial Number'} = 'Sériové Číslo';
+    $Self->{Translation}->{'Server'} = 'Server';
+    $Self->{Translation}->{'Server Application'} = 'Serverová Aplikace';
+    $Self->{Translation}->{'Server OS'} = 'Serverový Operační Systém';
+    $Self->{Translation}->{'Show Versions'} = 'Ukázat Verze';
+    $Self->{Translation}->{'Single Licence'} = 'Jednoduchá Licence';
+    $Self->{Translation}->{'Subnet Mask'} = 'Maska Podsítě';
+    $Self->{Translation}->{'Switch'} = 'Switch';
+    $Self->{Translation}->{'Telco'} = 'Telco';
+    $Self->{Translation}->{'Test/QA'} = 'Test/Kontrola kvality';
+    $Self->{Translation}->{'The deployment state of this config item'} = 'Stav Nasazení této Konfig. Položky';
+    $Self->{Translation}->{'The incident state of this config item'} = 'Stav Incidentu této Konfig. Položky';
+    $Self->{Translation}->{'Time Restricted'} = 'Časově omezená Licence';
+    $Self->{Translation}->{'USB Device'} = 'USB Zařízení';
+    $Self->{Translation}->{'Unlimited'} = 'Neomezená';
+    $Self->{Translation}->{'User Tool'} = 'Uživatelský Nástroj';
+    $Self->{Translation}->{'Volume Licence'} = 'Svazková Licence';
+    $Self->{Translation}->{'WLAN'} = 'WLAN';
+    $Self->{Translation}->{'WLAN Access Point'} = 'Přístupový Bod WLAN';
+    $Self->{Translation}->{'Warranty Expiration Date'} = 'Konec platnosti záruky';
+    $Self->{Translation}->{'Workplace'} = 'Pracoviště';
 
     # Template: AdminITSMConfigItem
-    $Self->{Translation}->{'Config Item Management'} = '';
+    $Self->{Translation}->{'Config Item Management'} = 'Správa Konfiguračních Položek';
     $Self->{Translation}->{'Change class definition'} = '';
-    $Self->{Translation}->{'Config Item'} = '';
-    $Self->{Translation}->{'Class'} = '';
+    $Self->{Translation}->{'Config Item'} = 'Konfig. Položka';
+    $Self->{Translation}->{'Class'} = 'Třída';
     $Self->{Translation}->{'Definition'} = '';
 
     # Template: AgentITSMConfigItemAdd
@@ -163,11 +163,11 @@ sub Data {
     $Self->{Translation}->{'The number of another Configuration Item to link with.'} = '';
 
     # Template: AgentITSMConfigItemEdit
-    $Self->{Translation}->{'The name of this config item'} = '';
+    $Self->{Translation}->{'The name of this config item'} = 'Jméno této Konfig. Položky';
     $Self->{Translation}->{'Name is already in use by the ConfigItems with the following Number(s): %s'} =
         '';
-    $Self->{Translation}->{'Deployment State'} = '';
-    $Self->{Translation}->{'Incident State'} = '';
+    $Self->{Translation}->{'Deployment State'} = 'Stav Nasazení';
+    $Self->{Translation}->{'Incident State'} = 'Stav Incidentu';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = '';
@@ -175,20 +175,20 @@ sub Data {
 
     # Template: AgentITSMConfigItemOverviewSmall
     $Self->{Translation}->{'Deployment State Type'} = '';
-    $Self->{Translation}->{'Current Incident State'} = '';
+    $Self->{Translation}->{'Current Incident State'} = 'Aktuální Stav Incidentu';
     $Self->{Translation}->{'Current Incident State Type'} = '';
-    $Self->{Translation}->{'Last changed'} = '';
+    $Self->{Translation}->{'Last changed'} = 'Poslední změna';
 
     # Template: AgentITSMConfigItemPrint
     $Self->{Translation}->{'ConfigItem'} = '';
     $Self->{Translation}->{'ConfigItem-Info'} = '';
-    $Self->{Translation}->{'Current Deployment State'} = '';
-    $Self->{Translation}->{'Last changed by'} = '';
+    $Self->{Translation}->{'Current Deployment State'} = 'Aktuální Stav Nasazení';
+    $Self->{Translation}->{'Last changed by'} = 'Poslední změna od';
 
     # Template: AgentITSMConfigItemSearch
     $Self->{Translation}->{'Create New Template'} = '';
     $Self->{Translation}->{'Run Search'} = '';
-    $Self->{Translation}->{'Also search in previous versions?'} = '';
+    $Self->{Translation}->{'Also search in previous versions?'} = 'Hledat také v předchozích verzích?';
 
     # Template: AgentITSMConfigItemSearchResultPrint
     $Self->{Translation}->{'CreateTime'} = '';

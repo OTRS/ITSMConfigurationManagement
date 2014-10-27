@@ -1,5 +1,5 @@
 # --
-# Kernel/Language/bg_ITSMConfigItem.pm - translation file
+# Kernel/Language/da_ITSMConfigurationManagement.pm - translation file
 # Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
@@ -7,7 +7,7 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package Kernel::Language::bg_ITSMConfigItem;
+package Kernel::Language::da_ITSMConfigurationManagement;
 
 use strict;
 use warnings;
@@ -17,11 +17,11 @@ sub Data {
     my $Self = shift;
 
     # Template: AAAITSMConfigItem
-    $Self->{Translation}->{'Address'} = '';
-    $Self->{Translation}->{'Admin Tool'} = 'Административнен инструмент';
-    $Self->{Translation}->{'Backup Device'} = 'Архивиращо у-во';
-    $Self->{Translation}->{'Beamer'} = 'Бимер';
-    $Self->{Translation}->{'Building'} = '';
+    $Self->{Translation}->{'Address'} = 'Adresse';
+    $Self->{Translation}->{'Admin Tool'} = 'Admin værktøjer';
+    $Self->{Translation}->{'Backup Device'} = 'Backup enhed';
+    $Self->{Translation}->{'Beamer'} = 'Beamer';
+    $Self->{Translation}->{'Building'} = 'Bygning';
     $Self->{Translation}->{'CIHistory::ConfigItemCreate'} = '';
     $Self->{Translation}->{'CIHistory::ConfigItemDelete'} = '';
     $Self->{Translation}->{'CIHistory::DefinitionUpdate'} = '';
@@ -35,119 +35,119 @@ sub Data {
     $Self->{Translation}->{'CIHistory::VersionDelete'} = '';
     $Self->{Translation}->{'CIHistory::AttachmentAdd'} = '';
     $Self->{Translation}->{'CIHistory::AttachmentDelete'} = '';
-    $Self->{Translation}->{'CPU'} = 'Процесор';
-    $Self->{Translation}->{'Camera'} = 'Камера';
-    $Self->{Translation}->{'Capacity'} = 'Капацитет';
-    $Self->{Translation}->{'Change Definition'} = 'Промяна на дефиницията';
-    $Self->{Translation}->{'Change of definition failed! See System Log for details.'} = 'Промяната на дефинициите е неуспешна! Виж системния журнал за детайли.';
-    $Self->{Translation}->{'Client Application'} = 'Потребителски приложения';
-    $Self->{Translation}->{'Client OS'} = 'Потребителска Опер.с-ма';
-    $Self->{Translation}->{'Concurrent Users'} = 'Конкурентни потребители';
-    $Self->{Translation}->{'Config Item-Area'} = '';
-    $Self->{Translation}->{'Config Items available'} = 'Достъпни конфигур.единици';
-    $Self->{Translation}->{'Config Items shown'} = 'Показани конфигур.единици';
+    $Self->{Translation}->{'CPU'} = 'CPU';
+    $Self->{Translation}->{'Camera'} = 'Kamera';
+    $Self->{Translation}->{'Capacity'} = 'Kapacitet';
+    $Self->{Translation}->{'Change Definition'} = 'Ændre definition';
+    $Self->{Translation}->{'Change of definition failed! See System Log for details.'} = 'Ændring af definition fejlede! Se System Log for detaljer.';
+    $Self->{Translation}->{'Client Application'} = 'Klient aplikation';
+    $Self->{Translation}->{'Client OS'} = 'Klient OS';
+    $Self->{Translation}->{'Concurrent Users'} = 'Samtidige brugere';
+    $Self->{Translation}->{'Config Item-Area'} = 'Config Item-område';
+    $Self->{Translation}->{'Config Items available'} = 'Tilgængelige Config Items';
+    $Self->{Translation}->{'Config Items shown'} = 'Vis Config Items';
     $Self->{Translation}->{'CMDB'} = '';
-    $Self->{Translation}->{'Demo'} = 'Демо';
-    $Self->{Translation}->{'Desktop'} = 'Настолен';
-    $Self->{Translation}->{'Developer Licence'} = 'Лиценз за разработчици';
-    $Self->{Translation}->{'Docking Station'} = 'Докинг станция';
-    $Self->{Translation}->{'Duplicate'} = 'Направи копие';
-    $Self->{Translation}->{'Embedded'} = 'Вградена';
+    $Self->{Translation}->{'Demo'} = 'Demo';
+    $Self->{Translation}->{'Desktop'} = 'Desktop';
+    $Self->{Translation}->{'Developer Licence'} = 'Udvikler licens';
+    $Self->{Translation}->{'Docking Station'} = 'Docking Station';
+    $Self->{Translation}->{'Duplicate'} = 'Dupliker';
+    $Self->{Translation}->{'Embedded'} = 'Embedded';
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = '';
-    $Self->{Translation}->{'Enterprise Licence'} = 'Ентърпрайс лиценз';
-    $Self->{Translation}->{'Expiration Date'} = 'Дата на изтичане';
-    $Self->{Translation}->{'Expired'} = 'Изтекли';
-    $Self->{Translation}->{'Floor'} = '';
-    $Self->{Translation}->{'Freeware'} = 'Безплатно разпространяван';
+    $Self->{Translation}->{'Enterprise Licence'} = 'Enterprise licens';
+    $Self->{Translation}->{'Expiration Date'} = 'Udløbsdato';
+    $Self->{Translation}->{'Expired'} = 'Udløbet';
+    $Self->{Translation}->{'Floor'} = 'Etage';
+    $Self->{Translation}->{'Freeware'} = 'Freeware';
     $Self->{Translation}->{'GSM'} = 'GSM';
-    $Self->{Translation}->{'Gateway'} = 'Гейт преход';
-    $Self->{Translation}->{'Graphic Adapter'} = 'Графична карта';
-    $Self->{Translation}->{'Hard Disk'} = 'Твърд диск';
-    $Self->{Translation}->{'Hard Disk::Capacity'} = 'Твърд диск::капацитет';
-    $Self->{Translation}->{'Hide Versions'} = 'Скрий Версиите';
-    $Self->{Translation}->{'IP Address'} = 'IP адрес';
-    $Self->{Translation}->{'IP over DHCP'} = 'IP от DHCP';
-    $Self->{Translation}->{'IT Facility'} = '';
-    $Self->{Translation}->{'Inactive'} = 'Неактивни';
-    $Self->{Translation}->{'Incident'} = '';
-    $Self->{Translation}->{'Install Date'} = 'Дата на инсталация';
-    $Self->{Translation}->{'Keybord'} = 'Клавиатура';
+    $Self->{Translation}->{'Gateway'} = 'Gateway';
+    $Self->{Translation}->{'Graphic Adapter'} = 'Grafikkort';
+    $Self->{Translation}->{'Hard Disk'} = 'Harddisk';
+    $Self->{Translation}->{'Hard Disk::Capacity'} = 'Harddisk::Kapacitet';
+    $Self->{Translation}->{'Hide Versions'} = 'Skjul versioner';
+    $Self->{Translation}->{'IP Address'} = 'IP adresse';
+    $Self->{Translation}->{'IP over DHCP'} = 'IP via DHCP';
+    $Self->{Translation}->{'IT Facility'} = 'IT facilitet';
+    $Self->{Translation}->{'Inactive'} = 'Inaktiv';
+    $Self->{Translation}->{'Incident'} = 'Incident';
+    $Self->{Translation}->{'Install Date'} = 'Installationsdato';
+    $Self->{Translation}->{'Keybord'} = 'Tastatur';
     $Self->{Translation}->{'LAN'} = 'LAN';
-    $Self->{Translation}->{'Laptop'} = 'Преносим';
-    $Self->{Translation}->{'Last Change'} = 'Последна промяна';
-    $Self->{Translation}->{'Licence Key'} = 'Лицензен ключ';
-    $Self->{Translation}->{'Licence Key::Expiration Date'} = 'Лицензен ключ::Дата на изтичане';
-    $Self->{Translation}->{'Licence Key::Quantity'} = 'Лицензен ключ::Количество';
-    $Self->{Translation}->{'Licence Type'} = 'Тип на лиценза';
-    $Self->{Translation}->{'Maintenance'} = 'Поддръжка';
-    $Self->{Translation}->{'Maximum number of one element'} = '';
-    $Self->{Translation}->{'Media'} = 'Медия';
-    $Self->{Translation}->{'Middleware'} = 'Средно ниво';
-    $Self->{Translation}->{'Model'} = 'Модел';
-    $Self->{Translation}->{'Modem'} = 'Модем';
-    $Self->{Translation}->{'Monitor'} = 'Монитор';
-    $Self->{Translation}->{'Mouse'} = 'Мишка';
-    $Self->{Translation}->{'Network Adapter'} = 'Мрежов адаптер';
-    $Self->{Translation}->{'Network Adapter::IP Address'} = 'Мрежов адаптер::IP Адрес';
-    $Self->{Translation}->{'Network Adapter::IP over DHCP'} = 'Мрежов адаптер::IP от DHCP';
-    $Self->{Translation}->{'Network Address'} = 'Мрежов адрес';
-    $Self->{Translation}->{'Network Address::Gateway'} = 'Мрежов адрес::Гейт преход';
-    $Self->{Translation}->{'Network Address::Subnet Mask'} = 'Мрежов адрес::Маска на подмрежата';
-    $Self->{Translation}->{'Open Source'} = 'Софтуер с отворен код';
-    $Self->{Translation}->{'Operational'} = '';
-    $Self->{Translation}->{'Other'} = 'Други';
-    $Self->{Translation}->{'Other Equipment'} = 'Друго оборудване';
-    $Self->{Translation}->{'Outlet'} = '';
-    $Self->{Translation}->{'PCMCIA Card'} = 'PCMCIA карта';
+    $Self->{Translation}->{'Laptop'} = 'Laptop';
+    $Self->{Translation}->{'Last Change'} = 'Sidst ændret';
+    $Self->{Translation}->{'Licence Key'} = 'Licensnøgle';
+    $Self->{Translation}->{'Licence Key::Expiration Date'} = 'Licensnøgle::Udløbsdato';
+    $Self->{Translation}->{'Licence Key::Quantity'} = 'Licensnøgle::Mængde';
+    $Self->{Translation}->{'Licence Type'} = 'Licenstype';
+    $Self->{Translation}->{'Maintenance'} = 'Vedligeholdelse';
+    $Self->{Translation}->{'Maximum number of one element'} = 'Maximum antal af et element';
+    $Self->{Translation}->{'Media'} = 'Medie';
+    $Self->{Translation}->{'Middleware'} = 'Middleware';
+    $Self->{Translation}->{'Model'} = 'Model';
+    $Self->{Translation}->{'Modem'} = 'Modem';
+    $Self->{Translation}->{'Monitor'} = 'Monitor';
+    $Self->{Translation}->{'Mouse'} = 'Mus';
+    $Self->{Translation}->{'Network Adapter'} = 'Netkort';
+    $Self->{Translation}->{'Network Adapter::IP Address'} = 'Netkort::IP adresse';
+    $Self->{Translation}->{'Network Adapter::IP over DHCP'} = 'Netkort::IP via DHCP';
+    $Self->{Translation}->{'Network Address'} = 'Netværksadresse';
+    $Self->{Translation}->{'Network Address::Gateway'} = 'Netværksadresse::Gateway';
+    $Self->{Translation}->{'Network Address::Subnet Mask'} = 'Netværksadresse::Subnet maske';
+    $Self->{Translation}->{'Open Source'} = 'Open Source';
+    $Self->{Translation}->{'Operational'} = 'Operationel';
+    $Self->{Translation}->{'Other'} = 'Andet';
+    $Self->{Translation}->{'Other Equipment'} = 'Andet udstyr';
+    $Self->{Translation}->{'Outlet'} = 'Stikkontakt';
+    $Self->{Translation}->{'PCMCIA Card'} = 'PCMCIA kort';
     $Self->{Translation}->{'PDA'} = 'PDA';
-    $Self->{Translation}->{'Per Node'} = 'Лицензиране на точка';
-    $Self->{Translation}->{'Per Processor'} = 'Лицензиране за процесор';
-    $Self->{Translation}->{'Per Server'} = 'Лицензиране за сървър';
-    $Self->{Translation}->{'Per User'} = 'Лицензиране за потребител';
-    $Self->{Translation}->{'Phone 1'} = '';
-    $Self->{Translation}->{'Phone 2'} = '';
-    $Self->{Translation}->{'Pilot'} = 'Пилот-водач';
-    $Self->{Translation}->{'Planned'} = 'Планиран';
-    $Self->{Translation}->{'Printer'} = 'Принтер';
-    $Self->{Translation}->{'Production'} = 'Продуктивен';
-    $Self->{Translation}->{'Quantity'} = 'Количество';
-    $Self->{Translation}->{'Rack'} = '';
-    $Self->{Translation}->{'Ram'} = 'Памет';
-    $Self->{Translation}->{'Repair'} = 'Ремонт/Възстановяване';
-    $Self->{Translation}->{'Retired'} = 'Излязъл от употреба';
-    $Self->{Translation}->{'Review'} = 'Преглеждан';
+    $Self->{Translation}->{'Per Node'} = 'Pr node';
+    $Self->{Translation}->{'Per Processor'} = 'Pr processor';
+    $Self->{Translation}->{'Per Server'} = 'Pr server';
+    $Self->{Translation}->{'Per User'} = 'Pr bruger';
+    $Self->{Translation}->{'Phone 1'} = 'Telefon 1';
+    $Self->{Translation}->{'Phone 2'} = 'Telefon 2';
+    $Self->{Translation}->{'Pilot'} = 'Pilot';
+    $Self->{Translation}->{'Planned'} = 'Planlagt';
+    $Self->{Translation}->{'Printer'} = 'Printer';
+    $Self->{Translation}->{'Production'} = 'Produktion';
+    $Self->{Translation}->{'Quantity'} = 'Mængde';
+    $Self->{Translation}->{'Rack'} = 'Rack';
+    $Self->{Translation}->{'Ram'} = 'RAM';
+    $Self->{Translation}->{'Repair'} = 'Reperation';
+    $Self->{Translation}->{'Retired'} = 'Persioneret';
+    $Self->{Translation}->{'Review'} = 'Anmeldelse';
     $Self->{Translation}->{'Room'} = '';
-    $Self->{Translation}->{'Router'} = 'Рутер';
-    $Self->{Translation}->{'Scanner'} = 'Скенер';
-    $Self->{Translation}->{'Search Config Items'} = '';
-    $Self->{Translation}->{'Security Device'} = 'У-во за сигурност';
-    $Self->{Translation}->{'Serial Number'} = 'Сериен Номер';
-    $Self->{Translation}->{'Server'} = 'Сървър';
-    $Self->{Translation}->{'Server Application'} = 'Сървърно приложение';
-    $Self->{Translation}->{'Server OS'} = 'сървърна Опер.с-ма';
-    $Self->{Translation}->{'Show Versions'} = 'Покажи Версиите';
-    $Self->{Translation}->{'Single Licence'} = 'Единичен лиценз';
-    $Self->{Translation}->{'Subnet Mask'} = 'Маска на подмрежата';
-    $Self->{Translation}->{'Switch'} = 'Концентратор';
+    $Self->{Translation}->{'Router'} = 'Router';
+    $Self->{Translation}->{'Scanner'} = 'Skanner';
+    $Self->{Translation}->{'Search Config Items'} = 'Søg Config Item';
+    $Self->{Translation}->{'Security Device'} = 'Sikkerhedsenhed';
+    $Self->{Translation}->{'Serial Number'} = 'Serienummer';
+    $Self->{Translation}->{'Server'} = 'Server';
+    $Self->{Translation}->{'Server Application'} = 'Server aplikation';
+    $Self->{Translation}->{'Server OS'} = 'Server OS';
+    $Self->{Translation}->{'Show Versions'} = 'Vis versioner';
+    $Self->{Translation}->{'Single Licence'} = 'Enkeltlicens';
+    $Self->{Translation}->{'Subnet Mask'} = 'Subnet maske';
+    $Self->{Translation}->{'Switch'} = 'Switch';
     $Self->{Translation}->{'Telco'} = 'Telco';
-    $Self->{Translation}->{'Test/QA'} = 'Тест/Качествен контрол';
-    $Self->{Translation}->{'The deployment state of this config item'} = '';
-    $Self->{Translation}->{'The incident state of this config item'} = '';
-    $Self->{Translation}->{'Time Restricted'} = 'Лиценз, ограничен по време';
-    $Self->{Translation}->{'USB Device'} = 'USB Устройство';
-    $Self->{Translation}->{'Unlimited'} = 'Неограничен лиценз';
-    $Self->{Translation}->{'User Tool'} = 'Клиентски инструмент';
-    $Self->{Translation}->{'Volume Licence'} = 'Специални обемни програми';
+    $Self->{Translation}->{'Test/QA'} = 'Test/QA';
+    $Self->{Translation}->{'The deployment state of this config item'} = 'Deployment tilstand for denne Config item';
+    $Self->{Translation}->{'The incident state of this config item'} = 'Incident tilstand for denne Config Item';
+    $Self->{Translation}->{'Time Restricted'} = 'Tidsbegrænset';
+    $Self->{Translation}->{'USB Device'} = 'USB enhed';
+    $Self->{Translation}->{'Unlimited'} = 'Unbegrænset';
+    $Self->{Translation}->{'User Tool'} = 'Bruger værktøjer';
+    $Self->{Translation}->{'Volume Licence'} = 'Volumen Licens';
     $Self->{Translation}->{'WLAN'} = 'WLAN';
-    $Self->{Translation}->{'WLAN Access Point'} = 'WLAN точка за достъп';
-    $Self->{Translation}->{'Warranty Expiration Date'} = 'Дата на изтичане на гаранцията';
-    $Self->{Translation}->{'Workplace'} = '';
+    $Self->{Translation}->{'WLAN Access Point'} = 'WLAN Access Point';
+    $Self->{Translation}->{'Warranty Expiration Date'} = 'Udløbsdato for garanti';
+    $Self->{Translation}->{'Workplace'} = 'Arbejdsplads';
 
     # Template: AdminITSMConfigItem
-    $Self->{Translation}->{'Config Item Management'} = 'Управление на конфигурационните единици CI';
+    $Self->{Translation}->{'Config Item Management'} = 'Config Item styring';
     $Self->{Translation}->{'Change class definition'} = '';
-    $Self->{Translation}->{'Config Item'} = '';
-    $Self->{Translation}->{'Class'} = 'Клас';
+    $Self->{Translation}->{'Config Item'} = 'Config Item';
+    $Self->{Translation}->{'Class'} = 'Klasse';
     $Self->{Translation}->{'Definition'} = '';
 
     # Template: AgentITSMConfigItemAdd
@@ -163,11 +163,11 @@ sub Data {
     $Self->{Translation}->{'The number of another Configuration Item to link with.'} = '';
 
     # Template: AgentITSMConfigItemEdit
-    $Self->{Translation}->{'The name of this config item'} = '';
+    $Self->{Translation}->{'The name of this config item'} = 'Navnet på denne Config Item';
     $Self->{Translation}->{'Name is already in use by the ConfigItems with the following Number(s): %s'} =
         '';
-    $Self->{Translation}->{'Deployment State'} = '';
-    $Self->{Translation}->{'Incident State'} = '';
+    $Self->{Translation}->{'Deployment State'} = 'Deployment tilstand';
+    $Self->{Translation}->{'Incident State'} = 'Incident tilstand';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = '';
@@ -175,20 +175,20 @@ sub Data {
 
     # Template: AgentITSMConfigItemOverviewSmall
     $Self->{Translation}->{'Deployment State Type'} = '';
-    $Self->{Translation}->{'Current Incident State'} = '';
+    $Self->{Translation}->{'Current Incident State'} = 'Nuværende Incident tilstand';
     $Self->{Translation}->{'Current Incident State Type'} = '';
-    $Self->{Translation}->{'Last changed'} = 'Последна промяна';
+    $Self->{Translation}->{'Last changed'} = 'Sidst ændret';
 
     # Template: AgentITSMConfigItemPrint
     $Self->{Translation}->{'ConfigItem'} = '';
     $Self->{Translation}->{'ConfigItem-Info'} = '';
-    $Self->{Translation}->{'Current Deployment State'} = '';
-    $Self->{Translation}->{'Last changed by'} = 'Последно променен от';
+    $Self->{Translation}->{'Current Deployment State'} = 'Nuværende deployment status';
+    $Self->{Translation}->{'Last changed by'} = 'Sidst ændret af';
 
     # Template: AgentITSMConfigItemSearch
     $Self->{Translation}->{'Create New Template'} = '';
     $Self->{Translation}->{'Run Search'} = '';
-    $Self->{Translation}->{'Also search in previous versions?'} = 'Да търси и в предишните версии?';
+    $Self->{Translation}->{'Also search in previous versions?'} = 'Søg også i tidligere versioner?';
 
     # Template: AgentITSMConfigItemSearchResultPrint
     $Self->{Translation}->{'CreateTime'} = '';

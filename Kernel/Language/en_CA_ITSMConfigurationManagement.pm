@@ -1,5 +1,5 @@
 # --
-# Kernel/Language/da_ITSMConfigItem.pm - translation file
+# Kernel/Language/en_CA_ITSMConfigurationManagement.pm - translation file
 # Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
@@ -7,7 +7,7 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package Kernel::Language::da_ITSMConfigItem;
+package Kernel::Language::en_CA_ITSMConfigurationManagement;
 
 use strict;
 use warnings;
@@ -17,137 +17,137 @@ sub Data {
     my $Self = shift;
 
     # Template: AAAITSMConfigItem
-    $Self->{Translation}->{'Address'} = 'Adresse';
-    $Self->{Translation}->{'Admin Tool'} = 'Admin værktøjer';
-    $Self->{Translation}->{'Backup Device'} = 'Backup enhed';
-    $Self->{Translation}->{'Beamer'} = 'Beamer';
-    $Self->{Translation}->{'Building'} = 'Bygning';
-    $Self->{Translation}->{'CIHistory::ConfigItemCreate'} = '';
-    $Self->{Translation}->{'CIHistory::ConfigItemDelete'} = '';
-    $Self->{Translation}->{'CIHistory::DefinitionUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::DeploymentStateUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::IncidentStateUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::LinkAdd'} = '';
-    $Self->{Translation}->{'CIHistory::LinkDelete'} = '';
-    $Self->{Translation}->{'CIHistory::NameUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::ValueUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::VersionCreate'} = '';
-    $Self->{Translation}->{'CIHistory::VersionDelete'} = '';
+    $Self->{Translation}->{'Address'} = '';
+    $Self->{Translation}->{'Admin Tool'} = '';
+    $Self->{Translation}->{'Backup Device'} = '';
+    $Self->{Translation}->{'Beamer'} = '';
+    $Self->{Translation}->{'Building'} = '';
+    $Self->{Translation}->{'CIHistory::ConfigItemCreate'} = 'New ConfigItem (ID=%s)';
+    $Self->{Translation}->{'CIHistory::ConfigItemDelete'} = 'ConfigItem (ID=%s) deleted';
+    $Self->{Translation}->{'CIHistory::DefinitionUpdate'} = 'ConfigItems\' definition updated (ID=%s)';
+    $Self->{Translation}->{'CIHistory::DeploymentStateUpdate'} = 'Deployment state updated (new=%s; old=%s)';
+    $Self->{Translation}->{'CIHistory::IncidentStateUpdate'} = 'Incident state updated (new=%s; old=%s)';
+    $Self->{Translation}->{'CIHistory::LinkAdd'} = 'Link to %s (type=%s) added';
+    $Self->{Translation}->{'CIHistory::LinkDelete'} = 'Link to %s (type=%s) deleted';
+    $Self->{Translation}->{'CIHistory::NameUpdate'} = 'Name updated (new=%s; old=%s)';
+    $Self->{Translation}->{'CIHistory::ValueUpdate'} = 'Attribute %s updated from "%s" to "%s"';
+    $Self->{Translation}->{'CIHistory::VersionCreate'} = 'New version (ID=%s)';
+    $Self->{Translation}->{'CIHistory::VersionDelete'} = 'Version %s deleted';
     $Self->{Translation}->{'CIHistory::AttachmentAdd'} = '';
     $Self->{Translation}->{'CIHistory::AttachmentDelete'} = '';
-    $Self->{Translation}->{'CPU'} = 'CPU';
-    $Self->{Translation}->{'Camera'} = 'Kamera';
-    $Self->{Translation}->{'Capacity'} = 'Kapacitet';
-    $Self->{Translation}->{'Change Definition'} = 'Ændre definition';
-    $Self->{Translation}->{'Change of definition failed! See System Log for details.'} = 'Ændring af definition fejlede! Se System Log for detaljer.';
-    $Self->{Translation}->{'Client Application'} = 'Klient aplikation';
-    $Self->{Translation}->{'Client OS'} = 'Klient OS';
-    $Self->{Translation}->{'Concurrent Users'} = 'Samtidige brugere';
-    $Self->{Translation}->{'Config Item-Area'} = 'Config Item-område';
-    $Self->{Translation}->{'Config Items available'} = 'Tilgængelige Config Items';
-    $Self->{Translation}->{'Config Items shown'} = 'Vis Config Items';
+    $Self->{Translation}->{'CPU'} = '';
+    $Self->{Translation}->{'Camera'} = '';
+    $Self->{Translation}->{'Capacity'} = '';
+    $Self->{Translation}->{'Change Definition'} = '';
+    $Self->{Translation}->{'Change of definition failed! See System Log for details.'} = '';
+    $Self->{Translation}->{'Client Application'} = '';
+    $Self->{Translation}->{'Client OS'} = '';
+    $Self->{Translation}->{'Concurrent Users'} = '';
+    $Self->{Translation}->{'Config Item-Area'} = '';
+    $Self->{Translation}->{'Config Items available'} = '';
+    $Self->{Translation}->{'Config Items shown'} = '';
     $Self->{Translation}->{'CMDB'} = '';
-    $Self->{Translation}->{'Demo'} = 'Demo';
-    $Self->{Translation}->{'Desktop'} = 'Desktop';
-    $Self->{Translation}->{'Developer Licence'} = 'Udvikler licens';
-    $Self->{Translation}->{'Docking Station'} = 'Docking Station';
-    $Self->{Translation}->{'Duplicate'} = 'Dupliker';
-    $Self->{Translation}->{'Embedded'} = 'Embedded';
+    $Self->{Translation}->{'Demo'} = '';
+    $Self->{Translation}->{'Desktop'} = '';
+    $Self->{Translation}->{'Developer Licence'} = 'Developer License';
+    $Self->{Translation}->{'Docking Station'} = '';
+    $Self->{Translation}->{'Duplicate'} = '';
+    $Self->{Translation}->{'Embedded'} = '';
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = '';
-    $Self->{Translation}->{'Enterprise Licence'} = 'Enterprise licens';
-    $Self->{Translation}->{'Expiration Date'} = 'Udløbsdato';
-    $Self->{Translation}->{'Expired'} = 'Udløbet';
-    $Self->{Translation}->{'Floor'} = 'Etage';
-    $Self->{Translation}->{'Freeware'} = 'Freeware';
-    $Self->{Translation}->{'GSM'} = 'GSM';
-    $Self->{Translation}->{'Gateway'} = 'Gateway';
-    $Self->{Translation}->{'Graphic Adapter'} = 'Grafikkort';
-    $Self->{Translation}->{'Hard Disk'} = 'Harddisk';
-    $Self->{Translation}->{'Hard Disk::Capacity'} = 'Harddisk::Kapacitet';
-    $Self->{Translation}->{'Hide Versions'} = 'Skjul versioner';
-    $Self->{Translation}->{'IP Address'} = 'IP adresse';
-    $Self->{Translation}->{'IP over DHCP'} = 'IP via DHCP';
-    $Self->{Translation}->{'IT Facility'} = 'IT facilitet';
-    $Self->{Translation}->{'Inactive'} = 'Inaktiv';
-    $Self->{Translation}->{'Incident'} = 'Incident';
-    $Self->{Translation}->{'Install Date'} = 'Installationsdato';
-    $Self->{Translation}->{'Keybord'} = 'Tastatur';
-    $Self->{Translation}->{'LAN'} = 'LAN';
-    $Self->{Translation}->{'Laptop'} = 'Laptop';
-    $Self->{Translation}->{'Last Change'} = 'Sidst ændret';
-    $Self->{Translation}->{'Licence Key'} = 'Licensnøgle';
-    $Self->{Translation}->{'Licence Key::Expiration Date'} = 'Licensnøgle::Udløbsdato';
-    $Self->{Translation}->{'Licence Key::Quantity'} = 'Licensnøgle::Mængde';
-    $Self->{Translation}->{'Licence Type'} = 'Licenstype';
-    $Self->{Translation}->{'Maintenance'} = 'Vedligeholdelse';
-    $Self->{Translation}->{'Maximum number of one element'} = 'Maximum antal af et element';
-    $Self->{Translation}->{'Media'} = 'Medie';
-    $Self->{Translation}->{'Middleware'} = 'Middleware';
-    $Self->{Translation}->{'Model'} = 'Model';
-    $Self->{Translation}->{'Modem'} = 'Modem';
-    $Self->{Translation}->{'Monitor'} = 'Monitor';
-    $Self->{Translation}->{'Mouse'} = 'Mus';
-    $Self->{Translation}->{'Network Adapter'} = 'Netkort';
-    $Self->{Translation}->{'Network Adapter::IP Address'} = 'Netkort::IP adresse';
-    $Self->{Translation}->{'Network Adapter::IP over DHCP'} = 'Netkort::IP via DHCP';
-    $Self->{Translation}->{'Network Address'} = 'Netværksadresse';
-    $Self->{Translation}->{'Network Address::Gateway'} = 'Netværksadresse::Gateway';
-    $Self->{Translation}->{'Network Address::Subnet Mask'} = 'Netværksadresse::Subnet maske';
-    $Self->{Translation}->{'Open Source'} = 'Open Source';
-    $Self->{Translation}->{'Operational'} = 'Operationel';
-    $Self->{Translation}->{'Other'} = 'Andet';
-    $Self->{Translation}->{'Other Equipment'} = 'Andet udstyr';
-    $Self->{Translation}->{'Outlet'} = 'Stikkontakt';
-    $Self->{Translation}->{'PCMCIA Card'} = 'PCMCIA kort';
-    $Self->{Translation}->{'PDA'} = 'PDA';
-    $Self->{Translation}->{'Per Node'} = 'Pr node';
-    $Self->{Translation}->{'Per Processor'} = 'Pr processor';
-    $Self->{Translation}->{'Per Server'} = 'Pr server';
-    $Self->{Translation}->{'Per User'} = 'Pr bruger';
-    $Self->{Translation}->{'Phone 1'} = 'Telefon 1';
-    $Self->{Translation}->{'Phone 2'} = 'Telefon 2';
-    $Self->{Translation}->{'Pilot'} = 'Pilot';
-    $Self->{Translation}->{'Planned'} = 'Planlagt';
-    $Self->{Translation}->{'Printer'} = 'Printer';
-    $Self->{Translation}->{'Production'} = 'Produktion';
-    $Self->{Translation}->{'Quantity'} = 'Mængde';
-    $Self->{Translation}->{'Rack'} = 'Rack';
-    $Self->{Translation}->{'Ram'} = 'RAM';
-    $Self->{Translation}->{'Repair'} = 'Reperation';
-    $Self->{Translation}->{'Retired'} = 'Persioneret';
-    $Self->{Translation}->{'Review'} = 'Anmeldelse';
+    $Self->{Translation}->{'Enterprise Licence'} = 'Enterprise License';
+    $Self->{Translation}->{'Expiration Date'} = '';
+    $Self->{Translation}->{'Expired'} = '';
+    $Self->{Translation}->{'Floor'} = '';
+    $Self->{Translation}->{'Freeware'} = '';
+    $Self->{Translation}->{'GSM'} = '';
+    $Self->{Translation}->{'Gateway'} = '';
+    $Self->{Translation}->{'Graphic Adapter'} = '';
+    $Self->{Translation}->{'Hard Disk'} = '';
+    $Self->{Translation}->{'Hard Disk::Capacity'} = '';
+    $Self->{Translation}->{'Hide Versions'} = '';
+    $Self->{Translation}->{'IP Address'} = '';
+    $Self->{Translation}->{'IP over DHCP'} = '';
+    $Self->{Translation}->{'IT Facility'} = '';
+    $Self->{Translation}->{'Inactive'} = '';
+    $Self->{Translation}->{'Incident'} = '';
+    $Self->{Translation}->{'Install Date'} = '';
+    $Self->{Translation}->{'Keybord'} = '';
+    $Self->{Translation}->{'LAN'} = '';
+    $Self->{Translation}->{'Laptop'} = '';
+    $Self->{Translation}->{'Last Change'} = '';
+    $Self->{Translation}->{'Licence Key'} = 'License Key';
+    $Self->{Translation}->{'Licence Key::Expiration Date'} = 'License Key::Expiration Date';
+    $Self->{Translation}->{'Licence Key::Quantity'} = 'License Key::Quantity';
+    $Self->{Translation}->{'Licence Type'} = 'License Type';
+    $Self->{Translation}->{'Maintenance'} = '';
+    $Self->{Translation}->{'Maximum number of one element'} = '';
+    $Self->{Translation}->{'Media'} = '';
+    $Self->{Translation}->{'Middleware'} = '';
+    $Self->{Translation}->{'Model'} = '';
+    $Self->{Translation}->{'Modem'} = '';
+    $Self->{Translation}->{'Monitor'} = '';
+    $Self->{Translation}->{'Mouse'} = '';
+    $Self->{Translation}->{'Network Adapter'} = '';
+    $Self->{Translation}->{'Network Adapter::IP Address'} = '';
+    $Self->{Translation}->{'Network Adapter::IP over DHCP'} = '';
+    $Self->{Translation}->{'Network Address'} = '';
+    $Self->{Translation}->{'Network Address::Gateway'} = '';
+    $Self->{Translation}->{'Network Address::Subnet Mask'} = '';
+    $Self->{Translation}->{'Open Source'} = '';
+    $Self->{Translation}->{'Operational'} = '';
+    $Self->{Translation}->{'Other'} = '';
+    $Self->{Translation}->{'Other Equipment'} = '';
+    $Self->{Translation}->{'Outlet'} = '';
+    $Self->{Translation}->{'PCMCIA Card'} = '';
+    $Self->{Translation}->{'PDA'} = '';
+    $Self->{Translation}->{'Per Node'} = '';
+    $Self->{Translation}->{'Per Processor'} = '';
+    $Self->{Translation}->{'Per Server'} = '';
+    $Self->{Translation}->{'Per User'} = '';
+    $Self->{Translation}->{'Phone 1'} = '';
+    $Self->{Translation}->{'Phone 2'} = '';
+    $Self->{Translation}->{'Pilot'} = '';
+    $Self->{Translation}->{'Planned'} = '';
+    $Self->{Translation}->{'Printer'} = '';
+    $Self->{Translation}->{'Production'} = '';
+    $Self->{Translation}->{'Quantity'} = '';
+    $Self->{Translation}->{'Rack'} = '';
+    $Self->{Translation}->{'Ram'} = '';
+    $Self->{Translation}->{'Repair'} = '';
+    $Self->{Translation}->{'Retired'} = '';
+    $Self->{Translation}->{'Review'} = '';
     $Self->{Translation}->{'Room'} = '';
-    $Self->{Translation}->{'Router'} = 'Router';
-    $Self->{Translation}->{'Scanner'} = 'Skanner';
-    $Self->{Translation}->{'Search Config Items'} = 'Søg Config Item';
-    $Self->{Translation}->{'Security Device'} = 'Sikkerhedsenhed';
-    $Self->{Translation}->{'Serial Number'} = 'Serienummer';
-    $Self->{Translation}->{'Server'} = 'Server';
-    $Self->{Translation}->{'Server Application'} = 'Server aplikation';
-    $Self->{Translation}->{'Server OS'} = 'Server OS';
-    $Self->{Translation}->{'Show Versions'} = 'Vis versioner';
-    $Self->{Translation}->{'Single Licence'} = 'Enkeltlicens';
-    $Self->{Translation}->{'Subnet Mask'} = 'Subnet maske';
-    $Self->{Translation}->{'Switch'} = 'Switch';
-    $Self->{Translation}->{'Telco'} = 'Telco';
-    $Self->{Translation}->{'Test/QA'} = 'Test/QA';
-    $Self->{Translation}->{'The deployment state of this config item'} = 'Deployment tilstand for denne Config item';
-    $Self->{Translation}->{'The incident state of this config item'} = 'Incident tilstand for denne Config Item';
-    $Self->{Translation}->{'Time Restricted'} = 'Tidsbegrænset';
-    $Self->{Translation}->{'USB Device'} = 'USB enhed';
-    $Self->{Translation}->{'Unlimited'} = 'Unbegrænset';
-    $Self->{Translation}->{'User Tool'} = 'Bruger værktøjer';
-    $Self->{Translation}->{'Volume Licence'} = 'Volumen Licens';
-    $Self->{Translation}->{'WLAN'} = 'WLAN';
-    $Self->{Translation}->{'WLAN Access Point'} = 'WLAN Access Point';
-    $Self->{Translation}->{'Warranty Expiration Date'} = 'Udløbsdato for garanti';
-    $Self->{Translation}->{'Workplace'} = 'Arbejdsplads';
+    $Self->{Translation}->{'Router'} = '';
+    $Self->{Translation}->{'Scanner'} = '';
+    $Self->{Translation}->{'Search Config Items'} = '';
+    $Self->{Translation}->{'Security Device'} = '';
+    $Self->{Translation}->{'Serial Number'} = '';
+    $Self->{Translation}->{'Server'} = '';
+    $Self->{Translation}->{'Server Application'} = '';
+    $Self->{Translation}->{'Server OS'} = '';
+    $Self->{Translation}->{'Show Versions'} = '';
+    $Self->{Translation}->{'Single Licence'} = 'Single License';
+    $Self->{Translation}->{'Subnet Mask'} = '';
+    $Self->{Translation}->{'Switch'} = '';
+    $Self->{Translation}->{'Telco'} = '';
+    $Self->{Translation}->{'Test/QA'} = '';
+    $Self->{Translation}->{'The deployment state of this config item'} = '';
+    $Self->{Translation}->{'The incident state of this config item'} = '';
+    $Self->{Translation}->{'Time Restricted'} = '';
+    $Self->{Translation}->{'USB Device'} = '';
+    $Self->{Translation}->{'Unlimited'} = '';
+    $Self->{Translation}->{'User Tool'} = '';
+    $Self->{Translation}->{'Volume Licence'} = 'Volume License';
+    $Self->{Translation}->{'WLAN'} = '';
+    $Self->{Translation}->{'WLAN Access Point'} = '';
+    $Self->{Translation}->{'Warranty Expiration Date'} = '';
+    $Self->{Translation}->{'Workplace'} = '';
 
     # Template: AdminITSMConfigItem
-    $Self->{Translation}->{'Config Item Management'} = 'Config Item styring';
+    $Self->{Translation}->{'Config Item Management'} = '';
     $Self->{Translation}->{'Change class definition'} = '';
-    $Self->{Translation}->{'Config Item'} = 'Config Item';
-    $Self->{Translation}->{'Class'} = 'Klasse';
+    $Self->{Translation}->{'Config Item'} = '';
+    $Self->{Translation}->{'Class'} = '';
     $Self->{Translation}->{'Definition'} = '';
 
     # Template: AgentITSMConfigItemAdd
@@ -163,11 +163,11 @@ sub Data {
     $Self->{Translation}->{'The number of another Configuration Item to link with.'} = '';
 
     # Template: AgentITSMConfigItemEdit
-    $Self->{Translation}->{'The name of this config item'} = 'Navnet på denne Config Item';
+    $Self->{Translation}->{'The name of this config item'} = '';
     $Self->{Translation}->{'Name is already in use by the ConfigItems with the following Number(s): %s'} =
         '';
-    $Self->{Translation}->{'Deployment State'} = 'Deployment tilstand';
-    $Self->{Translation}->{'Incident State'} = 'Incident tilstand';
+    $Self->{Translation}->{'Deployment State'} = '';
+    $Self->{Translation}->{'Incident State'} = '';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = '';
@@ -175,20 +175,20 @@ sub Data {
 
     # Template: AgentITSMConfigItemOverviewSmall
     $Self->{Translation}->{'Deployment State Type'} = '';
-    $Self->{Translation}->{'Current Incident State'} = 'Nuværende Incident tilstand';
+    $Self->{Translation}->{'Current Incident State'} = '';
     $Self->{Translation}->{'Current Incident State Type'} = '';
-    $Self->{Translation}->{'Last changed'} = 'Sidst ændret';
+    $Self->{Translation}->{'Last changed'} = '';
 
     # Template: AgentITSMConfigItemPrint
     $Self->{Translation}->{'ConfigItem'} = '';
     $Self->{Translation}->{'ConfigItem-Info'} = '';
-    $Self->{Translation}->{'Current Deployment State'} = 'Nuværende deployment status';
-    $Self->{Translation}->{'Last changed by'} = 'Sidst ændret af';
+    $Self->{Translation}->{'Current Deployment State'} = '';
+    $Self->{Translation}->{'Last changed by'} = '';
 
     # Template: AgentITSMConfigItemSearch
     $Self->{Translation}->{'Create New Template'} = '';
     $Self->{Translation}->{'Run Search'} = '';
-    $Self->{Translation}->{'Also search in previous versions?'} = 'Søg også i tidligere versioner?';
+    $Self->{Translation}->{'Also search in previous versions?'} = '';
 
     # Template: AgentITSMConfigItemSearchResultPrint
     $Self->{Translation}->{'CreateTime'} = '';

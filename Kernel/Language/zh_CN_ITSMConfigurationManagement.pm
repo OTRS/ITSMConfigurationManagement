@@ -1,5 +1,5 @@
 # --
-# Kernel/Language/nl_ITSMConfigItem.pm - translation file
+# Kernel/Language/zh_CN_ITSMConfigurationManagement.pm - translation file
 # Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
@@ -7,7 +7,7 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package Kernel::Language::nl_ITSMConfigItem;
+package Kernel::Language::zh_CN_ITSMConfigurationManagement;
 
 use strict;
 use warnings;
@@ -17,142 +17,142 @@ sub Data {
     my $Self = shift;
 
     # Template: AAAITSMConfigItem
-    $Self->{Translation}->{'Address'} = 'Adres';
-    $Self->{Translation}->{'Admin Tool'} = 'Admin Tool';
-    $Self->{Translation}->{'Backup Device'} = 'Backupapparaat';
-    $Self->{Translation}->{'Beamer'} = 'Beamer';
-    $Self->{Translation}->{'Building'} = 'Gebouw';
-    $Self->{Translation}->{'CIHistory::ConfigItemCreate'} = 'Nieuw configuratie-item (ID=%s)';
-    $Self->{Translation}->{'CIHistory::ConfigItemDelete'} = 'Configuratie-item (ID=%s) verwijderd';
-    $Self->{Translation}->{'CIHistory::DefinitionUpdate'} = 'ConfigItems\' definitie bijgewerkt (ID=%s)';
-    $Self->{Translation}->{'CIHistory::DeploymentStateUpdate'} = 'Status bijgewerkt (nieuw=%s; oud=%s)';
-    $Self->{Translation}->{'CIHistory::IncidentStateUpdate'} = 'Incident-status bijgewerkt (nieuw=%s; oud=%s)';
-    $Self->{Translation}->{'CIHistory::LinkAdd'} = 'Koppeling naar %s (type=%s) toegevoegd';
-    $Self->{Translation}->{'CIHistory::LinkDelete'} = 'Koppeling naar %s (type=%s) verwijderd';
-    $Self->{Translation}->{'CIHistory::NameUpdate'} = 'Naam bijgewerkt (nieuw=%s; oud=%s)';
-    $Self->{Translation}->{'CIHistory::ValueUpdate'} = 'Attribuut %s bijgewerkt van "%s" naar "%s"';
-    $Self->{Translation}->{'CIHistory::VersionCreate'} = 'Nieuwe versie (ID=%s)';
-    $Self->{Translation}->{'CIHistory::VersionDelete'} = 'Versie %s verwijderd';
+    $Self->{Translation}->{'Address'} = '地址';
+    $Self->{Translation}->{'Admin Tool'} = '管理工具';
+    $Self->{Translation}->{'Backup Device'} = '备份设备';
+    $Self->{Translation}->{'Beamer'} = '投影仪';
+    $Self->{Translation}->{'Building'} = '大厦';
+    $Self->{Translation}->{'CIHistory::ConfigItemCreate'} = '';
+    $Self->{Translation}->{'CIHistory::ConfigItemDelete'} = '';
+    $Self->{Translation}->{'CIHistory::DefinitionUpdate'} = '';
+    $Self->{Translation}->{'CIHistory::DeploymentStateUpdate'} = '';
+    $Self->{Translation}->{'CIHistory::IncidentStateUpdate'} = '';
+    $Self->{Translation}->{'CIHistory::LinkAdd'} = '';
+    $Self->{Translation}->{'CIHistory::LinkDelete'} = '';
+    $Self->{Translation}->{'CIHistory::NameUpdate'} = '';
+    $Self->{Translation}->{'CIHistory::ValueUpdate'} = '';
+    $Self->{Translation}->{'CIHistory::VersionCreate'} = '';
+    $Self->{Translation}->{'CIHistory::VersionDelete'} = '';
     $Self->{Translation}->{'CIHistory::AttachmentAdd'} = '';
     $Self->{Translation}->{'CIHistory::AttachmentDelete'} = '';
     $Self->{Translation}->{'CPU'} = 'CPU';
-    $Self->{Translation}->{'Camera'} = 'Camera';
-    $Self->{Translation}->{'Capacity'} = 'Capaciteit';
-    $Self->{Translation}->{'Change Definition'} = 'Definitie veranderen';
-    $Self->{Translation}->{'Change of definition failed! See System Log for details.'} = 'Definitiewijziging mislukt! Zie de System Log voor details.';
-    $Self->{Translation}->{'Client Application'} = 'Clienttoepassing';
-    $Self->{Translation}->{'Client OS'} = 'Client besturingssysteem';
-    $Self->{Translation}->{'Concurrent Users'} = 'Gelijktijdige gebruikers';
-    $Self->{Translation}->{'Config Item-Area'} = 'Configuratie-item-gebied';
-    $Self->{Translation}->{'Config Items available'} = 'Beschikbare configuratie-items';
-    $Self->{Translation}->{'Config Items shown'} = 'Getoonde configuratie-items';
-    $Self->{Translation}->{'CMDB'} = 'CMDB';
-    $Self->{Translation}->{'Demo'} = 'Demo';
-    $Self->{Translation}->{'Desktop'} = 'Desktop';
-    $Self->{Translation}->{'Developer Licence'} = 'Ontwikkelaarslicentie';
-    $Self->{Translation}->{'Docking Station'} = 'Docking station';
-    $Self->{Translation}->{'Duplicate'} = 'Dupliceren';
-    $Self->{Translation}->{'Embedded'} = 'Embedded';
-    $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = '';
-    $Self->{Translation}->{'Enterprise Licence'} = 'Enterpriselicentie';
-    $Self->{Translation}->{'Expiration Date'} = 'Expiratiedatum';
-    $Self->{Translation}->{'Expired'} = 'Verlopen';
-    $Self->{Translation}->{'Floor'} = 'Etage';
-    $Self->{Translation}->{'Freeware'} = 'Freeware';
-    $Self->{Translation}->{'GSM'} = 'GSM';
-    $Self->{Translation}->{'Gateway'} = 'Gateway';
-    $Self->{Translation}->{'Graphic Adapter'} = 'Videokaart';
-    $Self->{Translation}->{'Hard Disk'} = 'Harde schijf';
-    $Self->{Translation}->{'Hard Disk::Capacity'} = 'Harde schijf::Capaciteit';
-    $Self->{Translation}->{'Hide Versions'} = 'Verberg versies';
-    $Self->{Translation}->{'IP Address'} = 'IP adres';
-    $Self->{Translation}->{'IP over DHCP'} = 'IP via DHCP';
-    $Self->{Translation}->{'IT Facility'} = 'Serverruimte';
-    $Self->{Translation}->{'Inactive'} = 'Inactief';
-    $Self->{Translation}->{'Incident'} = 'Incident';
-    $Self->{Translation}->{'Install Date'} = 'Installatiedatum';
-    $Self->{Translation}->{'Keybord'} = 'Toetsenbord';
-    $Self->{Translation}->{'LAN'} = 'LAN';
-    $Self->{Translation}->{'Laptop'} = 'Laptop';
-    $Self->{Translation}->{'Last Change'} = 'Laatste wijziging';
-    $Self->{Translation}->{'Licence Key'} = 'Licentiesleutel';
-    $Self->{Translation}->{'Licence Key::Expiration Date'} = 'Licentiesleutel::Expiratiedatum';
-    $Self->{Translation}->{'Licence Key::Quantity'} = 'Licentiesleutel::Hoeveelheid';
-    $Self->{Translation}->{'Licence Type'} = 'Licentietype';
-    $Self->{Translation}->{'Maintenance'} = 'In onderhoud';
-    $Self->{Translation}->{'Maximum number of one element'} = 'Maximale hoeveelheid';
-    $Self->{Translation}->{'Media'} = 'Media';
-    $Self->{Translation}->{'Middleware'} = 'Middleware';
-    $Self->{Translation}->{'Model'} = 'Model';
-    $Self->{Translation}->{'Modem'} = 'Modem';
-    $Self->{Translation}->{'Monitor'} = 'Monitor';
-    $Self->{Translation}->{'Mouse'} = 'Muis';
-    $Self->{Translation}->{'Network Adapter'} = 'Netwerk adapter';
-    $Self->{Translation}->{'Network Adapter::IP Address'} = 'Netwerk adapter::IP adres';
-    $Self->{Translation}->{'Network Adapter::IP over DHCP'} = 'Netwerk adapter::IP via DHCP';
-    $Self->{Translation}->{'Network Address'} = 'Netwerkadres';
-    $Self->{Translation}->{'Network Address::Gateway'} = 'Netwerkadres::Gateway';
-    $Self->{Translation}->{'Network Address::Subnet Mask'} = 'Netwerkadres::Subnet Mask';
-    $Self->{Translation}->{'Open Source'} = 'Open Source';
-    $Self->{Translation}->{'Operational'} = 'Operationeel';
-    $Self->{Translation}->{'Other'} = 'Overige';
-    $Self->{Translation}->{'Other Equipment'} = 'Overige uitrusting';
-    $Self->{Translation}->{'Outlet'} = 'Aansluiting';
-    $Self->{Translation}->{'PCMCIA Card'} = 'PCMCIA kaart';
+    $Self->{Translation}->{'Camera'} = '照相机';
+    $Self->{Translation}->{'Capacity'} = '容量';
+    $Self->{Translation}->{'Change Definition'} = '修改定义';
+    $Self->{Translation}->{'Change of definition failed! See System Log for details.'} = '修改定义失败!详细信息请参考系统日志.';
+    $Self->{Translation}->{'Client Application'} = '客户端应用程序';
+    $Self->{Translation}->{'Client OS'} = '客户操作系统';
+    $Self->{Translation}->{'Concurrent Users'} = '并发用户数';
+    $Self->{Translation}->{'Config Item-Area'} = '配置项区域';
+    $Self->{Translation}->{'Config Items available'} = '有效的配置项';
+    $Self->{Translation}->{'Config Items shown'} = '显示配置项';
+    $Self->{Translation}->{'CMDB'} = '';
+    $Self->{Translation}->{'Demo'} = '演示';
+    $Self->{Translation}->{'Desktop'} = '台式电脑';
+    $Self->{Translation}->{'Developer Licence'} = '开发许可';
+    $Self->{Translation}->{'Docking Station'} = '坞站';
+    $Self->{Translation}->{'Duplicate'} = '复制';
+    $Self->{Translation}->{'Embedded'} = '嵌入式';
+    $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = '空字段表示当前值被保存';
+    $Self->{Translation}->{'Enterprise Licence'} = '企业执照';
+    $Self->{Translation}->{'Expiration Date'} = '过期日期';
+    $Self->{Translation}->{'Expired'} = '到期';
+    $Self->{Translation}->{'Floor'} = '楼层';
+    $Self->{Translation}->{'Freeware'} = '免费软件';
+    $Self->{Translation}->{'GSM'} = '';
+    $Self->{Translation}->{'Gateway'} = '网关';
+    $Self->{Translation}->{'Graphic Adapter'} = '图形处理器';
+    $Self->{Translation}->{'Hard Disk'} = '硬盘';
+    $Self->{Translation}->{'Hard Disk::Capacity'} = '硬盘::容量';
+    $Self->{Translation}->{'Hide Versions'} = '隐藏版本';
+    $Self->{Translation}->{'IP Address'} = 'IP地址';
+    $Self->{Translation}->{'IP over DHCP'} = '从DHCP获取IP';
+    $Self->{Translation}->{'IT Facility'} = 'IT设施';
+    $Self->{Translation}->{'Inactive'} = '非活动的';
+    $Self->{Translation}->{'Incident'} = '故障';
+    $Self->{Translation}->{'Install Date'} = '安装日期';
+    $Self->{Translation}->{'Keybord'} = '键盘';
+    $Self->{Translation}->{'LAN'} = '';
+    $Self->{Translation}->{'Laptop'} = '笔记本';
+    $Self->{Translation}->{'Last Change'} = '最后修改于';
+    $Self->{Translation}->{'Licence Key'} = '许可密钥';
+    $Self->{Translation}->{'Licence Key::Expiration Date'} = '许可密钥::到期日期';
+    $Self->{Translation}->{'Licence Key::Quantity'} = '许可密钥::数量';
+    $Self->{Translation}->{'Licence Type'} = '许可类别';
+    $Self->{Translation}->{'Maintenance'} = '维护';
+    $Self->{Translation}->{'Maximum number of one element'} = '此元素的最大数量';
+    $Self->{Translation}->{'Media'} = '介质';
+    $Self->{Translation}->{'Middleware'} = '中间件';
+    $Self->{Translation}->{'Model'} = '型号';
+    $Self->{Translation}->{'Modem'} = '调解调器';
+    $Self->{Translation}->{'Monitor'} = '显示器';
+    $Self->{Translation}->{'Mouse'} = '鼠标';
+    $Self->{Translation}->{'Network Adapter'} = '网卡';
+    $Self->{Translation}->{'Network Adapter::IP Address'} = '网卡::IP地址';
+    $Self->{Translation}->{'Network Adapter::IP over DHCP'} = '网卡::从DHCP获取IP';
+    $Self->{Translation}->{'Network Address'} = '网络地址';
+    $Self->{Translation}->{'Network Address::Gateway'} = '网络地址::网关';
+    $Self->{Translation}->{'Network Address::Subnet Mask'} = '网络地址::子网掩码';
+    $Self->{Translation}->{'Open Source'} = '开源';
+    $Self->{Translation}->{'Operational'} = '正常';
+    $Self->{Translation}->{'Other'} = '其它';
+    $Self->{Translation}->{'Other Equipment'} = '其它设备';
+    $Self->{Translation}->{'Outlet'} = '插座';
+    $Self->{Translation}->{'PCMCIA Card'} = 'PCMCIA卡';
     $Self->{Translation}->{'PDA'} = 'PDA';
-    $Self->{Translation}->{'Per Node'} = 'Per node';
-    $Self->{Translation}->{'Per Processor'} = 'Per CPU';
-    $Self->{Translation}->{'Per Server'} = 'Per server';
-    $Self->{Translation}->{'Per User'} = 'Per gebruiker';
-    $Self->{Translation}->{'Phone 1'} = 'Telefoon 1';
-    $Self->{Translation}->{'Phone 2'} = 'Telefoon 2';
-    $Self->{Translation}->{'Pilot'} = 'Pilot';
-    $Self->{Translation}->{'Planned'} = 'Geplanned';
-    $Self->{Translation}->{'Printer'} = 'Printer';
-    $Self->{Translation}->{'Production'} = 'Produktie';
-    $Self->{Translation}->{'Quantity'} = 'Hoeveelheid';
-    $Self->{Translation}->{'Rack'} = 'Rack';
-    $Self->{Translation}->{'Ram'} = 'RAM';
-    $Self->{Translation}->{'Repair'} = 'In reparatie';
-    $Self->{Translation}->{'Retired'} = 'Uitgefaseerd';
-    $Self->{Translation}->{'Review'} = 'Review';
-    $Self->{Translation}->{'Room'} = 'Kamer';
-    $Self->{Translation}->{'Router'} = 'Router';
-    $Self->{Translation}->{'Scanner'} = 'Scanner';
-    $Self->{Translation}->{'Search Config Items'} = 'Zoek Configuratie-items';
-    $Self->{Translation}->{'Security Device'} = 'Security device';
-    $Self->{Translation}->{'Serial Number'} = 'Serienummer';
-    $Self->{Translation}->{'Server'} = 'Server';
-    $Self->{Translation}->{'Server Application'} = 'Servertoepassing';
-    $Self->{Translation}->{'Server OS'} = 'Server besturingssysteem';
-    $Self->{Translation}->{'Show Versions'} = 'Toon versies';
-    $Self->{Translation}->{'Single Licence'} = 'Single Licence';
-    $Self->{Translation}->{'Subnet Mask'} = 'Subnet Mask';
-    $Self->{Translation}->{'Switch'} = 'Switch';
-    $Self->{Translation}->{'Telco'} = 'Telco';
-    $Self->{Translation}->{'Test/QA'} = 'Test/QA';
-    $Self->{Translation}->{'The deployment state of this config item'} = 'De status van dit configuratie-item';
-    $Self->{Translation}->{'The incident state of this config item'} = 'De incidentstatus van dit configuratie-item';
-    $Self->{Translation}->{'Time Restricted'} = 'Time restricted';
-    $Self->{Translation}->{'USB Device'} = 'USB apparaat';
-    $Self->{Translation}->{'Unlimited'} = 'Ongelimiteerd';
-    $Self->{Translation}->{'User Tool'} = 'User Tool';
-    $Self->{Translation}->{'Volume Licence'} = 'Volume Licentie';
-    $Self->{Translation}->{'WLAN'} = 'WLAN';
-    $Self->{Translation}->{'WLAN Access Point'} = 'WLAN Access Point';
-    $Self->{Translation}->{'Warranty Expiration Date'} = 'Einddatum garantie';
-    $Self->{Translation}->{'Workplace'} = 'Werkplek';
+    $Self->{Translation}->{'Per Node'} = '每个节点';
+    $Self->{Translation}->{'Per Processor'} = '每个处理器';
+    $Self->{Translation}->{'Per Server'} = '每个服务器';
+    $Self->{Translation}->{'Per User'} = '每个用户';
+    $Self->{Translation}->{'Phone 1'} = '电话1';
+    $Self->{Translation}->{'Phone 2'} = '电话2';
+    $Self->{Translation}->{'Pilot'} = '试验';
+    $Self->{Translation}->{'Planned'} = '已计划';
+    $Self->{Translation}->{'Printer'} = '打印机';
+    $Self->{Translation}->{'Production'} = '生产';
+    $Self->{Translation}->{'Quantity'} = '数量';
+    $Self->{Translation}->{'Rack'} = '机架';
+    $Self->{Translation}->{'Ram'} = '内存';
+    $Self->{Translation}->{'Repair'} = '修复';
+    $Self->{Translation}->{'Retired'} = '报废';
+    $Self->{Translation}->{'Review'} = '复审';
+    $Self->{Translation}->{'Room'} = '房间';
+    $Self->{Translation}->{'Router'} = '路由器';
+    $Self->{Translation}->{'Scanner'} = '扫描仪';
+    $Self->{Translation}->{'Search Config Items'} = '搜索配置项';
+    $Self->{Translation}->{'Security Device'} = '安全设备';
+    $Self->{Translation}->{'Serial Number'} = '序列号';
+    $Self->{Translation}->{'Server'} = '服务器';
+    $Self->{Translation}->{'Server Application'} = '服务器应用程序';
+    $Self->{Translation}->{'Server OS'} = '服务器操作系统';
+    $Self->{Translation}->{'Show Versions'} = '显示版本';
+    $Self->{Translation}->{'Single Licence'} = '单一许可';
+    $Self->{Translation}->{'Subnet Mask'} = '子网掩码';
+    $Self->{Translation}->{'Switch'} = '交换机';
+    $Self->{Translation}->{'Telco'} = '电话公司';
+    $Self->{Translation}->{'Test/QA'} = '测试/QA';
+    $Self->{Translation}->{'The deployment state of this config item'} = '配置项部署状态';
+    $Self->{Translation}->{'The incident state of this config item'} = '配置项故障状态';
+    $Self->{Translation}->{'Time Restricted'} = '时间限制';
+    $Self->{Translation}->{'USB Device'} = 'USB 设备';
+    $Self->{Translation}->{'Unlimited'} = '无限制的';
+    $Self->{Translation}->{'User Tool'} = '用户工具';
+    $Self->{Translation}->{'Volume Licence'} = '批量授权';
+    $Self->{Translation}->{'WLAN'} = '无线网络';
+    $Self->{Translation}->{'WLAN Access Point'} = 'WLAN 无线访问点';
+    $Self->{Translation}->{'Warranty Expiration Date'} = '保修过期日期';
+    $Self->{Translation}->{'Workplace'} = '车间';
 
     # Template: AdminITSMConfigItem
-    $Self->{Translation}->{'Config Item Management'} = 'Configuratie-item beheer';
-    $Self->{Translation}->{'Change class definition'} = 'Wijzig definitie';
-    $Self->{Translation}->{'Config Item'} = 'Configuratie-item';
-    $Self->{Translation}->{'Class'} = 'Klasse';
-    $Self->{Translation}->{'Definition'} = 'Definitie';
+    $Self->{Translation}->{'Config Item Management'} = '管理配置项';
+    $Self->{Translation}->{'Change class definition'} = '修改类定义';
+    $Self->{Translation}->{'Config Item'} = '配置项';
+    $Self->{Translation}->{'Class'} = '类';
+    $Self->{Translation}->{'Definition'} = '';
 
     # Template: AgentITSMConfigItemAdd
-    $Self->{Translation}->{'Filter for Classes'} = 'Filter op klassen';
-    $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = 'Selecteer een klasse uit de lijst om een nieuw configuratie-item aan te maken.';
+    $Self->{Translation}->{'Filter for Classes'} = '过滤类';
+    $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = '先从列表中选择类，然后创建新的配置项。';
 
     # Template: AgentITSMConfigItemBulk
     $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = '';
@@ -163,58 +163,58 @@ sub Data {
     $Self->{Translation}->{'The number of another Configuration Item to link with.'} = '';
 
     # Template: AgentITSMConfigItemEdit
-    $Self->{Translation}->{'The name of this config item'} = 'De naam van dit configuratie-item';
+    $Self->{Translation}->{'The name of this config item'} = '为这个配置项命名';
     $Self->{Translation}->{'Name is already in use by the ConfigItems with the following Number(s): %s'} =
         '';
-    $Self->{Translation}->{'Deployment State'} = 'Status';
-    $Self->{Translation}->{'Incident State'} = 'Incidentstatus';
+    $Self->{Translation}->{'Deployment State'} = '部署状态';
+    $Self->{Translation}->{'Incident State'} = '故障状态';
 
     # Template: AgentITSMConfigItemOverviewNavBar
-    $Self->{Translation}->{'Context Settings'} = '';
-    $Self->{Translation}->{'Config Items per page'} = 'Aantal configuratie-items per pagina';
+    $Self->{Translation}->{'Context Settings'} = '上下文设置';
+    $Self->{Translation}->{'Config Items per page'} = '每页配置项个数';
 
     # Template: AgentITSMConfigItemOverviewSmall
-    $Self->{Translation}->{'Deployment State Type'} = '';
-    $Self->{Translation}->{'Current Incident State'} = 'Actuele incidentstatus';
-    $Self->{Translation}->{'Current Incident State Type'} = '';
-    $Self->{Translation}->{'Last changed'} = 'Laaste wijziging';
+    $Self->{Translation}->{'Deployment State Type'} = '部署状态类型';
+    $Self->{Translation}->{'Current Incident State'} = '当前的故障状态';
+    $Self->{Translation}->{'Current Incident State Type'} = '当前的故障状态类型';
+    $Self->{Translation}->{'Last changed'} = '最后修改';
 
     # Template: AgentITSMConfigItemPrint
-    $Self->{Translation}->{'ConfigItem'} = '';
+    $Self->{Translation}->{'ConfigItem'} = '配置项';
     $Self->{Translation}->{'ConfigItem-Info'} = '';
-    $Self->{Translation}->{'Current Deployment State'} = 'Actuele status';
-    $Self->{Translation}->{'Last changed by'} = 'Laaste wijziging door';
+    $Self->{Translation}->{'Current Deployment State'} = '当前的部署状态';
+    $Self->{Translation}->{'Last changed by'} = '最后修改于';
 
     # Template: AgentITSMConfigItemSearch
-    $Self->{Translation}->{'Create New Template'} = '';
-    $Self->{Translation}->{'Run Search'} = '';
-    $Self->{Translation}->{'Also search in previous versions?'} = 'Ook in eerdere versies zoeken?';
+    $Self->{Translation}->{'Create New Template'} = '创建模板';
+    $Self->{Translation}->{'Run Search'} = '搜索';
+    $Self->{Translation}->{'Also search in previous versions?'} = '同时搜索以前的版本?';
 
     # Template: AgentITSMConfigItemSearchResultPrint
-    $Self->{Translation}->{'CreateTime'} = '';
+    $Self->{Translation}->{'CreateTime'} = '创建时间';
 
     # Template: AgentITSMConfigItemZoom
-    $Self->{Translation}->{'Configuration Item'} = 'Configuratie-item';
-    $Self->{Translation}->{'Configuration Item Information'} = 'Configuratie-item informatie';
-    $Self->{Translation}->{'Show one version'} = 'Toon één versie';
-    $Self->{Translation}->{'Show all versions'} = 'Toon alle versies';
-    $Self->{Translation}->{'Version Incident State'} = 'Versie Incident-status';
+    $Self->{Translation}->{'Configuration Item'} = '配置项';
+    $Self->{Translation}->{'Configuration Item Information'} = '配置项信息';
+    $Self->{Translation}->{'Show one version'} = '显示一个版本';
+    $Self->{Translation}->{'Show all versions'} = '显示所有版本';
+    $Self->{Translation}->{'Version Incident State'} = '版本故障状态';
     $Self->{Translation}->{'Version Deployment State'} = '';
-    $Self->{Translation}->{'Version Number'} = 'Versienummer';
-    $Self->{Translation}->{'Configuration Item Version Details'} = 'Configuratie-item versie details';
-    $Self->{Translation}->{'Property'} = 'Attribuut';
+    $Self->{Translation}->{'Version Number'} = '版本号';
+    $Self->{Translation}->{'Configuration Item Version Details'} = '配置项版本详情';
+    $Self->{Translation}->{'Property'} = '属性';
 
     # SysConfig
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         '';
-    $Self->{Translation}->{'Config Items'} = 'Configuratie-items';
+    $Self->{Translation}->{'Config Items'} = '配置项';
     $Self->{Translation}->{'Config item event module that enables logging to history in the agent interface.'} =
         '';
     $Self->{Translation}->{'Configuration Item Limit'} = '';
     $Self->{Translation}->{'Configuration Item limit per page'} = '';
     $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} =
         '';
-    $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = 'Aanmaken en beheren van definities voor configuratie-items.';
+    $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = '创建和管理配置项定义';
     $Self->{Translation}->{'Defines Required permissions to create ITSM configuration items using the Generic Interface.'} =
         '';
     $Self->{Translation}->{'Defines Required permissions to get ITSM configuration items using the Generic Interface.'} =
