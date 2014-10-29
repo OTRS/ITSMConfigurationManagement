@@ -88,8 +88,10 @@ sub Permission {
         )
     {
         my %Modules
-            = %{ $Kernel::OM->Get('Kernel::Config')
-                ->Get( 'ITSMConfigItem::Permission::' . $Param{Scope} ) };
+            = %{
+            $Kernel::OM->Get('Kernel::Config')
+                ->Get( 'ITSMConfigItem::Permission::' . $Param{Scope} )
+            };
         MODULE:
         for my $Module ( sort keys %Modules ) {
 

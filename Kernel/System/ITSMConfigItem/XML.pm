@@ -608,8 +608,10 @@ sub _XMLHashSearch {
                     # adlob_sq.htm#1006215
                     # As a workaround we cast the CLOB to a VARCHAR2 with TO_CHAR().
                     my $XMLContentValueColumn = 'xml_content_value';
-                    if ( $Kernel::OM->Get('Kernel::System::DB')->GetDatabaseFunction('Type') eq
-                        'oracle' )
+                    if (
+                        $Kernel::OM->Get('Kernel::System::DB')->GetDatabaseFunction('Type') eq
+                        'oracle'
+                        )
                     {
                         $XMLContentValueColumn = 'TO_CHAR(xml_content_value)';
                     }

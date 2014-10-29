@@ -167,7 +167,8 @@ elsif ($Class) {
 
         # get ids of this class (and maybe deployment state) config items
         @ConfigItemsIDs
-            = @{ $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemSearch(%SearchParam)
+            = @{
+            $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemSearch(%SearchParam)
             };
     }
     else {

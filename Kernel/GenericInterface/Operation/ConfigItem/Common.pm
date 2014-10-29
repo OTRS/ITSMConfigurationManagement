@@ -1252,7 +1252,12 @@ sub InvertReplaceXMLData {
 
         my $NewValue;
 
-        if ( IsHashRefWithData($XMLData) && $XMLData->{$ItemKey} && ref $XMLData->{$ItemKey} eq 'ARRAY' ) {
+        if (
+            IsHashRefWithData($XMLData)
+            && $XMLData->{$ItemKey}
+            && ref $XMLData->{$ItemKey} eq 'ARRAY'
+            )
+        {
 
             for my $ArrayItem ( @{ $XMLData->{$ItemKey} } ) {
 
@@ -1283,7 +1288,12 @@ sub InvertReplaceXMLData {
                 }
             }
         }
-        elsif ( IsHashRefWithData($XMLData) && $XMLData->{$ItemKey} && ref $XMLData->{$ItemKey} eq 'HASH' ) {
+        elsif (
+            IsHashRefWithData($XMLData)
+            && $XMLData->{$ItemKey}
+            && ref $XMLData->{$ItemKey} eq 'HASH'
+            )
+        {
             $NewValue = $Self->_InvertReplaceValue(
                 Value   => $XMLData->{$ItemKey}->{$ItemKey},
                 Input   => $DefItem->{Input},

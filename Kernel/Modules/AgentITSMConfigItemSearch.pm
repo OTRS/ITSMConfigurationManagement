@@ -691,7 +691,8 @@ sub Run {
 
             # PDF Output
             if ( $Self->{PDFObject} ) {
-                my $Title = $Self->{LayoutObject}->{LanguageObject}->Translate('Configuration Item') . ' '
+                my $Title
+                    = $Self->{LayoutObject}->{LanguageObject}->Translate('Configuration Item') . ' '
                     . $Self->{LayoutObject}->{LanguageObject}->Translate('Search');
                 my $PrintedBy = $Self->{LayoutObject}->{LanguageObject}->Translate('printed by');
                 my $Page      = $Self->{LayoutObject}->{LanguageObject}->Translate('Page');
