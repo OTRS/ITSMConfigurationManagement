@@ -2,7 +2,7 @@
 # Kernel/System/Service/PreferencesDB.pm - some user functions
 # Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
 # --
-# $origin: https://github.com/OTRS/otrs/blob/6c9338fe2a64a6c80cf3dadd0801d16749018c9a/Kernel/System/Service/PreferencesDB.pm
+# $origin: https://github.com/OTRS/otrs/blob/3608b606259ace61fedbb82f94273d6abefc6972/Kernel/System/Service/PreferencesDB.pm
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
