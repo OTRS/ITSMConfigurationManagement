@@ -183,7 +183,7 @@ sub ExportValuePrepare {
 prepare search value for import
 
     my $ArrayRef = $BackendObject->ImportSearchValuePrepare(
-        Value => 11, # (optional)
+        Value => 11,
     );
 
 =cut
@@ -193,10 +193,26 @@ sub ImportSearchValuePrepare {
 
     return if !defined $Param{Value};
 
-    my @Values = split '#####', $Param{Value};
-    @Values = grep {$_} @Values;
+    # get item list
+    my $ItemList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
+        Class => $Param{Item}->{Input}->{Class} || '',
+    );
 
-    return \@Values;
+    # reverse the list
+    my %Name2ID = reverse %{$ItemList};
+
+    my $GeneralCatalogID = $Name2ID{ $Param{Value} };
+
+    if ( !$GeneralCatalogID ) {
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
+            Priority => 'error',
+            Message  => "General catalog lookup of'$Param{Value}' failed!",
+        );
+        return;
+    }
+
+    return $GeneralCatalogID;
+
 }
 
 =item ImportValuePrepare()
@@ -204,7 +220,7 @@ sub ImportSearchValuePrepare {
 prepare value for import
 
     my $Value = $BackendObject->ImportValuePrepare(
-        Value => 11, # (optional)
+        Value => 11,
     );
 
 =cut
