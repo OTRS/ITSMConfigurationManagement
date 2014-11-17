@@ -1,11 +1,12 @@
 # 
 # Translators:
+# Yuri Kolesniov <ynkolesnikov@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
 "POT-Creation-Date: 2014-08-08 19:10+0200\n"
-"PO-Revision-Date: 2014-10-27 17:28+0000\n"
-"Last-Translator: Udo Bretz\n"
+"PO-Revision-Date: 2014-10-28 11:07+0000\n"
+"Last-Translator: Yuri Kolesniov <ynkolesnikov@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/OTRS/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,55 +36,55 @@ msgstr "Здание"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::ConfigItemCreate"
-msgstr ""
+msgstr "CIHistory::ConfigItemCreate"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::ConfigItemDelete"
-msgstr ""
+msgstr "CIHistory::ConfigItemDelete"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::DefinitionUpdate"
-msgstr ""
+msgstr "CIHistory::DefinitionUpdate"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::DeploymentStateUpdate"
-msgstr ""
+msgstr "CIHistory::DeploymentStateUpdate"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::IncidentStateUpdate"
-msgstr ""
+msgstr "CIHistory::IncidentStateUpdate"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::LinkAdd"
-msgstr ""
+msgstr "CIHistory::LinkAdd"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::LinkDelete"
-msgstr ""
+msgstr "CIHistory::LinkDelete"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::NameUpdate"
-msgstr ""
+msgstr "CIHistory::NameUpdate"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::ValueUpdate"
-msgstr ""
+msgstr "CIHistory::ValueUpdate"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::VersionCreate"
-msgstr ""
+msgstr "CIHistory::VersionCreate"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::VersionDelete"
-msgstr ""
+msgstr "CIHistory::VersionDelete"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::AttachmentAdd"
-msgstr ""
+msgstr "CIHistory::AttachmentAdd"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::AttachmentDelete"
-msgstr ""
+msgstr "CIHistory::AttachmentDelete"
 
 #. Template: AAAITSMConfigItem
 msgid "CPU"
@@ -131,7 +132,7 @@ msgstr "Показано основных средств"
 
 #. Template: AAAITSMConfigItem
 msgid "CMDB"
-msgstr ""
+msgstr "CMDB"
 
 #. Template: AAAITSMConfigItem
 msgid "Demo"
@@ -175,7 +176,7 @@ msgstr "Устарело"
 
 #. Template: AAAITSMConfigItem
 msgid "Floor"
-msgstr ""
+msgstr "Этаж"
 
 #. Template: AAAITSMConfigItem
 msgid "Freeware"
@@ -215,7 +216,7 @@ msgstr "IP по DHCP"
 
 #. Template: AAAITSMConfigItem
 msgid "IT Facility"
-msgstr ""
+msgstr "ИТ объект"
 
 #. Template: AAAITSMConfigItem
 msgid "Inactive"
@@ -463,7 +464,7 @@ msgstr "Коммутатор"
 
 #. Template: AAAITSMConfigItem
 msgid "Telco"
-msgstr ""
+msgstr "Telco"
 
 #. Template: AAAITSMConfigItem
 msgid "Test/QA"
@@ -543,27 +544,27 @@ msgstr "Выберите класс из списка для создания н
 
 #. Template: AgentITSMConfigItemBulk
 msgid "ITSM ConfigItem Bulk Action"
-msgstr ""
+msgstr "ITSM ConfigItem массовое действие"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Deployment state"
-msgstr ""
+msgstr "Состояние использования"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Incident state"
-msgstr ""
+msgstr "Состояние инцидента"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Link to another"
-msgstr ""
+msgstr "Связать с другим"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Invalid Configuration Item number!"
-msgstr ""
+msgstr "Неверный номер конфигурационной единицы!"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "The number of another Configuration Item to link with."
-msgstr ""
+msgstr "Количество других КЕ для связывания."
 
 #. Template: AgentITSMConfigItemEdit
 msgid "The name of this config item"
@@ -584,7 +585,7 @@ msgstr "Состояние инцидента"
 
 #. Template: AgentITSMConfigItemOverviewNavBar
 msgid "Context Settings"
-msgstr ""
+msgstr "Параметры контекста"
 
 #. Template: AgentITSMConfigItemOverviewNavBar
 msgid "Config Items per page"
@@ -624,11 +625,11 @@ msgstr "Автор последнего изменения"
 
 #. Template: AgentITSMConfigItemSearch
 msgid "Create New Template"
-msgstr ""
+msgstr "Создать новый шаблон"
 
 #. Template: AgentITSMConfigItemSearch
 msgid "Run Search"
-msgstr ""
+msgstr "Выполнить поиск"
 
 #. Template: AgentITSMConfigItemSearch
 msgid "Also search in previous versions?"
@@ -660,7 +661,7 @@ msgstr "Состояние инцидента версии"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Version Deployment State"
-msgstr ""
+msgstr "Состояние использования версии объекта"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Version Number"
@@ -672,7 +673,7 @@ msgstr "Полная информация о КЕ выбранной верси�
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Property"
-msgstr ""
+msgstr "Свойство"
 
 #. SysConfig
 msgid ""
@@ -711,25 +712,25 @@ msgstr "Создание и управление описаниями конфи
 msgid ""
 "Defines Required permissions to create ITSM configuration items using the "
 "Generic Interface."
-msgstr ""
+msgstr "Задать требуемые права для создания ITSM КЕ с использованием Generic Interface."
 
 #. SysConfig
 msgid ""
 "Defines Required permissions to get ITSM configuration items using the "
 "Generic Interface."
-msgstr ""
+msgstr "Задает требуемые права для получения ITSM КЕ с использованием Generic Interface."
 
 #. SysConfig
 msgid ""
 "Defines Required permissions to search ITSM configuration items using the "
 "Generic Interface."
-msgstr ""
+msgstr "Задает требуемые права для поиска ITSM КЕ с использованием Generic Interface"
 
 #. SysConfig
 msgid ""
 "Defines Required permissions to update ITSM configuration items using the "
 "Generic Interface."
-msgstr ""
+msgstr "Задает требуемые права для одновления ITSM КЕ с использованием Generic Interface"
 
 #. SysConfig
 msgid ""
@@ -820,12 +821,12 @@ msgstr "Задает перечень отображаемых столбцов 
 msgid ""
 "Enables configuration item bulk action feature for the agent frontend to "
 "work on more than one configuration item at a time."
-msgstr ""
+msgstr "Включает возможность массовых действий с КЕ для интерфейса агента для работы с несколькими КЕ одновременно."
 
 #. SysConfig
 msgid ""
 "Enables configuration item bulk action feature only for the listed groups."
-msgstr ""
+msgstr "Включает возможность массовых действий с КЕ только для перечисленных групп."
 
 #. SysConfig
 msgid ""
@@ -849,25 +850,25 @@ msgstr "Модуль формирования статистики по КЕ."
 
 #. SysConfig
 msgid "Object backend module registration for the import/export module."
-msgstr ""
+msgstr "Object backend module registration для модуля Import/Export."
 
 #. SysConfig
 msgid ""
 "Parameters for the deployment states color in the preferences view of the "
 "agent interface."
-msgstr ""
+msgstr "Параметры для цветов обозначающих состояния использования КЕ в настройках обзоров в интерфейсе агента."
 
 #. SysConfig
 msgid ""
 "Parameters for the deployment states in the preferences view of the agent "
 "interface."
-msgstr ""
+msgstr "Параметры для состояний использования КЕ в настройках обзоров в интерфейсе агента."
 
 #. SysConfig
 msgid ""
 "Parameters for the example permission groups of the general catalog "
 "attributes."
-msgstr ""
+msgstr "Параметры для примерных групповых прав для атрибутов Общего каталога"
 
 #. SysConfig
 msgid "Parameters for the pages (in which the configuration items are shown)."
@@ -927,13 +928,13 @@ msgstr "Выбор модуля генерации номера КЕ. \"AutoIncr
 msgid ""
 "Sets the deployment state in the configuration item bulk screen of the agent"
 " interface."
-msgstr ""
+msgstr "Задает состояние использования на экране массовых действий с КЕ в интерфейсе агента."
 
 #. SysConfig
 msgid ""
 "Sets the incident state in the configuration item bulk screen of the agent "
 "interface."
-msgstr ""
+msgstr "Задает состояние инцидента на экране массовых действий с КЕ в интерфейсе агента."
 
 #. SysConfig
 msgid ""
@@ -945,7 +946,7 @@ msgstr "Показывает пункт меню Связать (Link) для о
 msgid ""
 "Shows a link in the menu to access the history of a configuration item in "
 "the configuration item overview of the agent interface."
-msgstr ""
+msgstr "Показывает пункт меню для доступа к истории КЕ при просмотре КЕ в интерфейсе агента."
 
 #. SysConfig
 msgid ""
@@ -957,7 +958,7 @@ msgstr "Показывает пункт меню История для прос�
 msgid ""
 "Shows a link in the menu to duplicate a configuration item in the "
 "configuration item overview of the agent interface."
-msgstr ""
+msgstr "Показывает пункт меню Дублировать для создания новой КЕ путем копирования характеристик текущей КЕ"
 
 #. SysConfig
 msgid ""
@@ -987,7 +988,7 @@ msgstr "Показывает пункт меню Печать для печат�
 msgid ""
 "Shows a link in the menu to zoom into a configuration item in the "
 "configuration item overview of the agent interface."
-msgstr ""
+msgstr "Показывает пункт меню для подробного просмотра КЕ при обзоре КЕ в интерфейсе агента"
 
 #. SysConfig
 msgid ""

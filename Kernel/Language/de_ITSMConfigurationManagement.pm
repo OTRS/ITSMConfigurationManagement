@@ -186,7 +186,7 @@ sub Data {
     $Self->{Translation}->{'Last changed by'} = 'Zuletzt geändert von';
 
     # Template: AgentITSMConfigItemSearch
-    $Self->{Translation}->{'Create New Template'} = '';
+    $Self->{Translation}->{'Create New Template'} = 'Neue Vorlage erstellen';
     $Self->{Translation}->{'Run Search'} = 'Suche ausführen';
     $Self->{Translation}->{'Also search in previous versions?'} = 'Auch in früheren Versionen suchen?';
 

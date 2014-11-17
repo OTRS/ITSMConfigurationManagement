@@ -1,11 +1,12 @@
 # 
 # Translators:
+# 张梦 <adoeh@sina.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
 "POT-Creation-Date: 2014-08-08 19:10+0200\n"
-"PO-Revision-Date: 2014-10-27 17:27+0000\n"
-"Last-Translator: Udo Bretz\n"
+"PO-Revision-Date: 2014-11-17 14:12+0000\n"
+"Last-Translator: 张梦 <adoeh@sina.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/OTRS/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,55 +36,55 @@ msgstr "大厦"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::ConfigItemCreate"
-msgstr ""
+msgstr "配置项历史::配置项创建"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::ConfigItemDelete"
-msgstr ""
+msgstr "配置项历史::配置项删除"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::DefinitionUpdate"
-msgstr ""
+msgstr "配置项历史::定义更新"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::DeploymentStateUpdate"
-msgstr ""
+msgstr "配置项历史::配置状态更新"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::IncidentStateUpdate"
-msgstr ""
+msgstr "配置项历史::事件状态更新"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::LinkAdd"
-msgstr ""
+msgstr "配置项历史::建立关系"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::LinkDelete"
-msgstr ""
+msgstr "配置项历史::删除关系"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::NameUpdate"
-msgstr ""
+msgstr "配置项历史::名称更新"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::ValueUpdate"
-msgstr ""
+msgstr "配置项历史::配置项值更新"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::VersionCreate"
-msgstr ""
+msgstr "配置项历史::创建版本"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::VersionDelete"
-msgstr ""
+msgstr "配置项历史::删除版本"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::AttachmentAdd"
-msgstr ""
+msgstr "配置项历史::增加附件"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::AttachmentDelete"
-msgstr ""
+msgstr "配置项历史::删除附件"
 
 #. Template: AAAITSMConfigItem
 msgid "CPU"
@@ -131,7 +132,7 @@ msgstr "显示配置项"
 
 #. Template: AAAITSMConfigItem
 msgid "CMDB"
-msgstr ""
+msgstr "配置管理数据库"
 
 #. Template: AAAITSMConfigItem
 msgid "Demo"
@@ -235,7 +236,7 @@ msgstr "键盘"
 
 #. Template: AAAITSMConfigItem
 msgid "LAN"
-msgstr ""
+msgstr "局域网"
 
 #. Template: AAAITSMConfigItem
 msgid "Laptop"
