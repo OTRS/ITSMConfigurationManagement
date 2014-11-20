@@ -148,7 +148,7 @@
 
                     <fieldset class="TableLike">
                         <div class="Field SpacingTop">
-                            <button name="SubmitSave" class="Primary" type="submit" value="[% Translate("Save") | html %]">[% Translate("Submit") | html %]</button>
+                            <button class="Primary CallForAction" accesskey="g" name="SubmitSave" title="[% Translate("Submit") | html %] (g)" type="submit" value="[% Translate("Submit") | html %]"><span><i class="fa fa-check-square-o"></i> [% Translate("Submit") | html %]</span></button>
                         </div>
                     </fieldset>
                 </div>
