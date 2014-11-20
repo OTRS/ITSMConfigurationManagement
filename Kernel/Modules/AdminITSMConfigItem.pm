@@ -273,7 +273,10 @@ sub Run {
         }
         for my $FormParam (qw(ClassID Definition)) {
             if ( !$Definition{$FormParam} ) {
-                $Self->{LogObject}->Log( Priority => 'error', Message => "Need $FormParam!" );
+                $Self->{LogObject}->Log(
+                    Priority => 'error',
+                    Message  => "Need $FormParam!"
+                );
                 return $Self->{LayoutObject}->Redirect( OP => "Action=$Self->{Action}" );
             }
         }

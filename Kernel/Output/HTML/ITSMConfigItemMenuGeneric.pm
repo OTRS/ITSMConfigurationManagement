@@ -35,7 +35,10 @@ sub Run {
 
     # check needed stuff
     if ( !$Param{ConfigItem} ) {
-        $Self->{LogObject}->Log( Priority => 'error', Message => 'Need ConfigItem!' );
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => 'Need ConfigItem!'
+        );
         return;
     }
 

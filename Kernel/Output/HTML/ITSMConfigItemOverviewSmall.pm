@@ -176,10 +176,8 @@ sub Run {
 
                 # can not execute the module due to a ConfigItem is required, then just check the
                 # permissions as in the MenuModuleGeneric
-                my $GroupsRo
-                    = $Self->{ConfigObject}->Get('Frontend::Module')->{$Action}->{GroupRo} || [];
-                my $GroupsRw
-                    = $Self->{ConfigObject}->Get('Frontend::Module')->{$Action}->{Group} || [];
+                my $GroupsRo = $Self->{ConfigObject}->Get('Frontend::Module')->{$Action}->{GroupRo} || [];
+                my $GroupsRw = $Self->{ConfigObject}->Get('Frontend::Module')->{$Action}->{Group}   || [];
 
                 # check permission
                 if ( $Action && ( @{$GroupsRo} || @{$GroupsRw} ) ) {
@@ -216,12 +214,8 @@ sub Run {
                 next MENU if !$Access;
 
                 # translate Name and Description
-                my $Description
-                    = $Self->{LayoutObject}->{LanguageObject}
-                    ->Get( $Menus{$MenuKey}->{Description} );
-                my $Name
-                    = $Self->{LayoutObject}->{LanguageObject}
-                    ->Get( $Menus{$MenuKey}->{Description} );
+                my $Description = $Self->{LayoutObject}->{LanguageObject}->Get( $Menus{$MenuKey}->{Description} );
+                my $Name        = $Self->{LayoutObject}->{LanguageObject}->Get( $Menus{$MenuKey}->{Description} );
 
                 # generarte a web safe link
                 my $Link = $Self->{LayoutObject}->{Baselink} . $Menus{$MenuKey}->{Link};
@@ -279,8 +273,7 @@ END
 
             # remove ID if necesary
             if ( $Param{SortBy} ) {
-                $Param{SortBy}
-                    = ( $Param{SortBy} eq 'InciStateID' )
+                $Param{SortBy} = ( $Param{SortBy} eq 'InciStateID' )
                     ? 'CurInciState'
                     : ( $Param{SortBy} eq 'DeplStateID' ) ? 'CurDeplState'
                     : ( $Param{SortBy} eq 'ClassID' )     ? 'Class'
@@ -446,8 +439,9 @@ END
                         next COLUMN if !$ExtendedVersionData->{$Column}->{Name};
 
                         # convert to ascii text in case the value contains html
-                        my $Value = $Self->{HTMLUtilsObject}
-                            ->ToAscii( String => $ExtendedVersionData->{$Column}->{Value} ) || '';
+                        my $Value
+                            = $Self->{HTMLUtilsObject}->ToAscii( String => $ExtendedVersionData->{$Column}->{Value} )
+                            || '';
 
                         # convert all whitespace and newlines to single spaces
                         $Value =~ s{ \s+ }{ }gxms;
@@ -564,7 +558,7 @@ sub _XMLData2Hash {
 
             # lookup value
             my $Value = $Self->{ConfigItemObject}->XMLValueLookup(
-                Item => $Item,
+                Item  => $Item,
                 Value => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content} || '',
             );
 

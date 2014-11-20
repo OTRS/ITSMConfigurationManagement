@@ -208,8 +208,7 @@ sub InputCreate {
     }
 
     # create string
-    my $String
-        = '<input type="hidden" name="'
+    my $String = '<input type="hidden" name="'
         . $Param{Key}
         . '" value="'
         . $Value

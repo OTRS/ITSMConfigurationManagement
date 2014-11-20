@@ -60,8 +60,7 @@ sub new {
 
     $Self->{OperationName} = 'ConfigItemSearch';
 
-    $Self->{Config}
-        = $Kernel::OM->Get('Kernel::Config')->Get('GenericInterface::Operation::ConfigItemSearch');
+    $Self->{Config} = $Kernel::OM->Get('Kernel::Config')->Get('GenericInterface::Operation::ConfigItemSearch');
 
     $Self->{Config}->{DefaultValue} = 'Not Defined';
 

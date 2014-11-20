@@ -294,8 +294,7 @@ sub Run {
                 $AllRequired = 0;
 
                 # get the error message for this class
-                $CINameRegexErrorMessage
-                    = $CINameRegexConfig->{ $ClassName . '::' . 'CINameRegexErrorMessage' } || '';
+                $CINameRegexErrorMessage = $CINameRegexConfig->{ $ClassName . '::' . 'CINameRegexErrorMessage' } || '';
             }
         }
 

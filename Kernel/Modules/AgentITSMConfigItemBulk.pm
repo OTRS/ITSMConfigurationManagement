@@ -54,8 +54,7 @@ sub Run {
     }
 
     # get involved config items, filtering empty ConfigItemIDs
-    my @ConfigItemIDs
-        = grep {$_}
+    my @ConfigItemIDs = grep {$_}
         $Self->{ParamObject}->GetArray( Param => 'ConfigItemID' );
 
     # check needed stuff
@@ -115,8 +114,7 @@ sub Run {
             ConfigItemID => $ConfigItemID,
         );
 
-        my $Config
-            = $Self->{ConfigObject}->Get("ITSMConfigItem::Frontend::AgentITSMConfigItemEdit");
+        my $Config = $Self->{ConfigObject}->Get("ITSMConfigItem::Frontend::AgentITSMConfigItemEdit");
 
         # check permissions
         my $Access = $Self->{ConfigItemObject}->Permission(
@@ -272,8 +270,7 @@ sub _Mask {
     # prepare errors!
     if ( $Param{Errors} ) {
         for my $KeyError ( sort keys %{ $Param{Errors} } ) {
-            $Param{$KeyError}
-                = $Self->{LayoutObject}->Ascii2Html( Text => $Param{Errors}->{$KeyError} );
+            $Param{$KeyError} = $Self->{LayoutObject}->Ascii2Html( Text => $Param{Errors}->{$KeyError} );
         }
     }
 
@@ -441,8 +438,10 @@ sub _Mask {
     );
 
     # get output back
-    return $Self->{LayoutObject}
-        ->Output( TemplateFile => 'AgentITSMConfigItemBulk', Data => \%Param );
+    return $Self->{LayoutObject}->Output(
+        TemplateFile => 'AgentITSMConfigItemBulk',
+        Data         => \%Param
+    );
 }
 
 1;

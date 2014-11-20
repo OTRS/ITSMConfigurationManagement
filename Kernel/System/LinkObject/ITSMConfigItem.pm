@@ -137,9 +137,7 @@ sub ObjectPermission {
     }
 
     # get config of configitem zoom frontend module
-    $Self->{Config}
-        = $Kernel::OM->Get('Kernel::Config')
-        ->Get('ITSMConfigItem::Frontend::AgentITSMConfigItemZoom');
+    $Self->{Config} = $Kernel::OM->Get('Kernel::Config')->Get('ITSMConfigItem::Frontend::AgentITSMConfigItemZoom');
 
     # check for access rights
     my $Access = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->Permission(
@@ -260,8 +258,7 @@ sub ObjectSearch {
     if ( !$Param{SubObject} ) {
 
         # get the config with the default subobjects
-        my $DefaultSubobject
-            = $Kernel::OM->Get('Kernel::Config')->Get('LinkObject::DefaultSubObject') || {};
+        my $DefaultSubobject = $Kernel::OM->Get('Kernel::Config')->Get('LinkObject::DefaultSubObject') || {};
 
         # extract default class name
         my $DefaultClass = $DefaultSubobject->{ITSMConfigItem} || '';
@@ -282,8 +279,7 @@ sub ObjectSearch {
     return if !$Param{SubObject};
 
     # search the config items
-    my $ConfigItemIDs
-        = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemSearchExtended(
+    my $ConfigItemIDs = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemSearchExtended(
         %{ $Param{SearchParams} },
         %Search,
         ClassIDs              => [ $Param{SubObject} ],
@@ -293,7 +289,7 @@ sub ObjectSearch {
         OrderByDirection      => ['Up'],
         Limit                 => 50,
         UserID                => $Param{UserID},
-        );
+    );
 
     my %SearchList;
     CONFIGITEMID:

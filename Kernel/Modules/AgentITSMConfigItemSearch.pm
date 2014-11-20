@@ -313,7 +313,7 @@ sub Run {
                 Print  => 'Print',
                 CSV    => 'CSV',
             },
-            Name => 'ResultForm',
+            Name       => 'ResultForm',
             SelectedID => $GetParam{ResultForm} || 'Normal',
         );
 
@@ -393,8 +393,7 @@ sub Run {
         }
 
         # store last overview screen
-        my $URL
-            = "Action=AgentITSMConfigItemSearch;Profile=$Self->{Profile};"
+        my $URL = "Action=AgentITSMConfigItemSearch;Profile=$Self->{Profile};"
             . "TakeLastSearch=1;StartHit=$Self->{StartHit};Subaction=Search;"
             . "OrderBy=$Self->{OrderBy};SortBy=$Self->{SortBy}";
 
@@ -691,8 +690,7 @@ sub Run {
 
             # PDF Output
             if ( $Self->{PDFObject} ) {
-                my $Title
-                    = $Self->{LayoutObject}->{LanguageObject}->Translate('Configuration Item') . ' '
+                my $Title = $Self->{LayoutObject}->{LanguageObject}->Translate('Configuration Item') . ' '
                     . $Self->{LayoutObject}->{LanguageObject}->Translate('Search');
                 my $PrintedBy = $Self->{LayoutObject}->{LanguageObject}->Translate('printed by');
                 my $Page      = $Self->{LayoutObject}->{LanguageObject}->Translate('Page');
@@ -706,27 +704,20 @@ sub Run {
 
                 # create the header
                 my $CellData;
-                $CellData->[0]->[0]->{Content}
-                    = $Self->{LayoutObject}->{LanguageObject}->Translate('Class');
-                $CellData->[0]->[0]->{Font} = 'ProportionalBold';
-                $CellData->[0]->[1]->{Content}
-                    = $Self->{LayoutObject}->{LanguageObject}->Translate('Incident State');
-                $CellData->[0]->[1]->{Font} = 'ProportionalBold';
-                $CellData->[0]->[2]->{Content}
-                    = $Self->{LayoutObject}->{LanguageObject}->Translate('Name');
-                $CellData->[0]->[2]->{Font} = 'ProportionalBold';
-                $CellData->[0]->[3]->{Content}
-                    = $Self->{LayoutObject}->{LanguageObject}->Translate('Number');
-                $CellData->[0]->[3]->{Font} = 'ProportionalBold';
-                $CellData->[0]->[4]->{Content}
-                    = $Self->{LayoutObject}->{LanguageObject}->Translate('Deployment State');
-                $CellData->[0]->[4]->{Font} = 'ProportionalBold';
-                $CellData->[0]->[5]->{Content}
-                    = $Self->{LayoutObject}->{LanguageObject}->Translate('Version');
-                $CellData->[0]->[5]->{Font} = 'ProportionalBold';
-                $CellData->[0]->[6]->{Content}
-                    = $Self->{LayoutObject}->{LanguageObject}->Translate('Create Time');
-                $CellData->[0]->[6]->{Font} = 'ProportionalBold';
+                $CellData->[0]->[0]->{Content} = $Self->{LayoutObject}->{LanguageObject}->Translate('Class');
+                $CellData->[0]->[0]->{Font}    = 'ProportionalBold';
+                $CellData->[0]->[1]->{Content} = $Self->{LayoutObject}->{LanguageObject}->Translate('Incident State');
+                $CellData->[0]->[1]->{Font}    = 'ProportionalBold';
+                $CellData->[0]->[2]->{Content} = $Self->{LayoutObject}->{LanguageObject}->Translate('Name');
+                $CellData->[0]->[2]->{Font}    = 'ProportionalBold';
+                $CellData->[0]->[3]->{Content} = $Self->{LayoutObject}->{LanguageObject}->Translate('Number');
+                $CellData->[0]->[3]->{Font}    = 'ProportionalBold';
+                $CellData->[0]->[4]->{Content} = $Self->{LayoutObject}->{LanguageObject}->Translate('Deployment State');
+                $CellData->[0]->[4]->{Font}    = 'ProportionalBold';
+                $CellData->[0]->[5]->{Content} = $Self->{LayoutObject}->{LanguageObject}->Translate('Version');
+                $CellData->[0]->[5]->{Font}    = 'ProportionalBold';
+                $CellData->[0]->[6]->{Content} = $Self->{LayoutObject}->{LanguageObject}->Translate('Create Time');
+                $CellData->[0]->[6]->{Font}    = 'ProportionalBold';
 
                 # create the content array
                 my $CounterRow = 1;
@@ -741,8 +732,7 @@ sub Run {
 
                 # output 'No Result', if no content was given
                 if ( !$CellData->[0]->[0] ) {
-                    $CellData->[0]->[0]->{Content}
-                        = $Self->{LayoutObject}->{LanguageObject}->Translate('No Result!');
+                    $CellData->[0]->[0]->{Content} = $Self->{LayoutObject}->{LanguageObject}->Translate('No Result!');
                 }
 
                 # page params
@@ -802,10 +792,9 @@ sub Run {
 
                 # return the pdf document
                 my $Filename = 'configitem_search';
-                my ( $s, $m, $h, $D, $M, $Y )
-                    = $Self->{TimeObject}->SystemTime2Date(
+                my ( $s, $m, $h, $D, $M, $Y ) = $Self->{TimeObject}->SystemTime2Date(
                     SystemTime => $Self->{TimeObject}->SystemTime(),
-                    );
+                );
                 $M = sprintf( "%02d", $M );
                 $D = sprintf( "%02d", $D );
                 $h = sprintf( "%02d", $h );
@@ -919,8 +908,7 @@ sub Run {
             }
 
             my $ClassName = $ClassList->{$ClassID};
-            my $Title
-                = $Self->{LayoutObject}->{LanguageObject}->Translate('Config Item Search Results')
+            my $Title     = $Self->{LayoutObject}->{LanguageObject}->Translate('Config Item Search Results')
                 . ' '
                 . $Self->{LayoutObject}->{LanguageObject}->Translate('Class')
                 . ' '

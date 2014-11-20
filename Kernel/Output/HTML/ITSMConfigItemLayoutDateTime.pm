@@ -223,10 +223,9 @@ sub SearchFormDataGet {
         $StopYear    = $Param{Value}->{ $Param{Key} . '::TimeStop::Year' };
     }
     else {
-        $Used = $Self->{ParamObject}->GetParam( Param => $Param{Key} );
-        $StartMinute
-            = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStart::Minute' ) || 00;
-        $StartHour = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStart::Hour' )
+        $Used        = $Self->{ParamObject}->GetParam( Param => $Param{Key} );
+        $StartMinute = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStart::Minute' ) || 00;
+        $StartHour   = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStart::Hour' )
             || 00;
         $StartDay   = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStart::Day' );
         $StartMonth = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStart::Month' );

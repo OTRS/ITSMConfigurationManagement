@@ -36,8 +36,7 @@ sub new {
     $Self->{Config} = $Self->{ConfigObject}->Get("ITSMConfigItem::Frontend::$Self->{Action}");
 
     # get default parameters, try to get filter (ClassID) from session if not given as parameter
-    $Self->{Filter}
-        = $Self->{ParamObject}->GetParam( Param => 'Filter' )
+    $Self->{Filter} = $Self->{ParamObject}->GetParam( Param => 'Filter' )
         || $Self->{AgentITSMConfigItemClassFilter}
         || '';
     $Self->{View} = $Self->{ParamObject}->GetParam( Param => 'View' ) || '';

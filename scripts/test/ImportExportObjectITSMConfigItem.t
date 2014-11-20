@@ -16,9 +16,8 @@ use vars qw($Self);
 my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
 my $ConfigItemObject     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
 my $ImportExportObject   = $Kernel::OM->Get('Kernel::System::ImportExport');
-my $ObjectBackendObject
-    = $Kernel::OM->Get('Kernel::System::ImportExport::ObjectBackend::ITSMConfigItem');
-my $XMLObject = $Kernel::OM->Get('Kernel::System::XML');
+my $ObjectBackendObject  = $Kernel::OM->Get('Kernel::System::ImportExport::ObjectBackend::ITSMConfigItem');
+my $XMLObject            = $Kernel::OM->Get('Kernel::System::XML');
 
 # ------------------------------------------------------------ #
 # make preparations
@@ -836,7 +835,7 @@ my @ConfigItems = (
                                         Main1Sub1 => [
                                             undef,
                                             {
-                                                Content => 'Test;:_°^!"§$%&/()=?´`*+Test',
+                                                Content          => 'Test;:_°^!"§$%&/()=?´`*+Test',
                                                 Main1Sub1SubSub1 => [
                                                     undef,
                                                     {
@@ -3094,11 +3093,11 @@ my @ImportDataTests = (
         ReferenceImportData => {
             VersionNumber => 3,
             LastVersion   => {
-                Name                     => 'UnitTest - ConfigItem 3 Version 3',
-                DeplState                => 'Production',
-                InciState                => 'Operational',
-                'Main1::1'               => '"";;::..--__##',
-                'Main1::1::Main1Sub1::1' => 'Test;:_°^!"§$%&/()=?´`*+Test',
+                Name                                          => 'UnitTest - ConfigItem 3 Version 3',
+                DeplState                                     => 'Production',
+                InciState                                     => 'Operational',
+                'Main1::1'                                    => '"";;::..--__##',
+                'Main1::1::Main1Sub1::1'                      => 'Test;:_°^!"§$%&/()=?´`*+Test',
                 'Main1::1::Main1Sub1::1::Main1Sub1SubSub1::1' => '><@~\'}{[]\\',
                 'Main1::1::Main1Sub1::1::Main1Sub1SubSub2::1' => '><@~\'}{[]\\',
                 'Main1::1::Main1Sub2::1'                      => 'Test;:_°^!"§$%&/()=?´`*+Test',
@@ -3193,11 +3192,11 @@ my @ImportDataTests = (
         ReferenceImportData => {
             VersionNumber => 4,
             LastVersion   => {
-                Name                     => 'UnitTest - ConfigItem 3 Version 4',
-                DeplState                => 'Production',
-                InciState                => 'Operational',
-                'Main1::1'               => 'Ϋ δ λ',
-                'Main1::1::Main1Sub1::1' => 'π χ Ϙ',
+                Name                                          => 'UnitTest - ConfigItem 3 Version 4',
+                DeplState                                     => 'Production',
+                InciState                                     => 'Operational',
+                'Main1::1'                                    => 'Ϋ δ λ',
+                'Main1::1::Main1Sub1::1'                      => 'π χ Ϙ',
                 'Main1::1::Main1Sub1::1::Main1Sub1SubSub1::1' => 'Ϻ ϱ Ϯ',
                 'Main1::1::Main1Sub1::1::Main1Sub1SubSub2::1' => 'ɯ ʓ ʠ',
                 'Main1::1::Main1Sub2::1'                      => 'ʬ ʯ',

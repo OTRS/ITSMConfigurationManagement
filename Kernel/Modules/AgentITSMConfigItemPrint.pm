@@ -497,7 +497,10 @@ sub _PDFOutputLinkedObjects {
     # check needed stuff
     for (qw(PageData LinkData LinkTypeList)) {
         if ( !defined( $Param{$_} ) ) {
-            $Self->{LogObject}->Log( Priority => 'error', Message => "Need $_!" );
+            $Self->{LogObject}->Log(
+                Priority => 'error',
+                Message  => "Need $_!"
+            );
             return;
         }
     }
@@ -582,7 +585,8 @@ sub _PDFOutputLinkedObjects {
         }
         else {
             $Self->{PDFObject}->PageNew(
-                %Page, FooterRight => $Page{PageText} . ' ' . $Page{PageCount},
+                %Page,
+                FooterRight => $Page{PageText} . ' ' . $Page{PageCount},
             );
             $Page{PageCount}++;
         }
@@ -673,7 +677,8 @@ sub _PDFOutputAttachments {
         }
         else {
             $Self->{PDFObject}->PageNew(
-                %Page, FooterRight => $Page{PageText} . ' ' . $Page{PageCount},
+                %Page,
+                FooterRight => $Page{PageText} . ' ' . $Page{PageCount},
             );
             $Page{PageCount}++;
         }

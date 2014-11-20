@@ -188,10 +188,9 @@ sub TableCreateComplex {
     for my $ItemID ( sort keys %{$DeploymentStatesList} ) {
 
         # get deployment state preferences
-        my %Preferences
-            = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->GeneralCatalogPreferencesGet(
+        my %Preferences = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->GeneralCatalogPreferencesGet(
             ItemID => $ItemID,
-            );
+        );
 
         # check if a color is defined in preferences
         next ITEMID if !$Preferences{Color};
@@ -207,8 +206,7 @@ sub TableCreateComplex {
     }
 
     # get the column config
-    my $ColumnConfig
-        = $Kernel::OM->Get('Kernel::Config')->Get('LinkObject::ITSMConfigItem::ShowColumnsByClass');
+    my $ColumnConfig = $Kernel::OM->Get('Kernel::Config')->Get('LinkObject::ITSMConfigItem::ShowColumnsByClass');
 
     # get the configered columns and reorganize them by class name
     my %ColumnByClass;
@@ -566,8 +564,8 @@ sub TableCreateSimple {
                 my %Item = (
                     Type    => 'Link',
                     Content => 'CI:' . $Version->{Number},
-                    Title => "ConfigItem# $Version->{Number} ($Version->{Class}): $Version->{Name}",
-                    Link  => $Self->{LayoutObject}->{Baselink}
+                    Title   => "ConfigItem# $Version->{Number} ($Version->{Class}): $Version->{Name}",
+                    Link    => $Self->{LayoutObject}->{Baselink}
                         . 'Action=AgentITSMConfigItemZoom;ConfigItemID='
                         . $ConfigItemID,
                 );
@@ -633,7 +631,7 @@ sub ContentStringCreate {
                 . '<span class="[% Data.CurInciSignal | html %]"></span> </div>',
             Data => {
                 CurInciSignal => $CurInciSignal,
-                CurInciState => $Content->{Content} || '',
+                CurInciState  => $Content->{Content} || '',
             },
         );
     }
@@ -719,8 +717,7 @@ sub SelectableObjectList {
     return if ref $ClassList ne 'HASH';
 
     # get the config with the default subobjects
-    my $DefaultSubobject
-        = $Kernel::OM->Get('Kernel::Config')->Get('LinkObject::DefaultSubObject') || {};
+    my $DefaultSubobject = $Kernel::OM->Get('Kernel::Config')->Get('LinkObject::DefaultSubObject') || {};
 
     CLASSID:
     for my $ClassID ( sort { lc $ClassList->{$a} cmp lc $ClassList->{$b} } keys %{$ClassList} ) {
@@ -867,14 +864,13 @@ sub SearchOptionList {
         if ( $Row->{Type} eq 'Text' ) {
 
             # get form data
-            $Row->{FormData} = $Kernel::OM->Get('Kernel::System::Web::Request')
-                ->GetParam( Param => $Row->{FormKey} );
+            $Row->{FormData} = $Kernel::OM->Get('Kernel::System::Web::Request')->GetParam( Param => $Row->{FormKey} );
 
             # parse the input text block
             $Self->{LayoutObject}->Block(
                 Name => 'InputText',
                 Data => {
-                    Key => $Row->{FormKey},
+                    Key   => $Row->{FormKey},
                     Value => $Row->{FormData} || '',
                 },
             );
@@ -891,8 +887,7 @@ sub SearchOptionList {
         if ( $Row->{Type} eq 'List' ) {
 
             # get form data
-            my @FormData = $Kernel::OM->Get('Kernel::System::Web::Request')
-                ->GetArray( Param => $Row->{FormKey} );
+            my @FormData = $Kernel::OM->Get('Kernel::System::Web::Request')->GetArray( Param => $Row->{FormKey} );
             $Row->{FormData} = \@FormData;
 
             # prepare deployment state list
@@ -989,7 +984,7 @@ sub _XMLData2Hash {
 
             # lookup value
             my $Value = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->XMLValueLookup(
-                Item => $Item,
+                Item  => $Item,
                 Value => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content} || '',
             );
 

@@ -60,8 +60,7 @@ sub new {
 
     $Self->{OperationName} = 'ConfigItemCreate';
 
-    $Self->{Config}
-        = $Kernel::OM->Get('Kernel::Config')->Get('GenericInterface::Operation::ConfigItemCreate');
+    $Self->{Config} = $Kernel::OM->Get('Kernel::Config')->Get('GenericInterface::Operation::ConfigItemCreate');
 
     $Self->{Config}->{DefaultValue} = 'Not Defined';
 

@@ -61,8 +61,7 @@ sub new {
 
     $Self->{OperationName} = 'ConfigItemGet';
 
-    $Self->{Config}
-        = $Kernel::OM->Get('Kernel::Config')->Get('GenericInterface::Operation::ConfigItemGet');
+    $Self->{Config} = $Kernel::OM->Get('Kernel::Config')->Get('GenericInterface::Operation::ConfigItemGet');
 
     return $Self;
 }
@@ -264,10 +263,9 @@ sub Run {
 
         if ($Attachments) {
 
-            my @Attachments
-                = $ConfigItemObject->ConfigItemAttachmentList(
+            my @Attachments = $ConfigItemObject->ConfigItemAttachmentList(
                 ConfigItemID => $ConfigItemID,
-                );
+            );
 
             my @AttachmentDetails;
             ATTACHMENT:

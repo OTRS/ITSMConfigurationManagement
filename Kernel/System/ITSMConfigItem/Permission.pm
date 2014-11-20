@@ -83,22 +83,18 @@ sub Permission {
 
     # run all ITSMConfigItem Permission modules
     if (
-        ref $Kernel::OM->Get('Kernel::Config')
-        ->Get( 'ITSMConfigItem::Permission::' . $Param{Scope} ) eq 'HASH'
+        ref $Kernel::OM->Get('Kernel::Config')->Get( 'ITSMConfigItem::Permission::' . $Param{Scope} ) eq 'HASH'
         )
     {
-        my %Modules
-            = %{
-            $Kernel::OM->Get('Kernel::Config')
-                ->Get( 'ITSMConfigItem::Permission::' . $Param{Scope} )
-            };
+        my %Modules = %{
+            $Kernel::OM->Get('Kernel::Config')->Get( 'ITSMConfigItem::Permission::' . $Param{Scope} )
+        };
         MODULE:
         for my $Module ( sort keys %Modules ) {
 
             # load module
             next MODULE
-                if !$Kernel::OM->Get('Kernel::System::Main')
-                ->Require( $Modules{$Module}->{Module} );
+                if !$Kernel::OM->Get('Kernel::System::Main')->Require( $Modules{$Module}->{Module} );
 
             # create object
             my $ModuleObject = $Modules{$Module}->{Module}->new();

@@ -76,8 +76,7 @@ sub ConfigItemNumberLookup {
         }
 
         # cache the result
-        $Self->{Cache}->{ConfigItemNumberLookup}->{ID}->{ $Param{ConfigItemID} }
-            = $ConfigItemNumber;
+        $Self->{Cache}->{ConfigItemNumberLookup}->{ID}->{ $Param{ConfigItemID} } = $ConfigItemNumber;
 
         return $ConfigItemNumber;
     }
@@ -100,8 +99,7 @@ sub ConfigItemNumberLookup {
     }
 
     # cache the result
-    $Self->{Cache}->{ConfigItemNumberLookup}->{Number}->{ $Param{ConfigItemNumber} }
-        = $ConfigItemID;
+    $Self->{Cache}->{ConfigItemNumberLookup}->{Number}->{ $Param{ConfigItemNumber} } = $ConfigItemID;
 
     return $ConfigItemID;
 }
@@ -178,7 +176,7 @@ sub CurrentCounterGet {
     $Kernel::OM->Get('Kernel::System::DB')->Prepare(
         SQL => 'SELECT counter FROM configitem_counter WHERE '
             . 'class_id = ? AND counter_type = ?',
-        Bind => [ \$Param{ClassID}, \$Param{Type} ],
+        Bind  => [ \$Param{ClassID}, \$Param{Type} ],
         Limit => 1,
     );
 

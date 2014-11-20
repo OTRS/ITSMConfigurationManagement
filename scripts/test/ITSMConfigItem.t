@@ -2138,7 +2138,7 @@ my @SearchTests = (
 
     # search ALL config items in the two test classes
     {
-        Function => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
+        Function   => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
         SearchData => {
             ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
         },
@@ -2152,7 +2152,7 @@ my @SearchTests = (
 
     # test the number param
     {
-        Function => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
+        Function   => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
         SearchData => {
             Number => $ConfigItemNumbers[50],
         },
@@ -2163,7 +2163,7 @@ my @SearchTests = (
 
     # test the number param with wildcards
     {
-        Function => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
+        Function   => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
         SearchData => {
             Number => '*' . $ConfigItemNumbers[50] . '*',
         },
@@ -2174,7 +2174,7 @@ my @SearchTests = (
 
     # test the number param with wildcards but with deactivated wildcard feature
     {
-        Function => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
+        Function   => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
         SearchData => {
             Number         => '*' . $ConfigItemNumbers[50] . '*',
             UsingWildcards => 0,
@@ -2184,9 +2184,9 @@ my @SearchTests = (
 
     # test the deployment state param in combination of the class id
     {
-        Function => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
+        Function   => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
         SearchData => {
-            ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
+            ClassIDs     => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
             DeplStateIDs => [ $DeplStateListReverse{Production} ],
         },
         ReferenceData => [
@@ -2198,9 +2198,9 @@ my @SearchTests = (
 
     # test the deployment state param in combination of the class id
     {
-        Function => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
+        Function   => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
         SearchData => {
-            ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
+            ClassIDs     => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
             DeplStateIDs => [ $DeplStateListReverse{Maintenance} ],
         },
         ReferenceData => [
@@ -2210,9 +2210,9 @@ my @SearchTests = (
 
     # test the deployment state param in combination of the class id
     {
-        Function => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
+        Function   => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
         SearchData => {
-            ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
+            ClassIDs     => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
             DeplStateIDs => [
                 $DeplStateListReverse{Production},
                 $DeplStateListReverse{Maintenance},
@@ -2228,9 +2228,9 @@ my @SearchTests = (
 
     # test the incident state param in combination of the class id
     {
-        Function => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
+        Function   => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
         SearchData => {
-            ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
+            ClassIDs     => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
             InciStateIDs => [ $InciStateListReverse{Operational} ],
         },
         ReferenceData => [
@@ -2240,9 +2240,9 @@ my @SearchTests = (
 
     # test the incident state param in combination of the class id
     {
-        Function => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
+        Function   => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
         SearchData => {
-            ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
+            ClassIDs     => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
             InciStateIDs => [ $InciStateListReverse{Incident} ],
         },
         ReferenceData => [
@@ -2254,9 +2254,9 @@ my @SearchTests = (
 
     # test the incident state param in combination of the class id
     {
-        Function => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
+        Function   => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
         SearchData => {
-            ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
+            ClassIDs     => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
             InciStateIDs => [
                 $InciStateListReverse{Incident},
                 $InciStateListReverse{Operational},
@@ -2272,10 +2272,10 @@ my @SearchTests = (
 
     # test the order by param
     {
-        Function => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
+        Function   => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
         SearchData => {
-            ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
-            OrderBy => ['CreateBy'],
+            ClassIDs         => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
+            OrderBy          => ['CreateBy'],
             OrderByDirection => ['Up'],
         },
         ReferenceData => [
@@ -2288,10 +2288,10 @@ my @SearchTests = (
 
     # test the limit param
     {
-        Function => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
+        Function   => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
         SearchData => {
             ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
-            Limit => 100,
+            Limit    => 100,
         },
         ReferenceData => [
             $ConfigItemNumbers[50],
@@ -2303,10 +2303,10 @@ my @SearchTests = (
 
     # test the limit param
     {
-        Function => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
+        Function   => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
         SearchData => {
             ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
-            Limit => 3,
+            Limit    => 3,
         },
         ReferenceData => [
             $ConfigItemNumbers[50],
@@ -2317,10 +2317,10 @@ my @SearchTests = (
 
     # test the limit param
     {
-        Function => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
+        Function   => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
         SearchData => {
             ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
-            Limit => 2,
+            Limit    => 2,
         },
         ReferenceData => [
             $ConfigItemNumbers[50],
@@ -2330,10 +2330,10 @@ my @SearchTests = (
 
     # test the limit param
     {
-        Function => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
+        Function   => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
         SearchData => {
             ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
-            Limit => 1,
+            Limit    => 1,
         },
         ReferenceData => [
             $ConfigItemNumbers[50],
@@ -2342,10 +2342,10 @@ my @SearchTests = (
 
     # test the limit param
     {
-        Function => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
+        Function   => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
         SearchData => {
             ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
-            Limit => 0,
+            Limit    => 0,
         },
         ReferenceData => [
             $ConfigItemNumbers[50],
@@ -2357,7 +2357,7 @@ my @SearchTests = (
 
     # test the create by param
     {
-        Function => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
+        Function   => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
         SearchData => {
             CreateBy => [ $UserIDs[2] ],
         },
@@ -2369,7 +2369,7 @@ my @SearchTests = (
 
     # test the create by param in combination of the class id
     {
-        Function => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
+        Function   => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
         SearchData => {
             ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
             CreateBy => [ $UserIDs[1],            $UserIDs[2] ],
@@ -2383,7 +2383,7 @@ my @SearchTests = (
 
     # test the change by param
     {
-        Function => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
+        Function   => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
         SearchData => {
             ChangeBy => [ $UserIDs[2] ],
         },
@@ -2395,7 +2395,7 @@ my @SearchTests = (
 
     # test the change by param in combination of the class id
     {
-        Function => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
+        Function   => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
         SearchData => {
             ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
             ChangeBy => [1],
@@ -2405,7 +2405,7 @@ my @SearchTests = (
 
     # test the change by param in combination of the class id
     {
-        Function => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
+        Function   => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
         SearchData => {
             ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
             ChangeBy => [ $UserIDs[1] ],
@@ -2418,7 +2418,7 @@ my @SearchTests = (
 
     # test the change by param in combination of the class id
     {
-        Function => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
+        Function   => [ 'ConfigItemSearchExtended', 'ConfigItemSearch' ],
         SearchData => {
             ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
             ChangeBy => [ $UserIDs[2] ],
@@ -2447,7 +2447,7 @@ my @SearchTests = (
     {
         Function   => ['VersionSearch'],
         SearchData => {
-            Name => 'UnitTest - Class 3 ConfigItem 1 Version 1',
+            Name     => 'UnitTest - Class 3 ConfigItem 1 Version 1',
             ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
         },
         ReferenceData => [
@@ -2459,7 +2459,7 @@ my @SearchTests = (
     {
         Function   => ['VersionSearch'],
         SearchData => {
-            Name => 'UnitTest - Class 3 ConfigItem 3 Version 1',
+            Name     => 'UnitTest - Class 3 ConfigItem 3 Version 1',
             ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
         },
         ReferenceData => [
@@ -2471,7 +2471,7 @@ my @SearchTests = (
     {
         Function   => ['VersionSearch'],
         SearchData => {
-            Name => 'UnitTest - * 1',
+            Name     => 'UnitTest - * 1',
             ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
         },
         ReferenceData => [
@@ -2501,7 +2501,7 @@ my @SearchTests = (
     {
         Function   => ['VersionSearch'],
         SearchData => {
-            Name => 'UnitTest - Class 3*',
+            Name     => 'UnitTest - Class 3*',
             ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
         },
         ReferenceData => [
@@ -2526,7 +2526,7 @@ my @SearchTests = (
     {
         Function   => ['VersionSearch'],
         SearchData => {
-            Name => 'UnitTest - Class 3 ConfigItem 2 Version 1',
+            Name     => 'UnitTest - Class 3 ConfigItem 2 Version 1',
             ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
         },
         ReferenceData => [],
@@ -2550,7 +2550,7 @@ my @SearchTests = (
         Function   => ['VersionSearch'],
         SearchData => {
             ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
-            Limit => 100,
+            Limit    => 100,
         },
         ReferenceData => [
             $ConfigItemNumbers[50],
@@ -2565,7 +2565,7 @@ my @SearchTests = (
         Function   => ['VersionSearch'],
         SearchData => {
             ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
-            Limit => 3,
+            Limit    => 3,
         },
         ReferenceData => [
             $ConfigItemNumbers[50],
@@ -2579,7 +2579,7 @@ my @SearchTests = (
         Function   => ['VersionSearch'],
         SearchData => {
             ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
-            Limit => 2,
+            Limit    => 2,
         },
         ReferenceData => [
             $ConfigItemNumbers[50],
@@ -2592,7 +2592,7 @@ my @SearchTests = (
         Function   => ['VersionSearch'],
         SearchData => {
             ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
-            Limit => 1,
+            Limit    => 1,
         },
         ReferenceData => [
             $ConfigItemNumbers[50],
@@ -2603,7 +2603,7 @@ my @SearchTests = (
     {
         Function   => ['VersionSearch'],
         SearchData => {
-            ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
+            ClassIDs     => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
             DeplStateIDs => [
                 $DeplStateListReverse{Production},
                 $DeplStateListReverse{Maintenance},
@@ -2621,7 +2621,7 @@ my @SearchTests = (
     {
         Function   => ['VersionSearch'],
         SearchData => {
-            ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
+            ClassIDs     => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
             DeplStateIDs => [ $DeplStateListReverse{Production} ],
         },
         ReferenceData => [
@@ -2635,7 +2635,7 @@ my @SearchTests = (
     {
         Function   => ['VersionSearch'],
         SearchData => {
-            ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
+            ClassIDs     => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
             DeplStateIDs => [ $DeplStateListReverse{Maintenance} ],
         },
         ReferenceData => [
@@ -2647,7 +2647,7 @@ my @SearchTests = (
     {
         Function   => ['VersionSearch'],
         SearchData => {
-            ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
+            ClassIDs     => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
             DeplStateIDs => [
                 $DeplStateListReverse{Production},
                 $DeplStateListReverse{Maintenance},
@@ -2666,7 +2666,7 @@ my @SearchTests = (
     {
         Function   => ['VersionSearch'],
         SearchData => {
-            ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
+            ClassIDs              => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
             DeplStateIDs          => [ $DeplStateListReverse{Production} ],
             PreviousVersionSearch => 1,
         },
@@ -2682,7 +2682,7 @@ my @SearchTests = (
     {
         Function   => ['VersionSearch'],
         SearchData => {
-            ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
+            ClassIDs              => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
             DeplStateIDs          => [ $DeplStateListReverse{Maintenance} ],
             PreviousVersionSearch => 1,
         },
@@ -2695,7 +2695,7 @@ my @SearchTests = (
     {
         Function   => ['VersionSearch'],
         SearchData => {
-            ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
+            ClassIDs     => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
             InciStateIDs => [
                 $InciStateListReverse{Operational},
                 $InciStateListReverse{Incident},
@@ -2713,7 +2713,7 @@ my @SearchTests = (
     {
         Function   => ['VersionSearch'],
         SearchData => {
-            ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
+            ClassIDs     => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
             InciStateIDs => [ $InciStateListReverse{Operational} ],
         },
         ReferenceData => [
@@ -2725,7 +2725,7 @@ my @SearchTests = (
     {
         Function   => ['VersionSearch'],
         SearchData => {
-            ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
+            ClassIDs     => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
             InciStateIDs => [ $InciStateListReverse{Incident} ],
         },
         ReferenceData => [
@@ -2739,7 +2739,7 @@ my @SearchTests = (
     {
         Function   => ['VersionSearch'],
         SearchData => {
-            ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
+            ClassIDs     => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
             InciStateIDs => [
                 $InciStateListReverse{Operational},
                 $InciStateListReverse{Incident},
@@ -2758,7 +2758,7 @@ my @SearchTests = (
     {
         Function   => ['VersionSearch'],
         SearchData => {
-            ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
+            ClassIDs              => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
             InciStateIDs          => [ $InciStateListReverse{Operational} ],
             PreviousVersionSearch => 1,
         },
@@ -2772,7 +2772,7 @@ my @SearchTests = (
     {
         Function   => ['VersionSearch'],
         SearchData => {
-            ClassIDs => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
+            ClassIDs              => [ $ConfigItemClassIDs[2], $ConfigItemClassIDs[3] ],
             InciStateIDs          => [ $InciStateListReverse{Incident} ],
             PreviousVersionSearch => 1,
         },

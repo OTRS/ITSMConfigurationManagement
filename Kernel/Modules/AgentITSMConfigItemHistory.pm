@@ -201,7 +201,10 @@ sub Run {
     }
 
     # build page
-    my $Output = $Self->{LayoutObject}->Header( Value => $ConfigItemName, Type => 'Small' );
+    my $Output = $Self->{LayoutObject}->Header(
+        Value => $ConfigItemName,
+        Type  => 'Small'
+    );
     $Output .= $Self->{LayoutObject}->Output(
         TemplateFile => 'AgentITSMConfigItemHistory',
         Data         => {

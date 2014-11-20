@@ -148,10 +148,9 @@ sub FormDataGet {
         )
     {
 
-        $FormData{Invalid} = 1;
-        $Param{Item}->{Form}->{ $Param{Key} }->{Invalid} = 1;
-        $Param{Item}->{Form}->{ $Param{Key} }->{RegExErrorMessage}
-            = $Param{Item}->{Input}->{RegExErrorMessage};
+        $FormData{Invalid}                                         = 1;
+        $Param{Item}->{Form}->{ $Param{Key} }->{Invalid}           = 1;
+        $Param{Item}->{Form}->{ $Param{Key} }->{RegExErrorMessage} = $Param{Item}->{Input}->{RegExErrorMessage};
     }
 
     return \%FormData;

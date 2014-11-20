@@ -55,10 +55,9 @@ sub Init {
     }
 
     # get webservice configuration
-    my $Webservice
-        = $Kernel::OM->Get('Kernel::System::GenericInterface::Webservice')->WebserviceGet(
+    my $Webservice = $Kernel::OM->Get('Kernel::System::GenericInterface::Webservice')->WebserviceGet(
         ID => $Param{WebserviceID},
-        );
+    );
 
     if ( !IsHashRefWithData($Webservice) ) {
         return {
@@ -388,8 +387,7 @@ sub ValidateInputCustomer {
 
         # return false if customer is not valid
         return
-            if $Kernel::OM->Get('Kernel::System::Valid')
-            ->ValidLookup( ValidID => $CustomerData{ValidID} ) ne 'valid';
+            if $Kernel::OM->Get('Kernel::System::Valid')->ValidLookup( ValidID => $CustomerData{ValidID} ) ne 'valid';
     }
 
     return 1;
@@ -1171,8 +1169,7 @@ sub InvertFormatXMLData {
                                 my $NewXMLDataPart = $Self->InvertFormatXMLData(
                                     XMLData => $ArrayItem->{$ArrayItemKey},
                                 );
-                                $NewXMLData->{$RootHashKey}->[$Counter]->{$ArrayItemKey}
-                                    = $NewXMLDataPart;
+                                $NewXMLData->{$RootHashKey}->[$Counter]->{$ArrayItemKey} = $NewXMLDataPart;
                             }
                         }
                         else {

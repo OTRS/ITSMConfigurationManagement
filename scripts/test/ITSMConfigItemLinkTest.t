@@ -124,8 +124,7 @@ for my $NameSuffix ( 1 .. 2 ) {
 }
 
 # read the original setting for IncidentLinkTypeDirection
-my $OrigIncidentLinkTypeDirectionSetting
-    = $ConfigObject->Get('ITSM::Core::IncidentLinkTypeDirection');
+my $OrigIncidentLinkTypeDirectionSetting = $ConfigObject->Get('ITSM::Core::IncidentLinkTypeDirection');
 
 # set new config for IncidentLinkTypeDirection
 $ConfigObject->Set(

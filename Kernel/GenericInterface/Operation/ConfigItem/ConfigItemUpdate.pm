@@ -61,8 +61,7 @@ sub new {
     # define operation name
     $Self->{OperationName} = 'ConfigItemUpdate';
 
-    $Self->{Config}
-        = $Kernel::OM->Get('Kernel::Config')->Get('GenericInterface::Operation::ConfigItemUpdate');
+    $Self->{Config} = $Kernel::OM->Get('Kernel::Config')->Get('GenericInterface::Operation::ConfigItemUpdate');
 
     $Self->{Config}->{DefaultValue} = 'Not Defined';
 

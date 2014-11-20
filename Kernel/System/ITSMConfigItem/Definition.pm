@@ -286,7 +286,7 @@ sub DefinitionAdd {
         SQL => 'SELECT id FROM configitem_definition WHERE '
             . 'class_id = ? AND version = ? '
             . 'ORDER BY version DESC',
-        Bind => [ \$Param{ClassID}, \$Version ],
+        Bind  => [ \$Param{ClassID}, \$Version ],
         Limit => 1,
     );
 

@@ -261,8 +261,7 @@ sub GetStatElement {
     }
 
     # start config item extended search
-    my $ConfigItemIDs
-        = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemSearchExtended(%Param);
+    my $ConfigItemIDs = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemSearchExtended(%Param);
 
     return scalar @{$ConfigItemIDs};
 }

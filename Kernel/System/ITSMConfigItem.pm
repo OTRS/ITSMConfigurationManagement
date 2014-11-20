@@ -402,7 +402,7 @@ sub ConfigItemAdd {
     $Kernel::OM->Get('Kernel::System::DB')->Prepare(
         SQL => 'SELECT id FROM configitem WHERE '
             . 'configitem_number = ? AND class_id = ? ORDER BY id DESC',
-        Bind => [ \$Param{Number}, \$Param{ClassID} ],
+        Bind  => [ \$Param{Number}, \$Param{ClassID} ],
         Limit => 1,
     );
 
@@ -1132,8 +1132,7 @@ sub ConfigItemSearch {
     }
 
     # get like escape string needed for some databases (e.g. oracle)
-    my $LikeEscapeString
-        = $Kernel::OM->Get('Kernel::System::DB')->GetDatabaseFunction('LikeEscapeString');
+    my $LikeEscapeString = $Kernel::OM->Get('Kernel::System::DB')->GetDatabaseFunction('LikeEscapeString');
 
     # assemble the ORDER BY clause
     my @SQLOrderBy;
@@ -1522,8 +1521,7 @@ sub CurInciStateRecalc {
     }
 
     # get incident link types and directions from config
-    my $IncidentLinkTypeDirection
-        = $Kernel::OM->Get('Kernel::Config')->Get('ITSM::Core::IncidentLinkTypeDirection');
+    my $IncidentLinkTypeDirection = $Kernel::OM->Get('Kernel::Config')->Get('ITSM::Core::IncidentLinkTypeDirection');
 
     # to store the new incident state for CIs
     # calculated from all incident link types
@@ -1591,8 +1589,8 @@ sub CurInciStateRecalc {
 
             next CONFIGITEMID if $InciStateType eq 'incident';
 
-           # if nothing has been set already or if the currently set incident state is 'operational'
-           # ('operational' can always be overwritten)
+            # if nothing has been set already or if the currently set incident state is 'operational'
+            # ('operational' can always be overwritten)
             if (
                 !$NewConfigItemIncidentState{$ConfigItemID}
                 || $NewConfigItemIncidentState{$ConfigItemID} eq 'operational'
@@ -1612,8 +1610,7 @@ sub CurInciStateRecalc {
     );
     my %ReverseWarnStateList = reverse %{$WarnStateList};
     my @SortedWarnList       = sort keys %ReverseWarnStateList;
-    my $WarningStateID
-        = $ReverseWarnStateList{Warning} || $ReverseWarnStateList{ $SortedWarnList[0] };
+    my $WarningStateID       = $ReverseWarnStateList{Warning} || $ReverseWarnStateList{ $SortedWarnList[0] };
 
     # set the new current incident state for CIs
     CONFIGITEMID:
@@ -1643,7 +1640,7 @@ sub CurInciStateRecalc {
 
         # update current incident state
         $Kernel::OM->Get('Kernel::System::DB')->Do(
-            SQL => 'UPDATE configitem SET cur_inci_state_id = ? WHERE id = ?',
+            SQL  => 'UPDATE configitem SET cur_inci_state_id = ? WHERE id = ?',
             Bind => [ \$CurInciStateID, \$ConfigItemID ],
         );
 
