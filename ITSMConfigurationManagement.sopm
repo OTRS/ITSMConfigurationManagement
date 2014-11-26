@@ -110,8 +110,7 @@
         <File Permission="644" Location="scripts/test/GenericInterface/Operation/ConfigItem/ConfigItemGet.t"/>
         <File Permission="644" Location="scripts/test/GenericInterface/Operation/ConfigItem/ConfigItemSearch.t"/>
         <File Permission="644" Location="scripts/test/GenericInterface/Operation/ConfigItem/ConfigItemUpdate.t"/>
-        <File Permission="644" Location="scripts/GenericConfigItemConnector.wsdl"/>
-        <File Permission="644" Location="scripts/GenericConfigItemConnector.yml"/>
+        <File Permission="644" Location="scripts/webservices/GenericConfigItemConnector.yml"/>
         <File Permission="644" Location="scripts/test/ImportExportObjectITSMConfigItem.t"/>
         <File Permission="644" Location="scripts/test/ITSMConfigItem.t"/>
         <File Permission="644" Location="scripts/test/ITSMConfigItemLinkTest.t"/>
