@@ -78,7 +78,7 @@ my $XMLData = '
                 <NIC>Eth0</NIC>
                 <IPoverDHCP>No</IPoverDHCP>
                 <IPAddress>192.168.30.1</IPAddress>
-	        </NIC>
+            </NIC>
             <NIC>
                 <NIC>Eth1</NIC>
                 <IPoverDHCP>Yes</IPoverDHCP>
