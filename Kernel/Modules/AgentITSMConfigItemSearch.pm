@@ -612,7 +612,7 @@ sub Run {
             # translate headers
             for my $Header (@CSVHead) {
 
-                # replace FAQNumber header with the current FAQHook from config
+                # replace ConfigItemNumber header with the current ConfigItemNumber from sysconfig
                 if ( $Header eq 'ConfigItemNumber' ) {
                     $Header = $Self->{ConfigObject}->Get('ITSMConfigItem::Hook');
                 }
