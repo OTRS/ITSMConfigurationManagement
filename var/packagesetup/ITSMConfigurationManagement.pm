@@ -1348,10 +1348,10 @@ sub _MigrateDTLInSysConfig {
     my $SysConfigObject = $Kernel::OM->Get('Kernel::System::SysConfig');
     my $ProviderObject  = Kernel::Output::Template::Provider->new();
 
-
     # handle hash settings
     NAME:
-    for my $Name (qw(
+    for my $Name (
+        qw(
         ITSMConfigItem::Frontend::MenuModule
         ITSMConfigItem::Frontend::PreMenuModule
         )
