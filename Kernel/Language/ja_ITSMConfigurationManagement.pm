@@ -17,27 +17,27 @@ sub Data {
     my $Self = shift;
 
     # Template: AAAITSMConfigItem
-    $Self->{Translation}->{'Address'} = '';
+    $Self->{Translation}->{'Address'} = 'アドレス';
     $Self->{Translation}->{'Admin Tool'} = '管理ツール';
     $Self->{Translation}->{'Backup Device'} = 'バックアップ・デバイス';
     $Self->{Translation}->{'Beamer'} = 'プロジェクター';
     $Self->{Translation}->{'Building'} = '構築';
-    $Self->{Translation}->{'CIHistory::ConfigItemCreate'} = '';
-    $Self->{Translation}->{'CIHistory::ConfigItemDelete'} = '';
-    $Self->{Translation}->{'CIHistory::DefinitionUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::DeploymentStateUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::IncidentStateUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::LinkAdd'} = '';
-    $Self->{Translation}->{'CIHistory::LinkDelete'} = '';
-    $Self->{Translation}->{'CIHistory::NameUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::ValueUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::VersionCreate'} = '';
-    $Self->{Translation}->{'CIHistory::VersionDelete'} = '';
-    $Self->{Translation}->{'CIHistory::AttachmentAdd'} = '';
-    $Self->{Translation}->{'CIHistory::AttachmentDelete'} = '';
-    $Self->{Translation}->{'CPU'} = '';
+    $Self->{Translation}->{'CIHistory::ConfigItemCreate'} = 'CIHistory::ConfigItemCreate';
+    $Self->{Translation}->{'CIHistory::ConfigItemDelete'} = 'CIHistory::ConfigItemDelete';
+    $Self->{Translation}->{'CIHistory::DefinitionUpdate'} = 'CIHistory::DefinitionUpdate';
+    $Self->{Translation}->{'CIHistory::DeploymentStateUpdate'} = 'CIHistory::DeploymentStateUpdate';
+    $Self->{Translation}->{'CIHistory::IncidentStateUpdate'} = 'CIHistory::IncidentStateUpdate';
+    $Self->{Translation}->{'CIHistory::LinkAdd'} = 'CIHistory::LinkAdd';
+    $Self->{Translation}->{'CIHistory::LinkDelete'} = 'CIHistory::LinkDelete';
+    $Self->{Translation}->{'CIHistory::NameUpdate'} = 'CIHistory::NameUpdate';
+    $Self->{Translation}->{'CIHistory::ValueUpdate'} = 'CIHistory::ValueUpdate';
+    $Self->{Translation}->{'CIHistory::VersionCreate'} = 'CIHistory::VersionCreate';
+    $Self->{Translation}->{'CIHistory::VersionDelete'} = 'CIHistory::VersionDelete';
+    $Self->{Translation}->{'CIHistory::AttachmentAdd'} = 'CIHistory::AttachmentAdd';
+    $Self->{Translation}->{'CIHistory::AttachmentDelete'} = 'CIHistory::AttachmentDelete';
+    $Self->{Translation}->{'CPU'} = 'CPU';
     $Self->{Translation}->{'Camera'} = 'カメラ';
-    $Self->{Translation}->{'Capacity'} = '';
+    $Self->{Translation}->{'Capacity'} = '容量';
     $Self->{Translation}->{'Change Definition'} = '定義の変更';
     $Self->{Translation}->{'Change of definition failed! See System Log for details.'} = '定義の変更に失敗しました。詳細はシステムログを参照してください。';
     $Self->{Translation}->{'Client Application'} = 'クライアントソフト';
@@ -46,51 +46,51 @@ sub Data {
     $Self->{Translation}->{'Config Item-Area'} = 'アイテムエリアの設定';
     $Self->{Translation}->{'Config Items available'} = '設定項目の利用可 / 不可';
     $Self->{Translation}->{'Config Items shown'} = '設定項目表示';
-    $Self->{Translation}->{'CMDB'} = '';
+    $Self->{Translation}->{'CMDB'} = 'CMDB';
     $Self->{Translation}->{'Demo'} = 'デモ';
     $Self->{Translation}->{'Desktop'} = 'デスクトップ';
     $Self->{Translation}->{'Developer Licence'} = '開発者ライセンス';
     $Self->{Translation}->{'Docking Station'} = 'ドッキングステーション';
     $Self->{Translation}->{'Duplicate'} = 'コピー';
     $Self->{Translation}->{'Embedded'} = '埋め込みオブジェクト';
-    $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = '';
+    $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = '空欄の項目は現在の値が保持されること意味します';
     $Self->{Translation}->{'Enterprise Licence'} = 'エンタープライズ・ライセンス';
     $Self->{Translation}->{'Expiration Date'} = '有効期限';
     $Self->{Translation}->{'Expired'} = '期限切れ';
     $Self->{Translation}->{'Floor'} = '切捨て';
     $Self->{Translation}->{'Freeware'} = 'フリーウェア';
-    $Self->{Translation}->{'GSM'} = '';
-    $Self->{Translation}->{'Gateway'} = '';
+    $Self->{Translation}->{'GSM'} = 'GSM';
+    $Self->{Translation}->{'Gateway'} = 'ゲートウェイ';
     $Self->{Translation}->{'Graphic Adapter'} = 'グラフィックアダプタ';
-    $Self->{Translation}->{'Hard Disk'} = '';
+    $Self->{Translation}->{'Hard Disk'} = 'ハードディスク';
     $Self->{Translation}->{'Hard Disk::Capacity'} = 'ハードディスク容量';
     $Self->{Translation}->{'Hide Versions'} = 'バージョンを非表示';
-    $Self->{Translation}->{'IP Address'} = '';
+    $Self->{Translation}->{'IP Address'} = 'IP アドレス';
     $Self->{Translation}->{'IP over DHCP'} = 'DHCP有効';
     $Self->{Translation}->{'IT Facility'} = 'ITファシリティ';
     $Self->{Translation}->{'Inactive'} = '無効の';
-    $Self->{Translation}->{'Incident'} = '';
-    $Self->{Translation}->{'Install Date'} = '';
+    $Self->{Translation}->{'Incident'} = 'インシデント';
+    $Self->{Translation}->{'Install Date'} = 'インストール日付';
     $Self->{Translation}->{'Keybord'} = 'キーボード';
-    $Self->{Translation}->{'LAN'} = '';
+    $Self->{Translation}->{'LAN'} = 'LAN';
     $Self->{Translation}->{'Laptop'} = 'ノートPC';
     $Self->{Translation}->{'Last Change'} = '最新の変更';
-    $Self->{Translation}->{'Licence Key'} = '';
+    $Self->{Translation}->{'Licence Key'} = 'ライセンスキー';
     $Self->{Translation}->{'Licence Key::Expiration Date'} = 'ライセンスキーの有効期限';
     $Self->{Translation}->{'Licence Key::Quantity'} = 'ライセンスキーの数';
-    $Self->{Translation}->{'Licence Type'} = '';
+    $Self->{Translation}->{'Licence Type'} = 'ライセンスタイプ';
     $Self->{Translation}->{'Maintenance'} = 'メンテナンス';
-    $Self->{Translation}->{'Maximum number of one element'} = '';
-    $Self->{Translation}->{'Media'} = '';
+    $Self->{Translation}->{'Maximum number of one element'} = '一エレメントあたりの最大数';
+    $Self->{Translation}->{'Media'} = 'メディア';
     $Self->{Translation}->{'Middleware'} = 'ミドルウェア';
-    $Self->{Translation}->{'Model'} = '';
+    $Self->{Translation}->{'Model'} = 'モデル';
     $Self->{Translation}->{'Modem'} = 'モデム';
     $Self->{Translation}->{'Monitor'} = 'モニタ';
     $Self->{Translation}->{'Mouse'} = 'マウス';
-    $Self->{Translation}->{'Network Adapter'} = '';
-    $Self->{Translation}->{'Network Adapter::IP Address'} = '';
+    $Self->{Translation}->{'Network Adapter'} = 'ネットワークアダプタ';
+    $Self->{Translation}->{'Network Adapter::IP Address'} = 'ネットワークアダプタ::IP アドレス';
     $Self->{Translation}->{'Network Adapter::IP over DHCP'} = 'ネットワーク・DHCP有効';
-    $Self->{Translation}->{'Network Address'} = '';
+    $Self->{Translation}->{'Network Address'} = 'ネットワークアドレス';
     $Self->{Translation}->{'Network Address::Gateway'} = 'デフォルトゲートウェイ';
     $Self->{Translation}->{'Network Address::Subnet Mask'} = 'サブネットマスク';
     $Self->{Translation}->{'Open Source'} = 'オープンソース';
@@ -99,7 +99,7 @@ sub Data {
     $Self->{Translation}->{'Other Equipment'} = 'その他の機器';
     $Self->{Translation}->{'Outlet'} = 'アウトレット';
     $Self->{Translation}->{'PCMCIA Card'} = 'PCMCIA カード';
-    $Self->{Translation}->{'PDA'} = '';
+    $Self->{Translation}->{'PDA'} = 'PDA';
     $Self->{Translation}->{'Per Node'} = 'ノード毎';
     $Self->{Translation}->{'Per Processor'} = 'プロセッサ毎';
     $Self->{Translation}->{'Per Server'} = 'サーバ毎';
@@ -121,13 +121,13 @@ sub Data {
     $Self->{Translation}->{'Scanner'} = 'スキャナ';
     $Self->{Translation}->{'Search Config Items'} = '設定項目の検索';
     $Self->{Translation}->{'Security Device'} = 'セキュリティデバイス';
-    $Self->{Translation}->{'Serial Number'} = '';
+    $Self->{Translation}->{'Serial Number'} = 'シリアルナンバー';
     $Self->{Translation}->{'Server'} = 'サーバ';
     $Self->{Translation}->{'Server Application'} = 'サーバソフト';
     $Self->{Translation}->{'Server OS'} = 'サーバOS';
     $Self->{Translation}->{'Show Versions'} = 'バージョンの表示';
     $Self->{Translation}->{'Single Licence'} = 'シングルライセンス';
-    $Self->{Translation}->{'Subnet Mask'} = '';
+    $Self->{Translation}->{'Subnet Mask'} = 'サブネットマスク';
     $Self->{Translation}->{'Switch'} = 'スイッチ';
     $Self->{Translation}->{'Telco'} = '電話会社';
     $Self->{Translation}->{'Test/QA'} = 'テスト / QA';
@@ -138,36 +138,36 @@ sub Data {
     $Self->{Translation}->{'Unlimited'} = '無制限';
     $Self->{Translation}->{'User Tool'} = 'ユーザ・ツール';
     $Self->{Translation}->{'Volume Licence'} = 'ボリュームライセンス';
-    $Self->{Translation}->{'WLAN'} = '';
+    $Self->{Translation}->{'WLAN'} = 'WLAN';
     $Self->{Translation}->{'WLAN Access Point'} = 'WLAN アクセスポイント';
-    $Self->{Translation}->{'Warranty Expiration Date'} = '';
+    $Self->{Translation}->{'Warranty Expiration Date'} = 'ワランティ終了日';
     $Self->{Translation}->{'Workplace'} = '職場';
 
     # Template: AdminITSMConfigItem
     $Self->{Translation}->{'Config Item Management'} = '構成アイテム管理';
     $Self->{Translation}->{'Change class definition'} = 'クラス定義を変更';
-    $Self->{Translation}->{'Config Item'} = '';
-    $Self->{Translation}->{'Class'} = '';
+    $Self->{Translation}->{'Config Item'} = 'Config アイテム';
+    $Self->{Translation}->{'Class'} = 'クラス';
     $Self->{Translation}->{'Definition'} = '記述';
 
     # Template: AgentITSMConfigItemAdd
-    $Self->{Translation}->{'Filter for Classes'} = '';
-    $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = '';
+    $Self->{Translation}->{'Filter for Classes'} = 'クラスでフィルタ';
+    $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = '新規の構成アイテムを作成するには、リストからクラスを選択してください。';
 
     # Template: AgentITSMConfigItemBulk
-    $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = '';
-    $Self->{Translation}->{'Deployment state'} = '';
-    $Self->{Translation}->{'Incident state'} = '';
-    $Self->{Translation}->{'Link to another'} = '';
-    $Self->{Translation}->{'Invalid Configuration Item number!'} = '';
-    $Self->{Translation}->{'The number of another Configuration Item to link with.'} = '';
+    $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = 'ITSM 変更アイテム一括アクション';
+    $Self->{Translation}->{'Deployment state'} = 'デプロイメント状況';
+    $Self->{Translation}->{'Incident state'} = 'インシデント状況';
+    $Self->{Translation}->{'Link to another'} = '他とリンクする';
+    $Self->{Translation}->{'Invalid Configuration Item number!'} = 'コンフィグレーションアイテムの値が不正です!';
+    $Self->{Translation}->{'The number of another Configuration Item to link with.'} = '他の構成アイテムへのリンク数';
 
     # Template: AgentITSMConfigItemEdit
-    $Self->{Translation}->{'The name of this config item'} = '';
+    $Self->{Translation}->{'The name of this config item'} = 'この 構成アイテム の名称';
     $Self->{Translation}->{'Name is already in use by the ConfigItems with the following Number(s): %s'} =
-        '';
-    $Self->{Translation}->{'Deployment State'} = '';
-    $Self->{Translation}->{'Incident State'} = '';
+        'この名称はすでに Number(s): %s の構成アイテムで使用中です。';
+    $Self->{Translation}->{'Deployment State'} = '展開状況';
+    $Self->{Translation}->{'Incident State'} = 'インシデント状況';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'コンテキストの設定';
@@ -186,8 +186,8 @@ sub Data {
     $Self->{Translation}->{'Last changed by'} = '最終変更者';
 
     # Template: AgentITSMConfigItemSearch
-    $Self->{Translation}->{'Create New Template'} = '';
-    $Self->{Translation}->{'Run Search'} = '';
+    $Self->{Translation}->{'Create New Template'} = '新規テンプレートを作成する';
+    $Self->{Translation}->{'Run Search'} = '検索を実行';
     $Self->{Translation}->{'Also search in previous versions?'} = 'プレビュー時、以前のバージョンも検索対象としますか？';
 
     # Template: AgentITSMConfigItemSearchResultPrint
@@ -195,11 +195,11 @@ sub Data {
 
     # Template: AgentITSMConfigItemZoom
     $Self->{Translation}->{'Configuration Item'} = '詳細設定';
-    $Self->{Translation}->{'Configuration Item Information'} = '';
+    $Self->{Translation}->{'Configuration Item Information'} = '変更アイテム情報';
     $Self->{Translation}->{'Show one version'} = '説明を表示';
     $Self->{Translation}->{'Show all versions'} = 'すべての説明を表示';
     $Self->{Translation}->{'Version Incident State'} = 'インシデント状態';
-    $Self->{Translation}->{'Version Deployment State'} = '';
+    $Self->{Translation}->{'Version Deployment State'} = 'バージョン展開状況';
     $Self->{Translation}->{'Version Number'} = 'バージョンナンバー';
     $Self->{Translation}->{'Configuration Item Version Details'} = '構成の詳細';
     $Self->{Translation}->{'Property'} = '項目';
@@ -207,22 +207,22 @@ sub Data {
     # SysConfig
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         '';
-    $Self->{Translation}->{'Config Items'} = '';
+    $Self->{Translation}->{'Config Items'} = '構成アイテム';
     $Self->{Translation}->{'Config item event module that enables logging to history in the agent interface.'} =
         '';
-    $Self->{Translation}->{'Configuration Item Limit'} = '';
-    $Self->{Translation}->{'Configuration Item limit per page'} = '';
+    $Self->{Translation}->{'Configuration Item Limit'} = '構成アイテムの制限';
+    $Self->{Translation}->{'Configuration Item limit per page'} = 'ページあたりの構成アイテムの制限値';
     $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} =
         '';
-    $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = '';
+    $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = '構成アイテムの作成または変更';
     $Self->{Translation}->{'Defines Required permissions to create ITSM configuration items using the Generic Interface.'} =
-        '';
+        'ジェネリックインターフェイスを用いてITSM構成を作成する権限を定義する。';
     $Self->{Translation}->{'Defines Required permissions to get ITSM configuration items using the Generic Interface.'} =
-        '';
+        'ジェネリックインターフェイスを用いてITSM構成を取得する権限を定義する。';
     $Self->{Translation}->{'Defines Required permissions to search ITSM configuration items using the Generic Interface.'} =
-        '';
+        'ジェネリックインターフェイスを用いてITSM構成を検索する権限を定義する。';
     $Self->{Translation}->{'Defines Required permissions to update ITSM configuration items using the Generic Interface.'} =
-        '';
+        'ジェネリックインターフェイスを用いてITSM構成を変更する権限を定義する。';
     $Self->{Translation}->{'Defines an overview module to show the small view of a configuration item list.'} =
         '';
     $Self->{Translation}->{'Defines regular expressions individually for each ConfigItem class to check the ConfigItem name and to show corresponding error messages.'} =
