@@ -8,6 +8,7 @@
 # --
 
 [% RenderBlockStart("SearchAJAX") %]
+
 <div class="InnerContent">
     <fieldset class="TableLike">
         <div class="Clear"></div>
