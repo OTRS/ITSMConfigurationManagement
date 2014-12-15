@@ -119,7 +119,7 @@ sub Run {
             NoCache     => 1,
             ContentType => 'text/html',
             Content     => $Output,
-            Type        => 'inline'
+            Type        => 'inline',
         );
     }
 
@@ -162,7 +162,12 @@ sub Run {
             TemplateFile => 'AgentITSMConfigItemSearch',
         );
 
-        return $Output;
+        return $Self->{LayoutObject}->Attachment(
+            NoCache     => 1,
+            ContentType => 'text/html',
+            Content     => $Output,
+            Type        => 'inline',
+        );
     }
 
     # ------------------------------------------------------------ #
@@ -377,7 +382,12 @@ sub Run {
             TemplateFile => 'AgentITSMConfigItemSearch',
         );
 
-        return $Output;
+        return $Self->{LayoutObject}->Attachment(
+            NoCache     => 1,
+            ContentType => 'text/html',
+            Content     => $Output,
+            Type        => 'inline',
+        );
     }
 
     # ------------------------------------------------------------ #
