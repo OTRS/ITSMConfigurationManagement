@@ -119,7 +119,7 @@ sub Run {
             NoCache     => 1,
             ContentType => 'text/html',
             Content     => $Output,
-            Type        => 'inline'
+            Type        => 'inline',
         );
     }
 
@@ -162,7 +162,12 @@ sub Run {
             TemplateFile => 'AgentITSMConfigItemSearch',
         );
 
-        return $Output;
+        return $Self->{LayoutObject}->Attachment(
+            NoCache     => 1,
+            ContentType => 'text/html',
+            Content     => $Output,
+            Type        => 'inline',
+        );
     }
 
     # ------------------------------------------------------------ #
@@ -313,7 +318,7 @@ sub Run {
                 Print  => 'Print',
                 CSV    => 'CSV',
             },
-            Name => 'ResultForm',
+            Name       => 'ResultForm',
             SelectedID => $GetParam{ResultForm} || 'Normal',
         );
 
@@ -366,7 +371,12 @@ sub Run {
             TemplateFile => 'AgentITSMConfigItemSearch',
         );
 
-        return $Output;
+        return $Self->{LayoutObject}->Attachment(
+            NoCache     => 1,
+            ContentType => 'text/html',
+            Content     => $Output,
+            Type        => 'inline',
+        );
     }
 
     # ------------------------------------------------------------ #
@@ -382,8 +392,7 @@ sub Run {
         }
 
         # store last overview screen
-        my $URL
-            = "Action=AgentITSMConfigItemSearch;Profile=$Self->{Profile};"
+        my $URL = "Action=AgentITSMConfigItemSearch;Profile=$Self->{Profile};"
             . "TakeLastSearch=1;StartHit=$Self->{StartHit};Subaction=Search;"
             . "OrderBy=$Self->{OrderBy};SortBy=$Self->{SortBy}";
 
@@ -602,7 +611,7 @@ sub Run {
             # translate headers
             for my $Header (@CSVHead) {
 
-                # replace FAQNumber header with the current FAQHook from config
+                # replace ConfigItemNumber header with the current ConfigItemNumber from sysconfig
                 if ( $Header eq 'ConfigItemNumber' ) {
                     $Header = $Self->{ConfigObject}->Get('ITSMConfigItem::Hook');
                 }
