@@ -438,7 +438,9 @@ END
                         next COLUMN if !$ExtendedVersionData->{$Column}->{Name};
 
                         # convert to ascii text in case the value contains html
-                        my $Value = $Self->{HTMLUtilsObject}->ToAscii( String => $ExtendedVersionData->{$Column}->{Value} ) || '';
+                        my $Value
+                            = $Self->{HTMLUtilsObject}->ToAscii( String => $ExtendedVersionData->{$Column}->{Value} )
+                            || '';
 
                         # convert all whitespace and newlines to single spaces
                         $Value =~ s{ \s+ }{ }gxms;
