@@ -387,9 +387,6 @@ END
                     XMLData       => $ConfigItem->{XMLData}->[1]->{Version}->[1],
                 );
 
-                # # get the xml columns (they contain ::)
-                # my @XMLShowColumns = grep /::/, @ShowColumns;
-
                 # store config item data,
                 %Data = %{$ConfigItem};
 
@@ -460,12 +457,12 @@ END
                 # make a deep copy of the action items to avoid changing the definition
                 my $ClonedActionItems = Storable::dclone( \@ActionItems );
 
-                # substitute DTL variables
+                # substitute TT variables
                 for my $ActionItem ( @{$ClonedActionItems} ) {
-                    $ActionItem->{HTML} =~ s{ \$QData{"ConfigItemID"} }{$ConfigItemID}xmsg;
-                    $ActionItem->{HTML} =~ s{ \$QData{"VersionID"} }{$ConfigItem->{VersionID}}xmsg;
-                    $ActionItem->{Link} =~ s{ \$QData{"ConfigItemID"} }{$ConfigItemID}xmsg;
-                    $ActionItem->{Link} =~ s{ \$QData{"VersionID"} }{$ConfigItem->{VersionID}}xmsg;
+                    $ActionItem->{HTML} =~ s{ \Q[% Data.ConfigItemID | html %]\E }{$ConfigItemID}xmsg;
+                    $ActionItem->{HTML} =~ s{ \Q[% Data.VersionID | html %]\E }{$ConfigItem->{VersionID}}xmsg;
+                    $ActionItem->{Link} =~ s{ \Q[% Data.ConfigItemID | html %]\E }{$ConfigItemID}xmsg;
+                    $ActionItem->{Link} =~ s{ \Q[% Data.VersionID | html %]\E }{$ConfigItem->{VersionID}}xmsg;
                 }
 
                 my $JSON = $Self->{LayoutObject}->JSONEncode(
