@@ -253,6 +253,7 @@ END
 
     # check ShowColumns parameter
     my @ShowColumns;
+    my @XMLShowColumns;
     if ( $Param{ShowColumns} && ref $Param{ShowColumns} eq 'ARRAY' ) {
         @ShowColumns = @{ $Param{ShowColumns} };
     }
@@ -324,7 +325,7 @@ END
             );
 
             # get the xml columns (they contain ::)
-            my @XMLShowColumns = grep /::/, @ShowColumns;
+            @XMLShowColumns = grep /::/, @ShowColumns;
 
             COLUMN:
             for my $Column (@XMLShowColumns) {
@@ -386,8 +387,8 @@ END
                     XMLData       => $ConfigItem->{XMLData}->[1]->{Version}->[1],
                 );
 
-                # get the xml columns (they contain ::)
-                my @XMLShowColumns = grep /::/, @ShowColumns;
+                # # get the xml columns (they contain ::)
+                # my @XMLShowColumns = grep /::/, @ShowColumns;
 
                 # store config item data,
                 %Data = %{$ConfigItem};
@@ -403,6 +404,7 @@ END
 
                 # build column record blocks
                 if (@ShowColumns) {
+
                     COLUMN:
                     for my $Column (@ShowColumns) {
                         $Self->{LayoutObject}->Block(
@@ -439,9 +441,7 @@ END
                         next COLUMN if !$ExtendedVersionData->{$Column}->{Name};
 
                         # convert to ascii text in case the value contains html
-                        my $Value
-                            = $Self->{HTMLUtilsObject}->ToAscii( String => $ExtendedVersionData->{$Column}->{Value} )
-                            || '';
+                        my $Value = $Self->{HTMLUtilsObject}->ToAscii( String => $ExtendedVersionData->{$Column}->{Value} ) || '';
 
                         # convert all whitespace and newlines to single spaces
                         $Value =~ s{ \s+ }{ }gxms;
