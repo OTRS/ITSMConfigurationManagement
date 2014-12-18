@@ -120,6 +120,7 @@ sub Run {
 
             # load module
             if ( $Self->{MainObject}->Require( $Menus{$Menu}->{Module} ) ) {
+
                 my $Object = $Menus{$Menu}->{Module}->new(
                     %{$Self},
                     ConfigItemID => $Self->{ConfigItemID},
