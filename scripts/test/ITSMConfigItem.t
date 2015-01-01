@@ -1,6 +1,6 @@
 # --
 # ITSMConfigItem.t - config item tests
-# Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -2866,7 +2866,9 @@ my @SearchTests = (
             What     => [
                 {
                     "[1]{'Version'}[1]{'Date1'}[1]{'Content'}"
-                        => { '<' => '2010-02-12', }
+                        => {
+                        '<' => '2010-02-12',
+                        }
                 },
             ],
 
@@ -2883,7 +2885,9 @@ my @SearchTests = (
             What     => [
                 {
                     "[1]{'Version'}[1]{'Date1'}[1]{'Content'}"
-                        => { '<' => '2010-02-13', }
+                        => {
+                        '<' => '2010-02-13',
+                        }
                 },
             ],
 
@@ -2901,7 +2905,9 @@ my @SearchTests = (
             What     => [
                 {
                     "[1]{'Version'}[1]{'Date1'}[1]{'Content'}"
-                        => { '<=' => '2010-02-11', }
+                        => {
+                        '<=' => '2010-02-11',
+                        }
                 },
             ],
 
@@ -2918,7 +2924,9 @@ my @SearchTests = (
             What     => [
                 {
                     "[1]{'Version'}[1]{'Date1'}[1]{'Content'}"
-                        => { '<=' => '2010-02-12', }
+                        => {
+                        '<=' => '2010-02-12',
+                        }
                 },
             ],
 
@@ -2936,7 +2944,9 @@ my @SearchTests = (
             What     => [
                 {
                     "[1]{'Version'}[1]{'Date1'}[1]{'Content'}"
-                        => { '<=' => '2010-02-13', }
+                        => {
+                        '<=' => '2010-02-13',
+                        }
                 },
             ],
 
@@ -2954,7 +2964,9 @@ my @SearchTests = (
             What     => [
                 {
                     "[1]{'Version'}[1]{'Date1'}[1]{'Content'}"
-                        => { '=' => '2010-02-11', }
+                        => {
+                        '=' => '2010-02-11',
+                        }
                 },
             ],
         },
@@ -2970,7 +2982,9 @@ my @SearchTests = (
             What     => [
                 {
                     "[1]{'Version'}[1]{'Date1'}[1]{'Content'}"
-                        => { '=' => '2010-02-12', }
+                        => {
+                        '=' => '2010-02-12',
+                        }
                 },
             ],
         },
@@ -2987,7 +3001,9 @@ my @SearchTests = (
             What     => [
                 {
                     "[1]{'Version'}[1]{'Date1'}[1]{'Content'}"
-                        => { '!=' => '2010-02-12', }
+                        => {
+                        '!=' => '2010-02-12',
+                        }
                 },
             ],
         },
@@ -3003,7 +3019,9 @@ my @SearchTests = (
             What     => [
                 {
                     "[1]{'Version'}[1]{'Date1'}[1]{'Content'}"
-                        => { '!=' => '2010-02-13', }
+                        => {
+                        '!=' => '2010-02-13',
+                        }
                 },
             ],
         },
@@ -3020,7 +3038,9 @@ my @SearchTests = (
             What     => [
                 {
                     "[1]{'Version'}[1]{'Date1'}[1]{'Content'}"
-                        => { '>=' => '2010-02-13', }
+                        => {
+                        '>=' => '2010-02-13',
+                        }
                 },
             ],
         },
@@ -3036,7 +3056,9 @@ my @SearchTests = (
             What     => [
                 {
                     "[1]{'Version'}[1]{'Date1'}[1]{'Content'}"
-                        => { '>=' => '2010-02-12', }
+                        => {
+                        '>=' => '2010-02-12',
+                        }
                 },
             ],
 
@@ -3054,7 +3076,9 @@ my @SearchTests = (
             What     => [
                 {
                     "[1]{'Version'}[1]{'Date1'}[1]{'Content'}"
-                        => { '>=' => '2010-02-11', }
+                        => {
+                        '>=' => '2010-02-11',
+                        }
                 },
             ],
         },
@@ -3071,7 +3095,9 @@ my @SearchTests = (
             What     => [
                 {
                     "[1]{'Version'}[1]{'Date1'}[1]{'Content'}"
-                        => { '>' => '2010-02-12', }
+                        => {
+                        '>' => '2010-02-12',
+                        }
                 },
             ],
         },
@@ -3087,7 +3113,9 @@ my @SearchTests = (
             What     => [
                 {
                     "[1]{'Version'}[1]{'Date1'}[1]{'Content'}"
-                        => { '>' => '2010-02-11', }
+                        => {
+                        '>' => '2010-02-11',
+                        }
                 },
             ],
         },

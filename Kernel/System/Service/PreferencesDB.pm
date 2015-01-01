@@ -1,6 +1,6 @@
 # --
 # Kernel/System/Service/PreferencesDB.pm - some user functions
-# Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
 # --
 # $origin: https://github.com/OTRS/otrs/blob/c4828176240c938e4f72b3fe0c6450093b2f032c/Kernel/System/Service/PreferencesDB.pm
 # --
