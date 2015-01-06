@@ -196,8 +196,6 @@ else {
     exit 1;
 }
 
-1;
-
 sub DeleteConfigItems {
 
     # get parameters
