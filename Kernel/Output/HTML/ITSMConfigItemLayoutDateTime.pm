@@ -1,6 +1,6 @@
 # --
 # Kernel/Output/HTML/ITSMConfigItemLayoutDateTime.pm - layout backend module
-# Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -223,10 +223,9 @@ sub SearchFormDataGet {
         $StopYear    = $Param{Value}->{ $Param{Key} . '::TimeStop::Year' };
     }
     else {
-        $Used = $Self->{ParamObject}->GetParam( Param => $Param{Key} );
-        $StartMinute
-            = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStart::Minute' ) || 00;
-        $StartHour = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStart::Hour' )
+        $Used        = $Self->{ParamObject}->GetParam( Param => $Param{Key} );
+        $StartMinute = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStart::Minute' ) || 00;
+        $StartHour   = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStart::Hour' )
             || 00;
         $StartDay   = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStart::Day' );
         $StartMonth = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStart::Month' );

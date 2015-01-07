@@ -1,6 +1,6 @@
 # --
 # Kernel/System/ITSMConfigItem.pm - all config item function
-# Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -444,7 +444,7 @@ sub ConfigItemAdd {
     $Self->{DBObject}->Prepare(
         SQL => 'SELECT id FROM configitem WHERE '
             . 'configitem_number = ? AND class_id = ? ORDER BY id DESC',
-        Bind => [ \$Param{Number}, \$Param{ClassID} ],
+        Bind  => [ \$Param{Number}, \$Param{ClassID} ],
         Limit => 1,
     );
 
@@ -1598,8 +1598,7 @@ sub CurInciStateRecalc {
 
     my %ReverseWarnStateList = reverse %{$WarnStateList};
     my @SortedWarnList       = sort keys %ReverseWarnStateList;
-    my $WarningStateID
-        = $ReverseWarnStateList{Warning} || $ReverseWarnStateList{ $SortedWarnList[0] };
+    my $WarningStateID       = $ReverseWarnStateList{Warning} || $ReverseWarnStateList{ $SortedWarnList[0] };
 
     # to store the relation between services and linked CIs
     my %ServiceCIRelation;

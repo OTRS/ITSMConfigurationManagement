@@ -1,6 +1,6 @@
 # --
 # Kernel/Modules/AgentITSMConfigItemHistory.pm - ticket history
-# Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -201,7 +201,10 @@ sub Run {
     }
 
     # build page
-    my $Output = $Self->{LayoutObject}->Header( Value => $ConfigItemName, Type => 'Small' );
+    my $Output = $Self->{LayoutObject}->Header(
+        Value => $ConfigItemName,
+        Type  => 'Small'
+    );
     $Output .= $Self->{LayoutObject}->Output(
         TemplateFile => 'AgentITSMConfigItemHistory',
         Data         => {

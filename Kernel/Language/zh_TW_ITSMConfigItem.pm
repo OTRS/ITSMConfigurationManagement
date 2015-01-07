@@ -1,6 +1,6 @@
 # --
 # Kernel/Language/zh_TW_ITSMConfigItem.pm - translation file
-# Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
 # --
 # Copyright (C) 2013 Michael Shi <micshi at 163.com>
 # --

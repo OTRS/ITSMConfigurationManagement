@@ -1,6 +1,6 @@
 # --
 # Kernel/System/ITSMConfigItem/History.pm - module for ITSMConfigItem.pm with history functions
-# Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -294,13 +294,11 @@ sub HistoryAdd {
 
         if ( length($Old) > $Length ) {
             my $Index = int( $Length / 2 );
-            $Old
-                = substr( $Old, 0, $Index - 2 ) . '...' . substr( $Old, length($Old) - $Index + 2 );
+            $Old = substr( $Old, 0, $Index - 2 ) . '...' . substr( $Old, length($Old) - $Index + 2 );
         }
         if ( length($New) > $Length ) {
             my $Index = int( $Length / 2 );
-            $New
-                = substr( $New, 0, $Index - 2 ) . '...' . substr( $New, length($New) - $Index + 2 );
+            $New = substr( $New, 0, $Index - 2 ) . '...' . substr( $New, length($New) - $Index + 2 );
         }
         my $NewComment = $Field . '%%' . $Old . '%%' . $New;
 

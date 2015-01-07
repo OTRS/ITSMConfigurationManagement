@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 # --
 # bin/otrs.ITSMConfigItemDelete.pl - to delete config items
-# Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
 # --
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU AFFERO General Public License as published by
@@ -53,7 +53,7 @@ $CommonObject{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new(%Commo
 
 print "otrs.ITSMConfigItemDelete.pl";
 print "delete config items (all, by class (and deployment state) or by number).\n";
-print "Copyright (C) 2001-2014 OTRS AG, http://otrs.com/\n";
+print "Copyright (C) 2001-2015 OTRS AG, http://otrs.com/\n";
 
 my $Help              = '';
 my $All               = '';
@@ -177,8 +177,7 @@ elsif ($Class) {
         }
 
         # get ids of this class (and maybe deployment state) config items
-        @ConfigItemsIDs
-            = @{ $CommonObject{ConfigItemObject}->ConfigItemSearch(%SearchParam) };
+        @ConfigItemsIDs = @{ $CommonObject{ConfigItemObject}->ConfigItemSearch(%SearchParam) };
     }
     else {
         print "Unable to find class name $Class.\n";
@@ -206,8 +205,6 @@ else {
     print "  --ConfigItemNumber no1 no2 no3     delete listed config items\n";
     exit 1;
 }
-
-1;
 
 sub DeleteConfigItems {
 

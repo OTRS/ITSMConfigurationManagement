@@ -1,6 +1,6 @@
 # --
 # Kernel/System/LinkObject/ITSMConfigItem.pm - to link config item objects
-# Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -180,8 +180,7 @@ sub ObjectPermission {
     }
 
     # get config of configitem zoom frontend module
-    $Self->{Config}
-        = $Self->{ConfigObject}->Get('ITSMConfigItem::Frontend::AgentITSMConfigItemZoom');
+    $Self->{Config} = $Self->{ConfigObject}->Get('ITSMConfigItem::Frontend::AgentITSMConfigItemZoom');
 
     # check for access rights
     my $Access = $Self->{ConfigItemObject}->Permission(

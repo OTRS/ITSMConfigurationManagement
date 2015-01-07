@@ -1,6 +1,6 @@
 # --
 # Kernel/Output/HTML/ITSMConfigItemOverviewSmall.pm
-# Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -82,8 +82,7 @@ sub Run {
 
             # remove ID if necesary
             if ( $Param{SortBy} ) {
-                $Param{SortBy}
-                    = ( $Param{SortBy} eq 'InciStateID' )
+                $Param{SortBy} = ( $Param{SortBy} eq 'InciStateID' )
                     ? 'CurInciState'
                     : ( $Param{SortBy} eq 'DeplStateID' ) ? 'CurDeplState'
                     : ( $Param{SortBy} eq 'ClassID' )     ? 'Class'
@@ -248,8 +247,9 @@ sub Run {
                         next COLUMN if !$ExtendedVersionData->{$Column}->{Name};
 
                         # convert to ascii text in case the value contains html
-                        my $Value = $Self->{HTMLUtilsObject}
-                            ->ToAscii( String => $ExtendedVersionData->{$Column}->{Value} ) || '';
+                        my $Value
+                            = $Self->{HTMLUtilsObject}->ToAscii( String => $ExtendedVersionData->{$Column}->{Value} )
+                            || '';
 
                         # convert all whitespace and newlines to single spaces
                         $Value =~ s{ \s+ }{ }gxms;
@@ -342,7 +342,7 @@ sub _XMLData2Hash {
 
             # lookup value
             my $Value = $Self->{ConfigItemObject}->XMLValueLookup(
-                Item => $Item,
+                Item  => $Item,
                 Value => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content} || '',
             );
 

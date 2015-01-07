@@ -1,6 +1,6 @@
 # --
 # Kernel/Output/HTML/LinkObjectITSMConfigItem.pm - layout backend module
-# Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -379,8 +379,8 @@ sub TableCreateComplex {
                     }
 
                     # convert to ascii text in case the value contains html
-                    my $Value = $Self->{HTMLUtilsObject}
-                        ->ToAscii( String => $ExtendedVersionData->{$Column}->{Value} ) || '';
+                    my $Value = $Self->{HTMLUtilsObject}->ToAscii( String => $ExtendedVersionData->{$Column}->{Value} )
+                        || '';
 
                     # convert all whitespace and newlines to single spaces
                     $Value =~ s{ \s+ }{ }gxms;
@@ -524,8 +524,8 @@ sub TableCreateSimple {
                 my %Item = (
                     Type    => 'Link',
                     Content => 'CI:' . $Version->{Number},
-                    Title => "ConfigItem# $Version->{Number} ($Version->{Class}): $Version->{Name}",
-                    Link  => '$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID='
+                    Title   => "ConfigItem# $Version->{Number} ($Version->{Class}): $Version->{Name}",
+                    Link    => '$Env{"Baselink"}Action=AgentITSMConfigItemZoom;ConfigItemID='
                         . $ConfigItemID,
                 );
 
@@ -555,7 +555,10 @@ sub ContentStringCreate {
 
     # check needed stuff
     if ( !$Param{ContentData} ) {
-        $Self->{LogObject}->Log( Priority => 'error', Message => 'Need ContentData!' );
+        $Self->{LogObject}->Log(
+            Priority => 'error',
+            Message  => 'Need ContentData!'
+        );
         return;
     }
 
@@ -582,7 +585,7 @@ sub ContentStringCreate {
             . '<span class="$QData{"CurInciSignal"}"></span> </div>',
         Data => {
             CurInciSignal => $CurInciSignal,
-            CurInciState => $Content->{Content} || '',
+            CurInciState  => $Content->{Content} || '',
         },
     );
 
@@ -789,7 +792,7 @@ sub SearchOptionList {
             $Self->{LayoutObject}->Block(
                 Name => 'InputText',
                 Data => {
-                    Key => $Row->{FormKey},
+                    Key   => $Row->{FormKey},
                     Value => $Row->{FormData} || '',
                 },
             );
@@ -903,7 +906,7 @@ sub _XMLData2Hash {
 
             # lookup value
             my $Value = $Self->{ConfigItemObject}->XMLValueLookup(
-                Item => $Item,
+                Item  => $Item,
                 Value => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content} || '',
             );
 

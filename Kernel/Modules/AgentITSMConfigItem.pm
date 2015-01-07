@@ -1,6 +1,6 @@
 # --
 # Kernel/Modules/AgentITSMConfigItem.pm - the OTRS ITSM config item module
-# Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -36,8 +36,7 @@ sub new {
     $Self->{Config} = $Self->{ConfigObject}->Get("ITSMConfigItem::Frontend::$Self->{Action}");
 
     # get default parameters, try to get filter (ClassID) from session if not given as parameter
-    $Self->{Filter}
-        = $Self->{ParamObject}->GetParam( Param => 'Filter' )
+    $Self->{Filter} = $Self->{ParamObject}->GetParam( Param => 'Filter' )
         || $Self->{AgentITSMConfigItemClassFilter}
         || '';
     $Self->{View} = $Self->{ParamObject}->GetParam( Param => 'View' ) || '';

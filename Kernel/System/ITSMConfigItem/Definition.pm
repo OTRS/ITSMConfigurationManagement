@@ -1,6 +1,6 @@
 # --
 # Kernel/System/ITSMConfigItem/Definition.pm - sub module of ITSMConfigItem.pm with definition functions
-# Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -284,7 +284,7 @@ sub DefinitionAdd {
         SQL => 'SELECT id FROM configitem_definition WHERE '
             . 'class_id = ? AND version = ? '
             . 'ORDER BY version DESC',
-        Bind => [ \$Param{ClassID}, \$Version ],
+        Bind  => [ \$Param{ClassID}, \$Version ],
         Limit => 1,
     );
 

@@ -1,6 +1,6 @@
 # --
 # Kernel/Output/HTML/ITSMConfigItemLayoutTextArea.pm - layout backend module
-# Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -148,10 +148,9 @@ sub FormDataGet {
         )
     {
 
-        $FormData{Invalid} = 1;
-        $Param{Item}->{Form}->{ $Param{Key} }->{Invalid} = 1;
-        $Param{Item}->{Form}->{ $Param{Key} }->{RegExErrorMessage}
-            = $Param{Item}->{Input}->{RegExErrorMessage};
+        $FormData{Invalid}                                         = 1;
+        $Param{Item}->{Form}->{ $Param{Key} }->{Invalid}           = 1;
+        $Param{Item}->{Form}->{ $Param{Key} }->{RegExErrorMessage} = $Param{Item}->{Input}->{RegExErrorMessage};
     }
 
     return \%FormData;

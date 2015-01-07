@@ -1,6 +1,6 @@
 # --
 # Kernel/Modules/AgentITSMConfigItemSearch.pm - the OTRS ITSM config item search module
-# Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -703,27 +703,20 @@ sub Run {
 
                 # create the header
                 my $CellData;
-                $CellData->[0]->[0]->{Content}
-                    = $Self->{LayoutObject}->{LanguageObject}->Get('Class');
-                $CellData->[0]->[0]->{Font} = 'ProportionalBold';
-                $CellData->[0]->[1]->{Content}
-                    = $Self->{LayoutObject}->{LanguageObject}->Get('Incident State');
-                $CellData->[0]->[1]->{Font} = 'ProportionalBold';
-                $CellData->[0]->[2]->{Content}
-                    = $Self->{LayoutObject}->{LanguageObject}->Get('Name');
-                $CellData->[0]->[2]->{Font} = 'ProportionalBold';
-                $CellData->[0]->[3]->{Content}
-                    = $Self->{LayoutObject}->{LanguageObject}->Get('Number');
-                $CellData->[0]->[3]->{Font} = 'ProportionalBold';
-                $CellData->[0]->[4]->{Content}
-                    = $Self->{LayoutObject}->{LanguageObject}->Get('Deployment State');
-                $CellData->[0]->[4]->{Font} = 'ProportionalBold';
-                $CellData->[0]->[5]->{Content}
-                    = $Self->{LayoutObject}->{LanguageObject}->Get('Version');
-                $CellData->[0]->[5]->{Font} = 'ProportionalBold';
-                $CellData->[0]->[6]->{Content}
-                    = $Self->{LayoutObject}->{LanguageObject}->Get('Create Time');
-                $CellData->[0]->[6]->{Font} = 'ProportionalBold';
+                $CellData->[0]->[0]->{Content} = $Self->{LayoutObject}->{LanguageObject}->Get('Class');
+                $CellData->[0]->[0]->{Font}    = 'ProportionalBold';
+                $CellData->[0]->[1]->{Content} = $Self->{LayoutObject}->{LanguageObject}->Get('Incident State');
+                $CellData->[0]->[1]->{Font}    = 'ProportionalBold';
+                $CellData->[0]->[2]->{Content} = $Self->{LayoutObject}->{LanguageObject}->Get('Name');
+                $CellData->[0]->[2]->{Font}    = 'ProportionalBold';
+                $CellData->[0]->[3]->{Content} = $Self->{LayoutObject}->{LanguageObject}->Get('Number');
+                $CellData->[0]->[3]->{Font}    = 'ProportionalBold';
+                $CellData->[0]->[4]->{Content} = $Self->{LayoutObject}->{LanguageObject}->Get('Deployment State');
+                $CellData->[0]->[4]->{Font}    = 'ProportionalBold';
+                $CellData->[0]->[5]->{Content} = $Self->{LayoutObject}->{LanguageObject}->Get('Version');
+                $CellData->[0]->[5]->{Font}    = 'ProportionalBold';
+                $CellData->[0]->[6]->{Content} = $Self->{LayoutObject}->{LanguageObject}->Get('Create Time');
+                $CellData->[0]->[6]->{Font}    = 'ProportionalBold';
 
                 # create the content array
                 my $CounterRow = 1;
@@ -738,8 +731,7 @@ sub Run {
 
                 # output 'No Result', if no content was given
                 if ( !$CellData->[0]->[0] ) {
-                    $CellData->[0]->[0]->{Content}
-                        = $Self->{LayoutObject}->{LanguageObject}->Get('No Result!');
+                    $CellData->[0]->[0]->{Content} = $Self->{LayoutObject}->{LanguageObject}->Get('No Result!');
                 }
 
                 # page params
@@ -792,10 +784,9 @@ sub Run {
 
                 # return the pdf document
                 my $Filename = 'configitem_search';
-                my ( $s, $m, $h, $D, $M, $Y )
-                    = $Self->{TimeObject}->SystemTime2Date(
+                my ( $s, $m, $h, $D, $M, $Y ) = $Self->{TimeObject}->SystemTime2Date(
                     SystemTime => $Self->{TimeObject}->SystemTime(),
-                    );
+                );
                 $M = sprintf( "%02d", $M );
                 $D = sprintf( "%02d", $D );
                 $h = sprintf( "%02d", $h );
@@ -909,8 +900,7 @@ sub Run {
             }
 
             my $ClassName = $ClassList->{$ClassID};
-            my $Title
-                = $Self->{LayoutObject}->{LanguageObject}->Get('Config Item Search Results')
+            my $Title     = $Self->{LayoutObject}->{LanguageObject}->Get('Config Item Search Results')
                 . ' '
                 . $Self->{LayoutObject}->{LanguageObject}->Get('Class')
                 . ' '

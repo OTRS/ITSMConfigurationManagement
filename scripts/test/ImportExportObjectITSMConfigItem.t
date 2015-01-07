@@ -1,6 +1,6 @@
 # --
 # ImportExportObjectITSMConfigItem.t - all import export tests for the ITSMConfigItem object backend
-# Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -23,10 +23,9 @@ use Kernel::System::XML;
 $Self->{EncodeObject}         = Kernel::System::Encode->new( %{$Self} );
 $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
 $Self->{ImportExportObject}   = Kernel::System::ImportExport->new( %{$Self} );
-$Self->{ObjectBackendObject}
-    = Kernel::System::ImportExport::ObjectBackend::ITSMConfigItem->new( %{$Self} );
-$Self->{ConfigItemObject} = Kernel::System::ITSMConfigItem->new( %{$Self} );
-$Self->{XMLObject}        = Kernel::System::XML->new( %{$Self} );
+$Self->{ObjectBackendObject}  = Kernel::System::ImportExport::ObjectBackend::ITSMConfigItem->new( %{$Self} );
+$Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new( %{$Self} );
+$Self->{XMLObject}            = Kernel::System::XML->new( %{$Self} );
 
 # ------------------------------------------------------------ #
 # make preparations
@@ -844,7 +843,7 @@ my @ConfigItems = (
                                         Main1Sub1 => [
                                             undef,
                                             {
-                                                Content => 'Test;:_°^!"§$%&/()=?´`*+Test',
+                                                Content          => 'Test;:_°^!"§$%&/()=?´`*+Test',
                                                 Main1Sub1SubSub1 => [
                                                     undef,
                                                     {
@@ -3102,11 +3101,11 @@ my @ImportDataTests = (
         ReferenceImportData => {
             VersionNumber => 3,
             LastVersion   => {
-                Name                     => 'UnitTest - ConfigItem 3 Version 3',
-                DeplState                => 'Production',
-                InciState                => 'Operational',
-                'Main1::1'               => '"";;::..--__##',
-                'Main1::1::Main1Sub1::1' => 'Test;:_°^!"§$%&/()=?´`*+Test',
+                Name                                          => 'UnitTest - ConfigItem 3 Version 3',
+                DeplState                                     => 'Production',
+                InciState                                     => 'Operational',
+                'Main1::1'                                    => '"";;::..--__##',
+                'Main1::1::Main1Sub1::1'                      => 'Test;:_°^!"§$%&/()=?´`*+Test',
                 'Main1::1::Main1Sub1::1::Main1Sub1SubSub1::1' => '><@~\'}{[]\\',
                 'Main1::1::Main1Sub1::1::Main1Sub1SubSub2::1' => '><@~\'}{[]\\',
                 'Main1::1::Main1Sub2::1'                      => 'Test;:_°^!"§$%&/()=?´`*+Test',
@@ -3201,11 +3200,11 @@ my @ImportDataTests = (
         ReferenceImportData => {
             VersionNumber => 4,
             LastVersion   => {
-                Name                     => 'UnitTest - ConfigItem 3 Version 4',
-                DeplState                => 'Production',
-                InciState                => 'Operational',
-                'Main1::1'               => 'Ϋ δ λ',
-                'Main1::1::Main1Sub1::1' => 'π χ Ϙ',
+                Name                                          => 'UnitTest - ConfigItem 3 Version 4',
+                DeplState                                     => 'Production',
+                InciState                                     => 'Operational',
+                'Main1::1'                                    => 'Ϋ δ λ',
+                'Main1::1::Main1Sub1::1'                      => 'π χ Ϙ',
                 'Main1::1::Main1Sub1::1::Main1Sub1SubSub1::1' => 'Ϻ ϱ Ϯ',
                 'Main1::1::Main1Sub1::1::Main1Sub1SubSub2::1' => 'ɯ ʓ ʠ',
                 'Main1::1::Main1Sub2::1'                      => 'ʬ ʯ',

@@ -1,6 +1,6 @@
 # --
 # Kernel/Output/HTML/ITSMConfigItemLayoutCustomer.pm - layout backend module
-# Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -208,8 +208,7 @@ sub InputCreate {
     }
 
     # create string
-    my $String
-        = '<input type="hidden" name="'
+    my $String = '<input type="hidden" name="'
         . $Param{Key}
         . '" value="'
         . $Value

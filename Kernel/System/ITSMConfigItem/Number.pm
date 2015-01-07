@@ -1,6 +1,6 @@
 # --
 # Kernel/System/ITSMConfigItem/Number.pm - sub module of ITSMConfigItem.pm with number functions
-# Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -74,8 +74,7 @@ sub ConfigItemNumberLookup {
         }
 
         # cache the result
-        $Self->{Cache}->{ConfigItemNumberLookup}->{ID}->{ $Param{ConfigItemID} }
-            = $ConfigItemNumber;
+        $Self->{Cache}->{ConfigItemNumberLookup}->{ID}->{ $Param{ConfigItemID} } = $ConfigItemNumber;
 
         return $ConfigItemNumber;
     }
@@ -98,8 +97,7 @@ sub ConfigItemNumberLookup {
     }
 
     # cache the result
-    $Self->{Cache}->{ConfigItemNumberLookup}->{Number}->{ $Param{ConfigItemNumber} }
-        = $ConfigItemID;
+    $Self->{Cache}->{ConfigItemNumberLookup}->{Number}->{ $Param{ConfigItemNumber} } = $ConfigItemID;
 
     return $ConfigItemID;
 }
@@ -176,7 +174,7 @@ sub CurrentCounterGet {
     $Self->{DBObject}->Prepare(
         SQL => 'SELECT counter FROM configitem_counter WHERE '
             . 'class_id = ? AND counter_type = ?',
-        Bind => [ \$Param{ClassID}, \$Param{Type} ],
+        Bind  => [ \$Param{ClassID}, \$Param{Type} ],
         Limit => 1,
     );
 
