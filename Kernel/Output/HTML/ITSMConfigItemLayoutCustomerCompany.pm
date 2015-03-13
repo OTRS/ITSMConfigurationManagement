@@ -188,14 +188,15 @@ sub SearchFormDataGet {
     }
 
     # get form data
-    my $Value;
+    my @Values;
     if ( $Param{Value} ) {
-        $Value = $Param{Value};
+        @Values = @{ $Param{Value} };
     }
     else {
-        $Value = $Self->{ParamObject}->GetParam( Param => $Param{Key} );
+        @Values = $Self->{ParamObject}->GetArray( Param => $Param{Key} );
     }
-    return $Value;
+
+    return \@Values;
 }
 
 =item SearchInputCreate()
