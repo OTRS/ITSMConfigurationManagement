@@ -527,7 +527,7 @@
         </Insert>
         <Insert Table="general_catalog">
             <Data Key="general_catalog_class" Type="Quote">ITSM::ConfigItem::Hardware::Type</Data>
-            <Data Key="name" Type="Quote">Keybord</Data>
+            <Data Key="name" Type="Quote">Keyboard</Data>
             <Data Key="valid_id">1</Data>
             <Data Key="create_time">current_timestamp</Data>
             <Data Key="create_by">1</Data>
@@ -1217,7 +1217,7 @@
         $Kernel::OM->Get($CodeModule)->CodeReinstall();
 
     ]]></CodeReinstall>
-    <!-- It is IMPORTANT that this CodeUpgrade (Version="3.2.91") comes BEFORE the regular CodeUpgrade block without any version number! -->
+    <!-- It is IMPORTANT that all CodeUpgrade parts with version numbers come BEFORE the regular CodeUpgrade block without any version number! -->
     <CodeUpgrade Type="pre" Version="3.2.91"><![CDATA[
 
         # uninstall Feature AddOn OTRSCIColumns that has been integrated in OTRS::ITSM 3.2.91 (OTRS::ITSM 3.3.0 Beta 1)
@@ -1251,6 +1251,20 @@
         );
 
         $Kernel::OM->Get($CodeModule)->CodeUpgradeFromLowerThan_4_0_2();
+
+    ]]></CodeUpgrade>
+    <CodeUpgrade Type="post" Version="4.0.8"><![CDATA[
+
+        # create the package name
+        my $CodeModule = 'var::packagesetup::' . $Param{Structure}->{Name}->{Content};
+
+        # discard internally stored object, so that the next access to object creates them newly
+        $Kernel::OM->ObjectsDiscard(
+            Objects            => [$CodeModule],
+            ForcePackageReload => 1,
+        );
+
+        $Kernel::OM->Get($CodeModule)->CodeUpgradeFromLowerThan_4_0_8();
 
     ]]></CodeUpgrade>
     <CodeUpgrade Type="post"><![CDATA[

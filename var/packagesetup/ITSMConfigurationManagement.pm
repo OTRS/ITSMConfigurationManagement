@@ -209,6 +209,23 @@ sub CodeUpgradeFromLowerThan_4_0_2 {    ## no critic
     return 1;
 }
 
+=item CodeUpgradeFromLowerThan_4_0_8()
+
+This function is only executed if the installed module version is smaller than 4.0.8.
+
+my $Result = $CodeObject->CodeUpgradeFromLowerThan_4_0_8();
+
+=cut
+
+sub CodeUpgradeFromLowerThan_4_0_8 {    ## no critic
+    my ( $Self, %Param ) = @_;
+
+    # fix a typo in the general catalog
+    $Self->_FixTypo();
+
+    return 1;
+}
+
 =item CodeUpgrade()
 
 run the code upgrade part
@@ -1396,6 +1413,37 @@ sub _MigrateDTLInSysConfig {
                 Value => $Setting,
             );
         }
+    }
+
+    return 1;
+}
+
+=item _FixTypo()
+
+Fixes a typo in the general catalog
+
+    my $Result = $CodeObject->_FixTypo();
+
+=cut
+
+sub _FixTypo {
+    my ( $Self, %Param ) = @_;
+
+    # get the item data with the wrong name "Keybord"
+    my $ItemDataRef = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemGet(
+        Class => 'ITSM::ConfigItem::Hardware::Type',
+        Name  => 'Keybord',
+    );
+
+    # check if general catalog entry exists
+    if ( $ItemDataRef && ref $ItemDataRef eq 'HASH' && %{$ItemDataRef} ) {
+
+        # update the item data with the correct name "Keyboard"
+        $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemUpdate(
+            %{$ItemDataRef},
+            Name   => 'Keyboard',
+            UserID => 1,
+        );
     }
 
     return 1;
