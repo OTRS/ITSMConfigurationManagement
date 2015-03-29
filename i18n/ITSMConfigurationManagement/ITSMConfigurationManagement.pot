@@ -227,7 +227,7 @@ msgid "Install Date"
 msgstr ""
 
 #. Template: AAAITSMConfigItem
-msgid "Keybord"
+msgid "Keyboard"
 msgstr ""
 
 #. Template: AAAITSMConfigItem

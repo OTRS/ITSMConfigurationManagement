@@ -71,7 +71,7 @@ sub Data {
     $Self->{Translation}->{'Inactive'} = '';
     $Self->{Translation}->{'Incident'} = '';
     $Self->{Translation}->{'Install Date'} = '';
-    $Self->{Translation}->{'Keybord'} = '';
+    $Self->{Translation}->{'Keyboard'} = 'Keyboard';
     $Self->{Translation}->{'LAN'} = '';
     $Self->{Translation}->{'Laptop'} = '';
     $Self->{Translation}->{'Last Change'} = '';

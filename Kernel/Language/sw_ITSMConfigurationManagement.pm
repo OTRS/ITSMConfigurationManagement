@@ -71,7 +71,7 @@ sub Data {
     $Self->{Translation}->{'Inactive'} = 'Isiyo amilifu';
     $Self->{Translation}->{'Incident'} = 'Tukio';
     $Self->{Translation}->{'Install Date'} = 'Tarehe ya kusakinisha';
-    $Self->{Translation}->{'Keybord'} = 'Boabonye';
+    $Self->{Translation}->{'Keyboard'} = 'Boabonye';
     $Self->{Translation}->{'LAN'} = 'LAN';
     $Self->{Translation}->{'Laptop'} = 'Kompyuta ya mkononi';
     $Self->{Translation}->{'Last Change'} = 'Mabadiliko ya mwisho';

@@ -71,7 +71,7 @@ sub Data {
     $Self->{Translation}->{'Inactive'} = 'Неактивно';
     $Self->{Translation}->{'Incident'} = 'Инцидент';
     $Self->{Translation}->{'Install Date'} = 'Дата установки';
-    $Self->{Translation}->{'Keybord'} = 'Клавиатура';
+    $Self->{Translation}->{'Keyboard'} = 'Клавиатура';
     $Self->{Translation}->{'LAN'} = 'Сетевая карта';
     $Self->{Translation}->{'Laptop'} = 'Ноутбук';
     $Self->{Translation}->{'Last Change'} = 'Время последнего изменения';

@@ -59,7 +59,7 @@ sub Data {
     $Self->{Translation}->{'Expired'} = '到期';
     $Self->{Translation}->{'Floor'} = '楼层';
     $Self->{Translation}->{'Freeware'} = '免费软件';
-    $Self->{Translation}->{'GSM'} = '';
+    $Self->{Translation}->{'GSM'} = 'GSM';
     $Self->{Translation}->{'Gateway'} = '网关';
     $Self->{Translation}->{'Graphic Adapter'} = '图形处理器';
     $Self->{Translation}->{'Hard Disk'} = '硬盘';
@@ -71,7 +71,7 @@ sub Data {
     $Self->{Translation}->{'Inactive'} = '非活动的';
     $Self->{Translation}->{'Incident'} = '故障';
     $Self->{Translation}->{'Install Date'} = '安装日期';
-    $Self->{Translation}->{'Keybord'} = '键盘';
+    $Self->{Translation}->{'Keyboard'} = '键盘';
     $Self->{Translation}->{'LAN'} = '局域网';
     $Self->{Translation}->{'Laptop'} = '笔记本';
     $Self->{Translation}->{'Last Change'} = '最后修改于';
@@ -148,19 +148,19 @@ sub Data {
     $Self->{Translation}->{'Change class definition'} = '修改类定义';
     $Self->{Translation}->{'Config Item'} = '配置项';
     $Self->{Translation}->{'Class'} = '类';
-    $Self->{Translation}->{'Definition'} = '';
+    $Self->{Translation}->{'Definition'} = '定义';
 
     # Template: AgentITSMConfigItemAdd
     $Self->{Translation}->{'Filter for Classes'} = '过滤类';
     $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = '先从列表中选择类，然后创建新的配置项。';
 
     # Template: AgentITSMConfigItemBulk
-    $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = '';
-    $Self->{Translation}->{'Deployment state'} = '';
-    $Self->{Translation}->{'Incident state'} = '';
-    $Self->{Translation}->{'Link to another'} = '';
-    $Self->{Translation}->{'Invalid Configuration Item number!'} = '';
-    $Self->{Translation}->{'The number of another Configuration Item to link with.'} = '';
+    $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = 'ITSM 配置项 批量操作';
+    $Self->{Translation}->{'Deployment state'} = '部署状态';
+    $Self->{Translation}->{'Incident state'} = '事件状态';
+    $Self->{Translation}->{'Link to another'} = '链接到其他';
+    $Self->{Translation}->{'Invalid Configuration Item number!'} = '无效的配置项编号！';
+    $Self->{Translation}->{'The number of another Configuration Item to link with.'} = '将要链接的另外一个配置项编号';
 
     # Template: AgentITSMConfigItemEdit
     $Self->{Translation}->{'The name of this config item'} = '为这个配置项命名';
@@ -181,7 +181,7 @@ sub Data {
 
     # Template: AgentITSMConfigItemPrint
     $Self->{Translation}->{'ConfigItem'} = '配置项';
-    $Self->{Translation}->{'ConfigItem-Info'} = '';
+    $Self->{Translation}->{'ConfigItem-Info'} = '配置项-信息';
     $Self->{Translation}->{'Current Deployment State'} = '当前的部署状态';
     $Self->{Translation}->{'Last changed by'} = '最后修改于';
 
@@ -199,7 +199,7 @@ sub Data {
     $Self->{Translation}->{'Show one version'} = '显示一个版本';
     $Self->{Translation}->{'Show all versions'} = '显示所有版本';
     $Self->{Translation}->{'Version Incident State'} = '版本故障状态';
-    $Self->{Translation}->{'Version Deployment State'} = '';
+    $Self->{Translation}->{'Version Deployment State'} = '版本部署状态';
     $Self->{Translation}->{'Version Number'} = '版本号';
     $Self->{Translation}->{'Configuration Item Version Details'} = '配置项版本详情';
     $Self->{Translation}->{'Property'} = '属性';
@@ -210,8 +210,8 @@ sub Data {
     $Self->{Translation}->{'Config Items'} = '配置项';
     $Self->{Translation}->{'Config item event module that enables logging to history in the agent interface.'} =
         '';
-    $Self->{Translation}->{'Configuration Item Limit'} = '';
-    $Self->{Translation}->{'Configuration Item limit per page'} = '';
+    $Self->{Translation}->{'Configuration Item Limit'} = '配置项限制';
+    $Self->{Translation}->{'Configuration Item limit per page'} = '每页配置项限制';
     $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} =
         '';
     $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = '创建和管理配置项定义';

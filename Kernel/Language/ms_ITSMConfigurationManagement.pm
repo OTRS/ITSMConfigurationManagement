@@ -71,7 +71,7 @@ sub Data {
     $Self->{Translation}->{'Inactive'} = 'Tidak Aktif';
     $Self->{Translation}->{'Incident'} = 'insiden';
     $Self->{Translation}->{'Install Date'} = 'Pasang Tarikh';
-    $Self->{Translation}->{'Keybord'} = 'Juruteknik';
+    $Self->{Translation}->{'Keyboard'} = 'Juruteknik';
     $Self->{Translation}->{'LAN'} = 'LAN';
     $Self->{Translation}->{'Laptop'} = 'Laptop';
     $Self->{Translation}->{'Last Change'} = 'Perubahan akhir';

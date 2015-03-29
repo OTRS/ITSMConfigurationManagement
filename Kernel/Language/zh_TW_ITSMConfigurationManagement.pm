@@ -71,7 +71,7 @@ sub Data {
     $Self->{Translation}->{'Inactive'} = '非活動的';
     $Self->{Translation}->{'Incident'} = '故障';
     $Self->{Translation}->{'Install Date'} = '安装日期';
-    $Self->{Translation}->{'Keybord'} = '鍵盤';
+    $Self->{Translation}->{'Keyboard'} = '鍵盤';
     $Self->{Translation}->{'LAN'} = '';
     $Self->{Translation}->{'Laptop'} = '筆記本';
     $Self->{Translation}->{'Last Change'} = '最後修改於';

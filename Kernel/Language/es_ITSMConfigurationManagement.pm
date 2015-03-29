@@ -69,9 +69,9 @@ sub Data {
     $Self->{Translation}->{'IP over DHCP'} = 'IP sobre DHCP';
     $Self->{Translation}->{'IT Facility'} = 'Instalaciones de TI';
     $Self->{Translation}->{'Inactive'} = 'Inactivo';
-    $Self->{Translation}->{'Incident'} = '';
+    $Self->{Translation}->{'Incident'} = 'Incidente';
     $Self->{Translation}->{'Install Date'} = 'Fecha de Instalación';
-    $Self->{Translation}->{'Keybord'} = 'Teclado';
+    $Self->{Translation}->{'Keyboard'} = 'Teclado';
     $Self->{Translation}->{'LAN'} = 'LAN';
     $Self->{Translation}->{'Laptop'} = 'Computadora portátil';
     $Self->{Translation}->{'Last Change'} = 'Ultima modificación';
@@ -148,7 +148,7 @@ sub Data {
     $Self->{Translation}->{'Change class definition'} = '';
     $Self->{Translation}->{'Config Item'} = 'Elemento de Configuración';
     $Self->{Translation}->{'Class'} = 'Clase';
-    $Self->{Translation}->{'Definition'} = '';
+    $Self->{Translation}->{'Definition'} = 'Definición';
 
     # Template: AgentITSMConfigItemAdd
     $Self->{Translation}->{'Filter for Classes'} = '';
@@ -157,7 +157,7 @@ sub Data {
     # Template: AgentITSMConfigItemBulk
     $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = '';
     $Self->{Translation}->{'Deployment state'} = '';
-    $Self->{Translation}->{'Incident state'} = '';
+    $Self->{Translation}->{'Incident state'} = 'Estado del incidente';
     $Self->{Translation}->{'Link to another'} = '';
     $Self->{Translation}->{'Invalid Configuration Item number!'} = '';
     $Self->{Translation}->{'The number of another Configuration Item to link with.'} = '';
@@ -186,7 +186,7 @@ sub Data {
     $Self->{Translation}->{'Last changed by'} = 'Última modificación por';
 
     # Template: AgentITSMConfigItemSearch
-    $Self->{Translation}->{'Create New Template'} = '';
+    $Self->{Translation}->{'Create New Template'} = 'Crear nueva plantilla';
     $Self->{Translation}->{'Run Search'} = '';
     $Self->{Translation}->{'Also search in previous versions?'} = '¿Desea buscar en versiones anteriores?';
 

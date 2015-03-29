@@ -63,7 +63,7 @@
 [% Translate("Inactive") | html %]
 [% Translate("Incident") | html %]
 [% Translate("Install Date") | html %]
-[% Translate("Keybord") | html %]
+[% Translate("Keyboard") | html %]
 [% Translate("LAN") | html %]
 [% Translate("Laptop") | html %]
 [% Translate("Last Change") | html %]

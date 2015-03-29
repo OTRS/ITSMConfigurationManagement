@@ -71,7 +71,7 @@ sub Data {
     $Self->{Translation}->{'Inactive'} = '無効の';
     $Self->{Translation}->{'Incident'} = 'インシデント';
     $Self->{Translation}->{'Install Date'} = 'インストール日付';
-    $Self->{Translation}->{'Keybord'} = 'キーボード';
+    $Self->{Translation}->{'Keyboard'} = 'キーボード';
     $Self->{Translation}->{'LAN'} = 'LAN';
     $Self->{Translation}->{'Laptop'} = 'ノートPC';
     $Self->{Translation}->{'Last Change'} = '最新の変更';
@@ -228,9 +228,9 @@ sub Data {
     $Self->{Translation}->{'Defines regular expressions individually for each ConfigItem class to check the ConfigItem name and to show corresponding error messages.'} =
         '';
     $Self->{Translation}->{'Defines the default subobject of the class \'ITSMConfigItem\'.'} =
-        '';
+        'ITSMConfigItemクラスのデフォルト・サブオブジェクトを定義する。';
     $Self->{Translation}->{'Defines the number of rows for the CI definition editor in the admin interface.'} =
-        '';
+        '管理インターフェイス Cl 定義エディタの行数を定義する。';
     $Self->{Translation}->{'Defines the search limit for the AgentITSMConfigItem screen.'} =
         '';
     $Self->{Translation}->{'Defines the search limit for the AgentITSMConfigItemSearch screen.'} =
@@ -254,7 +254,7 @@ sub Data {
     $Self->{Translation}->{'Module to check the group responsible for a class.'} = '';
     $Self->{Translation}->{'Module to check the group responsible for a configuration item.'} =
         '';
-    $Self->{Translation}->{'Module to generate ITSM config item statistics.'} = '';
+    $Self->{Translation}->{'Module to generate ITSM config item statistics.'} = 'ITSM構成タイテム統計を生成するためのモジュール';
     $Self->{Translation}->{'Object backend module registration for the import/export module.'} =
         '';
     $Self->{Translation}->{'Parameters for the deployment states color in the preferences view of the agent interface.'} =
