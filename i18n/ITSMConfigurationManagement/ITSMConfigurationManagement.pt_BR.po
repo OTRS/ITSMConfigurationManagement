@@ -1,11 +1,12 @@
 # 
 # Translators:
+# Murilo Moreira de Oliveira <murilo.moreira@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
 "POT-Creation-Date: 2014-08-08 19:10+0200\n"
-"PO-Revision-Date: 2014-10-27 17:27+0000\n"
-"Last-Translator: Udo Bretz\n"
+"PO-Revision-Date: 2014-12-24 00:24+0000\n"
+"Last-Translator: Murilo Moreira de Oliveira <murilo.moreira@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/OTRS/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -147,7 +148,7 @@ msgstr "Licença de Desenvolvedor"
 
 #. Template: AAAITSMConfigItem
 msgid "Docking Station"
-msgstr ""
+msgstr "Docking Station"
 
 #. Template: AAAITSMConfigItem
 msgid "Duplicate"
@@ -183,7 +184,7 @@ msgstr "Livre"
 
 #. Template: AAAITSMConfigItem
 msgid "GSM"
-msgstr ""
+msgstr "GSM"
 
 #. Template: AAAITSMConfigItem
 msgid "Gateway"
@@ -275,7 +276,7 @@ msgstr "Mídia"
 
 #. Template: AAAITSMConfigItem
 msgid "Middleware"
-msgstr ""
+msgstr "Middleware"
 
 #. Template: AAAITSMConfigItem
 msgid "Model"
@@ -283,15 +284,15 @@ msgstr "Modelo"
 
 #. Template: AAAITSMConfigItem
 msgid "Modem"
-msgstr ""
+msgstr "Modem"
 
 #. Template: AAAITSMConfigItem
 msgid "Monitor"
-msgstr ""
+msgstr "Monitor"
 
 #. Template: AAAITSMConfigItem
 msgid "Mouse"
-msgstr ""
+msgstr "Mouse"
 
 #. Template: AAAITSMConfigItem
 msgid "Network Adapter"
@@ -343,7 +344,7 @@ msgstr "Cartão PCMCIA"
 
 #. Template: AAAITSMConfigItem
 msgid "PDA"
-msgstr ""
+msgstr "PDA"
 
 #. Template: AAAITSMConfigItem
 msgid "Per Node"
@@ -391,7 +392,7 @@ msgstr "Quantidade"
 
 #. Template: AAAITSMConfigItem
 msgid "Rack"
-msgstr ""
+msgstr "Rack"
 
 #. Template: AAAITSMConfigItem
 msgid "Ram"
@@ -419,7 +420,7 @@ msgstr "Roteador"
 
 #. Template: AAAITSMConfigItem
 msgid "Scanner"
-msgstr ""
+msgstr "Scanner"
 
 #. Template: AAAITSMConfigItem
 msgid "Search Config Items"
@@ -459,7 +460,7 @@ msgstr "Máscara de Subrede"
 
 #. Template: AAAITSMConfigItem
 msgid "Switch"
-msgstr ""
+msgstr "Switch"
 
 #. Template: AAAITSMConfigItem
 msgid "Telco"
@@ -499,11 +500,11 @@ msgstr "Licença por Volume"
 
 #. Template: AAAITSMConfigItem
 msgid "WLAN"
-msgstr ""
+msgstr "WLAN"
 
 #. Template: AAAITSMConfigItem
 msgid "WLAN Access Point"
-msgstr ""
+msgstr "WLAN Access Point"
 
 #. Template: AAAITSMConfigItem
 msgid "Warranty Expiration Date"
@@ -543,27 +544,27 @@ msgstr "Selecione uma classe a partir da lista para criar um novo item de config
 
 #. Template: AgentITSMConfigItemBulk
 msgid "ITSM ConfigItem Bulk Action"
-msgstr ""
+msgstr "Ação em Massa em ICs ITSM"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Deployment state"
-msgstr ""
+msgstr "Estado de implantação"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Incident state"
-msgstr ""
+msgstr "Estado de incidente"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Link to another"
-msgstr ""
+msgstr "Associar a outro"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Invalid Configuration Item number!"
-msgstr ""
+msgstr "Número de Item de Configuração inválido!"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "The number of another Configuration Item to link with."
-msgstr ""
+msgstr "O número de outro Item de Configuração para associar."
 
 #. Template: AgentITSMConfigItemEdit
 msgid "The name of this config item"
@@ -572,7 +573,7 @@ msgstr "O nome deste item de configuração"
 #. Template: AgentITSMConfigItemEdit
 msgid ""
 "Name is already in use by the ConfigItems with the following Number(s): %s"
-msgstr ""
+msgstr "Nome já em uso pelos ICs com os seguintes Número(s): %s"
 
 #. Template: AgentITSMConfigItemEdit
 msgid "Deployment State"
@@ -656,11 +657,11 @@ msgstr "Visualizar todas as versões"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Version Incident State"
-msgstr "Estado da Versão de Incidentes"
+msgstr "Estado de Incidente da Versão"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Version Deployment State"
-msgstr ""
+msgstr "Estado de Implantação da Versão"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Version Number"
@@ -679,7 +680,7 @@ msgid ""
 "Check for a unique name only within the same ConfigItem class ('class') or "
 "globally ('global'), which means every existing ConfigItem is taken into "
 "account when looking for duplicates."
-msgstr ""
+msgstr "Verifique se o nome é único apenas dentro da mesma classe de IC ('classe) ou globalmente ('global'), o que significa que cada IC existente é levado em conta ao procurar por duplicações."
 
 #. SysConfig
 msgid "Config Items"
@@ -711,25 +712,25 @@ msgstr "Criar e gerenciar as definições de Itens de Configuração."
 msgid ""
 "Defines Required permissions to create ITSM configuration items using the "
 "Generic Interface."
-msgstr ""
+msgstr "Define as permissões requeridas para criar itens de configuração ITSM usando a Interface Genérica."
 
 #. SysConfig
 msgid ""
 "Defines Required permissions to get ITSM configuration items using the "
 "Generic Interface."
-msgstr ""
+msgstr "Define as permissões requeridas para obter itens de configuração ITSM usando a Interface Genérica."
 
 #. SysConfig
 msgid ""
 "Defines Required permissions to search ITSM configuration items using the "
 "Generic Interface."
-msgstr ""
+msgstr "Define as permissões requeridas para localizar itens de configuração ITSM usando a Interface Genérica."
 
 #. SysConfig
 msgid ""
 "Defines Required permissions to update ITSM configuration items using the "
 "Generic Interface."
-msgstr ""
+msgstr "Define as permissões requeridas para atualizar itens de configuração ITSM usando a Interface Genérica."
 
 #. SysConfig
 msgid ""
@@ -741,7 +742,7 @@ msgstr "Define um módulo de visão geral para mostrar a visão pequena da lista
 msgid ""
 "Defines regular expressions individually for each ConfigItem class to check "
 "the ConfigItem name and to show corresponding error messages."
-msgstr ""
+msgstr "Definie expressões regulares individualmente para cada classe de IC para verificar o nome do IC e para exibir as mensagens de erro correspondentes."
 
 #. SysConfig
 msgid "Defines the default subobject of the class 'ITSMConfigItem'."
@@ -751,22 +752,22 @@ msgstr "Define o subobjeto padrão da classe 'ITSMConfigItem'."
 msgid ""
 "Defines the number of rows for the CI definition editor in the admin "
 "interface."
-msgstr ""
+msgstr "Define o número de linhas do editor de definição do IC na interface de administração."
 
 #. SysConfig
 msgid "Defines the search limit for the AgentITSMConfigItem screen."
-msgstr ""
+msgstr "Define o limite de pesquisa para a tela AgentITSMConfigItem."
 
 #. SysConfig
 msgid "Defines the search limit for the AgentITSMConfigItemSearch screen."
-msgstr ""
+msgstr "Define o limite de pesquisa para a tela AgentITSMConfigItemSearch."
 
 #. SysConfig
 msgid ""
 "Defines the shown columns in the config item overview. This option has no "
 "effect on the position of the column. Note: Class column is always available"
 " if filter 'All' is selected."
-msgstr ""
+msgstr "Define as colunas exibidas na visão geral de itens de configuração. Esta opção não tem efeito na posição da coluna. Nota: A coluna classe está sempre disponível se o filtro \"Todos\" estiver selecionado."
 
 #. SysConfig
 msgid ""
@@ -787,7 +788,7 @@ msgid ""
 "Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, "
 "then the default columns are shown as defined in the setting "
 "ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns."
-msgstr ""
+msgstr "Define as colunas de ICs exibidas na visão geral de itens de configuração, dependendo da classe do IC. Cada entrada deve ser prefixada com o nome da classe e duplo dois pontos (ex. Computador::). Há alguns atributos de IC que são comuns a todos os ICs (tal como a classe Computador: Computador::Nome, Computador::EstadoImplAtual, Computador::HoraCriacao). Para exibir atributos de IC individualmente como definido na definição do IC, o seguinte esquema deve ser usado (classe Computador, por exemplo): Computador::DiscoRigido::1, Computador::DiscoRigido::1::Capacidade::1, Computador::DiscoRigido::2, Computador::DiscoRigido::2::Capacidade::1. Se não há entrada para a classe IC, então as colunas padrão são exibidas como definido na configuração ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns."
 
 #. SysConfig
 msgid ""
@@ -801,7 +802,7 @@ msgid ""
 "Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no "
 "entry for a CI class, then the default columns are shown as defined in the "
 "setting ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns."
-msgstr ""
+msgstr "Define as colunas de ICs exibidas na tela de pesquisa de itens de configuração, dependendo da classe do IC. Cada entrada deve ser prefixada com o nome da classe e duplo dois pontos (ex. Computador::). Há alguns atributos de IC que são comuns a todos os ICs (tal como a classe Computador: Computador::Nome, Computador::EstadoImplAtual, Computador::HoraCriacao). Para exibir atributos de IC individualmente como definido na definição do IC, o seguinte esquema deve ser usado (classe Computador, por exemplo): Computador::DiscoRigido::1, Computador::DiscoRigido::1::Capacidade::1, Computador::DiscoRigido::2, Computador::DiscoRigido::2::Capacidade::1. Se não há entrada para a classe IC, então as colunas padrão são exibidas como definido na configuração ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns."
 
 #. SysConfig
 msgid ""
@@ -814,18 +815,18 @@ msgid ""
 "Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, "
 "Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no "
 "entry for a CI class, then the default columns are shown."
-msgstr ""
+msgstr "Define as colunas de ICs exibidas na tela de tabela complexa de links, dependendo da classe do IC. Cada entrada deve ser prefixada com o nome da classe e duplo dois pontos (ex. Computador::). Há alguns atributos de IC que são comuns a todos os ICs (tal como a classe Computador: Computador::Nome, Computador::EstadoImplAtual, Computador::HoraCriacao). Para exibir atributos de IC individualmente como definido na definição do IC, o seguinte esquema deve ser usado (classe Computador, por exemplo): Computador::DiscoRigido::1, Computador::DiscoRigido::1::Capacidade::1, Computador::DiscoRigido::2, Computador::DiscoRigido::2::Capacidade::1. Se não há entrada para a classe IC, então as colunas padrão são exibidas."
 
 #. SysConfig
 msgid ""
 "Enables configuration item bulk action feature for the agent frontend to "
 "work on more than one configuration item at a time."
-msgstr ""
+msgstr "Habilita a função de ação em massa em itens de configuração na interface de atendente para trabalhar em mais de um IC por vez."
 
 #. SysConfig
 msgid ""
 "Enables configuration item bulk action feature only for the listed groups."
-msgstr ""
+msgstr "Habilita a função de ação em massa em itens de configuração apenas para grupos listados."
 
 #. SysConfig
 msgid ""
@@ -833,7 +834,7 @@ msgid ""
 "Before enabling this option you should check your system for already "
 "existing config items with duplicate names. You can do this with the script "
 "bin/otrs.ITSMConfigItemListDuplicates.pl."
-msgstr ""
+msgstr "Habilita/desabilita a funcionalidade de verificação de nomes únicos de ICs. Antes de habilitar esta opção, você deve verificar se há ICs com nomes duplicados em seu sistema. Você pode fazer isso por meio do script bin/otrs.ITSMConfigItemListDuplicates.pl."
 
 #. SysConfig
 msgid "Module to check the group responsible for a class."
@@ -855,7 +856,7 @@ msgstr "Modulo de registro de objeto para o módulo de importação/exportação
 msgid ""
 "Parameters for the deployment states color in the preferences view of the "
 "agent interface."
-msgstr ""
+msgstr "Parâmetros para a cor dos estados de implantação na tela de preferências da interface de atendente."
 
 #. SysConfig
 msgid ""
@@ -927,13 +928,13 @@ msgstr "Seleciona o módulo de geração de número de item de configuração. \
 msgid ""
 "Sets the deployment state in the configuration item bulk screen of the agent"
 " interface."
-msgstr ""
+msgstr "Configura o estado de implantação na tela de ação em massa de ICs na interface de atendente."
 
 #. SysConfig
 msgid ""
 "Sets the incident state in the configuration item bulk screen of the agent "
 "interface."
-msgstr ""
+msgstr "Configura o estado de incidente na tela de ação em massa de ICs na interface de atendente."
 
 #. SysConfig
 msgid ""
@@ -945,7 +946,7 @@ msgstr "Mostra um link no menu que permite associar um item de configuração co
 msgid ""
 "Shows a link in the menu to access the history of a configuration item in "
 "the configuration item overview of the agent interface."
-msgstr ""
+msgstr "Mostra um link no menu para acessar o histórico de um IC na visão geral de itens de configuração na interface de atendente."
 
 #. SysConfig
 msgid ""
@@ -957,7 +958,7 @@ msgstr "Mostra um link no menu para acessar o histórico de item de configuraç�
 msgid ""
 "Shows a link in the menu to duplicate a configuration item in the "
 "configuration item overview of the agent interface."
-msgstr ""
+msgstr "Mostra um link no menu para duplicar um IC na visão geral de itens de configuração na interface de atendente."
 
 #. SysConfig
 msgid ""
@@ -987,7 +988,7 @@ msgstr "Mostra um link no menu para imprimir um item de configuração na visão
 msgid ""
 "Shows a link in the menu to zoom into a configuration item in the "
 "configuration item overview of the agent interface."
-msgstr ""
+msgstr "Mostra um link no menu para detalhar um IC na visão geral de itens de configuração na interface de atendente."
 
 #. SysConfig
 msgid ""
@@ -998,4 +999,4 @@ msgstr "Mostra o histórico do item configuração (ordem reversa) na interface 
 msgid ""
 "The identifier for a configuration item, e.g. ConfigItem#, MyConfigItem#. "
 "The default is ConfigItem#."
-msgstr ""
+msgstr "O identificador para um item de configuração, ex. ItemConfig#, MeuItemConfig#. O padrão é ItemConfig#."
