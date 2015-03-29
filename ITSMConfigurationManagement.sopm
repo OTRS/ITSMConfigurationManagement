@@ -26,7 +26,6 @@
         <File Permission="644" Location="Kernel/GenericInterface/Operation/ConfigItem/ConfigItemUpdate.pm"/>
         <File Permission="644" Location="Kernel/Language/bg_ITSMConfigurationManagement.pm"/>
         <File Permission="644" Location="Kernel/Language/cs_ITSMConfigurationManagement.pm"/>
-        <File Permission="644" Location="Kernel/Language/ct_ITSMConfigurationManagement.pm"/>
         <File Permission="644" Location="Kernel/Language/da_ITSMConfigurationManagement.pm"/>
         <File Permission="644" Location="Kernel/Language/de_ITSMConfigurationManagement.pm"/>
         <File Permission="644" Location="Kernel/Language/en_ITSMConfigurationManagement.pm"/>
