@@ -209,7 +209,7 @@ sub SearchFormDataGet {
     my $StopYear;
 
     # get form data
-    if ( $Param{Value} ) {
+    if ( $Param{Value} && ref $Param{Value} eq 'HASH' ) {
         $Used        = $Param{Value}->{ $Param{Key} };
         $StartMinute = $Param{Value}->{ $Param{Key} . '::TimeStart::Minute' };
         $StartHour   = $Param{Value}->{ $Param{Key} . '::TimeStart::Hour' };

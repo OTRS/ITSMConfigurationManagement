@@ -202,7 +202,7 @@ sub SearchFormDataGet {
     my $StopMonth;
     my $StopYear;
 
-    if ( $Param{Value} ) {
+    if ( $Param{Value} && ref $Param{Value} eq 'HASH' ) {
         $Used       = $Param{Value}->{ $Param{Key} };
         $StartDay   = $Param{Value}->{ $Param{Key} . '::TimeStart::Day' };
         $StartMonth = $Param{Value}->{ $Param{Key} . '::TimeStart::Month' };
