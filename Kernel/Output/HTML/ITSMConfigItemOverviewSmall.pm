@@ -453,6 +453,24 @@ END
                                 XMLAttributeData => $Value,
                             },
                         );
+
+                        # show links if available
+                        $Self->{LayoutObject}->Block(
+                            Name => 'RecordXMLAttributeLinkStart',
+                            Data => {
+                                %Param,
+                                %Data,
+                                XMLAttributeData => $Value,
+                            },
+                        );
+                        $Self->{LayoutObject}->Block(
+                            Name => 'RecordXMLAttributeLinkEnd',
+                            Data => {
+                                %Param,
+                                %Data,
+                                XMLAttributeData => $Value,
+                            },
+                        );
                     }
                 }
 

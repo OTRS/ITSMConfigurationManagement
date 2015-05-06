@@ -152,7 +152,13 @@
 [% RenderBlockEnd("RecordCurInciStateType") %]
 [% RenderBlockStart("RecordXMLAttribute") %]
                 <td>
-                    <div title="[% Data.XMLAttributeData | html %]">[% Data.XMLAttributeData | html %]</div>
+[% RenderBlockStart("RecordXMLAttributeLinkStart") %]
+                    <a href="[% Env("Baselink") %]Action=AgentITSMConfigItemZoom;ConfigItemID=[% Data.ConfigItemID | uri %]" title="[% Data.Number | uri %]" class="MasterActionLink">
+[% RenderBlockEnd("RecordXMLAttributeLinkStart") %]
+                        <div title="[% Data.XMLAttributeData | html %]">[% Data.XMLAttributeData | html %]</div>
+[% RenderBlockStart("RecordXMLAttributeLinkEnd") %]
+                    </a>
+[% RenderBlockEnd("RecordXMLAttributeLinkEnd") %]
                 </td>
 [% RenderBlockEnd("RecordXMLAttribute") %]
 [% RenderBlockStart("RecordLastChanged") %]
