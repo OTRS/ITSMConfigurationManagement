@@ -170,7 +170,7 @@ sub Data {
     $Self->{Translation}->{'Incident State'} = 'Incidentstatus';
 
     # Template: AgentITSMConfigItemOverviewNavBar
-    $Self->{Translation}->{'Context Settings'} = '';
+    $Self->{Translation}->{'Context Settings'} = 'Context Instellingen';
     $Self->{Translation}->{'Config Items per page'} = 'Aantal configuratie-items per pagina';
 
     # Template: AgentITSMConfigItemOverviewSmall
@@ -191,7 +191,7 @@ sub Data {
     $Self->{Translation}->{'Also search in previous versions?'} = 'Ook in eerdere versies zoeken?';
 
     # Template: AgentITSMConfigItemSearchResultPrint
-    $Self->{Translation}->{'CreateTime'} = '';
+    $Self->{Translation}->{'CreateTime'} = 'Aangemaakt op';
 
     # Template: AgentITSMConfigItemZoom
     $Self->{Translation}->{'Configuration Item'} = 'Configuratie-item';

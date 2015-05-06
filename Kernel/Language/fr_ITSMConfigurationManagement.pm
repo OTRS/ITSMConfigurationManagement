@@ -170,7 +170,7 @@ sub Data {
     $Self->{Translation}->{'Incident State'} = 'Etat de l\'incident';
 
     # Template: AgentITSMConfigItemOverviewNavBar
-    $Self->{Translation}->{'Context Settings'} = '';
+    $Self->{Translation}->{'Context Settings'} = 'Réglages de Contexte';
     $Self->{Translation}->{'Config Items per page'} = '';
 
     # Template: AgentITSMConfigItemOverviewSmall

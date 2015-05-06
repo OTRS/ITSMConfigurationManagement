@@ -191,7 +191,7 @@ sub Data {
     $Self->{Translation}->{'Also search in previous versions?'} = '';
 
     # Template: AgentITSMConfigItemSearchResultPrint
-    $Self->{Translation}->{'CreateTime'} = '';
+    $Self->{Translation}->{'CreateTime'} = 'Created';
 
     # Template: AgentITSMConfigItemZoom
     $Self->{Translation}->{'Configuration Item'} = '';

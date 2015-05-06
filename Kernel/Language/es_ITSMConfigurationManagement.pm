@@ -170,7 +170,7 @@ sub Data {
     $Self->{Translation}->{'Incident State'} = 'Estado del Incidente';
 
     # Template: AgentITSMConfigItemOverviewNavBar
-    $Self->{Translation}->{'Context Settings'} = '';
+    $Self->{Translation}->{'Context Settings'} = 'Ajustes de Contexto';
     $Self->{Translation}->{'Config Items per page'} = '';
 
     # Template: AgentITSMConfigItemOverviewSmall
@@ -191,7 +191,7 @@ sub Data {
     $Self->{Translation}->{'Also search in previous versions?'} = '¿Desea buscar en versiones anteriores?';
 
     # Template: AgentITSMConfigItemSearchResultPrint
-    $Self->{Translation}->{'CreateTime'} = '';
+    $Self->{Translation}->{'CreateTime'} = 'Fecha de Creación';
 
     # Template: AgentITSMConfigItemZoom
     $Self->{Translation}->{'Configuration Item'} = '';
@@ -262,7 +262,7 @@ sub Data {
     $Self->{Translation}->{'Parameters for the deployment states in the preferences view of the agent interface.'} =
         'Parámetros para los estados de implementación en la vista de preferencias de la interfaz del agente.';
     $Self->{Translation}->{'Parameters for the example permission groups of the general catalog attributes.'} =
-        '';
+        'Parámetros para los permisos de ejemplo de los atributos del catálogo general.';
     $Self->{Translation}->{'Parameters for the pages (in which the configuration items are shown).'} =
         'Parámetros para las páginas (donde se muestran los elementos de configuración)';
     $Self->{Translation}->{'Required permissions to use the ITSM configuration item screen in the agent interface.'} =

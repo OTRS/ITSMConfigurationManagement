@@ -165,7 +165,7 @@ sub Data {
     # Template: AgentITSMConfigItemEdit
     $Self->{Translation}->{'The name of this config item'} = '为这个配置项命名';
     $Self->{Translation}->{'Name is already in use by the ConfigItems with the following Number(s): %s'} =
-        '';
+        '编号为(s):%s的配置项已经使用了此名字';
     $Self->{Translation}->{'Deployment State'} = '部署状态';
     $Self->{Translation}->{'Incident State'} = '故障状态';
 
@@ -206,29 +206,29 @@ sub Data {
 
     # SysConfig
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
-        '';
+        '检查配置项类(\'class\')或全局(\'global\')是否为唯一命名，这意味着每个存在的配置项都会在创建之前检查是否存在重复。';
     $Self->{Translation}->{'Config Items'} = '配置项';
     $Self->{Translation}->{'Config item event module that enables logging to history in the agent interface.'} =
-        '';
+        '配置项事件模块可以通过支持人员界面启动日志记录功能。';
     $Self->{Translation}->{'Configuration Item Limit'} = '配置项限制';
     $Self->{Translation}->{'Configuration Item limit per page'} = '每页配置项限制';
     $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} =
-        '';
+        '支持人员界面的配置项搜索后端路由。';
     $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = '创建和管理配置项定义';
     $Self->{Translation}->{'Defines Required permissions to create ITSM configuration items using the Generic Interface.'} =
-        '';
+        '定义使用通用接口创建ITSM配置项所需的权限。';
     $Self->{Translation}->{'Defines Required permissions to get ITSM configuration items using the Generic Interface.'} =
-        '';
+        '定义使用通用接口获取ITSM配置项所需的权限。';
     $Self->{Translation}->{'Defines Required permissions to search ITSM configuration items using the Generic Interface.'} =
-        '';
+        '定义使用通用接口查询ITSM配置项所需的权限。';
     $Self->{Translation}->{'Defines Required permissions to update ITSM configuration items using the Generic Interface.'} =
-        '';
+        '定义使用通用接口更新ITSM配置项所需的权限。';
     $Self->{Translation}->{'Defines an overview module to show the small view of a configuration item list.'} =
-        '';
+        '定义查看某配置项列表视图的概览模块。';
     $Self->{Translation}->{'Defines regular expressions individually for each ConfigItem class to check the ConfigItem name and to show corresponding error messages.'} =
         '';
     $Self->{Translation}->{'Defines the default subobject of the class \'ITSMConfigItem\'.'} =
-        '';
+        '定义\'ITSMConfigItem\'类的默认子对象。';
     $Self->{Translation}->{'Defines the number of rows for the CI definition editor in the admin interface.'} =
         '';
     $Self->{Translation}->{'Defines the search limit for the AgentITSMConfigItem screen.'} =
