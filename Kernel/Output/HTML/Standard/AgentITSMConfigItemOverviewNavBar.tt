@@ -53,7 +53,10 @@
 [% RenderBlockStart("ContextSettings") %]
                 <ul class="ContextFunctions">
                     <li class="ContextSettings">
-                        <a href="#" id="ShowContextSettingsDialog" title="[% Translate("Context Settings") | html %]"><span>[% Translate("Context Settings") | html %]</span></a>
+                        <a href="#" id="ShowContextSettingsDialog" title="[% Translate("Context Settings") | html %]">
+                            <i class="fa fa-cog"></i>
+                            <span>[% Translate("Context Settings") | html %]</span>
+                        </a>
                     </li>
                 </ul>
 
