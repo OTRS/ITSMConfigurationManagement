@@ -1556,8 +1556,6 @@ sub CurInciStateRecalc {
 
             $Self->_FindWarnConfigItems(
                 ConfigItemID         => $ConfigItemID,
-                LinkType             => $LinkType,
-                Direction            => $LinkDirection,
                 NumberOfLinkTypes    => scalar keys %{$IncidentLinkTypeDirection},
                 ScannedConfigItemIDs => \%ScannedConfigItemIDs,
             );
@@ -1780,8 +1778,6 @@ find all config items with a warning
 
     $ConfigItemObject->_FindWarnConfigItems(
         ConfigItemID         => $ConfigItemID,
-        LinkType             => $LinkType,
-        Direction            => $LinkDirection,
         NumberOfLinkTypes    => 2,
         ScannedConfigItemIDs => $ScannedConfigItemIDs,
     );
@@ -1793,6 +1789,9 @@ sub _FindWarnConfigItems {
 
     # check needed stuff
     return if !$Param{ConfigItemID};
+
+    # get incident link types and directions from config
+    my $IncidentLinkTypeDirection = $Kernel::OM->Get('Kernel::Config')->Get('ITSM::Core::IncidentLinkTypeDirection');
 
     my $IncidentCount = 0;
     for my $ConfigItemID ( sort keys %{ $Param{ScannedConfigItemIDs} } ) {
@@ -1819,35 +1818,42 @@ sub _FindWarnConfigItems {
     # increase the visit counter
     $Param{ScannedConfigItemIDs}->{ $Param{ConfigItemID} }->{FindWarn}++;
 
-    # find all linked config items
-    my %LinkedConfigItemIDs = $Kernel::OM->Get('Kernel::System::LinkObject')->LinkKeyList(
-        Object1   => 'ITSMConfigItem',
-        Key1      => $Param{ConfigItemID},
-        Object2   => 'ITSMConfigItem',
-        State     => 'Valid',
-        Type      => $Param{LinkType},
-        Direction => $Param{Direction},
-        UserID    => 1,
-    );
+    LINKTYPE:
+    for my $LinkType ( sort keys %{$IncidentLinkTypeDirection} ) {
 
-    CONFIGITEMID:
-    for my $ConfigItemID ( sort keys %LinkedConfigItemIDs ) {
+        # get the direction
+        my $LinkDirection = $IncidentLinkTypeDirection->{$LinkType};
 
-        # start recursion
-        $Self->_FindWarnConfigItems(
-            ConfigItemID         => $ConfigItemID,
-            LinkType             => $Param{LinkType},
-            Direction            => $Param{Direction},
-            NumberOfLinkTypes    => $Param{NumberOfLinkTypes},
-            ScannedConfigItemIDs => $Param{ScannedConfigItemIDs},
+        # find all linked config items
+        my %LinkedConfigItemIDs = $Kernel::OM->Get('Kernel::System::LinkObject')->LinkKeyList(
+            Object1   => 'ITSMConfigItem',
+            Key1      => $Param{ConfigItemID},
+            Object2   => 'ITSMConfigItem',
+            State     => 'Valid',
+            Type      => $LinkType,
+            Direction => $LinkDirection,
+            UserID    => 1,
         );
 
-        next CONFIGITEMID
-            if $Param{ScannedConfigItemIDs}->{$ConfigItemID}->{Type}
-            && $Param{ScannedConfigItemIDs}->{$ConfigItemID}->{Type} eq 'incident';
+        CONFIGITEMID:
+        for my $ConfigItemID ( sort keys %LinkedConfigItemIDs ) {
 
-        # set warning state
-        $Param{ScannedConfigItemIDs}->{$ConfigItemID}->{Type} = 'warning';
+            # start recursion
+            $Self->_FindWarnConfigItems(
+                ConfigItemID         => $ConfigItemID,
+                LinkType             => $LinkType,
+                Direction            => $LinkDirection,
+                NumberOfLinkTypes    => $Param{NumberOfLinkTypes},
+                ScannedConfigItemIDs => $Param{ScannedConfigItemIDs},
+            );
+ 
+            next CONFIGITEMID
+                if $Param{ScannedConfigItemIDs}->{$ConfigItemID}->{Type}
+                && $Param{ScannedConfigItemIDs}->{$ConfigItemID}->{Type} eq 'incident';
+
+            # set warning state
+            $Param{ScannedConfigItemIDs}->{$ConfigItemID}->{Type} = 'warning';
+        }
     }
 
     return 1;
