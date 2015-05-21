@@ -25,6 +25,58 @@ my $ServiceName    = 'UnitTestServiceTest' . int rand 1_000_000;
 my @ConfigItemIDs;
 my @ServiceIDs;
 
+my $CheckExpectedResults = sub {
+
+    # get parameters
+    my (%Param) = @_;
+
+    my %ExpectedIncidentStates = %{ $Param{ExpectedIncidentStates} };
+    my %ObjectNameSuffix2ID    = %{ $Param{ObjectNameSuffix2ID} };
+
+    # check the results
+    for my $Object ( sort keys %ExpectedIncidentStates ) {
+
+        if ( $Object eq 'ITSMConfigItem' ) {
+
+            for my $NameSuffix ( sort keys %{ $ExpectedIncidentStates{$Object} } ) {
+
+                # get config item data
+                my $ConfigItem = $ConfigItemObject->ConfigItemGet(
+                    ConfigItemID => $ObjectNameSuffix2ID{$Object}->{$NameSuffix},
+                );
+
+                # check the result
+                $Self->Is(
+                    $ConfigItem->{CurInciState},
+                    $ExpectedIncidentStates{$Object}->{$NameSuffix},
+                    "Check incident state of config item $NameSuffix.",
+                );
+            }
+        }
+        elsif ( $Object eq 'Service' ) {
+
+            for my $NameSuffix ( sort keys %{ $ExpectedIncidentStates{$Object} } ) {
+
+                # get service data (including the current incident state)
+                my %ServiceData = $ServiceObject->ServiceGet(
+                    ServiceID     => $ObjectNameSuffix2ID{$Object}->{$NameSuffix},
+                    IncidentState => 1,
+                    UserID        => 1,
+                );
+
+                # check the result
+                $Self->Is(
+                    $ServiceData{CurInciState},
+                    $ExpectedIncidentStates{$Object}->{$NameSuffix},
+                    "Check incident state of service $NameSuffix.",
+                );
+            }
+        }
+    }
+
+    return 1;
+};
+
 # get class list
 my $ClassList = $GeneralCatalogObject->ItemList(
     Class => 'ITSM::ConfigItem::Class',
@@ -292,7 +344,7 @@ for my $LinkType ( sort keys %Links ) {
         "Set config item id $NameSuffix to state '$IncidentState'.",
     );
 
-    CheckExpectedResults(
+    $CheckExpectedResults->(
         ExpectedIncidentStates => {
             ITSMConfigItem => {
                 '1' => 'Warning',
@@ -344,7 +396,7 @@ for my $LinkType ( sort keys %Links ) {
         "Set config item id $NameSuffix to state '$IncidentState'.",
     );
 
-    CheckExpectedResults(
+    $CheckExpectedResults->(
         ExpectedIncidentStates => {
             ITSMConfigItem => {
                 '1' => 'Operational',
@@ -396,7 +448,7 @@ for my $LinkType ( sort keys %Links ) {
         "Set config item id $NameSuffix to state '$IncidentState'.",
     );
 
-    CheckExpectedResults(
+    $CheckExpectedResults->(
         ExpectedIncidentStates => {
             ITSMConfigItem => {
                 '1' => 'Incident',
@@ -448,7 +500,7 @@ for my $LinkType ( sort keys %Links ) {
         "Set config item id $NameSuffix to state '$IncidentState'.",
     );
 
-    CheckExpectedResults(
+    $CheckExpectedResults->(
         ExpectedIncidentStates => {
             ITSMConfigItem => {
                 '1' => 'Incident',
@@ -500,7 +552,7 @@ for my $LinkType ( sort keys %Links ) {
         "Set config item id $NameSuffix to state '$IncidentState'.",
     );
 
-    CheckExpectedResults(
+    $CheckExpectedResults->(
         ExpectedIncidentStates => {
             ITSMConfigItem => {
                 '1' => 'Warning',
@@ -552,7 +604,7 @@ for my $LinkType ( sort keys %Links ) {
         "Set config item id $NameSuffix to state '$IncidentState'.",
     );
 
-    CheckExpectedResults(
+    $CheckExpectedResults->(
         ExpectedIncidentStates => {
             ITSMConfigItem => {
                 '1' => 'Operational',
@@ -627,58 +679,6 @@ for my $ServiceID (@ServiceIDs) {
         $Success,
         "ServiceUpdate() - Invalidate service $Service{ServiceID} - $Service{Name}",
     );
-}
-
-sub CheckExpectedResults {
-
-    # get parameters
-    my (%Param) = @_;
-
-    my %ExpectedIncidentStates = %{ $Param{ExpectedIncidentStates} };
-    my %ObjectNameSuffix2ID    = %{ $Param{ObjectNameSuffix2ID} };
-
-    # check the results
-    for my $Object ( sort keys %ExpectedIncidentStates ) {
-
-        if ( $Object eq 'ITSMConfigItem' ) {
-
-            for my $NameSuffix ( sort keys %{ $ExpectedIncidentStates{$Object} } ) {
-
-                # get config item data
-                my $ConfigItem = $ConfigItemObject->ConfigItemGet(
-                    ConfigItemID => $ObjectNameSuffix2ID{$Object}->{$NameSuffix},
-                );
-
-                # check the result
-                $Self->Is(
-                    $ConfigItem->{CurInciState},
-                    $ExpectedIncidentStates{$Object}->{$NameSuffix},
-                    "Check incident state of config item $NameSuffix.",
-                );
-            }
-        }
-        elsif ( $Object eq 'Service' ) {
-
-            for my $NameSuffix ( sort keys %{ $ExpectedIncidentStates{$Object} } ) {
-
-                # get service data (including the current incident state)
-                my %ServiceData = $ServiceObject->ServiceGet(
-                    ServiceID     => $ObjectNameSuffix2ID{$Object}->{$NameSuffix},
-                    IncidentState => 1,
-                    UserID        => 1,
-                );
-
-                # check the result
-                $Self->Is(
-                    $ServiceData{CurInciState},
-                    $ExpectedIncidentStates{$Object}->{$NameSuffix},
-                    "Check incident state of service $NameSuffix.",
-                );
-            }
-        }
-    }
-
-    return 1;
 }
 
 1;
