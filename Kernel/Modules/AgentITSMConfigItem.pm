@@ -263,13 +263,14 @@ sub Run {
     {
 
         my %ColumnByClass;
-        NAME:
-        for my $Name ( @{ $Self->{Config}->{ShowColumnsByClass} } ) {
-            my ( $Class, $Column ) = split /::/, $Name, 2;
-
-            next NAME if !$Column;
-
-            push @{ $ColumnByClass{$Class} }, $Column;
+        for my $AccessClass ( @{$AccessClassList} ) {
+            my $ClassName = $ClassList->{ $AccessClass };
+            COLUMN:
+            for my $Column ( @{$Self->{Config}->{ShowColumnsByClass}} ) {
+                my ($ClassColumn) = $Column =~ m{^ $ClassName ::(.+) $}xms;
+                next COLUMN if !$ClassColumn;
+                push @{ $ColumnByClass{$ClassName} }, $ClassColumn;
+            }
         }
 
         # check if there is a specific column config for the selected class
