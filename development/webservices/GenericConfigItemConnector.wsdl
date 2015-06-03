@@ -436,49 +436,41 @@
     </wsdl:types>
     <wsdl:message name="ConfigItemCreateRequest">
         <wsdl:part
-            name="ConfigItemCreate"
-            type="tns:OTRS_ConfigItemCreate">
+            name="ConfigItemCreate">
         </wsdl:part>
     </wsdl:message>
     <wsdl:message name="ConfigItemCreateResponse">
-        <wsdl:part
-            name="ConfigItemCreateResponse" type="tns:OTRS_ConfigItemCreateResponse">
+        <wsdl:part name="ConfigItemCreateResponse">
         </wsdl:part>
     </wsdl:message>
     <wsdl:message name="ConfigItemGetRequest">
         <wsdl:part
-            name="ConfigItemGet"
-            type="tns:OTRS_ConfigItemGet">
+            name="ConfigItemGet">
         </wsdl:part>
     </wsdl:message>
     <wsdl:message name="ConfigItemGetResponse">
         <wsdl:part
-            name="ConfigItemGetResponse"
-            type="tns:OTRS_ConfigItemGetResponse">
+            name="ConfigItemGetResponse">
         </wsdl:part>
     </wsdl:message>
     <wsdl:message name="ConfigItemUpdateRequest">
         <wsdl:part
-            name="ConfigItemUpdate"
-            type="tns:OTRS_ConfigItemUpdate">
+            name="ConfigItemUpdate">
         </wsdl:part>
     </wsdl:message>
     <wsdl:message name="ConfigItemUpdateResponse">
         <wsdl:part
-            name="ConfigItemUpdateResponse"
-            type="tns:OTRS_ConfigItemCreateResponse">
+            name="ConfigItemUpdateResponse">
         </wsdl:part>
     </wsdl:message>
     <wsdl:message name="ConfigItemSearchRequest">
         <wsdl:part
-            name="ConfigItemSearch"
-            type="tns:OTRS_ConfigItem_Search">
+            name="ConfigItemSearch">
         </wsdl:part>
     </wsdl:message>
     <wsdl:message name="ConfigItemSearchResponse">
         <wsdl:part
-            name="ConfigItemSearchResponse"
-            type="tns:OTRS_ConifgItem_SearchResponse">
+            name="ConfigItemSearchResponse">
         </wsdl:part>
     </wsdl:message>
     <wsdl:portType name="GenericConfigItemConnector_Interface">
