@@ -1,6 +1,5 @@
 #!/usr/bin/perl
 # --
-# bin/otrs.ITSMConfigItemDelete.pl - to delete config items
 # Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
 # --
 # This program is free software; you can redistribute it and/or modify
@@ -18,6 +17,10 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
 # or see http://www.gnu.org/licenses/agpl.txt.
 # --
+
+# TODO:
+# Remove this after the script has been migrated to a console moddule
+## nofilter(TidyAll::Plugin::OTRS::Perl::BinScripts)
 
 use strict;
 use warnings;
