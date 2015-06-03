@@ -1,11 +1,16 @@
 // --
-// ITSM.UI.ConfigItemActionRow.js - provides all functions for the ConfigItem Action row
 // Copyright (C) 2003-2013 OTRS AG, http://otrs.org/
 // --
 // This software comes with ABSOLUTELY NO WARRANTY. For details, see
 // the enclosed file COPYING for license information (AGPL). If you
 // did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 // --
+
+
+// TODO:
+//Remove this line and fix JSDoc
+// nofilter(TidyAll::Plugin::OTRS::JavaScript::ESLint)
+
 
 "use strict";
 
