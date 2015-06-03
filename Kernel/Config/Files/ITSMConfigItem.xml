@@ -70,7 +70,6 @@
                     <CSS>ITSM.Agent.Detail.css</CSS>
                     <CSS>ITSM.Agent.Default.css</CSS>
                     <CSS>ITSM.Print.css</CSS>
-                    <CSS_IE7>ITSM.Agent.Detail.IE7.css</CSS_IE7>
                     <JavaScript>thirdparty/jquery-tablesorter-2.0.5/jquery.tablesorter.js</JavaScript>
                     <JavaScript>Core.UI.Table.Sort.js</JavaScript>
                     <JavaScript>ITSM.Agent.Zoom.js</JavaScript>
@@ -152,7 +151,6 @@
                     <CSS>ITSM.Agent.Detail.css</CSS>
                     <CSS>ITSM.Table.css</CSS>
                     <CSS>ITSM.Print.css</CSS>
-                    <CSS_IE7>ITSM.Agent.Detail.IE7.css</CSS_IE7>
                     <JavaScript>thirdparty/jquery-tablesorter-2.0.5/jquery.tablesorter.js</JavaScript>
                     <JavaScript>Core.UI.Table.Sort.js</JavaScript>
                     <JavaScript>ITSM.Agent.Zoom.js</JavaScript>
