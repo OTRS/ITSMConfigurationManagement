@@ -172,7 +172,7 @@ sub Run {
         $Page{HeadlineLeft}  = $Version->{Name};
         $Page{HeadlineRight} = $Self->{LayoutObject}->{LanguageObject}->Get('printed by') . ' '
             . $Self->{UserFullname} . ' '
-            . $Self->{LayoutObject}->Output( Template => '$Env{"Time"}' );
+            . $Self->{LayoutObject}->{Time};
         $Page{FooterLeft} = '';
         $Page{PageText}   = $Self->{LayoutObject}->{LanguageObject}->Get('Page');
         $Page{PageCount}  = 1;

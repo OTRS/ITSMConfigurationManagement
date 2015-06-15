@@ -703,7 +703,7 @@ sub Run {
                     . $Self->{LayoutObject}->{LanguageObject}->Translate('Search');
                 my $PrintedBy = $Self->{LayoutObject}->{LanguageObject}->Translate('printed by');
                 my $Page      = $Self->{LayoutObject}->{LanguageObject}->Translate('Page');
-                my $Time      = $Self->{LayoutObject}->Output( Template => '$Env{"Time"}' );
+                my $Time      = $Self->{LayoutObject}->{Time};
 
                 # get maximum number of pages
                 my $MaxPages = $Self->{ConfigObject}->Get('PDF::MaxPages');
