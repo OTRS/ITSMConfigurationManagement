@@ -304,22 +304,16 @@ sub Run {
     $Output .= $LayoutObject->ITSMConfigItemListShow(
         ConfigItemIDs => $ConfigItemIDs,
         Total         => scalar @{$ConfigItemIDs},
-
-        View => $Self->{View},
-
-        Filter     => $Self->{Filter},
-        Filters    => \%NavBarFilter,
-        FilterLink => $LinkFilter,
-
-        TitleName => $LayoutObject->{LanguageObject}->Translate('Overview')
+        View          => $Self->{View},
+        Filter        => $Self->{Filter},
+        Filters       => \%NavBarFilter,
+        FilterLink    => $LinkFilter,
+        TitleName     => $LayoutObject->{LanguageObject}->Translate('Overview')
             . ': ' . $LayoutObject->{LanguageObject}->Translate('ITSM ConfigItem'),
-
-        TitleValue => $Filters{ $Self->{Filter} }->{Name},
-
-        Env      => $Self,
-        LinkPage => $LinkPage,
-        LinkSort => $LinkSort,
-
+        TitleValue  => $Filters{ $Self->{Filter} }->{Name},
+        Env         => $Self,
+        LinkPage    => $LinkPage,
+        LinkSort    => $LinkSort,
         ShowColumns => \@ShowColumns,
         SortBy      => $LayoutObject->Ascii2Html( Text => $SortBy ),
         OrderBy     => $LayoutObject->Ascii2Html( Text => $OrderBy ),
