@@ -11,8 +11,7 @@ package Kernel::Modules::AdminITSMConfigItem;
 use strict;
 use warnings;
 
-use Kernel::System::GeneralCatalog;
-use Kernel::System::ITSMConfigItem;
+our $ObjectManagerDisabled = 1;
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -21,31 +20,28 @@ sub new {
     my $Self = {%Param};
     bless( $Self, $Type );
 
-    # check needed objects
-    for my $Object (qw(ParamObject DBObject LayoutObject ConfigObject LogObject)) {
-        if ( !$Self->{$Object} ) {
-            $Self->{LayoutObject}->FatalError( Message => "Got no $Object!" );
-        }
-    }
-    $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new(%Param);
-    $Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new(%Param);
-
-    # get config of frontend module
-    $Self->{Config} = $Self->{ConfigObject}->Get("ITSMConfigItem::Frontend::$Self->{Action}");
-
     return $Self;
 }
 
 sub Run {
     my ( $Self, %Param ) = @_;
 
+    # get needed objecs
+    my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
+    my $LayoutObject         = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
+
     # get class list
-    my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
+    my $ClassList = $GeneralCatalogObject->ItemList(
         Class => 'ITSM::ConfigItem::Class',
     );
-    return $Self->{LayoutObject}->ErrorScreen() if !$ClassList;
-    return $Self->{LayoutObject}->ErrorScreen() if ref $ClassList ne 'HASH';
-    return $Self->{LayoutObject}->ErrorScreen() if !%{$ClassList};
+    return $LayoutObject->ErrorScreen() if !$ClassList;
+    return $LayoutObject->ErrorScreen() if ref $ClassList ne 'HASH';
+    return $LayoutObject->ErrorScreen() if !%{$ClassList};
+
+    # get needed objects
+    my $ParamObject      = $Kernel::OM->Get('Kernel::System::Web::Request');
+    my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+    my $UserObject       = $Kernel::OM->Get('Kernel::System::User');
 
     # ------------------------------------------------------------ #
     # definition list
@@ -53,12 +49,12 @@ sub Run {
     if ( $Self->{Subaction} eq 'DefinitionList' ) {
 
         # get class id
-        my $ClassID = $Self->{ParamObject}->GetParam( Param => 'ClassID' );
+        my $ClassID = $ParamObject->GetParam( Param => 'ClassID' );
 
-        return $Self->{LayoutObject}->Redirect( OP => "Action=$Self->{Action}" ) if !$ClassID;
+        return $LayoutObject->Redirect( OP => "Action=$Self->{Action}" ) if !$ClassID;
 
         # generate ClassOptionStrg
-        my $ClassOptionStrg = $Self->{LayoutObject}->BuildSelection(
+        my $ClassOptionStrg = $LayoutObject->BuildSelection(
             Data         => $ClassList,
             Name         => 'ClassID',
             PossibleNone => 1,
@@ -67,7 +63,7 @@ sub Run {
         );
 
         # output overview
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'Overview',
             Data => {
                 ClassOptionStrg => $ClassOptionStrg,
@@ -75,7 +71,7 @@ sub Run {
         );
 
         # output overview result
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'DefinitionList',
             Data => {
                 Name => $ClassList->{$ClassID},
@@ -83,19 +79,19 @@ sub Run {
         );
 
         # get definition list
-        my $DefinitionList = $Self->{ConfigItemObject}->DefinitionList(
+        my $DefinitionList = $ConfigItemObject->DefinitionList(
             ClassID => $ClassID,
         );
 
         for my $Definition ( reverse @{$DefinitionList} ) {
 
             # get user data
-            my $FullName = $Self->{UserObject}->UserName(
+            my $FullName = $UserObject->UserName(
                 UserID => $Definition->{CreateBy},
             );
 
             # output definition
-            $Self->{LayoutObject}->Block(
+            $LayoutObject->Block(
                 Name => 'DefinitionListRow',
                 Data => {
                     %{$Definition},
@@ -106,20 +102,20 @@ sub Run {
         }
 
         # ActionOverview
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'ActionOverview',
         );
 
         # output header
-        my $Output = $Self->{LayoutObject}->Header();
-        $Output .= $Self->{LayoutObject}->NavigationBar();
+        my $Output = $LayoutObject->Header();
+        $Output .= $LayoutObject->NavigationBar();
 
         # generate output
-        $Output .= $Self->{LayoutObject}->Output(
+        $Output .= $LayoutObject->Output(
             TemplateFile => 'AdminITSMConfigItem',
             Data         => \%Param,
         );
-        $Output .= $Self->{LayoutObject}->Footer();
+        $Output .= $LayoutObject->Footer();
 
         return $Output;
     }
@@ -130,21 +126,21 @@ sub Run {
     elsif ( $Self->{Subaction} eq 'DefinitionView' ) {
 
         # get definition id
-        my $DefinitionID = $Self->{ParamObject}->GetParam( Param => 'DefinitionID' );
+        my $DefinitionID = $ParamObject->GetParam( Param => 'DefinitionID' );
 
-        return $Self->{LayoutObject}->Redirect( OP => "Action=$Self->{Action}" ) if !$DefinitionID;
+        return $LayoutObject->Redirect( OP => "Action=$Self->{Action}" ) if !$DefinitionID;
 
         # get definition
-        my $Definition = $Self->{ConfigItemObject}->DefinitionGet(
+        my $Definition = $ConfigItemObject->DefinitionGet(
             DefinitionID => $DefinitionID,
         );
-        $Definition->{DefinitionString} = $Self->{LayoutObject}->Ascii2Html(
+        $Definition->{DefinitionString} = $LayoutObject->Ascii2Html(
             Text           => $Definition->{Definition},
             HTMLResultMode => 1,
         );
 
         # generate ClassOptionStrg
-        my $ClassOptionStrg = $Self->{LayoutObject}->BuildSelection(
+        my $ClassOptionStrg = $LayoutObject->BuildSelection(
             Data         => $ClassList,
             Name         => 'ClassID',
             PossibleNone => 1,
@@ -153,7 +149,7 @@ sub Run {
         );
 
         # output overview
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'Overview',
             Data => {
                 ClassOptionStrg => $ClassOptionStrg,
@@ -161,12 +157,12 @@ sub Run {
         );
 
         # get user data
-        my $UserName = $Self->{UserObject}->UserName(
+        my $UserName = $UserObject->UserName(
             UserID => $Definition->{CreateBy},
         );
 
         # output overview result
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'DefinitionView',
             Data => {
                 %{$Definition},
@@ -175,20 +171,20 @@ sub Run {
         );
 
         # ActionOverview
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'ActionOverview',
         );
 
         # output header
-        my $Output = $Self->{LayoutObject}->Header();
-        $Output .= $Self->{LayoutObject}->NavigationBar();
+        my $Output = $LayoutObject->Header();
+        $Output .= $LayoutObject->NavigationBar();
 
         # generate output
-        $Output .= $Self->{LayoutObject}->Output(
+        $Output .= $LayoutObject->Output(
             TemplateFile => 'AdminITSMConfigItem',
             Data         => \%Param,
         );
-        $Output .= $Self->{LayoutObject}->Footer();
+        $Output .= $LayoutObject->Footer();
 
         return $Output;
     }
@@ -199,22 +195,22 @@ sub Run {
     elsif ( $Self->{Subaction} eq 'DefinitionChange' ) {
 
         # get class id
-        my $ClassID = $Self->{ParamObject}->GetParam( Param => 'ClassID' );
+        my $ClassID = $ParamObject->GetParam( Param => 'ClassID' );
 
-        return $Self->{LayoutObject}->Redirect( OP => "Action=$Self->{Action}" ) if !$ClassID;
+        return $LayoutObject->Redirect( OP => "Action=$Self->{Action}" ) if !$ClassID;
 
         # get class list
-        my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
+        my $ClassList = $GeneralCatalogObject->ItemList(
             Class => 'ITSM::ConfigItem::Class',
         );
 
         # get definition
-        my $Definition = $Self->{ConfigItemObject}->DefinitionGet(
+        my $Definition = $ConfigItemObject->DefinitionGet(
             ClassID => $ClassID,
         );
 
         # generate ClassOptionStrg
-        my $ClassOptionStrg = $Self->{LayoutObject}->BuildSelection(
+        my $ClassOptionStrg = $LayoutObject->BuildSelection(
             Data         => $ClassList,
             Name         => 'ClassID',
             PossibleNone => 1,
@@ -223,7 +219,7 @@ sub Run {
         );
 
         # output overview
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'Overview',
             Data => {
                 ClassOptionStrg => $ClassOptionStrg,
@@ -231,31 +227,33 @@ sub Run {
         );
 
         # output overview result
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'DefinitionChange',
             Data => {
                 %{$Definition},
                 ClassID => $ClassID,
                 Class   => $ClassList->{$ClassID},
-                Rows    => $Self->{Config}->{EditorRows} || 30,
+                Rows =>
+                    $Kernel::OM->Get('Kernel::Config')->Get("ITSMConfigItem::Frontend::$Self->{Action}")->{EditorRows}
+                    || 30,
             },
         );
 
         # ActionOverview
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'ActionOverview',
         );
 
         # output header
-        my $Output = $Self->{LayoutObject}->Header();
-        $Output .= $Self->{LayoutObject}->NavigationBar();
+        my $Output = $LayoutObject->Header();
+        $Output .= $LayoutObject->NavigationBar();
 
         # generate output
-        $Output .= $Self->{LayoutObject}->Output(
+        $Output .= $LayoutObject->Output(
             TemplateFile => 'AdminITSMConfigItem',
             Data         => \%Param,
         );
-        $Output .= $Self->{LayoutObject}->Footer();
+        $Output .= $LayoutObject->Footer();
 
         return $Output;
     }
@@ -268,26 +266,26 @@ sub Run {
 
         # get params
         for my $FormParam (qw(ClassID Definition)) {
-            $Definition{$FormParam} = $Self->{ParamObject}->GetParam( Param => $FormParam ) || '';
+            $Definition{$FormParam} = $ParamObject->GetParam( Param => $FormParam ) || '';
         }
         for my $FormParam (qw(ClassID Definition)) {
             if ( !$Definition{$FormParam} ) {
-                $Self->{LogObject}->Log(
+                $Kernel::OM->Get('Kernel::System::Log')->Log(
                     Priority => 'error',
                     Message  => "Need $FormParam!"
                 );
-                return $Self->{LayoutObject}->Redirect( OP => "Action=$Self->{Action}" );
+                return $LayoutObject->Redirect( OP => "Action=$Self->{Action}" );
             }
         }
 
         # add to database
-        my $DefinitionID = $Self->{ConfigItemObject}->DefinitionAdd(
+        my $DefinitionID = $ConfigItemObject->DefinitionAdd(
             %Definition,
             UserID => $Self->{UserID},
         );
 
-        return $Self->{LayoutObject}->ErrorScreen() if !$DefinitionID;
-        return $Self->{LayoutObject}->Redirect( OP => "Action=$Self->{Action}" );
+        return $LayoutObject->ErrorScreen() if !$DefinitionID;
+        return $LayoutObject->Redirect( OP => "Action=$Self->{Action}" );
     }
 
     # ------------------------------------------------------------ #
@@ -296,7 +294,7 @@ sub Run {
     else {
 
         # generate ClassOptionStrg
-        my $ClassOptionStrg = $Self->{LayoutObject}->BuildSelection(
+        my $ClassOptionStrg = $LayoutObject->BuildSelection(
             Data         => $ClassList,
             Name         => 'ClassID',
             PossibleNone => 1,
@@ -304,7 +302,7 @@ sub Run {
         );
 
         # output overview
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'Overview',
             Data => {
                 ClassOptionStrg => $ClassOptionStrg,
@@ -312,13 +310,13 @@ sub Run {
         );
 
         # output overview result
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'OverviewList',
         );
 
         for my $ClassID ( sort { $ClassList->{$a} cmp $ClassList->{$b} } keys %{$ClassList} ) {
 
-            $Self->{LayoutObject}->Block(
+            $LayoutObject->Block(
                 Name => 'OverviewListRow',
                 Data => {
                     ClassID => $ClassID,
@@ -328,15 +326,15 @@ sub Run {
         }
 
         # output header
-        my $Output = $Self->{LayoutObject}->Header();
-        $Output .= $Self->{LayoutObject}->NavigationBar();
+        my $Output = $LayoutObject->Header();
+        $Output .= $LayoutObject->NavigationBar();
 
         # generate output
-        $Output .= $Self->{LayoutObject}->Output(
+        $Output .= $LayoutObject->Output(
             TemplateFile => 'AdminITSMConfigItem',
             Data         => \%Param,
         );
-        $Output .= $Self->{LayoutObject}->Footer();
+        $Output .= $LayoutObject->Footer();
 
         return $Output;
     }

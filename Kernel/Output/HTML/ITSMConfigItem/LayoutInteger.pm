@@ -6,18 +6,24 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package Kernel::Output::HTML::ITSMConfigItemLayoutTextArea;
+package Kernel::Output::HTML::ITSMConfigItem::LayoutInteger;
 
 use strict;
 use warnings;
 
+our @ObjectDependencies = (
+    'Kernel::System::Log',
+    'Kernel::Output::HTML::Layout',
+    'Kernel::System::Web::Request'
+);
+
 =head1 NAME
 
-Kernel::Output::HTML::ITSMConfigItemLayoutTextArea - layout backend module
+Kernel::Output::HTML::ITSMConfigItemLayoutInteger - layout backend module
 
 =head1 SYNOPSIS
 
-All layout functions of textarea objects
+All layout functions of integer objects
 
 =over 4
 
@@ -27,7 +33,7 @@ All layout functions of textarea objects
 
 create an object
 
-    $BackendObject = Kernel::Output::HTML::ITSMConfigItemLayoutTextArea->new(
+    $BackendObject = Kernel::Output::HTML::ITSMConfigItemLayoutInteger->new(
         %Param,
     );
 
@@ -40,11 +46,6 @@ sub new {
     my $Self = {};
     bless( $Self, $Type );
 
-    # check needed objects
-    for my $Object (qw(ConfigObject EncodeObject LogObject MainObject ParamObject LayoutObject)) {
-        $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
-    }
-
     return $Self;
 }
 
@@ -54,7 +55,6 @@ create output string
 
     my $Value = $BackendObject->OutputStringCreate(
         Value => 11,       # (optional)
-        Item => $ItemRef,
     );
 
 =cut
@@ -62,43 +62,9 @@ create output string
 sub OutputStringCreate {
     my ( $Self, %Param ) = @_;
 
-    # check needed stuff
-    if ( !$Param{Item} ) {
-        $Self->{LogObject}->Log(
-            Priority => 'error',
-            Message  => 'Need Item!',
-        );
-        return;
-    }
-
     if ( !defined $Param{Value} ) {
         $Param{Value} = '';
     }
-
-    # translate
-    if ( $Param{Item}->{Input}->{Translation} ) {
-        $Param{Value} = $Self->{LayoutObject}->{LanguageObject}->Get( $Param{Value} );
-    }
-
-    my $LinkFeature    = 1;
-    my $HTMLResultMode = 1;
-
-    # do not transform links in print view
-    if ( $Param{Print} ) {
-        $LinkFeature = 0;
-
-        # do not convert whitespace and newlines in PDF mode
-        if ( $Self->{ConfigObject}->Get('PDF') ) {
-            $HTMLResultMode = 0;
-        }
-    }
-
-    # transform ascii to html
-    $Param{Value} = $Self->{LayoutObject}->Ascii2Html(
-        Text           => $Param{Value},
-        HTMLResultMode => $HTMLResultMode,
-        LinkFeature    => $LinkFeature,
-    );
 
     return $Param{Value};
 }
@@ -120,7 +86,7 @@ sub FormDataGet {
     # check needed stuff
     for my $Argument (qw(Key Item)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );
@@ -131,25 +97,12 @@ sub FormDataGet {
     my %FormData;
 
     # get form data
-    $FormData{Value} = $Self->{ParamObject}->GetParam( Param => $Param{Key} );
+    $FormData{Value} = $Kernel::OM->Get('Kernel::System::Web::Request')->GetParam( Param => $Param{Key} );
 
     # set invalid param
     if ( $Param{Item}->{Input}->{Required} && !$FormData{Value} ) {
         $FormData{Invalid} = 1;
         $Param{Item}->{Form}->{ $Param{Key} }->{Invalid} = 1;
-    }
-
-    # value was entered in the form, a regex is defined and the value does not match the regex
-    if (
-        $FormData{Value}
-        && $Param{Item}->{Input}->{RegEx}
-        && $FormData{Value} !~ m{ $Param{Item}->{Input}->{RegEx} }xms
-        )
-    {
-
-        $FormData{Invalid}                                         = 1;
-        $Param{Item}->{Form}->{ $Param{Key} }->{Invalid}           = 1;
-        $Param{Item}->{Form}->{ $Param{Key} }->{RegExErrorMessage} = $Param{Item}->{Input}->{RegExErrorMessage};
     }
 
     return \%FormData;
@@ -173,7 +126,7 @@ sub InputCreate {
     # check needed stuff
     for my $Argument (qw(Key Item)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );
@@ -181,33 +134,37 @@ sub InputCreate {
         }
     }
 
-    my $Cols = $Param{Item}->{Input}->{Cols} || 58;
-    my $Rows = $Param{Item}->{Input}->{Rows} || 10;
-
-    my $Value = $Param{Value};
-    if ( !defined $Param{Value} ) {
-        $Value = $Param{Item}->{Input}->{ValueDefault} || '';
+    # set min, max and default
+    my $ValueMin = $Param{Item}->{Input}->{ValueMin} || 1;
+    my $ValueMax = $Param{Item}->{Input}->{ValueMax} || 1;
+    if ( $ValueMin > $ValueMax ) {
+        $ValueMin = $ValueMax;
+    }
+    if (
+        $Param{Item}->{Input}->{ValueDefault}
+        && (
+            $Param{Item}->{Input}->{ValueDefault} < $ValueMin
+            || $Param{Item}->{Input}->{ValueDefault} > $ValueMax
+        )
+        )
+    {
+        $Param{Item}->{Input}->{ValueDefault} = '';
     }
 
-    my $Class    = 'W50pc';
-    my $Required = $Param{Required};
-    my $Invalid  = $Param{Invalid};
-    my $ItemId   = $Param{ItemId};
-
-    if ($Required) {
-        $Class .= ' Validate_Required';
+    # create data array
+    my $IntegerList = [];
+    for my $Counter ( $ValueMin .. $ValueMax ) {
+        push @{$IntegerList}, $Counter;
     }
 
-    if ($Invalid) {
-        $Class .= ' ServerError';
-    }
-
-    # translate
-    if ( $Param{Item}->{Input}->{Translation} ) {
-        $Value = $Self->{LayoutObject}->{LanguageObject}->Get($Value);
-    }
-    my $String
-        = "<textarea name=\"$Param{Key}\" id=\"$ItemId\" cols=\"$Cols\" rows=\"$Rows\" class=\"$Class\">$Value</textarea>";
+    # generate string
+    my $String = $Kernel::OM->Get('Kernel::Output::HTML::Layout')->BuildSelection(
+        Data         => $IntegerList,
+        Name         => $Param{Key},
+        PossibleNone => 1,
+        Translation  => 0,
+        SelectedID   => $Param{Value} || $Param{Item}->{Input}->{ValueDefault} || '',
+    );
 
     return $String;
 }
@@ -227,22 +184,23 @@ sub SearchFormDataGet {
 
     # check needed stuff
     if ( !$Param{Key} ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
-            Message  => 'Need Key!',
+            Message  => 'Need Key!'
         );
         return;
     }
 
     # get form data
-    my $Value;
+    my @Values;
     if ( $Param{Value} ) {
-        $Value = $Param{Value};
+        @Values = @{ $Param{Value} };
     }
     else {
-        $Value = $Self->{ParamObject}->GetParam( Param => $Param{Key} );
+        @Values = $Kernel::OM->Get('Kernel::System::Web::Request')->GetArray( Param => $Param{Key} );
     }
-    return $Value;
+
+    return \@Values;
 }
 
 =item SearchInputCreate()
@@ -262,7 +220,7 @@ sub SearchInputCreate {
     # check needed stuff
     for my $Argument (qw(Key Item)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );
@@ -270,12 +228,40 @@ sub SearchInputCreate {
         }
     }
 
-    my $Value = $Self->SearchFormDataGet(%Param);
-    if ( !defined $Value ) {
-        $Value = '';
+    # set min, max
+    my $ValueMin = $Param{Item}->{Input}->{ValueMin} || 1;
+    my $ValueMax = $Param{Item}->{Input}->{ValueMax} || 1;
+    if ( $ValueMin > $ValueMax ) {
+        $ValueMin = $ValueMax;
     }
 
-    my $String = qq{<input type="text" name="$Param{Key}" value="$Value" class="W50pc">};
+    # set preselected value, either from previous selection or the default
+    my $Values = $Self->SearchFormDataGet(%Param);
+
+    # check whether the preselected value is within the valid range
+    my @FilteredValues;
+    VALUE:
+    for my $Value ( @{$Values} ) {
+        next VALUE if !defined $Value;
+        next VALUE if !$Value;
+        next VALUE if $Value < $ValueMin;
+        next VALUE if $Value > $ValueMax;
+
+        push @FilteredValues, $Value;
+    }
+
+    # create data array
+    my @IntegerList = ( $ValueMin .. $ValueMax );
+
+    # generate string
+    my $String = $Kernel::OM->Get('Kernel::Output::HTML::Layout')->BuildSelection(
+        Data        => \@IntegerList,
+        Name        => $Param{Key},
+        Size        => 5,
+        Translation => 0,
+        SelectedID  => \@FilteredValues,
+        Multiple    => 1,
+    );
 
     return $String;
 }

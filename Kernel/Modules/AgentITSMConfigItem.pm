@@ -11,9 +11,9 @@ package Kernel::Modules::AgentITSMConfigItem;
 use strict;
 use warnings;
 
-use Kernel::System::ITSMConfigItem;
-use Kernel::System::GeneralCatalog;
 use Kernel::System::VariableCheck qw(:all);
+
+our $ObjectManagerDisabled = 1;
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -22,61 +22,57 @@ sub new {
     my $Self = {%Param};
     bless( $Self, $Type );
 
-    # check needed objects
-    for my $Object (qw(ParamObject DBObject LayoutObject LogObject ConfigObject)) {
-        if ( !$Self->{$Object} ) {
-            $Self->{LayoutObject}->FatalError( Message => "Got no $Object!" );
-        }
-    }
-    $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new(%Param);
-    $Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new(%Param);
-
-    # get config of frontend module
-    $Self->{Config} = $Self->{ConfigObject}->Get("ITSMConfigItem::Frontend::$Self->{Action}");
-
-    # get default parameters, try to get filter (ClassID) from session if not given as parameter
-    $Self->{Filter} = $Self->{ParamObject}->GetParam( Param => 'Filter' )
-        || $Self->{AgentITSMConfigItemClassFilter}
-        || '';
-    $Self->{View} = $Self->{ParamObject}->GetParam( Param => 'View' ) || '';
-
     return $Self;
 }
 
 sub Run {
     my ( $Self, %Param ) = @_;
 
+    # get config of frontend module
+    $Self->{Config} = $Kernel::OM->Get('Kernel::Config')->Get("ITSMConfigItem::Frontend::$Self->{Action}");
+
     # get config data
     $Self->{SearchLimit} = $Self->{Config}->{SearchLimit} || 10000;
 
+    my $SessionObject = $Kernel::OM->Get('Kernel::System::AuthSession');
+
     # store last screen, used for backlinks
-    $Self->{SessionObject}->UpdateSessionID(
+    $SessionObject->UpdateSessionID(
         SessionID => $Self->{SessionID},
         Key       => 'LastScreenView',
         Value     => $Self->{RequestedURL},
     );
 
     # store last screen overview
-    $Self->{SessionObject}->UpdateSessionID(
+    $SessionObject->UpdateSessionID(
         SessionID => $Self->{SessionID},
         Key       => 'LastScreenOverview',
         Value     => $Self->{RequestedURL},
     );
 
+    # get param object
+    my $ParamObject = $Kernel::OM->Get('Kernel::System::Web::Request');
+
+    # get default parameters, try to get filter (ClassID) from session if not given as parameter
+    $Self->{Filter} = $ParamObject->GetParam( Param => 'Filter' )
+        || $Self->{AgentITSMConfigItemClassFilter}
+        || '';
+    $Self->{View} = $ParamObject->GetParam( Param => 'View' ) || '';
+
     # store filter (ClassID) in session
-    $Self->{SessionObject}->UpdateSessionID(
+    $SessionObject->UpdateSessionID(
         SessionID => $Self->{SessionID},
         Key       => 'AgentITSMConfigItemClassFilter',
         Value     => $Self->{Filter},
     );
 
     # get sorting parameters
-    my $SortBy = $Self->{ParamObject}->GetParam( Param => 'SortBy' )
+    my $SortBy = $ParamObject->GetParam( Param => 'SortBy' )
         || $Self->{Config}->{'SortBy::Default'}
         || 'Number';
 
     # get ordering parameters
-    my $OrderBy = $Self->{ParamObject}->GetParam( Param => 'OrderBy' )
+    my $OrderBy = $ParamObject->GetParam( Param => 'OrderBy' )
         || $Self->{Config}->{'Order::Default'}
         || 'Down';
 
@@ -84,13 +80,16 @@ sub Run {
     my @SortByArray  = ($SortBy);
     my @OrderByArray = ($OrderBy);
 
+    # get general catalog object
+    my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
+
     # get class list
-    my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
+    my $ClassList = $GeneralCatalogObject->ItemList(
         Class => 'ITSM::ConfigItem::Class',
     );
 
     # get possible deployment state list for config items to be shown
-    my $StateList = $Self->{GeneralCatalogObject}->ItemList(
+    my $StateList = $GeneralCatalogObject->ItemList(
         Class       => 'ITSM::ConfigItem::DeploymentState',
         Preferences => {
             Functionality => [ 'preproductive', 'productive' ],
@@ -118,11 +117,14 @@ sub Run {
     # to store all the clases that the user has access, used in search for filter 'All'
     my $AccessClassList;
 
+    # my config item object
+    my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+
     CLASSID:
     for my $ClassID ( sort { ${$ClassList}{$a} cmp ${$ClassList}{$b} } keys %{$ClassList} ) {
 
         # show menu link only if user has access rights
-        my $HasAccess = $Self->{ConfigItemObject}->Permission(
+        my $HasAccess = $ConfigItemObject->Permission(
             Scope   => 'Class',
             ClassID => $ClassID,
             UserID  => $Self->{UserID},
@@ -135,7 +137,7 @@ sub Run {
         push @{$AccessClassList}, $ClassID;
 
         # count all records of this class
-        my $ClassCount = $Self->{ConfigItemObject}->ConfigItemCount(
+        my $ClassCount = $ConfigItemObject->ConfigItemCount(
             ClassID => $ClassID,
         );
 
@@ -197,9 +199,12 @@ sub Run {
         }
     }
 
+    # get layout object
+    my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
+
     # check if filter is valid
     if ( !$Filters{ $Self->{Filter} } ) {
-        return $Self->{LayoutObject}->ErrorScreen(
+        return $LayoutObject->ErrorScreen(
             Message => 'No access to Class is given!',
             Comment => 'Please contact the admin.',
         );
@@ -209,12 +214,12 @@ sub Run {
     my $Refresh = $Self->{UserRefreshTime} ? 60 * $Self->{UserRefreshTime} : undef;
 
     # output header
-    my $Output = $Self->{LayoutObject}->Header(
+    my $Output = $LayoutObject->Header(
         Title   => 'Overview',
         Refresh => $Refresh,
     );
-    $Output .= $Self->{LayoutObject}->NavigationBar();
-    $Self->{LayoutObject}->Print( Output => \$Output );
+    $Output .= $LayoutObject->NavigationBar();
+    $LayoutObject->Print( Output => \$Output );
     $Output = '';
 
     # display all navbar filters
@@ -229,7 +234,7 @@ sub Run {
     }
 
     # search config items which match the selected filter
-    my $ConfigItemIDs = $Self->{ConfigItemObject}->ConfigItemSearchExtended(
+    my $ConfigItemIDs = $ConfigItemObject->ConfigItemSearchExtended(
         %{ $Filters{ $Self->{Filter} }->{Search} },
     );
 
@@ -280,23 +285,23 @@ sub Run {
 
     # show the list
     my $LinkPage =
-        'Filter=' . $Self->{LayoutObject}->Ascii2Html( Text => $Self->{Filter} )
-        . ';View=' . $Self->{LayoutObject}->Ascii2Html( Text => $Self->{View} )
-        . ';SortBy=' . $Self->{LayoutObject}->Ascii2Html( Text => $SortBy )
-        . ';OrderBy=' . $Self->{LayoutObject}->Ascii2Html( Text => $OrderBy )
+        'Filter=' . $LayoutObject->Ascii2Html( Text => $Self->{Filter} )
+        . ';View=' . $LayoutObject->Ascii2Html( Text => $Self->{View} )
+        . ';SortBy=' . $LayoutObject->Ascii2Html( Text => $SortBy )
+        . ';OrderBy=' . $LayoutObject->Ascii2Html( Text => $OrderBy )
         . ';';
     my $LinkSort =
-        'Filter=' . $Self->{LayoutObject}->Ascii2Html( Text => $Self->{Filter} )
-        . ';View=' . $Self->{LayoutObject}->Ascii2Html( Text => $Self->{View} )
+        'Filter=' . $LayoutObject->Ascii2Html( Text => $Self->{Filter} )
+        . ';View=' . $LayoutObject->Ascii2Html( Text => $Self->{View} )
         . ';';
     my $LinkFilter =
-        'SortBy=' . $Self->{LayoutObject}->Ascii2Html( Text => $SortBy )
-        . ';OrderBy=' . $Self->{LayoutObject}->Ascii2Html( Text => $OrderBy )
-        . ';View=' . $Self->{LayoutObject}->Ascii2Html( Text => $Self->{View} )
+        'SortBy=' . $LayoutObject->Ascii2Html( Text => $SortBy )
+        . ';OrderBy=' . $LayoutObject->Ascii2Html( Text => $OrderBy )
+        . ';View=' . $LayoutObject->Ascii2Html( Text => $Self->{View} )
         . ';';
 
     # show config item list
-    $Output .= $Self->{LayoutObject}->ITSMConfigItemListShow(
+    $Output .= $LayoutObject->ITSMConfigItemListShow(
         ConfigItemIDs => $ConfigItemIDs,
         Total         => scalar @{$ConfigItemIDs},
 
@@ -306,8 +311,8 @@ sub Run {
         Filters    => \%NavBarFilter,
         FilterLink => $LinkFilter,
 
-        TitleName => $Self->{LayoutObject}->{LanguageObject}->Get('Overview')
-            . ': ' . $Self->{LayoutObject}->{LanguageObject}->Get('ITSM ConfigItem'),
+        TitleName => $LayoutObject->{LanguageObject}->Translate('Overview')
+            . ': ' . $LayoutObject->{LanguageObject}->Translate('ITSM ConfigItem'),
 
         TitleValue => $Filters{ $Self->{Filter} }->{Name},
 
@@ -316,12 +321,12 @@ sub Run {
         LinkSort => $LinkSort,
 
         ShowColumns => \@ShowColumns,
-        SortBy      => $Self->{LayoutObject}->Ascii2Html( Text => $SortBy ),
-        OrderBy     => $Self->{LayoutObject}->Ascii2Html( Text => $OrderBy ),
+        SortBy      => $LayoutObject->Ascii2Html( Text => $SortBy ),
+        OrderBy     => $LayoutObject->Ascii2Html( Text => $OrderBy ),
     );
 
     # add footer
-    $Output .= $Self->{LayoutObject}->Footer();
+    $Output .= $LayoutObject->Footer();
 
     return $Output;
 }

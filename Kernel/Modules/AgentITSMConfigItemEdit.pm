@@ -11,10 +11,9 @@ package Kernel::Modules::AgentITSMConfigItemEdit;
 use strict;
 use warnings;
 
-use Kernel::System::ITSMConfigItem;
-use Kernel::System::GeneralCatalog;
-use Kernel::System::Web::UploadCache;
 use Kernel::System::VariableCheck qw(:all);
+
+our $ObjectManagerDisabled = 1;
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -23,48 +22,37 @@ sub new {
     my $Self = {%Param};
     bless( $Self, $Type );
 
-    # check needed objects
-    for my $Object (qw(ParamObject DBObject LayoutObject LogObject ConfigObject)) {
-        if ( !$Self->{$Object} ) {
-            $Self->{LayoutObject}->FatalError( Message => "Got no $Object!" );
-        }
-    }
-
-    # create additional objects
-    $Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new(%Param);
-    $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new(%Param);
-    $Self->{UploadCacheObject}    = Kernel::System::Web::UploadCache->new(%Param);
-
-    # get config of frontend module
-    $Self->{Config} = $Self->{ConfigObject}->Get("ITSMConfigItem::Frontend::$Self->{Action}");
-
-    # get form id
-    $Self->{FormID} = $Self->{ParamObject}->GetParam( Param => 'FormID' );
-
-    # create form id
-    if ( !$Self->{FormID} ) {
-        $Self->{FormID} = $Self->{UploadCacheObject}->FormIDCreate();
-    }
-
     return $Self;
 }
 
 sub Run {
     my ( $Self, %Param ) = @_;
 
+    # my param object
+    my $ParamObject = $Kernel::OM->Get('Kernel::System::Web::Request');
+
     # get configitem id and class id
     my $ConfigItem = {};
-    $ConfigItem->{ConfigItemID} = $Self->{ParamObject}->GetParam( Param => 'ConfigItemID' ) || 0;
-    $ConfigItem->{ClassID}      = $Self->{ParamObject}->GetParam( Param => 'ClassID' )      || 0;
-    my $DuplicateID = $Self->{ParamObject}->GetParam( Param => 'DuplicateID' ) || 0;
+    $ConfigItem->{ConfigItemID} = $ParamObject->GetParam( Param => 'ConfigItemID' ) || 0;
+    $ConfigItem->{ClassID}      = $ParamObject->GetParam( Param => 'ClassID' )      || 0;
+    my $DuplicateID = $ParamObject->GetParam( Param => 'DuplicateID' ) || 0;
 
     my $HasAccess;
+
+    # get needed objects
+    my $ConfigItemObject     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+    my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
+    my $ConfigObject         = $Kernel::OM->Get('Kernel::Config');
+    my $LayoutObject         = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
+
+    # get config of frontend module
+    $Self->{Config} = $ConfigObject->Get("ITSMConfigItem::Frontend::$Self->{Action}");
 
     # get needed data
     if ( $ConfigItem->{ConfigItemID} && $ConfigItem->{ConfigItemID} ne 'NEW' ) {
 
         # check access for config item
-        $HasAccess = $Self->{ConfigItemObject}->Permission(
+        $HasAccess = $ConfigItemObject->Permission(
             Scope  => 'Item',
             ItemID => $ConfigItem->{ConfigItemID},
             UserID => $Self->{UserID},
@@ -72,19 +60,19 @@ sub Run {
         );
 
         # get config item
-        $ConfigItem = $Self->{ConfigItemObject}->ConfigItemGet(
+        $ConfigItem = $ConfigItemObject->ConfigItemGet(
             ConfigItemID => $ConfigItem->{ConfigItemID},
         );
     }
     elsif ($DuplicateID) {
 
         # get config item to duplicate
-        $ConfigItem = $Self->{ConfigItemObject}->ConfigItemGet(
+        $ConfigItem = $ConfigItemObject->ConfigItemGet(
             ConfigItemID => $DuplicateID,
         );
 
         # check access for config item
-        $HasAccess = $Self->{ConfigItemObject}->Permission(
+        $HasAccess = $ConfigItemObject->Permission(
             Scope  => 'Item',
             ItemID => $ConfigItem->{ConfigItemID},
             UserID => $Self->{UserID},
@@ -102,7 +90,7 @@ sub Run {
         $ConfigItem->{Number}       = 'NEW';
 
         # check access for config item
-        $HasAccess = $Self->{ConfigItemObject}->Permission(
+        $HasAccess = $ConfigItemObject->Permission(
             Scope   => 'Class',
             ClassID => $ConfigItem->{ClassID},
             UserID  => $Self->{UserID},
@@ -110,13 +98,13 @@ sub Run {
         );
 
         # get class list
-        my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
+        my $ClassList = $GeneralCatalogObject->ItemList(
             Class => 'ITSM::ConfigItem::Class',
         );
         $ConfigItem->{Class} = $ClassList->{ $ConfigItem->{ClassID} };
     }
     else {
-        return $Self->{LayoutObject}->ErrorScreen(
+        return $LayoutObject->ErrorScreen(
             Message => 'No ConfigItemID, DuplicateID or ClassID is given!',
             Comment => 'Please contact the admin.',
         );
@@ -124,31 +112,42 @@ sub Run {
 
     # if user has no access rights show error page
     if ( !$HasAccess ) {
-        return $Self->{LayoutObject}->ErrorScreen(
+        return $LayoutObject->ErrorScreen(
             Message => 'No access is given!',
             Comment => 'Please contact the admin.',
         );
     }
 
     # get definition
-    my $XMLDefinition = $Self->{ConfigItemObject}->DefinitionGet(
+    my $XMLDefinition = $ConfigItemObject->DefinitionGet(
         ClassID => $ConfigItem->{ClassID},
     );
 
     # abort, if no definition is defined
     if ( !$XMLDefinition->{DefinitionID} ) {
-        return $Self->{LayoutObject}->ErrorScreen(
+        return $LayoutObject->ErrorScreen(
             Message => "No Definition was defined for class $ConfigItem->{Class}!",
             Comment => 'Please contact the admin.',
         );
     }
 
+    # get upload cache object
+    my $UploadCacheObject = $Kernel::OM->Get('Kernel::System::Web::UploadCache');
+
+    # get form id
+    $Self->{FormID} = $ParamObject->GetParam( Param => 'FormID' );
+
+    # create form id
+    if ( !$Self->{FormID} ) {
+        $Self->{FormID} = $UploadCacheObject->FormIDCreate();
+    }
+
     # when there's no ClassID it means, an existing config item is edited as the ClassID is only
     # provided as GET param when creating a new config item
-    if ( !$Self->{ParamObject}->GetParam( Param => 'ClassID' ) ) {
+    if ( !$ParamObject->GetParam( Param => 'ClassID' ) ) {
 
         # get all attachments meta data
-        my @ExistingAttachments = $Self->{ConfigItemObject}->ConfigItemAttachmentList(
+        my @ExistingAttachments = $ConfigItemObject->ConfigItemAttachmentList(
             ConfigItemID => $ConfigItem->{ConfigItemID},
         );
 
@@ -157,14 +156,14 @@ sub Run {
         for my $Filename (@ExistingAttachments) {
 
             # get the existing attachment data
-            my $AttachmentData = $Self->{ConfigItemObject}->ConfigItemAttachmentGet(
+            my $AttachmentData = $ConfigItemObject->ConfigItemAttachmentGet(
                 ConfigItemID => $ConfigItem->{ConfigItemID},
                 Filename     => $Filename,
                 UserID       => $Self->{UserID},
             );
 
             # add attachment to the upload cache
-            $Self->{UploadCacheObject}->FormIDAddFile(
+            $UploadCacheObject->FormIDAddFile(
                 FormID      => $Self->{FormID},
                 Filename    => $AttachmentData->{Filename},
                 Content     => $AttachmentData->{Content},
@@ -174,7 +173,10 @@ sub Run {
     }
 
     # get submit save
-    my $SubmitSave = $Self->{ParamObject}->GetParam( Param => 'SubmitSave' );
+    my $SubmitSave = $ParamObject->GetParam( Param => 'SubmitSave' );
+
+    # get log object
+    my $LogObject = $Kernel::OM->Get('Kernel::System::Log');
 
     # get xml data
     my $Version = {};
@@ -187,29 +189,29 @@ sub Run {
         for my $Number ( 1 .. 32 ) {
 
             # check if the delete button was pressed for this attachment
-            my $Delete = $Self->{ParamObject}->GetParam( Param => "AttachmentDelete$Number" );
+            my $Delete = $ParamObject->GetParam( Param => "AttachmentDelete$Number" );
 
             # check next attachment if it was not pressed
             next ATTACHMENT if !$Delete;
 
             # remove the attachment from the upload cache
-            $Self->{UploadCacheObject}->FormIDRemoveFile(
+            $UploadCacheObject->FormIDRemoveFile(
                 FormID => $Self->{FormID},
                 FileID => $Number,
             );
         }
 
         # check if there was an attachment upload
-        if ( $Self->{ParamObject}->GetParam( Param => 'AttachmentUpload' ) ) {
+        if ( $ParamObject->GetParam( Param => 'AttachmentUpload' ) ) {
 
             # get the uploaded attachment
-            my %UploadStuff = $Self->{ParamObject}->GetUploadAll(
+            my %UploadStuff = $ParamObject->GetUploadAll(
                 Param  => 'FileUpload',
                 Source => 'string',
             );
 
             # add attachment to the upload cache
-            $Self->{UploadCacheObject}->FormIDAddFile(
+            $UploadCacheObject->FormIDAddFile(
                 FormID => $Self->{FormID},
                 %UploadStuff,
             );
@@ -219,7 +221,7 @@ sub Run {
 
         # get general form data
         for my $FormParam (qw(Name DeplStateID InciStateID)) {
-            $Version->{$FormParam} = $Self->{ParamObject}->GetParam( Param => $FormParam );
+            $Version->{$FormParam} = $ParamObject->GetParam( Param => $FormParam );
             if ( !$Version->{$FormParam} ) {
                 $AllRequired = 0;
             }
@@ -235,19 +237,19 @@ sub Run {
         # check, whether the feature to check for a unique name is enabled
         if (
             IsStringWithData( $Version->{Name} )
-            && $Self->{ConfigObject}->Get('UniqueCIName::EnableUniquenessCheck')
+            && $ConfigObject->Get('UniqueCIName::EnableUniquenessCheck')
             )
         {
 
-            if ( $Self->{ConfigObject}->{Debug} > 0 ) {
-                $Self->{LogObject}->Log(
+            if ( $ConfigObject->{Debug} > 0 ) {
+                $LogObject->Log(
                     Priority => 'debug',
                     Message  => "Checking for duplicate names (ClassID: $ConfigItem->{ClassID}, "
                         . "Name: $Version->{Name}, ConfigItemID: $ConfigItem->{ConfigItemID})",
                 );
             }
 
-            $NameDuplicates = $Self->{ConfigItemObject}->UniqueNameCheck(
+            $NameDuplicates = $ConfigItemObject->UniqueNameCheck(
                 ConfigItemID => $ConfigItem->{ConfigItemID},
                 ClassID      => $ConfigItem->{ClassID},
                 Name         => $Version->{Name},
@@ -261,7 +263,7 @@ sub Run {
                 # build a string of all duplicate IDs
                 my $NameDuplicatesString = join ', ', @{$NameDuplicates};
 
-                $Self->{LogObject}->Log(
+                $LogObject->Log(
                     Priority => 'error',
                     Message =>
                         "The name $Version->{Name} is already in use by the ConfigItemID(s): "
@@ -271,13 +273,13 @@ sub Run {
         }
 
         # get the config option for the name regex checks
-        my $CINameRegexConfig = $Self->{ConfigObject}->Get("ITSMConfigItem::CINameRegex");
+        my $CINameRegexConfig = $ConfigObject->Get("ITSMConfigItem::CINameRegex");
 
         # check if the CI name is given and should be checked with a regular expression
         if ( IsStringWithData( $Version->{Name} ) && $CINameRegexConfig ) {
 
             # get class list
-            my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
+            my $ClassList = $GeneralCatalogObject->ItemList(
                 Class => 'ITSM::ConfigItem::Class',
             );
 
@@ -301,14 +303,14 @@ sub Run {
         if ( $SubmitSave && $AllRequired ) {
 
             if ( $ConfigItem->{ConfigItemID} eq 'NEW' ) {
-                $ConfigItem->{ConfigItemID} = $Self->{ConfigItemObject}->ConfigItemAdd(
+                $ConfigItem->{ConfigItemID} = $ConfigItemObject->ConfigItemAdd(
                     ClassID => $ConfigItem->{ClassID},
                     UserID  => $Self->{UserID},
                 );
             }
 
             # get all attachments from upload cache
-            my @Attachments = $Self->{UploadCacheObject}->FormIDGetAllFilesData(
+            my @Attachments = $UploadCacheObject->FormIDGetAllFilesData(
                 FormID => $Self->{FormID},
             );
 
@@ -326,7 +328,7 @@ sub Run {
             }
 
             # get all attachments meta data
-            my @ExistingAttachments = $Self->{ConfigItemObject}->ConfigItemAttachmentList(
+            my @ExistingAttachments = $ConfigItemObject->ConfigItemAttachmentList(
                 ConfigItemID => $ConfigItem->{ConfigItemID},
             );
 
@@ -335,7 +337,7 @@ sub Run {
             for my $Filename (@ExistingAttachments) {
 
                 # get the existing attachment data
-                my $AttachmentData = $Self->{ConfigItemObject}->ConfigItemAttachmentGet(
+                my $AttachmentData = $ConfigItemObject->ConfigItemAttachmentGet(
                     ConfigItemID => $ConfigItem->{ConfigItemID},
                     Filename     => $Filename,
                     UserID       => $Self->{UserID},
@@ -356,7 +358,7 @@ sub Run {
                 else {
 
                     # delete the existing attachment
-                    my $DeleteSuccessful = $Self->{ConfigItemObject}->ConfigItemAttachmentDelete(
+                    my $DeleteSuccessful = $ConfigItemObject->ConfigItemAttachmentDelete(
                         ConfigItemID => $ConfigItem->{ConfigItemID},
                         Filename     => $Filename,
                         UserID       => $Self->{UserID},
@@ -364,7 +366,7 @@ sub Run {
 
                     # check error
                     if ( !$DeleteSuccessful ) {
-                        return $Self->{LayoutObject}->FatalError();
+                        return $LayoutObject->FatalError();
                     }
                 }
             }
@@ -374,7 +376,7 @@ sub Run {
             for my $Attachment ( values %NewAttachment ) {
 
                 # add attachment
-                my $Success = $Self->{ConfigItemObject}->ConfigItemAttachmentAdd(
+                my $Success = $ConfigItemObject->ConfigItemAttachmentAdd(
                     %{$Attachment},
                     ConfigItemID => $ConfigItem->{ConfigItemID},
                     UserID       => $Self->{UserID},
@@ -382,12 +384,12 @@ sub Run {
 
                 # check error
                 if ( !$Success ) {
-                    return $Self->{LayoutObject}->FatalError();
+                    return $LayoutObject->FatalError();
                 }
             }
 
             # add version
-            $Self->{ConfigItemObject}->VersionAdd(
+            $ConfigItemObject->VersionAdd(
                 %{$Version},
                 ConfigItemID => $ConfigItem->{ConfigItemID},
                 DefinitionID => $XMLDefinition->{DefinitionID},
@@ -395,7 +397,7 @@ sub Run {
             );
 
             # redirect to zoom mask
-            my $ScreenType = $Self->{ParamObject}->GetParam( Param => 'ScreenType' ) || 0;
+            my $ScreenType = $ParamObject->GetParam( Param => 'ScreenType' ) || 0;
             if ($ScreenType) {
 
                 my $URL = "Action=AgentITSMConfigItemZoom;ConfigItemID=$ConfigItem->{ConfigItemID}";
@@ -408,30 +410,30 @@ sub Run {
                 {
                     $URL = $Self->{LastScreenView};
                 }
-                return $Self->{LayoutObject}->PopupClose(
+                return $LayoutObject->PopupClose(
                     URL => $URL,
                 );
             }
             else {
-                return $Self->{LayoutObject}->Redirect(
+                return $LayoutObject->Redirect(
                     OP => "Action=AgentITSMConfigItemZoom;ConfigItemID=$ConfigItem->{ConfigItemID}",
                 );
             }
         }
     }
     elsif ($DuplicateID) {
-        my $VersionID = $Self->{ParamObject}->GetParam( Param => 'VersionID' );
+        my $VersionID = $ParamObject->GetParam( Param => 'VersionID' );
         if ($VersionID) {
 
             # get version data to duplicate config item
-            $Version = $Self->{ConfigItemObject}->VersionGet(
+            $Version = $ConfigItemObject->VersionGet(
                 VersionID => $VersionID,
             );
         }
         else {
 
             # get last version data to duplicate config item
-            $Version = $Self->{ConfigItemObject}->VersionGet(
+            $Version = $ConfigItemObject->VersionGet(
                 ConfigItemID => $DuplicateID,
             );
         }
@@ -439,7 +441,7 @@ sub Run {
     elsif ( $ConfigItem->{ConfigItemID} ne 'NEW' ) {
 
         # get last version data
-        $Version = $Self->{ConfigItemObject}->VersionGet(
+        $Version = $ConfigItemObject->VersionGet(
             ConfigItemID => $ConfigItem->{ConfigItemID},
         );
     }
@@ -466,7 +468,7 @@ sub Run {
     }
 
     # output name block
-    $Self->{LayoutObject}->Block(
+    $LayoutObject->Block(
         Name => 'RowName',
         Data => {
             %{$Version},
@@ -481,14 +483,14 @@ sub Run {
         )
     {
 
-        if ( $Self->{ConfigObject}->{Debug} > 0 ) {
-            $Self->{LogObject}->Log(
+        if ( $ConfigObject->{Debug} > 0 ) {
+            $LogObject->Log(
                 Priority => 'debug',
                 Message  => "Rendering default error block",
             );
         }
 
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'RowNameErrorDefault',
         );
     }
@@ -499,7 +501,7 @@ sub Run {
         for my $ConfigItemID ( @{$NameDuplicates} ) {
 
             # lookup the CI number
-            my $CINumber = $Self->{ConfigItemObject}->ConfigItemLookup(
+            my $CINumber = $ConfigItemObject->ConfigItemLookup(
                 ConfigItemID => $ConfigItemID,
             );
 
@@ -508,15 +510,15 @@ sub Run {
 
         my $DuplicateString = join ', ', @NameDuplicatesByCINumber;
 
-        if ( $Self->{ConfigObject}->{Debug} > 0 ) {
-            $Self->{LogObject}->Log(
+        if ( $ConfigObject->{Debug} > 0 ) {
+            $LogObject->Log(
                 Priority => 'debug',
                 Message =>
                     "Rendering block for duplicates (CI-Numbers: $DuplicateString) error message",
             );
         }
 
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'RowNameErrorDuplicates',
             Data => {
                 Duplicates => $DuplicateString,
@@ -526,7 +528,7 @@ sub Run {
 
     elsif ($CINameRegexErrorMessage) {
 
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'RowNameErrorRegEx',
             Data => {
                 RegExErrorMessage => $CINameRegexErrorMessage,
@@ -535,7 +537,7 @@ sub Run {
     }
 
     # get deployment state list
-    my $DeplStateList = $Self->{GeneralCatalogObject}->ItemList(
+    my $DeplStateList = $GeneralCatalogObject->ItemList(
         Class => 'ITSM::ConfigItem::DeploymentState',
     );
 
@@ -546,7 +548,7 @@ sub Run {
     }
 
     # generate DeplStateOptionStrg
-    my $DeplStateOptionStrg = $Self->{LayoutObject}->BuildSelection(
+    my $DeplStateOptionStrg = $LayoutObject->BuildSelection(
         Data         => $DeplStateList,
         Name         => 'DeplStateID',
         PossibleNone => 1,
@@ -555,7 +557,7 @@ sub Run {
     );
 
     # output deployment state block
-    $Self->{LayoutObject}->Block(
+    $LayoutObject->Block(
         Name => 'RowDeplState',
         Data => {
             DeplStateOptionStrg => $DeplStateOptionStrg,
@@ -563,7 +565,7 @@ sub Run {
     );
 
     # get incident state list
-    my $InciStateList = $Self->{GeneralCatalogObject}->ItemList(
+    my $InciStateList = $GeneralCatalogObject->ItemList(
         Class       => 'ITSM::Core::IncidentState',
         Preferences => {
             Functionality => [ 'operational', 'incident' ],
@@ -577,7 +579,7 @@ sub Run {
     }
 
     # generate InciStateOptionStrg
-    my $InciStateOptionStrg = $Self->{LayoutObject}->BuildSelection(
+    my $InciStateOptionStrg = $LayoutObject->BuildSelection(
         Data         => $InciStateList,
         Name         => 'InciStateID',
         PossibleNone => 1,
@@ -586,7 +588,7 @@ sub Run {
     );
 
     # output incident state block
-    $Self->{LayoutObject}->Block(
+    $LayoutObject->Block(
         Name => 'RowInciState',
         Data => {
             InciStateOptionStrg => $InciStateOptionStrg,
@@ -602,20 +604,20 @@ sub Run {
     }
 
     # show the attachment upload button
-    $Self->{LayoutObject}->Block(
+    $LayoutObject->Block(
         Name => 'AttachmentUpload',
         Data => {%Param},
     );
 
     # get all attachments meta data
-    my @Attachments = $Self->{UploadCacheObject}->FormIDGetAllFilesMeta(
+    my @Attachments = $UploadCacheObject->FormIDGetAllFilesMeta(
         FormID => $Self->{FormID},
     );
 
     # show attachments
     ATTACHMENT:
     for my $Attachment (@Attachments) {
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'Attachment',
             Data => $Attachment,
         );
@@ -625,23 +627,23 @@ sub Run {
     if ( ( $ConfigItem->{ConfigItemID} && $ConfigItem->{ConfigItemID} ne 'NEW' ) || $DuplicateID ) {
 
         # output block
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'StartSmall',
             Data => {
                 %Param,
                 %{$ConfigItem},
             },
         );
-        $Self->{LayoutObject}->Block( Name => 'EndSmall' );
+        $LayoutObject->Block( Name => 'EndSmall' );
 
         # output header
-        $Output .= $Self->{LayoutObject}->Header(
+        $Output .= $LayoutObject->Header(
             Title => 'Edit',
             Type  => 'Small',
         );
 
         # start template output
-        $Output .= $Self->{LayoutObject}->Output(
+        $Output .= $LayoutObject->Output(
             TemplateFile => 'AgentITSMConfigItemEdit',
             Data         => {
                 %Param,
@@ -650,19 +652,19 @@ sub Run {
                 FormID      => $Self->{FormID},
             },
         );
-        $Output .= $Self->{LayoutObject}->Footer( Type => 'Small' );
+        $Output .= $LayoutObject->Footer( Type => 'Small' );
     }
     else {
 
         # Necessary stuff for Add New
         # get class list
-        my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
+        my $ClassList = $GeneralCatalogObject->ItemList(
             Class => 'ITSM::ConfigItem::Class',
         );
 
         # check for access rights
         for my $ClassID ( sort keys %{$ClassList} ) {
-            my $HasAccess = $Self->{ConfigItemObject}->Permission(
+            my $HasAccess = $ConfigItemObject->Permission(
                 Type    => $Self->{Config}->{Permission},
                 Scope   => 'Class',
                 ClassID => $ClassID,
@@ -673,7 +675,7 @@ sub Run {
         }
 
         # generate ClassOptionStrg
-        my $ClassOptionStrg = $Self->{LayoutObject}->BuildSelection(
+        my $ClassOptionStrg = $LayoutObject->BuildSelection(
             Data         => $ClassList,
             Name         => 'ClassID',
             PossibleNone => 1,
@@ -685,7 +687,7 @@ sub Run {
         # End Necessary stuff for Add New
 
         # output block
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'StartNormal',
             Data => {
                 ClassOptionStrg => $ClassOptionStrg,
@@ -694,14 +696,14 @@ sub Run {
             },
         );
 
-        $Self->{LayoutObject}->Block( Name => 'EndNormal' );
+        $LayoutObject->Block( Name => 'EndNormal' );
 
         # output header
-        $Output .= $Self->{LayoutObject}->Header( Title => 'Edit' );
-        $Output .= $Self->{LayoutObject}->NavigationBar();
+        $Output .= $LayoutObject->Header( Title => 'Edit' );
+        $Output .= $LayoutObject->NavigationBar();
 
         # start template output
-        $Output .= $Self->{LayoutObject}->Output(
+        $Output .= $LayoutObject->Output(
             TemplateFile => 'AgentITSMConfigItemEdit',
             Data         => {
                 %Param,
@@ -710,7 +712,7 @@ sub Run {
                 FormID      => $Self->{FormID},
             },
         );
-        $Output .= $Self->{LayoutObject}->Footer();
+        $Output .= $LayoutObject->Footer();
     }
 
     return $Output;
@@ -744,11 +746,14 @@ sub _XMLFormGet {
             }
 
             # get param
-            my $FormValues = $Self->{LayoutObject}->ITSMConfigItemFormDataGet(
+            my $FormValues = $Kernel::OM->Get('Kernel::Output::HTML::Layout')->ITSMConfigItemFormDataGet(
                 Key          => $InputKey,
                 Item         => $Item,
                 ConfigItemID => $Param{ConfigItemID},
             );
+
+            # get param object
+            my $ParamObject = $Kernel::OM->Get('Kernel::System::Web::Request');
 
             if ( defined $FormValues->{Value} ) {
 
@@ -758,7 +763,7 @@ sub _XMLFormGet {
                 }
 
                 # check delete button
-                next COUNTER if $Self->{ParamObject}->GetParam( Param => $InputKey . '::Delete' );
+                next COUNTER if $ParamObject->GetParam( Param => $InputKey . '::Delete' );
 
                 # start recursion, if "Sub" was found
                 if ( $Item->{Sub} ) {
@@ -776,7 +781,7 @@ sub _XMLFormGet {
             else {
 
                 # check add button
-                if ( $Self->{ParamObject}->GetParam( Param => $AddKey ) ) {
+                if ( $ParamObject->GetParam( Param => $AddKey ) ) {
                     if ( $Item->{Sub} ) {
                         $FormData->{ $Item->{Key} }->[$CounterInsert] = $Self->_XMLDefaultSet(
                             XMLDefinition => $Item->{Sub},
@@ -829,7 +834,7 @@ sub _XMLFormOutput {
     $Param{Prefix} ||= '';
 
     # get submit save
-    my $SubmitSave = $Self->{ParamObject}->GetParam( Param => 'SubmitSave' );
+    my $SubmitSave = $Kernel::OM->Get('Kernel::System::Web::Request')->GetParam( Param => 'SubmitSave' );
 
     # set data present mode
     my $DataPresentMode = 0;
@@ -865,14 +870,17 @@ sub _XMLFormOutput {
             $Delete = 1;
         }
 
+        # get layout object
+        my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
+
         # output content rows
         for my $Counter ( 1 .. $Loop ) {
 
             # output row block
-            $Self->{LayoutObject}->Block( Name => 'XMLRow' );
+            $LayoutObject->Block( Name => 'XMLRow' );
 
             if ( !$Param{Level} ) {
-                $Self->{LayoutObject}->Block( Name => 'XMLRowFieldsetStart' );
+                $LayoutObject->Block( Name => 'XMLRowFieldsetStart' );
             }
 
             # create inputkey and addkey
@@ -899,7 +907,7 @@ sub _XMLFormOutput {
 
             if ( $Item->{Input}->{Type} eq 'Customer' ) {
 
-                $Self->{LayoutObject}->Block(
+                $LayoutObject->Block(
                     Name => 'CustomerSearchInit',
                     Data => {
                         ItemID => $ItemID,
@@ -908,7 +916,7 @@ sub _XMLFormOutput {
             }
 
             # create input element
-            my $InputString = $Self->{LayoutObject}->ITSMConfigItemInputCreate(
+            my $InputString = $LayoutObject->ITSMConfigItemInputCreate(
                 Key      => $InputKey,
                 Item     => $Item,
                 Value    => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content},
@@ -943,7 +951,7 @@ sub _XMLFormOutput {
             }
 
             # output row value content block
-            $Self->{LayoutObject}->Block(
+            $LayoutObject->Block(
                 Name => 'XMLRowValue',
                 Data => {
                     Name        => $Item->{Name},
@@ -957,12 +965,12 @@ sub _XMLFormOutput {
             );
 
             if ( $Item->{Input}->{Required} ) {
-                $Self->{LayoutObject}->Block( Name => 'XMLRowValueContentRequired' );
+                $LayoutObject->Block( Name => 'XMLRowValueContentRequired' );
             }
 
             # output delete button
             if ($Delete) {
-                $Self->{LayoutObject}->Block(
+                $LayoutObject->Block(
                     Name => 'XMLRowValueContentDelete',
                     Data => {
                         InputKey => $InputKey,
@@ -976,7 +984,7 @@ sub _XMLFormOutput {
                 # show regex error message block
                 if ( $Item->{Form}->{$InputKey}->{RegExErrorMessage} ) {
 
-                    $Self->{LayoutObject}->Block(
+                    $LayoutObject->Block(
                         Name => 'XMLRowValueRegExError',
                         Data => {
                             ItemID            => $ItemID,
@@ -987,7 +995,7 @@ sub _XMLFormOutput {
 
                 # otherwise show normal server error block
                 else {
-                    $Self->{LayoutObject}->Block(
+                    $LayoutObject->Block(
                         Name => 'XMLRowValueServerError',
                         Data => {
                             ItemID => $ItemID,
@@ -1016,11 +1024,11 @@ sub _XMLFormOutput {
             }
 
             if ( !$Param{Level} ) {
-                $Self->{LayoutObject}->Block( Name => 'XMLRowFieldsetEnd' );
+                $LayoutObject->Block( Name => 'XMLRowFieldsetEnd' );
             }
 
             # output row to sort rows correctly
-            $Self->{LayoutObject}->Block( Name => 'XMLRow' );
+            $LayoutObject->Block( Name => 'XMLRow' );
         }
 
         # output add button
@@ -1029,7 +1037,7 @@ sub _XMLFormOutput {
             # if no item should be shown we need to show the add button
             # and therefore we need to show the XMLRow block
             if ( !$Loop ) {
-                $Self->{LayoutObject}->Block( Name => 'XMLRow' );
+                $LayoutObject->Block( Name => 'XMLRow' );
             }
 
             my $Class = '';
@@ -1037,8 +1045,8 @@ sub _XMLFormOutput {
                 $Class = 'class="SubElement"';
             }
             else {
-                $Self->{LayoutObject}->Block( Name => 'XMLRowFieldsetEnd' );
-                $Self->{LayoutObject}->Block( Name => 'XMLRowFieldsetStart' );
+                $LayoutObject->Block( Name => 'XMLRowFieldsetEnd' );
+                $LayoutObject->Block( Name => 'XMLRowFieldsetStart' );
             }
 
             # set prefix
@@ -1048,7 +1056,7 @@ sub _XMLFormOutput {
             }
 
             # output row add content block
-            $Self->{LayoutObject}->Block(
+            $LayoutObject->Block(
                 Name => 'XMLRowAddContent',
                 Data => {
                     ItemID      => $InputKey . 'Add',

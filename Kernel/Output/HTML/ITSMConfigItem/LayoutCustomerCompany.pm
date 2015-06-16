@@ -6,12 +6,17 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package Kernel::Output::HTML::ITSMConfigItemLayoutCustomerCompany;
+package Kernel::Output::HTML::ITSMConfigItem::LayoutCustomerCompany;
 
 use strict;
 use warnings;
 
-use Kernel::System::CustomerCompany;
+our @ObjectDependencies = (
+    'Kernel::System::Log',
+    'Kernel::Output::HTML::Layout',
+    'Kernel::System::Web::Request',
+    'Kernel::System::CustomerCompany',
+);
 
 =head1 NAME
 
@@ -42,17 +47,6 @@ sub new {
     my $Self = {};
     bless( $Self, $Type );
 
-    # check needed objects
-    for my $Object (
-        qw(ConfigObject EncodeObject LogObject MainObject ParamObject DBObject LayoutObject)
-        )
-    {
-        $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
-    }
-
-    # create additional objects
-    $Self->{CustomerCompanyObject} = Kernel::System::CustomerCompany->new( %{$Self} );
-
     return $Self;
 }
 
@@ -70,7 +64,7 @@ sub OutputStringCreate {
     my ( $Self, %Param ) = @_;
 
     # transform ascii to html
-    $Param{Value} = $Self->{LayoutObject}->Ascii2Html(
+    $Param{Value} = $Kernel::OM->Get('Kernel::Output::HTML::Layout')->Ascii2Html(
         Text => $Param{Value} || '',
         HTMLResultMode => 1,
     );
@@ -95,7 +89,7 @@ sub FormDataGet {
     # check needed stuff
     for my $Argument (qw(Key Item)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );
@@ -106,7 +100,7 @@ sub FormDataGet {
     my %FormData;
 
     # get form data
-    $FormData{Value} = $Self->{ParamObject}->GetParam( Param => $Param{Key} );
+    $FormData{Value} = $Kernel::OM->Get('Kernel::System::Web::Request')->GetParam( Param => $Param{Key} );
 
     # set invalid param
     if ( $Param{Item}->{Input}->{Required} && !$FormData{Value} ) {
@@ -123,7 +117,7 @@ sub InputCreate {
     # check needed stuff
     for my $Argument (qw(Key Item)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );
@@ -147,10 +141,10 @@ sub InputCreate {
     }
 
     # get class list
-    my %CompanyList = $Self->{CustomerCompanyObject}->CustomerCompanyList();
+    my %CompanyList = $Kernel::OM->Get('Kernel::System::CustomerCompany')->CustomerCompanyList();
 
     # generate string
-    my $String = $Self->{LayoutObject}->BuildSelection(
+    my $String = $Kernel::OM->Get('Kernel::Output::HTML::Layout')->BuildSelection(
         Data         => \%CompanyList,
         Name         => $Param{Key},
         ID           => $ItemId,
@@ -179,7 +173,7 @@ sub SearchFormDataGet {
 
     # check needed stuff
     if ( !$Param{Key} ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => 'Need Key!',
         );
@@ -192,7 +186,7 @@ sub SearchFormDataGet {
         @Values = @{ $Param{Value} };
     }
     else {
-        @Values = $Self->{ParamObject}->GetArray( Param => $Param{Key} );
+        @Values = $Kernel::OM->Get('Kernel::System::Web::Request')->GetArray( Param => $Param{Key} );
     }
 
     return \@Values;
@@ -214,7 +208,7 @@ sub SearchInputCreate {
     # check needed stuff
     for my $Argument (qw(Key Item)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );
@@ -225,10 +219,10 @@ sub SearchInputCreate {
     my $Values = $Self->SearchFormDataGet(%Param);
 
     # get company data
-    my %CompanyList = $Self->{CustomerCompanyObject}->CustomerCompanyList();
+    my %CompanyList = $Kernel::OM->Get('Kernel::System::CustomerCompany')->CustomerCompanyList();
 
     # generate string
-    my $String = $Self->{LayoutObject}->BuildSelection(
+    my $String = $Kernel::OM->Get('Kernel::Output::HTML::Layout')->BuildSelection(
         Data        => \%CompanyList,
         Name        => $Param{Key},
         Size        => 5,

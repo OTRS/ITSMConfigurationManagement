@@ -6,13 +6,12 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package Kernel::Output::HTML::ITSMConfigItemOverviewSmall;
+package Kernel::Output::HTML::ITSMConfigItem::OverviewSmall;
 
 use strict;
 use warnings;
 
-use Kernel::System::GeneralCatalog;
-use Kernel::System::HTMLUtils;
+our $ObjectManagerDisabled = 1;
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -21,27 +20,19 @@ sub new {
     my $Self = {%Param};
     bless( $Self, $Type );
 
-    # get needed objects
-    for my $Object (
-        qw(ConfigObject LogObject DBObject LayoutObject UserID UserObject MainObject)
-        )
-    {
-        $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
-    }
-
-    $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
-    $Self->{HTMLUtilsObject}      = Kernel::System::HTMLUtils->new( %{$Self} );
-
     return $Self;
 }
 
 sub Run {
     my ( $Self, %Param ) = @_;
 
+    # get log object
+    my $LogObject = $Kernel::OM->Get('Kernel::System::Log');
+
     # check needed stuff
     for my $Needed (qw(PageShown StartHit)) {
         if ( !$Param{$Needed} ) {
-            $Self->{LogObject}->Log(
+            $LogObject->Log(
                 Priority => 'error',
                 Message  => "Need $Needed!",
             );
@@ -51,7 +42,7 @@ sub Run {
 
     # need ConfigItemIDs
     if ( !$Param{ConfigItemIDs} ) {
-        $Self->{LogObject}->Log(
+        $LogObject->Log(
             Priority => 'error',
             Message  => 'Need the ConfigItemIDs!',
         );
@@ -68,8 +59,11 @@ sub Run {
     # to store the color for the deployment states
     my %DeplSignals;
 
+    # get general catalog object
+    my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
+
     # get list of deployment states
-    my $DeploymentStatesList = $Self->{GeneralCatalogObject}->ItemList(
+    my $DeploymentStatesList = $GeneralCatalogObject->ItemList(
         Class => 'ITSM::ConfigItem::DeploymentState',
     );
 
@@ -80,7 +74,7 @@ sub Run {
     for my $ItemID ( sort keys %{$DeploymentStatesList} ) {
 
         # get deployment state preferences
-        my %Preferences = $Self->{GeneralCatalogObject}->GeneralCatalogPreferencesGet(
+        my %Preferences = $GeneralCatalogObject->GeneralCatalogPreferencesGet(
             ItemID => $ItemID,
         );
 
@@ -116,12 +110,16 @@ sub Run {
     # store either ConfigItem IDs Locally
     my @ConfigItemIDs = @{ $Param{ConfigItemIDs} };
 
+    # get needed objects
+    my $ConfigObject = $Kernel::OM->Get('Kernel::Config');
+    my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
+
     # check if bulk feature is enabled
     my $BulkFeature = 0;
-    if ( $Self->{ConfigObject}->Get('ITSMConfigItem::Frontend::BulkFeature') ) {
+    if ( $ConfigObject->Get('ITSMConfigItem::Frontend::BulkFeature') ) {
         my @Groups;
-        if ( $Self->{ConfigObject}->Get('ITSMConfigItem::Frontend::BulkFeatureGroup') ) {
-            @Groups = @{ $Self->{ConfigObject}->Get('ITSMConfigItem::Frontend::BulkFeatureGroup') };
+        if ( $ConfigObject->Get('ITSMConfigItem::Frontend::BulkFeatureGroup') ) {
+            @Groups = @{ $ConfigObject->Get('ITSMConfigItem::Frontend::BulkFeatureGroup') };
         }
         if ( !@Groups ) {
             $BulkFeature = 1;
@@ -129,8 +127,8 @@ sub Run {
         else {
             GROUP:
             for my $Group (@Groups) {
-                next GROUP if !$Self->{LayoutObject}->{"UserIsGroup[$Group]"};
-                if ( $Self->{LayoutObject}->{"UserIsGroup[$Group]"} eq 'Yes' ) {
+                next GROUP if !$LayoutObject->{"UserIsGroup[$Group]"};
+                if ( $LayoutObject->{"UserIsGroup[$Group]"} eq 'Yes' ) {
                     $BulkFeature = 1;
                     last GROUP;
                 }
@@ -140,14 +138,14 @@ sub Run {
 
     # get config item pre menu modules
     my @ActionItems;
-    if ( ref $Self->{ConfigObject}->Get('ITSMConfigItem::Frontend::PreMenuModule') eq 'HASH' ) {
-        my %Menus = %{ $Self->{ConfigObject}->Get('ITSMConfigItem::Frontend::PreMenuModule') };
+    if ( ref $ConfigObject->Get('ITSMConfigItem::Frontend::PreMenuModule') eq 'HASH' ) {
+        my %Menus = %{ $ConfigObject->Get('ITSMConfigItem::Frontend::PreMenuModule') };
 
         MENU:
         for my $MenuKey ( sort keys %Menus ) {
 
             # load module
-            if ( $Self->{MainObject}->Require( $Menus{$MenuKey}->{Module} ) ) {
+            if ( $Kernel::OM->Get('Kernel::System::Main')->Require( $Menus{$MenuKey}->{Module} ) ) {
                 my $Object = $Menus{$MenuKey}->{Module}->new(
                     %{$Self},
                 );
@@ -175,8 +173,8 @@ sub Run {
 
                 # can not execute the module due to a ConfigItem is required, then just check the
                 # permissions as in the MenuModuleGeneric
-                my $GroupsRo = $Self->{ConfigObject}->Get('Frontend::Module')->{$Action}->{GroupRo} || [];
-                my $GroupsRw = $Self->{ConfigObject}->Get('Frontend::Module')->{$Action}->{Group}   || [];
+                my $GroupsRo = $ConfigObject->Get('Frontend::Module')->{$Action}->{GroupRo} || [];
+                my $GroupsRw = $ConfigObject->Get('Frontend::Module')->{$Action}->{Group}   || [];
 
                 # check permission
                 if ( $Action && ( @{$GroupsRo} || @{$GroupsRw} ) ) {
@@ -188,8 +186,8 @@ sub Run {
                     ROGROUP:
                     for my $RoGroup ( @{$GroupsRo} ) {
 
-                        next ROGROUP if !$Self->{LayoutObject}->{"UserIsGroupRo[$RoGroup]"};
-                        next ROGROUP if $Self->{LayoutObject}->{"UserIsGroupRo[$RoGroup]"} ne 'Yes';
+                        next ROGROUP if !$LayoutObject->{"UserIsGroupRo[$RoGroup]"};
+                        next ROGROUP if $LayoutObject->{"UserIsGroupRo[$RoGroup]"} ne 'Yes';
 
                         # set access
                         $Access = 1;
@@ -200,8 +198,8 @@ sub Run {
                     RWGROUP:
                     for my $RwGroup ( @{$GroupsRw} ) {
 
-                        next RWGROUP if !$Self->{LayoutObject}->{"UserIsGroup[$RwGroup]"};
-                        next RWGROUP if $Self->{LayoutObject}->{"UserIsGroup[$RwGroup]"} ne 'Yes';
+                        next RWGROUP if !$LayoutObject->{"UserIsGroup[$RwGroup]"};
+                        next RWGROUP if $LayoutObject->{"UserIsGroup[$RwGroup]"} ne 'Yes';
 
                         # set access
                         $Access = 1;
@@ -213,11 +211,11 @@ sub Run {
                 next MENU if !$Access;
 
                 # translate Name and Description
-                my $Description = $Self->{LayoutObject}->{LanguageObject}->Get( $Menus{$MenuKey}->{Description} );
-                my $Name        = $Self->{LayoutObject}->{LanguageObject}->Get( $Menus{$MenuKey}->{Description} );
+                my $Description = $LayoutObject->{LanguageObject}->Translate( $Menus{$MenuKey}->{Description} );
+                my $Name        = $LayoutObject->{LanguageObject}->Translate( $Menus{$MenuKey}->{Description} );
 
                 # generarte a web safe link
-                my $Link = $Self->{LayoutObject}->{Baselink} . $Menus{$MenuKey}->{Link};
+                my $Link = $LayoutObject->{Baselink} . $Menus{$MenuKey}->{Link};
 
                 # sanity check
                 if ( !defined $Menus{$MenuKey}->{MenuClass} ) {
@@ -256,6 +254,9 @@ END
     if ( $Param{ShowColumns} && ref $Param{ShowColumns} eq 'ARRAY' ) {
         @ShowColumns = @{ $Param{ShowColumns} };
     }
+
+    # get config item object
+    my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
 
     # build column header blocks
     if (@ShowColumns) {
@@ -296,7 +297,7 @@ END
                 $OrderBy = 'Up';
             }
 
-            $Self->{LayoutObject}->Block(
+            $LayoutObject->Block(
                 Name => 'Record' . $Column . 'Header',
                 Data => {
                     %Param,
@@ -312,7 +313,7 @@ END
 
             # get the version data of the first config item, including all the XML data
             # to get the column header names
-            my $ConfigItem = $Self->{ConfigItemObject}->VersionGet(
+            my $ConfigItem = $ConfigItemObject->VersionGet(
                 ConfigItemID => $ConfigItemIDs[0],
                 XMLDataGet   => 1,
             );
@@ -333,7 +334,7 @@ END
                 next COLUMN if !$ExtendedVersionData->{$Column}->{Name};
 
                 # show the xml attribute header
-                $Self->{LayoutObject}->Block(
+                $LayoutObject->Block(
                     Name => 'RecordXMLAttributeHeader',
                     Data => {
                         %Param,
@@ -363,7 +364,7 @@ END
             {
 
                 # check for access rights
-                my $HasAccess = $Self->{ConfigItemObject}->Permission(
+                my $HasAccess = $ConfigItemObject->Permission(
                     Scope  => 'Item',
                     ItemID => $ConfigItemID,
                     UserID => $Self->{UserID},
@@ -373,7 +374,7 @@ END
                 next CONFIGITEMID if !$HasAccess;
 
                 # get config item data
-                my $ConfigItem = $Self->{ConfigItemObject}->VersionGet(
+                my $ConfigItem = $ConfigItemObject->VersionGet(
                     ConfigItemID => $ConfigItemID,
                     XMLDataGet   => 1,
                 );
@@ -390,7 +391,7 @@ END
                 %Data = %{$ConfigItem};
 
                 # build record block
-                $Self->{LayoutObject}->Block(
+                $LayoutObject->Block(
                     Name => 'Record',
                     Data => {
                         %Param,
@@ -403,7 +404,7 @@ END
 
                     COLUMN:
                     for my $Column (@ShowColumns) {
-                        $Self->{LayoutObject}->Block(
+                        $LayoutObject->Block(
                             Name => 'Record' . $Column,
                             Data => {
                                 %Param,
@@ -414,14 +415,14 @@ END
                         );
 
                         # show links if available
-                        $Self->{LayoutObject}->Block(
+                        $LayoutObject->Block(
                             Name => 'Record' . $Column . 'LinkStart',
                             Data => {
                                 %Param,
                                 %Data,
                             },
                         );
-                        $Self->{LayoutObject}->Block(
+                        $LayoutObject->Block(
                             Name => 'Record' . $Column . 'LinkEnd',
                             Data => {
                                 %Param,
@@ -437,36 +438,18 @@ END
                         next COLUMN if !$ExtendedVersionData->{$Column}->{Name};
 
                         # convert to ascii text in case the value contains html
-                        my $Value
-                            = $Self->{HTMLUtilsObject}->ToAscii( String => $ExtendedVersionData->{$Column}->{Value} )
+                        my $Value = $Kernel::OM->Get('Kernel::System::HTMLUtils')
+                            ->ToAscii( String => $ExtendedVersionData->{$Column}->{Value} )
                             || '';
 
                         # convert all whitespace and newlines to single spaces
                         $Value =~ s{ \s+ }{ }gxms;
 
                         # show the xml attribute data
-                        $Self->{LayoutObject}->Block(
+                        $LayoutObject->Block(
                             Name => 'RecordXMLAttribute',
                             Data => {
                                 %Param,
-                                XMLAttributeData => $Value,
-                            },
-                        );
-
-                        # show links if available
-                        $Self->{LayoutObject}->Block(
-                            Name => 'RecordXMLAttributeLinkStart',
-                            Data => {
-                                %Param,
-                                %Data,
-                                XMLAttributeData => $Value,
-                            },
-                        );
-                        $Self->{LayoutObject}->Block(
-                            Name => 'RecordXMLAttributeLinkEnd',
-                            Data => {
-                                %Param,
-                                %Data,
                                 XMLAttributeData => $Value,
                             },
                         );
@@ -484,11 +467,11 @@ END
                     $ActionItem->{Link} =~ s{ \Q[% Data.VersionID | html %]\E }{$ConfigItem->{VersionID}}xmsg;
                 }
 
-                my $JSON = $Self->{LayoutObject}->JSONEncode(
+                my $JSON = $LayoutObject->JSONEncode(
                     Data => $ClonedActionItems,
                 );
 
-                $Self->{LayoutObject}->Block(
+                $LayoutObject->Block(
                     Name => 'DocumentReadyActionRowAdd',
                     Data => {
                         ConfigItemID => $ConfigItemID,
@@ -501,7 +484,7 @@ END
 
     # if there are no config items to show, a no data found message is displayed in the table
     else {
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'NoDataFoundMsg',
             Data => {
                 TotalColumns => scalar @ShowColumns,
@@ -510,7 +493,7 @@ END
     }
 
     # use template
-    $Output .= $Self->{LayoutObject}->Output(
+    $Output .= $LayoutObject->Output(
         TemplateFile => 'AgentITSMConfigItemOverviewSmall',
         Data         => {
             %Param,
@@ -573,7 +556,7 @@ sub _XMLData2Hash {
         for my $Counter ( 1 .. $Item->{CountMax} ) {
 
             # lookup value
-            my $Value = $Self->{ConfigItemObject}->XMLValueLookup(
+            my $Value = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->XMLValueLookup(
                 Item  => $Item,
                 Value => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content} || '',
             );
@@ -582,7 +565,7 @@ sub _XMLData2Hash {
             if ($Value) {
 
                 # create output string
-                $Value = $Self->{LayoutObject}->ITSMConfigItemOutputStringCreate(
+                $Value = $Kernel::OM->Get('Kernel::Output::HTML::Layout')->ITSMConfigItemOutputStringCreate(
                     Value => $Value,
                     Item  => $Item,
                 );

@@ -6,10 +6,18 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package Kernel::Output::HTML::LayoutITSMConfigItem;
+package Kernel::Output::HTML::Layout::ITSMConfigItem;
 
 use strict;
 use warnings;
+
+our @ObjectDependencies = (
+    'Kernel::System::Log',
+    'Kernel::System::AuthSession',
+    'Kernel::Config',
+    'Kernel::System::Web::Request',
+    'Kernel::System::Main',
+);
 
 =head1 NAME
 
@@ -25,7 +33,7 @@ All ITSM Configuration Management-related HTML functions
 
 =item ITSMConfigItemOutputStringCreate()
 
-returns a output string
+returns an output string
 
     my $String = $LayoutObject->ITSMConfigItemOutputStringCreate(
         Value => 11,       # (optional)
@@ -40,7 +48,7 @@ sub ITSMConfigItemOutputStringCreate {
 
     # check needed stuff
     if ( !$Param{Item} ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => 'Need Item!'
         );
@@ -78,7 +86,7 @@ sub ITSMConfigItemFormDataGet {
     # check needed stuff
     for my $Argument (qw(Key Item ConfigItemID)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!"
             );
@@ -117,7 +125,7 @@ sub ITSMConfigItemInputCreate {
     # check needed stuff
     for my $Argument (qw(Key Item)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!"
             );
@@ -155,7 +163,7 @@ sub ITSMConfigItemSearchFormDataGet {
     # check needed stuff
     for my $Argument (qw(Key Item)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!"
             );
@@ -193,7 +201,7 @@ sub ITSMConfigItemSearchInputCreate {
     # check needed stuff
     for my $Argument (qw(Key Item)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!"
             );
@@ -227,19 +235,22 @@ load a input type backend module
 sub _ITSMLoadLayoutBackend {
     my ( $Self, %Param ) = @_;
 
+    # get log object
+    my $LogObject = $Kernel::OM->Get('Kernel::System::Log');
+
     if ( !$Param{Type} ) {
-        $Self->{LogObject}->Log(
+        $LogObject->Log(
             Priority => 'error',
             Message  => 'Need Type!',
         );
         return;
     }
 
-    my $GenericModule = "Kernel::Output::HTML::ITSMConfigItemLayout$Param{Type}";
+    my $GenericModule = "Kernel::Output::HTML::ITSMConfigItem::Layout$Param{Type}";
 
     # load the backend module
-    if ( !$Self->{MainObject}->Require($GenericModule) ) {
-        $Self->{LogObject}->Log(
+    if ( !$Kernel::OM->Get('Kernel::System::Main')->Require($GenericModule) ) {
+        $LogObject->Log(
             Priority => 'error',
             Message  => "Can't load backend module $Param{Type}!"
         );
@@ -254,7 +265,7 @@ sub _ITSMLoadLayoutBackend {
     );
 
     if ( !$BackendObject ) {
-        $Self->{LogObject}->Log(
+        $LogObject->Log(
             Priority => 'error',
             Message  => "Can't create a new instance of backend module $Param{Type}!",
         );
@@ -306,14 +317,17 @@ sub ITSMConfigItemListShow {
     my $View = $Param{View} || 'Small';
 
     # store latest view mode
-    $Self->{SessionObject}->UpdateSessionID(
+    $Kernel::OM->Get('Kernel::System::AuthSession')->UpdateSessionID(
         SessionID => $Self->{SessionID},
         Key       => 'UserITSMConfigItemOverview' . $Env->{Action},
         Value     => $View,
     );
 
+    # get config object
+    my $ConfigObject = $Kernel::OM->Get('Kernel::Config');
+
     # get backend from config
-    my $Backends = $Self->{ConfigObject}->Get('ITSMConfigItem::Frontend::Overview');
+    my $Backends = $ConfigObject->Get('ITSMConfigItem::Frontend::Overview');
     if ( !$Backends ) {
         return $Env->{LayoutObject}->FatalError(
             Message => 'Need config option ITSMConfigItem::Frontend::Overview',
@@ -335,7 +349,7 @@ sub ITSMConfigItemListShow {
     }
 
     # nav bar
-    my $StartHit = $Self->{ParamObject}->GetParam(
+    my $StartHit = $Kernel::OM->Get('Kernel::System::Web::Request')->GetParam(
         Param => 'StartHit',
     ) || 1;
 
@@ -353,7 +367,7 @@ sub ITSMConfigItemListShow {
 
     # get data selection
     my %Data;
-    my $Config = $Self->{ConfigObject}->Get('PreferencesGroups');
+    my $Config = $ConfigObject->Get('PreferencesGroups');
     if ( $Config && $Config->{$Group} && $Config->{$Group}->{Data} ) {
         %Data = %{ $Config->{$Group}->{Data} };
     }
@@ -510,10 +524,10 @@ sub ITSMConfigItemListShow {
 
     # check if bulk feature is enabled
     my $BulkFeature = 0;
-    if ( $Self->{ConfigObject}->Get('ITSMConfigItem::Frontend::BulkFeature') ) {
+    if ( $ConfigObject->Get('ITSMConfigItem::Frontend::BulkFeature') ) {
         my @Groups;
-        if ( $Self->{ConfigObject}->Get('ITSMConfigItem::Frontend::BulkFeatureGroup') ) {
-            @Groups = @{ $Self->{ConfigObject}->Get('ITSMConfigItem::Frontend::BulkFeatureGroup') };
+        if ( $ConfigObject->Get('ITSMConfigItem::Frontend::BulkFeatureGroup') ) {
+            @Groups = @{ $ConfigObject->Get('ITSMConfigItem::Frontend::BulkFeatureGroup') };
         }
         if ( !@Groups ) {
             $BulkFeature = 1;
@@ -559,7 +573,7 @@ sub ITSMConfigItemListShow {
     }
 
     # load module
-    if ( !$Self->{MainObject}->Require( $Backends->{$View}->{Module} ) ) {
+    if ( !$Kernel::OM->Get('Kernel::System::Main')->Require( $Backends->{$View}->{Module} ) ) {
         return $Env->{LayoutObject}->FatalError();
     }
 
