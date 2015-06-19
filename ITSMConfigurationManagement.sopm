@@ -109,6 +109,17 @@
         <File Permission="644" Location="scripts/test/GenericInterface/Operation/ConfigItem/ConfigItemGet.t"/>
         <File Permission="644" Location="scripts/test/GenericInterface/Operation/ConfigItem/ConfigItemSearch.t"/>
         <File Permission="644" Location="scripts/test/GenericInterface/Operation/ConfigItem/ConfigItemUpdate.t"/>
+        <File Permission="644" Location="scripts/test/Selenium/Agent/Admin/AdminITSMConfigItem.t"/>
+        <File Permission="644" Location="scripts/test/Selenium/Agent/ITSMConfigurationManagement/AgentITSMConfigItem.t"/>
+        <File Permission="644" Location="scripts/test/Selenium/Agent/ITSMConfigurationManagement/AgentITSMConfigItemAdd.t"/>
+        <File Permission="644" Location="scripts/test/Selenium/Agent/ITSMConfigurationManagement/AgentITSMConfigItemBulk.t"/>
+        <File Permission="644" Location="scripts/test/Selenium/Agent/ITSMConfigurationManagement/AgentITSMConfigItemDuplicate.t"/>
+        <File Permission="644" Location="scripts/test/Selenium/Agent/ITSMConfigurationManagement/AgentITSMConfigItemEdit.t"/>
+        <File Permission="644" Location="scripts/test/Selenium/Agent/ITSMConfigurationManagement/AgentITSMConfigItemHistory.t"/>
+        <File Permission="644" Location="scripts/test/Selenium/Agent/ITSMConfigurationManagement/AgentITSMConfigItemPrint.t"/>
+        <File Permission="644" Location="scripts/test/Selenium/Agent/ITSMConfigurationManagement/AgentITSMConfigItemSearch.t"/>
+        <File Permission="644" Location="scripts/test/Selenium/Agent/ITSMConfigurationManagement/AgentITSMConfigItemZoom.t"/>
+        <File Permission="644" Location="scripts/test/Selenium/Agent/ITSMConfigurationManagement/AgentLinkObject.t"/>
         <File Permission="644" Location="scripts/webservices/GenericConfigItemConnectorSOAP.yml"/>
         <File Permission="644" Location="scripts/test/ImportExportObjectITSMConfigItem.t"/>
         <File Permission="644" Location="scripts/test/ITSMConfigItem.t"/>

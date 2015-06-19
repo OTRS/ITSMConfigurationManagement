@@ -171,15 +171,15 @@ sub Run {
             $Data{Comment} = '';
             for (@Values) {
                 if ( $Data{Comment} ) {
-                    $Data{Comment} .= "\", ";
+                    $Data{Comment} .= ", ";
                 }
-                $Data{Comment} .= "\"$_";
+                $Data{Comment} .= "\"$_\"";
             }
             if ( !$Data{Comment} ) {
-                $Data{Comment} = '" ';
+                $Data{Comment} = '" "';
             }
             $Data{Comment} = $LayoutObject->{LanguageObject}->Translate(
-                'CIHistory::' . $Data{HistoryType} . '", ' . $Data{Comment}
+                'CIHistory::' . $Data{HistoryType} . ', ' . $Data{Comment}
             );
 
             # remove not needed place holder
