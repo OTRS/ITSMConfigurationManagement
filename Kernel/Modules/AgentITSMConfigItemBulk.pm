@@ -10,12 +10,9 @@ package Kernel::Modules::AgentITSMConfigItemBulk;
 use strict;
 use warnings;
 
-use Kernel::System::CheckItem;
-use Kernel::System::GeneralCatalog;
-use Kernel::System::ITSMConfigItem;
-use Kernel::System::LinkObject;
-
 use Kernel::System::VariableCheck qw(:all);
+
+our $ObjectManagerDisabled = 1;
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -24,46 +21,38 @@ sub new {
     my $Self = {%Param};
     bless( $Self, $Type );
 
-    # check all needed objects
-    for my $Needed (qw(ParamObject DBObject QueueObject LayoutObject ConfigObject LogObject)) {
-        if ( !$Self->{$Needed} ) {
-            $Self->{LayoutObject}->FatalError( Message => "Got no $Needed!" );
-        }
-    }
-
-    # create additional objects
-    $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new(%Param);
-    $Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new(%Param);
-    $Self->{LinkObject}           = Kernel::System::LinkObject->new(%Param);
-    $Self->{CheckItemObject}      = Kernel::System::CheckItem->new(%Param);
-
-    $Self->{Config} = $Self->{ConfigObject}->Get("ITSMConfigItem::Frontend::$Self->{Action}");
-
     return $Self;
 }
 
 sub Run {
     my ( $Self, %Param ) = @_;
 
+    # get needed objects
+    my $ConfigObject = $Kernel::OM->Get('Kernel::Config');
+    my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
+
     # check if bulk feature is enabled
-    if ( !$Self->{ConfigObject}->Get('ITSMConfigItem::Frontend::BulkFeature') ) {
-        return $Self->{LayoutObject}->ErrorScreen(
+    if ( !$ConfigObject->Get('ITSMConfigItem::Frontend::BulkFeature') ) {
+        return $LayoutObject->ErrorScreen(
             Message => 'Bulk feature is not enabled!',
         );
     }
 
+    # get param object
+    my $ParamObject = $Kernel::OM->Get('Kernel::System::Web::Request');
+
     # get involved config items, filtering empty ConfigItemIDs
     my @ConfigItemIDs = grep {$_}
-        $Self->{ParamObject}->GetArray( Param => 'ConfigItemID' );
+        $ParamObject->GetArray( Param => 'ConfigItemID' );
 
     # check needed stuff
     if ( !@ConfigItemIDs ) {
-        return $Self->{LayoutObject}->ErrorScreen(
+        return $LayoutObject->ErrorScreen(
             Message => 'No ConfigItemID is given!',
             Comment => 'You need at least one selected Configuration Item!',
         );
     }
-    my $Output .= $Self->{LayoutObject}->Header(
+    my $Output .= $LayoutObject->Header(
         Type => 'Small',
     );
 
@@ -72,11 +61,14 @@ sub Run {
 
     my %GetParam;
 
+    # get config item object
+    my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+
     # get all parameters and check for errors
     if ( $Self->{Subaction} eq 'Do' ) {
 
         # challenge token check for write action
-        $Self->{LayoutObject}->ChallengeTokenCheck();
+        $LayoutObject->ChallengeTokenCheck();
 
         # get all parameters
         for my $Key (
@@ -84,16 +76,16 @@ sub Run {
             InciStateID )
             )
         {
-            $GetParam{$Key} = $Self->{ParamObject}->GetParam( Param => $Key ) || '';
+            $GetParam{$Key} = $ParamObject->GetParam( Param => $Key ) || '';
         }
 
         if ( $GetParam{'LinkTogetherAnother'} ) {
-            $Self->{CheckItemObject}->StringClean(
+            $Kernel::OM->Get('Kernel::System::CheckItem')->StringClean(
                 StringRef => \$GetParam{'LinkTogetherAnother'},
                 TrimLeft  => 1,
                 TrimRight => 1,
             );
-            my $ConfigItemID = $Self->{ConfigItemObject}->ConfigItemLookup(
+            my $ConfigItemID = $ConfigItemObject->ConfigItemLookup(
                 ConfigItemNumber => $GetParam{'LinkTogetherAnother'},
             );
             if ( !$ConfigItemID ) {
@@ -107,16 +99,19 @@ sub Run {
     my $ActionFlag = 0;
     my $Counter    = 1;
 
+    # get link object
+    my $LinkObject = $Kernel::OM->Get('Kernel::System::LinkObject');
+
     CONFIGITEM_ID:
     for my $ConfigItemID (@ConfigItemIDs) {
-        my $ConfigItem = $Self->{ConfigItemObject}->ConfigItemGet(
+        my $ConfigItem = $ConfigItemObject->ConfigItemGet(
             ConfigItemID => $ConfigItemID,
         );
 
-        my $Config = $Self->{ConfigObject}->Get("ITSMConfigItem::Frontend::AgentITSMConfigItemEdit");
+        my $Config = $ConfigObject->Get("ITSMConfigItem::Frontend::AgentITSMConfigItemEdit");
 
         # check permissions
-        my $Access = $Self->{ConfigItemObject}->Permission(
+        my $Access = $ConfigItemObject->Permission(
             Scope  => 'Item',
             ItemID => $ConfigItemID,
             UserID => $Self->{UserID},
@@ -126,7 +121,7 @@ sub Run {
         if ( !$Access ) {
 
             # error screen, don't show config item
-            $Output .= $Self->{LayoutObject}->Notify(
+            $Output .= $LayoutObject->Notify(
                 Data => $ConfigItem->{Number}
                     . ': $Text{"You don\'t have write access to this configuration item."}',
             );
@@ -140,13 +135,13 @@ sub Run {
         if ( ( $Self->{Subaction} eq 'Do' ) && ( !%Error ) ) {
 
             # challenge token check for write action
-            $Self->{LayoutObject}->ChallengeTokenCheck();
+            $LayoutObject->ChallengeTokenCheck();
 
             # bulk action version ddd
             if ( $GetParam{DeplStateID} || $GetParam{InciStateID} ) {
 
                 # get current version of the config item
-                my $CurrentVersion = $Self->{ConfigItemObject}->VersionGet(
+                my $CurrentVersion = $ConfigItemObject->VersionGet(
                     ConfigItemID => $ConfigItemID,
                     XMLDataGet   => 1,
                 );
@@ -161,7 +156,7 @@ sub Run {
                     $NewInciStateID = $GetParam{InciStateID};
                 }
 
-                my $VersionID = $Self->{ConfigItemObject}->VersionAdd(
+                my $VersionID = $ConfigItemObject->VersionAdd(
                     ConfigItemID => $ConfigItemID,
                     Name         => $CurrentVersion->{Name},
                     DefinitionID => $CurrentVersion->{DefinitionID},
@@ -175,7 +170,7 @@ sub Run {
             # bulk action links
             # link all config items to another config item
             if ( $GetParam{'LinkTogetherAnother'} ) {
-                my $MainConfigItemID = $Self->{ConfigItemObject}->ConfigItemLookup(
+                my $MainConfigItemID = $ConfigItemObject->ConfigItemLookup(
                     ConfigItemNumber => $GetParam{'LinkTogetherAnother'},
                 );
 
@@ -194,7 +189,7 @@ sub Run {
 
                     for my $ConfigItemIDPartner (@ConfigItemIDs) {
                         if ( $MainConfigItemID ne $ConfigItemIDPartner ) {
-                            $Self->{LinkObject}->LinkAdd(
+                            $LinkObject->LinkAdd(
                                 SourceObject => 'ITSMConfigItem',
                                 SourceKey    => $SourceKey,
                                 TargetObject => 'ITSMConfigItem',
@@ -226,7 +221,7 @@ sub Run {
                         }
 
                         if ( $ConfigItemID ne $ConfigItemIDPartner ) {
-                            $Self->{LinkObject}->LinkAdd(
+                            $LinkObject->LinkAdd(
                                 SourceObject => 'ITSMConfigItem',
                                 SourceKey    => $SourceKey,
                                 TargetObject => 'ITSMConfigItem',
@@ -246,7 +241,7 @@ sub Run {
 
     # redirect
     if ($ActionFlag) {
-        return $Self->{LayoutObject}->PopupClose(
+        return $LayoutObject->PopupClose(
             URL => ( $Self->{LastScreenOverview} || 'Action=AgentDashboard' ),
         );
     }
@@ -257,7 +252,7 @@ sub Run {
         ConfigItemIDs => \@ConfigItemIDSelected,
         Errors        => \%Error,
     );
-    $Output .= $Self->{LayoutObject}->Footer(
+    $Output .= $LayoutObject->Footer(
         Type => 'Small',
     );
     return $Output;
@@ -266,14 +261,17 @@ sub Run {
 sub _Mask {
     my ( $Self, %Param ) = @_;
 
+    # get layout object
+    my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
+
     # prepare errors!
     if ( $Param{Errors} ) {
         for my $KeyError ( sort keys %{ $Param{Errors} } ) {
-            $Param{$KeyError} = $Self->{LayoutObject}->Ascii2Html( Text => $Param{Errors}->{$KeyError} );
+            $Param{$KeyError} = $LayoutObject->Ascii2Html( Text => $Param{Errors}->{$KeyError} );
         }
     }
 
-    $Self->{LayoutObject}->Block(
+    $LayoutObject->Block(
         Name => 'BulkAction',
         Data => \%Param,
     );
@@ -281,7 +279,7 @@ sub _Mask {
     # remember config item ids
     if ( $Param{ConfigItemIDs} ) {
         for my $ConfigItemID ( @{ $Param{ConfigItemIDs} } ) {
-            $Self->{LayoutObject}->Block(
+            $LayoutObject->Block(
                 Name => 'UsedConfigItemID',
                 Data => {
                     ConfigItemID => $ConfigItemID,
@@ -290,21 +288,27 @@ sub _Mask {
         }
     }
 
+    # get needed objects
+    my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
+    my $ConfigObject         = $Kernel::OM->Get('Kernel::Config');
+
+    $Self->{Config} = $ConfigObject->Get("ITSMConfigItem::Frontend::$Self->{Action}");
+
     # deployment state
     if ( $Self->{Config}->{DeplState} ) {
-        my $DeplStateList = $Self->{GeneralCatalogObject}->ItemList(
+        my $DeplStateList = $GeneralCatalogObject->ItemList(
             Class => 'ITSM::ConfigItem::DeploymentState',
         );
 
         # generate DeplStateStrg
-        $Param{DeplStateStrg} = $Self->{LayoutObject}->BuildSelection(
+        $Param{DeplStateStrg} = $LayoutObject->BuildSelection(
             Data         => $DeplStateList,
             Name         => 'DeplStateID',
             PossibleNone => 1,
             SelectedID   => $Param{DeplStateID},
             Sort         => 'AlphanumericValue',
         );
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'DeplState',
             Data => {%Param},
         );
@@ -314,7 +318,7 @@ sub _Mask {
     if ( $Self->{Config}->{InciState} ) {
 
         # get incident state list
-        my $InciStateList = $Self->{GeneralCatalogObject}->ItemList(
+        my $InciStateList = $GeneralCatalogObject->ItemList(
             Class       => 'ITSM::Core::IncidentState',
             Preferences => {
                 Functionality => [ 'operational', 'incident' ],
@@ -322,22 +326,25 @@ sub _Mask {
         );
 
         # generate InciStateStrg
-        $Param{InciStateStrg} = $Self->{LayoutObject}->BuildSelection(
+        $Param{InciStateStrg} = $LayoutObject->BuildSelection(
             Data         => $InciStateList,
             Name         => 'InciStateID',
             PossibleNone => 1,
             SelectedID   => $Param{InciStateID},
             Sort         => 'AlphanumericValue',
         );
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'InciState',
             Data => {%Param},
         );
     }
 
+    # get link object
+    my $LinkObject = $Kernel::OM->Get('Kernel::System::LinkObject');
+
     # link types list
     # get possible types list
-    my %PossibleTypesList = $Self->{LinkObject}->PossibleTypesList(
+    my %PossibleTypesList = $LinkObject->PossibleTypesList(
         Object1 => 'ITSMConfigItem',
         Object2 => 'ITSMConfigItem',
         UserID  => $Self->{UserID},
@@ -358,13 +365,13 @@ sub _Mask {
     for my $PossibleType ( sort { lc $a cmp lc $b } keys %PossibleTypesList ) {
 
         # lookup type id
-        my $TypeID = $Self->{LinkObject}->TypeLookup(
+        my $TypeID = $LinkObject->TypeLookup(
             Name   => $PossibleType,
             UserID => $Self->{UserID},
         );
 
         # get type
-        my %Type = $Self->{LinkObject}->TypeGet(
+        my %Type = $LinkObject->TypeGet(
             TypeID => $TypeID,
             UserID => $Self->{UserID},
         );
@@ -415,14 +422,14 @@ sub _Mask {
     }
 
     # generate LinkTypeStrg
-    $Param{LinkTypeStrg} = $Self->{LayoutObject}->BuildSelection(
+    $Param{LinkTypeStrg} = $LayoutObject->BuildSelection(
         Data         => \@SelectableTypesList,
         Name         => 'LinkType',
         PossibleNone => 0,
         SelectedID   => $Param{TypeIdentifier} || 'AlternativeTo::Source',
         Sort         => 'AlphanumericValue',
     );
-    $Param{LinkTogetherLinkTypeStrg} = $Self->{LayoutObject}->BuildSelection(
+    $Param{LinkTogetherLinkTypeStrg} = $LayoutObject->BuildSelection(
         Data         => \@LinkTogetherTypeList,
         Name         => 'LinkTogetherLinkType',
         PossibleNone => 0,
@@ -430,14 +437,14 @@ sub _Mask {
         Sort         => 'AlphanumericValue',
     );
 
-    $Param{LinkTogetherYesNoOption} = $Self->{LayoutObject}->BuildSelection(
-        Data       => $Self->{ConfigObject}->Get('YesNoOptions'),
+    $Param{LinkTogetherYesNoOption} = $LayoutObject->BuildSelection(
+        Data       => $ConfigObject->Get('YesNoOptions'),
         Name       => 'LinkTogether',
         SelectedID => $Param{LinkTogether} || 0,
     );
 
     # get output back
-    return $Self->{LayoutObject}->Output(
+    return $LayoutObject->Output(
         TemplateFile => 'AgentITSMConfigItemBulk',
         Data         => \%Param
     );

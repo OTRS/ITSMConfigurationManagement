@@ -6,10 +6,16 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package Kernel::Output::HTML::ITSMConfigItemLayoutDateTime;
+package Kernel::Output::HTML::ITSMConfigItem::LayoutDateTime;
 
 use strict;
 use warnings;
+
+our @ObjectDependencies = (
+    'Kernel::System::Log',
+    'Kernel::Output::HTML::Layout',
+    'Kernel::System::Web::Request'
+);
 
 =head1 NAME
 
@@ -40,11 +46,6 @@ sub new {
     my $Self = {};
     bless( $Self, $Type );
 
-    # check needed objects
-    for my $Object (qw(ConfigObject EncodeObject LogObject MainObject ParamObject LayoutObject)) {
-        $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
-    }
-
     return $Self;
 }
 
@@ -63,7 +64,7 @@ sub OutputStringCreate {
 
     return '' if !$Param{Value};
 
-    $Param{Value} = $Self->{LayoutObject}->Output(
+    $Param{Value} = $Kernel::OM->Get('Kernel::Output::HTML::Layout')->Output(
         Template => '[% Data.Date | Localize("TimeLong") %]',
         Data     => {
             Date => $Param{Value} . ':00',
@@ -90,7 +91,7 @@ sub FormDataGet {
     # check needed stuff
     for my $Argument (qw(Key Item)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );
@@ -100,12 +101,15 @@ sub FormDataGet {
 
     my %FormData;
 
+    # get param object
+    my $ParamObject = $Kernel::OM->Get('Kernel::System::Web::Request');
+
     # get form data
-    my $Day    = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::Day' );
-    my $Month  = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::Month' );
-    my $Year   = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::Year' );
-    my $Hour   = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::Hour' ) || 0;
-    my $Minute = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::Minute' ) || 0;
+    my $Day    = $ParamObject->GetParam( Param => $Param{Key} . '::Day' );
+    my $Month  = $ParamObject->GetParam( Param => $Param{Key} . '::Month' );
+    my $Year   = $ParamObject->GetParam( Param => $Param{Key} . '::Year' );
+    my $Hour   = $ParamObject->GetParam( Param => $Param{Key} . '::Hour' ) || 0;
+    my $Minute = $ParamObject->GetParam( Param => $Param{Key} . '::Minute' ) || 0;
 
     if ( $Day && $Month && $Year ) {
         $FormData{Value} = sprintf '%02d-%02d-%02d %02d:%02d', $Year, $Month, $Day, $Hour, $Minute;
@@ -138,7 +142,7 @@ sub InputCreate {
     # check needed stuff
     for my $Argument (qw(Key Item)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );
@@ -159,7 +163,7 @@ sub InputCreate {
         }
     }
 
-    my $String = $Self->{LayoutObject}->BuildDateSelection(
+    my $String = $Kernel::OM->Get('Kernel::Output::HTML::Layout')->BuildDateSelection(
         Prefix           => $Param{Key} . '::',
         Format           => 'DateInputFormatLong',
         YearPeriodPast   => $Param{Item}->{Input}->{YearPeriodPast} || 10,
@@ -187,7 +191,7 @@ sub SearchFormDataGet {
     # check needed stuff
     for my $Argument (qw(Key Item)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );
@@ -207,6 +211,9 @@ sub SearchFormDataGet {
     my $StopMonth;
     my $StopYear;
 
+    # get param object
+    my $ParamObject = $Kernel::OM->Get('Kernel::System::Web::Request');
+
     # get form data
     if ( $Param{Value} && ref $Param{Value} eq 'HASH' ) {
         $Used        = $Param{Value}->{ $Param{Key} };
@@ -222,20 +229,20 @@ sub SearchFormDataGet {
         $StopYear    = $Param{Value}->{ $Param{Key} . '::TimeStop::Year' };
     }
     else {
-        $Used        = $Self->{ParamObject}->GetParam( Param => $Param{Key} );
-        $StartMinute = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStart::Minute' ) || 00;
-        $StartHour   = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStart::Hour' )
+        $Used        = $ParamObject->GetParam( Param => $Param{Key} );
+        $StartMinute = $ParamObject->GetParam( Param => $Param{Key} . '::TimeStart::Minute' ) || 00;
+        $StartHour   = $ParamObject->GetParam( Param => $Param{Key} . '::TimeStart::Hour' )
             || 00;
-        $StartDay   = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStart::Day' );
-        $StartMonth = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStart::Month' );
-        $StartYear  = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStart::Year' );
-        $StopMinute = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStop::Minute' )
+        $StartDay   = $ParamObject->GetParam( Param => $Param{Key} . '::TimeStart::Day' );
+        $StartMonth = $ParamObject->GetParam( Param => $Param{Key} . '::TimeStart::Month' );
+        $StartYear  = $ParamObject->GetParam( Param => $Param{Key} . '::TimeStart::Year' );
+        $StopMinute = $ParamObject->GetParam( Param => $Param{Key} . '::TimeStop::Minute' )
             || 59;
-        $StopHour = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStop::Hour' )
+        $StopHour = $ParamObject->GetParam( Param => $Param{Key} . '::TimeStop::Hour' )
             || 23;
-        $StopDay   = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStop::Day' );
-        $StopMonth = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStop::Month' );
-        $StopYear  = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::TimeStop::Year' );
+        $StopDay   = $ParamObject->GetParam( Param => $Param{Key} . '::TimeStop::Day' );
+        $StopMonth = $ParamObject->GetParam( Param => $Param{Key} . '::TimeStop::Month' );
+        $StopYear  = $ParamObject->GetParam( Param => $Param{Key} . '::TimeStop::Year' );
     }
 
     if (
@@ -275,7 +282,7 @@ sub SearchInputCreate {
     # check needed stuff
     for my $Argument (qw(Key Item)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );
@@ -291,15 +298,18 @@ sub SearchInputCreate {
     # get time related params
     my %GetParam;
 
+    # get param object
+    my $ParamObject = $Kernel::OM->Get('Kernel::System::Web::Request');
+
     if ( $Param{Value} ) {
         %GetParam = %{ $Param{Value} }
     }
     else {
-        $GetParam{$Key} = $Self->{ParamObject}->GetParam( Param => $Key );
+        $GetParam{$Key} = $ParamObject->GetParam( Param => $Key );
         for my $TimeType ( $PrefixStart, $PrefixStop ) {
             for my $Part (qw( Year Month Day )) {
                 my $ParamKey = $TimeType . $Part;
-                my $ParamVal = $Self->{ParamObject}->GetParam( Param => $ParamKey );
+                my $ParamVal = $ParamObject->GetParam( Param => $ParamKey );
 
                 # remove white space on the start and end
                 if ($ParamVal) {
@@ -313,15 +323,18 @@ sub SearchInputCreate {
         }
     }
 
+    # get layout object
+    my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
+
     # Build selection for the start and stop time.
-    my $TimeStartSelectionString = $Self->{LayoutObject}->BuildDateSelection(
+    my $TimeStartSelectionString = $LayoutObject->BuildDateSelection(
         Prefix           => $PrefixStart,
         Format           => 'DateInputFormatLong',
         YearPeriodPast   => 10,
         YearPeriodFuture => 10,
         %GetParam,
     );
-    my $TimeStopSelectionString = $Self->{LayoutObject}->BuildDateSelection(
+    my $TimeStopSelectionString = $LayoutObject->BuildDateSelection(
         Optional         => 0,
         Prefix           => $PrefixStop,
         Format           => 'DateInputFormatLong',
@@ -331,8 +344,8 @@ sub SearchInputCreate {
     );
 
     my $Checkbox = qq{<input type="hidden" name="$Key" value="1"/>};
-    my $Between  = $Self->{LayoutObject}->{LanguageObject}->Get('Between');
-    my $And      = $Self->{LayoutObject}->{LanguageObject}->Get('and');
+    my $Between  = $LayoutObject->{LanguageObject}->Translate('Between');
+    my $And      = $LayoutObject->{LanguageObject}->Translate('and');
 
     return "<div> $Checkbox $Between $TimeStartSelectionString </div>"
         . "<span style=\"margin-left: 27px;\"> $And </span> $TimeStopSelectionString";

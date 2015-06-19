@@ -11,10 +11,7 @@ package Kernel::Modules::AgentITSMConfigItemPrint;
 use strict;
 use warnings;
 
-use Kernel::System::ITSMConfigItem;
-use Kernel::System::LinkObject;
-use Kernel::System::PDF;
-use Kernel::System::HTMLUtils;
+our $ObjectManagerDisabled = 1;
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -23,85 +20,81 @@ sub new {
     my $Self = {%Param};
     bless( $Self, $Type );
 
-    # check needed objects
-    for my $Object (qw(ParamObject DBObject LayoutObject LogObject ConfigObject)) {
-        if ( !$Self->{$Object} ) {
-            $Self->{LayoutObject}->FatalError( Message => "Got no $Object!" );
-        }
-    }
-    $Self->{ConfigItemObject} = Kernel::System::ITSMConfigItem->new(%Param);
-    $Self->{LinkObject}       = Kernel::System::LinkObject->new(%Param);
-    $Self->{PDFObject}        = Kernel::System::PDF->new(%Param);
-    $Self->{HTMLUtilsObject}  = Kernel::System::HTMLUtils->new(%Param);
-
-    # get config of frontend module
-    $Self->{Config} = $Self->{ConfigObject}->Get("ITSMConfigItem::Frontend::$Self->{Action}");
-
     return $Self;
 }
 
 sub Run {
     my ( $Self, %Param ) = @_;
 
+    # get param object
+    my $ParamObject = $Kernel::OM->Get('Kernel::System::Web::Request');
+
     # get params
-    my $ConfigItemID = $Self->{ParamObject}->GetParam( Param => 'ConfigItemID' );
-    my $VersionID    = $Self->{ParamObject}->GetParam( Param => 'VersionID' );
+    my $ConfigItemID = $ParamObject->GetParam( Param => 'ConfigItemID' );
+    my $VersionID    = $ParamObject->GetParam( Param => 'VersionID' );
+
+    # get layout object
+    my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
 
     # check needed stuff
     if ( !$ConfigItemID || !$VersionID ) {
-        return $Self->{LayoutObject}->ErrorScreen(
+        return $LayoutObject->ErrorScreen(
             Message => 'No ConfigItemID or VersionID is given!',
             Comment => 'Please contact the admin.',
         );
     }
 
+    # get needed objects
+    my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+    my $ConfigObject     = $Kernel::OM->Get('Kernel::Config');
+
     # check for access rights
-    my $HasAccess = $Self->{ConfigItemObject}->Permission(
+    my $HasAccess = $ConfigItemObject->Permission(
         Scope  => 'Item',
         ItemID => $ConfigItemID,
         UserID => $Self->{UserID},
-        Type   => $Self->{Config}->{Permission},
+        Type   => $ConfigObject->Get("ITSMConfigItem::Frontend::$Self->{Action}")->{Permission},
     );
 
     if ( !$HasAccess ) {
 
         # error page
-        return $Self->{LayoutObject}->ErrorScreen(
+        return $LayoutObject->ErrorScreen(
             Message => 'Can\'t show config item, no access rights given!',
             Comment => 'Please contact the admin.',
         );
     }
 
     # get config item
-    my $ConfigItem = $Self->{ConfigItemObject}->ConfigItemGet(
+    my $ConfigItem = $ConfigItemObject->ConfigItemGet(
         ConfigItemID => $ConfigItemID,
     );
     if ( !$ConfigItem->{ConfigItemID} ) {
-        return $Self->{LayoutObject}->ErrorScreen(
+        return $LayoutObject->ErrorScreen(
             Message => "ConfigItemID $ConfigItemID not found in database!",
             Comment => 'Please contact the admin.',
         );
     }
 
     # get version
-    my $Version = $Self->{ConfigItemObject}->VersionGet(
+    my $Version = $ConfigItemObject->VersionGet(
         VersionID => $VersionID,
     );
     if ( !$Version->{VersionID} ) {
-        return $Self->{LayoutObject}->ErrorScreen(
+        return $LayoutObject->ErrorScreen(
             Message => "VersionID $VersionID not found in database!",
             Comment => 'Please contact the admin.',
         );
     }
 
     # get last version
-    my $LastVersion = $Self->{ConfigItemObject}->VersionGet(
+    my $LastVersion = $ConfigItemObject->VersionGet(
         ConfigItemID => $ConfigItemID,
     );
     $ConfigItem->{CurrentName} = $LastVersion->{Name};
 
     # get version list
-    my $VersionList = $Self->{ConfigItemObject}->VersionList(
+    my $VersionList = $ConfigItemObject->VersionList(
         ConfigItemID => $ConfigItemID,
     );
 
@@ -113,20 +106,25 @@ sub Run {
         $VersionNumber++;
     }
 
+    # get user object
+    my $UserObject = $Kernel::OM->Get('Kernel::System::User');
+
     # get create & change user data
     for my $Key (qw(Create Change)) {
-        $ConfigItem->{ $Key . 'ByName' } = $Self->{UserObject}->UserName(
+        $ConfigItem->{ $Key . 'ByName' } = $UserObject->UserName(
             UserID => $ConfigItem->{ $Key . 'By' },
         );
     }
 
     # get user data of version (create by)
-    $Version->{CreateByName} = $Self->{UserObject}->UserName(
+    $Version->{CreateByName} = $UserObject->UserName(
         UserID => $Version->{CreateBy},
     );
 
     # get linked objects
-    my $LinkListWithData = $Self->{LinkObject}->LinkListWithData(
+    my $LinkObject = $Kernel::OM->Get('Kernel::System::LinkObject');
+
+    my $LinkListWithData = $LinkObject->LinkListWithData(
         Object => 'ITSMConfigItem',
         Key    => $ConfigItemID,
         State  => 'Valid',
@@ -134,31 +132,35 @@ sub Run {
     );
 
     # get link type list
-    my %LinkTypeList = $Self->{LinkObject}->TypeList(
+    my %LinkTypeList = $LinkObject->TypeList(
         UserID => $Self->{UserID},
     );
 
     # get the link data
     my %LinkData;
     if ( $LinkListWithData && ref $LinkListWithData eq 'HASH' && %{$LinkListWithData} ) {
-        %LinkData = $Self->{LayoutObject}->LinkObjectTableCreate(
+        %LinkData = $LayoutObject->LinkObjectTableCreate(
             LinkListWithData => $LinkListWithData,
             ViewMode         => 'SimpleRaw',
         );
     }
 
     # get attachments
-    my @Attachments = $Self->{ConfigItemObject}->ConfigItemAttachmentList(
+    my @Attachments = $ConfigItemObject->ConfigItemAttachmentList(
         ConfigItemID => $ConfigItemID,
     );
 
+    # get pdf object
+    my $PDFObject
+        = ( $Kernel::OM->Get('Kernel::Config')->Get('PDF') ) ? $Kernel::OM->Get('Kernel::System::PDF') : undef;
+
     # generate pdf output
-    if ( $Self->{PDFObject} ) {
+    if ($PDFObject) {
 
         my %Page;
 
         # get maximum number of pages
-        $Page{MaxPages} = $Self->{ConfigObject}->Get('PDF::MaxPages');
+        $Page{MaxPages} = $ConfigObject->Get('PDF::MaxPages');
         if ( !$Page{MaxPages} || $Page{MaxPages} < 1 || $Page{MaxPages} > 1000 ) {
             $Page{MaxPages} = 100;
         }
@@ -167,24 +169,24 @@ sub Run {
         $Page{MarginRight}  = 40;
         $Page{MarginBottom} = 40;
         $Page{MarginLeft}   = 40;
-        $Page{HeaderRight}  = $Self->{LayoutObject}->{LanguageObject}->Get('ConfigItem') . '#'
+        $Page{HeaderRight}  = $LayoutObject->{LanguageObject}->Translate('ConfigItem') . '#'
             . $ConfigItem->{Number};
         $Page{HeadlineLeft}  = $Version->{Name};
-        $Page{HeadlineRight} = $Self->{LayoutObject}->{LanguageObject}->Get('printed by') . ' '
+        $Page{HeadlineRight} = $LayoutObject->{LanguageObject}->Translate('printed by') . ' '
             . $Self->{UserFullname} . ' '
-            . $Self->{LayoutObject}->{Time};
+            . $LayoutObject->{Time};
         $Page{FooterLeft} = '';
-        $Page{PageText}   = $Self->{LayoutObject}->{LanguageObject}->Get('Page');
+        $Page{PageText}   = $LayoutObject->{LanguageObject}->Translate('Page');
         $Page{PageCount}  = 1;
 
         # create new pdf document
-        $Self->{PDFObject}->DocumentNew(
-            Title  => $Self->{ConfigObject}->Get('Product') . ':' . $Version->{Name},
-            Encode => $Self->{LayoutObject}->{UserCharset},
+        $PDFObject->DocumentNew(
+            Title  => $ConfigObject->Get('Product') . ':' . $Version->{Name},
+            Encode => $LayoutObject->{UserCharset},
         );
 
         # create first pdf page
-        $Self->{PDFObject}->PageNew(
+        $PDFObject->PageNew(
             %Page,
             FooterRight => $Page{PageText} . ' ' . $Page{PageCount},
         );
@@ -222,23 +224,27 @@ sub Run {
         );
 
         # create file name
-        my $Filename = $Self->{MainObject}->FilenameCleanUp(
+        my $Filename = $Kernel::OM->Get('Kernel::System::Main')->FilenameCleanUp(
             Filename => $ConfigItem->{Number},
             Type     => 'Attachment',
         );
-        my ( $s, $m, $h, $D, $M, $Y ) = $Self->{TimeObject}->SystemTime2Date(
-            SystemTime => $Self->{TimeObject}->SystemTime(),
+
+        # get time object
+        my $TimeObject = $Kernel::OM->Get('Kernel::System::Time');
+
+        my ( $s, $m, $h, $D, $M, $Y ) = $TimeObject->SystemTime2Date(
+            SystemTime => $TimeObject->SystemTime(),
         );
         $M = sprintf( "%02d", $M );
         $D = sprintf( "%02d", $D );
         $h = sprintf( "%02d", $h );
         $m = sprintf( "%02d", $m );
 
-        return $Self->{LayoutObject}->Attachment(
+        return $LayoutObject->Attachment(
             Filename    => 'configitem_' . $Filename . "_$Y-$M-$D\_$h-$m.pdf",
             ContentType => 'application/pdf',
-            Content     => $Self->{PDFObject}->DocumentOutput(),
-            Type        => 'attachment',
+            Content     => $PDFObject->DocumentOutput(),
+            Type        => 'inline',
         );
     }
 
@@ -246,12 +252,12 @@ sub Run {
     else {
 
         # output header
-        my $Output = $Self->{LayoutObject}->PrintHeader( Value => $Version->{Name} );
+        my $Output = $LayoutObject->PrintHeader( Value => $Version->{Name} );
 
         if (%LinkData) {
 
             # output link data
-            $Self->{LayoutObject}->Block(
+            $LayoutObject->Block(
                 Name => 'Link',
             );
 
@@ -261,7 +267,7 @@ sub Run {
                 my @LinkData = split q{::}, $LinkTypeLinkDirection;
 
                 # output link type data
-                $Self->{LayoutObject}->Block(
+                $LayoutObject->Block(
                     Name => 'LinkType',
                     Data => {
                         LinkTypeName => $LinkTypeList{ $LinkData[0] }->{ $LinkData[1] . 'Name' },
@@ -276,7 +282,7 @@ sub Run {
                     for my $Item ( @{ $ObjectList->{$Object} } ) {
 
                         # output link type data
-                        $Self->{LayoutObject}->Block(
+                        $LayoutObject->Block(
                             Name => 'LinkTypeRow',
                             Data => {
                                 LinkStrg => $Item->{Title},
@@ -288,7 +294,7 @@ sub Run {
         }
 
         # output version block
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => "Version",
             Data => {
                 %{$Version},
@@ -303,7 +309,7 @@ sub Run {
             && $Version->{XMLDefinition}
             && $Version->{XMLData}
             && ref $Version->{XMLDefinition} eq 'ARRAY'
-            && ref $Version->{XMLData}       eq 'ARRAY'
+            && ref $Version->{XMLData} eq 'ARRAY'
             && $Version->{XMLData}->[1]
             && ref $Version->{XMLData}->[1] eq 'HASH'
             && $Version->{XMLData}->[1]->{Version}
@@ -319,12 +325,12 @@ sub Run {
         if (@Attachments) {
 
             # get the metadata of the 1st attachment
-            my $FirstAttachment = $Self->{ConfigItemObject}->ConfigItemAttachmentGet(
+            my $FirstAttachment = $ConfigItemObject->ConfigItemAttachmentGet(
                 ConfigItemID => $ConfigItemID,
                 Filename     => $Attachments[0],
             );
 
-            $Self->{LayoutObject}->Block(
+            $LayoutObject->Block(
                 Name => 'Attachments',
                 Data => {
                     ConfigItemID => $ConfigItemID,
@@ -342,12 +348,12 @@ sub Run {
                 next ATTACHMENT if $Attachment eq $Attachments[0];
 
                 # get the metadata of the current attachment
-                my $AttachmentData = $Self->{ConfigItemObject}->ConfigItemAttachmentGet(
+                my $AttachmentData = $ConfigItemObject->ConfigItemAttachmentGet(
                     ConfigItemID => $ConfigItemID,
                     Filename     => $Attachment,
                 );
 
-                $Self->{LayoutObject}->Block(
+                $LayoutObject->Block(
                     Name => 'AttachmentRow',
                     Data => {
                         ConfigItemID => $ConfigItemID,
@@ -359,7 +365,7 @@ sub Run {
         }
 
         # generate output
-        $Output .= $Self->{LayoutObject}->Output(
+        $Output .= $LayoutObject->Output(
             TemplateFile => 'AgentITSMConfigItemPrint',
             Data         => {
                 %{$ConfigItem},
@@ -367,7 +373,7 @@ sub Run {
         );
 
         # add footer
-        $Output .= $Self->{LayoutObject}->PrintFooter();
+        $Output .= $LayoutObject->PrintFooter();
 
         # return output
         return $Output;
@@ -380,7 +386,7 @@ sub _PDFOutputGeneralInfos {
     # check needed stuff
     for my $Argument (qw(Page ConfigItem)) {
         if ( !defined $Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );
@@ -388,25 +394,28 @@ sub _PDFOutputGeneralInfos {
         }
     }
 
+    # get layout object
+    my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
+
     # create left table
     my $TableLeft = [
         {
-            Key   => $Self->{LayoutObject}->{LanguageObject}->Get('Class') . ':',
+            Key   => $LayoutObject->{LanguageObject}->Translate('Class') . ':',
             Value => $Param{ConfigItem}->{Class},
         },
         {
-            Key   => $Self->{LayoutObject}->{LanguageObject}->Get('ConfigItem') . ':',
+            Key   => $LayoutObject->{LanguageObject}->Translate('ConfigItem') . ':',
             Value => $Param{ConfigItem}->{CurrentName},
         },
         {
-            Key   => $Self->{LayoutObject}->{LanguageObject}->Get('Current Deployment State') . ':',
-            Value => $Self->{LayoutObject}->{LanguageObject}->Get(
+            Key   => $LayoutObject->{LanguageObject}->Translate('Current Deployment State') . ':',
+            Value => $LayoutObject->{LanguageObject}->Translate(
                 $Param{ConfigItem}->{CurDeplState},
             ),
         },
         {
-            Key   => $Self->{LayoutObject}->{LanguageObject}->Get('Current Incident State') . ':',
-            Value => $Self->{LayoutObject}->{LanguageObject}->Get(
+            Key   => $LayoutObject->{LanguageObject}->Translate('Current Incident State') . ':',
+            Value => $LayoutObject->{LanguageObject}->Translate(
                 $Param{ConfigItem}->{CurInciState},
             ),
         },
@@ -415,25 +424,25 @@ sub _PDFOutputGeneralInfos {
     # create right table
     my $TableRight = [
         {
-            Key   => $Self->{LayoutObject}->{LanguageObject}->Get('Created') . ':',
-            Value => $Self->{LayoutObject}->Output(
+            Key   => $LayoutObject->{LanguageObject}->Translate('Created') . ':',
+            Value => $LayoutObject->Output(
                 Template => '[% Data.CreateTime | Localize("TimeLong") %]',
                 Data     => \%{ $Param{ConfigItem} },
             ),
         },
         {
-            Key   => $Self->{LayoutObject}->{LanguageObject}->Get('Created by') . ':',
+            Key   => $LayoutObject->{LanguageObject}->Translate('Created by') . ':',
             Value => $Param{ConfigItem}->{CreateByName},
         },
         {
-            Key   => $Self->{LayoutObject}->{LanguageObject}->Get('Last changed') . ':',
-            Value => $Self->{LayoutObject}->Output(
+            Key   => $LayoutObject->{LanguageObject}->Translate('Last changed') . ':',
+            Value => $LayoutObject->Output(
                 Template => '[% Data.ChangeTime | Localize("TimeLong") %]',
                 Data     => \%{ $Param{ConfigItem} },
             ),
         },
         {
-            Key   => $Self->{LayoutObject}->{LanguageObject}->Get('Last changed by') . ':',
+            Key   => $LayoutObject->{LanguageObject}->Translate('Last changed by') . ':',
             Value => $Param{ConfigItem}->{ChangeByName},
         },
     ];
@@ -470,17 +479,21 @@ sub _PDFOutputGeneralInfos {
     $TableParam{PaddingTop}           = 3;
     $TableParam{PaddingBottom}        = 3;
 
+    # get pdf object
+    my $PDFObject
+        = ( $Kernel::OM->Get('Kernel::Config')->Get('PDF') ) ? $Kernel::OM->Get('Kernel::System::PDF') : undef;
+
     # output table
     PAGE:
     for ( $Param{Page}->{PageCount} .. $Param{Page}->{MaxPages} ) {
 
         # output table (or a fragment of it)
-        %TableParam = $Self->{PDFObject}->Table(%TableParam);
+        %TableParam = $PDFObject->Table(%TableParam);
 
         # stop output or output next page
         last PAGE if $TableParam{State};
 
-        $Self->{PDFObject}->PageNew(
+        $PDFObject->PageNew(
             %{ $Param{Page} },
             FooterRight => $Param{Page}->{PageText} . ' ' . $Param{Page}->{PageCount},
         );
@@ -496,7 +509,7 @@ sub _PDFOutputLinkedObjects {
     # check needed stuff
     for (qw(PageData LinkData LinkTypeList)) {
         if ( !defined( $Param{$_} ) ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $_!"
             );
@@ -509,12 +522,15 @@ sub _PDFOutputLinkedObjects {
     my %TableParam;
     my $Row = 0;
 
+    # my layout object
+    my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
+
     for my $LinkTypeLinkDirection ( sort { lc $a cmp lc $b } keys %{ $Param{LinkData} } ) {
 
         # investigate link type name
         my @LinkData = split q{::}, $LinkTypeLinkDirection;
         my $LinkTypeName = $TypeList{ $LinkData[0] }->{ $LinkData[1] . 'Name' };
-        $LinkTypeName = $Self->{LayoutObject}->{LanguageObject}->Get($LinkTypeName);
+        $LinkTypeName = $LayoutObject->{LanguageObject}->Translate($LinkTypeName);
 
         # define headline
         $TableParam{CellData}[$Row][0]{Content} = $LinkTypeName . ':';
@@ -540,15 +556,19 @@ sub _PDFOutputLinkedObjects {
     $TableParam{ColumnData}[0]{Width} = 80;
     $TableParam{ColumnData}[1]{Width} = 431;
 
+    # get pdf object
+    my $PDFObject
+        = ( $Kernel::OM->Get('Kernel::Config')->Get('PDF') ) ? $Kernel::OM->Get('Kernel::System::PDF') : undef;
+
     # set new position
-    $Self->{PDFObject}->PositionSet(
+    $PDFObject->PositionSet(
         Move => 'relativ',
         Y    => -15,
     );
 
     # output headline
-    $Self->{PDFObject}->Text(
-        Text     => $Self->{LayoutObject}->{LanguageObject}->Get('Linked Objects'),
+    $PDFObject->Text(
+        Text     => $LayoutObject->{LanguageObject}->Translate('Linked Objects'),
         Height   => 7,
         Type     => 'Cut',
         Font     => 'ProportionalBoldItalic',
@@ -557,7 +577,7 @@ sub _PDFOutputLinkedObjects {
     );
 
     # set new position
-    $Self->{PDFObject}->PositionSet(
+    $PDFObject->PositionSet(
         Move => 'relativ',
         Y    => -4,
     );
@@ -576,14 +596,14 @@ sub _PDFOutputLinkedObjects {
     for my $Count ( $Page{PageCount} .. $Page{MaxPages} ) {
 
         # output table (or a fragment of it)
-        %TableParam = $Self->{PDFObject}->Table(%TableParam);
+        %TableParam = $PDFObject->Table(%TableParam);
 
         # stop output or output next page
         if ( $TableParam{State} ) {
             last PAGE;
         }
         else {
-            $Self->{PDFObject}->PageNew(
+            $PDFObject->PageNew(
                 %Page,
                 FooterRight => $Page{PageText} . ' ' . $Page{PageCount},
             );
@@ -600,7 +620,7 @@ sub _PDFOutputAttachments {
     # check needed stuff
     for my $Argument (qw(PageData ConfigItemID AttachmentData)) {
         if ( !defined( $Param{$Argument} ) ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );
@@ -617,7 +637,7 @@ sub _PDFOutputAttachments {
     for my $Attachment ( @{ $Param{AttachmentData} } ) {
 
         # get the metadata of the current attachment
-        my $AttachmentData = $Self->{ConfigItemObject}->ConfigItemAttachmentGet(
+        my $AttachmentData = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemAttachmentGet(
             ConfigItemID => $Param{ConfigItemID},
             Filename     => $Attachment,
         );
@@ -632,15 +652,19 @@ sub _PDFOutputAttachments {
     $TableParam{ColumnData}[0]{Width} = 80;
     $TableParam{ColumnData}[1]{Width} = 431;
 
+    # get pdf object
+    my $PDFObject
+        = ( $Kernel::OM->Get('Kernel::Config')->Get('PDF') ) ? $Kernel::OM->Get('Kernel::System::PDF') : undef;
+
     # set new position
-    $Self->{PDFObject}->PositionSet(
+    $PDFObject->PositionSet(
         Move => 'relativ',
         Y    => -15,
     );
 
     # output headline
-    $Self->{PDFObject}->Text(
-        Text     => $Self->{LayoutObject}->{LanguageObject}->Get('Attachments'),
+    $PDFObject->Text(
+        Text     => $Kernel::OM->Get('Kernel::Output::HTML::Layout')->{LanguageObject}->Get('Attachments'),
         Height   => 7,
         Type     => 'Cut',
         Font     => 'ProportionalBoldItalic',
@@ -649,7 +673,7 @@ sub _PDFOutputAttachments {
     );
 
     # set new position
-    $Self->{PDFObject}->PositionSet(
+    $PDFObject->PositionSet(
         Move => 'relativ',
         Y    => -4,
     );
@@ -668,14 +692,14 @@ sub _PDFOutputAttachments {
     for my $Count ( $Page{PageCount} .. $Page{MaxPages} ) {
 
         # output table (or a fragment of it)
-        %TableParam = $Self->{PDFObject}->Table(%TableParam);
+        %TableParam = $PDFObject->Table(%TableParam);
 
         # stop output or output next page
         if ( $TableParam{State} ) {
             last PAGE;
         }
         else {
-            $Self->{PDFObject}->PageNew(
+            $PDFObject->PageNew(
                 %Page,
                 FooterRight => $Page{PageText} . ' ' . $Page{PageCount},
             );
@@ -692,7 +716,7 @@ sub _PDFOutputVersionInfos {
     # check needed stuff
     for my $Argument (qw(Page Version VersionNumber)) {
         if ( !defined $Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!"
             );
@@ -700,15 +724,22 @@ sub _PDFOutputVersionInfos {
         }
     }
 
+    # get pdf object
+    my $PDFObject
+        = ( $Kernel::OM->Get('Kernel::Config')->Get('PDF') ) ? $Kernel::OM->Get('Kernel::System::PDF') : undef;
+
     # set new position
-    $Self->{PDFObject}->PositionSet(
+    $PDFObject->PositionSet(
         Move => 'relativ',
         Y    => -15,
     );
 
+    # get layout object
+    my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
+
     # output headline
-    $Self->{PDFObject}->Text(
-        Text => $Self->{LayoutObject}->{LanguageObject}->Get('Version') . ' '
+    $PDFObject->Text(
+        Text => $LayoutObject->{LanguageObject}->Translate('Version') . ' '
             . $Param{VersionNumber},
         Height   => 7,
         Type     => 'Cut',
@@ -718,7 +749,7 @@ sub _PDFOutputVersionInfos {
     );
 
     # set new position
-    $Self->{PDFObject}->PositionSet(
+    $PDFObject->PositionSet(
         Move => 'relativ',
         Y    => -4,
     );
@@ -726,14 +757,14 @@ sub _PDFOutputVersionInfos {
     # create table
     my $Table = [
         {
-            Key   => $Self->{LayoutObject}->{LanguageObject}->Get('Created') . ':',
-            Value => $Self->{LayoutObject}->Output(
+            Key   => $LayoutObject->{LanguageObject}->Translate('Created') . ':',
+            Value => $LayoutObject->Output(
                 Template => '[% Data.CreateTime | Localize("TimeLong") %]',
                 Data     => \%{ $Param{Version} },
             ),
         },
         {
-            Key   => $Self->{LayoutObject}->{LanguageObject}->Get('Created by') . ':',
+            Key   => $LayoutObject->{LanguageObject}->Translate('Created by') . ':',
             Value => $Param{Version}->{CreateByName},
         },
         {
@@ -741,16 +772,16 @@ sub _PDFOutputVersionInfos {
             Value => ' ',
         },
         {
-            Key   => $Self->{LayoutObject}->{LanguageObject}->Get('Name') . ':',
+            Key   => $LayoutObject->{LanguageObject}->Translate('Name') . ':',
             Value => $Param{Version}->{Name},
         },
         {
-            Key   => $Self->{LayoutObject}->{LanguageObject}->Get('Deployment State') . ':',
-            Value => $Self->{LayoutObject}->{LanguageObject}->Get( $Param{Version}->{DeplState} ),
+            Key   => $LayoutObject->{LanguageObject}->Translate('Deployment State') . ':',
+            Value => $LayoutObject->{LanguageObject}->Translate( $Param{Version}->{DeplState} ),
         },
         {
-            Key   => $Self->{LayoutObject}->{LanguageObject}->Get('Incident State') . ':',
-            Value => $Self->{LayoutObject}->{LanguageObject}->Get( $Param{Version}->{InciState} ),
+            Key   => $LayoutObject->{LanguageObject}->Translate('Incident State') . ':',
+            Value => $LayoutObject->{LanguageObject}->Translate( $Param{Version}->{InciState} ),
         },
     ];
 
@@ -760,7 +791,7 @@ sub _PDFOutputVersionInfos {
         && $Param{Version}->{XMLDefinition}
         && $Param{Version}->{XMLData}
         && ref $Param{Version}->{XMLDefinition} eq 'ARRAY'
-        && ref $Param{Version}->{XMLData}       eq 'ARRAY'
+        && ref $Param{Version}->{XMLData} eq 'ARRAY'
         && $Param{Version}->{XMLData}->[1]
         && ref $Param{Version}->{XMLData}->[1] eq 'HASH'
         && $Param{Version}->{XMLData}->[1]->{Version}
@@ -799,12 +830,12 @@ sub _PDFOutputVersionInfos {
     for my $Count ( $Param{Page}->{PageCount} .. $Param{Page}->{MaxPages} ) {
 
         # output table (or a fragment of it)
-        %TableParam = $Self->{PDFObject}->Table(%TableParam);
+        %TableParam = $PDFObject->Table(%TableParam);
 
         # stop output or output next page
         last PAGE if $TableParam{State};
 
-        $Self->{PDFObject}->PageNew(
+        $PDFObject->PageNew(
             %{ $Param{Page} },
             FooterRight => $Param{Page}->{PageText} . ' ' . $Param{Page}->{PageCount},
         );
@@ -836,13 +867,16 @@ sub _PDFOutputXMLOutput {
             last COUNTER if !defined $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content};
 
             # lookup value
-            my $Value = $Self->{ConfigItemObject}->XMLValueLookup(
+            my $Value = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->XMLValueLookup(
                 Item  => $Item,
                 Value => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content},
             );
 
+            # get layout object
+            my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
+
             # create output string
-            $Value = $Self->{LayoutObject}->ITSMConfigItemOutputStringCreate(
+            $Value = $LayoutObject->ITSMConfigItemOutputStringCreate(
                 Value => $Value,
                 Item  => $Item,
                 Print => 1,
@@ -852,11 +886,11 @@ sub _PDFOutputXMLOutput {
             $Value =~ s{ \n }{<br/>}gxms;
 
             # convert value to ascii
-            $Value = $Self->{HTMLUtilsObject}->ToAscii( String => $Value );
+            $Value = $Kernel::OM->Get('Kernel::System::HTMLUtils')->ToAscii( String => $Value );
 
             # new row
             my $NewRow = {
-                Key   => $Self->{LayoutObject}->{LanguageObject}->Get( $Item->{Name} ) . ':',
+                Key   => $LayoutObject->{LanguageObject}->Translate( $Item->{Name} ) . ':',
                 Value => $Value,
             };
 
@@ -906,19 +940,22 @@ sub _HTMLOutputXMLStructure {
             last COUNTER if !defined $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content};
 
             # lookup value
-            my $Value = $Self->{ConfigItemObject}->XMLValueLookup(
+            my $Value = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->XMLValueLookup(
                 Item  => $Item,
                 Value => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content},
             );
 
+            # get layout object
+            my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
+
             # create output string
-            $Value = $Self->{LayoutObject}->ITSMConfigItemOutputStringCreate(
+            $Value = $LayoutObject->ITSMConfigItemOutputStringCreate(
                 Value => $Value,
                 Item  => $Item,
             );
 
             # output data block
-            $Self->{LayoutObject}->Block(
+            $LayoutObject->Block(
                 Name => 'VersionRow',
                 Data => {
                     Name        => $Item->{Name},
@@ -930,8 +967,8 @@ sub _HTMLOutputXMLStructure {
             # output space, if level was given
             if ( $Param{Level} ) {
                 for ( 1 .. $Param{Level} ) {
-                    $Self->{LayoutObject}->Block( Name => 'VersionRowNamePre' );
-                    $Self->{LayoutObject}->Block( Name => 'VersionRowValuePre' );
+                    $LayoutObject->Block( Name => 'VersionRowNamePre' );
+                    $LayoutObject->Block( Name => 'VersionRowValuePre' );
                 }
             }
 

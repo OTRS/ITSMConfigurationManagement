@@ -6,12 +6,19 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package Kernel::Output::HTML::ITSMConfigItemLayoutCustomer;
+package Kernel::Output::HTML::ITSMConfigItem::LayoutCustomer;
 
 use strict;
 use warnings;
 
 use Kernel::System::CustomerUser;
+
+our @ObjectDependencies = (
+    'Kernel::System::Log',
+    'Kernel::Output::HTML::Layout',
+    'Kernel::System::Web::Request',
+    'Kernel::System::CustomerUser',
+);
 
 =head1 NAME
 
@@ -42,17 +49,6 @@ sub new {
     my $Self = {};
     bless( $Self, $Type );
 
-    # check needed objects
-    for my $Object (
-        qw(ConfigObject EncodeObject LogObject MainObject ParamObject DBObject LayoutObject)
-        )
-    {
-        $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
-    }
-
-    # create additional objects
-    $Self->{CustomerUserObject} = Kernel::System::CustomerUser->new( %{$Self} );
-
     return $Self;
 }
 
@@ -70,7 +66,7 @@ sub OutputStringCreate {
     my ( $Self, %Param ) = @_;
 
     # transform ascii to html
-    $Param{Value} = $Self->{LayoutObject}->Ascii2Html(
+    $Param{Value} = $Kernel::OM->Get('Kernel::Output::HTML::Layout')->Ascii2Html(
         Text => $Param{Value} || '',
         HTMLResultMode => 1,
     );
@@ -95,7 +91,7 @@ sub FormDataGet {
     # check needed stuff
     for my $Argument (qw(Key Item)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );
@@ -105,29 +101,31 @@ sub FormDataGet {
 
     my %FormData;
 
+    # get param object
+    my $ParamObject = $Kernel::OM->Get('Kernel::System::Web::Request');
+
     # get selected customer user
-    $FormData{Value} = $Self->{ParamObject}->GetParam( Param => $Param{Key} );
+    $FormData{Value} = $ParamObject->GetParam( Param => $Param{Key} );
 
     # check search button
-    if ( $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::ButtonSearch' ) ) {
-        $Param{Item}->{Form}->{ $Param{Key} }->{Search}
-            = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::Search' );
+    if ( $ParamObject->GetParam( Param => $Param{Key} . '::ButtonSearch' ) ) {
+        $Param{Item}->{Form}->{ $Param{Key} }->{Search} = $ParamObject->GetParam( Param => $Param{Key} . '::Search' );
     }
 
     # check select button
-    elsif ( $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::ButtonSelect' ) ) {
-        $FormData{Value} = $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::Select' );
+    elsif ( $ParamObject->GetParam( Param => $Param{Key} . '::ButtonSelect' ) ) {
+        $FormData{Value} = $ParamObject->GetParam( Param => $Param{Key} . '::Select' );
     }
 
     # check clear button
-    elsif ( $Self->{ParamObject}->GetParam( Param => $Param{Key} . '::ButtonClear' ) ) {
+    elsif ( $ParamObject->GetParam( Param => $Param{Key} . '::ButtonClear' ) ) {
         $FormData{Value} = '';
     }
     else {
 
         # reset value if search field is empty
         if (
-            !$Self->{ParamObject}->GetParam( Param => $Param{Key} . '::Search' )
+            !$ParamObject->GetParam( Param => $Param{Key} . '::Search' )
             && defined $FormData{Value}
             )
         {
@@ -162,7 +160,7 @@ sub InputCreate {
     # check needed stuff
     for my $Argument (qw(Key Item)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );
@@ -195,12 +193,12 @@ sub InputCreate {
     if ($Value) {
 
         # get customer data
-        my %CustomerSearchList = $Self->{CustomerUserObject}->CustomerSearch(
+        my %CustomerSearchList = $Kernel::OM->Get('Kernel::System::CustomerUser')->CustomerSearch(
             Search => $Value,
         );
 
         # transform ascii to html
-        $Search = $Self->{LayoutObject}->Ascii2Html(
+        $Search = $Kernel::OM->Get('Kernel::Output::HTML::Layout')->Ascii2Html(
             Text => $CustomerSearchList{$Value} || '',
             HTMLResultMode => 1,
         );
@@ -242,7 +240,7 @@ sub SearchFormDataGet {
 
     # check needed stuff
     if ( !$Param{Key} ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => 'Need Key!',
         );
@@ -255,7 +253,7 @@ sub SearchFormDataGet {
         $Value = $Param{Value};
     }
     else {
-        $Value = $Self->{ParamObject}->GetParam( Param => $Param{Key} );
+        $Value = $Kernel::OM->Get('Kernel::System::Web::Request')->GetParam( Param => $Param{Key} );
     }
     return $Value;
 }
@@ -276,7 +274,7 @@ sub SearchInputCreate {
     # check needed stuff
     for my $Argument (qw(Key Item)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );

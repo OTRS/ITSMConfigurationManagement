@@ -6,10 +6,17 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package Kernel::Output::HTML::ITSMConfigItemLayoutDummy;
+package Kernel::Output::HTML::ITSMConfigItem::LayoutDummy;
 
 use strict;
 use warnings;
+
+our @ObjectDependencies = (
+    'Kernel::System::Log',
+    'Kernel::Output::HTML::Layout',
+    'Kernel::System::Web::Request',
+    'Kernel::Config',
+);
 
 =head1 NAME
 
@@ -40,11 +47,6 @@ sub new {
     my $Self = {};
     bless( $Self, $Type );
 
-    # check needed objects
-    for my $Object (qw(ConfigObject EncodeObject LogObject MainObject ParamObject LayoutObject)) {
-        $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
-    }
-
     return $Self;
 }
 
@@ -61,7 +63,7 @@ sub OutputStringCreate {
 
     # check needed stuff
     if ( !$Param{Item} ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => 'Need Item!',
         );
@@ -72,9 +74,12 @@ sub OutputStringCreate {
         $Param{Value} = '';
     }
 
+    # get layout object
+    my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
+
     # translate
     if ( $Param{Item}->{Input}->{Translation} ) {
-        $Param{Value} = $Self->{LayoutObject}->{LanguageObject}->Get( $Param{Value} );
+        $Param{Value} = $LayoutObject->{LanguageObject}->Translate( $Param{Value} );
     }
 
     my $LinkFeature    = 1;
@@ -85,13 +90,13 @@ sub OutputStringCreate {
         $LinkFeature = 0;
 
         # do not convert whitespace and newlines in PDF mode
-        if ( $Self->{ConfigObject}->Get('PDF') ) {
+        if ( $Kernel::OM->Get('Kernel::Config')->Get('PDF') ) {
             $HTMLResultMode = 0;
         }
     }
 
     # transform ascii to html
-    $Param{Value} = $Self->{LayoutObject}->Ascii2Html(
+    $Param{Value} = $LayoutObject->Ascii2Html(
         Text           => $Param{Value},
         HTMLResultMode => $HTMLResultMode,
         LinkFeature    => $LinkFeature,
@@ -114,7 +119,7 @@ sub FormDataGet {
     # check needed stuff
     for my $Argument (qw(Key Item)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );
@@ -125,7 +130,7 @@ sub FormDataGet {
     my %FormData;
 
     # get form data
-    $FormData{Value} = $Self->{ParamObject}->GetParam( Param => $Param{Key} );
+    $FormData{Value} = $Kernel::OM->Get('Kernel::System::Web::Request')->GetParam( Param => $Param{Key} );
 
     # set invalid param
     if ( $Param{Item}->{Input}->{Required} && !$FormData{Value} ) {
@@ -150,7 +155,7 @@ sub InputCreate {
     # check needed stuff
     for my $Argument (qw(Key Item)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );
@@ -187,13 +192,16 @@ sub InputCreate {
 
     if ($Value) {
 
+        # get layout object
+        my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
+
         # translate
         if ( $Param{Item}->{Input}->{Translation} ) {
-            $Value = $Self->{LayoutObject}->{LanguageObject}->Get($Value);
+            $Value = $LayoutObject->{LanguageObject}->Translate($Value);
         }
 
         # transform ascii to html
-        $Value = $Self->{LayoutObject}->Ascii2Html(
+        $Value = $LayoutObject->Ascii2Html(
             Text           => $Value,
             HTMLResultMode => 1,
         );
