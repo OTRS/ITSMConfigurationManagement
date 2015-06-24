@@ -6,18 +6,25 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package Kernel::Output::HTML::ITSMConfigItemLayoutText;
+package Kernel::Output::HTML::ITSMConfigItem::LayoutGeneralCatalog;
 
 use strict;
 use warnings;
 
+our @ObjectDependencies = (
+    'Kernel::System::GeneralCatalog',
+    'Kernel::System::Log',
+    'Kernel::Output::HTML::Layout',
+    'Kernel::System::Web::Request'
+);
+
 =head1 NAME
 
-Kernel::Output::HTML::ITSMConfigItemLayoutText - layout backend module
+Kernel::Output::HTML::ITSMConfigItemLayoutGeneralCatalog - layout backend module
 
 =head1 SYNOPSIS
 
-All layout functions of text objects
+All layout functions of general catalog objects
 
 =over 4
 
@@ -27,7 +34,7 @@ All layout functions of text objects
 
 create an object
 
-    $BackendObject = Kernel::Output::HTML::ITSMConfigItemLayoutText->new(
+    $BackendObject = Kernel::Output::HTML::ITSMConfigItemLayoutGeneralCatalog->new(
         %Param,
     );
 
@@ -39,11 +46,6 @@ sub new {
     # allocate new hash for object
     my $Self = {};
     bless( $Self, $Type );
-
-    # check needed objects
-    for my $Object (qw(ConfigObject EncodeObject LogObject MainObject ParamObject LayoutObject)) {
-        $Self->{$Object} = $Param{$Object} || die "Got no $Object!";
-    }
 
     return $Self;
 }
@@ -64,41 +66,19 @@ sub OutputStringCreate {
 
     # check needed stuff
     if ( !$Param{Item} ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => 'Need Item!',
         );
         return;
     }
 
-    if ( !defined $Param{Value} ) {
-        $Param{Value} = '';
-    }
+    $Param{Value} //= '';
 
     # translate
     if ( $Param{Item}->{Input}->{Translation} ) {
-        $Param{Value} = $Self->{LayoutObject}->{LanguageObject}->Get( $Param{Value} );
+        $Param{Value} = $Kernel::OM->Get('Kernel::Output::HTML::Layout')->{LanguageObject}->Translate( $Param{Value} );
     }
-
-    my $LinkFeature    = 1;
-    my $HTMLResultMode = 1;
-
-    # do not transform links in print view
-    if ( $Param{Print} ) {
-        $LinkFeature = 0;
-
-        # do not convert whitespace and newlines in PDF mode
-        if ( $Self->{ConfigObject}->Get('PDF') ) {
-            $HTMLResultMode = 0;
-        }
-    }
-
-    # transform ascii to html
-    $Param{Value} = $Self->{LayoutObject}->Ascii2Html(
-        Text           => $Param{Value},
-        HTMLResultMode => $HTMLResultMode,
-        LinkFeature    => $LinkFeature,
-    );
 
     return $Param{Value};
 }
@@ -120,7 +100,7 @@ sub FormDataGet {
     # check needed stuff
     for my $Argument (qw(Key Item)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );
@@ -131,25 +111,12 @@ sub FormDataGet {
     my %FormData;
 
     # get form data
-    $FormData{Value} = $Self->{ParamObject}->GetParam( Param => $Param{Key} );
+    $FormData{Value} = $Kernel::OM->Get('Kernel::System::Web::Request')->GetParam( Param => $Param{Key} );
 
     # set invalid param
     if ( $Param{Item}->{Input}->{Required} && !$FormData{Value} ) {
         $FormData{Invalid} = 1;
         $Param{Item}->{Form}->{ $Param{Key} }->{Invalid} = 1;
-    }
-
-    # value was entered in the form, a regex is defined and the value does not match the regex
-    if (
-        $FormData{Value}
-        && $Param{Item}->{Input}->{RegEx}
-        && $FormData{Value} !~ m{ $Param{Item}->{Input}->{RegEx} }xms
-        )
-    {
-
-        $FormData{Invalid}                                         = 1;
-        $Param{Item}->{Form}->{ $Param{Key} }->{Invalid}           = 1;
-        $Param{Item}->{Form}->{ $Param{Key} }->{RegExErrorMessage} = $Param{Item}->{Input}->{RegExErrorMessage};
     }
 
     return \%FormData;
@@ -173,7 +140,7 @@ sub InputCreate {
     # check needed stuff
     for my $Argument (qw(Key Item)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );
@@ -181,53 +148,55 @@ sub InputCreate {
         }
     }
 
-    my $Value = $Param{Value};
-    if ( !defined $Param{Value} ) {
-        $Value = $Param{Item}->{Input}->{ValueDefault} || '';
-    }
-
-    my $Class    = '';
-    my $Size     = 'W50pc';
+    my $CSSClass = '';
     my $Required = $Param{Required};
     my $Invalid  = $Param{Invalid};
     my $ItemId   = $Param{ItemId};
 
     if ($Required) {
-        $Class .= ' Validate_Required';
+        $CSSClass .= 'Validate_Required';
     }
 
     if ($Invalid) {
-        $Class .= ' ServerError';
-    }
-    $Class .= ' ' . $Size;
-    my $String = "<input type=\"text\" name=\"$Param{Key}\" class=\"$Class\" ";
-
-    if ($ItemId) {
-        $String .= "id=\"$ItemId\" ";
+        $CSSClass .= ' ServerError';
     }
 
-    if ($Value) {
-
-        # translate
-        if ( $Param{Item}->{Input}->{Translation} ) {
-            $Value = $Self->{LayoutObject}->{LanguageObject}->Get($Value);
-        }
-
-        # transform ascii to html
-        $Value = $Self->{LayoutObject}->Ascii2Html(
-            Text           => $Value,
-            HTMLResultMode => 1,
-        );
+    # translation on or off
+    my $Translation = 0;
+    if ( $Param{Item}->{Input}->{Translation} ) {
+        $Translation = 1;
     }
 
-    $String .= "value=\"$Value\" ";
+    # get class list
+    my $ClassList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
+        Class => $Param{Item}->{Input}->{Class} || '',
+    );
 
-    # add maximum length
-    if ( $Param{Item}->{Input}->{MaxLength} ) {
-        $String .= "maxlength=\"$Param{Item}->{Input}->{MaxLength}\" ";
+    # reverse the class list
+    my %ReverseClassList = reverse %{$ClassList};
+
+    my $SelectedID;
+
+    # get the current value
+    if ( defined $Param{Value} ) {
+        $SelectedID = $Param{Value};
     }
 
-    $String .= '/> ';
+    # get the default id by default value
+    else {
+        $SelectedID = $ReverseClassList{ $Param{Item}->{Input}->{ValueDefault} || '' } || '';
+    }
+
+    # generate string
+    my $String = $Kernel::OM->Get('Kernel::Output::HTML::Layout')->BuildSelection(
+        Data         => $ClassList,
+        Name         => $Param{Key},
+        ID           => $ItemId,
+        PossibleNone => 1,
+        Translation  => $Translation,
+        SelectedID   => $SelectedID,
+        Class        => $CSSClass,
+    );
 
     return $String;
 }
@@ -238,7 +207,6 @@ get search form data
 
     my $Value = $BackendObject->SearchFormDataGet(
         Key => 'Item::1::Node::3',
-        Item => $ItemRef,
     );
 
 =cut
@@ -248,7 +216,7 @@ sub SearchFormDataGet {
 
     # check needed stuff
     if ( !$Param{Key} ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => 'Need Key!',
         );
@@ -256,14 +224,15 @@ sub SearchFormDataGet {
     }
 
     # get form data
-    my $Value;
+    my @Values;
     if ( $Param{Value} ) {
-        $Value = $Param{Value};
+        @Values = @{ $Param{Value} };
     }
     else {
-        $Value = $Self->{ParamObject}->GetParam( Param => $Param{Key} );
+        @Values = $Kernel::OM->Get('Kernel::System::Web::Request')->GetArray( Param => $Param{Key} );
     }
-    return $Value;
+
+    return \@Values;
 }
 
 =item SearchInputCreate()
@@ -283,7 +252,7 @@ sub SearchInputCreate {
     # check needed stuff
     for my $Argument (qw(Key Item)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );
@@ -291,12 +260,28 @@ sub SearchInputCreate {
         }
     }
 
-    my $Value = $Self->SearchFormDataGet(%Param);
-    if ( !defined $Value ) {
-        $Value = '';
+    my $Values = $Self->SearchFormDataGet(%Param);
+
+    # translation on or off
+    my $Translation = 0;
+    if ( $Param{Item}->{Input}->{Translation} ) {
+        $Translation = 1;
     }
 
-    my $String = qq{<input type="text" name="$Param{Key}" value="$Value" class="W50pc" >};
+    # get class list
+    my $ClassList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
+        Class => $Param{Item}->{Input}->{Class} || '',
+    );
+
+    # generate string
+    my $String = $Kernel::OM->Get('Kernel::Output::HTML::Layout')->BuildSelection(
+        Data        => $ClassList,
+        Name        => $Param{Key},
+        Size        => 5,
+        Multiple    => 1,
+        Translation => $Translation,
+        SelectedID  => $Values,
+    );
 
     return $String;
 }

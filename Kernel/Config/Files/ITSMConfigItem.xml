@@ -11,7 +11,7 @@
                 <Title>Config Item</Title>
                 <NavBarName>Admin</NavBarName>
                 <NavBarModule>
-                    <Module>Kernel::Output::HTML::NavBarModuleAdmin</Module>
+                    <Module>Kernel::Output::HTML::NavBar::ModuleAdmin</Module>
                     <Name Translatable="1">Config Items</Name>
                     <Description Translatable="1">Create and manage the definitions for Configuration Items.</Description>
                     <Block>Ticket</Block>
@@ -164,7 +164,7 @@
         <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
         <Setting>
             <Hash>
-                <Item Key="Module">Kernel::Output::HTML::ITSMConfigItemMenuGeneric</Item>
+                <Item Key="Module">Kernel::Output::HTML::ITSMConfigItem::MenuGeneric</Item>
                 <Item Key="Name">Back</Item>
                 <Item Key="Description">Back</Item>
                 <Item Key="Action"></Item>
@@ -179,7 +179,7 @@
         <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
         <Setting>
             <Hash>
-                <Item Key="Module">Kernel::Output::HTML::ITSMConfigItemMenuGeneric</Item>
+                <Item Key="Module">Kernel::Output::HTML::ITSMConfigItem::MenuGeneric</Item>
                 <Item Key="Name">History</Item>
                 <Item Key="Description">History</Item>
                 <Item Key="Action">AgentITSMConfigItemEdit</Item>
@@ -194,7 +194,7 @@
         <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
         <Setting>
             <Hash>
-                <Item Key="Module">Kernel::Output::HTML::ITSMConfigItemMenuGeneric</Item>
+                <Item Key="Module">Kernel::Output::HTML::ITSMConfigItem::MenuGeneric</Item>
                 <Item Key="Name">Edit</Item>
                 <Item Key="Description">Edit</Item>
                 <Item Key="Action">AgentITSMConfigItemEdit</Item>
@@ -209,7 +209,7 @@
         <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
         <Setting>
             <Hash>
-                <Item Key="Module">Kernel::Output::HTML::ITSMConfigItemMenuGeneric</Item>
+                <Item Key="Module">Kernel::Output::HTML::ITSMConfigItem::MenuGeneric</Item>
                 <Item Key="Name">Print</Item>
                 <Item Key="Description">Print</Item>
                 <Item Key="Action">AgentITSMConfigItemPrint</Item>
@@ -225,7 +225,7 @@
         <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
         <Setting>
             <Hash>
-                <Item Key="Module">Kernel::Output::HTML::ITSMConfigItemMenuGeneric</Item>
+                <Item Key="Module">Kernel::Output::HTML::ITSMConfigItem::MenuGeneric</Item>
                 <Item Key="Name">Link</Item>
                 <Item Key="Description">Link</Item>
                 <Item Key="Action">AgentLinkObject</Item>
@@ -240,7 +240,7 @@
         <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
         <Setting>
             <Hash>
-                <Item Key="Module">Kernel::Output::HTML::ITSMConfigItemMenuGeneric</Item>
+                <Item Key="Module">Kernel::Output::HTML::ITSMConfigItem::MenuGeneric</Item>
                 <Item Key="Name">Duplicate</Item>
                 <Item Key="Description">Duplicate</Item>
                 <Item Key="Action">AgentITSMConfigItemEdit</Item>
@@ -362,7 +362,7 @@
         <SubGroup>GeneralCatalog::Preferences</SubGroup>
         <Setting>
             <Hash>
-                <Item Key="Module">Kernel::Output::HTML::GeneralCatalogPreferencesGeneric</Item>
+                <Item Key="Module">Kernel::Output::HTML::GeneralCatalogPreferences::Generic</Item>
                 <Item Key="Class">ITSM::ConfigItem::DeploymentState</Item>
                 <Item Key="Label">Deployment State Type</Item>
                 <Item Key="Desc">Deployment State Type.</Item>
@@ -384,7 +384,7 @@
         <SubGroup>GeneralCatalog::Preferences</SubGroup>
         <Setting>
             <Hash>
-                <Item Key="Module">Kernel::Output::HTML::GeneralCatalogPreferencesGeneric</Item>
+                <Item Key="Module">Kernel::Output::HTML::GeneralCatalogPreferences::Generic</Item>
                 <Item Key="Class">ITSM::ConfigItem::DeploymentState</Item>
                 <Item Key="Label">Deployment State Color</Item>
                 <Item Key="Desc">Deployment State Color.</Item>
@@ -488,7 +488,7 @@
         <SubGroup>GeneralCatalog::Preferences</SubGroup>
         <Setting>
             <Hash>
-                <Item Key="Module">Kernel::Output::HTML::GeneralCatalogPreferencesGeneric</Item>
+                <Item Key="Module">Kernel::Output::HTML::GeneralCatalogPreferences::Generic</Item>
                 <Item Key="Label">Permission</Item>
                 <Item Key="Desc">Define the group with permissions.</Item>
                 <Item Key="Block">Permission</Item>
@@ -524,7 +524,7 @@
         <SubGroup>Frontend::Agent::Preferences</SubGroup>
         <Setting>
             <Hash>
-                <Item Key="Module">Kernel::Output::HTML::PreferencesGeneric</Item>
+                <Item Key="Module">Kernel::Output::HTML::Preferences::Generic</Item>
                 <Item Key="Column">Other Settings</Item>
                 <Item Key="Label" Translatable="1">Configuration Item Limit</Item>
                 <Item Key="Key" Translatable="1">Configuration Item limit per page</Item>
@@ -551,7 +551,7 @@
         <SubGroup>Frontend::Agent::ITSMConfigItemOverview</SubGroup>
         <Setting>
             <Hash>
-                <Item Key="Module">Kernel::Output::HTML::ITSMConfigItemOverviewSmall</Item>
+                <Item Key="Module">Kernel::Output::HTML::ITSMConfigItem::OverviewSmall</Item>
                 <Item Key="Name">Small</Item>
                 <Item Key="NameShort">S</Item>
                 <Item Key="PageShown">25</Item>
@@ -755,7 +755,7 @@
         <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModulePre</SubGroup>
         <Setting>
             <Hash>
-                <Item Key="Module">Kernel::Output::HTML::ITSMConfigItemMenuGeneric</Item>
+                <Item Key="Module">Kernel::Output::HTML::ITSMConfigItem::MenuGeneric</Item>
                 <Item Key="Name">Zoom</Item>
                 <Item Key="Description">Zoom</Item>
                 <Item Key="Action">AgentITSMConfigItemZoom</Item>
@@ -770,7 +770,7 @@
         <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModulePre</SubGroup>
         <Setting>
             <Hash>
-                <Item Key="Module">Kernel::Output::HTML::ITSMConfigItemMenuGeneric</Item>
+                <Item Key="Module">Kernel::Output::HTML::ITSMConfigItem::MenuGeneric</Item>
                 <Item Key="Name">History</Item>
                 <Item Key="Description">History</Item>
                 <Item Key="Action">AgentITSMConfigItemEdit</Item>
@@ -785,7 +785,7 @@
         <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModulePre</SubGroup>
         <Setting>
             <Hash>
-                <Item Key="Module">Kernel::Output::HTML::ITSMConfigItemMenuGeneric</Item>
+                <Item Key="Module">Kernel::Output::HTML::ITSMConfigItem::MenuGeneric</Item>
                 <Item Key="Name">Duplicate</Item>
                 <Item Key="Description">Duplicate</Item>
                 <Item Key="Action">AgentITSMConfigItemEdit</Item>

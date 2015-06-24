@@ -11,9 +11,7 @@ package Kernel::Modules::AgentITSMConfigItemZoom;
 use strict;
 use warnings;
 
-use Kernel::System::GeneralCatalog;
-use Kernel::System::ITSMConfigItem;
-use Kernel::System::LinkObject;
+our $ObjectManagerDisabled = 1;
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -22,49 +20,46 @@ sub new {
     my $Self = {%Param};
     bless( $Self, $Type );
 
-    # check needed objects
-    for my $Object (qw(ParamObject DBObject LayoutObject LogObject ConfigObject)) {
-        if ( !$Self->{$Object} ) {
-            $Self->{LayoutObject}->FatalError( Message => "Got no $Object!" );
-        }
-    }
-    $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new(%Param);
-    $Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new(%Param);
-    $Self->{LinkObject}           = Kernel::System::LinkObject->new(%Param);
-
-    # get config of frontend module
-    $Self->{Config} = $Self->{ConfigObject}->Get("ITSMConfigItem::Frontend::$Self->{Action}");
-
     return $Self;
 }
 
 sub Run {
     my ( $Self, %Param ) = @_;
 
+    # get param object
+    my $ParamObject = $Kernel::OM->Get('Kernel::System::Web::Request');
+
     # get params
-    my $ConfigItemID = $Self->{ParamObject}->GetParam( Param => 'ConfigItemID' ) || 0;
-    my $VersionID    = $Self->{ParamObject}->GetParam( Param => 'VersionID' )    || 0;
+    my $ConfigItemID = $ParamObject->GetParam( Param => 'ConfigItemID' ) || 0;
+    my $VersionID    = $ParamObject->GetParam( Param => 'VersionID' )    || 0;
+
+    # get layout object
+    my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
 
     # check needed stuff
     if ( !$ConfigItemID ) {
-        return $Self->{LayoutObject}->ErrorScreen(
+        return $LayoutObject->ErrorScreen(
             Message => "No ConfigItemID is given!",
             Comment => 'Please contact the admin.',
         );
     }
 
+    # get needed object
+    my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+    my $ConfigObject     = $Kernel::OM->Get('Kernel::Config');
+
     # check for access rights
-    my $HasAccess = $Self->{ConfigItemObject}->Permission(
+    my $HasAccess = $ConfigItemObject->Permission(
         Scope  => 'Item',
         ItemID => $ConfigItemID,
         UserID => $Self->{UserID},
-        Type   => $Self->{Config}->{Permission},
+        Type   => $ConfigObject->Get("ITSMConfigItem::Frontend::$Self->{Action}")->{Permission},
     );
 
     if ( !$HasAccess ) {
 
         # error page
-        return $Self->{LayoutObject}->ErrorScreen(
+        return $LayoutObject->ErrorScreen(
             Message => 'Can\'t show item, no access rights for ConfigItem are given!',
             Comment => 'Please contact the admin.',
         );
@@ -72,27 +67,27 @@ sub Run {
 
     # set show versions
     $Param{ShowVersions} = 0;
-    if ( $Self->{ParamObject}->GetParam( Param => 'ShowVersions' ) ) {
+    if ( $ParamObject->GetParam( Param => 'ShowVersions' ) ) {
         $Param{ShowVersions} = 1;
     }
 
     # get content
-    my $ConfigItem = $Self->{ConfigItemObject}->ConfigItemGet(
+    my $ConfigItem = $ConfigItemObject->ConfigItemGet(
         ConfigItemID => $ConfigItemID,
     );
     if ( !$ConfigItem->{ConfigItemID} ) {
-        return $Self->{LayoutObject}->ErrorScreen(
+        return $LayoutObject->ErrorScreen(
             Message => "ConfigItemID $ConfigItemID not found in database!",
             Comment => 'Please contact the admin.',
         );
     }
 
     # get version list
-    my $VersionList = $Self->{ConfigItemObject}->VersionZoomList(
+    my $VersionList = $ConfigItemObject->VersionZoomList(
         ConfigItemID => $ConfigItemID,
     );
     if ( !$VersionList->[0]->{VersionID} ) {
-        return $Self->{LayoutObject}->ErrorScreen(
+        return $LayoutObject->ErrorScreen(
             Message => "No Version found for ConfigItemID $ConfigItemID!",
             Comment => 'Please contact the admin.',
         );
@@ -112,13 +107,13 @@ sub Run {
     }
 
     # run config item menu modules
-    if ( ref $Self->{ConfigObject}->Get('ITSMConfigItem::Frontend::MenuModule') eq 'HASH' ) {
-        my %Menus   = %{ $Self->{ConfigObject}->Get('ITSMConfigItem::Frontend::MenuModule') };
+    if ( ref $ConfigObject->Get('ITSMConfigItem::Frontend::MenuModule') eq 'HASH' ) {
+        my %Menus   = %{ $ConfigObject->Get('ITSMConfigItem::Frontend::MenuModule') };
         my $Counter = 0;
         for my $Menu ( sort keys %Menus ) {
 
             # load module
-            if ( $Self->{MainObject}->Require( $Menus{$Menu}->{Module} ) ) {
+            if ( $Kernel::OM->Get('Kernel::System::Main')->Require( $Menus{$Menu}->{Module} ) ) {
 
                 my $Object = $Menus{$Menu}->{Module}->new(
                     %{$Self},
@@ -146,13 +141,13 @@ sub Run {
                 );
             }
             else {
-                return $Self->{LayoutObject}->FatalError();
+                return $LayoutObject->FatalError();
             }
         }
     }
 
     # build version tree
-    $Self->{LayoutObject}->Block( Name => 'Tree' );
+    $LayoutObject->Block( Name => 'Tree' );
     my $Counter = 1;
     if ( !$Param{ShowVersions} && $VersionID eq $VersionList->[-1]->{VersionID} ) {
         $Counter     = @{$VersionList};
@@ -172,8 +167,11 @@ sub Run {
     # to store the color for the deployment states
     my %DeplSignals;
 
+    # get general catalog object
+    my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
+
     # get list of deployment states
-    my $DeploymentStatesList = $Self->{GeneralCatalogObject}->ItemList(
+    my $DeploymentStatesList = $GeneralCatalogObject->ItemList(
         Class => 'ITSM::ConfigItem::DeploymentState',
     );
 
@@ -184,7 +182,7 @@ sub Run {
     for my $ItemID ( sort keys %{$DeploymentStatesList} ) {
 
         # get deployment state preferences
-        my %Preferences = $Self->{GeneralCatalogObject}->GeneralCatalogPreferencesGet(
+        my %Preferences = $GeneralCatalogObject->GeneralCatalogPreferencesGet(
             ItemID => $ItemID,
         );
 
@@ -219,7 +217,7 @@ sub Run {
 
     # output version tree header
     if ( $Param{ShowVersions} ) {
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'Collapse',
             Data => {
                 ConfigItemID => $ConfigItemID,
@@ -227,7 +225,7 @@ sub Run {
         );
     }
     else {
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'Expand',
             Data => {
                 ConfigItemID => $ConfigItemID,
@@ -235,14 +233,17 @@ sub Run {
         );
     }
 
+    # get user object
+    my $UserObject = $Kernel::OM->Get('Kernel::System::User');
+
     # output version tree
     for my $VersionHash ( @{$VersionList} ) {
 
-        $Param{CreateByUserFullName} = $Self->{UserObject}->UserName(
+        $Param{CreateByUserFullName} = $UserObject->UserName(
             UserID => $VersionHash->{CreateBy},
         );
 
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'TreeItem',
             Data => {
                 %Param,
@@ -259,11 +260,11 @@ sub Run {
     }
 
     # output header
-    my $Output = $Self->{LayoutObject}->Header( Value => $ConfigItem->{Number} );
-    $Output .= $Self->{LayoutObject}->NavigationBar();
+    my $Output = $LayoutObject->Header( Value => $ConfigItem->{Number} );
+    $Output .= $LayoutObject->NavigationBar();
 
     # get version
-    my $Version = $Self->{ConfigItemObject}->VersionGet(
+    my $Version = $ConfigItemObject->VersionGet(
         VersionID => $VersionID,
     );
 
@@ -273,7 +274,7 @@ sub Run {
         && $Version->{XMLDefinition}
         && $Version->{XMLData}
         && ref $Version->{XMLDefinition} eq 'ARRAY'
-        && ref $Version->{XMLData}       eq 'ARRAY'
+        && ref $Version->{XMLData} eq 'ARRAY'
         && $Version->{XMLData}->[1]
         && ref $Version->{XMLData}->[1] eq 'HASH'
         && $Version->{XMLData}->[1]->{Version}
@@ -282,14 +283,14 @@ sub Run {
     {
 
         # transform ascii to html
-        $Version->{Name} = $Self->{LayoutObject}->Ascii2Html(
+        $Version->{Name} = $LayoutObject->Ascii2Html(
             Text           => $Version->{Name},
             HTMLResultMode => 1,
             LinkFeature    => 1,
         );
 
         # output name
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'Data',
             Data => {
                 Name        => 'Name',
@@ -300,12 +301,12 @@ sub Run {
         );
 
         # output deployment state
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'Data',
             Data => {
                 Name        => 'Deployment State',
                 Description => 'The deployment state of this config item',
-                Value       => $Self->{LayoutObject}->{LanguageObject}->Get(
+                Value       => $LayoutObject->{LanguageObject}->Translate(
                     $Version->{DeplState},
                 ),
                 Identation => 10,
@@ -313,12 +314,12 @@ sub Run {
         );
 
         # output incident state
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'Data',
             Data => {
                 Name        => 'Incident State',
                 Description => 'The incident state of this config item',
-                Value       => $Self->{LayoutObject}->{LanguageObject}->Get(
+                Value       => $LayoutObject->{LanguageObject}->Translate(
                     $Version->{InciState},
                 ),
                 Identation => 10,
@@ -334,13 +335,13 @@ sub Run {
 
     # get create & change user data
     for my $Key (qw(Create Change)) {
-        $ConfigItem->{ $Key . 'ByUserFullName' } = $Self->{UserObject}->UserName(
+        $ConfigItem->{ $Key . 'ByUserFullName' } = $UserObject->UserName(
             UserID => $ConfigItem->{ $Key . 'By' },
         );
     }
 
     # output meta block
-    $Self->{LayoutObject}->Block(
+    $LayoutObject->Block(
         Name => 'Meta',
         Data => {
             %{$LastVersion},
@@ -351,7 +352,7 @@ sub Run {
     );
 
     # get linked objects
-    my $LinkListWithData = $Self->{LinkObject}->LinkListWithData(
+    my $LinkListWithData = $Kernel::OM->Get('Kernel::System::LinkObject')->LinkListWithData(
         Object => 'ITSMConfigItem',
         Key    => $ConfigItemID,
         State  => 'Valid',
@@ -359,17 +360,17 @@ sub Run {
     );
 
     # get link table view mode
-    my $LinkTableViewMode = $Self->{ConfigObject}->Get('LinkObject::ViewMode');
+    my $LinkTableViewMode = $ConfigObject->Get('LinkObject::ViewMode');
 
     # create the link table
-    my $LinkTableStrg = $Self->{LayoutObject}->LinkObjectTableCreate(
+    my $LinkTableStrg = $LayoutObject->LinkObjectTableCreate(
         LinkListWithData => $LinkListWithData,
         ViewMode         => $LinkTableViewMode,
     );
 
     # output the link table
     if ($LinkTableStrg) {
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'LinkTable' . $LinkTableViewMode,
             Data => {
                 LinkTableStrg => $LinkTableStrg,
@@ -377,19 +378,19 @@ sub Run {
         );
     }
 
-    my @Attachments = $Self->{ConfigItemObject}->ConfigItemAttachmentList(
+    my @Attachments = $ConfigItemObject->ConfigItemAttachmentList(
         ConfigItemID => $ConfigItemID,
     );
 
     if (@Attachments) {
 
         # get the metadata of the 1st attachment
-        my $FirstAttachment = $Self->{ConfigItemObject}->ConfigItemAttachmentGet(
+        my $FirstAttachment = $ConfigItemObject->ConfigItemAttachmentGet(
             ConfigItemID => $ConfigItemID,
             Filename     => $Attachments[0],
         );
 
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'Attachments',
             Data => {
                 ConfigItemID => $ConfigItemID,
@@ -407,12 +408,12 @@ sub Run {
             next ATTACHMENT if $Attachment eq $Attachments[0];
 
             # get the metadata of the current attachment
-            my $AttachmentData = $Self->{ConfigItemObject}->ConfigItemAttachmentGet(
+            my $AttachmentData = $ConfigItemObject->ConfigItemAttachmentGet(
                 ConfigItemID => $ConfigItemID,
                 Filename     => $Attachment,
             );
 
-            $Self->{LayoutObject}->Block(
+            $LayoutObject->Block(
                 Name => 'AttachmentRow',
                 Data => {
                     ConfigItemID => $ConfigItemID,
@@ -427,36 +428,36 @@ sub Run {
     if ( $Self->{Subaction} eq 'DownloadAttachment' ) {
 
         # get data for attachment
-        my $Filename = $Self->{ParamObject}->GetParam( Param => 'Filename' );
-        my $AttachmentData = $Self->{ConfigItemObject}->ConfigItemAttachmentGet(
+        my $Filename = $ParamObject->GetParam( Param => 'Filename' );
+        my $AttachmentData = $ConfigItemObject->ConfigItemAttachmentGet(
             ConfigItemID => $ConfigItemID,
             Filename     => $Filename,
         );
 
         # return error if file does not exist
         if ( !$AttachmentData ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Message  => "No such attachment ($Filename)!",
                 Priority => 'error',
             );
-            return $Self->{LayoutObject}->ErrorScreen();
+            return $LayoutObject->ErrorScreen();
         }
 
-        return $Self->{LayoutObject}->Attachment(
+        return $LayoutObject->Attachment(
             %{$AttachmentData},
             Type => 'attachment',
         );
     }
 
     # store last screen
-    $Self->{SessionObject}->UpdateSessionID(
+    $Kernel::OM->Get('Kernel::System::AuthSession')->UpdateSessionID(
         SessionID => $Self->{SessionID},
         Key       => 'LastScreenView',
         Value     => $Self->{RequestedURL},
     );
 
     # start template output
-    $Output .= $Self->{LayoutObject}->Output(
+    $Output .= $LayoutObject->Output(
         TemplateFile => 'AgentITSMConfigItemZoom',
         Data         => {
             %{$LastVersion},
@@ -468,7 +469,7 @@ sub Run {
     );
 
     # add footer
-    $Output .= $Self->{LayoutObject}->Footer();
+    $Output .= $LayoutObject->Footer();
 
     return $Output;
 }
@@ -493,13 +494,16 @@ sub _XMLOutput {
             last COUNTER if !defined $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content};
 
             # lookup value
-            my $Value = $Self->{ConfigItemObject}->XMLValueLookup(
+            my $Value = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->XMLValueLookup(
                 Item  => $Item,
                 Value => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content},
             );
 
+            # get layout object
+            my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
+
             # create output string
-            $Value = $Self->{LayoutObject}->ITSMConfigItemOutputStringCreate(
+            $Value = $LayoutObject->ITSMConfigItemOutputStringCreate(
                 Value => $Value,
                 Item  => $Item,
             );
@@ -512,7 +516,7 @@ sub _XMLOutput {
             }
 
             # output data block
-            $Self->{LayoutObject}->Block(
+            $LayoutObject->Block(
                 Name => 'Data',
                 Data => {
                     Name        => $Item->{Name},

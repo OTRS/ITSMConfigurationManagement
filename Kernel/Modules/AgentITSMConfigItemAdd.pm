@@ -11,8 +11,7 @@ package Kernel::Modules::AgentITSMConfigItemAdd;
 use strict;
 use warnings;
 
-use Kernel::System::ITSMConfigItem;
-use Kernel::System::GeneralCatalog;
+our $ObjectManagerDisabled = 1;
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -21,34 +20,25 @@ sub new {
     my $Self = {%Param};
     bless( $Self, $Type );
 
-    # check needed objects
-    for my $Object (qw(ParamObject DBObject LayoutObject LogObject ConfigObject)) {
-        if ( !$Self->{$Object} ) {
-            $Self->{LayoutObject}->FatalError( Message => "Got no $Object!" );
-        }
-    }
-    $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new(%Param);
-    $Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new(%Param);
-
-    # get config of frontend module
-    $Self->{Config} = $Self->{ConfigObject}->Get("ITSMConfigItem::Frontend::$Self->{Action}");
-
     return $Self;
 }
 
 sub Run {
     my ( $Self, %Param ) = @_;
 
+    # get general catalog object
+    my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
+
     # get class list
-    my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
+    my $ClassList = $GeneralCatalogObject->ItemList(
         Class => 'ITSM::ConfigItem::Class',
     );
 
     # check for access rights
     for my $ClassID ( sort keys %{$ClassList} ) {
-        my $HasAccess = $Self->{ConfigItemObject}->Permission(
-            Type    => $Self->{Config}->{Permission},
-            Scope   => 'Class',
+        my $HasAccess = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->Permission(
+            Type  => $Kernel::OM->Get('Kernel::Config')->Get("ITSMConfigItem::Frontend::$Self->{Action}")->{Permission},
+            Scope => 'Class',
             ClassID => $ClassID,
             UserID  => $Self->{UserID},
         );
@@ -56,16 +46,19 @@ sub Run {
         delete $ClassList->{$ClassID} if !$HasAccess;
     }
 
+    # get layout object
+    my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
+
     # show the list of CI classes sorted by name
     for my $ItemID ( sort { ${$ClassList}{$a} cmp ${$ClassList}{$b} } keys %{$ClassList} ) {
 
         # get item data
-        my $ItemData = $Self->{GeneralCatalogObject}->ItemGet(
+        my $ItemData = $GeneralCatalogObject->ItemGet(
             ItemID => $ItemID,
         );
 
         # output overview item list
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'OverviewItemList',
             Data => {
                 ClassID => $ItemID,
@@ -75,11 +68,11 @@ sub Run {
     }
 
     # output header
-    my $Output = $Self->{LayoutObject}->Header( Title => 'Add' );
-    $Output .= $Self->{LayoutObject}->NavigationBar();
+    my $Output = $LayoutObject->Header( Title => 'Add' );
+    $Output .= $LayoutObject->NavigationBar();
 
     # output overview
-    $Output .= $Self->{LayoutObject}->Output(
+    $Output .= $LayoutObject->Output(
         TemplateFile => 'AgentITSMConfigItemAdd',
         Data         => {
             %Param,
@@ -87,7 +80,7 @@ sub Run {
     );
 
     # output footer
-    $Output .= $Self->{LayoutObject}->Footer();
+    $Output .= $LayoutObject->Footer();
 
     return $Output;
 }

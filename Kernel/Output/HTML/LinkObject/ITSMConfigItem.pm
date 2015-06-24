@@ -6,7 +6,7 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package Kernel::Output::HTML::LinkObjectITSMConfigItem;
+package Kernel::Output::HTML::LinkObject::ITSMConfigItem;
 
 use strict;
 use warnings;

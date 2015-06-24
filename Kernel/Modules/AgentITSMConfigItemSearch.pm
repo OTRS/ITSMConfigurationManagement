@@ -11,11 +11,9 @@ package Kernel::Modules::AgentITSMConfigItemSearch;
 use strict;
 use warnings;
 
-use Kernel::System::ITSMConfigItem;
-use Kernel::System::GeneralCatalog;
-use Kernel::System::SearchProfile;
-use Kernel::System::CSV;
 use Kernel::System::VariableCheck qw(:all);
+
+our $ObjectManagerDisabled = 1;
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -24,22 +22,6 @@ sub new {
     my $Self = {%Param};
     bless( $Self, $Type );
 
-    # check needed objects
-    for my $Object (qw(ParamObject DBObject LayoutObject LogObject ConfigObject)) {
-        if ( !$Self->{$Object} ) {
-            $Self->{LayoutObject}->FatalError( Message => "Got no $Object!" );
-        }
-    }
-
-    # create additional objects
-    $Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new(%Param);
-    $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new(%Param);
-    $Self->{SearchProfileObject}  = Kernel::System::SearchProfile->new(%Param);
-    $Self->{CSVObject}            = Kernel::System::CSV->new(%Param);
-
-    # get config of frontend module
-    $Self->{Config} = $Self->{ConfigObject}->Get("ITSMConfigItem::Frontend::$Self->{Action}");
-
     return $Self;
 }
 
@@ -47,27 +29,42 @@ sub Run {
     my ( $Self, %Param ) = @_;
     my $Output;
 
+    # get config object
+    my $ConfigObject = $Kernel::OM->Get('Kernel::Config');
+
+    # get config of frontend module
+    $Self->{Config} = $ConfigObject->Get("ITSMConfigItem::Frontend::$Self->{Action}");
+
+    # get param object
+    my $ParamObject = $Kernel::OM->Get('Kernel::System::Web::Request');
+
     # get config data
-    $Self->{StartHit} = int( $Self->{ParamObject}->GetParam( Param => 'StartHit' ) || 1 );
+    $Self->{StartHit} = int( $ParamObject->GetParam( Param => 'StartHit' ) || 1 );
     $Self->{SearchLimit} = $Self->{Config}->{SearchLimit} || 10000;
-    $Self->{SortBy} = $Self->{ParamObject}->GetParam( Param => 'SortBy' )
+    $Self->{SortBy} = $ParamObject->GetParam( Param => 'SortBy' )
         || $Self->{Config}->{'SortBy::Default'}
         || 'Number';
-    $Self->{OrderBy} = $Self->{ParamObject}->GetParam( Param => 'OrderBy' )
+    $Self->{OrderBy} = $ParamObject->GetParam( Param => 'OrderBy' )
         || $Self->{Config}->{'Order::Default'}
         || 'Down';
-    $Self->{Profile}     = $Self->{ParamObject}->GetParam( Param => 'Profile' )     || '';
-    $Self->{SaveProfile} = $Self->{ParamObject}->GetParam( Param => 'SaveProfile' ) || '';
-    $Self->{TakeLastSearch} = $Self->{ParamObject}->GetParam( Param => 'TakeLastSearch' );
+    $Self->{Profile}     = $ParamObject->GetParam( Param => 'Profile' )     || '';
+    $Self->{SaveProfile} = $ParamObject->GetParam( Param => 'SaveProfile' ) || '';
+    $Self->{TakeLastSearch} = $ParamObject->GetParam( Param => 'TakeLastSearch' );
+
+    # get general catalog object
+    my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
 
     # get class list
-    my $ClassList = $Self->{GeneralCatalogObject}->ItemList(
+    my $ClassList = $GeneralCatalogObject->ItemList(
         Class => 'ITSM::ConfigItem::Class',
     );
 
+    # get config item object
+    my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+
     # check for access rights on the classes
     for my $ClassID ( sort keys %{$ClassList} ) {
-        my $HasAccess = $Self->{ConfigItemObject}->Permission(
+        my $HasAccess = $ConfigItemObject->Permission(
             Type    => $Self->{Config}->{Permission},
             Scope   => 'Class',
             ClassID => $ClassID,
@@ -78,11 +75,14 @@ sub Run {
     }
 
     # get class id
-    my $ClassID = $Self->{ParamObject}->GetParam( Param => 'ClassID' );
+    my $ClassID = $ParamObject->GetParam( Param => 'ClassID' );
+
+    # get layout object
+    my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
 
     # check if class id is valid
     if ( $ClassID && !$ClassList->{$ClassID} ) {
-        return $Self->{LayoutObject}->ErrorScreen(
+        return $LayoutObject->ErrorScreen(
             Message => 'Invalid ClassID!',
             Comment => 'Please contact the admin.',
         );
@@ -91,9 +91,12 @@ sub Run {
     # get single params
     my %GetParam;
 
+    # get search profile object
+    my $SearchProfileObject = $Kernel::OM->Get('Kernel::System::SearchProfile');
+
     # load profiles string params
     if ( ( $ClassID && $Self->{Profile} ) && $Self->{TakeLastSearch} ) {
-        %GetParam = $Self->{SearchProfileObject}->SearchProfileGet(
+        %GetParam = $SearchProfileObject->SearchProfileGet(
             Base      => 'ConfigItemSearch' . $ClassID,
             Name      => $Self->{Profile},
             UserLogin => $Self->{UserLogin},
@@ -106,15 +109,15 @@ sub Run {
     if ( $Self->{Subaction} eq 'AJAXProfileDelete' ) {
 
         # remove old profile stuff
-        $Self->{SearchProfileObject}->SearchProfileDelete(
+        $SearchProfileObject->SearchProfileDelete(
             Base      => 'ConfigItemSearch' . $ClassID,
             Name      => $Self->{Profile},
             UserLogin => $Self->{UserLogin},
         );
-        my $Output = $Self->{LayoutObject}->JSONEncode(
+        my $Output = $LayoutObject->JSONEncode(
             Data => 1,
         );
-        return $Self->{LayoutObject}->Attachment(
+        return $LayoutObject->Attachment(
             NoCache     => 1,
             ContentType => 'text/html',
             Content     => $Output,
@@ -129,7 +132,7 @@ sub Run {
 
         # generate dropdown for selecting the class
         # automatically show search mask after selecting a class via AJAX
-        my $ClassOptionStrg = $Self->{LayoutObject}->BuildSelection(
+        my $ClassOptionStrg = $LayoutObject->BuildSelection(
             Data         => $ClassList,
             Name         => 'SearchClassID',
             PossibleNone => 1,
@@ -138,7 +141,7 @@ sub Run {
         );
 
         # html search mask output
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'SearchAJAX',
             Data => {
                 ClassOptionStrg => $ClassOptionStrg,
@@ -148,7 +151,7 @@ sub Run {
 
         # set class fields if class specified
         if ($ClassID) {
-            $Self->{LayoutObject}->Block(
+            $LayoutObject->Block(
                 Name => 'SearchAJAXSetClass',
                 Data => {
                     Profile => $Self->{Profile},
@@ -157,11 +160,11 @@ sub Run {
         }
 
         # output template
-        $Output = $Self->{LayoutObject}->Output(
+        $Output = $LayoutObject->Output(
             TemplateFile => 'AgentITSMConfigItemSearch',
         );
 
-        return $Self->{LayoutObject}->Attachment(
+        return $LayoutObject->Attachment(
             NoCache     => 1,
             ContentType => 'text/html',
             Content     => $Output,
@@ -176,14 +179,14 @@ sub Run {
 
         # ClassID is required for the search mask and for actual searching
         if ( !$ClassID ) {
-            return $Self->{LayoutObject}->ErrorScreen(
+            return $LayoutObject->ErrorScreen(
                 Message => 'No ClassID is given!',
                 Comment => 'Please contact the admin.',
             );
         }
 
         # check if user is allowed to search class
-        my $HasAccess = $Self->{ConfigItemObject}->Permission(
+        my $HasAccess = $ConfigItemObject->Permission(
             Type    => $Self->{Config}->{Permission},
             Scope   => 'Class',
             ClassID => $ClassID,
@@ -192,20 +195,20 @@ sub Run {
 
         # show error screen
         if ( !$HasAccess ) {
-            return $Self->{LayoutObject}->ErrorScreen(
+            return $LayoutObject->ErrorScreen(
                 Message => 'No access rights for this class given!',
                 Comment => 'Please contact the admin.',
             );
         }
 
         # get current definition
-        my $XMLDefinition = $Self->{ConfigItemObject}->DefinitionGet(
+        my $XMLDefinition = $ConfigItemObject->DefinitionGet(
             ClassID => $ClassID,
         );
 
         # abort, if no definition is defined
         if ( !$XMLDefinition->{DefinitionID} ) {
-            return $Self->{LayoutObject}->ErrorScreen(
+            return $LayoutObject->ErrorScreen(
                 Message => "No Definition was defined for class $ClassID!",
                 Comment => 'Please contact the admin.',
             );
@@ -230,7 +233,7 @@ sub Run {
             },
         );
 
-        my %GetParam = $Self->{SearchProfileObject}->SearchProfileGet(
+        my %GetParam = $SearchProfileObject->SearchProfileGet(
             Base      => 'ConfigItemSearch' . $ClassID,
             Name      => $Self->{Profile},
             UserLogin => $Self->{UserLogin},
@@ -245,27 +248,27 @@ sub Run {
         }
 
         # build attributes string for attributes list
-        $Param{AttributesStrg} = $Self->{LayoutObject}->BuildSelection(
+        $Param{AttributesStrg} = $LayoutObject->BuildSelection(
             Data     => \@XMLAttributes,
             Name     => 'Attribute',
             Multiple => 0,
         );
 
         # build attributes string for recovery on add or subtract search fields
-        $Param{AttributesOrigStrg} = $Self->{LayoutObject}->BuildSelection(
+        $Param{AttributesOrigStrg} = $LayoutObject->BuildSelection(
             Data     => \@XMLAttributes,
             Name     => 'AttributeOrig',
             Multiple => 0,
         );
 
-        my %Profiles = $Self->{SearchProfileObject}->SearchProfileList(
+        my %Profiles = $SearchProfileObject->SearchProfileList(
             Base      => 'ConfigItemSearch' . $ClassID,
             UserLogin => $Self->{UserLogin},
         );
 
         delete $Profiles{''};
         $Profiles{'last-search'} = '-';
-        $Param{ProfilesStrg} = $Self->{LayoutObject}->BuildSelection(
+        $Param{ProfilesStrg} = $LayoutObject->BuildSelection(
             Data       => \%Profiles,
             Name       => 'Profile',
             ID         => 'SearchProfile',
@@ -273,12 +276,12 @@ sub Run {
         );
 
         # get deployment state list
-        my $DeplStateList = $Self->{GeneralCatalogObject}->ItemList(
+        my $DeplStateList = $GeneralCatalogObject->ItemList(
             Class => 'ITSM::ConfigItem::DeploymentState',
         );
 
         # generate dropdown for selecting the wanted deployment states
-        my $CurDeplStateOptionStrg = $Self->{LayoutObject}->BuildSelection(
+        my $CurDeplStateOptionStrg = $LayoutObject->BuildSelection(
             Data       => $DeplStateList,
             Name       => 'DeplStateIDs',
             SelectedID => $GetParam{DeplStateIDs} || [],
@@ -287,12 +290,12 @@ sub Run {
         );
 
         # get incident state list
-        my $InciStateList = $Self->{GeneralCatalogObject}->ItemList(
+        my $InciStateList = $GeneralCatalogObject->ItemList(
             Class => 'ITSM::Core::IncidentState',
         );
 
         # generate dropdown for selecting the wanted incident states
-        my $CurInciStateOptionStrg = $Self->{LayoutObject}->BuildSelection(
+        my $CurInciStateOptionStrg = $LayoutObject->BuildSelection(
             Data       => $InciStateList,
             Name       => 'InciStateIDs',
             SelectedID => $GetParam{InciStateIDs} || [],
@@ -301,7 +304,7 @@ sub Run {
         );
 
         # generate PreviousVersionOptionStrg
-        my $PreviousVersionOptionStrg = $Self->{LayoutObject}->BuildSelection(
+        my $PreviousVersionOptionStrg = $LayoutObject->BuildSelection(
             Name => 'PreviousVersionSearch',
             Data => {
                 0 => 'No',
@@ -311,7 +314,7 @@ sub Run {
         );
 
         # build output format string
-        $Param{ResultFormStrg} = $Self->{LayoutObject}->BuildSelection(
+        $Param{ResultFormStrg} = $LayoutObject->BuildSelection(
             Data => {
                 Normal => 'Normal',
                 Print  => 'Print',
@@ -321,7 +324,7 @@ sub Run {
             SelectedID => $GetParam{ResultForm} || 'Normal',
         );
 
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'AJAXContent',
             Data => {
                 ClassID                   => $ClassID,
@@ -357,7 +360,7 @@ sub Run {
 
             $AttributeIsUsed = 1;
 
-            $Self->{LayoutObject}->Block(
+            $LayoutObject->Block(
                 Name => 'SearchAJAXShow',
                 Data => {
                     Attribute => $Key,
@@ -368,7 +371,7 @@ sub Run {
         # if no attribute is shown, show configitem number
         if ( !$Self->{Profile} ) {
 
-            $Self->{LayoutObject}->Block(
+            $LayoutObject->Block(
                 Name => 'SearchAJAXShow',
                 Data => {
                     Attribute => 'Number',
@@ -377,11 +380,11 @@ sub Run {
         }
 
         # output template
-        $Output = $Self->{LayoutObject}->Output(
+        $Output = $LayoutObject->Output(
             TemplateFile => 'AgentITSMConfigItemSearch',
         );
 
-        return $Self->{LayoutObject}->Attachment(
+        return $LayoutObject->Attachment(
             NoCache     => 1,
             ContentType => 'text/html',
             Content     => $Output,
@@ -394,7 +397,7 @@ sub Run {
     # ------------------------------------------------------------ #
     elsif ( $Self->{Subaction} eq 'Search' ) {
 
-        my $SearchDialog = $Self->{ParamObject}->GetParam( Param => 'SearchDialog' );
+        my $SearchDialog = $ParamObject->GetParam( Param => 'SearchDialog' );
 
         # fill up profile name (e.g. with last-search)
         if ( !$Self->{Profile} || !$Self->{SaveProfile} ) {
@@ -410,12 +413,15 @@ sub Run {
             $URL .= ";ClassID=$ClassID";
         }
 
-        $Self->{SessionObject}->UpdateSessionID(
+        # get session object
+        my $SessionObject = $Kernel::OM->Get('Kernel::System::AuthSession');
+
+        $SessionObject->UpdateSessionID(
             SessionID => $Self->{SessionID},
             Key       => 'LastScreenOverview',
             Value     => $URL,
         );
-        $Self->{SessionObject}->UpdateSessionID(
+        $SessionObject->UpdateSessionID(
             SessionID => $Self->{SessionID},
             Key       => 'LastScreenView',
             Value     => $URL,
@@ -423,14 +429,14 @@ sub Run {
 
         # ClassID is required for the search mask and for actual searching
         if ( !$ClassID ) {
-            return $Self->{LayoutObject}->ErrorScreen(
+            return $LayoutObject->ErrorScreen(
                 Message => 'No ClassID is given!',
                 Comment => 'Please contact the admin.',
             );
         }
 
         # check if user is allowed to search class
-        my $HasAccess = $Self->{ConfigItemObject}->Permission(
+        my $HasAccess = $ConfigItemObject->Permission(
             Type    => $Self->{Config}->{Permission},
             Scope   => 'Class',
             ClassID => $ClassID,
@@ -439,20 +445,20 @@ sub Run {
 
         # show error screen
         if ( !$HasAccess ) {
-            return $Self->{LayoutObject}->ErrorScreen(
+            return $LayoutObject->ErrorScreen(
                 Message => 'No access rights for this class given!',
                 Comment => 'Please contact the admin.',
             );
         }
 
         # get current definition
-        my $XMLDefinition = $Self->{ConfigItemObject}->DefinitionGet(
+        my $XMLDefinition = $ConfigItemObject->DefinitionGet(
             ClassID => $ClassID,
         );
 
         # abort, if no definition is defined
         if ( !$XMLDefinition->{DefinitionID} ) {
-            return $Self->{LayoutObject}->ErrorScreen(
+            return $LayoutObject->ErrorScreen(
                 Message => "No Definition was defined for class $ClassID!",
                 Comment => 'Please contact the admin.',
             );
@@ -462,7 +468,7 @@ sub Run {
         FORMVALUE:
         for my $FormValue (qw(Number Name)) {
 
-            my $Value = $Self->{ParamObject}->GetParam( Param => $FormValue );
+            my $Value = $ParamObject->GetParam( Param => $FormValue );
 
             # must be defined and not be an empty string
             # BUT the number 0 is an allowed value
@@ -476,7 +482,7 @@ sub Run {
         FORMVALUE:
         for my $FormValue (qw(PreviousVersionSearch ResultForm)) {
 
-            my $Value = $Self->{ParamObject}->GetParam( Param => $FormValue );
+            my $Value = $ParamObject->GetParam( Param => $FormValue );
 
             next FORMVALUE if !$Value;
 
@@ -487,7 +493,7 @@ sub Run {
         FORMARRAY:
         for my $FormArray (qw(DeplStateIDs InciStateIDs)) {
 
-            my @Array = $Self->{ParamObject}->GetArray( Param => $FormArray );
+            my @Array = $ParamObject->GetArray( Param => $FormArray );
 
             next FORMARRAY if !@Array;
 
@@ -516,7 +522,7 @@ sub Run {
         if ( $Self->{SaveProfile} && $Self->{Profile} && $SearchDialog ) {
 
             # remove old profile stuff
-            $Self->{SearchProfileObject}->SearchProfileDelete(
+            $SearchProfileObject->SearchProfileDelete(
                 Base      => 'ConfigItemSearch' . $ClassID,
                 Name      => $Self->{Profile},
                 UserLogin => $Self->{UserLogin},
@@ -525,7 +531,7 @@ sub Run {
             # insert new profile params
             for my $Key ( sort keys %GetParam ) {
                 if ( $GetParam{$Key} && $Key ne 'What' ) {
-                    $Self->{SearchProfileObject}->SearchProfileAdd(
+                    $SearchProfileObject->SearchProfileAdd(
                         Base      => 'ConfigItemSearch' . $ClassID,
                         Name      => $Self->{Profile},
                         Key       => $Key,
@@ -540,7 +546,7 @@ sub Run {
                 for my $Parameter ( @{$XMLGetParam} ) {
                     for my $Key ( sort keys %{$Parameter} ) {
                         if ( $Parameter->{$Key} ) {
-                            $Self->{SearchProfileObject}->SearchProfileAdd(
+                            $SearchProfileObject->SearchProfileAdd(
                                 Base      => 'ConfigItemSearch' . $ClassID,
                                 Name      => $Self->{Profile},
                                 Key       => $Key,
@@ -560,7 +566,7 @@ sub Run {
         if ( $SearchDialog || $Self->{TakeLastSearch} ) {
 
             # start search
-            $SearchResultList = $Self->{ConfigItemObject}->ConfigItemSearchExtended(
+            $SearchResultList = $ConfigItemObject->ConfigItemSearchExtended(
                 %GetParam,
                 OrderBy          => [ $Self->{SortBy} ],
                 OrderByDirection => [ $Self->{OrderBy} ],
@@ -572,8 +578,11 @@ sub Run {
         # get param only if called from a search dialog, otherwise it must be already in %GetParam
         # from a loaded profile
         if ($SearchDialog) {
-            $GetParam{ResultForm} = $Self->{ParamObject}->GetParam( Param => 'ResultForm' );
+            $GetParam{ResultForm} = $ParamObject->GetParam( Param => 'ResultForm' );
         }
+
+        # get time object
+        my $TimeObject = $Kernel::OM->Get('Kernel::System::Time');
 
         # CSV output
         if ( $GetParam{ResultForm} eq 'CSV' ) {
@@ -584,7 +593,7 @@ sub Run {
             for my $ConfigItemID ( @{$SearchResultList} ) {
 
                 # check for access rights
-                my $HasAccess = $Self->{ConfigItemObject}->Permission(
+                my $HasAccess = $ConfigItemObject->Permission(
                     Scope  => 'Item',
                     ItemID => $ConfigItemID,
                     UserID => $Self->{UserID},
@@ -594,7 +603,7 @@ sub Run {
                 next CONFIGITEMID if !$HasAccess;
 
                 # get version
-                my $LastVersion = $Self->{ConfigItemObject}->VersionGet(
+                my $LastVersion = $ConfigItemObject->VersionGet(
                     ConfigItemID => $ConfigItemID,
                     XMLDataGet   => 0,
                 );
@@ -623,15 +632,15 @@ sub Run {
 
                 # replace ConfigItemNumber header with the current ConfigItemNumber from sysconfig
                 if ( $Header eq 'ConfigItemNumber' ) {
-                    $Header = $Self->{ConfigObject}->Get('ITSMConfigItem::Hook');
+                    $Header = $ConfigObject->Get('ITSMConfigItem::Hook');
                 }
                 else {
-                    $Header = $Self->{LayoutObject}->{LanguageObject}->Translate($Header);
+                    $Header = $LayoutObject->{LanguageObject}->Translate($Header);
                 }
             }
 
             # assable CSV data
-            my $CSV = $Self->{CSVObject}->Array2CSV(
+            my $CSV = $Kernel::OM->Get('Kernel::System::CSV')->Array2CSV(
                 Head      => \@CSVHead,
                 Data      => \@CSVData,
                 Separator => $Self->{UserCSVSeparator},
@@ -639,16 +648,16 @@ sub Run {
 
             # return csv to download
             my $CSVFile = 'configitem_search';
-            my ( $s, $m, $h, $D, $M, $Y ) = $Self->{TimeObject}->SystemTime2Date(
-                SystemTime => $Self->{TimeObject}->SystemTime(),
+            my ( $s, $m, $h, $D, $M, $Y ) = $TimeObject->SystemTime2Date(
+                SystemTime => $TimeObject->SystemTime(),
             );
             $M = sprintf( "%02d", $M );
             $D = sprintf( "%02d", $D );
             $h = sprintf( "%02d", $h );
             $m = sprintf( "%02d", $m );
-            return $Self->{LayoutObject}->Attachment(
+            return $LayoutObject->Attachment(
                 Filename    => $CSVFile . "_" . "$Y-$M-$D" . "_" . "$h-$m.csv",
-                ContentType => "text/csv; charset=" . $Self->{LayoutObject}->{UserCharset},
+                ContentType => "text/csv; charset=" . $LayoutObject->{UserCharset},
                 Content     => $CSV,
             );
         }
@@ -657,14 +666,16 @@ sub Run {
         elsif ( $GetParam{ResultForm} eq 'Print' ) {
 
             my @PDFData;
-            use Kernel::System::PDF;
-            $Self->{PDFObject} = Kernel::System::PDF->new( %{$Self} );
+
+            # get pdf object
+            my $PDFObject
+                = ( $Kernel::OM->Get('Kernel::Config')->Get('PDF') ) ? $Kernel::OM->Get('Kernel::System::PDF') : undef;
 
             CONFIGITEMID:
             for my $ConfigItemID ( @{$SearchResultList} ) {
 
                 # check for access rights
-                my $HasAccess = $Self->{ConfigItemObject}->Permission(
+                my $HasAccess = $ConfigItemObject->Permission(
                     Scope  => 'Item',
                     ItemID => $ConfigItemID,
                     UserID => $Self->{UserID},
@@ -674,13 +685,13 @@ sub Run {
                 next CONFIGITEMID if !$HasAccess;
 
                 # get version
-                my $LastVersion = $Self->{ConfigItemObject}->VersionGet(
+                my $LastVersion = $ConfigItemObject->VersionGet(
                     ConfigItemID => $ConfigItemID,
                     XMLDataGet   => 0,
                 );
 
                 # set pdf rows
-                if ( $Self->{PDFObject} ) {
+                if ($PDFObject) {
                     my @PDFRow;
                     for (qw(Class InciState Name Number DeplState VersionID CreateTime)) {
                         push @PDFRow, $LastVersion->{$_};
@@ -690,7 +701,7 @@ sub Run {
                 else {
 
                     # add table block
-                    $Self->{LayoutObject}->Block(
+                    $LayoutObject->Block(
                         Name => 'Record',
                         Data => { %{$LastVersion} },
                     );
@@ -698,34 +709,34 @@ sub Run {
             }
 
             # PDF Output
-            if ( $Self->{PDFObject} ) {
-                my $Title = $Self->{LayoutObject}->{LanguageObject}->Translate('Configuration Item') . ' '
-                    . $Self->{LayoutObject}->{LanguageObject}->Translate('Search');
-                my $PrintedBy = $Self->{LayoutObject}->{LanguageObject}->Translate('printed by');
-                my $Page      = $Self->{LayoutObject}->{LanguageObject}->Translate('Page');
-                my $Time      = $Self->{LayoutObject}->{Time};
+            if ($PDFObject) {
+                my $Title = $LayoutObject->{LanguageObject}->Translate('Configuration Item') . ' '
+                    . $LayoutObject->{LanguageObject}->Translate('Search');
+                my $PrintedBy = $LayoutObject->{LanguageObject}->Translate('printed by');
+                my $Page      = $LayoutObject->{LanguageObject}->Translate('Page');
+                my $Time      = $LayoutObject->{Time};
 
                 # get maximum number of pages
-                my $MaxPages = $Self->{ConfigObject}->Get('PDF::MaxPages');
+                my $MaxPages = $ConfigObject->Get('PDF::MaxPages');
                 if ( !$MaxPages || $MaxPages < 1 || $MaxPages > 1000 ) {
                     $MaxPages = 100;
                 }
 
                 # create the header
                 my $CellData;
-                $CellData->[0]->[0]->{Content} = $Self->{LayoutObject}->{LanguageObject}->Translate('Class');
+                $CellData->[0]->[0]->{Content} = $LayoutObject->{LanguageObject}->Translate('Class');
                 $CellData->[0]->[0]->{Font}    = 'ProportionalBold';
-                $CellData->[0]->[1]->{Content} = $Self->{LayoutObject}->{LanguageObject}->Translate('Incident State');
+                $CellData->[0]->[1]->{Content} = $LayoutObject->{LanguageObject}->Translate('Incident State');
                 $CellData->[0]->[1]->{Font}    = 'ProportionalBold';
-                $CellData->[0]->[2]->{Content} = $Self->{LayoutObject}->{LanguageObject}->Translate('Name');
+                $CellData->[0]->[2]->{Content} = $LayoutObject->{LanguageObject}->Translate('Name');
                 $CellData->[0]->[2]->{Font}    = 'ProportionalBold';
-                $CellData->[0]->[3]->{Content} = $Self->{LayoutObject}->{LanguageObject}->Translate('Number');
+                $CellData->[0]->[3]->{Content} = $LayoutObject->{LanguageObject}->Translate('Number');
                 $CellData->[0]->[3]->{Font}    = 'ProportionalBold';
-                $CellData->[0]->[4]->{Content} = $Self->{LayoutObject}->{LanguageObject}->Translate('Deployment State');
+                $CellData->[0]->[4]->{Content} = $LayoutObject->{LanguageObject}->Translate('Deployment State');
                 $CellData->[0]->[4]->{Font}    = 'ProportionalBold';
-                $CellData->[0]->[5]->{Content} = $Self->{LayoutObject}->{LanguageObject}->Translate('Version');
+                $CellData->[0]->[5]->{Content} = $LayoutObject->{LanguageObject}->Translate('Version');
                 $CellData->[0]->[5]->{Font}    = 'ProportionalBold';
-                $CellData->[0]->[6]->{Content} = $Self->{LayoutObject}->{LanguageObject}->Translate('Create Time');
+                $CellData->[0]->[6]->{Content} = $LayoutObject->{LanguageObject}->Translate('Create Time');
                 $CellData->[0]->[6]->{Font}    = 'ProportionalBold';
 
                 # create the content array
@@ -741,7 +752,7 @@ sub Run {
 
                 # output 'No Result', if no content was given
                 if ( !$CellData->[0]->[0] ) {
-                    $CellData->[0]->[0]->{Content} = $Self->{LayoutObject}->{LanguageObject}->Translate('No Result!');
+                    $CellData->[0]->[0]->{Content} = $LayoutObject->{LanguageObject}->Translate('No Result!');
                 }
 
                 # page params
@@ -771,13 +782,13 @@ sub Run {
                 $TableParam{PaddingBottom}       = 3;
 
                 # create new pdf document
-                $Self->{PDFObject}->DocumentNew(
-                    Title  => $Self->{ConfigObject}->Get('Product') . ': ' . $Title,
-                    Encode => $Self->{LayoutObject}->{UserCharset},
+                $PDFObject->DocumentNew(
+                    Title  => $ConfigObject->Get('Product') . ': ' . $Title,
+                    Encode => $LayoutObject->{UserCharset},
                 );
 
                 # start table output
-                $Self->{PDFObject}->PageNew(
+                $PDFObject->PageNew(
                     %PageParam,
                     FooterRight => $Page . ' 1',
                 );
@@ -785,14 +796,14 @@ sub Run {
                 for my $Count ( 2 .. $MaxPages ) {
 
                     # output table (or a fragment of it)
-                    %TableParam = $Self->{PDFObject}->Table(%TableParam);
+                    %TableParam = $PDFObject->Table(%TableParam);
 
                     # stop output or another page
                     if ( $TableParam{State} ) {
                         last PAGE;
                     }
                     else {
-                        $Self->{PDFObject}->PageNew(
+                        $PDFObject->PageNew(
                             %PageParam,
                             FooterRight => $Page . ' ' . $_,
                         );
@@ -801,15 +812,15 @@ sub Run {
 
                 # return the pdf document
                 my $Filename = 'configitem_search';
-                my ( $s, $m, $h, $D, $M, $Y ) = $Self->{TimeObject}->SystemTime2Date(
-                    SystemTime => $Self->{TimeObject}->SystemTime(),
+                my ( $s, $m, $h, $D, $M, $Y ) = $TimeObject->SystemTime2Date(
+                    SystemTime => $TimeObject->SystemTime(),
                 );
                 $M = sprintf( "%02d", $M );
                 $D = sprintf( "%02d", $D );
                 $h = sprintf( "%02d", $h );
                 $m = sprintf( "%02d", $m );
-                my $PDFString = $Self->{PDFObject}->DocumentOutput();
-                return $Self->{LayoutObject}->Attachment(
+                my $PDFString = $PDFObject->DocumentOutput();
+                return $LayoutObject->Attachment(
                     Filename    => $Filename . "_" . "$Y-$M-$D" . "_" . "$h-$m.pdf",
                     ContentType => "application/pdf",
                     Content     => $PDFString,
@@ -819,18 +830,18 @@ sub Run {
 
             # output printable html result page
             else {
-                $Output = $Self->{LayoutObject}->PrintHeader( Width => 800 );
+                $Output = $LayoutObject->PrintHeader( Width => 800 );
                 if ( @{$SearchResultList} == $Self->{SearchLimit} ) {
                     $Param{Warning} = '$Text{"Reached max. count of %s search hits!", "'
                         . $Self->{SearchLimit} . '"}';
                 }
-                $Output .= $Self->{LayoutObject}->Output(
+                $Output .= $LayoutObject->Output(
                     TemplateFile => 'AgentITSMConfigItemSearchResultPrint',
                     Data         => \%Param,
                 );
 
                 # add footer
-                $Output .= $Self->{LayoutObject}->PrintFooter();
+                $Output .= $LayoutObject->PrintFooter();
 
                 # return output
                 return $Output;
@@ -841,39 +852,39 @@ sub Run {
         else {
 
             # start html page
-            my $Output = $Self->{LayoutObject}->Header();
-            $Output .= $Self->{LayoutObject}->NavigationBar();
-            $Self->{LayoutObject}->Print( Output => \$Output );
+            my $Output = $LayoutObject->Header();
+            $Output .= $LayoutObject->NavigationBar();
+            $LayoutObject->Print( Output => \$Output );
             $Output = '';
 
-            $Self->{Filter} = $Self->{ParamObject}->GetParam( Param => 'Filter' ) || '';
-            $Self->{View}   = $Self->{ParamObject}->GetParam( Param => 'View' )   || '';
+            $Self->{Filter} = $ParamObject->GetParam( Param => 'Filter' ) || '';
+            $Self->{View}   = $ParamObject->GetParam( Param => 'View' )   || '';
 
             # show config items
             my $LinkPage = 'Filter='
-                . $Self->{LayoutObject}->Ascii2Html( Text => $Self->{Filter} )
-                . ';View=' . $Self->{LayoutObject}->Ascii2Html( Text => $Self->{View} )
-                . ';SortBy=' . $Self->{LayoutObject}->Ascii2Html( Text => $Self->{SortBy} )
+                . $LayoutObject->Ascii2Html( Text => $Self->{Filter} )
+                . ';View=' . $LayoutObject->Ascii2Html( Text => $Self->{View} )
+                . ';SortBy=' . $LayoutObject->Ascii2Html( Text => $Self->{SortBy} )
                 . ';OrderBy='
-                . $Self->{LayoutObject}->Ascii2Html( Text => $Self->{OrderBy} )
+                . $LayoutObject->Ascii2Html( Text => $Self->{OrderBy} )
                 . ';Profile=' . $Self->{Profile} . ';TakeLastSearch=1;Subaction=Search'
                 . ';ClassID=' . $ClassID
                 . ';';
             my $LinkSort = 'Filter='
-                . $Self->{LayoutObject}->Ascii2Html( Text => $Self->{Filter} )
-                . ';View=' . $Self->{LayoutObject}->Ascii2Html( Text => $Self->{View} )
+                . $LayoutObject->Ascii2Html( Text => $Self->{Filter} )
+                . ';View=' . $LayoutObject->Ascii2Html( Text => $Self->{View} )
                 . ';Profile=' . $Self->{Profile} . ';TakeLastSearch=1;Subaction=Search'
                 . ';ClassID=' . $ClassID
                 . ';';
             my $LinkFilter = 'TakeLastSearch=1;Subaction=Search;Profile='
-                . $Self->{LayoutObject}->Ascii2Html( Text => $Self->{Profile} )
+                . $LayoutObject->Ascii2Html( Text => $Self->{Profile} )
                 . ';ClassID='
-                . $Self->{LayoutObject}->Ascii2Html( Text => $ClassID )
+                . $LayoutObject->Ascii2Html( Text => $ClassID )
                 . ';';
             my $LinkBack = 'Subaction=LoadProfile;Profile='
-                . $Self->{LayoutObject}->Ascii2Html( Text => $Self->{Profile} )
+                . $LayoutObject->Ascii2Html( Text => $Self->{Profile} )
                 . ';ClassID='
-                . $Self->{LayoutObject}->Ascii2Html( Text => $ClassID )
+                . $LayoutObject->Ascii2Html( Text => $ClassID )
                 . ';TakeLastSearch=1;';
 
             # find out which columns should be shown
@@ -917,13 +928,13 @@ sub Run {
             }
 
             my $ClassName = $ClassList->{$ClassID};
-            my $Title     = $Self->{LayoutObject}->{LanguageObject}->Translate('Config Item Search Results')
+            my $Title     = $LayoutObject->{LanguageObject}->Translate('Config Item Search Results')
                 . ' '
-                . $Self->{LayoutObject}->{LanguageObject}->Translate('Class')
+                . $LayoutObject->{LanguageObject}->Translate('Class')
                 . ' '
-                . $Self->{LayoutObject}->{LanguageObject}->Translate($ClassName);
+                . $LayoutObject->{LanguageObject}->Translate($ClassName);
 
-            $Output .= $Self->{LayoutObject}->ITSMConfigItemListShow(
+            $Output .= $LayoutObject->ITSMConfigItemListShow(
                 ConfigItemIDs => $SearchResultList,
                 Total         => scalar @{$SearchResultList},
                 View          => $Self->{View},
@@ -936,13 +947,13 @@ sub Run {
                 Profile       => $Self->{Profile},
                 TitleName     => $Title,
                 ShowColumns   => \@ShowColumns,
-                SortBy        => $Self->{LayoutObject}->Ascii2Html( Text => $Self->{SortBy} ),
-                OrderBy       => $Self->{LayoutObject}->Ascii2Html( Text => $Self->{OrderBy} ),
+                SortBy        => $LayoutObject->Ascii2Html( Text => $Self->{SortBy} ),
+                OrderBy       => $LayoutObject->Ascii2Html( Text => $Self->{OrderBy} ),
                 ClassID       => $ClassID,
             );
 
             # build footer
-            $Output .= $Self->{LayoutObject}->Footer();
+            $Output .= $LayoutObject->Footer();
 
             return $Output;
         }
@@ -954,10 +965,10 @@ sub Run {
     else {
 
         # show default search screen
-        $Output = $Self->{LayoutObject}->Header();
-        $Output .= $Self->{LayoutObject}->NavigationBar();
+        $Output = $LayoutObject->Header();
+        $Output .= $LayoutObject->NavigationBar();
 
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'Search',
             Data => {
                 Profile => $Self->{Profile},
@@ -966,12 +977,12 @@ sub Run {
         );
 
         # output template
-        $Output .= $Self->{LayoutObject}->Output(
+        $Output .= $LayoutObject->Output(
             TemplateFile => 'AgentITSMConfigItemSearch',
         );
 
         # output footer
-        $Output .= $Self->{LayoutObject}->Footer();
+        $Output .= $LayoutObject->Footer();
 
         return $Output;
     }
@@ -1044,15 +1055,18 @@ sub _XMLSearchFormOutput {
                 $Value = $GetParam{$InputKey} || '';
             }
 
+            # get layout object
+            my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
+
             # create search input element
-            my $InputString = $Self->{LayoutObject}->ITSMConfigItemSearchInputCreate(
+            my $InputString = $LayoutObject->ITSMConfigItemSearchInputCreate(
                 Key   => $InputKey,
                 Item  => $Item,
                 Value => $Value,
             );
 
             # output attribute row
-            $Self->{LayoutObject}->Block(
+            $LayoutObject->Block(
                 Name => 'AttributeRow',
                 Data => {
                     Key         => $InputKey,
@@ -1107,7 +1121,7 @@ sub _XMLSearchFormGet {
         }
 
         # get search form data
-        my $Values = $Self->{LayoutObject}->ITSMConfigItemSearchFormDataGet(
+        my $Values = $Kernel::OM->Get('Kernel::Output::HTML::Layout')->ITSMConfigItemSearchFormDataGet(
             Key   => $InputKey,
             Item  => $Item,
             Value => $Param{$InputKey},

@@ -6,10 +6,19 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package Kernel::Output::HTML::LayoutITSMConfigItem;
+package Kernel::Output::HTML::Layout::ITSMConfigItem;
 
 use strict;
 use warnings;
+
+our @ObjectDependencies = (
+    'Kernel::System::Log',
+    'Kernel::System::AuthSession',
+    'Kernel::Config',
+    'Kernel::System::Web::Request',
+    'Kernel::System::Main',
+    'Kernel::Output::HTML::Layout',
+);
 
 =head1 NAME
 
@@ -25,7 +34,7 @@ All ITSM Configuration Management-related HTML functions
 
 =item ITSMConfigItemOutputStringCreate()
 
-returns a output string
+returns an output string
 
     my $String = $LayoutObject->ITSMConfigItemOutputStringCreate(
         Value => 11,       # (optional)
@@ -40,7 +49,7 @@ sub ITSMConfigItemOutputStringCreate {
 
     # check needed stuff
     if ( !$Param{Item} ) {
-        $Self->{LogObject}->Log(
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
             Message  => 'Need Item!'
         );
@@ -78,7 +87,7 @@ sub ITSMConfigItemFormDataGet {
     # check needed stuff
     for my $Argument (qw(Key Item ConfigItemID)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!"
             );
@@ -117,7 +126,7 @@ sub ITSMConfigItemInputCreate {
     # check needed stuff
     for my $Argument (qw(Key Item)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!"
             );
@@ -155,7 +164,7 @@ sub ITSMConfigItemSearchFormDataGet {
     # check needed stuff
     for my $Argument (qw(Key Item)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!"
             );
@@ -193,7 +202,7 @@ sub ITSMConfigItemSearchInputCreate {
     # check needed stuff
     for my $Argument (qw(Key Item)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!"
             );
@@ -227,19 +236,22 @@ load a input type backend module
 sub _ITSMLoadLayoutBackend {
     my ( $Self, %Param ) = @_;
 
+    # get log object
+    my $LogObject = $Kernel::OM->Get('Kernel::System::Log');
+
     if ( !$Param{Type} ) {
-        $Self->{LogObject}->Log(
+        $LogObject->Log(
             Priority => 'error',
             Message  => 'Need Type!',
         );
         return;
     }
 
-    my $GenericModule = "Kernel::Output::HTML::ITSMConfigItemLayout$Param{Type}";
+    my $GenericModule = "Kernel::Output::HTML::ITSMConfigItem::Layout$Param{Type}";
 
     # load the backend module
-    if ( !$Self->{MainObject}->Require($GenericModule) ) {
-        $Self->{LogObject}->Log(
+    if ( !$Kernel::OM->Get('Kernel::System::Main')->Require($GenericModule) ) {
+        $LogObject->Log(
             Priority => 'error',
             Message  => "Can't load backend module $Param{Type}!"
         );
@@ -254,7 +266,7 @@ sub _ITSMLoadLayoutBackend {
     );
 
     if ( !$BackendObject ) {
-        $Self->{LogObject}->Log(
+        $LogObject->Log(
             Priority => 'error',
             Message  => "Can't create a new instance of backend module $Param{Type}!",
         );
@@ -306,36 +318,40 @@ sub ITSMConfigItemListShow {
     my $View = $Param{View} || 'Small';
 
     # store latest view mode
-    $Self->{SessionObject}->UpdateSessionID(
+    $Kernel::OM->Get('Kernel::System::AuthSession')->UpdateSessionID(
         SessionID => $Self->{SessionID},
         Key       => 'UserITSMConfigItemOverview' . $Env->{Action},
         Value     => $View,
     );
 
+    # get needed objects
+    my $ConfigObject = $Kernel::OM->Get('Kernel::Config');
+    my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
+
     # get backend from config
-    my $Backends = $Self->{ConfigObject}->Get('ITSMConfigItem::Frontend::Overview');
+    my $Backends = $ConfigObject->Get('ITSMConfigItem::Frontend::Overview');
     if ( !$Backends ) {
-        return $Env->{LayoutObject}->FatalError(
+        return $LayoutObject->FatalError(
             Message => 'Need config option ITSMConfigItem::Frontend::Overview',
         );
     }
 
     # check for hash-ref
     if ( ref $Backends ne 'HASH' ) {
-        return $Env->{LayoutObject}->FatalError(
+        return $LayoutObject->FatalError(
             Message => 'Config option ITSMConfigItem::Frontend::Overview needs to be a HASH ref!',
         );
     }
 
     # check for config key
     if ( !$Backends->{$View} ) {
-        return $Env->{LayoutObject}->FatalError(
+        return $LayoutObject->FatalError(
             Message => "No config option found for the view '$View'!",
         );
     }
 
     # nav bar
-    my $StartHit = $Self->{ParamObject}->GetParam(
+    my $StartHit = $Kernel::OM->Get('Kernel::System::Web::Request')->GetParam(
         Param => 'StartHit',
     ) || 1;
 
@@ -353,19 +369,19 @@ sub ITSMConfigItemListShow {
 
     # get data selection
     my %Data;
-    my $Config = $Self->{ConfigObject}->Get('PreferencesGroups');
+    my $Config = $ConfigObject->Get('PreferencesGroups');
     if ( $Config && $Config->{$Group} && $Config->{$Group}->{Data} ) {
         %Data = %{ $Config->{$Group}->{Data} };
     }
 
     # set page limit and build page nav
     my $Limit = $Param{Limit} || 20_000;
-    my %PageNav = $Env->{LayoutObject}->PageNavBar(
+    my %PageNav = $LayoutObject->PageNavBar(
         Limit     => $Limit,
         StartHit  => $StartHit,
         PageShown => $PageShown,
         AllHits   => $Param{Total} || 0,
-        Action    => 'Action=' . $Env->{LayoutObject}->{Action},
+        Action    => 'Action=' . $Env->{Action},
         Link      => $Param{LinkPage},
     );
 
@@ -381,14 +397,14 @@ sub ITSMConfigItemListShow {
     );
 
     # build navbar content
-    $Env->{LayoutObject}->Block(
+    $LayoutObject->Block(
         Name => 'OverviewNavBar',
         Data => \%Param,
     );
 
     # back link
     if ( $Param{LinkBack} ) {
-        $Env->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'OverviewNavBarPageBack',
             Data => \%Param,
         );
@@ -404,7 +420,7 @@ sub ITSMConfigItemListShow {
         }
 
         # build filter content
-        $Env->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'OverviewNavBarFilter',
             Data => {
                 %Param,
@@ -417,7 +433,7 @@ sub ITSMConfigItemListShow {
 
             # increment filter count and build filter item
             $Count++;
-            $Env->{LayoutObject}->Block(
+            $LayoutObject->Block(
                 Name => 'OverviewNavBarFilterItem',
                 Data => {
                     %Param,
@@ -427,7 +443,7 @@ sub ITSMConfigItemListShow {
 
             # filter is selected
             if ( $Filter->{Filter} eq $Param{Filter} ) {
-                $Env->{LayoutObject}->Block(
+                $LayoutObject->Block(
                     Name => 'OverviewNavBarFilterItemSelected',
                     Data => {
                         %Param,
@@ -437,7 +453,7 @@ sub ITSMConfigItemListShow {
 
             }
             else {
-                $Env->{LayoutObject}->Block(
+                $LayoutObject->Block(
                     Name => 'OverviewNavBarFilterItemSelectedNot',
                     Data => {
                         %Param,
@@ -453,7 +469,7 @@ sub ITSMConfigItemListShow {
     for my $Backend ( sort keys %{$Backends} ) {
 
         # build navbar view mode
-        $Env->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'OverviewNavBarViewMode',
             Data => {
                 %Param,
@@ -465,7 +481,7 @@ sub ITSMConfigItemListShow {
 
         # current view is configured in backend
         if ( $View eq $Backend ) {
-            $Env->{LayoutObject}->Block(
+            $LayoutObject->Block(
                 Name => 'OverviewNavBarViewModeSelected',
                 Data => {
                     %Param,
@@ -476,7 +492,7 @@ sub ITSMConfigItemListShow {
             );
         }
         else {
-            $Env->{LayoutObject}->Block(
+            $LayoutObject->Block(
                 Name => 'OverviewNavBarViewModeNotSelected',
                 Data => {
                     %Param,
@@ -490,7 +506,7 @@ sub ITSMConfigItemListShow {
 
     # check if page nav is available
     if (%PageNav) {
-        $Env->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'OverviewNavBarPageNavBar',
             Data => \%PageNav,
         );
@@ -498,7 +514,7 @@ sub ITSMConfigItemListShow {
         # don't show context settings in AJAX case (e. g. in customer ticket history),
         #   because the submit with page reload will not work there
         if ( !$Param{AJAX} ) {
-            $Env->{LayoutObject}->Block(
+            $LayoutObject->Block(
                 Name => 'ContextSettings',
                 Data => {
                     %PageNav,
@@ -510,10 +526,10 @@ sub ITSMConfigItemListShow {
 
     # check if bulk feature is enabled
     my $BulkFeature = 0;
-    if ( $Self->{ConfigObject}->Get('ITSMConfigItem::Frontend::BulkFeature') ) {
+    if ( $ConfigObject->Get('ITSMConfigItem::Frontend::BulkFeature') ) {
         my @Groups;
-        if ( $Self->{ConfigObject}->Get('ITSMConfigItem::Frontend::BulkFeatureGroup') ) {
-            @Groups = @{ $Self->{ConfigObject}->Get('ITSMConfigItem::Frontend::BulkFeatureGroup') };
+        if ( $ConfigObject->Get('ITSMConfigItem::Frontend::BulkFeatureGroup') ) {
+            @Groups = @{ $ConfigObject->Get('ITSMConfigItem::Frontend::BulkFeatureGroup') };
         }
         if ( !@Groups ) {
             $BulkFeature = 1;
@@ -521,8 +537,8 @@ sub ITSMConfigItemListShow {
         else {
             GROUP:
             for my $Group (@Groups) {
-                next GROUP if !$Env->{LayoutObject}->{"UserIsGroup[$Group]"};
-                if ( $Env->{LayoutObject}->{"UserIsGroup[$Group]"} eq 'Yes' ) {
+                next GROUP if !$LayoutObject->{"UserIsGroup[$Group]"};
+                if ( $LayoutObject->{"UserIsGroup[$Group]"} eq 'Yes' ) {
                     $BulkFeature = 1;
                     last GROUP;
                 }
@@ -532,7 +548,7 @@ sub ITSMConfigItemListShow {
 
     # show the bulk action button if feature is enabled
     if ($BulkFeature) {
-        $Env->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'BulkAction',
             Data => {
                 %PageNav,
@@ -542,7 +558,7 @@ sub ITSMConfigItemListShow {
     }
 
     # build html content
-    my $OutputNavBar = $Env->{LayoutObject}->Output(
+    my $OutputNavBar = $LayoutObject->Output(
         TemplateFile => 'AgentITSMConfigItemOverviewNavBar',
         Data         => {%Param},
     );
@@ -550,7 +566,7 @@ sub ITSMConfigItemListShow {
     # create output
     my $OutputRaw = '';
     if ( !$Param{Output} ) {
-        $Env->{LayoutObject}->Print(
+        $LayoutObject->Print(
             Output => \$OutputNavBar,
         );
     }
@@ -559,8 +575,8 @@ sub ITSMConfigItemListShow {
     }
 
     # load module
-    if ( !$Self->{MainObject}->Require( $Backends->{$View}->{Module} ) ) {
-        return $Env->{LayoutObject}->FatalError();
+    if ( !$Kernel::OM->Get('Kernel::System::Main')->Require( $Backends->{$View}->{Module} ) ) {
+        return $LayoutObject->FatalError();
     }
 
     # check for backend object
@@ -579,7 +595,7 @@ sub ITSMConfigItemListShow {
 
     # create output
     if ( !$Param{Output} ) {
-        $Env->{LayoutObject}->Print(
+        $LayoutObject->Print(
             Output => \$Output,
         );
     }
@@ -588,7 +604,7 @@ sub ITSMConfigItemListShow {
     }
 
     # create overview nav bar
-    $Env->{LayoutObject}->Block(
+    $LayoutObject->Block(
         Name => 'OverviewNavBar',
         Data => {%Param},
     );

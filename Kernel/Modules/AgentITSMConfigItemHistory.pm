@@ -11,8 +11,7 @@ package Kernel::Modules::AgentITSMConfigItemHistory;
 use strict;
 use warnings;
 
-use Kernel::System::ITSMConfigItem;
-use Kernel::System::GeneralCatalog;
+our $ObjectManagerDisabled = 1;
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -21,77 +20,68 @@ sub new {
     my $Self = {%Param};
     bless( $Self, $Type );
 
-    # check needed objects
-    for (
-        qw( DBObject LayoutObject LogObject UserObject ConfigObject
-        ParamObject EncodeObject MainObject )
-        )
-    {
-        if ( !$Self->{$_} ) {
-            $Self->{LayoutObject}->FatalError( Message => "Got no $_!" );
-        }
-    }
-
-    $Self->{ConfigItemObject}     = Kernel::System::ITSMConfigItem->new( %{$Self} );
-    $Self->{GeneralCatalogObject} = Kernel::System::GeneralCatalog->new( %{$Self} );
-
-    # get config of frontend module
-    $Self->{Config} = $Self->{ConfigObject}->Get("ITSMConfigItem::Frontend::$Self->{Action}");
-
     return $Self;
 }
 
 sub Run {
     my ( $Self, %Param ) = @_;
 
-    $Self->{ConfigItemID} = $Self->{ParamObject}->GetParam( Param => 'ConfigItemID' );
+    # get needed objects
+    my $ParamObject  = $Kernel::OM->Get('Kernel::System::Web::Request');
+    my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
+
+    $Self->{ConfigItemID} = $ParamObject->GetParam( Param => 'ConfigItemID' );
 
     # check needed stuff
     if ( !$Self->{ConfigItemID} ) {
 
         # error page
-        return $Self->{LayoutObject}->ErrorScreen(
+        return $LayoutObject->ErrorScreen(
             Message => 'Can\'t show history, no ConfigItemID is given!',
             Comment => 'Please contact the admin.',
         );
     }
 
+    # get neeeded objects
+    my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+    my $ConfigObject     = $Kernel::OM->Get('Kernel::Config');
+
     # check for access rights
-    my $HasAccess = $Self->{ConfigItemObject}->Permission(
+    my $HasAccess = $ConfigItemObject->Permission(
         Scope  => 'Item',
         ItemID => $Self->{ConfigItemID},
         UserID => $Self->{UserID},
-        Type   => $Self->{Config}->{Permission},
+        Type   => $ConfigObject->Get("ITSMConfigItem::Frontend::$Self->{Action}")->{Permission},
     );
 
     if ( !$HasAccess ) {
 
         # error page
-        return $Self->{LayoutObject}->ErrorScreen(
+        return $LayoutObject->ErrorScreen(
             Message => 'Can\'t show history, no access rights given!',
             Comment => 'Please contact the admin.',
         );
     }
 
     # get all information about the config item
-    my $ConfigItem = $Self->{ConfigItemObject}->ConfigItemGet(
+    my $ConfigItem = $ConfigItemObject->ConfigItemGet(
         ConfigItemID => $Self->{ConfigItemID},
     );
     my $ConfigItemName = $ConfigItem->{Number};
 
     # get all entries in the history for this config item
-    my $Lines = $Self->{ConfigItemObject}->HistoryGet(
+    my $Lines = $ConfigItemObject->HistoryGet(
         ConfigItemID => $Self->{ConfigItemID},
     );
 
     # get shown user info
     my @NewLines = @{$Lines};
-    if ( $Self->{ConfigObject}->Get('ITSMConfigItem::Frontend::HistoryOrder') eq 'reverse' ) {
+    if ( $ConfigObject->Get('ITSMConfigItem::Frontend::HistoryOrder') eq 'reverse' ) {
         @NewLines = reverse @{$Lines};
     }
 
     # get definition for CI's class
-    my $Definition = $Self->{ConfigItemObject}->DefinitionGet(
+    my $Definition = $ConfigItemObject->DefinitionGet(
         ClassID => $ConfigItem->{ClassID},
     );
 
@@ -104,6 +94,9 @@ sub Run {
             %{$DataTmp},
             VersionID => $Version,
         );
+
+        # get general catalog object
+        my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
 
         # trim the comment to only show version number
         if ( $Data{HistoryType} eq 'VersionCreate' ) {
@@ -126,7 +119,7 @@ sub Run {
             );
 
             if ( $AttributeInfo && $AttributeInfo->{Input}->{Type} eq 'GeneralCatalog' ) {
-                my $ItemList = $Self->{GeneralCatalogObject}->ItemList(
+                my $ItemList = $GeneralCatalogObject->ItemList(
                     Class => $AttributeInfo->{Input}->{Class},
                 );
 
@@ -140,7 +133,7 @@ sub Run {
         elsif ( $Data{HistoryType} eq 'DeploymentStateUpdate' ) {
 
             # get deployment state list
-            my $DeplStateList = $Self->{GeneralCatalogObject}->ItemList(
+            my $DeplStateList = $GeneralCatalogObject->ItemList(
                 Class => 'ITSM::ConfigItem::DeploymentState',
             );
 
@@ -156,7 +149,7 @@ sub Run {
         elsif ( $Data{HistoryType} eq 'IncidentStateUpdate' ) {
 
             # get deployment state list
-            my $DeplStateList = $Self->{GeneralCatalogObject}->ItemList(
+            my $DeplStateList = $GeneralCatalogObject->ItemList(
                 Class => 'ITSM::Core::IncidentState',
             );
 
@@ -178,41 +171,41 @@ sub Run {
             $Data{Comment} = '';
             for (@Values) {
                 if ( $Data{Comment} ) {
-                    $Data{Comment} .= "\", ";
+                    $Data{Comment} .= ", ";
                 }
-                $Data{Comment} .= "\"$_";
+                $Data{Comment} .= "\"$_\"";
             }
             if ( !$Data{Comment} ) {
-                $Data{Comment} = '" ';
+                $Data{Comment} = '" "';
             }
-            $Data{Comment} = $Self->{LayoutObject}->{LanguageObject}->Get(
-                'CIHistory::' . $Data{HistoryType} . '", ' . $Data{Comment}
+            $Data{Comment} = $LayoutObject->{LanguageObject}->Translate(
+                'CIHistory::' . $Data{HistoryType} . ', ' . $Data{Comment}
             );
 
             # remove not needed place holder
             $Data{Comment} =~ s/\%s//g;
         }
 
-        $Self->{LayoutObject}->Block(
+        $LayoutObject->Block(
             Name => 'Row',
             Data => {%Data},
         );
     }
 
     # build page
-    my $Output = $Self->{LayoutObject}->Header(
+    my $Output = $LayoutObject->Header(
         Value => $ConfigItemName,
         Type  => 'Small'
     );
-    $Output .= $Self->{LayoutObject}->Output(
+    $Output .= $LayoutObject->Output(
         TemplateFile => 'AgentITSMConfigItemHistory',
         Data         => {
             Name         => $ConfigItemName,
             ConfigItemID => $Self->{ConfigItemID},
-            VersionID    => $Self->{ParamObject}->GetParam( Param => 'VersionID' ),
+            VersionID    => $ParamObject->GetParam( Param => 'VersionID' ),
         },
     );
-    $Output .= $Self->{LayoutObject}->Footer( Type => 'Small' );
+    $Output .= $LayoutObject->Footer( Type => 'Small' );
 
     return $Output;
 }
@@ -223,7 +216,7 @@ sub _GetAttributeInfo {
     # check needed stuff
     for my $Argument (qw(Definition Path)) {
         if ( !$Param{$Argument} ) {
-            $Self->{LogObject}->Log(
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
                 Message  => "Need $Argument!",
             );

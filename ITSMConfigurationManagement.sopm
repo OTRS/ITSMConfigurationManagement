@@ -56,31 +56,31 @@
         <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItemPrint.pm"/>
         <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItemSearch.pm"/>
         <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItemZoom.pm"/>
-        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutCustomer.pm"/>
-        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutCustomerCompany.pm"/>
-        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutDate.pm"/>
-        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutDateTime.pm"/>
-        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutDummy.pm"/>
-        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutGeneralCatalog.pm"/>
-        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutInteger.pm"/>
-        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutText.pm"/>
-        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutTextArea.pm"/>
-        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemMenuGeneric.pm"/>
-        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemOverviewSmall.pm"/>
-        <File Permission="644" Location="Kernel/Output/HTML/LayoutITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/Output/HTML/LinkObjectITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AAAITSMConfigItem.tt"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AdminITSMConfigItem.tt"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemAdd.tt"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemBulk.tt"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemEdit.tt"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemHistory.tt"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemOverviewNavBar.tt"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemOverviewSmall.tt"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemPrint.tt"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemSearch.tt"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemSearchResultPrint.tt"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemZoom.tt"/>
+        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItem/LayoutCustomer.pm"/>
+        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItem/LayoutCustomerCompany.pm"/>
+        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItem/LayoutDate.pm"/>
+        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItem/LayoutDateTime.pm"/>
+        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItem/LayoutDummy.pm"/>
+        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItem/LayoutGeneralCatalog.pm"/>
+        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItem/LayoutInteger.pm"/>
+        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItem/LayoutText.pm"/>
+        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItem/LayoutTextArea.pm"/>
+        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItem/MenuGeneric.pm"/>
+        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItem/OverviewSmall.pm"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Layout/ITSMConfigItem.pm"/>
+        <File Permission="644" Location="Kernel/Output/HTML/LinkObject/ITSMConfigItem.pm"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Templates/Standard/AAAITSMConfigItem.tt"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Templates/Standard/AdminITSMConfigItem.tt"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Templates/Standard/AgentITSMConfigItemAdd.tt"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Templates/Standard/AgentITSMConfigItemBulk.tt"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Templates/Standard/AgentITSMConfigItemEdit.tt"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Templates/Standard/AgentITSMConfigItemHistory.tt"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Templates/Standard/AgentITSMConfigItemOverviewNavBar.tt"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Templates/Standard/AgentITSMConfigItemOverviewSmall.tt"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Templates/Standard/AgentITSMConfigItemPrint.tt"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Templates/Standard/AgentITSMConfigItemSearch.tt"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Templates/Standard/AgentITSMConfigItemSearchResultPrint.tt"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Templates/Standard/AgentITSMConfigItemZoom.tt"/>
         <File Permission="644" Location="Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm"/>
         <File Permission="644" Location="Kernel/System/ITSMConfigItem.pm"/>
         <File Permission="644" Location="Kernel/System/ITSMConfigItem/Definition.pm"/>
@@ -109,6 +109,17 @@
         <File Permission="644" Location="scripts/test/GenericInterface/Operation/ConfigItem/ConfigItemGet.t"/>
         <File Permission="644" Location="scripts/test/GenericInterface/Operation/ConfigItem/ConfigItemSearch.t"/>
         <File Permission="644" Location="scripts/test/GenericInterface/Operation/ConfigItem/ConfigItemUpdate.t"/>
+        <File Permission="644" Location="scripts/test/Selenium/Agent/Admin/AdminITSMConfigItem.t"/>
+        <File Permission="644" Location="scripts/test/Selenium/Agent/ITSMConfigurationManagement/AgentITSMConfigItem.t"/>
+        <File Permission="644" Location="scripts/test/Selenium/Agent/ITSMConfigurationManagement/AgentITSMConfigItemAdd.t"/>
+        <File Permission="644" Location="scripts/test/Selenium/Agent/ITSMConfigurationManagement/AgentITSMConfigItemBulk.t"/>
+        <File Permission="644" Location="scripts/test/Selenium/Agent/ITSMConfigurationManagement/AgentITSMConfigItemDuplicate.t"/>
+        <File Permission="644" Location="scripts/test/Selenium/Agent/ITSMConfigurationManagement/AgentITSMConfigItemEdit.t"/>
+        <File Permission="644" Location="scripts/test/Selenium/Agent/ITSMConfigurationManagement/AgentITSMConfigItemHistory.t"/>
+        <File Permission="644" Location="scripts/test/Selenium/Agent/ITSMConfigurationManagement/AgentITSMConfigItemPrint.t"/>
+        <File Permission="644" Location="scripts/test/Selenium/Agent/ITSMConfigurationManagement/AgentITSMConfigItemSearch.t"/>
+        <File Permission="644" Location="scripts/test/Selenium/Agent/ITSMConfigurationManagement/AgentITSMConfigItemZoom.t"/>
+        <File Permission="644" Location="scripts/test/Selenium/Agent/ITSMConfigurationManagement/AgentLinkObject.t"/>
         <File Permission="644" Location="scripts/webservices/GenericConfigItemConnectorSOAP.yml"/>
         <File Permission="644" Location="scripts/test/ImportExportObjectITSMConfigItem.t"/>
         <File Permission="644" Location="scripts/test/ITSMConfigItem.t"/>
