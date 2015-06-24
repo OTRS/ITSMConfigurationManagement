@@ -165,21 +165,24 @@ sub Run {
 
         # replace text
         if ( $Data{Comment} ) {
-            my %Info = ();
-            $Data{Comment} =~ s/^%%//g;
-            my @Values = split( /%%/, $Data{Comment} );
+
+            my %Info;
+
+            $Data{Comment} =~ s{ \A %% }{}xmsg;
+            my @Values = split /%%/, $Data{Comment};
             $Data{Comment} = '';
-            for (@Values) {
+
+            for my $Value (@Values) {
                 if ( $Data{Comment} ) {
-                    $Data{Comment} .= ", ";
+                    $Data{Comment} .= '", ';
                 }
-                $Data{Comment} .= "\"$_\"";
+                $Data{Comment} .= '"' . $Value;
             }
             if ( !$Data{Comment} ) {
-                $Data{Comment} = '" "';
+                $Data{Comment} = '" ';
             }
-            $Data{Comment} = $LayoutObject->{LanguageObject}->Translate(
-                'CIHistory::' . $Data{HistoryType} . ', ' . $Data{Comment}
+            $Data{Comment} = $LayoutObject->{LanguageObject}->Get(
+                'CIHistory::' . $Data{HistoryType} . '", ' . $Data{Comment}
             );
 
             # remove not needed place holder
