@@ -181,7 +181,7 @@ sub Run {
             if ( !$Data{Comment} ) {
                 $Data{Comment} = '" ';
             }
-            $Data{Comment} = $LayoutObject->{LanguageObject}->Get(
+            $Data{Comment} = $LayoutObject->{LanguageObject}->Translate(
                 'CIHistory::' . $Data{HistoryType} . '", ' . $Data{Comment}
             );
 

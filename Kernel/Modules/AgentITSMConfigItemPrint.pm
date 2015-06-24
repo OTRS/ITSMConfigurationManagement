@@ -664,7 +664,7 @@ sub _PDFOutputAttachments {
 
     # output headline
     $PDFObject->Text(
-        Text     => $Kernel::OM->Get('Kernel::Output::HTML::Layout')->{LanguageObject}->Get('Attachments'),
+        Text     => $Kernel::OM->Get('Kernel::Output::HTML::Layout')->{LanguageObject}->Translate('Attachments'),
         Height   => 7,
         Type     => 'Cut',
         Font     => 'ProportionalBoldItalic',
