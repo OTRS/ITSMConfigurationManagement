@@ -27,7 +27,6 @@ sub Configure {
     return;
 }
 
-
 sub Run {
     my ( $Self, %Param ) = @_;
 
@@ -82,7 +81,9 @@ sub Run {
 
     my $NumberOfServices = scalar keys %ServiceList;
 
-    $Self->Print("<green>Resetting ServicePreferences 'CurInciStateTypeFromCIs' for $NumberOfServices services...</green>\n");
+    $Self->Print(
+        "<green>Resetting ServicePreferences 'CurInciStateTypeFromCIs' for $NumberOfServices services...</green>\n"
+    );
 
     for my $ServiceID ( sort keys %ServiceList ) {
 

@@ -49,6 +49,7 @@ sub Configure {
         Required    => 0,
         HasValue    => 1,
         ValueRegex  => qr/\d+/smx,
+        Multiple    => 1,
     );
 
     return;
@@ -58,7 +59,7 @@ sub PreRun {
     my ( $Self, %Param ) = @_;
 
     my $Class = $Self->GetOption('class') // '';
-    my @ConfigItemNumbers     = @{ $Self->GetOption('configitem_number')     // [] };
+    my @ConfigItemNumbers = @{ $Self->GetOption('configitem_number') // [] };
     my $DeploymentState = $Self->GetOption('deploymentstate') // '';
 
     if ( !$Self->GetOption('all') && !$Class && !@ConfigItemNumbers && !$DeploymentState ) {
@@ -66,7 +67,8 @@ sub PreRun {
     }
 
     if ( $DeploymentState && !$Class ) {
-        die "Deleting all config items with this deployment state is posible ONLY TOGETHER with the --class parameter. \nFor more details use --help\n";
+        die
+            "Deleting all config items with this deployment state is posible ONLY TOGETHER with the --class parameter. \nFor more details use --help\n";
     }
 
     return;
@@ -77,11 +79,11 @@ sub Run {
     my ( $Self, %Param ) = @_;
 
     my $Class = $Self->GetOption('class') // '';
-    my @ConfigItemNumbers = $Self->GetOption('configitem_number') // [];
+    my @ConfigItemNumbers = @{ $Self->GetOption('configitem_number') // [] };
     my $DeploymentState = $Self->GetOption('deploymentstate') // '';
 
     # delete all config items
-    if ($Self->GetOption('all')) {
+    if ( $Self->GetOption('all') ) {
 
         # get all config items ids
         my @ConfigItemsIDs = @{ $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemSearch() };
@@ -101,10 +103,11 @@ sub Run {
 
                 # delete config items
                 $Self->Print("<green>Deleting all config items...</green>\n");
-                DeleteConfigItems( ConfigItemsIDs => \@ConfigItemsIDs );
+                $Self->DeleteConfigItems( ConfigItemsIDs => \@ConfigItemsIDs );
             }
             else {
-                exit 1;
+                $Self->Print("<yellow>Command delete was canceled</yellow>\n");
+                $Self->ExitCodeOK();
             }
         }
         else {
@@ -113,7 +116,7 @@ sub Run {
     }
 
     # delete listed config items
-    elsif ( IsArrayRefWithData(@ConfigItemNumbers) ){
+    elsif ( IsArrayRefWithData( \@ConfigItemNumbers ) ) {
 
         my @ConfigItemsIDs;
 
@@ -135,7 +138,7 @@ sub Run {
         # delete config items (if any valid number was given)
         if (@ConfigItemsIDs) {
             $Self->Print("<yellow>Deleting specified config items...</yellow>\n");
-            DeleteConfigItems( ConfigItemsIDs => \@ConfigItemsIDs );
+            $Self->DeleteConfigItems( ConfigItemsIDs => \@ConfigItemsIDs );
         }
     }
 
@@ -182,8 +185,8 @@ sub Run {
                     $SearchParam{DeplStateIDs} = [$ID];
                 }
                 else {
-                    $Self->Print("<yellow>Unable to find deployment state $DeploymentState.</yellow>\n");
-                    exit 1;
+                    $Self->PrintError("Unable to find deployment state $DeploymentState.");
+                    return $Self->ExitCodeError();
                 }
             }
 
@@ -193,29 +196,33 @@ sub Run {
             };
         }
         else {
-            $Self->Print("<yellow>Unable to find class name $Class.</yellow>\n");
+            $Self->PrintError("Unable to find class name $Class.");
+            return $Self->ExitCodeError();
         }
 
         # delete config items (if any valid number was given)
         if (@ConfigItemsIDs) {
             $Self->Print("<yellow>Deleting config items that belong to the class $Class...</yellow>\n");
-            DeleteConfigItems( ConfigItemsIDs => \@ConfigItemsIDs );
+            $Self->DeleteConfigItems( ConfigItemsIDs => \@ConfigItemsIDs );
         }
         else {
             $Self->Print("<yellow>There are no config items that belong to the class $Class...</yellow>\n");
         }
+        return $Self->ExitCodeOk();
     }
-
-    return $Self->ExitCodeOk();
+    else {
+        $Self->PrintError("Can't delete configitem.");
+        return $Self->ExitCodeError();
+    }
 
 }
 
 sub DeleteConfigItems {
 
-    # get parameters
-    my (%Param) = @_;
+    my ( $Self, %Param ) = @_;
 
     my $DeletedCI;
+    my @ConfigItemNumbers = @{ $Self->GetOption('configitem_number') // [] };
 
     # delete specified config items
     for my $ConfigItemID ( @{ $Param{ConfigItemsIDs} } ) {
@@ -224,13 +231,14 @@ sub DeleteConfigItems {
             UserID       => 1,
         );
         if ( !$True ) {
-            print "Unable to delete config item with id $ConfigItemID\n";
+            $Self->PrintError("Unable to delete config item with id $ConfigItemID.");
         }
         else {
             $DeletedCI++;
         }
     }
-    print "Deleted $DeletedCI config item(s).\n\n";
+
+    $Self->Print("<green>Deleted $DeletedCI config item(s).</green>\n\n");
 
     return 1;
 }

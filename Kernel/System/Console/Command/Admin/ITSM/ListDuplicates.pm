@@ -52,7 +52,7 @@ sub PreRun {
     my ( $Self, %Param ) = @_;
 
     # get class argument
-    my $Class = $Self->GetOption('class') // '' ;
+    my $Class = $Self->GetOption('class') // '';
 
     if ($Class) {
 
@@ -82,7 +82,6 @@ sub PreRun {
 sub Run {
     my ( $Self, %Param ) = @_;
 
-
     if ( !$Self->GetOption('allstates') ) {
 
         my $StateList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
@@ -102,13 +101,13 @@ sub Run {
     my $ITSMConfigitemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
 
     # get all config items ids
-    my @ConfigItemIDs = @{ $ITSMConfigitemObject->ConfigItemSearch( %{$Self->{SearchCriteria}} ) };
+    my @ConfigItemIDs = @{ $ITSMConfigitemObject->ConfigItemSearch( %{ $Self->{SearchCriteria} } ) };
 
     # get number of config items
     my $CICount = scalar @ConfigItemIDs;
 
     # get class argument
-    my $Class = $Self->GetOption('class') // '' ;
+    my $Class = $Self->GetOption('class') // '';
 
     # if there are any CI to check
     if ($CICount) {
@@ -184,14 +183,18 @@ sub Run {
                     push @DuplicateData, $DuplicateVersion;
                 }
 
-                $Self->Print("<yellow>ConfigItem $Version->{Number} (Name: $Version->{Name}, ConfigItemID: "
-                    . "$Version->{ConfigItemID}) has the following duplicates:</yellow>\n");
+                $Self->Print(
+                    "<yellow>ConfigItem $Version->{Number} (Name: $Version->{Name}, ConfigItemID: "
+                        . "$Version->{ConfigItemID}) has the following duplicates:</yellow>\n"
+                );
 
                 # list all the details of the duplicates
                 for my $DuplicateVersion (@DuplicateData) {
                     print "\n";
-                    $Self->Print("<green>\t * $DuplicateVersion->{Number} (ConfigItemID: "
-                        . "$DuplicateVersion->{ConfigItemID})</green>\n");
+                    $Self->Print(
+                        "<green>\t * $DuplicateVersion->{Number} (ConfigItemID: "
+                            . "$DuplicateVersion->{ConfigItemID})</green>\n"
+                    );
                 }
 
                 $Self->Print( "<green>" . ( '-' x 69 ) . "</green>\n" );
