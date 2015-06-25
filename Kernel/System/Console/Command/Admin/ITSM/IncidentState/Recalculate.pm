@@ -6,7 +6,7 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package Kernel::System::Console::Command::Admin::ITSM::IncidentStateRecalculate;
+package Kernel::System::Console::Command::Admin::ITSM::IncidentState::Recalculate;
 
 use strict;
 use warnings;
@@ -27,8 +27,11 @@ sub Configure {
     return;
 }
 
+
 sub Run {
     my ( $Self, %Param ) = @_;
+
+    $Self->Print("<yellow>Recalculating the incident state of config items...</yellow>\n\n");
 
     # get class list
     my $ClassList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
@@ -52,7 +55,7 @@ sub Run {
     CONFIGITEM:
     for my $ConfigItemID ( @{$ConfigItemsIDsRef} ) {
 
-        my $Success = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->CurInciStateRecalc(
+        my $Success  = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->CurInciStateRecalc(
             ConfigItemID => $ConfigItemID,
         );
 
@@ -81,9 +84,7 @@ sub Run {
 
     my $NumberOfServices = scalar keys %ServiceList;
 
-    $Self->Print(
-        "<green>Resetting ServicePreferences 'CurInciStateTypeFromCIs' for $NumberOfServices services...</green>\n"
-    );
+    $Self->Print("<green>Resetting ServicePreferences 'CurInciStateTypeFromCIs' for $NumberOfServices services...</green>\n");
 
     for my $ServiceID ( sort keys %ServiceList ) {
 

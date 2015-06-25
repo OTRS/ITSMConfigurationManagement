@@ -6,7 +6,7 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package Kernel::System::Console::Command::Admin::ITSM::Delete;
+package Kernel::System::Console::Command::Admin::ITSM::Configitem::Delete;
 
 use strict;
 use warnings;
@@ -37,14 +37,14 @@ sub Configure {
         ValueRegex  => qr/.*/smx,
     );
     $Self->AddOption(
-        Name        => 'deploymentstate',
+        Name        => 'deployment-state',
         Description => "Delete all config items with this deployment state (ONLY TOGETHER with the --class parameter)",
         Required    => 0,
         HasValue    => 1,
         ValueRegex  => qr/.*/smx,
     );
     $Self->AddOption(
-        Name        => 'configitem_number',
+        Name        => 'configitem-number',
         Description => "Delete listed config items",
         Required    => 0,
         HasValue    => 1,
@@ -59,11 +59,11 @@ sub PreRun {
     my ( $Self, %Param ) = @_;
 
     my $Class = $Self->GetOption('class') // '';
-    my @ConfigItemNumbers = @{ $Self->GetOption('configitem_number') // [] };
-    my $DeploymentState = $Self->GetOption('deploymentstate') // '';
+    my @ConfigItemNumbers = @{ $Self->GetOption('configitem-number') // [] };
+    my $DeploymentState = $Self->GetOption('deployment-state') // '';
 
     if ( !$Self->GetOption('all') && !$Class && !@ConfigItemNumbers && !$DeploymentState ) {
-        die "Please provide option --all, --class, or --configitem_number. For more details use --help\n";
+        die "Please provide option --all, --class, or --configitem-number. For more details use --help\n";
     }
 
     if ( $DeploymentState && !$Class ) {
@@ -78,9 +78,11 @@ sub PreRun {
 sub Run {
     my ( $Self, %Param ) = @_;
 
+    $Self->Print("<yellow>Deleting config items...</yellow>\n\n");
+
     my $Class = $Self->GetOption('class') // '';
-    my @ConfigItemNumbers = @{ $Self->GetOption('configitem_number') // [] };
-    my $DeploymentState = $Self->GetOption('deploymentstate') // '';
+    my @ConfigItemNumbers = @{ $Self->GetOption('configitem-number') // [] };
+    my $DeploymentState = $Self->GetOption('deployment-state') // '';
 
     # delete all config items
     if ( $Self->GetOption('all') ) {
@@ -208,12 +210,13 @@ sub Run {
         else {
             $Self->Print("<yellow>There are no config items that belong to the class $Class...</yellow>\n");
         }
-        return $Self->ExitCodeOk();
     }
     else {
-        $Self->PrintError("Can't delete configitem.");
-        return $Self->ExitCodeError();
+        $Self->PrintError("No config item for delete.");
     }
+
+    $Self->Print("<green>Done.</green>\n");
+    return $Self->ExitCodeOk();
 
 }
 
@@ -222,7 +225,7 @@ sub DeleteConfigItems {
     my ( $Self, %Param ) = @_;
 
     my $DeletedCI;
-    my @ConfigItemNumbers = @{ $Self->GetOption('configitem_number') // [] };
+    my @ConfigItemNumbers = @{ $Self->GetOption('configitem-number') // [] };
 
     # delete specified config items
     for my $ConfigItemID ( @{ $Param{ConfigItemsIDs} } ) {

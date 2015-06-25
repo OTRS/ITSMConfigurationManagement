@@ -105,9 +105,9 @@
         <File Permission="644" Location="Kernel/System/LinkObject/ITSMConfigItem.pm"/>
         <File Permission="644" Location="Kernel/System/Service/PreferencesDB.pm"/>
         <File Permission="644" Location="Kernel/System/Stats/Dynamic/ITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/System/Console/Command/Admin/ITSM/ListDuplicates.pm"/>
-        <File Permission="644" Location="Kernel/System/Console/Command/Admin/ITSM/IncidentStateRecalculate.pm"/>
-        <File Permission="644" Location="Kernel/System/Console/Command/Admin/ITSM/Delete.pm"/>
+        <File Permission="644" Location="Kernel/System/Console/Command/Admin/ITSM/Configitem/ListDuplicates.pm"/>
+        <File Permission="644" Location="Kernel/System/Console/Command/Admin/ITSM/IncidentState/Recalculate.pm"/>
+        <File Permission="644" Location="Kernel/System/Console/Command/Admin/ITSM/Configitem/Delete.pm"/>
         <File Permission="644" Location="scripts/test/GenericInterface/Operation/ConfigItem/ConfigItemCreate.t"/>
         <File Permission="644" Location="scripts/test/GenericInterface/Operation/ConfigItem/ConfigItemGet.t"/>
         <File Permission="644" Location="scripts/test/GenericInterface/Operation/ConfigItem/ConfigItemSearch.t"/>

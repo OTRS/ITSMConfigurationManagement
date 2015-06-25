@@ -6,7 +6,7 @@
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
 
-package Kernel::System::Console::Command::Admin::ITSM::ListDuplicates;
+package Kernel::System::Console::Command::Admin::ITSM::Configitem::ListDuplicates;
 
 use strict;
 use warnings;
@@ -39,7 +39,7 @@ sub Configure {
         ValueRegex  => qr/(global|class)/smx,
     );
     $Self->AddOption(
-        Name        => 'allstates',
+        Name        => 'all-states',
         Description => "Also check config items in non-productive states.",
         Required    => 0,
         HasValue    => 0,
@@ -52,12 +52,12 @@ sub PreRun {
     my ( $Self, %Param ) = @_;
 
     # get class argument
-    my $Class = $Self->GetOption('class') // '';
+    my $Class = $Self->GetOption('class') // '' ;
 
     if ($Class) {
 
         # get class list
-        my $ClassList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
+        my $ClassList   = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
             Class => 'ITSM::ConfigItem::Class',
         );
 
@@ -82,7 +82,9 @@ sub PreRun {
 sub Run {
     my ( $Self, %Param ) = @_;
 
-    if ( !$Self->GetOption('allstates') ) {
+    $Self->Print("<yellow>Listing duplicates of config items...</yellow>\n\n");
+
+    if ( !$Self->GetOption('all-states') ) {
 
         my $StateList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
             Class       => 'ITSM::ConfigItem::DeploymentState',
@@ -101,13 +103,13 @@ sub Run {
     my $ITSMConfigitemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
 
     # get all config items ids
-    my @ConfigItemIDs = @{ $ITSMConfigitemObject->ConfigItemSearch( %{ $Self->{SearchCriteria} } ) };
+    my @ConfigItemIDs = @{ $ITSMConfigitemObject->ConfigItemSearch( %{$Self->{SearchCriteria}} ) };
 
     # get number of config items
     my $CICount = scalar @ConfigItemIDs;
 
     # get class argument
-    my $Class = $Self->GetOption('class') // '';
+    my $Class = $Self->GetOption('class') // '' ;
 
     # if there are any CI to check
     if ($CICount) {
@@ -183,18 +185,14 @@ sub Run {
                     push @DuplicateData, $DuplicateVersion;
                 }
 
-                $Self->Print(
-                    "<yellow>ConfigItem $Version->{Number} (Name: $Version->{Name}, ConfigItemID: "
-                        . "$Version->{ConfigItemID}) has the following duplicates:</yellow>\n"
-                );
+                $Self->Print("<yellow>ConfigItem $Version->{Number} (Name: $Version->{Name}, ConfigItemID: "
+                    . "$Version->{ConfigItemID}) has the following duplicates:</yellow>\n");
 
                 # list all the details of the duplicates
                 for my $DuplicateVersion (@DuplicateData) {
                     print "\n";
-                    $Self->Print(
-                        "<green>\t * $DuplicateVersion->{Number} (ConfigItemID: "
-                            . "$DuplicateVersion->{ConfigItemID})</green>\n"
-                    );
+                    $Self->Print("<green>\t * $DuplicateVersion->{Number} (ConfigItemID: "
+                        . "$DuplicateVersion->{ConfigItemID})</green>\n");
                 }
 
                 $Self->Print( "<green>" . ( '-' x 69 ) . "</green>\n" );
@@ -212,6 +210,7 @@ sub Run {
         $Self->Print("<yellow>There are NO config items to check.\n</yellow>\n");
     }
 
+    $Self->Print("<green>Done.</green>\n");
     return $Self->ExitCodeOk();
 
 }
