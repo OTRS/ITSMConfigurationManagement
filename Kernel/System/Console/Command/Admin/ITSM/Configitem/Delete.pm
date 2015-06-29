@@ -29,6 +29,12 @@ sub Configure {
         Required    => 0,
         HasValue    => 0,
     );
+    $Self->AddArgument(
+        Name        => 'accept',
+        Description => "Accept delete all or cancel.",
+        Required    => 0,
+        ValueRegex  => qr/(y|n)/smx,
+    );
     $Self->AddOption(
         Name        => 'class',
         Description => "Delete all config items of this class.",
@@ -98,7 +104,8 @@ sub Run {
 
             $Self->Print("<yellow>Are you sure that you want to delete ALL $CICount config items?</yellow>\n");
             $Self->Print("<yellow>This is irrevocable. [y/n] </yellow>\n");
-            chomp( my $Confirmation = lc <STDIN> );
+            my $Confirmation = $Self->GetArgument('accept');
+            chomp( $Confirmation = lc <STDIN> ) if !defined $Confirmation;
 
             # if the user confirms the deletion
             if ( $Confirmation eq 'y' ) {
@@ -109,7 +116,7 @@ sub Run {
             }
             else {
                 $Self->Print("<yellow>Command delete was canceled</yellow>\n");
-                $Self->ExitCodeOK();
+                return $Self->ExitCodeOk();
             }
         }
         else {
