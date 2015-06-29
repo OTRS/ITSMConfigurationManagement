@@ -1,5 +1,4 @@
 # --
-# Admin/ITSM/Configitem/ListDuplicates.t - command tests
 # Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
@@ -15,7 +14,7 @@ use utf8;
 use vars (qw($Self));
 
 my $CommandObject = $Kernel::OM->Get('Kernel::System::Console::Command::Admin::ITSM::Configitem::ListDuplicates');
-my $HelperObject = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
+my $HelperObject  = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
 
 # check command without any options
 my $ExitCode = $CommandObject->Execute();
@@ -28,7 +27,7 @@ $Self->Is(
 
 # check command with --class options (invalid class)
 my $RandomClass = 'NonExistingClass' . $HelperObject->GetRandomID();
-$ExitCode =     $CommandObject->Execute( '--class', $RandomClass );
+$ExitCode = $CommandObject->Execute( '--class', $RandomClass );
 
 $Self->Is(
     $ExitCode,
@@ -41,7 +40,7 @@ my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
 
 # get 'Hardware' catalog class IDs
 my $ConfigItemDataRef = $GeneralCatalogObject->ItemGet(
-    Class   => 'ITSM::ConfigItem::Class',
+    Class => 'ITSM::ConfigItem::Class',
     Name  => 'Hardware',
 );
 my $HardwareConfigItemID = $ConfigItemDataRef->{ItemID};
@@ -70,7 +69,7 @@ my $ConfigItemID = $ConfigItemObject->ConfigItemAdd(
     ClassID => $HardwareConfigItemID,
     UserID  => 1,
 );
-push @ConfigItemID,$ConfigItemID;
+push @ConfigItemID, $ConfigItemID;
 
 my $ConfigItemName = 'TestConfigItem' . $HelperObject->GetRandomID();
 my $VersionID      = $ConfigItemObject->VersionAdd(
@@ -87,9 +86,9 @@ $ConfigItemID = $ConfigItemObject->ConfigItemAdd(
     ClassID => $HardwareConfigItemID,
     UserID  => 1,
 );
-push @ConfigItemID,$ConfigItemID;
+push @ConfigItemID, $ConfigItemID;
 
-$VersionID      = $ConfigItemObject->VersionAdd(
+$VersionID = $ConfigItemObject->VersionAdd(
     Name         => $ConfigItemName,
     DefinitionID => 1,
     DeplStateID  => $ProductionDeplStateID,
@@ -100,7 +99,7 @@ $VersionID      = $ConfigItemObject->VersionAdd(
 
 # add the new duplicate ConfigItem in Software catalog class
 # get 'Software' catalog class IDs
-my $ConfigItemDataRef = $GeneralCatalogObject->ItemGet(
+$ConfigItemDataRef = $GeneralCatalogObject->ItemGet(
     Class => 'ITSM::ConfigItem::Class',
     Name  => 'Software',
 );
@@ -110,9 +109,9 @@ $ConfigItemID = $ConfigItemObject->ConfigItemAdd(
     ClassID => $SoftwareConfigItemID,
     UserID  => 1,
 );
-push @ConfigItemID,$ConfigItemID;
+push @ConfigItemID, $ConfigItemID;
 
-$VersionID      = $ConfigItemObject->VersionAdd(
+$VersionID = $ConfigItemObject->VersionAdd(
     Name         => $ConfigItemName,
     DefinitionID => 1,
     DeplStateID  => $ProductionDeplStateID,
@@ -120,7 +119,6 @@ $VersionID      = $ConfigItemObject->VersionAdd(
     UserID       => 1,
     ConfigItemID => $ConfigItemID,
 );
-
 
 # check command with --class Hardware options
 $ExitCode = $CommandObject->Execute( '--class', "Hardware" );
@@ -160,7 +158,7 @@ $Self->Is(
 );
 
 # check command with --all-states options
-$ExitCode = $CommandObject->Execute( '--all-states' );
+$ExitCode = $CommandObject->Execute('--all-states');
 
 $Self->Is(
     $ExitCode,
@@ -169,7 +167,7 @@ $Self->Is(
 );
 
 # clean up test data
-for my $ConfigItemID (@ConfigItemID){
+for my $ConfigItemID (@ConfigItemID) {
     my $Success = $ConfigItemObject->ConfigItemDelete(
         ConfigItemID => $ConfigItemID,
         UserID       => 1,
@@ -180,5 +178,8 @@ for my $ConfigItemID (@ConfigItemID){
     );
 }
 
+$Kernel::OM->Get('Kernel::System::Cache')->CleanUp(
+    Type => 'GeneralCatalog',
+);
 
 1;

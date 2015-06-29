@@ -1,5 +1,4 @@
 # --
-# Admin/ITSM/IncidentState/Recalculate.t - command tests
 # Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
@@ -14,7 +13,7 @@ use utf8;
 
 use vars (qw($Self));
 
-my $CommandObject =     $Kernel::OM->Get('Kernel::System::Console::Command::Admin::ITSM::IncidentState::Recalculate');
+my $CommandObject = $Kernel::OM->Get('Kernel::System::Console::Command::Admin::ITSM::IncidentState::Recalculate');
 
 my $ExitCode = $CommandObject->Execute();
 

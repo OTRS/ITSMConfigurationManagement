@@ -1,5 +1,4 @@
 # --
-# Admin/ITSM/Configitem/Delete.t - command tests
 # Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
@@ -15,7 +14,7 @@ use utf8;
 use vars (qw($Self));
 
 my $CommandObject = $Kernel::OM->Get('Kernel::System::Console::Command::Admin::ITSM::Configitem::Delete');
-my $HelperObject = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
+my $HelperObject  = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
 
 my $ExitCode = $CommandObject->Execute();
 
@@ -34,7 +33,6 @@ $Self->Is(
     "Option '--all' n",
 );
 
-
 # check command with class options (invalid class)
 my $RandomClass = 'TestClass' . $HelperObject->GetRandomID();
 $ExitCode = $CommandObject->Execute( '--class', $RandomClass );
@@ -50,11 +48,11 @@ my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
 
 # add test general catalog item
 my $GeneralCatalogItemID = $GeneralCatalogObject->ItemAdd(
-    Class         => 'ITSM::ConfigItem::Class',
-    Name          => $RandomClass,
-    ValidID       => 1,
-    Comment       => 'Comment',
-    UserID        => 1,
+    Class   => 'ITSM::ConfigItem::Class',
+    Name    => $RandomClass,
+    ValidID => 1,
+    Comment => 'Comment',
+    UserID  => 1,
 );
 
 $GeneralCatalogObject->GeneralCatalogPreferencesSet(
@@ -74,7 +72,7 @@ my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
 my @ConfigItemNumbers;
 my $ConfigItemID;
 
-for (1..10) {
+for ( 1 .. 10 ) {
 
     # create ConfigItem number
     my $ConfigItemNumber = $ConfigItemObject->ConfigItemNumberCreate(
@@ -125,7 +123,10 @@ $Self->Is(
 );
 
 # check command with configitem-number options
-$ExitCode = $CommandObject->Execute( '--configitem-number', $ConfigItemNumbers[0], '--configitem-number', $ConfigItemNumbers[1] );
+$ExitCode = $CommandObject->Execute(
+    '--configitem-number', $ConfigItemNumbers[0], '--configitem-number',
+    $ConfigItemNumbers[1]
+);
 
 $Self->Is(
     $ExitCode,
@@ -145,27 +146,27 @@ $Self->Is(
 );
 
 # clean up test data
-my $Success =  $Kernel::OM->Get('Kernel::System::DB')->Do(
-        SQL => "DELETE FROM general_catalog_preferences WHERE general_catalog_id = $GeneralCatalogItemID",
-    );
+my $Success = $Kernel::OM->Get('Kernel::System::DB')->Do(
+    SQL => "DELETE FROM general_catalog_preferences WHERE general_catalog_id = $GeneralCatalogItemID",
+);
 
 $Self->True(
     $Success,
     "General catalog preferences for $GeneralCatalogItemID is deleted",
 );
 
-$Success =  $Kernel::OM->Get('Kernel::System::DB')->Do(
-        SQL => "DELETE FROM configitem_counter WHERE class_id = $GeneralCatalogItemID",
-    );
+$Success = $Kernel::OM->Get('Kernel::System::DB')->Do(
+    SQL => "DELETE FROM configitem_counter WHERE class_id = $GeneralCatalogItemID",
+);
 
 $Self->True(
     $Success,
     "CleanUp config item counter data for - $GeneralCatalogItemID",
 );
 
-$Success =  $Kernel::OM->Get('Kernel::System::DB')->Do(
-        SQL => "DELETE FROM general_catalog WHERE id = $GeneralCatalogItemID",
-    );
+$Success = $Kernel::OM->Get('Kernel::System::DB')->Do(
+    SQL => "DELETE FROM general_catalog WHERE id = $GeneralCatalogItemID",
+);
 
 $Self->True(
     $Success,
