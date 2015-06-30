@@ -12,9 +12,6 @@
     <Description Lang="de">Das OTRS::ITSM Configuration Management Paket.</Description>
     <Description Lang="es">El paquete OTRS::ITSM Configuration Management.</Description>
     <Filelist>
-        <File Permission="755" Location="bin/otrs.ITSMConfigItemDelete.pl"/>
-        <File Permission="755" Location="bin/otrs.ITSMConfigItemIncidentStateRecalculate.pl"/>
-        <File Permission="755" Location="bin/otrs.ITSMConfigItemListDuplicates.pl"/>
         <File Permission="644" Location="doc/itsm-configuration-management-database.dia"/>
         <File Permission="644" Location="doc/itsm-configuration-management-database.png"/>
         <File Permission="644" Location="Kernel/Config/Files/ITSMConfigItem.xml"/>
@@ -105,6 +102,9 @@
         <File Permission="644" Location="Kernel/System/LinkObject/ITSMConfigItem.pm"/>
         <File Permission="644" Location="Kernel/System/Service/PreferencesDB.pm"/>
         <File Permission="644" Location="Kernel/System/Stats/Dynamic/ITSMConfigItem.pm"/>
+        <File Permission="644" Location="Kernel/System/Console/Command/Admin/ITSM/Configitem/ListDuplicates.pm"/>
+        <File Permission="644" Location="Kernel/System/Console/Command/Admin/ITSM/Configitem/Delete.pm"/>
+        <File Permission="644" Location="Kernel/System/Console/Command/Admin/ITSM/IncidentState/Recalculate.pm"/>
         <File Permission="644" Location="scripts/test/GenericInterface/Operation/ConfigItem/ConfigItemCreate.t"/>
         <File Permission="644" Location="scripts/test/GenericInterface/Operation/ConfigItem/ConfigItemGet.t"/>
         <File Permission="644" Location="scripts/test/GenericInterface/Operation/ConfigItem/ConfigItemSearch.t"/>
@@ -125,6 +125,9 @@
         <File Permission="644" Location="scripts/test/ITSMConfigItem.t"/>
         <File Permission="644" Location="scripts/test/ITSMConfigItemLinkTest.t"/>
         <File Permission="644" Location="scripts/test/ITSMConfigItemUniqueCIName.t"/>
+        <File Permission="644" Location="scripts/test/Console/Command/Admin/ITSM/Configitem/ListDuplicates.t"/>
+        <File Permission="644" Location="scripts/test/Console/Command/Admin/ITSM/Configitem/Delete.t"/>
+        <File Permission="644" Location="scripts/test/Console/Command/Admin/ITSM/IncidentState/Recalculate.t"/>
         <File Permission="644" Location="var/httpd/htdocs/js/ITSM.Agent.ConfigItem.Search.js"/>
         <File Permission="644" Location="var/httpd/htdocs/js/ITSM.UI.ConfigItemActionRow.js"/>
         <File Permission="644" Location="var/packagesetup/ITSMConfigurationManagement.pm"/>
