@@ -668,8 +668,7 @@ sub Run {
             my @PDFData;
 
             # get pdf object
-            my $PDFObject
-                = ( $Kernel::OM->Get('Kernel::Config')->Get('PDF') ) ? $Kernel::OM->Get('Kernel::System::PDF') : undef;
+            my $PDFObject = $Kernel::OM->Get('Kernel::System::PDF');
 
             CONFIGITEMID:
             for my $ConfigItemID ( @{$SearchResultList} ) {
@@ -824,7 +823,7 @@ sub Run {
                     Filename    => $Filename . "_" . "$Y-$M-$D" . "_" . "$h-$m.pdf",
                     ContentType => "application/pdf",
                     Content     => $PDFString,
-                    Type        => 'attachment',
+                    Type        => 'inline',
                 );
             }
 

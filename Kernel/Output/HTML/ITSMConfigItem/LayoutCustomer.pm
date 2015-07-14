@@ -22,7 +22,7 @@ our @ObjectDependencies = (
 
 =head1 NAME
 
-Kernel::Output::HTML::ITSMConfigItemLayoutCustomer - layout backend module
+Kernel::Output::HTML::ITSMConfigItem::LayoutCustomer - layout backend module
 
 =head1 SYNOPSIS
 
@@ -36,7 +36,7 @@ All layout functions of customer objects
 
 create an object
 
-    $BackendObject = Kernel::Output::HTML::ITSMConfigItemLayoutCustomer->new(
+    $BackendObject = Kernel::Output::HTML::ITSMConfigItem::LayoutCustomer->new(
         %Param,
     );
 

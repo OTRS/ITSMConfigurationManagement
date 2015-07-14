@@ -20,7 +20,7 @@ our @ObjectDependencies = (
 
 =head1 NAME
 
-Kernel::Output::HTML::ITSMConfigItemLayoutGeneralCatalog - layout backend module
+Kernel::Output::HTML::ITSMConfigItem::LayoutGeneralCatalog - layout backend module
 
 =head1 SYNOPSIS
 
@@ -34,7 +34,7 @@ All layout functions of general catalog objects
 
 create an object
 
-    $BackendObject = Kernel::Output::HTML::ITSMConfigItemLayoutGeneralCatalog->new(
+    $BackendObject = Kernel::Output::HTML::ITSMConfigItem::LayoutGeneralCatalog->new(
         %Param,
     );
 

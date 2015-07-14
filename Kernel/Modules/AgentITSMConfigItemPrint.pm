@@ -151,8 +151,7 @@ sub Run {
     );
 
     # get pdf object
-    my $PDFObject
-        = ( $Kernel::OM->Get('Kernel::Config')->Get('PDF') ) ? $Kernel::OM->Get('Kernel::System::PDF') : undef;
+    my $PDFObject = $Kernel::OM->Get('Kernel::System::PDF');
 
     # generate pdf output
     if ($PDFObject) {
@@ -480,8 +479,7 @@ sub _PDFOutputGeneralInfos {
     $TableParam{PaddingBottom}        = 3;
 
     # get pdf object
-    my $PDFObject
-        = ( $Kernel::OM->Get('Kernel::Config')->Get('PDF') ) ? $Kernel::OM->Get('Kernel::System::PDF') : undef;
+    my $PDFObject = $Kernel::OM->Get('Kernel::System::PDF');
 
     # output table
     PAGE:
@@ -557,8 +555,7 @@ sub _PDFOutputLinkedObjects {
     $TableParam{ColumnData}[1]{Width} = 431;
 
     # get pdf object
-    my $PDFObject
-        = ( $Kernel::OM->Get('Kernel::Config')->Get('PDF') ) ? $Kernel::OM->Get('Kernel::System::PDF') : undef;
+    my $PDFObject = $Kernel::OM->Get('Kernel::System::PDF');
 
     # set new position
     $PDFObject->PositionSet(
@@ -653,8 +650,7 @@ sub _PDFOutputAttachments {
     $TableParam{ColumnData}[1]{Width} = 431;
 
     # get pdf object
-    my $PDFObject
-        = ( $Kernel::OM->Get('Kernel::Config')->Get('PDF') ) ? $Kernel::OM->Get('Kernel::System::PDF') : undef;
+    my $PDFObject = $Kernel::OM->Get('Kernel::System::PDF');
 
     # set new position
     $PDFObject->PositionSet(
@@ -725,8 +721,7 @@ sub _PDFOutputVersionInfos {
     }
 
     # get pdf object
-    my $PDFObject
-        = ( $Kernel::OM->Get('Kernel::Config')->Get('PDF') ) ? $Kernel::OM->Get('Kernel::System::PDF') : undef;
+    my $PDFObject = $Kernel::OM->Get('Kernel::System::PDF');
 
     # set new position
     $PDFObject->PositionSet(
