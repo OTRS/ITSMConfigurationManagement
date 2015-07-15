@@ -74,9 +74,7 @@
         <File Permission="644" Location="Kernel/Output/HTML/Templates/Standard/AgentITSMConfigItemHistory.tt"/>
         <File Permission="644" Location="Kernel/Output/HTML/Templates/Standard/AgentITSMConfigItemOverviewNavBar.tt"/>
         <File Permission="644" Location="Kernel/Output/HTML/Templates/Standard/AgentITSMConfigItemOverviewSmall.tt"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Templates/Standard/AgentITSMConfigItemPrint.tt"/>
         <File Permission="644" Location="Kernel/Output/HTML/Templates/Standard/AgentITSMConfigItemSearch.tt"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Templates/Standard/AgentITSMConfigItemSearchResultPrint.tt"/>
         <File Permission="644" Location="Kernel/Output/HTML/Templates/Standard/AgentITSMConfigItemZoom.tt"/>
         <File Permission="644" Location="Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm"/>
         <File Permission="644" Location="Kernel/System/ITSMConfigItem.pm"/>

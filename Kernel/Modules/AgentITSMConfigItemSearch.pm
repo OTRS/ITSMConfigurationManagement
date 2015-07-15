@@ -662,7 +662,7 @@ sub Run {
             );
         }
 
-        # print output ( PDF or HTML (print only) )
+        # print PDF output
         elsif ( $GetParam{ResultForm} eq 'Print' ) {
 
             my @PDFData;
@@ -690,39 +690,32 @@ sub Run {
                 );
 
                 # set pdf rows
-                if ($PDFObject) {
-                    my @PDFRow;
-                    for (qw(Class InciState Name Number DeplState VersionID CreateTime)) {
-                        push @PDFRow, $LastVersion->{$_};
-                    }
-                    push @PDFData, \@PDFRow;
+                my @PDFRow;
+                for (qw(Class InciState Name Number DeplState VersionID CreateTime)) {
+                    push @PDFRow, $LastVersion->{$_};
                 }
-                else {
+                push @PDFData, \@PDFRow;
 
-                    # add table block
-                    $LayoutObject->Block(
-                        Name => 'Record',
-                        Data => { %{$LastVersion} },
-                    );
-                }
             }
 
             # PDF Output
-            if ($PDFObject) {
-                my $Title = $LayoutObject->{LanguageObject}->Translate('Configuration Item') . ' '
-                    . $LayoutObject->{LanguageObject}->Translate('Search');
-                my $PrintedBy = $LayoutObject->{LanguageObject}->Translate('printed by');
-                my $Page      = $LayoutObject->{LanguageObject}->Translate('Page');
-                my $Time      = $LayoutObject->{Time};
+            my $Title = $LayoutObject->{LanguageObject}->Translate('Configuration Item') . ' '
+                . $LayoutObject->{LanguageObject}->Translate('Search');
+            my $PrintedBy = $LayoutObject->{LanguageObject}->Translate('printed by');
+            my $Page      = $LayoutObject->{LanguageObject}->Translate('Page');
+            my $Time      = $LayoutObject->{Time};
 
-                # get maximum number of pages
-                my $MaxPages = $ConfigObject->Get('PDF::MaxPages');
-                if ( !$MaxPages || $MaxPages < 1 || $MaxPages > 1000 ) {
-                    $MaxPages = 100;
-                }
+            # get maximum number of pages
+            my $MaxPages = $ConfigObject->Get('PDF::MaxPages');
+            if ( !$MaxPages || $MaxPages < 1 || $MaxPages > 1000 ) {
+                $MaxPages = 100;
+            }
 
-                # create the header
-                my $CellData;
+            # create the header
+            my $CellData;
+
+            # output 'No Result', if no content was given
+            if (@PDFData) {
                 $CellData->[0]->[0]->{Content} = $LayoutObject->{LanguageObject}->Translate('Class');
                 $CellData->[0]->[0]->{Font}    = 'ProportionalBold';
                 $CellData->[0]->[1]->{Content} = $LayoutObject->{LanguageObject}->Translate('Incident State');
@@ -748,103 +741,106 @@ sub Run {
                     }
                     $CounterRow++;
                 }
-
-                # output 'No Result', if no content was given
-                if ( !$CellData->[0]->[0] ) {
-                    $CellData->[0]->[0]->{Content} = $LayoutObject->{LanguageObject}->Translate('No Result!');
-                }
-
-                # page params
-                my %PageParam;
-                $PageParam{PageOrientation} = 'landscape';
-                $PageParam{MarginTop}       = 30;
-                $PageParam{MarginRight}     = 40;
-                $PageParam{MarginBottom}    = 40;
-                $PageParam{MarginLeft}      = 40;
-                $PageParam{HeaderRight}     = $Title;
-                $PageParam{FooterLeft}      = '';
-                $PageParam{HeadlineLeft}    = $Title;
-                $PageParam{HeadlineRight}   = $PrintedBy . ' '
-                    . $Self->{UserFullname} . ' '
-                    . $Time;
-
-                # table params
-                my %TableParam;
-                $TableParam{CellData}            = $CellData;
-                $TableParam{Type}                = 'Cut';
-                $TableParam{FontSize}            = 6;
-                $TableParam{Border}              = 0;
-                $TableParam{BackgroundColorEven} = '#AAAAAA';
-                $TableParam{BackgroundColorOdd}  = '#DDDDDD';
-                $TableParam{Padding}             = 1;
-                $TableParam{PaddingTop}          = 3;
-                $TableParam{PaddingBottom}       = 3;
-
-                # create new pdf document
-                $PDFObject->DocumentNew(
-                    Title  => $ConfigObject->Get('Product') . ': ' . $Title,
-                    Encode => $LayoutObject->{UserCharset},
-                );
-
-                # start table output
-                $PDFObject->PageNew(
-                    %PageParam,
-                    FooterRight => $Page . ' 1',
-                );
-                PAGE:
-                for my $Count ( 2 .. $MaxPages ) {
-
-                    # output table (or a fragment of it)
-                    %TableParam = $PDFObject->Table(%TableParam);
-
-                    # stop output or another page
-                    if ( $TableParam{State} ) {
-                        last PAGE;
-                    }
-                    else {
-                        $PDFObject->PageNew(
-                            %PageParam,
-                            FooterRight => $Page . ' ' . $_,
-                        );
-                    }
-                }
-
-                # return the pdf document
-                my $Filename = 'configitem_search';
-                my ( $s, $m, $h, $D, $M, $Y ) = $TimeObject->SystemTime2Date(
-                    SystemTime => $TimeObject->SystemTime(),
-                );
-                $M = sprintf( "%02d", $M );
-                $D = sprintf( "%02d", $D );
-                $h = sprintf( "%02d", $h );
-                $m = sprintf( "%02d", $m );
-                my $PDFString = $PDFObject->DocumentOutput();
-                return $LayoutObject->Attachment(
-                    Filename    => $Filename . "_" . "$Y-$M-$D" . "_" . "$h-$m.pdf",
-                    ContentType => "application/pdf",
-                    Content     => $PDFString,
-                    Type        => 'inline',
-                );
             }
-
-            # output printable html result page
             else {
-                $Output = $LayoutObject->PrintHeader( Width => 800 );
-                if ( @{$SearchResultList} == $Self->{SearchLimit} ) {
-                    $Param{Warning} = '$Text{"Reached max. count of %s search hits!", "'
-                        . $Self->{SearchLimit} . '"}';
-                }
-                $Output .= $LayoutObject->Output(
-                    TemplateFile => 'AgentITSMConfigItemSearchResultPrint',
-                    Data         => \%Param,
-                );
-
-                # add footer
-                $Output .= $LayoutObject->PrintFooter();
-
-                # return output
-                return $Output;
+                $CellData->[0]->[0]->{Content} = $LayoutObject->{LanguageObject}->Translate('No Result!');
             }
+
+            # page params
+            my %PageParam;
+            $PageParam{PageOrientation} = 'landscape';
+            $PageParam{MarginTop}       = 30;
+            $PageParam{MarginRight}     = 40;
+            $PageParam{MarginBottom}    = 40;
+            $PageParam{MarginLeft}      = 40;
+            $PageParam{HeaderRight}     = $Title;
+
+            # table params
+            my %TableParam;
+            $TableParam{CellData}            = $CellData;
+            $TableParam{Type}                = 'Cut';
+            $TableParam{FontSize}            = 6;
+            $TableParam{Border}              = 0;
+            $TableParam{BackgroundColorEven} = '#DDDDDD';
+            $TableParam{Padding}             = 1;
+            $TableParam{PaddingTop}          = 3;
+            $TableParam{PaddingBottom}       = 3;
+
+            # create new pdf document
+            $PDFObject->DocumentNew(
+                Title  => $ConfigObject->Get('Product') . ': ' . $Title,
+                Encode => $LayoutObject->{UserCharset},
+            );
+
+            # start table output
+            $PDFObject->PageNew(
+                %PageParam,
+                FooterRight => $Page . ' 1',
+            );
+
+            $PDFObject->PositionSet(
+                Move => 'relativ',
+                Y    => -6,
+            );
+
+            # output title
+            $PDFObject->Text(
+                Text     => $Title,
+                FontSize => 13,
+            );
+
+            $PDFObject->PositionSet(
+                Move => 'relativ',
+                Y    => -6,
+            );
+
+            # output "printed by"
+            $PDFObject->Text(
+                Text => $PrintedBy . ' '
+                    . $Self->{UserFullname} . ' '
+                    . $Time,
+                FontSize => 9,
+            );
+
+            $PDFObject->PositionSet(
+                Move => 'relativ',
+                Y    => -14,
+            );
+
+            PAGE:
+            for my $Count ( 2 .. $MaxPages ) {
+
+                # output table (or a fragment of it)
+                %TableParam = $PDFObject->Table(%TableParam);
+
+                # stop output or another page
+                if ( $TableParam{State} ) {
+                    last PAGE;
+                }
+                else {
+                    $PDFObject->PageNew(
+                        %PageParam,
+                        FooterRight => $Page . ' ' . $_,
+                    );
+                }
+            }
+
+            # return the pdf document
+            my $Filename = 'configitem_search';
+            my ( $s, $m, $h, $D, $M, $Y ) = $TimeObject->SystemTime2Date(
+                SystemTime => $TimeObject->SystemTime(),
+            );
+            $M = sprintf( "%02d", $M );
+            $D = sprintf( "%02d", $D );
+            $h = sprintf( "%02d", $h );
+            $m = sprintf( "%02d", $m );
+            my $PDFString = $PDFObject->DocumentOutput();
+            return $LayoutObject->Attachment(
+                Filename    => $Filename . "_" . "$Y-$M-$D" . "_" . "$h-$m.pdf",
+                ContentType => "application/pdf",
+                Content     => $PDFString,
+                Type        => 'inline',
+            );
         }
 
         # normal HTML output
