@@ -397,11 +397,11 @@ sub _PDFOutputLinkedObjects {
     my ( $Self, %Param ) = @_;
 
     # check needed stuff
-    for (qw(PageData LinkData LinkTypeList)) {
-        if ( !defined( $Param{$_} ) ) {
+    for my $Needed (qw(PageData LinkData LinkTypeList)) {
+        if ( !defined( $Param{$Needed} ) ) {
             $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
-                Message  => "Need $_!"
+                Message  => "Need $Needed!"
             );
             return;
         }

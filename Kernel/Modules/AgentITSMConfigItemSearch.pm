@@ -615,8 +615,8 @@ sub Run {
 
                 # store data
                 my @Data;
-                for (qw(Class InciState Name Number DeplState VersionID CreateTime)) {
-                    push @Data, $LastVersion->{$_};
+                for my $StoreData (qw(Class InciState Name Number DeplState VersionID CreateTime)) {
+                    push @Data, $LastVersion->{$StoreData};
                 }
                 push @CSVData, \@Data;
             }
@@ -691,8 +691,8 @@ sub Run {
 
                 # set pdf rows
                 my @PDFRow;
-                for (qw(Class InciState Name Number DeplState VersionID CreateTime)) {
-                    push @PDFRow, $LastVersion->{$_};
+                for my $StoreData (qw(Class InciState Name Number DeplState VersionID CreateTime)) {
+                    push @PDFRow, $LastVersion->{$StoreData};
                 }
                 push @PDFData, \@PDFRow;
 
@@ -820,7 +820,7 @@ sub Run {
                 else {
                     $PDFObject->PageNew(
                         %PageParam,
-                        FooterRight => $Page . ' ' . $_,
+                        FooterRight => $Page . ' ' . $Count,
                     );
                 }
             }
