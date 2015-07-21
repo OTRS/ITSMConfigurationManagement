@@ -19,7 +19,7 @@ our @ObjectDependencies = (
 
 =head1 NAME
 
-Kernel::Output::HTML::ITSMConfigItemLayoutDateTime - layout backend module
+Kernel::Output::HTML::ITSMConfigItem::LayoutDateTime - layout backend module
 
 =head1 SYNOPSIS
 
@@ -33,7 +33,7 @@ All layout functions of datetime objects.
 
 create an object
 
-    $BackendObject = Kernel::Output::HTML::ITSMConfigItemLayoutDateTime->new(
+    $BackendObject = Kernel::Output::HTML::ITSMConfigItem::LayoutDateTime->new(
         %Param,
     );
 

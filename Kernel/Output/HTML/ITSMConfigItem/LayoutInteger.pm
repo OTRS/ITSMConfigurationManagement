@@ -19,7 +19,7 @@ our @ObjectDependencies = (
 
 =head1 NAME
 
-Kernel::Output::HTML::ITSMConfigItemLayoutInteger - layout backend module
+Kernel::Output::HTML::ITSMConfigItem::LayoutInteger - layout backend module
 
 =head1 SYNOPSIS
 
@@ -33,7 +33,7 @@ All layout functions of integer objects
 
 create an object
 
-    $BackendObject = Kernel::Output::HTML::ITSMConfigItemLayoutInteger->new(
+    $BackendObject = Kernel::Output::HTML::ITSMConfigItem::LayoutInteger->new(
         %Param,
     );
 

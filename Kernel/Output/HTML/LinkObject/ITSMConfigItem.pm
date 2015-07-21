@@ -24,7 +24,7 @@ our @ObjectDependencies = (
 
 =head1 NAME
 
-Kernel::Output::HTML::LinkObjectITSMConfigItem - layout backend module
+Kernel::Output::HTML::LinkObject::ITSMConfigItem - layout backend module
 
 =head1 SYNOPSIS
 
@@ -38,7 +38,7 @@ All layout functions of link object (config item)
 
 create an object
 
-    $BackendObject = Kernel::Output::HTML::LinkObjectITSMConfigItem->new(
+    $BackendObject = Kernel::Output::HTML::LinkObject::ITSMConfigItem->new(
         UserLanguage => 'en',
         UserID       => 1,
     );
