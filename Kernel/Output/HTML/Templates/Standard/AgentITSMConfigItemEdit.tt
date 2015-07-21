@@ -18,7 +18,7 @@
                 <div class="Header">
                     <h1>[% Translate("Edit") | html %]: [% Translate("Config Item") | html %]: [% Translate(Data.Number) | html %] - [% Translate("Class") | html %]: [% Data.Class | html %]</h1>
                     <p>
-                        <a class="CancelClosePopup" href="#">[% Translate("Cancel & close window") | html %]</a>
+                        <a class="CancelClosePopup" href="#">[% Translate("Cancel & close") | html %]</a>
                     </p>
                 </div>
                 <input type="hidden" name="ScreenType" value="Popup"/>
