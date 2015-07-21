@@ -19,19 +19,7 @@ $Selenium->RunTest(
     sub {
 
         # get helper object
-        $Kernel::OM->ObjectParamAdd(
-            'Kernel::System::UnitTest::Helper' => {
-                RestoreSystemConfiguration => 1,
-                }
-        );
         my $Helper = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
-
-        # make sure PDF is enabled
-        $Kernel::OM->Get('Kernel::System::SysConfig')->ConfigItemUpdate(
-            Valid => 1,
-            Key   => 'PDF',
-            Value => 1,
-        );
 
         # get general catalog object
         my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');

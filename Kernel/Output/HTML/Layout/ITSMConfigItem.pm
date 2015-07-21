@@ -22,7 +22,7 @@ our @ObjectDependencies = (
 
 =head1 NAME
 
-Kernel::Output::HTML::LayoutITSMConfigItem - all ConfigItem-related HTML functions
+Kernel::Output::HTML::Layout::ITSMConfigItem - all ConfigItem-related HTML functions
 
 =head1 SYNOPSIS
 
