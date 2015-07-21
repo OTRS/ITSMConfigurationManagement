@@ -27,7 +27,6 @@ sub Configure {
     return;
 }
 
-
 sub Run {
     my ( $Self, %Param ) = @_;
 
@@ -55,7 +54,7 @@ sub Run {
     CONFIGITEM:
     for my $ConfigItemID ( @{$ConfigItemsIDsRef} ) {
 
-        my $Success  = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->CurInciStateRecalc(
+        my $Success = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->CurInciStateRecalc(
             ConfigItemID => $ConfigItemID,
         );
 
@@ -84,7 +83,8 @@ sub Run {
 
     my $NumberOfServices = scalar keys %ServiceList;
 
-    $Self->Print("<green>Resetting ServicePreferences 'CurInciStateTypeFromCIs' for $NumberOfServices services...</green>\n");
+    $Self->Print(
+        "<green>Resetting ServicePreferences 'CurInciStateTypeFromCIs' for $NumberOfServices services...</green>\n");
 
     for my $ServiceID ( sort keys %ServiceList ) {
 
