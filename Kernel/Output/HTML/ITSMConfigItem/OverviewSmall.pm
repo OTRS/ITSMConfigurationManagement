@@ -11,7 +11,15 @@ package Kernel::Output::HTML::ITSMConfigItem::OverviewSmall;
 use strict;
 use warnings;
 
-our $ObjectManagerDisabled = 1;
+our @ObjectDependencies = (
+    'Kernel::Config',
+    'Kernel::Output::HTML::Layout',
+    'Kernel::System::GeneralCatalog',
+    'Kernel::System::HTMLUtils',
+    'Kernel::System::ITSMConfigItem',
+    'Kernel::System::Log',
+    'Kernel::System::Main',
+);
 
 sub new {
     my ( $Type, %Param ) = @_;
