@@ -143,6 +143,7 @@ sub CodeInstall {
     # install stats
     $Kernel::OM->Get('Kernel::System::Stats')->StatsInstall(
         FilePrefix => $Self->{FilePrefix},
+        UserID     => 1,
     );
 
     return 1;
@@ -186,6 +187,7 @@ sub CodeReinstall {
     # install stats
     $Kernel::OM->Get('Kernel::System::Stats')->StatsInstall(
         FilePrefix => $Self->{FilePrefix},
+        UserID     => 1,
     );
 
     return 1;
@@ -225,6 +227,23 @@ sub CodeUpgradeFromLowerThan_4_0_8 {    ## no critic
     return 1;
 }
 
+=item CodeUpgradeFromLowerThan_4_0_91()
+
+This function is only executed if the installed module version is smaller than 4.0.91.
+
+my $Result = $CodeObject->CodeUpgradeFromLowerThan_4_0_91();
+
+=cut
+
+sub CodeUpgradeFromLowerThan_4_0_91 {    ## no critic
+    my ( $Self, %Param ) = @_;
+
+    # change configurations to match the new module location.
+    $Self->_MigrateConfigs();
+
+    return 1;
+}
+
 =item CodeUpgrade()
 
 run the code upgrade part
@@ -257,6 +276,7 @@ sub CodeUpgrade {
     # install stats
     $Kernel::OM->Get('Kernel::System::Stats')->StatsInstall(
         FilePrefix => $Self->{FilePrefix},
+        UserID     => 1,
     );
 
     return 1;
@@ -1443,6 +1463,46 @@ sub _FixTypo {
             Name   => 'Keyboard',
             UserID => 1,
         );
+    }
+
+    return 1;
+}
+
+=item _MigrateConfigs()
+
+change configurations to match the new module location.
+
+    my $Result = $CodeObject->_MigrateConfigs();
+
+=cut
+
+sub _MigrateConfigs {
+
+    for my $Type (qw(MenuModule Overview)) {
+
+        # migrate ITSMConfiguration Preferences
+        # get setting content for ITSMConfiguration Preferences
+        my $Setting = $Kernel::OM->Get('Kernel::Config')->Get( 'ITSMConfigItem::Frontend::' . $Type );
+
+        CONFIGITEM:
+        for my $MenuModule ( sort keys %{$Setting} ) {
+
+            # update module location
+            my $Module = $Setting->{$MenuModule}->{'Module'};
+            if ( $Module !~ m{Kernel::Output::HTML::ITSMConfigItem(\w+)} ) {
+                next CONFIGITEM;
+            }
+
+            $Module =~ s{Kernel::Output::HTML::ITSMConfigItem(\w+)}{Kernel::Output::HTML::ITSMConfigItem::$1}xmsg;
+            $Setting->{$MenuModule}->{Module} = $Module;
+
+            # set new setting
+            my $Success = $Kernel::OM->Get('Kernel::System::SysConfig')->ConfigItemUpdate(
+                Valid => 1,
+                Key   => 'ITSMConfigItem::Frontend::' . $Type . '###' . $MenuModule,
+                Value => $Setting->{$MenuModule},
+            );
+        }
     }
 
     return 1;
