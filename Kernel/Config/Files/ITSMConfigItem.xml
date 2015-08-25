@@ -507,6 +507,16 @@
             </Hash>
         </Setting>
     </ConfigItem>
+    <ConfigItem Name="Frontend::Search::JavaScript###ConfigItem" Required="0" Valid="1">
+        <Description Translatable="1">JavaScript function for the search frontend.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::SearchRouter</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="^(?:Agent|Admin)ITSMConfigItem">ITSM.Agent.ConfigItem.Search.OpenSearchDialog('AgentITSMConfigItemSearch')</Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
     <ConfigItem Name="Loader::Agent::CommonJS###100-ConfigurationManagement" Required="1" Valid="1">
         <Description Translatable="1">List of JS files to always be loaded for the agent interface.</Description>
         <Group>Framework</Group>
