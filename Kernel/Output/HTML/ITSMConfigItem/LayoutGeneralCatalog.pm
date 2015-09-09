@@ -148,13 +148,13 @@ sub InputCreate {
         }
     }
 
-    my $CSSClass = '';
+    my $CSSClass = 'Modernize';
     my $Required = $Param{Required};
     my $Invalid  = $Param{Invalid};
     my $ItemId   = $Param{ItemId};
 
     if ($Required) {
-        $CSSClass .= 'Validate_Required';
+        $CSSClass .= ' Validate_Required';
     }
 
     if ($Invalid) {
@@ -281,6 +281,7 @@ sub SearchInputCreate {
         Multiple    => 1,
         Translation => $Translation,
         SelectedID  => $Values,
+        Class       => 'Modernize',
     );
 
     return $String;

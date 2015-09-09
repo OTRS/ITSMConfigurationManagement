@@ -164,6 +164,7 @@ sub InputCreate {
         PossibleNone => 1,
         Translation  => 0,
         SelectedID   => $Param{Value} || $Param{Item}->{Input}->{ValueDefault} || '',
+        Class        => 'Modernize',
     );
 
     return $String;
@@ -261,6 +262,7 @@ sub SearchInputCreate {
         Translation => 0,
         SelectedID  => \@FilteredValues,
         Multiple    => 1,
+        Class       => 'Modernize',
     );
 
     return $String;
