@@ -151,7 +151,7 @@ $Selenium->RunTest(
         $Selenium->switch_to_window( $Handles->[1] );
 
         # check state deployment change of test config item
-        my $CheckHistory = 'CIHistory::DeploymentStateUpdate, "Repair", "Production"';
+        my $CheckHistory = 'Deployment state updated (new="Repair", "Production; old=)';
         $Self->True(
             index( $Selenium->get_page_source(), $CheckHistory ) > -1,
             "$CheckHistory - found",
@@ -168,7 +168,7 @@ $Selenium->RunTest(
                 "Deleted ConfigItem - $ConfigItemDelete",
             );
         }
-        }
+    }
 );
 
 1;

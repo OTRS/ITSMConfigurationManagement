@@ -91,12 +91,12 @@ $Selenium->RunTest(
 
         # create history messages list
         my @HistoryMessages = (
-            "CIHistory::ConfigItemCreate, \"$ConfigItemID\", \"$ConfigItemNumber\"",
-            "CIHistory::VersionCreate, \"$VersionID\"",
-            'CIHistory::DefinitionUpdate, "1"',
-            'CIHistory::NameUpdate, "SeleniumTest"',
-            'CIHistory::IncidentStateUpdate, "Operational"',
-            'CIHistory::DeploymentStateUpdate, "Production"',
+            "New ConfigItem (ID=\"$ConfigItemID\", \"$ConfigItemNumber)",
+            "New version (ID=\"$VersionID)",
+            "ConfigItems' definition updated (ID=\"1)",
+            'Name updated (new="SeleniumTest; old=)',
+            'Incident state updated (new="Operational; old=)',
+            'Deployment state updated (new="Production; old=)',
         );
 
         # check for history meessages in history screen of created test config item
@@ -149,7 +149,7 @@ $Selenium->RunTest(
             $Success,
             "Deleted ConfigItem - $ConfigItemID",
         );
-        }
+    }
 );
 
 1;
