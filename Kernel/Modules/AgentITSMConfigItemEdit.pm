@@ -172,8 +172,8 @@ sub Run {
         }
     }
 
-    # set submit save
-    my $SubmitSave = 1;
+    # get submit save
+    my $SubmitSave = $ParamObject->GetParam( Param => 'SubmitSave' );
 
     # get log object
     my $LogObject = $Kernel::OM->Get('Kernel::System::Log');
@@ -199,8 +199,6 @@ sub Run {
                 FormID => $Self->{FormID},
                 FileID => $Number,
             );
-
-            $SubmitSave = 0;
         }
 
         # check if there was an attachment upload
@@ -217,8 +215,6 @@ sub Run {
                 FormID => $Self->{FormID},
                 %UploadStuff,
             );
-
-            $SubmitSave = 0;
         }
 
         my $AllRequired = 1;
@@ -455,7 +451,7 @@ sub Run {
         $XMLFormOutputParam{XMLData} = $Version->{XMLData}->[1]->{Version}->[1];
     }
 
-    # output deployment state invalid block
+    # output name invalid block
     my $RowNameInvalid = '';
     if ( !$Version->{Name} && $Self->{Subaction} eq 'VersionSave' && $SubmitSave ) {
         $RowNameInvalid = 'ServerError';
@@ -604,7 +600,6 @@ sub Run {
     # output xml form
     if ( $XMLDefinition->{Definition} ) {
         $Self->_XMLFormOutput(
-            SubmitSave    => $SubmitSave,
             XMLDefinition => $XMLDefinition->{DefinitionRef},
             %XMLFormOutputParam,
         );
@@ -840,6 +835,9 @@ sub _XMLFormOutput {
     $Param{Level}  ||= 0;
     $Param{Prefix} ||= '';
 
+    # get submit save
+    my $SubmitSave = $Kernel::OM->Get('Kernel::System::Web::Request')->GetParam( Param => 'SubmitSave' );
+
     # set data present mode
     my $DataPresentMode = 0;
     if ( $Param{XMLData} && ref $Param{XMLData} eq 'HASH' ) {
@@ -903,7 +901,7 @@ sub _XMLFormOutput {
 
             # output red invalid star
             my $XMLRowValueContentInvalid = 0;
-            if ( $Item->{Form}->{$InputKey}->{Invalid} && $Param{SubmitSave} ) {
+            if ( $Item->{Form}->{$InputKey}->{Invalid} && $SubmitSave ) {
                 $XMLRowValueContentInvalid = 1;
             }
 
@@ -1020,7 +1018,6 @@ sub _XMLFormOutput {
                 }
 
                 $Self->_XMLFormOutput(
-                    SubmitSave    => $Param{SubmitSave},
                     XMLDefinition => $Item->{Sub},
                     %XMLFormOutputParam,
                     Level  => $Param{Level} + 1,
