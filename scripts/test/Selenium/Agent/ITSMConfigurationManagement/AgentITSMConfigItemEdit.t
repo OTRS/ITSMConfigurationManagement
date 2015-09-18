@@ -118,13 +118,16 @@ $Selenium->RunTest(
             # create test ConfigItem
             my $RandomLabel    = $Helper->GetRandomID();
             my $ConfigItemName = $ConfigItemEdit->{ConfigItemClass} . $Helper->GetRandomID();
-            $Selenium->find_element( "#Name",                                     'css' )->send_keys($ConfigItemName);
-            $Selenium->find_element( "#DeplStateID option[value='$DeplStateID']", 'css' )->click();
-            $Selenium->find_element( "#InciStateID option[value='1']",            'css' )->click();
+            $Selenium->find_element( "#Name", 'css' )->send_keys($ConfigItemName);
+            $Selenium->execute_script(
+                "\$('#DeplStateID').val('$DeplStateID').trigger('redraw.InputField').trigger('change');");
+            $Selenium->execute_script("\$('#InciStateID').val('1').trigger('redraw.InputField').trigger('change');");
 
             if ( $ConfigItemEdit->{ConfigItemClass} eq 'Computer' ) {
-                $Selenium->find_element("//*[contains(\@name, \'NIC\' )]")->send_keys('SeleniumNetwork');
-                $Selenium->find_element("//*[contains(\@name, \'PoverDHCP\' )]/option[3]")->click();
+                $Selenium->find_element("//*[contains(\@name, \'NIC::1\' )]")->send_keys('SeleniumNetwork');
+                $Selenium->find_element(".//*[\@id='Item1NIC::11_Search']")->send_keys('Y');
+                sleep 1;
+                $Selenium->find_element("//*[text()='Yes']")->click();
             }
             if ( $ConfigItemEdit->{ConfigItemClass} eq 'Network' ) {
                 $Selenium->find_element("//*[contains(\@name, \'NetworkAddress\' )]")->send_keys('SeleniumNetwork');
@@ -175,7 +178,7 @@ $Selenium->RunTest(
                 "Deleted ConfigItem $ConfigItemName - $ConfigItemID->[0]",
             );
         }
-        }
+    }
 );
 
 1;

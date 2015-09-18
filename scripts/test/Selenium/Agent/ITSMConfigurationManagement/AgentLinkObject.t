@@ -133,8 +133,9 @@ $Selenium->RunTest(
         $Selenium->switch_to_window( $Handles->[1] );
 
         # select to link with test Hardware ConfigItem
-        $Selenium->find_element( "#TargetIdentifier option[value='ITSMConfigItem::$ConfigItemClassIDs[1]']", 'css' )
-            ->click();
+        $Selenium->execute_script(
+            "\$('#TargetIdentifier').val('ITSMConfigItem::$ConfigItemClassIDs[1]').trigger('redraw.InputField').trigger('change');"
+        );
 
         # check 'Link' screen for two ConfigItems
         for my $ID (
@@ -151,12 +152,12 @@ $Selenium->RunTest(
         $Selenium->find_element( "#SubmitSearch", 'css' )->click();
         $Selenium->find_element("//input[\@id='LinkTargetKeys'][\@value='$ConfigItemIDs[1]']")->click();
 
-        # select 'Connected to' link type
-        $Selenium->find_element( "#TypeIdentifier option[value='ConnectedTo::Source']", 'css' )->click();
+        # select 'AlternativeTo' link type
         $Selenium->find_element("//button[\@id='AddLinks']")->click();
 
         # select to link with test Service
-        $Selenium->find_element( "#TargetIdentifier option[value='Service']", 'css' )->click();
+        $Selenium->execute_script(
+            "\$('#TargetIdentifier').val('Service').trigger('redraw.InputField').trigger('change');");
 
         # search Service by name and select result
         $Selenium->find_element("//input[\@id='SEARCH::Name']")->send_keys($ServiceName);
@@ -164,11 +165,13 @@ $Selenium->RunTest(
         $Selenium->find_element("//input[\@id='LinkTargetKeys'][\@value='$ServiceID']")->click();
 
         # select 'Relevant to' link type
-        $Selenium->find_element( "#TypeIdentifier option[value='RelevantTo::Source']", 'css' )->click();
+        $Selenium->execute_script(
+            "\$('#TypeIdentifier').val('RelevantTo::Source').trigger('redraw.InputField').trigger('change');");
         $Selenium->find_element("//button[\@id='AddLinks']")->click();
 
         # select to link with test Ticket
-        $Selenium->find_element( "#TargetIdentifier option[value='Ticket']", 'css' )->click();
+        $Selenium->execute_script(
+            "\$('#TargetIdentifier').val('Ticket').trigger('redraw.InputField').trigger('change');");
 
         # search Ticket by number and select result
         $Selenium->find_element("//input[\@id='SEARCH::TicketNumber']")->send_keys($TicketNumber);
@@ -177,7 +180,8 @@ $Selenium->RunTest(
         $Selenium->find_element("//input[\@id='LinkTargetKeys'][\@value='$TicketID']")->click();
 
         # select 'Depends to' link type
-        $Selenium->find_element( "#TypeIdentifier option[value='DependsOn::Source']", 'css' )->click();
+        $Selenium->execute_script(
+            "\$('#TypeIdentifier').val('DependsOn::Source').trigger('redraw.InputField').trigger('change');");
         $Selenium->find_element("//button[\@id='AddLinks']")->click();
 
         # close link window, return to Zoom view and refresh page
@@ -204,7 +208,7 @@ $Selenium->RunTest(
         $Selenium->find_element("//a[contains(\@href, \'Action=AgentLinkObject;Subaction=LinkDelete\' )]")->click();
 
         # select all linked items and delete links
-        $Selenium->find_element("//input[\@value='ITSMConfigItem::$ConfigItemIDs[1]::ConnectedTo']")->click();
+        $Selenium->find_element("//input[\@value='ITSMConfigItem::$ConfigItemIDs[1]::AlternativeTo']")->click();
         $Selenium->find_element("//input[\@value='Service::$ServiceID\::RelevantTo']")->click();
         $Selenium->find_element("//input[\@value='Ticket::$TicketID\::DependsOn']")->click();
         $Selenium->find_element("//button[\@title='Delete links']")->click();
@@ -262,7 +266,7 @@ $Selenium->RunTest(
             $Success,
             "Deleted Service - $ServiceID",
         );
-        }
+    }
 
 );
 
