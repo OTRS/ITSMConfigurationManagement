@@ -138,6 +138,7 @@ sub Run {
             PossibleNone => 1,
             SelectedID   => $ClassID || '',
             Translation  => 0,
+            Class        => 'Modernize',
         );
 
         # html search mask output
@@ -252,6 +253,7 @@ sub Run {
             Data     => \@XMLAttributes,
             Name     => 'Attribute',
             Multiple => 0,
+            Class    => 'Modernize',
         );
 
         # build attributes string for recovery on add or subtract search fields
@@ -259,6 +261,7 @@ sub Run {
             Data     => \@XMLAttributes,
             Name     => 'AttributeOrig',
             Multiple => 0,
+            Class    => 'Modernize',
         );
 
         my %Profiles = $SearchProfileObject->SearchProfileList(
@@ -273,6 +276,7 @@ sub Run {
             Name       => 'Profile',
             ID         => 'SearchProfile',
             SelectedID => $Self->{Profile},
+            # Do not modernize this field as this causes problems with the automatic focussing of the first element.
         );
 
         # get deployment state list
@@ -287,6 +291,7 @@ sub Run {
             SelectedID => $GetParam{DeplStateIDs} || [],
             Size       => 5,
             Multiple   => 1,
+            Class      => 'Modernize',
         );
 
         # get incident state list
@@ -301,6 +306,7 @@ sub Run {
             SelectedID => $GetParam{InciStateIDs} || [],
             Size       => 5,
             Multiple   => 1,
+            Class      => 'Modernize',
         );
 
         # generate PreviousVersionOptionStrg
@@ -311,6 +317,7 @@ sub Run {
                 1 => 'Yes',
             },
             SelectedID => $GetParam{PreviousVersionSearch} || '0',
+            Class      => 'Modernize',
         );
 
         # build output format string
@@ -322,13 +329,13 @@ sub Run {
             },
             Name       => 'ResultForm',
             SelectedID => $GetParam{ResultForm} || 'Normal',
+            Class      => 'Modernize',
         );
 
         $LayoutObject->Block(
             Name => 'AJAXContent',
             Data => {
                 ClassID                   => $ClassID,
-                AttributesStrg            => $Param{AttributesStrg},
                 CurDeplStateOptionStrg    => $CurDeplStateOptionStrg,
                 CurInciStateOptionStrg    => $CurInciStateOptionStrg,
                 PreviousVersionOptionStrg => $PreviousVersionOptionStrg,
