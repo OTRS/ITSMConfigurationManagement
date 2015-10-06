@@ -89,7 +89,7 @@ sub StatsAttributeCreate {
         }
     }
 
-    # create arrtibute
+    # create attribute
     my $Attribute = [
         {
             Name             => $Param{Name},

@@ -117,7 +117,7 @@ sub StatsAttributeCreate {
         Class => $Param{Item}->{Input}->{Class} || '',
     );
 
-    # create arrtibute
+    # create attribute
     my $Attribute = [
         {
             Name             => $Param{Name},
