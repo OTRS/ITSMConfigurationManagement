@@ -159,7 +159,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::Frontend::MenuModule###000-Back" Required="0" Valid="1">
-        <Description Translatable="1">Shows a link in the menu to go back in the configuraton item zoom view of the agent interface.</Description>
+        <Description Translatable="1">Shows a link in the menu to go back in the configuration item zoom view of the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Frontend::Agent::ITSMConfigItem::MenuModule</SubGroup>
         <Setting>
