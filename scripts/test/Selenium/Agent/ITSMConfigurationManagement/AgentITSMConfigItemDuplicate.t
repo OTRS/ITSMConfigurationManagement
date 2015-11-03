@@ -136,6 +136,10 @@ $Selenium->RunTest(
 
         # switch back to zoom view
         $Selenium->switch_to_window( $Handles->[0] );
+
+        # wait until page has loaded, if neccessary
+        $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && $("body").length' );
+
         $Selenium->refresh();
 
         # check for duplicated ConfigItem value
