@@ -82,7 +82,7 @@ $Selenium->RunTest(
         # get general catalog object
         my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
 
-        # get 'Production' depoloyment state ID
+        # get 'Production' deployment state ID
         my $DeplStateDataRef = $GeneralCatalogObject->ItemGet(
             Class => 'ITSM::ConfigItem::DeploymentState',
             Name  => 'Production',
@@ -119,15 +119,25 @@ $Selenium->RunTest(
             my $RandomLabel    = $Helper->GetRandomID();
             my $ConfigItemName = $ConfigItemEdit->{ConfigItemClass} . $Helper->GetRandomID();
             $Selenium->find_element( "#Name", 'css' )->send_keys($ConfigItemName);
+
             $Selenium->execute_script(
                 "\$('#DeplStateID').val('$DeplStateID').trigger('redraw.InputField').trigger('change');");
             $Selenium->execute_script("\$('#InciStateID').val('1').trigger('redraw.InputField').trigger('change');");
 
             if ( $ConfigItemEdit->{ConfigItemClass} eq 'Computer' ) {
+
+                # get General Catalog ID for 'Yes'
+                my $YesDataRef = $GeneralCatalogObject->ItemGet(
+                    Class => 'ITSM::ConfigItem::YesNo',
+                    Name  => 'Yes',
+                );
+                my $YesID = $YesDataRef->{ItemID};
+
+                # enter NIC name
                 $Selenium->find_element("//*[contains(\@name, \'NIC::1\' )]")->send_keys('SeleniumNetwork');
-                $Selenium->find_element(".//*[\@id='Item1NIC::11_Search']")->send_keys('Y');
-                sleep 1;
-                $Selenium->find_element("//*[text()='Yes']")->click();
+
+                # select Yes for DHCPOverIP
+                $Selenium->execute_script("\$('#' + Core.App.EscapeSelector('Item1NIC::11')).val('$YesID').trigger('redraw.InputField').trigger('change');");
             }
             if ( $ConfigItemEdit->{ConfigItemClass} eq 'Network' ) {
                 $Selenium->find_element("//*[contains(\@name, \'NetworkAddress\' )]")->send_keys('SeleniumNetwork');
