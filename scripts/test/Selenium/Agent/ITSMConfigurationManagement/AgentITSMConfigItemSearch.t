@@ -80,16 +80,16 @@ $Selenium->RunTest(
         my $ScriptAlias = $Kernel::OM->Get('Kernel::Config')->Get('ScriptAlias');
         $Selenium->get("${ScriptAlias}index.pl?Action=AgentITSMConfigItemSearch");
 
-        # select 'Computer' class
-        $Selenium->find_element( "#SearchClassID option[value='$ConfigItemClassIDs[0]']", 'css' )->click();
-        sleep 1;
+        # wait for class selection dropdown to show up
+        $Selenium->WaitFor( JavaScript => "return \$('#SearchClassID').length;" );
+
         $Self->True(
             $Selenium->find_element( "#SearchClassID", 'css' ),
             "Class select box - found",
         );
 
         # select 'Hardware' class
-        $Selenium->find_element( "#SearchClassID option[value='$ConfigItemClassIDs[1]']", 'css' )->click();
+        $Selenium->execute_script("\$('#SearchClassID').val('$ConfigItemClassIDs[1]').trigger('redraw.InputField').trigger('change');");
 
         # wait until form has loaded, if neccessary
         $Selenium->WaitFor( JavaScript => "return \$('#Attribute').length" );
@@ -124,11 +124,14 @@ $Selenium->RunTest(
         $Selenium->WaitFor( JavaScript => "return \$('#SearchProfile').length" );
 
         # select 'Hardware' class
-        $Selenium->find_element( "#SearchClassID option[value='$ConfigItemClassIDs[1]']", 'css' )->click();
+        $Selenium->execute_script("\$('#SearchClassID').val('$ConfigItemClassIDs[1]').trigger('redraw.InputField').trigger('change');");
+
+        # wait until form has loaded, if neccessary
+        $Selenium->WaitFor( JavaScript => "return \$('#Attribute').length" );
 
         # input wrong search parameters, result should be 'No data found'
-        $Selenium->find_element( "#Attribute option[value='Name']", 'css' )->click();
-        $Selenium->find_element("//button[\@class='Add'][\@type='submit']")->click();
+        $Selenium->execute_script("\$('#Attribute').val('Name').trigger('redraw.InputField').trigger('change');");
+        $Selenium->find_element( "a.AddButton", 'css' )->click();
         $Selenium->find_element("//input[\@name='Name']")->send_keys('asdfg');
         $Selenium->find_element( "#SearchFormSubmit", 'css' )->click();
 
@@ -150,7 +153,7 @@ $Selenium->RunTest(
             $Success,
             "Deleted ConfigItem - $ConfigItemID",
         );
-        }
+    }
 );
 
 1;
