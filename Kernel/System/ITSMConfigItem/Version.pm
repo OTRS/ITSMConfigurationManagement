@@ -225,7 +225,7 @@ sub VersionGet {
         # check if result is already cached
         if ( $Self->{Cache}->{VersionGet}->{ $Param{VersionID} } ) {
 
-            # return a clone of the cache, as the caller should not be able do change the cache
+            # return a clone of the cache, as the caller should not be able to change the cache
             return Storable::dclone( $Self->{Cache}->{VersionGet}->{ $Param{VersionID} } );
         }
 
