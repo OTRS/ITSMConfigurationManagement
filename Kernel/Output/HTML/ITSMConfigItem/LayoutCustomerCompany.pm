@@ -141,7 +141,9 @@ sub InputCreate {
     }
 
     # get class list
-    my %CompanyList = $Kernel::OM->Get('Kernel::System::CustomerCompany')->CustomerCompanyList();
+    my %CompanyList = $Kernel::OM->Get('Kernel::System::CustomerCompany')->CustomerCompanyList(
+        Limit => 0,                 # Display all Customer Companies
+    );
 
     # generate string
     my $String = $Kernel::OM->Get('Kernel::Output::HTML::Layout')->BuildSelection(
