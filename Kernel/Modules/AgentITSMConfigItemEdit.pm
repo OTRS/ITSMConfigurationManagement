@@ -552,9 +552,8 @@ sub Run {
         Data         => $DeplStateList,
         Name         => 'DeplStateID',
         PossibleNone => 1,
-        Class        => 'Validate_Required' . $RowDeplStateInvalid,
+        Class        => 'Validate_Required Modernize' . $RowDeplStateInvalid,
         SelectedID   => $Version->{DeplStateID},
-        Class        => 'Modernize',
     );
 
     # output deployment state block
@@ -584,9 +583,8 @@ sub Run {
         Data         => $InciStateList,
         Name         => 'InciStateID',
         PossibleNone => 1,
-        Class        => 'Validate_Required' . $RowInciStateInvalid,
+        Class        => 'Validate_Required Modernize' . $RowInciStateInvalid,
         SelectedID   => $Version->{InciStateID},
-        Class        => 'Modernize',
     );
 
     # output incident state block
