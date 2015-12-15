@@ -13,6 +13,24 @@
 
     <div class="OverviewControl" id="OverviewControl">
         <div>
+[% RenderBlockStart("OverviewNavBarCategory") %]
+            <div class="ControlRow">
+                <ul class="Tabs">
+[% RenderBlockStart("OverviewNavBarCategoryItem") %]
+[% RenderBlockStart("OverviewNavBarCategoryItemSelected") %]
+                    <li class="Active [% Data.CSS | html %]">
+                        <a href="[% Env("Baselink") %]Action=[% Env("Action") %];[% Data.FilterLink %]Filter=[% Data.Filter | uri %];Category=[% Data.CategoryID %]">[% Translate(Data.Name) | html %]<span>[% Data.Count | html %]</span></a>
+                    </li>
+[% RenderBlockEnd("OverviewNavBarCategoryItemSelected") %]
+[% RenderBlockStart("OverviewNavBarCategoryItemSelectedNot") %]
+                    <li class="[% Data.CSS | html %]">
+                        <a href="[% Env("Baselink") %]Action=[% Env("Action") %];[% Data.FilterLink %]Filter=[% Data.Filter | uri %];Category=[% Data.CategoryID %]">[% Translate(Data.Name) | html %]<span>[% Data.Count | html %]</span></a>
+                    </li>
+[% RenderBlockEnd("OverviewNavBarCategoryItemSelectedNot") %]
+[% RenderBlockEnd("OverviewNavBarCategoryItem") %]
+                </ul>
+            </div>
+[% RenderBlockEnd("OverviewNavBarCategory") %]
             <div class="ControlRow">
 [% RenderBlockStart("OverviewNavBarFilter") %]
                 <ul class="Tabs">
