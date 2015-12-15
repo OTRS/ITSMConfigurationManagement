@@ -299,7 +299,56 @@ sub Run {
         . ';OrderBy=' . $LayoutObject->Ascii2Html( Text => $OrderBy )
         . ';View=' . $LayoutObject->Ascii2Html( Text => $Self->{View} )
         . ';';
+        
+    # Get Categories
+    my $ConfigObject = $Kernel::OM->Get('Kernel::Config');
+    my $Categories = $ConfigObject->Get('ITSM::Categories::Config');
 
+    # Count the filters for each category
+    my %NavBarCategoryFilter;
+    if ($Categories) {
+        for my $ID ( keys $Categories ) {
+            # get amount of contained class ids and push to hash
+            $Categories->{$ID}->{Count} = scalar @{ $Categories->{$ID}->{ContainedClassIDs} };
+            if ( $Categories->{$ID}->{ShowAllFilter} eq 1 ) {
+                $Categories->{$ID}->{Count}++;
+            }
+            $NavBarCategoryFilter{$ID} = $Categories->{$ID};
+        }
+    
+        # Add the all-category filter
+        $NavBarCategoryFilter{All} = {
+            CategoryID => 'All',
+            Name => "All",
+            Prio => 0,
+            ShowAllFilter => "1",
+            Count => scalar keys %$Categories,
+        };
+    }
+
+    # If we have active Categories and a filter, remove the not-contained
+    # class ids from the filter hash
+    if ($Categories && $Self->{Category} && $Self->{Category} ne 'All' ) {
+        my $ContainedClassIDs = $Categories->{ $Self->{Category} }->{ContainedClassIDs};
+        my $ShowAllFilter = $Categories->{ $Self->{Category} }->{ShowAllFilter};
+
+        for my $ID (keys %NavBarFilter) {
+            my $CurrentClassID = $NavBarFilter{$ID}->{Filter};
+
+            # Do not delete filters if:
+            # Filter id is contained in theclassids-array
+            # OR the ShowAllFilter is set to 1 AND the current filter is the all-filter
+	    unless (grep /^$CurrentClassID$/, @{ $ContainedClassIDs } ) {
+                unless ($ShowAllFilter eq 1 && $ID eq "1000") { 
+                    delete $NavBarFilter{$ID};
+                    # Rewrite ClassFilter if selected class is deleted:
+                    if ( $Self->{Filter} eq $CurrentClassID ) {
+                         $Self->{Filter} = $Categories->{ $Self->{Category} }->{DefaultFilter};
+                    }
+                }
+            }
+        }
+    }
     # show config item list
     $Output .= $LayoutObject->ITSMConfigItemListShow(
         ConfigItemIDs => $ConfigItemIDs,
