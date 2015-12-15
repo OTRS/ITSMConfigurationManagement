@@ -826,5 +826,156 @@
             </Option>
         </Setting>
     </ConfigItem>
-
+    <ConfigItem Name="ITSM::Categories::Config###001" Required="0" Valid="0">
+        <Description Translatable="1">Defines the top level hierachy of categories which are shown in the CMDB overview.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ITSMConfigItemOverview::Categories</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="Name">Hardware</Item>
+                <Item Key="Prio">1000</Item>
+                <Item Key="ShowAllFilter">0</Item>
+                <Item Key="DefaultFilter">23</Item>
+                <Item Key="CategoryID">001</Item>
+                <Item Key="ContainedClassIDs">
+                    <Array>
+                        <Item>23</Item>
+                        <Item>24</Item>
+                    </Array>
+                </Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="ITSM::Categories::Config###002" Required="0" Valid="0">
+        <Description Translatable="1">Defines the top level hierachy of categories which are shown in the CMDB overview.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ITSMConfigItemOverview::Categories</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="Name">Software</Item>
+                <Item Key="Prio">1010</Item>
+                <Item Key="ShowAllFilter">1</Item>
+                <Item Key="DefaultFilter">23</Item>
+                <Item Key="CategoryID">002</Item>
+                <Item Key="ContainedClassIDs">
+                    <Array>
+                        <Item>23</Item>
+                        <Item>24</Item>
+                    </Array>
+                </Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="ITSM::Categories::Config###003" Required="0" Valid="0">
+        <Description Translatable="1">Defines the top level hierachy of categories which are shown in the CMDB overview.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ITSMConfigItemOverview::Categories</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="Name">Network</Item>
+                <Item Key="Prio">1030</Item>
+                <Item Key="ShowAllFilter">0</Item>
+                <Item Key="DefaultFilter">23</Item>
+                <Item Key="CategoryID">003</Item>
+                <Item Key="ContainedClassIDs">
+                    <Array>
+                        <Item>23</Item>
+                        <Item>24</Item>
+                    </Array>
+                </Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="ITSM::Categories::Config###004" Required="0" Valid="0">
+        <Description Translatable="1">Defines the top level hierachy of categories which are shown in the CMDB overview.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ITSMConfigItemOverview::Categories</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="Name">Generic Entry</Item>
+                <Item Key="Prio">1040</Item>
+                <Item Key="ShowAllFilter">0</Item>
+                <Item Key="DefaultFilter">23</Item>
+                <Item Key="CategoryID">004</Item>
+                <Item Key="ContainedClassIDs">
+                    <Array>
+                        <Item>23</Item>
+                        <Item>24</Item>
+                    </Array>
+                </Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="ITSM::Categories::Config###005" Required="0" Valid="0">
+        <Description Translatable="1">Defines the top level hierachy of categories which are shown in the CMDB overview.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ITSMConfigItemOverview::Categories</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="Name">Generic Entry</Item>
+                <Item Key="Prio">1040</Item>
+                <Item Key="DefaultFilter">0</Item>
+                <Item Key="ShowAllFilter">0</Item>
+                <Item Key="CategoryID">005</Item>
+                <Item Key="ContainedClassIDs">
+                    <Array>
+                    </Array>
+                </Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="ITSM::Categories::Config###006" Required="0" Valid="0">
+        <Description Translatable="1">Defines the top level hierachy of categories which are shown in the CMDB overview.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ITSMConfigItemOverview::Categories</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="Name">Generic Entry</Item>
+                <Item Key="Prio">1060</Item>
+                <Item Key="DefaultFilter">0</Item>
+                <Item Key="ShowAllFilter">0</Item>
+                <Item Key="CategoryID">006</Item>
+                <Item Key="ContainedClassIDs">
+                    <Array>
+                    </Array>
+                </Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="ITSM::Categories::Config###007" Required="0" Valid="0">
+        <Description Translatable="1">Defines the top level hierachy of categories which are shown in the CMDB overview.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ITSMConfigItemOverview::Categories</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="Name">Generic Entry</Item>
+                <Item Key="Prio">1070</Item>
+                <Item Key="DefaultFilter">0</Item>
+                <Item Key="ShowAllFilter">0</Item>
+                <Item Key="CategoryID">007</Item>
+                <Item Key="ContainedClassIDs">
+                    <Array>
+                    </Array>
+                </Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="ITSM::Categories::Config###008" Required="0" Valid="0">
+        <Description Translatable="1">Defines the top level hierachy of categories which are shown in the CMDB overview.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Frontend::Agent::ITSMConfigItemOverview::Categories</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="Name">Generic Entry</Item>
+                <Item Key="Prio">1080</Item>
+                <Item Key="DefaultFilter">0</Item>
+                <Item Key="ShowAllFilter">0</Item>
+                <Item Key="CategoryID">008</Item>
+                <Item Key="ContainedClassIDs">
+                    <Array>
+                    </Array>
+                </Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
 </otrs_config>
