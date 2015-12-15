@@ -326,29 +326,31 @@ sub Run {
         };
     }
 
-    # If we have active Categories and a filter, remove the not-contained
-    # class ids from the filter hash
+    # Iterate over filters and copy all those that are not restricted
+    my %NewNavBarFilter;
     if ($Categories && $Self->{Category} && $Self->{Category} ne 'All' ) {
+
         my $ContainedClassIDs = $Categories->{ $Self->{Category} }->{ContainedClassIDs};
         my $ShowAllFilter = $Categories->{ $Self->{Category} }->{ShowAllFilter};
 
         for my $ID (keys %NavBarFilter) {
             my $CurrentClassID = $NavBarFilter{$ID}->{Filter};
 
-            # Do not delete filters if:
-            # Filter id is contained in theclassids-array
-            # OR the ShowAllFilter is set to 1 AND the current filter is the all-filter
-	    unless (grep /^$CurrentClassID$/, @{ $ContainedClassIDs } ) {
-                unless ($ShowAllFilter eq 1 && $ID eq "1000") { 
-                    delete $NavBarFilter{$ID};
-                    # Rewrite ClassFilter if selected class is deleted:
-                    if ( $Self->{Filter} eq $CurrentClassID ) {
-                         $Self->{Filter} = $Categories->{ $Self->{Category} }->{DefaultFilter};
-                    }
+            if ( (grep /^$CurrentClassID$/, @{ $ContainedClassIDs })
+                  || ( $ShowAllFilter eq 1 && $ID eq "1000" ))
+                  {
+                    $NewNavBarFilter{$ID} = $NavBarFilter{$ID};
+            }
+            else {
+                # Rewrite ClassFilter if selected class is not copied:
+                if ( $Self->{Filter} eq $CurrentClassID ) {
+                     $Self->{Filter} = $Categories->{ $Self->{Category} }->{DefaultFilter};
                 }
             }
         }
+    %NavBarFilter = %NewNavBarFilter;
     }
+
     # show config item list
     $Output .= $LayoutObject->ITSMConfigItemListShow(
         ConfigItemIDs => $ConfigItemIDs,
