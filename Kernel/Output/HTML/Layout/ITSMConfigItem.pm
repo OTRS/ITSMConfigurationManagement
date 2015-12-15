@@ -403,6 +403,54 @@ sub ITSMConfigItemListShow {
         );
     }
 
+    # Show Categories if active
+    if ( scalar keys $Param{Categories} > 0) {
+
+        # get given filters
+        my @NavBarCategoryFilters;
+        for my $Prio ( sort { $Param{Categories}->{$a}->{Prio} <=> $Param{Categories}->{$b}->{Prio} } keys %{ $Param{Categories} } ) {
+            push @NavBarCategoryFilters, $Param{Categories}->{$Prio};
+        }
+
+        # build category content
+        $LayoutObject->Block(
+            Name => 'OverviewNavBarCategory',
+        );
+
+        # loop over categories
+        CATEGORY:
+        for my $Category (@NavBarCategoryFilters) {
+
+            $LayoutObject->Block(
+                Name => 'OverviewNavBarCategoryItem',
+                Data => {
+                    %Param,
+                    %{$Category},
+                },
+            );
+
+            # category-filter is selected
+            if ( $Param{Category} && $Category->{CategoryID} eq $Param{Category} ) {
+                $LayoutObject->Block(
+                    Name => 'OverviewNavBarCategoryItemSelected',
+                    Data => {
+                        %Param,
+                        %{$Category},
+                    },
+                );
+            }
+            else {
+                $LayoutObject->Block(
+                    Name => 'OverviewNavBarCategoryItemSelectedNot',
+                    Data => {
+                        %Param,
+                        %{$Category},
+                    },
+                );
+            }
+        }
+    }
+
     # get filters
     if ( $Param{Filters} ) {
 
