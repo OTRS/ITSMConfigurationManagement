@@ -1,5 +1,5 @@
 # --
-# Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2016 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -157,7 +157,8 @@ $Selenium->RunTest(
 
         # select to link with test Service
         $Selenium->execute_script(
-            "\$('#TargetIdentifier').val('Service').trigger('redraw.InputField').trigger('change');");
+            "\$('#TargetIdentifier').val('Service').trigger('redraw.InputField').trigger('change');"
+        );
 
         # search Service by name and select result
         $Selenium->find_element("//input[\@id='SEARCH::Name']")->send_keys($ServiceName);
@@ -166,12 +167,14 @@ $Selenium->RunTest(
 
         # select 'Relevant to' link type
         $Selenium->execute_script(
-            "\$('#TypeIdentifier').val('RelevantTo::Source').trigger('redraw.InputField').trigger('change');");
+            "\$('#TypeIdentifier').val('RelevantTo::Source').trigger('redraw.InputField').trigger('change');"
+        );
         $Selenium->find_element("//button[\@id='AddLinks']")->click();
 
         # select to link with test Ticket
         $Selenium->execute_script(
-            "\$('#TargetIdentifier').val('Ticket').trigger('redraw.InputField').trigger('change');");
+            "\$('#TargetIdentifier').val('Ticket').trigger('redraw.InputField').trigger('change');"
+        );
 
         # search Ticket by number and select result
         $Selenium->find_element("//input[\@id='SEARCH::TicketNumber']")->send_keys($TicketNumber);
@@ -181,7 +184,8 @@ $Selenium->RunTest(
 
         # select 'Depends to' link type
         $Selenium->execute_script(
-            "\$('#TypeIdentifier').val('DependsOn::Source').trigger('redraw.InputField').trigger('change');");
+            "\$('#TypeIdentifier').val('DependsOn::Source').trigger('redraw.InputField').trigger('change');"
+        );
         $Selenium->find_element("//button[\@id='AddLinks']")->click();
 
         # close link window, return to Zoom view and refresh page
@@ -266,7 +270,7 @@ $Selenium->RunTest(
             $Success,
             "Deleted Service - $ServiceID",
         );
-    }
+        }
 
 );
 

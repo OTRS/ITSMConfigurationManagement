@@ -1,5 +1,5 @@
 # --
-# Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2016 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -276,6 +276,7 @@ sub Run {
             Name       => 'Profile',
             ID         => 'SearchProfile',
             SelectedID => $Self->{Profile},
+
             # Do not modernize this field as this causes problems with the automatic focussing of the first element.
         );
 
@@ -317,7 +318,7 @@ sub Run {
                 1 => 'Yes',
             },
             SelectedID => $GetParam{PreviousVersionSearch} || '0',
-            Class      => 'Modernize',
+            Class => 'Modernize',
         );
 
         # build output format string

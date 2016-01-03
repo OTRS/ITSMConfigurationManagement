@@ -1,5 +1,5 @@
 # --
-# Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2016 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -678,7 +678,7 @@ sub _PDFOutputVersionInfos {
         && $Param{Version}->{XMLDefinition}
         && $Param{Version}->{XMLData}
         && ref $Param{Version}->{XMLDefinition} eq 'ARRAY'
-        && ref $Param{Version}->{XMLData}       eq 'ARRAY'
+        && ref $Param{Version}->{XMLData} eq 'ARRAY'
         && $Param{Version}->{XMLData}->[1]
         && ref $Param{Version}->{XMLData}->[1] eq 'HASH'
         && $Param{Version}->{XMLData}->[1]->{Version}

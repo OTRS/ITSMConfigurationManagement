@@ -1,5 +1,5 @@
 # --
-# Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2016 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -89,7 +89,8 @@ $Selenium->RunTest(
         );
 
         # select 'Hardware' class
-        $Selenium->execute_script("\$('#SearchClassID').val('$ConfigItemClassIDs[1]').trigger('redraw.InputField').trigger('change');");
+        $Selenium->execute_script(
+            "\$('#SearchClassID').val('$ConfigItemClassIDs[1]').trigger('redraw.InputField').trigger('change');");
 
         # wait until form has loaded, if neccessary
         $Selenium->WaitFor( JavaScript => "return \$('#Attribute').length" );
@@ -124,7 +125,8 @@ $Selenium->RunTest(
         $Selenium->WaitFor( JavaScript => "return \$('#SearchProfile').length" );
 
         # select 'Hardware' class
-        $Selenium->execute_script("\$('#SearchClassID').val('$ConfigItemClassIDs[1]').trigger('redraw.InputField').trigger('change');");
+        $Selenium->execute_script(
+            "\$('#SearchClassID').val('$ConfigItemClassIDs[1]').trigger('redraw.InputField').trigger('change');");
 
         # wait until form has loaded, if neccessary
         $Selenium->WaitFor( JavaScript => "return \$('#Attribute').length" );
@@ -153,7 +155,7 @@ $Selenium->RunTest(
             $Success,
             "Deleted ConfigItem - $ConfigItemID",
         );
-    }
+        }
 );
 
 1;

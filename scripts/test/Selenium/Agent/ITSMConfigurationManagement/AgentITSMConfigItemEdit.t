@@ -1,5 +1,5 @@
 # --
-# Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2016 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -121,7 +121,8 @@ $Selenium->RunTest(
             $Selenium->find_element( "#Name", 'css' )->send_keys($ConfigItemName);
 
             $Selenium->execute_script(
-                "\$('#DeplStateID').val('$DeplStateID').trigger('redraw.InputField').trigger('change');");
+                "\$('#DeplStateID').val('$DeplStateID').trigger('redraw.InputField').trigger('change');"
+            );
             $Selenium->execute_script("\$('#InciStateID').val('1').trigger('redraw.InputField').trigger('change');");
 
             if ( $ConfigItemEdit->{ConfigItemClass} eq 'Computer' ) {
@@ -137,7 +138,9 @@ $Selenium->RunTest(
                 $Selenium->find_element("//*[contains(\@name, \'NIC::1\' )]")->send_keys('SeleniumNetwork');
 
                 # select Yes for DHCPOverIP
-                $Selenium->execute_script("\$('#' + Core.App.EscapeSelector('Item1NIC::11')).val('$YesID').trigger('redraw.InputField').trigger('change');");
+                $Selenium->execute_script(
+                    "\$('#' + Core.App.EscapeSelector('Item1NIC::11')).val('$YesID').trigger('redraw.InputField').trigger('change');"
+                );
             }
             if ( $ConfigItemEdit->{ConfigItemClass} eq 'Network' ) {
                 $Selenium->find_element("//*[contains(\@name, \'NetworkAddress\' )]")->send_keys('SeleniumNetwork');
@@ -188,7 +191,7 @@ $Selenium->RunTest(
                 "Deleted ConfigItem $ConfigItemName - $ConfigItemID->[0]",
             );
         }
-    }
+        }
 );
 
 1;
