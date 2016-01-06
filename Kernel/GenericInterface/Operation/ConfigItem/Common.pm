@@ -949,7 +949,7 @@ sub ReplaceXMLData {
             );
 
             # replace the value in the hash
-            $XMLData->{$ItemKey}->{$ItemKey} = $NewValue
+            $XMLData->{$ItemKey}->{$ItemKey} = $NewValue;
         }
         else {
 
@@ -963,7 +963,7 @@ sub ReplaceXMLData {
                 );
 
                 # replace the root value
-                $XMLData->{$ItemKey} = $NewValue
+                $XMLData->{$ItemKey} = $NewValue;
             }
         }
 
