@@ -90,7 +90,8 @@ $Selenium->RunTest(
 
         # select 'Hardware' class
         $Selenium->execute_script(
-            "\$('#SearchClassID').val('$ConfigItemClassIDs[1]').trigger('redraw.InputField').trigger('change');");
+            "\$('#SearchClassID').val('$ConfigItemClassIDs[1]').trigger('redraw.InputField').trigger('change');"
+        );
 
         # wait until form has loaded, if neccessary
         $Selenium->WaitFor( JavaScript => "return \$('#Attribute').length" );
@@ -126,7 +127,8 @@ $Selenium->RunTest(
 
         # select 'Hardware' class
         $Selenium->execute_script(
-            "\$('#SearchClassID').val('$ConfigItemClassIDs[1]').trigger('redraw.InputField').trigger('change');");
+            "\$('#SearchClassID').val('$ConfigItemClassIDs[1]').trigger('redraw.InputField').trigger('change');"
+        );
 
         # wait until form has loaded, if neccessary
         $Selenium->WaitFor( JavaScript => "return \$('#Attribute').length" );
