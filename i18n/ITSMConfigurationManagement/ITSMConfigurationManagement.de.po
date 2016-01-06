@@ -1,15 +1,17 @@
 # 
 # Translators:
-# Ettore Atalan <atalanttore@googlemail.com>, 2014
+# Ettore Atalan <atalanttore@googlemail.com>, 2014-2015
+# mathiasbraeunling <mathias.braeunling@otrs.com>, 2015
+# ru_otrs <robert.ullrich@otrs.com>, 2015
 # Udo Bretz, 2014
 # Udo Bretz, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
 "POT-Creation-Date: 2014-08-08 19:10+0200\n"
-"PO-Revision-Date: 2015-04-27 10:55+0000\n"
-"Last-Translator: Martin Gruner <martin.gruner@otrs.com>\n"
-"Language-Team: German (http://www.transifex.com/projects/p/OTRS/language/de/)\n"
+"PO-Revision-Date: 2015-12-08 12:16+0000\n"
+"Last-Translator: ru_otrs <robert.ullrich@otrs.com>\n"
+"Language-Team: German (http://www.transifex.com/otrs/OTRS/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -134,7 +136,7 @@ msgstr "Config Items angezeigt"
 
 #. Template: AAAITSMConfigItem
 msgid "CMDB"
-msgstr ""
+msgstr "CMDB"
 
 #. Template: AAAITSMConfigItem
 msgid "Demo"
@@ -550,15 +552,15 @@ msgstr ""
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Deployment state"
-msgstr ""
+msgstr "Verwendungsstatus"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Incident state"
-msgstr ""
+msgstr "Vorfallsstatus"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Link to another"
-msgstr ""
+msgstr "Zu einem anderen verlinken"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Invalid Configuration Item number!"

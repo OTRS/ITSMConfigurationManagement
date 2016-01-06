@@ -45,7 +45,7 @@ sub Data {
     $Self->{Translation}->{'Config Item-Area'} = 'Config Item-Bereich';
     $Self->{Translation}->{'Config Items available'} = 'Config Items verfügbar';
     $Self->{Translation}->{'Config Items shown'} = 'Config Items angezeigt';
-    $Self->{Translation}->{'CMDB'} = '';
+    $Self->{Translation}->{'CMDB'} = 'CMDB';
     $Self->{Translation}->{'Demo'} = 'Demo';
     $Self->{Translation}->{'Desktop'} = 'Desktop';
     $Self->{Translation}->{'Developer Licence'} = 'Entwickler Lizenz';
@@ -155,9 +155,9 @@ sub Data {
 
     # Template: AgentITSMConfigItemBulk
     $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = '';
-    $Self->{Translation}->{'Deployment state'} = '';
-    $Self->{Translation}->{'Incident state'} = '';
-    $Self->{Translation}->{'Link to another'} = '';
+    $Self->{Translation}->{'Deployment state'} = 'Verwendungsstatus';
+    $Self->{Translation}->{'Incident state'} = 'Vorfallsstatus';
+    $Self->{Translation}->{'Link to another'} = 'Zu einem anderen verlinken';
     $Self->{Translation}->{'Invalid Configuration Item number!'} = '';
     $Self->{Translation}->{'The number of another Configuration Item to link with.'} = '';
 
@@ -167,6 +167,9 @@ sub Data {
         'Name wird bereits von den ConfigItems mit den folgenden Nummern verwendet: %s';
     $Self->{Translation}->{'Deployment State'} = 'Verwendungsstatus';
     $Self->{Translation}->{'Incident State'} = 'Vorfallsstatus';
+
+    # Template: AgentITSMConfigItemHistory
+    $Self->{Translation}->{'History of'} = '';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'Kontext-Eintstellungen';
@@ -178,23 +181,16 @@ sub Data {
     $Self->{Translation}->{'Current Incident State Type'} = 'Aktueller Vorfallsstatus-Typ';
     $Self->{Translation}->{'Last changed'} = 'Zuletzt geändert';
 
-    # Template: AgentITSMConfigItemPrint
-    $Self->{Translation}->{'ConfigItem'} = 'ConfigItem';
-    $Self->{Translation}->{'ConfigItem-Info'} = 'ConfigItem-Info';
-    $Self->{Translation}->{'Current Deployment State'} = 'Aktueller Verwendungsstatus';
-    $Self->{Translation}->{'Last changed by'} = 'Zuletzt geändert von';
-
     # Template: AgentITSMConfigItemSearch
     $Self->{Translation}->{'Create New Template'} = 'Neue Vorlage erstellen';
     $Self->{Translation}->{'Run Search'} = 'Suche ausführen';
     $Self->{Translation}->{'Also search in previous versions?'} = 'Auch in früheren Versionen suchen?';
 
-    # Template: AgentITSMConfigItemSearchResultPrint
-    $Self->{Translation}->{'CreateTime'} = 'Erstellzeit';
-
     # Template: AgentITSMConfigItemZoom
     $Self->{Translation}->{'Configuration Item'} = 'Configuration Item';
     $Self->{Translation}->{'Configuration Item Information'} = 'Configuration Item Information';
+    $Self->{Translation}->{'Current Deployment State'} = 'Aktueller Verwendungsstatus';
+    $Self->{Translation}->{'Last changed by'} = 'Zuletzt geändert von';
     $Self->{Translation}->{'Show one version'} = 'Zeige nur eine Version';
     $Self->{Translation}->{'Show all versions'} = 'Zeige alle Versionen';
     $Self->{Translation}->{'Version Incident State'} = 'Versions-Vorfallstatus';
@@ -202,6 +198,19 @@ sub Data {
     $Self->{Translation}->{'Version Number'} = 'Versionsnummer';
     $Self->{Translation}->{'Configuration Item Version Details'} = 'Configuration Item Versions-Details';
     $Self->{Translation}->{'Property'} = 'Eigenschaft';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
+    $Self->{Translation}->{'ITSM ConfigItem'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+    $Self->{Translation}->{'CIHistory::'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+    $Self->{Translation}->{'ConfigItem'} = 'ConfigItem';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+    $Self->{Translation}->{'No Result!'} = '';
+    $Self->{Translation}->{'Config Item Search Results'} = '';
 
     # SysConfig
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
@@ -296,7 +305,7 @@ sub Data {
         '';
     $Self->{Translation}->{'Shows a link in the menu to edit a configuration item in the its zoom view of the agent interface.'} =
         '';
-    $Self->{Translation}->{'Shows a link in the menu to go back in the configuraton item zoom view of the agent interface.'} =
+    $Self->{Translation}->{'Shows a link in the menu to go back in the configuration item zoom view of the agent interface.'} =
         '';
     $Self->{Translation}->{'Shows a link in the menu to print a configuration item in the its zoom view of the agent interface.'} =
         '';

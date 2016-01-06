@@ -1,14 +1,15 @@
 # 
 # Translators:
+# Deiry Arias <mailimarias@gmail.com>, 2015
 # Duilio Poggi Oneto <duiliopoggio@gmail.com>, 2015
 # Udo Bretz, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
 "POT-Creation-Date: 2014-08-08 19:10+0200\n"
-"PO-Revision-Date: 2015-04-27 10:55+0000\n"
-"Last-Translator: Martin Gruner <martin.gruner@otrs.com>\n"
-"Language-Team: Spanish (http://www.transifex.com/projects/p/OTRS/language/es/)\n"
+"PO-Revision-Date: 2015-07-27 23:10+0000\n"
+"Last-Translator: Deiry Arias <mailimarias@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/otrs/OTRS/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -161,7 +162,7 @@ msgstr "Embebido"
 
 #. Template: AAAITSMConfigItem
 msgid "Empty fields indicate that the current values are kept"
-msgstr ""
+msgstr "Los campos vacíos indican que los valores actuales se mantienen"
 
 #. Template: AAAITSMConfigItem
 msgid "Enterprise Licence"
@@ -521,7 +522,7 @@ msgstr "Gestión de Elementos de Configuración"
 
 #. Template: AdminITSMConfigItem
 msgid "Change class definition"
-msgstr ""
+msgstr "Cambiar definición de la Clase"
 
 #. Template: AdminITSMConfigItem
 msgid "Config Item"
@@ -537,11 +538,11 @@ msgstr "Definición"
 
 #. Template: AgentITSMConfigItemAdd
 msgid "Filter for Classes"
-msgstr ""
+msgstr "Filtro para Clases"
 
 #. Template: AgentITSMConfigItemAdd
 msgid "Select a Class from the list to create a new Config Item."
-msgstr ""
+msgstr "Seleccione una Clase de la lista para crear un nuevo Item de Configuración"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "ITSM ConfigItem Bulk Action"
@@ -549,7 +550,7 @@ msgstr ""
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Deployment state"
-msgstr ""
+msgstr "Estado de despliegue"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Incident state"
@@ -557,11 +558,11 @@ msgstr "Estado del incidente"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Link to another"
-msgstr ""
+msgstr "Enlazar con otro"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Invalid Configuration Item number!"
-msgstr ""
+msgstr "Número de Ítem de Configuración inválido"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "The number of another Configuration Item to link with."
@@ -574,7 +575,7 @@ msgstr "El nombre de este elemento de configuración"
 #. Template: AgentITSMConfigItemEdit
 msgid ""
 "Name is already in use by the ConfigItems with the following Number(s): %s"
-msgstr ""
+msgstr "El nombre ya esta en uso por Ítems de Configuración con los siguientes número (s): %s"
 
 #. Template: AgentITSMConfigItemEdit
 msgid "Deployment State"
@@ -590,7 +591,7 @@ msgstr "Ajustes de Contexto"
 
 #. Template: AgentITSMConfigItemOverviewNavBar
 msgid "Config Items per page"
-msgstr ""
+msgstr "CIs por página"
 
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "Deployment State Type"

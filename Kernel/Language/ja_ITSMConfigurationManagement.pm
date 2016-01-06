@@ -168,6 +168,9 @@ sub Data {
     $Self->{Translation}->{'Deployment State'} = '展開状況';
     $Self->{Translation}->{'Incident State'} = 'インシデント状況';
 
+    # Template: AgentITSMConfigItemHistory
+    $Self->{Translation}->{'History of'} = '';
+
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'コンテキストの設定';
     $Self->{Translation}->{'Config Items per page'} = '1ページ毎の設定項目';
@@ -178,23 +181,16 @@ sub Data {
     $Self->{Translation}->{'Current Incident State Type'} = '現在のインシデント状態のタイプ';
     $Self->{Translation}->{'Last changed'} = '最終変更日時';
 
-    # Template: AgentITSMConfigItemPrint
-    $Self->{Translation}->{'ConfigItem'} = '設定項目';
-    $Self->{Translation}->{'ConfigItem-Info'} = '設定項目情報';
-    $Self->{Translation}->{'Current Deployment State'} = '現在の展開状態';
-    $Self->{Translation}->{'Last changed by'} = '最終変更者';
-
     # Template: AgentITSMConfigItemSearch
     $Self->{Translation}->{'Create New Template'} = '新規テンプレートを作成する';
     $Self->{Translation}->{'Run Search'} = '検索を実行';
     $Self->{Translation}->{'Also search in previous versions?'} = 'プレビュー時、以前のバージョンも検索対象としますか？';
 
-    # Template: AgentITSMConfigItemSearchResultPrint
-    $Self->{Translation}->{'CreateTime'} = '作成日時';
-
     # Template: AgentITSMConfigItemZoom
     $Self->{Translation}->{'Configuration Item'} = '詳細設定';
     $Self->{Translation}->{'Configuration Item Information'} = '変更アイテム情報';
+    $Self->{Translation}->{'Current Deployment State'} = '現在の展開状態';
+    $Self->{Translation}->{'Last changed by'} = '最終変更者';
     $Self->{Translation}->{'Show one version'} = '説明を表示';
     $Self->{Translation}->{'Show all versions'} = 'すべての説明を表示';
     $Self->{Translation}->{'Version Incident State'} = 'インシデント状態';
@@ -202,6 +198,19 @@ sub Data {
     $Self->{Translation}->{'Version Number'} = 'バージョンナンバー';
     $Self->{Translation}->{'Configuration Item Version Details'} = '構成の詳細';
     $Self->{Translation}->{'Property'} = '項目';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
+    $Self->{Translation}->{'ITSM ConfigItem'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+    $Self->{Translation}->{'CIHistory::'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+    $Self->{Translation}->{'ConfigItem'} = '設定項目';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+    $Self->{Translation}->{'No Result!'} = '';
+    $Self->{Translation}->{'Config Item Search Results'} = '';
 
     # SysConfig
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
@@ -296,7 +305,7 @@ sub Data {
         '';
     $Self->{Translation}->{'Shows a link in the menu to edit a configuration item in the its zoom view of the agent interface.'} =
         '';
-    $Self->{Translation}->{'Shows a link in the menu to go back in the configuraton item zoom view of the agent interface.'} =
+    $Self->{Translation}->{'Shows a link in the menu to go back in the configuration item zoom view of the agent interface.'} =
         '';
     $Self->{Translation}->{'Shows a link in the menu to print a configuration item in the its zoom view of the agent interface.'} =
         '';

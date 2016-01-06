@@ -21,19 +21,19 @@ sub Data {
     $Self->{Translation}->{'Backup Device'} = 'Backupenhet';
     $Self->{Translation}->{'Beamer'} = 'Beamer';
     $Self->{Translation}->{'Building'} = 'Byggnad';
-    $Self->{Translation}->{'CIHistory::ConfigItemCreate'} = '';
-    $Self->{Translation}->{'CIHistory::ConfigItemDelete'} = '';
-    $Self->{Translation}->{'CIHistory::DefinitionUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::DeploymentStateUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::IncidentStateUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::LinkAdd'} = '';
-    $Self->{Translation}->{'CIHistory::LinkDelete'} = '';
-    $Self->{Translation}->{'CIHistory::NameUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::ValueUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::VersionCreate'} = '';
-    $Self->{Translation}->{'CIHistory::VersionDelete'} = '';
-    $Self->{Translation}->{'CIHistory::AttachmentAdd'} = '';
-    $Self->{Translation}->{'CIHistory::AttachmentDelete'} = '';
+    $Self->{Translation}->{'CIHistory::ConfigItemCreate'} = 'CIHistory::ConfigItemCreate';
+    $Self->{Translation}->{'CIHistory::ConfigItemDelete'} = 'CIHistory::ConfigItemDelete';
+    $Self->{Translation}->{'CIHistory::DefinitionUpdate'} = 'CIHistory::DefinitionUpdate';
+    $Self->{Translation}->{'CIHistory::DeploymentStateUpdate'} = 'CIHistory::DeploymentStateUpdate';
+    $Self->{Translation}->{'CIHistory::IncidentStateUpdate'} = 'CIHistory::IncidentStateUpdate';
+    $Self->{Translation}->{'CIHistory::LinkAdd'} = 'CIHistory::LinkAdd';
+    $Self->{Translation}->{'CIHistory::LinkDelete'} = 'CIHistory::LinkDelete';
+    $Self->{Translation}->{'CIHistory::NameUpdate'} = 'CIHistory::NameUpdate';
+    $Self->{Translation}->{'CIHistory::ValueUpdate'} = 'CIHistory::ValueUpdate';
+    $Self->{Translation}->{'CIHistory::VersionCreate'} = 'CIHistory::VersionCreate';
+    $Self->{Translation}->{'CIHistory::VersionDelete'} = 'CIHistory::VersionDelete';
+    $Self->{Translation}->{'CIHistory::AttachmentAdd'} = 'CIHistory::AttachmentAdd';
+    $Self->{Translation}->{'CIHistory::AttachmentDelete'} = 'CIHistory::AttachmentDelete';
     $Self->{Translation}->{'CPU'} = 'CPU';
     $Self->{Translation}->{'Camera'} = 'Kamera';
     $Self->{Translation}->{'Capacity'} = 'Kapacitet';
@@ -115,7 +115,7 @@ sub Data {
     $Self->{Translation}->{'Repair'} = 'Reperation';
     $Self->{Translation}->{'Retired'} = 'Pensionerad';
     $Self->{Translation}->{'Review'} = 'Översyn';
-    $Self->{Translation}->{'Room'} = '';
+    $Self->{Translation}->{'Room'} = 'Rum';
     $Self->{Translation}->{'Router'} = 'Router';
     $Self->{Translation}->{'Scanner'} = 'Scanner';
     $Self->{Translation}->{'Search Config Items'} = 'Sök konfigurationsenheter';
@@ -155,9 +155,9 @@ sub Data {
 
     # Template: AgentITSMConfigItemBulk
     $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = '';
-    $Self->{Translation}->{'Deployment state'} = '';
-    $Self->{Translation}->{'Incident state'} = '';
-    $Self->{Translation}->{'Link to another'} = '';
+    $Self->{Translation}->{'Deployment state'} = 'Driftläge';
+    $Self->{Translation}->{'Incident state'} = 'Incidentläge';
+    $Self->{Translation}->{'Link to another'} = 'Länka till annan';
     $Self->{Translation}->{'Invalid Configuration Item number!'} = '';
     $Self->{Translation}->{'The number of another Configuration Item to link with.'} = '';
 
@@ -167,6 +167,9 @@ sub Data {
         'Namnet används redan i konfigurationsenheter med förljande nummer: %s';
     $Self->{Translation}->{'Deployment State'} = 'Driftläge';
     $Self->{Translation}->{'Incident State'} = 'Incidentläge';
+
+    # Template: AgentITSMConfigItemHistory
+    $Self->{Translation}->{'History of'} = '';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'Anpassa vy';
@@ -178,23 +181,16 @@ sub Data {
     $Self->{Translation}->{'Current Incident State Type'} = 'Nuvarande typ av incidentläge';
     $Self->{Translation}->{'Last changed'} = 'Senast ändrad';
 
-    # Template: AgentITSMConfigItemPrint
-    $Self->{Translation}->{'ConfigItem'} = 'Konfigurationsenhet';
-    $Self->{Translation}->{'ConfigItem-Info'} = 'KE-information';
-    $Self->{Translation}->{'Current Deployment State'} = 'Nuvarande driftläge';
-    $Self->{Translation}->{'Last changed by'} = 'Senast ändrad av';
-
     # Template: AgentITSMConfigItemSearch
     $Self->{Translation}->{'Create New Template'} = 'Skapa ny mall';
     $Self->{Translation}->{'Run Search'} = 'Utför sökning';
     $Self->{Translation}->{'Also search in previous versions?'} = 'Sök även i tidigare versioner?';
 
-    # Template: AgentITSMConfigItemSearchResultPrint
-    $Self->{Translation}->{'CreateTime'} = '';
-
     # Template: AgentITSMConfigItemZoom
     $Self->{Translation}->{'Configuration Item'} = 'Konfigurationsenhet';
     $Self->{Translation}->{'Configuration Item Information'} = 'Information om konfigurationsenhet';
+    $Self->{Translation}->{'Current Deployment State'} = 'Nuvarande driftläge';
+    $Self->{Translation}->{'Last changed by'} = 'Senast ändrad av';
     $Self->{Translation}->{'Show one version'} = 'Visa en version';
     $Self->{Translation}->{'Show all versions'} = 'Visa alla versioner';
     $Self->{Translation}->{'Version Incident State'} = 'Incidentläge för version';
@@ -202,6 +198,19 @@ sub Data {
     $Self->{Translation}->{'Version Number'} = 'Versionsnummer';
     $Self->{Translation}->{'Configuration Item Version Details'} = 'Versionsinformation för konfigurationsenhet';
     $Self->{Translation}->{'Property'} = 'Egenskap';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
+    $Self->{Translation}->{'ITSM ConfigItem'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+    $Self->{Translation}->{'CIHistory::'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+    $Self->{Translation}->{'ConfigItem'} = 'Konfigurationsenhet';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+    $Self->{Translation}->{'No Result!'} = '';
+    $Self->{Translation}->{'Config Item Search Results'} = '';
 
     # SysConfig
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
@@ -296,7 +305,7 @@ sub Data {
         '';
     $Self->{Translation}->{'Shows a link in the menu to edit a configuration item in the its zoom view of the agent interface.'} =
         '';
-    $Self->{Translation}->{'Shows a link in the menu to go back in the configuraton item zoom view of the agent interface.'} =
+    $Self->{Translation}->{'Shows a link in the menu to go back in the configuration item zoom view of the agent interface.'} =
         '';
     $Self->{Translation}->{'Shows a link in the menu to print a configuration item in the its zoom view of the agent interface.'} =
         '';

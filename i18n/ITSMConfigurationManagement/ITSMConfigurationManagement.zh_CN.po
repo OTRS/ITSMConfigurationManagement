@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
 "POT-Creation-Date: 2014-08-08 19:10+0200\n"
-"PO-Revision-Date: 2015-04-27 10:55+0000\n"
-"Last-Translator: Martin Gruner <martin.gruner@otrs.com>\n"
-"Language-Team: Chinese (China) (http://www.transifex.com/projects/p/OTRS/language/zh_CN/)\n"
+"PO-Revision-Date: 2015-12-08 12:16+0000\n"
+"Last-Translator: 陈德文 <sggggy@gmail.com>\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/otrs/OTRS/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -744,7 +744,7 @@ msgstr "定义查看某配置项列表视图的概览模块。"
 msgid ""
 "Defines regular expressions individually for each ConfigItem class to check "
 "the ConfigItem name and to show corresponding error messages."
-msgstr ""
+msgstr "为每个配置项类定义独立的正则表达式，以检查配置项名称并提示相应的错误。"
 
 #. SysConfig
 msgid "Defines the default subobject of the class 'ITSMConfigItem'."
@@ -754,28 +754,28 @@ msgstr "定义'ITSMConfigItem'类的默认子对象。"
 msgid ""
 "Defines the number of rows for the CI definition editor in the admin "
 "interface."
-msgstr ""
+msgstr "在管理面板的配置项编辑器中定义配置项的行数。"
 
 #. SysConfig
 msgid "Defines the search limit for the AgentITSMConfigItem screen."
-msgstr ""
+msgstr "定义AgentITSMConfigItem屏的搜索限制"
 
 #. SysConfig
 msgid "Defines the search limit for the AgentITSMConfigItemSearch screen."
-msgstr ""
+msgstr "定义AgentITSMConfigItemSearch屏的搜索限制"
 
 #. SysConfig
 msgid ""
 "Defines the shown columns in the config item overview. This option has no "
 "effect on the position of the column. Note: Class column is always available"
 " if filter 'All' is selected."
-msgstr ""
+msgstr "定义配置项概览所要显示的列。该选项对列的位置排序没有效果。注意：如果过滤器选择了\"全部\"，就可以显示所有的列"
 
 #. SysConfig
 msgid ""
 "Defines the shown columns in the config item search. This option has no "
 "effect on the position of the column."
-msgstr ""
+msgstr "定义在配置项搜索中显示的列。该选项不能调整列的位置顺序。"
 
 #. SysConfig
 msgid ""
@@ -823,12 +823,12 @@ msgstr ""
 msgid ""
 "Enables configuration item bulk action feature for the agent frontend to "
 "work on more than one configuration item at a time."
-msgstr ""
+msgstr "在支持人员前端界面启用配置项批量操作功能，可以一次处理多个配置项。"
 
 #. SysConfig
 msgid ""
 "Enables configuration item bulk action feature only for the listed groups."
-msgstr ""
+msgstr "只有列表中的群组才有权限使用配置项批量操作功能。"
 
 #. SysConfig
 msgid ""
@@ -840,15 +840,15 @@ msgstr ""
 
 #. SysConfig
 msgid "Module to check the group responsible for a class."
-msgstr ""
+msgstr "用于检查组对某个类是否负责的模块。"
 
 #. SysConfig
 msgid "Module to check the group responsible for a configuration item."
-msgstr ""
+msgstr "用于检查组对某个配置项是否负责的模块。"
 
 #. SysConfig
 msgid "Module to generate ITSM config item statistics."
-msgstr ""
+msgstr "用于生成ITSM配置项状态的模块"
 
 #. SysConfig
 msgid "Object backend module registration for the import/export module."
@@ -930,13 +930,13 @@ msgstr ""
 msgid ""
 "Sets the deployment state in the configuration item bulk screen of the agent"
 " interface."
-msgstr ""
+msgstr "在支持人员界面批量操作配置项界面设置部署状态。"
 
 #. SysConfig
 msgid ""
 "Sets the incident state in the configuration item bulk screen of the agent "
 "interface."
-msgstr ""
+msgstr "在支持人员界面批量操作配置项界面设置事件状态。"
 
 #. SysConfig
 msgid ""

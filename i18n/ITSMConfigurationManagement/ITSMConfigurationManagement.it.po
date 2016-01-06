@@ -1,13 +1,14 @@
 # 
 # Translators:
 # Udo Bretz, 2015
+# Vincenzo Reale <vinx.reale@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
 "POT-Creation-Date: 2014-08-08 19:10+0200\n"
-"PO-Revision-Date: 2015-04-27 10:55+0000\n"
-"Last-Translator: Martin Gruner <martin.gruner@otrs.com>\n"
-"Language-Team: Italian (http://www.transifex.com/projects/p/OTRS/language/it/)\n"
+"PO-Revision-Date: 2015-12-13 11:56+0000\n"
+"Last-Translator: Vincenzo Reale <vinx.reale@gmail.com>\n"
+"Language-Team: Italian (http://www.transifex.com/otrs/OTRS/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -16,75 +17,75 @@ msgstr ""
 
 #. Template: AAAITSMConfigItem
 msgid "Address"
-msgstr ""
+msgstr "Indirizzo"
 
 #. Template: AAAITSMConfigItem
 msgid "Admin Tool"
-msgstr "Strumenti di Amministrazione"
+msgstr "Strumenti di amministrazione"
 
 #. Template: AAAITSMConfigItem
 msgid "Backup Device"
-msgstr "Dispositivo di Copia"
+msgstr "Dispositivo di copia"
 
 #. Template: AAAITSMConfigItem
 msgid "Beamer"
-msgstr "Video Beam"
+msgstr "Beamer"
 
 #. Template: AAAITSMConfigItem
 msgid "Building"
-msgstr ""
+msgstr "Edificio"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::ConfigItemCreate"
-msgstr ""
+msgstr "CIHistory::ConfigItemCreate"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::ConfigItemDelete"
-msgstr ""
+msgstr "CIHistory::ConfigItemDelete"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::DefinitionUpdate"
-msgstr ""
+msgstr "CIHistory::DefinitionUpdate"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::DeploymentStateUpdate"
-msgstr ""
+msgstr "CIHistory::DeploymentStateUpdate"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::IncidentStateUpdate"
-msgstr ""
+msgstr "CIHistory::IncidentStateUpdate"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::LinkAdd"
-msgstr ""
+msgstr "CIHistory::LinkAdd"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::LinkDelete"
-msgstr ""
+msgstr "CIHistory::LinkDelete"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::NameUpdate"
-msgstr ""
+msgstr "CIHistory::NameUpdate"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::ValueUpdate"
-msgstr ""
+msgstr "CIHistory::ValueUpdate"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::VersionCreate"
-msgstr ""
+msgstr "CIHistory::VersionCreate"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::VersionDelete"
-msgstr ""
+msgstr "CIHistory::VersionDelete"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::AttachmentAdd"
-msgstr ""
+msgstr "CIHistory::AttachmentAdd"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::AttachmentDelete"
-msgstr ""
+msgstr "CIHistory::AttachmentDelete"
 
 #. Template: AAAITSMConfigItem
 msgid "CPU"
@@ -100,15 +101,15 @@ msgstr "Capacità"
 
 #. Template: AAAITSMConfigItem
 msgid "Change Definition"
-msgstr "Modifica Definizione"
+msgstr "Modifica definizione"
 
 #. Template: AAAITSMConfigItem
 msgid "Change of definition failed! See System Log for details."
-msgstr "Aggiornamento delle definizioni fallita! Guarda nel Log del Sistema per dettagli"
+msgstr "Aggiornamento delle definizioni non riuscita! Vedi il log di sistema per i dettagli."
 
 #. Template: AAAITSMConfigItem
 msgid "Client Application"
-msgstr "Applicazione Cliente"
+msgstr "Applicazione client"
 
 #. Template: AAAITSMConfigItem
 msgid "Client OS"
@@ -116,11 +117,11 @@ msgstr "SO Cliente"
 
 #. Template: AAAITSMConfigItem
 msgid "Concurrent Users"
-msgstr "Utenti concorrenti"
+msgstr "Utenti concomitanti"
 
 #. Template: AAAITSMConfigItem
 msgid "Config Item-Area"
-msgstr "Area di Configurazione degli Elementi"
+msgstr "Area di configurazione elementi"
 
 #. Template: AAAITSMConfigItem
 msgid "Config Items available"
@@ -132,7 +133,7 @@ msgstr "Elementi di configurazione mostrati"
 
 #. Template: AAAITSMConfigItem
 msgid "CMDB"
-msgstr ""
+msgstr "CMDB"
 
 #. Template: AAAITSMConfigItem
 msgid "Demo"
@@ -144,7 +145,7 @@ msgstr "Desktop"
 
 #. Template: AAAITSMConfigItem
 msgid "Developer Licence"
-msgstr "Licenza di Sviluppo"
+msgstr "Licenza di sviluppo"
 
 #. Template: AAAITSMConfigItem
 msgid "Docking Station"
@@ -156,7 +157,7 @@ msgstr "Duplicato"
 
 #. Template: AAAITSMConfigItem
 msgid "Embedded"
-msgstr "Embedded"
+msgstr "Integrato"
 
 #. Template: AAAITSMConfigItem
 msgid "Empty fields indicate that the current values are kept"
@@ -164,7 +165,7 @@ msgstr ""
 
 #. Template: AAAITSMConfigItem
 msgid "Enterprise Licence"
-msgstr "Licenza Aziendale"
+msgstr "Licenza aziendale"
 
 #. Template: AAAITSMConfigItem
 msgid "Expiration Date"
@@ -176,7 +177,7 @@ msgstr "Scaduto"
 
 #. Template: AAAITSMConfigItem
 msgid "Floor"
-msgstr ""
+msgstr "Piano"
 
 #. Template: AAAITSMConfigItem
 msgid "Freeware"
@@ -192,19 +193,19 @@ msgstr "Gateway"
 
 #. Template: AAAITSMConfigItem
 msgid "Graphic Adapter"
-msgstr "Scheda Grafica"
+msgstr "Scheda grafica"
 
 #. Template: AAAITSMConfigItem
 msgid "Hard Disk"
-msgstr "Disco Rigido"
+msgstr "Disco fisso"
 
 #. Template: AAAITSMConfigItem
 msgid "Hard Disk::Capacity"
-msgstr "Disco Rigido::Capacità"
+msgstr "Disco fisso::Capacità"
 
 #. Template: AAAITSMConfigItem
 msgid "Hide Versions"
-msgstr "Nascondi Versioni"
+msgstr "Nascondi versioni"
 
 #. Template: AAAITSMConfigItem
 msgid "IP Address"
@@ -248,19 +249,19 @@ msgstr "Ultima modifica"
 
 #. Template: AAAITSMConfigItem
 msgid "Licence Key"
-msgstr "Chiave della Licenza"
+msgstr "Chiave di licenza"
 
 #. Template: AAAITSMConfigItem
 msgid "Licence Key::Expiration Date"
-msgstr "Chiave della Licenza::Data di scadenza"
+msgstr "Chiave di licenza::Data di scadenza"
 
 #. Template: AAAITSMConfigItem
 msgid "Licence Key::Quantity"
-msgstr "Chiave della Licenza::Quantità"
+msgstr "Chiave di licenza::Quantità"
 
 #. Template: AAAITSMConfigItem
 msgid "Licence Type"
-msgstr "Tipo di Licenza"
+msgstr "Tipo di licenza"
 
 #. Template: AAAITSMConfigItem
 msgid "Maintenance"
@@ -296,27 +297,27 @@ msgstr "Mouse"
 
 #. Template: AAAITSMConfigItem
 msgid "Network Adapter"
-msgstr "Adattatore di Rete"
+msgstr "Scheda di rete"
 
 #. Template: AAAITSMConfigItem
 msgid "Network Adapter::IP Address"
-msgstr "Adattatore di Rete::Indirizzo IP"
+msgstr "Scheda di rete::Indirizzo IP"
 
 #. Template: AAAITSMConfigItem
 msgid "Network Adapter::IP over DHCP"
-msgstr "Adattatore di Rete::IP su DHCP"
+msgstr "Scheda di rete::IP su DHCP"
 
 #. Template: AAAITSMConfigItem
 msgid "Network Address"
-msgstr "Indirizzo di Rete"
+msgstr "Indirizzo di rete"
 
 #. Template: AAAITSMConfigItem
 msgid "Network Address::Gateway"
-msgstr "Indirizzo di Rete::Gateway"
+msgstr "Indirizzo di rete::Gateway"
 
 #. Template: AAAITSMConfigItem
 msgid "Network Address::Subnet Mask"
-msgstr "Indirizzo di Rete::Subnet Mask"
+msgstr "Indirizzo di rete::Subnet Mask"
 
 #. Template: AAAITSMConfigItem
 msgid "Open Source"
@@ -332,7 +333,7 @@ msgstr "Altro"
 
 #. Template: AAAITSMConfigItem
 msgid "Other Equipment"
-msgstr "Altre Apparecchiature"
+msgstr "Altri apparati"
 
 #. Template: AAAITSMConfigItem
 msgid "Outlet"
@@ -348,27 +349,27 @@ msgstr "Palmare"
 
 #. Template: AAAITSMConfigItem
 msgid "Per Node"
-msgstr "Per Nodo"
+msgstr "Per nodo"
 
 #. Template: AAAITSMConfigItem
 msgid "Per Processor"
-msgstr "Per Processore"
+msgstr "Per processore"
 
 #. Template: AAAITSMConfigItem
 msgid "Per Server"
-msgstr "Per Server"
+msgstr "Per server"
 
 #. Template: AAAITSMConfigItem
 msgid "Per User"
-msgstr "Per Utente"
+msgstr "Per utente"
 
 #. Template: AAAITSMConfigItem
 msgid "Phone 1"
-msgstr ""
+msgstr "Telefono 1"
 
 #. Template: AAAITSMConfigItem
 msgid "Phone 2"
-msgstr ""
+msgstr "Telefono 2"
 
 #. Template: AAAITSMConfigItem
 msgid "Pilot"
@@ -392,7 +393,7 @@ msgstr "Quantità"
 
 #. Template: AAAITSMConfigItem
 msgid "Rack"
-msgstr ""
+msgstr "Armadio"
 
 #. Template: AAAITSMConfigItem
 msgid "Ram"
@@ -412,7 +413,7 @@ msgstr "Revisionato"
 
 #. Template: AAAITSMConfigItem
 msgid "Room"
-msgstr ""
+msgstr "Stanza"
 
 #. Template: AAAITSMConfigItem
 msgid "Router"
@@ -432,7 +433,7 @@ msgstr "Dispositivo di sicurezza"
 
 #. Template: AAAITSMConfigItem
 msgid "Serial Number"
-msgstr "Numero Seriale"
+msgstr "Numero seriale"
 
 #. Template: AAAITSMConfigItem
 msgid "Server"
@@ -440,23 +441,23 @@ msgstr "Server"
 
 #. Template: AAAITSMConfigItem
 msgid "Server Application"
-msgstr "Aplicazione Server"
+msgstr "Applicazione server"
 
 #. Template: AAAITSMConfigItem
 msgid "Server OS"
-msgstr "SO Server"
+msgstr "SO server"
 
 #. Template: AAAITSMConfigItem
 msgid "Show Versions"
-msgstr "Mostra Versioni"
+msgstr "Mostra versioni"
 
 #. Template: AAAITSMConfigItem
 msgid "Single Licence"
-msgstr "Single Licence"
+msgstr "Licenza singola"
 
 #. Template: AAAITSMConfigItem
 msgid "Subnet Mask"
-msgstr "Subnet Mask"
+msgstr "Maschera di rete"
 
 #. Template: AAAITSMConfigItem
 msgid "Switch"
@@ -492,11 +493,11 @@ msgstr "Illimitata"
 
 #. Template: AAAITSMConfigItem
 msgid "User Tool"
-msgstr "Strumenti Utente"
+msgstr "Strumenti utente"
 
 #. Template: AAAITSMConfigItem
 msgid "Volume Licence"
-msgstr "Licenza per Volume"
+msgstr "Licenza per volume"
 
 #. Template: AAAITSMConfigItem
 msgid "WLAN"
@@ -516,7 +517,7 @@ msgstr ""
 
 #. Template: AdminITSMConfigItem
 msgid "Config Item Management"
-msgstr "Gestione degli Elementi di Configurazione"
+msgstr "Gestione degli elementi di configurazione"
 
 #. Template: AdminITSMConfigItem
 msgid "Change class definition"
@@ -524,7 +525,7 @@ msgstr ""
 
 #. Template: AdminITSMConfigItem
 msgid "Config Item"
-msgstr "Elemento di Configurazione"
+msgstr "Elemento di configurazione"
 
 #. Template: AdminITSMConfigItem
 msgid "Class"
@@ -532,11 +533,11 @@ msgstr "Classe"
 
 #. Template: AdminITSMConfigItem
 msgid "Definition"
-msgstr ""
+msgstr "Definizione"
 
 #. Template: AgentITSMConfigItemAdd
 msgid "Filter for Classes"
-msgstr ""
+msgstr "Filtro per classi"
 
 #. Template: AgentITSMConfigItemAdd
 msgid "Select a Class from the list to create a new Config Item."
@@ -556,7 +557,7 @@ msgstr ""
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Link to another"
-msgstr ""
+msgstr "Collega a un altro"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Invalid Configuration Item number!"
@@ -581,7 +582,7 @@ msgstr "Stato di implementazione"
 
 #. Template: AgentITSMConfigItemEdit
 msgid "Incident State"
-msgstr "Stato dell'Incidente"
+msgstr "Stato dell'incidente"
 
 #. Template: AgentITSMConfigItemOverviewNavBar
 msgid "Context Settings"
@@ -597,7 +598,7 @@ msgstr ""
 
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "Current Incident State"
-msgstr "Stato attuale dell'Incidente"
+msgstr "Stato attuale dell'incidente"
 
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "Current Incident State Type"
@@ -625,11 +626,11 @@ msgstr "Ultima modifica di"
 
 #. Template: AgentITSMConfigItemSearch
 msgid "Create New Template"
-msgstr ""
+msgstr "Crea nuovo modello"
 
 #. Template: AgentITSMConfigItemSearch
 msgid "Run Search"
-msgstr ""
+msgstr "Esegui ricerca"
 
 #. Template: AgentITSMConfigItemSearch
 msgid "Also search in previous versions?"
@@ -649,11 +650,11 @@ msgstr ""
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Show one version"
-msgstr ""
+msgstr "Mostra una versione"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Show all versions"
-msgstr ""
+msgstr "Mostra tutte le versioni"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Version Incident State"
@@ -665,7 +666,7 @@ msgstr ""
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Version Number"
-msgstr ""
+msgstr "Numero di versione"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Configuration Item Version Details"
@@ -673,7 +674,7 @@ msgstr ""
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Property"
-msgstr ""
+msgstr "Proprietà"
 
 #. SysConfig
 msgid ""
@@ -684,7 +685,7 @@ msgstr ""
 
 #. SysConfig
 msgid "Config Items"
-msgstr ""
+msgstr "Elementi di configurazione"
 
 #. SysConfig
 msgid ""
@@ -698,7 +699,7 @@ msgstr ""
 
 #. SysConfig
 msgid "Configuration Item limit per page"
-msgstr ""
+msgstr "Limite di elementi di configurazione per pagina"
 
 #. SysConfig
 msgid "Configuration item search backend router of the agent interface."
@@ -706,7 +707,7 @@ msgstr ""
 
 #. SysConfig
 msgid "Create and manage the definitions for Configuration Items."
-msgstr ""
+msgstr "Crea e gestisci le definizioni per gli elementi di configurazione."
 
 #. SysConfig
 msgid ""
@@ -746,7 +747,7 @@ msgstr ""
 
 #. SysConfig
 msgid "Defines the default subobject of the class 'ITSMConfigItem'."
-msgstr ""
+msgstr "Definisce il sotto-oggetto predefinito della classe 'ITSMConfigItem'."
 
 #. SysConfig
 msgid ""
@@ -838,7 +839,7 @@ msgstr ""
 
 #. SysConfig
 msgid "Module to check the group responsible for a class."
-msgstr ""
+msgstr "Modulo per controllare il gruppo responsabile per una classe."
 
 #. SysConfig
 msgid "Module to check the group responsible for a configuration item."
@@ -846,7 +847,7 @@ msgstr ""
 
 #. SysConfig
 msgid "Module to generate ITSM config item statistics."
-msgstr ""
+msgstr "Modulo per generare le statistiche degli elementi di configurazione ITSM."
 
 #. SysConfig
 msgid "Object backend module registration for the import/export module."
@@ -872,7 +873,7 @@ msgstr "Parametri per i gruppi di permessi di esempio degli attributi del catalo
 
 #. SysConfig
 msgid "Parameters for the pages (in which the configuration items are shown)."
-msgstr ""
+msgstr "Parametri per le pagine (nelle quali gli elementi di configurazione sono mostrati)."
 
 #. SysConfig
 msgid ""

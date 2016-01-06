@@ -168,6 +168,9 @@ sub Data {
     $Self->{Translation}->{'Deployment State'} = 'Hali ya kutumia';
     $Self->{Translation}->{'Incident State'} = 'Hali ya tukio';
 
+    # Template: AgentITSMConfigItemHistory
+    $Self->{Translation}->{'History of'} = '';
+
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'Mipangilio ya muktadha';
     $Self->{Translation}->{'Config Items per page'} = 'Vipengele vya usanidi kwa kila ukurusa';
@@ -178,23 +181,16 @@ sub Data {
     $Self->{Translation}->{'Current Incident State Type'} = 'Aina ya hali ya tukio la sasa';
     $Self->{Translation}->{'Last changed'} = 'Mwisho kubadilishwa';
 
-    # Template: AgentITSMConfigItemPrint
-    $Self->{Translation}->{'ConfigItem'} = 'Kipengele cha usanidi';
-    $Self->{Translation}->{'ConfigItem-Info'} = 'Taarifa za kipengele cha usanidi';
-    $Self->{Translation}->{'Current Deployment State'} = 'Hali ya kutumia ya sasa';
-    $Self->{Translation}->{'Last changed by'} = 'Mwisho kubadilishwa na';
-
     # Template: AgentITSMConfigItemSearch
     $Self->{Translation}->{'Create New Template'} = 'Tengeneza kiolezo kipya';
     $Self->{Translation}->{'Run Search'} = 'Tafuta';
     $Self->{Translation}->{'Also search in previous versions?'} = 'Pia tafuta katika toleo lililopita?';
 
-    # Template: AgentITSMConfigItemSearchResultPrint
-    $Self->{Translation}->{'CreateTime'} = 'Muda wa kutengeneza';
-
     # Template: AgentITSMConfigItemZoom
     $Self->{Translation}->{'Configuration Item'} = 'Kipengele cha Usanidi';
     $Self->{Translation}->{'Configuration Item Information'} = 'Taarifa za kipengele cha usanidi';
+    $Self->{Translation}->{'Current Deployment State'} = 'Hali ya kutumia ya sasa';
+    $Self->{Translation}->{'Last changed by'} = 'Mwisho kubadilishwa na';
     $Self->{Translation}->{'Show one version'} = 'Onyesha toleo moja';
     $Self->{Translation}->{'Show all versions'} = 'Onyesha matoleo yote';
     $Self->{Translation}->{'Version Incident State'} = 'Toleo la hali ya tukio';
@@ -202,6 +198,19 @@ sub Data {
     $Self->{Translation}->{'Version Number'} = 'Namba ya toleo';
     $Self->{Translation}->{'Configuration Item Version Details'} = 'Toleo la kipengele cha usanidi kwa undani.';
     $Self->{Translation}->{'Property'} = 'Mali';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
+    $Self->{Translation}->{'ITSM ConfigItem'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+    $Self->{Translation}->{'CIHistory::'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+    $Self->{Translation}->{'ConfigItem'} = 'Kipengele cha usanidi';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+    $Self->{Translation}->{'No Result!'} = '';
+    $Self->{Translation}->{'Config Item Search Results'} = '';
 
     # SysConfig
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
@@ -298,8 +307,8 @@ ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns';
         'Onyesha kiungo katika menyu kutoa nakala pacha ya kipengele cha usanidi katika mandhari yake ya kipengele cha usanidi cha kiolesura cha wakala.';
     $Self->{Translation}->{'Shows a link in the menu to edit a configuration item in the its zoom view of the agent interface.'} =
         'Onyesha kiungo katika menyu kuhariri  kipengele cha usanidi katika mandhari yake iliyokuzwa ya kiolesura cha wakala.';
-    $Self->{Translation}->{'Shows a link in the menu to go back in the configuraton item zoom view of the agent interface.'} =
-        'Onyesha kiungo katika menyu kurudi nyuma katika kipengele cha usanidi katika mandhari yake iliyokuzwa ya kiolesura cha wakala.';
+    $Self->{Translation}->{'Shows a link in the menu to go back in the configuration item zoom view of the agent interface.'} =
+        '';
     $Self->{Translation}->{'Shows a link in the menu to print a configuration item in the its zoom view of the agent interface.'} =
         'Onyesha kiungo katika menyu kuchapisha kipengele cha usanidi katika mandhari yake iliyokuzwa ya kiolesura cha wakala.';
     $Self->{Translation}->{'Shows a link in the menu to zoom into a configuration item in the configuration item overview of the agent interface.'} =

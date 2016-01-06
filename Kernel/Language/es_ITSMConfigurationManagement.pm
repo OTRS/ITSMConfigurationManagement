@@ -52,7 +52,7 @@ sub Data {
     $Self->{Translation}->{'Docking Station'} = 'Docking Station';
     $Self->{Translation}->{'Duplicate'} = 'Duplicado';
     $Self->{Translation}->{'Embedded'} = 'Embebido';
-    $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = '';
+    $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Los campos vacíos indican que los valores actuales se mantienen';
     $Self->{Translation}->{'Enterprise Licence'} = 'Licencia Corporativa';
     $Self->{Translation}->{'Expiration Date'} = 'Fecha de Expiración';
     $Self->{Translation}->{'Expired'} = 'Expirado';
@@ -144,33 +144,36 @@ sub Data {
 
     # Template: AdminITSMConfigItem
     $Self->{Translation}->{'Config Item Management'} = 'Gestión de Elementos de Configuración';
-    $Self->{Translation}->{'Change class definition'} = '';
+    $Self->{Translation}->{'Change class definition'} = 'Cambiar definición de la Clase';
     $Self->{Translation}->{'Config Item'} = 'Elemento de Configuración';
     $Self->{Translation}->{'Class'} = 'Clase';
     $Self->{Translation}->{'Definition'} = 'Definición';
 
     # Template: AgentITSMConfigItemAdd
-    $Self->{Translation}->{'Filter for Classes'} = '';
-    $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = '';
+    $Self->{Translation}->{'Filter for Classes'} = 'Filtro para Clases';
+    $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = 'Seleccione una Clase de la lista para crear un nuevo Item de Configuración';
 
     # Template: AgentITSMConfigItemBulk
     $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = '';
-    $Self->{Translation}->{'Deployment state'} = '';
+    $Self->{Translation}->{'Deployment state'} = 'Estado de despliegue';
     $Self->{Translation}->{'Incident state'} = 'Estado del incidente';
-    $Self->{Translation}->{'Link to another'} = '';
-    $Self->{Translation}->{'Invalid Configuration Item number!'} = '';
+    $Self->{Translation}->{'Link to another'} = 'Enlazar con otro';
+    $Self->{Translation}->{'Invalid Configuration Item number!'} = 'Número de Ítem de Configuración inválido';
     $Self->{Translation}->{'The number of another Configuration Item to link with.'} = '';
 
     # Template: AgentITSMConfigItemEdit
     $Self->{Translation}->{'The name of this config item'} = 'El nombre de este elemento de configuración';
     $Self->{Translation}->{'Name is already in use by the ConfigItems with the following Number(s): %s'} =
-        '';
+        'El nombre ya esta en uso por Ítems de Configuración con los siguientes número (s): %s';
     $Self->{Translation}->{'Deployment State'} = 'Estado de la Implementación';
     $Self->{Translation}->{'Incident State'} = 'Estado del Incidente';
 
+    # Template: AgentITSMConfigItemHistory
+    $Self->{Translation}->{'History of'} = '';
+
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'Ajustes de Contexto';
-    $Self->{Translation}->{'Config Items per page'} = '';
+    $Self->{Translation}->{'Config Items per page'} = 'CIs por página';
 
     # Template: AgentITSMConfigItemOverviewSmall
     $Self->{Translation}->{'Deployment State Type'} = '';
@@ -178,23 +181,16 @@ sub Data {
     $Self->{Translation}->{'Current Incident State Type'} = '';
     $Self->{Translation}->{'Last changed'} = 'Última modificación';
 
-    # Template: AgentITSMConfigItemPrint
-    $Self->{Translation}->{'ConfigItem'} = '';
-    $Self->{Translation}->{'ConfigItem-Info'} = '';
-    $Self->{Translation}->{'Current Deployment State'} = 'Estado Actual de la Implementación';
-    $Self->{Translation}->{'Last changed by'} = 'Última modificación por';
-
     # Template: AgentITSMConfigItemSearch
     $Self->{Translation}->{'Create New Template'} = 'Crear nueva plantilla';
     $Self->{Translation}->{'Run Search'} = '';
     $Self->{Translation}->{'Also search in previous versions?'} = '¿Desea buscar en versiones anteriores?';
 
-    # Template: AgentITSMConfigItemSearchResultPrint
-    $Self->{Translation}->{'CreateTime'} = 'Fecha de Creación';
-
     # Template: AgentITSMConfigItemZoom
     $Self->{Translation}->{'Configuration Item'} = '';
     $Self->{Translation}->{'Configuration Item Information'} = '';
+    $Self->{Translation}->{'Current Deployment State'} = 'Estado Actual de la Implementación';
+    $Self->{Translation}->{'Last changed by'} = 'Última modificación por';
     $Self->{Translation}->{'Show one version'} = '';
     $Self->{Translation}->{'Show all versions'} = '';
     $Self->{Translation}->{'Version Incident State'} = '';
@@ -202,6 +198,19 @@ sub Data {
     $Self->{Translation}->{'Version Number'} = '';
     $Self->{Translation}->{'Configuration Item Version Details'} = '';
     $Self->{Translation}->{'Property'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
+    $Self->{Translation}->{'ITSM ConfigItem'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+    $Self->{Translation}->{'CIHistory::'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+    $Self->{Translation}->{'ConfigItem'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+    $Self->{Translation}->{'No Result!'} = '';
+    $Self->{Translation}->{'Config Item Search Results'} = '';
 
     # SysConfig
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
@@ -296,8 +305,8 @@ sub Data {
         'Muestra un link en el menú para duplicar un elemento de configuracion en su vista detallada, en la interfaz del agente.';
     $Self->{Translation}->{'Shows a link in the menu to edit a configuration item in the its zoom view of the agent interface.'} =
         'Muestra un link en el menú para editar un elemento de configuracion en su vista detallada, en la interfaz del agente.';
-    $Self->{Translation}->{'Shows a link in the menu to go back in the configuraton item zoom view of the agent interface.'} =
-        'Muestra un link en el menú para regresar en la vista detallada de un elemento de configuración de la interfaz del agente.';
+    $Self->{Translation}->{'Shows a link in the menu to go back in the configuration item zoom view of the agent interface.'} =
+        '';
     $Self->{Translation}->{'Shows a link in the menu to print a configuration item in the its zoom view of the agent interface.'} =
         'Muestra un link en el menú para imprimir un elemento de configuracion en su vista detallada, en la interfaz del agente.';
     $Self->{Translation}->{'Shows a link in the menu to zoom into a configuration item in the configuration item overview of the agent interface.'} =

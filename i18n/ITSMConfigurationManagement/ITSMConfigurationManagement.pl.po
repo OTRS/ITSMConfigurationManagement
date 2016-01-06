@@ -1,13 +1,15 @@
 # 
 # Translators:
+# Jerzy Ruszczak <orcio6@o2.pl>, 2015
+# Patryk Zera <sanchez@atlasnet.pl>, 2015
 # Udo Bretz, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
 "POT-Creation-Date: 2014-08-08 19:10+0200\n"
-"PO-Revision-Date: 2015-04-27 10:55+0000\n"
-"Last-Translator: Martin Gruner <martin.gruner@otrs.com>\n"
-"Language-Team: Polish (http://www.transifex.com/projects/p/OTRS/language/pl/)\n"
+"PO-Revision-Date: 2015-12-08 12:57+0000\n"
+"Last-Translator: Jerzy Ruszczak <orcio6@o2.pl>\n"
+"Language-Team: Polish (http://www.transifex.com/otrs/OTRS/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,15 +22,15 @@ msgstr "Adres"
 
 #. Template: AAAITSMConfigItem
 msgid "Admin Tool"
-msgstr "Narzędzie administratorskie"
+msgstr "Narzędzie administratora"
 
 #. Template: AAAITSMConfigItem
 msgid "Backup Device"
-msgstr "Urządzenie do backupu"
+msgstr "Urządzenie do tworzenia kopii zapasowej"
 
 #. Template: AAAITSMConfigItem
 msgid "Beamer"
-msgstr ""
+msgstr "Projektor"
 
 #. Template: AAAITSMConfigItem
 msgid "Building"
@@ -116,7 +118,7 @@ msgstr "System kliencki"
 
 #. Template: AAAITSMConfigItem
 msgid "Concurrent Users"
-msgstr "Jednocześni użytkownicy"
+msgstr "Jednocześni Użytkownicy"
 
 #. Template: AAAITSMConfigItem
 msgid "Config Item-Area"
@@ -220,7 +222,7 @@ msgstr "Dział IT"
 
 #. Template: AAAITSMConfigItem
 msgid "Inactive"
-msgstr ""
+msgstr "Nieaktywny"
 
 #. Template: AAAITSMConfigItem
 msgid "Incident"
@@ -360,7 +362,7 @@ msgstr "Na serwer"
 
 #. Template: AAAITSMConfigItem
 msgid "Per User"
-msgstr "Na użytkownika"
+msgstr "Na Użytkownika"
 
 #. Template: AAAITSMConfigItem
 msgid "Phone 1"
@@ -492,7 +494,7 @@ msgstr "Bez limitu"
 
 #. Template: AAAITSMConfigItem
 msgid "User Tool"
-msgstr "Narzędzie użytkownika"
+msgstr "Narzędzie Użytkownika"
 
 #. Template: AAAITSMConfigItem
 msgid "Volume Licence"
@@ -625,7 +627,7 @@ msgstr "Ostatnio zmienione przez"
 
 #. Template: AgentITSMConfigItemSearch
 msgid "Create New Template"
-msgstr ""
+msgstr "Utwórz nowy szablon"
 
 #. Template: AgentITSMConfigItemSearch
 msgid "Run Search"

@@ -168,6 +168,9 @@ sub Data {
     $Self->{Translation}->{'Deployment State'} = '部署状态';
     $Self->{Translation}->{'Incident State'} = '故障状态';
 
+    # Template: AgentITSMConfigItemHistory
+    $Self->{Translation}->{'History of'} = '';
+
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = '上下文设置';
     $Self->{Translation}->{'Config Items per page'} = '每页配置项个数';
@@ -178,23 +181,16 @@ sub Data {
     $Self->{Translation}->{'Current Incident State Type'} = '当前的故障状态类型';
     $Self->{Translation}->{'Last changed'} = '最后修改';
 
-    # Template: AgentITSMConfigItemPrint
-    $Self->{Translation}->{'ConfigItem'} = '配置项';
-    $Self->{Translation}->{'ConfigItem-Info'} = '配置项-信息';
-    $Self->{Translation}->{'Current Deployment State'} = '当前的部署状态';
-    $Self->{Translation}->{'Last changed by'} = '最后修改于';
-
     # Template: AgentITSMConfigItemSearch
     $Self->{Translation}->{'Create New Template'} = '创建模板';
     $Self->{Translation}->{'Run Search'} = '搜索';
     $Self->{Translation}->{'Also search in previous versions?'} = '同时搜索以前的版本?';
 
-    # Template: AgentITSMConfigItemSearchResultPrint
-    $Self->{Translation}->{'CreateTime'} = '创建时间';
-
     # Template: AgentITSMConfigItemZoom
     $Self->{Translation}->{'Configuration Item'} = '配置项';
     $Self->{Translation}->{'Configuration Item Information'} = '配置项信息';
+    $Self->{Translation}->{'Current Deployment State'} = '当前的部署状态';
+    $Self->{Translation}->{'Last changed by'} = '最后修改于';
     $Self->{Translation}->{'Show one version'} = '显示一个版本';
     $Self->{Translation}->{'Show all versions'} = '显示所有版本';
     $Self->{Translation}->{'Version Incident State'} = '版本故障状态';
@@ -202,6 +198,19 @@ sub Data {
     $Self->{Translation}->{'Version Number'} = '版本号';
     $Self->{Translation}->{'Configuration Item Version Details'} = '配置项版本详情';
     $Self->{Translation}->{'Property'} = '属性';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
+    $Self->{Translation}->{'ITSM ConfigItem'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+    $Self->{Translation}->{'CIHistory::'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+    $Self->{Translation}->{'ConfigItem'} = '配置项';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+    $Self->{Translation}->{'No Result!'} = '';
+    $Self->{Translation}->{'Config Item Search Results'} = '';
 
     # SysConfig
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
@@ -225,19 +234,19 @@ sub Data {
     $Self->{Translation}->{'Defines an overview module to show the small view of a configuration item list.'} =
         '定义查看某配置项列表视图的概览模块。';
     $Self->{Translation}->{'Defines regular expressions individually for each ConfigItem class to check the ConfigItem name and to show corresponding error messages.'} =
-        '';
+        '为每个配置项类定义独立的正则表达式，以检查配置项名称并提示相应的错误。';
     $Self->{Translation}->{'Defines the default subobject of the class \'ITSMConfigItem\'.'} =
         '定义\'ITSMConfigItem\'类的默认子对象。';
     $Self->{Translation}->{'Defines the number of rows for the CI definition editor in the admin interface.'} =
-        '';
+        '在管理面板的配置项编辑器中定义配置项的行数。';
     $Self->{Translation}->{'Defines the search limit for the AgentITSMConfigItem screen.'} =
-        '';
+        '定义AgentITSMConfigItem屏的搜索限制';
     $Self->{Translation}->{'Defines the search limit for the AgentITSMConfigItemSearch screen.'} =
-        '';
+        '定义AgentITSMConfigItemSearch屏的搜索限制';
     $Self->{Translation}->{'Defines the shown columns in the config item overview. This option has no effect on the position of the column. Note: Class column is always available if filter \'All\' is selected.'} =
-        '';
+        '定义配置项概览所要显示的列。该选项对列的位置排序没有效果。注意：如果过滤器选择了"全部"，就可以显示所有的列';
     $Self->{Translation}->{'Defines the shown columns in the config item search. This option has no effect on the position of the column.'} =
-        '';
+        '定义在配置项搜索中显示的列。该选项不能调整列的位置顺序。';
     $Self->{Translation}->{'Defines the shown columns of CIs in the config item overview depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns.'} =
         '';
     $Self->{Translation}->{'Defines the shown columns of CIs in the config item search depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns.'} =
@@ -245,15 +254,15 @@ sub Data {
     $Self->{Translation}->{'Defines the shown columns of CIs in the link table complex view, depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown.'} =
         '';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
-        '';
+        '在支持人员前端界面启用配置项批量操作功能，可以一次处理多个配置项。';
     $Self->{Translation}->{'Enables configuration item bulk action feature only for the listed groups.'} =
-        '';
+        '只有列表中的群组才有权限使用配置项批量操作功能。';
     $Self->{Translation}->{'Enables/disables the functionality to check ConfigItems for unique names. Before enabling this option you should check your system for already existing config items with duplicate names. You can do this with the script bin/otrs.ITSMConfigItemListDuplicates.pl.'} =
         '';
-    $Self->{Translation}->{'Module to check the group responsible for a class.'} = '';
+    $Self->{Translation}->{'Module to check the group responsible for a class.'} = '用于检查组对某个类是否负责的模块。';
     $Self->{Translation}->{'Module to check the group responsible for a configuration item.'} =
-        '';
-    $Self->{Translation}->{'Module to generate ITSM config item statistics.'} = '';
+        '用于检查组对某个配置项是否负责的模块。';
+    $Self->{Translation}->{'Module to generate ITSM config item statistics.'} = '用于生成ITSM配置项状态的模块';
     $Self->{Translation}->{'Object backend module registration for the import/export module.'} =
         '';
     $Self->{Translation}->{'Parameters for the deployment states color in the preferences view of the agent interface.'} =
@@ -281,9 +290,9 @@ sub Data {
     $Self->{Translation}->{'Selects the configuration item number generator module. "AutoIncrement" increments the configuration item number, the SystemID, the ConfigItemClassID and the counter are used. The format is "SystemID.ConfigItemClassID.Counter", e.g. 1205000004, 1205000005.'} =
         '';
     $Self->{Translation}->{'Sets the deployment state in the configuration item bulk screen of the agent interface.'} =
-        '';
+        '在支持人员界面批量操作配置项界面设置部署状态。';
     $Self->{Translation}->{'Sets the incident state in the configuration item bulk screen of the agent interface.'} =
-        '';
+        '在支持人员界面批量操作配置项界面设置事件状态。';
     $Self->{Translation}->{'Shows a link in the menu that allows linking a configuration item with another object in the config item zoom view of the agent interface.'} =
         '';
     $Self->{Translation}->{'Shows a link in the menu to access the history of a configuration item in the configuration item overview of the agent interface.'} =
@@ -296,7 +305,7 @@ sub Data {
         '';
     $Self->{Translation}->{'Shows a link in the menu to edit a configuration item in the its zoom view of the agent interface.'} =
         '';
-    $Self->{Translation}->{'Shows a link in the menu to go back in the configuraton item zoom view of the agent interface.'} =
+    $Self->{Translation}->{'Shows a link in the menu to go back in the configuration item zoom view of the agent interface.'} =
         '';
     $Self->{Translation}->{'Shows a link in the menu to print a configuration item in the its zoom view of the agent interface.'} =
         '';

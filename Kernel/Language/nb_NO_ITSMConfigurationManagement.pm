@@ -168,6 +168,9 @@ sub Data {
     $Self->{Translation}->{'Deployment State'} = 'Produksjonssettingstilstand';
     $Self->{Translation}->{'Incident State'} = 'Hendelsestilstand';
 
+    # Template: AgentITSMConfigItemHistory
+    $Self->{Translation}->{'History of'} = '';
+
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'Kontekstvalg';
     $Self->{Translation}->{'Config Items per page'} = 'Konfigurasjonsenheter per side';
@@ -178,23 +181,16 @@ sub Data {
     $Self->{Translation}->{'Current Incident State Type'} = 'Nåværende type Hendelsestilstand';
     $Self->{Translation}->{'Last changed'} = 'Sist endret';
 
-    # Template: AgentITSMConfigItemPrint
-    $Self->{Translation}->{'ConfigItem'} = 'Konfigurasjonsenhet';
-    $Self->{Translation}->{'ConfigItem-Info'} = 'Konfigurasjonsenhet-info';
-    $Self->{Translation}->{'Current Deployment State'} = 'Nåværende Produksjonssettingstilstand';
-    $Self->{Translation}->{'Last changed by'} = 'Sist endret av';
-
     # Template: AgentITSMConfigItemSearch
     $Self->{Translation}->{'Create New Template'} = '';
     $Self->{Translation}->{'Run Search'} = '';
     $Self->{Translation}->{'Also search in previous versions?'} = 'Også søke i tidligere versjoner?';
 
-    # Template: AgentITSMConfigItemSearchResultPrint
-    $Self->{Translation}->{'CreateTime'} = 'Opprettelsestidspunkt';
-
     # Template: AgentITSMConfigItemZoom
     $Self->{Translation}->{'Configuration Item'} = 'Konfigurasjonsenhet';
     $Self->{Translation}->{'Configuration Item Information'} = '';
+    $Self->{Translation}->{'Current Deployment State'} = 'Nåværende Produksjonssettingstilstand';
+    $Self->{Translation}->{'Last changed by'} = 'Sist endret av';
     $Self->{Translation}->{'Show one version'} = 'Vis én versjon';
     $Self->{Translation}->{'Show all versions'} = 'Vis alle versjoner';
     $Self->{Translation}->{'Version Incident State'} = 'Hendelsestilstand for versjonen';
@@ -202,6 +198,19 @@ sub Data {
     $Self->{Translation}->{'Version Number'} = 'Versjon';
     $Self->{Translation}->{'Configuration Item Version Details'} = 'Versjonsdetaljer for enheten';
     $Self->{Translation}->{'Property'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
+    $Self->{Translation}->{'ITSM ConfigItem'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+    $Self->{Translation}->{'CIHistory::'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+    $Self->{Translation}->{'ConfigItem'} = 'Konfigurasjonsenhet';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+    $Self->{Translation}->{'No Result!'} = '';
+    $Self->{Translation}->{'Config Item Search Results'} = '';
 
     # SysConfig
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
@@ -296,7 +305,7 @@ sub Data {
         '';
     $Self->{Translation}->{'Shows a link in the menu to edit a configuration item in the its zoom view of the agent interface.'} =
         '';
-    $Self->{Translation}->{'Shows a link in the menu to go back in the configuraton item zoom view of the agent interface.'} =
+    $Self->{Translation}->{'Shows a link in the menu to go back in the configuration item zoom view of the agent interface.'} =
         '';
     $Self->{Translation}->{'Shows a link in the menu to print a configuration item in the its zoom view of the agent interface.'} =
         '';

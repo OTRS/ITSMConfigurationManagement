@@ -5,9 +5,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
 "POT-Creation-Date: 2014-08-08 19:10+0200\n"
-"PO-Revision-Date: 2015-04-27 10:55+0000\n"
+"PO-Revision-Date: 2015-08-14 17:08+0000\n"
 "Last-Translator: Martin Gruner <martin.gruner@otrs.com>\n"
-"Language-Team: Czech (http://www.transifex.com/projects/p/OTRS/language/cs/)\n"
+"Language-Team: Czech (http://www.transifex.com/otrs/OTRS/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -585,7 +585,7 @@ msgstr "Stav Incidentu"
 
 #. Template: AgentITSMConfigItemOverviewNavBar
 msgid "Context Settings"
-msgstr ""
+msgstr "Nastavení kontextu"
 
 #. Template: AgentITSMConfigItemOverviewNavBar
 msgid "Config Items per page"
@@ -637,7 +637,7 @@ msgstr "Hledat také v předchozích verzích?"
 
 #. Template: AgentITSMConfigItemSearchResultPrint
 msgid "CreateTime"
-msgstr ""
+msgstr "Čas vytvoření"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Configuration Item"
@@ -868,7 +868,7 @@ msgstr ""
 msgid ""
 "Parameters for the example permission groups of the general catalog "
 "attributes."
-msgstr ""
+msgstr "Parametry skupiny pro příklad oprávnění obecných atributů katalogu"
 
 #. SysConfig
 msgid "Parameters for the pages (in which the configuration items are shown)."

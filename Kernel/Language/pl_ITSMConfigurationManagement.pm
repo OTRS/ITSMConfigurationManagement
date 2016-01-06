@@ -17,9 +17,9 @@ sub Data {
 
     # Template: AAAITSMConfigItem
     $Self->{Translation}->{'Address'} = 'Adres';
-    $Self->{Translation}->{'Admin Tool'} = 'Narzędzie administratorskie';
-    $Self->{Translation}->{'Backup Device'} = 'Urządzenie do backupu';
-    $Self->{Translation}->{'Beamer'} = '';
+    $Self->{Translation}->{'Admin Tool'} = 'Narzędzie administratora';
+    $Self->{Translation}->{'Backup Device'} = 'Urządzenie do tworzenia kopii zapasowej';
+    $Self->{Translation}->{'Beamer'} = 'Projektor';
     $Self->{Translation}->{'Building'} = 'Budynek';
     $Self->{Translation}->{'CIHistory::ConfigItemCreate'} = 'Nowy CI (ID=%s)';
     $Self->{Translation}->{'CIHistory::ConfigItemDelete'} = 'Usunięcie CI (ID=%s)';
@@ -41,7 +41,7 @@ sub Data {
     $Self->{Translation}->{'Change of definition failed! See System Log for details.'} = 'Zmiana definicji nie powiodła się! Szczegóły znajdują się w logu systemu.';
     $Self->{Translation}->{'Client Application'} = 'Aplikacja kliencka';
     $Self->{Translation}->{'Client OS'} = 'System kliencki';
-    $Self->{Translation}->{'Concurrent Users'} = 'Jednocześni użytkownicy';
+    $Self->{Translation}->{'Concurrent Users'} = 'Jednocześni Użytkownicy';
     $Self->{Translation}->{'Config Item-Area'} = 'CI-Obszar';
     $Self->{Translation}->{'Config Items available'} = 'Dostępne CI';
     $Self->{Translation}->{'Config Items shown'} = 'Wyświetlone CI';
@@ -67,7 +67,7 @@ sub Data {
     $Self->{Translation}->{'IP Address'} = 'Adres IP';
     $Self->{Translation}->{'IP over DHCP'} = 'Adres IP z DHCP';
     $Self->{Translation}->{'IT Facility'} = 'Dział IT';
-    $Self->{Translation}->{'Inactive'} = '';
+    $Self->{Translation}->{'Inactive'} = 'Nieaktywny';
     $Self->{Translation}->{'Incident'} = 'Zdarzenie';
     $Self->{Translation}->{'Install Date'} = 'Data instalacji';
     $Self->{Translation}->{'Keyboard'} = 'Klawiatura';
@@ -102,7 +102,7 @@ sub Data {
     $Self->{Translation}->{'Per Node'} = 'Na urządzenie';
     $Self->{Translation}->{'Per Processor'} = 'Na procesor';
     $Self->{Translation}->{'Per Server'} = 'Na serwer';
-    $Self->{Translation}->{'Per User'} = 'Na użytkownika';
+    $Self->{Translation}->{'Per User'} = 'Na Użytkownika';
     $Self->{Translation}->{'Phone 1'} = 'Telefon 1';
     $Self->{Translation}->{'Phone 2'} = 'Telefon 2';
     $Self->{Translation}->{'Pilot'} = 'Pilotaż';
@@ -135,7 +135,7 @@ sub Data {
     $Self->{Translation}->{'Time Restricted'} = 'Czasowo ograniczona';
     $Self->{Translation}->{'USB Device'} = 'Urządzenie USB';
     $Self->{Translation}->{'Unlimited'} = 'Bez limitu';
-    $Self->{Translation}->{'User Tool'} = 'Narzędzie użytkownika';
+    $Self->{Translation}->{'User Tool'} = 'Narzędzie Użytkownika';
     $Self->{Translation}->{'Volume Licence'} = 'Zbiorcza licencja';
     $Self->{Translation}->{'WLAN'} = 'WLAN';
     $Self->{Translation}->{'WLAN Access Point'} = 'Access Point';
@@ -168,6 +168,9 @@ sub Data {
     $Self->{Translation}->{'Deployment State'} = 'Stan wdrożenia';
     $Self->{Translation}->{'Incident State'} = 'Stan zdarzenia';
 
+    # Template: AgentITSMConfigItemHistory
+    $Self->{Translation}->{'History of'} = '';
+
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'Ustawienia kontekstu';
     $Self->{Translation}->{'Config Items per page'} = 'Liczba CI na stronie';
@@ -178,23 +181,16 @@ sub Data {
     $Self->{Translation}->{'Current Incident State Type'} = 'Aktualny typ stanu';
     $Self->{Translation}->{'Last changed'} = 'Ostatnio zmienione';
 
-    # Template: AgentITSMConfigItemPrint
-    $Self->{Translation}->{'ConfigItem'} = 'CI';
-    $Self->{Translation}->{'ConfigItem-Info'} = 'CI-Info';
-    $Self->{Translation}->{'Current Deployment State'} = 'Aktualny stan wdrożenia';
-    $Self->{Translation}->{'Last changed by'} = 'Ostatnio zmienione przez';
-
     # Template: AgentITSMConfigItemSearch
-    $Self->{Translation}->{'Create New Template'} = '';
+    $Self->{Translation}->{'Create New Template'} = 'Utwórz nowy szablon';
     $Self->{Translation}->{'Run Search'} = '';
     $Self->{Translation}->{'Also search in previous versions?'} = 'Uwzględnić poprzednie wersje?';
-
-    # Template: AgentITSMConfigItemSearchResultPrint
-    $Self->{Translation}->{'CreateTime'} = 'Czas utworzenia';
 
     # Template: AgentITSMConfigItemZoom
     $Self->{Translation}->{'Configuration Item'} = 'CI';
     $Self->{Translation}->{'Configuration Item Information'} = 'Informacje o CI';
+    $Self->{Translation}->{'Current Deployment State'} = 'Aktualny stan wdrożenia';
+    $Self->{Translation}->{'Last changed by'} = 'Ostatnio zmienione przez';
     $Self->{Translation}->{'Show one version'} = 'Pokaż jedną wersję!';
     $Self->{Translation}->{'Show all versions'} = 'Pokaż wszystkie wersje';
     $Self->{Translation}->{'Version Incident State'} = 'Stan';
@@ -202,6 +198,19 @@ sub Data {
     $Self->{Translation}->{'Version Number'} = 'Wersja';
     $Self->{Translation}->{'Configuration Item Version Details'} = 'Szczegóły wersji CI';
     $Self->{Translation}->{'Property'} = 'Właściwość';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
+    $Self->{Translation}->{'ITSM ConfigItem'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+    $Self->{Translation}->{'CIHistory::'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+    $Self->{Translation}->{'ConfigItem'} = 'CI';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+    $Self->{Translation}->{'No Result!'} = '';
+    $Self->{Translation}->{'Config Item Search Results'} = '';
 
     # SysConfig
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
@@ -296,7 +305,7 @@ sub Data {
         '';
     $Self->{Translation}->{'Shows a link in the menu to edit a configuration item in the its zoom view of the agent interface.'} =
         '';
-    $Self->{Translation}->{'Shows a link in the menu to go back in the configuraton item zoom view of the agent interface.'} =
+    $Self->{Translation}->{'Shows a link in the menu to go back in the configuration item zoom view of the agent interface.'} =
         '';
     $Self->{Translation}->{'Shows a link in the menu to print a configuration item in the its zoom view of the agent interface.'} =
         '';

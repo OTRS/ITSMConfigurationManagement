@@ -578,6 +578,10 @@ msgstr ""
 msgid "Incident State"
 msgstr ""
 
+#. Template: AgentITSMConfigItemHistory
+msgid "History of"
+msgstr ""
+
 #. Template: AgentITSMConfigItemOverviewNavBar
 msgid "Context Settings"
 msgstr ""
@@ -602,22 +606,6 @@ msgstr ""
 msgid "Last changed"
 msgstr ""
 
-#. Template: AgentITSMConfigItemPrint
-msgid "ConfigItem"
-msgstr ""
-
-#. Template: AgentITSMConfigItemPrint
-msgid "ConfigItem-Info"
-msgstr ""
-
-#. Template: AgentITSMConfigItemPrint
-msgid "Current Deployment State"
-msgstr ""
-
-#. Template: AgentITSMConfigItemPrint
-msgid "Last changed by"
-msgstr ""
-
 #. Template: AgentITSMConfigItemSearch
 msgid "Create New Template"
 msgstr ""
@@ -630,16 +618,20 @@ msgstr ""
 msgid "Also search in previous versions?"
 msgstr ""
 
-#. Template: AgentITSMConfigItemSearchResultPrint
-msgid "CreateTime"
-msgstr ""
-
 #. Template: AgentITSMConfigItemZoom
 msgid "Configuration Item"
 msgstr ""
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Configuration Item Information"
+msgstr ""
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Current Deployment State"
+msgstr ""
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Last changed by"
 msgstr ""
 
 #. Template: AgentITSMConfigItemZoom
@@ -668,6 +660,26 @@ msgstr ""
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Property"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
+msgid "ITSM ConfigItem"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "CIHistory::"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "ConfigItem"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+msgid "No Result!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+msgid "Config Item Search Results"
 msgstr ""
 
 #. SysConfig
@@ -867,7 +879,7 @@ msgid "Shows a link in the menu to edit a configuration item in the its zoom vie
 msgstr ""
 
 #. SysConfig
-msgid "Shows a link in the menu to go back in the configuraton item zoom view of the agent interface."
+msgid "Shows a link in the menu to go back in the configuration item zoom view of the agent interface."
 msgstr ""
 
 #. SysConfig

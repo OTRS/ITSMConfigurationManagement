@@ -168,6 +168,9 @@ sub Data {
     $Self->{Translation}->{'Deployment State'} = 'وضعیت نصب';
     $Self->{Translation}->{'Incident State'} = 'وضعیت رخداد';
 
+    # Template: AgentITSMConfigItemHistory
+    $Self->{Translation}->{'History of'} = '';
+
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'تنظیمات مفاد';
     $Self->{Translation}->{'Config Items per page'} = 'تعداد آیتم‌های پیکربندی در هر صفحه';
@@ -178,23 +181,16 @@ sub Data {
     $Self->{Translation}->{'Current Incident State Type'} = 'نوع وضعیت جاری رخداد';
     $Self->{Translation}->{'Last changed'} = 'آخرین تغییر';
 
-    # Template: AgentITSMConfigItemPrint
-    $Self->{Translation}->{'ConfigItem'} = 'آیتم پیکربندی';
-    $Self->{Translation}->{'ConfigItem-Info'} = 'اطلاعات آیتم پیکربندی';
-    $Self->{Translation}->{'Current Deployment State'} = 'وضعیت فعلی نصب';
-    $Self->{Translation}->{'Last changed by'} = 'آخرین تغییر به وسیله';
-
     # Template: AgentITSMConfigItemSearch
     $Self->{Translation}->{'Create New Template'} = 'ساختن قالب جدید';
     $Self->{Translation}->{'Run Search'} = '';
     $Self->{Translation}->{'Also search in previous versions?'} = 'در ویرایش‌های قبلی هم جستجو انجام شود؟';
 
-    # Template: AgentITSMConfigItemSearchResultPrint
-    $Self->{Translation}->{'CreateTime'} = 'زمان ساختن';
-
     # Template: AgentITSMConfigItemZoom
     $Self->{Translation}->{'Configuration Item'} = 'آیتم پیکربندی';
     $Self->{Translation}->{'Configuration Item Information'} = '';
+    $Self->{Translation}->{'Current Deployment State'} = 'وضعیت فعلی نصب';
+    $Self->{Translation}->{'Last changed by'} = 'آخرین تغییر به وسیله';
     $Self->{Translation}->{'Show one version'} = 'نمایش یک نسخه';
     $Self->{Translation}->{'Show all versions'} = 'نمایش تمام نسخه‌ها';
     $Self->{Translation}->{'Version Incident State'} = 'وضعیت رخداد نسخه';
@@ -202,6 +198,19 @@ sub Data {
     $Self->{Translation}->{'Version Number'} = 'شماره نسخه';
     $Self->{Translation}->{'Configuration Item Version Details'} = 'جزئیات نسخه آیتم پیکربندی';
     $Self->{Translation}->{'Property'} = 'ویژگی';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
+    $Self->{Translation}->{'ITSM ConfigItem'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+    $Self->{Translation}->{'CIHistory::'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+    $Self->{Translation}->{'ConfigItem'} = 'آیتم پیکربندی';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+    $Self->{Translation}->{'No Result!'} = '';
+    $Self->{Translation}->{'Config Item Search Results'} = '';
 
     # SysConfig
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
@@ -296,7 +305,7 @@ sub Data {
         '';
     $Self->{Translation}->{'Shows a link in the menu to edit a configuration item in the its zoom view of the agent interface.'} =
         '';
-    $Self->{Translation}->{'Shows a link in the menu to go back in the configuraton item zoom view of the agent interface.'} =
+    $Self->{Translation}->{'Shows a link in the menu to go back in the configuration item zoom view of the agent interface.'} =
         '';
     $Self->{Translation}->{'Shows a link in the menu to print a configuration item in the its zoom view of the agent interface.'} =
         '';

@@ -168,6 +168,9 @@ sub Data {
     $Self->{Translation}->{'Deployment State'} = 'Status';
     $Self->{Translation}->{'Incident State'} = 'Incidentstatus';
 
+    # Template: AgentITSMConfigItemHistory
+    $Self->{Translation}->{'History of'} = '';
+
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'Context Instellingen';
     $Self->{Translation}->{'Config Items per page'} = 'Aantal configuratie-items per pagina';
@@ -178,23 +181,16 @@ sub Data {
     $Self->{Translation}->{'Current Incident State Type'} = '';
     $Self->{Translation}->{'Last changed'} = 'Laaste wijziging';
 
-    # Template: AgentITSMConfigItemPrint
-    $Self->{Translation}->{'ConfigItem'} = '';
-    $Self->{Translation}->{'ConfigItem-Info'} = '';
-    $Self->{Translation}->{'Current Deployment State'} = 'Actuele status';
-    $Self->{Translation}->{'Last changed by'} = 'Laaste wijziging door';
-
     # Template: AgentITSMConfigItemSearch
     $Self->{Translation}->{'Create New Template'} = '';
     $Self->{Translation}->{'Run Search'} = '';
     $Self->{Translation}->{'Also search in previous versions?'} = 'Ook in eerdere versies zoeken?';
 
-    # Template: AgentITSMConfigItemSearchResultPrint
-    $Self->{Translation}->{'CreateTime'} = 'Aangemaakt op';
-
     # Template: AgentITSMConfigItemZoom
     $Self->{Translation}->{'Configuration Item'} = 'Configuratie-item';
     $Self->{Translation}->{'Configuration Item Information'} = 'Configuratie-item informatie';
+    $Self->{Translation}->{'Current Deployment State'} = 'Actuele status';
+    $Self->{Translation}->{'Last changed by'} = 'Laaste wijziging door';
     $Self->{Translation}->{'Show one version'} = 'Toon één versie';
     $Self->{Translation}->{'Show all versions'} = 'Toon alle versies';
     $Self->{Translation}->{'Version Incident State'} = 'Versie Incident-status';
@@ -202,6 +198,19 @@ sub Data {
     $Self->{Translation}->{'Version Number'} = 'Versienummer';
     $Self->{Translation}->{'Configuration Item Version Details'} = 'Configuratie-item versie details';
     $Self->{Translation}->{'Property'} = 'Attribuut';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
+    $Self->{Translation}->{'ITSM ConfigItem'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+    $Self->{Translation}->{'CIHistory::'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+    $Self->{Translation}->{'ConfigItem'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+    $Self->{Translation}->{'No Result!'} = '';
+    $Self->{Translation}->{'Config Item Search Results'} = '';
 
     # SysConfig
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
@@ -261,7 +270,7 @@ sub Data {
     $Self->{Translation}->{'Parameters for the deployment states in the preferences view of the agent interface.'} =
         '';
     $Self->{Translation}->{'Parameters for the example permission groups of the general catalog attributes.'} =
-        '';
+        'Parameters voor de voorbeeld perimssiegroepen van de algemene catalog attributen.';
     $Self->{Translation}->{'Parameters for the pages (in which the configuration items are shown).'} =
         '';
     $Self->{Translation}->{'Required permissions to use the ITSM configuration item screen in the agent interface.'} =
@@ -296,7 +305,7 @@ sub Data {
         '';
     $Self->{Translation}->{'Shows a link in the menu to edit a configuration item in the its zoom view of the agent interface.'} =
         '';
-    $Self->{Translation}->{'Shows a link in the menu to go back in the configuraton item zoom view of the agent interface.'} =
+    $Self->{Translation}->{'Shows a link in the menu to go back in the configuration item zoom view of the agent interface.'} =
         '';
     $Self->{Translation}->{'Shows a link in the menu to print a configuration item in the its zoom view of the agent interface.'} =
         '';

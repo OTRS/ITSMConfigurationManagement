@@ -168,6 +168,9 @@ sub Data {
     $Self->{Translation}->{'Deployment State'} = 'Состояние использования';
     $Self->{Translation}->{'Incident State'} = 'Состояние инцидента';
 
+    # Template: AgentITSMConfigItemHistory
+    $Self->{Translation}->{'History of'} = '';
+
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'Параметры контекста';
     $Self->{Translation}->{'Config Items per page'} = 'Конфигурационных единиц на страницу';
@@ -178,23 +181,16 @@ sub Data {
     $Self->{Translation}->{'Current Incident State Type'} = 'Тип Текущего состояния инцидента';
     $Self->{Translation}->{'Last changed'} = 'Время последнего изменения';
 
-    # Template: AgentITSMConfigItemPrint
-    $Self->{Translation}->{'ConfigItem'} = 'Конфигурационная единица';
-    $Self->{Translation}->{'ConfigItem-Info'} = 'Информация о КЕ';
-    $Self->{Translation}->{'Current Deployment State'} = 'Текущее состояние использования';
-    $Self->{Translation}->{'Last changed by'} = 'Автор последнего изменения';
-
     # Template: AgentITSMConfigItemSearch
     $Self->{Translation}->{'Create New Template'} = 'Создать новый шаблон';
     $Self->{Translation}->{'Run Search'} = 'Выполнить поиск';
     $Self->{Translation}->{'Also search in previous versions?'} = 'Искать и в предыдущих версиях?';
 
-    # Template: AgentITSMConfigItemSearchResultPrint
-    $Self->{Translation}->{'CreateTime'} = 'Дата создания';
-
     # Template: AgentITSMConfigItemZoom
     $Self->{Translation}->{'Configuration Item'} = 'Конфигурационная единица';
     $Self->{Translation}->{'Configuration Item Information'} = ' Информация о Конф. ед.';
+    $Self->{Translation}->{'Current Deployment State'} = 'Текущее состояние использования';
+    $Self->{Translation}->{'Last changed by'} = 'Автор последнего изменения';
     $Self->{Translation}->{'Show one version'} = 'Показать одну версию';
     $Self->{Translation}->{'Show all versions'} = 'Показать все версии';
     $Self->{Translation}->{'Version Incident State'} = 'Состояние инцидента версии';
@@ -202,6 +198,19 @@ sub Data {
     $Self->{Translation}->{'Version Number'} = 'Номер версии';
     $Self->{Translation}->{'Configuration Item Version Details'} = 'Полная информация о КЕ выбранной версии';
     $Self->{Translation}->{'Property'} = 'Свойство';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
+    $Self->{Translation}->{'ITSM ConfigItem'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+    $Self->{Translation}->{'CIHistory::'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+    $Self->{Translation}->{'ConfigItem'} = 'Конфигурационная единица';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+    $Self->{Translation}->{'No Result!'} = '';
+    $Self->{Translation}->{'Config Item Search Results'} = '';
 
     # SysConfig
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
@@ -296,8 +305,8 @@ sub Data {
         'Показывает пункт меню Дублировать для создания новой КЕ путем копирования характеристик текущей КЕ';
     $Self->{Translation}->{'Shows a link in the menu to edit a configuration item in the its zoom view of the agent interface.'} =
         'Показывает пункт меню Редактировать для изменения характеристик КЕ';
-    $Self->{Translation}->{'Shows a link in the menu to go back in the configuraton item zoom view of the agent interface.'} =
-        'Показывает пункт меню Назад';
+    $Self->{Translation}->{'Shows a link in the menu to go back in the configuration item zoom view of the agent interface.'} =
+        '';
     $Self->{Translation}->{'Shows a link in the menu to print a configuration item in the its zoom view of the agent interface.'} =
         'Показывает пункт меню Печать для печати характеристик КЕ';
     $Self->{Translation}->{'Shows a link in the menu to zoom into a configuration item in the configuration item overview of the agent interface.'} =
