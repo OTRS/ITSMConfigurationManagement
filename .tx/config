@@ -1,4 +1,4 @@
-[main]
+[mainOFF]
 host = https://www.transifex.com
 
 [OTRS.ITSMConfigurationManagement]
