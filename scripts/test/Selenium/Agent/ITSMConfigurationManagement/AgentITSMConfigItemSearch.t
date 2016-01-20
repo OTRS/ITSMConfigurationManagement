@@ -39,20 +39,29 @@ $Selenium->RunTest(
         );
         my $ProductionDeplStateID = $ProductionDeplStateDataRef->{ItemID};
 
-        # get config item object
+        # get needed objects
         my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+        my $ConfigObject     = $Kernel::OM->Get('Kernel::Config');
 
-        # create config item number
+        # create ConfigItem number
         my $ConfigItemNumber = $ConfigItemObject->ConfigItemNumberCreate(
-            Type    => $Kernel::OM->Get('Kernel::Config')->Get('ITSMConfigItem::NumberGenerator'),
+            Type    => $ConfigObject->Get('ITSMConfigItem::NumberGenerator'),
             ClassID => $ConfigItemClassIDs[1],
         );
+        $Self->True(
+            $ConfigItemNumber,
+            "ConfigItem number is created - $ConfigItemNumber"
+        );
 
-        # add the new config item
+        # add the new ConfigItem
         my $ConfigItemID = $ConfigItemObject->ConfigItemAdd(
             Number  => $ConfigItemNumber,
             ClassID => $ConfigItemClassIDs[1],
             UserID  => 1,
+        );
+        $Self->True(
+            $ConfigItemID,
+            "ConfigItem is created - ID $ConfigItemID"
         );
 
         # add a new version
@@ -63,6 +72,10 @@ $Selenium->RunTest(
             InciStateID  => 1,
             UserID       => 1,
             ConfigItemID => $ConfigItemID,
+        );
+        $Self->True(
+            $VersionID,
+            "Version is created - ID $VersionID"
         );
 
         # create test user and login
@@ -76,13 +89,16 @@ $Selenium->RunTest(
             Password => $TestUserLogin,
         );
 
+        # get script alias
+        my $ScriptAlias = $ConfigObject->Get('ScriptAlias');
+
         # navigate to AgentITSMConfigItemSearch
-        my $ScriptAlias = $Kernel::OM->Get('Kernel::Config')->Get('ScriptAlias');
-        $Selenium->get("${ScriptAlias}index.pl?Action=AgentITSMConfigItemSearch");
+        $Selenium->VerifiedGet("${ScriptAlias}index.pl?Action=AgentITSMConfigItemSearch");
 
-        # wait for class selection dropdown to show up
-        $Selenium->WaitFor( JavaScript => "return \$('#SearchClassID').length;" );
+        # wait until form and overlay has loaded, if necessary
+        $Selenium->WaitFor( JavaScript => "return typeof(\$) === 'function' && \$('#SearchClassID').length" );
 
+        # check for class select box
         $Self->True(
             $Selenium->find_element( "#SearchClassID", 'css' ),
             "Class select box - found",
@@ -93,10 +109,10 @@ $Selenium->RunTest(
             "\$('#SearchClassID').val('$ConfigItemClassIDs[1]').trigger('redraw.InputField').trigger('change');"
         );
 
-        # wait until form has loaded, if neccessary
+        # wait until form has loaded, if necessary
         $Selenium->WaitFor( JavaScript => "return \$('#Attribute').length" );
 
-        # check config item search page
+        # check ConfigItem search page
         for my $ID (
             qw(SearchClassID SearchProfile SearchProfileNew Attribute PreviousVersionSearch ResultForm SearchFormSubmit)
             )
@@ -106,23 +122,20 @@ $Selenium->RunTest(
             $Element->is_displayed();
         }
 
-        # serch config items by test config item number
+        # search ConfigItems by test ConfigItem number
         $Selenium->find_element("//input[\@name='Number']")->send_keys($ConfigItemNumber);
-        $Selenium->find_element( "#SearchFormSubmit", 'css' )->click();
-
-        # wait until form has loaded, if neccessary
-        $Selenium->WaitFor( JavaScript => "return \$('th.Number').length" );
+        $Selenium->find_element( "#SearchFormSubmit", 'css' )->VerifiedClick();
 
         # check for expected result
         $Self->True(
             index( $Selenium->get_page_source(), $ConfigItemNumber ) > -1,
-            "ConfigItem# $ConfigItemNumber - found",
+            "ConfigItem number $ConfigItemNumber - found",
         );
 
         # change search option
         $Selenium->find_element( "#ITSMConfigItemSearch", 'css' )->click();
 
-        # wait until form has loaded, if neccessary
+        # wait until form has loaded, if necessary
         $Selenium->WaitFor( JavaScript => "return \$('#SearchProfile').length" );
 
         # select 'Hardware' class
@@ -130,17 +143,14 @@ $Selenium->RunTest(
             "\$('#SearchClassID').val('$ConfigItemClassIDs[1]').trigger('redraw.InputField').trigger('change');"
         );
 
-        # wait until form has loaded, if neccessary
+        # wait until form has loaded, if necessary
         $Selenium->WaitFor( JavaScript => "return \$('#Attribute').length" );
 
         # input wrong search parameters, result should be 'No data found'
         $Selenium->execute_script("\$('#Attribute').val('Name').trigger('redraw.InputField').trigger('change');");
         $Selenium->find_element( "a.AddButton", 'css' )->click();
         $Selenium->find_element("//input[\@name='Name']")->send_keys('asdfg');
-        $Selenium->find_element( "#SearchFormSubmit", 'css' )->click();
-
-        # wait until form has loaded, if neccessary
-        $Selenium->WaitFor( JavaScript => "return \$('th.Number').length" );
+        $Selenium->find_element( "#SearchFormSubmit", 'css' )->VerifiedClick();
 
         # check for expected result
         $Self->True(
@@ -148,16 +158,16 @@ $Selenium->RunTest(
             "'No data found' - found",
         );
 
-        # delete created test config item
+        # delete created test ConfigItem
         my $Success = $ConfigItemObject->ConfigItemDelete(
             ConfigItemID => $ConfigItemID,
             UserID       => 1,
         );
         $Self->True(
             $Success,
-            "Deleted ConfigItem - $ConfigItemID",
+            "ConfigItem is deleted - ID $ConfigItemID",
         );
-        }
+    }
 );
 
 1;
