@@ -36,13 +36,18 @@ $Selenium->RunTest(
         );
         my $ProductionDeplStateID = $ProductionDeplStateDataRef->{ItemID};
 
-        # get ConfigItem object
+        # get needed objects
         my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+        my $ConfigObject     = $Kernel::OM->Get('Kernel::Config');
 
         # create ConfigItem number
         my $ConfigItemNumber = $ConfigItemObject->ConfigItemNumberCreate(
-            Type    => $Kernel::OM->Get('Kernel::Config')->Get('ITSMConfigItem::NumberGenerator'),
+            Type    => $ConfigObject->Get('ITSMConfigItem::NumberGenerator'),
             ClassID => $HardwareConfigItemID,
+        );
+        $Self->True(
+            $ConfigItemNumber,
+            "ConfigItem number is created - $ConfigItemNumber"
         );
 
         # add the new ConfigItem
@@ -50,6 +55,10 @@ $Selenium->RunTest(
             Number  => $ConfigItemNumber,
             ClassID => $HardwareConfigItemID,
             UserID  => 1,
+        );
+        $Self->True(
+            $ConfigItemID,
+            "ConfigItem is created - ID $ConfigItemID"
         );
 
         # add a new version
@@ -61,6 +70,10 @@ $Selenium->RunTest(
             InciStateID  => 1,
             UserID       => 1,
             ConfigItemID => $ConfigItemID,
+        );
+        $Self->True(
+            $VersionID,
+            "Version is created - ID $VersionID"
         );
 
         # create test user and login
@@ -74,10 +87,11 @@ $Selenium->RunTest(
             Password => $TestUserLogin,
         );
 
-        my $ScriptAlias = $Kernel::OM->Get('Kernel::Config')->Get('ScriptAlias');
+        # get script alias
+        my $ScriptAlias = $ConfigObject->Get('ScriptAlias');
 
-        # navigate te AgentITSMConfigItemZoom screen
-        $Selenium->get(
+        # navigate to AgentITSMConfigItemZoom screen
+        $Selenium->VerifiedGet(
             "${ScriptAlias}index.pl?Action=AgentITSMConfigItemZoom;ConfigItemID=$ConfigItemID;Version=$VersionID"
         );
 
@@ -108,8 +122,13 @@ $Selenium->RunTest(
             "//a[contains(\@href, \'Action=AgentITSMConfigItemEdit;DuplicateID=$ConfigItemID;VersionID=$VersionID\' )]"
         )->click();
 
+        # switch window
+        $Selenium->WaitFor( WindowCount => 2 );
         my $Handles = $Selenium->get_window_handles();
         $Selenium->switch_to_window( $Handles->[1] );
+
+        # wait until page has loaded, if necessary
+        $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && $("#DeplStateID").length' );
 
         # check for created ConfigItem values
         $Self->Is(
@@ -135,12 +154,14 @@ $Selenium->RunTest(
         $Selenium->find_element("//button[\@value='Submit'][\@type='submit']")->click();
 
         # switch back to zoom view
+        $Selenium->WaitFor( WindowCount => 1 );
         $Selenium->switch_to_window( $Handles->[0] );
 
-        # wait until page has loaded, if neccessary
+        # wait until page has loaded, if necessary
         $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && $("body").length' );
 
-        $Selenium->refresh();
+        # refresh screen
+        $Selenium->VerifiedRefresh();
 
         # check for duplicated ConfigItem value
         $Self->True(
@@ -158,11 +179,11 @@ $Selenium->RunTest(
             );
             $Self->True(
                 $Success,
-                "Deleted ConfigItem - $ConfigItemID",
+                "ConfigItem is deleted - ID $ConfigItemID",
             );
             $ConfigItemID++;
         }
-        }
+    }
 );
 
 1;
