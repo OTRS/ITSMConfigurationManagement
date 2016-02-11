@@ -18,10 +18,8 @@ my $Selenium = $Kernel::OM->Get('Kernel::System::UnitTest::Selenium');
 $Selenium->RunTest(
     sub {
 
-        # get helper object
-        my $Helper = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
-
-        # get general catalog object
+        # get needed objects
+        my $Helper               = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
         my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
 
         # get 'Hardware' catalog class IDs
@@ -38,20 +36,29 @@ $Selenium->RunTest(
         );
         my $ProductionDeplStateID = $ProductionDeplStateDataRef->{ItemID};
 
-        # get config item object
+        # get needed objects
         my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+        my $ConfigObject     = $Kernel::OM->Get('Kernel::Config');
 
-        # create config item number
+        # create ConfigItem number
         my $ConfigItemNumber = $ConfigItemObject->ConfigItemNumberCreate(
-            Type    => $Kernel::OM->Get('Kernel::Config')->Get('ITSMConfigItem::NumberGenerator'),
+            Type    => $ConfigObject->Get('ITSMConfigItem::NumberGenerator'),
             ClassID => $HardwareConfigItemID,
         );
+        $Self->True(
+            $ConfigItemNumber,
+            "ConfigItem number is created - $ConfigItemNumber"
+        );
 
-        # add the new config item
+        # add the new ConfigItem
         my $ConfigItemID = $ConfigItemObject->ConfigItemAdd(
             Number  => $ConfigItemNumber,
             ClassID => $HardwareConfigItemID,
             UserID  => 1,
+        );
+        $Self->True(
+            $ConfigItemID,
+            "ConfigItem is created - ID $ConfigItemID"
         );
 
         # add a new version
@@ -62,6 +69,10 @@ $Selenium->RunTest(
             InciStateID  => 1,
             UserID       => 1,
             ConfigItemID => $ConfigItemID,
+        );
+        $Self->True(
+            $VersionID,
+            "Version is created - ID $VersionID"
         );
 
         # create test user and login
@@ -75,10 +86,11 @@ $Selenium->RunTest(
             Password => $TestUserLogin,
         );
 
-        my $ScriptAlias = $Kernel::OM->Get('Kernel::Config')->Get('ScriptAlias');
+        # get script alias
+        my $ScriptAlias = $ConfigObject->Get('ScriptAlias');
 
         # navigate to AgentITSConfigItemZoom screen
-        $Selenium->get("${ScriptAlias}index.pl?Action=AgentITSMConfigItemZoom;ConfigItemID=$ConfigItemID");
+        $Selenium->VerifiedGet("${ScriptAlias}index.pl?Action=AgentITSMConfigItemZoom;ConfigItemID=$ConfigItemID");
 
         # click on print menu
         $Selenium->find_element(
@@ -86,6 +98,7 @@ $Selenium->RunTest(
         )->click();
 
         # switch to another window
+        $Selenium->WaitFor( WindowCount => 2 );
         my $Handles = $Selenium->get_window_handles();
         $Selenium->switch_to_window( $Handles->[1] );
 
@@ -134,16 +147,16 @@ $Selenium->RunTest(
             );
         }
 
-        # delete created test config item
+        # delete created test ConfigItem
         my $Success = $ConfigItemObject->ConfigItemDelete(
             ConfigItemID => $ConfigItemID,
             UserID       => 1,
         );
         $Self->True(
             $Success,
-            "Deleted ConfigItem - $ConfigItemID",
+            "ConfigItem is deleted - ID $ConfigItemID",
         );
-        }
+    }
 );
 
 1;

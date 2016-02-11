@@ -44,15 +44,17 @@ $Selenium->RunTest(
             Password => $TestUserLogin,
         );
 
-        # navigate to AgentITSMConfigItemAdd
+        # get script alias
         my $ScriptAlias = $Kernel::OM->Get('Kernel::Config')->Get('ScriptAlias');
-        $Selenium->get("${ScriptAlias}index.pl?Action=AgentITSMConfigItemAdd");
+
+        # navigate to AgentITSMConfigItemAdd
+        $Selenium->VerifiedGet("${ScriptAlias}index.pl?Action=AgentITSMConfigItemAdd");
 
         # check for ITSMConfigItem classes
         for my $ConfigItemClassName (@ConfigItemClassNames) {
             $Self->True(
                 index( $Selenium->get_page_source(), $ConfigItemClassName ) > -1,
-                "Config item class $ConfigItemClassName - found",
+                "ConfigItem class $ConfigItemClassName - found",
             );
         }
 
@@ -66,7 +68,7 @@ $Selenium->RunTest(
                 "ConfigItem ID $ConfigItemClassAdd add link - found",
             );
         }
-        }
+    }
 );
 
 1;

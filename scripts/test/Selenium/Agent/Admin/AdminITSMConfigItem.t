@@ -32,16 +32,18 @@ $Selenium->RunTest(
             Password => $TestUserLogin,
         );
 
-        # navigate to AdminITSMConfigItem
+        # get script alias
         my $ScriptAlias = $Kernel::OM->Get('Kernel::Config')->Get('ScriptAlias');
-        $Selenium->get("${ScriptAlias}index.pl?Action=AdminITSMConfigItem");
+
+        # navigate to AdminITSMConfigItem
+        $Selenium->VerifiedGet("${ScriptAlias}index.pl?Action=AdminITSMConfigItem");
 
         # test default ITSMConfigItem class
         for my $Item (qw( Computer Hardware Location Network Software )) {
             my $Element = $Selenium->find_element( $Item, 'link_text' );
             $Element->is_enabled();
             $Element->is_displayed();
-            $Element->click();
+            $Element->VerifiedClick();
 
             # check for table structure
             $Selenium->find_element( "table",             'css' );
@@ -49,7 +51,7 @@ $Selenium->RunTest(
             $Selenium->find_element( "table tbody tr td", 'css' );
 
             # click on 'Change class definition'
-            $Selenium->find_element("//button[\@value='Add'][\@type='submit']")->click();
+            $Selenium->find_element("//button[\@value='Add'][\@type='submit']")->VerifiedClick();
 
             # check for input area
             my $InputField = $Selenium->find_element( "#Definition", 'css' );
@@ -57,9 +59,9 @@ $Selenium->RunTest(
             $InputField->is_displayed();
 
             # return back to overview screen
-            $Selenium->find_element("//a[contains(\@href, \'Action=AdminITSMConfigItem' )]")->click();
+            $Selenium->find_element("//a[contains(\@href, \'Action=AdminITSMConfigItem' )]")->VerifiedClick();
         }
-        }
+    }
 );
 
 1;

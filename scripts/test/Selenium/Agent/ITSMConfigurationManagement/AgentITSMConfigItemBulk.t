@@ -39,26 +39,35 @@ $Selenium->RunTest(
             push @DeplStateIDs, $DeplStateDataRef->{ItemID}
         }
 
-        # get config item object
+        # get needed objects
         my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+        my $ConfigObject     = $Kernel::OM->Get('Kernel::Config');
 
-        # create three test config items for 'Computer' config item class
+        # create three test ConfigItems for 'Computer' ConfigItem class
         my @ConfigItemNumbers;
         my @ConfigItemIDs;
         for my $ITSMConfigItem ( 1 .. 3 ) {
 
-            # create config item number
-            my $Number = $ConfigItemObject->ConfigItemNumberCreate(
-                Type    => $Kernel::OM->Get('Kernel::Config')->Get('ITSMConfigItem::NumberGenerator'),
+            # create ConfigItem number
+            my $ConfigItemNumber = $ConfigItemObject->ConfigItemNumberCreate(
+                Type    => $ConfigObject->Get('ITSMConfigItem::NumberGenerator'),
                 ClassID => $ComputerConfigItemID,
             );
-            push @ConfigItemNumbers, $Number;
+            $Self->True(
+                $ConfigItemNumber,
+                "ConfigItem number is created - $ConfigItemNumber"
+            );
+            push @ConfigItemNumbers, $ConfigItemNumber;
 
-            # add the new config item
+            # add the new ConfigItem
             my $ConfigItemID = $ConfigItemObject->ConfigItemAdd(
-                Number  => $Number,
+                Number  => $ConfigItemNumber,
                 ClassID => $ComputerConfigItemID,
                 UserID  => 1,
+            );
+            $Self->True(
+                $ConfigItemID,
+                "ConfigItem is created - ID $ConfigItemID"
             );
 
             # add a new version
@@ -69,6 +78,10 @@ $Selenium->RunTest(
                 InciStateID  => 1,
                 UserID       => 1,
                 ConfigItemID => $ConfigItemID,
+            );
+            $Self->True(
+                $VersionID,
+                "Version is created - ID $VersionID"
             );
             push @ConfigItemIDs, $ConfigItemID;
         }
@@ -84,16 +97,18 @@ $Selenium->RunTest(
             Password => $TestUserLogin,
         );
 
+        # get script alias
+        my $ScriptAlias = $ConfigObject->Get('ScriptAlias');
+
         # navigate to AgentITSMConfigItem, sorted by created time
-        my $ScriptAlias = $Kernel::OM->Get('Kernel::Config')->Get('ScriptAlias');
-        $Selenium->get(
+        $Selenium->VerifiedGet(
             "${ScriptAlias}index.pl?Action=AgentITSMConfigItem;Filter=All;View=;;SortBy=ChangeTime;OrderBy=Down"
         );
 
-        # select two created test config items
+        # select two created test ConfigItems
         for my $SelectConfigItem (@ConfigItemIDs) {
 
-            # dont click on third test config item
+            # don't click on third test ConfigItem
             if ( $SelectConfigItem ne $ConfigItemIDs[2] ) {
                 $Selenium->find_element("//input[\@value='$SelectConfigItem']")->click();
             }
@@ -103,8 +118,12 @@ $Selenium->RunTest(
         $Selenium->find_element("//*[text()='Bulk']")->click();
 
         # switch to 'Bulk' window
+        $Selenium->WaitFor( WindowCount => 2 );
         my $Handles = $Selenium->get_window_handles();
         $Selenium->switch_to_window( $Handles->[1] );
+
+        # wait until page has loaded, if necessary
+        $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && $("#DeplStateID").length' );
 
         # check screen
         for my $ID (
@@ -116,14 +135,14 @@ $Selenium->RunTest(
             $Element->is_displayed();
         }
 
-        # change deployment state to 'Repair' for test config items
+        # change deployment state to 'Repair' for test ConfigItems
         $Selenium->find_element( "#DeplStateID option[value='$DeplStateIDs[1]']", 'css' )->click();
 
-        # link 'Alternative to' test config items together
+        # link 'Alternative to' test ConfigItems together
         $Selenium->find_element( "#LinkTogether option[value='1']",                           'css' )->click();
         $Selenium->find_element( "#LinkTogetherLinkType option[value='ConnectedTo::Source']", 'css' )->click();
 
-        # link third test config item as part of first two
+        # link third test ConfigItem as part of first two
         $Selenium->find_element( "#LinkTogetherAnother", 'css' )->send_keys( $ConfigItemNumbers[2] );
         $Selenium->find_element( "#LinkType option[value='Includes::Target']", 'css' )->click();
 
@@ -131,33 +150,38 @@ $Selenium->RunTest(
         $Selenium->find_element( "#submitRichText", 'css' )->click();
 
         # switch window
+        $Selenium->WaitFor( WindowCount => 1 );
         $Selenium->switch_to_window( $Handles->[0] );
 
-        # click on first created test config items to enter zoom view
-        $Selenium->find_element( "#ConfigItemID_$ConfigItemIDs[1]", 'css' )->click();
+        # click on first created test ConfigItems to enter zoom view
+        $Selenium->find_element( "#ConfigItemID_$ConfigItemIDs[1]", 'css' )->VerifiedClick();
 
-        # check for other two created test config items
+        # check for other two created test ConfigItems
         # verify that link action in bulk screen was success
         for my $CheckConfigItem (@ConfigItemNumbers) {
             $Self->True(
                 index( $Selenium->get_page_source(), $CheckConfigItem ) > -1,
-                "Test config item number $CheckConfigItem - found",
+                "Test ConfigItem number $CheckConfigItem - found",
             );
         }
 
         # click on history and change window
         $Selenium->find_element("//*[text()='History']")->click();
+        $Selenium->WaitFor( WindowCount => 2 );
         $Handles = $Selenium->get_window_handles();
         $Selenium->switch_to_window( $Handles->[1] );
 
-        # check state deployment change of test config item
+        # wait until page has loaded, if necessary
+        $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && $(".CancelClosePopup").length' );
+
+        # check state deployment change of test ConfigItem
         my $CheckHistory = 'Deployment state updated (new="Repair", "Production; old=)';
         $Self->True(
             index( $Selenium->get_page_source(), $CheckHistory ) > -1,
             "$CheckHistory - found",
         );
 
-        # delete created test config items
+        # delete created test ConfigItems
         for my $ConfigItemDelete (@ConfigItemIDs) {
             my $Success = $ConfigItemObject->ConfigItemDelete(
                 ConfigItemID => $ConfigItemDelete,
@@ -165,10 +189,10 @@ $Selenium->RunTest(
             );
             $Self->True(
                 $Success,
-                "Deleted ConfigItem - $ConfigItemDelete",
+                "Config item is deleted - ID $ConfigItemDelete",
             );
         }
-        }
+    }
 );
 
 1;

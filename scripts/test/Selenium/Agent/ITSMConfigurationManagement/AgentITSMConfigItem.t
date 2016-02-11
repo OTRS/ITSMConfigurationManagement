@@ -39,26 +39,35 @@ $Selenium->RunTest(
         );
         my $DeplStateID = $DeplStateDataRef->{ItemID};
 
-        # get config item object
+        # get needed objects
         my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+        my $ConfigObject     = $Kernel::OM->Get('Kernel::Config');
 
-        # create config item for each config item class
+        # create ConfigItem for each ConfigItem class
         my @ConfigItemNumbers;
         my @ConfigItemIDs;
         for my $ITSMConfigItem (@ConfigItemClassIDs) {
 
-            # create config item number
-            my $Number = $ConfigItemObject->ConfigItemNumberCreate(
-                Type    => $Kernel::OM->Get('Kernel::Config')->Get('ITSMConfigItem::NumberGenerator'),
+            # create ConfigItem number
+            my $ConfigItemNumber = $ConfigItemObject->ConfigItemNumberCreate(
+                Type    => $ConfigObject->Get('ITSMConfigItem::NumberGenerator'),
                 ClassID => $ITSMConfigItem,
             );
-            push @ConfigItemNumbers, $Number;
+            $Self->True(
+                $ConfigItemNumber,
+                "ConfigItem number is created - $ConfigItemNumber"
+            );
+            push @ConfigItemNumbers, $ConfigItemNumber;
 
-            # add the new config item
+            # add the new ConfigItem
             my $ConfigItemID = $ConfigItemObject->ConfigItemAdd(
-                Number  => $Number,
+                Number  => $ConfigItemNumber,
                 ClassID => $ITSMConfigItem,
                 UserID  => 1,
+            );
+            $Self->True(
+                $ConfigItemID,
+                "ConfigItem is created - ID $ConfigItemID"
             );
 
             # add a new version
@@ -69,6 +78,10 @@ $Selenium->RunTest(
                 InciStateID  => 1,
                 UserID       => 1,
                 ConfigItemID => $ConfigItemID,
+            );
+            $Self->True(
+                $VersionID,
+                "Version is created - ID $VersionID"
             );
             push @ConfigItemIDs, $ConfigItemID;
         }
@@ -84,43 +97,45 @@ $Selenium->RunTest(
             Password => $TestUserLogin,
         );
 
+        # get script alias
+        my $ScriptAlias = $ConfigObject->Get('ScriptAlias');
+
         # navigate to AgentITSMConfigItem, sorted by created time
-        my $ScriptAlias = $Kernel::OM->Get('Kernel::Config')->Get('ScriptAlias');
-        $Selenium->get(
+        $Selenium->VerifiedGet(
             "${ScriptAlias}index.pl?Action=AgentITSMConfigItem;Filter=All;View=;;SortBy=ChangeTime;OrderBy=Down"
         );
 
-        # check for created test config items with 'All' filter active
+        # check for created test ConfigItems with 'All' filter active
         for my $AllConfigItem (@ConfigItemNumbers) {
             $Self->True(
                 index( $Selenium->get_page_source(), $AllConfigItem ) > -1,
-                "Test config item number $AllConfigItem - found",
+                "Test ConfigItem number $AllConfigItem - found",
             );
         }
 
-        # check each of config item class filters for there respective test config item
+        # check each of ConfigItem class filters for there respective test ConfigItem
         my $Count = 0;
         for my $CheckConfigItem (@ConfigItemIDs) {
 
-            # click on config item class
+            # click on ConfigItem class
             $Selenium->find_element(
                 "//a[contains(\@href, \'Action=AgentITSMConfigItem;SortBy=ChangeTime;OrderBy=Down;View=;Filter=$ConfigItemClassIDs[$Count]' )]"
-            )->click();
+            )->VerifiedClick();
 
             # check for table structure
             $Selenium->find_element( "table",             'css' );
             $Selenium->find_element( "table thead tr th", 'css' );
             $Selenium->find_element( "table tbody tr td", 'css' );
 
-            # check for config item number
+            # check for ConfigItem number
             $Self->True(
                 index( $Selenium->get_page_source(), $ConfigItemNumbers[$Count] ) > -1,
-                "Test config item number $ConfigItemNumbers[$Count] - found",
+                "Test ConfigItem number $ConfigItemNumbers[$Count] - found",
             );
             $Count++;
         }
 
-        # delete created test config items
+        # delete created test ConfigItems
         for my $ConfigItemDelete (@ConfigItemIDs) {
             my $Success = $ConfigItemObject->ConfigItemDelete(
                 ConfigItemID => $ConfigItemDelete,
@@ -128,10 +143,10 @@ $Selenium->RunTest(
             );
             $Self->True(
                 $Success,
-                "Deleted ConfigItem - $ConfigItemDelete",
+                "ConfigItem is deleted - ID $ConfigItemDelete",
             );
         }
-        }
+    }
 );
 
 1;

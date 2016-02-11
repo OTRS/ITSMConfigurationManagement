@@ -36,20 +36,29 @@ $Selenium->RunTest(
         );
         my $ProductionDeplStateID = $ProductionDeplStateDataRef->{ItemID};
 
-        # get config item object
+        # get needed objects
         my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+        my $ConfigObject     = $Kernel::OM->Get('Kernel::Config');
 
-        # create config item number
+        # create ConfigItem number
         my $ConfigItemNumber = $ConfigItemObject->ConfigItemNumberCreate(
-            Type    => $Kernel::OM->Get('Kernel::Config')->Get('ITSMConfigItem::NumberGenerator'),
+            Type    => $ConfigObject->Get('ITSMConfigItem::NumberGenerator'),
             ClassID => $HardwareConfigItemID,
         );
+        $Self->True(
+            $ConfigItemNumber,
+            "ConfigItem number is created - $ConfigItemNumber"
+        );
 
-        # add the new config item
+        # add the new ConfigItem
         my $ConfigItemID = $ConfigItemObject->ConfigItemAdd(
             Number  => $ConfigItemNumber,
             ClassID => $HardwareConfigItemID,
             UserID  => 1,
+        );
+        $Self->True(
+            $ConfigItemID,
+            "ConfigItem is created - ID $ConfigItemID"
         );
 
         # add a new version
@@ -60,6 +69,10 @@ $Selenium->RunTest(
             InciStateID  => 1,
             UserID       => 1,
             ConfigItemID => $ConfigItemID,
+        );
+        $Self->True(
+            $VersionID,
+            "Version is created - ID $VersionID"
         );
 
         # create test user and login
@@ -78,10 +91,11 @@ $Selenium->RunTest(
             UserLogin => $TestUserLogin,
         );
 
-        my $ScriptAlias = $Kernel::OM->Get('Kernel::Config')->Get('ScriptAlias');
+        # get script alias
+        my $ScriptAlias = $ConfigObject->Get('ScriptAlias');
 
         # check for error message when no ConfigItemID is provided in history screen
-        $Selenium->get("${ScriptAlias}index.pl?Action=AgentITSMConfigItemHistory");
+        $Selenium->VerifiedGet("${ScriptAlias}index.pl?Action=AgentITSMConfigItemHistory");
 
         my $ErrorMessageNoID = 'Can\'t show history, no ConfigItemID is given!';
         $Self->True(
@@ -99,8 +113,8 @@ $Selenium->RunTest(
             'Deployment state updated (new="Production; old=)',
         );
 
-        # check for history meessages in history screen of created test config item
-        $Selenium->get(
+        # check for history messages in history screen of created test ConfigItem
+        $Selenium->VerifiedGet(
             "${ScriptAlias}index.pl?Action=AgentITSMConfigItemHistory;ConfigItemID=$ConfigItemID;VersionID=$VersionID"
         );
         for my $HistoryMessage (@HistoryMessages) {
@@ -110,7 +124,7 @@ $Selenium->RunTest(
             );
         }
 
-        # remove itsm-configitem 'ro' accesss right for test user
+        # remove itsm-configitem 'ro' access right for test user
         # get group object
         my $GroupObject = $Kernel::OM->Get('Kernel::System::Group');
 
@@ -130,7 +144,7 @@ $Selenium->RunTest(
         );
 
         # check for error message when user have no access rights in history screen
-        $Selenium->get(
+        $Selenium->VerifiedGet(
             "${ScriptAlias}index.pl?Action=AgentITSMConfigItemHistory;ConfigItemID=$ConfigItemID;VersionID=$VersionID"
         );
 
@@ -140,16 +154,16 @@ $Selenium->RunTest(
             "Error message $ErrorMessageNoPermission - found",
         );
 
-        # delete created test config item
+        # delete created test ConfigItem
         my $Success = $ConfigItemObject->ConfigItemDelete(
             ConfigItemID => $ConfigItemID,
             UserID       => 1,
         );
         $Self->True(
             $Success,
-            "Deleted ConfigItem - $ConfigItemID",
+            "ConfigItem is deleted - ID $ConfigItemID",
         );
-        }
+    }
 );
 
 1;

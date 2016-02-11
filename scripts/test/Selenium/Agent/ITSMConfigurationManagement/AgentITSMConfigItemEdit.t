@@ -18,7 +18,7 @@ my $Selenium = $Kernel::OM->Get('Kernel::System::UnitTest::Selenium');
 $Selenium->RunTest(
     sub {
 
-        # get needed objects
+        # get helper object
         my $Helper = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
 
         # create test user and login
@@ -32,6 +32,7 @@ $Selenium->RunTest(
             Password => $TestUserLogin,
         );
 
+        # get script alias
         my $ScriptAlias = $Kernel::OM->Get('Kernel::Config')->Get('ScriptAlias');
 
         # create test param
@@ -92,20 +93,20 @@ $Selenium->RunTest(
         # test AgentITSMConfigItemEdit
         for my $ConfigItemEdit (@Test) {
 
-            # navigate te AgentITSMConfigItemAdd screen
-            $Selenium->get("${ScriptAlias}index.pl?Action=AgentITSMConfigItemAdd");
+            # navigate to AgentITSMConfigItemAdd screen
+            $Selenium->VerifiedGet("${ScriptAlias}index.pl?Action=AgentITSMConfigItemAdd");
 
-            # get ConfigItemClass ID
+            # get ConfigItem class ID
             my $ConfigItemDataRef = $GeneralCatalogObject->ItemGet(
                 Class => 'ITSM::ConfigItem::Class',
                 Name  => $ConfigItemEdit->{ConfigItemClass},
             );
             my $ConfigItemClassID = $ConfigItemDataRef->{ItemID};
 
-            # click on ConfigItemClass
+            # click on ConfigItem class
             $Selenium->find_element(
                 "//a[contains(\@href, \'Action=AgentITSMConfigItemEdit;ClassID=$ConfigItemClassID\' )]"
-            )->click();
+            )->VerifiedClick();
 
             # check for ConfigItemEdit fields
             for my $CheckConfigItemField ( @{ $ConfigItemEdit->{CheckEditFields} } ) {
@@ -146,10 +147,7 @@ $Selenium->RunTest(
                 $Selenium->find_element("//*[contains(\@name, \'NetworkAddress\' )]")->send_keys('SeleniumNetwork');
             }
 
-            $Selenium->find_element("//button[\@value='Submit'][\@type='submit']")->click();
-
-            # wait for submit action if necessary
-            $Selenium->WaitFor( JavaScript => "return \$('div#ITSMTableBody').length" );
+            $Selenium->find_element("//button[\@value='Submit'][\@type='submit']")->VerifiedClick();
 
             # get ConfigItem value
             my @ConfigItemValues = (
@@ -163,7 +161,7 @@ $Selenium->RunTest(
                 },
             );
 
-            # check submited values in AgentITSMConfigItemZoom screen
+            # check submitted values in AgentITSMConfigItemZoom screen
             for my $CheckConfigItemValue (@ConfigItemValues) {
                 $Self->True(
                     $Selenium->execute_script(
@@ -188,10 +186,10 @@ $Selenium->RunTest(
             );
             $Self->True(
                 $Success,
-                "Deleted ConfigItem $ConfigItemName - $ConfigItemID->[0]",
+                "ConfigItem is deleted - ID $ConfigItemID->[0]",
             );
         }
-        }
+    }
 );
 
 1;

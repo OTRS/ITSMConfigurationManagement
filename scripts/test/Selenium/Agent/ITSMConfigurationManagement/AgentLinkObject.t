@@ -39,8 +39,9 @@ $Selenium->RunTest(
         );
         my $DeplStateID = $DeplStateDataRef->{ItemID};
 
-        # get ConfigItem object
+        # get needed objects
         my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+        my $ConfigObject     = $Kernel::OM->Get('Kernel::Config');
 
         # create two test ConfigItems for Computer and Hardware ConfigItem class
         my @ConfigItemNumbers;
@@ -49,17 +50,25 @@ $Selenium->RunTest(
         for my $ITSMConfigItem (@ConfigItemClassIDs) {
 
             # create ConfigItem number
-            my $Number = $ConfigItemObject->ConfigItemNumberCreate(
-                Type    => $Kernel::OM->Get('Kernel::Config')->Get('ITSMConfigItem::NumberGenerator'),
+            my $ConfigItemNumber = $ConfigItemObject->ConfigItemNumberCreate(
+                Type    => $ConfigObject->Get('ITSMConfigItem::NumberGenerator'),
                 ClassID => $ITSMConfigItem,
             );
-            push @ConfigItemNumbers, $Number;
+            $Self->True(
+                $ConfigItemNumber,
+                "ConfigItem number is created - $ConfigItemNumber"
+            );
+            push @ConfigItemNumbers, $ConfigItemNumber;
 
             # add the new ConfigItem
             my $ConfigItemID = $ConfigItemObject->ConfigItemAdd(
-                Number  => $Number,
+                Number  => $ConfigItemNumber,
                 ClassID => $ITSMConfigItem,
                 UserID  => 1,
+            );
+            $Self->True(
+                $ConfigItemID,
+                "ConfigItem is created - ID $ConfigItemID"
             );
             push @ConfigItemIDs, $ConfigItemID;
 
@@ -71,6 +80,10 @@ $Selenium->RunTest(
                 InciStateID  => 1,
                 UserID       => 1,
                 ConfigItemID => $ConfigItemID,
+            );
+            $Self->True(
+                $VersionID,
+                "Version is created - ID $VersionID"
             );
             push @VersionIDs, $VersionID;
 
@@ -85,6 +98,10 @@ $Selenium->RunTest(
             UserID      => 1,
             TypeID      => 2,
             Criticality => '3 normal',
+        );
+        $Self->True(
+            $ServiceID,
+            "Service is created - ID $ServiceID"
         );
 
         # get ticket object
@@ -104,6 +121,10 @@ $Selenium->RunTest(
             OwnerID      => 1,
             UserID       => 1,
         );
+        $Self->True(
+            $TicketID,
+            "Ticket is created - ID $TicketID"
+        );
 
         # create test user and login
         my $TestUserLogin = $Helper->TestUserCreate(
@@ -116,10 +137,11 @@ $Selenium->RunTest(
             Password => $TestUserLogin,
         );
 
-        my $ScriptAlias = $Kernel::OM->Get('Kernel::Config')->Get('ScriptAlias');
+        # get script alias
+        my $ScriptAlias = $ConfigObject->Get('ScriptAlias');
 
-        # navigate te AgentITSMConfigItemZoom screen
-        $Selenium->get(
+        # navigate to AgentITSMConfigItemZoom screen
+        $Selenium->VerifiedGet(
             "${ScriptAlias}index.pl?Action=AgentITSMConfigItemZoom;ConfigItemID=$ConfigItemIDs[0];Version=$VersionIDs[0]"
         );
 
@@ -129,8 +151,12 @@ $Selenium->RunTest(
         )->click();
 
         # switch to 'Link' window
+        $Selenium->WaitFor( WindowCount => 2 );
         my $Handles = $Selenium->get_window_handles();
         $Selenium->switch_to_window( $Handles->[1] );
+
+        # wait until page has loaded, if necessary
+        $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && $("#TargetIdentifier").length' );
 
         # select to link with test Hardware ConfigItem
         $Selenium->execute_script(
@@ -149,11 +175,11 @@ $Selenium->RunTest(
 
         # search ConfigItem by its number and select result
         $Selenium->find_element("//input[\@id='SEARCH::Number']")->send_keys( $ConfigItemNumbers[1] );
-        $Selenium->find_element( "#SubmitSearch", 'css' )->click();
+        $Selenium->find_element( "#SubmitSearch", 'css' )->VerifiedClick();
         $Selenium->find_element("//input[\@id='LinkTargetKeys'][\@value='$ConfigItemIDs[1]']")->click();
 
         # select 'AlternativeTo' link type
-        $Selenium->find_element("//button[\@id='AddLinks']")->click();
+        $Selenium->find_element("//button[\@id='AddLinks']")->VerifiedClick();
 
         # select to link with test Service
         $Selenium->execute_script(
@@ -162,14 +188,14 @@ $Selenium->RunTest(
 
         # search Service by name and select result
         $Selenium->find_element("//input[\@id='SEARCH::Name']")->send_keys($ServiceName);
-        $Selenium->find_element( "#SubmitSearch", 'css' )->click();
+        $Selenium->find_element( "#SubmitSearch", 'css' )->VerifiedClick();
         $Selenium->find_element("//input[\@id='LinkTargetKeys'][\@value='$ServiceID']")->click();
 
         # select 'Relevant to' link type
         $Selenium->execute_script(
             "\$('#TypeIdentifier').val('RelevantTo::Source').trigger('redraw.InputField').trigger('change');"
         );
-        $Selenium->find_element("//button[\@id='AddLinks']")->click();
+        $Selenium->find_element("//button[\@id='AddLinks']")->VerifiedClick();
 
         # select to link with test Ticket
         $Selenium->execute_script(
@@ -178,7 +204,7 @@ $Selenium->RunTest(
 
         # search Ticket by number and select result
         $Selenium->find_element("//input[\@id='SEARCH::TicketNumber']")->send_keys($TicketNumber);
-        $Selenium->find_element( "#SubmitSearch", 'css' )->click();
+        $Selenium->find_element( "#SubmitSearch", 'css' )->VerifiedClick();
 
         $Selenium->find_element("//input[\@id='LinkTargetKeys'][\@value='$TicketID']")->click();
 
@@ -186,12 +212,14 @@ $Selenium->RunTest(
         $Selenium->execute_script(
             "\$('#TypeIdentifier').val('DependsOn::Source').trigger('redraw.InputField').trigger('change');"
         );
-        $Selenium->find_element("//button[\@id='AddLinks']")->click();
+        $Selenium->find_element("//button[\@id='AddLinks']")->VerifiedClick();
 
         # close link window, return to Zoom view and refresh page
-        $Selenium->close();
+        $Selenium->find_element( "#LinkAddCloseLink", 'css' )->click();
+
+        $Selenium->WaitFor( WindowCount => 1 );
         $Selenium->switch_to_window( $Handles->[0] );
-        $Selenium->refresh();
+        $Selenium->VerifiedRefresh();
 
         # check for linked values in AgentITSMConfigItemZoom screen
         for my $CheckValues ( $ConfigItemNumbers[1], $ServiceName, $TicketNumber ) {
@@ -205,22 +233,30 @@ $Selenium->RunTest(
         $Selenium->find_element(
             "//a[contains(\@href, \'Action=AgentLinkObject;SourceObject=ITSMConfigItem;SourceKey=$ConfigItemIDs[0]\' )]"
         )->click();
+
+        $Selenium->WaitFor( WindowCount => 2 );
         $Handles = $Selenium->get_window_handles();
         $Selenium->switch_to_window( $Handles->[1] );
 
+        # wait until page has loaded, if necessary
+        $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && $("#TargetIdentifier").length' );
+
         # click 'go to link delete screen'
-        $Selenium->find_element("//a[contains(\@href, \'Action=AgentLinkObject;Subaction=LinkDelete\' )]")->click();
+        $Selenium->find_element("//a[contains(\@href, \'Action=AgentLinkObject;Subaction=LinkDelete\' )]")
+            ->VerifiedClick();
 
         # select all linked items and delete links
         $Selenium->find_element("//input[\@value='ITSMConfigItem::$ConfigItemIDs[1]::AlternativeTo']")->click();
         $Selenium->find_element("//input[\@value='Service::$ServiceID\::RelevantTo']")->click();
         $Selenium->find_element("//input[\@value='Ticket::$TicketID\::DependsOn']")->click();
-        $Selenium->find_element("//button[\@title='Delete links']")->click();
+        $Selenium->find_element("//button[\@title='Delete links']")->VerifiedClick();
 
         # close link window, return to Zoom view and refresh page
-        $Selenium->close();
+        $Selenium->find_element( "#LinkAddCloseLink", 'css' )->click();
+
+        $Selenium->WaitFor( WindowCount => 1 );
         $Selenium->switch_to_window( $Handles->[0] );
-        $Selenium->refresh();
+        $Selenium->VerifiedRefresh();
 
         # check for no linked values in AgentITSMConfigItemZoom screen
         for my $CheckValues ( $ConfigItemNumbers[1], $ServiceName, $TicketNumber ) {
@@ -237,7 +273,7 @@ $Selenium->RunTest(
         );
         $Self->True(
             $Success,
-            "Deleted Ticket - $TicketID "
+            "Ticket is deleted - ID $TicketID "
         );
 
         # delete test ConfigItem
@@ -248,7 +284,7 @@ $Selenium->RunTest(
             );
             $Self->True(
                 $Success,
-                "Deleted ConfigItem - $ConfigItemDelete",
+                "ConfigItem is deleted - ID $ConfigItemDelete",
             );
         }
 
@@ -261,16 +297,16 @@ $Selenium->RunTest(
         );
         $Self->True(
             $Success,
-            "Deleted Service Preference",
+            "Service preferences is deleted",
         );
         $Success = $DBObject->Do(
             SQL => "DELETE FROM service WHERE id = $ServiceID",
         );
         $Self->True(
             $Success,
-            "Deleted Service - $ServiceID",
+            "Service is deleted - ID $ServiceID",
         );
-        }
+    }
 
 );
 

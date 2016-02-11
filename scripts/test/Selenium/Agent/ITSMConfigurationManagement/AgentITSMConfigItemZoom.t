@@ -40,20 +40,29 @@ $Selenium->RunTest(
             push @DeplStateIDs, $DeplStateDataRef->{ItemID}
         }
 
-        # get config item object
+        # get needed objects
         my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+        my $ConfigObject     = $Kernel::OM->Get('Kernel::Config');
 
-        # create config item number
+        # create ConfigItem number
         my $ConfigItemNumber = $ConfigItemObject->ConfigItemNumberCreate(
-            Type    => $Kernel::OM->Get('Kernel::Config')->Get('ITSMConfigItem::NumberGenerator'),
+            Type    => $ConfigObject->Get('ITSMConfigItem::NumberGenerator'),
             ClassID => $HardwareConfigItemID,
         );
+        $Self->True(
+            $ConfigItemNumber,
+            "ConfigItem number is created - $ConfigItemNumber"
+        );
 
-        # add the new config item
+        # add the new ConfigItem
         my $ConfigItemID = $ConfigItemObject->ConfigItemAdd(
             Number  => $ConfigItemNumber,
             ClassID => $HardwareConfigItemID,
             UserID  => 1,
+        );
+        $Self->True(
+            $ConfigItemID,
+            "ConfigItem is created - ID $ConfigItemID"
         );
 
         # add two versions
@@ -66,6 +75,10 @@ $Selenium->RunTest(
                 InciStateID  => 1,
                 UserID       => 1,
                 ConfigItemID => $ConfigItemID,
+            );
+            $Self->True(
+                $VersionID,
+                "Version is created - ID $VersionID"
             );
             push @VersionIDs, $VersionID
         }
@@ -81,13 +94,15 @@ $Selenium->RunTest(
             Password => $TestUserLogin,
         );
 
-        # navigate te AgentITSMConfigItemZoom screen
-        my $ScriptAlias = $Kernel::OM->Get('Kernel::Config')->Get('ScriptAlias');
-        $Selenium->get(
+        # get script alias
+        my $ScriptAlias = $ConfigObject->Get('ScriptAlias');
+
+        # navigate to AgentITSMConfigItemZoom screen
+        $Selenium->VerifiedGet(
             "${ScriptAlias}index.pl?Action=AgentITSMConfigItemZoom;ConfigItemID=$ConfigItemID;Version=$VersionIDs[0]"
         );
 
-        # get config item value params
+        # get ConfigItem value params
         my @ConfigItemValues = (
             {
                 Value => 'Hardware',
@@ -111,13 +126,13 @@ $Selenium->RunTest(
             },
         );
 
-        # check config item values on screen
+        # check ConfigItem values on screen
         for my $CheckConfigItemValue (@ConfigItemValues) {
             $Self->True(
                 $Selenium->execute_script(
                     "return \$('$CheckConfigItemValue->{Check}').length"
                 ),
-                "Test config item value $CheckConfigItemValue->{Value} - found",
+                "Test ConfigItem value $CheckConfigItemValue->{Value} - found",
             );
         }
 
@@ -169,16 +184,16 @@ $Selenium->RunTest(
             );
         }
 
-        # delete created test config item
+        # delete created test ConfigItem
         my $Success = $ConfigItemObject->ConfigItemDelete(
             ConfigItemID => $ConfigItemID,
             UserID       => 1,
         );
         $Self->True(
             $Success,
-            "Deleted ConfigItem - $ConfigItemID",
+            "ConfigItem is deleted - ID $ConfigItemID",
         );
-        }
+    }
 
 );
 
