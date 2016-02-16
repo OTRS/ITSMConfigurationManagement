@@ -221,7 +221,9 @@ sub SearchInputCreate {
     my $Values = $Self->SearchFormDataGet(%Param);
 
     # get company data
-    my %CompanyList = $Kernel::OM->Get('Kernel::System::CustomerCompany')->CustomerCompanyList();
+    my %CompanyList = $Kernel::OM->Get('Kernel::System::CustomerCompany')->CustomerCompanyList(
+        Limit => 0,
+    );
 
     # generate string
     my $String = $Kernel::OM->Get('Kernel::Output::HTML::Layout')->BuildSelection(
