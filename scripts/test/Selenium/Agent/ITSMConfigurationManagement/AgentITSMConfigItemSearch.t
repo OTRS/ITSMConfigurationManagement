@@ -133,7 +133,7 @@ $Selenium->RunTest(
         );
 
         # change search option
-        $Selenium->find_element( "#ITSMConfigItemSearch", 'css' )->click();
+        $Selenium->find_element( "#ITSMConfigItemSearch", 'css' )->VerifiedClick();
 
         # wait until form has loaded, if necessary
         $Selenium->WaitFor( JavaScript => "return \$('#SearchProfile').length" );
