@@ -48,18 +48,10 @@ sub Run {
 
     #$Kernel::OM->Get('Kernel::System::Log')->Dumper('Param', %Param);
 
+    # only try all, if it has to be
     if ( $Kernel::OM->Get('Kernel::Config')->Get('ITSMConfigItem::SetIncidentState') ) {
 
         my $Return = 0;
-
-        my $CorrectEvent = 0;
-        for my $Event (qw(LinkAdd LinkDelete TicketStateUpdate TicketTypeUpdate)) {
-            if ( $Param{Event} eq $Event ) {
-                $CorrectEvent = 1;
-            }
-        }
-
-        return if $CorrectEvent == 0;
 
         my $TicketID     = 0;
         my $ConfigItemID = 0;
@@ -100,6 +92,9 @@ sub Run {
                     $StateOK = 1 if $Ticket{State} eq $State;
                 }
                 if ($StateOK) {
+
+                    # set without link check
+                    # it creates no new version, if already 'Incident'
                     $NewCIVersion = $Self->_SetCIStatus(
                         ConfigItemID  => $ConfigItemID,
                         IncidentState => 'Incident',
@@ -108,11 +103,18 @@ sub Run {
             }
             elsif ( $Param{Event} eq 'LinkDelete' ) {
 
-                #TODO: check for still open links
-                $NewCIVersion = $Self->_SetCIStatus(
-                    ConfigItemID  => $ConfigItemID,
-                    IncidentState => 'Operational',
+                # check for more linked open tickets
+                my $MoreOpenLinks = $Self->_CheckConfigItemLinks(
+                    ConfigItemID => $ConfigItemID,
                 );
+
+                # no open links left
+                if ( $MoreOpenLinks && $MoreOpenLinks == 0 ) {
+                    $NewCIVersion = $Self->_SetCIStatus(
+                        ConfigItemID  => $ConfigItemID,
+                        IncidentState => 'Operational',
+                    );
+                }
             }
         }
 
@@ -141,14 +143,17 @@ sub Run {
             if ($StateOK) {
 
                 # check for more linked open tickets
-                my $MoreOpenLinks = $Self->_CheckLinks(
+                my $MoreOpenLinks = $Self->_CheckTicketLinks(
                     TicketID => $TicketID,
                 );
 
-                $NewCIVersion = $Self->_SetCIStatus(
-                    ConfigItemID  => $ConfigItemID,
-                    IncidentState => 'Operational',
-                );
+                # no open links left
+                if ( $MoreOpenLinks && $MoreOpenLinks == 0 ) {
+                    $NewCIVersion = $Self->_SetCIStatus(
+                        ConfigItemID  => $ConfigItemID,
+                        IncidentState => 'Operational',
+                    );
+                }
             }
         }
 
@@ -241,7 +246,7 @@ sub _SetCIStatus {
 # returns an array of linked ConfiItemIDs
 # maybe empty if no link left
 #TODO !
-sub _CheckLinks {
+sub _CheckTicketLinks {
     my ( $Self, %Param ) = @_;
 
     # check needed stuff
@@ -288,6 +293,58 @@ sub _CheckLinks {
     }
 
     return [];
+}
+
+# returns an number of open linked Tickets
+#TODO !
+sub _CheckConfigItemLinks {
+    my ( $Self, %Param ) = @_;
+
+    my $ConfigItemID;
+
+    # check needed stuff
+    for my $Needed (qw(ConfigItemID)) {
+        if ( !$Param{$Needed} ) {
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
+                Priority => 'error',
+                Message  => "Need $Needed!",
+            );
+
+            return;
+        }
+        $ConfigItemID = $Param{ConfigItemID};
+    }
+
+    my $LinkList = $Kernel::OM->Get('Kernel::System::LinkObject')->LinkList(
+        Object    => 'ITSMConfigItem',
+        Key       => $ConfigItemID,
+        Object2   => 'Ticket',
+        State     => 'Valid',
+        Direction => 'Both',
+        UserID    => 1,
+    );
+
+    my $OpenTickets = 0;
+    my @StateArray = ( 'new', 'open', 'pending reminder', 'pending auto' );
+    for my $Item ( sort keys %{$LinkList} ) {
+        for my $LinkType ( sort keys %{ $LinkList->{$Item} } ) {
+            for my $Direction ( sort keys %{ $LinkList->{$Item}->{$LinkType} } ) {
+                for my $TicketID ( sort keys %{ $LinkList->{$Item}->{$LinkType}->{$Direction} } ) {
+                    my %Ticket = $Kernel::OM->Get('Kernel::System::Ticket')->TicketGet(
+                        TicketID => $TicketID,
+                    );
+                    if ( $Ticket{StateType} ) {
+                        for my $State (@StateArray) {
+                            $OpenTickets++ if $State eq $Ticket{StateType};
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+
+    return $OpenTickets;
 }
 
 1;
