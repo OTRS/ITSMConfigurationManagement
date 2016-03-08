@@ -42,7 +42,7 @@ use Data::Dumper;
 my $URL = 'http://localhost/otrs/nph-genericinterface.pl/Webservice/GenericConfigItemConnectorSOAP';
 
 # this name space should match the specified name space in the SOAP transport for the web service
-my $NameSpace = 'http://www.otrs.org/ConfigItemConnector/';
+my $NameSpace = 'http://www.otrs.org/ConfigItemConnector';
 
 my $Operation = 'ConfigItemCreate';
 
@@ -62,7 +62,7 @@ my $XMLData = '
             <Model>Thinkpad</Model>
             <Description>Thinkpad X300</Description>
             <Type>Desktop</Type>
-            <Owner>mm</Owner>
+            <Owner>tt</Owner>
             <SerialNumber>abc12345abc</SerialNumber>
             <OperatingSystem>CentOS 6.0</OperatingSystem>
             <CPU>Intel Core i3</CPU>
@@ -106,8 +106,7 @@ my $XMLData = '
 # create a SOAP::Lite data structure from the provided XML data structure
 my $SOAPData = SOAP::Data->type( 'xml' => $XMLData );
 
-my $SOAPObject = SOAP::Lite->uri($NameSpace)->proxy($URL)->soapversion('1.2')
-    ->$Operation($SOAPData);
+my $SOAPObject = SOAP::Lite->uri($NameSpace)->proxy($URL)->soapversion('1.2')->$Operation($SOAPData);
 
 # check for a fault in the soap code
 if ( $SOAPObject->fault() ) {
