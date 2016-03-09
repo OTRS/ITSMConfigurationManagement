@@ -122,11 +122,11 @@ perform ConfigItemUpdate Operation. This will return the updated config item num
 
     my $Result = $OperationObject->Run(
         Data => {
-            UserLogin         => 'some agent login',        # UserLogin or CustomerUserLogin or SessionID is
+            UserLogin         => 'some agent login',        # UserLogin or SessionID is
                                                             #   required
             SessionID         => 123,
 
-            Password  => 'some password',                   # if UserLogin or CustomerUserLogin is sent then
+            Password  => 'some password',                   # if UserLogin is sent then
                                                             #   Password is required
             ConfigItemID => 123,
             ConfigItem   => {
@@ -192,7 +192,7 @@ sub Run {
         return $Self->ReturnError(
             ErrorCode => "$Self->{OperationName}.MissingParameter",
             ErrorMessage =>
-                "$Self->{OperationName}: UserLogin, CustomerUserLogin or SessionID is required!",
+                "$Self->{OperationName}: UserLogin or SessionID is required!",
         );
     }
 

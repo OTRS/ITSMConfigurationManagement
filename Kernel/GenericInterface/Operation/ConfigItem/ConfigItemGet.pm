@@ -72,13 +72,9 @@ one or more ConfigItem entries in one call.
 
     my $Result = $OperationObject->Run(
         Data => {
-            UserLogin         => 'some agent login',                            # UserLogin or CustomerUserLogin or SessionID is
-                                                                                #   required
-            CustomerUserLogin => 'some customer login',
-            SessionID         => 123,
-
-            Password          => 'some password',                               # if UserLogin or customerUserLogin is sent then
-                                                                                #   Password is required
+            UserLogin         => 'some agent login',                            # UserLogin or SessionID is
+            SessionID         => 123,                                           #   required
+            Password          => 'some password',                               # if UserLogin is sent then Password is required
             ConfigItemID      => '32,33',                                       # required, could be coma separated IDs or an Array
             Attachments       => 1,                                             # Optional, 1 as default. If it's set with the value 1,
                                                                                 # attachments for articles will be included on ConfigItem data
