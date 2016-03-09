@@ -681,7 +681,7 @@ sub CreateAttachment {
         if ( !$Param{$Needed} ) {
             return {
                 Success      => 0,
-                ErrorMessage => "CreateAttachment() Got no $Needed!"
+                ErrorMessage => "CreateAttachment() Got no $Needed!",
             };
         }
     }
