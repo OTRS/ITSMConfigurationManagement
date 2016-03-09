@@ -94,6 +94,12 @@ WARNING: This WSDL file is for Development and Test purposes ONLY!
             <xsd:complexType name="OTRS_ConfigItem_ConfigItem">
                 <xsd:sequence>
                     <xsd:element
+                        name="Number"
+                        type="xsd:string"
+                        minOccurs="0"
+                        maxOccurs="1">
+                    </xsd:element>
+                    <xsd:element
                         name="Class"
                         type="xsd:string">
                     </xsd:element>

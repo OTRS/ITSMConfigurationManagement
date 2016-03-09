@@ -128,6 +128,7 @@ perform ConfigItemCreate Operation. This will return the created config item num
             Password  => 'some password',                   # if UserLogin is sent then
                                                             #   Password is required
             ConfigItem => {
+                Number       => '111',                      # optional
                 Class        => 'Config Item Class',
                 Name         => 'The Name',
                 DeplState    => 'deployment state',
@@ -623,6 +624,7 @@ sub _ConfigItemCreate {
 
     # create new config item
     my $ConfigItemID = $ConfigItemObject->ConfigItemAdd(
+        Number  => $ConfigItem->{Number},
         ClassID => $Self->{ReverseClassList}->{ $ConfigItem->{Class} },
         UserID  => $Param{UserID},
     );
@@ -652,7 +654,7 @@ sub _ConfigItemCreate {
             my $Result = $Self->CreateAttachment(
                 Attachment   => $Attachment,
                 ConfigItemID => $ConfigItemID,
-                UserID       => $Param{UserID}
+                UserID       => $Param{UserID},
             );
 
             if ( !$Result->{Success} ) {
