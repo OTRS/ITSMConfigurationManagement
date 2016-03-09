@@ -133,7 +133,7 @@ perform ConfigItemCreate Operation. This will return the created config item num
                 Name         => 'The Name',
                 DeplState    => 'deployment state',
                 InciState    => 'incident state',
-                CIXMLData    => $ArrayHashRef,              # it deppends on the Configuration Item class and definition
+                CIXMLData    => $ArrayHashRef,              # it depends on the Configuration Item class and definition
 
                 Attachment => [
                     {

@@ -147,7 +147,7 @@ perform ConfigItemCreate Operation. This will return the created config item num
                 # config items with changed time before then ....
                 ConfigItemChangeTimeOlderDate => '2006-01-19 23:59:59',     # (optional)
 
-                CIXMLData    => $ArrayHashRef,                              # (optional), it deppends on the Configuration
+                CIXMLData    => $ArrayHashRef,                              # (optional), it depends on the Configuration
                                                                             #   Item class and definition
 
                 PreviousVersionSearch => 1,  # (optional) default 0 (0|1)
