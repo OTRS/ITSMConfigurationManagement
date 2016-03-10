@@ -644,7 +644,7 @@ sub _ConfigItemCreate {
         return {
             Success      => 0,
             ErrorMessage => 'Configuration Item could not be created, please contact the system'
-                . 'administrator'
+                . 'administrator',
             }
     }
 
