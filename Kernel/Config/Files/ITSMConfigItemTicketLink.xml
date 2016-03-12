@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <otrs_config version="1.0" init="Application">
-    <ConfigItem Name="ITSMConfigItem::SetIncidentState" Required="0" Valid="1">
+    <ConfigItem Name="ITSMConfigItem::SetIncidentStateOnLink" Required="0" Valid="1">
         <Description Translatable="1">Set the incident state of a CI automatically when a Ticket is Linked to a CI.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Core::LinkStatus</SubGroup>
@@ -18,7 +18,7 @@
         <Setting>
             <Hash>
                 <Item Key="Module">Kernel::System::Ticket::Event::TicketStatusLink</Item>
-                <Item Key="Event">LinkAdd|LinkDelete|TicketStateUpdate|TicketTypeUpdate</Item>
+                <Item Key="Event">(LinkAdd|LinkDelete)</Item>
             </Hash>
         </Setting>
     </ConfigItem>
@@ -29,7 +29,7 @@
         <Setting>
             <Hash>
                 <Item Key="Module">Kernel::System::Ticket::Event::TicketStatusLink</Item>
-                <Item Key="Event">LinkAdd|LinkDelete|TicketStateUpdate|TicketTypeUpdate</Item>
+                <Item Key="Event">(TicketStateUpdate|TicketTypeUpdate)</Item>
             </Hash>
         </Setting>
     </ConfigItem>
@@ -43,14 +43,37 @@
             </Array>
         </Setting>
     </ConfigItem>
-    <ConfigItem Name="ITSMConfigItem::LinkStatus::LinkTypes" Required="0" Valid="0">
-        <Description Translatable="1">Defines which type of link can affect the status of a linked CI.</Description>
+    <ConfigItem Name="ITSMConfigItem::LinkStatus::DeploymentStates" Required="0" Valid="0">
+        <Description Translatable="1">Defines the relevant deployment states where linked tickets can affect the status of a CI.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Core::LinkStatus</SubGroup>
         <Setting>
             <Array>
-                <Item>RelevantTo</Item>
+                <Item>Production</Item>
             </Array>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="ITSMConfigItem::LinkStatus::IncidentStates" Required="1" Valid="1">
+        <Description Translatable="1">Defines the order of incident states from high (e.g. cricital) to low (e.g. functional).</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Core::LinkStatus</SubGroup>
+        <Setting>
+            <Array>
+                <Item>Incident</Item>
+                <Item>Warning</Item>
+                <Item>Operational</Item>
+            </Array>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="ITSMConfigItem::LinkStatus::LinkTypes" Required="1" Valid="1">
+        <Description Translatable="1">Defines which type of link can affect the status of a linked CI.</Description>
+        <Group>ITSM Configuration Management</Group>
+        <SubGroup>Core::LinkStatus</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="Affected">Incident</Item>
+<Item Key="Alternative To">Warning</Item>
+            </Hash>
         </Setting>
     </ConfigItem>
 </otrs_config>
