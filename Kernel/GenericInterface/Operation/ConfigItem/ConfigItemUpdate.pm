@@ -122,19 +122,21 @@ perform ConfigItemUpdate Operation. This will return the updated config item num
 
     my $Result = $OperationObject->Run(
         Data => {
-            UserLogin         => 'some agent login',        # UserLogin or SessionID is
-                                                            #   required
-            SessionID         => 123,
+            UserLogin => 'some agent login',                # UserLogin or SessionID is
+            SessionID => 123,                               #   required
 
-            Password  => 'some password',                   # if UserLogin is sent then
-                                                            #   Password is required
+            Password  => 'some password',                   # if UserLogin is sent then Password is required
+
+            ReplaceExistingData => 0,                       # optional, 0 or 1, default 0
+                                                            # this will replace the existing XML data and attachments
             ConfigItemID => 123,
+
             ConfigItem   => {
-                Class        => 'Config Item Class',
-                Name         => 'The Name',
-                DeplState    => 'deployment state',
-                InciState    => 'incident state',
-                CIXMLData    => $ArrayHashRef,              # it depends on the Configuration Item class and definition
+                Class     => 'Config Item Class',
+                Name      => 'The Name',
+                DeplState => 'deployment state',
+                InciState => 'incident state',
+                CIXMLData => $ArrayHashRef,                 # it depends on the Configuration Item class and definition
 
                 Attachment => [
                     {
@@ -144,11 +146,11 @@ perform ConfigItemUpdate Operation. This will return the updated config item num
                     },
                     # ...
                 ],
-                #or
+                # or
                 #Attachment => {
-                #    Content     => 'content'
-                #    ContentType => 'some content type'
-                #    Filename    => 'some fine name'
+                #   Content     => 'content'
+                #   ContentType => 'some content type'
+                #   Filename    => 'some fine name'
                 #},
             },
         },
@@ -264,17 +266,76 @@ sub Run {
     for my $Attribute ( sort keys %{$ConfigItem} ) {
         if ( ref $Attribute ne 'HASH' && ref $Attribute ne 'ARRAY' ) {
 
-            #remove leading spaces
+            # remove leading spaces
             $ConfigItem->{$Attribute} =~ s{\A\s+}{};
 
-            #remove trailing spaces
+            # remove trailing spaces
             $ConfigItem->{$Attribute} =~ s{\s+\z}{};
         }
     }
+
+    # if the parameter ReplaceExistingData is set to 0 or if it is missing
+    # then missing, empty or only partially defined CIXMLData parameter attributes are allowed
+    # in this case the existing CIXMLData is used for the missing parts.
+    # A missing (undefined) CIXMLData attribute has the same effect
+    # the ReplaceExistingData parameter also influences if existing attachments should be replaced or kept
+    if ( !$Param{Data}->{ReplaceExistingData} || !defined $ConfigItem->{CIXMLData} ) {
+
+        # set to empty hash reference if empty or not defined
+        $ConfigItem->{CIXMLData} ||= {};
+
+        # get latest version data from configitem
+        my $Version = $ConfigItemObject->VersionGet(
+            ConfigItemID => $ConfigItemID,
+            UserID       => $UserID,
+        );
+
+        if ( !IsHashRefWithData($Version) ) {
+
+            my $ErrorMessage = 'Could not get ConfigItem data'
+                . ' in Kernel::GenericInterface::Operation::ConfigItem::ConfigItemUpdate::Run()';
+
+            return $Self->ReturnError(
+                ErrorCode    => '$Self->{OperationName}.InvalidParameter',
+                ErrorMessage => "$Self->{OperationName}: $ErrorMessage",
+            );
+        }
+
+        # remove unneeded items
+        delete $Version->{ClassID};
+        delete $Version->{CurDeplStateID};
+        delete $Version->{CurInciStateID};
+        delete $Version->{DeplStateID};
+        delete $Version->{InciStateID};
+        delete $Version->{XMLDefinitionID};
+
+        my $Definition = delete $Version->{XMLDefinition};
+
+        my $FormatedXMLData = $Self->InvertFormatXMLData(
+            XMLData => $Version->{XMLData}->[1]->{Version},
+        );
+
+        my $ReplacedXMLData = $Self->InvertReplaceXMLData(
+            XMLData    => $FormatedXMLData,
+            Definition => $Definition,
+        );
+
+        $Version->{XMLData} = $ReplacedXMLData;
+
+        # rename XMLData since SOAP transport complains about XML prefix on names
+        $Version->{CIXMLData} = delete $Version->{XMLData};
+
+        # merge existing data and new data from parameters
+        $ConfigItem->{CIXMLData} = {
+            %{ $Version->{CIXMLData} },
+            %{ $ConfigItem->{CIXMLData} },
+        };
+    }
+
     if ( !IsHashRefWithData( $ConfigItem->{CIXMLData} ) ) {
         return $Self->ReturnError(
-            ErrorCode    => "$Self->{OperationName}.MissingParameter",
-            ErrorMessage => "$Self->{OperationName}: ConfigItem->CIXMLData is missing or invalid!",
+            ErrorCode    => "$Self->{OperationName}.InvalidParameter",
+            ErrorMessage => "$Self->{OperationName}: ConfigItem->CIXMLData is empty or invalid!",
         );
     }
 
@@ -303,6 +364,7 @@ sub Run {
         );
     }
 
+    # handle attachments
     my $Attachment;
     my @AttachmentList;
 
@@ -358,10 +420,11 @@ sub Run {
     }
 
     return $Self->_ConfigItemUpdate(
-        ConfigItem     => $ConfigItem,
-        ConfigItemID   => $ConfigItemID,
-        AttachmentList => \@AttachmentList,
-        UserID         => $UserID,
+        ConfigItem          => $ConfigItem,
+        ConfigItemID        => $ConfigItemID,
+        AttachmentList      => \@AttachmentList,
+        ReplaceExistingData => $Param{Data}->{ReplaceExistingData},
+        UserID              => $UserID,
     );
 }
 
@@ -423,6 +486,9 @@ sub _CleanXMLData {
 
         }
         elsif ( ref $XMLData->{$Key} eq '' ) {
+
+
+            # TODO: Use StringClean function!
 
             #remove leading spaces
             $XMLData->{$Key} =~ s{\A\s+}{};
@@ -601,10 +667,11 @@ sub _CheckAttachment {
 updates a configuration item with attachments if specified.
 
     my $Response = $OperationObject->_ConfigItemUpdate(
-        ConfigItemID   => 123,
-        ConfigItem     => $ConfigItem,             # all configuration item parameters
-        AttachmentList => $Attachment,             # a list of all attachments
-        UserID         => 123,
+        ConfigItemID        => 123,
+        ConfigItem          => $ConfigItem,             # all configuration item parameters
+        AttachmentList      => $Attachment,             # a list of all attachments
+        ReplaceExistingData => 0,                       # if the existing xml attributes and attachments should be replaced or kept
+        UserID              => 123,
     );
 
     returns:
@@ -691,6 +758,35 @@ sub _ConfigItemUpdate {
         );
     }
 
+    # the ReplaceExistingData flag is set
+    if ( $Param{ReplaceExistingData} ) {
+
+        # get a list of all attachments
+        my @ExistingAttachments = $ConfigItemObject->ConfigItemAttachmentList(
+            ConfigItemID => $ConfigItemID,
+        );
+
+        # delete all attachments of this config item
+        FILENAME:
+        for my $Filename (@ExistingAttachments) {
+
+            # delete the attachment
+            my $DeletionSuccess = $ConfigItemObject->ConfigItemAttachmentDelete(
+                ConfigItemID => $ConfigItemID,
+                Filename     => $Filename,
+                UserID       => $Param{UserID},
+            );
+
+            if ( !$DeletionSuccess ) {
+                $Kernel::OM->Get('Kernel::System::Log')->Log(
+                    Priority => 'error',
+                    Message  => "Unknown problem when deleting attachment $Filename of ConfigItem "
+                        . "$ConfigItemID. Please check the VirtualFS backend for stale files!",
+                );
+            }
+        }
+    }
+
     # set attachments
     if ( IsArrayRefWithData($AttachmentList) ) {
 
@@ -702,9 +798,8 @@ sub _ConfigItemUpdate {
             );
 
             if ( !$Result->{Success} ) {
-                my $ErrorMessage =
-                    $Result->{ErrorMessage} || "Attachment could not be created, please contact"
-                    . " the system administrator";
+                my $ErrorMessage = $Result->{ErrorMessage}
+                    || "Attachment could not be created, please contact the system administrator";
 
                 return {
                     Success      => 0,
@@ -722,9 +817,8 @@ sub _ConfigItemUpdate {
     if ( !IsHashRefWithData($ConfigItemData) ) {
         return {
             Success      => 0,
-            ErrorMessage => 'Could not get new configuration item information, please contact the'
-                . ' system administrator',
-            }
+            ErrorMessage => 'Could not get new configuration item information, please contact the system administrator',
+        };
     }
 
     return {
