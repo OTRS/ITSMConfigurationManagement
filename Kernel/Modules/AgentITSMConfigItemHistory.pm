@@ -170,20 +170,10 @@ sub Run {
 
             $Data{Comment} =~ s{ \A %% }{}xmsg;
             my @Values = split /%%/, $Data{Comment};
-            $Data{Comment} = '';
 
-            for my $Value (@Values) {
-                if ( $Data{Comment} ) {
-                    $Data{Comment} .= '", ';
-                }
-                $Data{Comment} .= '"' . $Value;
-            }
-            if ( !$Data{Comment} ) {
-                $Data{Comment} = '" ';
-            }
             $Data{Comment} = $LayoutObject->{LanguageObject}->Translate(
                 'CIHistory::' . $Data{HistoryType},
-                $Data{Comment}
+                @Values,
             );
 
             # remove not needed place holder
