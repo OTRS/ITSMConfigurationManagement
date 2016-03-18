@@ -284,6 +284,14 @@ sub Run {
         # set to empty hash reference if empty or not defined
         $ConfigItem->{CIXMLData} ||= {};
 
+        # CIXMLData must be a hash reference
+        if ( ref $ConfigItem->{CIXMLData} ne 'HASH' ) {
+            return $Self->ReturnError(
+                ErrorCode    => "$Self->{OperationName}.MissingParameter",
+                ErrorMessage => "$Self->{OperationName}: ConfigItem->CIXMLData is missing or invalid!",
+            );
+        }
+
         # get latest version data from configitem
         my $Version = $ConfigItemObject->VersionGet(
             ConfigItemID => $ConfigItemID,
