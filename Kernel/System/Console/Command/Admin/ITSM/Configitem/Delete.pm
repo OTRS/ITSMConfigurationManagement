@@ -250,7 +250,7 @@ sub Run {
         }
     }
 
-    # delete versions than xx days from all config items
+    # delete versions older than xx days from all config items
     elsif ($AllOlderThanDays) {
 
         my $SystemTime = $Kernel::OM->Get('Kernel::System::Time')->SystemTime();
