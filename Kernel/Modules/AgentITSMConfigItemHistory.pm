@@ -123,8 +123,8 @@ sub Run {
                     Class => $AttributeInfo->{Input}->{Class},
                 );
 
-                $Parts[1] = $ItemList->{ $Parts[1] } || '';
-                $Parts[2] = $ItemList->{ $Parts[2] } || '';
+                $Parts[1] = $ItemList->{ $Parts[1] || '' } || '';
+                $Parts[2] = $ItemList->{ $Parts[2] || '' } || '';
             }
 
             # assemble parts
