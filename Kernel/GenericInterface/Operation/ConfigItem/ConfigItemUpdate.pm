@@ -495,7 +495,6 @@ sub _CleanXMLData {
         }
         elsif ( ref $XMLData->{$Key} eq '' ) {
 
-
             # TODO: Use StringClean function!
 
             #remove leading spaces
