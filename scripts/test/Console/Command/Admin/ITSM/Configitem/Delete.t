@@ -14,7 +14,14 @@ use utf8;
 use vars (qw($Self));
 
 my $CommandObject = $Kernel::OM->Get('Kernel::System::Console::Command::Admin::ITSM::Configitem::Delete');
-my $HelperObject  = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
+
+# get helper object
+$Kernel::OM->ObjectParamAdd(
+    'Kernel::System::UnitTest::Helper' => {
+        RestoreDatabase => 1,
+    },
+);
+my $Helper = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
 
 my $ExitCode = $CommandObject->Execute();
 
@@ -34,7 +41,7 @@ $Self->Is(
 );
 
 # check command with class options (invalid class)
-my $RandomClass = 'TestClass' . $HelperObject->GetRandomID();
+my $RandomClass = 'TestClass' . $Helper->GetRandomID();
 $ExitCode = $CommandObject->Execute( '--class', $RandomClass );
 
 $Self->Is(
@@ -98,7 +105,7 @@ my $PlannedDeplStateDataRef = $GeneralCatalogObject->ItemGet(
 my $PlannedDeplStateID = $PlannedDeplStateDataRef->{ItemID};
 
 # add a new version for the last added in previous loop
-my $ConfigItemName = 'TestConfigItem' . $HelperObject->GetRandomID();
+my $ConfigItemName = 'TestConfigItem' . $Helper->GetRandomID();
 my $VersionID      = $ConfigItemObject->VersionAdd(
     Name         => $ConfigItemName,
     DefinitionID => 1,
@@ -145,36 +152,6 @@ $Self->Is(
     "Option --class $RandomClass",
 );
 
-# clean up test data
-my $Success = $Kernel::OM->Get('Kernel::System::DB')->Do(
-    SQL => "DELETE FROM general_catalog_preferences WHERE general_catalog_id = $GeneralCatalogItemID",
-);
-
-$Self->True(
-    $Success,
-    "General catalog preferences for $GeneralCatalogItemID is deleted",
-);
-
-$Success = $Kernel::OM->Get('Kernel::System::DB')->Do(
-    SQL => "DELETE FROM configitem_counter WHERE class_id = $GeneralCatalogItemID",
-);
-
-$Self->True(
-    $Success,
-    "CleanUp config item counter data for - $GeneralCatalogItemID",
-);
-
-$Success = $Kernel::OM->Get('Kernel::System::DB')->Do(
-    SQL => "DELETE FROM general_catalog WHERE id = $GeneralCatalogItemID",
-);
-
-$Self->True(
-    $Success,
-    "Test General catalog item is deleted - $GeneralCatalogItemID",
-);
-
-$Kernel::OM->Get('Kernel::System::Cache')->CleanUp(
-    Type => 'GeneralCatalog',
-);
+# cleanup is done by RestoreDatabase
 
 1;
