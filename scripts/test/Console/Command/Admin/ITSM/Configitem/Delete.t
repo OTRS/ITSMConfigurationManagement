@@ -76,6 +76,13 @@ $Self->True(
 # get ConfigItem object
 my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
 
+# get 'Planned' deployment state IDs
+my $PlannedDeplStateDataRef = $GeneralCatalogObject->ItemGet(
+    Class => 'ITSM::ConfigItem::DeploymentState',
+    Name  => 'Planned',
+);
+my $PlannedDeplStateID = $PlannedDeplStateDataRef->{ItemID};
+
 my @ConfigItemNumbers;
 my $ConfigItemID;
 
@@ -95,30 +102,104 @@ for ( 1 .. 10 ) {
     );
 
     push @ConfigItemNumbers, $ConfigItemNumber;
+
+    # add new versions for the last added in previous loop
+    my $ConfigItemName = 'TestConfigItem' . $Helper->GetRandomID();
+
+    COUNT:
+    for my $Count ( 1 .. 50 ) {
+
+        my $VersionID = $ConfigItemObject->VersionAdd(
+            Name         => $ConfigItemName . '-' . $Count,
+            DefinitionID => 1,
+            DeplStateID  => $PlannedDeplStateID,
+            InciStateID  => 1,
+            UserID       => 1,
+            ConfigItemID => $ConfigItemID,
+        );
+
+        $Self->True(
+            $VersionID,
+            "Version $Count for config item $ConfigItemID is created - $ConfigItemName",
+        );
+
+        # change the date into past for the first 20 versions
+        next COUNT if $Count > 10;
+
+        # insert new version
+        my $Success = $Kernel::OM->Get('Kernel::System::DB')->Do(
+            SQL => 'UPDATE configitem_version
+                SET create_time = "2010-01-01 00:00:00"
+                WHERE id = ?',
+            Bind => [
+                \$VersionID,
+            ],
+        );
+    }
+
+    # check command with all-older-than-days-versions options (delete all versions older than one day)
+    $ExitCode = $CommandObject->Execute( '--all-older-than-days-versions', 1 );
+
+    $Self->Is(
+        $ExitCode,
+        0,
+        "Exit code: Options --all-older-than-days-versions 1",
+    );
+
+    # get the list of remaining versions of this config item
+    my $VersionList = $ConfigItemObject->VersionList(
+        ConfigItemID => $ConfigItemID,
+    );
+
+    # result should only be 40 versions now
+    $Self->Is(
+        scalar @{$VersionList},
+        40,
+        "Number of remaining versions after running command with Options --all-older-than-days-versions 1",
+    );
+
+    # check command with all-but-keep-last-versions options (delete all versions but keep the last 30 versions)
+    $ExitCode = $CommandObject->Execute( '--all-but-keep-last-versions', 30 );
+
+    $Self->Is(
+        $ExitCode,
+        0,
+        "Exit code: Options --all-but-keep-last-versions 30",
+    );
+
+    # get the list of remaining versions of this config item
+    $VersionList = $ConfigItemObject->VersionList(
+        ConfigItemID => $ConfigItemID,
+    );
+
+    # result should only be 40 versions now
+    $Self->Is(
+        scalar @{$VersionList},
+        30,
+        "Number of remaining versions after running command with Options --all-but-keep-last-versions 30",
+    );
+
+    # check command with all-old-versions options (delete all old versions except the last one)
+    $ExitCode = $CommandObject->Execute('--all-old-versions');
+
+    $Self->Is(
+        $ExitCode,
+        0,
+        "Exit code: Options --all-old-versions",
+    );
+
+    # get the list of remaining versions of this config item
+    $VersionList = $ConfigItemObject->VersionList(
+        ConfigItemID => $ConfigItemID,
+    );
+
+    # result should only be 40 versions now
+    $Self->Is(
+        scalar @{$VersionList},
+        1,
+        "Number of remaining versions after running command with Options --all-old-versions",
+    );
 }
-
-# get 'Planned' deployment state IDs
-my $PlannedDeplStateDataRef = $GeneralCatalogObject->ItemGet(
-    Class => 'ITSM::ConfigItem::DeploymentState',
-    Name  => 'Planned',
-);
-my $PlannedDeplStateID = $PlannedDeplStateDataRef->{ItemID};
-
-# add a new version for the last added in previous loop
-my $ConfigItemName = 'TestConfigItem' . $Helper->GetRandomID();
-my $VersionID      = $ConfigItemObject->VersionAdd(
-    Name         => $ConfigItemName,
-    DefinitionID => 1,
-    DeplStateID  => $PlannedDeplStateID,
-    InciStateID  => 1,
-    UserID       => 1,
-    ConfigItemID => $ConfigItemID,
-);
-
-$Self->True(
-    $VersionID,
-    "Version for config item $ConfigItemID is created - $ConfigItemName",
-);
 
 # check command with class options ($RandomClass class) and deployment-state 'Planned'
 $ExitCode = $CommandObject->Execute( '--class', $RandomClass, '--deployment-state', 'Planned' );
@@ -126,7 +207,7 @@ $ExitCode = $CommandObject->Execute( '--class', $RandomClass, '--deployment-stat
 $Self->Is(
     $ExitCode,
     0,
-    "Options --class $RandomClass --deployment-state' Planned",
+    "Exit code: Options --class $RandomClass --deployment-state' Planned",
 );
 
 # check command with configitem-number options
@@ -138,7 +219,7 @@ $ExitCode = $CommandObject->Execute(
 $Self->Is(
     $ExitCode,
     0,
-    "Options --configitem-number",
+    "Exit code: Options --configitem-number",
 );
 
 # check command with class options ($RandomClass class)
@@ -149,7 +230,7 @@ $ExitCode = $CommandObject->Execute( '--class', $RandomClass );
 $Self->Is(
     $ExitCode,
     0,
-    "Option --class $RandomClass",
+    "Exit code: Option --class $RandomClass",
 );
 
 # cleanup is done by RestoreDatabase
