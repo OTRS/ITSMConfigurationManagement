@@ -10,6 +10,7 @@ package Kernel::System::ITSMConfigItem::Version;
 
 use strict;
 use warnings;
+
 use Kernel::System::VariableCheck qw(:all);
 
 use Storable;
@@ -841,7 +842,6 @@ sub VersionDelete {
         return;
     }
 
-    # get version list
     my $VersionList = [];
     if ( $Param{VersionID} ) {
         push @{$VersionList}, $Param{VersionID};
@@ -850,6 +850,7 @@ sub VersionDelete {
         push @{$VersionList}, @{ $Param{VersionIDs} };
     }
     else {
+        # get version list
         $VersionList = $Self->VersionList(
             ConfigItemID => $Param{ConfigItemID},
         );
