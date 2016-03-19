@@ -14,7 +14,14 @@ use utf8;
 use vars (qw($Self));
 
 my $CommandObject = $Kernel::OM->Get('Kernel::System::Console::Command::Admin::ITSM::Configitem::Delete');
-my $HelperObject  = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
+
+# get helper object
+$Kernel::OM->ObjectParamAdd(
+    'Kernel::System::UnitTest::Helper' => {
+        RestoreDatabase => 1,
+    },
+);
+my $Helper = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
 
 my $ExitCode = $CommandObject->Execute();
 
@@ -34,7 +41,7 @@ $Self->Is(
 );
 
 # check command with class options (invalid class)
-my $RandomClass = 'TestClass' . $HelperObject->GetRandomID();
+my $RandomClass = 'TestClass' . $Helper->GetRandomID();
 $ExitCode = $CommandObject->Execute( '--class', $RandomClass );
 
 $Self->Is(
@@ -69,6 +76,13 @@ $Self->True(
 # get ConfigItem object
 my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
 
+# get 'Planned' deployment state IDs
+my $PlannedDeplStateDataRef = $GeneralCatalogObject->ItemGet(
+    Class => 'ITSM::ConfigItem::DeploymentState',
+    Name  => 'Planned',
+);
+my $PlannedDeplStateID = $PlannedDeplStateDataRef->{ItemID};
+
 my @ConfigItemNumbers;
 my $ConfigItemID;
 
@@ -88,30 +102,28 @@ for ( 1 .. 10 ) {
     );
 
     push @ConfigItemNumbers, $ConfigItemNumber;
+
+    # add new versions for the last added in previous loop
+    my $ConfigItemName = 'TestConfigItem' . $Helper->GetRandomID();
+
+    COUNT:
+    for my $Count ( 1 .. 50 ) {
+
+        my $VersionID = $ConfigItemObject->VersionAdd(
+            Name         => $ConfigItemName . '-' . $Count,
+            DefinitionID => 1,
+            DeplStateID  => $PlannedDeplStateID,
+            InciStateID  => 1,
+            UserID       => 1,
+            ConfigItemID => $ConfigItemID,
+        );
+
+        $Self->True(
+            $VersionID,
+            "Version $Count for config item $ConfigItemID is created - $ConfigItemName",
+        );
+    }
 }
-
-# get 'Planned' deployment state IDs
-my $PlannedDeplStateDataRef = $GeneralCatalogObject->ItemGet(
-    Class => 'ITSM::ConfigItem::DeploymentState',
-    Name  => 'Planned',
-);
-my $PlannedDeplStateID = $PlannedDeplStateDataRef->{ItemID};
-
-# add a new version for the last added in previous loop
-my $ConfigItemName = 'TestConfigItem' . $HelperObject->GetRandomID();
-my $VersionID      = $ConfigItemObject->VersionAdd(
-    Name         => $ConfigItemName,
-    DefinitionID => 1,
-    DeplStateID  => $PlannedDeplStateID,
-    InciStateID  => 1,
-    UserID       => 1,
-    ConfigItemID => $ConfigItemID,
-);
-
-$Self->True(
-    $VersionID,
-    "Version for config item $ConfigItemID is created - $ConfigItemName",
-);
 
 # check command with class options ($RandomClass class) and deployment-state 'Planned'
 $ExitCode = $CommandObject->Execute( '--class', $RandomClass, '--deployment-state', 'Planned' );
@@ -119,7 +131,7 @@ $ExitCode = $CommandObject->Execute( '--class', $RandomClass, '--deployment-stat
 $Self->Is(
     $ExitCode,
     0,
-    "Options --class $RandomClass --deployment-state' Planned",
+    "Exit code: Options --class $RandomClass --deployment-state' Planned",
 );
 
 # check command with configitem-number options
@@ -131,7 +143,7 @@ $ExitCode = $CommandObject->Execute(
 $Self->Is(
     $ExitCode,
     0,
-    "Options --configitem-number",
+    "Exit code: Options --configitem-number",
 );
 
 # check command with class options ($RandomClass class)
@@ -142,39 +154,9 @@ $ExitCode = $CommandObject->Execute( '--class', $RandomClass );
 $Self->Is(
     $ExitCode,
     0,
-    "Option --class $RandomClass",
+    "Exit code: Option --class $RandomClass",
 );
 
-# clean up test data
-my $Success = $Kernel::OM->Get('Kernel::System::DB')->Do(
-    SQL => "DELETE FROM general_catalog_preferences WHERE general_catalog_id = $GeneralCatalogItemID",
-);
-
-$Self->True(
-    $Success,
-    "General catalog preferences for $GeneralCatalogItemID is deleted",
-);
-
-$Success = $Kernel::OM->Get('Kernel::System::DB')->Do(
-    SQL => "DELETE FROM configitem_counter WHERE class_id = $GeneralCatalogItemID",
-);
-
-$Self->True(
-    $Success,
-    "CleanUp config item counter data for - $GeneralCatalogItemID",
-);
-
-$Success = $Kernel::OM->Get('Kernel::System::DB')->Do(
-    SQL => "DELETE FROM general_catalog WHERE id = $GeneralCatalogItemID",
-);
-
-$Self->True(
-    $Success,
-    "Test General catalog item is deleted - $GeneralCatalogItemID",
-);
-
-$Kernel::OM->Get('Kernel::System::Cache')->CleanUp(
-    Type => 'GeneralCatalog',
-);
+# cleanup is done by RestoreDatabase
 
 1;
