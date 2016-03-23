@@ -105,18 +105,19 @@ $Selenium->RunTest(
 
         # create history messages list
         my @HistoryMessages = (
-            "New ConfigItem (ID=\"$ConfigItemID\", \"$ConfigItemNumber)",
-            "New version (ID=\"$VersionID)",
-            "ConfigItems' definition updated (ID=\"1)",
-            'Name updated (new="SeleniumTest; old=)',
-            'Incident state updated (new="Operational; old=)',
-            'Deployment state updated (new="Production; old=)',
+            'New ConfigItem (ID=' . $ConfigItemID . ')',
+            'New version (ID=' . $VersionID . ')',
+            "ConfigItems' definition updated (ID=1)",
+            'Name updated (new=SeleniumTest; old=)',
+            'Incident state updated (new=Operational; old=)',
+            'Deployment state updated (new=Production; old=)',
         );
 
         # check for history messages in history screen of created test ConfigItem
         $Selenium->VerifiedGet(
             "${ScriptAlias}index.pl?Action=AgentITSMConfigItemHistory;ConfigItemID=$ConfigItemID;VersionID=$VersionID"
         );
+
         for my $HistoryMessage (@HistoryMessages) {
             $Self->True(
                 index( $Selenium->get_page_source(), $HistoryMessage ) > -1,
