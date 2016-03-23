@@ -175,7 +175,7 @@ $Selenium->RunTest(
         $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && $(".CancelClosePopup").length' );
 
         # check state deployment change of test ConfigItem
-        my $CheckHistory = 'Deployment state updated (new="Repair", "Production; old=)';
+        my $CheckHistory = 'Deployment state updated (new=Repair; old=Production)';
         $Self->True(
             index( $Selenium->get_page_source(), $CheckHistory ) > -1,
             "$CheckHistory - found",
