@@ -107,6 +107,20 @@ sub Run {
         },
     );
 
+    # check if a dialog has to be shown
+    if ( $Param{Config}->{DialogTitle} ) {
+
+        # output confirmation dialog
+        $LayoutObject->Block(
+            Name => 'ShowConfirmationDialog',
+            Data => {
+                %Param,
+                %{ $Param{ConfigItem} },
+                %{ $Param{Config} },
+            },
+        );
+    }
+
     $Param{Counter}++;
 
     return $Param{Counter};
