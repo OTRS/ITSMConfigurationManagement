@@ -138,6 +138,7 @@ sub Run {
                     ConfigItem => $ConfigItem,
                     Counter    => $Counter,
                     Config     => $Menus{$Menu},
+                    MenuID     => $Menu,
                 );
             }
             else {
@@ -366,6 +367,8 @@ sub Run {
     my $LinkTableStrg = $LayoutObject->LinkObjectTableCreate(
         LinkListWithData => $LinkListWithData,
         ViewMode         => $LinkTableViewMode,
+        Object           => 'ITSMConfigItem',
+        Key              => $ConfigItemID,
     );
 
     # output the link table
