@@ -94,8 +94,18 @@ sub PreRun {
     my $AllButKeepLast    = $Self->GetOption('all-but-keep-last-versions') // '';
     my $AllOlderThanDays  = $Self->GetOption('all-older-than-days-versions') // '';
 
-    if ( !$All && !$Class && !@ConfigItemNumbers && !$DeploymentState && !$AllOldVersions && !$AllButKeepLast && !$AllOlderThanDays ) {
-        die "Please provide option --all, --class, --configitem-number, --all-old-versions, --all-but-keep-last-versions or --all-older-than-days-versions."
+    if (
+        !$All
+        && !$Class
+        && !@ConfigItemNumbers
+        && !$DeploymentState
+        && !$AllOldVersions
+        && !$AllButKeepLast
+        && !$AllOlderThanDays
+        )
+    {
+        die
+            "Please provide option --all, --class, --configitem-number, --all-old-versions, --all-but-keep-last-versions or --all-older-than-days-versions."
             . " For more details use --help\n";
     }
 

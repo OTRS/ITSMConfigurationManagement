@@ -834,10 +834,10 @@ sub VersionDelete {
         return;
     }
 
-   if ( !$Param{VersionID} && !$Param{ConfigItemID} && !IsArrayRefWithData( $Param{VersionIDs} ) ) {
+    if ( !$Param{VersionID} && !$Param{ConfigItemID} && !IsArrayRefWithData( $Param{VersionIDs} ) ) {
         $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
-            Message => 'Need VersionID, ConfigItemID or VersionIDs!',
+            Message  => 'Need VersionID, ConfigItemID or VersionIDs!',
         );
         return;
     }
