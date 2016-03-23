@@ -48,6 +48,7 @@
         <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItem.pm"/>
         <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItemAdd.pm"/>
         <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItemBulk.pm"/>
+        <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItemDelete.pm"/>
         <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItemEdit.pm"/>
         <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItemHistory.pm"/>
         <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItemPrint.pm"/>
@@ -70,6 +71,7 @@
         <File Permission="644" Location="Kernel/Output/HTML/Templates/Standard/AdminITSMConfigItem.tt"/>
         <File Permission="644" Location="Kernel/Output/HTML/Templates/Standard/AgentITSMConfigItemAdd.tt"/>
         <File Permission="644" Location="Kernel/Output/HTML/Templates/Standard/AgentITSMConfigItemBulk.tt"/>
+        <File Permission="644" Location="Kernel/Output/HTML/Templates/Standard/AgentITSMConfigItemDelete.tt"/>
         <File Permission="644" Location="Kernel/Output/HTML/Templates/Standard/AgentITSMConfigItemEdit.tt"/>
         <File Permission="644" Location="Kernel/Output/HTML/Templates/Standard/AgentITSMConfigItemHistory.tt"/>
         <File Permission="644" Location="Kernel/Output/HTML/Templates/Standard/AgentITSMConfigItemOverviewNavBar.tt"/>
