@@ -110,14 +110,16 @@ $Selenium->RunTest(
         );
 
         # wait until form has loaded, if necessary
-        $Selenium->WaitFor( JavaScript => "return \$('#SearchProfile').length" );
+        $Selenium->WaitFor( JavaScript => "return typeof(\$) === 'function' && \$('#ITSMSearchFields').length" );
 
         # check ConfigItem search page
         for my $ID (
             qw(SearchClassID SearchProfile SearchProfileNew Attribute PreviousVersionSearch ResultForm SearchFormSubmit)
             )
         {
+
             my $Element = $Selenium->find_element( "#$ID", 'css' );
+
             $Element->is_enabled();
             $Element->is_displayed();
         }
@@ -159,7 +161,7 @@ $Selenium->RunTest(
             $Success,
             "ConfigItem is deleted - ID $ConfigItemID",
         );
-        }
+    }
 );
 
 1;
