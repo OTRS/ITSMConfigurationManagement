@@ -111,6 +111,18 @@ sub FormDataGet {
     return \%FormData;
 }
 
+=item InputCreate()
+
+create a input string
+
+    my $Value = $BackendObject->InputCreate(
+        Key   => 'Item::1::Node::3',
+        Value => 11,       # (optional)
+        Item  => $ItemRef,
+    );
+
+=cut
+
 sub InputCreate {
     my ( $Self, %Param ) = @_;
 
