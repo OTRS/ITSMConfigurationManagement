@@ -12,9 +12,21 @@ use utf8;
 
 use vars qw($Self);
 
+# get needed objects
 my $ConfigObject         = $Kernel::OM->Get('Kernel::Config');
 my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
 my $ConfigItemObject     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+
+# get helper object
+$Kernel::OM->ObjectParamAdd(
+    'Kernel::System::UnitTest::Helper' => {
+        RestoreDatabase => 1,
+    },
+);
+my $Helper = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
+
+# define needed variable
+my $RandomID = $Helper->GetRandomID();
 
 # ------------------------------------------------------------ #
 # make preparations
@@ -26,11 +38,11 @@ my @ConfigItemClasses;
 my @ConfigItemDefinitionIDs;
 
 # generate a random name
-my $FirstClassName  = 'UnitTestClass1' . int rand 1_000_000;
-my $SecondClassName = 'UnitTestClass2' . int rand 1_000_000;
+my $FirstClassName  = 'UnitTestClass1' . $RandomID;
+my $SecondClassName = 'UnitTestClass2' . $RandomID;
 
 # set a name prefix
-my $NamePrefix = 'UnitTestName' . int rand 1_000_000;
+my $NamePrefix = 'UnitTestName' . $RandomID;
 
 # add both unittest config item classes
 my $FirstClassID = $GeneralCatalogObject->ItemAdd(
@@ -72,7 +84,7 @@ push @ConfigItemClassIDs, $SecondClassID;
 push @ConfigItemClasses,  $SecondClassName;
 
 # add an empty definition to the class. the definition doesn't need any elements, as we're only
-# testing the name which isn't part of the definition, but of the configitem itself
+# testing the name which isn't part of the definition, but of the config item itself
 my $FirstDefinitionID = $ConfigItemObject->DefinitionAdd(
     ClassID    => $FirstClassID,
     Definition => "[]",
@@ -316,36 +328,6 @@ $ConfigObject->Set(
     Value => $OrigScope,
 );
 
-# ------------------------------------------------------------ #
-# clean the system
-# ------------------------------------------------------------ #
-
-# get current class list
-my $ClassList = $GeneralCatalogObject->ItemList(
-    Class => 'ITSM::ConfigItem::Class',
-);
-
-# set unittest classes invalid
-ITEMID:
-for my $ItemID ( sort keys %{$ClassList} ) {
-
-    next ITEMID if $ClassList->{$ItemID} !~ m{ \A UnitTest }xms;
-
-    # update item
-    $GeneralCatalogObject->ItemUpdate(
-        ItemID  => $ItemID,
-        Name    => $ClassList->{$ItemID},
-        ValidID => 2,
-        UserID  => 1,
-    );
-}
-
-# delete the test config items
-for my $ConfigItemID (@ConfigItemIDs) {
-    my $DeleteOk = $ConfigItemObject->ConfigItemDelete(
-        ConfigItemID => $ConfigItemID,
-        UserID       => 1,
-    );
-}
+# cleanup is done by RestoreDatabase
 
 1;
