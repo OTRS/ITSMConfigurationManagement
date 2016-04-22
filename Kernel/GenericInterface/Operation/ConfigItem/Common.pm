@@ -515,6 +515,9 @@ sub ReplaceInputDate {
         SystemTime => $SystemTime,
     );
 
+    # remove the time part
+    $TimeStamp =~ s{ [ ] 00:00:00 \z }{}xms;
+
     return $TimeStamp;
 }
 
