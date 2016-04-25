@@ -486,7 +486,7 @@ replaces the user value with a system valid value.
     );
 
     returns
-    $NewValue = '1977-12-12 00:00:00',
+    $NewValue = '1977-12-12',
 
 =cut
 
