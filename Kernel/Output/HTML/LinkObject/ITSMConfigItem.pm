@@ -925,7 +925,7 @@ sub SearchOptionList {
                 SelectedID => $Row->{FormData},
                 Size       => 3,
                 Multiple   => 1,
-                Class   => 'Modernize',
+                Class      => 'Modernize',
             );
 
             next ROW;

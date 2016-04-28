@@ -68,7 +68,7 @@ $Selenium->RunTest(
                 "ConfigItem ID $ConfigItemClassAdd add link - found",
             );
         }
-    }
+        }
 );
 
 1;

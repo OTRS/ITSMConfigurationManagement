@@ -121,11 +121,11 @@ perform ConfigItemCreate Operation. This will return the created config item num
 
     my $Result = $OperationObject->Run(
         Data => {
-            UserLogin         => 'some agent login',                        # UserLogin or CustomerUserLogin or SessionID is
-                                                                            #   required
-            SessionID         => 123,
+            UserLogin         => 'some agent login',                        # UserLogin or SessionID is
+            SessionID         => 123,                                       #   required
 
-            Password  => 'some password',                                   # if UserLogin or CustomerUserLogin is sent then
+
+            Password  => 'some password',                                   # if UserLogin is sent then
                                                                             #   Password is required
             ConfigItem => {
                 Class        => 'The ConfigItem Class',                     # (optional)
@@ -146,7 +146,7 @@ perform ConfigItemCreate Operation. This will return the created config item num
                 # config items with changed time before then ....
                 ConfigItemChangeTimeOlderDate => '2006-01-19 23:59:59',     # (optional)
 
-                CIXMLData    => $ArrayHashRef,                              # (optional), it deppends on the Configuration
+                CIXMLData    => $ArrayHashRef,                              # (optional), it depends on the Configuration
                                                                             #   Item class and definition
 
                 PreviousVersionSearch => 1,  # (optional) default 0 (0|1)
@@ -206,7 +206,7 @@ sub Run {
         return $Self->ReturnError(
             ErrorCode => "$Self->{OperationName}.MissingParameter",
             ErrorMessage =>
-                "$Self->{OperationName}: UserLogin, CustomerUserLogin or SessionID is required!",
+                "$Self->{OperationName}: UserLogin or SessionID is required!",
         );
     }
 

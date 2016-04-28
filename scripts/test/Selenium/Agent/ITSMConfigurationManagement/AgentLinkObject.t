@@ -306,7 +306,7 @@ $Selenium->RunTest(
             $Success,
             "Service is deleted - ID $ServiceID",
         );
-    }
+        }
 
 );
 

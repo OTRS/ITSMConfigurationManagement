@@ -183,7 +183,7 @@ $Selenium->RunTest(
             );
             $ConfigItemID++;
         }
-    }
+        }
 );
 
 1;

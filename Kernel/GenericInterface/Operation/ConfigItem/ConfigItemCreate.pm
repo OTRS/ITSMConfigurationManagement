@@ -121,18 +121,19 @@ perform ConfigItemCreate Operation. This will return the created config item num
 
     my $Result = $OperationObject->Run(
         Data => {
-            UserLogin         => 'some agent login',        # UserLogin or CustomerUserLogin or SessionID is
+            UserLogin         => 'some agent login',        # UserLogin or SessionID is
                                                             #   required
             SessionID         => 123,
 
-            Password  => 'some password',                   # if UserLogin or CustomerUserLogin is sent then
+            Password  => 'some password',                   # if UserLogin is sent then
                                                             #   Password is required
             ConfigItem => {
+                Number       => '111',                      # optional
                 Class        => 'Config Item Class',
                 Name         => 'The Name',
                 DeplState    => 'deployment state',
                 InciState    => 'incident state',
-                CIXMLData    => $ArrayHashRef,              # it deppends on the Configuration Item class and definition
+                CIXMLData    => $ArrayHashRef,              # it depends on the Configuration Item class and definition
 
                 Attachment => [
                     {
@@ -191,7 +192,7 @@ sub Run {
         return $Self->ReturnError(
             ErrorCode => "$Self->{OperationName}.MissingParameter",
             ErrorMessage =>
-                "$Self->{OperationName}: UserLogin, CustomerUserLogin or SessionID is required!",
+                "$Self->{OperationName}: UserLogin or SessionID is required!",
         );
     }
 
@@ -623,6 +624,7 @@ sub _ConfigItemCreate {
 
     # create new config item
     my $ConfigItemID = $ConfigItemObject->ConfigItemAdd(
+        Number  => $ConfigItem->{Number},
         ClassID => $Self->{ReverseClassList}->{ $ConfigItem->{Class} },
         UserID  => $Param{UserID},
     );
@@ -652,7 +654,7 @@ sub _ConfigItemCreate {
             my $Result = $Self->CreateAttachment(
                 Attachment   => $Attachment,
                 ConfigItemID => $ConfigItemID,
-                UserID       => $Param{UserID}
+                UserID       => $Param{UserID},
             );
 
             if ( !$Result->{Success} ) {

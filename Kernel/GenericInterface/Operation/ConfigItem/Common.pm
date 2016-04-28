@@ -11,6 +11,8 @@ package Kernel::GenericInterface::Operation::ConfigItem::Common;
 use strict;
 use warnings;
 
+use MIME::Base64();
+
 use Kernel::System::VariableCheck qw(:all);
 
 our $ObjectManagerDisabled = 1;
@@ -679,7 +681,7 @@ sub CreateAttachment {
         if ( !$Param{$Needed} ) {
             return {
                 Success      => 0,
-                ErrorMessage => "CreateAttachment() Got no $Needed!"
+                ErrorMessage => "CreateAttachment() Got no $Needed!",
             };
         }
     }

@@ -110,7 +110,7 @@ $Selenium->RunTest(
         );
 
         # wait until form has loaded, if necessary
-        $Selenium->WaitFor( JavaScript => "return \$('#Attribute').length" );
+        $Selenium->WaitFor( JavaScript => "return \$('#SearchProfile').length" );
 
         # check ConfigItem search page
         for my $ID (
@@ -136,15 +136,7 @@ $Selenium->RunTest(
         $Selenium->find_element( "#ITSMConfigItemSearch", 'css' )->VerifiedClick();
 
         # wait until form has loaded, if necessary
-        $Selenium->WaitFor( JavaScript => "return \$('#SearchProfile').length" );
-
-        # select 'Hardware' class
-        $Selenium->execute_script(
-            "\$('#SearchClassID').val('$ConfigItemClassIDs[1]').trigger('redraw.InputField').trigger('change');"
-        );
-
-        # wait until form has loaded, if necessary
-        $Selenium->WaitFor( JavaScript => "return \$('#Attribute').length" );
+        $Selenium->WaitFor( JavaScript => "return \$('#SearchClassID').length" );
 
         # input wrong search parameters, result should be 'No data found'
         $Selenium->execute_script("\$('#Attribute').val('Name').trigger('redraw.InputField').trigger('change');");
@@ -167,7 +159,7 @@ $Selenium->RunTest(
             $Success,
             "ConfigItem is deleted - ID $ConfigItemID",
         );
-    }
+        }
 );
 
 1;

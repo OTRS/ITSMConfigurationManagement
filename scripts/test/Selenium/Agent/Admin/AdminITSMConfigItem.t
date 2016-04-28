@@ -61,7 +61,7 @@ $Selenium->RunTest(
             # return back to overview screen
             $Selenium->find_element("//a[contains(\@href, \'Action=AdminITSMConfigItem' )]")->VerifiedClick();
         }
-    }
+        }
 );
 
 1;
