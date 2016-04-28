@@ -15,6 +15,7 @@
         <File Permission="644" Location="doc/itsm-configuration-management-database.dia"/>
         <File Permission="644" Location="doc/itsm-configuration-management-database.png"/>
         <File Permission="644" Location="Kernel/Config/Files/ITSMConfigItem.xml"/>
+        <File Permission="644" Location="Kernel/Config/Files/ITSMConfigItemTicketLink.xml"/>
         <File Permission="644" Location="Kernel/Config/Files/ITSMConfigItemGenericInterface.xml"/>
         <File Permission="644" Location="Kernel/GenericInterface/Operation/ConfigItem/Common.pm"/>
         <File Permission="644" Location="Kernel/GenericInterface/Operation/ConfigItem/ConfigItemCreate.pm"/>
@@ -100,6 +101,7 @@
         <File Permission="644" Location="Kernel/System/LinkObject/ITSMConfigItem.pm"/>
         <File Permission="644" Location="Kernel/System/Service/PreferencesDB.pm"/>
         <File Permission="644" Location="Kernel/System/Stats/Dynamic/ITSMConfigItem.pm"/>
+        <File Permission="644" Location="Kernel/System/Ticket/Event/TicketStatusLink.pm"/>
         <File Permission="644" Location="Kernel/System/Console/Command/Admin/ITSM/Configitem/ListDuplicates.pm"/>
         <File Permission="644" Location="Kernel/System/Console/Command/Admin/ITSM/Configitem/Delete.pm"/>
         <File Permission="644" Location="Kernel/System/Console/Command/Admin/ITSM/IncidentState/Recalculate.pm"/>
