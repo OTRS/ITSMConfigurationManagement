@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <otrs_config version="1.0" init="Application">
-    <ConfigItem Name="ITSMConfigItem::SetIncidentStateOnLink" Required="0" Valid="1">
+    <ConfigItem Name="ITSMConfigItem::SetIncidentStateOnLink" Required="1" Valid="1">
         <Description Translatable="1">Set the incident state of a CI automatically when a Ticket is Linked to a CI.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Core::LinkStatus</SubGroup>
@@ -72,7 +72,6 @@
         <Setting>
             <Hash>
                 <Item Key="Affected">Incident</Item>
-<Item Key="Alternative To">Warning</Item>
             </Hash>
         </Setting>
     </ConfigItem>

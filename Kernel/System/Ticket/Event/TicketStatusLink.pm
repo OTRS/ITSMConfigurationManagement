@@ -156,8 +156,8 @@ sub Run {
     # shortcut for ticket events (check if ticket has any potentially relevant links)
     if ( $Param{Event} eq 'TicketStateUpdate' || $Param{Event} eq 'TicketTypeUpdate' ) {
         my %LinkKeyList = $Kernel::OM->Get('Kernel::System::LinkObject')->LinkKeyList(
-            Object    => 'Ticket',
-            Key       => $TicketID,
+            Object1   => 'Ticket',
+            Key1      => $TicketID,
             Object2   => 'ITSMConfigItem',
             State     => 'Valid',
             Direction => 'Source',
@@ -501,8 +501,8 @@ sub _CheckTicketLinks {
     }
 
     my %LinkKeyList = $Kernel::OM->Get('Kernel::System::LinkObject')->LinkKeyList(
-        Object    => 'Ticket',
-        Key       => $Param{TicketID},
+        Object1   => 'Ticket',
+        Key1      => $Param{TicketID},
         Object2   => 'ITSMConfigItem',
         State     => 'Valid',
         Type      => $Param{Type},
@@ -534,8 +534,8 @@ sub _CheckConfigItemLinks {
     }
 
     my %LinkKeyList = $Kernel::OM->Get('Kernel::System::LinkObject')->LinkKeyList(
-        Object    => 'ITSMConfigItem',
-        Key       => $Param{ConfigItemID},
+        Object1   => 'ITSMConfigItem',
+        Key1      => $Param{ConfigItemID},
         Object2   => 'Ticket',
         State     => 'Valid',
         Type      => $Param{Type},
