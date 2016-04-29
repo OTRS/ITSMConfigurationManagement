@@ -185,20 +185,21 @@ sub Run {
     # handle added or removed links
     if ( $Param{Event} eq 'LinkAdd' || $Param{Event} eq 'LinkDelete' ) {
         my $ConfigItemID = $Param{Data}->{ConfigItemID};
-        my $ConfigItem   = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemGet(
+        my $Version      = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->VersionGet(
             ConfigItemID => $ConfigItemID,
+            XMLDataGet   => 0,
         );
 
         # optional: check if CI deployment state is relevant
         my $DeploymentStates = $ConfigObject->Get('ITSMConfigItem::LinkStatus::DeploymentStates');
         if ( IsArrayRefWithData($DeploymentStates) ) {
-            return 1 if !grep { $_ eq $ConfigItem->{CurDeplState} } @{$DeploymentStates};
+            return 1 if !grep { $_ eq $Version->{DeplState} } @{$DeploymentStates};
         }
 
         # raise incident state if necessary
         if ( $Param{Event} eq 'LinkAdd' ) {
             return $Self->_CheckRaiseIncidentState(
-                ConfigItem               => $ConfigItem,
+                Version                  => $Version,
                 IncidentStates           => $IncidentStates,
                 LinkTypesByIncidentState => \%LinkTypesByIncidentState,
                 TicketID                 => $TicketID,
@@ -207,7 +208,7 @@ sub Run {
 
         # lower incident state if necessary
         return $Self->_CheckLowerIncidentState(
-            ConfigItem               => $ConfigItem,
+            Version                  => $Version,
             IncidentStates           => $IncidentStates,
             LinkTypesByIncidentState => \%LinkTypesByIncidentState,
             TicketID                 => $TicketID,
@@ -244,28 +245,29 @@ sub Run {
 
                 CONFIGITEMID:
                 for my $ConfigItemID (@LinkedCIs) {
-                    my $ConfigItem = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemGet(
+                    my $Version = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->VersionGet(
                         ConfigItemID => $ConfigItemID,
+                        XMLDataGet   => 0,
                     );
 
                     # optional: check if CI deployment state is relevant
                     if ( IsArrayRefWithData($DeploymentStates) ) {
-                        next CONFIGITEMID if !grep { $_ eq $ConfigItem->{CurDeplState} } @{$DeploymentStates};
+                        next CONFIGITEMID if !grep { $_ eq $Version->{DeplState} } @{$DeploymentStates};
                     }
 
                     # check current incident state vs state caused by link
 
                     # state doesn't match = ticket change doesn't affect incident state
-                    next CONFIGITEMID if $ConfigItem->{CurInciState} ne $IncidentState;
+                    next CONFIGITEMID if $Version->{InciState} ne $IncidentState;
 
                     # current incident state is lower than caused by link -> set
                     if ($RelevantNow) {
 
                         # shortcut: nothing to do if CI is already in highest incident state
-                        next CONFIGITEMID if $ConfigItem->{CurInciState} eq $IncidentStates->[0];
+                        next CONFIGITEMID if $Version->{InciState} eq $IncidentStates->[0];
 
                         # shortcut: nothing to do if CI is already in same incident state
-                        next CONFIGITEMID if $ConfigItem->{CurInciState} eq $IncidentState;
+                        next CONFIGITEMID if $Version->{InciState} eq $IncidentState;
 
                         # check if CI is in higher incident state already
                         for my $TmpIncidentState ( @{$IncidentStates} ) {
@@ -273,12 +275,12 @@ sub Run {
                             # all further incident states are lower than current one -> set new state
                             last TMPINCIDENTSTATE if $TmpIncidentState eq $IncidentState;
 
-                            next CONFIGITEMID if $ConfigItem->{CurInciState} eq $TmpIncidentState;
+                            next CONFIGITEMID if $Version->{InciState} eq $TmpIncidentState;
                         }
 
                         # set new incident state
                         $Self->_SetCIStatus(
-                            ConfigItemID  => $ConfigItemID,
+                            Version       => $Version,
                             IncidentState => $IncidentState,
                             TicketID      => $TicketID,
                         );
@@ -288,14 +290,14 @@ sub Run {
                     else {
 
                         # shortcut: nothing to do if CI is already in lowest incident state
-                        next CONFIGITEMID if $ConfigItem->{CurInciState} eq $IncidentStates->[-1];
+                        next CONFIGITEMID if $Version->{InciState} eq $IncidentStates->[-1];
 
                         # shortcut: nothing to do if CI is not in same incident state
-                        next CONFIGITEMID if $ConfigItem->{CurInciState} ne $IncidentState;
+                        next CONFIGITEMID if $Version->{InciState} ne $IncidentState;
 
                         # recalculate incident state exactly
                         $Self->_CheckLowerIncidentState(
-                            ConfigItem               => $ConfigItem,
+                            Version                  => $Version,
                             IncidentStates           => $IncidentStates,
                             LinkTypesByIncidentState => \%LinkTypesByIncidentState,
                             TicketID                 => $TicketID,
@@ -324,7 +326,7 @@ sub _CheckRaiseIncidentState {
     my ( $Self, %Param ) = @_;
 
     # check needed stuff
-    for my $Needed (qw(ConfigItem IncidentStates LinkTypesByIncidentState TicketID)) {
+    for my $Needed (qw(Version IncidentStates LinkTypesByIncidentState TicketID)) {
         if ( !$Param{$Needed} ) {
             $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
@@ -339,19 +341,19 @@ sub _CheckRaiseIncidentState {
     for my $IncidentState ( @{ $Param{IncidentStates} } ) {
 
         # CI already in target state - nothing to do
-        return 1 if $Param{ConfigItem}->{CurInciState} eq $IncidentState;
+        return 1 if $Param{Version}->{InciState} eq $IncidentState;
 
         # check if we have linked tickets that lead to incident state
         LINKTYPE:
         for my $LinkType ( @{ $Param{LinkTypesByIncidentState}->{$IncidentState} } ) {
             next LINKTYPE if !$Self->_CheckConfigItemLinks(
-                ConfigItemID => $Param{ConfigItem}->{ConfigItemID},
+                ConfigItemID => $Param{Version}->{ConfigItemID},
                 Type         => $LinkType,
             );
 
             # we have at least one linked ticket - set incident state and exit
             return $Self->_SetCIStatus(
-                ConfigItemID  => $Param{ConfigItem}->{ConfigItemID},
+                Version       => $Param{Version},
                 IncidentState => $IncidentState,
                 TicketID      => $Param{TicketID},
             );
@@ -373,7 +375,7 @@ sub _CheckLowerIncidentState {
     my ( $Self, %Param ) = @_;
 
     # check needed stuff
-    for my $Needed (qw(ConfigItem IncidentStates LinkTypesByIncidentState TicketID)) {
+    for my $Needed (qw(Version IncidentStates LinkTypesByIncidentState TicketID)) {
         if ( !$Param{$Needed} ) {
             $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
@@ -384,7 +386,7 @@ sub _CheckLowerIncidentState {
     }
 
     # shortcut for lowest level
-    return 1 if $Param{ConfigItem}->{CurInciState} eq $Param{IncidentStates}->[-1];
+    return 1 if $Param{Version}->{InciState} eq $Param{IncidentStates}->[-1];
 
     # loop through target states and check if it needs to be changed
     my $LowerIncidentState;
@@ -392,24 +394,24 @@ sub _CheckLowerIncidentState {
     for my $IncidentState ( @{ $Param{IncidentStates} } ) {
 
         # skip level if current CI incident state is not on this or any higher level
-        next INCIDENTSTATE if $Param{ConfigItem}->{CurInciState} ne $IncidentState && !$LowerIncidentState;
+        next INCIDENTSTATE if $Param{Version}->{InciState} ne $IncidentState && !$LowerIncidentState;
 
         # check if we have linked tickets that keep incident state
         LINKTYPE:
         for my $LinkType ( @{ $Param{LinkTypesByIncidentState}->{$IncidentState} } ) {
             next LINKTYPE if !$Self->_CheckConfigItemLinks(
-                ConfigItemID => $Param{ConfigItem}->{ConfigItemID},
+                ConfigItemID => $Param{Version}->{ConfigItemID},
                 Type         => $LinkType,
             );
 
             # we have at least one linked ticket
 
             # keep incident state
-            return 1 if $Param{ConfigItem}->{CurInciState} eq $IncidentState;
+            return 1 if $Param{Version}->{InciState} eq $IncidentState;
 
             # otherwise set new (lower) incident state and exit
             return $Self->_SetCIStatus(
-                ConfigItemID  => $Param{ConfigItem}->{ConfigItemID},
+                Version       => $Param{Version},
                 IncidentState => $IncidentState,
                 TicketID      => $Param{TicketID},
             );
@@ -421,7 +423,7 @@ sub _CheckLowerIncidentState {
 
     # no relevant links have been found, but CI wasn't in lowest incident state before - set it now and exit
     return $Self->_SetCIStatus(
-        ConfigItemID  => $Param{ConfigItem}->{ConfigItemID},
+        Version       => $Param{Version},
         IncidentState => $Param{IncidentStates}->[-1],
         TicketID      => $Param{TicketID},
     );
@@ -432,7 +434,7 @@ sub _SetCIStatus {
     my ( $Self, %Param ) = @_;
 
     # check needed stuff
-    for my $Needed (qw(ConfigItemID IncidentState TicketID)) {
+    for my $Needed (qw(Version IncidentState TicketID)) {
         if ( !$Param{$Needed} ) {
             $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
@@ -459,16 +461,9 @@ sub _SetCIStatus {
         return;
     }
 
-    # get current version
-    my $Version = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->VersionGet(
-        ConfigItemID => $Param{ConfigItemID},
-        XMLDataGet   => 0,
-    );
-    return if !IsHashRefWithData($Version);
-
     # add a new version with the new incident state
     my $VersionID = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->VersionAdd(
-        %{$Version},
+        %{ $Param{Version} },
         InciStateID => $ReverseIncidentStateList{ $Param{IncidentState} },
         UserID      => 1,
     );
@@ -478,7 +473,7 @@ sub _SetCIStatus {
     $Kernel::OM->Get('Kernel::System::Ticket')->HistoryAdd(
         TicketID     => $Param{TicketID},
         HistoryType  => 'Misc',
-        Name         => "Updated incident state of config item '$Version->{Number}' to '$Param{IncidentState}'.",
+        Name         => "Updated incident state of config item '$Param{Version}->{Number}' to '$Param{IncidentState}'.",
         CreateUserID => 1,
     );
 
