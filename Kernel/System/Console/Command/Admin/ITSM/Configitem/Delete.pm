@@ -10,7 +10,8 @@ package Kernel::System::Console::Command::Admin::ITSM::Configitem::Delete;
 
 use strict;
 use warnings;
-use Kernel::System::VariableCheck qw(IsArrayRefWithData);
+
+use Kernel::System::VariableCheck qw(:all);
 
 use base qw(Kernel::System::Console::BaseCommand);
 
@@ -64,11 +65,12 @@ sub Configure {
 sub PreRun {
     my ( $Self, %Param ) = @_;
 
-    my $Class = $Self->GetOption('class') // '';
+    my $All               = $Self->GetOption('all');
+    my $Class             = $Self->GetOption('class') // '';
     my @ConfigItemNumbers = @{ $Self->GetOption('configitem-number') // [] };
-    my $DeploymentState = $Self->GetOption('deployment-state') // '';
+    my $DeploymentState   = $Self->GetOption('deployment-state') // '';
 
-    if ( !$Self->GetOption('all') && !$Class && !@ConfigItemNumbers && !$DeploymentState ) {
+    if ( !$All && !$Class && !@ConfigItemNumbers && !$DeploymentState ) {
         die "Please provide option --all, --class, or --configitem-number. For more details use --help\n";
     }
 
@@ -86,18 +88,19 @@ sub Run {
 
     $Self->Print("<yellow>Deleting config items...</yellow>\n\n");
 
-    my $Class = $Self->GetOption('class') // '';
+    my $All               = $Self->GetOption('all');
+    my $Class             = $Self->GetOption('class') // '';
     my @ConfigItemNumbers = @{ $Self->GetOption('configitem-number') // [] };
-    my $DeploymentState = $Self->GetOption('deployment-state') // '';
+    my $DeploymentState   = $Self->GetOption('deployment-state') // '';
 
     # delete all config items
-    if ( $Self->GetOption('all') ) {
+    if ($All) {
 
         # get all config items ids
-        my @ConfigItemsIDs = @{ $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemSearch() };
+        my @ConfigItemIDs = @{ $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemSearch() };
 
         # get number of config items
-        my $CICount = scalar @ConfigItemsIDs;
+        my $CICount = scalar @ConfigItemIDs;
 
         # if there are any CI to delete
         if ($CICount) {
@@ -112,7 +115,7 @@ sub Run {
 
                 # delete config items
                 $Self->Print("<green>Deleting all config items...</green>\n");
-                $Self->DeleteConfigItems( ConfigItemsIDs => \@ConfigItemsIDs );
+                $Self->DeleteConfigItems( ConfigItemIDs => \@ConfigItemIDs );
             }
             else {
                 $Self->Print("<yellow>Command delete was canceled</yellow>\n");
@@ -127,7 +130,7 @@ sub Run {
     # delete listed config items
     elsif ( IsArrayRefWithData( \@ConfigItemNumbers ) ) {
 
-        my @ConfigItemsIDs;
+        my @ConfigItemIDs;
 
         for my $ConfigItemNumber (@ConfigItemNumbers) {
 
@@ -137,7 +140,7 @@ sub Run {
             );
 
             if ($ID) {
-                push @ConfigItemsIDs, $ID;
+                push @ConfigItemIDs, $ID;
             }
             else {
                 $Self->Print("<yellow>Unable to find config item $ConfigItemNumber.</yellow>\n");
@@ -145,16 +148,16 @@ sub Run {
         }
 
         # delete config items (if any valid number was given)
-        if (@ConfigItemsIDs) {
+        if (@ConfigItemIDs) {
             $Self->Print("<yellow>Deleting specified config items...</yellow>\n");
-            $Self->DeleteConfigItems( ConfigItemsIDs => \@ConfigItemsIDs );
+            $Self->DeleteConfigItems( ConfigItemIDs => \@ConfigItemIDs );
         }
     }
 
     # delete config items that belong to the class
     elsif ($Class) {
 
-        my @ConfigItemsIDs;
+        my @ConfigItemIDs;
 
         # get class list
         my $ClassList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
@@ -200,7 +203,7 @@ sub Run {
             }
 
             # get ids of this class (and maybe deployment state) config items
-            @ConfigItemsIDs = @{
+            @ConfigItemIDs = @{
                 $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemSearch(%SearchParam)
             };
         }
@@ -210,9 +213,9 @@ sub Run {
         }
 
         # delete config items (if any valid number was given)
-        if (@ConfigItemsIDs) {
+        if (@ConfigItemIDs) {
             $Self->Print("<yellow>Deleting config items that belong to the class $Class...</yellow>\n");
-            $Self->DeleteConfigItems( ConfigItemsIDs => \@ConfigItemsIDs );
+            $Self->DeleteConfigItems( ConfigItemIDs => \@ConfigItemIDs );
         }
         else {
             $Self->Print("<yellow>There are no config items that belong to the class $Class...</yellow>\n");
@@ -222,9 +225,9 @@ sub Run {
         $Self->PrintError("No config item for delete.");
     }
 
+    # show successfull output
     $Self->Print("<green>Done.</green>\n");
     return $Self->ExitCodeOk();
-
 }
 
 sub DeleteConfigItems {
@@ -235,7 +238,7 @@ sub DeleteConfigItems {
     my @ConfigItemNumbers = @{ $Self->GetOption('configitem-number') // [] };
 
     # delete specified config items
-    for my $ConfigItemID ( @{ $Param{ConfigItemsIDs} } ) {
+    for my $ConfigItemID ( @{ $Param{ConfigItemIDs} } ) {
         my $True = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemDelete(
             ConfigItemID => $ConfigItemID,
             UserID       => 1,

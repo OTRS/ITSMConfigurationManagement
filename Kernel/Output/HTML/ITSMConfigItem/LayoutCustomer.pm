@@ -11,8 +11,6 @@ package Kernel::Output::HTML::ITSMConfigItem::LayoutCustomer;
 use strict;
 use warnings;
 
-use Kernel::System::CustomerUser;
-
 our @ObjectDependencies = (
     'Kernel::System::Log',
     'Kernel::Output::HTML::Layout',
@@ -147,9 +145,9 @@ sub FormDataGet {
 create a input string
 
     my $Value = $BackendObject->InputCreate(
-        Key => 'Item::1::Node::3',
+        Key   => 'Item::1::Node::3',
         Value => 11,       # (optional)
-        Item => $ItemRef,
+        Item  => $ItemRef,
     );
 
 =cut
@@ -199,7 +197,7 @@ sub InputCreate {
 
         # transform ascii to html
         $Search = $Kernel::OM->Get('Kernel::Output::HTML::Layout')->Ascii2Html(
-            Text => $CustomerSearchList{$Value} || '',
+            Text           => $CustomerSearchList{$Value} || '',
             HTMLResultMode => 1,
         );
     }

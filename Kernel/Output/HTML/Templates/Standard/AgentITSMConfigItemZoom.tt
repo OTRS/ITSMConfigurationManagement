@@ -101,8 +101,27 @@
 [% RenderBlockStart("Menu") %]
 [% RenderBlockStart("MenuItem") %]
                     <li>
-                        <a href="[% Env("Baselink") %][% Data.Link | Interpolate %]" class="[% Data.MenuClass | html %]" title="[% Translate(Data.Description) | html %]">[% Translate(Data.Name) | html %]</a>
+                        <a href="[% Env("Baselink") %][% Data.Link | Interpolate %]" id="Menu[% Data.MenuID | html %]" class="[% Data.MenuClass | html %]" title="[% Translate(Data.Description) | html %]">[% Translate(Data.Name) | html %]</a>
                     </li>
+#[% RenderBlockStart("ShowConfirmationDialog") %]
+#[% WRAPPER JSOnDocumentComplete %]
+#<script type="text/javascript">//<![CDATA[
+#/*global ITSM: true */
+#    ITSM.Agent.ConfirmationDialog.BindConfirmationDialog({
+#        ElementID:                  'Menu[% Data.MenuID %]',
+#        ElementSelector:            '[% Data.ElementSelector | Interpolate %]',
+#        DialogContentQueryString:   '[% Data.DialogContentQueryString | Interpolate %]',
+#        ConfirmedActionQueryString: '[% Data.ConfirmedActionQueryString | Interpolate %]',
+#        DialogTitle:                '[% Data.DialogTitle | Interpolate %]',
+#        TranslatedText:             {
+#            Yes: [% Translate("Yes") | JSON %],
+#            No:  [% Translate("No") | JSON %],
+#            Ok:  [% Translate("Ok") | JSON %]
+#        }
+#    });
+#//]]></script>
+#[% END %]
+#[% RenderBlockEnd("ShowConfirmationDialog") %]
 [% RenderBlockEnd("MenuItem") %]
 [% RenderBlockEnd("Menu") %]
                 </ul>

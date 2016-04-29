@@ -213,6 +213,7 @@ sub Run {
             UserID       => $UserID,
         );
 
+        # get latest version
         my $Version = $ConfigItemObject->VersionGet(
             ConfigItemID => $ConfigItemID,
             UserID       => $UserID,

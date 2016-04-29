@@ -12,12 +12,24 @@ use utf8;
 
 use vars qw($Self);
 
+# get needed objects
 my $DBObject             = $Kernel::OM->Get('Kernel::System::DB');
 my $ConfigObject         = $Kernel::OM->Get('Kernel::Config');
 my $ConfigItemObject     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
 my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
 my $LinkObject           = $Kernel::OM->Get('Kernel::System::LinkObject');
 my $UserObject           = $Kernel::OM->Get('Kernel::System::User');
+
+# get helper object
+$Kernel::OM->ObjectParamAdd(
+    'Kernel::System::UnitTest::Helper' => {
+        RestoreDatabase => 1,
+    },
+);
+my $Helper = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
+
+# define needed variable
+my $RandomID = $Helper->GetRandomID();
 
 # ------------------------------------------------------------ #
 # make preparations
@@ -43,7 +55,7 @@ my @UserIDs;
         my $UserID = $UserObject->UserAdd(
             UserFirstname => 'ITSMConfigItem' . $Counter,
             UserLastname  => 'UnitTest',
-            UserLogin     => 'UnitTest-ITSMConfigItem-' . $Counter . int rand 1_000_000,
+            UserLogin     => 'UnitTest-ITSMConfigItem-' . $Counter . $RandomID,
             UserEmail     => 'UnitTest-ITSMConfigItem-' . $Counter . '@localhost',
             ValidID       => 1,
             ChangeUserID  => 1,
@@ -59,7 +71,7 @@ my @UserIDs;
     );
 }
 
-my $GeneralCatalogClass = 'UnitTest' . int rand 1_000_000;
+my $GeneralCatalogClass = 'UnitTest' . $RandomID;
 
 # add a general catalog test list
 for my $Name (qw(Test1 Test2 Test3 Test4)) {
@@ -290,7 +302,7 @@ my @ConfigItemDefinitionIDs;
 for my $Definition (@ConfigItemDefinitions) {
 
     # generate a random name
-    my $ClassName = 'UnitTest' . int rand 1_000_000;
+    my $ClassName = 'UnitTest' . $Helper->GetRandomID();
 
     # add an unittest config item class
     my $ClassID = $GeneralCatalogObject->ItemAdd(
@@ -351,15 +363,14 @@ for my $ClassID (@ConfigItemClassIDs) {
         $ConfigItemDefinitionIDs[$Counter],
         "DefinitionList() for class id $ClassID: got expected definition id",
     );
-}
-continue {
+
     $Counter++;
 }
 
 # create some random numbers
 my @ConfigItemNumbers;
 for ( 1 .. 100 ) {
-    push @ConfigItemNumbers, int rand 1_000_000;
+    push @ConfigItemNumbers, $Helper->GetRandomNumber();
 }
 
 # get class list
@@ -3280,7 +3291,7 @@ continue {
 
 my $AttachmentTestConfigItemID = $ConfigItemIDs[0];
 
-# verify that initialy no attachment exists
+# verify that initially no attachment exists
 my @AttachmentList = $ConfigItemObject->ConfigItemAttachmentList(
     ConfigItemID => $AttachmentTestConfigItemID,
 );
@@ -3407,31 +3418,7 @@ for my $TestFile (@TestFileList) {
     );
 }
 
-# ------------------------------------------------------------ #
-# clean the system
-# ------------------------------------------------------------ #
-
-# get current class list
-$ClassList = $GeneralCatalogObject->ItemList(
-    Class => 'ITSM::ConfigItem::Class',
-);
-
-# set unittest classes invalid
-ITEMID:
-for my $ItemID ( sort keys %{$ClassList} ) {
-
-    next ITEMID if $ClassList->{$ItemID} !~ m{ \A UnitTest }xms;
-
-    # update item
-    $GeneralCatalogObject->ItemUpdate(
-        ItemID  => $ItemID,
-        Name    => $ClassList->{$ItemID},
-        ValidID => 2,
-        UserID  => 1,
-    );
-}
-
-# delete the test config items
+# check config item delete
 my $DeleteTestCount = 1;
 for my $ConfigItemID (@ConfigItemIDs) {
     my $DeleteOk = $ConfigItemObject->ConfigItemDelete(
@@ -3453,9 +3440,10 @@ for my $ConfigItemID (@ConfigItemIDs) {
         $ConfigItemData->{ConfigItemID},
         "DeleteTest $DeleteTestCount - double check (ConfigItemID=$ConfigItemID)",
     );
-}
-continue {
+
     $DeleteTestCount++;
 }
+
+# cleanup is done by RestoreDatabase
 
 1;

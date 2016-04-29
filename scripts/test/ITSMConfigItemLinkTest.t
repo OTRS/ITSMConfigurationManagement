@@ -12,14 +12,26 @@ use utf8;
 
 use vars qw($Self);
 
+# get needed objects
 my $ConfigObject         = $Kernel::OM->Get('Kernel::Config');
 my $ServiceObject        = $Kernel::OM->Get('Kernel::System::Service');
 my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
 my $ConfigItemObject     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
 my $LinkObject           = $Kernel::OM->Get('Kernel::System::LinkObject');
 
-my $ConfigItemName = 'UnitTestConfigItemTest' . int rand 1_000_000;
-my $ServiceName    = 'UnitTestServiceTest' . int rand 1_000_000;
+# get helper object
+$Kernel::OM->ObjectParamAdd(
+    'Kernel::System::UnitTest::Helper' => {
+        RestoreDatabase => 1,
+    },
+);
+my $Helper = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
+
+# define needed variable
+my $RandomID = $Helper->GetRandomID();
+
+my $ConfigItemName = 'UnitTestConfigItemTest' . $RandomID;
+my $ServiceName    = 'UnitTestServiceTest' . $RandomID;
 
 my @ConfigItemIDs;
 my @ServiceIDs;
@@ -631,53 +643,12 @@ for my $LinkType ( sort keys %Links ) {
 
 }
 
-# ------------------------------------------------------------ #
-# clean the system
-# ------------------------------------------------------------ #
-
 # reset the enabled setting for IncidentLinkTypeDirection to its original value
 $ConfigObject->Set(
     Key   => 'ITSM::Core::IncidentLinkTypeDirection',
     Value => $OrigIncidentLinkTypeDirectionSetting,
 );
 
-# delete the test config items
-for my $ConfigItemID (@ConfigItemIDs) {
-
-    my $DeleteOk = $ConfigItemObject->ConfigItemDelete(
-        ConfigItemID => $ConfigItemID,
-        UserID       => 1,
-    );
-
-    $Self->True(
-        $DeleteOk,
-        "Deleted config item $ConfigItemID.",
-    );
-}
-
-# set services to invalid
-for my $ServiceID (@ServiceIDs) {
-
-    my %Service = $ServiceObject->ServiceGet(
-        ServiceID => $ServiceID,
-        UserID    => 1,
-    );
-
-    my $Success = $ServiceObject->ServiceUpdate(
-        ServiceID   => $Service{ServiceID},
-        Name        => $Service{NameShort},
-        Comment     => $Service{Comment},
-        ParentID    => $Service{ParentID} || 0,
-        ValidID     => 2,
-        TypeID      => $Service{TypeID},
-        Criticality => $Service{Criticality},
-        UserID      => 1,
-    );
-
-    $Self->True(
-        $Success,
-        "ServiceUpdate() - Invalidate service $Service{ServiceID} - $Service{Name}",
-    );
-}
+# cleanup is done by RestoreDatabase
 
 1;

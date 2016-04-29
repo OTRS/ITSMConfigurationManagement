@@ -104,20 +104,24 @@ $Selenium->RunTest(
             "Class select box - found",
         );
 
+        sleep(5);
+
         # select 'Hardware' class
         $Selenium->execute_script(
             "\$('#SearchClassID').val('$ConfigItemClassIDs[1]').trigger('redraw.InputField').trigger('change');"
         );
 
         # wait until form has loaded, if necessary
-        $Selenium->WaitFor( JavaScript => "return \$('#SearchProfile').length" );
+        $Selenium->WaitFor( JavaScript => "return typeof(\$) === 'function' && \$('#Attribute').length" );
 
         # check ConfigItem search page
         for my $ID (
             qw(SearchClassID SearchProfile SearchProfileNew Attribute PreviousVersionSearch ResultForm SearchFormSubmit)
             )
         {
+
             my $Element = $Selenium->find_element( "#$ID", 'css' );
+
             $Element->is_enabled();
             $Element->is_displayed();
         }
@@ -136,10 +140,11 @@ $Selenium->RunTest(
         $Selenium->find_element( "#ITSMConfigItemSearch", 'css' )->VerifiedClick();
 
         # wait until form has loaded, if necessary
-        $Selenium->WaitFor( JavaScript => "return \$('#SearchClassID').length" );
+        $Selenium->WaitFor( JavaScript => "return \$('#Attribute').length" );
 
         # input wrong search parameters, result should be 'No data found'
         $Selenium->execute_script("\$('#Attribute').val('Name').trigger('redraw.InputField').trigger('change');");
+
         $Selenium->find_element( "a.AddButton", 'css' )->click();
         $Selenium->find_element("//input[\@name='Name']")->send_keys('asdfg');
         $Selenium->find_element( "#SearchFormSubmit", 'css' )->VerifiedClick();
@@ -159,7 +164,7 @@ $Selenium->RunTest(
             $Success,
             "ConfigItem is deleted - ID $ConfigItemID",
         );
-        }
+    }
 );
 
 1;

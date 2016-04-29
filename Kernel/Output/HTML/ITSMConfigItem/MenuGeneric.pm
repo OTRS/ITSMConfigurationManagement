@@ -34,7 +34,7 @@ sub Run {
     if ( !$Param{ConfigItem} ) {
         $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
-            Message  => 'Need ConfigItem!'
+            Message  => 'Need ConfigItem!',
         );
         return;
     }
@@ -42,7 +42,7 @@ sub Run {
     # grant access by default
     my $Access = 1;
 
-    # get groups
+    # get action
     my $Action = $Param{Config}->{Action};
     if ( $Action eq 'AgentLinkObject' ) {
 
@@ -54,6 +54,7 @@ sub Run {
     # get config object
     my $ConfigObject = $Kernel::OM->Get('Kernel::Config');
 
+    # get groups
     my $GroupsRo = $ConfigObject->Get('Frontend::Module')->{$Action}->{GroupRo} || [];
     my $GroupsRw = $ConfigObject->Get('Frontend::Module')->{$Action}->{Group}   || [];
 
@@ -105,6 +106,21 @@ sub Run {
             %{ $Param{Config} },
         },
     );
+
+    # check if a dialog has to be shown
+    if ( $Param{Config}->{DialogTitle} ) {
+
+        # output confirmation dialog
+        $LayoutObject->Block(
+            Name => 'ShowConfirmationDialog',
+            Data => {
+                %Param,
+                %{ $Param{ConfigItem} },
+                %{ $Param{Config} },
+            },
+        );
+    }
+
     $Param{Counter}++;
 
     return $Param{Counter};
