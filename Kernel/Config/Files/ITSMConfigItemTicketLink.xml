@@ -66,7 +66,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="ITSMConfigItem::LinkStatus::LinkTypes" Required="1" Valid="1">
-        <Description Translatable="1">Defines which type of link can affect the status of a linked CI.</Description>
+        <Description Translatable="1">Defines which type of link (named from the ticket perspective) can affect the status of a linked CI.</Description>
         <Group>ITSM Configuration Management</Group>
         <SubGroup>Core::LinkStatus</SubGroup>
         <Setting>

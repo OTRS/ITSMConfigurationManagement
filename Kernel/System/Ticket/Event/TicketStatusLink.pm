@@ -97,15 +97,14 @@ sub Run {
 
         # determine type of ticket before last update
         my $OldTicketType;
-        my $TypeUpdateHistoryTypeID = $TicketObject->HistoryTypeLookup( Type => 'TypeUpdate' );
         my @HistoryLines = $TicketObject->HistoryGet(
             TicketID => $TicketID,
             UserID   => 1,
         );
         LINE:
         for my $Line ( reverse @HistoryLines ) {
-            next LINE if $Line->{HistoryTypeID} != $TypeUpdateHistoryTypeID;
-            my @CommentParts = split '%%', $Line->{Comment};
+            next LINE if $Line->{HistoryType} ne 'TypeUpdate';
+            my @CommentParts = split '%%', $Line->{Name};
             $OldTicketType = $CommentParts[3];
             last LINE;
         }
@@ -156,12 +155,11 @@ sub Run {
     # shortcut for ticket events (check if ticket has any potentially relevant links)
     if ( $Param{Event} eq 'TicketStateUpdate' || $Param{Event} eq 'TicketTypeUpdate' ) {
         my %LinkKeyList = $Kernel::OM->Get('Kernel::System::LinkObject')->LinkKeyList(
-            Object1   => 'Ticket',
-            Key1      => $TicketID,
-            Object2   => 'ITSMConfigItem',
-            State     => 'Valid',
-            Direction => 'Source',
-            UserID    => 1,
+            Object1 => 'Ticket',
+            Key1    => $TicketID,
+            Object2 => 'ITSMConfigItem',
+            State   => 'Valid',
+            UserID  => 1,
         );
         return 1 if !IsHashRefWithData( \%LinkKeyList );
     }
@@ -187,7 +185,6 @@ sub Run {
         my $ConfigItemID = $Param{Data}->{ConfigItemID};
         my $Version      = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->VersionGet(
             ConfigItemID => $ConfigItemID,
-            XMLDataGet   => 0,
         );
 
         # optional: check if CI deployment state is relevant
@@ -247,7 +244,6 @@ sub Run {
                 for my $ConfigItemID (@LinkedCIs) {
                     my $Version = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->VersionGet(
                         ConfigItemID => $ConfigItemID,
-                        XMLDataGet   => 0,
                     );
 
                     # optional: check if CI deployment state is relevant
@@ -256,9 +252,6 @@ sub Run {
                     }
 
                     # check current incident state vs state caused by link
-
-                    # state doesn't match = ticket change doesn't affect incident state
-                    next CONFIGITEMID if $Version->{InciState} ne $IncidentState;
 
                     # current incident state is lower than caused by link -> set
                     if ($RelevantNow) {
@@ -270,6 +263,7 @@ sub Run {
                         next CONFIGITEMID if $Version->{InciState} eq $IncidentState;
 
                         # check if CI is in higher incident state already
+                        TMPINCIDENTSTATE:
                         for my $TmpIncidentState ( @{$IncidentStates} ) {
 
                             # all further incident states are lower than current one -> set new state
@@ -485,7 +479,7 @@ sub _CheckTicketLinks {
     my ( $Self, %Param ) = @_;
 
     # check needed stuff
-    for my $Needed (qw(ConfigItemID Type)) {
+    for my $Needed (qw(TicketID Type)) {
         if ( !$Param{$Needed} ) {
             $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
@@ -495,22 +489,20 @@ sub _CheckTicketLinks {
         }
     }
 
+    # get link type lookup
+    my $LinkTypeLookup = $Self->_LinkTypeLookupGet();
+
     my %LinkKeyList = $Kernel::OM->Get('Kernel::System::LinkObject')->LinkKeyList(
         Object1   => 'Ticket',
         Key1      => $Param{TicketID},
         Object2   => 'ITSMConfigItem',
         State     => 'Valid',
-        Type      => $Param{Type},
-        Direction => 'Source',
+        Type      => $LinkTypeLookup->{ $Param{Type} }->{Name},
+        Direction => $LinkTypeLookup->{ $Param{Type} }->{Direction}->{Ticket},
         UserID    => 1,
     );
     return if !IsHashRefWithData( \%LinkKeyList );
-
-    CONFIGITEMID:
-    for my $ConfigItemID ( sort keys %LinkKeyList ) {
-    }
-
-    return ();
+    return ( sort keys %LinkKeyList );
 }
 
 # check if relevant open tickets are linked to a CI
@@ -528,13 +520,16 @@ sub _CheckConfigItemLinks {
         }
     }
 
+    # get link type lookup
+    my $LinkTypeLookup = $Self->_LinkTypeLookupGet();
+
     my %LinkKeyList = $Kernel::OM->Get('Kernel::System::LinkObject')->LinkKeyList(
         Object1   => 'ITSMConfigItem',
         Key1      => $Param{ConfigItemID},
         Object2   => 'Ticket',
         State     => 'Valid',
-        Type      => $Param{Type},
-        Direction => 'Target',
+        Type      => $LinkTypeLookup->{ $Param{Type} }->{Name},
+        Direction => $LinkTypeLookup->{ $Param{Type} }->{Direction}->{ITSMConfigItem},
         UserID    => 1,
     );
     return if !IsHashRefWithData( \%LinkKeyList );
@@ -563,6 +558,40 @@ sub _CheckConfigItemLinks {
     }
 
     return;
+}
+
+# compile list of internal link type names and directions to use for LinkKeyList
+sub _LinkTypeLookupGet {
+    my ( $Self, %Param ) = @_;
+
+    # if we have generated lookup before
+    return $Self->{LinkTypeLookup} if $Self->{LinkTypeLookup};
+
+    my %LinkTypeLookup;
+    my %TypeList = $Kernel::OM->Get('Kernel::System::LinkObject')->TypeList();
+    for my $TypeNameInternal ( sort keys %TypeList ) {
+        my $SourceName = $TypeList{$TypeNameInternal}->{SourceName};
+        my $TargetName = $TypeList{$TypeNameInternal}->{TargetName};
+        $LinkTypeLookup{$SourceName} = {
+            Name      => $TypeNameInternal,
+            Direction => {
+                ITSMConfigItem => $SourceName eq $TargetName ? 'Both' : 'Target',
+                Ticket         => $SourceName eq $TargetName ? 'Both' : 'Source',
+            },
+        };
+        $LinkTypeLookup{$TargetName} = {
+            Name      => $TypeNameInternal,
+            Direction => {
+                ITSMConfigItem => $SourceName eq $TargetName ? 'Both' : 'Source',
+                Ticket         => $SourceName eq $TargetName ? 'Both' : 'Target',
+            },
+        };
+    }
+
+    # remember result
+    $Self->{LinkTypeLookup} = \%LinkTypeLookup;
+
+    return \%LinkTypeLookup;
 }
 
 1;
