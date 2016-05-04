@@ -366,8 +366,26 @@ sub DefinitionCheck {
         if ( !$Attribute || ref $Attribute ne 'HASH' || !%{$Attribute} ) {
             $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
-                Message =>
-                    'Invalid Definition! At least one definition attribute is not a hash reference.',
+                Message  => 'Invalid Definition! At least one definition attribute is not a hash reference.',
+            );
+            return;
+        }
+
+        # check if the key contains no spaces
+        if ( $Attribute->{Key} && $Attribute->{Key} =~ m{ \s }xms ) {
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
+                Priority => 'error',
+                Message  => "Invalid Definition! Key '$Attribute->{Key}' must not contain whitespace!",
+            );
+            return;
+        }
+
+        # check if the key contains non-ascii characters
+        if ( $Attribute->{Key} && $Attribute->{Key} =~ m{ ([^\x{00}-\x{7f}]) }xms ) {
+
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
+                Priority => 'error',
+                Message  => "Invalid Definition! Key '$Attribute->{Key}' must not contain non ASCII characters '$1'!",
             );
             return;
         }
