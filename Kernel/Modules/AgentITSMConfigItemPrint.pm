@@ -162,8 +162,7 @@ sub Run {
         $Page{MaxPages} = 100;
     }
 
-    my $Title = $LayoutObject->{LanguageObject}->Translate('ConfigItem')
-        . ': ' . $ConfigItem->{CurrentName};
+    my $Title = $ConfigItem->{CurrentName};
 
     $Page{MarginTop}    = 30;
     $Page{MarginRight}  = 40;
