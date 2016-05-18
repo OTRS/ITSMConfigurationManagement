@@ -3963,7 +3963,7 @@ for my $Test (@ImportDataTests) {
     # translate xmldata in a 2d hash
     my %XMLHash = $XMLObject->XMLHash2D(
         XMLHash => $VersionData->{XMLData},
-    ) // ();
+    );
 
     # clean the xml hash
     KEY:
