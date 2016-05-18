@@ -3945,7 +3945,7 @@ for my $Test (@ImportDataTests) {
     # get the version list
     my $VersionList = $ConfigItemObject->VersionList(
         ConfigItemID => $ConfigItemID,
-    );
+    ) // [];
 
     # check number of versions
     $Self->Is(
@@ -3963,7 +3963,7 @@ for my $Test (@ImportDataTests) {
     # translate xmldata in a 2d hash
     my %XMLHash = $XMLObject->XMLHash2D(
         XMLHash => $VersionData->{XMLData},
-    );
+    ) // ();
 
     # clean the xml hash
     KEY:
