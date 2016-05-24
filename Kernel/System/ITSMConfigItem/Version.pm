@@ -224,11 +224,12 @@ sub VersionGet {
     if ( $Param{VersionID} ) {
 
         # check if result is already cached
-        if ( $Self->{Cache}->{VersionGet}->{ $Param{VersionID} } ) {
-
-            # return a clone of the cache, as the caller should not be able to change the cache
-            return Storable::dclone( $Self->{Cache}->{VersionGet}->{ $Param{VersionID} } );
-        }
+        my $CacheKey = 'VersionGet::VersionID::' . $Param{VersionID};
+        my $Cache    = $Kernel::OM->Get('Kernel::System::Cache')->Get(
+            Type => 'ITSMConfigurationManagement',
+            Key  => $CacheKey,
+        );
+        return $Cache if $Cache;
 
         # get version
         $Kernel::OM->Get('Kernel::System::DB')->Prepare(
@@ -332,11 +333,16 @@ sub VersionGet {
         VersionID => $Version{VersionID},
     );
 
-    # cache the result
-    $Self->{Cache}->{VersionGet}->{ $Version{VersionID} } = \%Version;
+    # set cache
+    my $CacheKey = 'VersionGet::VersionID::' . $Version{VersionID};
+    $Kernel::OM->Get('Kernel::System::Cache')->Set(
+        Type  => 'ITSMConfigurationManagement',
+        TTL   => 60 * 60 * 24 * 20,
+        Key   => $CacheKey,
+        Value => \%Version,
+    );
 
-    # return a clone of the cache, as the caller should not be able to change the cache
-    return Storable::dclone( $Self->{Cache}->{VersionGet}->{ $Version{VersionID} } );
+    return \%Version;
 }
 
 =item VersionConfigItemIDGet()
