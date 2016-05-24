@@ -191,6 +191,7 @@ sub Data {
     $Self->{Translation}->{'Configuration Item Information'} = '変更アイテム情報';
     $Self->{Translation}->{'Current Deployment State'} = '現在の展開状態';
     $Self->{Translation}->{'Last changed by'} = '最終変更者';
+    $Self->{Translation}->{'Ok'} = '';
     $Self->{Translation}->{'Show one version'} = '説明を表示';
     $Self->{Translation}->{'Show all versions'} = 'すべての説明を表示';
     $Self->{Translation}->{'Version Incident State'} = 'インシデント状態';

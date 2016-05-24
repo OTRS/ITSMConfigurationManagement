@@ -191,6 +191,7 @@ sub Data {
     $Self->{Translation}->{'Configuration Item Information'} = 'Maklumat Barangan Konfigurasi';
     $Self->{Translation}->{'Current Deployment State'} = 'Pertukaran keadaan semasa';
     $Self->{Translation}->{'Last changed by'} = 'Terakhir diubah oleh';
+    $Self->{Translation}->{'Ok'} = '';
     $Self->{Translation}->{'Show one version'} = 'Tunjukkan satu versi';
     $Self->{Translation}->{'Show all versions'} = 'Tunjukkan semua versi';
     $Self->{Translation}->{'Version Incident State'} = 'Versi Insiden Negeri';

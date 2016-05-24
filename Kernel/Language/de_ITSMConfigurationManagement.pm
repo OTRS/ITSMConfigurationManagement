@@ -191,6 +191,7 @@ sub Data {
     $Self->{Translation}->{'Configuration Item Information'} = 'Configuration Item Information';
     $Self->{Translation}->{'Current Deployment State'} = 'Aktueller Verwendungsstatus';
     $Self->{Translation}->{'Last changed by'} = 'Zuletzt geändert von';
+    $Self->{Translation}->{'Ok'} = '';
     $Self->{Translation}->{'Show one version'} = 'Zeige nur eine Version';
     $Self->{Translation}->{'Show all versions'} = 'Zeige alle Versionen';
     $Self->{Translation}->{'Version Incident State'} = 'Versions-Vorfallstatus';

@@ -191,6 +191,7 @@ sub Data {
     $Self->{Translation}->{'Configuration Item Information'} = 'Information om konfigurationsenhet';
     $Self->{Translation}->{'Current Deployment State'} = 'Nuvarande driftläge';
     $Self->{Translation}->{'Last changed by'} = 'Senast ändrad av';
+    $Self->{Translation}->{'Ok'} = '';
     $Self->{Translation}->{'Show one version'} = 'Visa en version';
     $Self->{Translation}->{'Show all versions'} = 'Visa alla versioner';
     $Self->{Translation}->{'Version Incident State'} = 'Incidentläge för version';
