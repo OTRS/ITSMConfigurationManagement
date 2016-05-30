@@ -12,11 +12,23 @@ use utf8;
 
 use vars qw($Self);
 
+# get needed objects
 my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
 my $ConfigItemObject     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
 my $ImportExportObject   = $Kernel::OM->Get('Kernel::System::ImportExport');
 my $ObjectBackendObject  = $Kernel::OM->Get('Kernel::System::ImportExport::ObjectBackend::ITSMConfigItem');
 my $XMLObject            = $Kernel::OM->Get('Kernel::System::XML');
+
+# get helper object
+$Kernel::OM->ObjectParamAdd(
+    'Kernel::System::UnitTest::Helper' => {
+        RestoreDatabase => 1,
+    },
+);
+my $Helper = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
+
+# define needed variable
+my $RandomID = $Helper->GetRandomID();
 
 # ------------------------------------------------------------ #
 # make preparations
@@ -24,18 +36,21 @@ my $XMLObject            = $Kernel::OM->Get('Kernel::System::XML');
 
 # add some test templates for later checks
 my @TemplateIDs;
+my $Counter = 0;
 for ( 1 .. 30 ) {
 
     # add a test template for later checks
     my $TemplateID = $ImportExportObject->TemplateAdd(
         Object  => 'ITSMConfigItem',
-        Format  => 'UnitTest' . int rand 1_000_000,
-        Name    => 'UnitTest' . int rand 1_000_000,
+        Format  => 'UnitTest' . $Counter . $RandomID,
+        Name    => 'UnitTest' . $Counter . $RandomID,
         ValidID => 1,
         UserID  => 1,
     );
 
     push @TemplateIDs, $TemplateID;
+
+    $Counter++;
 }
 
 # ------------------------------------------------------------ #
@@ -169,7 +184,7 @@ $Self->False(
 # make preparations to test ExportDataGet() and ImportDataSave()
 # ------------------------------------------------------------ #
 
-my $GeneralCatalogClass = 'UnitTest' . int rand 1_000_000;
+my $GeneralCatalogClass = 'UnitTest' . $RandomID;
 
 # add a general catalog test list
 for my $Name (qw(Test1 Test2 Test3 Test4)) {
@@ -359,7 +374,7 @@ my @ConfigItemDefinitionIDs;
 for my $Definition (@ConfigItemDefinitions) {
 
     # generate a random name
-    my $ClassName = 'UnitTest' . int rand 1_000_000;
+    my $ClassName = 'UnitTest' . $Helper->GetRandomID();
 
     # add an unittest config item class
     my $ClassID = $GeneralCatalogObject->ItemAdd(
@@ -402,7 +417,7 @@ for my $Definition (@ConfigItemDefinitions) {
 # create some random numbers
 my @ConfigItemNumbers;
 for ( 1 .. 10 ) {
-    push @ConfigItemNumbers, int rand 1_000_000;
+    push @ConfigItemNumbers, $Helper->GetRandomNumber();
 }
 
 # get deployment state list
@@ -3930,7 +3945,7 @@ for my $Test (@ImportDataTests) {
     # get the version list
     my $VersionList = $ConfigItemObject->VersionList(
         ConfigItemID => $ConfigItemID,
-    );
+    ) // [];
 
     # check number of versions
     $Self->Is(
@@ -4033,42 +4048,6 @@ continue {
     $ImportTestCount++;
 }
 
-# ------------------------------------------------------------ #
-# clean the system
-# ------------------------------------------------------------ #
-
-# delete the test templates
-$ImportExportObject->TemplateDelete(
-    TemplateID => \@TemplateIDs,
-    UserID     => 1,
-);
-
-# get actual class list
-my $ClassList = $GeneralCatalogObject->ItemList(
-    Class => 'ITSM::ConfigItem::Class',
-);
-
-# set unittest classes invalid
-ITEMID:
-for my $ItemID ( sort keys %{$ClassList} ) {
-
-    next ITEMID if $ClassList->{$ItemID} !~ m{ \A UnitTest }xms;
-
-    # update item
-    $GeneralCatalogObject->ItemUpdate(
-        ItemID  => $ItemID,
-        Name    => $ClassList->{$ItemID},
-        ValidID => 2,
-        UserID  => 1,
-    );
-}
-
-# delete the test config items
-for my $ConfigItemID (@ConfigItemIDs) {
-    $ConfigItemObject->ConfigItemDelete(
-        ConfigItemID => $ConfigItemID,
-        UserID       => 1,
-    );
-}
+# cleanup is done by RestoreDatabase
 
 1;

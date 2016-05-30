@@ -486,7 +486,7 @@ replaces the user value with a system valid value.
     );
 
     returns
-    $NewValue = '1977-12-12 00:00:00',
+    $NewValue = '1977-12-12',
 
 =cut
 
@@ -514,6 +514,9 @@ sub ReplaceInputDate {
     my $TimeStamp = $Kernel::OM->Get('Kernel::System::Time')->SystemTime2TimeStamp(
         SystemTime => $SystemTime,
     );
+
+    # remove the time part
+    $TimeStamp =~ s{ [ ] 00:00:00 \z }{}xms;
 
     return $TimeStamp;
 }

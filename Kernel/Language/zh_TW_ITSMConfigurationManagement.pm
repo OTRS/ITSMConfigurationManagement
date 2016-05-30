@@ -191,6 +191,7 @@ sub Data {
     $Self->{Translation}->{'Configuration Item Information'} = '配置項信息';
     $Self->{Translation}->{'Current Deployment State'} = '當前的部署狀態';
     $Self->{Translation}->{'Last changed by'} = '最後修改於';
+    $Self->{Translation}->{'Ok'} = '';
     $Self->{Translation}->{'Show one version'} = '顯示一個版本';
     $Self->{Translation}->{'Show all versions'} = '顯示所有版本';
     $Self->{Translation}->{'Version Incident State'} = '版本故障狀態';

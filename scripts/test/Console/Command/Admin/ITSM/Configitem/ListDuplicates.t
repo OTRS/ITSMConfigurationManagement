@@ -13,8 +13,16 @@ use utf8;
 
 use vars (qw($Self));
 
+# get command object
 my $CommandObject = $Kernel::OM->Get('Kernel::System::Console::Command::Admin::ITSM::Configitem::ListDuplicates');
-my $HelperObject  = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
+
+# get helper object
+$Kernel::OM->ObjectParamAdd(
+    'Kernel::System::UnitTest::Helper' => {
+        RestoreDatabase => 1,
+    },
+);
+my $HelperObject = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
 
 # check command without any options
 my $ExitCode = $CommandObject->Execute();
@@ -166,20 +174,6 @@ $Self->Is(
     "Option 'scope' (all-states) ",
 );
 
-# clean up test data
-for my $ConfigItemID (@ConfigItemID) {
-    my $Success = $ConfigItemObject->ConfigItemDelete(
-        ConfigItemID => $ConfigItemID,
-        UserID       => 1,
-    );
-    $Self->True(
-        $Success,
-        "Configitem is deleted",
-    );
-}
-
-$Kernel::OM->Get('Kernel::System::Cache')->CleanUp(
-    Type => 'GeneralCatalog',
-);
+# cleanup is done by RestoreDatabse
 
 1;
