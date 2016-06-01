@@ -212,6 +212,15 @@ sub Run {
             ConfigItemID => $ConfigItemID,
             UserID       => $UserID,
         );
+        
+        # get linked objects list
+        my $LinkListWithData = $Kernel::OM->Get('Kernel::System::LinkObject')->LinkListWithData(
+            Object           => 'ITSMConfigItem',
+            Object2          => 'ITSMConfigItem',
+            Key              => $ConfigItemID,
+            State            => 'Valid',
+            UserID           => $UserID,
+        );
 
         # get latest version
         my $Version = $ConfigItemObject->VersionGet(
@@ -289,6 +298,11 @@ sub Run {
             }
         }
 
+        # add list of linked objects to the bundle
+        if ($LinkListWithData) {
+             $ConfigItemBundle->{LinkListWithData} = $LinkListWithData;
+        }
+        
         # add
         push @Item, $ConfigItemBundle;
 
