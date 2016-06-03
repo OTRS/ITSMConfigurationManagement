@@ -11,7 +11,9 @@ package Kernel::System::ITSMConfigItem::XML::Type::DateTime;
 use strict;
 use warnings;
 
-our @ObjectDependencies = ();
+our @ObjectDependencies = (
+    'Kernel::System::Log',
+);
 
 =head1 NAME
 
@@ -70,9 +72,37 @@ create a attribute array for the stats framework
 =cut
 
 sub StatsAttributeCreate {
-    my $Self = shift;
+    my ( $Self, %Param ) = @_;
 
-    return;
+    # check needed stuff
+    for my $Argument (qw(Key Name Item)) {
+        if ( !$Param{$Argument} ) {
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
+                Priority => 'error',
+                Message  => "Need $Argument!",
+            );
+            return;
+        }
+    }
+
+    # create attribute
+    my $Attribute = [
+        {
+            Name             => $Param{Name},
+            UseAsXvalue      => 0,
+            UseAsValueSeries => 0,
+            UseAsRestriction => 1,
+            Element          => $Param{Key},
+            TimePeriodFormat => 'DateInputFormatLong',
+            Block            => 'Time',
+            Values           => {
+                TimeStart => $Param{Key} . 'NewerDate',
+                TimeStop  => $Param{Key} . 'OlderDate',
+            },
+        },
+    ];
+
+    return $Attribute;
 }
 
 =item ExportSearchValuePrepare()
