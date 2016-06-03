@@ -169,7 +169,7 @@ sub Data {
     $Self->{Translation}->{'Incident State'} = 'Hali ya tukio';
 
     # Template: AgentITSMConfigItemHistory
-    $Self->{Translation}->{'History of'} = '';
+    $Self->{Translation}->{'History of'} = 'Historia ya';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'Mipangilio ya muktadha';
@@ -191,7 +191,7 @@ sub Data {
     $Self->{Translation}->{'Configuration Item Information'} = 'Taarifa za kipengele cha usanidi';
     $Self->{Translation}->{'Current Deployment State'} = 'Hali ya kutumia ya sasa';
     $Self->{Translation}->{'Last changed by'} = 'Mwisho kubadilishwa na';
-    $Self->{Translation}->{'Ok'} = '';
+    $Self->{Translation}->{'Ok'} = 'Sawa';
     $Self->{Translation}->{'Show one version'} = 'Onyesha toleo moja';
     $Self->{Translation}->{'Show all versions'} = 'Onyesha matoleo yote';
     $Self->{Translation}->{'Version Incident State'} = 'Toleo la hali ya tukio';

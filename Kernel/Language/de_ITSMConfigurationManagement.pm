@@ -154,11 +154,11 @@ sub Data {
     $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = 'Wählen Sie eine Klasse aus der Liste aus um ein neues Config Item zu erstellen.';
 
     # Template: AgentITSMConfigItemBulk
-    $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = '';
+    $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = 'ITSM ConfigItem Sammel-Aktion';
     $Self->{Translation}->{'Deployment state'} = 'Verwendungsstatus';
     $Self->{Translation}->{'Incident state'} = 'Vorfallsstatus';
     $Self->{Translation}->{'Link to another'} = 'Zu einem anderen verlinken';
-    $Self->{Translation}->{'Invalid Configuration Item number!'} = '';
+    $Self->{Translation}->{'Invalid Configuration Item number!'} = 'Ungültige Configuration Item Nummer!';
     $Self->{Translation}->{'The number of another Configuration Item to link with.'} = '';
 
     # Template: AgentITSMConfigItemEdit
@@ -169,7 +169,7 @@ sub Data {
     $Self->{Translation}->{'Incident State'} = 'Vorfallsstatus';
 
     # Template: AgentITSMConfigItemHistory
-    $Self->{Translation}->{'History of'} = '';
+    $Self->{Translation}->{'History of'} = 'Änderungsverlauf von';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'Kontext-Eintstellungen';
@@ -191,7 +191,7 @@ sub Data {
     $Self->{Translation}->{'Configuration Item Information'} = 'Configuration Item Information';
     $Self->{Translation}->{'Current Deployment State'} = 'Aktueller Verwendungsstatus';
     $Self->{Translation}->{'Last changed by'} = 'Zuletzt geändert von';
-    $Self->{Translation}->{'Ok'} = '';
+    $Self->{Translation}->{'Ok'} = 'Ok';
     $Self->{Translation}->{'Show one version'} = 'Zeige nur eine Version';
     $Self->{Translation}->{'Show all versions'} = 'Zeige alle Versionen';
     $Self->{Translation}->{'Version Incident State'} = 'Versions-Vorfallstatus';
@@ -210,7 +210,7 @@ sub Data {
     $Self->{Translation}->{'ConfigItem'} = 'ConfigItem';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
-    $Self->{Translation}->{'No Result!'} = '';
+    $Self->{Translation}->{'No Result!'} = 'Kein Ergebnis!';
     $Self->{Translation}->{'Config Item Search Results'} = '';
 
     # SysConfig

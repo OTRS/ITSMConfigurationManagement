@@ -1,39 +1,38 @@
 # 
 # Translators:
-# EricLF44 <E.lefoll@cdg44.fr>, 2016
-# Udo Bretz, 2015
+# Balázs Úr <urbalazs@gmail.com>, 2014-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
 "POT-Creation-Date: 2016-05-24 21:57+0000\n"
-"PO-Revision-Date: 2016-05-31 13:29+0000\n"
-"Last-Translator: Udo Bretz\n"
-"Language-Team: French (http://www.transifex.com/otrs/OTRS/language/fr/)\n"
+"PO-Revision-Date: 2016-05-24 21:54+0000\n"
+"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
+"Language-Team: Hungarian (http://www.transifex.com/otrs/OTRS/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: hu\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. Template: AAAITSMConfigItem
 msgid "Address"
-msgstr "Adresse"
+msgstr "Cím"
 
 #. Template: AAAITSMConfigItem
 msgid "Admin Tool"
-msgstr "Outil d'Administration"
+msgstr "Adminisztrációs eszköz"
 
 #. Template: AAAITSMConfigItem
 msgid "Backup Device"
-msgstr "Element de sauvegarde"
+msgstr "Biztonsági mentés eszköz"
 
 #. Template: AAAITSMConfigItem
 msgid "Beamer"
-msgstr "Rétroprojecteur"
+msgstr "Beamer"
 
 #. Template: AAAITSMConfigItem
 msgid "Building"
-msgstr "Batiment"
+msgstr "Összeállítás"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::ConfigItemCreate"
@@ -53,39 +52,39 @@ msgstr "CIHistory::DeploymentStateUpdate"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::IncidentStateUpdate"
-msgstr ""
+msgstr "CIHistory::IncidentStateUpdate"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::LinkAdd"
-msgstr ""
+msgstr "CIHistory::LinkAdd"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::LinkDelete"
-msgstr ""
+msgstr "CIHistory::LinkDelete"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::NameUpdate"
-msgstr ""
+msgstr "CIHistory::NameUpdate"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::ValueUpdate"
-msgstr ""
+msgstr "CIHistory::ValueUpdate"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::VersionCreate"
-msgstr ""
+msgstr "CIHistory::VersionCreate"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::VersionDelete"
-msgstr ""
+msgstr "CIHistory::VersionDelete"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::AttachmentAdd"
-msgstr ""
+msgstr "CIHistory::AttachmentAdd"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::AttachmentDelete"
-msgstr ""
+msgstr "CIHistory::AttachmentDelete"
 
 #. Template: AAAITSMConfigItem
 msgid "CPU"
@@ -93,95 +92,95 @@ msgstr "CPU"
 
 #. Template: AAAITSMConfigItem
 msgid "Camera"
-msgstr "Caméra"
+msgstr "Kamera"
 
 #. Template: AAAITSMConfigItem
 msgid "Capacity"
-msgstr "Capacité"
+msgstr "Kapacitás"
 
 #. Template: AAAITSMConfigItem
 msgid "Change Definition"
-msgstr "Définition du Changement"
+msgstr "Meghatározás módosítása"
 
 #. Template: AAAITSMConfigItem
 msgid "Change of definition failed! See System Log for details."
-msgstr "Modification de la définition échouée! Regardez les Log Systèmes pour plus de détails."
+msgstr "A meghatározás módosítása nem sikerült! A részletekért nézze meg a rendszernaplót."
 
 #. Template: AAAITSMConfigItem
 msgid "Client Application"
-msgstr "Application Cliente"
+msgstr "Kliens alkalmazás"
 
 #. Template: AAAITSMConfigItem
 msgid "Client OS"
-msgstr "OS Client"
+msgstr "Kliens operációs rendszer"
 
 #. Template: AAAITSMConfigItem
 msgid "Concurrent Users"
-msgstr "Utilisateurs concurrents"
+msgstr "Egyidejű felhasználók"
 
 #. Template: AAAITSMConfigItem
 msgid "Config Item-Area"
-msgstr "Zone des Eléments de Configuration"
+msgstr "Konfigurációelem-terület"
 
 #. Template: AAAITSMConfigItem
 msgid "Config Items available"
-msgstr "Eléments de configuration disponibles"
+msgstr "Elérhető konfigurációelemek"
 
 #. Template: AAAITSMConfigItem
 msgid "Config Items shown"
-msgstr "Eléments de configuration montrés"
+msgstr "Megjelenített konfigurációelemek"
 
 #. Template: AAAITSMConfigItem
 msgid "CMDB"
-msgstr ""
+msgstr "CMDB"
 
 #. Template: AAAITSMConfigItem
 msgid "Demo"
-msgstr "Demo"
+msgstr "Bemutató"
 
 #. Template: AAAITSMConfigItem
 msgid "Desktop"
-msgstr "Ordinateur"
+msgstr "Asztal"
 
 #. Template: AAAITSMConfigItem
 msgid "Developer Licence"
-msgstr "License Développeur"
+msgstr "Fejlesztői licenc"
 
 #. Template: AAAITSMConfigItem
 msgid "Docking Station"
-msgstr "Base pour Portable"
+msgstr "Dokkoló állomás"
 
 #. Template: AAAITSMConfigItem
 msgid "Duplicate"
-msgstr "Dupliquer"
+msgstr "Kettőzés"
 
 #. Template: AAAITSMConfigItem
 msgid "Embedded"
-msgstr "Embarqué"
+msgstr "Beágyazott"
 
 #. Template: AAAITSMConfigItem
 msgid "Empty fields indicate that the current values are kept"
-msgstr ""
+msgstr "Az üres mezők azt jelzik, hogy az aktuális mezők megtartásra kerülnek"
 
 #. Template: AAAITSMConfigItem
 msgid "Enterprise Licence"
-msgstr "License Entreprise"
+msgstr "Vállalati licenc"
 
 #. Template: AAAITSMConfigItem
 msgid "Expiration Date"
-msgstr "Date d'expiration"
+msgstr "Lejárati idő"
 
 #. Template: AAAITSMConfigItem
 msgid "Expired"
-msgstr "Expiré"
+msgstr "Lejárt"
 
 #. Template: AAAITSMConfigItem
 msgid "Floor"
-msgstr "Etage"
+msgstr "Emelet"
 
 #. Template: AAAITSMConfigItem
 msgid "Freeware"
-msgstr "Freeware/Graticiel"
+msgstr "Freeware"
 
 #. Template: AAAITSMConfigItem
 msgid "GSM"
@@ -189,51 +188,51 @@ msgstr "GSM"
 
 #. Template: AAAITSMConfigItem
 msgid "Gateway"
-msgstr "Passerelle"
+msgstr "Átjáró"
 
 #. Template: AAAITSMConfigItem
 msgid "Graphic Adapter"
-msgstr "Adaptateur graphique"
+msgstr "Grafikus csatoló"
 
 #. Template: AAAITSMConfigItem
 msgid "Hard Disk"
-msgstr "Disque dur"
+msgstr "Merevlemez"
 
 #. Template: AAAITSMConfigItem
 msgid "Hard Disk::Capacity"
-msgstr "Disque dur::Capacité"
+msgstr "Merevlemez::Kapacitás"
 
 #. Template: AAAITSMConfigItem
 msgid "Hide Versions"
-msgstr "Cacher les Versions"
+msgstr "Verziók elrejtése"
 
 #. Template: AAAITSMConfigItem
 msgid "IP Address"
-msgstr "Adresse IP"
+msgstr "IP-cím"
 
 #. Template: AAAITSMConfigItem
 msgid "IP over DHCP"
-msgstr "IP sur DHCP"
+msgstr "IP a DHCP fölött"
 
 #. Template: AAAITSMConfigItem
 msgid "IT Facility"
-msgstr "Département IT"
+msgstr "IT képesség"
 
 #. Template: AAAITSMConfigItem
 msgid "Inactive"
-msgstr "Inactif"
+msgstr "Inaktív"
 
 #. Template: AAAITSMConfigItem
 msgid "Incident"
-msgstr "Incident"
+msgstr "Incidens"
 
 #. Template: AAAITSMConfigItem
 msgid "Install Date"
-msgstr "Date d'installation"
+msgstr "Telepítés dátuma"
 
 #. Template: AAAITSMConfigItem
 msgid "Keyboard"
-msgstr "Clavier"
+msgstr "Billentyűzet"
 
 #. Template: AAAITSMConfigItem
 msgid "LAN"
@@ -241,47 +240,47 @@ msgstr "LAN"
 
 #. Template: AAAITSMConfigItem
 msgid "Laptop"
-msgstr "Portable"
+msgstr "Laptop"
 
 #. Template: AAAITSMConfigItem
 msgid "Last Change"
-msgstr "Dernière modification"
+msgstr "Utolsó módosítás"
 
 #. Template: AAAITSMConfigItem
 msgid "Licence Key"
-msgstr "Clé de la license"
+msgstr "Licenc kulcs"
 
 #. Template: AAAITSMConfigItem
 msgid "Licence Key::Expiration Date"
-msgstr "Clé de la license::Date d'expiration"
+msgstr "Licenc kulcs::Lejárati dátum"
 
 #. Template: AAAITSMConfigItem
 msgid "Licence Key::Quantity"
-msgstr "Clé de la license::Quantité"
+msgstr "Licenc kulcs::Mennyiség"
 
 #. Template: AAAITSMConfigItem
 msgid "Licence Type"
-msgstr "Type de license"
+msgstr "Licenctípus"
 
 #. Template: AAAITSMConfigItem
 msgid "Maintenance"
-msgstr "Maintenance"
+msgstr "Karbantartás"
 
 #. Template: AAAITSMConfigItem
 msgid "Maximum number of one element"
-msgstr "Quantité maximale pour un élément"
+msgstr "Egy elem legnagyobb száma"
 
 #. Template: AAAITSMConfigItem
 msgid "Media"
-msgstr "Media"
+msgstr "Adathordozó"
 
 #. Template: AAAITSMConfigItem
 msgid "Middleware"
-msgstr "Middleware"
+msgstr "Köztes réteg"
 
 #. Template: AAAITSMConfigItem
 msgid "Model"
-msgstr "Modèle"
+msgstr "Modell"
 
 #. Template: AAAITSMConfigItem
 msgid "Modem"
@@ -289,59 +288,59 @@ msgstr "Modem"
 
 #. Template: AAAITSMConfigItem
 msgid "Monitor"
-msgstr "Moniteur"
+msgstr "Monitor"
 
 #. Template: AAAITSMConfigItem
 msgid "Mouse"
-msgstr "Souris"
+msgstr "Egér"
 
 #. Template: AAAITSMConfigItem
 msgid "Network Adapter"
-msgstr "Adaptateur réseau"
+msgstr "Hálózati csatoló"
 
 #. Template: AAAITSMConfigItem
 msgid "Network Adapter::IP Address"
-msgstr "Adaptateur réseau:: Adresse IP"
+msgstr "Hálózati csatoló::IP-cím"
 
 #. Template: AAAITSMConfigItem
 msgid "Network Adapter::IP over DHCP"
-msgstr "Adaptateur réseau::IP sur DHCP"
+msgstr "Hálózati csatoló::IP a DHCP fölött"
 
 #. Template: AAAITSMConfigItem
 msgid "Network Address"
-msgstr "Adresse réseau"
+msgstr "Hálózati cím"
 
 #. Template: AAAITSMConfigItem
 msgid "Network Address::Gateway"
-msgstr "Adresse réseau::Passerelle"
+msgstr "Hálózati cím::Átjáró"
 
 #. Template: AAAITSMConfigItem
 msgid "Network Address::Subnet Mask"
-msgstr "Adresse réseau::Masque du sous réseau"
+msgstr "Hálózati cím::Alhálózati maszk"
 
 #. Template: AAAITSMConfigItem
 msgid "Open Source"
-msgstr "Open Source"
+msgstr "Nyílt forrású"
 
 #. Template: AAAITSMConfigItem
 msgid "Operational"
-msgstr "Opérationnel"
+msgstr "Üzemképes"
 
 #. Template: AAAITSMConfigItem
 msgid "Other"
-msgstr "Autre"
+msgstr "Egyéb"
 
 #. Template: AAAITSMConfigItem
 msgid "Other Equipment"
-msgstr "Autre équipement"
+msgstr "Egyéb berendezés"
 
 #. Template: AAAITSMConfigItem
 msgid "Outlet"
-msgstr "Prise"
+msgstr "Outlet"
 
 #. Template: AAAITSMConfigItem
 msgid "PCMCIA Card"
-msgstr "Carte PCMCIA"
+msgstr "PCMCIA kártya"
 
 #. Template: AAAITSMConfigItem
 msgid "PDA"
@@ -349,47 +348,47 @@ msgstr "PDA"
 
 #. Template: AAAITSMConfigItem
 msgid "Per Node"
-msgstr "Par noeud"
+msgstr "Csomópontonként"
 
 #. Template: AAAITSMConfigItem
 msgid "Per Processor"
-msgstr "Par processeur"
+msgstr "Processzoronként"
 
 #. Template: AAAITSMConfigItem
 msgid "Per Server"
-msgstr "Par Serveur"
+msgstr "Kiszolgálónként"
 
 #. Template: AAAITSMConfigItem
 msgid "Per User"
-msgstr "Par Utilisateur"
+msgstr "Felhasználónként"
 
 #. Template: AAAITSMConfigItem
 msgid "Phone 1"
-msgstr "Téléphone 1"
+msgstr "1. telefon"
 
 #. Template: AAAITSMConfigItem
 msgid "Phone 2"
-msgstr "Téléphone 2"
+msgstr "2. telefon"
 
 #. Template: AAAITSMConfigItem
 msgid "Pilot"
-msgstr "Pilote"
+msgstr "Bevezető"
 
 #. Template: AAAITSMConfigItem
 msgid "Planned"
-msgstr "Planifié"
+msgstr "Tervezett"
 
 #. Template: AAAITSMConfigItem
 msgid "Printer"
-msgstr "Imprimante"
+msgstr "Nyomtató"
 
 #. Template: AAAITSMConfigItem
 msgid "Production"
-msgstr "Production"
+msgstr "Termelés"
 
 #. Template: AAAITSMConfigItem
 msgid "Quantity"
-msgstr "Quantité"
+msgstr "Mennyiség"
 
 #. Template: AAAITSMConfigItem
 msgid "Rack"
@@ -397,71 +396,71 @@ msgstr "Rack"
 
 #. Template: AAAITSMConfigItem
 msgid "Ram"
-msgstr "RAM"
+msgstr "Ram"
 
 #. Template: AAAITSMConfigItem
 msgid "Repair"
-msgstr "En réparation"
+msgstr "Javítás"
 
 #. Template: AAAITSMConfigItem
 msgid "Retired"
-msgstr "Retiré"
+msgstr "Visszavonult"
 
 #. Template: AAAITSMConfigItem
 msgid "Review"
-msgstr "Revue"
+msgstr "Áttekintés"
 
 #. Template: AAAITSMConfigItem
 msgid "Room"
-msgstr "Pièce"
+msgstr "Szoba"
 
 #. Template: AAAITSMConfigItem
 msgid "Router"
-msgstr "Routeur"
+msgstr "Útválasztó"
 
 #. Template: AAAITSMConfigItem
 msgid "Scanner"
-msgstr "Scanner"
+msgstr "Lapolvasó"
 
 #. Template: AAAITSMConfigItem
 msgid "Search Config Items"
-msgstr "Chercher dans les éléments de configuration"
+msgstr "Konfigurációelemek keresése"
 
 #. Template: AAAITSMConfigItem
 msgid "Security Device"
-msgstr "Périphérique de sécurité"
+msgstr "Biztonsági eszköz"
 
 #. Template: AAAITSMConfigItem
 msgid "Serial Number"
-msgstr "Numéro de série"
+msgstr "Sorozatszám"
 
 #. Template: AAAITSMConfigItem
 msgid "Server"
-msgstr "Serveur"
+msgstr "Kiszolgáló"
 
 #. Template: AAAITSMConfigItem
 msgid "Server Application"
-msgstr "Application Serveur"
+msgstr "Kiszolgáló alkalmazás"
 
 #. Template: AAAITSMConfigItem
 msgid "Server OS"
-msgstr "OS Server"
+msgstr "Kiszolgáló operációs rendszer"
 
 #. Template: AAAITSMConfigItem
 msgid "Show Versions"
-msgstr "Montrer les Versions"
+msgstr "Verziók megjelenítése"
 
 #. Template: AAAITSMConfigItem
 msgid "Single Licence"
-msgstr "License unique"
+msgstr "Egyedüli licenc"
 
 #. Template: AAAITSMConfigItem
 msgid "Subnet Mask"
-msgstr "Masque du sous réseau"
+msgstr "Alhálózati maszk"
 
 #. Template: AAAITSMConfigItem
 msgid "Switch"
-msgstr "Switch"
+msgstr "Kapcsoló"
 
 #. Template: AAAITSMConfigItem
 msgid "Telco"
@@ -469,35 +468,35 @@ msgstr "Telco"
 
 #. Template: AAAITSMConfigItem
 msgid "Test/QA"
-msgstr "Test/QA"
+msgstr "Teszt/QA"
 
 #. Template: AAAITSMConfigItem
 msgid "The deployment state of this config item"
-msgstr "L'état de déploiement de cet élément de configuration"
+msgstr "Ezen konfigurációelem üzembe állítási állapota"
 
 #. Template: AAAITSMConfigItem
 msgid "The incident state of this config item"
-msgstr "L'état d'incident de cet élément de configuration"
+msgstr "Ezen konfigurációelem incidensállapota"
 
 #. Template: AAAITSMConfigItem
 msgid "Time Restricted"
-msgstr "Limitée dans le temps"
+msgstr "Időben korlátozott"
 
 #. Template: AAAITSMConfigItem
 msgid "USB Device"
-msgstr "Périphérique USB"
+msgstr "USB eszköz"
 
 #. Template: AAAITSMConfigItem
 msgid "Unlimited"
-msgstr "Illimité"
+msgstr "Korlátlan"
 
 #. Template: AAAITSMConfigItem
 msgid "User Tool"
-msgstr "Outil Utilisateur"
+msgstr "Felhasználói eszköz"
 
 #. Template: AAAITSMConfigItem
 msgid "Volume Licence"
-msgstr "License par volume"
+msgstr "Mennyiségi licenc"
 
 #. Template: AAAITSMConfigItem
 msgid "WLAN"
@@ -505,292 +504,292 @@ msgstr "WLAN"
 
 #. Template: AAAITSMConfigItem
 msgid "WLAN Access Point"
-msgstr "Point d'access WLAN"
+msgstr "WLAN hozzáférési pont"
 
 #. Template: AAAITSMConfigItem
 msgid "Warranty Expiration Date"
-msgstr "Date d'expiration de la garantie"
+msgstr "Garancia lejárati idő"
 
 #. Template: AAAITSMConfigItem
 msgid "Workplace"
-msgstr "Emplacement"
+msgstr "Munkahely"
 
 #. Template: AdminITSMConfigItem
 msgid "Config Item Management"
-msgstr "Gestion des Eléments de Configuration"
+msgstr "Konfigurációelem-menedzsment"
 
 #. Template: AdminITSMConfigItem
 msgid "Change class definition"
-msgstr ""
+msgstr "Osztály-meghatározás módosítása"
 
 #. Template: AdminITSMConfigItem
 msgid "Config Item"
-msgstr "Elément de configuration"
+msgstr "Konfigurációelem"
 
 #. Template: AdminITSMConfigItem
 msgid "Class"
-msgstr "Classe"
+msgstr "Osztály"
 
 #. Template: AdminITSMConfigItem
 msgid "Definition"
-msgstr ""
+msgstr "Meghatározás"
 
 #. Template: AgentITSMConfigItemAdd
 msgid "Filter for Classes"
-msgstr ""
+msgstr "Szűrő az osztályokhoz"
 
 #. Template: AgentITSMConfigItemAdd
 msgid "Select a Class from the list to create a new Config Item."
-msgstr ""
+msgstr "Válasszon egy osztályt a listából egy új konfigurációelem létrehozásához."
 
 #. Template: AgentITSMConfigItemBulk
 msgid "ITSM ConfigItem Bulk Action"
-msgstr ""
+msgstr "ITSM konfigurációelem tömeges művelet"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Deployment state"
-msgstr ""
+msgstr "Üzembe állítási állapot"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Incident state"
-msgstr ""
+msgstr "Incidensállapot"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Link to another"
-msgstr ""
+msgstr "Hivatkozás egy másik"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Invalid Configuration Item number!"
-msgstr ""
+msgstr "Érvénytelen konfigurációelem-szám!"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "The number of another Configuration Item to link with."
-msgstr ""
+msgstr "Egy másik konfigurációelem száma, amellyel össze kell kötni."
 
 #. Template: AgentITSMConfigItemEdit
 msgid "The name of this config item"
-msgstr "Le nom de cet élément de configuration"
+msgstr "Ezen konfigurációelem neve"
 
 #. Template: AgentITSMConfigItemEdit
 msgid ""
 "Name is already in use by the ConfigItems with the following Number(s): %s"
-msgstr ""
+msgstr "A nevet már használják a konfigurációelemek a következő számokkal: %s"
 
 #. Template: AgentITSMConfigItemEdit
 msgid "Deployment State"
-msgstr "Etat de déploiement"
+msgstr "Üzembe állítási állapot"
 
 #. Template: AgentITSMConfigItemEdit
 msgid "Incident State"
-msgstr "Etat de l'incident"
+msgstr "Incidensállapot"
 
 #. Template: AgentITSMConfigItemHistory
 msgid "History of"
-msgstr "Historique de"
+msgstr "Előzménye ennek"
 
 #. Template: AgentITSMConfigItemOverviewNavBar
 msgid "Context Settings"
-msgstr "Réglages de Contexte"
+msgstr "Környezet beállítások"
 
 #. Template: AgentITSMConfigItemOverviewNavBar
 msgid "Config Items per page"
-msgstr ""
+msgstr "Konfigurációelemek oldalanként"
 
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "Deployment State Type"
-msgstr ""
+msgstr "Üzembe állítási állapottípus"
 
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "Current Incident State"
-msgstr "Etat actuel de l'incident"
+msgstr "Jelenlegi incidensállapot"
 
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "Current Incident State Type"
-msgstr ""
+msgstr "Jelenlegi incidensállapot típus"
 
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "Last changed"
-msgstr "Dernière modification"
+msgstr "Utolsó módosítás"
 
 #. Template: AgentITSMConfigItemSearch
 msgid "Create New Template"
-msgstr ""
+msgstr "Új sablon létrehozása"
 
 #. Template: AgentITSMConfigItemSearch
 msgid "Run Search"
-msgstr ""
+msgstr "Keresés futtatása"
 
 #. Template: AgentITSMConfigItemSearch
 msgid "Also search in previous versions?"
-msgstr "Chercher également dans les versions précédentes??"
+msgstr "Keressen az előző verziókban is?"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Configuration Item"
-msgstr ""
+msgstr "Konfigurációelem"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Configuration Item Information"
-msgstr ""
+msgstr "Konfigurációelem-információk"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Current Deployment State"
-msgstr "Etat actuel de déploiement"
+msgstr "Jelenlegi üzembe állítási állapot"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Last changed by"
-msgstr "Dernière modification effectuée par"
+msgstr "Utoljára módosította"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Ok"
-msgstr "Ok"
+msgstr "OK"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Show one version"
-msgstr ""
+msgstr "Egy verzió megjelenítése"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Show all versions"
-msgstr ""
+msgstr "Összes verzió megjelenítése"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Version Incident State"
-msgstr ""
+msgstr "Verzió incidensállapot"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Version Deployment State"
-msgstr ""
+msgstr "Verzió üzembe állítási állapot"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Version Number"
-msgstr ""
+msgstr "Verziószám"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Configuration Item Version Details"
-msgstr ""
+msgstr "Konfigurációelem-verzió részletek"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Property"
-msgstr ""
+msgstr "Tulajdonság"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
 msgid "ITSM ConfigItem"
-msgstr ""
+msgstr "ITSM konfigurációelem"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "CIHistory::"
-msgstr ""
+msgstr "CIHistory::"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "ConfigItem"
-msgstr ""
+msgstr "Konfigurációelem"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "No Result!"
-msgstr "Aucun résultat !"
+msgstr "Nincs találat!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "Config Item Search Results"
-msgstr ""
+msgstr "Konfigurációelem keresési eredmények"
 
 #. SysConfig
 msgid ""
 "Check for a unique name only within the same ConfigItem class ('class') or "
 "globally ('global'), which means every existing ConfigItem is taken into "
 "account when looking for duplicates."
-msgstr ""
+msgstr "Egyedi név ellenőrzése kizárólag ugyanabban a konfigurációelem osztályban („class”) vagy globálisan („global”), amely azt jelenti, hogy minden meglévő konfigurációelem egy fiókba lesz felvéve a kettőzések keresésekor."
 
 #. SysConfig
 msgid "Config Items"
-msgstr ""
+msgstr "Konfigurációelemek"
 
 #. SysConfig
 msgid ""
 "Config item event module that enables logging to history in the agent "
 "interface."
-msgstr ""
+msgstr "Konfigurációelem esemény modul, amely engedélyezi a naplózást az előzményekbe az ügyintézői felületen."
 
 #. SysConfig
 msgid "Configuration Item Limit"
-msgstr ""
+msgstr "Konfigurációelem-korlát"
 
 #. SysConfig
 msgid "Configuration Item limit per page"
-msgstr ""
+msgstr "Konfigurációelem-korlát oldalanként"
 
 #. SysConfig
 msgid "Configuration item search backend router of the agent interface."
-msgstr ""
+msgstr "Az ügyintézői felület konfigurációelem keresési háttérprogram útválasztója."
 
 #. SysConfig
 msgid "Create and manage the definitions for Configuration Items."
-msgstr ""
+msgstr "Meghatározások létrehozása és kezelése a konfigurációelemeknél."
 
 #. SysConfig
 msgid ""
 "Defines Required permissions to create ITSM configuration items using the "
 "Generic Interface."
-msgstr ""
+msgstr "Meghatározza a szükséges jogosultságokat az ITSM konfigurációelemek létrehozásához az általános felület használatával."
 
 #. SysConfig
 msgid ""
 "Defines Required permissions to get ITSM configuration items using the "
 "Generic Interface."
-msgstr ""
+msgstr "Meghatározza a szükséges jogosultságokat az ITSM konfigurációelemek lekéréséhez az általános felület használatával."
 
 #. SysConfig
 msgid ""
 "Defines Required permissions to search ITSM configuration items using the "
 "Generic Interface."
-msgstr ""
+msgstr "Meghatározza a szükséges jogosultságokat az ITSM konfigurációelemek kereséséhez az általános felület használatával."
 
 #. SysConfig
 msgid ""
 "Defines Required permissions to update ITSM configuration items using the "
 "Generic Interface."
-msgstr ""
+msgstr "Meghatározza a szükséges jogosultságokat az ITSM konfigurációelemek frissítéséhez az általános felület használatával."
 
 #. SysConfig
 msgid ""
 "Defines an overview module to show the small view of a configuration item "
 "list."
-msgstr ""
+msgstr "Egy áttekintő modult határoz meg egy konfigurációelem lista kis nézetének megjelenítéséhez."
 
 #. SysConfig
 msgid ""
 "Defines regular expressions individually for each ConfigItem class to check "
 "the ConfigItem name and to show corresponding error messages."
-msgstr ""
+msgstr "Reguláris kifejezéseket határoz meg egyénileg minden egyes konfigurációelem osztálynál a konfigurációelem nevének ellenőrzéséhez, valamint a megfelelő hibaüzenetek megjelenítéséhez."
 
 #. SysConfig
 msgid "Defines the default subobject of the class 'ITSMConfigItem'."
-msgstr ""
+msgstr "Meghatározza az „ITSMConfigItem” osztály alapértelmezett alobjektumát."
 
 #. SysConfig
 msgid ""
 "Defines the number of rows for the CI definition editor in the admin "
 "interface."
-msgstr ""
+msgstr "Meghatározza a CI meghatározás-szerkesztő sorainak számát az adminisztrációs felületen."
 
 #. SysConfig
 msgid "Defines the search limit for the AgentITSMConfigItem screen."
-msgstr ""
+msgstr "Meghatározza a keresési korlátot az AgentITSMConfigItem képernyőn."
 
 #. SysConfig
 msgid "Defines the search limit for the AgentITSMConfigItemSearch screen."
-msgstr ""
+msgstr "Meghatározza a keresési korlátot az AgentITSMConfigItemSearch képernyőn."
 
 #. SysConfig
 msgid ""
 "Defines the shown columns in the config item overview. This option has no "
 "effect on the position of the column. Note: Class column is always available"
 " if filter 'All' is selected."
-msgstr ""
+msgstr "Meghatározza a megjelenített oszlopokat a konfigurációelem áttekintőben. Ennek a beállításnak nincs hatása az oszlop helyzetére. Megjegyzés: az osztály oszlop mindig látható, ha az „Összes” szűrő ki van választva."
 
 #. SysConfig
 msgid ""
 "Defines the shown columns in the config item search. This option has no "
 "effect on the position of the column."
-msgstr ""
+msgstr "Meghatározza a megjelenített oszlopokat a konfigurációelem keresőben. Ennek a beállításnak nincs hatása az oszlop helyzetére."
 
 #. SysConfig
 msgid ""
@@ -805,7 +804,7 @@ msgid ""
 "Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, "
 "then the default columns are shown as defined in the setting "
 "ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns."
-msgstr ""
+msgstr "Meghatározza a CI-k megjelenített oszlopait a konfigurációelem áttekintőben a CI osztálytól függően. Minden bejegyzést az oszlop neve és dupla kettőspont előtaggal kell ellátni (azaz Computer::). Van néhány olyan CI-attribútum, amely közös minden CI-vel (például a Computer osztálynál: Computer::Name, Computer::CurDeplState, Computer::CreateTime). Az egyéni CI-attribútumok megjelenítéséhez, ahogy azok a CI-meghatározásban meg vannak adva, a következő sémát kell használni (például a Computer osztálynál): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. Ha egy CI osztályhoz nincs bejegyzés, akkor az alapértelmezett oszlopok lesznek megjelenítve, ahogy az ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns beállításban meg van határozva."
 
 #. SysConfig
 msgid ""
@@ -819,7 +818,7 @@ msgid ""
 "Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no "
 "entry for a CI class, then the default columns are shown as defined in the "
 "setting ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns."
-msgstr ""
+msgstr "Meghatározza a CI-k megjelenített oszlopait a konfigurációelem keresőben a CI osztálytól függően. Minden bejegyzést az oszlop neve és dupla kettőspont előtaggal kell ellátni (azaz Computer::). Van néhány olyan CI-attribútum, amely közös minden CI-vel (például a Computer osztálynál: Computer::Name, Computer::CurDeplState, Computer::CreateTime). Az egyéni CI-attribútumok megjelenítéséhez, ahogy azok a CI-meghatározásban meg vannak adva, a következő sémát kell használni (például a Computer osztálynál): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. Ha egy CI osztályhoz nincs bejegyzés, akkor az alapértelmezett oszlopok lesznek megjelenítve, ahogy az ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns beállításban meg van határozva."
 
 #. SysConfig
 msgid ""
@@ -832,18 +831,18 @@ msgid ""
 "Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, "
 "Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no "
 "entry for a CI class, then the default columns are shown."
-msgstr ""
+msgstr "Meghatározza a CI-k megjelenített oszlopait a kapcsolati tábla komplex nézetében a CI osztálytól függően. Minden bejegyzést az oszlop neve és dupla kettőspont előtaggal kell ellátni (azaz Computer::). Van néhány olyan CI-attribútum, amely közös minden CI-vel (például a Computer osztálynál: Computer::Name, Computer::CurDeplState, Computer::CreateTime). Az egyéni CI-attribútumok megjelenítéséhez, ahogy azok a CI-meghatározásban meg vannak adva, a következő sémát kell használni (például a Computer osztálynál): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. Ha egy CI osztályhoz nincs bejegyzés, akkor az alapértelmezett oszlopok lesznek megjelenítve."
 
 #. SysConfig
 msgid ""
 "Enables configuration item bulk action feature for the agent frontend to "
 "work on more than one configuration item at a time."
-msgstr ""
+msgstr "Engedélyezi a konfigurációelem tömeges művelet funkciót az ügyintézői előtétprogramnál, hogy egyszerre egynél több konfigurációelemmel dolgozhasson."
 
 #. SysConfig
 msgid ""
 "Enables configuration item bulk action feature only for the listed groups."
-msgstr ""
+msgstr "Csak a felsorolt csoportoknak engedélyezi a konfigurációelem tömeges művelet funkciót."
 
 #. SysConfig
 msgid ""
@@ -851,87 +850,87 @@ msgid ""
 "Before enabling this option you should check your system for already "
 "existing config items with duplicate names. You can do this with the script "
 "bin/otrs.ITSMConfigItemListDuplicates.pl."
-msgstr ""
+msgstr "Engedélyezi vagy letiltja azt a funkcionalitást, amely a konfigurációelemek egyedi neveit ellenőrzi. A lehetőség engedélyezése előtt ellenőriznie kell a rendszerét, hogy vannak-e már létező konfigurációelemek kettőzött névvel. Ezt megteheti a bin/otrs.ITSMConfigItemListDuplicates.pl parancsfájllal."
 
 #. SysConfig
 msgid "Module to check the group responsible for a class."
-msgstr ""
+msgstr "Egy modul egy osztályért felelős csoport ellenőrzéséhez."
 
 #. SysConfig
 msgid "Module to check the group responsible for a configuration item."
-msgstr ""
+msgstr "Egy modul egy konfigurációelemért felelős csoport ellenőrzéséhez."
 
 #. SysConfig
 msgid "Module to generate ITSM config item statistics."
-msgstr ""
+msgstr "Egy modul ITSM konfigurációelem statisztikák előállításához."
 
 #. SysConfig
 msgid "Object backend module registration for the import/export module."
-msgstr ""
+msgstr "Objektum háttérprogram modul regisztráció az importálás/exportálás modulhoz."
 
 #. SysConfig
 msgid ""
 "Parameters for the deployment states color in the preferences view of the "
 "agent interface."
-msgstr ""
+msgstr "Paraméterek a telepítési állapotok színéhez az ügyintézői felület beállítások nézetében."
 
 #. SysConfig
 msgid ""
 "Parameters for the deployment states in the preferences view of the agent "
 "interface."
-msgstr ""
+msgstr "Paraméterek a telepítési állapotokhoz az ügyintézői felület beállítások nézetében."
 
 #. SysConfig
 msgid ""
 "Parameters for the example permission groups of the general catalog "
 "attributes."
-msgstr "Paramètrés pour l'exemple de permissions de groupe des attributs du Catalogue Général"
+msgstr "Paraméterek az általános katalógus attribútumainak példa jogosultság csoportjaihoz."
 
 #. SysConfig
 msgid "Parameters for the pages (in which the configuration items are shown)."
-msgstr ""
+msgstr "Paraméterek az oldalakhoz (amelyeken a konfigurációelemek megjelennek)."
 
 #. SysConfig
 msgid ""
 "Required permissions to use the ITSM configuration item screen in the agent "
 "interface."
-msgstr ""
+msgstr "A szükséges jogosultságok az ITSM konfigurációelem képernyőjének használatához az ügyintézői felületen."
 
 #. SysConfig
 msgid ""
 "Required permissions to use the ITSM configuration item search screen in the"
 " agent interface."
-msgstr ""
+msgstr "A szükséges jogosultságok az ITSM konfigurációelem keresési képernyőjének használatához az ügyintézői felületen."
 
 #. SysConfig
 msgid ""
 "Required permissions to use the ITSM configuration item zoom screen in the "
 "agent interface."
-msgstr ""
+msgstr "A szükséges jogosultságok az ITSM konfigurációelem nagyítási képernyőjének használatához az ügyintézői felületen."
 
 #. SysConfig
 msgid ""
 "Required permissions to use the add ITSM configuration item screen in the "
 "agent interface."
-msgstr ""
+msgstr "A szükséges jogosultságok az ITSM konfigurációelem hozzáadása képernyőjének használatához az ügyintézői felületen."
 
 #. SysConfig
 msgid ""
 "Required permissions to use the edit ITSM configuration item screen in the "
 "agent interface."
-msgstr ""
+msgstr "A szükséges jogosultságok az ITSM konfigurációelem szerkesztése képernyőjének használatához az ügyintézői felületen."
 
 #. SysConfig
 msgid ""
 "Required permissions to use the history ITSM configuration item screen in "
 "the agent interface."
-msgstr ""
+msgstr "A szükséges jogosultságok az ITSM konfigurációelem előzmények képernyőjének használatához az ügyintézői felületen."
 
 #. SysConfig
 msgid ""
 "Required permissions to use the print ITSM configuration item screen in the "
 "agent interface."
-msgstr ""
+msgstr "A szükséges jogosultságok az ITSM konfigurációelem nyomtatása képernyőjének használatához az ügyintézői felületen."
 
 #. SysConfig
 msgid ""
@@ -939,81 +938,81 @@ msgid ""
 "increments the configuration item number, the SystemID, the "
 "ConfigItemClassID and the counter are used. The format is "
 "\"SystemID.ConfigItemClassID.Counter\", e.g. 1205000004, 1205000005."
-msgstr ""
+msgstr "Kiválasztja a konfigurációelem számelőállító modulját. Az „AutoIncrement” növeli a konfigurációelem számát, a használt SystemID, ConfigItemClassID és számláló értékét. A formátum: „SystemID.ConfigItemClassID.Counter”, például: 1205000004, 1205000005."
 
 #. SysConfig
 msgid ""
 "Sets the deployment state in the configuration item bulk screen of the agent"
 " interface."
-msgstr ""
+msgstr "Beállítja az üzembe helyezési állapotot az ügyintézői felület konfigurációelem tömeges művelet képernyőjén."
 
 #. SysConfig
 msgid ""
 "Sets the incident state in the configuration item bulk screen of the agent "
 "interface."
-msgstr ""
+msgstr "Beállítja az incidensállapotot az ügyintézői felület konfigurációelem tömeges művelet képernyőjén."
 
 #. SysConfig
 msgid ""
 "Shows a link in the menu that allows linking a configuration item with "
 "another object in the config item zoom view of the agent interface."
-msgstr ""
+msgstr "Egy hivatkozást jelenít meg a menüben, amely lehetővé teszi egy konfigurációelem hozzákapcsolását egy másik objektumhoz az ügyintézői felület konfigurációelem nagyítási nézetén."
 
 #. SysConfig
 msgid ""
 "Shows a link in the menu to access the history of a configuration item in "
 "the configuration item overview of the agent interface."
-msgstr ""
+msgstr "Egy hivatkozást jelenít meg a menüben egy konfigurációelem előzményeinek eléréséhez az ügyintézői felület konfigurációelem áttekintőjében."
 
 #. SysConfig
 msgid ""
 "Shows a link in the menu to access the history of a configuration item in "
 "the its zoom view of the agent interface."
-msgstr ""
+msgstr "Egy hivatkozást jelenít meg a menüben egy konfigurációelem előzményeinek eléréséhez az ügyintézői felületen az elem nagyítási nézetében."
 
 #. SysConfig
 msgid ""
 "Shows a link in the menu to duplicate a configuration item in the "
 "configuration item overview of the agent interface."
-msgstr ""
+msgstr "Egy hivatkozást jelenít meg a menüben egy konfigurációelem kettőzéséhez az ügyintézői felület konfigurációelem áttekintőjében."
 
 #. SysConfig
 msgid ""
 "Shows a link in the menu to duplicate a configuration item in the its zoom "
 "view of the agent interface."
-msgstr ""
+msgstr "Egy hivatkozást jelenít meg a menüben egy konfigurációelem kettőzéséhez az ügyintézői felületen az elem nagyítási nézetében."
 
 #. SysConfig
 msgid ""
 "Shows a link in the menu to edit a configuration item in the its zoom view "
 "of the agent interface."
-msgstr ""
+msgstr "Egy hivatkozást jelenít meg a menüben egy konfigurációelem szerkesztéséhez az ügyintézői felületen az elem nagyítási nézetében."
 
 #. SysConfig
 msgid ""
 "Shows a link in the menu to go back in the configuration item zoom view of "
 "the agent interface."
-msgstr ""
+msgstr "Egy hivatkozást jelenít meg a menüben az ügyintézői felület konfigurációelem nagyítási nézethez való visszatéréshez."
 
 #. SysConfig
 msgid ""
 "Shows a link in the menu to print a configuration item in the its zoom view "
 "of the agent interface."
-msgstr ""
+msgstr "Egy hivatkozást jelenít meg a menüben egy konfigurációelem nyomtatásához az ügyintézői felületen az elem nagyítási nézetében."
 
 #. SysConfig
 msgid ""
 "Shows a link in the menu to zoom into a configuration item in the "
 "configuration item overview of the agent interface."
-msgstr ""
+msgstr "Egy hivatkozást jelenít meg a menüben egy konfigurációelembe történő nagyításhoz az ügyintézői felület konfigurációelem áttekintőjében."
 
 #. SysConfig
 msgid ""
 "Shows the config item history (reverse ordered) in the agent interface."
-msgstr ""
+msgstr "Megjeleníti a konfigurációelem előzményeit (fordított sorrendben) az ügyintézői felületen."
 
 #. SysConfig
 msgid ""
 "The identifier for a configuration item, e.g. ConfigItem#, MyConfigItem#. "
 "The default is ConfigItem#."
-msgstr ""
+msgstr "Egy konfigurációelem azonosítója, például: ConfigItem#, MyConfigItem#. Az alapértelmezett: ConfigItem#."
