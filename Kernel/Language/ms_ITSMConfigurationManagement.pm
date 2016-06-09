@@ -169,7 +169,7 @@ sub Data {
     $Self->{Translation}->{'Incident State'} = 'insiden keadaan';
 
     # Template: AgentITSMConfigItemHistory
-    $Self->{Translation}->{'History of'} = '';
+    $Self->{Translation}->{'History of'} = 'Sejarah untuk';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'konteks Tetapan';
@@ -191,6 +191,7 @@ sub Data {
     $Self->{Translation}->{'Configuration Item Information'} = 'Maklumat Barangan Konfigurasi';
     $Self->{Translation}->{'Current Deployment State'} = 'Pertukaran keadaan semasa';
     $Self->{Translation}->{'Last changed by'} = 'Terakhir diubah oleh';
+    $Self->{Translation}->{'Ok'} = 'Ok';
     $Self->{Translation}->{'Show one version'} = 'Tunjukkan satu versi';
     $Self->{Translation}->{'Show all versions'} = 'Tunjukkan semua versi';
     $Self->{Translation}->{'Version Incident State'} = 'Versi Insiden Negeri';
@@ -209,7 +210,7 @@ sub Data {
     $Self->{Translation}->{'ConfigItem'} = 'ConfigItem';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
-    $Self->{Translation}->{'No Result!'} = '';
+    $Self->{Translation}->{'No Result!'} = 'Tiada Keputusan!';
     $Self->{Translation}->{'Config Item Search Results'} = '';
 
     # SysConfig

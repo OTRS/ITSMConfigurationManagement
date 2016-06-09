@@ -169,7 +169,7 @@ sub Data {
     $Self->{Translation}->{'Incident State'} = 'インシデント状況';
 
     # Template: AgentITSMConfigItemHistory
-    $Self->{Translation}->{'History of'} = '';
+    $Self->{Translation}->{'History of'} = '履歴: ';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'コンテキストの設定';
@@ -191,6 +191,7 @@ sub Data {
     $Self->{Translation}->{'Configuration Item Information'} = '変更アイテム情報';
     $Self->{Translation}->{'Current Deployment State'} = '現在の展開状態';
     $Self->{Translation}->{'Last changed by'} = '最終変更者';
+    $Self->{Translation}->{'Ok'} = 'Ok';
     $Self->{Translation}->{'Show one version'} = '説明を表示';
     $Self->{Translation}->{'Show all versions'} = 'すべての説明を表示';
     $Self->{Translation}->{'Version Incident State'} = 'インシデント状態';
@@ -209,7 +210,7 @@ sub Data {
     $Self->{Translation}->{'ConfigItem'} = '設定項目';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
-    $Self->{Translation}->{'No Result!'} = '';
+    $Self->{Translation}->{'No Result!'} = '結果がありません。';
     $Self->{Translation}->{'Config Item Search Results'} = '';
 
     # SysConfig

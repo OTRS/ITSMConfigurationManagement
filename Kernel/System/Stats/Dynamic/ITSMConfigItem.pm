@@ -198,10 +198,11 @@ sub _XMLAttributeAdd {
 
         # start recursion, if "Sub" was found
         $Self->_XMLAttributeAdd(
-            XMLDefinition => $Item->{Sub},
-            Level         => $Param{Level} + 1,
-            Prefix        => $Key,
-            PrefixName    => $Name,
+            ObjectAttributes => $Param{ObjectAttributes},
+            XMLDefinition    => $Item->{Sub},
+            Level            => $Param{Level} + 1,
+            Prefix           => $Key,
+            PrefixName       => $Name,
         );
     }
 
@@ -221,12 +222,15 @@ sub GetStatElement {
     $Param{Limit} = 1_000_000;
 
     # extract all xml param keys from the param hash
-    my @XMLParams = grep { $_ =~ m{\A XML::}xms } keys %Param;
+    my @XMLParams = grep { $_ =~ m{\A XML::}xms } sort keys %Param;
 
     if (@XMLParams) {
         return 'You must define a class in one axis.' if !$Param{ClassIDs};
         return 'You must define a class in one axis.' if ref $Param{ClassIDs} ne 'ARRAY';
     }
+
+    # to collect date fields separately
+    my %XMLParamsDateFields;
 
     my %XMLClassIDs;
     PARAMKEY:
@@ -251,9 +255,31 @@ sub GetStatElement {
         # Add class id to xml class id hash
         $XMLClassIDs{$ClassID} = 1;
 
+        # collect date fields separately (e.g WarrantyExpirationDateNewerDate)
+        if ( $SearchKey =~ m{ (.+) ( NewerDate | OlderDate ) \z }xms ) {
+            $XMLParamsDateFields{$1}->{$2} = $SearchValues->[0];
+
+            next PARAMKEY;
+        }
+
         # create search hash
         my $SearchHash = {
             '[1]{\'Version\'}[1]{\'' . $SearchKey . '\'}[%]{\'Content\'}' => $SearchValues,
+        };
+
+        push @{ $Param{What} }, $SearchHash;
+    }
+
+    # build search hash for date fields
+    for my $DateFieldName ( sort keys %XMLParamsDateFields ) {
+
+        my $SearchHash = {
+            '[1]{\'Version\'}[1]{\'' . $DateFieldName . '\'}[%]{\'Content\'}' => {
+                '-between' => [
+                    $XMLParamsDateFields{$DateFieldName}->{NewerDate},
+                    $XMLParamsDateFields{$DateFieldName}->{OlderDate},
+                ],
+            },
         };
 
         push @{ $Param{What} }, $SearchHash;
