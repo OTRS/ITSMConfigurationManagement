@@ -1,7 +1,7 @@
 # --
 # Copyright (C) 2001-2016 OTRS AG, http://otrs.com/
 # --
-# $origin: https://github.com/OTRS/otrs/blob/068da228cd7064844e1ace7e0eaa3b63999934a5/Kernel/System/Service/PreferencesDB.pm
+# $origin: https://github.com/OTRS/otrs/blob/6f9a6349dda49b071e87dcf0ff2c2c199c2b2ec4/Kernel/System/Service/PreferencesDB.pm
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
