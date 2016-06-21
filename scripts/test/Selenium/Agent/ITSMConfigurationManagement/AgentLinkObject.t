@@ -238,8 +238,6 @@ $Selenium->RunTest(
         $Handles = $Selenium->get_window_handles();
         $Selenium->switch_to_window( $Handles->[1] );
 
-        sleep(1);
-
         # wait until page has loaded, if necessary
         $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && $("#TargetIdentifier").length' );
 
@@ -262,11 +260,6 @@ $Selenium->RunTest(
 
         $Selenium->WaitFor( WindowCount => 1 );
         $Selenium->switch_to_window( $Handles->[0] );
-
-        sleep(1);
-
-        $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && $("body").length' );
-
         $Selenium->VerifiedRefresh();
 
         # check for no linked values in AgentITSMConfigItemZoom screen
@@ -317,7 +310,7 @@ $Selenium->RunTest(
             $Success,
             "Service is deleted - ID $ServiceID",
         );
-    }
+        }
 
 );
 
