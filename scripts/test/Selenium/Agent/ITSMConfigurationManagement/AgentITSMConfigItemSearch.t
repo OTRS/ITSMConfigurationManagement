@@ -164,7 +164,7 @@ $Selenium->RunTest(
             $Success,
             "ConfigItem is deleted - ID $ConfigItemID",
         );
-    }
+        }
 );
 
 1;

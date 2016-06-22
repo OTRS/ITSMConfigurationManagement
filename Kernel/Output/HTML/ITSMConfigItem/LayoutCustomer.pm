@@ -197,7 +197,7 @@ sub InputCreate {
 
         # transform ascii to html
         $Search = $Kernel::OM->Get('Kernel::Output::HTML::Layout')->Ascii2Html(
-            Text           => $CustomerSearchList{$Value} || '',
+            Text => $CustomerSearchList{$Value} || '',
             HTMLResultMode => 1,
         );
     }
