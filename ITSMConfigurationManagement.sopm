@@ -4,13 +4,14 @@
 <!-- nofilter(TidyAll::Plugin::OTRS::SOPM::DocumentationPresent) -->
     <Version>0.0.0</Version>
     <Framework>5.0.x</Framework>
-    <PackageRequired Version="5.0.10">ITSMCore</PackageRequired>
+    <PackageRequired Version="5.0.11">ITSMCore</PackageRequired>
     <Vendor>OTRS AG</Vendor>
     <URL>http://otrs.org/</URL>
     <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
     <Description Lang="en">The OTRS::ITSM Configuration Management package.</Description>
     <Description Lang="de">Das OTRS::ITSM Configuration Management Paket.</Description>
     <Description Lang="es">El paquete OTRS::ITSM Configuration Management.</Description>
+    <Description Lang="hu">Az OTRS::ITSM konfigurációmenedzsment csomag.</Description>
     <Filelist>
         <File Permission="644" Location="doc/itsm-configuration-management-database.dia"/>
         <File Permission="644" Location="doc/itsm-configuration-management-database.png"/>
@@ -31,6 +32,7 @@
         <File Permission="644" Location="Kernel/Language/es_ITSMConfigurationManagement.pm"/>
         <File Permission="644" Location="Kernel/Language/fa_ITSMConfigurationManagement.pm"/>
         <File Permission="644" Location="Kernel/Language/fr_ITSMConfigurationManagement.pm"/>
+        <File Permission="644" Location="Kernel/Language/hu_ITSMConfigurationManagement.pm"/>
         <File Permission="644" Location="Kernel/Language/it_ITSMConfigurationManagement.pm"/>
         <File Permission="644" Location="Kernel/Language/ja_ITSMConfigurationManagement.pm"/>
         <File Permission="644" Location="Kernel/Language/ms_ITSMConfigurationManagement.pm"/>
@@ -1324,7 +1326,7 @@
         <br/>
         <strong>REQUIRED OTRS PACKAGES</strong>
         <ul>
-        <li>ITSMCore 5.0.10</li>
+        <li>ITSMCore 5.0.11</li>
         </ul>
         <br/>
         ((enjoy))<br/>
@@ -1342,7 +1344,7 @@
         <br/>
         <strong>BENÖTIGTE OTRS-PAKETE</strong>
         <ul>
-        <li>ITSMCore 5.0.10</li>
+        <li>ITSMCore 5.0.11</li>
         </ul>
         <br/>
         ((enjoy))<br/>
@@ -1360,7 +1362,25 @@
         <br/>
         <strong>PAQUETES OTRS REQUERIDOS</strong>
         <ul>
-        <li>ITSMCore 5.0.10</li>
+        <li>ITSMCore 5.0.11</li>
+        </ul>
+        <br/>
+        ((enjoy))<br/>
+        <br/>
+
+    ]]></IntroInstall>
+    <IntroInstall Type="pre" Title="Telepítési információk" Lang="hu"><![CDATA[
+
+        <br/>
+        <strong>ÜDVÖZÖLJÜK</strong>
+        <br/>
+        <br/>
+        Ön az ITSMConfigurationManagement OTRS csomag telepítésére készül.<br/>
+        <br/>
+        <br/>
+        <strong>SZÜKSÉGES OTRS CSOMAGOK</strong>
+        <ul>
+        <li>ITSMCore 5.0.11</li>
         </ul>
         <br/>
         ((enjoy))<br/>
@@ -1417,6 +1437,22 @@
         <br/>
 
     ]]></IntroInstall>
+    <IntroInstall Type="post" Title="Telepítési információk" Lang="hu"><![CDATA[
+
+        <br/>
+        <strong>FIGYELMEZTETÉS</strong>
+        <br/>
+        <br/>
+        Annak érdekében, hogy hozzáférést adjon a felhasználók számára a konfigurációelem menühöz, hozzá kell adnia őket az „itsm-configitem” csoporthoz tagként.
+        <br/>
+        <br/>
+        Azok a menüpontok, amelyeket ez a csomag adott hozzá, azután lesznek láthatóak, miután ismét bejelentkezik a rendszerbe.
+        <br/>
+        <br/>
+        ((enjoy))<br/>
+        <br/>
+
+    ]]></IntroInstall>
     <IntroUpgrade Type="pre" Title="Upgrade Information" Lang="en"><![CDATA[
 
         <br/>
@@ -1428,7 +1464,7 @@
         <br/>
         <strong>REQUIRED OTRS PACKAGES</strong>
         <ul>
-        <li>ITSMCore 5.0.10</li>
+        <li>ITSMCore 5.0.11</li>
         </ul>
         <br/>
         ((enjoy))<br/>
@@ -1446,7 +1482,7 @@
         <br/>
         <strong>BENÖTIGTE OTRS-PAKETE</strong>
         <ul>
-        <li>ITSMCore 5.0.10</li>
+        <li>ITSMCore 5.0.11</li>
         </ul>
         <br/>
         ((enjoy))<br/>
@@ -1464,7 +1500,25 @@
         <br/>
         <strong>PAQUETES OTRS REQUERIDOS</strong>
         <ul>
-        <li>ITSMCore 5.0.10</li>
+        <li>ITSMCore 5.0.11</li>
+        </ul>
+        <br/>
+        ((enjoy))<br/>
+        <br/>
+
+    ]]></IntroUpgrade>
+    <IntroUpgrade Type="pre" Title="Frissítési információk" Lang="hu"><![CDATA[
+
+        <br/>
+        <strong>ÜDVÖZÖLJÜK</strong>
+        <br/>
+        <br/>
+        Ön az ITSMConfigurationManagement OTRS csomag frissítésére készül.<br/>
+        <br/>
+        <br/>
+        <strong>SZÜKSÉGES OTRS CSOMAGOK</strong>
+        <ul>
+        <li>ITSMCore 5.0.11</li>
         </ul>
         <br/>
         ((enjoy))<br/>
@@ -1537,6 +1591,30 @@
         <br/>
         <br/>
         Si usted desinstala este paquete, las estadísticas que están asociadas a él ya no estarán disponibles.
+        <br/>
+        <br/>
+        ((enjoy))<br/>
+        <br/>
+
+    ]]></IntroUninstall>
+    <IntroUninstall Type="pre" Title="Eltávolítási információk" Lang="hu"><![CDATA[
+
+        <br/>
+        <strong>FIGYELEM</strong>
+        <br/>
+        <br/>
+        Ha eltávolítja ezt a csomagot, akkor a telepítés során létrehozott összes adatbázistábla törlésre kerül.
+        Az ezekben a táblákban lévő összes adat visszavonhatatlanul el fog veszni!
+        <br/>
+        <br/>
+        A csomagtelepítés során létrehozott „itsm-configitem” csoport ki lesz kapcsolva.
+        Ezt a csoportot az adminisztrációs területen tudja ismét bekapcsolni.
+        <br/>
+        <br/>
+        A konfigurációelem objektumokra mutató összes hivatkozás visszavonhatatlanul törölve lesz!
+        <br/>
+        <br/>
+        Az ehhez a csomaghoz hozzárendelt statisztikák többé nem lesznek elérhetők, ha a csomag eltávolításra kerül.
         <br/>
         <br/>
         ((enjoy))<br/>
