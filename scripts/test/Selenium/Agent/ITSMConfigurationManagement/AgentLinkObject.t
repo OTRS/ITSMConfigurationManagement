@@ -247,7 +247,11 @@ $Selenium->RunTest(
 
         # select all linked items and delete links
         $Selenium->find_element("//input[\@value='ITSMConfigItem::$ConfigItemIDs[1]::AlternativeTo']")->click();
+        $Selenium->find_element("//button[\@title='Delete links']")->VerifiedClick();
+
         $Selenium->find_element("//input[\@value='Service::$ServiceID\::RelevantTo']")->click();
+        $Selenium->find_element("//button[\@title='Delete links']")->VerifiedClick();
+
         $Selenium->find_element("//input[\@value='Ticket::$TicketID\::DependsOn']")->click();
         $Selenium->find_element("//button[\@title='Delete links']")->VerifiedClick();
 
