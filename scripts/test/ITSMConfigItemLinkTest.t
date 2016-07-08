@@ -233,7 +233,7 @@ $ConfigObject->Set(
 #               1 .. 7 and A .. G are ITSMConfigItems
 #
 #               DependsOn Links are shown as ----->
-#               Includes  Links are shown ad *****>
+#               Includes  Links are shown as *****>
 #
 # ################################################################################################################
 
