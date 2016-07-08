@@ -104,7 +104,7 @@ $Selenium->RunTest(
 
         # wait until print screen is loaded
         ACTIVESLEEP:
-        for my $Second ( 1 .. 20 ) {
+        for my $Second ( 1 .. 30 ) {
             if ( index( $Selenium->get_page_source(), "printed by" ) > -1, ) {
                 last ACTIVESLEEP;
             }
@@ -156,7 +156,7 @@ $Selenium->RunTest(
             $Success,
             "ConfigItem is deleted - ID $ConfigItemID",
         );
-    }
+        }
 );
 
 1;
