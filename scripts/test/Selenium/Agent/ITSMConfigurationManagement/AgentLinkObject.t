@@ -163,6 +163,8 @@ $Selenium->RunTest(
             "\$('#TargetIdentifier').val('ITSMConfigItem::$ConfigItemClassIDs[1]').trigger('redraw.InputField').trigger('change');"
         );
 
+        sleep(2);
+
         # check 'Link' screen for two ConfigItems
         for my $ID (
             qw(TargetIdentifier SubmitSelect SubmitSearch)
@@ -186,6 +188,8 @@ $Selenium->RunTest(
             "\$('#TargetIdentifier').val('Service').trigger('redraw.InputField').trigger('change');"
         );
 
+        sleep(2);
+
         # search Service by name and select result
         $Selenium->find_element("//input[\@id='SEARCH::Name']")->send_keys($ServiceName);
         $Selenium->find_element( "#SubmitSearch", 'css' )->VerifiedClick();
@@ -201,6 +205,8 @@ $Selenium->RunTest(
         $Selenium->execute_script(
             "\$('#TargetIdentifier').val('Ticket').trigger('redraw.InputField').trigger('change');"
         );
+
+        sleep(2);
 
         # search Ticket by number and select result
         $Selenium->find_element("//input[\@id='SEARCH::TicketNumber']")->send_keys($TicketNumber);
