@@ -3945,7 +3945,7 @@ for my $Test (@ImportDataTests) {
     # get the version list
     my $VersionList = $ConfigItemObject->VersionList(
         ConfigItemID => $ConfigItemID,
-    );
+    ) // [];
 
     # check number of versions
     $Self->Is(

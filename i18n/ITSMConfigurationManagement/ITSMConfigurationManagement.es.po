@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2014-08-08 19:10+0200\n"
-"PO-Revision-Date: 2015-07-27 23:10+0000\n"
+"POT-Creation-Date: 2016-05-24 21:57+0000\n"
+"PO-Revision-Date: 2016-05-24 19:57+0000\n"
 "Last-Translator: Deiry Arias <mailimarias@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/otrs/OTRS/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -585,6 +585,10 @@ msgstr "Estado de la Implementación"
 msgid "Incident State"
 msgstr "Estado del Incidente"
 
+#. Template: AgentITSMConfigItemHistory
+msgid "History of"
+msgstr "Historial de"
+
 #. Template: AgentITSMConfigItemOverviewNavBar
 msgid "Context Settings"
 msgstr "Ajustes de Contexto"
@@ -609,22 +613,6 @@ msgstr ""
 msgid "Last changed"
 msgstr "Última modificación"
 
-#. Template: AgentITSMConfigItemPrint
-msgid "ConfigItem"
-msgstr ""
-
-#. Template: AgentITSMConfigItemPrint
-msgid "ConfigItem-Info"
-msgstr ""
-
-#. Template: AgentITSMConfigItemPrint
-msgid "Current Deployment State"
-msgstr "Estado Actual de la Implementación"
-
-#. Template: AgentITSMConfigItemPrint
-msgid "Last changed by"
-msgstr "Última modificación por"
-
 #. Template: AgentITSMConfigItemSearch
 msgid "Create New Template"
 msgstr "Crear nueva plantilla"
@@ -637,10 +625,6 @@ msgstr ""
 msgid "Also search in previous versions?"
 msgstr "¿Desea buscar en versiones anteriores?"
 
-#. Template: AgentITSMConfigItemSearchResultPrint
-msgid "CreateTime"
-msgstr "Fecha de Creación"
-
 #. Template: AgentITSMConfigItemZoom
 msgid "Configuration Item"
 msgstr ""
@@ -648,6 +632,18 @@ msgstr ""
 #. Template: AgentITSMConfigItemZoom
 msgid "Configuration Item Information"
 msgstr ""
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Current Deployment State"
+msgstr "Estado Actual de la Implementación"
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Last changed by"
+msgstr "Última modificación por"
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Ok"
+msgstr "Ok"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Show one version"
@@ -675,6 +671,26 @@ msgstr ""
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Property"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
+msgid "ITSM ConfigItem"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "CIHistory::"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "ConfigItem"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+msgid "No Result!"
+msgstr "Sin Resultados!"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+msgid "Config Item Search Results"
 msgstr ""
 
 #. SysConfig
@@ -976,9 +992,9 @@ msgstr "Muestra un link en el menú para editar un elemento de configuracion en 
 
 #. SysConfig
 msgid ""
-"Shows a link in the menu to go back in the configuraton item zoom view of "
+"Shows a link in the menu to go back in the configuration item zoom view of "
 "the agent interface."
-msgstr "Muestra un link en el menú para regresar en la vista detallada de un elemento de configuración de la interfaz del agente."
+msgstr ""
 
 #. SysConfig
 msgid ""

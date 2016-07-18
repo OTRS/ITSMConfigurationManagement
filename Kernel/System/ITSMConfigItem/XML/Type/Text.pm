@@ -93,8 +93,8 @@ sub StatsAttributeCreate {
     my $Attribute = [
         {
             Name             => $Param{Name},
-            UseAsXvalue      => 0,
-            UseAsValueSeries => 0,
+            UseAsXvalue      => 1,
+            UseAsValueSeries => 1,
             UseAsRestriction => 1,
             Element          => $Param{Key},
             Block            => 'InputField',

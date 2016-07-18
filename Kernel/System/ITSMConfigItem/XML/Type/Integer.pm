@@ -11,7 +11,9 @@ package Kernel::System::ITSMConfigItem::XML::Type::Integer;
 use strict;
 use warnings;
 
-our @ObjectDependencies = ();
+our @ObjectDependencies = (
+    'Kernel::System::Log',
+);
 
 =head1 NAME
 
@@ -70,9 +72,39 @@ create a attribute array for the stats framework
 =cut
 
 sub StatsAttributeCreate {
-    my $Self = shift;
+    my ( $Self, %Param ) = @_;
 
-    return;
+    # check needed stuff
+    for my $Argument (qw(Key Name Item)) {
+        if ( !$Param{$Argument} ) {
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
+                Priority => 'error',
+                Message  => "Need $Argument!",
+            );
+            return;
+        }
+    }
+
+    my $ValueMin = $Param{Item}->{Input}->{ValueMin} || 1;
+    my $ValueMax = $Param{Item}->{Input}->{ValueMax} || 1;
+
+    my %Values = map { $_ => $_ } ( $ValueMin .. $ValueMax );
+
+    # create attribute
+    my $Attribute = [
+        {
+            Name             => $Param{Name},
+            UseAsXvalue      => 1,
+            UseAsValueSeries => 1,
+            UseAsRestriction => 1,
+            Element          => $Param{Key},
+            Block            => 'MultiSelectField',
+            Values           => \%Values,
+            Sort             => 'NumericKey',
+        },
+    ];
+
+    return $Attribute;
 }
 
 =item ExportSearchValuePrepare()

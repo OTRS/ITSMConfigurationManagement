@@ -156,7 +156,7 @@ sub Data {
     # Template: AgentITSMConfigItemBulk
     $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = '';
     $Self->{Translation}->{'Deployment state'} = '';
-    $Self->{Translation}->{'Incident state'} = '';
+    $Self->{Translation}->{'Incident state'} = 'Stan zdarzenia';
     $Self->{Translation}->{'Link to another'} = '';
     $Self->{Translation}->{'Invalid Configuration Item number!'} = '';
     $Self->{Translation}->{'The number of another Configuration Item to link with.'} = '';
@@ -169,7 +169,7 @@ sub Data {
     $Self->{Translation}->{'Incident State'} = 'Stan zdarzenia';
 
     # Template: AgentITSMConfigItemHistory
-    $Self->{Translation}->{'History of'} = '';
+    $Self->{Translation}->{'History of'} = 'Historia';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'Ustawienia kontekstu';
@@ -191,6 +191,7 @@ sub Data {
     $Self->{Translation}->{'Configuration Item Information'} = 'Informacje o CI';
     $Self->{Translation}->{'Current Deployment State'} = 'Aktualny stan wdrożenia';
     $Self->{Translation}->{'Last changed by'} = 'Ostatnio zmienione przez';
+    $Self->{Translation}->{'Ok'} = 'Ok';
     $Self->{Translation}->{'Show one version'} = 'Pokaż jedną wersję!';
     $Self->{Translation}->{'Show all versions'} = 'Pokaż wszystkie wersje';
     $Self->{Translation}->{'Version Incident State'} = 'Stan';

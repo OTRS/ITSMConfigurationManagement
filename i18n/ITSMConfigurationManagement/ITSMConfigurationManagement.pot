@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ITSMConfigurationManagement\n"
-"POT-Creation-Date: 2014-08-08 19:10+0200\n"
+"POT-Creation-Date: 2016-06-03 17:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -632,6 +632,10 @@ msgstr ""
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Last changed by"
+msgstr ""
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Ok"
 msgstr ""
 
 #. Template: AgentITSMConfigItemZoom

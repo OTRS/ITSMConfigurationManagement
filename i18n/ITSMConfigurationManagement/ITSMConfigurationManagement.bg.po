@@ -4,10 +4,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2014-08-08 19:10+0200\n"
-"PO-Revision-Date: 2015-04-27 10:55+0000\n"
-"Last-Translator: Martin Gruner <martin.gruner@otrs.com>\n"
-"Language-Team: Bulgarian (http://www.transifex.com/projects/p/OTRS/language/bg/)\n"
+"POT-Creation-Date: 2016-05-24 21:57+0000\n"
+"PO-Revision-Date: 2016-05-24 19:58+0000\n"
+"Last-Translator: Udo Bretz\n"
+"Language-Team: Bulgarian (http://www.transifex.com/otrs/OTRS/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -583,6 +583,10 @@ msgstr ""
 msgid "Incident State"
 msgstr ""
 
+#. Template: AgentITSMConfigItemHistory
+msgid "History of"
+msgstr "Хроника на"
+
 #. Template: AgentITSMConfigItemOverviewNavBar
 msgid "Context Settings"
 msgstr ""
@@ -607,22 +611,6 @@ msgstr ""
 msgid "Last changed"
 msgstr "Последна промяна"
 
-#. Template: AgentITSMConfigItemPrint
-msgid "ConfigItem"
-msgstr ""
-
-#. Template: AgentITSMConfigItemPrint
-msgid "ConfigItem-Info"
-msgstr ""
-
-#. Template: AgentITSMConfigItemPrint
-msgid "Current Deployment State"
-msgstr ""
-
-#. Template: AgentITSMConfigItemPrint
-msgid "Last changed by"
-msgstr "Последно променен от"
-
 #. Template: AgentITSMConfigItemSearch
 msgid "Create New Template"
 msgstr ""
@@ -635,16 +623,24 @@ msgstr ""
 msgid "Also search in previous versions?"
 msgstr "Да търси и в предишните версии?"
 
-#. Template: AgentITSMConfigItemSearchResultPrint
-msgid "CreateTime"
-msgstr ""
-
 #. Template: AgentITSMConfigItemZoom
 msgid "Configuration Item"
 msgstr ""
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Configuration Item Information"
+msgstr ""
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Current Deployment State"
+msgstr ""
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Last changed by"
+msgstr "Последно променен от"
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Ok"
 msgstr ""
 
 #. Template: AgentITSMConfigItemZoom
@@ -673,6 +669,26 @@ msgstr ""
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Property"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
+msgid "ITSM ConfigItem"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "CIHistory::"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "ConfigItem"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+msgid "No Result!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+msgid "Config Item Search Results"
 msgstr ""
 
 #. SysConfig
@@ -974,7 +990,7 @@ msgstr ""
 
 #. SysConfig
 msgid ""
-"Shows a link in the menu to go back in the configuraton item zoom view of "
+"Shows a link in the menu to go back in the configuration item zoom view of "
 "the agent interface."
 msgstr ""
 
