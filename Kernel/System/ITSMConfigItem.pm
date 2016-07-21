@@ -1672,7 +1672,7 @@ sub CurInciStateRecalc {
             Key  => $CacheKey,
         );
 
-        # delete version get cache for config item
+        # delete affected caches for ConfigItemID
         $CacheKey = 'VersionGet::ConfigItemID::' . $ConfigItemID . '::XMLData::';
         for my $XMLData (qw(0 1)) {
             $CacheObject->Delete(
@@ -1680,8 +1680,12 @@ sub CurInciStateRecalc {
                 Key  => $CacheKey . $XMLData,
             );
         }
+        $CacheObject->Delete(
+            Type => $Self->{CacheType},
+            Key  => 'VersionNameGet::ConfigItemID::' . $ConfigItemID,
+        );
 
-        # delete version get cache for last version
+        # delete affected caches for last version
         my $VersionList = $Self->VersionList(
             ConfigItemID => $ConfigItemID,
         );
@@ -1693,6 +1697,10 @@ sub CurInciStateRecalc {
                 Key  => $CacheKey . $XMLData,
             );
         }
+        $CacheObject->Delete(
+            Type => $Self->{CacheType},
+            Key  => 'VersionNameGet::VersionID::' . $VersionID,
+        );
     }
 
     # set the current incident state type for each service (influenced by linked CIs)

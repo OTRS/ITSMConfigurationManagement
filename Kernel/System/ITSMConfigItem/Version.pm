@@ -388,6 +388,113 @@ sub VersionGet {
     return \%Version;
 }
 
+=item VersionNameGet()
+
+returns the name of a version of a config item.
+
+    my $VersionName = $ConfigItemObject->VersionNameGet(
+        VersionID => 123,
+    );
+
+    or
+
+    my $VersionName = $ConfigItemObject->VersionNameGet(
+        ConfigItemID => 123,
+    );
+
+=cut
+
+sub VersionNameGet {
+    my ( $Self, %Param ) = @_;
+
+    # check needed stuff
+    if ( !$Param{VersionID} && !$Param{ConfigItemID} ) {
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
+            Priority => 'error',
+            Message  => 'Need VersionID or ConfigItemID!',
+        );
+        return;
+    }
+
+    my $CacheObject = $Kernel::OM->Get('Kernel::System::Cache');
+
+    if ( $Param{VersionID} ) {
+
+        # check if result is already cached
+        my $CacheKey = 'VersionNameGet::VersionID::' . $Param{VersionID};
+        my $Cache    = $CacheObject->Get(
+            Type => $Self->{CacheType},
+            Key  => $CacheKey,
+        );
+        return ${$Cache} if $Cache;
+
+        # get version
+        $Kernel::OM->Get('Kernel::System::DB')->Prepare(
+            SQL => 'SELECT id, name '
+                . 'FROM configitem_version WHERE id = ?',
+            Bind  => [ \$Param{VersionID} ],
+            Limit => 1,
+        );
+    }
+    else {
+
+        # check if result is already cached
+        my $CacheKey = 'VersionNameGet::ConfigItemID::' . $Param{ConfigItemID};
+        my $Cache    = $CacheObject->Get(
+            Type => $Self->{CacheType},
+            Key  => $CacheKey,
+        );
+        return ${Cache} if $Cache;
+
+        # get version
+        $Kernel::OM->Get('Kernel::System::DB')->Prepare(
+            SQL => 'SELECT id, name '
+                . 'FROM configitem_version '
+                . 'WHERE configitem_id = ? ORDER BY id DESC',
+            Bind  => [ \$Param{ConfigItemID} ],
+            Limit => 1,
+        );
+    }
+
+    # fetch the result
+    my %Version;
+    while ( my @Row = $Kernel::OM->Get('Kernel::System::DB')->FetchrowArray() ) {
+        $Version{VersionID} = $Row[0];
+        $Version{Name}      = $Row[1];
+    }
+
+    # check version
+    if ( !$Version{VersionID} ) {
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
+            Priority => 'error',
+            Message  => 'No such config item version!',
+        );
+        return;
+    }
+
+    # set cache for VersionID (always)
+    my $CacheKey = 'VersionNameGet::VersionID::' . $Version{VersionID};
+    $CacheObject->Set(
+        Type  => $Self->{CacheType},
+        TTL   => $Self->{CacheTTL},
+        Key   => $CacheKey,
+        Value => \$Version{Name},
+    );
+
+    # set cache for ConfigItemID (only if called with ConfigItemID)
+    if ( $Param{ConfigItemID} ) {
+        $CacheKey = 'VersionNameGet::ConfigItemID::' . $Param{ConfigItemID};
+        $CacheObject->Set(
+            Type  => $Self->{CacheType},
+            TTL   => $Self->{CacheTTL},
+            Key   => $CacheKey,
+            Value => \$Version{Name},
+        );
+    }
+
+    return $Version{Name};
+}
+
 =item VersionConfigItemIDGet()
 
 return the config item id of a version
@@ -576,7 +683,7 @@ sub VersionAdd {
 
     return if !$Success;
 
-    # delete caches
+    # delete affected caches
     my $CacheKey    = 'VersionGet::ConfigItemID::' . $Param{ConfigItemID} . '::XMLData::';
     my $CacheObject = $Kernel::OM->Get('Kernel::System::Cache');
     for my $XMLData (qw(0 1)) {
@@ -585,6 +692,10 @@ sub VersionAdd {
             Key  => $CacheKey . $XMLData,
         );
     }
+    $CacheObject->Delete(
+        Type => $Self->{CacheType},
+        Key  => 'VersionNameGet::ConfigItemID::' . $Param{ConfigItemID},
+    );
 
     # get id of new version
     $Kernel::OM->Get('Kernel::System::DB')->Prepare(
@@ -806,7 +917,7 @@ sub VersionDelete {
                 UserID => $Param{UserID},
             );
 
-            # delete caches for VersionID
+            # delete affected caches
             my $CacheKey = 'VersionGet::VersionID::' . $VersionID . '::XMLData::';
             for my $XMLData (qw(0 1)) {
                 $CacheObject->Delete(
@@ -814,12 +925,16 @@ sub VersionDelete {
                     Key  => $CacheKey . $XMLData,
                 );
             }
+            $CacheObject->Delete(
+                Type => $Self->{CacheType},
+                Key  => 'VersionNameGet::VersionID::' . $VersionID,
+            );
 
             delete $Self->{Cache}->{VersionConfigItemIDGet}->{$VersionID};
         }
     }
 
-    # delete caches for ConfigItemID (most recent version might have been removed)
+    # delete affected caches for ConfigItemID (most recent version might have been removed)
     my $CacheKey = 'VersionGet::ConfigItemID::' . $ConfigItemID . '::XMLData::';
     for my $XMLData (qw(0 1)) {
         $CacheObject->Delete(
@@ -827,6 +942,10 @@ sub VersionDelete {
             Key  => $CacheKey . $XMLData,
         );
     }
+    $CacheObject->Delete(
+        Type => $Self->{CacheType},
+        Key  => 'VersionNameGet::ConfigItemID::' . $ConfigItemID,
+    );
 
     return $Success;
 }
