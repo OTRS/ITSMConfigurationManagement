@@ -554,124 +554,130 @@ sub _XMLHashSearch {
     # get like escape string needed for some databases (e.g. oracle)
     my $LikeEscapeString = $Kernel::OM->Get('Kernel::System::DB')->GetDatabaseFunction('LikeEscapeString');
 
-    return if !$Kernel::OM->Get('Kernel::System::DB')->Prepare(
-        SQL  => 'SELECT DISTINCT(xml_key) FROM xml_storage WHERE xml_type = ?',
-        Bind => [ \$Param{Type} ],
-    );
+    # get all entries if we have no restriction
+    if ( !$Param{What} || ref $Param{What} ne 'ARRAY' ) {
+        return if !$Kernel::OM->Get('Kernel::System::DB')->Prepare(
+            SQL  => 'SELECT DISTINCT(xml_key) FROM xml_storage WHERE xml_type = ?',
+            Bind => [ \$Param{Type} ],
+        );
 
-    # the keys of this hash will be returned
-    my %Hash;
+        my @Keys;
+        while ( my @Data = $Kernel::OM->Get('Kernel::System::DB')->FetchrowArray() ) {
+            push @Keys, $Data[0];
+        }
 
-    # initially all keys with the correct type are possible
-    while ( my @Data = $Kernel::OM->Get('Kernel::System::DB')->FetchrowArray() ) {
-        $Hash{ $Data[0] } = 1;
+        return @Keys;
     }
 
-    if ( $Param{What} && ref $Param{What} eq 'ARRAY' ) {
+    # otherwise only get entries restricted by 'What' parameter
 
-        my %OpIsSupported = map { $_ => 1 } ( '<', '<=', '=', '!=', '>=', '>', '-between' );
+    my %OpIsSupported = map { $_ => 1 } ( '<', '<=', '=', '!=', '>=', '>', '-between' );
 
-        # the array elements are 'and' combined
-        for my $And ( @{ $Param{What} } ) {
+    # the array elements are 'and' combined
+    my $Intersect = 0;
+    my %Hash;
+    for my $And ( @{ $Param{What} } ) {
 
-            # the key/value pairs are 'or' combined
-            my @OrConditions;
-            for my $Key ( sort keys %{$And} ) {
-                my $Value = $And->{$Key};
+        # the key/value pairs are 'or' combined
+        my @OrConditions;
+        for my $Key ( sort keys %{$And} ) {
+            my $Value = $And->{$Key};
 
-                $Self->_PrepareLikeString( \$Key );
+            $Self->_PrepareLikeString( \$Key );
 
-                if ( $Value && ref $Value eq 'ARRAY' ) {
+            if ( $Value && ref $Value eq 'ARRAY' ) {
 
-                    # when an array of possible values is given,
-                    # we use 'LIKE'-conditions and combine them with 'OR'
-                    for my $Element ( @{$Value} ) {
+                # when an array of possible values is given,
+                # we use 'LIKE'-conditions and combine them with 'OR'
+                for my $Element ( @{$Value} ) {
 
-                        $Self->_PrepareLikeString( \$Element );
-
-                        push @OrConditions,
-                            " (xml_content_key LIKE '$Key' $LikeEscapeString "
-                            . "AND xml_content_value LIKE '$Element' $LikeEscapeString)";
-                    }
-                }
-                elsif ( $Value && ref $Value eq 'HASH' ) {
-
-                    # a hashref indicates a specific comparison op
-                    # currently only a single op, with a single value, is supported
-
-                    # Under Oracle the attribute 'xml_content_value' is a CLOB,
-                    # a Character Locator Object. While selection with LIKE is possible,
-                    # the alphabetical comparison ops are not supported.
-                    # See http://download.oracle.com/docs/cd/B12037_01/appdev.101/b10796/\
-                    # adlob_sq.htm#1006215
-                    # As a workaround we cast the CLOB to a VARCHAR2 with TO_CHAR().
-                    my $XMLContentValueColumn = 'xml_content_value';
-                    if (
-                        $Kernel::OM->Get('Kernel::System::DB')->GetDatabaseFunction('Type') eq
-                        'oracle'
-                        )
-                    {
-                        $XMLContentValueColumn = 'TO_CHAR(xml_content_value)';
-                    }
-
-                    my ($Op) = keys %{$Value};
-                    my $Element = $Value->{$Op};
-                    if ( $Op && $Op eq '-between' && ref $Element eq 'ARRAY' ) {
-                        my $LowerBound = $Kernel::OM->Get('Kernel::System::DB')->Quote( $Element->[0] );
-                        my $UpperBound = $Kernel::OM->Get('Kernel::System::DB')->Quote( $Element->[1] );
-                        push @OrConditions,
-                            " ( xml_content_key LIKE '$Key' $LikeEscapeString "
-                            . "AND $XMLContentValueColumn >= '$LowerBound' "
-                            . "AND $XMLContentValueColumn <= '$UpperBound' )";
-                    }
-                    elsif ( $Op && $OpIsSupported{$Op} && !ref $Element ) {
-                        $Element = $Kernel::OM->Get('Kernel::System::DB')->Quote($Element);
-                        push @OrConditions,
-                            " ( xml_content_key LIKE '$Key' $LikeEscapeString "
-                            . "AND $XMLContentValueColumn $Op '$Element' )";
-                    }
-                    else {
-                        $Kernel::OM->Get('Kernel::System::Log')->Log(
-                            Priority => 'error',
-                            Message  => 'Got unexpected data in search!',
-                        );
-                        push @OrConditions, '( 1 = 1 )';
-                    }
-                }
-                else {
-
-                    # when a single  possible value is given,
-                    # we use a 'LIKE'-condition
-                    $Self->_PrepareLikeString( \$Value );
+                    $Self->_PrepareLikeString( \$Element );
 
                     push @OrConditions,
                         " (xml_content_key LIKE '$Key' $LikeEscapeString "
-                        . "AND xml_content_value LIKE '$Value' $LikeEscapeString)";
+                        . "AND xml_content_value LIKE '$Element' $LikeEscapeString)";
                 }
             }
+            elsif ( $Value && ref $Value eq 'HASH' ) {
 
-            # assemble the SQL
-            my $SQL = 'SELECT DISTINCT(xml_key) FROM xml_storage WHERE xml_type = ? ';
-            if (@OrConditions) {
-                $SQL .= 'AND ( ' . join( ' OR ', @OrConditions ) . ' )';
-            }
+                # a hashref indicates a specific comparison op
+                # currently only a single op, with a single value, is supported
 
-            # execute
-            $Kernel::OM->Get('Kernel::System::DB')->Prepare(
-                SQL  => $SQL,
-                Bind => [ \$Param{Type} ],
-            );
+                # Under Oracle the attribute 'xml_content_value' is a CLOB,
+                # a Character Locator Object. While selection with LIKE is possible,
+                # the alphabetical comparison ops are not supported.
+                # See http://download.oracle.com/docs/cd/B12037_01/appdev.101/b10796/\
+                # adlob_sq.htm#1006215
+                # As a workaround we cast the CLOB to a VARCHAR2 with TO_CHAR().
+                my $XMLContentValueColumn = 'xml_content_value';
+                if (
+                    $Kernel::OM->Get('Kernel::System::DB')->GetDatabaseFunction('Type') eq
+                    'oracle'
+                    )
+                {
+                    $XMLContentValueColumn = 'TO_CHAR(xml_content_value)';
+                }
 
-            # intersection between the current key set, and the keys from the last 'SELECT'
-            # only the keys which are in all results survive
-            my %HashNew;
-            while ( my @Data = $Kernel::OM->Get('Kernel::System::DB')->FetchrowArray() ) {
-                if ( $Hash{ $Data[0] } ) {
-                    $HashNew{ $Data[0] } = 1;
+                my ($Op) = keys %{$Value};
+                my $Element = $Value->{$Op};
+                if ( $Op && $Op eq '-between' && ref $Element eq 'ARRAY' ) {
+                    my $LowerBound = $Kernel::OM->Get('Kernel::System::DB')->Quote( $Element->[0] );
+                    my $UpperBound = $Kernel::OM->Get('Kernel::System::DB')->Quote( $Element->[1] );
+                    push @OrConditions,
+                        " ( xml_content_key LIKE '$Key' $LikeEscapeString "
+                        . "AND $XMLContentValueColumn >= '$LowerBound' "
+                        . "AND $XMLContentValueColumn <= '$UpperBound' )";
+                }
+                elsif ( $Op && $OpIsSupported{$Op} && !ref $Element ) {
+                    $Element = $Kernel::OM->Get('Kernel::System::DB')->Quote($Element);
+                    push @OrConditions,
+                        " ( xml_content_key LIKE '$Key' $LikeEscapeString "
+                        . "AND $XMLContentValueColumn $Op '$Element' )";
+                }
+                else {
+                    $Kernel::OM->Get('Kernel::System::Log')->Log(
+                        Priority => 'error',
+                        Message  => 'Got unexpected data in search!',
+                    );
+                    push @OrConditions, '( 1 = 1 )';
                 }
             }
-            %Hash = %HashNew;
+            else {
+
+                # when a single  possible value is given,
+                # we use a 'LIKE'-condition
+                $Self->_PrepareLikeString( \$Value );
+
+                push @OrConditions,
+                    " (xml_content_key LIKE '$Key' $LikeEscapeString "
+                    . "AND xml_content_value LIKE '$Value' $LikeEscapeString)";
+            }
         }
+
+        # assemble the SQL
+        my $SQL = 'SELECT DISTINCT(xml_key) FROM xml_storage WHERE xml_type = ? ';
+        if (@OrConditions) {
+            $SQL .= 'AND ( ' . join( ' OR ', @OrConditions ) . ' )';
+        }
+
+        # execute
+        $Kernel::OM->Get('Kernel::System::DB')->Prepare(
+            SQL  => $SQL,
+            Bind => [ \$Param{Type} ],
+        );
+
+        # intersection between the current key set, and the keys from the last 'SELECT'
+        # only the keys which are in all results survive
+        my %HashNew;
+        while ( my @Data = $Kernel::OM->Get('Kernel::System::DB')->FetchrowArray() ) {
+            if ( !$Intersect || $Hash{ $Data[0] } ) {
+                $HashNew{ $Data[0] } = 1;
+            }
+        }
+        %Hash = %HashNew;
+
+        # remember to later intersect results
+        ++$Intersect;
     }
 
     my @Keys = keys %Hash;
