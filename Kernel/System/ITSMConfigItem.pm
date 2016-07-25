@@ -449,6 +449,11 @@ sub ConfigItemDelete {
         }
     }
 
+    # remember config item data before delete
+    my $ConfigItemData = $Self->ConfigItemGet(
+        ConfigItemID => $Param{ConfigItemID},
+    );
+
     # delete all links to this config item first, before deleting the versions
     return if !$Kernel::OM->Get('Kernel::System::LinkObject')->LinkDeleteAll(
         Object => 'ITSMConfigItem',
@@ -496,6 +501,8 @@ sub ConfigItemDelete {
         Data  => {
             ConfigItemID => $Param{ConfigItemID},
             Comment      => $Param{ConfigItemID},
+            Number       => $ConfigItemData->{Number},
+            Class        => $ConfigItemData->{Class},
         },
         UserID => $Param{UserID},
     );

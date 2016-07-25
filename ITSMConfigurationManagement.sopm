@@ -19,6 +19,7 @@
         <File Permission="644" Location="Kernel/Config/Files/ITSMConfigItemGenericInterface.xml"/>
         <File Permission="644" Location="Kernel/GenericInterface/Operation/ConfigItem/Common.pm"/>
         <File Permission="644" Location="Kernel/GenericInterface/Operation/ConfigItem/ConfigItemCreate.pm"/>
+        <File Permission="644" Location="Kernel/GenericInterface/Operation/ConfigItem/ConfigItemDelete.pm"/>
         <File Permission="644" Location="Kernel/GenericInterface/Operation/ConfigItem/ConfigItemGet.pm"/>
         <File Permission="644" Location="Kernel/GenericInterface/Operation/ConfigItem/ConfigItemSearch.pm"/>
         <File Permission="644" Location="Kernel/GenericInterface/Operation/ConfigItem/ConfigItemUpdate.pm"/>
@@ -106,6 +107,7 @@
         <File Permission="644" Location="Kernel/System/Console/Command/Admin/ITSM/Configitem/Delete.pm"/>
         <File Permission="644" Location="Kernel/System/Console/Command/Admin/ITSM/IncidentState/Recalculate.pm"/>
         <File Permission="644" Location="scripts/test/GenericInterface/Operation/ConfigItem/ConfigItemCreate.t"/>
+        <File Permission="644" Location="scripts/test/GenericInterface/Operation/ConfigItem/ConfigItemDelete.t"/>
         <File Permission="644" Location="scripts/test/GenericInterface/Operation/ConfigItem/ConfigItemGet.t"/>
         <File Permission="644" Location="scripts/test/GenericInterface/Operation/ConfigItem/ConfigItemSearch.t"/>
         <File Permission="644" Location="scripts/test/GenericInterface/Operation/ConfigItem/ConfigItemUpdate.t"/>

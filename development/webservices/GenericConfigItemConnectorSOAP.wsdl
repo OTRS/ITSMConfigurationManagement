@@ -91,6 +91,62 @@ WARNING: This WSDL file is for Development and Test purposes ONLY!
                 </xsd:sequence>
             </xsd:complexType>
 
+            <xsd:element name="ConfigItemDelete">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:choice
+                            minOccurs="1"
+                            maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>
+                                    UserLogin or SessionID is mandatory
+                                </xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:element
+                                name="UserLogin"
+                                type="xsd:string"
+                                minOccurs="0">
+                            </xsd:element>
+                            <xsd:element
+                                name="SessionID"
+                                type="xsd:string"
+                                minOccurs="0">
+                            </xsd:element>
+                        </xsd:choice>
+                        <xsd:element
+                            name="Password"
+                            type="xsd:string"
+                            minOccurs="0">
+                        </xsd:element>
+                        <xsd:element
+                            name="ConfigItemID"
+                            type="xsd:positiveInteger"
+                            minOccurs="1"
+                            maxOccurs="unbounded">
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="ConfigItemDeleteResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element
+                            name="ConfigItemID"
+                            type="xsd:positiveInteger"
+                            minOccurs="1"
+                            maxOccurs="unbounded">
+                        </xsd:element>
+                        <xsd:element
+                            name="Error"
+                            type="tns:OTRS_Error"
+                            maxOccurs="1"
+                            minOccurs="0">
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
             <xsd:complexType name="OTRS_ConfigItem_ConfigItem">
                 <xsd:sequence>
                     <xsd:element
@@ -483,6 +539,18 @@ WARNING: This WSDL file is for Development and Test purposes ONLY!
         </wsdl:part>
     </wsdl:message>
 
+    <wsdl:message name="ConfigItemDeleteRequest">
+        <wsdl:part
+            name="parameters" element="tns:ConfigItemDelete">
+        </wsdl:part>
+    </wsdl:message>
+
+    <wsdl:message name="ConfigItemDeleteResponse">
+        <wsdl:part
+            name="parameters" element="tns:ConfigItemDeleteResponse">
+        </wsdl:part>
+    </wsdl:message>
+
     <wsdl:message name="ConfigItemGetRequest">
         <wsdl:part
             name="parameters" element="tns:ConfigItemGet">
@@ -529,6 +597,11 @@ WARNING: This WSDL file is for Development and Test purposes ONLY!
             <wsdl:output message="tns:ConfigItemCreateResponse"></wsdl:output>
         </wsdl:operation>
 
+        <wsdl:operation name="ConfigItemDelete">
+            <wsdl:input message="tns:ConfigItemDeleteRequest"></wsdl:input>
+            <wsdl:output message="tns:ConfigItemDeleteResponse"></wsdl:output>
+        </wsdl:operation>
+
         <wsdl:operation name="ConfigItemGet">
             <wsdl:input message="tns:ConfigItemGetRequest"></wsdl:input>
             <wsdl:output message="tns:ConfigItemGetResponse"></wsdl:output>
@@ -547,8 +620,19 @@ WARNING: This WSDL file is for Development and Test purposes ONLY!
 
     <wsdl:binding name="GenericConfigItemConnector_Binding" type="tns:GenericConfigItemConnector_PortType">
         <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+
         <wsdl:operation name="ConfigItemCreate">
             <soap:operation soapAction="http://www.otrs.org/ConfigItemConnector/ConfigItemCreate" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+
+        <wsdl:operation name="ConfigItemDelete">
+            <soap:operation soapAction="http://www.otrs.org/ConfigItemConnector/ConfigItemDelete" />
             <wsdl:input>
                 <soap:body use="literal" />
             </wsdl:input>

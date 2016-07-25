@@ -11,6 +11,11 @@ Provider:
       MappingInbound: {}
       MappingOutbound: {}
       Type: ConfigItem::ConfigItemCreate
+    ConfigItemDelete:
+      Description: Deletes Configuration Items from ITSMConfigurationManagement
+      MappingInbound: {}
+      MappingOutbound: {}
+      Type: ConfigItem::ConfigItemDelete
     ConfigItemGet:
       Description: Get the details for Configuration Items from ITSMConfigurationManagement
       MappingInbound: {}

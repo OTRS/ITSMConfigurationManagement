@@ -160,7 +160,7 @@ perform ConfigItemCreate Operation. This will return the created config item num
             ConfigItemID => 123,                    # Configuration Item  ID number in OTRS::ITSM (Service desk system)
             Number       => 2324454323322           # Configuration Item  Number in OTRS::ITSM (Service desk system)
             Error => {                              # should not return errors
-                    ErrorCode    => 'ConfigItem.Create.ErrorCode'
+                    ErrorCode    => 'ConfigItemCreate.ErrorCode'
                     ErrorMessage => 'Error Description'
             },
         },
