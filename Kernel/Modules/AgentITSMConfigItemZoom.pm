@@ -275,7 +275,7 @@ sub Run {
         && $Version->{XMLDefinition}
         && $Version->{XMLData}
         && ref $Version->{XMLDefinition} eq 'ARRAY'
-        && ref $Version->{XMLData}       eq 'ARRAY'
+        && ref $Version->{XMLData} eq 'ARRAY'
         && $Version->{XMLData}->[1]
         && ref $Version->{XMLData}->[1] eq 'HASH'
         && $Version->{XMLData}->[1]->{Version}
