@@ -112,7 +112,7 @@ sub Run {
 
         # output confirmation dialog
         $LayoutObject->Block(
-            Name => 'ShowConfirmationDialog',
+            Name => 'ShowConfirmDialog',
             Data => {
                 %Param,
                 %{ $Param{ConfigItem} },
