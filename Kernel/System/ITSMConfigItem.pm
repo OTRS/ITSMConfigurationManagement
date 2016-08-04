@@ -20,6 +20,8 @@ use Kernel::System::ITSMConfigItem::Version;
 use Kernel::System::ITSMConfigItem::XML;
 use Kernel::System::VariableCheck qw(:all);
 
+use Storable;
+
 use vars qw(@ISA);
 
 our @ObjectDependencies = (
@@ -326,7 +328,7 @@ sub ConfigItemGet {
         Type  => $Self->{CacheType},
         TTL   => $Self->{CacheTTL},
         Key   => $CacheKey,
-        Value => \%ConfigItem,
+        Value => Storable::dclone( \%ConfigItem ),
     );
 
     return \%ConfigItem;
