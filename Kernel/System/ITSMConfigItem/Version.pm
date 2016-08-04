@@ -1022,13 +1022,13 @@ sub VersionDelete {
 
     return 1 if !scalar @{$VersionList};
 
+    # get config item id for version (needed for event handling)
+    my $ConfigItemID = $Param{ConfigItemID};
+
     my $CacheObject = $Kernel::OM->Get('Kernel::System::Cache');
 
     my $Success;
     for my $VersionID ( @{$VersionList} ) {
-
-        # get config item id for version (needed for event handling)
-        my $ConfigItemID = $Param{ConfigItemID};
 
         # get configitem id if neccessary
         if ( $Param{VersionID} || $Param{VersionIDs} ) {
