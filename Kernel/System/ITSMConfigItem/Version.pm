@@ -112,6 +112,147 @@ sub VersionZoomList {
     return \@VersionList;
 }
 
+=item VersionListAll()
+
+Returns a two-dimensional hash reference with the configitem ids as keys of the first level
+and the corresponding version ids as keys of the second level,
+then followed by the version data as hash reference.
+
+    my $VersionListRef = $ConfigItemObject->VersionListAll(
+        ConfigItemIDs => [ 1, 2, 3, 4, ...],    # optional
+
+        OlderDate     => '2014-12-22 23:59:59', # optional
+                                                # finds versions older than the given date
+                                                # Format MUST be
+                                                # YYYY-MM-DD HH:MM:SS
+                                                # fill missing values with 0 first
+                                                # Example: 2014-04-01 07:03:04
+                                                # otherwise it won't be taken as
+                                                # valid search parameter
+
+        Limit         => 1000000,               # optional
+    );
+
+Returns:
+
+$VersionListRef = {
+
+    # ConfigItemID
+    1 => {
+
+        # VersionID
+        100 => {
+            VersionID    => 100,
+            ConfigItemID => 1,
+            Name         => 'ConfigItem1',
+            DefinitionID => 5,
+            DeplStateID  => 3,
+            InciStateID  => 2,
+            CreateTime   => '2016-03-22 17:58:00',
+            CreateBy     => 1,
+        },
+
+        # VersionID
+        101 => {
+            VersionID    => 101,
+            ConfigItemID => 1,
+            Name         => 'ConfigItem2',
+            DefinitionID => 5,
+            DeplStateID  => 3,
+            InciStateID  => 2,
+            CreateTime   => '2016-03-22 17:58:00',
+            CreateBy     => 1,
+        },
+    },
+
+    # ConfigItemID
+    2 => {
+
+        # VersionID
+        150 => {
+            VersionID    => 150,
+            ConfigItemID => 2,
+            Name         => 'ConfigItem1',
+            DefinitionID => 5,
+            DeplStateID  => 3,
+            InciStateID  => 2,
+            CreateTime   => '2016-03-22 17:58:00',
+            CreateBy     => 1,
+        },
+
+        # VersionID
+        151 => {
+            VersionID    => 151,
+            ConfigItemID => 2,
+            Name         => 'ConfigItem1',
+            DefinitionID => 5,
+            DeplStateID  => 3,
+            InciStateID  => 2,
+            CreateTime   => '2016-03-22 17:58:00',
+            CreateBy     => 1,
+        },
+    },
+};
+
+=cut
+
+sub VersionListAll {
+    my ( $Self, %Param ) = @_;
+
+    # build sql
+    my $SQL = 'SELECT id, configitem_id, name, definition_id,
+        depl_state_id, inci_state_id, create_time, create_by
+        FROM configitem_version WHERE 1=1';
+
+    # if we got ConfigItemIDs make sure we just have numeric ids,
+    # extract those and use it for the query
+    if ( IsArrayRefWithData( $Param{ConfigItemIDs} ) ) {
+        my @ConfigItemIDs = grep { $_ =~ /^\d+$/ } @{ $Param{ConfigItemIDs} };
+        $SQL .= ' AND configitem_id IN (' . join ', ', @ConfigItemIDs . ')';
+    }
+
+    my @BindParameter;
+    if ( $Param{OlderDate} && $Param{OlderDate} =~ /^\d{4}\-\d{2}\-\d{2}\ \d{2}\:\d{2}:\d{2}$/ ) {
+        $SQL .= ' AND create_time < ?';
+        push @BindParameter, \$Param{OlderDate};
+    }
+
+    # set limit
+    if ( $Param{Limit} ) {
+        $Param{Limit} = $Kernel::OM->Get('Kernel::System::DB')->Quote( $Param{Limit}, 'Integer' );
+    }
+
+    if (@BindParameter) {
+        $Kernel::OM->Get('Kernel::System::DB')->Prepare(
+            SQL   => $SQL,
+            Bind  => \@BindParameter,
+            Limit => $Param{Limit},
+        );
+    }
+    else {
+        $Kernel::OM->Get('Kernel::System::DB')->Prepare(
+            SQL   => $SQL,
+            Limit => $Param{Limit},
+        );
+    }
+
+    my %Results;
+    while ( my @Row = $Kernel::OM->Get('Kernel::System::DB')->FetchrowArray() ) {
+        $Results{ $Row[1] }->{ $Row[0] } = {
+            VersionID    => $Row[0],
+            ConfigItemID => $Row[1],
+            Name         => $Row[2] || '',
+            DefinitionID => $Row[3] || '',
+            DeplStateID  => $Row[4] || '',
+            InciStateID  => $Row[5] || '',
+            CreateTime   => $Row[6] || '',
+            CreateBy     => $Row[7] || '',
+        };
+    }
+
+    return \%Results;
+}
+
 =item VersionList()
 
 return a config item version list as array reference
@@ -674,6 +815,11 @@ delete an existing version or versions
         UserID       => 1,
     );
 
+    my $True = $ConfigItemObject->VersionDelete(
+        VersionIDs => [ 1, 2, 3, 4 ],
+        UserID     => 1,
+    );
+
 =cut
 
 sub VersionDelete {
@@ -687,10 +833,11 @@ sub VersionDelete {
         );
         return;
     }
-    if ( !$Param{VersionID} && !$Param{ConfigItemID} ) {
+
+    if ( !$Param{VersionID} && !$Param{ConfigItemID} && !IsArrayRefWithData( $Param{VersionIDs} ) ) {
         $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
-            Message  => 'Need VersionID or ConfigItemID!',
+            Message  => 'Need VersionID, ConfigItemID or VersionIDs!',
         );
         return;
     }
@@ -698,6 +845,9 @@ sub VersionDelete {
     my $VersionList = [];
     if ( $Param{VersionID} ) {
         push @{$VersionList}, $Param{VersionID};
+    }
+    elsif ( $Param{VersionIDs} ) {
+        push @{$VersionList}, @{ $Param{VersionIDs} };
     }
     else {
         # get version list
@@ -713,9 +863,11 @@ sub VersionDelete {
 
         # get config item id for version (needed for event handling)
         my $ConfigItemID = $Param{ConfigItemID};
-        if ( $Param{VersionID} ) {
+
+        # get configitem id if neccessary
+        if ( $Param{VersionID} || $Param{VersionIDs} ) {
             $ConfigItemID = $Self->VersionConfigItemIDGet(
-                VersionID => $Param{VersionID},
+                VersionID => $Param{VersionID} || $VersionID,
             );
         }
 
