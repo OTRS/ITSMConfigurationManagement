@@ -274,7 +274,7 @@
                 <Item Key="Description">Delete Configuration Item</Item>
                 <Item Key="Action">AgentITSMConfigItemDelete</Item>
                 <Item Key="Link">Action=AgentITSMConfigItemDelete;ConfigItemID=[% Data.ConfigItemID | html %]</Item>
-                <Item Key="Target">ConfirmationDialog</Item>
+                <Item Key="Target">ConfirmDialog</Item>
                 <Item Key="ElementSelector">#Menu[% Data.MenuID | html %]</Item>
                 <Item Key="DialogContentQueryString">Action=AgentITSMConfigItemDelete;ConfigItemID=[% Data.ConfigItemID | html %]</Item>
                 <Item Key="ConfirmedActionQueryString">Action=AgentITSMConfigItemDelete;Subaction=ConfigItemDelete;ConfigItemID=[% Data.ConfigItemID | html %]</Item>
