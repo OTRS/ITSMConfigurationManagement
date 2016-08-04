@@ -20,11 +20,14 @@ use Kernel::System::ITSMConfigItem::Version;
 use Kernel::System::ITSMConfigItem::XML;
 use Kernel::System::VariableCheck qw(:all);
 
+use Storable;
+
 use vars qw(@ISA);
 
 our @ObjectDependencies = (
     'Kernel::Config',
     'Kernel::System::DB',
+    'Kernel::System::Cache',
     'Kernel::System::GeneralCatalog',
     'Kernel::System::LinkObject',
     'Kernel::System::Log',
@@ -65,6 +68,9 @@ sub new {
     # allocate new hash for object
     my $Self = {};
     bless( $Self, $Type );
+
+    $Self->{CacheType} = 'ITSMConfigurationManagement';
+    $Self->{CacheTTL}  = 60 * 60 * 24 * 20;
 
     @ISA = qw(
         Kernel::System::ITSMConfigItem::Definition
@@ -250,8 +256,13 @@ sub ConfigItemGet {
     }
 
     # check if result is already cached
-    return $Self->{Cache}->{ConfigItemGet}->{ $Param{ConfigItemID} }
-        if $Param{Cache} && $Self->{Cache}->{ConfigItemGet}->{ $Param{ConfigItemID} };
+    my $CacheKey    = 'ConfigItemGet::ConfigItemID::' . $Param{ConfigItemID};
+    my $CacheObject = $Kernel::OM->Get('Kernel::System::Cache');
+    my $Cache       = $CacheObject->Get(
+        Type => $Self->{CacheType},
+        Key  => $CacheKey,
+    );
+    return Storable::dclone($Cache) if $Cache;
 
     # ask database
     $Kernel::OM->Get('Kernel::System::DB')->Prepare(
@@ -313,7 +324,12 @@ sub ConfigItemGet {
     $ConfigItem{CurInciStateType} = $InciState->{Functionality};
 
     # cache the result
-    $Self->{Cache}->{ConfigItemGet}->{ $Param{ConfigItemID} } = \%ConfigItem;
+    $CacheObject->Set(
+        Type  => $Self->{CacheType},
+        TTL   => $Self->{CacheTTL},
+        Key   => $CacheKey,
+        Value => Storable::dclone( \%ConfigItem ),
+    );
 
     return \%ConfigItem;
 }
@@ -511,6 +527,13 @@ sub ConfigItemDelete {
     my $Success = $Kernel::OM->Get('Kernel::System::DB')->Do(
         SQL  => 'DELETE FROM configitem WHERE id = ?',
         Bind => [ \$Param{ConfigItemID} ],
+    );
+
+    # delete the cache
+    my $CacheKey = 'ConfigItemGet::ConfigItemID::' . $Param{ConfigItemID};
+    $Kernel::OM->Get('Kernel::System::Cache')->Delete(
+        Type => $Self->{CacheType},
+        Key  => $CacheKey,
     );
 
     return $Success;
@@ -1617,6 +1640,7 @@ sub CurInciStateRecalc {
     my %ReverseWarnStateList = reverse %{$WarnStateList};
     my @SortedWarnList       = sort keys %ReverseWarnStateList;
     my $WarningStateID       = $ReverseWarnStateList{Warning} || $ReverseWarnStateList{ $SortedWarnList[0] };
+    my $CacheObject          = $Kernel::OM->Get('Kernel::System::Cache');
 
     # set the new current incident state for CIs
     CONFIGITEMID:
@@ -1651,7 +1675,41 @@ sub CurInciStateRecalc {
         );
 
         # delete the cache
-        delete $Self->{Cache}->{ConfigItemGet}->{$ConfigItemID};
+        my $CacheKey = 'ConfigItemGet::ConfigItemID::' . $ConfigItemID;
+        $CacheObject->Delete(
+            Type => $Self->{CacheType},
+            Key  => $CacheKey,
+        );
+
+        # delete affected caches for ConfigItemID
+        $CacheKey = 'VersionGet::ConfigItemID::' . $ConfigItemID . '::XMLData::';
+        for my $XMLData (qw(0 1)) {
+            $CacheObject->Delete(
+                Type => $Self->{CacheType},
+                Key  => $CacheKey . $XMLData,
+            );
+        }
+        $CacheObject->Delete(
+            Type => $Self->{CacheType},
+            Key  => 'VersionNameGet::ConfigItemID::' . $ConfigItemID,
+        );
+
+        # delete affected caches for last version
+        my $VersionList = $Self->VersionList(
+            ConfigItemID => $ConfigItemID,
+        );
+        my $VersionID = $VersionList->[-1];
+        $CacheKey = 'VersionGet::VersionID::' . $VersionID . '::XMLData::';
+        for my $XMLData (qw(0 1)) {
+            $CacheObject->Delete(
+                Type => $Self->{CacheType},
+                Key  => $CacheKey . $XMLData,
+            );
+        }
+        $CacheObject->Delete(
+            Type => $Self->{CacheType},
+            Key  => 'VersionNameGet::VersionID::' . $VersionID,
+        );
     }
 
     # set the current incident state type for each service (influenced by linked CIs)

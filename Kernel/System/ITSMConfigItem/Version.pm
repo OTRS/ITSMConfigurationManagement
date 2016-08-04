@@ -339,11 +339,6 @@ explicitly turned off by passing XMLDataGet => 0.
         XMLDataGet   => 0,
     );
 
-The result of this call is not cached, as the next call to VersionGet() might need
-the XML data. On the other hand, when the cache is already filled, the cached
-version hash is returned with the XML data. So you get more than you asked for, which isn't
-a bad thing.
-
 =cut
 
 sub VersionGet {
@@ -362,14 +357,17 @@ sub VersionGet {
         $Param{XMLDataGet} = 1;
     }
 
+    my $CacheObject = $Kernel::OM->Get('Kernel::System::Cache');
+
     if ( $Param{VersionID} ) {
 
         # check if result is already cached
-        if ( $Self->{Cache}->{VersionGet}->{ $Param{VersionID} } ) {
-
-            # return a clone of the cache, as the caller should not be able to change the cache
-            return Storable::dclone( $Self->{Cache}->{VersionGet}->{ $Param{VersionID} } );
-        }
+        my $CacheKey = 'VersionGet::VersionID::' . $Param{VersionID} . '::XMLData::' . $Param{XMLDataGet};
+        my $Cache    = $CacheObject->Get(
+            Type => $Self->{CacheType},
+            Key  => $CacheKey,
+        );
+        return Storable::dclone($Cache) if $Cache;
 
         # get version
         $Kernel::OM->Get('Kernel::System::DB')->Prepare(
@@ -381,6 +379,14 @@ sub VersionGet {
         );
     }
     else {
+
+        # check if result is already cached
+        my $CacheKey = 'VersionGet::ConfigItemID::' . $Param{ConfigItemID} . '::XMLData::' . $Param{XMLDataGet};
+        my $Cache    = $CacheObject->Get(
+            Type => $Self->{CacheType},
+            Key  => $CacheKey,
+        );
+        return Storable::dclone($Cache) if $Cache;
 
         # get version
         $Kernel::OM->Get('Kernel::System::DB')->Prepare(
@@ -457,8 +463,27 @@ sub VersionGet {
     $Version{CurInciState}     = $ConfigItem->{CurInciState};
     $Version{CurInciStateType} = $ConfigItem->{CurInciStateType};
 
-    # do not cache the version without the XML data,
-    # the next caller might need the XML data
+    # set cache for VersionID without xml data (always)
+    my $CacheKey = 'VersionGet::VersionID::' . $Version{VersionID} . '::XMLData::0';
+    $CacheObject->Set(
+        Type  => $Self->{CacheType},
+        TTL   => $Self->{CacheTTL},
+        Key   => $CacheKey,
+        Value => Storable::dclone( \%Version ),
+    );
+
+    # set cache for ConfigItemID without xml data (only if called with ConfigItemID)
+    if ( $Param{ConfigItemID} ) {
+        $CacheKey = 'VersionGet::ConfigItemID::' . $Version{ConfigItemID} . '::XMLData::0';
+        $CacheObject->Set(
+            Type  => $Self->{CacheType},
+            TTL   => $Self->{CacheTTL},
+            Key   => $CacheKey,
+            Value => Storable::dclone( \%Version ),
+        );
+    }
+
+    # done if we don't need xml data
     return \%Version if !$Param{XMLDataGet};
 
     # get xml definition
@@ -473,11 +498,134 @@ sub VersionGet {
         VersionID => $Version{VersionID},
     );
 
-    # cache the result
-    $Self->{Cache}->{VersionGet}->{ $Version{VersionID} } = \%Version;
+    # set cache for VersionID (always)
+    $CacheKey = 'VersionGet::VersionID::' . $Version{VersionID} . '::XMLData::1';
+    $CacheObject->Set(
+        Type  => $Self->{CacheType},
+        TTL   => $Self->{CacheTTL},
+        Key   => $CacheKey,
+        Value => Storable::dclone( \%Version ),
+    );
 
-    # return a clone of the cache, as the caller should not be able to change the cache
-    return Storable::dclone( $Self->{Cache}->{VersionGet}->{ $Version{VersionID} } );
+    # set cache for ConfigItemID (only if called with ConfigItemID)
+    if ( $Param{ConfigItemID} ) {
+        $CacheKey = 'VersionGet::ConfigItemID::' . $Version{ConfigItemID} . '::XMLData::1';
+        $CacheObject->Set(
+            Type  => $Self->{CacheType},
+            TTL   => $Self->{CacheTTL},
+            Key   => $CacheKey,
+            Value => Storable::dclone( \%Version ),
+        );
+    }
+
+    return \%Version;
+}
+
+=item VersionNameGet()
+
+returns the name of a version of a config item.
+
+    my $VersionName = $ConfigItemObject->VersionNameGet(
+        VersionID => 123,
+    );
+
+    or
+
+    my $VersionName = $ConfigItemObject->VersionNameGet(
+        ConfigItemID => 123,
+    );
+
+=cut
+
+sub VersionNameGet {
+    my ( $Self, %Param ) = @_;
+
+    # check needed stuff
+    if ( !$Param{VersionID} && !$Param{ConfigItemID} ) {
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
+            Priority => 'error',
+            Message  => 'Need VersionID or ConfigItemID!',
+        );
+        return;
+    }
+
+    my $CacheObject = $Kernel::OM->Get('Kernel::System::Cache');
+
+    if ( $Param{VersionID} ) {
+
+        # check if result is already cached
+        my $CacheKey = 'VersionNameGet::VersionID::' . $Param{VersionID};
+        my $Cache    = $CacheObject->Get(
+            Type => $Self->{CacheType},
+            Key  => $CacheKey,
+        );
+        return ${$Cache} if $Cache;
+
+        # get version
+        $Kernel::OM->Get('Kernel::System::DB')->Prepare(
+            SQL => 'SELECT id, name '
+                . 'FROM configitem_version WHERE id = ?',
+            Bind  => [ \$Param{VersionID} ],
+            Limit => 1,
+        );
+    }
+    else {
+
+        # check if result is already cached
+        my $CacheKey = 'VersionNameGet::ConfigItemID::' . $Param{ConfigItemID};
+        my $Cache    = $CacheObject->Get(
+            Type => $Self->{CacheType},
+            Key  => $CacheKey,
+        );
+        return ${Cache} if $Cache;
+
+        # get version
+        $Kernel::OM->Get('Kernel::System::DB')->Prepare(
+            SQL => 'SELECT id, name '
+                . 'FROM configitem_version '
+                . 'WHERE configitem_id = ? ORDER BY id DESC',
+            Bind  => [ \$Param{ConfigItemID} ],
+            Limit => 1,
+        );
+    }
+
+    # fetch the result
+    my %Version;
+    while ( my @Row = $Kernel::OM->Get('Kernel::System::DB')->FetchrowArray() ) {
+        $Version{VersionID} = $Row[0];
+        $Version{Name}      = $Row[1];
+    }
+
+    # check version
+    if ( !$Version{VersionID} ) {
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
+            Priority => 'error',
+            Message  => 'No such config item version!',
+        );
+        return;
+    }
+
+    # set cache for VersionID (always)
+    my $CacheKey = 'VersionNameGet::VersionID::' . $Version{VersionID};
+    $CacheObject->Set(
+        Type  => $Self->{CacheType},
+        TTL   => $Self->{CacheTTL},
+        Key   => $CacheKey,
+        Value => \$Version{Name},
+    );
+
+    # set cache for ConfigItemID (only if called with ConfigItemID)
+    if ( $Param{ConfigItemID} ) {
+        $CacheKey = 'VersionNameGet::ConfigItemID::' . $Param{ConfigItemID};
+        $CacheObject->Set(
+            Type  => $Self->{CacheType},
+            TTL   => $Self->{CacheTTL},
+            Key   => $CacheKey,
+            Value => \$Version{Name},
+        );
+    }
+
+    return $Version{Name};
 }
 
 =item VersionConfigItemIDGet()
@@ -668,10 +816,19 @@ sub VersionAdd {
 
     return if !$Success;
 
-    # delete cache
-    for my $VersionID ( @{$VersionList} ) {
-        delete $Self->{Cache}->{VersionGet}->{$VersionID};
+    # delete affected caches
+    my $CacheKey    = 'VersionGet::ConfigItemID::' . $Param{ConfigItemID} . '::XMLData::';
+    my $CacheObject = $Kernel::OM->Get('Kernel::System::Cache');
+    for my $XMLData (qw(0 1)) {
+        $CacheObject->Delete(
+            Type => $Self->{CacheType},
+            Key  => $CacheKey . $XMLData,
+        );
     }
+    $CacheObject->Delete(
+        Type => $Self->{CacheType},
+        Key  => 'VersionNameGet::ConfigItemID::' . $Param{ConfigItemID},
+    );
 
     # get id of new version
     $Kernel::OM->Get('Kernel::System::DB')->Prepare(
@@ -722,6 +879,13 @@ sub VersionAdd {
             \$Param{UserID},
             \$Param{ConfigItemID},
         ],
+    );
+
+    # delete config item cache
+    $CacheKey = 'ConfigItemGet::ConfigItemID::' . $Param{ConfigItemID};
+    $CacheObject->Delete(
+        Type => $Self->{CacheType},
+        Key  => $CacheKey,
     );
 
     # trigger VersionCreate event
@@ -858,6 +1022,8 @@ sub VersionDelete {
 
     return 1 if !scalar @{$VersionList};
 
+    my $CacheObject = $Kernel::OM->Get('Kernel::System::Cache');
+
     my $Success;
     for my $VersionID ( @{$VersionList} ) {
 
@@ -895,11 +1061,35 @@ sub VersionDelete {
                 UserID => $Param{UserID},
             );
 
-            # delete cache
-            delete $Self->{Cache}->{VersionGet}->{$VersionID};
+            # delete affected caches
+            my $CacheKey = 'VersionGet::VersionID::' . $VersionID . '::XMLData::';
+            for my $XMLData (qw(0 1)) {
+                $CacheObject->Delete(
+                    Type => $Self->{CacheType},
+                    Key  => $CacheKey . $XMLData,
+                );
+            }
+            $CacheObject->Delete(
+                Type => $Self->{CacheType},
+                Key  => 'VersionNameGet::VersionID::' . $VersionID,
+            );
+
             delete $Self->{Cache}->{VersionConfigItemIDGet}->{$VersionID};
         }
     }
+
+    # delete affected caches for ConfigItemID (most recent version might have been removed)
+    my $CacheKey = 'VersionGet::ConfigItemID::' . $ConfigItemID . '::XMLData::';
+    for my $XMLData (qw(0 1)) {
+        $CacheObject->Delete(
+            Type => $Self->{CacheType},
+            Key  => $CacheKey . $XMLData,
+        );
+    }
+    $CacheObject->Delete(
+        Type => $Self->{CacheType},
+        Key  => 'VersionNameGet::ConfigItemID::' . $ConfigItemID,
+    );
 
     return $Success;
 }
