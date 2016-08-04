@@ -226,7 +226,7 @@ sub VersionGet {
             Type => $Self->{CacheType},
             Key  => $CacheKey,
         );
-        return $Cache if $Cache;
+        return Storable::dclone($Cache) if $Cache;
 
         # get version
         $Kernel::OM->Get('Kernel::System::DB')->Prepare(
@@ -245,7 +245,7 @@ sub VersionGet {
             Type => $Self->{CacheType},
             Key  => $CacheKey,
         );
-        return $Cache if $Cache;
+        return Storable::dclone($Cache) if $Cache;
 
         # get version
         $Kernel::OM->Get('Kernel::System::DB')->Prepare(
@@ -322,30 +322,28 @@ sub VersionGet {
     $Version{CurInciState}     = $ConfigItem->{CurInciState};
     $Version{CurInciStateType} = $ConfigItem->{CurInciStateType};
 
-    if ( !$Param{XMLDataGet} ) {
+    # set cache for VersionID without xml data (always)
+    my $CacheKey = 'VersionGet::VersionID::' . $Version{VersionID} . '::XMLData::0';
+    $CacheObject->Set(
+        Type  => $Self->{CacheType},
+        TTL   => $Self->{CacheTTL},
+        Key   => $CacheKey,
+        Value => Storable::dclone( \%Version ),
+    );
 
-        # set cache for VersionID without xml data (always)
-        my $CacheKey = 'VersionGet::VersionID::' . $Version{VersionID} . '::XMLData::' . $Param{XMLDataGet};
+    # set cache for ConfigItemID without xml data (only if called with ConfigItemID)
+    if ( $Param{ConfigItemID} ) {
+        $CacheKey = 'VersionGet::ConfigItemID::' . $Version{ConfigItemID} . '::XMLData::0';
         $CacheObject->Set(
             Type  => $Self->{CacheType},
             TTL   => $Self->{CacheTTL},
             Key   => $CacheKey,
             Value => Storable::dclone( \%Version ),
         );
-
-        # set cache for ConfigItemID without xml data (only if called with ConfigItemID)
-        if ( $Param{ConfigItemID} ) {
-            $CacheKey = 'VersionGet::ConfigItemID::' . $Version{ConfigItemID} . '::XMLData::' . $Param{XMLDataGet};
-            $CacheObject->Set(
-                Type  => $Self->{CacheType},
-                TTL   => $Self->{CacheTTL},
-                Key   => $CacheKey,
-                Value => Storable::dclone( \%Version ),
-            );
-        }
-
-        return \%Version;
     }
+
+    # done if we don't need xml data
+    return \%Version if !$Param{XMLDataGet};
 
     # get xml definition
     my $Definition = $Self->DefinitionGet(
@@ -360,29 +358,23 @@ sub VersionGet {
     );
 
     # set cache for VersionID (always)
-    # also set cache for calls without XMLDataGet (they will get more than they asked for)
-    my $CacheKey = 'VersionGet::VersionID::' . $Version{VersionID} . '::XMLData::';
-    for my $XMLData (qw(0 1)) {
+    $CacheKey = 'VersionGet::VersionID::' . $Version{VersionID} . '::XMLData::1';
+    $CacheObject->Set(
+        Type  => $Self->{CacheType},
+        TTL   => $Self->{CacheTTL},
+        Key   => $CacheKey,
+        Value => Storable::dclone( \%Version ),
+    );
+
+    # set cache for ConfigItemID (only if called with ConfigItemID)
+    if ( $Param{ConfigItemID} ) {
+        $CacheKey = 'VersionGet::ConfigItemID::' . $Version{ConfigItemID} . '::XMLData::1';
         $CacheObject->Set(
             Type  => $Self->{CacheType},
             TTL   => $Self->{CacheTTL},
-            Key   => $CacheKey . $XMLData,
+            Key   => $CacheKey,
             Value => Storable::dclone( \%Version ),
         );
-    }
-
-    # set cache for ConfigItemID (only if called with ConfigItemID)
-    # also set cache for calls without XMLDataGet (they will get more than they asked for)
-    if ( $Param{ConfigItemID} ) {
-        for my $XMLData (qw(0 1)) {
-            $CacheKey = 'VersionGet::ConfigItemID::' . $Version{ConfigItemID} . '::XMLData::';
-            $CacheObject->Set(
-                Type  => $Self->{CacheType},
-                TTL   => $Self->{CacheTTL},
-                Key   => $CacheKey . $XMLData,
-                Value => Storable::dclone( \%Version ),
-            );
-        }
     }
 
     return \%Version;
@@ -478,7 +470,7 @@ sub VersionNameGet {
         Type  => $Self->{CacheType},
         TTL   => $Self->{CacheTTL},
         Key   => $CacheKey,
-        Value => Storable::dclone( \$Version{Name} ),
+        Value => \$Version{Name},
     );
 
     # set cache for ConfigItemID (only if called with ConfigItemID)
@@ -488,7 +480,7 @@ sub VersionNameGet {
             Type  => $Self->{CacheType},
             TTL   => $Self->{CacheTTL},
             Key   => $CacheKey,
-            Value => Storable::dclone( \$Version{Name} ),
+            Value => \$Version{Name},
         );
     }
 

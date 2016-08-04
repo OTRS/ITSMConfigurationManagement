@@ -262,7 +262,7 @@ sub ConfigItemGet {
         Type => $Self->{CacheType},
         Key  => $CacheKey,
     );
-    return $Cache if $Cache;
+    return Storable::dclone($Cache) if $Cache;
 
     # ask database
     $Kernel::OM->Get('Kernel::System::DB')->Prepare(
