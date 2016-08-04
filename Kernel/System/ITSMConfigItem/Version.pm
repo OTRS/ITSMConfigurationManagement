@@ -1027,15 +1027,21 @@ sub VersionDelete {
 
     my $CacheObject = $Kernel::OM->Get('Kernel::System::Cache');
 
+    # to store unique config item ids if there are versions from different config items
+    my %ConfigItemIDs;
+
     my $Success;
     for my $VersionID ( @{$VersionList} ) {
 
         # get configitem id if neccessary
         if ( $Param{VersionID} || $Param{VersionIDs} ) {
             $ConfigItemID = $Self->VersionConfigItemIDGet(
-                VersionID => $Param{VersionID} || $VersionID,
+                VersionID => $VersionID,
             );
         }
+
+        # remember the unique config item ids
+        $ConfigItemIDs{$ConfigItemID} = 1;
 
         # delete the xml version data
         $Self->_XMLVersionDelete(
@@ -1078,18 +1084,21 @@ sub VersionDelete {
         }
     }
 
-    # delete affected caches for ConfigItemID (most recent version might have been removed)
-    my $CacheKey = 'VersionGet::ConfigItemID::' . $ConfigItemID . '::XMLData::';
-    for my $XMLData (qw(0 1)) {
+    for my $ConfigItemID (sort keys %ConfigItemIDs) {
+
+        # delete affected caches for ConfigItemID (most recent version might have been removed)
+        my $CacheKey = 'VersionGet::ConfigItemID::' . $ConfigItemID . '::XMLData::';
+        for my $XMLData (qw(0 1)) {
+            $CacheObject->Delete(
+                Type => $Self->{CacheType},
+                Key  => $CacheKey . $XMLData,
+            );
+        }
         $CacheObject->Delete(
             Type => $Self->{CacheType},
-            Key  => $CacheKey . $XMLData,
+            Key  => 'VersionNameGet::ConfigItemID::' . $ConfigItemID,
         );
     }
-    $CacheObject->Delete(
-        Type => $Self->{CacheType},
-        Key  => 'VersionNameGet::ConfigItemID::' . $ConfigItemID,
-    );
 
     return $Success;
 }
