@@ -71,8 +71,7 @@
         <SubGroup>Core::LinkStatus</SubGroup>
         <Setting>
             <Hash>
-                <!-- TODO: Check an and change this, affected is no standard link type! -->
-                <Item Key="Affected">Incident</Item>
+                <Item Key="RelevantTo">Incident</Item>
             </Hash>
         </Setting>
     </ConfigItem>
