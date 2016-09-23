@@ -608,7 +608,7 @@ sub ITSMConfigItemListShow {
 
 =item XMLData2Hash()
 
-returns a hash reference with all xml data of a config item
+returns a hash reference with the requested attributes data for a config item
 
 Return
 
@@ -630,6 +630,7 @@ Return
     my $Data = $LayoutObject->XMLData2Hash(
         XMLDefinition => $Version->{XMLDefinition},
         XMLData       => $Version->{XMLData}->[1]->{Version}->[1],
+        Attributes    => ['CPU::1', 'HardDrive::2::Capacity::1', ...],
         Data          => \%DataHashRef,                                 # optional
         Prefix        => 'HardDisk::1',                                 # optional
     );
@@ -642,8 +643,10 @@ sub XMLData2Hash {
     # check needed stuff
     return if !$Param{XMLData};
     return if !$Param{XMLDefinition};
+    return if !$Param{Attributes};
     return if ref $Param{XMLData} ne 'HASH';
     return if ref $Param{XMLDefinition} ne 'ARRAY';
+    return if ref $Param{Attributes} ne 'ARRAY';
 
     # to store the return data
     my $Data = $Param{Data} || {};
