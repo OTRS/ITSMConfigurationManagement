@@ -275,12 +275,6 @@ sub TableCreateComplex {
                 XMLDataGet   => 1,
             );
 
-            # convert the XML data into a hash
-            my $ExtendedVersionData = $Self->_XMLData2Hash(
-                XMLDefinition => $VersionXMLData->{XMLDefinition},
-                XMLData       => $VersionXMLData->{XMLData}->[1]->{Version}->[1],
-            );
-
             my @ItemColumns = (
                 {
                     Type             => 'CurInciSignal',
@@ -323,6 +317,13 @@ sub TableCreateComplex {
 
             # individual column config for this class exists
             if ( $ColumnByClass{$Class} ) {
+
+                # convert the XML data into a hash
+                my $ExtendedVersionData = $Self->{LayoutObject}->XMLData2Hash(
+                    XMLDefinition => $VersionXMLData->{XMLDefinition},
+                    XMLData       => $VersionXMLData->{XMLData}->[1]->{Version}->[1],
+                    Attributes    => $ColumnByClass{$Class},
+                );
 
                 COLUMN:
                 for my $Column ( @{ $ColumnByClass{$Class} } ) {
@@ -933,92 +934,6 @@ sub SearchOptionList {
     }
 
     return @SearchOptionList;
-}
-
-=item _XMLData2Hash()
-
-returns a hash reference with all xml data of a config item
-
-Return
-
-    $Data = {
-        'HardDisk::2' => {
-            Value => 'HD2',
-            Name  => 'Hard Disk',
-         },
-        'CPU::1' => {
-            Value => '',
-            Name  => 'CPU',
-        },
-        'HardDisk::2::Capacity::1' => {
-            Value => '780 GB',
-            Name  => 'Capacity',
-        },
-    };
-
-    my $Data = $LinkObject->_XMLData2Hash(
-        XMLDefinition => $Version->{XMLDefinition},
-        XMLData       => $Version->{XMLData}->[1]->{Version}->[1],
-        Data          => \%DataHashRef,                                 # optional
-        Prefix        => 'HardDisk::1',                                 # optional
-    );
-
-=cut
-
-sub _XMLData2Hash {
-    my ( $Self, %Param ) = @_;
-
-    # check needed stuff
-    return if !$Param{XMLData};
-    return if !$Param{XMLDefinition};
-    return if ref $Param{XMLData} ne 'HASH';
-    return if ref $Param{XMLDefinition} ne 'ARRAY';
-
-    # to store the return data
-    my $Data = $Param{Data} || {};
-
-    ITEM:
-    for my $Item ( @{ $Param{XMLDefinition} } ) {
-        COUNTER:
-        for my $Counter ( 1 .. $Item->{CountMax} ) {
-
-            # lookup value
-            my $Value = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->XMLValueLookup(
-                Item  => $Item,
-                Value => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content} || '',
-            );
-
-            # create output string
-            $Value = $Self->{LayoutObject}->ITSMConfigItemOutputStringCreate(
-                Value => $Value,
-                Item  => $Item,
-            );
-
-            # add prefix
-            my $Prefix = $Item->{Key} . '::' . $Counter;
-            if ( $Param{Prefix} ) {
-                $Prefix = $Param{Prefix} . '::' . $Prefix;
-            }
-
-            # store the item in hash
-            $Data->{$Prefix} = {
-                Name  => $Item->{Name},
-                Value => $Value,
-            };
-
-            # start recursion, if "Sub" was found
-            if ( $Item->{Sub} ) {
-                $Data = $Self->_XMLData2Hash(
-                    XMLDefinition => $Item->{Sub},
-                    XMLData       => $Param{XMLData}->{ $Item->{Key} }->[$Counter],
-                    Prefix        => $Prefix,
-                    Data          => $Data,
-                );
-            }
-        }
-    }
-
-    return $Data;
 }
 
 1;
