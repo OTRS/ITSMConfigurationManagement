@@ -662,6 +662,15 @@ sub XMLData2Hash {
         COUNTER:
         for my $Counter ( 1 .. $CountMax ) {
 
+            # add prefix
+            my $Prefix = $Item->{Key} . '::' . $Counter;
+            if ( $Param{Prefix} ) {
+                $Prefix = $Param{Prefix} . '::' . $Prefix;
+            }
+
+            # skip not needed elements and sub elements
+            next COUNTER if !grep { $_ =~ m{\A$Prefix} } @{ $Param{Attributes} };
+
             # lookup value
             my $Value = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->XMLValueLookup(
                 Item  => $Item,
@@ -677,14 +686,6 @@ sub XMLData2Hash {
                     Item  => $Item,
                 );
             }
-
-            # add prefix
-            my $Prefix = $Item->{Key} . '::' . $Counter;
-            if ( $Param{Prefix} ) {
-                $Prefix = $Param{Prefix} . '::' . $Prefix;
-            }
-
-            next COUNTER if !grep { $_ =~ m{\A$Prefix} } @{ $Param{Attributes} };
 
             if ( $RelevantAttributes{ $Prefix } ) {
 
