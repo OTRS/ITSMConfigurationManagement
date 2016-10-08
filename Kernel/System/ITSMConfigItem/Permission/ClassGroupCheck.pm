@@ -1,5 +1,4 @@
 # --
-# Kernel/System/ITSMConfigItem/Permission/ClassGroupCheck.pm - check if a user belongs to a group
 # Copyright (C) 2001-2016 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
