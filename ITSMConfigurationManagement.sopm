@@ -3,7 +3,7 @@
     <Name>ITSMConfigurationManagement</Name>
 <!-- nofilter(TidyAll::Plugin::OTRS::SOPM::DocumentationPresent) -->
     <Version>0.0.0</Version>
-    <Framework>5.0.x</Framework>
+    <Framework Minimum="5.0.6">5.0.x</Framework>
     <PackageRequired Version="5.0.13">ITSMCore</PackageRequired>
     <Vendor>OTRS AG</Vendor>
     <URL>http://otrs.org/</URL>
