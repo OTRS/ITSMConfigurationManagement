@@ -31,7 +31,6 @@ use lib dirname($RealBin);
 use SOAP::Lite;
 use Data::Dumper;
 
-# ---
 # Variables to be defined
 
 # this is the URL for the web service
@@ -100,8 +99,6 @@ my $XMLData = '
         </Attachment>
 </ConfigItem>
 ';
-
-# ---
 
 # create a SOAP::Lite data structure from the provided XML data structure
 my $SOAPData = SOAP::Data->type( 'xml' => $XMLData );
