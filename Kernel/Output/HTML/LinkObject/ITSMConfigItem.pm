@@ -63,8 +63,9 @@ sub new {
 
     # define needed variables
     $Self->{ObjectData} = {
-        Object   => 'ITSMConfigItem',
-        Realname => 'ConfigItem',
+        Object     => 'ITSMConfigItem',
+        Realname   => 'ConfigItem',
+        ObjectName => 'SourceObjectID',
     };
 
     return $Self;
@@ -78,6 +79,10 @@ Return
 
     @BlockData = (
         {
+
+            ObjectName  => 'ConfigItemID',
+            ObjectID    => '123',
+
             Object    => 'ITSMConfigItem',
             Blockname => 'ConfigItem Computer',
             Headline  => [
