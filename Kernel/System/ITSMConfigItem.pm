@@ -1085,14 +1085,18 @@ sub ConfigItemSearch {
         CreateBy     => 'create_by',
         ChangeTime   => 'change_time',
         ChangeBy     => 'change_by',
+        Name         => 'civ.name',
     );
 
     # check if OrderBy contains only unique valid values
     my %OrderBySeen;
+    my $OrderByName;
     ORDERBY:
     for my $OrderBy ( @{ $Param{OrderBy} } ) {
 
-        next ORDERBY if $OrderBy eq 'Name';
+        if ( $OrderBy eq 'Name' ) {
+            $OrderByName = 1;
+        }
 
         if ( !$OrderBy || !$OrderByTable{$OrderBy} || $OrderBySeen{$OrderBy} ) {
 
@@ -1138,8 +1142,6 @@ sub ConfigItemSearch {
     my $Count = 0;
     ORDERBY:
     for my $OrderBy ( @{ $Param{OrderBy} } ) {
-
-        next ORDERBY if $OrderBy eq 'Name';
 
         # set the default order direction
         my $Direction = 'DESC';
@@ -1260,7 +1262,14 @@ sub ConfigItemSearch {
         $Param{Limit} = $Kernel::OM->Get('Kernel::System::DB')->Quote( $Param{Limit}, 'Integer' );
     }
 
-    my $SQL = "SELECT id FROM configitem $WhereString ";
+    my $SQL;
+    if ($OrderByName) {
+        $SQL
+            = "SELECT DISTINCT ci.id FROM configitem ci INNER JOIN configitem_version civ ON ci.id = civ.configitem_id $WhereString "
+    }
+    else {
+        $SQL = "SELECT id FROM configitem $WhereString ";
+    }
 
     # add the ORDER BY clause
     if (@SQLOrderBy) {
