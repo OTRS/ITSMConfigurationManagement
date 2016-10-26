@@ -100,7 +100,7 @@ sub ServicePreferencesGet {
         }
     }
 # ---
-# ITSM
+# ITSMConfigurationManagement
 # ---
 #
 #    # check if service preferences are available
