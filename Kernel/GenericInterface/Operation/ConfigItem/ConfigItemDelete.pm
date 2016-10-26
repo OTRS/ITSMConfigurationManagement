@@ -192,11 +192,11 @@ sub Run {
 
     }    # finish ConfigItem loop
 
-    if ( !IsArrayRefWithData(\@DeletedConfigItemIDs) ) {
+    if ( !IsArrayRefWithData( \@DeletedConfigItemIDs ) ) {
         return {
             Success      => 0,
             ErrorMessage => 'Could not delete ConfigItems!',
-        }
+            }
     }
 
     return {

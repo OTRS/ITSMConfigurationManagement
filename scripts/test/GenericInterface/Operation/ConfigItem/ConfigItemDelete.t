@@ -594,7 +594,7 @@ my @Tests = (
         ExpectedData => {
             ConfigItemID => [ $AddedConfigItemIDs[0] ],
         },
-        Operation    => 'ConfigItemDelete',
+        Operation => 'ConfigItemDelete',
     },
     {
         Name           => 'Wrong ConfigItemID 1 (was already deleted before)',
@@ -611,7 +611,7 @@ my @Tests = (
             },
             Success => 1,
         },
-        Operation    => 'ConfigItemDelete',
+        Operation => 'ConfigItemDelete',
     },
     {
         Name           => 'Correct ConfigItemID 2',
@@ -623,7 +623,7 @@ my @Tests = (
         ExpectedData => {
             ConfigItemID => [ $AddedConfigItemIDs[1] ],
         },
-        Operation    => 'ConfigItemDelete',
+        Operation => 'ConfigItemDelete',
     },
     {
         Name           => 'Correct ConfigItemID 3',
@@ -645,7 +645,7 @@ my @Tests = (
         ExpectedData => {
             ConfigItemID => [ $AddedConfigItemIDs[4] ],
         },
-        Operation    => 'ConfigItemDelete',
+        Operation => 'ConfigItemDelete',
     },
     {
         Name           => 'Correct ConfigItemID 5',
@@ -657,7 +657,7 @@ my @Tests = (
         ExpectedData => {
             ConfigItemID => [ $AddedConfigItemIDs[4] ],
         },
-        Operation    => 'ConfigItemDelete',
+        Operation => 'ConfigItemDelete',
     },
     {
         Name           => 'Correct ConfigItemID 6',
@@ -669,7 +669,7 @@ my @Tests = (
         ExpectedData => {
             ConfigItemID => [ $AddedConfigItemIDs[5] ],
         },
-        Operation    => 'ConfigItemDelete',
+        Operation => 'ConfigItemDelete',
     },
     {
         Name           => 'Correct ConfigItemID 7-8',

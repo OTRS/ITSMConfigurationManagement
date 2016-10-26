@@ -1084,7 +1084,7 @@ sub VersionDelete {
         }
     }
 
-    for my $ConfigItemID (sort keys %ConfigItemIDs) {
+    for my $ConfigItemID ( sort keys %ConfigItemIDs ) {
 
         # delete affected caches for ConfigItemID (most recent version might have been removed)
         my $CacheKey = 'VersionGet::ConfigItemID::' . $ConfigItemID . '::XMLData::';
