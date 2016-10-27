@@ -131,12 +131,15 @@ for ( 1 .. 10 ) {
         # change the date into past for the first 20 versions
         next COUNT if $Count > 10;
 
+        my $VersionTestCreateTime = '2010-01-01 00:00:00';
+
         # insert new version
         my $Success = $Kernel::OM->Get('Kernel::System::DB')->Do(
-            SQL => 'UPDATE configitem_version
-                SET create_time = "2010-01-01 00:00:00"
-                WHERE id = ?',
+            SQL => "UPDATE configitem_version
+                SET create_time = ?
+                WHERE id = ?",
             Bind => [
+                \$VersionTestCreateTime,
                 \$VersionID,
             ],
         );
