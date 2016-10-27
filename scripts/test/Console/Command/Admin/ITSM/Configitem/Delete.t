@@ -76,12 +76,17 @@ $Self->True(
 # get ConfigItem object
 my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
 
-# get 'Planned' deployment state IDs
-my $PlannedDeplStateDataRef = $GeneralCatalogObject->ItemGet(
+# get list of all deployment states
+my $DeplStateList = $GeneralCatalogObject->ItemList(
     Class => 'ITSM::ConfigItem::DeploymentState',
-    Name  => 'Planned',
 );
-my $PlannedDeplStateID = $PlannedDeplStateDataRef->{ItemID};
+my %ReverseDeplStateList = reverse %{$DeplStateList};
+
+# get list of all incident states
+my $InciStateList = $GeneralCatalogObject->ItemList(
+    Class => 'ITSM::Core::IncidentState',
+);
+my %ReverseInciStateList = reverse %{$InciStateList};
 
 my @ConfigItemNumbers;
 my $ConfigItemID;
@@ -112,8 +117,8 @@ for ( 1 .. 10 ) {
         my $VersionID = $ConfigItemObject->VersionAdd(
             Name         => $ConfigItemName . '-' . $Count,
             DefinitionID => 1,
-            DeplStateID  => $PlannedDeplStateID,
-            InciStateID  => 1,
+            DeplStateID  => $ReverseDeplStateList{Planned},
+            InciStateID  => $ReverseInciStateList{Operational},
             UserID       => 1,
             ConfigItemID => $ConfigItemID,
         );
