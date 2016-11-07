@@ -30,6 +30,7 @@
                     <input type="hidden" name="ConfigItemID" value="[% Data.ConfigItemID | html %]"/>
                     <input type="hidden" name="DuplicateID" value="[% Data.DuplicateID | html %]"/>
                     <input type="hidden" name="FormID" value="[% Data.FormID | html %]"/>
+                    <input type="hidden" name="SubmitSave" value="[% Data.SubmitSave | html %]"/>
                     <fieldset class="TableLike">
 [% RenderBlockStart("RowName") %]
                         <label class="Mandatory" for="Name"><span class="Marker">*</span> [% Translate("Name") | html %]: </label>
@@ -147,7 +148,7 @@
 
                     <fieldset class="TableLike">
                         <div class="Field SpacingTop">
-                            <button class="Primary CallForAction" accesskey="g" name="SubmitSave" title="[% Translate("Submit") | html %] (g)" type="submit" value="[% Translate("Submit") | html %]"><span><i class="fa fa-check-square-o"></i> [% Translate("Submit") | html %]</span></button>
+                            <button class="Primary CallForAction" accesskey="g" id="SubmitButton" title="[% Translate("Submit") | html %] (g)" type="submit" value="[% Translate("Submit") | html %]"><span><i class="fa fa-check-square-o"></i> [% Translate("Submit") | html %]</span></button>
                         </div>
                     </fieldset>
                 </div>
@@ -165,7 +166,12 @@
 
 [% WRAPPER JSOnDocumentComplete %]
         <script type="text/javascript">//<![CDATA[
+            $('#SubmitButton').on('click', function () {
+                $('input[name=SubmitSave]').val('1');
+            });
+
             $('.DisableValidation').bind('click', function (Event) {
+                $('input[name=SubmitSave]').val('0');
                 Core.Form.Validate.DisableValidation($('#ClassItem'));
                 // fix for Safari: race condition with submit in Core.Form.Validate.js
                 // fixed in OTRS 3.0.5, this line remains here for backwards compatibility reasons
