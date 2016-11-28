@@ -24,7 +24,7 @@ $Selenium->RunTest(
 
         # get 'Computer' and 'Hardware' ConfigItem ID
         my @ConfigItemClassIDs;
-        for my $ConfigItemClass (qw(Computer Hardware)) {
+        for my $ConfigItemClass (qw(Hardware)) {
             my $ConfigItemDataRef = $GeneralCatalogObject->ItemGet(
                 Class => 'ITSM::ConfigItem::Class',
                 Name  => $ConfigItemClass,
@@ -48,7 +48,7 @@ $Selenium->RunTest(
         for my $ConfigNumberCreate ( 1 .. 2 ) {
             my $ConfigItemNumber = $ConfigItemObject->ConfigItemNumberCreate(
                 Type    => $ConfigObject->Get('ITSMConfigItem::NumberGenerator'),
-                ClassID => $ConfigItemClassIDs[1],
+                ClassID => $ConfigItemClassIDs[0],
             );
             $Self->True(
                 $ConfigItemNumber,
@@ -62,7 +62,7 @@ $Selenium->RunTest(
         for my $ConfigItemCreateNumber (@ConfigItemNumbers) {
             my $ConfigItemID = $ConfigItemObject->ConfigItemAdd(
                 Number  => $ConfigItemCreateNumber,
-                ClassID => $ConfigItemClassIDs[1],
+                ClassID => $ConfigItemClassIDs[0],
                 UserID  => 1,
             );
             $Self->True(
@@ -124,7 +124,7 @@ $Selenium->RunTest(
 
         # select 'Hardware' class
         $Selenium->execute_script(
-            "\$('#SearchClassID').val('$ConfigItemClassIDs[1]').trigger('redraw.InputField').trigger('change');"
+            "\$('#SearchClassID').val('$ConfigItemClassIDs[0]').trigger('redraw.InputField').trigger('change');"
         );
 
         # wait until form has loaded, if necessary
@@ -172,6 +172,14 @@ $Selenium->RunTest(
 
         # click to sort by Name
         $Selenium->find_element( ".Name", 'css' )->VerifiedClick();
+
+        # check for expected result
+        for my $CheckConfigItem (@ConfigItemNumbers) {
+            $Self->True(
+                index( $Selenium->get_page_source(), $CheckConfigItem ) > -1,
+                "ConfigItem number $CheckConfigItem - found",
+            );
+        }
 
         # sort is by Name descending
         $Self->Is(
