@@ -847,7 +847,7 @@ return a config item list as an array reference
         # config items with changed time before then ....
         ConfigItemChangeTimeOlderDate => '2006-01-19 23:59:59',  # (optional)
 
-        What => [
+        What => [                                                # (optional)
             # each array element is a and condition
             {
                 # or condition in hash
@@ -869,7 +869,7 @@ return a config item list as an array reference
 
         OrderBy => [ 'ConfigItemID', 'Number' ],                  # (optional)
         # default: [ 'ConfigItemID' ]
-        # (ConfigItemID, Number, ClassID, DeplStateID, InciStateID,
+        # (ConfigItemID, Number, Name, ClassID, DeplStateID, InciStateID,
         # CreateTime, CreateBy, ChangeTime, ChangeBy)
 
         # Additional information for OrderBy:
@@ -1000,16 +1000,13 @@ sub ConfigItemSearchExtended {
     my @ResultList;
     if ( $RequiredSearch{ConfigItem} && $RequiredSearch{Version} ) {
 
-        my %VersionTempList;
-        for my $ConfigItemID ( @{ $ConfigItemLists{Version} } ) {
-            $VersionTempList{$ConfigItemID} = 1;
-        }
+        # build a lookup hash of all found configitem ids in $ConfigItemLists{ConfigItem}
+        my %ConfigItemSeen = map { $_ => 1 } @{ $ConfigItemLists{ConfigItem} };
 
+        # check all config item ids, we need to keep the sorting
         CONFIGITEMID:
-        for my $ConfigItemID ( @{ $ConfigItemLists{ConfigItem} } ) {
-
-            next CONFIGITEMID if !$VersionTempList{$ConfigItemID};
-
+        for my $ConfigItemID ( @{ $ConfigItemLists{Version} } ) {
+            next CONFIGITEMID if !$ConfigItemSeen{$ConfigItemID};
             push @ResultList, $ConfigItemID;
         }
     }
@@ -1115,18 +1112,14 @@ sub ConfigItemSearch {
         CreateBy     => 'create_by',
         ChangeTime   => 'change_time',
         ChangeBy     => 'change_by',
-        Name         => 'civ.name',
     );
 
     # check if OrderBy contains only unique valid values
     my %OrderBySeen;
-    my $OrderByName;
     ORDERBY:
     for my $OrderBy ( @{ $Param{OrderBy} } ) {
 
-        if ( $OrderBy eq 'Name' ) {
-            $OrderByName = 1;
-        }
+        next ORDERBY if $OrderBy eq 'Name';
 
         if ( !$OrderBy || !$OrderByTable{$OrderBy} || $OrderBySeen{$OrderBy} ) {
 
@@ -1172,6 +1165,8 @@ sub ConfigItemSearch {
     my $Count = 0;
     ORDERBY:
     for my $OrderBy ( @{ $Param{OrderBy} } ) {
+
+        next ORDERBY if $OrderBy eq 'Name';
 
         # set the default order direction
         my $Direction = 'DESC';
@@ -1292,14 +1287,7 @@ sub ConfigItemSearch {
         $Param{Limit} = $Kernel::OM->Get('Kernel::System::DB')->Quote( $Param{Limit}, 'Integer' );
     }
 
-    my $SQL;
-    if ($OrderByName) {
-        $SQL
-            = "SELECT DISTINCT ci.id FROM configitem ci INNER JOIN configitem_version civ ON ci.id = civ.configitem_id $WhereString "
-    }
-    else {
-        $SQL = "SELECT id FROM configitem $WhereString ";
-    }
+    my $SQL = "SELECT id FROM configitem $WhereString ";
 
     # add the ORDER BY clause
     if (@SQLOrderBy) {
