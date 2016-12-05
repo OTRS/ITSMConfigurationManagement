@@ -225,9 +225,6 @@
             <Column Name="class_id" Required="true" PrimaryKey="true" Type="INTEGER" />
             <Column Name="counter_type" Required="true" Size="50" Type="VARCHAR" />
             <Column Name="counter" Required="true" Size="50" Type="VARCHAR" />
-            <ForeignKey ForeignTable="general_catalog">
-                <Reference Local="class_id" Foreign="id" />
-            </ForeignKey>
         </TableCreate>
         <TableCreate Name="configitem_history_type">
             <Column Name="id" Required="true" PrimaryKey="true" AutoIncrement="true" Type="INTEGER" />
