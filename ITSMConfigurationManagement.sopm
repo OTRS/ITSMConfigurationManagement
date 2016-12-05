@@ -1209,6 +1209,11 @@
             <Data Key="change_time">current_timestamp</Data>
             <Data Key="change_by">1</Data>
         </Insert>
+        <TableAlter Name="configitem_counter" Version="5.0.15">
+            <ForeignKeyDrop ForeignTable="general_catalog" >
+                <Reference Local="class_id" Foreign="id" />
+            </ForeignKeyDrop>
+        </TableAlter>
     </DatabaseUpgrade>
     <DatabaseUninstall Type="pre">
         <TableDrop Name="configitem_counter" />
