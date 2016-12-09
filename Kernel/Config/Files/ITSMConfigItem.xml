@@ -7,8 +7,8 @@
         <Setting>
             <FrontendModuleReg>
                 <Group>admin</Group>
-                <Description>Admin</Description>
-                <Title>Config Item</Title>
+                <Description Translatable="1">Admin.</Description>
+                <Title Translatable="1">Config Item</Title>
                 <NavBarName>Admin</NavBarName>
                 <NavBarModule>
                     <Module>Kernel::Output::HTML::NavBar::ModuleAdmin</Module>
@@ -27,11 +27,11 @@
         <Setting>
             <FrontendModuleReg>
                 <GroupRo>itsm-configitem</GroupRo>
-                <Description>ITSM Config Item Overview</Description>
+                <Description Translatable="1">ITSM config item overview.</Description>
                 <NavBarName>Config Item</NavBarName>
-                <Title>Config Item</Title>
+                <Title Translatable="1">Config Item</Title>
                 <NavBar>
-                    <Description>Configuration Management Database</Description>
+                    <Description Translatable="1">Configuration Management Database.</Description>
                     <Name>CMDB</Name>
                     <Type>Menu</Type>
                     <Block>ItemArea</Block>
@@ -41,7 +41,7 @@
                     <Prio>3200</Prio>
                 </NavBar>
                 <NavBar>
-                    <Description>Overview</Description>
+                    <Description Translatable="1">Overview.</Description>
                     <Name>Overview</Name>
                     <Link>Action=AgentITSMConfigItem</Link>
                     <Type></Type>
@@ -63,8 +63,8 @@
         <Setting>
             <FrontendModuleReg>
                 <GroupRo>itsm-configitem</GroupRo>
-                <Description>Config Item Zoom</Description>
-                <Title>Zoom</Title>
+                <Description Translatable="1">Config item zoom.</Description>
+                <Title Translatable="1">Zoom</Title>
                 <NavBarName>Config Item</NavBarName>
                 <Loader>
                     <CSS>ITSM.Agent.Default.css</CSS>
@@ -89,8 +89,8 @@
         <Setting>
             <FrontendModuleReg>
                 <Group>itsm-configitem</Group>
-                <Description>Config Item Edit</Description>
-                <Title>Edit</Title>
+                <Description Translatable="1">Config item edit.</Description>
+                <Title Translatable="1">Edit</Title>
                 <NavBarName>Config Item</NavBarName>
             </FrontendModuleReg>
         </Setting>
@@ -102,8 +102,8 @@
         <Setting>
             <FrontendModuleReg>
                 <GroupRo>itsm-configitem</GroupRo>
-                <Description>Config Item Print</Description>
-                <Title>Print</Title>
+                <Description Translatable="1">Config item print.</Description>
+                <Title Translatable="1">Print</Title>
                 <NavBarName>Config Item</NavBarName>
             </FrontendModuleReg>
         </Setting>
@@ -128,11 +128,11 @@
         <Setting>
             <FrontendModuleReg>
                 <Group>itsm-configitem</Group>
-                <Description>Config Item Add</Description>
-                <Title>Add</Title>
+                <Description Translatable="1">Config item add.</Description>
+                <Title Translatable="1">Add</Title>
                 <NavBarName>Config Item</NavBarName>
                 <NavBar>
-                    <Description>New</Description>
+                    <Description Translatable="1">New</Description>
                     <Name>New</Name>
                     <Link>Action=AgentITSMConfigItemAdd</Link>
                     <Type></Type>
@@ -151,11 +151,11 @@
         <Setting>
             <FrontendModuleReg>
                 <GroupRo>itsm-configitem</GroupRo>
-                <Description>Search Config Items</Description>
-                <Title>Search</Title>
+                <Description Translatable="1">Search config items.</Description>
+                <Title Translatable="1">Search</Title>
                 <NavBarName>Config Item</NavBarName>
                 <NavBar>
-                    <Description>Search Config Items</Description>
+                    <Description Translatable="1">Search config items.</Description>
                     <Name>Search</Name>
                     <Link>Action=AgentITSMConfigItemSearch</Link>
                     <LinkOption>onclick="ITSM.Agent.ConfigItem.Search.OpenSearchDialog('AgentITSMConfigItemSearch'); if (event.stopPropagation) { event.stopPropagation(); } else { window.event.cancelBubble = true; } return false;"</LinkOption>
@@ -385,8 +385,8 @@
         <SubGroup>Frontend::Agent::ITSMConfigItem::ViewHistory</SubGroup>
         <Setting>
             <Option SelectedID="normal">
-                <Item Key="reverse">reverse</Item>
-                <Item Key="normal">normal</Item>
+                <Item Key="reverse" Translatable="1">reverse</Item>
+                <Item Key="normal" Translatable="1">normal</Item>
             </Option>
         </Setting>
     </ConfigItem>
@@ -397,8 +397,8 @@
         <Setting>
             <FrontendModuleReg>
                 <GroupRo>itsm-configitem</GroupRo>
-                <Description>Config Item History</Description>
-                <Title>History</Title>
+                <Description Translatable="1">Config item history.</Description>
+                <Title Translatable="1">History</Title>
                 <NavBarName>Config Item</NavBarName>
             </FrontendModuleReg>
         </Setting>
@@ -411,8 +411,8 @@
             <Hash>
                 <Item Key="Module">Kernel::Output::HTML::GeneralCatalogPreferences::Generic</Item>
                 <Item Key="Class">ITSM::ConfigItem::DeploymentState</Item>
-                <Item Key="Label">Deployment State Type</Item>
-                <Item Key="Desc">Deployment State Type.</Item>
+                <Item Key="Label" Translatable="1">Deployment State Type</Item>
+                <Item Key="Desc" Translatable="1">Deployment State Type.</Item>
                 <Item Key="Data">
                     <Hash>
                         <Item Key="postproductive">postproductive</Item>
@@ -433,8 +433,8 @@
             <Hash>
                 <Item Key="Module">Kernel::Output::HTML::GeneralCatalogPreferences::Generic</Item>
                 <Item Key="Class">ITSM::ConfigItem::DeploymentState</Item>
-                <Item Key="Label">Deployment State Color</Item>
-                <Item Key="Desc">Deployment State Color.</Item>
+                <Item Key="Label" Translatable="1">Deployment State Color</Item>
+                <Item Key="Desc" Translatable="1">Deployment State Color.</Item>
                 <Item Key="Data"></Item>
                 <Item Key="PrefKey">Color</Item>
                 <Item Key="Block">ColorPicker</Item>
@@ -544,8 +544,8 @@
         <Setting>
             <Hash>
                 <Item Key="Module">Kernel::Output::HTML::GeneralCatalogPreferences::Generic</Item>
-                <Item Key="Label">Permission</Item>
-                <Item Key="Desc">Define the group with permissions.</Item>
+                <Item Key="Label" Translatable="1">Permission</Item>
+                <Item Key="Desc" Translatable="1">Define the group with permissions.</Item>
                 <Item Key="Block">Permission</Item>
                 <Item Key="Class">ITSM::ConfigItem::Class</Item>
                 <Item Key="PrefKey">Permission</Item>
@@ -763,8 +763,8 @@
         <SubGroup>Core::ITSMConfigItem</SubGroup>
         <Setting>
             <Option SelectedID="0">
-                <Item Key="1">Enabled</Item>
-                <Item Key="0">Disabled</Item>
+                <Item Key="1" Translatable="1">Enabled</Item>
+                <Item Key="0" Translatable="1">Disabled</Item>
             </Option>
         </Setting>
     </ConfigItem>
@@ -774,8 +774,8 @@
         <SubGroup>Core::ITSMConfigItem</SubGroup>
         <Setting>
             <Option SelectedID="global">
-                <Item Key="global">global</Item>
-                <Item Key="class">class</Item>
+                <Item Key="global" Translatable="1">global</Item>
+                <Item Key="class" Translatable="1">class</Item>
             </Option>
         </Setting>
     </ConfigItem>
@@ -785,8 +785,8 @@
         <SubGroup>Core::BulkAction</SubGroup>
         <Setting>
             <Option SelectedID="1">
-                <Item Key="0">No</Item>
-                <Item Key="1">Yes</Item>
+                <Item Key="0" Translatable="1">No</Item>
+                <Item Key="1" Translatable="1">Yes</Item>
             </Option>
         </Setting>
     </ConfigItem>
@@ -808,8 +808,8 @@
         <SubGroup>Frontend::Agent::ModuleRegistration</SubGroup>
         <Setting>
             <FrontendModuleReg>
-                <Description>Configuration Item bulk module</Description>
-                <Title>Bulk-Action</Title>
+                <Description Translatable="1">Configuration item bulk module.</Description>
+                <Title Translatable="1">Bulk Action</Title>
                 <NavBarName>CMDB</NavBarName>
             </FrontendModuleReg>
         </Setting>
@@ -865,8 +865,8 @@
         <SubGroup>Frontend::Agent::ConfigItem::ViewBulk</SubGroup>
         <Setting>
             <Option SelectedID="1">
-                <Item Key="0">No</Item>
-                <Item Key="1">Yes</Item>
+                <Item Key="0" Translatable="1">No</Item>
+                <Item Key="1" Translatable="1">Yes</Item>
             </Option>
         </Setting>
     </ConfigItem>
@@ -876,8 +876,8 @@
         <SubGroup>Frontend::Agent::ConfigItem::ViewBulk</SubGroup>
         <Setting>
             <Option SelectedID="1">
-                <Item Key="0">No</Item>
-                <Item Key="1">Yes</Item>
+                <Item Key="0" Translatable="1">No</Item>
+                <Item Key="1" Translatable="1">Yes</Item>
             </Option>
         </Setting>
     </ConfigItem>
