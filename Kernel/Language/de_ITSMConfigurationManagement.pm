@@ -41,7 +41,6 @@ sub Data {
     $Self->{Translation}->{'Change of definition failed! See System Log for details.'} = 'Ändern der Definition fehlgeschlagen! Im System Log finden Sie weitere Informationen.';
     $Self->{Translation}->{'Client Application'} = 'Client Anwendung';
     $Self->{Translation}->{'Client OS'} = 'Client Betriebssystem';
-    $Self->{Translation}->{'Concurrent Users'} = 'Gleichzeitige User';
     $Self->{Translation}->{'Config Item-Area'} = 'Config Item-Bereich';
     $Self->{Translation}->{'Config Items available'} = 'Config Items verfügbar';
     $Self->{Translation}->{'Config Items shown'} = 'Config Items angezeigt';
@@ -67,7 +66,6 @@ sub Data {
     $Self->{Translation}->{'IP Address'} = 'IP Addresse';
     $Self->{Translation}->{'IP over DHCP'} = 'IP über DHCP';
     $Self->{Translation}->{'IT Facility'} = 'IT Einrichtung';
-    $Self->{Translation}->{'Inactive'} = 'Inaktiv';
     $Self->{Translation}->{'Incident'} = 'Vorfall';
     $Self->{Translation}->{'Install Date'} = 'Installationsdatum';
     $Self->{Translation}->{'Keyboard'} = 'Tastatur';
@@ -87,11 +85,11 @@ sub Data {
     $Self->{Translation}->{'Monitor'} = 'Monitor';
     $Self->{Translation}->{'Mouse'} = 'Maus';
     $Self->{Translation}->{'Network Adapter'} = 'Netzwerk Adapter';
-    $Self->{Translation}->{'Network Adapter::IP Address'} = 'Netzwerk Adapter::IP Addresse';
+    $Self->{Translation}->{'Network Adapter::IP Address'} = 'Netzwerk Adapter::IP Adresse';
     $Self->{Translation}->{'Network Adapter::IP over DHCP'} = 'Netzwerk Adapter::IP über DHCP';
-    $Self->{Translation}->{'Network Address'} = 'Netzwerk Addresse';
-    $Self->{Translation}->{'Network Address::Gateway'} = 'Netzwerk Addresse::Gateway';
-    $Self->{Translation}->{'Network Address::Subnet Mask'} = 'Netzwerk Addresse::Subnetz Maske';
+    $Self->{Translation}->{'Network Address'} = 'Netzwerk Adresse';
+    $Self->{Translation}->{'Network Address::Gateway'} = 'Netzwerk Adresse::Gateway';
+    $Self->{Translation}->{'Network Address::Subnet Mask'} = 'Netzwerk Adresse::Subnetz Maske';
     $Self->{Translation}->{'Open Source'} = 'Open Source';
     $Self->{Translation}->{'Operational'} = 'Operativ';
     $Self->{Translation}->{'Other'} = 'Sonstiges';
@@ -119,7 +117,7 @@ sub Data {
     $Self->{Translation}->{'Router'} = 'Router';
     $Self->{Translation}->{'Scanner'} = 'Scanner';
     $Self->{Translation}->{'Search Config Items'} = 'Config Item Suche';
-    $Self->{Translation}->{'Security Device'} = 'Sichertheitsgerät';
+    $Self->{Translation}->{'Security Device'} = 'Sicherheitsgerät';
     $Self->{Translation}->{'Serial Number'} = 'Seriennummer';
     $Self->{Translation}->{'Server'} = 'Server';
     $Self->{Translation}->{'Server Application'} = 'Server Anwendung';
@@ -160,6 +158,9 @@ sub Data {
     $Self->{Translation}->{'Link to another'} = 'Zu einem anderen verlinken';
     $Self->{Translation}->{'Invalid Configuration Item number!'} = 'Ungültige Configuration Item Nummer!';
     $Self->{Translation}->{'The number of another Configuration Item to link with.'} = '';
+
+    # Template: AgentITSMConfigItemDelete
+    $Self->{Translation}->{'Do you really want to delete this config item?'} = '';
 
     # Template: AgentITSMConfigItemEdit
     $Self->{Translation}->{'The name of this config item'} = 'Der Name dieses Config Items';
@@ -214,17 +215,30 @@ sub Data {
     $Self->{Translation}->{'Config Item Search Results'} = '';
 
     # SysConfig
+    $Self->{Translation}->{'Admin.'} = '';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         'Prüfe Namen auf Eindeutigkeit innerhalb der selben ConfigItem-Klasse oder global, d.h. es werden alle ConfigItems jeglicher ConfigItem-Klasse bei der Prüfung auf einen eindeutigen Namen berücksichtigt.';
     $Self->{Translation}->{'Config Items'} = 'Config Items';
+    $Self->{Translation}->{'Config item add.'} = '';
+    $Self->{Translation}->{'Config item edit.'} = '';
     $Self->{Translation}->{'Config item event module that enables logging to history in the agent interface.'} =
         '';
+    $Self->{Translation}->{'Config item history.'} = '';
+    $Self->{Translation}->{'Config item print.'} = '';
+    $Self->{Translation}->{'Config item zoom.'} = '';
     $Self->{Translation}->{'Configuration Item Limit'} = 'Configuration Item Limit';
     $Self->{Translation}->{'Configuration Item limit per page'} = 'Configuration Item Limit pro Seite';
+    $Self->{Translation}->{'Configuration Management Database.'} = '';
+    $Self->{Translation}->{'Configuration item bulk module.'} = '';
     $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} =
         '';
     $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = '';
+    $Self->{Translation}->{'Define Actions where a settings button is available in the linked objects widget (LinkObject::ViewMode = "complex"). Please note that these Actions must have registered the following JS and CSS files: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js and Core.Agent.LinkObject.js.'} =
+        '';
+    $Self->{Translation}->{'Define the group with permissions.'} = '';
     $Self->{Translation}->{'Defines Required permissions to create ITSM configuration items using the Generic Interface.'} =
+        '';
+    $Self->{Translation}->{'Defines Required permissions to delete ITSM configuration items using the Generic Interface.'} =
         '';
     $Self->{Translation}->{'Defines Required permissions to get ITSM configuration items using the Generic Interface.'} =
         '';
@@ -240,6 +254,10 @@ sub Data {
         'Definiert das Standard-Subobject der Klasse';
     $Self->{Translation}->{'Defines the number of rows for the CI definition editor in the admin interface.'} =
         '';
+    $Self->{Translation}->{'Defines the order of incident states from high (e.g. cricital) to low (e.g. functional).'} =
+        '';
+    $Self->{Translation}->{'Defines the relevant deployment states where linked tickets can affect the status of a CI.'} =
+        '';
     $Self->{Translation}->{'Defines the search limit for the AgentITSMConfigItem screen.'} =
         '';
     $Self->{Translation}->{'Defines the search limit for the AgentITSMConfigItemSearch screen.'} =
@@ -254,18 +272,31 @@ sub Data {
         '';
     $Self->{Translation}->{'Defines the shown columns of CIs in the link table complex view, depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown.'} =
         '';
+    $Self->{Translation}->{'Defines which type of link (named from the ticket perspective) can affect the status of a linked CI.'} =
+        '';
+    $Self->{Translation}->{'Defines which type of ticket can affect the status of a linked CI.'} =
+        '';
+    $Self->{Translation}->{'Deployment State Color'} = '';
+    $Self->{Translation}->{'Deployment State Color.'} = '';
+    $Self->{Translation}->{'Deployment State Type.'} = '';
+    $Self->{Translation}->{'Disabled'} = '';
+    $Self->{Translation}->{'Enabled'} = '';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         '';
     $Self->{Translation}->{'Enables configuration item bulk action feature only for the listed groups.'} =
         '';
     $Self->{Translation}->{'Enables/disables the functionality to check ConfigItems for unique names. Before enabling this option you should check your system for already existing config items with duplicate names. You can do this with the script bin/otrs.ITSMConfigItemListDuplicates.pl.'} =
         '(De-)Aktiviert die Funktionalität um ConfigItems auf eindeutige Namen zu überprüfen. Bevor Sie diese Option aktivieren, sollten Sie Ihr System auf bereits vorhandene ConfigItems mit gleichem Namen überprüfen. Sie können dies mit Hilfe des scripts bin/otrs.ITSMConfigItemListDuplicates.pl tun.';
+    $Self->{Translation}->{'Event module to set configitem-status on ticket-configitem-link.'} =
+        '';
+    $Self->{Translation}->{'ITSM config item overview.'} = '';
     $Self->{Translation}->{'Module to check the group responsible for a class.'} = '';
     $Self->{Translation}->{'Module to check the group responsible for a configuration item.'} =
         '';
     $Self->{Translation}->{'Module to generate ITSM config item statistics.'} = '';
     $Self->{Translation}->{'Object backend module registration for the import/export module.'} =
         'Objekt-Backend Modul Registration des Import/Export Moduls.';
+    $Self->{Translation}->{'Overview.'} = '';
     $Self->{Translation}->{'Parameters for the deployment states color in the preferences view of the agent interface.'} =
         '';
     $Self->{Translation}->{'Parameters for the deployment states in the preferences view of the agent interface.'} =
@@ -288,7 +319,11 @@ sub Data {
         '';
     $Self->{Translation}->{'Required permissions to use the print ITSM configuration item screen in the agent interface.'} =
         '';
+    $Self->{Translation}->{'Required privileges to delete config items.'} = '';
+    $Self->{Translation}->{'Search config items.'} = '';
     $Self->{Translation}->{'Selects the configuration item number generator module. "AutoIncrement" increments the configuration item number, the SystemID, the ConfigItemClassID and the counter are used. The format is "SystemID.ConfigItemClassID.Counter", e.g. 1205000004, 1205000005.'} =
+        '';
+    $Self->{Translation}->{'Set the incident state of a CI automatically when a Ticket is Linked to a CI.'} =
         '';
     $Self->{Translation}->{'Sets the deployment state in the configuration item bulk screen of the agent interface.'} =
         '';
@@ -299,6 +334,8 @@ sub Data {
     $Self->{Translation}->{'Shows a link in the menu to access the history of a configuration item in the configuration item overview of the agent interface.'} =
         '';
     $Self->{Translation}->{'Shows a link in the menu to access the history of a configuration item in the its zoom view of the agent interface.'} =
+        '';
+    $Self->{Translation}->{'Shows a link in the menu to delete a configuration item in its zoom view of the agent interface.'} =
         '';
     $Self->{Translation}->{'Shows a link in the menu to duplicate a configuration item in the configuration item overview of the agent interface.'} =
         '';
@@ -316,6 +353,8 @@ sub Data {
         '';
     $Self->{Translation}->{'The identifier for a configuration item, e.g. ConfigItem#, MyConfigItem#. The default is ConfigItem#.'} =
         '';
+    $Self->{Translation}->{'class'} = '';
+    $Self->{Translation}->{'global'} = '';
 
 }
 

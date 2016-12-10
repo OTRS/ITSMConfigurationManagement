@@ -41,7 +41,6 @@ sub Data {
     $Self->{Translation}->{'Change of definition failed! See System Log for details.'} = 'Mabadiliko ya Ufafanuzi yameshindikana! Angalia batli ya mfumo kwa kina.';
     $Self->{Translation}->{'Client Application'} = 'Programu-tumizi a mteja';
     $Self->{Translation}->{'Client OS'} = 'OS ya mteja';
-    $Self->{Translation}->{'Concurrent Users'} = 'Watumiaji wa kwa pamoja';
     $Self->{Translation}->{'Config Item-Area'} = 'Sanidi Eneo la kipengele';
     $Self->{Translation}->{'Config Items available'} = 'Sanidi Vipengele vilivyopo';
     $Self->{Translation}->{'Config Items shown'} = 'Sanidi Vipingele vilivyoonyeshwa';
@@ -67,7 +66,6 @@ sub Data {
     $Self->{Translation}->{'IP Address'} = 'Anwani ya IP';
     $Self->{Translation}->{'IP over DHCP'} = 'IP kwa DHCP';
     $Self->{Translation}->{'IT Facility'} = 'P';
-    $Self->{Translation}->{'Inactive'} = 'Isiyo amilifu';
     $Self->{Translation}->{'Incident'} = 'Tukio';
     $Self->{Translation}->{'Install Date'} = 'Tarehe ya kusakinisha';
     $Self->{Translation}->{'Keyboard'} = 'Boabonye';
@@ -161,6 +159,9 @@ sub Data {
     $Self->{Translation}->{'Invalid Configuration Item number!'} = 'Namba ya kipengele cha usanidi n batili!';
     $Self->{Translation}->{'The number of another Configuration Item to link with.'} = 'Namba ya kipengele kingine cha usanidi cha kuunganisha nacho.';
 
+    # Template: AgentITSMConfigItemDelete
+    $Self->{Translation}->{'Do you really want to delete this config item?'} = '';
+
     # Template: AgentITSMConfigItemEdit
     $Self->{Translation}->{'The name of this config item'} = 'Jina la hiki kipengele cha usanidi';
     $Self->{Translation}->{'Name is already in use by the ConfigItems with the following Number(s): %s'} =
@@ -214,18 +215,31 @@ sub Data {
     $Self->{Translation}->{'Config Item Search Results'} = '';
 
     # SysConfig
+    $Self->{Translation}->{'Admin.'} = '';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         'Angalia majina ya kipekee tu katika tabaka sawa la kipengele cha usanidi (\'Tabaka\') au zote (\'Zote\'), ambayo inamaanisha kila kipengele cha usanidi kilichopo kimejumuishwa wakati nakala pacha zinaangaliwa.';
     $Self->{Translation}->{'Config Items'} = 'Vipengele vya usanidi';
+    $Self->{Translation}->{'Config item add.'} = '';
+    $Self->{Translation}->{'Config item edit.'} = '';
     $Self->{Translation}->{'Config item event module that enables logging to history in the agent interface.'} =
         'Sanidi moduli ya tukio ya kipengele ambacho kinawezesha kuingia katika historia katika kiolesura cha wakala.';
+    $Self->{Translation}->{'Config item history.'} = '';
+    $Self->{Translation}->{'Config item print.'} = '';
+    $Self->{Translation}->{'Config item zoom.'} = '';
     $Self->{Translation}->{'Configuration Item Limit'} = 'Kikomo cha kipengele cha usanidi';
     $Self->{Translation}->{'Configuration Item limit per page'} = 'Kikomo cha kipengele kwa ukurasa';
+    $Self->{Translation}->{'Configuration Management Database.'} = '';
+    $Self->{Translation}->{'Configuration item bulk module.'} = '';
     $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} =
         'Kipanga njia cha mazingira ya nyuma cha utafutaji wa kipengele cha usanidi cha kiolesura cha wakala. ';
     $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = 'Tengeneza na simamia ufafanuzi wa vipengele vya usanidi.';
+    $Self->{Translation}->{'Define Actions where a settings button is available in the linked objects widget (LinkObject::ViewMode = "complex"). Please note that these Actions must have registered the following JS and CSS files: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js and Core.Agent.LinkObject.js.'} =
+        '';
+    $Self->{Translation}->{'Define the group with permissions.'} = '';
     $Self->{Translation}->{'Defines Required permissions to create ITSM configuration items using the Generic Interface.'} =
         'Inafafanua ruhusa zinazohitajika kutengeneza vipengele vya usanidi vya ITSM kwa kutumia kiolesura cha jeneriki.';
+    $Self->{Translation}->{'Defines Required permissions to delete ITSM configuration items using the Generic Interface.'} =
+        '';
     $Self->{Translation}->{'Defines Required permissions to get ITSM configuration items using the Generic Interface.'} =
         'Inafafanua ruhusa zinazohitajika kupatavipengele vya usanidi vya ITSM kwa kutumia kiolesura cha jeneriki.';
     $Self->{Translation}->{'Defines Required permissions to search ITSM configuration items using the Generic Interface.'} =
@@ -240,6 +254,10 @@ sub Data {
         'Inafafanua kipengele cha chaguo msingi cha tabaka la \'Kipengelecha Usanidi cha ITSM\'.';
     $Self->{Translation}->{'Defines the number of rows for the CI definition editor in the admin interface.'} =
         'Inafafanua namba ya safu mlalo kwa mhariri wa ufafanuzi wa CI katika kiolesura cha kiongozi';
+    $Self->{Translation}->{'Defines the order of incident states from high (e.g. cricital) to low (e.g. functional).'} =
+        '';
+    $Self->{Translation}->{'Defines the relevant deployment states where linked tickets can affect the status of a CI.'} =
+        '';
     $Self->{Translation}->{'Defines the search limit for the AgentITSMConfigItem screen.'} =
         'Inawezesha upeo wa kutafuta kwa skerini ya Kipengele cha usanidi cha ITSM cha wakala.';
     $Self->{Translation}->{'Defines the search limit for the AgentITSMConfigItemSearch screen.'} =
@@ -256,18 +274,31 @@ ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns';
 ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns';
     $Self->{Translation}->{'Defines the shown columns of CIs in the link table complex view, depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown.'} =
         'Inafafanua safu wima za CI zilizoonyeshwa katika mandhari ya jedwali tata la kiungo,kutegemeana na tabaka la CI. Kila ingizo lazima liwe na kiambishi awali jina la tabaka na :: ( mfano Tarakilishi::).Kuna viumbi vichache vya CI ambavyo vipo kwa CI zote (mfano kwenye tabaka la tarakilishi: tarakilishi::jina, Tarakilishi::Hali yaCurDep, Tarakilishi::Muda wa kutengeneza). Kuonyesha kiumbi cha CI kimoja kimoja kama vilivyo fafanuliwa kwenye ufafanuzi wa CI, mpangilio ufuatao lazima utumike (mfano kwenye tabaka tarakilishi): Tarakilishi::diski kuu::1, Tarakilishi::Diski kuu ngumu::1Uwezo::1, Tarakilishi::Diski kuu ngumu::2, Tarakilishi::Diski kuu ngumu::2::Uwezo::1. Kama hakuna ingizo kwa tabaka la CI, safuwima chaguo msingi zinaonyeshwa.';
+    $Self->{Translation}->{'Defines which type of link (named from the ticket perspective) can affect the status of a linked CI.'} =
+        '';
+    $Self->{Translation}->{'Defines which type of ticket can affect the status of a linked CI.'} =
+        '';
+    $Self->{Translation}->{'Deployment State Color'} = '';
+    $Self->{Translation}->{'Deployment State Color.'} = '';
+    $Self->{Translation}->{'Deployment State Type.'} = '';
+    $Self->{Translation}->{'Disabled'} = '';
+    $Self->{Translation}->{'Enabled'} = '';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         'Inawezesha kipengele cha kitendo ch wingi cha kipengele cha usanidi kwa maingira ya mbele ya wakala kufanya kazi katika kipengele cha usanidi zaidi ya kimoja kwa muda.';
     $Self->{Translation}->{'Enables configuration item bulk action feature only for the listed groups.'} =
         'Inawezesha kipengele cha kitendo cha wingi cha kipengele cha usanidi kwa makundi yaliyoorodheshwa tu.';
     $Self->{Translation}->{'Enables/disables the functionality to check ConfigItems for unique names. Before enabling this option you should check your system for already existing config items with duplicate names. You can do this with the script bin/otrs.ITSMConfigItemListDuplicates.pl.'} =
         'Wezesha/Kutowezesha kitendeakazi cha kuangalia vipengele vya usanidi kwa majina ya pekee. Kabla ya kuwezesha chaguo hili unatakiwa kuangalia mfumo wako kwa vipengele vya usanidi kama vipo tayari kwa majina nakala pacha. Unaweza kufanya hivi na maandiko bin/otrs. ITSMConfigItemListDuplicates.pl.';
+    $Self->{Translation}->{'Event module to set configitem-status on ticket-configitem-link.'} =
+        '';
+    $Self->{Translation}->{'ITSM config item overview.'} = '';
     $Self->{Translation}->{'Module to check the group responsible for a class.'} = 'Moduli ya kuangalia makundi yanayohusika na tabaka.';
     $Self->{Translation}->{'Module to check the group responsible for a configuration item.'} =
         'Module ya kuangalia makundi yanayohusika na kipengele cha usanidi.';
     $Self->{Translation}->{'Module to generate ITSM config item statistics.'} = 'Moduli ya kutengeneza takwimu za kipengele cha usanidi cha ITSM>';
     $Self->{Translation}->{'Object backend module registration for the import/export module.'} =
         'Usajili wa moduli ya mazingira ya nyuma ya kipengee kwa moduli ya Kuingiza/kuhamisha.';
+    $Self->{Translation}->{'Overview.'} = '';
     $Self->{Translation}->{'Parameters for the deployment states color in the preferences view of the agent interface.'} =
         'Vigezo kwa ajili ya rangi ya hali za matumizi kama mandhari ya mapendeleo ya kiolesura cha wakala.';
     $Self->{Translation}->{'Parameters for the deployment states in the preferences view of the agent interface.'} =
@@ -290,8 +321,12 @@ ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns';
         'Inahitaji ruhusa kutumia skrini ya kipengele cha usanidi cha ITSM cha historia katika kiolesura cha wakala.';
     $Self->{Translation}->{'Required permissions to use the print ITSM configuration item screen in the agent interface.'} =
         'Inahitaji ruhusa kutumia skrini ya kipengele cha usanidi cha ITSM cha kuchapisha katika kiolesura cha wakala.';
+    $Self->{Translation}->{'Required privileges to delete config items.'} = '';
+    $Self->{Translation}->{'Search config items.'} = '';
     $Self->{Translation}->{'Selects the configuration item number generator module. "AutoIncrement" increments the configuration item number, the SystemID, the ConfigItemClassID and the counter are used. The format is "SystemID.ConfigItemClassID.Counter", e.g. 1205000004, 1205000005.'} =
         'Inachagua moduli ya kuzalisha namba ya kipengele cha usanidi. "OngezaOtomatiki" inaongeza namba ya kipengele ya usanidi, kitambulisho cha mfumo, kitambulisho cha tabaka la kipengele sanidi na kihesabuji vinatumika. Umbizo ni "Kitambulisho cha mfumo.kitambulisho cha tabaka la kipengele sanidi.Kihesabuji". mfano 1205000004, 1205000005.';
+    $Self->{Translation}->{'Set the incident state of a CI automatically when a Ticket is Linked to a CI.'} =
+        '';
     $Self->{Translation}->{'Sets the deployment state in the configuration item bulk screen of the agent interface.'} =
         'Inaweka hali ya kutumia katika skrini ya wingi wa kipengele cha usanidi ya kiolesura cha wakala.';
     $Self->{Translation}->{'Sets the incident state in the configuration item bulk screen of the agent interface.'} =
@@ -302,6 +337,8 @@ ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns';
         'Inaonyesha kiungo kwenye  menyu kuweza kufikia historia ya kipengele cha usanidi katika mapitio ya kipengele ya usanidi ya kiolesura cha wakala.';
     $Self->{Translation}->{'Shows a link in the menu to access the history of a configuration item in the its zoom view of the agent interface.'} =
         'Inaonyesha kiungo kwenye  menyu kuweza kufikia historia ya kipengele cha usanidi katika mandhari yake iliyokuzwa ya kiolesura cha wakala.';
+    $Self->{Translation}->{'Shows a link in the menu to delete a configuration item in its zoom view of the agent interface.'} =
+        '';
     $Self->{Translation}->{'Shows a link in the menu to duplicate a configuration item in the configuration item overview of the agent interface.'} =
         'Onyesha kiungo katika menyu kutoa nakala pacha ya kipengele cha usanidi katika mapitio ya kipengele cha usanidi ya kiolesura cha wakala.';
     $Self->{Translation}->{'Shows a link in the menu to duplicate a configuration item in the its zoom view of the agent interface.'} =
@@ -318,6 +355,8 @@ ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns';
         'Inaonyesha historia ya kipengele cha usanidi (kwa mpangilio wa kurudi nyuma) katika kiolesura cha wakala.';
     $Self->{Translation}->{'The identifier for a configuration item, e.g. ConfigItem#, MyConfigItem#. The default is ConfigItem#.'} =
         'Kitambulishi cha kipengele cha usanidi, mfano.ConfigItem#, MyConfigItem#. Chagu-msingi ni ConfigItem#.';
+    $Self->{Translation}->{'class'} = '';
+    $Self->{Translation}->{'global'} = '';
 
 }
 

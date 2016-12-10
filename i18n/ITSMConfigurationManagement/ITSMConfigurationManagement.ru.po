@@ -1,12 +1,12 @@
 # 
 # Translators:
 # Udo Bretz, 2015
-# Yuri Kolesniov <ynkolesnikov@gmail.com>, 2014
+# Yuri Kolesniov <ynkolesnikov@gmail.com>, 2014,2016
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2016-05-24 21:57+0000\n"
-"PO-Revision-Date: 2016-05-24 19:57+0000\n"
+"POT-Creation-Date: 2016-12-10 13:28+0000\n"
+"PO-Revision-Date: 2016-12-10 12:28+0000\n"
 "Last-Translator: Udo Bretz\n"
 "Language-Team: Russian (http://www.transifex.com/otrs/OTRS/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -116,10 +116,6 @@ msgid "Client OS"
 msgstr "Клиентская ОС"
 
 #. Template: AAAITSMConfigItem
-msgid "Concurrent Users"
-msgstr "Конкурентая лицензия"
-
-#. Template: AAAITSMConfigItem
 msgid "Config Item-Area"
 msgstr "Обзор основных средств"
 
@@ -218,10 +214,6 @@ msgstr "IP по DHCP"
 #. Template: AAAITSMConfigItem
 msgid "IT Facility"
 msgstr "ИТ объект"
-
-#. Template: AAAITSMConfigItem
-msgid "Inactive"
-msgstr "Неактивно"
 
 #. Template: AAAITSMConfigItem
 msgid "Incident"
@@ -567,6 +559,10 @@ msgstr "Неверный номер конфигурационной едини�
 msgid "The number of another Configuration Item to link with."
 msgstr "Количество других КЕ для связывания."
 
+#. Template: AgentITSMConfigItemDelete
+msgid "Do you really want to delete this config item?"
+msgstr ""
+
 #. Template: AgentITSMConfigItemEdit
 msgid "The name of this config item"
 msgstr "Имя этого учетного элемента"
@@ -674,11 +670,11 @@ msgstr "Свойство"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
 msgid "ITSM ConfigItem"
-msgstr ""
+msgstr "Конфигурационная единица ITSM "
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "CIHistory::"
-msgstr ""
+msgstr "CIHistory::"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "ConfigItem"
@@ -690,6 +686,10 @@ msgstr "Нет результата/Решения!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "Config Item Search Results"
+msgstr "Результаты поиска конфигурационных единиц"
+
+#. SysConfig
+msgid "Admin."
 msgstr ""
 
 #. SysConfig
@@ -704,10 +704,30 @@ msgid "Config Items"
 msgstr "Конфигурационные единицы"
 
 #. SysConfig
+msgid "Config item add."
+msgstr ""
+
+#. SysConfig
+msgid "Config item edit."
+msgstr ""
+
+#. SysConfig
 msgid ""
 "Config item event module that enables logging to history in the agent "
 "interface."
 msgstr "Config item (КЕ) event module ведущий запись в историю в агентском интерфейсе."
+
+#. SysConfig
+msgid "Config item history."
+msgstr ""
+
+#. SysConfig
+msgid "Config item print."
+msgstr ""
+
+#. SysConfig
+msgid "Config item zoom."
+msgstr ""
 
 #. SysConfig
 msgid "Configuration Item Limit"
@@ -716,6 +736,14 @@ msgstr " Лимит КЕ"
 #. SysConfig
 msgid "Configuration Item limit per page"
 msgstr "Количество КЕ на страницу"
+
+#. SysConfig
+msgid "Configuration Management Database."
+msgstr ""
+
+#. SysConfig
+msgid "Configuration item bulk module."
+msgstr ""
 
 #. SysConfig
 msgid "Configuration item search backend router of the agent interface."
@@ -727,9 +755,28 @@ msgstr "Создание и управление описаниями конфи
 
 #. SysConfig
 msgid ""
+"Define Actions where a settings button is available in the linked objects "
+"widget (LinkObject::ViewMode = \"complex\"). Please note that these Actions "
+"must have registered the following JS and CSS files: "
+"Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, "
+"Core.Agent.TableFilters.js and Core.Agent.LinkObject.js."
+msgstr "Задает Действия/Actions когда кнопка настройки доступна в связанном виджете (LinkObject::ViewMode = \"complex\"). Обратите внимание, что эти Действия/Actions должны иметь зарегистрированные JS или CSS файлы: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js и Core.Agent.LinkObject.js."
+
+#. SysConfig
+msgid "Define the group with permissions."
+msgstr ""
+
+#. SysConfig
+msgid ""
 "Defines Required permissions to create ITSM configuration items using the "
 "Generic Interface."
 msgstr "Задать требуемые права для создания ITSM КЕ с использованием Generic Interface."
+
+#. SysConfig
+msgid ""
+"Defines Required permissions to delete ITSM configuration items using the "
+"Generic Interface."
+msgstr ""
 
 #. SysConfig
 msgid ""
@@ -770,6 +817,18 @@ msgid ""
 "Defines the number of rows for the CI definition editor in the admin "
 "interface."
 msgstr "Задает количество строк для редактора описаний КЕ (CI) в интерфейсе админа."
+
+#. SysConfig
+msgid ""
+"Defines the order of incident states from high (e.g. cricital) to low (e.g. "
+"functional)."
+msgstr ""
+
+#. SysConfig
+msgid ""
+"Defines the relevant deployment states where linked tickets can affect the "
+"status of a CI."
+msgstr ""
 
 #. SysConfig
 msgid "Defines the search limit for the AgentITSMConfigItem screen."
@@ -836,6 +895,36 @@ msgstr "Задает перечень отображаемых столбцов 
 
 #. SysConfig
 msgid ""
+"Defines which type of link (named from the ticket perspective) can affect "
+"the status of a linked CI."
+msgstr ""
+
+#. SysConfig
+msgid "Defines which type of ticket can affect the status of a linked CI."
+msgstr ""
+
+#. SysConfig
+msgid "Deployment State Color"
+msgstr ""
+
+#. SysConfig
+msgid "Deployment State Color."
+msgstr ""
+
+#. SysConfig
+msgid "Deployment State Type."
+msgstr ""
+
+#. SysConfig
+msgid "Disabled"
+msgstr ""
+
+#. SysConfig
+msgid "Enabled"
+msgstr ""
+
+#. SysConfig
+msgid ""
 "Enables configuration item bulk action feature for the agent frontend to "
 "work on more than one configuration item at a time."
 msgstr "Включает возможность массовых действий с КЕ для интерфейса агента для работы с несколькими КЕ одновременно."
@@ -854,6 +943,14 @@ msgid ""
 msgstr "Включает/выключает проверку уникальности имен КЕ. До включения этого параметра, проверьте вашу БД на наличие дубликатов имен КЕ. Вы можете сделать это с помощью скрипта bin/otrs.ITSMConfigItemListDuplicates.pl."
 
 #. SysConfig
+msgid "Event module to set configitem-status on ticket-configitem-link."
+msgstr ""
+
+#. SysConfig
+msgid "ITSM config item overview."
+msgstr ""
+
+#. SysConfig
 msgid "Module to check the group responsible for a class."
 msgstr "Модуль для проверки группы ответственной за класс"
 
@@ -868,6 +965,10 @@ msgstr "Модуль формирования статистики по КЕ."
 #. SysConfig
 msgid "Object backend module registration for the import/export module."
 msgstr "Object backend module registration для модуля Import/Export."
+
+#. SysConfig
+msgid "Overview."
+msgstr "Обзор"
 
 #. SysConfig
 msgid ""
@@ -934,12 +1035,26 @@ msgid ""
 msgstr "Требуемые права для печати характеристик КЕ в CMDB агентом"
 
 #. SysConfig
+msgid "Required privileges to delete config items."
+msgstr ""
+
+#. SysConfig
+msgid "Search config items."
+msgstr ""
+
+#. SysConfig
 msgid ""
 "Selects the configuration item number generator module. \"AutoIncrement\" "
 "increments the configuration item number, the SystemID, the "
 "ConfigItemClassID and the counter are used. The format is "
 "\"SystemID.ConfigItemClassID.Counter\", e.g. 1205000004, 1205000005."
 msgstr "Выбор модуля генерации номера КЕ. \"AutoIncrement\" последовательно увеличивает номер на 1.Для формирования номера используются SystemID, ConfigItemClassID и счетчик. Формат - \"SystemID.ConfigItemClassID.Counter\", т.е. 1205000004, 1205000005."
+
+#. SysConfig
+msgid ""
+"Set the incident state of a CI automatically when a Ticket is Linked to a "
+"CI."
+msgstr ""
 
 #. SysConfig
 msgid ""
@@ -973,6 +1088,12 @@ msgstr "Показывает пункт меню История для прос�
 
 #. SysConfig
 msgid ""
+"Shows a link in the menu to delete a configuration item in its zoom view of "
+"the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid ""
 "Shows a link in the menu to duplicate a configuration item in the "
 "configuration item overview of the agent interface."
 msgstr "Показывает пункт меню Дублировать для создания новой КЕ путем копирования характеристик текущей КЕ"
@@ -993,7 +1114,7 @@ msgstr "Показывает пункт меню Редактировать дл
 msgid ""
 "Shows a link in the menu to go back in the configuration item zoom view of "
 "the agent interface."
-msgstr ""
+msgstr "Показывает пункт меню Назад при подробном просмотре конфигурационных единиц в интерфейсе агента."
 
 #. SysConfig
 msgid ""
@@ -1017,3 +1138,11 @@ msgid ""
 "The identifier for a configuration item, e.g. ConfigItem#, MyConfigItem#. "
 "The default is ConfigItem#."
 msgstr "Идентификатор (префикс) к номеру КЕ, т.е КЕ_№, КЕ#, Учетный_элемент_№. По умолчанию - ConfigItem# (или его перевод)."
+
+#. SysConfig
+msgid "class"
+msgstr ""
+
+#. SysConfig
+msgid "global"
+msgstr ""

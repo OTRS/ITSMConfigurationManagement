@@ -41,7 +41,6 @@ sub Data {
     $Self->{Translation}->{'Change of definition failed! See System Log for details.'} = 'Невозможно изменить описание! Для подробной информации смотри System Log.';
     $Self->{Translation}->{'Client Application'} = 'Клиентское приложение';
     $Self->{Translation}->{'Client OS'} = 'Клиентская ОС';
-    $Self->{Translation}->{'Concurrent Users'} = 'Конкурентая лицензия';
     $Self->{Translation}->{'Config Item-Area'} = 'Обзор основных средств';
     $Self->{Translation}->{'Config Items available'} = 'Доступно основных средств';
     $Self->{Translation}->{'Config Items shown'} = 'Показано основных средств';
@@ -67,7 +66,6 @@ sub Data {
     $Self->{Translation}->{'IP Address'} = 'IP адрес';
     $Self->{Translation}->{'IP over DHCP'} = 'IP по DHCP';
     $Self->{Translation}->{'IT Facility'} = 'ИТ объект';
-    $Self->{Translation}->{'Inactive'} = 'Неактивно';
     $Self->{Translation}->{'Incident'} = 'Инцидент';
     $Self->{Translation}->{'Install Date'} = 'Дата установки';
     $Self->{Translation}->{'Keyboard'} = 'Клавиатура';
@@ -161,6 +159,9 @@ sub Data {
     $Self->{Translation}->{'Invalid Configuration Item number!'} = 'Неверный номер конфигурационной единицы!';
     $Self->{Translation}->{'The number of another Configuration Item to link with.'} = 'Количество других КЕ для связывания.';
 
+    # Template: AgentITSMConfigItemDelete
+    $Self->{Translation}->{'Do you really want to delete this config item?'} = '';
+
     # Template: AgentITSMConfigItemEdit
     $Self->{Translation}->{'The name of this config item'} = 'Имя этого учетного элемента';
     $Self->{Translation}->{'Name is already in use by the ConfigItems with the following Number(s): %s'} =
@@ -214,18 +215,31 @@ sub Data {
     $Self->{Translation}->{'Config Item Search Results'} = '';
 
     # SysConfig
+    $Self->{Translation}->{'Admin.'} = '';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         'Проверка уникальности Имени внутри текущего класса КЕ(\'class\') или глобально (\'global\'),что означает, что любая существующая КЕ учитывается при поиске дубликатов ';
     $Self->{Translation}->{'Config Items'} = 'Конфигурационные единицы';
+    $Self->{Translation}->{'Config item add.'} = '';
+    $Self->{Translation}->{'Config item edit.'} = '';
     $Self->{Translation}->{'Config item event module that enables logging to history in the agent interface.'} =
         'Config item (КЕ) event module ведущий запись в историю в агентском интерфейсе.';
+    $Self->{Translation}->{'Config item history.'} = '';
+    $Self->{Translation}->{'Config item print.'} = '';
+    $Self->{Translation}->{'Config item zoom.'} = '';
     $Self->{Translation}->{'Configuration Item Limit'} = ' Лимит КЕ';
     $Self->{Translation}->{'Configuration Item limit per page'} = 'Количество КЕ на страницу';
+    $Self->{Translation}->{'Configuration Management Database.'} = '';
+    $Self->{Translation}->{'Configuration item bulk module.'} = '';
     $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} =
         'Модуль поиска КЕ в агентском интерфейсе';
     $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = 'Создание и управление описаниями конфигурационных единиц.';
+    $Self->{Translation}->{'Define Actions where a settings button is available in the linked objects widget (LinkObject::ViewMode = "complex"). Please note that these Actions must have registered the following JS and CSS files: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js and Core.Agent.LinkObject.js.'} =
+        '';
+    $Self->{Translation}->{'Define the group with permissions.'} = '';
     $Self->{Translation}->{'Defines Required permissions to create ITSM configuration items using the Generic Interface.'} =
         'Задать требуемые права для создания ITSM КЕ с использованием Generic Interface.';
+    $Self->{Translation}->{'Defines Required permissions to delete ITSM configuration items using the Generic Interface.'} =
+        '';
     $Self->{Translation}->{'Defines Required permissions to get ITSM configuration items using the Generic Interface.'} =
         'Задает требуемые права для получения ITSM КЕ с использованием Generic Interface.';
     $Self->{Translation}->{'Defines Required permissions to search ITSM configuration items using the Generic Interface.'} =
@@ -240,6 +254,10 @@ sub Data {
         'Задает умалчивамый подобъект для класса \'ITSMConfigItem\'.';
     $Self->{Translation}->{'Defines the number of rows for the CI definition editor in the admin interface.'} =
         'Задает количество строк для редактора описаний КЕ (CI) в интерфейсе админа.';
+    $Self->{Translation}->{'Defines the order of incident states from high (e.g. cricital) to low (e.g. functional).'} =
+        '';
+    $Self->{Translation}->{'Defines the relevant deployment states where linked tickets can affect the status of a CI.'} =
+        '';
     $Self->{Translation}->{'Defines the search limit for the AgentITSMConfigItem screen.'} =
         'Задает лимит поиска объектов для экрана AgentITSMConfigItem';
     $Self->{Translation}->{'Defines the search limit for the AgentITSMConfigItemSearch screen.'} =
@@ -254,18 +272,31 @@ sub Data {
         'Задает список отображаемых столбцов в результатах поиска КЕ в зависимости от выбранного класса. Каждое имя атрибута должно иметь в качестве префикса - имя класса и два двоеточия (i.e. Computer::). Есть ряд атрибутов, общих для всех классов (например, для класса Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). Для отображения индивидуальных атрибутов, специфичных для конкретного класса из описания КЕ (CI-Definition), используется следующий синтаксис (например, для класса Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. Если нет атрибутов для конкретного класса, отображаются столбцы заданные параметром ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns.';
     $Self->{Translation}->{'Defines the shown columns of CIs in the link table complex view, depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown.'} =
         'Задает перечень отображаемых столбцов отображаемых КЕ в таблице при создании связи, в зависимости от класса. Каждое имя атрибута должно иметь в качестве префикса - имя класса и два двоеточия (i.e. Computer::). Есть ряд атрибутов, общих для всех классов (например, для класса Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). Для отображения индивидуальных атрибутов, специфичных для конкретного класса из описания КЕ (CI-Definition), используется следующий синтаксис (например, для класса Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. Если нет атрибутов для конкретного класса, отображаются столбцы заданные параметром ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns.';
+    $Self->{Translation}->{'Defines which type of link (named from the ticket perspective) can affect the status of a linked CI.'} =
+        '';
+    $Self->{Translation}->{'Defines which type of ticket can affect the status of a linked CI.'} =
+        '';
+    $Self->{Translation}->{'Deployment State Color'} = '';
+    $Self->{Translation}->{'Deployment State Color.'} = '';
+    $Self->{Translation}->{'Deployment State Type.'} = '';
+    $Self->{Translation}->{'Disabled'} = '';
+    $Self->{Translation}->{'Enabled'} = '';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         'Включает возможность массовых действий с КЕ для интерфейса агента для работы с несколькими КЕ одновременно.';
     $Self->{Translation}->{'Enables configuration item bulk action feature only for the listed groups.'} =
         'Включает возможность массовых действий с КЕ только для перечисленных групп.';
     $Self->{Translation}->{'Enables/disables the functionality to check ConfigItems for unique names. Before enabling this option you should check your system for already existing config items with duplicate names. You can do this with the script bin/otrs.ITSMConfigItemListDuplicates.pl.'} =
         'Включает/выключает проверку уникальности имен КЕ. До включения этого параметра, проверьте вашу БД на наличие дубликатов имен КЕ. Вы можете сделать это с помощью скрипта bin/otrs.ITSMConfigItemListDuplicates.pl.';
+    $Self->{Translation}->{'Event module to set configitem-status on ticket-configitem-link.'} =
+        '';
+    $Self->{Translation}->{'ITSM config item overview.'} = '';
     $Self->{Translation}->{'Module to check the group responsible for a class.'} = 'Модуль для проверки группы ответственной за класс';
     $Self->{Translation}->{'Module to check the group responsible for a configuration item.'} =
         'Модуль для проверки группы ответственной за КЕ';
     $Self->{Translation}->{'Module to generate ITSM config item statistics.'} = 'Модуль формирования статистики по КЕ.';
     $Self->{Translation}->{'Object backend module registration for the import/export module.'} =
         'Object backend module registration для модуля Import/Export.';
+    $Self->{Translation}->{'Overview.'} = '';
     $Self->{Translation}->{'Parameters for the deployment states color in the preferences view of the agent interface.'} =
         'Параметры для цветов обозначающих состояния использования КЕ в настройках обзоров в интерфейсе агента.';
     $Self->{Translation}->{'Parameters for the deployment states in the preferences view of the agent interface.'} =
@@ -288,8 +319,12 @@ sub Data {
         'Требуемые права для просмотра истории содержимого КЕ в CMDB агентом';
     $Self->{Translation}->{'Required permissions to use the print ITSM configuration item screen in the agent interface.'} =
         'Требуемые права для печати характеристик КЕ в CMDB агентом';
+    $Self->{Translation}->{'Required privileges to delete config items.'} = '';
+    $Self->{Translation}->{'Search config items.'} = '';
     $Self->{Translation}->{'Selects the configuration item number generator module. "AutoIncrement" increments the configuration item number, the SystemID, the ConfigItemClassID and the counter are used. The format is "SystemID.ConfigItemClassID.Counter", e.g. 1205000004, 1205000005.'} =
         'Выбор модуля генерации номера КЕ. "AutoIncrement" последовательно увеличивает номер на 1.Для формирования номера используются SystemID, ConfigItemClassID и счетчик. Формат - "SystemID.ConfigItemClassID.Counter", т.е. 1205000004, 1205000005.';
+    $Self->{Translation}->{'Set the incident state of a CI automatically when a Ticket is Linked to a CI.'} =
+        '';
     $Self->{Translation}->{'Sets the deployment state in the configuration item bulk screen of the agent interface.'} =
         'Задает состояние использования на экране массовых действий с КЕ в интерфейсе агента.';
     $Self->{Translation}->{'Sets the incident state in the configuration item bulk screen of the agent interface.'} =
@@ -300,6 +335,8 @@ sub Data {
         'Показывает пункт меню для доступа к истории КЕ при просмотре КЕ в интерфейсе агента.';
     $Self->{Translation}->{'Shows a link in the menu to access the history of a configuration item in the its zoom view of the agent interface.'} =
         'Показывает пункт меню История для просмотра истории КЕ';
+    $Self->{Translation}->{'Shows a link in the menu to delete a configuration item in its zoom view of the agent interface.'} =
+        '';
     $Self->{Translation}->{'Shows a link in the menu to duplicate a configuration item in the configuration item overview of the agent interface.'} =
         'Показывает пункт меню Дублировать для создания новой КЕ путем копирования характеристик текущей КЕ';
     $Self->{Translation}->{'Shows a link in the menu to duplicate a configuration item in the its zoom view of the agent interface.'} =
@@ -316,6 +353,8 @@ sub Data {
         'Показ истории содержимого КЕ (порядок показа)';
     $Self->{Translation}->{'The identifier for a configuration item, e.g. ConfigItem#, MyConfigItem#. The default is ConfigItem#.'} =
         'Идентификатор (префикс) к номеру КЕ, т.е КЕ_№, КЕ#, Учетный_элемент_№. По умолчанию - ConfigItem# (или его перевод).';
+    $Self->{Translation}->{'class'} = '';
+    $Self->{Translation}->{'global'} = '';
 
 }
 

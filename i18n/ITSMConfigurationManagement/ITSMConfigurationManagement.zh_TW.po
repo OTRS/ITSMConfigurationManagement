@@ -1,12 +1,13 @@
 # 
 # Translators:
+# Sam Chen <silent198214@gmail.com>, 2016
 # Udo Bretz, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2016-05-24 21:57+0000\n"
-"PO-Revision-Date: 2016-05-24 19:57+0000\n"
-"Last-Translator: Udo Bretz\n"
+"POT-Creation-Date: 2016-12-10 13:28+0000\n"
+"PO-Revision-Date: 2016-12-10 12:28+0000\n"
+"Last-Translator: Sam Chen <silent198214@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otrs/OTRS/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -115,10 +116,6 @@ msgid "Client OS"
 msgstr "客户操作系統"
 
 #. Template: AAAITSMConfigItem
-msgid "Concurrent Users"
-msgstr "並發用戶數"
-
-#. Template: AAAITSMConfigItem
 msgid "Config Item-Area"
 msgstr "配置項區域"
 
@@ -188,19 +185,19 @@ msgstr ""
 
 #. Template: AAAITSMConfigItem
 msgid "Gateway"
-msgstr "網關"
+msgstr "閘道"
 
 #. Template: AAAITSMConfigItem
 msgid "Graphic Adapter"
-msgstr "圖形處理器"
+msgstr "顯示卡"
 
 #. Template: AAAITSMConfigItem
 msgid "Hard Disk"
-msgstr "硬盤"
+msgstr "硬碟"
 
 #. Template: AAAITSMConfigItem
 msgid "Hard Disk::Capacity"
-msgstr "硬盤::容量"
+msgstr "硬碟::容量"
 
 #. Template: AAAITSMConfigItem
 msgid "Hide Versions"
@@ -208,19 +205,15 @@ msgstr "隱藏版本"
 
 #. Template: AAAITSMConfigItem
 msgid "IP Address"
-msgstr "IP地址"
+msgstr "IP位址"
 
 #. Template: AAAITSMConfigItem
 msgid "IP over DHCP"
-msgstr "從DHCP獲取IP"
+msgstr "從DHCP取得IP"
 
 #. Template: AAAITSMConfigItem
 msgid "IT Facility"
 msgstr "IT設施"
-
-#. Template: AAAITSMConfigItem
-msgid "Inactive"
-msgstr "非活動的"
 
 #. Template: AAAITSMConfigItem
 msgid "Incident"
@@ -236,7 +229,7 @@ msgstr "鍵盤"
 
 #. Template: AAAITSMConfigItem
 msgid "LAN"
-msgstr ""
+msgstr "區域網路"
 
 #. Template: AAAITSMConfigItem
 msgid "Laptop"
@@ -296,27 +289,27 @@ msgstr "滑鼠"
 
 #. Template: AAAITSMConfigItem
 msgid "Network Adapter"
-msgstr "網絡卡"
+msgstr "網路卡"
 
 #. Template: AAAITSMConfigItem
 msgid "Network Adapter::IP Address"
-msgstr "網絡卡::IP地址"
+msgstr "網路卡::IP位址"
 
 #. Template: AAAITSMConfigItem
 msgid "Network Adapter::IP over DHCP"
-msgstr "網絡卡::從DHCP獲取IP"
+msgstr "網路卡::從DHCP取得IP"
 
 #. Template: AAAITSMConfigItem
 msgid "Network Address"
-msgstr "網絡地址"
+msgstr "網路位址"
 
 #. Template: AAAITSMConfigItem
 msgid "Network Address::Gateway"
-msgstr "網絡地址::網關"
+msgstr "網路位址::閘道"
 
 #. Template: AAAITSMConfigItem
 msgid "Network Address::Subnet Mask"
-msgstr "網絡地址::子網掩碼"
+msgstr "網路位址::子網路遮照"
 
 #. Template: AAAITSMConfigItem
 msgid "Open Source"
@@ -456,11 +449,11 @@ msgstr "單一許可"
 
 #. Template: AAAITSMConfigItem
 msgid "Subnet Mask"
-msgstr "子網掩碼"
+msgstr "子網路遮照"
 
 #. Template: AAAITSMConfigItem
 msgid "Switch"
-msgstr "交換機"
+msgstr "交換器"
 
 #. Template: AAAITSMConfigItem
 msgid "Telco"
@@ -500,11 +493,11 @@ msgstr "批量授權"
 
 #. Template: AAAITSMConfigItem
 msgid "WLAN"
-msgstr "無綫網絡"
+msgstr "無線網路"
 
 #. Template: AAAITSMConfigItem
 msgid "WLAN Access Point"
-msgstr "WLAN 無綫訪問點"
+msgstr "WLAN 無線基地台"
 
 #. Template: AAAITSMConfigItem
 msgid "Warranty Expiration Date"
@@ -528,11 +521,11 @@ msgstr "配置項"
 
 #. Template: AdminITSMConfigItem
 msgid "Class"
-msgstr "類"
+msgstr "類別"
 
 #. Template: AdminITSMConfigItem
 msgid "Definition"
-msgstr ""
+msgstr "定義"
 
 #. Template: AgentITSMConfigItemAdd
 msgid "Filter for Classes"
@@ -540,7 +533,7 @@ msgstr "過濾類"
 
 #. Template: AgentITSMConfigItemAdd
 msgid "Select a Class from the list to create a new Config Item."
-msgstr "先從列表中選擇類，然後創建新的配置項。"
+msgstr "先從列表中選擇類別，然後建立新的配置項。"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "ITSM ConfigItem Bulk Action"
@@ -564,6 +557,10 @@ msgstr ""
 
 #. Template: AgentITSMConfigItemBulk
 msgid "The number of another Configuration Item to link with."
+msgstr ""
+
+#. Template: AgentITSMConfigItemDelete
+msgid "Do you really want to delete this config item?"
 msgstr ""
 
 #. Template: AgentITSMConfigItemEdit
@@ -657,7 +654,7 @@ msgstr "版本故障狀態"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Version Deployment State"
-msgstr ""
+msgstr "版本部屬狀態"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Version Number"
@@ -689,6 +686,10 @@ msgstr "沒有結果!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "Config Item Search Results"
+msgstr "配置項目搜尋結果"
+
+#. SysConfig
+msgid "Admin."
 msgstr ""
 
 #. SysConfig
@@ -703,9 +704,29 @@ msgid "Config Items"
 msgstr "配置項"
 
 #. SysConfig
+msgid "Config item add."
+msgstr ""
+
+#. SysConfig
+msgid "Config item edit."
+msgstr ""
+
+#. SysConfig
 msgid ""
 "Config item event module that enables logging to history in the agent "
 "interface."
+msgstr ""
+
+#. SysConfig
+msgid "Config item history."
+msgstr ""
+
+#. SysConfig
+msgid "Config item print."
+msgstr ""
+
+#. SysConfig
+msgid "Config item zoom."
 msgstr ""
 
 #. SysConfig
@@ -714,6 +735,14 @@ msgstr ""
 
 #. SysConfig
 msgid "Configuration Item limit per page"
+msgstr "限制每頁設定的項目數"
+
+#. SysConfig
+msgid "Configuration Management Database."
+msgstr ""
+
+#. SysConfig
+msgid "Configuration item bulk module."
 msgstr ""
 
 #. SysConfig
@@ -726,7 +755,26 @@ msgstr "創建和管理配置項定義"
 
 #. SysConfig
 msgid ""
+"Define Actions where a settings button is available in the linked objects "
+"widget (LinkObject::ViewMode = \"complex\"). Please note that these Actions "
+"must have registered the following JS and CSS files: "
+"Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, "
+"Core.Agent.TableFilters.js and Core.Agent.LinkObject.js."
+msgstr ""
+
+#. SysConfig
+msgid "Define the group with permissions."
+msgstr ""
+
+#. SysConfig
+msgid ""
 "Defines Required permissions to create ITSM configuration items using the "
+"Generic Interface."
+msgstr ""
+
+#. SysConfig
+msgid ""
+"Defines Required permissions to delete ITSM configuration items using the "
 "Generic Interface."
 msgstr ""
 
@@ -768,6 +816,18 @@ msgstr ""
 msgid ""
 "Defines the number of rows for the CI definition editor in the admin "
 "interface."
+msgstr ""
+
+#. SysConfig
+msgid ""
+"Defines the order of incident states from high (e.g. cricital) to low (e.g. "
+"functional)."
+msgstr ""
+
+#. SysConfig
+msgid ""
+"Defines the relevant deployment states where linked tickets can affect the "
+"status of a CI."
 msgstr ""
 
 #. SysConfig
@@ -835,6 +895,36 @@ msgstr ""
 
 #. SysConfig
 msgid ""
+"Defines which type of link (named from the ticket perspective) can affect "
+"the status of a linked CI."
+msgstr ""
+
+#. SysConfig
+msgid "Defines which type of ticket can affect the status of a linked CI."
+msgstr ""
+
+#. SysConfig
+msgid "Deployment State Color"
+msgstr ""
+
+#. SysConfig
+msgid "Deployment State Color."
+msgstr ""
+
+#. SysConfig
+msgid "Deployment State Type."
+msgstr ""
+
+#. SysConfig
+msgid "Disabled"
+msgstr "禁用"
+
+#. SysConfig
+msgid "Enabled"
+msgstr "啟用"
+
+#. SysConfig
+msgid ""
 "Enables configuration item bulk action feature for the agent frontend to "
 "work on more than one configuration item at a time."
 msgstr ""
@@ -853,6 +943,14 @@ msgid ""
 msgstr ""
 
 #. SysConfig
+msgid "Event module to set configitem-status on ticket-configitem-link."
+msgstr ""
+
+#. SysConfig
+msgid "ITSM config item overview."
+msgstr ""
+
+#. SysConfig
 msgid "Module to check the group responsible for a class."
 msgstr ""
 
@@ -867,6 +965,10 @@ msgstr ""
 #. SysConfig
 msgid "Object backend module registration for the import/export module."
 msgstr ""
+
+#. SysConfig
+msgid "Overview."
+msgstr "概況"
 
 #. SysConfig
 msgid ""
@@ -933,11 +1035,25 @@ msgid ""
 msgstr ""
 
 #. SysConfig
+msgid "Required privileges to delete config items."
+msgstr ""
+
+#. SysConfig
+msgid "Search config items."
+msgstr ""
+
+#. SysConfig
 msgid ""
 "Selects the configuration item number generator module. \"AutoIncrement\" "
 "increments the configuration item number, the SystemID, the "
 "ConfigItemClassID and the counter are used. The format is "
 "\"SystemID.ConfigItemClassID.Counter\", e.g. 1205000004, 1205000005."
+msgstr ""
+
+#. SysConfig
+msgid ""
+"Set the incident state of a CI automatically when a Ticket is Linked to a "
+"CI."
 msgstr ""
 
 #. SysConfig
@@ -968,6 +1084,12 @@ msgstr ""
 msgid ""
 "Shows a link in the menu to access the history of a configuration item in "
 "the its zoom view of the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid ""
+"Shows a link in the menu to delete a configuration item in its zoom view of "
+"the agent interface."
 msgstr ""
 
 #. SysConfig
@@ -1015,4 +1137,12 @@ msgstr ""
 msgid ""
 "The identifier for a configuration item, e.g. ConfigItem#, MyConfigItem#. "
 "The default is ConfigItem#."
+msgstr ""
+
+#. SysConfig
+msgid "class"
+msgstr ""
+
+#. SysConfig
+msgid "global"
 msgstr ""

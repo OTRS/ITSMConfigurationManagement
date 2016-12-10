@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ITSMConfigurationManagement\n"
-"POT-Creation-Date: 2016-06-03 17:52+0000\n"
+"POT-Creation-Date: 2016-12-10 13:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -111,10 +111,6 @@ msgid "Client OS"
 msgstr ""
 
 #. Template: AAAITSMConfigItem
-msgid "Concurrent Users"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
 msgid "Config Item-Area"
 msgstr ""
 
@@ -212,10 +208,6 @@ msgstr ""
 
 #. Template: AAAITSMConfigItem
 msgid "IT Facility"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "Inactive"
 msgstr ""
 
 #. Template: AAAITSMConfigItem
@@ -562,6 +554,10 @@ msgstr ""
 msgid "The number of another Configuration Item to link with."
 msgstr ""
 
+#. Template: AgentITSMConfigItemDelete
+msgid "Do you really want to delete this config item?"
+msgstr ""
+
 #. Template: AgentITSMConfigItemEdit
 msgid "The name of this config item"
 msgstr ""
@@ -687,6 +683,10 @@ msgid "Config Item Search Results"
 msgstr ""
 
 #. SysConfig
+msgid "Admin."
+msgstr ""
+
+#. SysConfig
 msgid "Check for a unique name only within the same ConfigItem class ('class') or globally ('global'), which means every existing ConfigItem is taken into account when looking for duplicates."
 msgstr ""
 
@@ -695,7 +695,27 @@ msgid "Config Items"
 msgstr ""
 
 #. SysConfig
+msgid "Config item add."
+msgstr ""
+
+#. SysConfig
+msgid "Config item edit."
+msgstr ""
+
+#. SysConfig
 msgid "Config item event module that enables logging to history in the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid "Config item history."
+msgstr ""
+
+#. SysConfig
+msgid "Config item print."
+msgstr ""
+
+#. SysConfig
+msgid "Config item zoom."
 msgstr ""
 
 #. SysConfig
@@ -707,6 +727,14 @@ msgid "Configuration Item limit per page"
 msgstr ""
 
 #. SysConfig
+msgid "Configuration Management Database."
+msgstr ""
+
+#. SysConfig
+msgid "Configuration item bulk module."
+msgstr ""
+
+#. SysConfig
 msgid "Configuration item search backend router of the agent interface."
 msgstr ""
 
@@ -715,7 +743,19 @@ msgid "Create and manage the definitions for Configuration Items."
 msgstr ""
 
 #. SysConfig
+msgid "Define Actions where a settings button is available in the linked objects widget (LinkObject::ViewMode = \"complex\"). Please note that these Actions must have registered the following JS and CSS files: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js and Core.Agent.LinkObject.js."
+msgstr ""
+
+#. SysConfig
+msgid "Define the group with permissions."
+msgstr ""
+
+#. SysConfig
 msgid "Defines Required permissions to create ITSM configuration items using the Generic Interface."
+msgstr ""
+
+#. SysConfig
+msgid "Defines Required permissions to delete ITSM configuration items using the Generic Interface."
 msgstr ""
 
 #. SysConfig
@@ -747,6 +787,14 @@ msgid "Defines the number of rows for the CI definition editor in the admin inte
 msgstr ""
 
 #. SysConfig
+msgid "Defines the order of incident states from high (e.g. cricital) to low (e.g. functional)."
+msgstr ""
+
+#. SysConfig
+msgid "Defines the relevant deployment states where linked tickets can affect the status of a CI."
+msgstr ""
+
+#. SysConfig
 msgid "Defines the search limit for the AgentITSMConfigItem screen."
 msgstr ""
 
@@ -775,6 +823,34 @@ msgid "Defines the shown columns of CIs in the link table complex view, dependin
 msgstr ""
 
 #. SysConfig
+msgid "Defines which type of link (named from the ticket perspective) can affect the status of a linked CI."
+msgstr ""
+
+#. SysConfig
+msgid "Defines which type of ticket can affect the status of a linked CI."
+msgstr ""
+
+#. SysConfig
+msgid "Deployment State Color"
+msgstr ""
+
+#. SysConfig
+msgid "Deployment State Color."
+msgstr ""
+
+#. SysConfig
+msgid "Deployment State Type."
+msgstr ""
+
+#. SysConfig
+msgid "Disabled"
+msgstr ""
+
+#. SysConfig
+msgid "Enabled"
+msgstr ""
+
+#. SysConfig
 msgid "Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time."
 msgstr ""
 
@@ -784,6 +860,14 @@ msgstr ""
 
 #. SysConfig
 msgid "Enables/disables the functionality to check ConfigItems for unique names. Before enabling this option you should check your system for already existing config items with duplicate names. You can do this with the script bin/otrs.ITSMConfigItemListDuplicates.pl."
+msgstr ""
+
+#. SysConfig
+msgid "Event module to set configitem-status on ticket-configitem-link."
+msgstr ""
+
+#. SysConfig
+msgid "ITSM config item overview."
 msgstr ""
 
 #. SysConfig
@@ -800,6 +884,10 @@ msgstr ""
 
 #. SysConfig
 msgid "Object backend module registration for the import/export module."
+msgstr ""
+
+#. SysConfig
+msgid "Overview."
 msgstr ""
 
 #. SysConfig
@@ -847,7 +935,19 @@ msgid "Required permissions to use the print ITSM configuration item screen in t
 msgstr ""
 
 #. SysConfig
+msgid "Required privileges to delete config items."
+msgstr ""
+
+#. SysConfig
+msgid "Search config items."
+msgstr ""
+
+#. SysConfig
 msgid "Selects the configuration item number generator module. \"AutoIncrement\" increments the configuration item number, the SystemID, the ConfigItemClassID and the counter are used. The format is \"SystemID.ConfigItemClassID.Counter\", e.g. 1205000004, 1205000005."
+msgstr ""
+
+#. SysConfig
+msgid "Set the incident state of a CI automatically when a Ticket is Linked to a CI."
 msgstr ""
 
 #. SysConfig
@@ -868,6 +968,10 @@ msgstr ""
 
 #. SysConfig
 msgid "Shows a link in the menu to access the history of a configuration item in the its zoom view of the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid "Shows a link in the menu to delete a configuration item in its zoom view of the agent interface."
 msgstr ""
 
 #. SysConfig
@@ -900,5 +1004,13 @@ msgstr ""
 
 #. SysConfig
 msgid "The identifier for a configuration item, e.g. ConfigItem#, MyConfigItem#. The default is ConfigItem#."
+msgstr ""
+
+#. SysConfig
+msgid "class"
+msgstr ""
+
+#. SysConfig
+msgid "global"
 msgstr ""
 
