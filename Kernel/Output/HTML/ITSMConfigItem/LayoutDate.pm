@@ -323,11 +323,11 @@ sub SearchInputCreate {
 
     my $Checkbox = qq{<input type="hidden" name="$Key" value="1"/>};
     if ( $Param{Optional} ) {
-       $Checkbox = qq{<input type="checkbox" name="$Key" value="1"/>};
+        $Checkbox = qq{<input type="checkbox" name="$Key" value="1"/>};
     }
 
-    my $Between  = $LayoutObject->{LanguageObject}->Translate('Between');
-    my $And      = $LayoutObject->{LanguageObject}->Translate('and');
+    my $Between = $LayoutObject->{LanguageObject}->Translate('Between');
+    my $And     = $LayoutObject->{LanguageObject}->Translate('and');
 
     return "<div> $Checkbox $Between $TimeStartSelectionString </div>"
         . "<span style=\"margin-left: 27px;\">$And</span> $TimeStopSelectionString";
