@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 # --
-# Copyright (C) 2001-2016 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2017 OTRS AG, http://otrs.com/
 # --
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU AFFERO General Public License as published by
@@ -42,7 +42,7 @@ local $Kernel::OM = Kernel::System::ObjectManager->new(
 print "\n";
 print "otrs.ITSMConfigItemListDuplicates.pl\n";
 print "List ConfigItems which have a non-unique name.\n";
-print "Copyright (C) 2001-2016 OTRS AG, http://otrs.com/\n\n";
+print "Copyright (C) 2001-2017 OTRS AG, http://otrs.com/\n\n";
 
 my $Help      = '';
 my $Class     = '';
