@@ -55,7 +55,7 @@ $Selenium->RunTest(
             );
             $Self->True(
                 $ConfigItemNumber,
-                "ConfigItem number is created - $ConfigItemNumber"
+                "ConfigItem number is created - $ConfigItemNumber",
             );
             push @ConfigItemNumbers, $ConfigItemNumber;
 
@@ -165,8 +165,10 @@ $Selenium->RunTest(
             );
         }
 
+        # sleep 1;
+
         # click on history and change window
-        $Selenium->find_element("//*[text()='History']")->click();
+        $Selenium->find_element( "#Menu200-History", 'css' )->click();
         $Selenium->WaitFor( WindowCount => 2 );
         $Handles = $Selenium->get_window_handles();
         $Selenium->switch_to_window( $Handles->[1] );
