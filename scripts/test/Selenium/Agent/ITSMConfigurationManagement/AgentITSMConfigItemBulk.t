@@ -156,6 +156,8 @@ $Selenium->RunTest(
         # click on first created test ConfigItems to enter zoom view
         $Selenium->find_element( "#ConfigItemID_$ConfigItemIDs[1]", 'css' )->VerifiedClick();
 
+        sleep 1;
+
         # check for other two created test ConfigItems
         # verify that link action in bulk screen was success
         for my $CheckConfigItem (@ConfigItemNumbers) {
@@ -164,8 +166,6 @@ $Selenium->RunTest(
                 "Test ConfigItem number $CheckConfigItem - found",
             );
         }
-
-        # sleep 1;
 
         # click on history and change window
         $Selenium->find_element( "#Menu200-History", 'css' )->click();
