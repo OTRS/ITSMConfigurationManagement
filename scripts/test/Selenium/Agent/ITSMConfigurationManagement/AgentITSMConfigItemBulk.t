@@ -153,6 +153,13 @@ $Selenium->RunTest(
         $Selenium->WaitFor( WindowCount => 1 );
         $Selenium->switch_to_window( $Handles->[0] );
 
+        # Wait for reload to kick in.
+        sleep 1;
+        $Selenium->WaitFor(
+            JavaScript =>
+                'return typeof(Core) == "object" && typeof(Core.App) == "object" && Core.App.PageLoadComplete'
+        );
+
         # click on first created test ConfigItems to enter zoom view
         $Selenium->find_element( "#ConfigItemID_$ConfigItemIDs[1]", 'css' )->VerifiedClick();
 
