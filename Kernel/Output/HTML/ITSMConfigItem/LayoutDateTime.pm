@@ -14,7 +14,8 @@ use warnings;
 our @ObjectDependencies = (
     'Kernel::System::Log',
     'Kernel::Output::HTML::Layout',
-    'Kernel::System::Web::Request'
+    'Kernel::System::Web::Request',
+    'Kernel::System::Time',
 );
 
 =head1 NAME
@@ -121,6 +122,19 @@ sub FormDataGet {
         $Param{Item}->{Form}->{ $Param{Key} }->{Invalid} = 1;
     }
 
+    # Sanity check of the assembled timestamp
+    if ( $FormData{Value} ) {
+
+        my $SystemTime = $Kernel::OM->Get('Kernel::System::Time')->TimeStamp2SystemTime(
+            String => $FormData{Value} . ':00',
+        );
+
+        if ( !$SystemTime ) {
+            $FormData{Invalid} = 1;
+            $Param{Item}->{Form}->{ $Param{Key} }->{Invalid} = 1;
+        }
+    }
+
     return \%FormData;
 }
 
@@ -150,7 +164,10 @@ sub InputCreate {
         }
     }
 
+    my $Invalid  = $Param{Invalid};
+
     my %Values;
+    my $Class;
     if ( $Param{Value} || $Param{Item}->{Input}->{ValueDefault} ) {
         my $Value = $Param{Value} || $Param{Item}->{Input}->{ValueDefault};
 
@@ -160,6 +177,10 @@ sub InputCreate {
             $Values{ $Param{Key} . '::Day' }    = $3;
             $Values{ $Param{Key} . '::Hour' }   = $4;
             $Values{ $Param{Key} . '::Minute' } = $5;
+
+            if ($Invalid) {
+                $Class = 'ServerError';
+            }
         }
     }
 
@@ -169,6 +190,8 @@ sub InputCreate {
         YearPeriodPast   => $Param{Item}->{Input}->{YearPeriodPast} || 10,
         YearPeriodFuture => $Param{Item}->{Input}->{YearPeriodFuture} || 10,
         %Values,
+        $Param{Key} . '::' . 'Class' => $Class,
+        Validate         => 1,
     );
 
     return $String;
