@@ -164,7 +164,7 @@ sub InputCreate {
         }
     }
 
-    my $Invalid  = $Param{Invalid};
+    my $Invalid = $Param{Invalid};
 
     my %Values;
     my $Class;
@@ -191,7 +191,7 @@ sub InputCreate {
         YearPeriodFuture => $Param{Item}->{Input}->{YearPeriodFuture} || 10,
         %Values,
         $Param{Key} . '::' . 'Class' => $Class,
-        Validate         => 1,
+        Validate                     => 1,
     );
 
     return $String;
