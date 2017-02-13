@@ -8,7 +8,7 @@
 
 [% RenderBlockStart("StartNormal") %]
 <div class="MainBox ARIARoleMain LayoutFixedSidebar SidebarLast">
-    <h1>[% Translate("Edit") | html %]: [% Translate("Config Item") | html %]: [% Translate(Data.Number) | html %] - [% Translate("Class") | html %]: [% Data.Class | html %]</h1>
+    <h1>[% Translate("Edit") | html %]: [% Translate("Config Item") | html %]: [% Translate(Data.Number) | html %] - [% Translate("Class") | html %]: [% Translate(Data.Class) | html %]</h1>
     <div class="ContentColumn">
 [% RenderBlockEnd("StartNormal") %]
 [% InsertTemplate("AgentITSMCustomerSearch.tt") %]
@@ -16,7 +16,7 @@
 [% RenderBlockStart("StartSmall") %]
             <div class="LayoutPopup ARIARoleMain">
                 <div class="Header">
-                    <h1>[% Translate("Edit") | html %]: [% Translate("Config Item") | html %]: [% Translate(Data.Number) | html %] - [% Translate("Class") | html %]: [% Data.Class | html %]</h1>
+                    <h1>[% Translate("Edit") | html %]: [% Translate("Config Item") | html %]: [% Translate(Data.Number) | html %] - [% Translate("Class") | html %]: [% Translate(Data.Class) | html %]</h1>
                     <p>
                         <a class="CancelClosePopup" href="#">[% Translate("Cancel & close") | html %]</a>
                     </p>
