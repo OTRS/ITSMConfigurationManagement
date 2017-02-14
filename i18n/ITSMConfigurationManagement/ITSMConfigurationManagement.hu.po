@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2016-12-10 13:28+0000\n"
-"PO-Revision-Date: 2016-12-10 12:28+0000\n"
+"POT-Creation-Date: 2017-02-14 17:08+0000\n"
+"PO-Revision-Date: 2017-02-14 16:09+0000\n"
 "Last-Translator: Udo Bretz\n"
 "Language-Team: Hungarian (http://www.transifex.com/otrs/OTRS/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -13,6 +13,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: hu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Template: AAAITSMConfigItem
+msgid "Computer"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "Hardware"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "Network"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "Software"
+msgstr ""
 
 #. Template: AAAITSMConfigItem
 msgid "Address"
@@ -560,7 +576,7 @@ msgstr "Egy másik konfigurációelem száma, amellyel össze kell kötni."
 
 #. Template: AgentITSMConfigItemDelete
 msgid "Do you really want to delete this config item?"
-msgstr ""
+msgstr "Valóban törölni szeretné ezt a konfigurációelemet?"
 
 #. Template: AgentITSMConfigItemEdit
 msgid "The name of this config item"
@@ -696,7 +712,7 @@ msgid ""
 "Check for a unique name only within the same ConfigItem class ('class') or "
 "globally ('global'), which means every existing ConfigItem is taken into "
 "account when looking for duplicates."
-msgstr "Egyedi név ellenőrzése kizárólag ugyanabban a konfigurációelem osztályban („class”) vagy globálisan („global”), amely azt jelenti, hogy minden meglévő konfigurációelem egy fiókba lesz felvéve a kettőzések keresésekor."
+msgstr "Egyedi név ellenőrzése kizárólag ugyanabban a konfigurációelem osztályban („osztály”) vagy globálisan („globális”), amely azt jelenti, hogy minden meglévő konfigurációelem egy fiókba lesz felvéve a kettőzések keresésekor."
 
 #. SysConfig
 msgid "Config Items"
@@ -704,11 +720,11 @@ msgstr "Konfigurációelemek"
 
 #. SysConfig
 msgid "Config item add."
-msgstr ""
+msgstr "Konfigurációelem hozzáadása."
 
 #. SysConfig
 msgid "Config item edit."
-msgstr ""
+msgstr "Konfigurációelem szerkesztése."
 
 #. SysConfig
 msgid ""
@@ -718,15 +734,15 @@ msgstr "Konfigurációelem esemény modul, amely engedélyezi a naplózást az e
 
 #. SysConfig
 msgid "Config item history."
-msgstr ""
+msgstr "Konfigurációelem előzményei."
 
 #. SysConfig
 msgid "Config item print."
-msgstr ""
+msgstr "Konfigurációelem nyomtatása."
 
 #. SysConfig
 msgid "Config item zoom."
-msgstr ""
+msgstr "Konfigurációelem nagyítása."
 
 #. SysConfig
 msgid "Configuration Item Limit"
@@ -738,11 +754,11 @@ msgstr "Konfigurációelem-korlát oldalanként"
 
 #. SysConfig
 msgid "Configuration Management Database."
-msgstr ""
+msgstr "Konfigurációmenedzsment-adatbázis."
 
 #. SysConfig
 msgid "Configuration item bulk module."
-msgstr ""
+msgstr "Konfigurációelem tömeges modul."
 
 #. SysConfig
 msgid "Configuration item search backend router of the agent interface."
@@ -763,7 +779,7 @@ msgstr "Műveletek meghatározása, ahol egy beállítások gomb érhető el a k
 
 #. SysConfig
 msgid "Define the group with permissions."
-msgstr ""
+msgstr "A jogosultságokkal rendelkező csoport meghatározása."
 
 #. SysConfig
 msgid ""
@@ -775,7 +791,7 @@ msgstr "Meghatározza a szükséges jogosultságokat az ITSM konfigurációeleme
 msgid ""
 "Defines Required permissions to delete ITSM configuration items using the "
 "Generic Interface."
-msgstr ""
+msgstr "Meghatározza a szükséges jogosultságokat az ITSM konfigurációelemek törléséhez az általános felület használatával."
 
 #. SysConfig
 msgid ""
@@ -821,13 +837,13 @@ msgstr "Meghatározza a CI meghatározás-szerkesztő sorainak számát az admin
 msgid ""
 "Defines the order of incident states from high (e.g. cricital) to low (e.g. "
 "functional)."
-msgstr ""
+msgstr "Meghatározza az incidensállapotok sorrendjét a legmagasabbtól (például kritikus) a legalacsonyabbig (például funkcionális)."
 
 #. SysConfig
 msgid ""
 "Defines the relevant deployment states where linked tickets can affect the "
 "status of a CI."
-msgstr ""
+msgstr "Meghatározza a kapcsolódó üzembe állítási állapotokat, ahol a kapcsolt jegyek befolyásolhatják egy konfigurációelem állapotát."
 
 #. SysConfig
 msgid "Defines the search limit for the AgentITSMConfigItem screen."
@@ -896,23 +912,23 @@ msgstr "Meghatározza a CI-k megjelenített oszlopait a kapcsolati tábla komple
 msgid ""
 "Defines which type of link (named from the ticket perspective) can affect "
 "the status of a linked CI."
-msgstr ""
+msgstr "Meghatározza, hogy mely kapcsolattípusok (a jegy nézőpontjából elnevezve) befolyásolhatják egy kapcsolt konfigurációelem állapotát."
 
 #. SysConfig
 msgid "Defines which type of ticket can affect the status of a linked CI."
-msgstr ""
+msgstr "Meghatározza, hogy mely jegytípus befolyásolhatja egy kapcsolt konfigurációelem állapotát."
 
 #. SysConfig
 msgid "Deployment State Color"
-msgstr ""
+msgstr "Üzembe állítási állapot színe"
 
 #. SysConfig
 msgid "Deployment State Color."
-msgstr ""
+msgstr "Üzembe állítási állapot színe."
 
 #. SysConfig
 msgid "Deployment State Type."
-msgstr ""
+msgstr "Üzembe állítási állapottípus."
 
 #. SysConfig
 msgid "Disabled"
@@ -943,11 +959,11 @@ msgstr "Engedélyezi vagy letiltja azt a funkcionalitást, amely a konfiguráci�
 
 #. SysConfig
 msgid "Event module to set configitem-status on ticket-configitem-link."
-msgstr ""
+msgstr "Eseménymodul a konfigurációelem állapotának beállításához egy jegy konfigurációelem hivatkozásán."
 
 #. SysConfig
 msgid "ITSM config item overview."
-msgstr ""
+msgstr "ITSM konfigurációelem áttekintés."
 
 #. SysConfig
 msgid "Module to check the group responsible for a class."
@@ -1035,11 +1051,11 @@ msgstr "A szükséges jogosultságok az ITSM konfigurációelem nyomtatása kép
 
 #. SysConfig
 msgid "Required privileges to delete config items."
-msgstr ""
+msgstr "A szükséges jogosultságok a konfigurációelemek törléséhez."
 
 #. SysConfig
 msgid "Search config items."
-msgstr ""
+msgstr "Konfigurációelemek keresése."
 
 #. SysConfig
 msgid ""
@@ -1053,7 +1069,7 @@ msgstr "Kiválasztja a konfigurációelem számelőállító modulját. Az „Au
 msgid ""
 "Set the incident state of a CI automatically when a Ticket is Linked to a "
 "CI."
-msgstr ""
+msgstr "Egy konfigurációelem incidensállapotának automatikus beállítása, amikor egy jegyet kapcsolnak egy konfigurációelemhez."
 
 #. SysConfig
 msgid ""
@@ -1089,7 +1105,7 @@ msgstr "Egy hivatkozást jelenít meg a menüben egy konfigurációelem előzmé
 msgid ""
 "Shows a link in the menu to delete a configuration item in its zoom view of "
 "the agent interface."
-msgstr ""
+msgstr "Egy hivatkozást jelenít meg a menüben egy konfigurációelem törléséhez az ügyintézői felületen az elem nagyítási nézetében."
 
 #. SysConfig
 msgid ""
@@ -1140,8 +1156,8 @@ msgstr "Egy konfigurációelem azonosítója, például: ConfigItem#, MyConfigIt
 
 #. SysConfig
 msgid "class"
-msgstr ""
+msgstr "osztály"
 
 #. SysConfig
 msgid "global"
-msgstr ""
+msgstr "globális"

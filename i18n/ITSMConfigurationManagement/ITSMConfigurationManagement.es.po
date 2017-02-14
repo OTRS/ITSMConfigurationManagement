@@ -1,13 +1,14 @@
 # 
 # Translators:
+# David B <link.bigpoint@outlook.com>, 2017
 # Deiry Arias <mailimarias@gmail.com>, 2015
 # Duilio Poggi Oneto <duiliopoggio@gmail.com>, 2015
 # Udo Bretz, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2016-12-10 13:28+0000\n"
-"PO-Revision-Date: 2016-12-10 12:28+0000\n"
+"POT-Creation-Date: 2017-02-14 17:08+0000\n"
+"PO-Revision-Date: 2017-02-14 16:09+0000\n"
 "Last-Translator: Udo Bretz\n"
 "Language-Team: Spanish (http://www.transifex.com/otrs/OTRS/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -15,6 +16,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Template: AAAITSMConfigItem
+msgid "Computer"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "Hardware"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "Network"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "Software"
+msgstr ""
 
 #. Template: AAAITSMConfigItem
 msgid "Address"
@@ -114,7 +131,7 @@ msgstr "Aplicación Cliente"
 
 #. Template: AAAITSMConfigItem
 msgid "Client OS"
-msgstr "SO Cliente"
+msgstr "Sistema Operativo del Cliente"
 
 #. Template: AAAITSMConfigItem
 msgid "Config Item-Area"
@@ -130,7 +147,7 @@ msgstr "Elementos de Configuración mostrados"
 
 #. Template: AAAITSMConfigItem
 msgid "CMDB"
-msgstr ""
+msgstr "CMDB"
 
 #. Template: AAAITSMConfigItem
 msgid "Demo"
@@ -146,7 +163,7 @@ msgstr "Licencia de Desarrollador"
 
 #. Template: AAAITSMConfigItem
 msgid "Docking Station"
-msgstr "Docking Station"
+msgstr "Estación de acoplamiento"
 
 #. Template: AAAITSMConfigItem
 msgid "Duplicate"
@@ -234,7 +251,7 @@ msgstr "LAN"
 
 #. Template: AAAITSMConfigItem
 msgid "Laptop"
-msgstr "Computadora portátil"
+msgstr "Ordenador portátil"
 
 #. Template: AAAITSMConfigItem
 msgid "Last Change"
@@ -246,11 +263,11 @@ msgstr "Clave de Licencia"
 
 #. Template: AAAITSMConfigItem
 msgid "Licence Key::Expiration Date"
-msgstr "Clave de Licencia::Fecha de Expiración"
+msgstr "Clave de Licencia:: Fecha de Expiración"
 
 #. Template: AAAITSMConfigItem
 msgid "Licence Key::Quantity"
-msgstr "Clave de Licencia::Cantidad"
+msgstr "Clave de Licencia:: Cantidad"
 
 #. Template: AAAITSMConfigItem
 msgid "Licence Type"
@@ -286,7 +303,7 @@ msgstr "Monitor"
 
 #. Template: AAAITSMConfigItem
 msgid "Mouse"
-msgstr "Mouse"
+msgstr "Ratón"
 
 #. Template: AAAITSMConfigItem
 msgid "Network Adapter"
@@ -294,11 +311,11 @@ msgstr "Adaptador de Red"
 
 #. Template: AAAITSMConfigItem
 msgid "Network Adapter::IP Address"
-msgstr "Adaptador de Red::Dirección IP"
+msgstr "Adaptador de Red:: Dirección IP"
 
 #. Template: AAAITSMConfigItem
 msgid "Network Adapter::IP over DHCP"
-msgstr "Adaptador de Red::IP Sobre DHCP"
+msgstr "Adaptador de Red:: IP Sobre DHCP"
 
 #. Template: AAAITSMConfigItem
 msgid "Network Address"
@@ -306,11 +323,11 @@ msgstr "Dirección de Red"
 
 #. Template: AAAITSMConfigItem
 msgid "Network Address::Gateway"
-msgstr "Dirección de Red::Puerta de enlace"
+msgstr "Dirección de Red:: Puerta de enlace"
 
 #. Template: AAAITSMConfigItem
 msgid "Network Address::Subnet Mask"
-msgstr "Dirección de Red::Máscara de Subred"
+msgstr "Dirección de Red:: Máscara de Subred"
 
 #. Template: AAAITSMConfigItem
 msgid "Open Source"
@@ -406,7 +423,7 @@ msgstr "Revisado"
 
 #. Template: AAAITSMConfigItem
 msgid "Room"
-msgstr "Cuarto"
+msgstr "Habitación"
 
 #. Template: AAAITSMConfigItem
 msgid "Router"
@@ -438,11 +455,11 @@ msgstr "Aplicación Servidor"
 
 #. Template: AAAITSMConfigItem
 msgid "Server OS"
-msgstr "SO Servidor"
+msgstr "Sistema operativo del Servidor"
 
 #. Template: AAAITSMConfigItem
 msgid "Show Versions"
-msgstr "Mostrar Versiones"
+msgstr "Mostrar versiones"
 
 #. Template: AAAITSMConfigItem
 msgid "Single Licence"
@@ -462,7 +479,7 @@ msgstr "Conferencia telefónica"
 
 #. Template: AAAITSMConfigItem
 msgid "Test/QA"
-msgstr "Pruebas"
+msgstr "Prueba / Control de calidad"
 
 #. Template: AAAITSMConfigItem
 msgid "The deployment state of this config item"
@@ -554,7 +571,7 @@ msgstr "Enlazar con otro"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Invalid Configuration Item number!"
-msgstr "Número de Ítem de Configuración inválido"
+msgstr "¡Número de Ítem de Configuración no valido!"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "The number of another Configuration Item to link with."
@@ -562,7 +579,7 @@ msgstr ""
 
 #. Template: AgentITSMConfigItemDelete
 msgid "Do you really want to delete this config item?"
-msgstr ""
+msgstr "¿Realmente desea eliminar este elemento de configuración?"
 
 #. Template: AgentITSMConfigItemEdit
 msgid "The name of this config item"
@@ -571,7 +588,7 @@ msgstr "El nombre de este elemento de configuración"
 #. Template: AgentITSMConfigItemEdit
 msgid ""
 "Name is already in use by the ConfigItems with the following Number(s): %s"
-msgstr "El nombre ya esta en uso por Ítems de Configuración con los siguientes número (s): %s"
+msgstr "El nombre ya esta en uso por Ítems de Configuración con los siguientes número(s): %s"
 
 #. Template: AgentITSMConfigItemEdit
 msgid "Deployment State"
@@ -615,7 +632,7 @@ msgstr "Crear nueva plantilla"
 
 #. Template: AgentITSMConfigItemSearch
 msgid "Run Search"
-msgstr ""
+msgstr "Ejecutar la búsqueda"
 
 #. Template: AgentITSMConfigItemSearch
 msgid "Also search in previous versions?"
@@ -643,11 +660,11 @@ msgstr "Ok"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Show one version"
-msgstr ""
+msgstr "Mostrar una versión"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Show all versions"
-msgstr ""
+msgstr "Mostrar todas las versiones"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Version Incident State"
@@ -659,7 +676,7 @@ msgstr ""
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Version Number"
-msgstr ""
+msgstr "Número de versión"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Configuration Item Version Details"
@@ -667,7 +684,7 @@ msgstr ""
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Property"
-msgstr ""
+msgstr "Propiedad"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
 msgid "ITSM ConfigItem"
@@ -683,7 +700,7 @@ msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "No Result!"
-msgstr "Sin Resultados!"
+msgstr "¡Sin resultados!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "Config Item Search Results"
@@ -752,7 +769,7 @@ msgstr "Router backend de búsqueda de elementos de configuración de la interfa
 
 #. SysConfig
 msgid "Create and manage the definitions for Configuration Items."
-msgstr ""
+msgstr "Crea y gestiona las definiciones de los elementos de configuración."
 
 #. SysConfig
 msgid ""
@@ -761,11 +778,11 @@ msgid ""
 "must have registered the following JS and CSS files: "
 "Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, "
 "Core.Agent.TableFilters.js and Core.Agent.LinkObject.js."
-msgstr ""
+msgstr "Definir acciones donde está disponible un botón de configuración en el widget de objetos vinculados (LinkObject::ViewMode = \"complex\"). Tenga en cuenta que estas acciones deben haber registrado los siguientes archivos JS y CSS: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js y Core.Agent.LinkObject.js."
 
 #. SysConfig
 msgid "Define the group with permissions."
-msgstr ""
+msgstr "Definir el grupo con permisos."
 
 #. SysConfig
 msgid ""
@@ -918,11 +935,11 @@ msgstr ""
 
 #. SysConfig
 msgid "Disabled"
-msgstr ""
+msgstr "Deshabilitado"
 
 #. SysConfig
 msgid "Enabled"
-msgstr ""
+msgstr "Habilitado"
 
 #. SysConfig
 msgid ""
@@ -969,7 +986,7 @@ msgstr "Registro del módulo de objeto backend para el módulo de importación/e
 
 #. SysConfig
 msgid "Overview."
-msgstr ""
+msgstr "Vista general."
 
 #. SysConfig
 msgid ""
@@ -1142,8 +1159,8 @@ msgstr ""
 
 #. SysConfig
 msgid "class"
-msgstr ""
+msgstr "clase"
 
 #. SysConfig
 msgid "global"
-msgstr ""
+msgstr "global"

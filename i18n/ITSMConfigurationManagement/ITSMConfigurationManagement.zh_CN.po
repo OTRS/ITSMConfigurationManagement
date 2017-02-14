@@ -3,12 +3,13 @@
 # Udo Bretz, 2015
 # Udo Bretz, 2015
 # 张梦 <adoeh@sina.com>, 2014
+# 汇民 王 <whuim@163.com>, 2017
 # 陈德文 <sggggy@gmail.com>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2016-12-10 13:28+0000\n"
-"PO-Revision-Date: 2016-12-10 12:28+0000\n"
+"POT-Creation-Date: 2017-02-14 17:08+0000\n"
+"PO-Revision-Date: 2017-02-14 16:09+0000\n"
 "Last-Translator: Udo Bretz\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otrs/OTRS/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +17,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#. Template: AAAITSMConfigItem
+msgid "Computer"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "Hardware"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "Network"
+msgstr "网络"
+
+#. Template: AAAITSMConfigItem
+msgid "Software"
+msgstr ""
 
 #. Template: AAAITSMConfigItem
 msgid "Address"
@@ -563,7 +580,7 @@ msgstr "将要链接的另外一个配置项编号。"
 
 #. Template: AgentITSMConfigItemDelete
 msgid "Do you really want to delete this config item?"
-msgstr ""
+msgstr "你真的想要删除这个配置项吗?"
 
 #. Template: AgentITSMConfigItemEdit
 msgid "The name of this config item"
@@ -707,11 +724,11 @@ msgstr "配置项"
 
 #. SysConfig
 msgid "Config item add."
-msgstr ""
+msgstr "添加配置项。"
 
 #. SysConfig
 msgid "Config item edit."
-msgstr ""
+msgstr "编辑配置项。"
 
 #. SysConfig
 msgid ""
@@ -721,15 +738,15 @@ msgstr "服务人员界面用于记录配置项事件到历史的模块。"
 
 #. SysConfig
 msgid "Config item history."
-msgstr ""
+msgstr "配置项历史。"
 
 #. SysConfig
 msgid "Config item print."
-msgstr ""
+msgstr "打印配置项。"
 
 #. SysConfig
 msgid "Config item zoom."
-msgstr ""
+msgstr "配置项详情。"
 
 #. SysConfig
 msgid "Configuration Item Limit"
@@ -741,11 +758,11 @@ msgstr "每页配置项限制"
 
 #. SysConfig
 msgid "Configuration Management Database."
-msgstr ""
+msgstr "配置管理数据库。"
 
 #. SysConfig
 msgid "Configuration item bulk module."
-msgstr ""
+msgstr "配置项批处理模块。"
 
 #. SysConfig
 msgid "Configuration item search backend router of the agent interface."
@@ -766,7 +783,7 @@ msgstr "定义链接对象小部件(LinkObject::ViewMode = \\\"complex\\\")设�
 
 #. SysConfig
 msgid "Define the group with permissions."
-msgstr ""
+msgstr "定义有权限的组。"
 
 #. SysConfig
 msgid ""
@@ -778,7 +795,7 @@ msgstr "定义使用通用接口创建ITSM配置项所需的权限。"
 msgid ""
 "Defines Required permissions to delete ITSM configuration items using the "
 "Generic Interface."
-msgstr ""
+msgstr "定义使用通用接口删除ITSM配置项所需的权限。"
 
 #. SysConfig
 msgid ""
@@ -824,7 +841,7 @@ msgstr "定义在系统管理面板中修改配置项定义的编辑器的行数
 msgid ""
 "Defines the order of incident states from high (e.g. cricital) to low (e.g. "
 "functional)."
-msgstr ""
+msgstr "定义故障状态从高（如紧急）到低（如正常）的顺序。"
 
 #. SysConfig
 msgid ""

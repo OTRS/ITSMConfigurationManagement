@@ -16,6 +16,10 @@ sub Data {
     my $Self = shift;
 
     # Template: AAAITSMConfigItem
+    $Self->{Translation}->{'Computer'} = '';
+    $Self->{Translation}->{'Hardware'} = '';
+    $Self->{Translation}->{'Network'} = 'ネットワーク';
+    $Self->{Translation}->{'Software'} = '';
     $Self->{Translation}->{'Address'} = 'アドレス';
     $Self->{Translation}->{'Admin Tool'} = '管理ツール';
     $Self->{Translation}->{'Backup Device'} = 'バックアップ・デバイス';
@@ -215,7 +219,7 @@ sub Data {
     $Self->{Translation}->{'Config Item Search Results'} = '';
 
     # SysConfig
-    $Self->{Translation}->{'Admin.'} = '';
+    $Self->{Translation}->{'Admin.'} = '管理';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         '';
     $Self->{Translation}->{'Config Items'} = '構成アイテム';
@@ -296,7 +300,7 @@ sub Data {
     $Self->{Translation}->{'Module to generate ITSM config item statistics.'} = 'ITSM構成タイテム統計を生成するためのモジュール';
     $Self->{Translation}->{'Object backend module registration for the import/export module.'} =
         '';
-    $Self->{Translation}->{'Overview.'} = '';
+    $Self->{Translation}->{'Overview.'} = '概要';
     $Self->{Translation}->{'Parameters for the deployment states color in the preferences view of the agent interface.'} =
         '';
     $Self->{Translation}->{'Parameters for the deployment states in the preferences view of the agent interface.'} =

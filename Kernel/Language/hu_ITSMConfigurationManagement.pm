@@ -16,6 +16,10 @@ sub Data {
     my $Self = shift;
 
     # Template: AAAITSMConfigItem
+    $Self->{Translation}->{'Computer'} = '';
+    $Self->{Translation}->{'Hardware'} = '';
+    $Self->{Translation}->{'Network'} = '';
+    $Self->{Translation}->{'Software'} = '';
     $Self->{Translation}->{'Address'} = 'Cím';
     $Self->{Translation}->{'Admin Tool'} = 'Adminisztrációs eszköz';
     $Self->{Translation}->{'Backup Device'} = 'Biztonsági mentés eszköz';
@@ -128,8 +132,8 @@ sub Data {
     $Self->{Translation}->{'Switch'} = 'Kapcsoló';
     $Self->{Translation}->{'Telco'} = 'Telco';
     $Self->{Translation}->{'Test/QA'} = 'Teszt/QA';
-    $Self->{Translation}->{'The deployment state of this config item'} = 'Ezen konfigurációelem üzembe állítási állapota';
-    $Self->{Translation}->{'The incident state of this config item'} = 'Ezen konfigurációelem incidensállapota';
+    $Self->{Translation}->{'The deployment state of this config item'} = 'A konfigurációelem üzembe állítási állapota';
+    $Self->{Translation}->{'The incident state of this config item'} = 'A konfigurációelem incidensállapota';
     $Self->{Translation}->{'Time Restricted'} = 'Időben korlátozott';
     $Self->{Translation}->{'USB Device'} = 'USB eszköz';
     $Self->{Translation}->{'Unlimited'} = 'Korlátlan';
@@ -160,10 +164,10 @@ sub Data {
     $Self->{Translation}->{'The number of another Configuration Item to link with.'} = 'Egy másik konfigurációelem száma, amellyel össze kell kötni.';
 
     # Template: AgentITSMConfigItemDelete
-    $Self->{Translation}->{'Do you really want to delete this config item?'} = '';
+    $Self->{Translation}->{'Do you really want to delete this config item?'} = 'Valóban törölni szeretné ezt a konfigurációelemet?';
 
     # Template: AgentITSMConfigItemEdit
-    $Self->{Translation}->{'The name of this config item'} = 'Ezen konfigurációelem neve';
+    $Self->{Translation}->{'The name of this config item'} = 'A konfigurációelem neve';
     $Self->{Translation}->{'Name is already in use by the ConfigItems with the following Number(s): %s'} =
         'A nevet már használják a konfigurációelemek a következő számokkal: %s';
     $Self->{Translation}->{'Deployment State'} = 'Üzembe állítási állapot';
@@ -215,31 +219,31 @@ sub Data {
     $Self->{Translation}->{'Config Item Search Results'} = 'Konfigurációelem keresési eredmények';
 
     # SysConfig
-    $Self->{Translation}->{'Admin.'} = '';
+    $Self->{Translation}->{'Admin.'} = 'Adminisztráció.';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
-        'Egyedi név ellenőrzése kizárólag ugyanabban a konfigurációelem osztályban („class”) vagy globálisan („global”), amely azt jelenti, hogy minden meglévő konfigurációelem egy fiókba lesz felvéve a kettőzések keresésekor.';
+        'Egyedi név ellenőrzése kizárólag ugyanabban a konfigurációelem osztályban („osztály”) vagy globálisan („globális”), amely azt jelenti, hogy minden meglévő konfigurációelem egy fiókba lesz felvéve a kettőzések keresésekor.';
     $Self->{Translation}->{'Config Items'} = 'Konfigurációelemek';
-    $Self->{Translation}->{'Config item add.'} = '';
-    $Self->{Translation}->{'Config item edit.'} = '';
+    $Self->{Translation}->{'Config item add.'} = 'Konfigurációelem hozzáadása.';
+    $Self->{Translation}->{'Config item edit.'} = 'Konfigurációelem szerkesztése.';
     $Self->{Translation}->{'Config item event module that enables logging to history in the agent interface.'} =
         'Konfigurációelem esemény modul, amely engedélyezi a naplózást az előzményekbe az ügyintézői felületen.';
-    $Self->{Translation}->{'Config item history.'} = '';
-    $Self->{Translation}->{'Config item print.'} = '';
-    $Self->{Translation}->{'Config item zoom.'} = '';
+    $Self->{Translation}->{'Config item history.'} = 'Konfigurációelem előzményei.';
+    $Self->{Translation}->{'Config item print.'} = 'Konfigurációelem nyomtatása.';
+    $Self->{Translation}->{'Config item zoom.'} = 'Konfigurációelem nagyítása.';
     $Self->{Translation}->{'Configuration Item Limit'} = 'Konfigurációelem-korlát';
     $Self->{Translation}->{'Configuration Item limit per page'} = 'Konfigurációelem-korlát oldalanként';
-    $Self->{Translation}->{'Configuration Management Database.'} = '';
-    $Self->{Translation}->{'Configuration item bulk module.'} = '';
+    $Self->{Translation}->{'Configuration Management Database.'} = 'Konfigurációmenedzsment-adatbázis.';
+    $Self->{Translation}->{'Configuration item bulk module.'} = 'Konfigurációelem tömeges modul.';
     $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} =
         'Az ügyintézői felület konfigurációelem keresési háttérprogram útválasztója.';
     $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = 'Meghatározások létrehozása és kezelése a konfigurációelemeknél.';
     $Self->{Translation}->{'Define Actions where a settings button is available in the linked objects widget (LinkObject::ViewMode = "complex"). Please note that these Actions must have registered the following JS and CSS files: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js and Core.Agent.LinkObject.js.'} =
-        '';
-    $Self->{Translation}->{'Define the group with permissions.'} = '';
+        'Műveletek meghatározása, ahol egy beállítások gomb érhető el a kapcsolt objektumok felületi elemen (LinkObject::ViewMode = „összetett”). Ne feledje, hogy ezeknek a műveleteknek rendelkezniük kell a következő JS és CSS fájlok regisztrálásával: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js és Core.Agent.LinkObject.js.';
+    $Self->{Translation}->{'Define the group with permissions.'} = 'A jogosultságokkal rendelkező csoport meghatározása.';
     $Self->{Translation}->{'Defines Required permissions to create ITSM configuration items using the Generic Interface.'} =
         'Meghatározza a szükséges jogosultságokat az ITSM konfigurációelemek létrehozásához az általános felület használatával.';
     $Self->{Translation}->{'Defines Required permissions to delete ITSM configuration items using the Generic Interface.'} =
-        '';
+        'Meghatározza a szükséges jogosultságokat az ITSM konfigurációelemek törléséhez az általános felület használatával.';
     $Self->{Translation}->{'Defines Required permissions to get ITSM configuration items using the Generic Interface.'} =
         'Meghatározza a szükséges jogosultságokat az ITSM konfigurációelemek lekéréséhez az általános felület használatával.';
     $Self->{Translation}->{'Defines Required permissions to search ITSM configuration items using the Generic Interface.'} =
@@ -255,9 +259,9 @@ sub Data {
     $Self->{Translation}->{'Defines the number of rows for the CI definition editor in the admin interface.'} =
         'Meghatározza a CI meghatározás-szerkesztő sorainak számát az adminisztrációs felületen.';
     $Self->{Translation}->{'Defines the order of incident states from high (e.g. cricital) to low (e.g. functional).'} =
-        '';
+        'Meghatározza az incidensállapotok sorrendjét a legmagasabbtól (például kritikus) a legalacsonyabbig (például funkcionális).';
     $Self->{Translation}->{'Defines the relevant deployment states where linked tickets can affect the status of a CI.'} =
-        '';
+        'Meghatározza a kapcsolódó üzembe állítási állapotokat, ahol a kapcsolt jegyek befolyásolhatják egy konfigurációelem állapotát.';
     $Self->{Translation}->{'Defines the search limit for the AgentITSMConfigItem screen.'} =
         'Meghatározza a keresési korlátot az AgentITSMConfigItem képernyőn.';
     $Self->{Translation}->{'Defines the search limit for the AgentITSMConfigItemSearch screen.'} =
@@ -273,14 +277,14 @@ sub Data {
     $Self->{Translation}->{'Defines the shown columns of CIs in the link table complex view, depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown.'} =
         'Meghatározza a CI-k megjelenített oszlopait a kapcsolati tábla komplex nézetében a CI osztálytól függően. Minden bejegyzést az oszlop neve és dupla kettőspont előtaggal kell ellátni (azaz Computer::). Van néhány olyan CI-attribútum, amely közös minden CI-vel (például a Computer osztálynál: Computer::Name, Computer::CurDeplState, Computer::CreateTime). Az egyéni CI-attribútumok megjelenítéséhez, ahogy azok a CI-meghatározásban meg vannak adva, a következő sémát kell használni (például a Computer osztálynál): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. Ha egy CI osztályhoz nincs bejegyzés, akkor az alapértelmezett oszlopok lesznek megjelenítve.';
     $Self->{Translation}->{'Defines which type of link (named from the ticket perspective) can affect the status of a linked CI.'} =
-        '';
+        'Meghatározza, hogy mely kapcsolattípusok (a jegy nézőpontjából elnevezve) befolyásolhatják egy kapcsolt konfigurációelem állapotát.';
     $Self->{Translation}->{'Defines which type of ticket can affect the status of a linked CI.'} =
-        '';
-    $Self->{Translation}->{'Deployment State Color'} = '';
-    $Self->{Translation}->{'Deployment State Color.'} = '';
-    $Self->{Translation}->{'Deployment State Type.'} = '';
-    $Self->{Translation}->{'Disabled'} = '';
-    $Self->{Translation}->{'Enabled'} = '';
+        'Meghatározza, hogy mely jegytípus befolyásolhatja egy kapcsolt konfigurációelem állapotát.';
+    $Self->{Translation}->{'Deployment State Color'} = 'Üzembe állítási állapot színe';
+    $Self->{Translation}->{'Deployment State Color.'} = 'Üzembe állítási állapot színe.';
+    $Self->{Translation}->{'Deployment State Type.'} = 'Üzembe állítási állapottípus.';
+    $Self->{Translation}->{'Disabled'} = 'Letiltva';
+    $Self->{Translation}->{'Enabled'} = 'Engedélyezve';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         'Engedélyezi a konfigurációelem tömeges művelet funkciót az ügyintézői előtétprogramnál, hogy egyszerre egynél több konfigurációelemmel dolgozhasson.';
     $Self->{Translation}->{'Enables configuration item bulk action feature only for the listed groups.'} =
@@ -288,19 +292,19 @@ sub Data {
     $Self->{Translation}->{'Enables/disables the functionality to check ConfigItems for unique names. Before enabling this option you should check your system for already existing config items with duplicate names. You can do this with the script bin/otrs.ITSMConfigItemListDuplicates.pl.'} =
         'Engedélyezi vagy letiltja azt a funkcionalitást, amely a konfigurációelemek egyedi neveit ellenőrzi. A lehetőség engedélyezése előtt ellenőriznie kell a rendszerét, hogy vannak-e már létező konfigurációelemek kettőzött névvel. Ezt megteheti a bin/otrs.ITSMConfigItemListDuplicates.pl parancsfájllal.';
     $Self->{Translation}->{'Event module to set configitem-status on ticket-configitem-link.'} =
-        '';
-    $Self->{Translation}->{'ITSM config item overview.'} = '';
+        'Eseménymodul a konfigurációelem állapotának beállításához egy jegy konfigurációelem hivatkozásán.';
+    $Self->{Translation}->{'ITSM config item overview.'} = 'ITSM konfigurációelem áttekintés.';
     $Self->{Translation}->{'Module to check the group responsible for a class.'} = 'Egy modul egy osztályért felelős csoport ellenőrzéséhez.';
     $Self->{Translation}->{'Module to check the group responsible for a configuration item.'} =
         'Egy modul egy konfigurációelemért felelős csoport ellenőrzéséhez.';
     $Self->{Translation}->{'Module to generate ITSM config item statistics.'} = 'Egy modul ITSM konfigurációelem statisztikák előállításához.';
     $Self->{Translation}->{'Object backend module registration for the import/export module.'} =
         'Objektum háttérprogram modul regisztráció az importálás/exportálás modulhoz.';
-    $Self->{Translation}->{'Overview.'} = '';
+    $Self->{Translation}->{'Overview.'} = 'Áttekintés.';
     $Self->{Translation}->{'Parameters for the deployment states color in the preferences view of the agent interface.'} =
-        'Paraméterek a telepítési állapotok színéhez az ügyintézői felület beállítások nézetében.';
+        'Paraméterek az üzembe állítási állapotok színeihez az ügyintézői felület beállítások nézetében.';
     $Self->{Translation}->{'Parameters for the deployment states in the preferences view of the agent interface.'} =
-        'Paraméterek a telepítési állapotokhoz az ügyintézői felület beállítások nézetében.';
+        'Paraméterek az üzembe állítási állapotokhoz az ügyintézői felület beállítások nézetében.';
     $Self->{Translation}->{'Parameters for the example permission groups of the general catalog attributes.'} =
         'Paraméterek az általános katalógus attribútumainak példa jogosultság csoportjaihoz.';
     $Self->{Translation}->{'Parameters for the pages (in which the configuration items are shown).'} =
@@ -319,14 +323,14 @@ sub Data {
         'A szükséges jogosultságok az ITSM konfigurációelem előzmények képernyőjének használatához az ügyintézői felületen.';
     $Self->{Translation}->{'Required permissions to use the print ITSM configuration item screen in the agent interface.'} =
         'A szükséges jogosultságok az ITSM konfigurációelem nyomtatása képernyőjének használatához az ügyintézői felületen.';
-    $Self->{Translation}->{'Required privileges to delete config items.'} = '';
-    $Self->{Translation}->{'Search config items.'} = '';
+    $Self->{Translation}->{'Required privileges to delete config items.'} = 'A szükséges jogosultságok a konfigurációelemek törléséhez.';
+    $Self->{Translation}->{'Search config items.'} = 'Konfigurációelemek keresése.';
     $Self->{Translation}->{'Selects the configuration item number generator module. "AutoIncrement" increments the configuration item number, the SystemID, the ConfigItemClassID and the counter are used. The format is "SystemID.ConfigItemClassID.Counter", e.g. 1205000004, 1205000005.'} =
         'Kiválasztja a konfigurációelem számelőállító modulját. Az „AutoIncrement” növeli a konfigurációelem számát, a használt SystemID, ConfigItemClassID és számláló értékét. A formátum: „SystemID.ConfigItemClassID.Counter”, például: 1205000004, 1205000005.';
     $Self->{Translation}->{'Set the incident state of a CI automatically when a Ticket is Linked to a CI.'} =
-        '';
+        'Egy konfigurációelem incidensállapotának automatikus beállítása, amikor egy jegyet kapcsolnak egy konfigurációelemhez.';
     $Self->{Translation}->{'Sets the deployment state in the configuration item bulk screen of the agent interface.'} =
-        'Beállítja az üzembe helyezési állapotot az ügyintézői felület konfigurációelem tömeges művelet képernyőjén.';
+        'Beállítja az üzembe állítási állapotot az ügyintézői felület konfigurációelem tömeges művelet képernyőjén.';
     $Self->{Translation}->{'Sets the incident state in the configuration item bulk screen of the agent interface.'} =
         'Beállítja az incidensállapotot az ügyintézői felület konfigurációelem tömeges művelet képernyőjén.';
     $Self->{Translation}->{'Shows a link in the menu that allows linking a configuration item with another object in the config item zoom view of the agent interface.'} =
@@ -336,7 +340,7 @@ sub Data {
     $Self->{Translation}->{'Shows a link in the menu to access the history of a configuration item in the its zoom view of the agent interface.'} =
         'Egy hivatkozást jelenít meg a menüben egy konfigurációelem előzményeinek eléréséhez az ügyintézői felületen az elem nagyítási nézetében.';
     $Self->{Translation}->{'Shows a link in the menu to delete a configuration item in its zoom view of the agent interface.'} =
-        '';
+        'Egy hivatkozást jelenít meg a menüben egy konfigurációelem törléséhez az ügyintézői felületen az elem nagyítási nézetében.';
     $Self->{Translation}->{'Shows a link in the menu to duplicate a configuration item in the configuration item overview of the agent interface.'} =
         'Egy hivatkozást jelenít meg a menüben egy konfigurációelem kettőzéséhez az ügyintézői felület konfigurációelem áttekintőjében.';
     $Self->{Translation}->{'Shows a link in the menu to duplicate a configuration item in the its zoom view of the agent interface.'} =
@@ -353,8 +357,8 @@ sub Data {
         'Megjeleníti a konfigurációelem előzményeit (fordított sorrendben) az ügyintézői felületen.';
     $Self->{Translation}->{'The identifier for a configuration item, e.g. ConfigItem#, MyConfigItem#. The default is ConfigItem#.'} =
         'Egy konfigurációelem azonosítója, például: ConfigItem#, MyConfigItem#. Az alapértelmezett: ConfigItem#.';
-    $Self->{Translation}->{'class'} = '';
-    $Self->{Translation}->{'global'} = '';
+    $Self->{Translation}->{'class'} = 'osztály';
+    $Self->{Translation}->{'global'} = 'globális';
 
 }
 

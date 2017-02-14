@@ -16,6 +16,10 @@ sub Data {
     my $Self = shift;
 
     # Template: AAAITSMConfigItem
+    $Self->{Translation}->{'Computer'} = '';
+    $Self->{Translation}->{'Hardware'} = '';
+    $Self->{Translation}->{'Network'} = '网络';
+    $Self->{Translation}->{'Software'} = '';
     $Self->{Translation}->{'Address'} = '地址';
     $Self->{Translation}->{'Admin Tool'} = '管理工具';
     $Self->{Translation}->{'Backup Device'} = '备份设备';
@@ -160,7 +164,7 @@ sub Data {
     $Self->{Translation}->{'The number of another Configuration Item to link with.'} = '将要链接的另外一个配置项编号。';
 
     # Template: AgentITSMConfigItemDelete
-    $Self->{Translation}->{'Do you really want to delete this config item?'} = '';
+    $Self->{Translation}->{'Do you really want to delete this config item?'} = '你真的想要删除这个配置项吗?';
 
     # Template: AgentITSMConfigItemEdit
     $Self->{Translation}->{'The name of this config item'} = '为这个配置项命名';
@@ -215,31 +219,31 @@ sub Data {
     $Self->{Translation}->{'Config Item Search Results'} = '配置项搜索结果';
 
     # SysConfig
-    $Self->{Translation}->{'Admin.'} = '';
+    $Self->{Translation}->{'Admin.'} = '系统管理。';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         '检查是否为唯一名称的范围是仅在\'class\'（配置项类）内还是\'global\'(全局)，就是在查找重复配置项名称时的范围。';
     $Self->{Translation}->{'Config Items'} = '配置项';
-    $Self->{Translation}->{'Config item add.'} = '';
-    $Self->{Translation}->{'Config item edit.'} = '';
+    $Self->{Translation}->{'Config item add.'} = '添加配置项。';
+    $Self->{Translation}->{'Config item edit.'} = '编辑配置项。';
     $Self->{Translation}->{'Config item event module that enables logging to history in the agent interface.'} =
         '服务人员界面用于记录配置项事件到历史的模块。';
-    $Self->{Translation}->{'Config item history.'} = '';
-    $Self->{Translation}->{'Config item print.'} = '';
-    $Self->{Translation}->{'Config item zoom.'} = '';
+    $Self->{Translation}->{'Config item history.'} = '配置项历史。';
+    $Self->{Translation}->{'Config item print.'} = '打印配置项。';
+    $Self->{Translation}->{'Config item zoom.'} = '配置项详情。';
     $Self->{Translation}->{'Configuration Item Limit'} = '配置项限制';
     $Self->{Translation}->{'Configuration Item limit per page'} = '每页配置项限制';
-    $Self->{Translation}->{'Configuration Management Database.'} = '';
-    $Self->{Translation}->{'Configuration item bulk module.'} = '';
+    $Self->{Translation}->{'Configuration Management Database.'} = '配置管理数据库。';
+    $Self->{Translation}->{'Configuration item bulk module.'} = '配置项批处理模块。';
     $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} =
         '服务人员界面的配置项搜索后端路由。';
     $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = '创建和管理配置项定义';
     $Self->{Translation}->{'Define Actions where a settings button is available in the linked objects widget (LinkObject::ViewMode = "complex"). Please note that these Actions must have registered the following JS and CSS files: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js and Core.Agent.LinkObject.js.'} =
-        '';
-    $Self->{Translation}->{'Define the group with permissions.'} = '';
+        '定义链接对象小部件(LinkObject::ViewMode = \"complex\")设置按钮中的操作。请注意，这些操作必须已经在以下JS和CSS文件中注册：Core.AllocationList.css、Core.UI.AllocationList.js、 Core.UI.Table.Sort.js、Core.Agent.TableFilters.js和Core.Agent.LinkObject.js。';
+    $Self->{Translation}->{'Define the group with permissions.'} = '定义有权限的组。';
     $Self->{Translation}->{'Defines Required permissions to create ITSM configuration items using the Generic Interface.'} =
         '定义使用通用接口创建ITSM配置项所需的权限。';
     $Self->{Translation}->{'Defines Required permissions to delete ITSM configuration items using the Generic Interface.'} =
-        '';
+        '定义使用通用接口删除ITSM配置项所需的权限。';
     $Self->{Translation}->{'Defines Required permissions to get ITSM configuration items using the Generic Interface.'} =
         '定义使用通用接口获取ITSM配置项所需的权限。';
     $Self->{Translation}->{'Defines Required permissions to search ITSM configuration items using the Generic Interface.'} =
@@ -255,7 +259,7 @@ sub Data {
     $Self->{Translation}->{'Defines the number of rows for the CI definition editor in the admin interface.'} =
         '定义在系统管理面板中修改配置项定义的编辑器的行数。';
     $Self->{Translation}->{'Defines the order of incident states from high (e.g. cricital) to low (e.g. functional).'} =
-        '';
+        '定义故障状态从高（如紧急）到低（如正常）的顺序。';
     $Self->{Translation}->{'Defines the relevant deployment states where linked tickets can affect the status of a CI.'} =
         '';
     $Self->{Translation}->{'Defines the search limit for the AgentITSMConfigItem screen.'} =
@@ -279,8 +283,8 @@ sub Data {
     $Self->{Translation}->{'Deployment State Color'} = '';
     $Self->{Translation}->{'Deployment State Color.'} = '';
     $Self->{Translation}->{'Deployment State Type.'} = '';
-    $Self->{Translation}->{'Disabled'} = '';
-    $Self->{Translation}->{'Enabled'} = '';
+    $Self->{Translation}->{'Disabled'} = '已禁用';
+    $Self->{Translation}->{'Enabled'} = '已启用';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         '在服务人员界面启用配置项批量操作功能，可以一次处理多个配置项。';
     $Self->{Translation}->{'Enables configuration item bulk action feature only for the listed groups.'} =
@@ -296,7 +300,7 @@ sub Data {
     $Self->{Translation}->{'Module to generate ITSM config item statistics.'} = '用于生成ITSM配置项统计的模块';
     $Self->{Translation}->{'Object backend module registration for the import/export module.'} =
         '用于导入/导出模块的对象后端模块注册。';
-    $Self->{Translation}->{'Overview.'} = '';
+    $Self->{Translation}->{'Overview.'} = '概览。';
     $Self->{Translation}->{'Parameters for the deployment states color in the preferences view of the agent interface.'} =
         '服务人员界面偏好设置视图中用于部署状态颜色的参数。';
     $Self->{Translation}->{'Parameters for the deployment states in the preferences view of the agent interface.'} =

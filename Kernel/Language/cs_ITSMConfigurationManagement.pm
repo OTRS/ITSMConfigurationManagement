@@ -16,6 +16,10 @@ sub Data {
     my $Self = shift;
 
     # Template: AAAITSMConfigItem
+    $Self->{Translation}->{'Computer'} = '';
+    $Self->{Translation}->{'Hardware'} = '';
+    $Self->{Translation}->{'Network'} = '';
+    $Self->{Translation}->{'Software'} = '';
     $Self->{Translation}->{'Address'} = 'Adresa';
     $Self->{Translation}->{'Admin Tool'} = 'Administrační nástroj';
     $Self->{Translation}->{'Backup Device'} = 'Zálohovácí Zařízení';

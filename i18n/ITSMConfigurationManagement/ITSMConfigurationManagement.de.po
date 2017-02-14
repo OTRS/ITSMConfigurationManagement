@@ -2,15 +2,16 @@
 # Translators:
 # Dorothea Doerffel <dorothea.doerffel@cape-it.de>, 2016
 # Ettore Atalan <atalanttore@googlemail.com>, 2014-2015
+# Lukas, 2017
 # mathiasbraeunling <mathias.braeunling@otrs.com>, 2015
 # ru_otrs <robert.ullrich@otrs.com>, 2015
 # Udo Bretz, 2014
-# Udo Bretz, 2014-2016
+# Udo Bretz, 2014-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2016-12-10 13:28+0000\n"
-"PO-Revision-Date: 2016-12-10 12:28+0000\n"
+"POT-Creation-Date: 2017-02-14 17:08+0000\n"
+"PO-Revision-Date: 2017-02-14 16:11+0000\n"
 "Last-Translator: Udo Bretz\n"
 "Language-Team: German (http://www.transifex.com/otrs/OTRS/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -18,6 +19,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Template: AAAITSMConfigItem
+msgid "Computer"
+msgstr "Computer"
+
+#. Template: AAAITSMConfigItem
+msgid "Hardware"
+msgstr "Hardware"
+
+#. Template: AAAITSMConfigItem
+msgid "Network"
+msgstr "Netzwerk"
+
+#. Template: AAAITSMConfigItem
+msgid "Software"
+msgstr "Software"
 
 #. Template: AAAITSMConfigItem
 msgid "Address"
@@ -565,7 +582,7 @@ msgstr ""
 
 #. Template: AgentITSMConfigItemDelete
 msgid "Do you really want to delete this config item?"
-msgstr ""
+msgstr "Wollen Sie dieses Configitem wirklich löschen?"
 
 #. Template: AgentITSMConfigItemEdit
 msgid "The name of this config item"
@@ -690,7 +707,7 @@ msgstr "Kein Ergebnis!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "Config Item Search Results"
-msgstr ""
+msgstr "Suchergebnise filtern"
 
 #. SysConfig
 msgid "Admin."
@@ -709,11 +726,11 @@ msgstr "Config Items"
 
 #. SysConfig
 msgid "Config item add."
-msgstr ""
+msgstr "Config Item hinzufügen."
 
 #. SysConfig
 msgid "Config item edit."
-msgstr ""
+msgstr "Config Item bearbeiten."
 
 #. SysConfig
 msgid ""
@@ -723,15 +740,15 @@ msgstr ""
 
 #. SysConfig
 msgid "Config item history."
-msgstr ""
+msgstr "Config Item Verlauf."
 
 #. SysConfig
 msgid "Config item print."
-msgstr ""
+msgstr "Config Item drucken."
 
 #. SysConfig
 msgid "Config item zoom."
-msgstr ""
+msgstr "Config Item Zoom."
 
 #. SysConfig
 msgid "Configuration Item Limit"
@@ -1044,7 +1061,7 @@ msgstr ""
 
 #. SysConfig
 msgid "Search config items."
-msgstr ""
+msgstr "Suche config items."
 
 #. SysConfig
 msgid ""
@@ -1145,8 +1162,8 @@ msgstr ""
 
 #. SysConfig
 msgid "class"
-msgstr ""
+msgstr "Klasse"
 
 #. SysConfig
 msgid "global"
-msgstr ""
+msgstr "Global"

@@ -1,5 +1,6 @@
 # 
 # Translators:
+# Flávio Veras <flaviove@gmail.com>, 2017
 # Glauber Caires <glaubercaires@gmail.com>, 2016
 # Murilo Moreira de Oliveira <murilo.moreira@gmail.com>, 2014
 # Samuel Diniz Casimiro <nedmaj@yahoo.com>, 2015
@@ -7,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2016-12-10 13:28+0000\n"
-"PO-Revision-Date: 2016-12-10 12:28+0000\n"
+"POT-Creation-Date: 2017-02-14 17:08+0000\n"
+"PO-Revision-Date: 2017-02-14 16:09+0000\n"
 "Last-Translator: Udo Bretz\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otrs/OTRS/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +17,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. Template: AAAITSMConfigItem
+msgid "Computer"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "Hardware"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "Network"
+msgstr "Rede"
+
+#. Template: AAAITSMConfigItem
+msgid "Software"
+msgstr ""
 
 #. Template: AAAITSMConfigItem
 msgid "Address"
@@ -563,7 +580,7 @@ msgstr "O número de outro Item de Configuração para associar."
 
 #. Template: AgentITSMConfigItemDelete
 msgid "Do you really want to delete this config item?"
-msgstr ""
+msgstr "Deseja realmente excluir este item de configuração?"
 
 #. Template: AgentITSMConfigItemEdit
 msgid "The name of this config item"
@@ -707,11 +724,11 @@ msgstr "Itens de Configuração"
 
 #. SysConfig
 msgid "Config item add."
-msgstr ""
+msgstr "Adicionar item de configuração."
 
 #. SysConfig
 msgid "Config item edit."
-msgstr ""
+msgstr "Editar item de configuração."
 
 #. SysConfig
 msgid ""
@@ -721,15 +738,15 @@ msgstr "Módulo de evento de item de configuração que permite registrar o hist
 
 #. SysConfig
 msgid "Config item history."
-msgstr ""
+msgstr "Histórivo do item de configuração."
 
 #. SysConfig
 msgid "Config item print."
-msgstr ""
+msgstr "Impressão do item de configuração."
 
 #. SysConfig
 msgid "Config item zoom."
-msgstr ""
+msgstr "Zoom de item de configuração."
 
 #. SysConfig
 msgid "Configuration Item Limit"
@@ -741,7 +758,7 @@ msgstr "Limite de Item de Configuração por página"
 
 #. SysConfig
 msgid "Configuration Management Database."
-msgstr ""
+msgstr "Configuração do Gerenciamento do Banco de Dados."
 
 #. SysConfig
 msgid "Configuration item bulk module."
@@ -762,7 +779,7 @@ msgid ""
 "must have registered the following JS and CSS files: "
 "Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, "
 "Core.Agent.TableFilters.js and Core.Agent.LinkObject.js."
-msgstr ""
+msgstr "Defina Ações onde um botão de configurações está disponível no widget de objetos vinculados (LinkObject::ViewMode=\"complex\"). Observe que essas ações devem ter registrado os seguintes arquivos JS e CSS: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js e Core.Agent .LinkObject.js."
 
 #. SysConfig
 msgid "Define the group with permissions."
@@ -919,11 +936,11 @@ msgstr ""
 
 #. SysConfig
 msgid "Disabled"
-msgstr ""
+msgstr "Desabilitado"
 
 #. SysConfig
 msgid "Enabled"
-msgstr ""
+msgstr "Habilitado"
 
 #. SysConfig
 msgid ""
@@ -1143,8 +1160,8 @@ msgstr "O identificador para um item de configuração, ex. ItemConfig#, MeuItem
 
 #. SysConfig
 msgid "class"
-msgstr ""
+msgstr "class"
 
 #. SysConfig
 msgid "global"
-msgstr ""
+msgstr "global"

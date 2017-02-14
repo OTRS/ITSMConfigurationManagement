@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2016-12-10 13:28+0000\n"
-"PO-Revision-Date: 2016-12-10 12:28+0000\n"
+"POT-Creation-Date: 2017-02-14 17:08+0000\n"
+"PO-Revision-Date: 2017-02-14 16:09+0000\n"
 "Last-Translator: Udo Bretz\n"
 "Language-Team: Malay (http://www.transifex.com/otrs/OTRS/language/ms/)\n"
 "MIME-Version: 1.0\n"
@@ -15,6 +15,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ms\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#. Template: AAAITSMConfigItem
+msgid "Computer"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "Hardware"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "Network"
+msgstr ""
+
+#. Template: AAAITSMConfigItem
+msgid "Software"
+msgstr ""
 
 #. Template: AAAITSMConfigItem
 msgid "Address"
@@ -562,7 +578,7 @@ msgstr "Nombor Barangan Konfigurasi lain untuk dipautkan dengan."
 
 #. Template: AgentITSMConfigItemDelete
 msgid "Do you really want to delete this config item?"
-msgstr ""
+msgstr "Anda benar ingin membuang item config ini?"
 
 #. Template: AgentITSMConfigItemEdit
 msgid "The name of this config item"
@@ -706,11 +722,11 @@ msgstr "Barangan Konfigurasi"
 
 #. SysConfig
 msgid "Config item add."
-msgstr ""
+msgstr "Tambah item config."
 
 #. SysConfig
 msgid "Config item edit."
-msgstr ""
+msgstr "Edit item config."
 
 #. SysConfig
 msgid ""
@@ -720,15 +736,15 @@ msgstr "Modul acara barangan konfigurasi yang membenarkan untuk log ke sejarah d
 
 #. SysConfig
 msgid "Config item history."
-msgstr ""
+msgstr "Sejarah item config."
 
 #. SysConfig
 msgid "Config item print."
-msgstr ""
+msgstr "Cetak item config."
 
 #. SysConfig
 msgid "Config item zoom."
-msgstr ""
+msgstr "Zum item config."
 
 #. SysConfig
 msgid "Configuration Item Limit"
@@ -740,11 +756,11 @@ msgstr "Had Barangan Konfigurasi setiap muka surat"
 
 #. SysConfig
 msgid "Configuration Management Database."
-msgstr ""
+msgstr "Konfigurasi Pengurusan Pangkalan Data."
 
 #. SysConfig
 msgid "Configuration item bulk module."
-msgstr ""
+msgstr "Konfigurasi item modul pukal."
 
 #. SysConfig
 msgid "Configuration item search backend router of the agent interface."
@@ -765,7 +781,7 @@ msgstr "Takrifkan Tindakan dimana butang tetapan itu ada dalam widget objek bers
 
 #. SysConfig
 msgid "Define the group with permissions."
-msgstr ""
+msgstr "Takrifkan kumpulan tersebut dengan keizinan."
 
 #. SysConfig
 msgid ""
@@ -777,7 +793,7 @@ msgstr "Mentakrifkan kebenaran yang diperlukan untuk mencipta barangan konfigura
 msgid ""
 "Defines Required permissions to delete ITSM configuration items using the "
 "Generic Interface."
-msgstr ""
+msgstr "Takrifkan keizinan yang diperlukan untuk membuang item konfigurasi ITSM menggunakan Antaramuka Umum."
 
 #. SysConfig
 msgid ""
@@ -823,13 +839,13 @@ msgstr "Menentukan bilangan baris untuk editor definisi CI dalam antara muka adm
 msgid ""
 "Defines the order of incident states from high (e.g. cricital) to low (e.g. "
 "functional)."
-msgstr ""
+msgstr "Takrifkan susunan keadaan insiden daripada tinggi (cth. kritikal) ke rendah (cth. fungsian)."
 
 #. SysConfig
 msgid ""
 "Defines the relevant deployment states where linked tickets can affect the "
 "status of a CI."
-msgstr ""
+msgstr "Takrifkan keadaan penempatan yang releven dimana tiket bersambung boleh menjejaskan status bagi CI."
 
 #. SysConfig
 msgid "Defines the search limit for the AgentITSMConfigItem screen."
@@ -898,31 +914,31 @@ msgstr "Mentakrifkan ruangan ditunjukkan CIs dalam pandangan pautan jadual kompl
 msgid ""
 "Defines which type of link (named from the ticket perspective) can affect "
 "the status of a linked CI."
-msgstr ""
+msgstr "Takrifkan jenis sambungan yang mana (dinamakan daripada perspektif tiket) boleh menjejaskan status bagi satu sambungan CI."
 
 #. SysConfig
 msgid "Defines which type of ticket can affect the status of a linked CI."
-msgstr ""
+msgstr "Takrifkan jenis tiket yang mana boleh menjejaskan status bagi satu sambungan CI."
 
 #. SysConfig
 msgid "Deployment State Color"
-msgstr ""
+msgstr "Penempatan Keadaan Warna."
 
 #. SysConfig
 msgid "Deployment State Color."
-msgstr ""
+msgstr "Penempatan Keadaan Warna."
 
 #. SysConfig
 msgid "Deployment State Type."
-msgstr ""
+msgstr "Penempatan Keadaan Jenis."
 
 #. SysConfig
 msgid "Disabled"
-msgstr ""
+msgstr "Tidak dibolehkan"
 
 #. SysConfig
 msgid "Enabled"
-msgstr ""
+msgstr "Dibolehkan"
 
 #. SysConfig
 msgid ""
@@ -945,11 +961,11 @@ msgstr "Membolehkan/melumpuhkan fungsi untuk menyemak KonfigItem untuk nama-nama
 
 #. SysConfig
 msgid "Event module to set configitem-status on ticket-configitem-link."
-msgstr ""
+msgstr "Model acara untuk menyediakan status-itemconfig atas sambungan-itemconfig-tiket."
 
 #. SysConfig
 msgid "ITSM config item overview."
-msgstr ""
+msgstr "pandangan item config ITSM."
 
 #. SysConfig
 msgid "Module to check the group responsible for a class."
@@ -1037,11 +1053,11 @@ msgstr "Memerlukan kebenaran untuk menggunakan skrin cetak item konfigurasi ITSM
 
 #. SysConfig
 msgid "Required privileges to delete config items."
-msgstr ""
+msgstr "Keistimewaan-keistimewaan dikehendaki untuk memadamkan barang-barang config."
 
 #. SysConfig
 msgid "Search config items."
-msgstr ""
+msgstr "Cari barang-barang config."
 
 #. SysConfig
 msgid ""
@@ -1055,7 +1071,7 @@ msgstr "Memilih item konfigurasi modul penjana nombor. \"PenambahanAuto\" menamb
 msgid ""
 "Set the incident state of a CI automatically when a Ticket is Linked to a "
 "CI."
-msgstr ""
+msgstr "Menentukan keadaan insiden bagi CI secara automatik apabila suatu Tiket disambungkan kepada suatu CI."
 
 #. SysConfig
 msgid ""
@@ -1091,7 +1107,7 @@ msgstr "Menunjukkan pautan dalam menu untuk mengakses sejarah item konfigurasi d
 msgid ""
 "Shows a link in the menu to delete a configuration item in its zoom view of "
 "the agent interface."
-msgstr ""
+msgstr "Menunjukkan satu sambungan kepada menu untuk memadam satu barang konfigurasi  dalam pandangan zumnya daripada antaramuka ejen."
 
 #. SysConfig
 msgid ""
@@ -1142,8 +1158,8 @@ msgstr "Pengecam untuk item konfigurasi, contoh: ConfigItem#, MyConfigItem#. Def
 
 #. SysConfig
 msgid "class"
-msgstr ""
+msgstr "kelas"
 
 #. SysConfig
 msgid "global"
-msgstr ""
+msgstr "global"
