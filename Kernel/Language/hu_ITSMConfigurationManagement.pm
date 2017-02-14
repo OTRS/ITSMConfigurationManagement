@@ -147,13 +147,14 @@ sub Data {
     # Template: AdminITSMConfigItem
     $Self->{Translation}->{'Config Item Management'} = 'Konfigurációelem-menedzsment';
     $Self->{Translation}->{'Change class definition'} = 'Osztály-meghatározás módosítása';
-    $Self->{Translation}->{'Config Item'} = 'Konfigurációelem';
-    $Self->{Translation}->{'Class'} = 'Osztály';
+    $Self->{Translation}->{'Config Item Class'} = '';
     $Self->{Translation}->{'Definition'} = 'Meghatározás';
 
     # Template: AgentITSMConfigItemAdd
+    $Self->{Translation}->{'Config Item'} = 'Konfigurációelem';
     $Self->{Translation}->{'Filter for Classes'} = 'Szűrő az osztályokhoz';
     $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = 'Válasszon egy osztályt a listából egy új konfigurációelem létrehozásához.';
+    $Self->{Translation}->{'Class'} = 'Osztály';
 
     # Template: AgentITSMConfigItemBulk
     $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = 'ITSM konfigurációelem tömeges művelet';
@@ -174,13 +175,14 @@ sub Data {
     $Self->{Translation}->{'Incident State'} = 'Incidensállapot';
 
     # Template: AgentITSMConfigItemHistory
-    $Self->{Translation}->{'History of'} = 'Előzménye ennek';
+    $Self->{Translation}->{'History of Config Item: %s'} = '';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'Környezet beállítások';
     $Self->{Translation}->{'Config Items per page'} = 'Konfigurációelemek oldalanként';
 
     # Template: AgentITSMConfigItemOverviewSmall
+    $Self->{Translation}->{'A generic ITSM Configuration Item table'} = '';
     $Self->{Translation}->{'Deployment State Type'} = 'Üzembe állítási állapottípus';
     $Self->{Translation}->{'Current Incident State'} = 'Jelenlegi incidensállapot';
     $Self->{Translation}->{'Current Incident State Type'} = 'Jelenlegi incidensállapot típus';

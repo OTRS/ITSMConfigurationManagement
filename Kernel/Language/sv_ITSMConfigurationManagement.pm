@@ -147,13 +147,14 @@ sub Data {
     # Template: AdminITSMConfigItem
     $Self->{Translation}->{'Config Item Management'} = 'Hantering av konfigurationsenheter';
     $Self->{Translation}->{'Change class definition'} = 'Ändra klassdefinition';
-    $Self->{Translation}->{'Config Item'} = 'Konfigurationsenhet';
-    $Self->{Translation}->{'Class'} = 'Klass';
+    $Self->{Translation}->{'Config Item Class'} = '';
     $Self->{Translation}->{'Definition'} = 'Definition';
 
     # Template: AgentITSMConfigItemAdd
+    $Self->{Translation}->{'Config Item'} = 'Konfigurationsenhet';
     $Self->{Translation}->{'Filter for Classes'} = 'Filtrera klasser';
     $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = 'Välj en klass från listan för att skapa en ny konfigurationsenhet';
+    $Self->{Translation}->{'Class'} = 'Klass';
 
     # Template: AgentITSMConfigItemBulk
     $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = '';
@@ -174,13 +175,14 @@ sub Data {
     $Self->{Translation}->{'Incident State'} = 'Incidentläge';
 
     # Template: AgentITSMConfigItemHistory
-    $Self->{Translation}->{'History of'} = 'Historik för';
+    $Self->{Translation}->{'History of Config Item: %s'} = '';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'Anpassa vy';
     $Self->{Translation}->{'Config Items per page'} = 'Konfigurationsenheter per sida';
 
     # Template: AgentITSMConfigItemOverviewSmall
+    $Self->{Translation}->{'A generic ITSM Configuration Item table'} = '';
     $Self->{Translation}->{'Deployment State Type'} = 'Driftlägestyper';
     $Self->{Translation}->{'Current Incident State'} = 'Nuvarande incidentläge';
     $Self->{Translation}->{'Current Incident State Type'} = 'Nuvarande typ av incidentläge';

@@ -147,13 +147,14 @@ sub Data {
     # Template: AdminITSMConfigItem
     $Self->{Translation}->{'Config Item Management'} = 'Pengurusan Config Item';
     $Self->{Translation}->{'Change class definition'} = 'Ubah definisi kelas';
-    $Self->{Translation}->{'Config Item'} = 'Config Item';
-    $Self->{Translation}->{'Class'} = 'Kelas';
+    $Self->{Translation}->{'Config Item Class'} = '';
     $Self->{Translation}->{'Definition'} = 'Definisi';
 
     # Template: AgentITSMConfigItemAdd
+    $Self->{Translation}->{'Config Item'} = 'Config Item';
     $Self->{Translation}->{'Filter for Classes'} = 'Menapis Kelas';
     $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = 'Pilih Kelas dari senarai untuk mewujudkan Perkara Config baru.';
+    $Self->{Translation}->{'Class'} = 'Kelas';
 
     # Template: AgentITSMConfigItemBulk
     $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = 'ItemKonfig ITSM Tindakan Pukal';
@@ -174,13 +175,14 @@ sub Data {
     $Self->{Translation}->{'Incident State'} = 'insiden keadaan';
 
     # Template: AgentITSMConfigItemHistory
-    $Self->{Translation}->{'History of'} = 'Sejarah untuk';
+    $Self->{Translation}->{'History of Config Item: %s'} = '';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'konteks Tetapan';
     $Self->{Translation}->{'Config Items per page'} = 'Item config per halaman';
 
     # Template: AgentITSMConfigItemOverviewSmall
+    $Self->{Translation}->{'A generic ITSM Configuration Item table'} = '';
     $Self->{Translation}->{'Deployment State Type'} = 'Jenis Pertukaran Keadaan';
     $Self->{Translation}->{'Current Incident State'} = 'Insiden keadaan semasa';
     $Self->{Translation}->{'Current Incident State Type'} = 'Nyatakan Jenis Insiden Semasa';

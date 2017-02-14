@@ -147,13 +147,14 @@ sub Data {
     # Template: AdminITSMConfigItem
     $Self->{Translation}->{'Config Item Management'} = 'Správa Konfiguračních Položek';
     $Self->{Translation}->{'Change class definition'} = '';
-    $Self->{Translation}->{'Config Item'} = 'Konfig. Položka';
-    $Self->{Translation}->{'Class'} = 'Třída';
+    $Self->{Translation}->{'Config Item Class'} = '';
     $Self->{Translation}->{'Definition'} = '';
 
     # Template: AgentITSMConfigItemAdd
+    $Self->{Translation}->{'Config Item'} = 'Konfig. Položka';
     $Self->{Translation}->{'Filter for Classes'} = '';
     $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = '';
+    $Self->{Translation}->{'Class'} = 'Třída';
 
     # Template: AgentITSMConfigItemBulk
     $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = '';
@@ -174,13 +175,14 @@ sub Data {
     $Self->{Translation}->{'Incident State'} = 'Stav Incidentu';
 
     # Template: AgentITSMConfigItemHistory
-    $Self->{Translation}->{'History of'} = 'Historie';
+    $Self->{Translation}->{'History of Config Item: %s'} = '';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'Nastavení kontextu';
     $Self->{Translation}->{'Config Items per page'} = '';
 
     # Template: AgentITSMConfigItemOverviewSmall
+    $Self->{Translation}->{'A generic ITSM Configuration Item table'} = '';
     $Self->{Translation}->{'Deployment State Type'} = '';
     $Self->{Translation}->{'Current Incident State'} = 'Aktuální Stav Incidentu';
     $Self->{Translation}->{'Current Incident State Type'} = '';

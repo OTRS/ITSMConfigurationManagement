@@ -147,13 +147,14 @@ sub Data {
     # Template: AdminITSMConfigItem
     $Self->{Translation}->{'Config Item Management'} = 'Gerenciamento de Itens de Configuração';
     $Self->{Translation}->{'Change class definition'} = 'Mudar definição de classe';
-    $Self->{Translation}->{'Config Item'} = 'Item de Configuração';
-    $Self->{Translation}->{'Class'} = 'Classe';
+    $Self->{Translation}->{'Config Item Class'} = '';
     $Self->{Translation}->{'Definition'} = 'Definição';
 
     # Template: AgentITSMConfigItemAdd
+    $Self->{Translation}->{'Config Item'} = 'Item de Configuração';
     $Self->{Translation}->{'Filter for Classes'} = 'Filtro para Classes';
     $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = 'Selecione uma classe a partir da lista para criar um novo item de configuração.';
+    $Self->{Translation}->{'Class'} = 'Classe';
 
     # Template: AgentITSMConfigItemBulk
     $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = 'Ação em Massa em ICs ITSM';
@@ -174,13 +175,14 @@ sub Data {
     $Self->{Translation}->{'Incident State'} = 'Estado de Incidente';
 
     # Template: AgentITSMConfigItemHistory
-    $Self->{Translation}->{'History of'} = 'Histórico de';
+    $Self->{Translation}->{'History of Config Item: %s'} = '';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'Configurações de Contexto';
     $Self->{Translation}->{'Config Items per page'} = 'Itens de configuração por página';
 
     # Template: AgentITSMConfigItemOverviewSmall
+    $Self->{Translation}->{'A generic ITSM Configuration Item table'} = '';
     $Self->{Translation}->{'Deployment State Type'} = 'Tipo de Estado de Implantação';
     $Self->{Translation}->{'Current Incident State'} = 'Estado do Incidente Atual';
     $Self->{Translation}->{'Current Incident State Type'} = 'Estado Atual de Incidente por tipo';

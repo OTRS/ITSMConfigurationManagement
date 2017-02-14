@@ -147,13 +147,14 @@ sub Data {
     # Template: AdminITSMConfigItem
     $Self->{Translation}->{'Config Item Management'} = '管理配置项';
     $Self->{Translation}->{'Change class definition'} = '修改类定义';
-    $Self->{Translation}->{'Config Item'} = '配置项';
-    $Self->{Translation}->{'Class'} = '类';
+    $Self->{Translation}->{'Config Item Class'} = '';
     $Self->{Translation}->{'Definition'} = '定义';
 
     # Template: AgentITSMConfigItemAdd
+    $Self->{Translation}->{'Config Item'} = '配置项';
     $Self->{Translation}->{'Filter for Classes'} = '类过滤器';
     $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = '先从列表中选择类，然后创建新的配置项。';
+    $Self->{Translation}->{'Class'} = '类';
 
     # Template: AgentITSMConfigItemBulk
     $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = 'ITSM 配置项 批量操作';
@@ -174,13 +175,14 @@ sub Data {
     $Self->{Translation}->{'Incident State'} = '故障状态';
 
     # Template: AgentITSMConfigItemHistory
-    $Self->{Translation}->{'History of'} = '历史';
+    $Self->{Translation}->{'History of Config Item: %s'} = '';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = '上下文设置';
     $Self->{Translation}->{'Config Items per page'} = '每页配置项个数';
 
     # Template: AgentITSMConfigItemOverviewSmall
+    $Self->{Translation}->{'A generic ITSM Configuration Item table'} = '';
     $Self->{Translation}->{'Deployment State Type'} = '部署状态类型';
     $Self->{Translation}->{'Current Incident State'} = '当前的故障状态';
     $Self->{Translation}->{'Current Incident State Type'} = '当前的故障状态类型';

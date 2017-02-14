@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2017-02-14 17:08+0000\n"
-"PO-Revision-Date: 2017-02-14 16:09+0000\n"
+"POT-Creation-Date: 2017-02-14 17:57+0000\n"
+"PO-Revision-Date: 2017-02-14 16:58+0000\n"
 "Last-Translator: Udo Bretz\n"
 "Language-Team: Spanish (http://www.transifex.com/otrs/OTRS/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -534,16 +534,16 @@ msgid "Change class definition"
 msgstr "Cambiar definición de la Clase"
 
 #. Template: AdminITSMConfigItem
-msgid "Config Item"
-msgstr "Elemento de Configuración"
-
-#. Template: AdminITSMConfigItem
-msgid "Class"
-msgstr "Clase"
+msgid "Config Item Class"
+msgstr ""
 
 #. Template: AdminITSMConfigItem
 msgid "Definition"
 msgstr "Definición"
+
+#. Template: AgentITSMConfigItemAdd
+msgid "Config Item"
+msgstr "Elemento de Configuración"
 
 #. Template: AgentITSMConfigItemAdd
 msgid "Filter for Classes"
@@ -552,6 +552,10 @@ msgstr "Filtro para Clases"
 #. Template: AgentITSMConfigItemAdd
 msgid "Select a Class from the list to create a new Config Item."
 msgstr "Seleccione una Clase de la lista para crear un nuevo Item de Configuración"
+
+#. Template: AgentITSMConfigItemAdd
+msgid "Class"
+msgstr "Clase"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "ITSM ConfigItem Bulk Action"
@@ -599,8 +603,8 @@ msgid "Incident State"
 msgstr "Estado del Incidente"
 
 #. Template: AgentITSMConfigItemHistory
-msgid "History of"
-msgstr "Historial de"
+msgid "History of Config Item: %s"
+msgstr ""
 
 #. Template: AgentITSMConfigItemOverviewNavBar
 msgid "Context Settings"
@@ -609,6 +613,10 @@ msgstr "Ajustes de Contexto"
 #. Template: AgentITSMConfigItemOverviewNavBar
 msgid "Config Items per page"
 msgstr "CIs por página"
+
+#. Template: AgentITSMConfigItemOverviewSmall
+msgid "A generic ITSM Configuration Item table"
+msgstr ""
 
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "Deployment State Type"

@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2017-02-14 17:08+0000\n"
-"PO-Revision-Date: 2017-02-14 16:09+0000\n"
+"POT-Creation-Date: 2017-02-14 17:57+0000\n"
+"PO-Revision-Date: 2017-02-14 16:58+0000\n"
 "Last-Translator: Udo Bretz\n"
 "Language-Team: Hungarian (http://www.transifex.com/otrs/OTRS/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -531,16 +531,16 @@ msgid "Change class definition"
 msgstr "Osztály-meghatározás módosítása"
 
 #. Template: AdminITSMConfigItem
-msgid "Config Item"
-msgstr "Konfigurációelem"
-
-#. Template: AdminITSMConfigItem
-msgid "Class"
-msgstr "Osztály"
+msgid "Config Item Class"
+msgstr ""
 
 #. Template: AdminITSMConfigItem
 msgid "Definition"
 msgstr "Meghatározás"
+
+#. Template: AgentITSMConfigItemAdd
+msgid "Config Item"
+msgstr "Konfigurációelem"
 
 #. Template: AgentITSMConfigItemAdd
 msgid "Filter for Classes"
@@ -549,6 +549,10 @@ msgstr "Szűrő az osztályokhoz"
 #. Template: AgentITSMConfigItemAdd
 msgid "Select a Class from the list to create a new Config Item."
 msgstr "Válasszon egy osztályt a listából egy új konfigurációelem létrehozásához."
+
+#. Template: AgentITSMConfigItemAdd
+msgid "Class"
+msgstr "Osztály"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "ITSM ConfigItem Bulk Action"
@@ -596,8 +600,8 @@ msgid "Incident State"
 msgstr "Incidensállapot"
 
 #. Template: AgentITSMConfigItemHistory
-msgid "History of"
-msgstr "Előzménye ennek"
+msgid "History of Config Item: %s"
+msgstr ""
 
 #. Template: AgentITSMConfigItemOverviewNavBar
 msgid "Context Settings"
@@ -606,6 +610,10 @@ msgstr "Környezet beállítások"
 #. Template: AgentITSMConfigItemOverviewNavBar
 msgid "Config Items per page"
 msgstr "Konfigurációelemek oldalanként"
+
+#. Template: AgentITSMConfigItemOverviewSmall
+msgid "A generic ITSM Configuration Item table"
+msgstr ""
 
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "Deployment State Type"

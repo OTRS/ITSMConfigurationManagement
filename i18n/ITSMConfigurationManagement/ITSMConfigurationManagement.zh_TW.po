@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2017-02-14 17:08+0000\n"
-"PO-Revision-Date: 2017-02-14 16:09+0000\n"
+"POT-Creation-Date: 2017-02-14 17:57+0000\n"
+"PO-Revision-Date: 2017-02-14 16:58+0000\n"
 "Last-Translator: Udo Bretz\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otrs/OTRS/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -532,16 +532,16 @@ msgid "Change class definition"
 msgstr "修改類定義"
 
 #. Template: AdminITSMConfigItem
-msgid "Config Item"
-msgstr "配置項"
-
-#. Template: AdminITSMConfigItem
-msgid "Class"
-msgstr "類別"
+msgid "Config Item Class"
+msgstr ""
 
 #. Template: AdminITSMConfigItem
 msgid "Definition"
 msgstr "定義"
+
+#. Template: AgentITSMConfigItemAdd
+msgid "Config Item"
+msgstr "配置項"
 
 #. Template: AgentITSMConfigItemAdd
 msgid "Filter for Classes"
@@ -550,6 +550,10 @@ msgstr "過濾類"
 #. Template: AgentITSMConfigItemAdd
 msgid "Select a Class from the list to create a new Config Item."
 msgstr "先從列表中選擇類別，然後建立新的配置項。"
+
+#. Template: AgentITSMConfigItemAdd
+msgid "Class"
+msgstr "類別"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "ITSM ConfigItem Bulk Action"
@@ -597,8 +601,8 @@ msgid "Incident State"
 msgstr "故障狀態"
 
 #. Template: AgentITSMConfigItemHistory
-msgid "History of"
-msgstr "歷史"
+msgid "History of Config Item: %s"
+msgstr ""
 
 #. Template: AgentITSMConfigItemOverviewNavBar
 msgid "Context Settings"
@@ -607,6 +611,10 @@ msgstr "上下文設置"
 #. Template: AgentITSMConfigItemOverviewNavBar
 msgid "Config Items per page"
 msgstr "每頁配置項個數"
+
+#. Template: AgentITSMConfigItemOverviewSmall
+msgid "A generic ITSM Configuration Item table"
+msgstr ""
 
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "Deployment State Type"

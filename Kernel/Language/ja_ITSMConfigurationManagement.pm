@@ -147,13 +147,14 @@ sub Data {
     # Template: AdminITSMConfigItem
     $Self->{Translation}->{'Config Item Management'} = '構成アイテム管理';
     $Self->{Translation}->{'Change class definition'} = 'クラス定義を変更';
-    $Self->{Translation}->{'Config Item'} = 'Config アイテム';
-    $Self->{Translation}->{'Class'} = 'クラス';
+    $Self->{Translation}->{'Config Item Class'} = '';
     $Self->{Translation}->{'Definition'} = '記述';
 
     # Template: AgentITSMConfigItemAdd
+    $Self->{Translation}->{'Config Item'} = 'Config アイテム';
     $Self->{Translation}->{'Filter for Classes'} = 'クラスでフィルタ';
     $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = '新規の構成アイテムを作成するには、リストからクラスを選択してください。';
+    $Self->{Translation}->{'Class'} = 'クラス';
 
     # Template: AgentITSMConfigItemBulk
     $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = 'ITSM 変更アイテム一括アクション';
@@ -174,13 +175,14 @@ sub Data {
     $Self->{Translation}->{'Incident State'} = 'インシデント状況';
 
     # Template: AgentITSMConfigItemHistory
-    $Self->{Translation}->{'History of'} = '履歴: ';
+    $Self->{Translation}->{'History of Config Item: %s'} = '';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'コンテキストの設定';
     $Self->{Translation}->{'Config Items per page'} = '1ページ毎の設定項目';
 
     # Template: AgentITSMConfigItemOverviewSmall
+    $Self->{Translation}->{'A generic ITSM Configuration Item table'} = '';
     $Self->{Translation}->{'Deployment State Type'} = '展開の状態';
     $Self->{Translation}->{'Current Incident State'} = '現在のインシデント状態';
     $Self->{Translation}->{'Current Incident State Type'} = '現在のインシデント状態のタイプ';

@@ -147,13 +147,14 @@ sub Data {
     # Template: AdminITSMConfigItem
     $Self->{Translation}->{'Config Item Management'} = 'Управление Конфигурационными единицами';
     $Self->{Translation}->{'Change class definition'} = 'Изменить описание класса';
-    $Self->{Translation}->{'Config Item'} = 'Основные средства';
-    $Self->{Translation}->{'Class'} = 'Класс';
+    $Self->{Translation}->{'Config Item Class'} = '';
     $Self->{Translation}->{'Definition'} = 'Описание';
 
     # Template: AgentITSMConfigItemAdd
+    $Self->{Translation}->{'Config Item'} = 'Основные средства';
     $Self->{Translation}->{'Filter for Classes'} = 'Фильтр для классов';
     $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = 'Выберите класс из списка для создания новой КЕ';
+    $Self->{Translation}->{'Class'} = 'Класс';
 
     # Template: AgentITSMConfigItemBulk
     $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = 'ITSM ConfigItem массовое действие';
@@ -174,13 +175,14 @@ sub Data {
     $Self->{Translation}->{'Incident State'} = 'Состояние инцидента';
 
     # Template: AgentITSMConfigItemHistory
-    $Self->{Translation}->{'History of'} = 'История для';
+    $Self->{Translation}->{'History of Config Item: %s'} = '';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'Параметры контекста';
     $Self->{Translation}->{'Config Items per page'} = 'Конфигурационных единиц на страницу';
 
     # Template: AgentITSMConfigItemOverviewSmall
+    $Self->{Translation}->{'A generic ITSM Configuration Item table'} = '';
     $Self->{Translation}->{'Deployment State Type'} = 'Тип Состояния использования';
     $Self->{Translation}->{'Current Incident State'} = 'Текущее состояние инцидента';
     $Self->{Translation}->{'Current Incident State Type'} = 'Тип Текущего состояния инцидента';

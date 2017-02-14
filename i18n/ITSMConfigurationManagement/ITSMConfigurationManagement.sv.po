@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2017-02-14 17:08+0000\n"
-"PO-Revision-Date: 2017-02-14 16:09+0000\n"
+"POT-Creation-Date: 2017-02-14 17:57+0000\n"
+"PO-Revision-Date: 2017-02-14 16:58+0000\n"
 "Last-Translator: Udo Bretz\n"
 "Language-Team: Swedish (http://www.transifex.com/otrs/OTRS/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -532,16 +532,16 @@ msgid "Change class definition"
 msgstr "Ändra klassdefinition"
 
 #. Template: AdminITSMConfigItem
-msgid "Config Item"
-msgstr "Konfigurationsenhet"
-
-#. Template: AdminITSMConfigItem
-msgid "Class"
-msgstr "Klass"
+msgid "Config Item Class"
+msgstr ""
 
 #. Template: AdminITSMConfigItem
 msgid "Definition"
 msgstr "Definition"
+
+#. Template: AgentITSMConfigItemAdd
+msgid "Config Item"
+msgstr "Konfigurationsenhet"
 
 #. Template: AgentITSMConfigItemAdd
 msgid "Filter for Classes"
@@ -550,6 +550,10 @@ msgstr "Filtrera klasser"
 #. Template: AgentITSMConfigItemAdd
 msgid "Select a Class from the list to create a new Config Item."
 msgstr "Välj en klass från listan för att skapa en ny konfigurationsenhet"
+
+#. Template: AgentITSMConfigItemAdd
+msgid "Class"
+msgstr "Klass"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "ITSM ConfigItem Bulk Action"
@@ -597,8 +601,8 @@ msgid "Incident State"
 msgstr "Incidentläge"
 
 #. Template: AgentITSMConfigItemHistory
-msgid "History of"
-msgstr "Historik för"
+msgid "History of Config Item: %s"
+msgstr ""
 
 #. Template: AgentITSMConfigItemOverviewNavBar
 msgid "Context Settings"
@@ -607,6 +611,10 @@ msgstr "Anpassa vy"
 #. Template: AgentITSMConfigItemOverviewNavBar
 msgid "Config Items per page"
 msgstr "Konfigurationsenheter per sida"
+
+#. Template: AgentITSMConfigItemOverviewSmall
+msgid "A generic ITSM Configuration Item table"
+msgstr ""
 
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "Deployment State Type"

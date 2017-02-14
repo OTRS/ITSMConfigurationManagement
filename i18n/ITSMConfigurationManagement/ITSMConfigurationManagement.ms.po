@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2017-02-14 17:08+0000\n"
-"PO-Revision-Date: 2017-02-14 16:09+0000\n"
+"POT-Creation-Date: 2017-02-14 17:57+0000\n"
+"PO-Revision-Date: 2017-02-14 16:58+0000\n"
 "Last-Translator: Udo Bretz\n"
 "Language-Team: Malay (http://www.transifex.com/otrs/OTRS/language/ms/)\n"
 "MIME-Version: 1.0\n"
@@ -533,16 +533,16 @@ msgid "Change class definition"
 msgstr "Ubah definisi kelas"
 
 #. Template: AdminITSMConfigItem
-msgid "Config Item"
-msgstr "Config Item"
-
-#. Template: AdminITSMConfigItem
-msgid "Class"
-msgstr "Kelas"
+msgid "Config Item Class"
+msgstr ""
 
 #. Template: AdminITSMConfigItem
 msgid "Definition"
 msgstr "Definisi"
+
+#. Template: AgentITSMConfigItemAdd
+msgid "Config Item"
+msgstr "Config Item"
 
 #. Template: AgentITSMConfigItemAdd
 msgid "Filter for Classes"
@@ -551,6 +551,10 @@ msgstr "Menapis Kelas"
 #. Template: AgentITSMConfigItemAdd
 msgid "Select a Class from the list to create a new Config Item."
 msgstr "Pilih Kelas dari senarai untuk mewujudkan Perkara Config baru."
+
+#. Template: AgentITSMConfigItemAdd
+msgid "Class"
+msgstr "Kelas"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "ITSM ConfigItem Bulk Action"
@@ -598,8 +602,8 @@ msgid "Incident State"
 msgstr "insiden keadaan"
 
 #. Template: AgentITSMConfigItemHistory
-msgid "History of"
-msgstr "Sejarah untuk"
+msgid "History of Config Item: %s"
+msgstr ""
 
 #. Template: AgentITSMConfigItemOverviewNavBar
 msgid "Context Settings"
@@ -608,6 +612,10 @@ msgstr "konteks Tetapan"
 #. Template: AgentITSMConfigItemOverviewNavBar
 msgid "Config Items per page"
 msgstr "Item config per halaman"
+
+#. Template: AgentITSMConfigItemOverviewSmall
+msgid "A generic ITSM Configuration Item table"
+msgstr ""
 
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "Deployment State Type"

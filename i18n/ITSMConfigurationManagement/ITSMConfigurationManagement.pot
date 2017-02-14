@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ITSMConfigurationManagement\n"
-"POT-Creation-Date: 2017-02-14 17:11+0000\n"
+"POT-Creation-Date: 2017-02-14 17:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -527,15 +527,15 @@ msgid "Change class definition"
 msgstr ""
 
 #. Template: AdminITSMConfigItem
-msgid "Config Item"
-msgstr ""
-
-#. Template: AdminITSMConfigItem
-msgid "Class"
+msgid "Config Item Class"
 msgstr ""
 
 #. Template: AdminITSMConfigItem
 msgid "Definition"
+msgstr ""
+
+#. Template: AgentITSMConfigItemAdd
+msgid "Config Item"
 msgstr ""
 
 #. Template: AgentITSMConfigItemAdd
@@ -544,6 +544,10 @@ msgstr ""
 
 #. Template: AgentITSMConfigItemAdd
 msgid "Select a Class from the list to create a new Config Item."
+msgstr ""
+
+#. Template: AgentITSMConfigItemAdd
+msgid "Class"
 msgstr ""
 
 #. Template: AgentITSMConfigItemBulk
@@ -591,7 +595,7 @@ msgid "Incident State"
 msgstr ""
 
 #. Template: AgentITSMConfigItemHistory
-msgid "History of"
+msgid "History of Config Item: %s"
 msgstr ""
 
 #. Template: AgentITSMConfigItemOverviewNavBar
@@ -600,6 +604,10 @@ msgstr ""
 
 #. Template: AgentITSMConfigItemOverviewNavBar
 msgid "Config Items per page"
+msgstr ""
+
+#. Template: AgentITSMConfigItemOverviewSmall
+msgid "A generic ITSM Configuration Item table"
 msgstr ""
 
 #. Template: AgentITSMConfigItemOverviewSmall
