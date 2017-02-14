@@ -23,14 +23,14 @@
                             <input type="hidden" name="Subaction" value="DefinitionChange"/>
 
                             <div>[% Data.ClassOptionStrg %]</div>
-                            <button class="CallForAction" type="submit" value="[% Translate("Add") | html %]">
+                            <button class="CallForAction Fullsize Center" type="submit" value="[% Translate("Add") | html %]">
                                 <span>[% Translate("Change class definition") | html %]</span>
                             </button>
                         </form>
                     </li>
 [% RenderBlockStart("ActionOverview") %]
                     <li>
-                        <a href="[% Env("Baselink") %]Action=[% Env("Action") %]" class="CallForAction"><span>[% Translate("Go to overview") | html %]</span></a>
+                        <a href="[% Env("Baselink") %]Action=[% Env("Action") %]" class="CallForAction Fullsize Center"><span><i class="fa fa-caret-left"></i>[% Translate("Go to overview") | html %]</span></a>
                     </li>
 [% RenderBlockEnd("ActionOverview") %]
                 </ul>
@@ -48,7 +48,7 @@
                 <table class="DataTable">
                     <thead>
                         <tr>
-                            <th>[% Translate("Config Item") | html %] [% Translate("Class") | html %]</th>
+                            <th>[% Translate("Config Item Class") | html %]</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -71,7 +71,7 @@
                 <table class="DataTable">
                     <thead>
                         <tr>
-                            <th class="W50pc">[% Translate("Config Item") | html %] [% Translate("Class") | html %]</th>
+                            <th class="W50pc">[% Translate("Config Item Class") | html %]</th>
                             <th>[% Translate("Version") | html %]</th>
                             <th>[% Translate("Created by") | html %]</th>
                             <th>[% Translate("Created") | html %]</th>
@@ -99,7 +99,7 @@
             <div class="Content">
                 <fieldset class="TableLike">
 
-                    <label>[% Translate("Config Item") | html %] [% Translate("Class") | html %]: </label>
+                    <label>[% Translate("Config Item Class") | html %]: </label>
                     <div class="Field">
                         [% Data.Class | html %]
                     </div>
@@ -144,7 +144,7 @@
                     <fieldset class="TableLike">
 
 
-                        <label>[% Translate("Config Item") | html %] [% Translate("Class") | html %]: </label>
+                        <label>[% Translate("Config Item Class") | html %]: </label>
                         <div class="Field">
                             [% Data.Class | html %]
                         </div>
@@ -157,7 +157,7 @@
                         <div class="Clear"></div>
 
                         <div class="Field SpacingTop">
-                            <button class="Primary" type="submit" id="Submit" value="[% Translate("Submit") | html %]">[% Translate("Submit") | html %]</button>
+                            <button class="Primary CallForAction" type="submit" id="Submit" value="[% Translate("Submit") | html %]"><span>[% Translate("Submit") | html %]</span></button>
                             [% Translate("or") | html %]
                             <a href="[% Env("Baselink") %]Action=[% Env("Action") %]">[% Translate("Cancel") | html %]</a>
                         </div>
