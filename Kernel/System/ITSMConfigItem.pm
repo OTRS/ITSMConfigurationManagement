@@ -55,7 +55,7 @@ create an object
 
     use Kernel::System::ObjectManager;
     local $Kernel::OM = Kernel::System::ObjectManager->new();
-    my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ConfigItem');
+    my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
 
 =cut
 
