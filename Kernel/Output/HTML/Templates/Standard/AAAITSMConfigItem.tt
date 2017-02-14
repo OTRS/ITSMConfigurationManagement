@@ -7,6 +7,11 @@
 # --
 
 # Common
+[% Translate("Computer") | html %]
+[% Translate("Hardware") | html %]
+[% Translate("Network") | html %]
+[% Translate("Location") | html %]
+[% Translate("Software") | html %]
 [% Translate("Address") | html %]
 [% Translate("Admin Tool") | html %]
 [% Translate("Backup Device") | html %]
