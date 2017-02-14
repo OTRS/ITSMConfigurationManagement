@@ -7,7 +7,7 @@
 # --
 
 <div id="OverviewBody" class="Overview TicketList">
-    <table class="TableSmall" summary="A generic ITSM Configuration Item table">
+    <table class="TableSmall" summary="[% Translate("A generic ITSM Configuration Item table") | html %]">
         [% Data.StyleClasses %]
         <thead>
             <tr>
