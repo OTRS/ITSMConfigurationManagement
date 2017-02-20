@@ -16,10 +16,10 @@ sub Data {
     my $Self = shift;
 
     # Template: AAAITSMConfigItem
-    $Self->{Translation}->{'Computer'} = '';
-    $Self->{Translation}->{'Hardware'} = '';
-    $Self->{Translation}->{'Network'} = '';
-    $Self->{Translation}->{'Software'} = '';
+    $Self->{Translation}->{'Computer'} = 'Számítógép';
+    $Self->{Translation}->{'Hardware'} = 'Hardver';
+    $Self->{Translation}->{'Network'} = 'Hálózat';
+    $Self->{Translation}->{'Software'} = 'Szoftver';
     $Self->{Translation}->{'Address'} = 'Cím';
     $Self->{Translation}->{'Admin Tool'} = 'Adminisztrációs eszköz';
     $Self->{Translation}->{'Backup Device'} = 'Biztonsági mentés eszköz';
@@ -147,7 +147,7 @@ sub Data {
     # Template: AdminITSMConfigItem
     $Self->{Translation}->{'Config Item Management'} = 'Konfigurációelem-menedzsment';
     $Self->{Translation}->{'Change class definition'} = 'Osztály-meghatározás módosítása';
-    $Self->{Translation}->{'Config Item Class'} = '';
+    $Self->{Translation}->{'Config Item Class'} = 'Konfigurációelem-osztály';
     $Self->{Translation}->{'Definition'} = 'Meghatározás';
 
     # Template: AgentITSMConfigItemAdd
@@ -175,14 +175,14 @@ sub Data {
     $Self->{Translation}->{'Incident State'} = 'Incidensállapot';
 
     # Template: AgentITSMConfigItemHistory
-    $Self->{Translation}->{'History of Config Item: %s'} = '';
+    $Self->{Translation}->{'History of Config Item: %s'} = 'Konfigurációelem előzményei: %s';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'Környezet beállítások';
     $Self->{Translation}->{'Config Items per page'} = 'Konfigurációelemek oldalanként';
 
     # Template: AgentITSMConfigItemOverviewSmall
-    $Self->{Translation}->{'A generic ITSM Configuration Item table'} = '';
+    $Self->{Translation}->{'A generic ITSM Configuration Item table'} = 'Egy általános ITSM konfigurációelem táblázat';
     $Self->{Translation}->{'Deployment State Type'} = 'Üzembe állítási állapottípus';
     $Self->{Translation}->{'Current Incident State'} = 'Jelenlegi incidensállapot';
     $Self->{Translation}->{'Current Incident State Type'} = 'Jelenlegi incidensállapot típus';
