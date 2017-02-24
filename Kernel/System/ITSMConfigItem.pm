@@ -919,8 +919,8 @@ sub ConfigItemSearchExtended {
 
     # version search is required if Name, What or PreviousVersionSearch is given
     if (
-        ( defined $Param{Name} && $Param{Name} ne '' )
-        || ( defined $Param{What} && $Param{What} ne '' )
+        IsStringWithData( $Param{Name} )
+        || IsArrayRefWithData( $Param{What} )
         || $Param{PreviousVersionSearch}
         )
     {
@@ -937,7 +937,7 @@ sub ConfigItemSearchExtended {
     }
 
     # xml version search is required if What is given
-    if ( defined $Param{What} && $Param{What} ne '' ) {
+    if ( IsArrayRefWithData( $Param{What} ) ) {
         $RequiredSearch{XMLVersion} = 1;
     }
 
