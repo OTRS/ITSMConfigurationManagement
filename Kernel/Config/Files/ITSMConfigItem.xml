@@ -692,13 +692,13 @@
         <SubGroup>Frontend::Agent::ViewConfigItemSearch</SubGroup>
         <Setting>
             <Array>
-                <Item>Class</Item>
-                <Item>Incident State</Item>
-                <Item>Name</Item>
-                <Item>ConfigItemNumber</Item>
-                <Item>ChangeState</Item>
-                <Item>Version</Item>
-                <Item>Create Time</Item>
+                <Item Translatable="1">Class</Item>
+                <Item Translatable="1">Incident State</Item>
+                <Item Translatable="1">Name</Item>
+                <Item Translatable="1">ConfigItemNumber</Item>
+                <Item Translatable="1">Deployment State</Item>
+                <Item Translatable="1">Version</Item>
+                <Item Translatable="1">Create Time</Item>
             </Array>
         </Setting>
     </ConfigItem>

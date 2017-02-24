@@ -554,6 +554,7 @@ sub Run {
                 for my $Parameter ( @{$XMLGetParam} ) {
                     for my $Key ( sort keys %{$Parameter} ) {
                         if ( $Parameter->{$Key} ) {
+
                             $SearchProfileObject->SearchProfileAdd(
                                 Base      => 'ConfigItemSearch' . $ClassID,
                                 Name      => $Self->{Profile},
@@ -597,6 +598,17 @@ sub Run {
             my @CSVData;
             my @CSVHead;
 
+            # mapping between header name and data field
+            my %Header2Data = (
+                'Class'            => 'Class',
+                'Incident State'   => 'InciState',
+                'Name'             => 'Name',
+                'ConfigItemNumber' => 'Number',
+                'Deployment State' => 'DeplState',
+                'Version'          => 'VersionID',
+                'Create Time'      => 'CreateTime',
+            );
+
             CONFIGITEMID:
             for my $ConfigItemID ( @{$SearchResultList} ) {
 
@@ -623,8 +635,8 @@ sub Run {
 
                 # store data
                 my @Data;
-                for my $StoreData (qw(Class InciState Name Number DeplState VersionID CreateTime)) {
-                    push @Data, $LastVersion->{$StoreData};
+                for my $Header ( @CSVHead ) {
+                    push @Data, $LastVersion->{ $Header2Data{$Header} };
                 }
                 push @CSVData, \@Data;
             }
@@ -638,7 +650,7 @@ sub Run {
             # translate headers
             for my $Header (@CSVHead) {
 
-                # replace ConfigItemNumber header with the current ConfigItemNumber from sysconfig
+                # replace ConfigItemNumber header with the current ConfigItemNumber hook from sysconfig
                 if ( $Header eq 'ConfigItemNumber' ) {
                     $Header = $ConfigObject->Get('ITSMConfigItem::Hook');
                 }
@@ -647,7 +659,7 @@ sub Run {
                 }
             }
 
-            # assable CSV data
+            # assemble CSV data
             my $CSV = $Kernel::OM->Get('Kernel::System::CSV')->Array2CSV(
                 Head      => \@CSVHead,
                 Data      => \@CSVData,
