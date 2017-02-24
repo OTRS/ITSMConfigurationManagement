@@ -135,9 +135,9 @@ for ( 1 .. 10 ) {
 
         # insert new version
         my $Success = $Kernel::OM->Get('Kernel::System::DB')->Do(
-            SQL => "UPDATE configitem_version
+            SQL => 'UPDATE configitem_version
                 SET create_time = ?
-                WHERE id = ?",
+                WHERE id = ?',
             Bind => [
                 \$VersionTestCreateTime,
                 \$VersionID,
