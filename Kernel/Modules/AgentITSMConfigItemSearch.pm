@@ -635,7 +635,7 @@ sub Run {
 
                 # store data
                 my @Data;
-                for my $Header ( @CSVHead ) {
+                for my $Header (@CSVHead) {
                     push @Data, $LastVersion->{ $Header2Data{$Header} };
                 }
                 push @CSVData, \@Data;
