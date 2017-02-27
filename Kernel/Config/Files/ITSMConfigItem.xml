@@ -200,7 +200,7 @@
                 <Item Key="Module">Kernel::Output::HTML::ITSMConfigItem::MenuGeneric</Item>
                 <Item Key="Name">History</Item>
                 <Item Key="Description">History</Item>
-                <Item Key="Action">AgentITSMConfigItemEdit</Item>
+                <Item Key="Action">AgentITSMConfigItemHistory</Item>
                 <Item Key="Link">Action=AgentITSMConfigItemHistory;ConfigItemID=[% Data.ConfigItemID | html %];VersionID=[% Data.VersionID | html %]</Item>
                 <Item Key="Target">PopUp</Item>
             </Hash>
@@ -838,7 +838,7 @@
                 <Item Key="Module">Kernel::Output::HTML::ITSMConfigItem::MenuGeneric</Item>
                 <Item Key="Name">History</Item>
                 <Item Key="Description">History</Item>
-                <Item Key="Action">AgentITSMConfigItemEdit</Item>
+                <Item Key="Action">AgentITSMConfigItemHistory</Item>
                 <Item Key="Link">Action=AgentITSMConfigItemHistory;ConfigItemID=[% Data.ConfigItemID | html %];VersionID=[% Data.VersionID | html %]</Item>
                 <Item Key="Target">PopUp</Item>
             </Hash>
