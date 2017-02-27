@@ -114,7 +114,7 @@
         <SubGroup>Frontend::Agent::ModuleRegistration</SubGroup>
         <Setting>
             <FrontendModuleReg>
-                <GroupRo>itsm-configitem</GroupRo>
+                <Group>itsm-configitem</Group>
                 <Description>Delete a configuration item</Description>
                 <Title>Delete</Title>
                 <NavBarName>ITSM ConfigItem</NavBarName>
