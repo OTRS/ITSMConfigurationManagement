@@ -42,7 +42,7 @@ sub Run {
     # get config item object
     my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
 
-    # # get config of frontend module
+    # get config of frontend module
     $Self->{Config} = $Kernel::OM->Get('Kernel::Config')->Get("ITSMConfigItem::Frontend::$Self->{Action}");
 
     # check permissions

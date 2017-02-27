@@ -85,7 +85,7 @@ sub Run {
 
     # get Class data
     my $ClassItem = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemGet(
-        ItemID => $ConfigItem->{ClassID}
+        ItemID => $ConfigItem->{ClassID},
     );
 
     # get user groups
