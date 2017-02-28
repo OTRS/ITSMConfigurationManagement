@@ -1288,6 +1288,8 @@
 
         $Kernel::OM->Get($CodeModule)->CodeUpgradeFromLowerThan_4_0_91();
 
+        $Kernel::OM->Get($CodeModule)->CodeUpgradeFromLowerThan_4_0_91();
+
     ]]></CodeUpgrade>
     <CodeUpgrade Type="post"><![CDATA[
 
