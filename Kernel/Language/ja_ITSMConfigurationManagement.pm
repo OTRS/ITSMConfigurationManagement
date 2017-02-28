@@ -232,6 +232,7 @@ sub Data {
     $Self->{Translation}->{'Config item history.'} = '';
     $Self->{Translation}->{'Config item print.'} = '';
     $Self->{Translation}->{'Config item zoom.'} = '';
+    $Self->{Translation}->{'ConfigItemNumber'} = '';
     $Self->{Translation}->{'Configuration Item Limit'} = '構成アイテムの制限';
     $Self->{Translation}->{'Configuration Item limit per page'} = 'ページあたりの構成アイテムの制限値';
     $Self->{Translation}->{'Configuration Management Database.'} = '';

@@ -232,6 +232,7 @@ sub Data {
     $Self->{Translation}->{'Config item history.'} = '';
     $Self->{Translation}->{'Config item print.'} = '';
     $Self->{Translation}->{'Config item zoom.'} = '';
+    $Self->{Translation}->{'ConfigItemNumber'} = '';
     $Self->{Translation}->{'Configuration Item Limit'} = ' Лимит КЕ';
     $Self->{Translation}->{'Configuration Item limit per page'} = 'Количество КЕ на страницу';
     $Self->{Translation}->{'Configuration Management Database.'} = '';

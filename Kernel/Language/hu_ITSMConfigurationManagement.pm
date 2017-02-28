@@ -107,7 +107,7 @@ sub Data {
     $Self->{Translation}->{'Per User'} = 'Felhasználónként';
     $Self->{Translation}->{'Phone 1'} = '1. telefon';
     $Self->{Translation}->{'Phone 2'} = '2. telefon';
-    $Self->{Translation}->{'Pilot'} = 'Bevezető';
+    $Self->{Translation}->{'Pilot'} = 'Próbaüzem';
     $Self->{Translation}->{'Planned'} = 'Tervezett';
     $Self->{Translation}->{'Printer'} = 'Nyomtató';
     $Self->{Translation}->{'Production'} = 'Termelés';
@@ -115,8 +115,8 @@ sub Data {
     $Self->{Translation}->{'Rack'} = 'Rack';
     $Self->{Translation}->{'Ram'} = 'Ram';
     $Self->{Translation}->{'Repair'} = 'Javítás';
-    $Self->{Translation}->{'Retired'} = 'Visszavonult';
-    $Self->{Translation}->{'Review'} = 'Áttekintés';
+    $Self->{Translation}->{'Retired'} = 'Visszavont';
+    $Self->{Translation}->{'Review'} = 'Vizsgálat';
     $Self->{Translation}->{'Room'} = 'Szoba';
     $Self->{Translation}->{'Router'} = 'Útválasztó';
     $Self->{Translation}->{'Scanner'} = 'Lapolvasó';
@@ -131,7 +131,7 @@ sub Data {
     $Self->{Translation}->{'Subnet Mask'} = 'Alhálózati maszk';
     $Self->{Translation}->{'Switch'} = 'Kapcsoló';
     $Self->{Translation}->{'Telco'} = 'Telco';
-    $Self->{Translation}->{'Test/QA'} = 'Teszt/QA';
+    $Self->{Translation}->{'Test/QA'} = 'Tesztelés/QA';
     $Self->{Translation}->{'The deployment state of this config item'} = 'A konfigurációelem üzembe állítási állapota';
     $Self->{Translation}->{'The incident state of this config item'} = 'A konfigurációelem incidensállapota';
     $Self->{Translation}->{'Time Restricted'} = 'Időben korlátozott';
@@ -232,6 +232,7 @@ sub Data {
     $Self->{Translation}->{'Config item history.'} = 'Konfigurációelem előzményei.';
     $Self->{Translation}->{'Config item print.'} = 'Konfigurációelem nyomtatása.';
     $Self->{Translation}->{'Config item zoom.'} = 'Konfigurációelem nagyítása.';
+    $Self->{Translation}->{'ConfigItemNumber'} = '';
     $Self->{Translation}->{'Configuration Item Limit'} = 'Konfigurációelem-korlát';
     $Self->{Translation}->{'Configuration Item limit per page'} = 'Konfigurációelem-korlát oldalanként';
     $Self->{Translation}->{'Configuration Management Database.'} = 'Konfigurációmenedzsment-adatbázis.';

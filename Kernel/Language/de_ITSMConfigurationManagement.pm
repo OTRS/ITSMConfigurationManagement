@@ -147,7 +147,7 @@ sub Data {
     # Template: AdminITSMConfigItem
     $Self->{Translation}->{'Config Item Management'} = 'Config Item Verwaltung';
     $Self->{Translation}->{'Change class definition'} = 'Klassen-Definition ändern';
-    $Self->{Translation}->{'Config Item Class'} = '';
+    $Self->{Translation}->{'Config Item Class'} = 'ConfigItem Klasse';
     $Self->{Translation}->{'Definition'} = 'Definition';
 
     # Template: AgentITSMConfigItemAdd
@@ -162,7 +162,7 @@ sub Data {
     $Self->{Translation}->{'Incident state'} = 'Vorfallsstatus';
     $Self->{Translation}->{'Link to another'} = 'Zu einem anderen verlinken';
     $Self->{Translation}->{'Invalid Configuration Item number!'} = 'Ungültige Configuration Item Nummer!';
-    $Self->{Translation}->{'The number of another Configuration Item to link with.'} = '';
+    $Self->{Translation}->{'The number of another Configuration Item to link with.'} = 'Die Nummer des zu verlinkenden ConfigItems.';
 
     # Template: AgentITSMConfigItemDelete
     $Self->{Translation}->{'Do you really want to delete this config item?'} = 'Wollen Sie dieses Configitem wirklich löschen?';
@@ -232,6 +232,7 @@ sub Data {
     $Self->{Translation}->{'Config item history.'} = 'Config Item Verlauf.';
     $Self->{Translation}->{'Config item print.'} = 'Config Item drucken.';
     $Self->{Translation}->{'Config item zoom.'} = 'Config Item Zoom.';
+    $Self->{Translation}->{'ConfigItemNumber'} = '';
     $Self->{Translation}->{'Configuration Item Limit'} = 'Configuration Item Limit';
     $Self->{Translation}->{'Configuration Item limit per page'} = 'Configuration Item Limit pro Seite';
     $Self->{Translation}->{'Configuration Management Database.'} = '';

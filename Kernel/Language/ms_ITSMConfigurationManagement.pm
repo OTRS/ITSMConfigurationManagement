@@ -232,6 +232,7 @@ sub Data {
     $Self->{Translation}->{'Config item history.'} = 'Sejarah item config.';
     $Self->{Translation}->{'Config item print.'} = 'Cetak item config.';
     $Self->{Translation}->{'Config item zoom.'} = 'Zum item config.';
+    $Self->{Translation}->{'ConfigItemNumber'} = '';
     $Self->{Translation}->{'Configuration Item Limit'} = 'Had Barangan Konfigurasi';
     $Self->{Translation}->{'Configuration Item limit per page'} = 'Had Barangan Konfigurasi setiap muka surat';
     $Self->{Translation}->{'Configuration Management Database.'} = 'Konfigurasi Pengurusan Pangkalan Data.';

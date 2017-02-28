@@ -232,6 +232,7 @@ sub Data {
     $Self->{Translation}->{'Config item history.'} = 'Histórivo do item de configuração.';
     $Self->{Translation}->{'Config item print.'} = 'Impressão do item de configuração.';
     $Self->{Translation}->{'Config item zoom.'} = 'Zoom de item de configuração.';
+    $Self->{Translation}->{'ConfigItemNumber'} = '';
     $Self->{Translation}->{'Configuration Item Limit'} = 'Limite de Item de Configuração';
     $Self->{Translation}->{'Configuration Item limit per page'} = 'Limite de Item de Configuração por página';
     $Self->{Translation}->{'Configuration Management Database.'} = 'Configuração do Gerenciamento do Banco de Dados.';

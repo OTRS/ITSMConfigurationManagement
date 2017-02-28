@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
 "POT-Creation-Date: 2017-02-14 17:57+0000\n"
-"PO-Revision-Date: 2017-02-15 00:04+0000\n"
+"PO-Revision-Date: 2017-02-23 22:38+0000\n"
 "Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/otrs/OTRS/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -380,7 +380,7 @@ msgstr "2. telefon"
 
 #. Template: AAAITSMConfigItem
 msgid "Pilot"
-msgstr "Bevezető"
+msgstr "Próbaüzem"
 
 #. Template: AAAITSMConfigItem
 msgid "Planned"
@@ -412,11 +412,11 @@ msgstr "Javítás"
 
 #. Template: AAAITSMConfigItem
 msgid "Retired"
-msgstr "Visszavonult"
+msgstr "Visszavont"
 
 #. Template: AAAITSMConfigItem
 msgid "Review"
-msgstr "Áttekintés"
+msgstr "Vizsgálat"
 
 #. Template: AAAITSMConfigItem
 msgid "Room"
@@ -476,7 +476,7 @@ msgstr "Telco"
 
 #. Template: AAAITSMConfigItem
 msgid "Test/QA"
-msgstr "Teszt/QA"
+msgstr "Tesztelés/QA"
 
 #. Template: AAAITSMConfigItem
 msgid "The deployment state of this config item"

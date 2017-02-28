@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
 "POT-Creation-Date: 2017-02-14 17:57+0000\n"
-"PO-Revision-Date: 2017-02-14 16:58+0000\n"
-"Last-Translator: Udo Bretz\n"
+"PO-Revision-Date: 2017-02-24 08:29+0000\n"
+"Last-Translator: 汇民 王 <whuim@163.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otrs/OTRS/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,11 +20,11 @@ msgstr ""
 
 #. Template: AAAITSMConfigItem
 msgid "Computer"
-msgstr ""
+msgstr "计算机"
 
 #. Template: AAAITSMConfigItem
 msgid "Hardware"
-msgstr ""
+msgstr "硬件"
 
 #. Template: AAAITSMConfigItem
 msgid "Network"
@@ -32,7 +32,7 @@ msgstr "网络"
 
 #. Template: AAAITSMConfigItem
 msgid "Software"
-msgstr ""
+msgstr "软件"
 
 #. Template: AAAITSMConfigItem
 msgid "Address"
@@ -536,7 +536,7 @@ msgstr "修改类定义"
 
 #. Template: AdminITSMConfigItem
 msgid "Config Item Class"
-msgstr ""
+msgstr "配置项类"
 
 #. Template: AdminITSMConfigItem
 msgid "Definition"
@@ -605,7 +605,7 @@ msgstr "故障状态"
 
 #. Template: AgentITSMConfigItemHistory
 msgid "History of Config Item: %s"
-msgstr ""
+msgstr "配置项：%s 的历史信息"
 
 #. Template: AgentITSMConfigItemOverviewNavBar
 msgid "Context Settings"
@@ -617,7 +617,7 @@ msgstr "每页配置项个数"
 
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "A generic ITSM Configuration Item table"
-msgstr ""
+msgstr "一个通用的ITSM配置项表格"
 
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "Deployment State Type"
@@ -855,7 +855,7 @@ msgstr "定义故障状态从高（如紧急）到低（如正常）的顺序。
 msgid ""
 "Defines the relevant deployment states where linked tickets can affect the "
 "status of a CI."
-msgstr ""
+msgstr "定义关联的部署状态，即链接的工单可以影响配置项状态的情况。"
 
 #. SysConfig
 msgid "Defines the search limit for the AgentITSMConfigItem screen."
@@ -924,23 +924,23 @@ msgstr "定义链接表复合视图中按配置项类分类显示的字段。每
 msgid ""
 "Defines which type of link (named from the ticket perspective) can affect "
 "the status of a linked CI."
-msgstr ""
+msgstr "定义哪一类(从工单角度命名的)链接可以影响一个链接的配置项的状态。"
 
 #. SysConfig
 msgid "Defines which type of ticket can affect the status of a linked CI."
-msgstr ""
+msgstr "定义哪一类工单可以影响一个链接的配置项的状态。"
 
 #. SysConfig
 msgid "Deployment State Color"
-msgstr ""
+msgstr "部署状态的颜色"
 
 #. SysConfig
 msgid "Deployment State Color."
-msgstr ""
+msgstr "部署状态的颜色。"
 
 #. SysConfig
 msgid "Deployment State Type."
-msgstr ""
+msgstr "部署状态类型。"
 
 #. SysConfig
 msgid "Disabled"
@@ -971,11 +971,11 @@ msgstr "启用/禁用检查配置项唯一名称功能。在启用这个选项�
 
 #. SysConfig
 msgid "Event module to set configitem-status on ticket-configitem-link."
-msgstr ""
+msgstr "在工单-配置项的链接中设置配置项-状态的事件模块。"
 
 #. SysConfig
 msgid "ITSM config item overview."
-msgstr ""
+msgstr "ITSM配置项概览。"
 
 #. SysConfig
 msgid "Module to check the group responsible for a class."
@@ -1063,11 +1063,11 @@ msgstr "服务人员界面使用ITSM配置项打印窗口需要的权限。"
 
 #. SysConfig
 msgid "Required privileges to delete config items."
-msgstr ""
+msgstr "删除配置项所需的权限。"
 
 #. SysConfig
 msgid "Search config items."
-msgstr ""
+msgstr "搜索配置项。"
 
 #. SysConfig
 msgid ""
@@ -1081,7 +1081,7 @@ msgstr "选择配置项号码生成器模块。“AutoIncrement自动增量”�
 msgid ""
 "Set the incident state of a CI automatically when a Ticket is Linked to a "
 "CI."
-msgstr ""
+msgstr "当一个工单链接到一个配置项时自动设置这个配置项的故障状态。"
 
 #. SysConfig
 msgid ""
@@ -1117,7 +1117,7 @@ msgstr "在服务人员界面配置项详情视图中，在菜单中显示一个
 msgid ""
 "Shows a link in the menu to delete a configuration item in its zoom view of "
 "the agent interface."
-msgstr ""
+msgstr "在服务人员界面配置项详情视图中，在菜单中显示一个删除配置项的链接。"
 
 #. SysConfig
 msgid ""
@@ -1168,8 +1168,8 @@ msgstr "配置项标识符，如ConfigItem#、MyConfigItem#，默认是ConfigIte
 
 #. SysConfig
 msgid "class"
-msgstr ""
+msgstr "类"
 
 #. SysConfig
 msgid "global"
-msgstr ""
+msgstr "全局"

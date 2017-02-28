@@ -16,10 +16,10 @@ sub Data {
     my $Self = shift;
 
     # Template: AAAITSMConfigItem
-    $Self->{Translation}->{'Computer'} = '';
-    $Self->{Translation}->{'Hardware'} = '';
-    $Self->{Translation}->{'Network'} = '';
-    $Self->{Translation}->{'Software'} = '';
+    $Self->{Translation}->{'Computer'} = 'Ordenador';
+    $Self->{Translation}->{'Hardware'} = 'Hardware';
+    $Self->{Translation}->{'Network'} = 'Red';
+    $Self->{Translation}->{'Software'} = 'Software';
     $Self->{Translation}->{'Address'} = 'Dirección';
     $Self->{Translation}->{'Admin Tool'} = 'Herramienta de Administración';
     $Self->{Translation}->{'Backup Device'} = 'Dispositivo de Respaldo';
@@ -175,7 +175,7 @@ sub Data {
     $Self->{Translation}->{'Incident State'} = 'Estado del Incidente';
 
     # Template: AgentITSMConfigItemHistory
-    $Self->{Translation}->{'History of Config Item: %s'} = '';
+    $Self->{Translation}->{'History of Config Item: %s'} = 'Historial del Elemento de configuración: %s';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'Ajustes de Contexto';
@@ -232,6 +232,7 @@ sub Data {
     $Self->{Translation}->{'Config item history.'} = '';
     $Self->{Translation}->{'Config item print.'} = '';
     $Self->{Translation}->{'Config item zoom.'} = '';
+    $Self->{Translation}->{'ConfigItemNumber'} = '';
     $Self->{Translation}->{'Configuration Item Limit'} = 'Límite de Elementos de Configuración';
     $Self->{Translation}->{'Configuration Item limit per page'} = 'Límite por página de Elementos de Configuración';
     $Self->{Translation}->{'Configuration Management Database.'} = '';

@@ -16,10 +16,10 @@ sub Data {
     my $Self = shift;
 
     # Template: AAAITSMConfigItem
-    $Self->{Translation}->{'Computer'} = '';
-    $Self->{Translation}->{'Hardware'} = '';
+    $Self->{Translation}->{'Computer'} = '计算机';
+    $Self->{Translation}->{'Hardware'} = '硬件';
     $Self->{Translation}->{'Network'} = '网络';
-    $Self->{Translation}->{'Software'} = '';
+    $Self->{Translation}->{'Software'} = '软件';
     $Self->{Translation}->{'Address'} = '地址';
     $Self->{Translation}->{'Admin Tool'} = '管理工具';
     $Self->{Translation}->{'Backup Device'} = '备份设备';
@@ -147,7 +147,7 @@ sub Data {
     # Template: AdminITSMConfigItem
     $Self->{Translation}->{'Config Item Management'} = '管理配置项';
     $Self->{Translation}->{'Change class definition'} = '修改类定义';
-    $Self->{Translation}->{'Config Item Class'} = '';
+    $Self->{Translation}->{'Config Item Class'} = '配置项类';
     $Self->{Translation}->{'Definition'} = '定义';
 
     # Template: AgentITSMConfigItemAdd
@@ -175,14 +175,14 @@ sub Data {
     $Self->{Translation}->{'Incident State'} = '故障状态';
 
     # Template: AgentITSMConfigItemHistory
-    $Self->{Translation}->{'History of Config Item: %s'} = '';
+    $Self->{Translation}->{'History of Config Item: %s'} = '配置项：%s 的历史信息';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = '上下文设置';
     $Self->{Translation}->{'Config Items per page'} = '每页配置项个数';
 
     # Template: AgentITSMConfigItemOverviewSmall
-    $Self->{Translation}->{'A generic ITSM Configuration Item table'} = '';
+    $Self->{Translation}->{'A generic ITSM Configuration Item table'} = '一个通用的ITSM配置项表格';
     $Self->{Translation}->{'Deployment State Type'} = '部署状态类型';
     $Self->{Translation}->{'Current Incident State'} = '当前的故障状态';
     $Self->{Translation}->{'Current Incident State Type'} = '当前的故障状态类型';
@@ -232,6 +232,7 @@ sub Data {
     $Self->{Translation}->{'Config item history.'} = '配置项历史。';
     $Self->{Translation}->{'Config item print.'} = '打印配置项。';
     $Self->{Translation}->{'Config item zoom.'} = '配置项详情。';
+    $Self->{Translation}->{'ConfigItemNumber'} = '';
     $Self->{Translation}->{'Configuration Item Limit'} = '配置项限制';
     $Self->{Translation}->{'Configuration Item limit per page'} = '每页配置项限制';
     $Self->{Translation}->{'Configuration Management Database.'} = '配置管理数据库。';
@@ -263,7 +264,7 @@ sub Data {
     $Self->{Translation}->{'Defines the order of incident states from high (e.g. cricital) to low (e.g. functional).'} =
         '定义故障状态从高（如紧急）到低（如正常）的顺序。';
     $Self->{Translation}->{'Defines the relevant deployment states where linked tickets can affect the status of a CI.'} =
-        '';
+        '定义关联的部署状态，即链接的工单可以影响配置项状态的情况。';
     $Self->{Translation}->{'Defines the search limit for the AgentITSMConfigItem screen.'} =
         '定义AgentITSMConfigItem（服务人员配置项）窗口的搜索限制';
     $Self->{Translation}->{'Defines the search limit for the AgentITSMConfigItemSearch screen.'} =
@@ -279,12 +280,12 @@ sub Data {
     $Self->{Translation}->{'Defines the shown columns of CIs in the link table complex view, depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown.'} =
         '定义链接表复合视图中按配置项类分类显示的字段。每个条目均需以类名为前缀再加上双冒号（如计算机::）。有一些配置项属性是所有配置项都有的（例如，对于计算机类：计算机::名称、计算机::CurDeplState当前部署状态、计算机::CreateTime创建时间）。要显示在配置项定义中定义的独特的配置项属性，必须使用下面的方案（例如：对于计算机类：计算机::硬盘::1、计算机::硬盘::容量::1、计算机::硬盘::2、计算机::硬盘::2计算机::硬盘::2）。如果一个配置项类没有条目存在，则使用在ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns中设置的默认字段。';
     $Self->{Translation}->{'Defines which type of link (named from the ticket perspective) can affect the status of a linked CI.'} =
-        '';
+        '定义哪一类(从工单角度命名的)链接可以影响一个链接的配置项的状态。';
     $Self->{Translation}->{'Defines which type of ticket can affect the status of a linked CI.'} =
-        '';
-    $Self->{Translation}->{'Deployment State Color'} = '';
-    $Self->{Translation}->{'Deployment State Color.'} = '';
-    $Self->{Translation}->{'Deployment State Type.'} = '';
+        '定义哪一类工单可以影响一个链接的配置项的状态。';
+    $Self->{Translation}->{'Deployment State Color'} = '部署状态的颜色';
+    $Self->{Translation}->{'Deployment State Color.'} = '部署状态的颜色。';
+    $Self->{Translation}->{'Deployment State Type.'} = '部署状态类型。';
     $Self->{Translation}->{'Disabled'} = '已禁用';
     $Self->{Translation}->{'Enabled'} = '已启用';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
@@ -294,8 +295,8 @@ sub Data {
     $Self->{Translation}->{'Enables/disables the functionality to check ConfigItems for unique names. Before enabling this option you should check your system for already existing config items with duplicate names. You can do this with the script bin/otrs.ITSMConfigItemListDuplicates.pl.'} =
         '启用/禁用检查配置项唯一名称功能。在启用这个选项前，您应该检查系统中是否已经存在重名的配置项，您可以使用这个脚本来检查重名情况：bin/otrs.ITSMConfigItemListDuplicates.pl。';
     $Self->{Translation}->{'Event module to set configitem-status on ticket-configitem-link.'} =
-        '';
-    $Self->{Translation}->{'ITSM config item overview.'} = '';
+        '在工单-配置项的链接中设置配置项-状态的事件模块。';
+    $Self->{Translation}->{'ITSM config item overview.'} = 'ITSM配置项概览。';
     $Self->{Translation}->{'Module to check the group responsible for a class.'} = '用于检查配置项类的组权限的模块。';
     $Self->{Translation}->{'Module to check the group responsible for a configuration item.'} =
         '用于检查配置项的组权限的模块。';
@@ -325,12 +326,12 @@ sub Data {
         '服务人员界面使用ITSM配置项历史窗口需要的权限。';
     $Self->{Translation}->{'Required permissions to use the print ITSM configuration item screen in the agent interface.'} =
         '服务人员界面使用ITSM配置项打印窗口需要的权限。';
-    $Self->{Translation}->{'Required privileges to delete config items.'} = '';
-    $Self->{Translation}->{'Search config items.'} = '';
+    $Self->{Translation}->{'Required privileges to delete config items.'} = '删除配置项所需的权限。';
+    $Self->{Translation}->{'Search config items.'} = '搜索配置项。';
     $Self->{Translation}->{'Selects the configuration item number generator module. "AutoIncrement" increments the configuration item number, the SystemID, the ConfigItemClassID and the counter are used. The format is "SystemID.ConfigItemClassID.Counter", e.g. 1205000004, 1205000005.'} =
         '选择配置项号码生成器模块。“AutoIncrement自动增量”使用系统ID、配置项类ID和计数器来增加配置项号，格式为：系统ID.配置项类ID.计数器，如1205000004、1205000005。';
     $Self->{Translation}->{'Set the incident state of a CI automatically when a Ticket is Linked to a CI.'} =
-        '';
+        '当一个工单链接到一个配置项时自动设置这个配置项的故障状态。';
     $Self->{Translation}->{'Sets the deployment state in the configuration item bulk screen of the agent interface.'} =
         '在服务人员界面配置项批量操作窗口设置部署状态。';
     $Self->{Translation}->{'Sets the incident state in the configuration item bulk screen of the agent interface.'} =
@@ -342,7 +343,7 @@ sub Data {
     $Self->{Translation}->{'Shows a link in the menu to access the history of a configuration item in the its zoom view of the agent interface.'} =
         '在服务人员界面配置项详情视图中，在菜单中显示一个允许访问配置项历史的链接。';
     $Self->{Translation}->{'Shows a link in the menu to delete a configuration item in its zoom view of the agent interface.'} =
-        '';
+        '在服务人员界面配置项详情视图中，在菜单中显示一个删除配置项的链接。';
     $Self->{Translation}->{'Shows a link in the menu to duplicate a configuration item in the configuration item overview of the agent interface.'} =
         '在服务人员界面配置项概览视图中，在菜单中显示一个复制配置项的链接。';
     $Self->{Translation}->{'Shows a link in the menu to duplicate a configuration item in the its zoom view of the agent interface.'} =
@@ -359,8 +360,8 @@ sub Data {
         '在服务人员界面显示配置项历史（倒序）。';
     $Self->{Translation}->{'The identifier for a configuration item, e.g. ConfigItem#, MyConfigItem#. The default is ConfigItem#.'} =
         '配置项标识符，如ConfigItem#、MyConfigItem#，默认是ConfigItem#。';
-    $Self->{Translation}->{'class'} = '';
-    $Self->{Translation}->{'global'} = '';
+    $Self->{Translation}->{'class'} = '类';
+    $Self->{Translation}->{'global'} = '全局';
 
 }
 

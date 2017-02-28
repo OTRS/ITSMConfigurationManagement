@@ -232,6 +232,7 @@ sub Data {
     $Self->{Translation}->{'Config item history.'} = '';
     $Self->{Translation}->{'Config item print.'} = '';
     $Self->{Translation}->{'Config item zoom.'} = '';
+    $Self->{Translation}->{'ConfigItemNumber'} = '';
     $Self->{Translation}->{'Configuration Item Limit'} = 'Kikomo cha kipengele cha usanidi';
     $Self->{Translation}->{'Configuration Item limit per page'} = 'Kikomo cha kipengele kwa ukurasa';
     $Self->{Translation}->{'Configuration Management Database.'} = '';
