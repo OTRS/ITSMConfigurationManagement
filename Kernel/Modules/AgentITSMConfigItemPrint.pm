@@ -11,6 +11,8 @@ package Kernel::Modules::AgentITSMConfigItemPrint;
 use strict;
 use warnings;
 
+use Kernel::Language qw(Translatable);
+
 our $ObjectManagerDisabled = 1;
 
 sub new {
@@ -39,8 +41,8 @@ sub Run {
     # check needed stuff
     if ( !$ConfigItemID || !$VersionID ) {
         return $LayoutObject->ErrorScreen(
-            Message => 'No ConfigItemID or VersionID is given!',
-            Comment => 'Please contact the admin.',
+            Message => Translatable('No ConfigItemID or VersionID is given!'),
+            Comment => Translatable('Please contact the administrator.'),
         );
     }
 
@@ -60,8 +62,8 @@ sub Run {
 
         # error page
         return $LayoutObject->ErrorScreen(
-            Message => 'Can\'t show config item, no access rights given!',
-            Comment => 'Please contact the admin.',
+            Message => Translatable('Can\'t show config item, no access rights given!'),
+            Comment => Translatable('Please contact the administrator.'),
         );
     }
 
@@ -71,8 +73,8 @@ sub Run {
     );
     if ( !$ConfigItem->{ConfigItemID} ) {
         return $LayoutObject->ErrorScreen(
-            Message => "ConfigItemID $ConfigItemID not found in database!",
-            Comment => 'Please contact the admin.',
+            Message => $LayoutObject->{LanguageObject}->Translate( 'ConfigItemID %s not found in database!', $ConfigItemID ),
+            Comment => Translatable('Please contact the administrator.'),
         );
     }
 
@@ -82,8 +84,8 @@ sub Run {
     );
     if ( !$Version->{VersionID} ) {
         return $LayoutObject->ErrorScreen(
-            Message => "VersionID $VersionID not found in database!",
-            Comment => 'Please contact the admin.',
+            Message => $LayoutObject->{LanguageObject}->Translate( 'VersionID %s not found in database!', $VersionID ),
+            Comment => Translatable('Please contact the administrator.'),
         );
     }
 
@@ -205,9 +207,11 @@ sub Run {
 
     # output "printed by"
     $PDFObject->Text(
-        Text => $LayoutObject->{LanguageObject}->Translate('printed by') . ' '
-            . $Self->{UserFullname} . ' '
-            . $LayoutObject->{Time},
+        Text => $LayoutObject->{LanguageObject}->Translate(
+            'printed by %s at %s',
+            $Self->{UserFullname},
+            $LayoutObject->{Time},
+        ),
         FontSize => 9,
     );
 
