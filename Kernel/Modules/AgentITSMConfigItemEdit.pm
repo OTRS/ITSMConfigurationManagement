@@ -106,16 +106,16 @@ sub Run {
     }
     else {
         return $LayoutObject->ErrorScreen(
-            Message => 'No ConfigItemID, DuplicateID or ClassID is given!',
-            Comment => 'Please contact the admin.',
+            Message => Translatable('No ConfigItemID, DuplicateID or ClassID is given!'),
+            Comment => Translatable('Please contact the administrator.'),
         );
     }
 
     # if user has no access rights show error page
     if ( !$HasAccess ) {
         return $LayoutObject->ErrorScreen(
-            Message => 'No access is given!',
-            Comment => 'Please contact the admin.',
+            Message => Translatable('No access is given!'),
+            Comment => Translatable('Please contact the administrator.'),
         );
     }
 
@@ -127,8 +127,8 @@ sub Run {
     # abort, if no definition is defined
     if ( !$XMLDefinition->{DefinitionID} ) {
         return $LayoutObject->ErrorScreen(
-            Message => "No Definition was defined for class $ConfigItem->{Class}!",
-            Comment => 'Please contact the admin.',
+            Message => $LayoutObject->{LanguageObject}->Translate( 'No definition was defined for class %s!', $ConfigItem->{Class} ),
+            Comment => Translatable('Please contact the administrator.'),
         );
     }
 
@@ -639,7 +639,7 @@ sub Run {
 
         # output header
         $Output .= $LayoutObject->Header(
-            Title => 'Edit',
+            Title => Translatable('Edit'),
             Type  => 'Small',
         );
 
@@ -700,7 +700,9 @@ sub Run {
         $LayoutObject->Block( Name => 'EndNormal' );
 
         # output header
-        $Output .= $LayoutObject->Header( Title => 'Edit' );
+        $Output .= $LayoutObject->Header(
+            Title => Translatable('Edit'),
+        );
         $Output .= $LayoutObject->NavigationBar();
 
         # start template output

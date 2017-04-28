@@ -11,6 +11,7 @@ package Kernel::Modules::AgentITSMConfigItem;
 use strict;
 use warnings;
 
+use Kernel::Language qw(Translatable);
 use Kernel::System::VariableCheck qw(:all);
 
 our $ObjectManagerDisabled = 1;
@@ -205,8 +206,8 @@ sub Run {
     # check if filter is valid
     if ( !$Filters{ $Self->{Filter} } ) {
         return $LayoutObject->ErrorScreen(
-            Message => 'No access to Class is given!',
-            Comment => 'Please contact the admin.',
+            Message => Translatable('No access to Class is given!'),
+            Comment => Translatable('Please contact the administrator.'),
         );
     }
 
@@ -215,7 +216,7 @@ sub Run {
 
     # output header
     my $Output = $LayoutObject->Header(
-        Title   => 'Overview',
+        Title   => Translatable('Overview'),
         Refresh => $Refresh,
     );
     $Output .= $LayoutObject->NavigationBar();
@@ -308,8 +309,7 @@ sub Run {
         Filter        => $Self->{Filter},
         Filters       => \%NavBarFilter,
         FilterLink    => $LinkFilter,
-        TitleName     => $LayoutObject->{LanguageObject}->Translate('Overview')
-            . ': ' . $LayoutObject->{LanguageObject}->Translate('ITSM ConfigItem'),
+        TitleName     => $LayoutObject->{LanguageObject}->Translate('Overview: ITSM ConfigItem'),
         TitleValue  => $Filters{ $Self->{Filter} }->{Name},
         Env         => $Self,
         LinkPage    => $LinkPage,

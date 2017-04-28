@@ -10,6 +10,8 @@ package Kernel::Modules::AgentITSMConfigItemDelete;
 use strict;
 use warnings;
 
+use Kernel::Language qw(Translatable);
+
 our $ObjectManagerDisabled = 1;
 
 sub new {
@@ -34,8 +36,8 @@ sub Run {
     # check needed stuff
     if ( !$ConfigItemID ) {
         return $LayoutObject->ErrorScreen(
-            Message => 'No ConfigItemID is given!',
-            Comment => 'Please contact the admin.',
+            Message => Translatable('No ConfigItemID is given!'),
+            Comment => Translatable('Please contact the administrator.'),
         );
     }
 
@@ -57,7 +59,7 @@ sub Run {
     # error screen
     if ( !$Access ) {
         return $LayoutObject->NoPermission(
-            Message    => "You need $Self->{Config}->{Permission} permissions!",
+            Message    => $LayoutObject->{LanguageObject}->Translate( 'You need %s permissions!', $Self->{Config}->{Permission} ),
             WithHeader => 'yes',
         );
     }
@@ -71,8 +73,8 @@ sub Run {
     # check if config item is found
     if ( !$ConfigItem ) {
         return $LayoutObject->ErrorScreen(
-            Message => "Config item '$ConfigItemID' not found in database!",
-            Comment => 'Please contact the admin.',
+            Message => $LayoutObject->{LanguageObject}->Translate( 'Config item "%s" not found in database!', $ConfigItemID ),
+            Comment => Translatable('Please contact the administrator.'),
         );
     }
 
@@ -96,8 +98,8 @@ sub Run {
 
             # show error message, when delete failed
             return $LayoutObject->ErrorScreen(
-                Message => "Was not able to delete the configitem ID $ConfigItemID!",
-                Comment => 'Please contact the administrator.',
+                Message => $LayoutObject->{LanguageObject}->Translate( 'Was not able to delete the configitem ID %s!', $ConfigItemID ),
+                Comment => Translatable('Please contact the administrator.'),
             );
         }
     }
@@ -109,8 +111,8 @@ sub Run {
 
     if ( !$Version->{VersionID} ) {
         return $LayoutObject->ErrorScreen(
-            Message => "No Version found for ConfigItemID $ConfigItemID!",
-            Comment => 'Please contact the admin.',
+            Message => $LayoutObject->{LanguageObject}->Translate( 'No version found for ConfigItemID %s!', $ConfigItemID ),
+            Comment => Translatable('Please contact the administrator.'),
         );
     }
 

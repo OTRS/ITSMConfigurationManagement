@@ -11,6 +11,8 @@ package Kernel::Modules::AgentITSMConfigItemZoom;
 use strict;
 use warnings;
 
+use Kernel::Language qw(Translatable);
+
 our $ObjectManagerDisabled = 1;
 
 sub new {
@@ -39,8 +41,8 @@ sub Run {
     # check needed stuff
     if ( !$ConfigItemID ) {
         return $LayoutObject->ErrorScreen(
-            Message => "No ConfigItemID is given!",
-            Comment => 'Please contact the admin.',
+            Message => Translatable('No ConfigItemID is given!'),
+            Comment => Translatable('Please contact the administrator.'),
         );
     }
 
@@ -60,8 +62,8 @@ sub Run {
 
         # error page
         return $LayoutObject->ErrorScreen(
-            Message => 'Can\'t show item, no access rights for ConfigItem are given!',
-            Comment => 'Please contact the admin.',
+            Message => Translatable('Can\'t show item, no access rights for ConfigItem are given!'),
+            Comment => Translatable('Please contact the administrator.'),
         );
     }
 
@@ -77,8 +79,8 @@ sub Run {
     );
     if ( !$ConfigItem->{ConfigItemID} ) {
         return $LayoutObject->ErrorScreen(
-            Message => "ConfigItemID $ConfigItemID not found in database!",
-            Comment => 'Please contact the admin.',
+            Message => $LayoutObject->{LanguageObject}->Translate( 'ConfigItemID %s not found in database!', $ConfigItemID ),
+            Comment => Translatable('Please contact the administrator.'),
         );
     }
 
@@ -88,8 +90,8 @@ sub Run {
     );
     if ( !$VersionList->[0]->{VersionID} ) {
         return $LayoutObject->ErrorScreen(
-            Message => "No Version found for ConfigItemID $ConfigItemID!",
-            Comment => 'Please contact the admin.',
+            Message => $LayoutObject->{LanguageObject}->Translate( 'No version found for ConfigItemID %s!', $ConfigItemID ),
+            Comment => Translatable('Please contact the administrator.'),
         );
     }
 
@@ -294,8 +296,8 @@ sub Run {
         $LayoutObject->Block(
             Name => 'Data',
             Data => {
-                Name        => 'Name',
-                Description => 'The name of this config item',
+                Name        => Translatable('Name'),
+                Description => Translatable('The name of this config item'),
                 Value       => $Version->{Name},
                 Identation  => 10,
             },
@@ -305,8 +307,8 @@ sub Run {
         $LayoutObject->Block(
             Name => 'Data',
             Data => {
-                Name        => 'Deployment State',
-                Description => 'The deployment state of this config item',
+                Name        => Translatable('Deployment State'),
+                Description => Translatable('The deployment state of this config item'),
                 Value       => $LayoutObject->{LanguageObject}->Translate(
                     $Version->{DeplState},
                 ),
@@ -318,8 +320,8 @@ sub Run {
         $LayoutObject->Block(
             Name => 'Data',
             Data => {
-                Name        => 'Incident State',
-                Description => 'The incident state of this config item',
+                Name        => Translatable('Incident State'),
+                Description => Translatable('The incident state of this config item'),
                 Value       => $LayoutObject->{LanguageObject}->Translate(
                     $Version->{InciState},
                 ),

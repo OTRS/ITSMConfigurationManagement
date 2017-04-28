@@ -10,6 +10,7 @@ package Kernel::Modules::AgentITSMConfigItemBulk;
 use strict;
 use warnings;
 
+use Kernel::Language qw(Translatable);
 use Kernel::System::VariableCheck qw(:all);
 
 our $ObjectManagerDisabled = 1;
@@ -34,7 +35,7 @@ sub Run {
     # check if bulk feature is enabled
     if ( !$ConfigObject->Get('ITSMConfigItem::Frontend::BulkFeature') ) {
         return $LayoutObject->ErrorScreen(
-            Message => 'Bulk feature is not enabled!',
+            Message => Translatable('Bulk feature is not enabled!'),
         );
     }
 
@@ -48,8 +49,8 @@ sub Run {
     # check needed stuff
     if ( !@ConfigItemIDs ) {
         return $LayoutObject->ErrorScreen(
-            Message => 'No ConfigItemID is given!',
-            Comment => 'You need at least one selected Configuration Item!',
+            Message => Translatable('No ConfigItemID is given!'),
+            Comment => Translatable('You need at least one selected Configuration Item!'),
         );
     }
     my $Output .= $LayoutObject->Header(
@@ -122,8 +123,10 @@ sub Run {
 
             # error screen, don't show config item
             $Output .= $LayoutObject->Notify(
-                Data => $ConfigItem->{Number}
-                    . ': $Text{"You don\'t have write access to this configuration item."}',
+                Data => $LayoutObject->{LanguageObject}->Translate(
+                    'You don\'t have write access to this configuration item: %s.',
+                    $ConfigItem->{Number},
+                ),
             );
             next CONFIGITEM_ID;
         }
