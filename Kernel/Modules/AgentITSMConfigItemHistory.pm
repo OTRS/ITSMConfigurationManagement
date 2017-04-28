@@ -11,6 +11,8 @@ package Kernel::Modules::AgentITSMConfigItemHistory;
 use strict;
 use warnings;
 
+use Kernel::Language qw(Translatable);
+
 our $ObjectManagerDisabled = 1;
 
 sub new {
@@ -37,8 +39,8 @@ sub Run {
 
         # error page
         return $LayoutObject->ErrorScreen(
-            Message => 'Can\'t show history, no ConfigItemID is given!',
-            Comment => 'Please contact the admin.',
+            Message => Translatable('Can\'t show history, no ConfigItemID is given!'),
+            Comment => Translatable('Please contact the administrator.'),
         );
     }
 
@@ -58,8 +60,8 @@ sub Run {
 
         # error page
         return $LayoutObject->ErrorScreen(
-            Message => 'Can\'t show history, no access rights given!',
-            Comment => 'Please contact the admin.',
+            Message => Translatable('Can\'t show history, no access rights given!'),
+            Comment => Translatable('Please contact the administrator.'),
         );
     }
 

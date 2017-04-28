@@ -11,6 +11,7 @@ package Kernel::Modules::AgentITSMConfigItemAdd;
 use strict;
 use warnings;
 
+use Kernel::Language qw(Translatable);
 our $ObjectManagerDisabled = 1;
 
 sub new {
@@ -68,7 +69,9 @@ sub Run {
     }
 
     # output header
-    my $Output = $LayoutObject->Header( Title => 'Add' );
+    my $Output = $LayoutObject->Header(
+        Title => Translatable('Add'),
+    );
     $Output .= $LayoutObject->NavigationBar();
 
     # output overview

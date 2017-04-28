@@ -12,6 +12,7 @@ use strict;
 use warnings;
 
 use List::Util qw(min);
+use Kernel::Language qw(Translatable);
 use Kernel::System::VariableCheck qw(:all);
 
 our @ObjectDependencies = (
@@ -84,7 +85,7 @@ sub ObjectAttributesGet {
     my $Attributes = [
         {
             Key   => 'ClassID',
-            Name  => 'Class',
+            Name  => Translatable('Class'),
             Input => {
                 Type         => 'Selection',
                 Data         => $ClassList,
@@ -95,7 +96,7 @@ sub ObjectAttributesGet {
         },
         {
             Key   => 'CountMax',
-            Name  => 'Maximum number of one element',
+            Name  => Translatable('Maximum number of one element'),
             Input => {
                 Type         => 'Text',
                 ValueDefault => '10',
@@ -109,7 +110,7 @@ sub ObjectAttributesGet {
         },
         {
             Key   => 'EmptyFieldsLeaveTheOldValues',
-            Name  => 'Empty fields indicate that the current values are kept',
+            Name  => Translatable('Empty fields indicate that the current values are kept'),
             Input => {
                 Type => 'Checkbox',
             },
@@ -167,19 +168,19 @@ sub MappingObjectAttributesGet {
     my $ElementList = [
         {
             Key   => 'Number',
-            Value => 'Number',
+            Value => Translatable('Number'),
         },
         {
             Key   => 'Name',
-            Value => 'Name',
+            Value => Translatable('Name'),
         },
         {
             Key   => 'DeplState',
-            Value => 'Deployment State',
+            Value => Translatable('Deployment State'),
         },
         {
             Key   => 'InciState',
-            Value => 'Incident State',
+            Value => Translatable('Incident State'),
         },
     ];
 
@@ -193,7 +194,7 @@ sub MappingObjectAttributesGet {
     my $Attributes = [
         {
             Key   => 'Key',
-            Name  => 'Key',
+            Name  => Translatable('Key'),
             Input => {
                 Type         => 'Selection',
                 Data         => $ElementList,
@@ -204,7 +205,7 @@ sub MappingObjectAttributesGet {
         },
         {
             Key   => 'Identifier',
-            Name  => 'Identifier',
+            Name  => Translatable('Identifier'),
             Input => {
                 Type => 'Checkbox',
             },
@@ -272,7 +273,7 @@ sub SearchAttributesGet {
     my $AttributeList = [
         {
             Key   => 'Number',
-            Name  => 'Number',
+            Name  => Translatable('Number'),
             Input => {
                 Type      => 'Text',
                 Size      => 80,
@@ -281,7 +282,7 @@ sub SearchAttributesGet {
         },
         {
             Key   => 'Name',
-            Name  => 'Name',
+            Name  => Translatable('Name'),
             Input => {
                 Type      => 'Text',
                 Size      => 80,
@@ -290,7 +291,7 @@ sub SearchAttributesGet {
         },
         {
             Key   => 'DeplStateIDs',
-            Name  => 'Deployment State',
+            Name  => Translatable('Deployment State'),
             Input => {
                 Type        => 'Selection',
                 Data        => $DeplStateList,
@@ -301,7 +302,7 @@ sub SearchAttributesGet {
         },
         {
             Key   => 'InciStateIDs',
-            Name  => 'Incident State',
+            Name  => Translatable('Incident State'),
             Input => {
                 Type        => 'Selection',
                 Data        => $InciStateList,
