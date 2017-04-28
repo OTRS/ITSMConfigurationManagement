@@ -1,13 +1,14 @@
 # 
 # Translators:
 # Joao Ferro <fmthard@gmail.com>, 2016
+# Rui Patinha <rui.patinha@otrs.com>, 2017
 # Udo Bretz, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
 "POT-Creation-Date: 2017-02-14 17:57+0000\n"
-"PO-Revision-Date: 2017-02-14 16:58+0000\n"
-"Last-Translator: Udo Bretz\n"
+"PO-Revision-Date: 2017-04-21 09:45+0000\n"
+"Last-Translator: Rui Patinha <rui.patinha@otrs.com>\n"
 "Language-Team: Portuguese (http://www.transifex.com/otrs/OTRS/language/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -109,11 +110,11 @@ msgstr "Processador"
 
 #. Template: AAAITSMConfigItem
 msgid "Camera"
-msgstr "Camera"
+msgstr "Câmara"
 
 #. Template: AAAITSMConfigItem
 msgid "Capacity"
-msgstr "CapacAntiguidade"
+msgstr "Capacidade"
 
 #. Template: AAAITSMConfigItem
 msgid "Change Definition"
@@ -784,7 +785,7 @@ msgid ""
 "must have registered the following JS and CSS files: "
 "Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, "
 "Core.Agent.TableFilters.js and Core.Agent.LinkObject.js."
-msgstr ""
+msgstr "Definir Acções onde um botão de configurações está disponível na widget the objectos ligados (LinkObject::ViewMode = \"complex\").  Estas Acções devem estar registadas nos seguintes ficheiros JS e CSS: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js and Core.Agent.LinkObject.js."
 
 #. SysConfig
 msgid "Define the group with permissions."

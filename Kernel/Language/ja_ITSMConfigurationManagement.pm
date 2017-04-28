@@ -15,135 +15,6 @@ use utf8;
 sub Data {
     my $Self = shift;
 
-    # Template: AAAITSMConfigItem
-    $Self->{Translation}->{'Computer'} = '';
-    $Self->{Translation}->{'Hardware'} = '';
-    $Self->{Translation}->{'Network'} = 'ネットワーク';
-    $Self->{Translation}->{'Software'} = '';
-    $Self->{Translation}->{'Address'} = 'アドレス';
-    $Self->{Translation}->{'Admin Tool'} = '管理ツール';
-    $Self->{Translation}->{'Backup Device'} = 'バックアップ・デバイス';
-    $Self->{Translation}->{'Beamer'} = 'プロジェクター';
-    $Self->{Translation}->{'Building'} = '構築';
-    $Self->{Translation}->{'CIHistory::ConfigItemCreate'} = 'CIHistory::ConfigItemCreate';
-    $Self->{Translation}->{'CIHistory::ConfigItemDelete'} = 'CIHistory::ConfigItemDelete';
-    $Self->{Translation}->{'CIHistory::DefinitionUpdate'} = 'CIHistory::DefinitionUpdate';
-    $Self->{Translation}->{'CIHistory::DeploymentStateUpdate'} = 'CIHistory::DeploymentStateUpdate';
-    $Self->{Translation}->{'CIHistory::IncidentStateUpdate'} = 'CIHistory::IncidentStateUpdate';
-    $Self->{Translation}->{'CIHistory::LinkAdd'} = 'CIHistory::LinkAdd';
-    $Self->{Translation}->{'CIHistory::LinkDelete'} = 'CIHistory::LinkDelete';
-    $Self->{Translation}->{'CIHistory::NameUpdate'} = 'CIHistory::NameUpdate';
-    $Self->{Translation}->{'CIHistory::ValueUpdate'} = 'CIHistory::ValueUpdate';
-    $Self->{Translation}->{'CIHistory::VersionCreate'} = 'CIHistory::VersionCreate';
-    $Self->{Translation}->{'CIHistory::VersionDelete'} = 'CIHistory::VersionDelete';
-    $Self->{Translation}->{'CIHistory::AttachmentAdd'} = 'CIHistory::AttachmentAdd';
-    $Self->{Translation}->{'CIHistory::AttachmentDelete'} = 'CIHistory::AttachmentDelete';
-    $Self->{Translation}->{'CPU'} = 'CPU';
-    $Self->{Translation}->{'Camera'} = 'カメラ';
-    $Self->{Translation}->{'Capacity'} = '容量';
-    $Self->{Translation}->{'Change Definition'} = '定義の変更';
-    $Self->{Translation}->{'Change of definition failed! See System Log for details.'} = '定義の変更に失敗しました。詳細はシステムログを参照してください。';
-    $Self->{Translation}->{'Client Application'} = 'クライアントソフト';
-    $Self->{Translation}->{'Client OS'} = 'クライアントOS';
-    $Self->{Translation}->{'Config Item-Area'} = 'アイテムエリアの設定';
-    $Self->{Translation}->{'Config Items available'} = '設定項目の利用可 / 不可';
-    $Self->{Translation}->{'Config Items shown'} = '設定項目表示';
-    $Self->{Translation}->{'CMDB'} = 'CMDB';
-    $Self->{Translation}->{'Demo'} = 'デモ';
-    $Self->{Translation}->{'Desktop'} = 'デスクトップ';
-    $Self->{Translation}->{'Developer Licence'} = '開発者ライセンス';
-    $Self->{Translation}->{'Docking Station'} = 'ドッキングステーション';
-    $Self->{Translation}->{'Duplicate'} = 'コピー';
-    $Self->{Translation}->{'Embedded'} = '埋め込みオブジェクト';
-    $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = '空欄の項目は現在の値が保持されること意味します';
-    $Self->{Translation}->{'Enterprise Licence'} = 'エンタープライズ・ライセンス';
-    $Self->{Translation}->{'Expiration Date'} = '有効期限';
-    $Self->{Translation}->{'Expired'} = '期限切れ';
-    $Self->{Translation}->{'Floor'} = '切捨て';
-    $Self->{Translation}->{'Freeware'} = 'フリーウェア';
-    $Self->{Translation}->{'GSM'} = 'GSM';
-    $Self->{Translation}->{'Gateway'} = 'ゲートウェイ';
-    $Self->{Translation}->{'Graphic Adapter'} = 'グラフィックアダプタ';
-    $Self->{Translation}->{'Hard Disk'} = 'ハードディスク';
-    $Self->{Translation}->{'Hard Disk::Capacity'} = 'ハードディスク容量';
-    $Self->{Translation}->{'Hide Versions'} = 'バージョンを非表示';
-    $Self->{Translation}->{'IP Address'} = 'IP アドレス';
-    $Self->{Translation}->{'IP over DHCP'} = 'DHCP有効';
-    $Self->{Translation}->{'IT Facility'} = 'ITファシリティ';
-    $Self->{Translation}->{'Incident'} = 'インシデント';
-    $Self->{Translation}->{'Install Date'} = 'インストール日付';
-    $Self->{Translation}->{'Keyboard'} = 'キーボード';
-    $Self->{Translation}->{'LAN'} = 'LAN';
-    $Self->{Translation}->{'Laptop'} = 'ノートPC';
-    $Self->{Translation}->{'Last Change'} = '最新の変更';
-    $Self->{Translation}->{'Licence Key'} = 'ライセンスキー';
-    $Self->{Translation}->{'Licence Key::Expiration Date'} = 'ライセンスキーの有効期限';
-    $Self->{Translation}->{'Licence Key::Quantity'} = 'ライセンスキーの数';
-    $Self->{Translation}->{'Licence Type'} = 'ライセンスタイプ';
-    $Self->{Translation}->{'Maintenance'} = 'メンテナンス';
-    $Self->{Translation}->{'Maximum number of one element'} = '一エレメントあたりの最大数';
-    $Self->{Translation}->{'Media'} = 'メディア';
-    $Self->{Translation}->{'Middleware'} = 'ミドルウェア';
-    $Self->{Translation}->{'Model'} = 'モデル';
-    $Self->{Translation}->{'Modem'} = 'モデム';
-    $Self->{Translation}->{'Monitor'} = 'モニタ';
-    $Self->{Translation}->{'Mouse'} = 'マウス';
-    $Self->{Translation}->{'Network Adapter'} = 'ネットワークアダプタ';
-    $Self->{Translation}->{'Network Adapter::IP Address'} = 'ネットワークアダプタ::IP アドレス';
-    $Self->{Translation}->{'Network Adapter::IP over DHCP'} = 'ネットワーク・DHCP有効';
-    $Self->{Translation}->{'Network Address'} = 'ネットワークアドレス';
-    $Self->{Translation}->{'Network Address::Gateway'} = 'デフォルトゲートウェイ';
-    $Self->{Translation}->{'Network Address::Subnet Mask'} = 'サブネットマスク';
-    $Self->{Translation}->{'Open Source'} = 'オープンソース';
-    $Self->{Translation}->{'Operational'} = '運用';
-    $Self->{Translation}->{'Other'} = '他';
-    $Self->{Translation}->{'Other Equipment'} = 'その他の機器';
-    $Self->{Translation}->{'Outlet'} = 'アウトレット';
-    $Self->{Translation}->{'PCMCIA Card'} = 'PCMCIA カード';
-    $Self->{Translation}->{'PDA'} = 'PDA';
-    $Self->{Translation}->{'Per Node'} = 'ノード毎';
-    $Self->{Translation}->{'Per Processor'} = 'プロセッサ毎';
-    $Self->{Translation}->{'Per Server'} = 'サーバ毎';
-    $Self->{Translation}->{'Per User'} = 'ユーザ毎';
-    $Self->{Translation}->{'Phone 1'} = '電話 1';
-    $Self->{Translation}->{'Phone 2'} = '電話 2';
-    $Self->{Translation}->{'Pilot'} = 'パイロット';
-    $Self->{Translation}->{'Planned'} = '計画';
-    $Self->{Translation}->{'Printer'} = 'プリンタ';
-    $Self->{Translation}->{'Production'} = '生産';
-    $Self->{Translation}->{'Quantity'} = '数量';
-    $Self->{Translation}->{'Rack'} = 'ラック';
-    $Self->{Translation}->{'Ram'} = 'RAM';
-    $Self->{Translation}->{'Repair'} = '修理';
-    $Self->{Translation}->{'Retired'} = '引退';
-    $Self->{Translation}->{'Review'} = 'レビュー';
-    $Self->{Translation}->{'Room'} = '室内';
-    $Self->{Translation}->{'Router'} = 'ルータ';
-    $Self->{Translation}->{'Scanner'} = 'スキャナ';
-    $Self->{Translation}->{'Search Config Items'} = '設定項目の検索';
-    $Self->{Translation}->{'Security Device'} = 'セキュリティデバイス';
-    $Self->{Translation}->{'Serial Number'} = 'シリアルナンバー';
-    $Self->{Translation}->{'Server'} = 'サーバ';
-    $Self->{Translation}->{'Server Application'} = 'サーバソフト';
-    $Self->{Translation}->{'Server OS'} = 'サーバOS';
-    $Self->{Translation}->{'Show Versions'} = 'バージョンの表示';
-    $Self->{Translation}->{'Single Licence'} = 'シングルライセンス';
-    $Self->{Translation}->{'Subnet Mask'} = 'サブネットマスク';
-    $Self->{Translation}->{'Switch'} = 'スイッチ';
-    $Self->{Translation}->{'Telco'} = '電話会社';
-    $Self->{Translation}->{'Test/QA'} = 'テスト / QA';
-    $Self->{Translation}->{'The deployment state of this config item'} = 'この設定項目の展開状態';
-    $Self->{Translation}->{'The incident state of this config item'} = 'この設定項目のインシデント状態';
-    $Self->{Translation}->{'Time Restricted'} = '時間制限';
-    $Self->{Translation}->{'USB Device'} = 'USBデバイス';
-    $Self->{Translation}->{'Unlimited'} = '無制限';
-    $Self->{Translation}->{'User Tool'} = 'ユーザ・ツール';
-    $Self->{Translation}->{'Volume Licence'} = 'ボリュームライセンス';
-    $Self->{Translation}->{'WLAN'} = 'WLAN';
-    $Self->{Translation}->{'WLAN Access Point'} = 'WLAN アクセスポイント';
-    $Self->{Translation}->{'Warranty Expiration Date'} = 'ワランティ終了日';
-    $Self->{Translation}->{'Workplace'} = '職場';
-
     # Template: AdminITSMConfigItem
     $Self->{Translation}->{'Config Item Management'} = '構成アイテム管理';
     $Self->{Translation}->{'Change class definition'} = 'クラス定義を変更';
@@ -208,17 +79,122 @@ sub Data {
     $Self->{Translation}->{'Property'} = '項目';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
-    $Self->{Translation}->{'ITSM ConfigItem'} = '';
+    $Self->{Translation}->{'No access to Class is given!'} = '';
+    $Self->{Translation}->{'Overview: ITSM ConfigItem'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+    $Self->{Translation}->{'No ConfigItemID is given!'} = '';
+    $Self->{Translation}->{'You need at least one selected Configuration Item!'} = '';
+    $Self->{Translation}->{'You don\'t have write access to this configuration item: %s.'} =
+        '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+    $Self->{Translation}->{'Config item "%s" not found in database!'} = '';
+    $Self->{Translation}->{'Was not able to delete the configitem ID %s!'} = '';
+    $Self->{Translation}->{'No version found for ConfigItemID %s!'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+    $Self->{Translation}->{'No ConfigItemID, DuplicateID or ClassID is given!'} = '';
+    $Self->{Translation}->{'No access is given!'} = '';
+    $Self->{Translation}->{'No definition was defined for class %s!'} = '';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+    $Self->{Translation}->{'Can\'t show history, no ConfigItemID is given!'} = '';
+    $Self->{Translation}->{'Can\'t show history, no access rights given!'} = '';
     $Self->{Translation}->{'CIHistory::'} = '';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+    $Self->{Translation}->{'No ConfigItemID or VersionID is given!'} = '';
+    $Self->{Translation}->{'Can\'t show config item, no access rights given!'} = '';
+    $Self->{Translation}->{'ConfigItemID %s not found in database!'} = '';
+    $Self->{Translation}->{'VersionID %s not found in database!'} = '';
     $Self->{Translation}->{'ConfigItem'} = '設定項目';
+    $Self->{Translation}->{'printed by %s at %s'} = '';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+    $Self->{Translation}->{'Invalid ClassID!'} = '';
+    $Self->{Translation}->{'No ClassID is given!'} = '';
+    $Self->{Translation}->{'No access rights for this class given!'} = '';
     $Self->{Translation}->{'No Result!'} = '結果がありません。';
     $Self->{Translation}->{'Config Item Search Results'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+    $Self->{Translation}->{'Can\'t show item, no access rights for ConfigItem are given!'} =
+        '';
+    $Self->{Translation}->{'The deployment state of this config item'} = 'この設定項目の展開状態';
+    $Self->{Translation}->{'The incident state of this config item'} = 'この設定項目のインシデント状態';
+
+    # Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
+    $Self->{Translation}->{'Maximum number of one element'} = '一エレメントあたりの最大数';
+    $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = '空欄の項目は現在の値が保持されること意味します';
+
+    # Database XML Definition: /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+    $Self->{Translation}->{'Computer'} = '';
+    $Self->{Translation}->{'Hardware'} = '';
+    $Self->{Translation}->{'Network'} = 'ネットワーク';
+    $Self->{Translation}->{'Software'} = '';
+    $Self->{Translation}->{'Expired'} = '期限切れ';
+    $Self->{Translation}->{'Maintenance'} = 'メンテナンス';
+    $Self->{Translation}->{'Pilot'} = 'パイロット';
+    $Self->{Translation}->{'Planned'} = '計画';
+    $Self->{Translation}->{'Production'} = '生産';
+    $Self->{Translation}->{'Repair'} = '修理';
+    $Self->{Translation}->{'Retired'} = '引退';
+    $Self->{Translation}->{'Review'} = 'レビュー';
+    $Self->{Translation}->{'Test/QA'} = 'テスト / QA';
+    $Self->{Translation}->{'Laptop'} = 'ノートPC';
+    $Self->{Translation}->{'Desktop'} = 'デスクトップ';
+    $Self->{Translation}->{'PDA'} = 'PDA';
+    $Self->{Translation}->{'Server'} = 'サーバ';
+    $Self->{Translation}->{'Other'} = '他';
+    $Self->{Translation}->{'Monitor'} = 'モニタ';
+    $Self->{Translation}->{'Printer'} = 'プリンタ';
+    $Self->{Translation}->{'Switch'} = 'スイッチ';
+    $Self->{Translation}->{'Router'} = 'ルータ';
+    $Self->{Translation}->{'WLAN Access Point'} = 'WLAN アクセスポイント';
+    $Self->{Translation}->{'Security Device'} = 'セキュリティデバイス';
+    $Self->{Translation}->{'Backup Device'} = 'バックアップ・デバイス';
+    $Self->{Translation}->{'Mouse'} = 'マウス';
+    $Self->{Translation}->{'Keyboard'} = 'キーボード';
+    $Self->{Translation}->{'Camera'} = 'カメラ';
+    $Self->{Translation}->{'Beamer'} = 'プロジェクター';
+    $Self->{Translation}->{'Modem'} = 'モデム';
+    $Self->{Translation}->{'PCMCIA Card'} = 'PCMCIA カード';
+    $Self->{Translation}->{'USB Device'} = 'USBデバイス';
+    $Self->{Translation}->{'Docking Station'} = 'ドッキングステーション';
+    $Self->{Translation}->{'Scanner'} = 'スキャナ';
+    $Self->{Translation}->{'Building'} = '構築';
+    $Self->{Translation}->{'Floor'} = '切捨て';
+    $Self->{Translation}->{'Room'} = '室内';
+    $Self->{Translation}->{'Rack'} = 'ラック';
+    $Self->{Translation}->{'Workplace'} = '職場';
+    $Self->{Translation}->{'Outlet'} = 'アウトレット';
+    $Self->{Translation}->{'IT Facility'} = 'ITファシリティ';
+    $Self->{Translation}->{'LAN'} = 'LAN';
+    $Self->{Translation}->{'WLAN'} = 'WLAN';
+    $Self->{Translation}->{'Telco'} = '電話会社';
+    $Self->{Translation}->{'GSM'} = 'GSM';
+    $Self->{Translation}->{'Client Application'} = 'クライアントソフト';
+    $Self->{Translation}->{'Middleware'} = 'ミドルウェア';
+    $Self->{Translation}->{'Server Application'} = 'サーバソフト';
+    $Self->{Translation}->{'Client OS'} = 'クライアントOS';
+    $Self->{Translation}->{'Server OS'} = 'サーバOS';
+    $Self->{Translation}->{'Admin Tool'} = '管理ツール';
+    $Self->{Translation}->{'User Tool'} = 'ユーザ・ツール';
+    $Self->{Translation}->{'Embedded'} = '埋め込みオブジェクト';
+    $Self->{Translation}->{'Single Licence'} = 'シングルライセンス';
+    $Self->{Translation}->{'Per User'} = 'ユーザ毎';
+    $Self->{Translation}->{'Per Processor'} = 'プロセッサ毎';
+    $Self->{Translation}->{'Per Server'} = 'サーバ毎';
+    $Self->{Translation}->{'Per Node'} = 'ノード毎';
+    $Self->{Translation}->{'Volume Licence'} = 'ボリュームライセンス';
+    $Self->{Translation}->{'Enterprise Licence'} = 'エンタープライズ・ライセンス';
+    $Self->{Translation}->{'Developer Licence'} = '開発者ライセンス';
+    $Self->{Translation}->{'Demo'} = 'デモ';
+    $Self->{Translation}->{'Time Restricted'} = '時間制限';
+    $Self->{Translation}->{'Freeware'} = 'フリーウェア';
+    $Self->{Translation}->{'Open Source'} = 'オープンソース';
+    $Self->{Translation}->{'Unlimited'} = '無制限';
 
     # SysConfig
     $Self->{Translation}->{'Admin.'} = '管理';

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
 "POT-Creation-Date: 2017-02-14 17:57+0000\n"
-"PO-Revision-Date: 2017-02-23 22:38+0000\n"
+"PO-Revision-Date: 2017-04-20 20:04+0000\n"
 "Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/otrs/OTRS/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -48,7 +48,7 @@ msgstr "Beamer"
 
 #. Template: AAAITSMConfigItem
 msgid "Building"
-msgstr "Összeállítás"
+msgstr "Épület"
 
 #. Template: AAAITSMConfigItem
 msgid "CIHistory::ConfigItemCreate"
@@ -228,7 +228,7 @@ msgstr "IP a DHCP fölött"
 
 #. Template: AAAITSMConfigItem
 msgid "IT Facility"
-msgstr "IT képesség"
+msgstr "IT-létesítmény"
 
 #. Template: AAAITSMConfigItem
 msgid "Incident"
@@ -344,7 +344,7 @@ msgstr "Egyéb berendezés"
 
 #. Template: AAAITSMConfigItem
 msgid "Outlet"
-msgstr "Outlet"
+msgstr "Elosztó doboz"
 
 #. Template: AAAITSMConfigItem
 msgid "PCMCIA Card"
@@ -392,7 +392,7 @@ msgstr "Nyomtató"
 
 #. Template: AAAITSMConfigItem
 msgid "Production"
-msgstr "Termelés"
+msgstr "Produktív"
 
 #. Template: AAAITSMConfigItem
 msgid "Quantity"

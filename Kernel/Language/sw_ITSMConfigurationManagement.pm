@@ -15,135 +15,6 @@ use utf8;
 sub Data {
     my $Self = shift;
 
-    # Template: AAAITSMConfigItem
-    $Self->{Translation}->{'Computer'} = '';
-    $Self->{Translation}->{'Hardware'} = '';
-    $Self->{Translation}->{'Network'} = 'Mtandao';
-    $Self->{Translation}->{'Software'} = '';
-    $Self->{Translation}->{'Address'} = 'Anwani';
-    $Self->{Translation}->{'Admin Tool'} = 'Kifaa cha kiongozi';
-    $Self->{Translation}->{'Backup Device'} = 'Kifaa cha chelezo';
-    $Self->{Translation}->{'Beamer'} = 'Projector';
-    $Self->{Translation}->{'Building'} = 'Jengo';
-    $Self->{Translation}->{'CIHistory::ConfigItemCreate'} = 'Historia ya CI:: Tengeneza Kipengele cha usanidi';
-    $Self->{Translation}->{'CIHistory::ConfigItemDelete'} = 'Historia ya CI::Futa kipengele cha usanidi';
-    $Self->{Translation}->{'CIHistory::DefinitionUpdate'} = 'Historia ya CI:: Sasisha ufafanuzi';
-    $Self->{Translation}->{'CIHistory::DeploymentStateUpdate'} = 'Historia ya CI:: sasishaHali yaMatumizi';
-    $Self->{Translation}->{'CIHistory::IncidentStateUpdate'} = 'Historia ya CI:: Sasisha Hali ya tukio';
-    $Self->{Translation}->{'CIHistory::LinkAdd'} = 'Historia ya CI::Ongeza Kiungo';
-    $Self->{Translation}->{'CIHistory::LinkDelete'} = 'Historia ya CI:: Futa Kiungo';
-    $Self->{Translation}->{'CIHistory::NameUpdate'} = 'Historia ya CI:: Sasisha jina';
-    $Self->{Translation}->{'CIHistory::ValueUpdate'} = 'Historia ya CI:: Sasisha Thamani';
-    $Self->{Translation}->{'CIHistory::VersionCreate'} = 'Historia ya CI::Tengeneza Toleo';
-    $Self->{Translation}->{'CIHistory::VersionDelete'} = 'Historia ya CI::Futa Toleo';
-    $Self->{Translation}->{'CIHistory::AttachmentAdd'} = 'Historia ya CI::Ongeza Kiambatanisho';
-    $Self->{Translation}->{'CIHistory::AttachmentDelete'} = 'Historia ya CI::Futa Kiambatisho';
-    $Self->{Translation}->{'CPU'} = 'CPU';
-    $Self->{Translation}->{'Camera'} = 'Kamera';
-    $Self->{Translation}->{'Capacity'} = 'Uwezo';
-    $Self->{Translation}->{'Change Definition'} = 'Ufafanuzi wa mabadiliko';
-    $Self->{Translation}->{'Change of definition failed! See System Log for details.'} = 'Mabadiliko ya Ufafanuzi yameshindikana! Angalia batli ya mfumo kwa kina.';
-    $Self->{Translation}->{'Client Application'} = 'Programu-tumizi a mteja';
-    $Self->{Translation}->{'Client OS'} = 'OS ya mteja';
-    $Self->{Translation}->{'Config Item-Area'} = 'Sanidi Eneo la kipengele';
-    $Self->{Translation}->{'Config Items available'} = 'Sanidi Vipengele vilivyopo';
-    $Self->{Translation}->{'Config Items shown'} = 'Sanidi Vipingele vilivyoonyeshwa';
-    $Self->{Translation}->{'CMDB'} = 'CMDB';
-    $Self->{Translation}->{'Demo'} = 'Onyesho';
-    $Self->{Translation}->{'Desktop'} = 'Eneo kazi';
-    $Self->{Translation}->{'Developer Licence'} = 'Leseni ya mtengenezaji';
-    $Self->{Translation}->{'Docking Station'} = 'Kituo egeshi';
-    $Self->{Translation}->{'Duplicate'} = 'Nakala pacha';
-    $Self->{Translation}->{'Embedded'} = 'Pakichwa';
-    $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Uga zilizowazi zinaonyesha kwamba thamani za sasa zimewekwa.';
-    $Self->{Translation}->{'Enterprise Licence'} = 'Leseni ya Enterprie';
-    $Self->{Translation}->{'Expiration Date'} = 'Tarehe ya mwisho';
-    $Self->{Translation}->{'Expired'} = 'Imeisha';
-    $Self->{Translation}->{'Floor'} = 'Sakafu';
-    $Self->{Translation}->{'Freeware'} = 'Programu ya bure';
-    $Self->{Translation}->{'GSM'} = 'GSM';
-    $Self->{Translation}->{'Gateway'} = 'Kichanganishi mtandao';
-    $Self->{Translation}->{'Graphic Adapter'} = 'Adapta ya Mchoro';
-    $Self->{Translation}->{'Hard Disk'} = 'Diski kuu';
-    $Self->{Translation}->{'Hard Disk::Capacity'} = 'Diski kuu::Uwezo';
-    $Self->{Translation}->{'Hide Versions'} = 'Ficha matoleo';
-    $Self->{Translation}->{'IP Address'} = 'Anwani ya IP';
-    $Self->{Translation}->{'IP over DHCP'} = 'IP kwa DHCP';
-    $Self->{Translation}->{'IT Facility'} = 'P';
-    $Self->{Translation}->{'Incident'} = 'Tukio';
-    $Self->{Translation}->{'Install Date'} = 'Tarehe ya kusakinisha';
-    $Self->{Translation}->{'Keyboard'} = 'Boabonye';
-    $Self->{Translation}->{'LAN'} = 'LAN';
-    $Self->{Translation}->{'Laptop'} = 'Kompyuta ya mkononi';
-    $Self->{Translation}->{'Last Change'} = 'Mabadiliko ya mwisho';
-    $Self->{Translation}->{'Licence Key'} = 'Neno kuu la leseni';
-    $Self->{Translation}->{'Licence Key::Expiration Date'} = 'Neno kuu la leseni:: Tarehe ya kuisha';
-    $Self->{Translation}->{'Licence Key::Quantity'} = 'Neno kuu la leseni:: Wingi';
-    $Self->{Translation}->{'Licence Type'} = 'Aina ya leseni';
-    $Self->{Translation}->{'Maintenance'} = 'Matengenezo';
-    $Self->{Translation}->{'Maximum number of one element'} = 'Kima cha juu cha namba ya elementi mojawapo';
-    $Self->{Translation}->{'Media'} = 'Midia';
-    $Self->{Translation}->{'Middleware'} = 'Middleware';
-    $Self->{Translation}->{'Model'} = 'Mfano';
-    $Self->{Translation}->{'Modem'} = 'Modemu';
-    $Self->{Translation}->{'Monitor'} = 'Monita';
-    $Self->{Translation}->{'Mouse'} = 'Kipanya';
-    $Self->{Translation}->{'Network Adapter'} = 'Adapta ya mtandao';
-    $Self->{Translation}->{'Network Adapter::IP Address'} = 'Adapta ya mtandao:: Anwani ya IP';
-    $Self->{Translation}->{'Network Adapter::IP over DHCP'} = 'Adapta ya mtandao:: IP kwa DHCP';
-    $Self->{Translation}->{'Network Address'} = 'Anwani ya mtandao';
-    $Self->{Translation}->{'Network Address::Gateway'} = 'Anwani ya mtandao::Kichanganishi mtandao';
-    $Self->{Translation}->{'Network Address::Subnet Mask'} = 'Anwani ya mtandao::Subnet Mask';
-    $Self->{Translation}->{'Open Source'} = 'Chanzo cha wazi';
-    $Self->{Translation}->{'Operational'} = 'Uendeshaji';
-    $Self->{Translation}->{'Other'} = 'Engine';
-    $Self->{Translation}->{'Other Equipment'} = 'Vifaa vingine';
-    $Self->{Translation}->{'Outlet'} = 'Sehemu ya kutokea';
-    $Self->{Translation}->{'PCMCIA Card'} = 'Kadi ya PCMCIA';
-    $Self->{Translation}->{'PDA'} = 'PDA';
-    $Self->{Translation}->{'Per Node'} = 'Kwa fundo';
-    $Self->{Translation}->{'Per Processor'} = 'Kwa kichakato';
-    $Self->{Translation}->{'Per Server'} = 'Kwa seva';
-    $Self->{Translation}->{'Per User'} = 'Kwa mtumiaji';
-    $Self->{Translation}->{'Phone 1'} = 'Simu ya 1';
-    $Self->{Translation}->{'Phone 2'} = 'Simu ya 2';
-    $Self->{Translation}->{'Pilot'} = 'Kwanza';
-    $Self->{Translation}->{'Planned'} = 'Iliyopangwa';
-    $Self->{Translation}->{'Printer'} = 'Kichapishi';
-    $Self->{Translation}->{'Production'} = 'Uzalishaji';
-    $Self->{Translation}->{'Quantity'} = 'Wingi';
-    $Self->{Translation}->{'Rack'} = 'Rack';
-    $Self->{Translation}->{'Ram'} = 'Ram';
-    $Self->{Translation}->{'Repair'} = 'Rekebisha';
-    $Self->{Translation}->{'Retired'} = 'Staafu';
-    $Self->{Translation}->{'Review'} = 'Mapitio';
-    $Self->{Translation}->{'Room'} = 'Chumba';
-    $Self->{Translation}->{'Router'} = 'Kipanga njia';
-    $Self->{Translation}->{'Scanner'} = 'Kitambazo';
-    $Self->{Translation}->{'Search Config Items'} = 'Tafuta vipengele vya usanidi';
-    $Self->{Translation}->{'Security Device'} = 'Kifaa cha ulinzi';
-    $Self->{Translation}->{'Serial Number'} = 'Namba tambulishi';
-    $Self->{Translation}->{'Server'} = 'Seva';
-    $Self->{Translation}->{'Server Application'} = 'Seva ya programu-tumizi';
-    $Self->{Translation}->{'Server OS'} = 'OS ya seva';
-    $Self->{Translation}->{'Show Versions'} = 'Onyesha matoleo';
-    $Self->{Translation}->{'Single Licence'} = 'Leseni moja';
-    $Self->{Translation}->{'Subnet Mask'} = 'Subnet mask';
-    $Self->{Translation}->{'Switch'} = 'Swichi';
-    $Self->{Translation}->{'Telco'} = 'Telco';
-    $Self->{Translation}->{'Test/QA'} = 'Jaribio/ Maswali na Majibu';
-    $Self->{Translation}->{'The deployment state of this config item'} = 'Hali ya matumizi ya hii kipengele cha usanidi ';
-    $Self->{Translation}->{'The incident state of this config item'} = 'Hali ya tukio ya hiki kipengele cha usanidi';
-    $Self->{Translation}->{'Time Restricted'} = 'Muda umezuiliwa';
-    $Self->{Translation}->{'USB Device'} = 'Kifaa cha USB';
-    $Self->{Translation}->{'Unlimited'} = 'Haina kikomo';
-    $Self->{Translation}->{'User Tool'} = 'Kifaa cha mtumiaji';
-    $Self->{Translation}->{'Volume Licence'} = 'Leseni ya sauti';
-    $Self->{Translation}->{'WLAN'} = 'WLAN';
-    $Self->{Translation}->{'WLAN Access Point'} = 'Kiungo ufikivu cha WLAN';
-    $Self->{Translation}->{'Warranty Expiration Date'} = 'Tarehe ya kuisha kw audhamini.';
-    $Self->{Translation}->{'Workplace'} = 'Eneo la kazi';
-
     # Template: AdminITSMConfigItem
     $Self->{Translation}->{'Config Item Management'} = 'Usanidi wa usimamizi wa kipengele ';
     $Self->{Translation}->{'Change class definition'} = 'Badili ufafanuzi wa tabaka';
@@ -208,17 +79,122 @@ sub Data {
     $Self->{Translation}->{'Property'} = 'Mali';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
-    $Self->{Translation}->{'ITSM ConfigItem'} = '';
+    $Self->{Translation}->{'No access to Class is given!'} = '';
+    $Self->{Translation}->{'Overview: ITSM ConfigItem'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+    $Self->{Translation}->{'No ConfigItemID is given!'} = '';
+    $Self->{Translation}->{'You need at least one selected Configuration Item!'} = '';
+    $Self->{Translation}->{'You don\'t have write access to this configuration item: %s.'} =
+        '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+    $Self->{Translation}->{'Config item "%s" not found in database!'} = '';
+    $Self->{Translation}->{'Was not able to delete the configitem ID %s!'} = '';
+    $Self->{Translation}->{'No version found for ConfigItemID %s!'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+    $Self->{Translation}->{'No ConfigItemID, DuplicateID or ClassID is given!'} = '';
+    $Self->{Translation}->{'No access is given!'} = '';
+    $Self->{Translation}->{'No definition was defined for class %s!'} = '';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+    $Self->{Translation}->{'Can\'t show history, no ConfigItemID is given!'} = '';
+    $Self->{Translation}->{'Can\'t show history, no access rights given!'} = '';
     $Self->{Translation}->{'CIHistory::'} = '';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+    $Self->{Translation}->{'No ConfigItemID or VersionID is given!'} = '';
+    $Self->{Translation}->{'Can\'t show config item, no access rights given!'} = '';
+    $Self->{Translation}->{'ConfigItemID %s not found in database!'} = '';
+    $Self->{Translation}->{'VersionID %s not found in database!'} = '';
     $Self->{Translation}->{'ConfigItem'} = 'Kipengele cha usanidi';
+    $Self->{Translation}->{'printed by %s at %s'} = '';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+    $Self->{Translation}->{'Invalid ClassID!'} = '';
+    $Self->{Translation}->{'No ClassID is given!'} = '';
+    $Self->{Translation}->{'No access rights for this class given!'} = '';
     $Self->{Translation}->{'No Result!'} = '';
     $Self->{Translation}->{'Config Item Search Results'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+    $Self->{Translation}->{'Can\'t show item, no access rights for ConfigItem are given!'} =
+        '';
+    $Self->{Translation}->{'The deployment state of this config item'} = 'Hali ya matumizi ya hii kipengele cha usanidi ';
+    $Self->{Translation}->{'The incident state of this config item'} = 'Hali ya tukio ya hiki kipengele cha usanidi';
+
+    # Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
+    $Self->{Translation}->{'Maximum number of one element'} = 'Kima cha juu cha namba ya elementi mojawapo';
+    $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Uga zilizowazi zinaonyesha kwamba thamani za sasa zimewekwa.';
+
+    # Database XML Definition: /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+    $Self->{Translation}->{'Computer'} = '';
+    $Self->{Translation}->{'Hardware'} = '';
+    $Self->{Translation}->{'Network'} = 'Mtandao';
+    $Self->{Translation}->{'Software'} = '';
+    $Self->{Translation}->{'Expired'} = 'Imeisha';
+    $Self->{Translation}->{'Maintenance'} = 'Matengenezo';
+    $Self->{Translation}->{'Pilot'} = 'Kwanza';
+    $Self->{Translation}->{'Planned'} = 'Iliyopangwa';
+    $Self->{Translation}->{'Production'} = 'Uzalishaji';
+    $Self->{Translation}->{'Repair'} = 'Rekebisha';
+    $Self->{Translation}->{'Retired'} = 'Staafu';
+    $Self->{Translation}->{'Review'} = 'Mapitio';
+    $Self->{Translation}->{'Test/QA'} = 'Jaribio/ Maswali na Majibu';
+    $Self->{Translation}->{'Laptop'} = 'Kompyuta ya mkononi';
+    $Self->{Translation}->{'Desktop'} = 'Eneo kazi';
+    $Self->{Translation}->{'PDA'} = 'PDA';
+    $Self->{Translation}->{'Server'} = 'Seva';
+    $Self->{Translation}->{'Other'} = 'Engine';
+    $Self->{Translation}->{'Monitor'} = 'Monita';
+    $Self->{Translation}->{'Printer'} = 'Kichapishi';
+    $Self->{Translation}->{'Switch'} = 'Swichi';
+    $Self->{Translation}->{'Router'} = 'Kipanga njia';
+    $Self->{Translation}->{'WLAN Access Point'} = 'Kiungo ufikivu cha WLAN';
+    $Self->{Translation}->{'Security Device'} = 'Kifaa cha ulinzi';
+    $Self->{Translation}->{'Backup Device'} = 'Kifaa cha chelezo';
+    $Self->{Translation}->{'Mouse'} = 'Kipanya';
+    $Self->{Translation}->{'Keyboard'} = 'Boabonye';
+    $Self->{Translation}->{'Camera'} = 'Kamera';
+    $Self->{Translation}->{'Beamer'} = 'Projector';
+    $Self->{Translation}->{'Modem'} = 'Modemu';
+    $Self->{Translation}->{'PCMCIA Card'} = 'Kadi ya PCMCIA';
+    $Self->{Translation}->{'USB Device'} = 'Kifaa cha USB';
+    $Self->{Translation}->{'Docking Station'} = 'Kituo egeshi';
+    $Self->{Translation}->{'Scanner'} = 'Kitambazo';
+    $Self->{Translation}->{'Building'} = 'Jengo';
+    $Self->{Translation}->{'Floor'} = 'Sakafu';
+    $Self->{Translation}->{'Room'} = 'Chumba';
+    $Self->{Translation}->{'Rack'} = 'Rack';
+    $Self->{Translation}->{'Workplace'} = 'Eneo la kazi';
+    $Self->{Translation}->{'Outlet'} = 'Sehemu ya kutokea';
+    $Self->{Translation}->{'IT Facility'} = 'P';
+    $Self->{Translation}->{'LAN'} = 'LAN';
+    $Self->{Translation}->{'WLAN'} = 'WLAN';
+    $Self->{Translation}->{'Telco'} = 'Telco';
+    $Self->{Translation}->{'GSM'} = 'GSM';
+    $Self->{Translation}->{'Client Application'} = 'Programu-tumizi a mteja';
+    $Self->{Translation}->{'Middleware'} = 'Middleware';
+    $Self->{Translation}->{'Server Application'} = 'Seva ya programu-tumizi';
+    $Self->{Translation}->{'Client OS'} = 'OS ya mteja';
+    $Self->{Translation}->{'Server OS'} = 'OS ya seva';
+    $Self->{Translation}->{'Admin Tool'} = 'Kifaa cha kiongozi';
+    $Self->{Translation}->{'User Tool'} = 'Kifaa cha mtumiaji';
+    $Self->{Translation}->{'Embedded'} = 'Pakichwa';
+    $Self->{Translation}->{'Single Licence'} = 'Leseni moja';
+    $Self->{Translation}->{'Per User'} = 'Kwa mtumiaji';
+    $Self->{Translation}->{'Per Processor'} = 'Kwa kichakato';
+    $Self->{Translation}->{'Per Server'} = 'Kwa seva';
+    $Self->{Translation}->{'Per Node'} = 'Kwa fundo';
+    $Self->{Translation}->{'Volume Licence'} = 'Leseni ya sauti';
+    $Self->{Translation}->{'Enterprise Licence'} = 'Leseni ya Enterprie';
+    $Self->{Translation}->{'Developer Licence'} = 'Leseni ya mtengenezaji';
+    $Self->{Translation}->{'Demo'} = 'Onyesho';
+    $Self->{Translation}->{'Time Restricted'} = 'Muda umezuiliwa';
+    $Self->{Translation}->{'Freeware'} = 'Programu ya bure';
+    $Self->{Translation}->{'Open Source'} = 'Chanzo cha wazi';
+    $Self->{Translation}->{'Unlimited'} = 'Haina kikomo';
 
     # SysConfig
     $Self->{Translation}->{'Admin.'} = '';

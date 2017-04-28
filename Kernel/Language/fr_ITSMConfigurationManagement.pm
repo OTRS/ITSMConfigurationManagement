@@ -15,135 +15,6 @@ use utf8;
 sub Data {
     my $Self = shift;
 
-    # Template: AAAITSMConfigItem
-    $Self->{Translation}->{'Computer'} = '';
-    $Self->{Translation}->{'Hardware'} = '';
-    $Self->{Translation}->{'Network'} = '';
-    $Self->{Translation}->{'Software'} = '';
-    $Self->{Translation}->{'Address'} = 'Adresse';
-    $Self->{Translation}->{'Admin Tool'} = 'Outil d\'Administration';
-    $Self->{Translation}->{'Backup Device'} = 'Element de sauvegarde';
-    $Self->{Translation}->{'Beamer'} = 'Rétroprojecteur';
-    $Self->{Translation}->{'Building'} = 'Batiment';
-    $Self->{Translation}->{'CIHistory::ConfigItemCreate'} = 'CIHistory::ConfigItemCreate';
-    $Self->{Translation}->{'CIHistory::ConfigItemDelete'} = 'CIHistory::ConfigItemDelete';
-    $Self->{Translation}->{'CIHistory::DefinitionUpdate'} = 'CIHistory::DefinitionUpdate';
-    $Self->{Translation}->{'CIHistory::DeploymentStateUpdate'} = 'CIHistory::DeploymentStateUpdate';
-    $Self->{Translation}->{'CIHistory::IncidentStateUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::LinkAdd'} = '';
-    $Self->{Translation}->{'CIHistory::LinkDelete'} = '';
-    $Self->{Translation}->{'CIHistory::NameUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::ValueUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::VersionCreate'} = '';
-    $Self->{Translation}->{'CIHistory::VersionDelete'} = '';
-    $Self->{Translation}->{'CIHistory::AttachmentAdd'} = '';
-    $Self->{Translation}->{'CIHistory::AttachmentDelete'} = '';
-    $Self->{Translation}->{'CPU'} = 'CPU';
-    $Self->{Translation}->{'Camera'} = 'Caméra';
-    $Self->{Translation}->{'Capacity'} = 'Capacité';
-    $Self->{Translation}->{'Change Definition'} = 'Définition du Changement';
-    $Self->{Translation}->{'Change of definition failed! See System Log for details.'} = 'Modification de la définition échouée! Regardez les Log Systèmes pour plus de détails.';
-    $Self->{Translation}->{'Client Application'} = 'Application Cliente';
-    $Self->{Translation}->{'Client OS'} = 'OS Client';
-    $Self->{Translation}->{'Config Item-Area'} = 'Zone des Eléments de Configuration';
-    $Self->{Translation}->{'Config Items available'} = 'Eléments de configuration disponibles';
-    $Self->{Translation}->{'Config Items shown'} = 'Eléments de configuration montrés';
-    $Self->{Translation}->{'CMDB'} = '';
-    $Self->{Translation}->{'Demo'} = 'Demo';
-    $Self->{Translation}->{'Desktop'} = 'Ordinateur';
-    $Self->{Translation}->{'Developer Licence'} = 'License Développeur';
-    $Self->{Translation}->{'Docking Station'} = 'Base pour Portable';
-    $Self->{Translation}->{'Duplicate'} = 'Dupliquer';
-    $Self->{Translation}->{'Embedded'} = 'Embarqué';
-    $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = '';
-    $Self->{Translation}->{'Enterprise Licence'} = 'License Entreprise';
-    $Self->{Translation}->{'Expiration Date'} = 'Date d\'expiration';
-    $Self->{Translation}->{'Expired'} = 'Expiré';
-    $Self->{Translation}->{'Floor'} = 'Etage';
-    $Self->{Translation}->{'Freeware'} = 'Freeware/Graticiel';
-    $Self->{Translation}->{'GSM'} = 'GSM';
-    $Self->{Translation}->{'Gateway'} = 'Passerelle';
-    $Self->{Translation}->{'Graphic Adapter'} = 'Adaptateur graphique';
-    $Self->{Translation}->{'Hard Disk'} = 'Disque dur';
-    $Self->{Translation}->{'Hard Disk::Capacity'} = 'Disque dur::Capacité';
-    $Self->{Translation}->{'Hide Versions'} = 'Cacher les Versions';
-    $Self->{Translation}->{'IP Address'} = 'Adresse IP';
-    $Self->{Translation}->{'IP over DHCP'} = 'IP sur DHCP';
-    $Self->{Translation}->{'IT Facility'} = 'Département IT';
-    $Self->{Translation}->{'Incident'} = 'Incident';
-    $Self->{Translation}->{'Install Date'} = 'Date d\'installation';
-    $Self->{Translation}->{'Keyboard'} = 'Clavier';
-    $Self->{Translation}->{'LAN'} = 'LAN';
-    $Self->{Translation}->{'Laptop'} = 'Portable';
-    $Self->{Translation}->{'Last Change'} = 'Dernière modification';
-    $Self->{Translation}->{'Licence Key'} = 'Clé de la license';
-    $Self->{Translation}->{'Licence Key::Expiration Date'} = 'Clé de la license::Date d\'expiration';
-    $Self->{Translation}->{'Licence Key::Quantity'} = 'Clé de la license::Quantité';
-    $Self->{Translation}->{'Licence Type'} = 'Type de license';
-    $Self->{Translation}->{'Maintenance'} = 'Maintenance';
-    $Self->{Translation}->{'Maximum number of one element'} = 'Quantité maximale pour un élément';
-    $Self->{Translation}->{'Media'} = 'Media';
-    $Self->{Translation}->{'Middleware'} = 'Middleware';
-    $Self->{Translation}->{'Model'} = 'Modèle';
-    $Self->{Translation}->{'Modem'} = 'Modem';
-    $Self->{Translation}->{'Monitor'} = 'Moniteur';
-    $Self->{Translation}->{'Mouse'} = 'Souris';
-    $Self->{Translation}->{'Network Adapter'} = 'Adaptateur réseau';
-    $Self->{Translation}->{'Network Adapter::IP Address'} = 'Adaptateur réseau:: Adresse IP';
-    $Self->{Translation}->{'Network Adapter::IP over DHCP'} = 'Adaptateur réseau::IP sur DHCP';
-    $Self->{Translation}->{'Network Address'} = 'Adresse réseau';
-    $Self->{Translation}->{'Network Address::Gateway'} = 'Adresse réseau::Passerelle';
-    $Self->{Translation}->{'Network Address::Subnet Mask'} = 'Adresse réseau::Masque du sous réseau';
-    $Self->{Translation}->{'Open Source'} = 'Open Source';
-    $Self->{Translation}->{'Operational'} = 'Opérationnel';
-    $Self->{Translation}->{'Other'} = 'Autre';
-    $Self->{Translation}->{'Other Equipment'} = 'Autre équipement';
-    $Self->{Translation}->{'Outlet'} = 'Prise';
-    $Self->{Translation}->{'PCMCIA Card'} = 'Carte PCMCIA';
-    $Self->{Translation}->{'PDA'} = 'PDA';
-    $Self->{Translation}->{'Per Node'} = 'Par noeud';
-    $Self->{Translation}->{'Per Processor'} = 'Par processeur';
-    $Self->{Translation}->{'Per Server'} = 'Par Serveur';
-    $Self->{Translation}->{'Per User'} = 'Par Utilisateur';
-    $Self->{Translation}->{'Phone 1'} = 'Téléphone 1';
-    $Self->{Translation}->{'Phone 2'} = 'Téléphone 2';
-    $Self->{Translation}->{'Pilot'} = 'Pilote';
-    $Self->{Translation}->{'Planned'} = 'Planifié';
-    $Self->{Translation}->{'Printer'} = 'Imprimante';
-    $Self->{Translation}->{'Production'} = 'Production';
-    $Self->{Translation}->{'Quantity'} = 'Quantité';
-    $Self->{Translation}->{'Rack'} = 'Rack';
-    $Self->{Translation}->{'Ram'} = 'RAM';
-    $Self->{Translation}->{'Repair'} = 'En réparation';
-    $Self->{Translation}->{'Retired'} = 'Retiré';
-    $Self->{Translation}->{'Review'} = 'Revue';
-    $Self->{Translation}->{'Room'} = 'Pièce';
-    $Self->{Translation}->{'Router'} = 'Routeur';
-    $Self->{Translation}->{'Scanner'} = 'Scanner';
-    $Self->{Translation}->{'Search Config Items'} = 'Chercher dans les éléments de configuration';
-    $Self->{Translation}->{'Security Device'} = 'Périphérique de sécurité';
-    $Self->{Translation}->{'Serial Number'} = 'Numéro de série';
-    $Self->{Translation}->{'Server'} = 'Serveur';
-    $Self->{Translation}->{'Server Application'} = 'Application Serveur';
-    $Self->{Translation}->{'Server OS'} = 'OS Server';
-    $Self->{Translation}->{'Show Versions'} = 'Montrer les Versions';
-    $Self->{Translation}->{'Single Licence'} = 'License unique';
-    $Self->{Translation}->{'Subnet Mask'} = 'Masque du sous réseau';
-    $Self->{Translation}->{'Switch'} = 'Switch';
-    $Self->{Translation}->{'Telco'} = 'Telco';
-    $Self->{Translation}->{'Test/QA'} = 'Test/QA';
-    $Self->{Translation}->{'The deployment state of this config item'} = 'L\'état de déploiement de cet élément de configuration';
-    $Self->{Translation}->{'The incident state of this config item'} = 'L\'état d\'incident de cet élément de configuration';
-    $Self->{Translation}->{'Time Restricted'} = 'Limitée dans le temps';
-    $Self->{Translation}->{'USB Device'} = 'Périphérique USB';
-    $Self->{Translation}->{'Unlimited'} = 'Illimité';
-    $Self->{Translation}->{'User Tool'} = 'Outil Utilisateur';
-    $Self->{Translation}->{'Volume Licence'} = 'License par volume';
-    $Self->{Translation}->{'WLAN'} = 'WLAN';
-    $Self->{Translation}->{'WLAN Access Point'} = 'Point d\'access WLAN';
-    $Self->{Translation}->{'Warranty Expiration Date'} = 'Date d\'expiration de la garantie';
-    $Self->{Translation}->{'Workplace'} = 'Emplacement';
-
     # Template: AdminITSMConfigItem
     $Self->{Translation}->{'Config Item Management'} = 'Gestion des Eléments de Configuration';
     $Self->{Translation}->{'Change class definition'} = '';
@@ -208,17 +79,122 @@ sub Data {
     $Self->{Translation}->{'Property'} = '';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
-    $Self->{Translation}->{'ITSM ConfigItem'} = '';
+    $Self->{Translation}->{'No access to Class is given!'} = '';
+    $Self->{Translation}->{'Overview: ITSM ConfigItem'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+    $Self->{Translation}->{'No ConfigItemID is given!'} = '';
+    $Self->{Translation}->{'You need at least one selected Configuration Item!'} = '';
+    $Self->{Translation}->{'You don\'t have write access to this configuration item: %s.'} =
+        '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+    $Self->{Translation}->{'Config item "%s" not found in database!'} = '';
+    $Self->{Translation}->{'Was not able to delete the configitem ID %s!'} = '';
+    $Self->{Translation}->{'No version found for ConfigItemID %s!'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+    $Self->{Translation}->{'No ConfigItemID, DuplicateID or ClassID is given!'} = '';
+    $Self->{Translation}->{'No access is given!'} = '';
+    $Self->{Translation}->{'No definition was defined for class %s!'} = '';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+    $Self->{Translation}->{'Can\'t show history, no ConfigItemID is given!'} = '';
+    $Self->{Translation}->{'Can\'t show history, no access rights given!'} = '';
     $Self->{Translation}->{'CIHistory::'} = '';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+    $Self->{Translation}->{'No ConfigItemID or VersionID is given!'} = '';
+    $Self->{Translation}->{'Can\'t show config item, no access rights given!'} = '';
+    $Self->{Translation}->{'ConfigItemID %s not found in database!'} = '';
+    $Self->{Translation}->{'VersionID %s not found in database!'} = '';
     $Self->{Translation}->{'ConfigItem'} = '';
+    $Self->{Translation}->{'printed by %s at %s'} = '';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+    $Self->{Translation}->{'Invalid ClassID!'} = '';
+    $Self->{Translation}->{'No ClassID is given!'} = '';
+    $Self->{Translation}->{'No access rights for this class given!'} = '';
     $Self->{Translation}->{'No Result!'} = 'Aucun résultat !';
     $Self->{Translation}->{'Config Item Search Results'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+    $Self->{Translation}->{'Can\'t show item, no access rights for ConfigItem are given!'} =
+        '';
+    $Self->{Translation}->{'The deployment state of this config item'} = 'L\'état de déploiement de cet élément de configuration';
+    $Self->{Translation}->{'The incident state of this config item'} = 'L\'état d\'incident de cet élément de configuration';
+
+    # Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
+    $Self->{Translation}->{'Maximum number of one element'} = 'Quantité maximale pour un élément';
+    $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = '';
+
+    # Database XML Definition: /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+    $Self->{Translation}->{'Computer'} = '';
+    $Self->{Translation}->{'Hardware'} = '';
+    $Self->{Translation}->{'Network'} = '';
+    $Self->{Translation}->{'Software'} = '';
+    $Self->{Translation}->{'Expired'} = 'Expiré';
+    $Self->{Translation}->{'Maintenance'} = 'Maintenance';
+    $Self->{Translation}->{'Pilot'} = 'Pilote';
+    $Self->{Translation}->{'Planned'} = 'Planifié';
+    $Self->{Translation}->{'Production'} = 'Production';
+    $Self->{Translation}->{'Repair'} = 'En réparation';
+    $Self->{Translation}->{'Retired'} = 'Retiré';
+    $Self->{Translation}->{'Review'} = 'Revue';
+    $Self->{Translation}->{'Test/QA'} = 'Test/QA';
+    $Self->{Translation}->{'Laptop'} = 'Portable';
+    $Self->{Translation}->{'Desktop'} = 'Ordinateur';
+    $Self->{Translation}->{'PDA'} = 'PDA';
+    $Self->{Translation}->{'Server'} = 'Serveur';
+    $Self->{Translation}->{'Other'} = 'Autre';
+    $Self->{Translation}->{'Monitor'} = 'Moniteur';
+    $Self->{Translation}->{'Printer'} = 'Imprimante';
+    $Self->{Translation}->{'Switch'} = 'Switch';
+    $Self->{Translation}->{'Router'} = 'Routeur';
+    $Self->{Translation}->{'WLAN Access Point'} = 'Point d\'access WLAN';
+    $Self->{Translation}->{'Security Device'} = 'Périphérique de sécurité';
+    $Self->{Translation}->{'Backup Device'} = 'Element de sauvegarde';
+    $Self->{Translation}->{'Mouse'} = 'Souris';
+    $Self->{Translation}->{'Keyboard'} = 'Clavier';
+    $Self->{Translation}->{'Camera'} = 'Caméra';
+    $Self->{Translation}->{'Beamer'} = 'Rétroprojecteur';
+    $Self->{Translation}->{'Modem'} = 'Modem';
+    $Self->{Translation}->{'PCMCIA Card'} = 'Carte PCMCIA';
+    $Self->{Translation}->{'USB Device'} = 'Périphérique USB';
+    $Self->{Translation}->{'Docking Station'} = 'Base pour Portable';
+    $Self->{Translation}->{'Scanner'} = 'Scanner';
+    $Self->{Translation}->{'Building'} = 'Batiment';
+    $Self->{Translation}->{'Floor'} = 'Etage';
+    $Self->{Translation}->{'Room'} = 'Pièce';
+    $Self->{Translation}->{'Rack'} = 'Rack';
+    $Self->{Translation}->{'Workplace'} = 'Emplacement';
+    $Self->{Translation}->{'Outlet'} = 'Prise';
+    $Self->{Translation}->{'IT Facility'} = 'Département IT';
+    $Self->{Translation}->{'LAN'} = 'LAN';
+    $Self->{Translation}->{'WLAN'} = 'WLAN';
+    $Self->{Translation}->{'Telco'} = 'Telco';
+    $Self->{Translation}->{'GSM'} = 'GSM';
+    $Self->{Translation}->{'Client Application'} = 'Application Cliente';
+    $Self->{Translation}->{'Middleware'} = 'Middleware';
+    $Self->{Translation}->{'Server Application'} = 'Application Serveur';
+    $Self->{Translation}->{'Client OS'} = 'OS Client';
+    $Self->{Translation}->{'Server OS'} = 'OS Server';
+    $Self->{Translation}->{'Admin Tool'} = 'Outil d\'Administration';
+    $Self->{Translation}->{'User Tool'} = 'Outil Utilisateur';
+    $Self->{Translation}->{'Embedded'} = 'Embarqué';
+    $Self->{Translation}->{'Single Licence'} = 'License unique';
+    $Self->{Translation}->{'Per User'} = 'Par Utilisateur';
+    $Self->{Translation}->{'Per Processor'} = 'Par processeur';
+    $Self->{Translation}->{'Per Server'} = 'Par Serveur';
+    $Self->{Translation}->{'Per Node'} = 'Par noeud';
+    $Self->{Translation}->{'Volume Licence'} = 'License par volume';
+    $Self->{Translation}->{'Enterprise Licence'} = 'License Entreprise';
+    $Self->{Translation}->{'Developer Licence'} = 'License Développeur';
+    $Self->{Translation}->{'Demo'} = 'Demo';
+    $Self->{Translation}->{'Time Restricted'} = 'Limitée dans le temps';
+    $Self->{Translation}->{'Freeware'} = 'Freeware/Graticiel';
+    $Self->{Translation}->{'Open Source'} = 'Open Source';
+    $Self->{Translation}->{'Unlimited'} = 'Illimité';
 
     # SysConfig
     $Self->{Translation}->{'Admin.'} = 'Administrateur.';

@@ -15,135 +15,6 @@ use utf8;
 sub Data {
     my $Self = shift;
 
-    # Template: AAAITSMConfigItem
-    $Self->{Translation}->{'Computer'} = '';
-    $Self->{Translation}->{'Hardware'} = '';
-    $Self->{Translation}->{'Network'} = 'Сеть';
-    $Self->{Translation}->{'Software'} = '';
-    $Self->{Translation}->{'Address'} = 'Адрес';
-    $Self->{Translation}->{'Admin Tool'} = 'Системные утилиты';
-    $Self->{Translation}->{'Backup Device'} = 'Устройство бэкапа';
-    $Self->{Translation}->{'Beamer'} = 'Проектор';
-    $Self->{Translation}->{'Building'} = 'Здание';
-    $Self->{Translation}->{'CIHistory::ConfigItemCreate'} = 'CIHistory::ConfigItemCreate';
-    $Self->{Translation}->{'CIHistory::ConfigItemDelete'} = 'CIHistory::ConfigItemDelete';
-    $Self->{Translation}->{'CIHistory::DefinitionUpdate'} = 'CIHistory::DefinitionUpdate';
-    $Self->{Translation}->{'CIHistory::DeploymentStateUpdate'} = 'CIHistory::DeploymentStateUpdate';
-    $Self->{Translation}->{'CIHistory::IncidentStateUpdate'} = 'CIHistory::IncidentStateUpdate';
-    $Self->{Translation}->{'CIHistory::LinkAdd'} = 'CIHistory::LinkAdd';
-    $Self->{Translation}->{'CIHistory::LinkDelete'} = 'CIHistory::LinkDelete';
-    $Self->{Translation}->{'CIHistory::NameUpdate'} = 'CIHistory::NameUpdate';
-    $Self->{Translation}->{'CIHistory::ValueUpdate'} = 'CIHistory::ValueUpdate';
-    $Self->{Translation}->{'CIHistory::VersionCreate'} = 'CIHistory::VersionCreate';
-    $Self->{Translation}->{'CIHistory::VersionDelete'} = 'CIHistory::VersionDelete';
-    $Self->{Translation}->{'CIHistory::AttachmentAdd'} = 'CIHistory::AttachmentAdd';
-    $Self->{Translation}->{'CIHistory::AttachmentDelete'} = 'CIHistory::AttachmentDelete';
-    $Self->{Translation}->{'CPU'} = 'ЦПУ';
-    $Self->{Translation}->{'Camera'} = 'Камера';
-    $Self->{Translation}->{'Capacity'} = 'Объем';
-    $Self->{Translation}->{'Change Definition'} = 'Изменить описание';
-    $Self->{Translation}->{'Change of definition failed! See System Log for details.'} = 'Невозможно изменить описание! Для подробной информации смотри System Log.';
-    $Self->{Translation}->{'Client Application'} = 'Клиентское приложение';
-    $Self->{Translation}->{'Client OS'} = 'Клиентская ОС';
-    $Self->{Translation}->{'Config Item-Area'} = 'Обзор основных средств';
-    $Self->{Translation}->{'Config Items available'} = 'Доступно основных средств';
-    $Self->{Translation}->{'Config Items shown'} = 'Показано основных средств';
-    $Self->{Translation}->{'CMDB'} = 'CMDB';
-    $Self->{Translation}->{'Demo'} = 'Демо-версия';
-    $Self->{Translation}->{'Desktop'} = 'Настольный ПК';
-    $Self->{Translation}->{'Developer Licence'} = 'Лицензия для разработчика';
-    $Self->{Translation}->{'Docking Station'} = 'Док-станция';
-    $Self->{Translation}->{'Duplicate'} = 'Резерв';
-    $Self->{Translation}->{'Embedded'} = 'Встроенный';
-    $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Пустые поля показывают, что текущие значения сохранятся';
-    $Self->{Translation}->{'Enterprise Licence'} = 'Корпоративная лицензия';
-    $Self->{Translation}->{'Expiration Date'} = 'Срок лицензии';
-    $Self->{Translation}->{'Expired'} = 'Устарело';
-    $Self->{Translation}->{'Floor'} = 'Этаж';
-    $Self->{Translation}->{'Freeware'} = 'Бесплатное ПО';
-    $Self->{Translation}->{'GSM'} = 'GSM';
-    $Self->{Translation}->{'Gateway'} = 'Шлюз';
-    $Self->{Translation}->{'Graphic Adapter'} = 'Видео адаптер';
-    $Self->{Translation}->{'Hard Disk'} = 'Жесткий диск';
-    $Self->{Translation}->{'Hard Disk::Capacity'} = 'Жесткий диск::Объем';
-    $Self->{Translation}->{'Hide Versions'} = 'Скрыть версии';
-    $Self->{Translation}->{'IP Address'} = 'IP адрес';
-    $Self->{Translation}->{'IP over DHCP'} = 'IP по DHCP';
-    $Self->{Translation}->{'IT Facility'} = 'ИТ объект';
-    $Self->{Translation}->{'Incident'} = 'Инцидент';
-    $Self->{Translation}->{'Install Date'} = 'Дата установки';
-    $Self->{Translation}->{'Keyboard'} = 'Клавиатура';
-    $Self->{Translation}->{'LAN'} = 'Сетевая карта';
-    $Self->{Translation}->{'Laptop'} = 'Ноутбук';
-    $Self->{Translation}->{'Last Change'} = 'Время последнего изменения';
-    $Self->{Translation}->{'Licence Key'} = 'Лицензионный ключ';
-    $Self->{Translation}->{'Licence Key::Expiration Date'} = 'Лицензионный ключ::Срок лицензии';
-    $Self->{Translation}->{'Licence Key::Quantity'} = 'Лицензионный ключ::Количество';
-    $Self->{Translation}->{'Licence Type'} = 'Тип лицензии';
-    $Self->{Translation}->{'Maintenance'} = 'Техническое обслуживание';
-    $Self->{Translation}->{'Maximum number of one element'} = 'Максимальное количество одного элемента';
-    $Self->{Translation}->{'Media'} = 'Мультимедийные средства';
-    $Self->{Translation}->{'Middleware'} = 'Промежуточное ПО';
-    $Self->{Translation}->{'Model'} = 'Модель';
-    $Self->{Translation}->{'Modem'} = 'Модем';
-    $Self->{Translation}->{'Monitor'} = 'Монитор';
-    $Self->{Translation}->{'Mouse'} = 'Мышка';
-    $Self->{Translation}->{'Network Adapter'} = 'Сетевой адаптер';
-    $Self->{Translation}->{'Network Adapter::IP Address'} = 'Сетевой адаптер::IP адрес';
-    $Self->{Translation}->{'Network Adapter::IP over DHCP'} = 'Сетевой адаптер::IP по DHCP';
-    $Self->{Translation}->{'Network Address'} = 'Сетевой адрес';
-    $Self->{Translation}->{'Network Address::Gateway'} = 'Сетевой адрес::Шлюз';
-    $Self->{Translation}->{'Network Address::Subnet Mask'} = 'Сетевой адрес::Маска подсети';
-    $Self->{Translation}->{'Open Source'} = 'ПО с открытым кодом';
-    $Self->{Translation}->{'Operational'} = 'В эксплуатации';
-    $Self->{Translation}->{'Other'} = 'Другое';
-    $Self->{Translation}->{'Other Equipment'} = 'Другое оборудование';
-    $Self->{Translation}->{'Outlet'} = 'Розетка';
-    $Self->{Translation}->{'PCMCIA Card'} = 'PCMCIA карта';
-    $Self->{Translation}->{'PDA'} = 'PDA';
-    $Self->{Translation}->{'Per Node'} = 'На ноду(узел)';
-    $Self->{Translation}->{'Per Processor'} = 'На ЦПУ';
-    $Self->{Translation}->{'Per Server'} = 'На сервер';
-    $Self->{Translation}->{'Per User'} = 'На пользователя';
-    $Self->{Translation}->{'Phone 1'} = 'Телефон 1';
-    $Self->{Translation}->{'Phone 2'} = 'Телефон 2';
-    $Self->{Translation}->{'Pilot'} = 'Эксперимент';
-    $Self->{Translation}->{'Planned'} = 'Запланированно';
-    $Self->{Translation}->{'Printer'} = 'Принтер';
-    $Self->{Translation}->{'Production'} = 'Производство';
-    $Self->{Translation}->{'Quantity'} = 'Количество';
-    $Self->{Translation}->{'Rack'} = 'Стойка';
-    $Self->{Translation}->{'Ram'} = 'ОЗУ';
-    $Self->{Translation}->{'Repair'} = 'Ремонт';
-    $Self->{Translation}->{'Retired'} = 'Списано';
-    $Self->{Translation}->{'Review'} = 'Экспертиза';
-    $Self->{Translation}->{'Room'} = 'Кабинет';
-    $Self->{Translation}->{'Router'} = 'Маршрутизатор';
-    $Self->{Translation}->{'Scanner'} = 'Сканер';
-    $Self->{Translation}->{'Search Config Items'} = 'Поиск конфигурационных единиц';
-    $Self->{Translation}->{'Security Device'} = 'Смарт-карта';
-    $Self->{Translation}->{'Serial Number'} = 'Серийный номер';
-    $Self->{Translation}->{'Server'} = 'Сервер';
-    $Self->{Translation}->{'Server Application'} = 'Серверное приложение';
-    $Self->{Translation}->{'Server OS'} = 'Серверная ОС';
-    $Self->{Translation}->{'Show Versions'} = 'Показать версии';
-    $Self->{Translation}->{'Single Licence'} = 'Однократная лицензия';
-    $Self->{Translation}->{'Subnet Mask'} = 'Маска подсети';
-    $Self->{Translation}->{'Switch'} = 'Коммутатор';
-    $Self->{Translation}->{'Telco'} = 'Telco';
-    $Self->{Translation}->{'Test/QA'} = 'Тестирование';
-    $Self->{Translation}->{'The deployment state of this config item'} = 'Состояние использования этой КЕ';
-    $Self->{Translation}->{'The incident state of this config item'} = 'Состояние инцидента для этой КЕ';
-    $Self->{Translation}->{'Time Restricted'} = 'Ограниченная по времени';
-    $Self->{Translation}->{'USB Device'} = 'USB устройство';
-    $Self->{Translation}->{'Unlimited'} = 'Без ограничений';
-    $Self->{Translation}->{'User Tool'} = 'Пользовательские утилиты';
-    $Self->{Translation}->{'Volume Licence'} = 'Корпоративная лицензия';
-    $Self->{Translation}->{'WLAN'} = 'WLAN';
-    $Self->{Translation}->{'WLAN Access Point'} = 'WLAN точка доступа';
-    $Self->{Translation}->{'Warranty Expiration Date'} = 'Срок истечения гарантии';
-    $Self->{Translation}->{'Workplace'} = 'Рабочее место';
-
     # Template: AdminITSMConfigItem
     $Self->{Translation}->{'Config Item Management'} = 'Управление Конфигурационными единицами';
     $Self->{Translation}->{'Change class definition'} = 'Изменить описание класса';
@@ -208,20 +79,125 @@ sub Data {
     $Self->{Translation}->{'Property'} = 'Свойство';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
-    $Self->{Translation}->{'ITSM ConfigItem'} = 'Конфигурационная единица ITSM ';
+    $Self->{Translation}->{'No access to Class is given!'} = '';
+    $Self->{Translation}->{'Overview: ITSM ConfigItem'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+    $Self->{Translation}->{'No ConfigItemID is given!'} = '';
+    $Self->{Translation}->{'You need at least one selected Configuration Item!'} = '';
+    $Self->{Translation}->{'You don\'t have write access to this configuration item: %s.'} =
+        '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+    $Self->{Translation}->{'Config item "%s" not found in database!'} = '';
+    $Self->{Translation}->{'Was not able to delete the configitem ID %s!'} = '';
+    $Self->{Translation}->{'No version found for ConfigItemID %s!'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+    $Self->{Translation}->{'No ConfigItemID, DuplicateID or ClassID is given!'} = '';
+    $Self->{Translation}->{'No access is given!'} = '';
+    $Self->{Translation}->{'No definition was defined for class %s!'} = '';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+    $Self->{Translation}->{'Can\'t show history, no ConfigItemID is given!'} = '';
+    $Self->{Translation}->{'Can\'t show history, no access rights given!'} = '';
     $Self->{Translation}->{'CIHistory::'} = 'CIHistory::';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+    $Self->{Translation}->{'No ConfigItemID or VersionID is given!'} = '';
+    $Self->{Translation}->{'Can\'t show config item, no access rights given!'} = '';
+    $Self->{Translation}->{'ConfigItemID %s not found in database!'} = '';
+    $Self->{Translation}->{'VersionID %s not found in database!'} = '';
     $Self->{Translation}->{'ConfigItem'} = 'Конфигурационная единица';
+    $Self->{Translation}->{'printed by %s at %s'} = '';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+    $Self->{Translation}->{'Invalid ClassID!'} = '';
+    $Self->{Translation}->{'No ClassID is given!'} = '';
+    $Self->{Translation}->{'No access rights for this class given!'} = '';
     $Self->{Translation}->{'No Result!'} = 'Нет результата/Решения!';
     $Self->{Translation}->{'Config Item Search Results'} = 'Результаты поиска конфигурационных единиц';
 
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+    $Self->{Translation}->{'Can\'t show item, no access rights for ConfigItem are given!'} =
+        '';
+    $Self->{Translation}->{'The deployment state of this config item'} = 'Состояние использования этой КЕ';
+    $Self->{Translation}->{'The incident state of this config item'} = 'Состояние инцидента для этой КЕ';
+
+    # Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
+    $Self->{Translation}->{'Maximum number of one element'} = 'Максимальное количество одного элемента';
+    $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Пустые поля показывают, что текущие значения сохранятся';
+
+    # Database XML Definition: /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+    $Self->{Translation}->{'Computer'} = '';
+    $Self->{Translation}->{'Hardware'} = '';
+    $Self->{Translation}->{'Network'} = 'Сеть';
+    $Self->{Translation}->{'Software'} = '';
+    $Self->{Translation}->{'Expired'} = 'Устарело';
+    $Self->{Translation}->{'Maintenance'} = 'Техническое обслуживание';
+    $Self->{Translation}->{'Pilot'} = 'Эксперимент';
+    $Self->{Translation}->{'Planned'} = 'Запланированно';
+    $Self->{Translation}->{'Production'} = 'Производство';
+    $Self->{Translation}->{'Repair'} = 'Ремонт';
+    $Self->{Translation}->{'Retired'} = 'Списано';
+    $Self->{Translation}->{'Review'} = 'Экспертиза';
+    $Self->{Translation}->{'Test/QA'} = 'Тестирование';
+    $Self->{Translation}->{'Laptop'} = 'Ноутбук';
+    $Self->{Translation}->{'Desktop'} = 'Настольный ПК';
+    $Self->{Translation}->{'PDA'} = 'PDA';
+    $Self->{Translation}->{'Server'} = 'Сервер';
+    $Self->{Translation}->{'Other'} = 'Другое';
+    $Self->{Translation}->{'Monitor'} = 'Монитор';
+    $Self->{Translation}->{'Printer'} = 'Принтер';
+    $Self->{Translation}->{'Switch'} = 'Коммутатор';
+    $Self->{Translation}->{'Router'} = 'Маршрутизатор';
+    $Self->{Translation}->{'WLAN Access Point'} = 'WLAN точка доступа';
+    $Self->{Translation}->{'Security Device'} = 'Смарт-карта';
+    $Self->{Translation}->{'Backup Device'} = 'Устройство бэкапа';
+    $Self->{Translation}->{'Mouse'} = 'Мышка';
+    $Self->{Translation}->{'Keyboard'} = 'Клавиатура';
+    $Self->{Translation}->{'Camera'} = 'Камера';
+    $Self->{Translation}->{'Beamer'} = 'Проектор';
+    $Self->{Translation}->{'Modem'} = 'Модем';
+    $Self->{Translation}->{'PCMCIA Card'} = 'PCMCIA карта';
+    $Self->{Translation}->{'USB Device'} = 'USB устройство';
+    $Self->{Translation}->{'Docking Station'} = 'Док-станция';
+    $Self->{Translation}->{'Scanner'} = 'Сканер';
+    $Self->{Translation}->{'Building'} = 'Здание';
+    $Self->{Translation}->{'Floor'} = 'Этаж';
+    $Self->{Translation}->{'Room'} = 'Кабинет';
+    $Self->{Translation}->{'Rack'} = 'Стойка';
+    $Self->{Translation}->{'Workplace'} = 'Рабочее место';
+    $Self->{Translation}->{'Outlet'} = 'Розетка';
+    $Self->{Translation}->{'IT Facility'} = 'ИТ объект';
+    $Self->{Translation}->{'LAN'} = 'Сетевая карта';
+    $Self->{Translation}->{'WLAN'} = 'WLAN';
+    $Self->{Translation}->{'Telco'} = 'Telco';
+    $Self->{Translation}->{'GSM'} = 'GSM';
+    $Self->{Translation}->{'Client Application'} = 'Клиентское приложение';
+    $Self->{Translation}->{'Middleware'} = 'Промежуточное ПО';
+    $Self->{Translation}->{'Server Application'} = 'Серверное приложение';
+    $Self->{Translation}->{'Client OS'} = 'Клиентская ОС';
+    $Self->{Translation}->{'Server OS'} = 'Серверная ОС';
+    $Self->{Translation}->{'Admin Tool'} = 'Системные утилиты';
+    $Self->{Translation}->{'User Tool'} = 'Пользовательские утилиты';
+    $Self->{Translation}->{'Embedded'} = 'Встроенный';
+    $Self->{Translation}->{'Single Licence'} = 'Однократная лицензия';
+    $Self->{Translation}->{'Per User'} = 'На пользователя';
+    $Self->{Translation}->{'Per Processor'} = 'На ЦПУ';
+    $Self->{Translation}->{'Per Server'} = 'На сервер';
+    $Self->{Translation}->{'Per Node'} = 'На ноду(узел)';
+    $Self->{Translation}->{'Volume Licence'} = 'Корпоративная лицензия';
+    $Self->{Translation}->{'Enterprise Licence'} = 'Корпоративная лицензия';
+    $Self->{Translation}->{'Developer Licence'} = 'Лицензия для разработчика';
+    $Self->{Translation}->{'Demo'} = 'Демо-версия';
+    $Self->{Translation}->{'Time Restricted'} = 'Ограниченная по времени';
+    $Self->{Translation}->{'Freeware'} = 'Бесплатное ПО';
+    $Self->{Translation}->{'Open Source'} = 'ПО с открытым кодом';
+    $Self->{Translation}->{'Unlimited'} = 'Без ограничений';
+
     # SysConfig
-    $Self->{Translation}->{'Admin.'} = '';
+    $Self->{Translation}->{'Admin.'} = 'Администратор.';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         'Проверка уникальности Имени внутри текущего класса КЕ(\'class\') или глобально (\'global\'),что означает, что любая существующая КЕ учитывается при поиске дубликатов ';
     $Self->{Translation}->{'Config Items'} = 'Конфигурационные единицы';

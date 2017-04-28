@@ -15,139 +15,10 @@ use utf8;
 sub Data {
     my $Self = shift;
 
-    # Template: AAAITSMConfigItem
-    $Self->{Translation}->{'Computer'} = '';
-    $Self->{Translation}->{'Hardware'} = '';
-    $Self->{Translation}->{'Network'} = '';
-    $Self->{Translation}->{'Software'} = '';
-    $Self->{Translation}->{'Address'} = '';
-    $Self->{Translation}->{'Admin Tool'} = '';
-    $Self->{Translation}->{'Backup Device'} = 'Backup-enhet';
-    $Self->{Translation}->{'Beamer'} = '';
-    $Self->{Translation}->{'Building'} = 'Bygning';
-    $Self->{Translation}->{'CIHistory::ConfigItemCreate'} = 'Ny Konfigurasjonsenhet (ID=%s)';
-    $Self->{Translation}->{'CIHistory::ConfigItemDelete'} = 'Konfigurasjonsenhet (ID=%s) slettet';
-    $Self->{Translation}->{'CIHistory::DefinitionUpdate'} = 'Konfigurasjonsenhetens definisjon ble oppdatert (ID=%s)';
-    $Self->{Translation}->{'CIHistory::DeploymentStateUpdate'} = 'Produksjonssettingstilstand endret (ny=%s; gml=%s)';
-    $Self->{Translation}->{'CIHistory::IncidentStateUpdate'} = 'Hendelsestilstand oppdatert (ny=%s; gml=%s)';
-    $Self->{Translation}->{'CIHistory::LinkAdd'} = 'Kobling til %s (type=%s) lagt til';
-    $Self->{Translation}->{'CIHistory::LinkDelete'} = 'Kobling til %s (type=%s) lagt til';
-    $Self->{Translation}->{'CIHistory::NameUpdate'} = 'Navn oppdatert (nytt=%s; gml=%s)';
-    $Self->{Translation}->{'CIHistory::ValueUpdate'} = 'Attributt %s oppdatert fra "%s" til "%s"';
-    $Self->{Translation}->{'CIHistory::VersionCreate'} = 'Ny versjon (ID=%s)';
-    $Self->{Translation}->{'CIHistory::VersionDelete'} = 'Versjon %s slettet';
-    $Self->{Translation}->{'CIHistory::AttachmentAdd'} = '';
-    $Self->{Translation}->{'CIHistory::AttachmentDelete'} = '';
-    $Self->{Translation}->{'CPU'} = 'Prosessor';
-    $Self->{Translation}->{'Camera'} = 'Kamera';
-    $Self->{Translation}->{'Capacity'} = 'Kapasitet';
-    $Self->{Translation}->{'Change Definition'} = 'Endre definisjon';
-    $Self->{Translation}->{'Change of definition failed! See System Log for details.'} = 'Endring feilet! Se systemloggen for detaljer.';
-    $Self->{Translation}->{'Client Application'} = 'Klient-applikasjon';
-    $Self->{Translation}->{'Client OS'} = 'Klient-OS';
-    $Self->{Translation}->{'Config Item-Area'} = 'Konfigurasjonsenhet-område';
-    $Self->{Translation}->{'Config Items available'} = 'Tilgjengelige konfigurasjonsenheter';
-    $Self->{Translation}->{'Config Items shown'} = 'Viste konfigurasjonsenheter';
-    $Self->{Translation}->{'CMDB'} = 'CMDB';
-    $Self->{Translation}->{'Demo'} = 'Demo';
-    $Self->{Translation}->{'Desktop'} = 'Stasjonær';
-    $Self->{Translation}->{'Developer Licence'} = 'Utviklerlisens';
-    $Self->{Translation}->{'Docking Station'} = 'Dokkingstasjon';
-    $Self->{Translation}->{'Duplicate'} = 'Duplisér';
-    $Self->{Translation}->{'Embedded'} = 'Innebygd';
-    $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Tomme felter indikerer at de nåværende verdiene beholdes';
-    $Self->{Translation}->{'Enterprise Licence'} = 'Enterprise-lisens';
-    $Self->{Translation}->{'Expiration Date'} = 'Utgår dato';
-    $Self->{Translation}->{'Expired'} = 'Utgått';
-    $Self->{Translation}->{'Floor'} = 'Etasje';
-    $Self->{Translation}->{'Freeware'} = 'Gratis programvare';
-    $Self->{Translation}->{'GSM'} = 'GSM';
-    $Self->{Translation}->{'Gateway'} = 'Ruter';
-    $Self->{Translation}->{'Graphic Adapter'} = 'Grafikkort';
-    $Self->{Translation}->{'Hard Disk'} = 'Harddisk';
-    $Self->{Translation}->{'Hard Disk::Capacity'} = 'Harddisk::Kapasitet';
-    $Self->{Translation}->{'Hide Versions'} = 'Skjul versjoner';
-    $Self->{Translation}->{'IP Address'} = 'IP-adresse';
-    $Self->{Translation}->{'IP over DHCP'} = 'IP fra DHCP';
-    $Self->{Translation}->{'IT Facility'} = 'IT-fasilitet';
-    $Self->{Translation}->{'Incident'} = '';
-    $Self->{Translation}->{'Install Date'} = 'Installasjonsdato';
-    $Self->{Translation}->{'Keyboard'} = 'Tastatur';
-    $Self->{Translation}->{'LAN'} = 'Lokalnett';
-    $Self->{Translation}->{'Laptop'} = 'Bærbar';
-    $Self->{Translation}->{'Last Change'} = 'Sist endret';
-    $Self->{Translation}->{'Licence Key'} = 'Lisensnøkkel';
-    $Self->{Translation}->{'Licence Key::Expiration Date'} = 'Lisensnøkkel::Utgår dato';
-    $Self->{Translation}->{'Licence Key::Quantity'} = 'Lisensnøkkel::Antall';
-    $Self->{Translation}->{'Licence Type'} = 'Lisenstype';
-    $Self->{Translation}->{'Maintenance'} = 'Vedlikehold';
-    $Self->{Translation}->{'Maximum number of one element'} = 'Maks. antall av ett element';
-    $Self->{Translation}->{'Media'} = 'Media';
-    $Self->{Translation}->{'Middleware'} = 'Mellomvare';
-    $Self->{Translation}->{'Model'} = 'Modell';
-    $Self->{Translation}->{'Modem'} = 'Modem';
-    $Self->{Translation}->{'Monitor'} = 'Skjerm';
-    $Self->{Translation}->{'Mouse'} = 'Mus';
-    $Self->{Translation}->{'Network Adapter'} = 'Nettverkskort';
-    $Self->{Translation}->{'Network Adapter::IP Address'} = 'Nettverkskort::IP-adresse';
-    $Self->{Translation}->{'Network Adapter::IP over DHCP'} = 'Nettverkskort::IP fra DHCP';
-    $Self->{Translation}->{'Network Address'} = 'Nettverksadresse';
-    $Self->{Translation}->{'Network Address::Gateway'} = 'Nettverksadresse::Ruter';
-    $Self->{Translation}->{'Network Address::Subnet Mask'} = 'Nettverksadresse::Subnettmaske';
-    $Self->{Translation}->{'Open Source'} = 'Åpen kildekode';
-    $Self->{Translation}->{'Operational'} = 'Operativ';
-    $Self->{Translation}->{'Other'} = 'Annet';
-    $Self->{Translation}->{'Other Equipment'} = 'Annet utstyr';
-    $Self->{Translation}->{'Outlet'} = 'Kontakt';
-    $Self->{Translation}->{'PCMCIA Card'} = 'PCMCIA-kort';
-    $Self->{Translation}->{'PDA'} = 'PDA';
-    $Self->{Translation}->{'Per Node'} = 'Per Node';
-    $Self->{Translation}->{'Per Processor'} = 'Per Prosessor';
-    $Self->{Translation}->{'Per Server'} = 'Per Tjener';
-    $Self->{Translation}->{'Per User'} = 'Per Bruker';
-    $Self->{Translation}->{'Phone 1'} = 'Telefon 1';
-    $Self->{Translation}->{'Phone 2'} = 'Telefon 2';
-    $Self->{Translation}->{'Pilot'} = 'Pilot';
-    $Self->{Translation}->{'Planned'} = 'Planlagt';
-    $Self->{Translation}->{'Printer'} = 'Skriver';
-    $Self->{Translation}->{'Production'} = 'Produksjon';
-    $Self->{Translation}->{'Quantity'} = 'Antall';
-    $Self->{Translation}->{'Rack'} = 'Rack';
-    $Self->{Translation}->{'Ram'} = 'Internminne';
-    $Self->{Translation}->{'Repair'} = 'Reparasjon';
-    $Self->{Translation}->{'Retired'} = 'Pensjonert';
-    $Self->{Translation}->{'Review'} = 'Evaluering';
-    $Self->{Translation}->{'Room'} = 'Rom';
-    $Self->{Translation}->{'Router'} = 'Ruter';
-    $Self->{Translation}->{'Scanner'} = 'Skanner';
-    $Self->{Translation}->{'Search Config Items'} = 'Søk konfigurasjonsenheter';
-    $Self->{Translation}->{'Security Device'} = 'Sikkerhetsenhet';
-    $Self->{Translation}->{'Serial Number'} = 'Serienummer';
-    $Self->{Translation}->{'Server'} = 'Tjener';
-    $Self->{Translation}->{'Server Application'} = 'Tjener-applikasjon';
-    $Self->{Translation}->{'Server OS'} = 'Tjener-OS';
-    $Self->{Translation}->{'Show Versions'} = 'Vis versjoner';
-    $Self->{Translation}->{'Single Licence'} = 'Enkeltlisens';
-    $Self->{Translation}->{'Subnet Mask'} = 'Subnettmaske';
-    $Self->{Translation}->{'Switch'} = 'Svitsj';
-    $Self->{Translation}->{'Telco'} = 'Teleutstyr';
-    $Self->{Translation}->{'Test/QA'} = 'Test/Kvalitetskontroll';
-    $Self->{Translation}->{'The deployment state of this config item'} = 'Produksjonssettingstilstand for denne konfigurasjonsenheten';
-    $Self->{Translation}->{'The incident state of this config item'} = 'Hendelsestilstanden for denne konfigurasjonsenheten';
-    $Self->{Translation}->{'Time Restricted'} = 'Tidsbegrenset';
-    $Self->{Translation}->{'USB Device'} = 'USB-enhet';
-    $Self->{Translation}->{'Unlimited'} = 'Ubegrenset';
-    $Self->{Translation}->{'User Tool'} = 'Brukerverktøy';
-    $Self->{Translation}->{'Volume Licence'} = 'Volumlisens';
-    $Self->{Translation}->{'WLAN'} = 'WLAN';
-    $Self->{Translation}->{'WLAN Access Point'} = 'WLAN-basestasjon';
-    $Self->{Translation}->{'Warranty Expiration Date'} = 'Utløpsdato for garanti';
-    $Self->{Translation}->{'Workplace'} = 'Arbeidssted';
-
     # Template: AdminITSMConfigItem
     $Self->{Translation}->{'Config Item Management'} = 'Administrasjon av konfigurasjonsenheter';
     $Self->{Translation}->{'Change class definition'} = 'Endre klassedefinisjon';
-    $Self->{Translation}->{'Config Item Class'} = '';
+    $Self->{Translation}->{'Config Item Class'} = 'Konfigurasjonsenhetsklasse';
     $Self->{Translation}->{'Definition'} = 'Definisjon';
 
     # Template: AgentITSMConfigItemAdd
@@ -157,15 +28,15 @@ sub Data {
     $Self->{Translation}->{'Class'} = 'Klasse';
 
     # Template: AgentITSMConfigItemBulk
-    $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = '';
-    $Self->{Translation}->{'Deployment state'} = '';
-    $Self->{Translation}->{'Incident state'} = '';
-    $Self->{Translation}->{'Link to another'} = '';
+    $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = 'Masseredigering av konfigurasjonsenheter';
+    $Self->{Translation}->{'Deployment state'} = 'Produksjonssettingstilstand';
+    $Self->{Translation}->{'Incident state'} = 'Hendelsestilstand';
+    $Self->{Translation}->{'Link to another'} = 'Koble til en annen';
     $Self->{Translation}->{'Invalid Configuration Item number!'} = '';
     $Self->{Translation}->{'The number of another Configuration Item to link with.'} = '';
 
     # Template: AgentITSMConfigItemDelete
-    $Self->{Translation}->{'Do you really want to delete this config item?'} = '';
+    $Self->{Translation}->{'Do you really want to delete this config item?'} = 'Vil du virkelig fjerne denne konfigurasjonsenheten?';
 
     # Template: AgentITSMConfigItemEdit
     $Self->{Translation}->{'The name of this config item'} = 'Navnet til denne konfigurasjonsenheten';
@@ -175,7 +46,7 @@ sub Data {
     $Self->{Translation}->{'Incident State'} = 'Hendelsestilstand';
 
     # Template: AgentITSMConfigItemHistory
-    $Self->{Translation}->{'History of Config Item: %s'} = '';
+    $Self->{Translation}->{'History of Config Item: %s'} = 'Historien til konfigurasjonsenheten: %s';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'Kontekstvalg';
@@ -183,48 +54,153 @@ sub Data {
 
     # Template: AgentITSMConfigItemOverviewSmall
     $Self->{Translation}->{'A generic ITSM Configuration Item table'} = '';
-    $Self->{Translation}->{'Deployment State Type'} = 'Type Produksjonssettingstilstand';
-    $Self->{Translation}->{'Current Incident State'} = 'Nåværende Hendelsestilstand';
-    $Self->{Translation}->{'Current Incident State Type'} = 'Nåværende type Hendelsestilstand';
+    $Self->{Translation}->{'Deployment State Type'} = 'Type produksjonssettingstilstand';
+    $Self->{Translation}->{'Current Incident State'} = 'Nåværende hendelsestilstand';
+    $Self->{Translation}->{'Current Incident State Type'} = 'Nåværende type hendelsestilstand';
     $Self->{Translation}->{'Last changed'} = 'Sist endret';
 
     # Template: AgentITSMConfigItemSearch
-    $Self->{Translation}->{'Create New Template'} = '';
-    $Self->{Translation}->{'Run Search'} = '';
+    $Self->{Translation}->{'Create New Template'} = 'Lag en ny mal';
+    $Self->{Translation}->{'Run Search'} = 'Utfør søket';
     $Self->{Translation}->{'Also search in previous versions?'} = 'Også søke i tidligere versjoner?';
 
     # Template: AgentITSMConfigItemZoom
     $Self->{Translation}->{'Configuration Item'} = 'Konfigurasjonsenhet';
-    $Self->{Translation}->{'Configuration Item Information'} = '';
-    $Self->{Translation}->{'Current Deployment State'} = 'Nåværende Produksjonssettingstilstand';
+    $Self->{Translation}->{'Configuration Item Information'} = 'Opplysninger om konfigurasjonsenheten';
+    $Self->{Translation}->{'Current Deployment State'} = 'Nåværende produksjonssettingstilstand';
     $Self->{Translation}->{'Last changed by'} = 'Sist endret av';
     $Self->{Translation}->{'Ok'} = 'Ok';
     $Self->{Translation}->{'Show one version'} = 'Vis én versjon';
     $Self->{Translation}->{'Show all versions'} = 'Vis alle versjoner';
     $Self->{Translation}->{'Version Incident State'} = 'Hendelsestilstand for versjonen';
-    $Self->{Translation}->{'Version Deployment State'} = '';
+    $Self->{Translation}->{'Version Deployment State'} = 'Produksjonssettingstilstand for versjonen';
     $Self->{Translation}->{'Version Number'} = 'Versjon';
     $Self->{Translation}->{'Configuration Item Version Details'} = 'Versjonsdetaljer for enheten';
-    $Self->{Translation}->{'Property'} = '';
+    $Self->{Translation}->{'Property'} = 'Egenskap';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
-    $Self->{Translation}->{'ITSM ConfigItem'} = '';
+    $Self->{Translation}->{'No access to Class is given!'} = '';
+    $Self->{Translation}->{'Overview: ITSM ConfigItem'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+    $Self->{Translation}->{'No ConfigItemID is given!'} = '';
+    $Self->{Translation}->{'You need at least one selected Configuration Item!'} = '';
+    $Self->{Translation}->{'You don\'t have write access to this configuration item: %s.'} =
+        '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+    $Self->{Translation}->{'Config item "%s" not found in database!'} = '';
+    $Self->{Translation}->{'Was not able to delete the configitem ID %s!'} = '';
+    $Self->{Translation}->{'No version found for ConfigItemID %s!'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+    $Self->{Translation}->{'No ConfigItemID, DuplicateID or ClassID is given!'} = '';
+    $Self->{Translation}->{'No access is given!'} = '';
+    $Self->{Translation}->{'No definition was defined for class %s!'} = '';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+    $Self->{Translation}->{'Can\'t show history, no ConfigItemID is given!'} = '';
+    $Self->{Translation}->{'Can\'t show history, no access rights given!'} = '';
     $Self->{Translation}->{'CIHistory::'} = '';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+    $Self->{Translation}->{'No ConfigItemID or VersionID is given!'} = '';
+    $Self->{Translation}->{'Can\'t show config item, no access rights given!'} = '';
+    $Self->{Translation}->{'ConfigItemID %s not found in database!'} = '';
+    $Self->{Translation}->{'VersionID %s not found in database!'} = '';
     $Self->{Translation}->{'ConfigItem'} = 'Konfigurasjonsenhet';
+    $Self->{Translation}->{'printed by %s at %s'} = '';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+    $Self->{Translation}->{'Invalid ClassID!'} = '';
+    $Self->{Translation}->{'No ClassID is given!'} = '';
+    $Self->{Translation}->{'No access rights for this class given!'} = '';
     $Self->{Translation}->{'No Result!'} = 'Ingen resultater';
     $Self->{Translation}->{'Config Item Search Results'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+    $Self->{Translation}->{'Can\'t show item, no access rights for ConfigItem are given!'} =
+        '';
+    $Self->{Translation}->{'The deployment state of this config item'} = 'Produksjonssettingstilstand for denne konfigurasjonsenheten';
+    $Self->{Translation}->{'The incident state of this config item'} = 'Hendelsestilstanden for denne konfigurasjonsenheten';
+
+    # Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
+    $Self->{Translation}->{'Maximum number of one element'} = 'Maks. antall av ett element';
+    $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Tomme felter indikerer at de nåværende verdiene beholdes';
+
+    # Database XML Definition: /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+    $Self->{Translation}->{'Computer'} = '';
+    $Self->{Translation}->{'Hardware'} = '';
+    $Self->{Translation}->{'Network'} = '';
+    $Self->{Translation}->{'Software'} = '';
+    $Self->{Translation}->{'Expired'} = 'Utgått';
+    $Self->{Translation}->{'Maintenance'} = 'Vedlikehold';
+    $Self->{Translation}->{'Pilot'} = 'Pilot';
+    $Self->{Translation}->{'Planned'} = 'Planlagt';
+    $Self->{Translation}->{'Production'} = 'Produksjon';
+    $Self->{Translation}->{'Repair'} = 'Reparasjon';
+    $Self->{Translation}->{'Retired'} = 'Utfaset';
+    $Self->{Translation}->{'Review'} = 'Evaluering';
+    $Self->{Translation}->{'Test/QA'} = 'Test/Kvalitetskontroll';
+    $Self->{Translation}->{'Laptop'} = 'Bærbar';
+    $Self->{Translation}->{'Desktop'} = 'Stasjonær';
+    $Self->{Translation}->{'PDA'} = 'PDA';
+    $Self->{Translation}->{'Server'} = 'Tjener';
+    $Self->{Translation}->{'Other'} = 'Annet';
+    $Self->{Translation}->{'Monitor'} = 'Skjerm';
+    $Self->{Translation}->{'Printer'} = 'Skriver';
+    $Self->{Translation}->{'Switch'} = 'Svitsj';
+    $Self->{Translation}->{'Router'} = 'Ruter';
+    $Self->{Translation}->{'WLAN Access Point'} = 'WLAN-basestasjon';
+    $Self->{Translation}->{'Security Device'} = 'Sikkerhetsenhet';
+    $Self->{Translation}->{'Backup Device'} = 'Backup-enhet';
+    $Self->{Translation}->{'Mouse'} = 'Mus';
+    $Self->{Translation}->{'Keyboard'} = 'Tastatur';
+    $Self->{Translation}->{'Camera'} = 'Kamera';
+    $Self->{Translation}->{'Beamer'} = 'Prosjektør';
+    $Self->{Translation}->{'Modem'} = 'Modem';
+    $Self->{Translation}->{'PCMCIA Card'} = 'PCMCIA-kort';
+    $Self->{Translation}->{'USB Device'} = 'USB-enhet';
+    $Self->{Translation}->{'Docking Station'} = 'Dokkingstasjon';
+    $Self->{Translation}->{'Scanner'} = 'Skanner';
+    $Self->{Translation}->{'Building'} = 'Bygning';
+    $Self->{Translation}->{'Floor'} = 'Etasje';
+    $Self->{Translation}->{'Room'} = 'Rom';
+    $Self->{Translation}->{'Rack'} = 'Rack';
+    $Self->{Translation}->{'Workplace'} = 'Arbeidssted';
+    $Self->{Translation}->{'Outlet'} = 'Kontakt';
+    $Self->{Translation}->{'IT Facility'} = 'IT-fasilitet';
+    $Self->{Translation}->{'LAN'} = 'Lokalnett';
+    $Self->{Translation}->{'WLAN'} = 'WLAN';
+    $Self->{Translation}->{'Telco'} = 'Teleutstyr';
+    $Self->{Translation}->{'GSM'} = 'GSM';
+    $Self->{Translation}->{'Client Application'} = 'Klient-applikasjon';
+    $Self->{Translation}->{'Middleware'} = 'Mellomvare';
+    $Self->{Translation}->{'Server Application'} = 'Tjener-applikasjon';
+    $Self->{Translation}->{'Client OS'} = 'Klient-OS';
+    $Self->{Translation}->{'Server OS'} = 'Tjener-OS';
+    $Self->{Translation}->{'Admin Tool'} = 'Administratorverktøy';
+    $Self->{Translation}->{'User Tool'} = 'Brukerverktøy';
+    $Self->{Translation}->{'Embedded'} = 'Innebygd';
+    $Self->{Translation}->{'Single Licence'} = 'Enkeltlisens';
+    $Self->{Translation}->{'Per User'} = 'Per Bruker';
+    $Self->{Translation}->{'Per Processor'} = 'Per Prosessor';
+    $Self->{Translation}->{'Per Server'} = 'Per Tjener';
+    $Self->{Translation}->{'Per Node'} = 'Per Node';
+    $Self->{Translation}->{'Volume Licence'} = 'Volumlisens';
+    $Self->{Translation}->{'Enterprise Licence'} = 'Enterprise-lisens';
+    $Self->{Translation}->{'Developer Licence'} = 'Utviklerlisens';
+    $Self->{Translation}->{'Demo'} = 'Demo';
+    $Self->{Translation}->{'Time Restricted'} = 'Tidsbegrenset';
+    $Self->{Translation}->{'Freeware'} = 'Gratis programvare';
+    $Self->{Translation}->{'Open Source'} = 'Åpen kildekode';
+    $Self->{Translation}->{'Unlimited'} = 'Ubegrenset';
 
     # SysConfig
     $Self->{Translation}->{'Admin.'} = '';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         '';
-    $Self->{Translation}->{'Config Items'} = '';
+    $Self->{Translation}->{'Config Items'} = 'Konfigurasjonsenheter';
     $Self->{Translation}->{'Config item add.'} = '';
     $Self->{Translation}->{'Config item edit.'} = '';
     $Self->{Translation}->{'Config item event module that enables logging to history in the agent interface.'} =
@@ -283,11 +259,11 @@ sub Data {
         '';
     $Self->{Translation}->{'Defines which type of ticket can affect the status of a linked CI.'} =
         '';
-    $Self->{Translation}->{'Deployment State Color'} = '';
-    $Self->{Translation}->{'Deployment State Color.'} = '';
-    $Self->{Translation}->{'Deployment State Type.'} = '';
-    $Self->{Translation}->{'Disabled'} = '';
-    $Self->{Translation}->{'Enabled'} = '';
+    $Self->{Translation}->{'Deployment State Color'} = 'Farge for produksjonssettingstilstand';
+    $Self->{Translation}->{'Deployment State Color.'} = 'Farge for produksjonssettingstilstand.';
+    $Self->{Translation}->{'Deployment State Type.'} = 'Type produksjonssettingstilstand.';
+    $Self->{Translation}->{'Disabled'} = 'Inaktiv';
+    $Self->{Translation}->{'Enabled'} = 'Aktiv';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         '';
     $Self->{Translation}->{'Enables configuration item bulk action feature only for the listed groups.'} =
@@ -296,14 +272,14 @@ sub Data {
         '';
     $Self->{Translation}->{'Event module to set configitem-status on ticket-configitem-link.'} =
         '';
-    $Self->{Translation}->{'ITSM config item overview.'} = '';
+    $Self->{Translation}->{'ITSM config item overview.'} = 'Oversikt over ITSM konfigurasjonsenheter.';
     $Self->{Translation}->{'Module to check the group responsible for a class.'} = '';
     $Self->{Translation}->{'Module to check the group responsible for a configuration item.'} =
         '';
     $Self->{Translation}->{'Module to generate ITSM config item statistics.'} = '';
     $Self->{Translation}->{'Object backend module registration for the import/export module.'} =
         '';
-    $Self->{Translation}->{'Overview.'} = '';
+    $Self->{Translation}->{'Overview.'} = 'Oversikt.';
     $Self->{Translation}->{'Parameters for the deployment states color in the preferences view of the agent interface.'} =
         '';
     $Self->{Translation}->{'Parameters for the deployment states in the preferences view of the agent interface.'} =
@@ -327,7 +303,7 @@ sub Data {
     $Self->{Translation}->{'Required permissions to use the print ITSM configuration item screen in the agent interface.'} =
         '';
     $Self->{Translation}->{'Required privileges to delete config items.'} = '';
-    $Self->{Translation}->{'Search config items.'} = '';
+    $Self->{Translation}->{'Search config items.'} = 'Søk etter konfigurasjonsenheter.';
     $Self->{Translation}->{'Selects the configuration item number generator module. "AutoIncrement" increments the configuration item number, the SystemID, the ConfigItemClassID and the counter are used. The format is "SystemID.ConfigItemClassID.Counter", e.g. 1205000004, 1205000005.'} =
         '';
     $Self->{Translation}->{'Set the incident state of a CI automatically when a Ticket is Linked to a CI.'} =
@@ -360,8 +336,8 @@ sub Data {
         '';
     $Self->{Translation}->{'The identifier for a configuration item, e.g. ConfigItem#, MyConfigItem#. The default is ConfigItem#.'} =
         '';
-    $Self->{Translation}->{'class'} = '';
-    $Self->{Translation}->{'global'} = '';
+    $Self->{Translation}->{'class'} = 'klasse';
+    $Self->{Translation}->{'global'} = 'global';
 
 }
 

@@ -15,135 +15,6 @@ use utf8;
 sub Data {
     my $Self = shift;
 
-    # Template: AAAITSMConfigItem
-    $Self->{Translation}->{'Computer'} = '';
-    $Self->{Translation}->{'Hardware'} = '';
-    $Self->{Translation}->{'Network'} = '';
-    $Self->{Translation}->{'Software'} = '';
-    $Self->{Translation}->{'Address'} = '地址';
-    $Self->{Translation}->{'Admin Tool'} = '管理工具';
-    $Self->{Translation}->{'Backup Device'} = '備份設備';
-    $Self->{Translation}->{'Beamer'} = '投影儀';
-    $Self->{Translation}->{'Building'} = '大廈';
-    $Self->{Translation}->{'CIHistory::ConfigItemCreate'} = '';
-    $Self->{Translation}->{'CIHistory::ConfigItemDelete'} = '';
-    $Self->{Translation}->{'CIHistory::DefinitionUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::DeploymentStateUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::IncidentStateUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::LinkAdd'} = '';
-    $Self->{Translation}->{'CIHistory::LinkDelete'} = '';
-    $Self->{Translation}->{'CIHistory::NameUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::ValueUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::VersionCreate'} = '';
-    $Self->{Translation}->{'CIHistory::VersionDelete'} = '';
-    $Self->{Translation}->{'CIHistory::AttachmentAdd'} = '';
-    $Self->{Translation}->{'CIHistory::AttachmentDelete'} = '';
-    $Self->{Translation}->{'CPU'} = 'CPU';
-    $Self->{Translation}->{'Camera'} = '照相機';
-    $Self->{Translation}->{'Capacity'} = '容量';
-    $Self->{Translation}->{'Change Definition'} = '修改定義';
-    $Self->{Translation}->{'Change of definition failed! See System Log for details.'} = '修改定義失敗!詳細信息請参考系统日誌.';
-    $Self->{Translation}->{'Client Application'} = '客户端應用程序';
-    $Self->{Translation}->{'Client OS'} = '客户操作系統';
-    $Self->{Translation}->{'Config Item-Area'} = '配置項區域';
-    $Self->{Translation}->{'Config Items available'} = '有效的配置項';
-    $Self->{Translation}->{'Config Items shown'} = '顯示配置項';
-    $Self->{Translation}->{'CMDB'} = '';
-    $Self->{Translation}->{'Demo'} = '演示';
-    $Self->{Translation}->{'Desktop'} = '桌上型電腦';
-    $Self->{Translation}->{'Developer Licence'} = '開發許可';
-    $Self->{Translation}->{'Docking Station'} = '塢站';
-    $Self->{Translation}->{'Duplicate'} = '複製';
-    $Self->{Translation}->{'Embedded'} = '嵌入式';
-    $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = '空字段表示當前值被保存';
-    $Self->{Translation}->{'Enterprise Licence'} = '企業執照';
-    $Self->{Translation}->{'Expiration Date'} = '失效日期';
-    $Self->{Translation}->{'Expired'} = '到期';
-    $Self->{Translation}->{'Floor'} = '樓層';
-    $Self->{Translation}->{'Freeware'} = '免費軟件';
-    $Self->{Translation}->{'GSM'} = '';
-    $Self->{Translation}->{'Gateway'} = '閘道';
-    $Self->{Translation}->{'Graphic Adapter'} = '顯示卡';
-    $Self->{Translation}->{'Hard Disk'} = '硬碟';
-    $Self->{Translation}->{'Hard Disk::Capacity'} = '硬碟::容量';
-    $Self->{Translation}->{'Hide Versions'} = '隱藏版本';
-    $Self->{Translation}->{'IP Address'} = 'IP位址';
-    $Self->{Translation}->{'IP over DHCP'} = '從DHCP取得IP';
-    $Self->{Translation}->{'IT Facility'} = 'IT設施';
-    $Self->{Translation}->{'Incident'} = '故障';
-    $Self->{Translation}->{'Install Date'} = '安装日期';
-    $Self->{Translation}->{'Keyboard'} = '鍵盤';
-    $Self->{Translation}->{'LAN'} = '區域網路';
-    $Self->{Translation}->{'Laptop'} = '筆記本';
-    $Self->{Translation}->{'Last Change'} = '最後修改於';
-    $Self->{Translation}->{'Licence Key'} = '許可密鑰';
-    $Self->{Translation}->{'Licence Key::Expiration Date'} = '許可密鑰::失效日期';
-    $Self->{Translation}->{'Licence Key::Quantity'} = '許可密鑰::數量';
-    $Self->{Translation}->{'Licence Type'} = '許可類别';
-    $Self->{Translation}->{'Maintenance'} = '維護';
-    $Self->{Translation}->{'Maximum number of one element'} = '此元素的最大數量';
-    $Self->{Translation}->{'Media'} = '介質';
-    $Self->{Translation}->{'Middleware'} = '中間件';
-    $Self->{Translation}->{'Model'} = '型號';
-    $Self->{Translation}->{'Modem'} = '調解調器';
-    $Self->{Translation}->{'Monitor'} = '顯示器';
-    $Self->{Translation}->{'Mouse'} = '滑鼠';
-    $Self->{Translation}->{'Network Adapter'} = '網路卡';
-    $Self->{Translation}->{'Network Adapter::IP Address'} = '網路卡::IP位址';
-    $Self->{Translation}->{'Network Adapter::IP over DHCP'} = '網路卡::從DHCP取得IP';
-    $Self->{Translation}->{'Network Address'} = '網路位址';
-    $Self->{Translation}->{'Network Address::Gateway'} = '網路位址::閘道';
-    $Self->{Translation}->{'Network Address::Subnet Mask'} = '網路位址::子網路遮照';
-    $Self->{Translation}->{'Open Source'} = '開源';
-    $Self->{Translation}->{'Operational'} = '正常';
-    $Self->{Translation}->{'Other'} = '其它';
-    $Self->{Translation}->{'Other Equipment'} = '其它設備';
-    $Self->{Translation}->{'Outlet'} = '插座';
-    $Self->{Translation}->{'PCMCIA Card'} = 'PCMCIA卡';
-    $Self->{Translation}->{'PDA'} = 'PDA';
-    $Self->{Translation}->{'Per Node'} = '每個節點';
-    $Self->{Translation}->{'Per Processor'} = '每個處理器';
-    $Self->{Translation}->{'Per Server'} = '每個服務器';
-    $Self->{Translation}->{'Per User'} = '每個用戶';
-    $Self->{Translation}->{'Phone 1'} = '電話1';
-    $Self->{Translation}->{'Phone 2'} = '電話2';
-    $Self->{Translation}->{'Pilot'} = '試驗';
-    $Self->{Translation}->{'Planned'} = '已計劃';
-    $Self->{Translation}->{'Printer'} = '打印機';
-    $Self->{Translation}->{'Production'} = '生產';
-    $Self->{Translation}->{'Quantity'} = '數量';
-    $Self->{Translation}->{'Rack'} = '機架';
-    $Self->{Translation}->{'Ram'} = '内存';
-    $Self->{Translation}->{'Repair'} = '修復';
-    $Self->{Translation}->{'Retired'} = '報廢';
-    $Self->{Translation}->{'Review'} = '複審';
-    $Self->{Translation}->{'Room'} = '房間';
-    $Self->{Translation}->{'Router'} = '路由器';
-    $Self->{Translation}->{'Scanner'} = '掃描儀';
-    $Self->{Translation}->{'Search Config Items'} = '搜索配置項';
-    $Self->{Translation}->{'Security Device'} = '安全設備';
-    $Self->{Translation}->{'Serial Number'} = '序列號';
-    $Self->{Translation}->{'Server'} = '服務器';
-    $Self->{Translation}->{'Server Application'} = '服務器應用程序';
-    $Self->{Translation}->{'Server OS'} = '服務器操作系統';
-    $Self->{Translation}->{'Show Versions'} = '顯示版本';
-    $Self->{Translation}->{'Single Licence'} = '單一許可';
-    $Self->{Translation}->{'Subnet Mask'} = '子網路遮照';
-    $Self->{Translation}->{'Switch'} = '交換器';
-    $Self->{Translation}->{'Telco'} = '電話公司';
-    $Self->{Translation}->{'Test/QA'} = '测試/QA';
-    $Self->{Translation}->{'The deployment state of this config item'} = '配置項部署狀態';
-    $Self->{Translation}->{'The incident state of this config item'} = '配置項故障狀態';
-    $Self->{Translation}->{'Time Restricted'} = '時間限制';
-    $Self->{Translation}->{'USB Device'} = 'USB 設備';
-    $Self->{Translation}->{'Unlimited'} = '無限制的';
-    $Self->{Translation}->{'User Tool'} = '用戶工具';
-    $Self->{Translation}->{'Volume Licence'} = '批量授權';
-    $Self->{Translation}->{'WLAN'} = '無線網路';
-    $Self->{Translation}->{'WLAN Access Point'} = 'WLAN 無線基地台';
-    $Self->{Translation}->{'Warranty Expiration Date'} = '保養失效日期';
-    $Self->{Translation}->{'Workplace'} = '工作間';
-
     # Template: AdminITSMConfigItem
     $Self->{Translation}->{'Config Item Management'} = '管理配置項';
     $Self->{Translation}->{'Change class definition'} = '修改類定義';
@@ -208,17 +79,122 @@ sub Data {
     $Self->{Translation}->{'Property'} = '屬性';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
-    $Self->{Translation}->{'ITSM ConfigItem'} = '';
+    $Self->{Translation}->{'No access to Class is given!'} = '';
+    $Self->{Translation}->{'Overview: ITSM ConfigItem'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+    $Self->{Translation}->{'No ConfigItemID is given!'} = '';
+    $Self->{Translation}->{'You need at least one selected Configuration Item!'} = '';
+    $Self->{Translation}->{'You don\'t have write access to this configuration item: %s.'} =
+        '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+    $Self->{Translation}->{'Config item "%s" not found in database!'} = '';
+    $Self->{Translation}->{'Was not able to delete the configitem ID %s!'} = '';
+    $Self->{Translation}->{'No version found for ConfigItemID %s!'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+    $Self->{Translation}->{'No ConfigItemID, DuplicateID or ClassID is given!'} = '';
+    $Self->{Translation}->{'No access is given!'} = '';
+    $Self->{Translation}->{'No definition was defined for class %s!'} = '';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+    $Self->{Translation}->{'Can\'t show history, no ConfigItemID is given!'} = '';
+    $Self->{Translation}->{'Can\'t show history, no access rights given!'} = '';
     $Self->{Translation}->{'CIHistory::'} = '';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+    $Self->{Translation}->{'No ConfigItemID or VersionID is given!'} = '';
+    $Self->{Translation}->{'Can\'t show config item, no access rights given!'} = '';
+    $Self->{Translation}->{'ConfigItemID %s not found in database!'} = '';
+    $Self->{Translation}->{'VersionID %s not found in database!'} = '';
     $Self->{Translation}->{'ConfigItem'} = '配置項';
+    $Self->{Translation}->{'printed by %s at %s'} = '';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+    $Self->{Translation}->{'Invalid ClassID!'} = '';
+    $Self->{Translation}->{'No ClassID is given!'} = '';
+    $Self->{Translation}->{'No access rights for this class given!'} = '';
     $Self->{Translation}->{'No Result!'} = '沒有結果!';
     $Self->{Translation}->{'Config Item Search Results'} = '配置項目搜尋結果';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+    $Self->{Translation}->{'Can\'t show item, no access rights for ConfigItem are given!'} =
+        '';
+    $Self->{Translation}->{'The deployment state of this config item'} = '配置項部署狀態';
+    $Self->{Translation}->{'The incident state of this config item'} = '配置項故障狀態';
+
+    # Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
+    $Self->{Translation}->{'Maximum number of one element'} = '此元素的最大數量';
+    $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = '空字段表示當前值被保存';
+
+    # Database XML Definition: /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+    $Self->{Translation}->{'Computer'} = '';
+    $Self->{Translation}->{'Hardware'} = '';
+    $Self->{Translation}->{'Network'} = '';
+    $Self->{Translation}->{'Software'} = '';
+    $Self->{Translation}->{'Expired'} = '到期';
+    $Self->{Translation}->{'Maintenance'} = '維護';
+    $Self->{Translation}->{'Pilot'} = '試驗';
+    $Self->{Translation}->{'Planned'} = '已計劃';
+    $Self->{Translation}->{'Production'} = '生產';
+    $Self->{Translation}->{'Repair'} = '修復';
+    $Self->{Translation}->{'Retired'} = '報廢';
+    $Self->{Translation}->{'Review'} = '複審';
+    $Self->{Translation}->{'Test/QA'} = '测試/QA';
+    $Self->{Translation}->{'Laptop'} = '筆記本';
+    $Self->{Translation}->{'Desktop'} = '桌上型電腦';
+    $Self->{Translation}->{'PDA'} = 'PDA';
+    $Self->{Translation}->{'Server'} = '服務器';
+    $Self->{Translation}->{'Other'} = '其它';
+    $Self->{Translation}->{'Monitor'} = '顯示器';
+    $Self->{Translation}->{'Printer'} = '打印機';
+    $Self->{Translation}->{'Switch'} = '交換器';
+    $Self->{Translation}->{'Router'} = '路由器';
+    $Self->{Translation}->{'WLAN Access Point'} = 'WLAN 無線基地台';
+    $Self->{Translation}->{'Security Device'} = '安全設備';
+    $Self->{Translation}->{'Backup Device'} = '備份設備';
+    $Self->{Translation}->{'Mouse'} = '滑鼠';
+    $Self->{Translation}->{'Keyboard'} = '鍵盤';
+    $Self->{Translation}->{'Camera'} = '照相機';
+    $Self->{Translation}->{'Beamer'} = '投影儀';
+    $Self->{Translation}->{'Modem'} = '調解調器';
+    $Self->{Translation}->{'PCMCIA Card'} = 'PCMCIA卡';
+    $Self->{Translation}->{'USB Device'} = 'USB 設備';
+    $Self->{Translation}->{'Docking Station'} = '塢站';
+    $Self->{Translation}->{'Scanner'} = '掃描儀';
+    $Self->{Translation}->{'Building'} = '大廈';
+    $Self->{Translation}->{'Floor'} = '樓層';
+    $Self->{Translation}->{'Room'} = '房間';
+    $Self->{Translation}->{'Rack'} = '機架';
+    $Self->{Translation}->{'Workplace'} = '工作間';
+    $Self->{Translation}->{'Outlet'} = '插座';
+    $Self->{Translation}->{'IT Facility'} = 'IT設施';
+    $Self->{Translation}->{'LAN'} = '區域網路';
+    $Self->{Translation}->{'WLAN'} = '無線網路';
+    $Self->{Translation}->{'Telco'} = '電話公司';
+    $Self->{Translation}->{'GSM'} = '';
+    $Self->{Translation}->{'Client Application'} = '客户端應用程序';
+    $Self->{Translation}->{'Middleware'} = '中間件';
+    $Self->{Translation}->{'Server Application'} = '服務器應用程序';
+    $Self->{Translation}->{'Client OS'} = '客户操作系統';
+    $Self->{Translation}->{'Server OS'} = '服務器操作系統';
+    $Self->{Translation}->{'Admin Tool'} = '管理工具';
+    $Self->{Translation}->{'User Tool'} = '用戶工具';
+    $Self->{Translation}->{'Embedded'} = '嵌入式';
+    $Self->{Translation}->{'Single Licence'} = '單一許可';
+    $Self->{Translation}->{'Per User'} = '每個用戶';
+    $Self->{Translation}->{'Per Processor'} = '每個處理器';
+    $Self->{Translation}->{'Per Server'} = '每個服務器';
+    $Self->{Translation}->{'Per Node'} = '每個節點';
+    $Self->{Translation}->{'Volume Licence'} = '批量授權';
+    $Self->{Translation}->{'Enterprise Licence'} = '企業執照';
+    $Self->{Translation}->{'Developer Licence'} = '開發許可';
+    $Self->{Translation}->{'Demo'} = '演示';
+    $Self->{Translation}->{'Time Restricted'} = '時間限制';
+    $Self->{Translation}->{'Freeware'} = '免費軟件';
+    $Self->{Translation}->{'Open Source'} = '開源';
+    $Self->{Translation}->{'Unlimited'} = '無限制的';
 
     # SysConfig
     $Self->{Translation}->{'Admin.'} = '';

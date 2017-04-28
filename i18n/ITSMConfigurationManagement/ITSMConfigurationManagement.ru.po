@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
 "POT-Creation-Date: 2017-02-14 17:57+0000\n"
-"PO-Revision-Date: 2017-02-14 16:58+0000\n"
+"PO-Revision-Date: 2017-03-29 12:54+0000\n"
 "Last-Translator: Udo Bretz\n"
 "Language-Team: Russian (http://www.transifex.com/otrs/OTRS/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -714,7 +714,7 @@ msgstr "Результаты поиска конфигурационных ед�
 
 #. SysConfig
 msgid "Admin."
-msgstr ""
+msgstr "Администратор."
 
 #. SysConfig
 msgid ""

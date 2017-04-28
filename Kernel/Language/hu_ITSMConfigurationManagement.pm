@@ -15,135 +15,6 @@ use utf8;
 sub Data {
     my $Self = shift;
 
-    # Template: AAAITSMConfigItem
-    $Self->{Translation}->{'Computer'} = 'Számítógép';
-    $Self->{Translation}->{'Hardware'} = 'Hardver';
-    $Self->{Translation}->{'Network'} = 'Hálózat';
-    $Self->{Translation}->{'Software'} = 'Szoftver';
-    $Self->{Translation}->{'Address'} = 'Cím';
-    $Self->{Translation}->{'Admin Tool'} = 'Adminisztrációs eszköz';
-    $Self->{Translation}->{'Backup Device'} = 'Biztonsági mentés eszköz';
-    $Self->{Translation}->{'Beamer'} = 'Beamer';
-    $Self->{Translation}->{'Building'} = 'Összeállítás';
-    $Self->{Translation}->{'CIHistory::ConfigItemCreate'} = 'CIHistory::ConfigItemCreate';
-    $Self->{Translation}->{'CIHistory::ConfigItemDelete'} = 'CIHistory::ConfigItemDelete';
-    $Self->{Translation}->{'CIHistory::DefinitionUpdate'} = 'CIHistory::DefinitionUpdate';
-    $Self->{Translation}->{'CIHistory::DeploymentStateUpdate'} = 'CIHistory::DeploymentStateUpdate';
-    $Self->{Translation}->{'CIHistory::IncidentStateUpdate'} = 'CIHistory::IncidentStateUpdate';
-    $Self->{Translation}->{'CIHistory::LinkAdd'} = 'CIHistory::LinkAdd';
-    $Self->{Translation}->{'CIHistory::LinkDelete'} = 'CIHistory::LinkDelete';
-    $Self->{Translation}->{'CIHistory::NameUpdate'} = 'CIHistory::NameUpdate';
-    $Self->{Translation}->{'CIHistory::ValueUpdate'} = 'CIHistory::ValueUpdate';
-    $Self->{Translation}->{'CIHistory::VersionCreate'} = 'CIHistory::VersionCreate';
-    $Self->{Translation}->{'CIHistory::VersionDelete'} = 'CIHistory::VersionDelete';
-    $Self->{Translation}->{'CIHistory::AttachmentAdd'} = 'CIHistory::AttachmentAdd';
-    $Self->{Translation}->{'CIHistory::AttachmentDelete'} = 'CIHistory::AttachmentDelete';
-    $Self->{Translation}->{'CPU'} = 'CPU';
-    $Self->{Translation}->{'Camera'} = 'Kamera';
-    $Self->{Translation}->{'Capacity'} = 'Kapacitás';
-    $Self->{Translation}->{'Change Definition'} = 'Meghatározás módosítása';
-    $Self->{Translation}->{'Change of definition failed! See System Log for details.'} = 'A meghatározás módosítása nem sikerült! A részletekért nézze meg a rendszernaplót.';
-    $Self->{Translation}->{'Client Application'} = 'Kliens alkalmazás';
-    $Self->{Translation}->{'Client OS'} = 'Kliens operációs rendszer';
-    $Self->{Translation}->{'Config Item-Area'} = 'Konfigurációelem-terület';
-    $Self->{Translation}->{'Config Items available'} = 'Elérhető konfigurációelemek';
-    $Self->{Translation}->{'Config Items shown'} = 'Megjelenített konfigurációelemek';
-    $Self->{Translation}->{'CMDB'} = 'CMDB';
-    $Self->{Translation}->{'Demo'} = 'Bemutató';
-    $Self->{Translation}->{'Desktop'} = 'Asztal';
-    $Self->{Translation}->{'Developer Licence'} = 'Fejlesztői licenc';
-    $Self->{Translation}->{'Docking Station'} = 'Dokkoló állomás';
-    $Self->{Translation}->{'Duplicate'} = 'Kettőzés';
-    $Self->{Translation}->{'Embedded'} = 'Beágyazott';
-    $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Az üres mezők azt jelzik, hogy az aktuális mezők megtartásra kerülnek';
-    $Self->{Translation}->{'Enterprise Licence'} = 'Vállalati licenc';
-    $Self->{Translation}->{'Expiration Date'} = 'Lejárati idő';
-    $Self->{Translation}->{'Expired'} = 'Lejárt';
-    $Self->{Translation}->{'Floor'} = 'Emelet';
-    $Self->{Translation}->{'Freeware'} = 'Freeware';
-    $Self->{Translation}->{'GSM'} = 'GSM';
-    $Self->{Translation}->{'Gateway'} = 'Átjáró';
-    $Self->{Translation}->{'Graphic Adapter'} = 'Grafikus csatoló';
-    $Self->{Translation}->{'Hard Disk'} = 'Merevlemez';
-    $Self->{Translation}->{'Hard Disk::Capacity'} = 'Merevlemez::Kapacitás';
-    $Self->{Translation}->{'Hide Versions'} = 'Verziók elrejtése';
-    $Self->{Translation}->{'IP Address'} = 'IP-cím';
-    $Self->{Translation}->{'IP over DHCP'} = 'IP a DHCP fölött';
-    $Self->{Translation}->{'IT Facility'} = 'IT képesség';
-    $Self->{Translation}->{'Incident'} = 'Incidens';
-    $Self->{Translation}->{'Install Date'} = 'Telepítés dátuma';
-    $Self->{Translation}->{'Keyboard'} = 'Billentyűzet';
-    $Self->{Translation}->{'LAN'} = 'LAN';
-    $Self->{Translation}->{'Laptop'} = 'Laptop';
-    $Self->{Translation}->{'Last Change'} = 'Utolsó módosítás';
-    $Self->{Translation}->{'Licence Key'} = 'Licenc kulcs';
-    $Self->{Translation}->{'Licence Key::Expiration Date'} = 'Licenc kulcs::Lejárati dátum';
-    $Self->{Translation}->{'Licence Key::Quantity'} = 'Licenc kulcs::Mennyiség';
-    $Self->{Translation}->{'Licence Type'} = 'Licenctípus';
-    $Self->{Translation}->{'Maintenance'} = 'Karbantartás';
-    $Self->{Translation}->{'Maximum number of one element'} = 'Egy elem legnagyobb száma';
-    $Self->{Translation}->{'Media'} = 'Adathordozó';
-    $Self->{Translation}->{'Middleware'} = 'Köztes réteg';
-    $Self->{Translation}->{'Model'} = 'Modell';
-    $Self->{Translation}->{'Modem'} = 'Modem';
-    $Self->{Translation}->{'Monitor'} = 'Monitor';
-    $Self->{Translation}->{'Mouse'} = 'Egér';
-    $Self->{Translation}->{'Network Adapter'} = 'Hálózati csatoló';
-    $Self->{Translation}->{'Network Adapter::IP Address'} = 'Hálózati csatoló::IP-cím';
-    $Self->{Translation}->{'Network Adapter::IP over DHCP'} = 'Hálózati csatoló::IP a DHCP fölött';
-    $Self->{Translation}->{'Network Address'} = 'Hálózati cím';
-    $Self->{Translation}->{'Network Address::Gateway'} = 'Hálózati cím::Átjáró';
-    $Self->{Translation}->{'Network Address::Subnet Mask'} = 'Hálózati cím::Alhálózati maszk';
-    $Self->{Translation}->{'Open Source'} = 'Nyílt forrású';
-    $Self->{Translation}->{'Operational'} = 'Üzemképes';
-    $Self->{Translation}->{'Other'} = 'Egyéb';
-    $Self->{Translation}->{'Other Equipment'} = 'Egyéb berendezés';
-    $Self->{Translation}->{'Outlet'} = 'Outlet';
-    $Self->{Translation}->{'PCMCIA Card'} = 'PCMCIA kártya';
-    $Self->{Translation}->{'PDA'} = 'PDA';
-    $Self->{Translation}->{'Per Node'} = 'Csomópontonként';
-    $Self->{Translation}->{'Per Processor'} = 'Processzoronként';
-    $Self->{Translation}->{'Per Server'} = 'Kiszolgálónként';
-    $Self->{Translation}->{'Per User'} = 'Felhasználónként';
-    $Self->{Translation}->{'Phone 1'} = '1. telefon';
-    $Self->{Translation}->{'Phone 2'} = '2. telefon';
-    $Self->{Translation}->{'Pilot'} = 'Próbaüzem';
-    $Self->{Translation}->{'Planned'} = 'Tervezett';
-    $Self->{Translation}->{'Printer'} = 'Nyomtató';
-    $Self->{Translation}->{'Production'} = 'Termelés';
-    $Self->{Translation}->{'Quantity'} = 'Mennyiség';
-    $Self->{Translation}->{'Rack'} = 'Rack';
-    $Self->{Translation}->{'Ram'} = 'Ram';
-    $Self->{Translation}->{'Repair'} = 'Javítás';
-    $Self->{Translation}->{'Retired'} = 'Visszavont';
-    $Self->{Translation}->{'Review'} = 'Vizsgálat';
-    $Self->{Translation}->{'Room'} = 'Szoba';
-    $Self->{Translation}->{'Router'} = 'Útválasztó';
-    $Self->{Translation}->{'Scanner'} = 'Lapolvasó';
-    $Self->{Translation}->{'Search Config Items'} = 'Konfigurációelemek keresése';
-    $Self->{Translation}->{'Security Device'} = 'Biztonsági eszköz';
-    $Self->{Translation}->{'Serial Number'} = 'Sorozatszám';
-    $Self->{Translation}->{'Server'} = 'Kiszolgáló';
-    $Self->{Translation}->{'Server Application'} = 'Kiszolgáló alkalmazás';
-    $Self->{Translation}->{'Server OS'} = 'Kiszolgáló operációs rendszer';
-    $Self->{Translation}->{'Show Versions'} = 'Verziók megjelenítése';
-    $Self->{Translation}->{'Single Licence'} = 'Egyedüli licenc';
-    $Self->{Translation}->{'Subnet Mask'} = 'Alhálózati maszk';
-    $Self->{Translation}->{'Switch'} = 'Kapcsoló';
-    $Self->{Translation}->{'Telco'} = 'Telco';
-    $Self->{Translation}->{'Test/QA'} = 'Tesztelés/QA';
-    $Self->{Translation}->{'The deployment state of this config item'} = 'A konfigurációelem üzembe állítási állapota';
-    $Self->{Translation}->{'The incident state of this config item'} = 'A konfigurációelem incidensállapota';
-    $Self->{Translation}->{'Time Restricted'} = 'Időben korlátozott';
-    $Self->{Translation}->{'USB Device'} = 'USB eszköz';
-    $Self->{Translation}->{'Unlimited'} = 'Korlátlan';
-    $Self->{Translation}->{'User Tool'} = 'Felhasználói eszköz';
-    $Self->{Translation}->{'Volume Licence'} = 'Mennyiségi licenc';
-    $Self->{Translation}->{'WLAN'} = 'WLAN';
-    $Self->{Translation}->{'WLAN Access Point'} = 'WLAN hozzáférési pont';
-    $Self->{Translation}->{'Warranty Expiration Date'} = 'Garancia lejárati idő';
-    $Self->{Translation}->{'Workplace'} = 'Munkahely';
-
     # Template: AdminITSMConfigItem
     $Self->{Translation}->{'Config Item Management'} = 'Konfigurációelem-menedzsment';
     $Self->{Translation}->{'Change class definition'} = 'Osztály-meghatározás módosítása';
@@ -208,17 +79,122 @@ sub Data {
     $Self->{Translation}->{'Property'} = 'Tulajdonság';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
-    $Self->{Translation}->{'ITSM ConfigItem'} = 'ITSM konfigurációelem';
+    $Self->{Translation}->{'No access to Class is given!'} = '';
+    $Self->{Translation}->{'Overview: ITSM ConfigItem'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+    $Self->{Translation}->{'No ConfigItemID is given!'} = '';
+    $Self->{Translation}->{'You need at least one selected Configuration Item!'} = '';
+    $Self->{Translation}->{'You don\'t have write access to this configuration item: %s.'} =
+        '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+    $Self->{Translation}->{'Config item "%s" not found in database!'} = '';
+    $Self->{Translation}->{'Was not able to delete the configitem ID %s!'} = '';
+    $Self->{Translation}->{'No version found for ConfigItemID %s!'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+    $Self->{Translation}->{'No ConfigItemID, DuplicateID or ClassID is given!'} = '';
+    $Self->{Translation}->{'No access is given!'} = '';
+    $Self->{Translation}->{'No definition was defined for class %s!'} = '';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+    $Self->{Translation}->{'Can\'t show history, no ConfigItemID is given!'} = '';
+    $Self->{Translation}->{'Can\'t show history, no access rights given!'} = '';
     $Self->{Translation}->{'CIHistory::'} = 'CIHistory::';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+    $Self->{Translation}->{'No ConfigItemID or VersionID is given!'} = '';
+    $Self->{Translation}->{'Can\'t show config item, no access rights given!'} = '';
+    $Self->{Translation}->{'ConfigItemID %s not found in database!'} = '';
+    $Self->{Translation}->{'VersionID %s not found in database!'} = '';
     $Self->{Translation}->{'ConfigItem'} = 'Konfigurációelem';
+    $Self->{Translation}->{'printed by %s at %s'} = '';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+    $Self->{Translation}->{'Invalid ClassID!'} = '';
+    $Self->{Translation}->{'No ClassID is given!'} = '';
+    $Self->{Translation}->{'No access rights for this class given!'} = '';
     $Self->{Translation}->{'No Result!'} = 'Nincs találat!';
     $Self->{Translation}->{'Config Item Search Results'} = 'Konfigurációelem keresési eredmények';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+    $Self->{Translation}->{'Can\'t show item, no access rights for ConfigItem are given!'} =
+        '';
+    $Self->{Translation}->{'The deployment state of this config item'} = 'A konfigurációelem üzembe állítási állapota';
+    $Self->{Translation}->{'The incident state of this config item'} = 'A konfigurációelem incidensállapota';
+
+    # Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
+    $Self->{Translation}->{'Maximum number of one element'} = 'Egy elem legnagyobb száma';
+    $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Az üres mezők azt jelzik, hogy az aktuális mezők megtartásra kerülnek';
+
+    # Database XML Definition: /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+    $Self->{Translation}->{'Computer'} = 'Számítógép';
+    $Self->{Translation}->{'Hardware'} = 'Hardver';
+    $Self->{Translation}->{'Network'} = 'Hálózat';
+    $Self->{Translation}->{'Software'} = 'Szoftver';
+    $Self->{Translation}->{'Expired'} = 'Lejárt';
+    $Self->{Translation}->{'Maintenance'} = 'Karbantartás';
+    $Self->{Translation}->{'Pilot'} = 'Próbaüzem';
+    $Self->{Translation}->{'Planned'} = 'Tervezett';
+    $Self->{Translation}->{'Production'} = 'Produktív';
+    $Self->{Translation}->{'Repair'} = 'Javítás';
+    $Self->{Translation}->{'Retired'} = 'Visszavont';
+    $Self->{Translation}->{'Review'} = 'Vizsgálat';
+    $Self->{Translation}->{'Test/QA'} = 'Tesztelés/QA';
+    $Self->{Translation}->{'Laptop'} = 'Laptop';
+    $Self->{Translation}->{'Desktop'} = 'Asztal';
+    $Self->{Translation}->{'PDA'} = 'PDA';
+    $Self->{Translation}->{'Server'} = 'Kiszolgáló';
+    $Self->{Translation}->{'Other'} = 'Egyéb';
+    $Self->{Translation}->{'Monitor'} = 'Monitor';
+    $Self->{Translation}->{'Printer'} = 'Nyomtató';
+    $Self->{Translation}->{'Switch'} = 'Kapcsoló';
+    $Self->{Translation}->{'Router'} = 'Útválasztó';
+    $Self->{Translation}->{'WLAN Access Point'} = 'WLAN hozzáférési pont';
+    $Self->{Translation}->{'Security Device'} = 'Biztonsági eszköz';
+    $Self->{Translation}->{'Backup Device'} = 'Biztonsági mentés eszköz';
+    $Self->{Translation}->{'Mouse'} = 'Egér';
+    $Self->{Translation}->{'Keyboard'} = 'Billentyűzet';
+    $Self->{Translation}->{'Camera'} = 'Kamera';
+    $Self->{Translation}->{'Beamer'} = 'Beamer';
+    $Self->{Translation}->{'Modem'} = 'Modem';
+    $Self->{Translation}->{'PCMCIA Card'} = 'PCMCIA kártya';
+    $Self->{Translation}->{'USB Device'} = 'USB eszköz';
+    $Self->{Translation}->{'Docking Station'} = 'Dokkoló állomás';
+    $Self->{Translation}->{'Scanner'} = 'Lapolvasó';
+    $Self->{Translation}->{'Building'} = 'Épület';
+    $Self->{Translation}->{'Floor'} = 'Emelet';
+    $Self->{Translation}->{'Room'} = 'Szoba';
+    $Self->{Translation}->{'Rack'} = 'Rack';
+    $Self->{Translation}->{'Workplace'} = 'Munkahely';
+    $Self->{Translation}->{'Outlet'} = 'Elosztó doboz';
+    $Self->{Translation}->{'IT Facility'} = 'IT-létesítmény';
+    $Self->{Translation}->{'LAN'} = 'LAN';
+    $Self->{Translation}->{'WLAN'} = 'WLAN';
+    $Self->{Translation}->{'Telco'} = 'Telco';
+    $Self->{Translation}->{'GSM'} = 'GSM';
+    $Self->{Translation}->{'Client Application'} = 'Kliens alkalmazás';
+    $Self->{Translation}->{'Middleware'} = 'Köztes réteg';
+    $Self->{Translation}->{'Server Application'} = 'Kiszolgáló alkalmazás';
+    $Self->{Translation}->{'Client OS'} = 'Kliens operációs rendszer';
+    $Self->{Translation}->{'Server OS'} = 'Kiszolgáló operációs rendszer';
+    $Self->{Translation}->{'Admin Tool'} = 'Adminisztrációs eszköz';
+    $Self->{Translation}->{'User Tool'} = 'Felhasználói eszköz';
+    $Self->{Translation}->{'Embedded'} = 'Beágyazott';
+    $Self->{Translation}->{'Single Licence'} = 'Egyedüli licenc';
+    $Self->{Translation}->{'Per User'} = 'Felhasználónként';
+    $Self->{Translation}->{'Per Processor'} = 'Processzoronként';
+    $Self->{Translation}->{'Per Server'} = 'Kiszolgálónként';
+    $Self->{Translation}->{'Per Node'} = 'Csomópontonként';
+    $Self->{Translation}->{'Volume Licence'} = 'Mennyiségi licenc';
+    $Self->{Translation}->{'Enterprise Licence'} = 'Vállalati licenc';
+    $Self->{Translation}->{'Developer Licence'} = 'Fejlesztői licenc';
+    $Self->{Translation}->{'Demo'} = 'Bemutató';
+    $Self->{Translation}->{'Time Restricted'} = 'Időben korlátozott';
+    $Self->{Translation}->{'Freeware'} = 'Freeware';
+    $Self->{Translation}->{'Open Source'} = 'Nyílt forrású';
+    $Self->{Translation}->{'Unlimited'} = 'Korlátlan';
 
     # SysConfig
     $Self->{Translation}->{'Admin.'} = 'Adminisztráció.';

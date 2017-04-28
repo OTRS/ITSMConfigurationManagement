@@ -3,14 +3,15 @@
 # Flávio Veras <flaviove@gmail.com>, 2017
 # Glauber Caires <glaubercaires@gmail.com>, 2016
 # Murilo Moreira de Oliveira <murilo.moreira@gmail.com>, 2014
+# Ronaldo Richieri <ronaldo@complemento.net.br>, 2017
 # Samuel Diniz Casimiro <nedmaj@yahoo.com>, 2015
 # Udo Bretz, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
 "POT-Creation-Date: 2017-02-14 17:57+0000\n"
-"PO-Revision-Date: 2017-02-14 16:58+0000\n"
-"Last-Translator: Udo Bretz\n"
+"PO-Revision-Date: 2017-04-25 14:07+0000\n"
+"Last-Translator: Ronaldo Richieri <ronaldo@complemento.net.br>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otrs/OTRS/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,11 +21,11 @@ msgstr ""
 
 #. Template: AAAITSMConfigItem
 msgid "Computer"
-msgstr ""
+msgstr "Computador"
 
 #. Template: AAAITSMConfigItem
 msgid "Hardware"
-msgstr ""
+msgstr "Hardware"
 
 #. Template: AAAITSMConfigItem
 msgid "Network"
@@ -32,7 +33,7 @@ msgstr "Rede"
 
 #. Template: AAAITSMConfigItem
 msgid "Software"
-msgstr ""
+msgstr "Software"
 
 #. Template: AAAITSMConfigItem
 msgid "Address"
@@ -536,7 +537,7 @@ msgstr "Mudar definição de classe"
 
 #. Template: AdminITSMConfigItem
 msgid "Config Item Class"
-msgstr ""
+msgstr "Classe do Item de Configuração"
 
 #. Template: AdminITSMConfigItem
 msgid "Definition"
@@ -605,7 +606,7 @@ msgstr "Estado de Incidente"
 
 #. Template: AgentITSMConfigItemHistory
 msgid "History of Config Item: %s"
-msgstr ""
+msgstr "Histórico do Item de Configuração: %s"
 
 #. Template: AgentITSMConfigItemOverviewNavBar
 msgid "Context Settings"
@@ -617,7 +618,7 @@ msgstr "Itens de configuração por página"
 
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "A generic ITSM Configuration Item table"
-msgstr ""
+msgstr "Uma tabela genérica de Itens de Configuração GSTI"
 
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "Deployment State Type"
@@ -770,7 +771,7 @@ msgstr "Configuração do Gerenciamento do Banco de Dados."
 
 #. SysConfig
 msgid "Configuration item bulk module."
-msgstr ""
+msgstr "Módulo de ação em massa em Itens de Configuração."
 
 #. SysConfig
 msgid "Configuration item search backend router of the agent interface."
@@ -791,7 +792,7 @@ msgstr "Defina Ações onde um botão de configurações está disponível no wi
 
 #. SysConfig
 msgid "Define the group with permissions."
-msgstr ""
+msgstr "Definir o grupo de permissionamento."
 
 #. SysConfig
 msgid ""
@@ -803,7 +804,7 @@ msgstr "Define as permissões requeridas para criar itens de configuração ITSM
 msgid ""
 "Defines Required permissions to delete ITSM configuration items using the "
 "Generic Interface."
-msgstr ""
+msgstr "Define a permissão necessário para remover Itens de Configuração usando a Interface Genérica."
 
 #. SysConfig
 msgid ""
@@ -849,13 +850,13 @@ msgstr "Define o número de linhas do editor de definição do IC na interface d
 msgid ""
 "Defines the order of incident states from high (e.g. cricital) to low (e.g. "
 "functional)."
-msgstr ""
+msgstr "Define a ordem dos estados de incidente de alto (ex: crítico) para baixo (ex: funcional)"
 
 #. SysConfig
 msgid ""
 "Defines the relevant deployment states where linked tickets can affect the "
 "status of a CI."
-msgstr ""
+msgstr "Define os estados de implantação onde chamados associados podem afetar o estados de um IC."
 
 #. SysConfig
 msgid "Defines the search limit for the AgentITSMConfigItem screen."
@@ -924,23 +925,23 @@ msgstr "Define as colunas de ICs exibidas na tela de tabela complexa de links, d
 msgid ""
 "Defines which type of link (named from the ticket perspective) can affect "
 "the status of a linked CI."
-msgstr ""
+msgstr "Define qual tipo de associação (nomeado a partir da perspectiva do chamado) pode afetar o estado de um IC associado."
 
 #. SysConfig
 msgid "Defines which type of ticket can affect the status of a linked CI."
-msgstr ""
+msgstr "Define qual tipo de chamado pode afetar o estado de um IC associado."
 
 #. SysConfig
 msgid "Deployment State Color"
-msgstr ""
+msgstr "Cor do Estado de Implantação"
 
 #. SysConfig
 msgid "Deployment State Color."
-msgstr ""
+msgstr "Cor do Estado de Implantação."
 
 #. SysConfig
 msgid "Deployment State Type."
-msgstr ""
+msgstr "Tipo do Estado de Implantação"
 
 #. SysConfig
 msgid "Disabled"
@@ -971,11 +972,11 @@ msgstr "Habilita/desabilita a funcionalidade de verificação de nomes únicos d
 
 #. SysConfig
 msgid "Event module to set configitem-status on ticket-configitem-link."
-msgstr ""
+msgstr "Módulo de Evento para configurar o estado de item de configuração quando um chamado for associado a um IC."
 
 #. SysConfig
 msgid "ITSM config item overview."
-msgstr ""
+msgstr "Visão Geral  do Item de Configuração."
 
 #. SysConfig
 msgid "Module to check the group responsible for a class."
@@ -1063,11 +1064,11 @@ msgstr "Permissões necessárias para usar a tela de impressão de item de confi
 
 #. SysConfig
 msgid "Required privileges to delete config items."
-msgstr ""
+msgstr "Privilégios necessários para apagar itens de configuração."
 
 #. SysConfig
 msgid "Search config items."
-msgstr ""
+msgstr "Procurar itens de configuração."
 
 #. SysConfig
 msgid ""
@@ -1081,7 +1082,7 @@ msgstr "Seleciona o módulo de geração de número de item de configuração. \
 msgid ""
 "Set the incident state of a CI automatically when a Ticket is Linked to a "
 "CI."
-msgstr ""
+msgstr "Configurar o estado de um IC automaticamente quando um Chamado for associado."
 
 #. SysConfig
 msgid ""
@@ -1117,7 +1118,7 @@ msgstr "Mostra um link no menu para acessar o histórico de item de configuraç�
 msgid ""
 "Shows a link in the menu to delete a configuration item in its zoom view of "
 "the agent interface."
-msgstr ""
+msgstr "Mostra um link no menu para apagar o item de configuração na Visão Detalhada na interface de atendente."
 
 #. SysConfig
 msgid ""

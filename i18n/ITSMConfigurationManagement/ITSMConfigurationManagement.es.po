@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
 "POT-Creation-Date: 2017-02-14 17:57+0000\n"
-"PO-Revision-Date: 2017-02-27 09:38+0000\n"
+"PO-Revision-Date: 2017-03-05 15:57+0000\n"
 "Last-Translator: David B <link.bigpoint@outlook.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/otrs/OTRS/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -535,7 +535,7 @@ msgstr "Cambiar definición de la Clase"
 
 #. Template: AdminITSMConfigItem
 msgid "Config Item Class"
-msgstr ""
+msgstr "Clase de elemento de configuración"
 
 #. Template: AdminITSMConfigItem
 msgid "Definition"
@@ -579,7 +579,7 @@ msgstr "¡Número de Ítem de Configuración no valido!"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "The number of another Configuration Item to link with."
-msgstr ""
+msgstr "El número de otro elemento de configuración con el que vincular."
 
 #. Template: AgentITSMConfigItemDelete
 msgid "Do you really want to delete this config item?"
@@ -616,11 +616,11 @@ msgstr "CIs por página"
 
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "A generic ITSM Configuration Item table"
-msgstr ""
+msgstr "Una tabla genérica de ítems de configuración de ITSM"
 
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "Deployment State Type"
-msgstr ""
+msgstr "Tipo de estado de implementación"
 
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "Current Incident State"
@@ -648,11 +648,11 @@ msgstr "¿Desea buscar en versiones anteriores?"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Configuration Item"
-msgstr ""
+msgstr "Elemento de configuración"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Configuration Item Information"
-msgstr ""
+msgstr "Información del elemento de configuración"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Current Deployment State"
@@ -676,11 +676,11 @@ msgstr "Mostrar todas las versiones"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Version Incident State"
-msgstr ""
+msgstr "Estado del incidente de la versión"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Version Deployment State"
-msgstr ""
+msgstr "Estado de la versión de implementación"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Version Number"
@@ -1062,7 +1062,7 @@ msgstr "Permisos necesarios para usar la ventana de impresión de elementos de c
 
 #. SysConfig
 msgid "Required privileges to delete config items."
-msgstr ""
+msgstr "Privilegios necesarios para eliminar los elementos de configuración."
 
 #. SysConfig
 msgid "Search config items."

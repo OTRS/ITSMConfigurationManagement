@@ -15,135 +15,6 @@ use utf8;
 sub Data {
     my $Self = shift;
 
-    # Template: AAAITSMConfigItem
-    $Self->{Translation}->{'Computer'} = '';
-    $Self->{Translation}->{'Hardware'} = '';
-    $Self->{Translation}->{'Network'} = '';
-    $Self->{Translation}->{'Software'} = '';
-    $Self->{Translation}->{'Address'} = 'نشانی';
-    $Self->{Translation}->{'Admin Tool'} = 'ابزار مدیریتی';
-    $Self->{Translation}->{'Backup Device'} = 'وسایل پشتیبان‌گیری';
-    $Self->{Translation}->{'Beamer'} = 'پرتو افکن';
-    $Self->{Translation}->{'Building'} = 'ساختمان';
-    $Self->{Translation}->{'CIHistory::ConfigItemCreate'} = '';
-    $Self->{Translation}->{'CIHistory::ConfigItemDelete'} = '';
-    $Self->{Translation}->{'CIHistory::DefinitionUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::DeploymentStateUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::IncidentStateUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::LinkAdd'} = '';
-    $Self->{Translation}->{'CIHistory::LinkDelete'} = '';
-    $Self->{Translation}->{'CIHistory::NameUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::ValueUpdate'} = '';
-    $Self->{Translation}->{'CIHistory::VersionCreate'} = '';
-    $Self->{Translation}->{'CIHistory::VersionDelete'} = '';
-    $Self->{Translation}->{'CIHistory::AttachmentAdd'} = '';
-    $Self->{Translation}->{'CIHistory::AttachmentDelete'} = '';
-    $Self->{Translation}->{'CPU'} = 'سی‌پی‌یو';
-    $Self->{Translation}->{'Camera'} = 'دوربین';
-    $Self->{Translation}->{'Capacity'} = 'ظرفیت';
-    $Self->{Translation}->{'Change Definition'} = 'تغییر تعریف';
-    $Self->{Translation}->{'Change of definition failed! See System Log for details.'} = 'عملیات تغییر تعریف ناموفق بود. برای کسب اطلاع بیشتر log سیستم را ببینید.';
-    $Self->{Translation}->{'Client Application'} = 'برنامه‌های کلاینت';
-    $Self->{Translation}->{'Client OS'} = 'سیستم عامل کلاینت';
-    $Self->{Translation}->{'Config Item-Area'} = 'محدوده CI';
-    $Self->{Translation}->{'Config Items available'} = 'CIهای در دسترس';
-    $Self->{Translation}->{'Config Items shown'} = 'CIهای نمایش داده شده';
-    $Self->{Translation}->{'CMDB'} = '';
-    $Self->{Translation}->{'Demo'} = 'نسخه نمایشی';
-    $Self->{Translation}->{'Desktop'} = 'رومیزی';
-    $Self->{Translation}->{'Developer Licence'} = 'اجازه‌نامه توسعه دهنده';
-    $Self->{Translation}->{'Docking Station'} = 'ایستگاه اتصال';
-    $Self->{Translation}->{'Duplicate'} = 'تکثیر';
-    $Self->{Translation}->{'Embedded'} = 'داخلی';
-    $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'فیلدهای خالی مشخص می‌کند که مقادیر کنونی باقی خواهند ماند';
-    $Self->{Translation}->{'Enterprise Licence'} = 'اجازه‌نامه سازمانی';
-    $Self->{Translation}->{'Expiration Date'} = 'تاریخ انقضا';
-    $Self->{Translation}->{'Expired'} = 'منقضی شده';
-    $Self->{Translation}->{'Floor'} = 'طبقه';
-    $Self->{Translation}->{'Freeware'} = 'نرم افزار مجانی';
-    $Self->{Translation}->{'GSM'} = 'GSM';
-    $Self->{Translation}->{'Gateway'} = 'Gateway';
-    $Self->{Translation}->{'Graphic Adapter'} = 'کارت گرافیک';
-    $Self->{Translation}->{'Hard Disk'} = 'هارد دیسک';
-    $Self->{Translation}->{'Hard Disk::Capacity'} = 'هارد دیسک::ظرفیت';
-    $Self->{Translation}->{'Hide Versions'} = 'ویرایش‌ها را مخفی کن';
-    $Self->{Translation}->{'IP Address'} = 'آدرس IP';
-    $Self->{Translation}->{'IP over DHCP'} = 'IP از طریق DHCP';
-    $Self->{Translation}->{'IT Facility'} = 'تسهیلات IT';
-    $Self->{Translation}->{'Incident'} = '';
-    $Self->{Translation}->{'Install Date'} = 'تاریخ نصب';
-    $Self->{Translation}->{'Keyboard'} = 'صفحه کلید';
-    $Self->{Translation}->{'LAN'} = 'LAN';
-    $Self->{Translation}->{'Laptop'} = 'کیفی';
-    $Self->{Translation}->{'Last Change'} = 'آخرین تغییر';
-    $Self->{Translation}->{'Licence Key'} = 'کلید اجازه‌نامه';
-    $Self->{Translation}->{'Licence Key::Expiration Date'} = 'کلید اجازه‌نامه::تاریخ انقضا';
-    $Self->{Translation}->{'Licence Key::Quantity'} = 'کلید اجازه‌نامه::تعداد';
-    $Self->{Translation}->{'Licence Type'} = 'نوع اجازه‌نامه';
-    $Self->{Translation}->{'Maintenance'} = 'پشتیبانی و نگهداری';
-    $Self->{Translation}->{'Maximum number of one element'} = 'حداکثر شماره یک عنصر';
-    $Self->{Translation}->{'Media'} = 'رسانه';
-    $Self->{Translation}->{'Middleware'} = 'میان افزار';
-    $Self->{Translation}->{'Model'} = 'مدل';
-    $Self->{Translation}->{'Modem'} = 'مودم';
-    $Self->{Translation}->{'Monitor'} = 'صفحه نمایش';
-    $Self->{Translation}->{'Mouse'} = 'ماوس';
-    $Self->{Translation}->{'Network Adapter'} = 'کارت شبکه';
-    $Self->{Translation}->{'Network Adapter::IP Address'} = 'کارت شبکه::آدرس IP';
-    $Self->{Translation}->{'Network Adapter::IP over DHCP'} = 'کارت شبکه::IP از طریق DHCP';
-    $Self->{Translation}->{'Network Address'} = 'آدرس شبکه';
-    $Self->{Translation}->{'Network Address::Gateway'} = 'آدرس شبکه::Gateway';
-    $Self->{Translation}->{'Network Address::Subnet Mask'} = 'آدرس شبکه::Subnet Mask';
-    $Self->{Translation}->{'Open Source'} = 'کد باز';
-    $Self->{Translation}->{'Operational'} = 'عملیاتی';
-    $Self->{Translation}->{'Other'} = 'غیره';
-    $Self->{Translation}->{'Other Equipment'} = 'تجهیزات متفرقه';
-    $Self->{Translation}->{'Outlet'} = 'پریز';
-    $Self->{Translation}->{'PCMCIA Card'} = 'کارت PCMCIA';
-    $Self->{Translation}->{'PDA'} = 'PDA';
-    $Self->{Translation}->{'Per Node'} = 'به ازای کامپیوتر';
-    $Self->{Translation}->{'Per Processor'} = 'به ازای پردازشگر';
-    $Self->{Translation}->{'Per Server'} = 'به ازای سرور';
-    $Self->{Translation}->{'Per User'} = 'به ازای کاربر';
-    $Self->{Translation}->{'Phone 1'} = 'تلفن ۱';
-    $Self->{Translation}->{'Phone 2'} = 'تلفن ۲';
-    $Self->{Translation}->{'Pilot'} = 'نمونه آزمایشی';
-    $Self->{Translation}->{'Planned'} = 'برنامه ریزی شده';
-    $Self->{Translation}->{'Printer'} = 'چاپگر';
-    $Self->{Translation}->{'Production'} = 'در حال تولید';
-    $Self->{Translation}->{'Quantity'} = 'تعداد';
-    $Self->{Translation}->{'Rack'} = 'قفسه';
-    $Self->{Translation}->{'Ram'} = 'رم';
-    $Self->{Translation}->{'Repair'} = 'تعمیر';
-    $Self->{Translation}->{'Retired'} = 'بازنشسته شده';
-    $Self->{Translation}->{'Review'} = 'بازبینی';
-    $Self->{Translation}->{'Room'} = 'اتاق';
-    $Self->{Translation}->{'Router'} = 'مسیریاب';
-    $Self->{Translation}->{'Scanner'} = 'اسکنر';
-    $Self->{Translation}->{'Search Config Items'} = 'جستجوی آیتم‌های پیکربندی';
-    $Self->{Translation}->{'Security Device'} = 'وسایل امنیتی';
-    $Self->{Translation}->{'Serial Number'} = 'شماره سریال';
-    $Self->{Translation}->{'Server'} = 'سرور';
-    $Self->{Translation}->{'Server Application'} = 'نرم افزار سرور';
-    $Self->{Translation}->{'Server OS'} = 'سیستم عامل سرور';
-    $Self->{Translation}->{'Show Versions'} = 'ویرایش‌ها را نمایش بده';
-    $Self->{Translation}->{'Single Licence'} = 'اجازه‌نامه تکی';
-    $Self->{Translation}->{'Subnet Mask'} = 'Subnet Mask';
-    $Self->{Translation}->{'Switch'} = 'سویچ';
-    $Self->{Translation}->{'Telco'} = 'Telco';
-    $Self->{Translation}->{'Test/QA'} = 'تست/تضمین کیفیت';
-    $Self->{Translation}->{'The deployment state of this config item'} = 'وضعیت نصب این CI';
-    $Self->{Translation}->{'The incident state of this config item'} = 'وضعیت رخداد این CI';
-    $Self->{Translation}->{'Time Restricted'} = 'دارای محدوده زمانی';
-    $Self->{Translation}->{'USB Device'} = 'تجهیزات USB';
-    $Self->{Translation}->{'Unlimited'} = 'نامحدود';
-    $Self->{Translation}->{'User Tool'} = 'ابزار کاربر';
-    $Self->{Translation}->{'Volume Licence'} = 'اجازه‌نامه حجمی';
-    $Self->{Translation}->{'WLAN'} = 'WLAN';
-    $Self->{Translation}->{'WLAN Access Point'} = 'نقاط دسترسی WLAN';
-    $Self->{Translation}->{'Warranty Expiration Date'} = 'تاریخ انقضای ضمانت‌نامه';
-    $Self->{Translation}->{'Workplace'} = 'محل کار';
-
     # Template: AdminITSMConfigItem
     $Self->{Translation}->{'Config Item Management'} = 'مدیریت CI';
     $Self->{Translation}->{'Change class definition'} = 'تغییر تعریف کلاس';
@@ -208,17 +79,122 @@ sub Data {
     $Self->{Translation}->{'Property'} = 'ویژگی';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
-    $Self->{Translation}->{'ITSM ConfigItem'} = '';
+    $Self->{Translation}->{'No access to Class is given!'} = '';
+    $Self->{Translation}->{'Overview: ITSM ConfigItem'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+    $Self->{Translation}->{'No ConfigItemID is given!'} = '';
+    $Self->{Translation}->{'You need at least one selected Configuration Item!'} = '';
+    $Self->{Translation}->{'You don\'t have write access to this configuration item: %s.'} =
+        '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+    $Self->{Translation}->{'Config item "%s" not found in database!'} = '';
+    $Self->{Translation}->{'Was not able to delete the configitem ID %s!'} = '';
+    $Self->{Translation}->{'No version found for ConfigItemID %s!'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+    $Self->{Translation}->{'No ConfigItemID, DuplicateID or ClassID is given!'} = '';
+    $Self->{Translation}->{'No access is given!'} = '';
+    $Self->{Translation}->{'No definition was defined for class %s!'} = '';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+    $Self->{Translation}->{'Can\'t show history, no ConfigItemID is given!'} = '';
+    $Self->{Translation}->{'Can\'t show history, no access rights given!'} = '';
     $Self->{Translation}->{'CIHistory::'} = '';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+    $Self->{Translation}->{'No ConfigItemID or VersionID is given!'} = '';
+    $Self->{Translation}->{'Can\'t show config item, no access rights given!'} = '';
+    $Self->{Translation}->{'ConfigItemID %s not found in database!'} = '';
+    $Self->{Translation}->{'VersionID %s not found in database!'} = '';
     $Self->{Translation}->{'ConfigItem'} = 'آیتم پیکربندی';
+    $Self->{Translation}->{'printed by %s at %s'} = '';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+    $Self->{Translation}->{'Invalid ClassID!'} = '';
+    $Self->{Translation}->{'No ClassID is given!'} = '';
+    $Self->{Translation}->{'No access rights for this class given!'} = '';
     $Self->{Translation}->{'No Result!'} = '';
     $Self->{Translation}->{'Config Item Search Results'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+    $Self->{Translation}->{'Can\'t show item, no access rights for ConfigItem are given!'} =
+        '';
+    $Self->{Translation}->{'The deployment state of this config item'} = 'وضعیت نصب این CI';
+    $Self->{Translation}->{'The incident state of this config item'} = 'وضعیت رخداد این CI';
+
+    # Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
+    $Self->{Translation}->{'Maximum number of one element'} = 'حداکثر شماره یک عنصر';
+    $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'فیلدهای خالی مشخص می‌کند که مقادیر کنونی باقی خواهند ماند';
+
+    # Database XML Definition: /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+    $Self->{Translation}->{'Computer'} = '';
+    $Self->{Translation}->{'Hardware'} = '';
+    $Self->{Translation}->{'Network'} = '';
+    $Self->{Translation}->{'Software'} = '';
+    $Self->{Translation}->{'Expired'} = 'منقضی شده';
+    $Self->{Translation}->{'Maintenance'} = 'پشتیبانی و نگهداری';
+    $Self->{Translation}->{'Pilot'} = 'نمونه آزمایشی';
+    $Self->{Translation}->{'Planned'} = 'برنامه ریزی شده';
+    $Self->{Translation}->{'Production'} = 'در حال تولید';
+    $Self->{Translation}->{'Repair'} = 'تعمیر';
+    $Self->{Translation}->{'Retired'} = 'بازنشسته شده';
+    $Self->{Translation}->{'Review'} = 'بازبینی';
+    $Self->{Translation}->{'Test/QA'} = 'تست/تضمین کیفیت';
+    $Self->{Translation}->{'Laptop'} = 'کیفی';
+    $Self->{Translation}->{'Desktop'} = 'رومیزی';
+    $Self->{Translation}->{'PDA'} = 'PDA';
+    $Self->{Translation}->{'Server'} = 'سرور';
+    $Self->{Translation}->{'Other'} = 'غیره';
+    $Self->{Translation}->{'Monitor'} = 'صفحه نمایش';
+    $Self->{Translation}->{'Printer'} = 'چاپگر';
+    $Self->{Translation}->{'Switch'} = 'سویچ';
+    $Self->{Translation}->{'Router'} = 'مسیریاب';
+    $Self->{Translation}->{'WLAN Access Point'} = 'نقاط دسترسی WLAN';
+    $Self->{Translation}->{'Security Device'} = 'وسایل امنیتی';
+    $Self->{Translation}->{'Backup Device'} = 'وسایل پشتیبان‌گیری';
+    $Self->{Translation}->{'Mouse'} = 'ماوس';
+    $Self->{Translation}->{'Keyboard'} = 'صفحه کلید';
+    $Self->{Translation}->{'Camera'} = 'دوربین';
+    $Self->{Translation}->{'Beamer'} = 'پرتو افکن';
+    $Self->{Translation}->{'Modem'} = 'مودم';
+    $Self->{Translation}->{'PCMCIA Card'} = 'کارت PCMCIA';
+    $Self->{Translation}->{'USB Device'} = 'تجهیزات USB';
+    $Self->{Translation}->{'Docking Station'} = 'ایستگاه اتصال';
+    $Self->{Translation}->{'Scanner'} = 'اسکنر';
+    $Self->{Translation}->{'Building'} = 'ساختمان';
+    $Self->{Translation}->{'Floor'} = 'طبقه';
+    $Self->{Translation}->{'Room'} = 'اتاق';
+    $Self->{Translation}->{'Rack'} = 'قفسه';
+    $Self->{Translation}->{'Workplace'} = 'محل کار';
+    $Self->{Translation}->{'Outlet'} = 'پریز';
+    $Self->{Translation}->{'IT Facility'} = 'تسهیلات IT';
+    $Self->{Translation}->{'LAN'} = 'LAN';
+    $Self->{Translation}->{'WLAN'} = 'WLAN';
+    $Self->{Translation}->{'Telco'} = 'Telco';
+    $Self->{Translation}->{'GSM'} = 'GSM';
+    $Self->{Translation}->{'Client Application'} = 'برنامه‌های کلاینت';
+    $Self->{Translation}->{'Middleware'} = 'میان افزار';
+    $Self->{Translation}->{'Server Application'} = 'نرم افزار سرور';
+    $Self->{Translation}->{'Client OS'} = 'سیستم عامل کلاینت';
+    $Self->{Translation}->{'Server OS'} = 'سیستم عامل سرور';
+    $Self->{Translation}->{'Admin Tool'} = 'ابزار مدیریتی';
+    $Self->{Translation}->{'User Tool'} = 'ابزار کاربر';
+    $Self->{Translation}->{'Embedded'} = 'داخلی';
+    $Self->{Translation}->{'Single Licence'} = 'اجازه‌نامه تکی';
+    $Self->{Translation}->{'Per User'} = 'به ازای کاربر';
+    $Self->{Translation}->{'Per Processor'} = 'به ازای پردازشگر';
+    $Self->{Translation}->{'Per Server'} = 'به ازای سرور';
+    $Self->{Translation}->{'Per Node'} = 'به ازای کامپیوتر';
+    $Self->{Translation}->{'Volume Licence'} = 'اجازه‌نامه حجمی';
+    $Self->{Translation}->{'Enterprise Licence'} = 'اجازه‌نامه سازمانی';
+    $Self->{Translation}->{'Developer Licence'} = 'اجازه‌نامه توسعه دهنده';
+    $Self->{Translation}->{'Demo'} = 'نسخه نمایشی';
+    $Self->{Translation}->{'Time Restricted'} = 'دارای محدوده زمانی';
+    $Self->{Translation}->{'Freeware'} = 'نرم افزار مجانی';
+    $Self->{Translation}->{'Open Source'} = 'کد باز';
+    $Self->{Translation}->{'Unlimited'} = 'نامحدود';
 
     # SysConfig
     $Self->{Translation}->{'Admin.'} = 'مدیر';

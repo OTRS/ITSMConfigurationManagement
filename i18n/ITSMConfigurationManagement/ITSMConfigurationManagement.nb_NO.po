@@ -1,12 +1,13 @@
 # 
 # Translators:
+# Peter Værlien <pvarlien@online.no>, 2017
 # Udo Bretz, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
 "POT-Creation-Date: 2017-02-14 17:57+0000\n"
-"PO-Revision-Date: 2017-02-14 16:58+0000\n"
-"Last-Translator: Udo Bretz\n"
+"PO-Revision-Date: 2017-04-25 11:39+0000\n"
+"Last-Translator: Peter Værlien <pvarlien@online.no>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otrs/OTRS/language/nb_NO/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,11 +33,11 @@ msgstr ""
 
 #. Template: AAAITSMConfigItem
 msgid "Address"
-msgstr ""
+msgstr "Adresse"
 
 #. Template: AAAITSMConfigItem
 msgid "Admin Tool"
-msgstr ""
+msgstr "Administratorverktøy"
 
 #. Template: AAAITSMConfigItem
 msgid "Backup Device"
@@ -44,7 +45,7 @@ msgstr "Backup-enhet"
 
 #. Template: AAAITSMConfigItem
 msgid "Beamer"
-msgstr ""
+msgstr "Prosjektør"
 
 #. Template: AAAITSMConfigItem
 msgid "Building"
@@ -232,7 +233,7 @@ msgstr "IT-fasilitet"
 
 #. Template: AAAITSMConfigItem
 msgid "Incident"
-msgstr ""
+msgstr "Hendelse"
 
 #. Template: AAAITSMConfigItem
 msgid "Install Date"
@@ -412,7 +413,7 @@ msgstr "Reparasjon"
 
 #. Template: AAAITSMConfigItem
 msgid "Retired"
-msgstr "Pensjonert"
+msgstr "Utfaset"
 
 #. Template: AAAITSMConfigItem
 msgid "Review"
@@ -532,7 +533,7 @@ msgstr "Endre klassedefinisjon"
 
 #. Template: AdminITSMConfigItem
 msgid "Config Item Class"
-msgstr ""
+msgstr "Konfigurasjonsenhetsklasse"
 
 #. Template: AdminITSMConfigItem
 msgid "Definition"
@@ -556,19 +557,19 @@ msgstr "Klasse"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "ITSM ConfigItem Bulk Action"
-msgstr ""
+msgstr "Masseredigering av konfigurasjonsenheter"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Deployment state"
-msgstr ""
+msgstr "Produksjonssettingstilstand"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Incident state"
-msgstr ""
+msgstr "Hendelsestilstand"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Link to another"
-msgstr ""
+msgstr "Koble til en annen"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Invalid Configuration Item number!"
@@ -580,7 +581,7 @@ msgstr ""
 
 #. Template: AgentITSMConfigItemDelete
 msgid "Do you really want to delete this config item?"
-msgstr ""
+msgstr "Vil du virkelig fjerne denne konfigurasjonsenheten?"
 
 #. Template: AgentITSMConfigItemEdit
 msgid "The name of this config item"
@@ -601,7 +602,7 @@ msgstr "Hendelsestilstand"
 
 #. Template: AgentITSMConfigItemHistory
 msgid "History of Config Item: %s"
-msgstr ""
+msgstr "Historien til konfigurasjonsenheten: %s"
 
 #. Template: AgentITSMConfigItemOverviewNavBar
 msgid "Context Settings"
@@ -617,15 +618,15 @@ msgstr ""
 
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "Deployment State Type"
-msgstr "Type Produksjonssettingstilstand"
+msgstr "Type produksjonssettingstilstand"
 
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "Current Incident State"
-msgstr "Nåværende Hendelsestilstand"
+msgstr "Nåværende hendelsestilstand"
 
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "Current Incident State Type"
-msgstr "Nåværende type Hendelsestilstand"
+msgstr "Nåværende type hendelsestilstand"
 
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "Last changed"
@@ -633,11 +634,11 @@ msgstr "Sist endret"
 
 #. Template: AgentITSMConfigItemSearch
 msgid "Create New Template"
-msgstr ""
+msgstr "Lag en ny mal"
 
 #. Template: AgentITSMConfigItemSearch
 msgid "Run Search"
-msgstr ""
+msgstr "Utfør søket"
 
 #. Template: AgentITSMConfigItemSearch
 msgid "Also search in previous versions?"
@@ -649,11 +650,11 @@ msgstr "Konfigurasjonsenhet"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Configuration Item Information"
-msgstr ""
+msgstr "Opplysninger om konfigurasjonsenheten"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Current Deployment State"
-msgstr "Nåværende Produksjonssettingstilstand"
+msgstr "Nåværende produksjonssettingstilstand"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Last changed by"
@@ -677,7 +678,7 @@ msgstr "Hendelsestilstand for versjonen"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Version Deployment State"
-msgstr ""
+msgstr "Produksjonssettingstilstand for versjonen"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Version Number"
@@ -689,11 +690,11 @@ msgstr "Versjonsdetaljer for enheten"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Property"
-msgstr ""
+msgstr "Egenskap"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
 msgid "ITSM ConfigItem"
-msgstr ""
+msgstr "Konfigurasjonsenhet"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "CIHistory::"
@@ -724,7 +725,7 @@ msgstr ""
 
 #. SysConfig
 msgid "Config Items"
-msgstr ""
+msgstr "Konfigurasjonsenheter"
 
 #. SysConfig
 msgid "Config item add."
@@ -928,23 +929,23 @@ msgstr ""
 
 #. SysConfig
 msgid "Deployment State Color"
-msgstr ""
+msgstr "Farge for produksjonssettingstilstand"
 
 #. SysConfig
 msgid "Deployment State Color."
-msgstr ""
+msgstr "Farge for produksjonssettingstilstand."
 
 #. SysConfig
 msgid "Deployment State Type."
-msgstr ""
+msgstr "Type produksjonssettingstilstand."
 
 #. SysConfig
 msgid "Disabled"
-msgstr ""
+msgstr "Inaktiv"
 
 #. SysConfig
 msgid "Enabled"
-msgstr ""
+msgstr "Aktiv"
 
 #. SysConfig
 msgid ""
@@ -971,7 +972,7 @@ msgstr ""
 
 #. SysConfig
 msgid "ITSM config item overview."
-msgstr ""
+msgstr "Oversikt over ITSM konfigurasjonsenheter."
 
 #. SysConfig
 msgid "Module to check the group responsible for a class."
@@ -991,7 +992,7 @@ msgstr ""
 
 #. SysConfig
 msgid "Overview."
-msgstr ""
+msgstr "Oversikt."
 
 #. SysConfig
 msgid ""
@@ -1063,7 +1064,7 @@ msgstr ""
 
 #. SysConfig
 msgid "Search config items."
-msgstr ""
+msgstr "Søk etter konfigurasjonsenheter."
 
 #. SysConfig
 msgid ""
@@ -1164,8 +1165,8 @@ msgstr ""
 
 #. SysConfig
 msgid "class"
-msgstr ""
+msgstr "klasse"
 
 #. SysConfig
 msgid "global"
-msgstr ""
+msgstr "global"

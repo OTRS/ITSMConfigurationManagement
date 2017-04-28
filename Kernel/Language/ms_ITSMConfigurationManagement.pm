@@ -15,135 +15,6 @@ use utf8;
 sub Data {
     my $Self = shift;
 
-    # Template: AAAITSMConfigItem
-    $Self->{Translation}->{'Computer'} = '';
-    $Self->{Translation}->{'Hardware'} = '';
-    $Self->{Translation}->{'Network'} = '';
-    $Self->{Translation}->{'Software'} = '';
-    $Self->{Translation}->{'Address'} = 'Alamat';
-    $Self->{Translation}->{'Admin Tool'} = 'Admin Tool';
-    $Self->{Translation}->{'Backup Device'} = 'Peralatan Backup';
-    $Self->{Translation}->{'Beamer'} = 'Beamer';
-    $Self->{Translation}->{'Building'} = 'Bangunan';
-    $Self->{Translation}->{'CIHistory::ConfigItemCreate'} = 'ConfigItem Baru (ID=%s)';
-    $Self->{Translation}->{'CIHistory::ConfigItemDelete'} = 'ConfigItem (ID=%s) dipadam';
-    $Self->{Translation}->{'CIHistory::DefinitionUpdate'} = 'Definisi ConfigItems dikemaskini (ID=%s)';
-    $Self->{Translation}->{'CIHistory::DeploymentStateUpdate'} = 'Gunakan status berubah (baru=%s; lama=%s)';
-    $Self->{Translation}->{'CIHistory::IncidentStateUpdate'} = 'Status Insiden berubah (baru=%s; lama=%s)';
-    $Self->{Translation}->{'CIHistory::LinkAdd'} = 'Pautan ditambah pada %s (jenis=%s)';
-    $Self->{Translation}->{'CIHistory::LinkDelete'} = 'Pautan dipadam pada %s (jenis=%s)';
-    $Self->{Translation}->{'CIHistory::NameUpdate'} = 'nama ditukar (baru=%s; lama=%s)';
-    $Self->{Translation}->{'CIHistory::ValueUpdate'} = 'Atribut% s "%s" kepada "%s" berubah';
-    $Self->{Translation}->{'CIHistory::VersionCreate'} = 'Versi baru menjana (ID=%s)';
-    $Self->{Translation}->{'CIHistory::VersionDelete'} = 'Versi %s dipadam';
-    $Self->{Translation}->{'CIHistory::AttachmentAdd'} = 'CISejarah::LampiranTambah';
-    $Self->{Translation}->{'CIHistory::AttachmentDelete'} = 'CISejarah::LampiranPadam';
-    $Self->{Translation}->{'CPU'} = 'CPU';
-    $Self->{Translation}->{'Camera'} = 'Kamera';
-    $Self->{Translation}->{'Capacity'} = 'Muatan';
-    $Self->{Translation}->{'Change Definition'} = 'Ubah definisi';
-    $Self->{Translation}->{'Change of definition failed! See System Log for details.'} = 'Perubahan definisi gagal! Lihat Log Sistem untuk maklumat lanjut.';
-    $Self->{Translation}->{'Client Application'} = 'Aplikasi pelanggan';
-    $Self->{Translation}->{'Client OS'} = 'OS Pelanggan';
-    $Self->{Translation}->{'Config Item-Area'} = 'Config Perkara-Kawasan';
-    $Self->{Translation}->{'Config Items available'} = 'Item config disediakan';
-    $Self->{Translation}->{'Config Items shown'} = 'Item config ditunjukkan';
-    $Self->{Translation}->{'CMDB'} = 'CMDB';
-    $Self->{Translation}->{'Demo'} = 'Demo';
-    $Self->{Translation}->{'Desktop'} = 'Desktop';
-    $Self->{Translation}->{'Developer Licence'} = 'Lesen Pemaju';
-    $Self->{Translation}->{'Docking Station'} = 'Dok Stesen';
-    $Self->{Translation}->{'Duplicate'} = 'Gandakan';
-    $Self->{Translation}->{'Embedded'} = 'terbenam';
-    $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Medan kosong menunjukkan bahawa nilai semasa disimpan';
-    $Self->{Translation}->{'Enterprise Licence'} = 'Lesen Enterprise';
-    $Self->{Translation}->{'Expiration Date'} = 'Tarikh Tamat Tempoh';
-    $Self->{Translation}->{'Expired'} = 'Tamat Tempoh';
-    $Self->{Translation}->{'Floor'} = 'tingkat';
-    $Self->{Translation}->{'Freeware'} = 'Freeware';
-    $Self->{Translation}->{'GSM'} = 'GSM';
-    $Self->{Translation}->{'Gateway'} = 'Gerbang';
-    $Self->{Translation}->{'Graphic Adapter'} = 'Penyesuai grafik';
-    $Self->{Translation}->{'Hard Disk'} = 'Cakera Keras';
-    $Self->{Translation}->{'Hard Disk::Capacity'} = 'Cakera Keras :: Kapasiti';
-    $Self->{Translation}->{'Hide Versions'} = 'Sembunyi Versi';
-    $Self->{Translation}->{'IP Address'} = 'IP Addresse';
-    $Self->{Translation}->{'IP over DHCP'} = 'IP lebih DHCP';
-    $Self->{Translation}->{'IT Facility'} = 'IT Kemudahan';
-    $Self->{Translation}->{'Incident'} = 'insiden';
-    $Self->{Translation}->{'Install Date'} = 'Pasang Tarikh';
-    $Self->{Translation}->{'Keyboard'} = 'Juruteknik';
-    $Self->{Translation}->{'LAN'} = 'LAN';
-    $Self->{Translation}->{'Laptop'} = 'Laptop';
-    $Self->{Translation}->{'Last Change'} = 'Perubahan akhir';
-    $Self->{Translation}->{'Licence Key'} = 'Kunci Lesen';
-    $Self->{Translation}->{'Licence Key::Expiration Date'} = 'Kunci Lesen :: Tarikh Tamat Tempoh';
-    $Self->{Translation}->{'Licence Key::Quantity'} = 'Kunci Lesen:: Kuantiti';
-    $Self->{Translation}->{'Licence Type'} = 'Jenis Lesen';
-    $Self->{Translation}->{'Maintenance'} = 'penyelenggaraan';
-    $Self->{Translation}->{'Maximum number of one element'} = 'Bilangan maksimum satu elemen';
-    $Self->{Translation}->{'Media'} = 'Media';
-    $Self->{Translation}->{'Middleware'} = 'Middleware';
-    $Self->{Translation}->{'Model'} = 'Model';
-    $Self->{Translation}->{'Modem'} = 'Modem';
-    $Self->{Translation}->{'Monitor'} = 'Monitor';
-    $Self->{Translation}->{'Mouse'} = 'tetikus';
-    $Self->{Translation}->{'Network Adapter'} = 'Network Adapter';
-    $Self->{Translation}->{'Network Adapter::IP Address'} = 'Network Adapter :: IP Address';
-    $Self->{Translation}->{'Network Adapter::IP over DHCP'} = 'Network Adapter :: IP lebih DHCP';
-    $Self->{Translation}->{'Network Address'} = 'Alamat Rangkaian';
-    $Self->{Translation}->{'Network Address::Gateway'} = 'Rangkaian Alamat :: Gerbang';
-    $Self->{Translation}->{'Network Address::Subnet Mask'} = 'Rangkaian Alamat :: Subnet Mask';
-    $Self->{Translation}->{'Open Source'} = 'Sumber Terbuka';
-    $Self->{Translation}->{'Operational'} = 'operasi';
-    $Self->{Translation}->{'Other'} = 'lain-lain';
-    $Self->{Translation}->{'Other Equipment'} = 'Peralatan lain-lain';
-    $Self->{Translation}->{'Outlet'} = 'Outlet';
-    $Self->{Translation}->{'PCMCIA Card'} = 'PCMCIA Kad';
-    $Self->{Translation}->{'PDA'} = 'PDA';
-    $Self->{Translation}->{'Per Node'} = 'per Nod';
-    $Self->{Translation}->{'Per Processor'} = 'untuk Pemproses';
-    $Self->{Translation}->{'Per Server'} = 'Setiap pelayan';
-    $Self->{Translation}->{'Per User'} = 'setiap Pengguna';
-    $Self->{Translation}->{'Phone 1'} = 'Telefon 1';
-    $Self->{Translation}->{'Phone 2'} = 'Telefon 2';
-    $Self->{Translation}->{'Pilot'} = 'Pilot';
-    $Self->{Translation}->{'Planned'} = 'Dirancang';
-    $Self->{Translation}->{'Printer'} = 'pencetak';
-    $Self->{Translation}->{'Production'} = 'pengeluaran';
-    $Self->{Translation}->{'Quantity'} = 'Kuantiti';
-    $Self->{Translation}->{'Rack'} = 'Rak';
-    $Self->{Translation}->{'Ram'} = 'memori utama';
-    $Self->{Translation}->{'Repair'} = 'Membaiki';
-    $Self->{Translation}->{'Retired'} = 'bersara';
-    $Self->{Translation}->{'Review'} = 'mengkaji';
-    $Self->{Translation}->{'Room'} = 'Bilik';
-    $Self->{Translation}->{'Router'} = 'Router';
-    $Self->{Translation}->{'Scanner'} = 'Pengimbas';
-    $Self->{Translation}->{'Search Config Items'} = 'Carian Config Item';
-    $Self->{Translation}->{'Security Device'} = 'Peranti Keselamatan';
-    $Self->{Translation}->{'Serial Number'} = 'Nombor Series';
-    $Self->{Translation}->{'Server'} = 'Pelayan';
-    $Self->{Translation}->{'Server Application'} = 'Permohonan Pelayan';
-    $Self->{Translation}->{'Server OS'} = 'Server OS';
-    $Self->{Translation}->{'Show Versions'} = 'Papar versi';
-    $Self->{Translation}->{'Single Licence'} = 'Lesen Sahaja';
-    $Self->{Translation}->{'Subnet Mask'} = 'Subnet Mask';
-    $Self->{Translation}->{'Switch'} = 'Tukar';
-    $Self->{Translation}->{'Telco'} = 'Telko';
-    $Self->{Translation}->{'Test/QA'} = 'Ujian/QA';
-    $Self->{Translation}->{'The deployment state of this config item'} = 'Keadaan penempatan item ini config';
-    $Self->{Translation}->{'The incident state of this config item'} = 'Keadaan insiden bagi config item ini';
-    $Self->{Translation}->{'Time Restricted'} = 'masa Terhad';
-    $Self->{Translation}->{'USB Device'} = 'Peranti USB';
-    $Self->{Translation}->{'Unlimited'} = 'Tiada batasan';
-    $Self->{Translation}->{'User Tool'} = 'Alat pengguna';
-    $Self->{Translation}->{'Volume Licence'} = 'Lesen Jilid';
-    $Self->{Translation}->{'WLAN'} = 'WLAN';
-    $Self->{Translation}->{'WLAN Access Point'} = 'pusat akses WLAN';
-    $Self->{Translation}->{'Warranty Expiration Date'} = 'Tarikh Waranti Peluputan';
-    $Self->{Translation}->{'Workplace'} = 'Tempat kerja';
-
     # Template: AdminITSMConfigItem
     $Self->{Translation}->{'Config Item Management'} = 'Pengurusan Config Item';
     $Self->{Translation}->{'Change class definition'} = 'Ubah definisi kelas';
@@ -208,17 +79,122 @@ sub Data {
     $Self->{Translation}->{'Property'} = 'harta';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
-    $Self->{Translation}->{'ITSM ConfigItem'} = 'ITSM ConfigItem';
+    $Self->{Translation}->{'No access to Class is given!'} = '';
+    $Self->{Translation}->{'Overview: ITSM ConfigItem'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+    $Self->{Translation}->{'No ConfigItemID is given!'} = '';
+    $Self->{Translation}->{'You need at least one selected Configuration Item!'} = '';
+    $Self->{Translation}->{'You don\'t have write access to this configuration item: %s.'} =
+        '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+    $Self->{Translation}->{'Config item "%s" not found in database!'} = '';
+    $Self->{Translation}->{'Was not able to delete the configitem ID %s!'} = '';
+    $Self->{Translation}->{'No version found for ConfigItemID %s!'} = '';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+    $Self->{Translation}->{'No ConfigItemID, DuplicateID or ClassID is given!'} = '';
+    $Self->{Translation}->{'No access is given!'} = '';
+    $Self->{Translation}->{'No definition was defined for class %s!'} = '';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+    $Self->{Translation}->{'Can\'t show history, no ConfigItemID is given!'} = '';
+    $Self->{Translation}->{'Can\'t show history, no access rights given!'} = '';
     $Self->{Translation}->{'CIHistory::'} = 'CIHistory::';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+    $Self->{Translation}->{'No ConfigItemID or VersionID is given!'} = '';
+    $Self->{Translation}->{'Can\'t show config item, no access rights given!'} = '';
+    $Self->{Translation}->{'ConfigItemID %s not found in database!'} = '';
+    $Self->{Translation}->{'VersionID %s not found in database!'} = '';
     $Self->{Translation}->{'ConfigItem'} = 'ConfigItem';
+    $Self->{Translation}->{'printed by %s at %s'} = '';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+    $Self->{Translation}->{'Invalid ClassID!'} = '';
+    $Self->{Translation}->{'No ClassID is given!'} = '';
+    $Self->{Translation}->{'No access rights for this class given!'} = '';
     $Self->{Translation}->{'No Result!'} = 'Tiada Keputusan!';
     $Self->{Translation}->{'Config Item Search Results'} = 'Hasil carian ConfigItem';
+
+    # Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+    $Self->{Translation}->{'Can\'t show item, no access rights for ConfigItem are given!'} =
+        '';
+    $Self->{Translation}->{'The deployment state of this config item'} = 'Keadaan penempatan item ini config';
+    $Self->{Translation}->{'The incident state of this config item'} = 'Keadaan insiden bagi config item ini';
+
+    # Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
+    $Self->{Translation}->{'Maximum number of one element'} = 'Bilangan maksimum satu elemen';
+    $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Medan kosong menunjukkan bahawa nilai semasa disimpan';
+
+    # Database XML Definition: /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+    $Self->{Translation}->{'Computer'} = '';
+    $Self->{Translation}->{'Hardware'} = '';
+    $Self->{Translation}->{'Network'} = '';
+    $Self->{Translation}->{'Software'} = '';
+    $Self->{Translation}->{'Expired'} = 'Tamat Tempoh';
+    $Self->{Translation}->{'Maintenance'} = 'penyelenggaraan';
+    $Self->{Translation}->{'Pilot'} = 'Pilot';
+    $Self->{Translation}->{'Planned'} = 'Dirancang';
+    $Self->{Translation}->{'Production'} = 'pengeluaran';
+    $Self->{Translation}->{'Repair'} = 'Membaiki';
+    $Self->{Translation}->{'Retired'} = 'bersara';
+    $Self->{Translation}->{'Review'} = 'mengkaji';
+    $Self->{Translation}->{'Test/QA'} = 'Ujian/QA';
+    $Self->{Translation}->{'Laptop'} = 'Laptop';
+    $Self->{Translation}->{'Desktop'} = 'Desktop';
+    $Self->{Translation}->{'PDA'} = 'PDA';
+    $Self->{Translation}->{'Server'} = 'Pelayan';
+    $Self->{Translation}->{'Other'} = 'lain-lain';
+    $Self->{Translation}->{'Monitor'} = 'Monitor';
+    $Self->{Translation}->{'Printer'} = 'pencetak';
+    $Self->{Translation}->{'Switch'} = 'Tukar';
+    $Self->{Translation}->{'Router'} = 'Router';
+    $Self->{Translation}->{'WLAN Access Point'} = 'pusat akses WLAN';
+    $Self->{Translation}->{'Security Device'} = 'Peranti Keselamatan';
+    $Self->{Translation}->{'Backup Device'} = 'Peralatan Backup';
+    $Self->{Translation}->{'Mouse'} = 'tetikus';
+    $Self->{Translation}->{'Keyboard'} = 'Juruteknik';
+    $Self->{Translation}->{'Camera'} = 'Kamera';
+    $Self->{Translation}->{'Beamer'} = 'Beamer';
+    $Self->{Translation}->{'Modem'} = 'Modem';
+    $Self->{Translation}->{'PCMCIA Card'} = 'PCMCIA Kad';
+    $Self->{Translation}->{'USB Device'} = 'Peranti USB';
+    $Self->{Translation}->{'Docking Station'} = 'Dok Stesen';
+    $Self->{Translation}->{'Scanner'} = 'Pengimbas';
+    $Self->{Translation}->{'Building'} = 'Bangunan';
+    $Self->{Translation}->{'Floor'} = 'tingkat';
+    $Self->{Translation}->{'Room'} = 'Bilik';
+    $Self->{Translation}->{'Rack'} = 'Rak';
+    $Self->{Translation}->{'Workplace'} = 'Tempat kerja';
+    $Self->{Translation}->{'Outlet'} = 'Outlet';
+    $Self->{Translation}->{'IT Facility'} = 'IT Kemudahan';
+    $Self->{Translation}->{'LAN'} = 'LAN';
+    $Self->{Translation}->{'WLAN'} = 'WLAN';
+    $Self->{Translation}->{'Telco'} = 'Telko';
+    $Self->{Translation}->{'GSM'} = 'GSM';
+    $Self->{Translation}->{'Client Application'} = 'Aplikasi pelanggan';
+    $Self->{Translation}->{'Middleware'} = 'Middleware';
+    $Self->{Translation}->{'Server Application'} = 'Permohonan Pelayan';
+    $Self->{Translation}->{'Client OS'} = 'OS Pelanggan';
+    $Self->{Translation}->{'Server OS'} = 'Server OS';
+    $Self->{Translation}->{'Admin Tool'} = 'Admin Tool';
+    $Self->{Translation}->{'User Tool'} = 'Alat pengguna';
+    $Self->{Translation}->{'Embedded'} = 'terbenam';
+    $Self->{Translation}->{'Single Licence'} = 'Lesen Sahaja';
+    $Self->{Translation}->{'Per User'} = 'setiap Pengguna';
+    $Self->{Translation}->{'Per Processor'} = 'untuk Pemproses';
+    $Self->{Translation}->{'Per Server'} = 'Setiap pelayan';
+    $Self->{Translation}->{'Per Node'} = 'per Nod';
+    $Self->{Translation}->{'Volume Licence'} = 'Lesen Jilid';
+    $Self->{Translation}->{'Enterprise Licence'} = 'Lesen Enterprise';
+    $Self->{Translation}->{'Developer Licence'} = 'Lesen Pemaju';
+    $Self->{Translation}->{'Demo'} = 'Demo';
+    $Self->{Translation}->{'Time Restricted'} = 'masa Terhad';
+    $Self->{Translation}->{'Freeware'} = 'Freeware';
+    $Self->{Translation}->{'Open Source'} = 'Sumber Terbuka';
+    $Self->{Translation}->{'Unlimited'} = 'Tiada batasan';
 
     # SysConfig
     $Self->{Translation}->{'Admin.'} = 'Admin.';

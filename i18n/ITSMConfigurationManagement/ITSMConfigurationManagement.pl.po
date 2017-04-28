@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
 "POT-Creation-Date: 2017-02-14 17:57+0000\n"
-"PO-Revision-Date: 2017-02-14 16:58+0000\n"
+"PO-Revision-Date: 2017-04-21 16:34+0000\n"
 "Last-Translator: Udo Bretz\n"
 "Language-Team: Polish (http://www.transifex.com/otrs/OTRS/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -715,7 +715,7 @@ msgstr ""
 
 #. SysConfig
 msgid "Admin."
-msgstr ""
+msgstr "Admin"
 
 #. SysConfig
 msgid ""
@@ -942,11 +942,11 @@ msgstr ""
 
 #. SysConfig
 msgid "Disabled"
-msgstr ""
+msgstr "Wyłączony"
 
 #. SysConfig
 msgid "Enabled"
-msgstr ""
+msgstr "Włączony"
 
 #. SysConfig
 msgid ""
@@ -993,7 +993,7 @@ msgstr ""
 
 #. SysConfig
 msgid "Overview."
-msgstr ""
+msgstr "Przegląd."
 
 #. SysConfig
 msgid ""
