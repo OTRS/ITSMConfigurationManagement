@@ -79,7 +79,8 @@ sub Run {
     );
     if ( !$ConfigItem->{ConfigItemID} ) {
         return $LayoutObject->ErrorScreen(
-            Message => $LayoutObject->{LanguageObject}->Translate( 'ConfigItemID %s not found in database!', $ConfigItemID ),
+            Message =>
+                $LayoutObject->{LanguageObject}->Translate( 'ConfigItemID %s not found in database!', $ConfigItemID ),
             Comment => Translatable('Please contact the administrator.'),
         );
     }
@@ -90,7 +91,8 @@ sub Run {
     );
     if ( !$VersionList->[0]->{VersionID} ) {
         return $LayoutObject->ErrorScreen(
-            Message => $LayoutObject->{LanguageObject}->Translate( 'No version found for ConfigItemID %s!', $ConfigItemID ),
+            Message =>
+                $LayoutObject->{LanguageObject}->Translate( 'No version found for ConfigItemID %s!', $ConfigItemID ),
             Comment => Translatable('Please contact the administrator.'),
         );
     }

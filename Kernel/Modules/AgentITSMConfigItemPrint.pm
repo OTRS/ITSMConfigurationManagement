@@ -73,7 +73,8 @@ sub Run {
     );
     if ( !$ConfigItem->{ConfigItemID} ) {
         return $LayoutObject->ErrorScreen(
-            Message => $LayoutObject->{LanguageObject}->Translate( 'ConfigItemID %s not found in database!', $ConfigItemID ),
+            Message =>
+                $LayoutObject->{LanguageObject}->Translate( 'ConfigItemID %s not found in database!', $ConfigItemID ),
             Comment => Translatable('Please contact the administrator.'),
         );
     }

@@ -59,7 +59,8 @@ sub Run {
     # error screen
     if ( !$Access ) {
         return $LayoutObject->NoPermission(
-            Message    => $LayoutObject->{LanguageObject}->Translate( 'You need %s permissions!', $Self->{Config}->{Permission} ),
+            Message =>
+                $LayoutObject->{LanguageObject}->Translate( 'You need %s permissions!', $Self->{Config}->{Permission} ),
             WithHeader => 'yes',
         );
     }
@@ -73,7 +74,8 @@ sub Run {
     # check if config item is found
     if ( !$ConfigItem ) {
         return $LayoutObject->ErrorScreen(
-            Message => $LayoutObject->{LanguageObject}->Translate( 'Config item "%s" not found in database!', $ConfigItemID ),
+            Message =>
+                $LayoutObject->{LanguageObject}->Translate( 'Config item "%s" not found in database!', $ConfigItemID ),
             Comment => Translatable('Please contact the administrator.'),
         );
     }
@@ -98,7 +100,8 @@ sub Run {
 
             # show error message, when delete failed
             return $LayoutObject->ErrorScreen(
-                Message => $LayoutObject->{LanguageObject}->Translate( 'Was not able to delete the configitem ID %s!', $ConfigItemID ),
+                Message => $LayoutObject->{LanguageObject}
+                    ->Translate( 'Was not able to delete the configitem ID %s!', $ConfigItemID ),
                 Comment => Translatable('Please contact the administrator.'),
             );
         }
@@ -111,7 +114,8 @@ sub Run {
 
     if ( !$Version->{VersionID} ) {
         return $LayoutObject->ErrorScreen(
-            Message => $LayoutObject->{LanguageObject}->Translate( 'No version found for ConfigItemID %s!', $ConfigItemID ),
+            Message =>
+                $LayoutObject->{LanguageObject}->Translate( 'No version found for ConfigItemID %s!', $ConfigItemID ),
             Comment => Translatable('Please contact the administrator.'),
         );
     }

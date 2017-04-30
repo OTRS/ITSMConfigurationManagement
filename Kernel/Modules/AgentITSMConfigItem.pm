@@ -310,13 +310,13 @@ sub Run {
         Filters       => \%NavBarFilter,
         FilterLink    => $LinkFilter,
         TitleName     => $LayoutObject->{LanguageObject}->Translate('Overview: ITSM ConfigItem'),
-        TitleValue  => $Filters{ $Self->{Filter} }->{Name},
-        Env         => $Self,
-        LinkPage    => $LinkPage,
-        LinkSort    => $LinkSort,
-        ShowColumns => \@ShowColumns,
-        SortBy      => $LayoutObject->Ascii2Html( Text => $SortBy ),
-        OrderBy     => $LayoutObject->Ascii2Html( Text => $OrderBy ),
+        TitleValue    => $Filters{ $Self->{Filter} }->{Name},
+        Env           => $Self,
+        LinkPage      => $LinkPage,
+        LinkSort      => $LinkSort,
+        ShowColumns   => \@ShowColumns,
+        SortBy        => $LayoutObject->Ascii2Html( Text => $SortBy ),
+        OrderBy       => $LayoutObject->Ascii2Html( Text => $OrderBy ),
     );
 
     # add footer

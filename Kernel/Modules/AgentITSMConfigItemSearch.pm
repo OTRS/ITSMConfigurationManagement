@@ -211,7 +211,8 @@ sub Run {
         # abort, if no definition is defined
         if ( !$XMLDefinition->{DefinitionID} ) {
             return $LayoutObject->ErrorScreen(
-                Message => $LayoutObject->{LanguageObject}->Translate( 'No definition was defined for class %s!', $ClassID ),
+                Message =>
+                    $LayoutObject->{LanguageObject}->Translate( 'No definition was defined for class %s!', $ClassID ),
                 Comment => Translatable('Please contact the administrator.'),
             );
         }
@@ -468,7 +469,8 @@ sub Run {
         # abort, if no definition is defined
         if ( !$XMLDefinition->{DefinitionID} ) {
             return $LayoutObject->ErrorScreen(
-                Message => $LayoutObject->{LanguageObject}->Translate( 'No definition was defined for class %s!', $ClassID ),
+                Message =>
+                    $LayoutObject->{LanguageObject}->Translate( 'No definition was defined for class %s!', $ClassID ),
                 Comment => Translatable('Please contact the administrator.'),
             );
         }
