@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2017-02-14 17:57+0000\n"
-"PO-Revision-Date: 2017-02-14 16:58+0000\n"
+"POT-Creation-Date: 2017-04-28 13:33+0000\n"
+"PO-Revision-Date: 2017-04-28 11:34+0000\n"
 "Last-Translator: Udo Bretz\n"
 "Language-Team: Malay (http://www.transifex.com/otrs/OTRS/language/ms/)\n"
 "MIME-Version: 1.0\n"
@@ -15,514 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ms\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-
-#. Template: AAAITSMConfigItem
-msgid "Computer"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "Hardware"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "Network"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "Software"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "Address"
-msgstr "Alamat"
-
-#. Template: AAAITSMConfigItem
-msgid "Admin Tool"
-msgstr "Admin Tool"
-
-#. Template: AAAITSMConfigItem
-msgid "Backup Device"
-msgstr "Peralatan Backup"
-
-#. Template: AAAITSMConfigItem
-msgid "Beamer"
-msgstr "Beamer"
-
-#. Template: AAAITSMConfigItem
-msgid "Building"
-msgstr "Bangunan"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::ConfigItemCreate"
-msgstr "ConfigItem Baru (ID=%s)"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::ConfigItemDelete"
-msgstr "ConfigItem (ID=%s) dipadam"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::DefinitionUpdate"
-msgstr "Definisi ConfigItems dikemaskini (ID=%s)"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::DeploymentStateUpdate"
-msgstr "Gunakan status berubah (baru=%s; lama=%s)"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::IncidentStateUpdate"
-msgstr "Status Insiden berubah (baru=%s; lama=%s)"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::LinkAdd"
-msgstr "Pautan ditambah pada %s (jenis=%s)"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::LinkDelete"
-msgstr "Pautan dipadam pada %s (jenis=%s)"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::NameUpdate"
-msgstr "nama ditukar (baru=%s; lama=%s)"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::ValueUpdate"
-msgstr "Atribut% s \"%s\" kepada \"%s\" berubah"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::VersionCreate"
-msgstr "Versi baru menjana (ID=%s)"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::VersionDelete"
-msgstr "Versi %s dipadam"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::AttachmentAdd"
-msgstr "CISejarah::LampiranTambah"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::AttachmentDelete"
-msgstr "CISejarah::LampiranPadam"
-
-#. Template: AAAITSMConfigItem
-msgid "CPU"
-msgstr "CPU"
-
-#. Template: AAAITSMConfigItem
-msgid "Camera"
-msgstr "Kamera"
-
-#. Template: AAAITSMConfigItem
-msgid "Capacity"
-msgstr "Muatan"
-
-#. Template: AAAITSMConfigItem
-msgid "Change Definition"
-msgstr "Ubah definisi"
-
-#. Template: AAAITSMConfigItem
-msgid "Change of definition failed! See System Log for details."
-msgstr "Perubahan definisi gagal! Lihat Log Sistem untuk maklumat lanjut."
-
-#. Template: AAAITSMConfigItem
-msgid "Client Application"
-msgstr "Aplikasi pelanggan"
-
-#. Template: AAAITSMConfigItem
-msgid "Client OS"
-msgstr "OS Pelanggan"
-
-#. Template: AAAITSMConfigItem
-msgid "Config Item-Area"
-msgstr "Config Perkara-Kawasan"
-
-#. Template: AAAITSMConfigItem
-msgid "Config Items available"
-msgstr "Item config disediakan"
-
-#. Template: AAAITSMConfigItem
-msgid "Config Items shown"
-msgstr "Item config ditunjukkan"
-
-#. Template: AAAITSMConfigItem
-msgid "CMDB"
-msgstr "CMDB"
-
-#. Template: AAAITSMConfigItem
-msgid "Demo"
-msgstr "Demo"
-
-#. Template: AAAITSMConfigItem
-msgid "Desktop"
-msgstr "Desktop"
-
-#. Template: AAAITSMConfigItem
-msgid "Developer Licence"
-msgstr "Lesen Pemaju"
-
-#. Template: AAAITSMConfigItem
-msgid "Docking Station"
-msgstr "Dok Stesen"
-
-#. Template: AAAITSMConfigItem
-msgid "Duplicate"
-msgstr "Gandakan"
-
-#. Template: AAAITSMConfigItem
-msgid "Embedded"
-msgstr "terbenam"
-
-#. Template: AAAITSMConfigItem
-msgid "Empty fields indicate that the current values are kept"
-msgstr "Medan kosong menunjukkan bahawa nilai semasa disimpan"
-
-#. Template: AAAITSMConfigItem
-msgid "Enterprise Licence"
-msgstr "Lesen Enterprise"
-
-#. Template: AAAITSMConfigItem
-msgid "Expiration Date"
-msgstr "Tarikh Tamat Tempoh"
-
-#. Template: AAAITSMConfigItem
-msgid "Expired"
-msgstr "Tamat Tempoh"
-
-#. Template: AAAITSMConfigItem
-msgid "Floor"
-msgstr "tingkat"
-
-#. Template: AAAITSMConfigItem
-msgid "Freeware"
-msgstr "Freeware"
-
-#. Template: AAAITSMConfigItem
-msgid "GSM"
-msgstr "GSM"
-
-#. Template: AAAITSMConfigItem
-msgid "Gateway"
-msgstr "Gerbang"
-
-#. Template: AAAITSMConfigItem
-msgid "Graphic Adapter"
-msgstr "Penyesuai grafik"
-
-#. Template: AAAITSMConfigItem
-msgid "Hard Disk"
-msgstr "Cakera Keras"
-
-#. Template: AAAITSMConfigItem
-msgid "Hard Disk::Capacity"
-msgstr "Cakera Keras :: Kapasiti"
-
-#. Template: AAAITSMConfigItem
-msgid "Hide Versions"
-msgstr "Sembunyi Versi"
-
-#. Template: AAAITSMConfigItem
-msgid "IP Address"
-msgstr "IP Addresse"
-
-#. Template: AAAITSMConfigItem
-msgid "IP over DHCP"
-msgstr "IP lebih DHCP"
-
-#. Template: AAAITSMConfigItem
-msgid "IT Facility"
-msgstr "IT Kemudahan"
-
-#. Template: AAAITSMConfigItem
-msgid "Incident"
-msgstr "insiden"
-
-#. Template: AAAITSMConfigItem
-msgid "Install Date"
-msgstr "Pasang Tarikh"
-
-#. Template: AAAITSMConfigItem
-msgid "Keyboard"
-msgstr "Juruteknik"
-
-#. Template: AAAITSMConfigItem
-msgid "LAN"
-msgstr "LAN"
-
-#. Template: AAAITSMConfigItem
-msgid "Laptop"
-msgstr "Laptop"
-
-#. Template: AAAITSMConfigItem
-msgid "Last Change"
-msgstr "Perubahan akhir"
-
-#. Template: AAAITSMConfigItem
-msgid "Licence Key"
-msgstr "Kunci Lesen"
-
-#. Template: AAAITSMConfigItem
-msgid "Licence Key::Expiration Date"
-msgstr "Kunci Lesen :: Tarikh Tamat Tempoh"
-
-#. Template: AAAITSMConfigItem
-msgid "Licence Key::Quantity"
-msgstr "Kunci Lesen:: Kuantiti"
-
-#. Template: AAAITSMConfigItem
-msgid "Licence Type"
-msgstr "Jenis Lesen"
-
-#. Template: AAAITSMConfigItem
-msgid "Maintenance"
-msgstr "penyelenggaraan"
-
-#. Template: AAAITSMConfigItem
-msgid "Maximum number of one element"
-msgstr "Bilangan maksimum satu elemen"
-
-#. Template: AAAITSMConfigItem
-msgid "Media"
-msgstr "Media"
-
-#. Template: AAAITSMConfigItem
-msgid "Middleware"
-msgstr "Middleware"
-
-#. Template: AAAITSMConfigItem
-msgid "Model"
-msgstr "Model"
-
-#. Template: AAAITSMConfigItem
-msgid "Modem"
-msgstr "Modem"
-
-#. Template: AAAITSMConfigItem
-msgid "Monitor"
-msgstr "Monitor"
-
-#. Template: AAAITSMConfigItem
-msgid "Mouse"
-msgstr "tetikus"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Adapter"
-msgstr "Network Adapter"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Adapter::IP Address"
-msgstr "Network Adapter :: IP Address"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Adapter::IP over DHCP"
-msgstr "Network Adapter :: IP lebih DHCP"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Address"
-msgstr "Alamat Rangkaian"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Address::Gateway"
-msgstr "Rangkaian Alamat :: Gerbang"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Address::Subnet Mask"
-msgstr "Rangkaian Alamat :: Subnet Mask"
-
-#. Template: AAAITSMConfigItem
-msgid "Open Source"
-msgstr "Sumber Terbuka"
-
-#. Template: AAAITSMConfigItem
-msgid "Operational"
-msgstr "operasi"
-
-#. Template: AAAITSMConfigItem
-msgid "Other"
-msgstr "lain-lain"
-
-#. Template: AAAITSMConfigItem
-msgid "Other Equipment"
-msgstr "Peralatan lain-lain"
-
-#. Template: AAAITSMConfigItem
-msgid "Outlet"
-msgstr "Outlet"
-
-#. Template: AAAITSMConfigItem
-msgid "PCMCIA Card"
-msgstr "PCMCIA Kad"
-
-#. Template: AAAITSMConfigItem
-msgid "PDA"
-msgstr "PDA"
-
-#. Template: AAAITSMConfigItem
-msgid "Per Node"
-msgstr "per Nod"
-
-#. Template: AAAITSMConfigItem
-msgid "Per Processor"
-msgstr "untuk Pemproses"
-
-#. Template: AAAITSMConfigItem
-msgid "Per Server"
-msgstr "Setiap pelayan"
-
-#. Template: AAAITSMConfigItem
-msgid "Per User"
-msgstr "setiap Pengguna"
-
-#. Template: AAAITSMConfigItem
-msgid "Phone 1"
-msgstr "Telefon 1"
-
-#. Template: AAAITSMConfigItem
-msgid "Phone 2"
-msgstr "Telefon 2"
-
-#. Template: AAAITSMConfigItem
-msgid "Pilot"
-msgstr "Pilot"
-
-#. Template: AAAITSMConfigItem
-msgid "Planned"
-msgstr "Dirancang"
-
-#. Template: AAAITSMConfigItem
-msgid "Printer"
-msgstr "pencetak"
-
-#. Template: AAAITSMConfigItem
-msgid "Production"
-msgstr "pengeluaran"
-
-#. Template: AAAITSMConfigItem
-msgid "Quantity"
-msgstr "Kuantiti"
-
-#. Template: AAAITSMConfigItem
-msgid "Rack"
-msgstr "Rak"
-
-#. Template: AAAITSMConfigItem
-msgid "Ram"
-msgstr "memori utama"
-
-#. Template: AAAITSMConfigItem
-msgid "Repair"
-msgstr "Membaiki"
-
-#. Template: AAAITSMConfigItem
-msgid "Retired"
-msgstr "bersara"
-
-#. Template: AAAITSMConfigItem
-msgid "Review"
-msgstr "mengkaji"
-
-#. Template: AAAITSMConfigItem
-msgid "Room"
-msgstr "Bilik"
-
-#. Template: AAAITSMConfigItem
-msgid "Router"
-msgstr "Router"
-
-#. Template: AAAITSMConfigItem
-msgid "Scanner"
-msgstr "Pengimbas"
-
-#. Template: AAAITSMConfigItem
-msgid "Search Config Items"
-msgstr "Carian Config Item"
-
-#. Template: AAAITSMConfigItem
-msgid "Security Device"
-msgstr "Peranti Keselamatan"
-
-#. Template: AAAITSMConfigItem
-msgid "Serial Number"
-msgstr "Nombor Series"
-
-#. Template: AAAITSMConfigItem
-msgid "Server"
-msgstr "Pelayan"
-
-#. Template: AAAITSMConfigItem
-msgid "Server Application"
-msgstr "Permohonan Pelayan"
-
-#. Template: AAAITSMConfigItem
-msgid "Server OS"
-msgstr "Server OS"
-
-#. Template: AAAITSMConfigItem
-msgid "Show Versions"
-msgstr "Papar versi"
-
-#. Template: AAAITSMConfigItem
-msgid "Single Licence"
-msgstr "Lesen Sahaja"
-
-#. Template: AAAITSMConfigItem
-msgid "Subnet Mask"
-msgstr "Subnet Mask"
-
-#. Template: AAAITSMConfigItem
-msgid "Switch"
-msgstr "Tukar"
-
-#. Template: AAAITSMConfigItem
-msgid "Telco"
-msgstr "Telko"
-
-#. Template: AAAITSMConfigItem
-msgid "Test/QA"
-msgstr "Ujian/QA"
-
-#. Template: AAAITSMConfigItem
-msgid "The deployment state of this config item"
-msgstr "Keadaan penempatan item ini config"
-
-#. Template: AAAITSMConfigItem
-msgid "The incident state of this config item"
-msgstr "Keadaan insiden bagi config item ini"
-
-#. Template: AAAITSMConfigItem
-msgid "Time Restricted"
-msgstr "masa Terhad"
-
-#. Template: AAAITSMConfigItem
-msgid "USB Device"
-msgstr "Peranti USB"
-
-#. Template: AAAITSMConfigItem
-msgid "Unlimited"
-msgstr "Tiada batasan"
-
-#. Template: AAAITSMConfigItem
-msgid "User Tool"
-msgstr "Alat pengguna"
-
-#. Template: AAAITSMConfigItem
-msgid "Volume Licence"
-msgstr "Lesen Jilid"
-
-#. Template: AAAITSMConfigItem
-msgid "WLAN"
-msgstr "WLAN"
-
-#. Template: AAAITSMConfigItem
-msgid "WLAN Access Point"
-msgstr "pusat akses WLAN"
-
-#. Template: AAAITSMConfigItem
-msgid "Warranty Expiration Date"
-msgstr "Tarikh Waranti Peluputan"
-
-#. Template: AAAITSMConfigItem
-msgid "Workplace"
-msgstr "Tempat kerja"
 
 #. Template: AdminITSMConfigItem
 msgid "Config Item Management"
@@ -694,16 +186,96 @@ msgid "Property"
 msgstr "harta"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
-msgid "ITSM ConfigItem"
-msgstr "ITSM ConfigItem"
+msgid "No access to Class is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
+msgid "Overview: ITSM ConfigItem"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+msgid "No ConfigItemID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+msgid "You need at least one selected Configuration Item!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+msgid "You don't have write access to this configuration item: %s."
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+msgid "Config item \"%s\" not found in database!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+msgid "Was not able to delete the configitem ID %s!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+msgid "No version found for ConfigItemID %s!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+msgid "No ConfigItemID, DuplicateID or ClassID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+msgid "No access is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+msgid "No definition was defined for class %s!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "Can't show history, no ConfigItemID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "Can't show history, no access rights given!"
+msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "CIHistory::"
 msgstr "CIHistory::"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "No ConfigItemID or VersionID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "Can't show config item, no access rights given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "ConfigItemID %s not found in database!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "VersionID %s not found in database!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "ConfigItem"
 msgstr "ConfigItem"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "printed by %s at %s"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+msgid "Invalid ClassID!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+msgid "No ClassID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+msgid "No access rights for this class given!"
+msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "No Result!"
@@ -712,6 +284,356 @@ msgstr "Tiada Keputusan!"
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "Config Item Search Results"
 msgstr "Hasil carian ConfigItem"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+msgid "Can't show item, no access rights for ConfigItem are given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+msgid "The deployment state of this config item"
+msgstr "Keadaan penempatan item ini config"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+msgid "The incident state of this config item"
+msgstr "Keadaan insiden bagi config item ini"
+
+#. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
+msgid "Maximum number of one element"
+msgstr "Bilangan maksimum satu elemen"
+
+#. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
+msgid "Empty fields indicate that the current values are kept"
+msgstr "Medan kosong menunjukkan bahawa nilai semasa disimpan"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Computer"
+msgstr ""
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Hardware"
+msgstr ""
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Network"
+msgstr ""
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Software"
+msgstr ""
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Expired"
+msgstr "Tamat Tempoh"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Maintenance"
+msgstr "penyelenggaraan"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Pilot"
+msgstr "Pilot"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Planned"
+msgstr "Dirancang"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Production"
+msgstr "pengeluaran"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Repair"
+msgstr "Membaiki"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Retired"
+msgstr "bersara"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Review"
+msgstr "mengkaji"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Test/QA"
+msgstr "Ujian/QA"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Laptop"
+msgstr "Laptop"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Desktop"
+msgstr "Desktop"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "PDA"
+msgstr "PDA"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Server"
+msgstr "Pelayan"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Other"
+msgstr "lain-lain"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Monitor"
+msgstr "Monitor"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Printer"
+msgstr "pencetak"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Switch"
+msgstr "Tukar"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Router"
+msgstr "Router"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "WLAN Access Point"
+msgstr "pusat akses WLAN"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Security Device"
+msgstr "Peranti Keselamatan"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Backup Device"
+msgstr "Peralatan Backup"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Mouse"
+msgstr "tetikus"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Keyboard"
+msgstr "Juruteknik"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Camera"
+msgstr "Kamera"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Beamer"
+msgstr "Beamer"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Modem"
+msgstr "Modem"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "PCMCIA Card"
+msgstr "PCMCIA Kad"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "USB Device"
+msgstr "Peranti USB"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Docking Station"
+msgstr "Dok Stesen"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Scanner"
+msgstr "Pengimbas"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Building"
+msgstr "Bangunan"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Floor"
+msgstr "tingkat"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Room"
+msgstr "Bilik"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Rack"
+msgstr "Rak"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Workplace"
+msgstr "Tempat kerja"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Outlet"
+msgstr "Outlet"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "IT Facility"
+msgstr "IT Kemudahan"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "LAN"
+msgstr "LAN"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "WLAN"
+msgstr "WLAN"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Telco"
+msgstr "Telko"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "GSM"
+msgstr "GSM"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Client Application"
+msgstr "Aplikasi pelanggan"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Middleware"
+msgstr "Middleware"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Server Application"
+msgstr "Permohonan Pelayan"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Client OS"
+msgstr "OS Pelanggan"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Server OS"
+msgstr "Server OS"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Admin Tool"
+msgstr "Admin Tool"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "User Tool"
+msgstr "Alat pengguna"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Embedded"
+msgstr "terbenam"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Single Licence"
+msgstr "Lesen Sahaja"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Per User"
+msgstr "setiap Pengguna"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Per Processor"
+msgstr "untuk Pemproses"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Per Server"
+msgstr "Setiap pelayan"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Per Node"
+msgstr "per Nod"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Volume Licence"
+msgstr "Lesen Jilid"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Enterprise Licence"
+msgstr "Lesen Enterprise"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Developer Licence"
+msgstr "Lesen Pemaju"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Demo"
+msgstr "Demo"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Time Restricted"
+msgstr "masa Terhad"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Freeware"
+msgstr "Freeware"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Open Source"
+msgstr "Sumber Terbuka"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Unlimited"
+msgstr "Tiada batasan"
 
 #. SysConfig
 msgid "Admin."
@@ -753,6 +675,10 @@ msgstr "Cetak item config."
 #. SysConfig
 msgid "Config item zoom."
 msgstr "Zum item config."
+
+#. SysConfig
+msgid "ConfigItemNumber"
+msgstr ""
 
 #. SysConfig
 msgid "Configuration Item Limit"

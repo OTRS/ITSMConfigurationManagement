@@ -79,48 +79,48 @@ sub Data {
     $Self->{Translation}->{'Property'} = 'Tulajdonság';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
-    $Self->{Translation}->{'No access to Class is given!'} = '';
-    $Self->{Translation}->{'Overview: ITSM ConfigItem'} = '';
+    $Self->{Translation}->{'No access to Class is given!'} = 'Nincs hozzáférés megadva az osztályhoz!';
+    $Self->{Translation}->{'Overview: ITSM ConfigItem'} = 'Áttekintés: ITSM konfigurációelem';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
-    $Self->{Translation}->{'No ConfigItemID is given!'} = '';
-    $Self->{Translation}->{'You need at least one selected Configuration Item!'} = '';
+    $Self->{Translation}->{'No ConfigItemID is given!'} = 'Nincs konfigurációelem-azonosító megadva!';
+    $Self->{Translation}->{'You need at least one selected Configuration Item!'} = 'Szüksége van legalább egy kiválasztott konfigurációelemre!';
     $Self->{Translation}->{'You don\'t have write access to this configuration item: %s.'} =
-        '';
+        'Nincs írási hozzáférése ehhez a konfigurációelemhez: %s.';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
-    $Self->{Translation}->{'Config item "%s" not found in database!'} = '';
-    $Self->{Translation}->{'Was not able to delete the configitem ID %s!'} = '';
-    $Self->{Translation}->{'No version found for ConfigItemID %s!'} = '';
+    $Self->{Translation}->{'Config item "%s" not found in database!'} = 'A(z) „%s” konfigurációelem nem található az adatbázisban!';
+    $Self->{Translation}->{'Was not able to delete the configitem ID %s!'} = 'Nem volt lehetséges a(z) %s konfigurációelem-azonosító törlése!';
+    $Self->{Translation}->{'No version found for ConfigItemID %s!'} = 'Nem található verzió a(z) %s konfigurációelem-azonosítónál!';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
-    $Self->{Translation}->{'No ConfigItemID, DuplicateID or ClassID is given!'} = '';
-    $Self->{Translation}->{'No access is given!'} = '';
-    $Self->{Translation}->{'No definition was defined for class %s!'} = '';
+    $Self->{Translation}->{'No ConfigItemID, DuplicateID or ClassID is given!'} = 'Nincs konfigurációelem-azonosító, kettőzésazonosító vagy osztályazonosító megadva!';
+    $Self->{Translation}->{'No access is given!'} = 'Nincs hozzáférés megadva!';
+    $Self->{Translation}->{'No definition was defined for class %s!'} = 'Nincs meghatározás meghatározva a(z) %s osztályhoz!';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
-    $Self->{Translation}->{'Can\'t show history, no ConfigItemID is given!'} = '';
-    $Self->{Translation}->{'Can\'t show history, no access rights given!'} = '';
+    $Self->{Translation}->{'Can\'t show history, no ConfigItemID is given!'} = 'Nem lehet megjeleníteni az előzményeket, nincs konfigurációelem-azonosító megadva!';
+    $Self->{Translation}->{'Can\'t show history, no access rights given!'} = 'Nem lehet megjeleníteni az előzményeket, nincsenek hozzáférési jogok megadva!';
     $Self->{Translation}->{'CIHistory::'} = 'CIHistory::';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
-    $Self->{Translation}->{'No ConfigItemID or VersionID is given!'} = '';
-    $Self->{Translation}->{'Can\'t show config item, no access rights given!'} = '';
-    $Self->{Translation}->{'ConfigItemID %s not found in database!'} = '';
-    $Self->{Translation}->{'VersionID %s not found in database!'} = '';
+    $Self->{Translation}->{'No ConfigItemID or VersionID is given!'} = 'Nincs konfigurációelem-azonosító vagy verzióazonosító megadva!';
+    $Self->{Translation}->{'Can\'t show config item, no access rights given!'} = 'Nem lehet megjeleníteni a konfigurációelemet, nincsenek hozzáférési jogok megadva!';
+    $Self->{Translation}->{'ConfigItemID %s not found in database!'} = 'A(z) %s konfigurációelem-azonosító nem található az adatbázisban!';
+    $Self->{Translation}->{'VersionID %s not found in database!'} = 'A(z) %s verzióazonosító nem található az adatbázisban!';
     $Self->{Translation}->{'ConfigItem'} = 'Konfigurációelem';
-    $Self->{Translation}->{'printed by %s at %s'} = '';
+    $Self->{Translation}->{'printed by %s at %s'} = 'nyomtatta: %s – %s';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
-    $Self->{Translation}->{'Invalid ClassID!'} = '';
-    $Self->{Translation}->{'No ClassID is given!'} = '';
-    $Self->{Translation}->{'No access rights for this class given!'} = '';
+    $Self->{Translation}->{'Invalid ClassID!'} = 'Érvénytelen osztályazonosító!';
+    $Self->{Translation}->{'No ClassID is given!'} = 'Nincs osztályazonosító megadva!';
+    $Self->{Translation}->{'No access rights for this class given!'} = 'Nincsenek hozzáférési jogok megadva ehhez az osztályhoz!';
     $Self->{Translation}->{'No Result!'} = 'Nincs találat!';
     $Self->{Translation}->{'Config Item Search Results'} = 'Konfigurációelem keresési eredmények';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
     $Self->{Translation}->{'Can\'t show item, no access rights for ConfigItem are given!'} =
-        '';
+        'Nem lehet megjeleníteni az elemet, nincsenek hozzáférési jogok megadva a konfigurációelemhez!';
     $Self->{Translation}->{'The deployment state of this config item'} = 'A konfigurációelem üzembe állítási állapota';
     $Self->{Translation}->{'The incident state of this config item'} = 'A konfigurációelem incidensállapota';
 
@@ -208,7 +208,7 @@ sub Data {
     $Self->{Translation}->{'Config item history.'} = 'Konfigurációelem előzményei.';
     $Self->{Translation}->{'Config item print.'} = 'Konfigurációelem nyomtatása.';
     $Self->{Translation}->{'Config item zoom.'} = 'Konfigurációelem nagyítása.';
-    $Self->{Translation}->{'ConfigItemNumber'} = '';
+    $Self->{Translation}->{'ConfigItemNumber'} = 'Konfigurációelem-szám';
     $Self->{Translation}->{'Configuration Item Limit'} = 'Konfigurációelem-korlát';
     $Self->{Translation}->{'Configuration Item limit per page'} = 'Konfigurációelem-korlát oldalanként';
     $Self->{Translation}->{'Configuration Management Database.'} = 'Konfigurációmenedzsment-adatbázis.';

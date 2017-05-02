@@ -79,48 +79,48 @@ sub Data {
     $Self->{Translation}->{'Property'} = 'Propriedade';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
-    $Self->{Translation}->{'No access to Class is given!'} = '';
-    $Self->{Translation}->{'Overview: ITSM ConfigItem'} = '';
+    $Self->{Translation}->{'No access to Class is given!'} = 'Nenhum acesso para a classe é dado!';
+    $Self->{Translation}->{'Overview: ITSM ConfigItem'} = 'Visão geral: ITSM ConfigItem';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
-    $Self->{Translation}->{'No ConfigItemID is given!'} = '';
-    $Self->{Translation}->{'You need at least one selected Configuration Item!'} = '';
+    $Self->{Translation}->{'No ConfigItemID is given!'} = 'Nenhum ConfigItemID é dado!';
+    $Self->{Translation}->{'You need at least one selected Configuration Item!'} = 'Você precisa selecionar pelo menos um item de configuração!';
     $Self->{Translation}->{'You don\'t have write access to this configuration item: %s.'} =
-        '';
+        'Você não tem acesso de escrita para este item de configuração: %s.';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
-    $Self->{Translation}->{'Config item "%s" not found in database!'} = '';
-    $Self->{Translation}->{'Was not able to delete the configitem ID %s!'} = '';
-    $Self->{Translation}->{'No version found for ConfigItemID %s!'} = '';
+    $Self->{Translation}->{'Config item "%s" not found in database!'} = 'Item de configuração "%s" não encontrado na base de dados!';
+    $Self->{Translation}->{'Was not able to delete the configitem ID %s!'} = 'Não foi possível excluir o ID de item de configuração %s!';
+    $Self->{Translation}->{'No version found for ConfigItemID %s!'} = 'Nenhuma versão encontrada para o ConfigItemID %s!';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
-    $Self->{Translation}->{'No ConfigItemID, DuplicateID or ClassID is given!'} = '';
-    $Self->{Translation}->{'No access is given!'} = '';
-    $Self->{Translation}->{'No definition was defined for class %s!'} = '';
+    $Self->{Translation}->{'No ConfigItemID, DuplicateID or ClassID is given!'} = 'Nenhum ConfigItemID, DuplicateID ou ClassID é dado!';
+    $Self->{Translation}->{'No access is given!'} = 'Nenhum acesso é dado!';
+    $Self->{Translation}->{'No definition was defined for class %s!'} = 'Nenhuma definição para a classe %s!';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
-    $Self->{Translation}->{'Can\'t show history, no ConfigItemID is given!'} = '';
-    $Self->{Translation}->{'Can\'t show history, no access rights given!'} = '';
+    $Self->{Translation}->{'Can\'t show history, no ConfigItemID is given!'} = 'Não é possível exibir histórico. Nenhum ConfigItemID é dado!';
+    $Self->{Translation}->{'Can\'t show history, no access rights given!'} = 'Não é possível exibir histórico. Nenhum direito de acesso é dado!';
     $Self->{Translation}->{'CIHistory::'} = 'CIHistory::';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
-    $Self->{Translation}->{'No ConfigItemID or VersionID is given!'} = '';
-    $Self->{Translation}->{'Can\'t show config item, no access rights given!'} = '';
-    $Self->{Translation}->{'ConfigItemID %s not found in database!'} = '';
-    $Self->{Translation}->{'VersionID %s not found in database!'} = '';
+    $Self->{Translation}->{'No ConfigItemID or VersionID is given!'} = 'Nenhum ConfigItemID ou VersionID é dado!';
+    $Self->{Translation}->{'Can\'t show config item, no access rights given!'} = 'Não foi possível exibir item de configuração. Nenhum direito de acesso é dado!';
+    $Self->{Translation}->{'ConfigItemID %s not found in database!'} = 'ConfigItemID %s não encontrado na base de dados!';
+    $Self->{Translation}->{'VersionID %s not found in database!'} = 'VersionID %s não encontrado na base de dados!';
     $Self->{Translation}->{'ConfigItem'} = 'Item de configuração';
-    $Self->{Translation}->{'printed by %s at %s'} = '';
+    $Self->{Translation}->{'printed by %s at %s'} = 'Impresso por %s em %s';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
-    $Self->{Translation}->{'Invalid ClassID!'} = '';
-    $Self->{Translation}->{'No ClassID is given!'} = '';
-    $Self->{Translation}->{'No access rights for this class given!'} = '';
+    $Self->{Translation}->{'Invalid ClassID!'} = 'ClassID inválido!';
+    $Self->{Translation}->{'No ClassID is given!'} = 'Nenhum ClassID é dado!';
+    $Self->{Translation}->{'No access rights for this class given!'} = 'Nenhum direito de acesso para esta classe é dado!';
     $Self->{Translation}->{'No Result!'} = 'Nenhum resultado!';
     $Self->{Translation}->{'Config Item Search Results'} = 'Resultados da pesquisa de Itens de configuração';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
     $Self->{Translation}->{'Can\'t show item, no access rights for ConfigItem are given!'} =
-        '';
+        'Não foi possível exibir item. Nenhum direito de acesso para ConfigItem é dado!';
     $Self->{Translation}->{'The deployment state of this config item'} = 'O estado de implantação deste item de configuração';
     $Self->{Translation}->{'The incident state of this config item'} = 'O estado de incidente deste item de configuração';
 
@@ -208,7 +208,7 @@ sub Data {
     $Self->{Translation}->{'Config item history.'} = 'Histórivo do item de configuração.';
     $Self->{Translation}->{'Config item print.'} = 'Impressão do item de configuração.';
     $Self->{Translation}->{'Config item zoom.'} = 'Zoom de item de configuração.';
-    $Self->{Translation}->{'ConfigItemNumber'} = '';
+    $Self->{Translation}->{'ConfigItemNumber'} = 'ConfigItemNumber';
     $Self->{Translation}->{'Configuration Item Limit'} = 'Limite de Item de Configuração';
     $Self->{Translation}->{'Configuration Item limit per page'} = 'Limite de Item de Configuração por página';
     $Self->{Translation}->{'Configuration Management Database.'} = 'Configuração do Gerenciamento do Banco de Dados.';

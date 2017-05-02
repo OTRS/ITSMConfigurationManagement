@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2017-02-14 17:57+0000\n"
-"PO-Revision-Date: 2017-02-14 16:58+0000\n"
+"POT-Creation-Date: 2017-04-28 13:33+0000\n"
+"PO-Revision-Date: 2017-04-28 11:34+0000\n"
 "Last-Translator: Udo Bretz\n"
 "Language-Team: Japanese (http://www.transifex.com/otrs/OTRS/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -14,514 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-
-#. Template: AAAITSMConfigItem
-msgid "Computer"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "Hardware"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "Network"
-msgstr "ネットワーク"
-
-#. Template: AAAITSMConfigItem
-msgid "Software"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "Address"
-msgstr "アドレス"
-
-#. Template: AAAITSMConfigItem
-msgid "Admin Tool"
-msgstr "管理ツール"
-
-#. Template: AAAITSMConfigItem
-msgid "Backup Device"
-msgstr "バックアップ・デバイス"
-
-#. Template: AAAITSMConfigItem
-msgid "Beamer"
-msgstr "プロジェクター"
-
-#. Template: AAAITSMConfigItem
-msgid "Building"
-msgstr "構築"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::ConfigItemCreate"
-msgstr "CIHistory::ConfigItemCreate"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::ConfigItemDelete"
-msgstr "CIHistory::ConfigItemDelete"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::DefinitionUpdate"
-msgstr "CIHistory::DefinitionUpdate"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::DeploymentStateUpdate"
-msgstr "CIHistory::DeploymentStateUpdate"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::IncidentStateUpdate"
-msgstr "CIHistory::IncidentStateUpdate"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::LinkAdd"
-msgstr "CIHistory::LinkAdd"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::LinkDelete"
-msgstr "CIHistory::LinkDelete"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::NameUpdate"
-msgstr "CIHistory::NameUpdate"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::ValueUpdate"
-msgstr "CIHistory::ValueUpdate"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::VersionCreate"
-msgstr "CIHistory::VersionCreate"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::VersionDelete"
-msgstr "CIHistory::VersionDelete"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::AttachmentAdd"
-msgstr "CIHistory::AttachmentAdd"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::AttachmentDelete"
-msgstr "CIHistory::AttachmentDelete"
-
-#. Template: AAAITSMConfigItem
-msgid "CPU"
-msgstr "CPU"
-
-#. Template: AAAITSMConfigItem
-msgid "Camera"
-msgstr "カメラ"
-
-#. Template: AAAITSMConfigItem
-msgid "Capacity"
-msgstr "容量"
-
-#. Template: AAAITSMConfigItem
-msgid "Change Definition"
-msgstr "定義の変更"
-
-#. Template: AAAITSMConfigItem
-msgid "Change of definition failed! See System Log for details."
-msgstr "定義の変更に失敗しました。詳細はシステムログを参照してください。"
-
-#. Template: AAAITSMConfigItem
-msgid "Client Application"
-msgstr "クライアントソフト"
-
-#. Template: AAAITSMConfigItem
-msgid "Client OS"
-msgstr "クライアントOS"
-
-#. Template: AAAITSMConfigItem
-msgid "Config Item-Area"
-msgstr "アイテムエリアの設定"
-
-#. Template: AAAITSMConfigItem
-msgid "Config Items available"
-msgstr "設定項目の利用可 / 不可"
-
-#. Template: AAAITSMConfigItem
-msgid "Config Items shown"
-msgstr "設定項目表示"
-
-#. Template: AAAITSMConfigItem
-msgid "CMDB"
-msgstr "CMDB"
-
-#. Template: AAAITSMConfigItem
-msgid "Demo"
-msgstr "デモ"
-
-#. Template: AAAITSMConfigItem
-msgid "Desktop"
-msgstr "デスクトップ"
-
-#. Template: AAAITSMConfigItem
-msgid "Developer Licence"
-msgstr "開発者ライセンス"
-
-#. Template: AAAITSMConfigItem
-msgid "Docking Station"
-msgstr "ドッキングステーション"
-
-#. Template: AAAITSMConfigItem
-msgid "Duplicate"
-msgstr "コピー"
-
-#. Template: AAAITSMConfigItem
-msgid "Embedded"
-msgstr "埋め込みオブジェクト"
-
-#. Template: AAAITSMConfigItem
-msgid "Empty fields indicate that the current values are kept"
-msgstr "空欄の項目は現在の値が保持されること意味します"
-
-#. Template: AAAITSMConfigItem
-msgid "Enterprise Licence"
-msgstr "エンタープライズ・ライセンス"
-
-#. Template: AAAITSMConfigItem
-msgid "Expiration Date"
-msgstr "有効期限"
-
-#. Template: AAAITSMConfigItem
-msgid "Expired"
-msgstr "期限切れ"
-
-#. Template: AAAITSMConfigItem
-msgid "Floor"
-msgstr "切捨て"
-
-#. Template: AAAITSMConfigItem
-msgid "Freeware"
-msgstr "フリーウェア"
-
-#. Template: AAAITSMConfigItem
-msgid "GSM"
-msgstr "GSM"
-
-#. Template: AAAITSMConfigItem
-msgid "Gateway"
-msgstr "ゲートウェイ"
-
-#. Template: AAAITSMConfigItem
-msgid "Graphic Adapter"
-msgstr "グラフィックアダプタ"
-
-#. Template: AAAITSMConfigItem
-msgid "Hard Disk"
-msgstr "ハードディスク"
-
-#. Template: AAAITSMConfigItem
-msgid "Hard Disk::Capacity"
-msgstr "ハードディスク容量"
-
-#. Template: AAAITSMConfigItem
-msgid "Hide Versions"
-msgstr "バージョンを非表示"
-
-#. Template: AAAITSMConfigItem
-msgid "IP Address"
-msgstr "IP アドレス"
-
-#. Template: AAAITSMConfigItem
-msgid "IP over DHCP"
-msgstr "DHCP有効"
-
-#. Template: AAAITSMConfigItem
-msgid "IT Facility"
-msgstr "ITファシリティ"
-
-#. Template: AAAITSMConfigItem
-msgid "Incident"
-msgstr "インシデント"
-
-#. Template: AAAITSMConfigItem
-msgid "Install Date"
-msgstr "インストール日付"
-
-#. Template: AAAITSMConfigItem
-msgid "Keyboard"
-msgstr "キーボード"
-
-#. Template: AAAITSMConfigItem
-msgid "LAN"
-msgstr "LAN"
-
-#. Template: AAAITSMConfigItem
-msgid "Laptop"
-msgstr "ノートPC"
-
-#. Template: AAAITSMConfigItem
-msgid "Last Change"
-msgstr "最新の変更"
-
-#. Template: AAAITSMConfigItem
-msgid "Licence Key"
-msgstr "ライセンスキー"
-
-#. Template: AAAITSMConfigItem
-msgid "Licence Key::Expiration Date"
-msgstr "ライセンスキーの有効期限"
-
-#. Template: AAAITSMConfigItem
-msgid "Licence Key::Quantity"
-msgstr "ライセンスキーの数"
-
-#. Template: AAAITSMConfigItem
-msgid "Licence Type"
-msgstr "ライセンスタイプ"
-
-#. Template: AAAITSMConfigItem
-msgid "Maintenance"
-msgstr "メンテナンス"
-
-#. Template: AAAITSMConfigItem
-msgid "Maximum number of one element"
-msgstr "一エレメントあたりの最大数"
-
-#. Template: AAAITSMConfigItem
-msgid "Media"
-msgstr "メディア"
-
-#. Template: AAAITSMConfigItem
-msgid "Middleware"
-msgstr "ミドルウェア"
-
-#. Template: AAAITSMConfigItem
-msgid "Model"
-msgstr "モデル"
-
-#. Template: AAAITSMConfigItem
-msgid "Modem"
-msgstr "モデム"
-
-#. Template: AAAITSMConfigItem
-msgid "Monitor"
-msgstr "モニタ"
-
-#. Template: AAAITSMConfigItem
-msgid "Mouse"
-msgstr "マウス"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Adapter"
-msgstr "ネットワークアダプタ"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Adapter::IP Address"
-msgstr "ネットワークアダプタ::IP アドレス"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Adapter::IP over DHCP"
-msgstr "ネットワーク・DHCP有効"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Address"
-msgstr "ネットワークアドレス"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Address::Gateway"
-msgstr "デフォルトゲートウェイ"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Address::Subnet Mask"
-msgstr "サブネットマスク"
-
-#. Template: AAAITSMConfigItem
-msgid "Open Source"
-msgstr "オープンソース"
-
-#. Template: AAAITSMConfigItem
-msgid "Operational"
-msgstr "運用"
-
-#. Template: AAAITSMConfigItem
-msgid "Other"
-msgstr "他"
-
-#. Template: AAAITSMConfigItem
-msgid "Other Equipment"
-msgstr "その他の機器"
-
-#. Template: AAAITSMConfigItem
-msgid "Outlet"
-msgstr "アウトレット"
-
-#. Template: AAAITSMConfigItem
-msgid "PCMCIA Card"
-msgstr "PCMCIA カード"
-
-#. Template: AAAITSMConfigItem
-msgid "PDA"
-msgstr "PDA"
-
-#. Template: AAAITSMConfigItem
-msgid "Per Node"
-msgstr "ノード毎"
-
-#. Template: AAAITSMConfigItem
-msgid "Per Processor"
-msgstr "プロセッサ毎"
-
-#. Template: AAAITSMConfigItem
-msgid "Per Server"
-msgstr "サーバ毎"
-
-#. Template: AAAITSMConfigItem
-msgid "Per User"
-msgstr "ユーザ毎"
-
-#. Template: AAAITSMConfigItem
-msgid "Phone 1"
-msgstr "電話 1"
-
-#. Template: AAAITSMConfigItem
-msgid "Phone 2"
-msgstr "電話 2"
-
-#. Template: AAAITSMConfigItem
-msgid "Pilot"
-msgstr "パイロット"
-
-#. Template: AAAITSMConfigItem
-msgid "Planned"
-msgstr "計画"
-
-#. Template: AAAITSMConfigItem
-msgid "Printer"
-msgstr "プリンタ"
-
-#. Template: AAAITSMConfigItem
-msgid "Production"
-msgstr "生産"
-
-#. Template: AAAITSMConfigItem
-msgid "Quantity"
-msgstr "数量"
-
-#. Template: AAAITSMConfigItem
-msgid "Rack"
-msgstr "ラック"
-
-#. Template: AAAITSMConfigItem
-msgid "Ram"
-msgstr "RAM"
-
-#. Template: AAAITSMConfigItem
-msgid "Repair"
-msgstr "修理"
-
-#. Template: AAAITSMConfigItem
-msgid "Retired"
-msgstr "引退"
-
-#. Template: AAAITSMConfigItem
-msgid "Review"
-msgstr "レビュー"
-
-#. Template: AAAITSMConfigItem
-msgid "Room"
-msgstr "室内"
-
-#. Template: AAAITSMConfigItem
-msgid "Router"
-msgstr "ルータ"
-
-#. Template: AAAITSMConfigItem
-msgid "Scanner"
-msgstr "スキャナ"
-
-#. Template: AAAITSMConfigItem
-msgid "Search Config Items"
-msgstr "設定項目の検索"
-
-#. Template: AAAITSMConfigItem
-msgid "Security Device"
-msgstr "セキュリティデバイス"
-
-#. Template: AAAITSMConfigItem
-msgid "Serial Number"
-msgstr "シリアルナンバー"
-
-#. Template: AAAITSMConfigItem
-msgid "Server"
-msgstr "サーバ"
-
-#. Template: AAAITSMConfigItem
-msgid "Server Application"
-msgstr "サーバソフト"
-
-#. Template: AAAITSMConfigItem
-msgid "Server OS"
-msgstr "サーバOS"
-
-#. Template: AAAITSMConfigItem
-msgid "Show Versions"
-msgstr "バージョンの表示"
-
-#. Template: AAAITSMConfigItem
-msgid "Single Licence"
-msgstr "シングルライセンス"
-
-#. Template: AAAITSMConfigItem
-msgid "Subnet Mask"
-msgstr "サブネットマスク"
-
-#. Template: AAAITSMConfigItem
-msgid "Switch"
-msgstr "スイッチ"
-
-#. Template: AAAITSMConfigItem
-msgid "Telco"
-msgstr "電話会社"
-
-#. Template: AAAITSMConfigItem
-msgid "Test/QA"
-msgstr "テスト / QA"
-
-#. Template: AAAITSMConfigItem
-msgid "The deployment state of this config item"
-msgstr "この設定項目の展開状態"
-
-#. Template: AAAITSMConfigItem
-msgid "The incident state of this config item"
-msgstr "この設定項目のインシデント状態"
-
-#. Template: AAAITSMConfigItem
-msgid "Time Restricted"
-msgstr "時間制限"
-
-#. Template: AAAITSMConfigItem
-msgid "USB Device"
-msgstr "USBデバイス"
-
-#. Template: AAAITSMConfigItem
-msgid "Unlimited"
-msgstr "無制限"
-
-#. Template: AAAITSMConfigItem
-msgid "User Tool"
-msgstr "ユーザ・ツール"
-
-#. Template: AAAITSMConfigItem
-msgid "Volume Licence"
-msgstr "ボリュームライセンス"
-
-#. Template: AAAITSMConfigItem
-msgid "WLAN"
-msgstr "WLAN"
-
-#. Template: AAAITSMConfigItem
-msgid "WLAN Access Point"
-msgstr "WLAN アクセスポイント"
-
-#. Template: AAAITSMConfigItem
-msgid "Warranty Expiration Date"
-msgstr "ワランティ終了日"
-
-#. Template: AAAITSMConfigItem
-msgid "Workplace"
-msgstr "職場"
 
 #. Template: AdminITSMConfigItem
 msgid "Config Item Management"
@@ -693,7 +185,55 @@ msgid "Property"
 msgstr "項目"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
-msgid "ITSM ConfigItem"
+msgid "No access to Class is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
+msgid "Overview: ITSM ConfigItem"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+msgid "No ConfigItemID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+msgid "You need at least one selected Configuration Item!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+msgid "You don't have write access to this configuration item: %s."
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+msgid "Config item \"%s\" not found in database!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+msgid "Was not able to delete the configitem ID %s!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+msgid "No version found for ConfigItemID %s!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+msgid "No ConfigItemID, DuplicateID or ClassID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+msgid "No access is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+msgid "No definition was defined for class %s!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "Can't show history, no ConfigItemID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "Can't show history, no access rights given!"
 msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
@@ -701,8 +241,40 @@ msgid "CIHistory::"
 msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "No ConfigItemID or VersionID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "Can't show config item, no access rights given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "ConfigItemID %s not found in database!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "VersionID %s not found in database!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "ConfigItem"
 msgstr "設定項目"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "printed by %s at %s"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+msgid "Invalid ClassID!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+msgid "No ClassID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+msgid "No access rights for this class given!"
+msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "No Result!"
@@ -711,6 +283,356 @@ msgstr "結果がありません。"
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "Config Item Search Results"
 msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+msgid "Can't show item, no access rights for ConfigItem are given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+msgid "The deployment state of this config item"
+msgstr "この設定項目の展開状態"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+msgid "The incident state of this config item"
+msgstr "この設定項目のインシデント状態"
+
+#. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
+msgid "Maximum number of one element"
+msgstr "一エレメントあたりの最大数"
+
+#. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
+msgid "Empty fields indicate that the current values are kept"
+msgstr "空欄の項目は現在の値が保持されること意味します"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Computer"
+msgstr ""
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Hardware"
+msgstr ""
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Network"
+msgstr "ネットワーク"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Software"
+msgstr ""
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Expired"
+msgstr "期限切れ"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Maintenance"
+msgstr "メンテナンス"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Pilot"
+msgstr "パイロット"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Planned"
+msgstr "計画"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Production"
+msgstr "生産"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Repair"
+msgstr "修理"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Retired"
+msgstr "引退"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Review"
+msgstr "レビュー"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Test/QA"
+msgstr "テスト / QA"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Laptop"
+msgstr "ノートPC"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Desktop"
+msgstr "デスクトップ"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "PDA"
+msgstr "PDA"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Server"
+msgstr "サーバ"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Other"
+msgstr "他"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Monitor"
+msgstr "モニタ"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Printer"
+msgstr "プリンタ"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Switch"
+msgstr "スイッチ"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Router"
+msgstr "ルータ"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "WLAN Access Point"
+msgstr "WLAN アクセスポイント"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Security Device"
+msgstr "セキュリティデバイス"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Backup Device"
+msgstr "バックアップ・デバイス"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Mouse"
+msgstr "マウス"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Keyboard"
+msgstr "キーボード"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Camera"
+msgstr "カメラ"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Beamer"
+msgstr "プロジェクター"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Modem"
+msgstr "モデム"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "PCMCIA Card"
+msgstr "PCMCIA カード"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "USB Device"
+msgstr "USBデバイス"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Docking Station"
+msgstr "ドッキングステーション"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Scanner"
+msgstr "スキャナ"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Building"
+msgstr "構築"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Floor"
+msgstr "切捨て"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Room"
+msgstr "室内"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Rack"
+msgstr "ラック"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Workplace"
+msgstr "職場"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Outlet"
+msgstr "アウトレット"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "IT Facility"
+msgstr "ITファシリティ"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "LAN"
+msgstr "LAN"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "WLAN"
+msgstr "WLAN"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Telco"
+msgstr "電話会社"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "GSM"
+msgstr "GSM"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Client Application"
+msgstr "クライアントソフト"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Middleware"
+msgstr "ミドルウェア"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Server Application"
+msgstr "サーバソフト"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Client OS"
+msgstr "クライアントOS"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Server OS"
+msgstr "サーバOS"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Admin Tool"
+msgstr "管理ツール"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "User Tool"
+msgstr "ユーザ・ツール"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Embedded"
+msgstr "埋め込みオブジェクト"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Single Licence"
+msgstr "シングルライセンス"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Per User"
+msgstr "ユーザ毎"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Per Processor"
+msgstr "プロセッサ毎"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Per Server"
+msgstr "サーバ毎"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Per Node"
+msgstr "ノード毎"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Volume Licence"
+msgstr "ボリュームライセンス"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Enterprise Licence"
+msgstr "エンタープライズ・ライセンス"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Developer Licence"
+msgstr "開発者ライセンス"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Demo"
+msgstr "デモ"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Time Restricted"
+msgstr "時間制限"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Freeware"
+msgstr "フリーウェア"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Open Source"
+msgstr "オープンソース"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Unlimited"
+msgstr "無制限"
 
 #. SysConfig
 msgid "Admin."
@@ -751,6 +673,10 @@ msgstr ""
 
 #. SysConfig
 msgid "Config item zoom."
+msgstr ""
+
+#. SysConfig
+msgid "ConfigItemNumber"
 msgstr ""
 
 #. SysConfig

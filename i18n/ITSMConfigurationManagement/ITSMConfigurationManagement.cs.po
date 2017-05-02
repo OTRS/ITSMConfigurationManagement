@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2017-02-14 17:57+0000\n"
-"PO-Revision-Date: 2017-02-14 16:58+0000\n"
+"POT-Creation-Date: 2017-04-28 13:33+0000\n"
+"PO-Revision-Date: 2017-04-28 11:34+0000\n"
 "Last-Translator: Udo Bretz\n"
 "Language-Team: Czech (http://www.transifex.com/otrs/OTRS/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -13,514 +13,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-
-#. Template: AAAITSMConfigItem
-msgid "Computer"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "Hardware"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "Network"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "Software"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "Address"
-msgstr "Adresa"
-
-#. Template: AAAITSMConfigItem
-msgid "Admin Tool"
-msgstr "Administrační nástroj"
-
-#. Template: AAAITSMConfigItem
-msgid "Backup Device"
-msgstr "Zálohovácí Zařízení"
-
-#. Template: AAAITSMConfigItem
-msgid "Beamer"
-msgstr "Beamer"
-
-#. Template: AAAITSMConfigItem
-msgid "Building"
-msgstr "Budova"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::ConfigItemCreate"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::ConfigItemDelete"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::DefinitionUpdate"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::DeploymentStateUpdate"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::IncidentStateUpdate"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::LinkAdd"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::LinkDelete"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::NameUpdate"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::ValueUpdate"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::VersionCreate"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::VersionDelete"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::AttachmentAdd"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::AttachmentDelete"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CPU"
-msgstr "Procesor"
-
-#. Template: AAAITSMConfigItem
-msgid "Camera"
-msgstr "Kamera"
-
-#. Template: AAAITSMConfigItem
-msgid "Capacity"
-msgstr "Kapacita"
-
-#. Template: AAAITSMConfigItem
-msgid "Change Definition"
-msgstr "Změna Definice"
-
-#. Template: AAAITSMConfigItem
-msgid "Change of definition failed! See System Log for details."
-msgstr "Změna definice neúspěšná! Viz Systémový Log pro podrobnosti."
-
-#. Template: AAAITSMConfigItem
-msgid "Client Application"
-msgstr "Uživatelské Aplikace"
-
-#. Template: AAAITSMConfigItem
-msgid "Client OS"
-msgstr "Uživatelský Operační Systém"
-
-#. Template: AAAITSMConfigItem
-msgid "Config Item-Area"
-msgstr "Konfig. Položka-Struktura"
-
-#. Template: AAAITSMConfigItem
-msgid "Config Items available"
-msgstr "Dostupné Konfig. Položky"
-
-#. Template: AAAITSMConfigItem
-msgid "Config Items shown"
-msgstr "Zobrazené Konfig. Položky"
-
-#. Template: AAAITSMConfigItem
-msgid "CMDB"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "Demo"
-msgstr "Demo"
-
-#. Template: AAAITSMConfigItem
-msgid "Desktop"
-msgstr "Stolní"
-
-#. Template: AAAITSMConfigItem
-msgid "Developer Licence"
-msgstr "Licence Vývojáře"
-
-#. Template: AAAITSMConfigItem
-msgid "Docking Station"
-msgstr "Dok Stanice"
-
-#. Template: AAAITSMConfigItem
-msgid "Duplicate"
-msgstr "Duplikace"
-
-#. Template: AAAITSMConfigItem
-msgid "Embedded"
-msgstr "Vestavěný"
-
-#. Template: AAAITSMConfigItem
-msgid "Empty fields indicate that the current values are kept"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "Enterprise Licence"
-msgstr "Podniková Licence "
-
-#. Template: AAAITSMConfigItem
-msgid "Expiration Date"
-msgstr "Konec Platnosti"
-
-#. Template: AAAITSMConfigItem
-msgid "Expired"
-msgstr "Propadnuté"
-
-#. Template: AAAITSMConfigItem
-msgid "Floor"
-msgstr "podlaží"
-
-#. Template: AAAITSMConfigItem
-msgid "Freeware"
-msgstr "Freeware"
-
-#. Template: AAAITSMConfigItem
-msgid "GSM"
-msgstr "GSM"
-
-#. Template: AAAITSMConfigItem
-msgid "Gateway"
-msgstr "Gateway"
-
-#. Template: AAAITSMConfigItem
-msgid "Graphic Adapter"
-msgstr "Grafická Karta"
-
-#. Template: AAAITSMConfigItem
-msgid "Hard Disk"
-msgstr "Pevný Disk"
-
-#. Template: AAAITSMConfigItem
-msgid "Hard Disk::Capacity"
-msgstr "Pevný Disk::Kapacita"
-
-#. Template: AAAITSMConfigItem
-msgid "Hide Versions"
-msgstr "Skrýt Verze"
-
-#. Template: AAAITSMConfigItem
-msgid "IP Address"
-msgstr "IP Adresa"
-
-#. Template: AAAITSMConfigItem
-msgid "IP over DHCP"
-msgstr "IP z DHCP"
-
-#. Template: AAAITSMConfigItem
-msgid "IT Facility"
-msgstr "IT Příslušenství"
-
-#. Template: AAAITSMConfigItem
-msgid "Incident"
-msgstr "Incident"
-
-#. Template: AAAITSMConfigItem
-msgid "Install Date"
-msgstr "Datum Instalace"
-
-#. Template: AAAITSMConfigItem
-msgid "Keyboard"
-msgstr "Klávesnice"
-
-#. Template: AAAITSMConfigItem
-msgid "LAN"
-msgstr "LAN"
-
-#. Template: AAAITSMConfigItem
-msgid "Laptop"
-msgstr "Mobilní"
-
-#. Template: AAAITSMConfigItem
-msgid "Last Change"
-msgstr "Poslední změna"
-
-#. Template: AAAITSMConfigItem
-msgid "Licence Key"
-msgstr "Licenční Klíč"
-
-#. Template: AAAITSMConfigItem
-msgid "Licence Key::Expiration Date"
-msgstr "Licenční Klíč::Konec Platnosti"
-
-#. Template: AAAITSMConfigItem
-msgid "Licence Key::Quantity"
-msgstr "Licenční Klíč::Množství"
-
-#. Template: AAAITSMConfigItem
-msgid "Licence Type"
-msgstr "Druh licence"
-
-#. Template: AAAITSMConfigItem
-msgid "Maintenance"
-msgstr "Údržba"
-
-#. Template: AAAITSMConfigItem
-msgid "Maximum number of one element"
-msgstr "Max počet jedné Položky"
-
-#. Template: AAAITSMConfigItem
-msgid "Media"
-msgstr "Médium"
-
-#. Template: AAAITSMConfigItem
-msgid "Middleware"
-msgstr "Střední úroveň"
-
-#. Template: AAAITSMConfigItem
-msgid "Model"
-msgstr "Model"
-
-#. Template: AAAITSMConfigItem
-msgid "Modem"
-msgstr "Modem"
-
-#. Template: AAAITSMConfigItem
-msgid "Monitor"
-msgstr "Monitor"
-
-#. Template: AAAITSMConfigItem
-msgid "Mouse"
-msgstr "Myš"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Adapter"
-msgstr "Síťový Adapter"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Adapter::IP Address"
-msgstr "Síťový Adapter::IP adresa"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Adapter::IP over DHCP"
-msgstr "Síťový Adapter::IP z DHCP"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Address"
-msgstr "Síťová Adresa"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Address::Gateway"
-msgstr "Síťová Adresa::Gateway"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Address::Subnet Mask"
-msgstr "Síťová Adresa::Maska Podsítě"
-
-#. Template: AAAITSMConfigItem
-msgid "Open Source"
-msgstr "Software s Otevřeným Kódem"
-
-#. Template: AAAITSMConfigItem
-msgid "Operational"
-msgstr "Operační"
-
-#. Template: AAAITSMConfigItem
-msgid "Other"
-msgstr "Jiné"
-
-#. Template: AAAITSMConfigItem
-msgid "Other Equipment"
-msgstr "Jiné Vybavení"
-
-#. Template: AAAITSMConfigItem
-msgid "Outlet"
-msgstr "Filiálka"
-
-#. Template: AAAITSMConfigItem
-msgid "PCMCIA Card"
-msgstr "PCMCIA karta"
-
-#. Template: AAAITSMConfigItem
-msgid "PDA"
-msgstr "PDA"
-
-#. Template: AAAITSMConfigItem
-msgid "Per Node"
-msgstr "na Uzel"
-
-#. Template: AAAITSMConfigItem
-msgid "Per Processor"
-msgstr "na Procesor"
-
-#. Template: AAAITSMConfigItem
-msgid "Per Server"
-msgstr "na Server"
-
-#. Template: AAAITSMConfigItem
-msgid "Per User"
-msgstr "na Uživatele"
-
-#. Template: AAAITSMConfigItem
-msgid "Phone 1"
-msgstr "Telefon 1"
-
-#. Template: AAAITSMConfigItem
-msgid "Phone 2"
-msgstr "Telefon 2"
-
-#. Template: AAAITSMConfigItem
-msgid "Pilot"
-msgstr "Řídící"
-
-#. Template: AAAITSMConfigItem
-msgid "Planned"
-msgstr "Naplánováno"
-
-#. Template: AAAITSMConfigItem
-msgid "Printer"
-msgstr "Tiskárna"
-
-#. Template: AAAITSMConfigItem
-msgid "Production"
-msgstr "Produkční"
-
-#. Template: AAAITSMConfigItem
-msgid "Quantity"
-msgstr "Množství"
-
-#. Template: AAAITSMConfigItem
-msgid "Rack"
-msgstr "Rack"
-
-#. Template: AAAITSMConfigItem
-msgid "Ram"
-msgstr "RAM"
-
-#. Template: AAAITSMConfigItem
-msgid "Repair"
-msgstr "Oprava/Obnovení"
-
-#. Template: AAAITSMConfigItem
-msgid "Retired"
-msgstr "Mimo provoz"
-
-#. Template: AAAITSMConfigItem
-msgid "Review"
-msgstr "Přehled"
-
-#. Template: AAAITSMConfigItem
-msgid "Room"
-msgstr "Místnost"
-
-#. Template: AAAITSMConfigItem
-msgid "Router"
-msgstr "Router"
-
-#. Template: AAAITSMConfigItem
-msgid "Scanner"
-msgstr "Skener"
-
-#. Template: AAAITSMConfigItem
-msgid "Search Config Items"
-msgstr "Vyhledat Konfig. Položky"
-
-#. Template: AAAITSMConfigItem
-msgid "Security Device"
-msgstr "Bezpečnostní Zařízení"
-
-#. Template: AAAITSMConfigItem
-msgid "Serial Number"
-msgstr "Sériové Číslo"
-
-#. Template: AAAITSMConfigItem
-msgid "Server"
-msgstr "Server"
-
-#. Template: AAAITSMConfigItem
-msgid "Server Application"
-msgstr "Serverová Aplikace"
-
-#. Template: AAAITSMConfigItem
-msgid "Server OS"
-msgstr "Serverový Operační Systém"
-
-#. Template: AAAITSMConfigItem
-msgid "Show Versions"
-msgstr "Ukázat Verze"
-
-#. Template: AAAITSMConfigItem
-msgid "Single Licence"
-msgstr "Jednoduchá Licence"
-
-#. Template: AAAITSMConfigItem
-msgid "Subnet Mask"
-msgstr "Maska Podsítě"
-
-#. Template: AAAITSMConfigItem
-msgid "Switch"
-msgstr "Switch"
-
-#. Template: AAAITSMConfigItem
-msgid "Telco"
-msgstr "Telco"
-
-#. Template: AAAITSMConfigItem
-msgid "Test/QA"
-msgstr "Test/Kontrola kvality"
-
-#. Template: AAAITSMConfigItem
-msgid "The deployment state of this config item"
-msgstr "Stav Nasazení této Konfig. Položky"
-
-#. Template: AAAITSMConfigItem
-msgid "The incident state of this config item"
-msgstr "Stav Incidentu této Konfig. Položky"
-
-#. Template: AAAITSMConfigItem
-msgid "Time Restricted"
-msgstr "Časově omezená Licence"
-
-#. Template: AAAITSMConfigItem
-msgid "USB Device"
-msgstr "USB Zařízení"
-
-#. Template: AAAITSMConfigItem
-msgid "Unlimited"
-msgstr "Neomezená"
-
-#. Template: AAAITSMConfigItem
-msgid "User Tool"
-msgstr "Uživatelský Nástroj"
-
-#. Template: AAAITSMConfigItem
-msgid "Volume Licence"
-msgstr "Svazková Licence"
-
-#. Template: AAAITSMConfigItem
-msgid "WLAN"
-msgstr "WLAN"
-
-#. Template: AAAITSMConfigItem
-msgid "WLAN Access Point"
-msgstr "Přístupový Bod WLAN"
-
-#. Template: AAAITSMConfigItem
-msgid "Warranty Expiration Date"
-msgstr "Konec platnosti záruky"
-
-#. Template: AAAITSMConfigItem
-msgid "Workplace"
-msgstr "Pracoviště"
 
 #. Template: AdminITSMConfigItem
 msgid "Config Item Management"
@@ -692,7 +184,55 @@ msgid "Property"
 msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
-msgid "ITSM ConfigItem"
+msgid "No access to Class is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
+msgid "Overview: ITSM ConfigItem"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+msgid "No ConfigItemID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+msgid "You need at least one selected Configuration Item!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+msgid "You don't have write access to this configuration item: %s."
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+msgid "Config item \"%s\" not found in database!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+msgid "Was not able to delete the configitem ID %s!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+msgid "No version found for ConfigItemID %s!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+msgid "No ConfigItemID, DuplicateID or ClassID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+msgid "No access is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+msgid "No definition was defined for class %s!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "Can't show history, no ConfigItemID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "Can't show history, no access rights given!"
 msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
@@ -700,7 +240,39 @@ msgid "CIHistory::"
 msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "No ConfigItemID or VersionID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "Can't show config item, no access rights given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "ConfigItemID %s not found in database!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "VersionID %s not found in database!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "ConfigItem"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "printed by %s at %s"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+msgid "Invalid ClassID!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+msgid "No ClassID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+msgid "No access rights for this class given!"
 msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
@@ -710,6 +282,356 @@ msgstr ""
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "Config Item Search Results"
 msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+msgid "Can't show item, no access rights for ConfigItem are given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+msgid "The deployment state of this config item"
+msgstr "Stav Nasazení této Konfig. Položky"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+msgid "The incident state of this config item"
+msgstr "Stav Incidentu této Konfig. Položky"
+
+#. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
+msgid "Maximum number of one element"
+msgstr "Max počet jedné Položky"
+
+#. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
+msgid "Empty fields indicate that the current values are kept"
+msgstr ""
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Computer"
+msgstr ""
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Hardware"
+msgstr ""
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Network"
+msgstr ""
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Software"
+msgstr ""
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Expired"
+msgstr "Propadnuté"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Maintenance"
+msgstr "Údržba"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Pilot"
+msgstr "Řídící"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Planned"
+msgstr "Naplánováno"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Production"
+msgstr "Produkční"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Repair"
+msgstr "Oprava/Obnovení"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Retired"
+msgstr "Mimo provoz"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Review"
+msgstr "Přehled"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Test/QA"
+msgstr "Test/Kontrola kvality"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Laptop"
+msgstr "Mobilní"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Desktop"
+msgstr "Stolní"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "PDA"
+msgstr "PDA"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Server"
+msgstr "Server"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Other"
+msgstr "Jiné"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Monitor"
+msgstr "Monitor"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Printer"
+msgstr "Tiskárna"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Switch"
+msgstr "Switch"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Router"
+msgstr "Router"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "WLAN Access Point"
+msgstr "Přístupový Bod WLAN"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Security Device"
+msgstr "Bezpečnostní Zařízení"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Backup Device"
+msgstr "Zálohovácí Zařízení"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Mouse"
+msgstr "Myš"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Keyboard"
+msgstr "Klávesnice"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Camera"
+msgstr "Kamera"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Beamer"
+msgstr "Beamer"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Modem"
+msgstr "Modem"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "PCMCIA Card"
+msgstr "PCMCIA karta"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "USB Device"
+msgstr "USB Zařízení"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Docking Station"
+msgstr "Dok Stanice"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Scanner"
+msgstr "Skener"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Building"
+msgstr "Budova"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Floor"
+msgstr "podlaží"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Room"
+msgstr "Místnost"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Rack"
+msgstr "Rack"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Workplace"
+msgstr "Pracoviště"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Outlet"
+msgstr "Filiálka"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "IT Facility"
+msgstr "IT Příslušenství"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "LAN"
+msgstr "LAN"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "WLAN"
+msgstr "WLAN"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Telco"
+msgstr "Telco"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "GSM"
+msgstr "GSM"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Client Application"
+msgstr "Uživatelské Aplikace"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Middleware"
+msgstr "Střední úroveň"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Server Application"
+msgstr "Serverová Aplikace"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Client OS"
+msgstr "Uživatelský Operační Systém"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Server OS"
+msgstr "Serverový Operační Systém"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Admin Tool"
+msgstr "Administrační nástroj"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "User Tool"
+msgstr "Uživatelský Nástroj"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Embedded"
+msgstr "Vestavěný"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Single Licence"
+msgstr "Jednoduchá Licence"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Per User"
+msgstr "na Uživatele"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Per Processor"
+msgstr "na Procesor"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Per Server"
+msgstr "na Server"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Per Node"
+msgstr "na Uzel"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Volume Licence"
+msgstr "Svazková Licence"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Enterprise Licence"
+msgstr "Podniková Licence "
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Developer Licence"
+msgstr "Licence Vývojáře"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Demo"
+msgstr "Demo"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Time Restricted"
+msgstr "Časově omezená Licence"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Freeware"
+msgstr "Freeware"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Open Source"
+msgstr "Software s Otevřeným Kódem"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Unlimited"
+msgstr "Neomezená"
 
 #. SysConfig
 msgid "Admin."
@@ -750,6 +672,10 @@ msgstr ""
 
 #. SysConfig
 msgid "Config item zoom."
+msgstr ""
+
+#. SysConfig
+msgid "ConfigItemNumber"
 msgstr ""
 
 #. SysConfig

@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2017-02-14 17:57+0000\n"
-"PO-Revision-Date: 2017-02-14 16:58+0000\n"
+"POT-Creation-Date: 2017-04-28 13:33+0000\n"
+"PO-Revision-Date: 2017-04-28 11:34+0000\n"
 "Last-Translator: Udo Bretz\n"
 "Language-Team: Persian (http://www.transifex.com/otrs/OTRS/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -13,514 +13,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fa\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-
-#. Template: AAAITSMConfigItem
-msgid "Computer"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "Hardware"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "Network"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "Software"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "Address"
-msgstr "نشانی"
-
-#. Template: AAAITSMConfigItem
-msgid "Admin Tool"
-msgstr "ابزار مدیریتی"
-
-#. Template: AAAITSMConfigItem
-msgid "Backup Device"
-msgstr "وسایل پشتیبان‌گیری"
-
-#. Template: AAAITSMConfigItem
-msgid "Beamer"
-msgstr "پرتو افکن"
-
-#. Template: AAAITSMConfigItem
-msgid "Building"
-msgstr "ساختمان"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::ConfigItemCreate"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::ConfigItemDelete"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::DefinitionUpdate"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::DeploymentStateUpdate"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::IncidentStateUpdate"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::LinkAdd"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::LinkDelete"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::NameUpdate"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::ValueUpdate"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::VersionCreate"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::VersionDelete"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::AttachmentAdd"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::AttachmentDelete"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CPU"
-msgstr "سی‌پی‌یو"
-
-#. Template: AAAITSMConfigItem
-msgid "Camera"
-msgstr "دوربین"
-
-#. Template: AAAITSMConfigItem
-msgid "Capacity"
-msgstr "ظرفیت"
-
-#. Template: AAAITSMConfigItem
-msgid "Change Definition"
-msgstr "تغییر تعریف"
-
-#. Template: AAAITSMConfigItem
-msgid "Change of definition failed! See System Log for details."
-msgstr "عملیات تغییر تعریف ناموفق بود. برای کسب اطلاع بیشتر log سیستم را ببینید."
-
-#. Template: AAAITSMConfigItem
-msgid "Client Application"
-msgstr "برنامه‌های کلاینت"
-
-#. Template: AAAITSMConfigItem
-msgid "Client OS"
-msgstr "سیستم عامل کلاینت"
-
-#. Template: AAAITSMConfigItem
-msgid "Config Item-Area"
-msgstr "محدوده CI"
-
-#. Template: AAAITSMConfigItem
-msgid "Config Items available"
-msgstr "CIهای در دسترس"
-
-#. Template: AAAITSMConfigItem
-msgid "Config Items shown"
-msgstr "CIهای نمایش داده شده"
-
-#. Template: AAAITSMConfigItem
-msgid "CMDB"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "Demo"
-msgstr "نسخه نمایشی"
-
-#. Template: AAAITSMConfigItem
-msgid "Desktop"
-msgstr "رومیزی"
-
-#. Template: AAAITSMConfigItem
-msgid "Developer Licence"
-msgstr "اجازه‌نامه توسعه دهنده"
-
-#. Template: AAAITSMConfigItem
-msgid "Docking Station"
-msgstr "ایستگاه اتصال"
-
-#. Template: AAAITSMConfigItem
-msgid "Duplicate"
-msgstr "تکثیر"
-
-#. Template: AAAITSMConfigItem
-msgid "Embedded"
-msgstr "داخلی"
-
-#. Template: AAAITSMConfigItem
-msgid "Empty fields indicate that the current values are kept"
-msgstr "فیلدهای خالی مشخص می‌کند که مقادیر کنونی باقی خواهند ماند"
-
-#. Template: AAAITSMConfigItem
-msgid "Enterprise Licence"
-msgstr "اجازه‌نامه سازمانی"
-
-#. Template: AAAITSMConfigItem
-msgid "Expiration Date"
-msgstr "تاریخ انقضا"
-
-#. Template: AAAITSMConfigItem
-msgid "Expired"
-msgstr "منقضی شده"
-
-#. Template: AAAITSMConfigItem
-msgid "Floor"
-msgstr "طبقه"
-
-#. Template: AAAITSMConfigItem
-msgid "Freeware"
-msgstr "نرم افزار مجانی"
-
-#. Template: AAAITSMConfigItem
-msgid "GSM"
-msgstr "GSM"
-
-#. Template: AAAITSMConfigItem
-msgid "Gateway"
-msgstr "Gateway"
-
-#. Template: AAAITSMConfigItem
-msgid "Graphic Adapter"
-msgstr "کارت گرافیک"
-
-#. Template: AAAITSMConfigItem
-msgid "Hard Disk"
-msgstr "هارد دیسک"
-
-#. Template: AAAITSMConfigItem
-msgid "Hard Disk::Capacity"
-msgstr "هارد دیسک::ظرفیت"
-
-#. Template: AAAITSMConfigItem
-msgid "Hide Versions"
-msgstr "ویرایش‌ها را مخفی کن"
-
-#. Template: AAAITSMConfigItem
-msgid "IP Address"
-msgstr "آدرس IP"
-
-#. Template: AAAITSMConfigItem
-msgid "IP over DHCP"
-msgstr "IP از طریق DHCP"
-
-#. Template: AAAITSMConfigItem
-msgid "IT Facility"
-msgstr "تسهیلات IT"
-
-#. Template: AAAITSMConfigItem
-msgid "Incident"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "Install Date"
-msgstr "تاریخ نصب"
-
-#. Template: AAAITSMConfigItem
-msgid "Keyboard"
-msgstr "صفحه کلید"
-
-#. Template: AAAITSMConfigItem
-msgid "LAN"
-msgstr "LAN"
-
-#. Template: AAAITSMConfigItem
-msgid "Laptop"
-msgstr "کیفی"
-
-#. Template: AAAITSMConfigItem
-msgid "Last Change"
-msgstr "آخرین تغییر"
-
-#. Template: AAAITSMConfigItem
-msgid "Licence Key"
-msgstr "کلید اجازه‌نامه"
-
-#. Template: AAAITSMConfigItem
-msgid "Licence Key::Expiration Date"
-msgstr "کلید اجازه‌نامه::تاریخ انقضا"
-
-#. Template: AAAITSMConfigItem
-msgid "Licence Key::Quantity"
-msgstr "کلید اجازه‌نامه::تعداد"
-
-#. Template: AAAITSMConfigItem
-msgid "Licence Type"
-msgstr "نوع اجازه‌نامه"
-
-#. Template: AAAITSMConfigItem
-msgid "Maintenance"
-msgstr "پشتیبانی و نگهداری"
-
-#. Template: AAAITSMConfigItem
-msgid "Maximum number of one element"
-msgstr "حداکثر شماره یک عنصر"
-
-#. Template: AAAITSMConfigItem
-msgid "Media"
-msgstr "رسانه"
-
-#. Template: AAAITSMConfigItem
-msgid "Middleware"
-msgstr "میان افزار"
-
-#. Template: AAAITSMConfigItem
-msgid "Model"
-msgstr "مدل"
-
-#. Template: AAAITSMConfigItem
-msgid "Modem"
-msgstr "مودم"
-
-#. Template: AAAITSMConfigItem
-msgid "Monitor"
-msgstr "صفحه نمایش"
-
-#. Template: AAAITSMConfigItem
-msgid "Mouse"
-msgstr "ماوس"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Adapter"
-msgstr "کارت شبکه"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Adapter::IP Address"
-msgstr "کارت شبکه::آدرس IP"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Adapter::IP over DHCP"
-msgstr "کارت شبکه::IP از طریق DHCP"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Address"
-msgstr "آدرس شبکه"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Address::Gateway"
-msgstr "آدرس شبکه::Gateway"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Address::Subnet Mask"
-msgstr "آدرس شبکه::Subnet Mask"
-
-#. Template: AAAITSMConfigItem
-msgid "Open Source"
-msgstr "کد باز"
-
-#. Template: AAAITSMConfigItem
-msgid "Operational"
-msgstr "عملیاتی"
-
-#. Template: AAAITSMConfigItem
-msgid "Other"
-msgstr "غیره"
-
-#. Template: AAAITSMConfigItem
-msgid "Other Equipment"
-msgstr "تجهیزات متفرقه"
-
-#. Template: AAAITSMConfigItem
-msgid "Outlet"
-msgstr "پریز"
-
-#. Template: AAAITSMConfigItem
-msgid "PCMCIA Card"
-msgstr "کارت PCMCIA"
-
-#. Template: AAAITSMConfigItem
-msgid "PDA"
-msgstr "PDA"
-
-#. Template: AAAITSMConfigItem
-msgid "Per Node"
-msgstr "به ازای کامپیوتر"
-
-#. Template: AAAITSMConfigItem
-msgid "Per Processor"
-msgstr "به ازای پردازشگر"
-
-#. Template: AAAITSMConfigItem
-msgid "Per Server"
-msgstr "به ازای سرور"
-
-#. Template: AAAITSMConfigItem
-msgid "Per User"
-msgstr "به ازای کاربر"
-
-#. Template: AAAITSMConfigItem
-msgid "Phone 1"
-msgstr "تلفن ۱"
-
-#. Template: AAAITSMConfigItem
-msgid "Phone 2"
-msgstr "تلفن ۲"
-
-#. Template: AAAITSMConfigItem
-msgid "Pilot"
-msgstr "نمونه آزمایشی"
-
-#. Template: AAAITSMConfigItem
-msgid "Planned"
-msgstr "برنامه ریزی شده"
-
-#. Template: AAAITSMConfigItem
-msgid "Printer"
-msgstr "چاپگر"
-
-#. Template: AAAITSMConfigItem
-msgid "Production"
-msgstr "در حال تولید"
-
-#. Template: AAAITSMConfigItem
-msgid "Quantity"
-msgstr "تعداد"
-
-#. Template: AAAITSMConfigItem
-msgid "Rack"
-msgstr "قفسه"
-
-#. Template: AAAITSMConfigItem
-msgid "Ram"
-msgstr "رم"
-
-#. Template: AAAITSMConfigItem
-msgid "Repair"
-msgstr "تعمیر"
-
-#. Template: AAAITSMConfigItem
-msgid "Retired"
-msgstr "بازنشسته شده"
-
-#. Template: AAAITSMConfigItem
-msgid "Review"
-msgstr "بازبینی"
-
-#. Template: AAAITSMConfigItem
-msgid "Room"
-msgstr "اتاق"
-
-#. Template: AAAITSMConfigItem
-msgid "Router"
-msgstr "مسیریاب"
-
-#. Template: AAAITSMConfigItem
-msgid "Scanner"
-msgstr "اسکنر"
-
-#. Template: AAAITSMConfigItem
-msgid "Search Config Items"
-msgstr "جستجوی آیتم‌های پیکربندی"
-
-#. Template: AAAITSMConfigItem
-msgid "Security Device"
-msgstr "وسایل امنیتی"
-
-#. Template: AAAITSMConfigItem
-msgid "Serial Number"
-msgstr "شماره سریال"
-
-#. Template: AAAITSMConfigItem
-msgid "Server"
-msgstr "سرور"
-
-#. Template: AAAITSMConfigItem
-msgid "Server Application"
-msgstr "نرم افزار سرور"
-
-#. Template: AAAITSMConfigItem
-msgid "Server OS"
-msgstr "سیستم عامل سرور"
-
-#. Template: AAAITSMConfigItem
-msgid "Show Versions"
-msgstr "ویرایش‌ها را نمایش بده"
-
-#. Template: AAAITSMConfigItem
-msgid "Single Licence"
-msgstr "اجازه‌نامه تکی"
-
-#. Template: AAAITSMConfigItem
-msgid "Subnet Mask"
-msgstr "Subnet Mask"
-
-#. Template: AAAITSMConfigItem
-msgid "Switch"
-msgstr "سویچ"
-
-#. Template: AAAITSMConfigItem
-msgid "Telco"
-msgstr "Telco"
-
-#. Template: AAAITSMConfigItem
-msgid "Test/QA"
-msgstr "تست/تضمین کیفیت"
-
-#. Template: AAAITSMConfigItem
-msgid "The deployment state of this config item"
-msgstr "وضعیت نصب این CI"
-
-#. Template: AAAITSMConfigItem
-msgid "The incident state of this config item"
-msgstr "وضعیت رخداد این CI"
-
-#. Template: AAAITSMConfigItem
-msgid "Time Restricted"
-msgstr "دارای محدوده زمانی"
-
-#. Template: AAAITSMConfigItem
-msgid "USB Device"
-msgstr "تجهیزات USB"
-
-#. Template: AAAITSMConfigItem
-msgid "Unlimited"
-msgstr "نامحدود"
-
-#. Template: AAAITSMConfigItem
-msgid "User Tool"
-msgstr "ابزار کاربر"
-
-#. Template: AAAITSMConfigItem
-msgid "Volume Licence"
-msgstr "اجازه‌نامه حجمی"
-
-#. Template: AAAITSMConfigItem
-msgid "WLAN"
-msgstr "WLAN"
-
-#. Template: AAAITSMConfigItem
-msgid "WLAN Access Point"
-msgstr "نقاط دسترسی WLAN"
-
-#. Template: AAAITSMConfigItem
-msgid "Warranty Expiration Date"
-msgstr "تاریخ انقضای ضمانت‌نامه"
-
-#. Template: AAAITSMConfigItem
-msgid "Workplace"
-msgstr "محل کار"
 
 #. Template: AdminITSMConfigItem
 msgid "Config Item Management"
@@ -692,7 +184,55 @@ msgid "Property"
 msgstr "ویژگی"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
-msgid "ITSM ConfigItem"
+msgid "No access to Class is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
+msgid "Overview: ITSM ConfigItem"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+msgid "No ConfigItemID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+msgid "You need at least one selected Configuration Item!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+msgid "You don't have write access to this configuration item: %s."
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+msgid "Config item \"%s\" not found in database!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+msgid "Was not able to delete the configitem ID %s!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+msgid "No version found for ConfigItemID %s!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+msgid "No ConfigItemID, DuplicateID or ClassID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+msgid "No access is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+msgid "No definition was defined for class %s!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "Can't show history, no ConfigItemID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "Can't show history, no access rights given!"
 msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
@@ -700,8 +240,40 @@ msgid "CIHistory::"
 msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "No ConfigItemID or VersionID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "Can't show config item, no access rights given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "ConfigItemID %s not found in database!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "VersionID %s not found in database!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "ConfigItem"
 msgstr "آیتم پیکربندی"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "printed by %s at %s"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+msgid "Invalid ClassID!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+msgid "No ClassID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+msgid "No access rights for this class given!"
+msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "No Result!"
@@ -710,6 +282,356 @@ msgstr ""
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "Config Item Search Results"
 msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+msgid "Can't show item, no access rights for ConfigItem are given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+msgid "The deployment state of this config item"
+msgstr "وضعیت نصب این CI"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+msgid "The incident state of this config item"
+msgstr "وضعیت رخداد این CI"
+
+#. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
+msgid "Maximum number of one element"
+msgstr "حداکثر شماره یک عنصر"
+
+#. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
+msgid "Empty fields indicate that the current values are kept"
+msgstr "فیلدهای خالی مشخص می‌کند که مقادیر کنونی باقی خواهند ماند"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Computer"
+msgstr ""
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Hardware"
+msgstr ""
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Network"
+msgstr ""
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Software"
+msgstr ""
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Expired"
+msgstr "منقضی شده"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Maintenance"
+msgstr "پشتیبانی و نگهداری"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Pilot"
+msgstr "نمونه آزمایشی"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Planned"
+msgstr "برنامه ریزی شده"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Production"
+msgstr "در حال تولید"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Repair"
+msgstr "تعمیر"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Retired"
+msgstr "بازنشسته شده"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Review"
+msgstr "بازبینی"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Test/QA"
+msgstr "تست/تضمین کیفیت"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Laptop"
+msgstr "کیفی"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Desktop"
+msgstr "رومیزی"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "PDA"
+msgstr "PDA"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Server"
+msgstr "سرور"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Other"
+msgstr "غیره"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Monitor"
+msgstr "صفحه نمایش"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Printer"
+msgstr "چاپگر"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Switch"
+msgstr "سویچ"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Router"
+msgstr "مسیریاب"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "WLAN Access Point"
+msgstr "نقاط دسترسی WLAN"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Security Device"
+msgstr "وسایل امنیتی"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Backup Device"
+msgstr "وسایل پشتیبان‌گیری"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Mouse"
+msgstr "ماوس"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Keyboard"
+msgstr "صفحه کلید"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Camera"
+msgstr "دوربین"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Beamer"
+msgstr "پرتو افکن"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Modem"
+msgstr "مودم"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "PCMCIA Card"
+msgstr "کارت PCMCIA"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "USB Device"
+msgstr "تجهیزات USB"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Docking Station"
+msgstr "ایستگاه اتصال"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Scanner"
+msgstr "اسکنر"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Building"
+msgstr "ساختمان"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Floor"
+msgstr "طبقه"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Room"
+msgstr "اتاق"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Rack"
+msgstr "قفسه"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Workplace"
+msgstr "محل کار"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Outlet"
+msgstr "پریز"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "IT Facility"
+msgstr "تسهیلات IT"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "LAN"
+msgstr "LAN"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "WLAN"
+msgstr "WLAN"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Telco"
+msgstr "Telco"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "GSM"
+msgstr "GSM"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Client Application"
+msgstr "برنامه‌های کلاینت"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Middleware"
+msgstr "میان افزار"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Server Application"
+msgstr "نرم افزار سرور"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Client OS"
+msgstr "سیستم عامل کلاینت"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Server OS"
+msgstr "سیستم عامل سرور"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Admin Tool"
+msgstr "ابزار مدیریتی"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "User Tool"
+msgstr "ابزار کاربر"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Embedded"
+msgstr "داخلی"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Single Licence"
+msgstr "اجازه‌نامه تکی"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Per User"
+msgstr "به ازای کاربر"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Per Processor"
+msgstr "به ازای پردازشگر"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Per Server"
+msgstr "به ازای سرور"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Per Node"
+msgstr "به ازای کامپیوتر"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Volume Licence"
+msgstr "اجازه‌نامه حجمی"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Enterprise Licence"
+msgstr "اجازه‌نامه سازمانی"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Developer Licence"
+msgstr "اجازه‌نامه توسعه دهنده"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Demo"
+msgstr "نسخه نمایشی"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Time Restricted"
+msgstr "دارای محدوده زمانی"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Freeware"
+msgstr "نرم افزار مجانی"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Open Source"
+msgstr "کد باز"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Unlimited"
+msgstr "نامحدود"
 
 #. SysConfig
 msgid "Admin."
@@ -750,6 +672,10 @@ msgstr ""
 
 #. SysConfig
 msgid "Config item zoom."
+msgstr ""
+
+#. SysConfig
+msgid "ConfigItemNumber"
 msgstr ""
 
 #. SysConfig

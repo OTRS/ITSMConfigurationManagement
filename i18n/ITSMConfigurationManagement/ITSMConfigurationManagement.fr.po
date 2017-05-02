@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2017-02-14 17:57+0000\n"
-"PO-Revision-Date: 2017-02-14 16:58+0000\n"
+"POT-Creation-Date: 2017-04-28 13:33+0000\n"
+"PO-Revision-Date: 2017-04-28 11:34+0000\n"
 "Last-Translator: Udo Bretz\n"
 "Language-Team: French (http://www.transifex.com/otrs/OTRS/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -14,514 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-
-#. Template: AAAITSMConfigItem
-msgid "Computer"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "Hardware"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "Network"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "Software"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "Address"
-msgstr "Adresse"
-
-#. Template: AAAITSMConfigItem
-msgid "Admin Tool"
-msgstr "Outil d'Administration"
-
-#. Template: AAAITSMConfigItem
-msgid "Backup Device"
-msgstr "Element de sauvegarde"
-
-#. Template: AAAITSMConfigItem
-msgid "Beamer"
-msgstr "Rétroprojecteur"
-
-#. Template: AAAITSMConfigItem
-msgid "Building"
-msgstr "Batiment"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::ConfigItemCreate"
-msgstr "CIHistory::ConfigItemCreate"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::ConfigItemDelete"
-msgstr "CIHistory::ConfigItemDelete"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::DefinitionUpdate"
-msgstr "CIHistory::DefinitionUpdate"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::DeploymentStateUpdate"
-msgstr "CIHistory::DeploymentStateUpdate"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::IncidentStateUpdate"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::LinkAdd"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::LinkDelete"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::NameUpdate"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::ValueUpdate"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::VersionCreate"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::VersionDelete"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::AttachmentAdd"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::AttachmentDelete"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "CPU"
-msgstr "CPU"
-
-#. Template: AAAITSMConfigItem
-msgid "Camera"
-msgstr "Caméra"
-
-#. Template: AAAITSMConfigItem
-msgid "Capacity"
-msgstr "Capacité"
-
-#. Template: AAAITSMConfigItem
-msgid "Change Definition"
-msgstr "Définition du Changement"
-
-#. Template: AAAITSMConfigItem
-msgid "Change of definition failed! See System Log for details."
-msgstr "Modification de la définition échouée! Regardez les Log Systèmes pour plus de détails."
-
-#. Template: AAAITSMConfigItem
-msgid "Client Application"
-msgstr "Application Cliente"
-
-#. Template: AAAITSMConfigItem
-msgid "Client OS"
-msgstr "OS Client"
-
-#. Template: AAAITSMConfigItem
-msgid "Config Item-Area"
-msgstr "Zone des Eléments de Configuration"
-
-#. Template: AAAITSMConfigItem
-msgid "Config Items available"
-msgstr "Eléments de configuration disponibles"
-
-#. Template: AAAITSMConfigItem
-msgid "Config Items shown"
-msgstr "Eléments de configuration montrés"
-
-#. Template: AAAITSMConfigItem
-msgid "CMDB"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "Demo"
-msgstr "Demo"
-
-#. Template: AAAITSMConfigItem
-msgid "Desktop"
-msgstr "Ordinateur"
-
-#. Template: AAAITSMConfigItem
-msgid "Developer Licence"
-msgstr "License Développeur"
-
-#. Template: AAAITSMConfigItem
-msgid "Docking Station"
-msgstr "Base pour Portable"
-
-#. Template: AAAITSMConfigItem
-msgid "Duplicate"
-msgstr "Dupliquer"
-
-#. Template: AAAITSMConfigItem
-msgid "Embedded"
-msgstr "Embarqué"
-
-#. Template: AAAITSMConfigItem
-msgid "Empty fields indicate that the current values are kept"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "Enterprise Licence"
-msgstr "License Entreprise"
-
-#. Template: AAAITSMConfigItem
-msgid "Expiration Date"
-msgstr "Date d'expiration"
-
-#. Template: AAAITSMConfigItem
-msgid "Expired"
-msgstr "Expiré"
-
-#. Template: AAAITSMConfigItem
-msgid "Floor"
-msgstr "Etage"
-
-#. Template: AAAITSMConfigItem
-msgid "Freeware"
-msgstr "Freeware/Graticiel"
-
-#. Template: AAAITSMConfigItem
-msgid "GSM"
-msgstr "GSM"
-
-#. Template: AAAITSMConfigItem
-msgid "Gateway"
-msgstr "Passerelle"
-
-#. Template: AAAITSMConfigItem
-msgid "Graphic Adapter"
-msgstr "Adaptateur graphique"
-
-#. Template: AAAITSMConfigItem
-msgid "Hard Disk"
-msgstr "Disque dur"
-
-#. Template: AAAITSMConfigItem
-msgid "Hard Disk::Capacity"
-msgstr "Disque dur::Capacité"
-
-#. Template: AAAITSMConfigItem
-msgid "Hide Versions"
-msgstr "Cacher les Versions"
-
-#. Template: AAAITSMConfigItem
-msgid "IP Address"
-msgstr "Adresse IP"
-
-#. Template: AAAITSMConfigItem
-msgid "IP over DHCP"
-msgstr "IP sur DHCP"
-
-#. Template: AAAITSMConfigItem
-msgid "IT Facility"
-msgstr "Département IT"
-
-#. Template: AAAITSMConfigItem
-msgid "Incident"
-msgstr "Incident"
-
-#. Template: AAAITSMConfigItem
-msgid "Install Date"
-msgstr "Date d'installation"
-
-#. Template: AAAITSMConfigItem
-msgid "Keyboard"
-msgstr "Clavier"
-
-#. Template: AAAITSMConfigItem
-msgid "LAN"
-msgstr "LAN"
-
-#. Template: AAAITSMConfigItem
-msgid "Laptop"
-msgstr "Portable"
-
-#. Template: AAAITSMConfigItem
-msgid "Last Change"
-msgstr "Dernière modification"
-
-#. Template: AAAITSMConfigItem
-msgid "Licence Key"
-msgstr "Clé de la license"
-
-#. Template: AAAITSMConfigItem
-msgid "Licence Key::Expiration Date"
-msgstr "Clé de la license::Date d'expiration"
-
-#. Template: AAAITSMConfigItem
-msgid "Licence Key::Quantity"
-msgstr "Clé de la license::Quantité"
-
-#. Template: AAAITSMConfigItem
-msgid "Licence Type"
-msgstr "Type de license"
-
-#. Template: AAAITSMConfigItem
-msgid "Maintenance"
-msgstr "Maintenance"
-
-#. Template: AAAITSMConfigItem
-msgid "Maximum number of one element"
-msgstr "Quantité maximale pour un élément"
-
-#. Template: AAAITSMConfigItem
-msgid "Media"
-msgstr "Media"
-
-#. Template: AAAITSMConfigItem
-msgid "Middleware"
-msgstr "Middleware"
-
-#. Template: AAAITSMConfigItem
-msgid "Model"
-msgstr "Modèle"
-
-#. Template: AAAITSMConfigItem
-msgid "Modem"
-msgstr "Modem"
-
-#. Template: AAAITSMConfigItem
-msgid "Monitor"
-msgstr "Moniteur"
-
-#. Template: AAAITSMConfigItem
-msgid "Mouse"
-msgstr "Souris"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Adapter"
-msgstr "Adaptateur réseau"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Adapter::IP Address"
-msgstr "Adaptateur réseau:: Adresse IP"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Adapter::IP over DHCP"
-msgstr "Adaptateur réseau::IP sur DHCP"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Address"
-msgstr "Adresse réseau"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Address::Gateway"
-msgstr "Adresse réseau::Passerelle"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Address::Subnet Mask"
-msgstr "Adresse réseau::Masque du sous réseau"
-
-#. Template: AAAITSMConfigItem
-msgid "Open Source"
-msgstr "Open Source"
-
-#. Template: AAAITSMConfigItem
-msgid "Operational"
-msgstr "Opérationnel"
-
-#. Template: AAAITSMConfigItem
-msgid "Other"
-msgstr "Autre"
-
-#. Template: AAAITSMConfigItem
-msgid "Other Equipment"
-msgstr "Autre équipement"
-
-#. Template: AAAITSMConfigItem
-msgid "Outlet"
-msgstr "Prise"
-
-#. Template: AAAITSMConfigItem
-msgid "PCMCIA Card"
-msgstr "Carte PCMCIA"
-
-#. Template: AAAITSMConfigItem
-msgid "PDA"
-msgstr "PDA"
-
-#. Template: AAAITSMConfigItem
-msgid "Per Node"
-msgstr "Par noeud"
-
-#. Template: AAAITSMConfigItem
-msgid "Per Processor"
-msgstr "Par processeur"
-
-#. Template: AAAITSMConfigItem
-msgid "Per Server"
-msgstr "Par Serveur"
-
-#. Template: AAAITSMConfigItem
-msgid "Per User"
-msgstr "Par Utilisateur"
-
-#. Template: AAAITSMConfigItem
-msgid "Phone 1"
-msgstr "Téléphone 1"
-
-#. Template: AAAITSMConfigItem
-msgid "Phone 2"
-msgstr "Téléphone 2"
-
-#. Template: AAAITSMConfigItem
-msgid "Pilot"
-msgstr "Pilote"
-
-#. Template: AAAITSMConfigItem
-msgid "Planned"
-msgstr "Planifié"
-
-#. Template: AAAITSMConfigItem
-msgid "Printer"
-msgstr "Imprimante"
-
-#. Template: AAAITSMConfigItem
-msgid "Production"
-msgstr "Production"
-
-#. Template: AAAITSMConfigItem
-msgid "Quantity"
-msgstr "Quantité"
-
-#. Template: AAAITSMConfigItem
-msgid "Rack"
-msgstr "Rack"
-
-#. Template: AAAITSMConfigItem
-msgid "Ram"
-msgstr "RAM"
-
-#. Template: AAAITSMConfigItem
-msgid "Repair"
-msgstr "En réparation"
-
-#. Template: AAAITSMConfigItem
-msgid "Retired"
-msgstr "Retiré"
-
-#. Template: AAAITSMConfigItem
-msgid "Review"
-msgstr "Revue"
-
-#. Template: AAAITSMConfigItem
-msgid "Room"
-msgstr "Pièce"
-
-#. Template: AAAITSMConfigItem
-msgid "Router"
-msgstr "Routeur"
-
-#. Template: AAAITSMConfigItem
-msgid "Scanner"
-msgstr "Scanner"
-
-#. Template: AAAITSMConfigItem
-msgid "Search Config Items"
-msgstr "Chercher dans les éléments de configuration"
-
-#. Template: AAAITSMConfigItem
-msgid "Security Device"
-msgstr "Périphérique de sécurité"
-
-#. Template: AAAITSMConfigItem
-msgid "Serial Number"
-msgstr "Numéro de série"
-
-#. Template: AAAITSMConfigItem
-msgid "Server"
-msgstr "Serveur"
-
-#. Template: AAAITSMConfigItem
-msgid "Server Application"
-msgstr "Application Serveur"
-
-#. Template: AAAITSMConfigItem
-msgid "Server OS"
-msgstr "OS Server"
-
-#. Template: AAAITSMConfigItem
-msgid "Show Versions"
-msgstr "Montrer les Versions"
-
-#. Template: AAAITSMConfigItem
-msgid "Single Licence"
-msgstr "License unique"
-
-#. Template: AAAITSMConfigItem
-msgid "Subnet Mask"
-msgstr "Masque du sous réseau"
-
-#. Template: AAAITSMConfigItem
-msgid "Switch"
-msgstr "Switch"
-
-#. Template: AAAITSMConfigItem
-msgid "Telco"
-msgstr "Telco"
-
-#. Template: AAAITSMConfigItem
-msgid "Test/QA"
-msgstr "Test/QA"
-
-#. Template: AAAITSMConfigItem
-msgid "The deployment state of this config item"
-msgstr "L'état de déploiement de cet élément de configuration"
-
-#. Template: AAAITSMConfigItem
-msgid "The incident state of this config item"
-msgstr "L'état d'incident de cet élément de configuration"
-
-#. Template: AAAITSMConfigItem
-msgid "Time Restricted"
-msgstr "Limitée dans le temps"
-
-#. Template: AAAITSMConfigItem
-msgid "USB Device"
-msgstr "Périphérique USB"
-
-#. Template: AAAITSMConfigItem
-msgid "Unlimited"
-msgstr "Illimité"
-
-#. Template: AAAITSMConfigItem
-msgid "User Tool"
-msgstr "Outil Utilisateur"
-
-#. Template: AAAITSMConfigItem
-msgid "Volume Licence"
-msgstr "License par volume"
-
-#. Template: AAAITSMConfigItem
-msgid "WLAN"
-msgstr "WLAN"
-
-#. Template: AAAITSMConfigItem
-msgid "WLAN Access Point"
-msgstr "Point d'access WLAN"
-
-#. Template: AAAITSMConfigItem
-msgid "Warranty Expiration Date"
-msgstr "Date d'expiration de la garantie"
-
-#. Template: AAAITSMConfigItem
-msgid "Workplace"
-msgstr "Emplacement"
 
 #. Template: AdminITSMConfigItem
 msgid "Config Item Management"
@@ -693,7 +185,55 @@ msgid "Property"
 msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
-msgid "ITSM ConfigItem"
+msgid "No access to Class is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
+msgid "Overview: ITSM ConfigItem"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+msgid "No ConfigItemID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+msgid "You need at least one selected Configuration Item!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+msgid "You don't have write access to this configuration item: %s."
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+msgid "Config item \"%s\" not found in database!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+msgid "Was not able to delete the configitem ID %s!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+msgid "No version found for ConfigItemID %s!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+msgid "No ConfigItemID, DuplicateID or ClassID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+msgid "No access is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+msgid "No definition was defined for class %s!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "Can't show history, no ConfigItemID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "Can't show history, no access rights given!"
 msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
@@ -701,7 +241,39 @@ msgid "CIHistory::"
 msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "No ConfigItemID or VersionID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "Can't show config item, no access rights given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "ConfigItemID %s not found in database!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "VersionID %s not found in database!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "ConfigItem"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "printed by %s at %s"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+msgid "Invalid ClassID!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+msgid "No ClassID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+msgid "No access rights for this class given!"
 msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
@@ -711,6 +283,356 @@ msgstr "Aucun résultat !"
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "Config Item Search Results"
 msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+msgid "Can't show item, no access rights for ConfigItem are given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+msgid "The deployment state of this config item"
+msgstr "L'état de déploiement de cet élément de configuration"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+msgid "The incident state of this config item"
+msgstr "L'état d'incident de cet élément de configuration"
+
+#. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
+msgid "Maximum number of one element"
+msgstr "Quantité maximale pour un élément"
+
+#. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
+msgid "Empty fields indicate that the current values are kept"
+msgstr ""
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Computer"
+msgstr ""
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Hardware"
+msgstr ""
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Network"
+msgstr ""
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Software"
+msgstr ""
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Expired"
+msgstr "Expiré"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Maintenance"
+msgstr "Maintenance"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Pilot"
+msgstr "Pilote"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Planned"
+msgstr "Planifié"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Production"
+msgstr "Production"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Repair"
+msgstr "En réparation"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Retired"
+msgstr "Retiré"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Review"
+msgstr "Revue"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Test/QA"
+msgstr "Test/QA"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Laptop"
+msgstr "Portable"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Desktop"
+msgstr "Ordinateur"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "PDA"
+msgstr "PDA"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Server"
+msgstr "Serveur"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Other"
+msgstr "Autre"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Monitor"
+msgstr "Moniteur"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Printer"
+msgstr "Imprimante"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Switch"
+msgstr "Switch"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Router"
+msgstr "Routeur"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "WLAN Access Point"
+msgstr "Point d'access WLAN"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Security Device"
+msgstr "Périphérique de sécurité"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Backup Device"
+msgstr "Element de sauvegarde"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Mouse"
+msgstr "Souris"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Keyboard"
+msgstr "Clavier"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Camera"
+msgstr "Caméra"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Beamer"
+msgstr "Rétroprojecteur"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Modem"
+msgstr "Modem"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "PCMCIA Card"
+msgstr "Carte PCMCIA"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "USB Device"
+msgstr "Périphérique USB"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Docking Station"
+msgstr "Base pour Portable"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Scanner"
+msgstr "Scanner"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Building"
+msgstr "Batiment"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Floor"
+msgstr "Etage"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Room"
+msgstr "Pièce"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Rack"
+msgstr "Rack"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Workplace"
+msgstr "Emplacement"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Outlet"
+msgstr "Prise"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "IT Facility"
+msgstr "Département IT"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "LAN"
+msgstr "LAN"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "WLAN"
+msgstr "WLAN"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Telco"
+msgstr "Telco"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "GSM"
+msgstr "GSM"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Client Application"
+msgstr "Application Cliente"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Middleware"
+msgstr "Middleware"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Server Application"
+msgstr "Application Serveur"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Client OS"
+msgstr "OS Client"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Server OS"
+msgstr "OS Server"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Admin Tool"
+msgstr "Outil d'Administration"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "User Tool"
+msgstr "Outil Utilisateur"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Embedded"
+msgstr "Embarqué"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Single Licence"
+msgstr "License unique"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Per User"
+msgstr "Par Utilisateur"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Per Processor"
+msgstr "Par processeur"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Per Server"
+msgstr "Par Serveur"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Per Node"
+msgstr "Par noeud"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Volume Licence"
+msgstr "License par volume"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Enterprise Licence"
+msgstr "License Entreprise"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Developer Licence"
+msgstr "License Développeur"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Demo"
+msgstr "Demo"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Time Restricted"
+msgstr "Limitée dans le temps"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Freeware"
+msgstr "Freeware/Graticiel"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Open Source"
+msgstr "Open Source"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Unlimited"
+msgstr "Illimité"
 
 #. SysConfig
 msgid "Admin."
@@ -751,6 +673,10 @@ msgstr ""
 
 #. SysConfig
 msgid "Config item zoom."
+msgstr ""
+
+#. SysConfig
+msgid "ConfigItemNumber"
 msgstr ""
 
 #. SysConfig

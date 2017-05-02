@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2017-02-14 17:57+0000\n"
-"PO-Revision-Date: 2017-04-20 20:04+0000\n"
+"POT-Creation-Date: 2017-04-28 13:33+0000\n"
+"PO-Revision-Date: 2017-04-28 20:00+0000\n"
 "Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/otrs/OTRS/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -13,514 +13,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: hu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#. Template: AAAITSMConfigItem
-msgid "Computer"
-msgstr "Számítógép"
-
-#. Template: AAAITSMConfigItem
-msgid "Hardware"
-msgstr "Hardver"
-
-#. Template: AAAITSMConfigItem
-msgid "Network"
-msgstr "Hálózat"
-
-#. Template: AAAITSMConfigItem
-msgid "Software"
-msgstr "Szoftver"
-
-#. Template: AAAITSMConfigItem
-msgid "Address"
-msgstr "Cím"
-
-#. Template: AAAITSMConfigItem
-msgid "Admin Tool"
-msgstr "Adminisztrációs eszköz"
-
-#. Template: AAAITSMConfigItem
-msgid "Backup Device"
-msgstr "Biztonsági mentés eszköz"
-
-#. Template: AAAITSMConfigItem
-msgid "Beamer"
-msgstr "Beamer"
-
-#. Template: AAAITSMConfigItem
-msgid "Building"
-msgstr "Épület"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::ConfigItemCreate"
-msgstr "CIHistory::ConfigItemCreate"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::ConfigItemDelete"
-msgstr "CIHistory::ConfigItemDelete"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::DefinitionUpdate"
-msgstr "CIHistory::DefinitionUpdate"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::DeploymentStateUpdate"
-msgstr "CIHistory::DeploymentStateUpdate"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::IncidentStateUpdate"
-msgstr "CIHistory::IncidentStateUpdate"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::LinkAdd"
-msgstr "CIHistory::LinkAdd"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::LinkDelete"
-msgstr "CIHistory::LinkDelete"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::NameUpdate"
-msgstr "CIHistory::NameUpdate"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::ValueUpdate"
-msgstr "CIHistory::ValueUpdate"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::VersionCreate"
-msgstr "CIHistory::VersionCreate"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::VersionDelete"
-msgstr "CIHistory::VersionDelete"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::AttachmentAdd"
-msgstr "CIHistory::AttachmentAdd"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::AttachmentDelete"
-msgstr "CIHistory::AttachmentDelete"
-
-#. Template: AAAITSMConfigItem
-msgid "CPU"
-msgstr "CPU"
-
-#. Template: AAAITSMConfigItem
-msgid "Camera"
-msgstr "Kamera"
-
-#. Template: AAAITSMConfigItem
-msgid "Capacity"
-msgstr "Kapacitás"
-
-#. Template: AAAITSMConfigItem
-msgid "Change Definition"
-msgstr "Meghatározás módosítása"
-
-#. Template: AAAITSMConfigItem
-msgid "Change of definition failed! See System Log for details."
-msgstr "A meghatározás módosítása nem sikerült! A részletekért nézze meg a rendszernaplót."
-
-#. Template: AAAITSMConfigItem
-msgid "Client Application"
-msgstr "Kliens alkalmazás"
-
-#. Template: AAAITSMConfigItem
-msgid "Client OS"
-msgstr "Kliens operációs rendszer"
-
-#. Template: AAAITSMConfigItem
-msgid "Config Item-Area"
-msgstr "Konfigurációelem-terület"
-
-#. Template: AAAITSMConfigItem
-msgid "Config Items available"
-msgstr "Elérhető konfigurációelemek"
-
-#. Template: AAAITSMConfigItem
-msgid "Config Items shown"
-msgstr "Megjelenített konfigurációelemek"
-
-#. Template: AAAITSMConfigItem
-msgid "CMDB"
-msgstr "CMDB"
-
-#. Template: AAAITSMConfigItem
-msgid "Demo"
-msgstr "Bemutató"
-
-#. Template: AAAITSMConfigItem
-msgid "Desktop"
-msgstr "Asztal"
-
-#. Template: AAAITSMConfigItem
-msgid "Developer Licence"
-msgstr "Fejlesztői licenc"
-
-#. Template: AAAITSMConfigItem
-msgid "Docking Station"
-msgstr "Dokkoló állomás"
-
-#. Template: AAAITSMConfigItem
-msgid "Duplicate"
-msgstr "Kettőzés"
-
-#. Template: AAAITSMConfigItem
-msgid "Embedded"
-msgstr "Beágyazott"
-
-#. Template: AAAITSMConfigItem
-msgid "Empty fields indicate that the current values are kept"
-msgstr "Az üres mezők azt jelzik, hogy az aktuális mezők megtartásra kerülnek"
-
-#. Template: AAAITSMConfigItem
-msgid "Enterprise Licence"
-msgstr "Vállalati licenc"
-
-#. Template: AAAITSMConfigItem
-msgid "Expiration Date"
-msgstr "Lejárati idő"
-
-#. Template: AAAITSMConfigItem
-msgid "Expired"
-msgstr "Lejárt"
-
-#. Template: AAAITSMConfigItem
-msgid "Floor"
-msgstr "Emelet"
-
-#. Template: AAAITSMConfigItem
-msgid "Freeware"
-msgstr "Freeware"
-
-#. Template: AAAITSMConfigItem
-msgid "GSM"
-msgstr "GSM"
-
-#. Template: AAAITSMConfigItem
-msgid "Gateway"
-msgstr "Átjáró"
-
-#. Template: AAAITSMConfigItem
-msgid "Graphic Adapter"
-msgstr "Grafikus csatoló"
-
-#. Template: AAAITSMConfigItem
-msgid "Hard Disk"
-msgstr "Merevlemez"
-
-#. Template: AAAITSMConfigItem
-msgid "Hard Disk::Capacity"
-msgstr "Merevlemez::Kapacitás"
-
-#. Template: AAAITSMConfigItem
-msgid "Hide Versions"
-msgstr "Verziók elrejtése"
-
-#. Template: AAAITSMConfigItem
-msgid "IP Address"
-msgstr "IP-cím"
-
-#. Template: AAAITSMConfigItem
-msgid "IP over DHCP"
-msgstr "IP a DHCP fölött"
-
-#. Template: AAAITSMConfigItem
-msgid "IT Facility"
-msgstr "IT-létesítmény"
-
-#. Template: AAAITSMConfigItem
-msgid "Incident"
-msgstr "Incidens"
-
-#. Template: AAAITSMConfigItem
-msgid "Install Date"
-msgstr "Telepítés dátuma"
-
-#. Template: AAAITSMConfigItem
-msgid "Keyboard"
-msgstr "Billentyűzet"
-
-#. Template: AAAITSMConfigItem
-msgid "LAN"
-msgstr "LAN"
-
-#. Template: AAAITSMConfigItem
-msgid "Laptop"
-msgstr "Laptop"
-
-#. Template: AAAITSMConfigItem
-msgid "Last Change"
-msgstr "Utolsó módosítás"
-
-#. Template: AAAITSMConfigItem
-msgid "Licence Key"
-msgstr "Licenc kulcs"
-
-#. Template: AAAITSMConfigItem
-msgid "Licence Key::Expiration Date"
-msgstr "Licenc kulcs::Lejárati dátum"
-
-#. Template: AAAITSMConfigItem
-msgid "Licence Key::Quantity"
-msgstr "Licenc kulcs::Mennyiség"
-
-#. Template: AAAITSMConfigItem
-msgid "Licence Type"
-msgstr "Licenctípus"
-
-#. Template: AAAITSMConfigItem
-msgid "Maintenance"
-msgstr "Karbantartás"
-
-#. Template: AAAITSMConfigItem
-msgid "Maximum number of one element"
-msgstr "Egy elem legnagyobb száma"
-
-#. Template: AAAITSMConfigItem
-msgid "Media"
-msgstr "Adathordozó"
-
-#. Template: AAAITSMConfigItem
-msgid "Middleware"
-msgstr "Köztes réteg"
-
-#. Template: AAAITSMConfigItem
-msgid "Model"
-msgstr "Modell"
-
-#. Template: AAAITSMConfigItem
-msgid "Modem"
-msgstr "Modem"
-
-#. Template: AAAITSMConfigItem
-msgid "Monitor"
-msgstr "Monitor"
-
-#. Template: AAAITSMConfigItem
-msgid "Mouse"
-msgstr "Egér"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Adapter"
-msgstr "Hálózati csatoló"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Adapter::IP Address"
-msgstr "Hálózati csatoló::IP-cím"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Adapter::IP over DHCP"
-msgstr "Hálózati csatoló::IP a DHCP fölött"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Address"
-msgstr "Hálózati cím"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Address::Gateway"
-msgstr "Hálózati cím::Átjáró"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Address::Subnet Mask"
-msgstr "Hálózati cím::Alhálózati maszk"
-
-#. Template: AAAITSMConfigItem
-msgid "Open Source"
-msgstr "Nyílt forrású"
-
-#. Template: AAAITSMConfigItem
-msgid "Operational"
-msgstr "Üzemképes"
-
-#. Template: AAAITSMConfigItem
-msgid "Other"
-msgstr "Egyéb"
-
-#. Template: AAAITSMConfigItem
-msgid "Other Equipment"
-msgstr "Egyéb berendezés"
-
-#. Template: AAAITSMConfigItem
-msgid "Outlet"
-msgstr "Elosztó doboz"
-
-#. Template: AAAITSMConfigItem
-msgid "PCMCIA Card"
-msgstr "PCMCIA kártya"
-
-#. Template: AAAITSMConfigItem
-msgid "PDA"
-msgstr "PDA"
-
-#. Template: AAAITSMConfigItem
-msgid "Per Node"
-msgstr "Csomópontonként"
-
-#. Template: AAAITSMConfigItem
-msgid "Per Processor"
-msgstr "Processzoronként"
-
-#. Template: AAAITSMConfigItem
-msgid "Per Server"
-msgstr "Kiszolgálónként"
-
-#. Template: AAAITSMConfigItem
-msgid "Per User"
-msgstr "Felhasználónként"
-
-#. Template: AAAITSMConfigItem
-msgid "Phone 1"
-msgstr "1. telefon"
-
-#. Template: AAAITSMConfigItem
-msgid "Phone 2"
-msgstr "2. telefon"
-
-#. Template: AAAITSMConfigItem
-msgid "Pilot"
-msgstr "Próbaüzem"
-
-#. Template: AAAITSMConfigItem
-msgid "Planned"
-msgstr "Tervezett"
-
-#. Template: AAAITSMConfigItem
-msgid "Printer"
-msgstr "Nyomtató"
-
-#. Template: AAAITSMConfigItem
-msgid "Production"
-msgstr "Produktív"
-
-#. Template: AAAITSMConfigItem
-msgid "Quantity"
-msgstr "Mennyiség"
-
-#. Template: AAAITSMConfigItem
-msgid "Rack"
-msgstr "Rack"
-
-#. Template: AAAITSMConfigItem
-msgid "Ram"
-msgstr "Ram"
-
-#. Template: AAAITSMConfigItem
-msgid "Repair"
-msgstr "Javítás"
-
-#. Template: AAAITSMConfigItem
-msgid "Retired"
-msgstr "Visszavont"
-
-#. Template: AAAITSMConfigItem
-msgid "Review"
-msgstr "Vizsgálat"
-
-#. Template: AAAITSMConfigItem
-msgid "Room"
-msgstr "Szoba"
-
-#. Template: AAAITSMConfigItem
-msgid "Router"
-msgstr "Útválasztó"
-
-#. Template: AAAITSMConfigItem
-msgid "Scanner"
-msgstr "Lapolvasó"
-
-#. Template: AAAITSMConfigItem
-msgid "Search Config Items"
-msgstr "Konfigurációelemek keresése"
-
-#. Template: AAAITSMConfigItem
-msgid "Security Device"
-msgstr "Biztonsági eszköz"
-
-#. Template: AAAITSMConfigItem
-msgid "Serial Number"
-msgstr "Sorozatszám"
-
-#. Template: AAAITSMConfigItem
-msgid "Server"
-msgstr "Kiszolgáló"
-
-#. Template: AAAITSMConfigItem
-msgid "Server Application"
-msgstr "Kiszolgáló alkalmazás"
-
-#. Template: AAAITSMConfigItem
-msgid "Server OS"
-msgstr "Kiszolgáló operációs rendszer"
-
-#. Template: AAAITSMConfigItem
-msgid "Show Versions"
-msgstr "Verziók megjelenítése"
-
-#. Template: AAAITSMConfigItem
-msgid "Single Licence"
-msgstr "Egyedüli licenc"
-
-#. Template: AAAITSMConfigItem
-msgid "Subnet Mask"
-msgstr "Alhálózati maszk"
-
-#. Template: AAAITSMConfigItem
-msgid "Switch"
-msgstr "Kapcsoló"
-
-#. Template: AAAITSMConfigItem
-msgid "Telco"
-msgstr "Telco"
-
-#. Template: AAAITSMConfigItem
-msgid "Test/QA"
-msgstr "Tesztelés/QA"
-
-#. Template: AAAITSMConfigItem
-msgid "The deployment state of this config item"
-msgstr "A konfigurációelem üzembe állítási állapota"
-
-#. Template: AAAITSMConfigItem
-msgid "The incident state of this config item"
-msgstr "A konfigurációelem incidensállapota"
-
-#. Template: AAAITSMConfigItem
-msgid "Time Restricted"
-msgstr "Időben korlátozott"
-
-#. Template: AAAITSMConfigItem
-msgid "USB Device"
-msgstr "USB eszköz"
-
-#. Template: AAAITSMConfigItem
-msgid "Unlimited"
-msgstr "Korlátlan"
-
-#. Template: AAAITSMConfigItem
-msgid "User Tool"
-msgstr "Felhasználói eszköz"
-
-#. Template: AAAITSMConfigItem
-msgid "Volume Licence"
-msgstr "Mennyiségi licenc"
-
-#. Template: AAAITSMConfigItem
-msgid "WLAN"
-msgstr "WLAN"
-
-#. Template: AAAITSMConfigItem
-msgid "WLAN Access Point"
-msgstr "WLAN hozzáférési pont"
-
-#. Template: AAAITSMConfigItem
-msgid "Warranty Expiration Date"
-msgstr "Garancia lejárati idő"
-
-#. Template: AAAITSMConfigItem
-msgid "Workplace"
-msgstr "Munkahely"
 
 #. Template: AdminITSMConfigItem
 msgid "Config Item Management"
@@ -692,16 +184,96 @@ msgid "Property"
 msgstr "Tulajdonság"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
-msgid "ITSM ConfigItem"
-msgstr "ITSM konfigurációelem"
+msgid "No access to Class is given!"
+msgstr "Nincs hozzáférés megadva az osztályhoz!"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
+msgid "Overview: ITSM ConfigItem"
+msgstr "Áttekintés: ITSM konfigurációelem"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+msgid "No ConfigItemID is given!"
+msgstr "Nincs konfigurációelem-azonosító megadva!"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+msgid "You need at least one selected Configuration Item!"
+msgstr "Szüksége van legalább egy kiválasztott konfigurációelemre!"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+msgid "You don't have write access to this configuration item: %s."
+msgstr "Nincs írási hozzáférése ehhez a konfigurációelemhez: %s."
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+msgid "Config item \"%s\" not found in database!"
+msgstr "A(z) „%s” konfigurációelem nem található az adatbázisban!"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+msgid "Was not able to delete the configitem ID %s!"
+msgstr "Nem volt lehetséges a(z) %s konfigurációelem-azonosító törlése!"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+msgid "No version found for ConfigItemID %s!"
+msgstr "Nem található verzió a(z) %s konfigurációelem-azonosítónál!"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+msgid "No ConfigItemID, DuplicateID or ClassID is given!"
+msgstr "Nincs konfigurációelem-azonosító, kettőzésazonosító vagy osztályazonosító megadva!"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+msgid "No access is given!"
+msgstr "Nincs hozzáférés megadva!"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+msgid "No definition was defined for class %s!"
+msgstr "Nincs meghatározás meghatározva a(z) %s osztályhoz!"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "Can't show history, no ConfigItemID is given!"
+msgstr "Nem lehet megjeleníteni az előzményeket, nincs konfigurációelem-azonosító megadva!"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "Can't show history, no access rights given!"
+msgstr "Nem lehet megjeleníteni az előzményeket, nincsenek hozzáférési jogok megadva!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "CIHistory::"
 msgstr "CIHistory::"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "No ConfigItemID or VersionID is given!"
+msgstr "Nincs konfigurációelem-azonosító vagy verzióazonosító megadva!"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "Can't show config item, no access rights given!"
+msgstr "Nem lehet megjeleníteni a konfigurációelemet, nincsenek hozzáférési jogok megadva!"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "ConfigItemID %s not found in database!"
+msgstr "A(z) %s konfigurációelem-azonosító nem található az adatbázisban!"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "VersionID %s not found in database!"
+msgstr "A(z) %s verzióazonosító nem található az adatbázisban!"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "ConfigItem"
 msgstr "Konfigurációelem"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "printed by %s at %s"
+msgstr "nyomtatta: %s – %s"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+msgid "Invalid ClassID!"
+msgstr "Érvénytelen osztályazonosító!"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+msgid "No ClassID is given!"
+msgstr "Nincs osztályazonosító megadva!"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+msgid "No access rights for this class given!"
+msgstr "Nincsenek hozzáférési jogok megadva ehhez az osztályhoz!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "No Result!"
@@ -710,6 +282,356 @@ msgstr "Nincs találat!"
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "Config Item Search Results"
 msgstr "Konfigurációelem keresési eredmények"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+msgid "Can't show item, no access rights for ConfigItem are given!"
+msgstr "Nem lehet megjeleníteni az elemet, nincsenek hozzáférési jogok megadva a konfigurációelemhez!"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+msgid "The deployment state of this config item"
+msgstr "A konfigurációelem üzembe állítási állapota"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+msgid "The incident state of this config item"
+msgstr "A konfigurációelem incidensállapota"
+
+#. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
+msgid "Maximum number of one element"
+msgstr "Egy elem legnagyobb száma"
+
+#. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
+msgid "Empty fields indicate that the current values are kept"
+msgstr "Az üres mezők azt jelzik, hogy az aktuális mezők megtartásra kerülnek"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Computer"
+msgstr "Számítógép"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Hardware"
+msgstr "Hardver"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Network"
+msgstr "Hálózat"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Software"
+msgstr "Szoftver"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Expired"
+msgstr "Lejárt"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Maintenance"
+msgstr "Karbantartás"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Pilot"
+msgstr "Próbaüzem"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Planned"
+msgstr "Tervezett"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Production"
+msgstr "Produktív"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Repair"
+msgstr "Javítás"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Retired"
+msgstr "Visszavont"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Review"
+msgstr "Vizsgálat"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Test/QA"
+msgstr "Tesztelés/QA"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Laptop"
+msgstr "Laptop"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Desktop"
+msgstr "Asztal"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "PDA"
+msgstr "PDA"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Server"
+msgstr "Kiszolgáló"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Other"
+msgstr "Egyéb"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Monitor"
+msgstr "Monitor"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Printer"
+msgstr "Nyomtató"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Switch"
+msgstr "Kapcsoló"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Router"
+msgstr "Útválasztó"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "WLAN Access Point"
+msgstr "WLAN hozzáférési pont"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Security Device"
+msgstr "Biztonsági eszköz"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Backup Device"
+msgstr "Biztonsági mentés eszköz"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Mouse"
+msgstr "Egér"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Keyboard"
+msgstr "Billentyűzet"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Camera"
+msgstr "Kamera"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Beamer"
+msgstr "Beamer"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Modem"
+msgstr "Modem"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "PCMCIA Card"
+msgstr "PCMCIA kártya"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "USB Device"
+msgstr "USB eszköz"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Docking Station"
+msgstr "Dokkoló állomás"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Scanner"
+msgstr "Lapolvasó"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Building"
+msgstr "Épület"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Floor"
+msgstr "Emelet"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Room"
+msgstr "Szoba"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Rack"
+msgstr "Rack"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Workplace"
+msgstr "Munkahely"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Outlet"
+msgstr "Elosztó doboz"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "IT Facility"
+msgstr "IT-létesítmény"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "LAN"
+msgstr "LAN"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "WLAN"
+msgstr "WLAN"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Telco"
+msgstr "Telco"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "GSM"
+msgstr "GSM"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Client Application"
+msgstr "Kliens alkalmazás"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Middleware"
+msgstr "Köztes réteg"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Server Application"
+msgstr "Kiszolgáló alkalmazás"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Client OS"
+msgstr "Kliens operációs rendszer"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Server OS"
+msgstr "Kiszolgáló operációs rendszer"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Admin Tool"
+msgstr "Adminisztrációs eszköz"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "User Tool"
+msgstr "Felhasználói eszköz"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Embedded"
+msgstr "Beágyazott"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Single Licence"
+msgstr "Egyedüli licenc"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Per User"
+msgstr "Felhasználónként"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Per Processor"
+msgstr "Processzoronként"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Per Server"
+msgstr "Kiszolgálónként"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Per Node"
+msgstr "Csomópontonként"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Volume Licence"
+msgstr "Mennyiségi licenc"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Enterprise Licence"
+msgstr "Vállalati licenc"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Developer Licence"
+msgstr "Fejlesztői licenc"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Demo"
+msgstr "Bemutató"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Time Restricted"
+msgstr "Időben korlátozott"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Freeware"
+msgstr "Freeware"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Open Source"
+msgstr "Nyílt forrású"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Unlimited"
+msgstr "Korlátlan"
 
 #. SysConfig
 msgid "Admin."
@@ -751,6 +673,10 @@ msgstr "Konfigurációelem nyomtatása."
 #. SysConfig
 msgid "Config item zoom."
 msgstr "Konfigurációelem nagyítása."
+
+#. SysConfig
+msgid "ConfigItemNumber"
+msgstr "Konfigurációelem-szám"
 
 #. SysConfig
 msgid "Configuration Item Limit"

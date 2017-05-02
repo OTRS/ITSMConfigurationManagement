@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2017-02-14 17:57+0000\n"
-"PO-Revision-Date: 2017-02-14 16:58+0000\n"
+"POT-Creation-Date: 2017-04-28 13:33+0000\n"
+"PO-Revision-Date: 2017-04-28 11:34+0000\n"
 "Last-Translator: Udo Bretz\n"
 "Language-Team: Swahili (http://www.transifex.com/otrs/OTRS/language/sw/)\n"
 "MIME-Version: 1.0\n"
@@ -15,514 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sw\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#. Template: AAAITSMConfigItem
-msgid "Computer"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "Hardware"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "Network"
-msgstr "Mtandao"
-
-#. Template: AAAITSMConfigItem
-msgid "Software"
-msgstr ""
-
-#. Template: AAAITSMConfigItem
-msgid "Address"
-msgstr "Anwani"
-
-#. Template: AAAITSMConfigItem
-msgid "Admin Tool"
-msgstr "Kifaa cha kiongozi"
-
-#. Template: AAAITSMConfigItem
-msgid "Backup Device"
-msgstr "Kifaa cha chelezo"
-
-#. Template: AAAITSMConfigItem
-msgid "Beamer"
-msgstr "Projector"
-
-#. Template: AAAITSMConfigItem
-msgid "Building"
-msgstr "Jengo"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::ConfigItemCreate"
-msgstr "Historia ya CI:: Tengeneza Kipengele cha usanidi"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::ConfigItemDelete"
-msgstr "Historia ya CI::Futa kipengele cha usanidi"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::DefinitionUpdate"
-msgstr "Historia ya CI:: Sasisha ufafanuzi"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::DeploymentStateUpdate"
-msgstr "Historia ya CI:: sasishaHali yaMatumizi"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::IncidentStateUpdate"
-msgstr "Historia ya CI:: Sasisha Hali ya tukio"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::LinkAdd"
-msgstr "Historia ya CI::Ongeza Kiungo"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::LinkDelete"
-msgstr "Historia ya CI:: Futa Kiungo"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::NameUpdate"
-msgstr "Historia ya CI:: Sasisha jina"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::ValueUpdate"
-msgstr "Historia ya CI:: Sasisha Thamani"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::VersionCreate"
-msgstr "Historia ya CI::Tengeneza Toleo"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::VersionDelete"
-msgstr "Historia ya CI::Futa Toleo"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::AttachmentAdd"
-msgstr "Historia ya CI::Ongeza Kiambatanisho"
-
-#. Template: AAAITSMConfigItem
-msgid "CIHistory::AttachmentDelete"
-msgstr "Historia ya CI::Futa Kiambatisho"
-
-#. Template: AAAITSMConfigItem
-msgid "CPU"
-msgstr "CPU"
-
-#. Template: AAAITSMConfigItem
-msgid "Camera"
-msgstr "Kamera"
-
-#. Template: AAAITSMConfigItem
-msgid "Capacity"
-msgstr "Uwezo"
-
-#. Template: AAAITSMConfigItem
-msgid "Change Definition"
-msgstr "Ufafanuzi wa mabadiliko"
-
-#. Template: AAAITSMConfigItem
-msgid "Change of definition failed! See System Log for details."
-msgstr "Mabadiliko ya Ufafanuzi yameshindikana! Angalia batli ya mfumo kwa kina."
-
-#. Template: AAAITSMConfigItem
-msgid "Client Application"
-msgstr "Programu-tumizi a mteja"
-
-#. Template: AAAITSMConfigItem
-msgid "Client OS"
-msgstr "OS ya mteja"
-
-#. Template: AAAITSMConfigItem
-msgid "Config Item-Area"
-msgstr "Sanidi Eneo la kipengele"
-
-#. Template: AAAITSMConfigItem
-msgid "Config Items available"
-msgstr "Sanidi Vipengele vilivyopo"
-
-#. Template: AAAITSMConfigItem
-msgid "Config Items shown"
-msgstr "Sanidi Vipingele vilivyoonyeshwa"
-
-#. Template: AAAITSMConfigItem
-msgid "CMDB"
-msgstr "CMDB"
-
-#. Template: AAAITSMConfigItem
-msgid "Demo"
-msgstr "Onyesho"
-
-#. Template: AAAITSMConfigItem
-msgid "Desktop"
-msgstr "Eneo kazi"
-
-#. Template: AAAITSMConfigItem
-msgid "Developer Licence"
-msgstr "Leseni ya mtengenezaji"
-
-#. Template: AAAITSMConfigItem
-msgid "Docking Station"
-msgstr "Kituo egeshi"
-
-#. Template: AAAITSMConfigItem
-msgid "Duplicate"
-msgstr "Nakala pacha"
-
-#. Template: AAAITSMConfigItem
-msgid "Embedded"
-msgstr "Pakichwa"
-
-#. Template: AAAITSMConfigItem
-msgid "Empty fields indicate that the current values are kept"
-msgstr "Uga zilizowazi zinaonyesha kwamba thamani za sasa zimewekwa."
-
-#. Template: AAAITSMConfigItem
-msgid "Enterprise Licence"
-msgstr "Leseni ya Enterprie"
-
-#. Template: AAAITSMConfigItem
-msgid "Expiration Date"
-msgstr "Tarehe ya mwisho"
-
-#. Template: AAAITSMConfigItem
-msgid "Expired"
-msgstr "Imeisha"
-
-#. Template: AAAITSMConfigItem
-msgid "Floor"
-msgstr "Sakafu"
-
-#. Template: AAAITSMConfigItem
-msgid "Freeware"
-msgstr "Programu ya bure"
-
-#. Template: AAAITSMConfigItem
-msgid "GSM"
-msgstr "GSM"
-
-#. Template: AAAITSMConfigItem
-msgid "Gateway"
-msgstr "Kichanganishi mtandao"
-
-#. Template: AAAITSMConfigItem
-msgid "Graphic Adapter"
-msgstr "Adapta ya Mchoro"
-
-#. Template: AAAITSMConfigItem
-msgid "Hard Disk"
-msgstr "Diski kuu"
-
-#. Template: AAAITSMConfigItem
-msgid "Hard Disk::Capacity"
-msgstr "Diski kuu::Uwezo"
-
-#. Template: AAAITSMConfigItem
-msgid "Hide Versions"
-msgstr "Ficha matoleo"
-
-#. Template: AAAITSMConfigItem
-msgid "IP Address"
-msgstr "Anwani ya IP"
-
-#. Template: AAAITSMConfigItem
-msgid "IP over DHCP"
-msgstr "IP kwa DHCP"
-
-#. Template: AAAITSMConfigItem
-msgid "IT Facility"
-msgstr "P"
-
-#. Template: AAAITSMConfigItem
-msgid "Incident"
-msgstr "Tukio"
-
-#. Template: AAAITSMConfigItem
-msgid "Install Date"
-msgstr "Tarehe ya kusakinisha"
-
-#. Template: AAAITSMConfigItem
-msgid "Keyboard"
-msgstr "Boabonye"
-
-#. Template: AAAITSMConfigItem
-msgid "LAN"
-msgstr "LAN"
-
-#. Template: AAAITSMConfigItem
-msgid "Laptop"
-msgstr "Kompyuta ya mkononi"
-
-#. Template: AAAITSMConfigItem
-msgid "Last Change"
-msgstr "Mabadiliko ya mwisho"
-
-#. Template: AAAITSMConfigItem
-msgid "Licence Key"
-msgstr "Neno kuu la leseni"
-
-#. Template: AAAITSMConfigItem
-msgid "Licence Key::Expiration Date"
-msgstr "Neno kuu la leseni:: Tarehe ya kuisha"
-
-#. Template: AAAITSMConfigItem
-msgid "Licence Key::Quantity"
-msgstr "Neno kuu la leseni:: Wingi"
-
-#. Template: AAAITSMConfigItem
-msgid "Licence Type"
-msgstr "Aina ya leseni"
-
-#. Template: AAAITSMConfigItem
-msgid "Maintenance"
-msgstr "Matengenezo"
-
-#. Template: AAAITSMConfigItem
-msgid "Maximum number of one element"
-msgstr "Kima cha juu cha namba ya elementi mojawapo"
-
-#. Template: AAAITSMConfigItem
-msgid "Media"
-msgstr "Midia"
-
-#. Template: AAAITSMConfigItem
-msgid "Middleware"
-msgstr "Middleware"
-
-#. Template: AAAITSMConfigItem
-msgid "Model"
-msgstr "Mfano"
-
-#. Template: AAAITSMConfigItem
-msgid "Modem"
-msgstr "Modemu"
-
-#. Template: AAAITSMConfigItem
-msgid "Monitor"
-msgstr "Monita"
-
-#. Template: AAAITSMConfigItem
-msgid "Mouse"
-msgstr "Kipanya"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Adapter"
-msgstr "Adapta ya mtandao"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Adapter::IP Address"
-msgstr "Adapta ya mtandao:: Anwani ya IP"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Adapter::IP over DHCP"
-msgstr "Adapta ya mtandao:: IP kwa DHCP"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Address"
-msgstr "Anwani ya mtandao"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Address::Gateway"
-msgstr "Anwani ya mtandao::Kichanganishi mtandao"
-
-#. Template: AAAITSMConfigItem
-msgid "Network Address::Subnet Mask"
-msgstr "Anwani ya mtandao::Subnet Mask"
-
-#. Template: AAAITSMConfigItem
-msgid "Open Source"
-msgstr "Chanzo cha wazi"
-
-#. Template: AAAITSMConfigItem
-msgid "Operational"
-msgstr "Uendeshaji"
-
-#. Template: AAAITSMConfigItem
-msgid "Other"
-msgstr "Engine"
-
-#. Template: AAAITSMConfigItem
-msgid "Other Equipment"
-msgstr "Vifaa vingine"
-
-#. Template: AAAITSMConfigItem
-msgid "Outlet"
-msgstr "Sehemu ya kutokea"
-
-#. Template: AAAITSMConfigItem
-msgid "PCMCIA Card"
-msgstr "Kadi ya PCMCIA"
-
-#. Template: AAAITSMConfigItem
-msgid "PDA"
-msgstr "PDA"
-
-#. Template: AAAITSMConfigItem
-msgid "Per Node"
-msgstr "Kwa fundo"
-
-#. Template: AAAITSMConfigItem
-msgid "Per Processor"
-msgstr "Kwa kichakato"
-
-#. Template: AAAITSMConfigItem
-msgid "Per Server"
-msgstr "Kwa seva"
-
-#. Template: AAAITSMConfigItem
-msgid "Per User"
-msgstr "Kwa mtumiaji"
-
-#. Template: AAAITSMConfigItem
-msgid "Phone 1"
-msgstr "Simu ya 1"
-
-#. Template: AAAITSMConfigItem
-msgid "Phone 2"
-msgstr "Simu ya 2"
-
-#. Template: AAAITSMConfigItem
-msgid "Pilot"
-msgstr "Kwanza"
-
-#. Template: AAAITSMConfigItem
-msgid "Planned"
-msgstr "Iliyopangwa"
-
-#. Template: AAAITSMConfigItem
-msgid "Printer"
-msgstr "Kichapishi"
-
-#. Template: AAAITSMConfigItem
-msgid "Production"
-msgstr "Uzalishaji"
-
-#. Template: AAAITSMConfigItem
-msgid "Quantity"
-msgstr "Wingi"
-
-#. Template: AAAITSMConfigItem
-msgid "Rack"
-msgstr "Rack"
-
-#. Template: AAAITSMConfigItem
-msgid "Ram"
-msgstr "Ram"
-
-#. Template: AAAITSMConfigItem
-msgid "Repair"
-msgstr "Rekebisha"
-
-#. Template: AAAITSMConfigItem
-msgid "Retired"
-msgstr "Staafu"
-
-#. Template: AAAITSMConfigItem
-msgid "Review"
-msgstr "Mapitio"
-
-#. Template: AAAITSMConfigItem
-msgid "Room"
-msgstr "Chumba"
-
-#. Template: AAAITSMConfigItem
-msgid "Router"
-msgstr "Kipanga njia"
-
-#. Template: AAAITSMConfigItem
-msgid "Scanner"
-msgstr "Kitambazo"
-
-#. Template: AAAITSMConfigItem
-msgid "Search Config Items"
-msgstr "Tafuta vipengele vya usanidi"
-
-#. Template: AAAITSMConfigItem
-msgid "Security Device"
-msgstr "Kifaa cha ulinzi"
-
-#. Template: AAAITSMConfigItem
-msgid "Serial Number"
-msgstr "Namba tambulishi"
-
-#. Template: AAAITSMConfigItem
-msgid "Server"
-msgstr "Seva"
-
-#. Template: AAAITSMConfigItem
-msgid "Server Application"
-msgstr "Seva ya programu-tumizi"
-
-#. Template: AAAITSMConfigItem
-msgid "Server OS"
-msgstr "OS ya seva"
-
-#. Template: AAAITSMConfigItem
-msgid "Show Versions"
-msgstr "Onyesha matoleo"
-
-#. Template: AAAITSMConfigItem
-msgid "Single Licence"
-msgstr "Leseni moja"
-
-#. Template: AAAITSMConfigItem
-msgid "Subnet Mask"
-msgstr "Subnet mask"
-
-#. Template: AAAITSMConfigItem
-msgid "Switch"
-msgstr "Swichi"
-
-#. Template: AAAITSMConfigItem
-msgid "Telco"
-msgstr "Telco"
-
-#. Template: AAAITSMConfigItem
-msgid "Test/QA"
-msgstr "Jaribio/ Maswali na Majibu"
-
-#. Template: AAAITSMConfigItem
-msgid "The deployment state of this config item"
-msgstr "Hali ya matumizi ya hii kipengele cha usanidi "
-
-#. Template: AAAITSMConfigItem
-msgid "The incident state of this config item"
-msgstr "Hali ya tukio ya hiki kipengele cha usanidi"
-
-#. Template: AAAITSMConfigItem
-msgid "Time Restricted"
-msgstr "Muda umezuiliwa"
-
-#. Template: AAAITSMConfigItem
-msgid "USB Device"
-msgstr "Kifaa cha USB"
-
-#. Template: AAAITSMConfigItem
-msgid "Unlimited"
-msgstr "Haina kikomo"
-
-#. Template: AAAITSMConfigItem
-msgid "User Tool"
-msgstr "Kifaa cha mtumiaji"
-
-#. Template: AAAITSMConfigItem
-msgid "Volume Licence"
-msgstr "Leseni ya sauti"
-
-#. Template: AAAITSMConfigItem
-msgid "WLAN"
-msgstr "WLAN"
-
-#. Template: AAAITSMConfigItem
-msgid "WLAN Access Point"
-msgstr "Kiungo ufikivu cha WLAN"
-
-#. Template: AAAITSMConfigItem
-msgid "Warranty Expiration Date"
-msgstr "Tarehe ya kuisha kw audhamini."
-
-#. Template: AAAITSMConfigItem
-msgid "Workplace"
-msgstr "Eneo la kazi"
 
 #. Template: AdminITSMConfigItem
 msgid "Config Item Management"
@@ -694,7 +186,55 @@ msgid "Property"
 msgstr "Mali"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
-msgid "ITSM ConfigItem"
+msgid "No access to Class is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
+msgid "Overview: ITSM ConfigItem"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+msgid "No ConfigItemID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+msgid "You need at least one selected Configuration Item!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+msgid "You don't have write access to this configuration item: %s."
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+msgid "Config item \"%s\" not found in database!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+msgid "Was not able to delete the configitem ID %s!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+msgid "No version found for ConfigItemID %s!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+msgid "No ConfigItemID, DuplicateID or ClassID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+msgid "No access is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+msgid "No definition was defined for class %s!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "Can't show history, no ConfigItemID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "Can't show history, no access rights given!"
 msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
@@ -702,8 +242,40 @@ msgid "CIHistory::"
 msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "No ConfigItemID or VersionID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "Can't show config item, no access rights given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "ConfigItemID %s not found in database!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "VersionID %s not found in database!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "ConfigItem"
 msgstr "Kipengele cha usanidi"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "printed by %s at %s"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+msgid "Invalid ClassID!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+msgid "No ClassID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+msgid "No access rights for this class given!"
+msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "No Result!"
@@ -712,6 +284,356 @@ msgstr ""
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "Config Item Search Results"
 msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+msgid "Can't show item, no access rights for ConfigItem are given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+msgid "The deployment state of this config item"
+msgstr "Hali ya matumizi ya hii kipengele cha usanidi "
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+msgid "The incident state of this config item"
+msgstr "Hali ya tukio ya hiki kipengele cha usanidi"
+
+#. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
+msgid "Maximum number of one element"
+msgstr "Kima cha juu cha namba ya elementi mojawapo"
+
+#. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
+msgid "Empty fields indicate that the current values are kept"
+msgstr "Uga zilizowazi zinaonyesha kwamba thamani za sasa zimewekwa."
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Computer"
+msgstr ""
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Hardware"
+msgstr ""
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Network"
+msgstr "Mtandao"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Software"
+msgstr ""
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Expired"
+msgstr "Imeisha"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Maintenance"
+msgstr "Matengenezo"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Pilot"
+msgstr "Kwanza"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Planned"
+msgstr "Iliyopangwa"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Production"
+msgstr "Uzalishaji"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Repair"
+msgstr "Rekebisha"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Retired"
+msgstr "Staafu"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Review"
+msgstr "Mapitio"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Test/QA"
+msgstr "Jaribio/ Maswali na Majibu"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Laptop"
+msgstr "Kompyuta ya mkononi"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Desktop"
+msgstr "Eneo kazi"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "PDA"
+msgstr "PDA"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Server"
+msgstr "Seva"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Other"
+msgstr "Engine"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Monitor"
+msgstr "Monita"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Printer"
+msgstr "Kichapishi"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Switch"
+msgstr "Swichi"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Router"
+msgstr "Kipanga njia"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "WLAN Access Point"
+msgstr "Kiungo ufikivu cha WLAN"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Security Device"
+msgstr "Kifaa cha ulinzi"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Backup Device"
+msgstr "Kifaa cha chelezo"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Mouse"
+msgstr "Kipanya"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Keyboard"
+msgstr "Boabonye"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Camera"
+msgstr "Kamera"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Beamer"
+msgstr "Projector"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Modem"
+msgstr "Modemu"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "PCMCIA Card"
+msgstr "Kadi ya PCMCIA"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "USB Device"
+msgstr "Kifaa cha USB"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Docking Station"
+msgstr "Kituo egeshi"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Scanner"
+msgstr "Kitambazo"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Building"
+msgstr "Jengo"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Floor"
+msgstr "Sakafu"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Room"
+msgstr "Chumba"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Rack"
+msgstr "Rack"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Workplace"
+msgstr "Eneo la kazi"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Outlet"
+msgstr "Sehemu ya kutokea"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "IT Facility"
+msgstr "P"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "LAN"
+msgstr "LAN"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "WLAN"
+msgstr "WLAN"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Telco"
+msgstr "Telco"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "GSM"
+msgstr "GSM"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Client Application"
+msgstr "Programu-tumizi a mteja"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Middleware"
+msgstr "Middleware"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Server Application"
+msgstr "Seva ya programu-tumizi"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Client OS"
+msgstr "OS ya mteja"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Server OS"
+msgstr "OS ya seva"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Admin Tool"
+msgstr "Kifaa cha kiongozi"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "User Tool"
+msgstr "Kifaa cha mtumiaji"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Embedded"
+msgstr "Pakichwa"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Single Licence"
+msgstr "Leseni moja"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Per User"
+msgstr "Kwa mtumiaji"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Per Processor"
+msgstr "Kwa kichakato"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Per Server"
+msgstr "Kwa seva"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Per Node"
+msgstr "Kwa fundo"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Volume Licence"
+msgstr "Leseni ya sauti"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Enterprise Licence"
+msgstr "Leseni ya Enterprie"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Developer Licence"
+msgstr "Leseni ya mtengenezaji"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Demo"
+msgstr "Onyesho"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Time Restricted"
+msgstr "Muda umezuiliwa"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Freeware"
+msgstr "Programu ya bure"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Open Source"
+msgstr "Chanzo cha wazi"
+
+#. Database XML Definition:
+#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+msgid "Unlimited"
+msgstr "Haina kikomo"
 
 #. SysConfig
 msgid "Admin."
@@ -752,6 +674,10 @@ msgstr ""
 
 #. SysConfig
 msgid "Config item zoom."
+msgstr ""
+
+#. SysConfig
+msgid "ConfigItemNumber"
 msgstr ""
 
 #. SysConfig
