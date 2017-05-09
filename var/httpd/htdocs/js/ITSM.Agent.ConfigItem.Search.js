@@ -313,6 +313,7 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
             TargetNS.SetSearchDialog( '$Env{"Action"}' );
             $('#ITSMSearchProfile').removeClass('Hidden');
             $('#ITSMSearchFields').removeClass('Hidden');
+            $('.Dialog:visible #SearchFormSubmit').appendTo($('.Dialog:visible > .Content > .ContentFooter'));
             $('#SearchFormSubmit').removeClass('Hidden');
             $('#DivClassID').removeClass('ui-autocomplete-loading');
             Core.UI.InputFields.Activate($('#SearchForm'));
@@ -343,11 +344,11 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
         };
 
         ShowWaitingDialog();
-
         Core.AJAX.FunctionCall(
             Core.Config.Get('CGIHandle'),
             Data,
             function (HTML) {
+
                 // if the waiting dialog was canceled, do not show the search
                 //  dialog as well
                 if (!$('.Dialog:visible').length) {
