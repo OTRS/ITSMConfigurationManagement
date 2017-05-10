@@ -293,5 +293,8 @@
             return false;
         }
     });
+
+    // Initialize allocation list for link object table.
+    Core.Agent.TableFilters.SetAllocationList();
 //]]></script>
 [% END %]
