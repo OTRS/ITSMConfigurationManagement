@@ -11,6 +11,7 @@ package var::packagesetup::ITSMConfigurationManagement;    ## no critic
 use strict;
 use warnings;
 
+use Kernel::Language qw(Translatable)
 use Kernel::Output::Template::Provider;
 
 our @ObjectDependencies = (
@@ -542,7 +543,7 @@ sub _AddConfigItemDefinitions {
         Computer => "[
     {
         Key => 'Vendor',
-        Name => 'Vendor',
+        Name => Translatable('Vendor'),
         Searchable => 1,
         Input => {
             Type => 'Text',
@@ -556,7 +557,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'Model',
-        Name => 'Model',
+        Name => Translatable('Model'),
         Searchable => 1,
         Input => {
             Type => 'Text',
@@ -566,7 +567,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'Description',
-        Name => 'Description',
+        Name => Translatable('Description'),
         Searchable => 1,
         Input => {
             Type => 'TextArea',
@@ -574,7 +575,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'Type',
-        Name => 'Type',
+        Name => Translatable('Type'),
         Searchable => 1,
         Input => {
             Type => 'GeneralCatalog',
@@ -584,7 +585,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'Owner',
-        Name => 'Owner',
+        Name => Translatable('Owner'),
         Searchable => 1,
         Input => {
             Type => 'Customer',
@@ -592,7 +593,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'SerialNumber',
-        Name => 'Serial Number',
+        Name => Translatable('Serial Number'),
         Searchable => 1,
         Input => {
             Type => 'Text',
@@ -602,7 +603,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'OperatingSystem',
-        Name => 'Operating System',
+        Name => Translatable('Operating System'),
         Input => {
             Type => 'Text',
             Size => 50,
@@ -611,7 +612,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'CPU',
-        Name => 'CPU',
+        Name => Translatable('CPU'),
         Input => {
             Type => 'Text',
             Size => 50,
@@ -621,7 +622,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'Ram',
-        Name => 'Ram',
+        Name => Translatable('Ram'),
         Input => {
             Type => 'Text',
             Size => 50,
@@ -631,7 +632,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'HardDisk',
-        Name => 'Hard Disk',
+        Name => Translatable('Hard Disk'),
         Input => {
             Type => 'Text',
             Size => 50,
@@ -641,7 +642,7 @@ sub _AddConfigItemDefinitions {
         Sub => [
             {
                 Key => 'Capacity',
-                Name => 'Capacity',
+                Name => Translatable('Capacity'),
                 Input => {
                     Type => 'Text',
                     Size => 20,
@@ -652,7 +653,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'FQDN',
-        Name => 'FQDN',
+        Name => Translatable('FQDN'),
         Searchable => 1,
         Input => {
             Type => 'Text',
@@ -662,7 +663,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'NIC',
-        Name => 'Network Adapter',
+        Name => Translatable('Network Adapter'),
         Input => {
             Type => 'Text',
             Size => 50,
@@ -675,7 +676,7 @@ sub _AddConfigItemDefinitions {
         Sub => [
             {
                 Key => 'IPoverDHCP',
-                Name => 'IP over DHCP',
+                Name => Translatable('IP over DHCP'),
                 Input => {
                     Type => 'GeneralCatalog',
                     Class => 'ITSM::ConfigItem::YesNo',
@@ -685,7 +686,7 @@ sub _AddConfigItemDefinitions {
             },
             {
                 Key => 'IPAddress',
-                Name => 'IP Address',
+                Name => Translatable('IP Address'),
                 Searchable => 1,
                 Input => {
                     Type => 'Text',
@@ -701,7 +702,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'GraphicAdapter',
-        Name => 'Graphic Adapter',
+        Name => Translatable('Graphic Adapter'),
         Input => {
             Type => 'Text',
             Size => 50,
@@ -710,7 +711,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'OtherEquipment',
-        Name => 'Other Equipment',
+        Name => Translatable('Other Equipment'),
         Input => {
             Type => 'TextArea',
             Required => 1,
@@ -720,7 +721,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'WarrantyExpirationDate',
-        Name => 'Warranty Expiration Date',
+        Name => Translatable('Warranty Expiration Date'),
         Searchable => 1,
         Input => {
             Type => 'Date',
@@ -730,7 +731,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'InstallDate',
-        Name => 'Install Date',
+        Name => Translatable('Install Date'),
         Searchable => 1,
         Input => {
             Type => 'Date',
@@ -743,7 +744,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'Note',
-        Name => 'Note',
+        Name => Translatable('Note'),
         Searchable => 1,
         Input => {
             Type => 'TextArea',
@@ -756,7 +757,7 @@ sub _AddConfigItemDefinitions {
         Hardware => "[
     {
         Key => 'Vendor',
-        Name => 'Vendor',
+        Name => Translatable('Vendor'),
         Searchable => 1,
         Input => {
             Type => 'Text',
@@ -766,7 +767,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'Model',
-        Name => 'Model',
+        Name => Translatable('Model'),
         Searchable => 1,
         Input => {
             Type => 'Text',
@@ -776,7 +777,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'Description',
-        Name => 'Description',
+        Name => Translatable('Description'),
         Searchable => 1,
         Input => {
             Type => 'TextArea',
@@ -784,7 +785,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'Type',
-        Name => 'Type',
+        Name => Translatable('Type'),
         Searchable => 1,
         Input => {
             Type => 'GeneralCatalog',
@@ -794,7 +795,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'Owner',
-        Name => 'Owner',
+        Name => Translatable('Owner'),
         Searchable => 1,
         Input => {
             Type => 'Customer',
@@ -802,7 +803,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'SerialNumber',
-        Name => 'Serial Number',
+        Name => Translatable('Serial Number'),
         Searchable => 1,
         Input => {
             Type => 'Text',
@@ -812,7 +813,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'WarrantyExpirationDate',
-        Name => 'Warranty Expiration Date',
+        Name => Translatable('Warranty Expiration Date'),
         Searchable => 1,
         Input => {
             Type => 'Date',
@@ -822,7 +823,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'InstallDate',
-        Name => 'Install Date',
+        Name => Translatable('Install Date'),
         Searchable => 1,
         Input => {
             Type => 'Date',
@@ -836,7 +837,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'Note',
-        Name => 'Note',
+        Name => Translatable('Note'),
         Searchable => 1,
         Input => {
             Type => 'TextArea',
@@ -850,7 +851,7 @@ sub _AddConfigItemDefinitions {
         Location => "[
     {
         Key => 'Type',
-        Name => 'Type',
+        Name => Translatable('Type'),
         Searchable => 1,
         Input => {
             Type => 'GeneralCatalog',
@@ -860,7 +861,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'Phone1',
-        Name => 'Phone 1',
+        Name => Translatable('Phone 1'),
         Searchable => 1,
         Input => {
             Type => 'Text',
@@ -870,7 +871,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'Phone2',
-        Name => 'Phone 2',
+        Name => Translatable('Phone 2'),
         Searchable => 1,
         Input => {
             Type => 'Text',
@@ -880,7 +881,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'Fax',
-        Name => 'Fax',
+        Name => Translatable('Fax'),
         Searchable => 1,
         Input => {
             Type => 'Text',
@@ -890,7 +891,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'E-Mail',
-        Name => 'E-Mail',
+        Name => Translatable('E-Mail'),
         Searchable => 1,
         Input => {
             Type => 'Text',
@@ -900,7 +901,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'Address',
-        Name => 'Address',
+        Name => Translatable('Address'),
         Searchable => 1,
         Input => {
             Type => 'TextArea',
@@ -908,7 +909,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'Note',
-        Name => 'Note',
+        Name => Translatable('Note'),
         Searchable => 1,
         Input => {
             Type => 'TextArea',
@@ -921,7 +922,7 @@ sub _AddConfigItemDefinitions {
         Network => "[
     {
         Key => 'Description',
-        Name => 'Description',
+        Name => Translatable('Description'),
         Searchable => 1,
         Input => {
             Type => 'TextArea',
@@ -929,7 +930,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'Type',
-        Name => 'Type',
+        Name => Translatable('Type'),
         Searchable => 1,
         Input => {
             Type => 'GeneralCatalog',
@@ -939,7 +940,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'NetworkAddress',
-        Name => 'Network Address',
+        Name => Translatable('Network Address'),
         Searchable => 1,
         Input => {
             Type => 'Text',
@@ -953,7 +954,7 @@ sub _AddConfigItemDefinitions {
         Sub => [
             {
                 Key => 'SubnetMask',
-                Name => 'Subnet Mask',
+                Name => Translatable('Subnet Mask'),
                 Input => {
                     Type => 'Text',
                     Size => 30,
@@ -967,7 +968,7 @@ sub _AddConfigItemDefinitions {
             },
             {
                 Key => 'Gateway',
-                Name => 'Gateway',
+                Name => Translatable('Gateway'),
                 Input => {
                     Type => 'Text',
                     Size => 30,
@@ -982,7 +983,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'Note',
-        Name => 'Note',
+        Name => Translatable('Note'),
         Searchable => 1,
         Input => {
             Type => 'TextArea',
@@ -996,7 +997,7 @@ sub _AddConfigItemDefinitions {
         Software => "[
     {
         Key => 'Vendor',
-        Name => 'Vendor',
+        Name => Translatable('Vendor'),
         Searchable => 1,
         Input => {
             Type => 'Text',
@@ -1006,7 +1007,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'Version',
-        Name => 'Version',
+        Name => Translatable('Version'),
         Searchable => 1,
         Input => {
             Type => 'Text',
@@ -1016,7 +1017,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'Description',
-        Name => 'Description',
+        Name => Translatable('Description'),
         Searchable => 1,
         Input => {
             Type => 'TextArea',
@@ -1024,7 +1025,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'Type',
-        Name => 'Type',
+        Name => Translatable('Type'),
         Searchable => 1,
         Input => {
             Type => 'GeneralCatalog',
@@ -1034,7 +1035,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'Owner',
-        Name => 'Owner',
+        Name => Translatable('Owner'),
         Searchable => 1,
         Input => {
             Type => 'Customer',
@@ -1042,7 +1043,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'SerialNumber',
-        Name => 'Serial Number',
+        Name => Translatable('Serial Number'),
         Searchable => 1,
         Input => {
             Type => 'Text',
@@ -1052,7 +1053,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'LicenceType',
-        Name => 'Licence Type',
+        Name => Translatable('Licence Type'),
         Searchable => 1,
         Input => {
             Type => 'GeneralCatalog',
@@ -1062,7 +1063,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'LicenceKey',
-        Name => 'Licence Key',
+        Name => Translatable('Licence Key'),
         Searchable => 1,
         Input => {
             Type => 'Text',
@@ -1076,7 +1077,7 @@ sub _AddConfigItemDefinitions {
         Sub => [
             {
                 Key => 'Quantity',
-                Name => 'Quantity',
+                Name => Translatable('Quantity'),
                 Input => {
                     Type => 'Integer',
                     ValueMin => 1,
@@ -1090,7 +1091,7 @@ sub _AddConfigItemDefinitions {
             },
             {
                 Key => 'ExpirationDate',
-                Name => 'Expiration Date',
+                Name => Translatable('Expiration Date'),
                 Input => {
                     Type => 'Date',
                     Required => 1,
@@ -1105,7 +1106,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'Media',
-        Name => 'Media',
+        Name => Translatable('Media'),
         Input => {
             Type => 'Text',
             Size => 40,
@@ -1114,7 +1115,7 @@ sub _AddConfigItemDefinitions {
     },
     {
         Key => 'Note',
-        Name => 'Note',
+        Name => Translatable('Note'),
         Searchable => 1,
         Input => {
             Type => 'TextArea',

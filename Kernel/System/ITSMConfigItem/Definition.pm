@@ -11,6 +11,8 @@ package Kernel::System::ITSMConfigItem::Definition;
 use strict;
 use warnings;
 
+use Kernel::Language qw(Translatable);
+
 our $ObjectManagerDisabled = 1;
 
 =head1 NAME

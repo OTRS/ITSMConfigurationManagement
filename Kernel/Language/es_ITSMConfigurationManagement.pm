@@ -128,6 +128,33 @@ sub Data {
     $Self->{Translation}->{'Maximum number of one element'} = 'Número máximo de un elemento ';
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Los campos vacíos indican que los valores actuales se mantienen';
 
+    # Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+    $Self->{Translation}->{'Model'} = '';
+    $Self->{Translation}->{'Serial Number'} = '';
+    $Self->{Translation}->{'CPU'} = '';
+    $Self->{Translation}->{'Ram'} = '';
+    $Self->{Translation}->{'Hard Disk'} = '';
+    $Self->{Translation}->{'Capacity'} = '';
+    $Self->{Translation}->{'Network Adapter'} = '';
+    $Self->{Translation}->{'IP over DHCP'} = '';
+    $Self->{Translation}->{'IP Address'} = '';
+    $Self->{Translation}->{'Graphic Adapter'} = '';
+    $Self->{Translation}->{'Other Equipment'} = '';
+    $Self->{Translation}->{'Warranty Expiration Date'} = '';
+    $Self->{Translation}->{'Install Date'} = '';
+    $Self->{Translation}->{'Phone 1'} = '';
+    $Self->{Translation}->{'Phone 2'} = '';
+    $Self->{Translation}->{'E-Mail'} = '';
+    $Self->{Translation}->{'Address'} = '';
+    $Self->{Translation}->{'Network Address'} = '';
+    $Self->{Translation}->{'Subnet Mask'} = '';
+    $Self->{Translation}->{'Gateway'} = '';
+    $Self->{Translation}->{'Licence Type'} = '';
+    $Self->{Translation}->{'Licence Key'} = '';
+    $Self->{Translation}->{'Quantity'} = '';
+    $Self->{Translation}->{'Expiration Date'} = '';
+    $Self->{Translation}->{'Media'} = '';
+
     # Database XML Definition: /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
     $Self->{Translation}->{'Computer'} = 'Ordenador';
     $Self->{Translation}->{'Hardware'} = 'Hardware';
