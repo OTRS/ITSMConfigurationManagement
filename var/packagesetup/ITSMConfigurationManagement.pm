@@ -11,7 +11,7 @@ package var::packagesetup::ITSMConfigurationManagement;    ## no critic
 use strict;
 use warnings;
 
-use Kernel::Language qw(Translatable)
+use Kernel::Language qw(Translatable);
 use Kernel::Output::Template::Provider;
 
 our @ObjectDependencies = (
