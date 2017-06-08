@@ -18,13 +18,12 @@ my $Selenium = $Kernel::OM->Get('Kernel::System::UnitTest::Selenium');
 $Selenium->RunTest(
     sub {
 
-        # get needed objects
         my $Helper               = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
         my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
 
-        # get 'Computer' and 'Hardware' ConfigItem ID
+        # get 'Computer' ConfigItem ID
         my @ConfigItemClassIDs;
-        for my $ConfigItemClass (qw(Hardware)) {
+        for my $ConfigItemClass (qw(Computer)) {
             my $ConfigItemDataRef = $GeneralCatalogObject->ItemGet(
                 Class => 'ITSM::ConfigItem::Class',
                 Name  => $ConfigItemClass,
@@ -39,7 +38,6 @@ $Selenium->RunTest(
         );
         my $ProductionDeplStateID = $ProductionDeplStateDataRef->{ItemID};
 
-        # get needed objects
         my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
         my $ConfigObject     = $Kernel::OM->Get('Kernel::Config');
 
@@ -74,7 +72,7 @@ $Selenium->RunTest(
 
         # add a new version for each ConfigItem
         my @VersionIDs;
-        my $Count    = 2;
+        my $Count    = 1;
         my $RandomID = $Helper->GetRandomID();
         for my $ConfigItemVersion (@ConfigItemIDs) {
             my $VersionID = $ConfigItemObject->VersionAdd(
@@ -91,7 +89,7 @@ $Selenium->RunTest(
             );
             push @VersionIDs, $VersionID;
 
-            $Count--;
+            $Count++;
         }
 
         # create test user and login
@@ -122,7 +120,7 @@ $Selenium->RunTest(
 
         sleep(5);
 
-        # select 'Hardware' class
+        # select 'Computer' class
         $Selenium->execute_script(
             "\$('#SearchClassID').val('$ConfigItemClassIDs[0]').trigger('redraw.InputField').trigger('change');"
         );
@@ -184,12 +182,12 @@ $Selenium->RunTest(
         # sort is by Name descending
         $Self->Is(
             $Selenium->execute_script("return \$('tbody tr:eq(0)').attr('id')"),
-            'ConfigItemID_' . $ConfigItemIDs[1],
+            'ConfigItemID_' . $ConfigItemIDs[0],
             "ConfigItemID $ConfigItemIDs[1] is on top of table sort by Name descending"
         );
         $Self->Is(
             $Selenium->execute_script("return \$('tbody tr:eq(1)').attr('id')"),
-            'ConfigItemID_' . $ConfigItemIDs[0],
+            'ConfigItemID_' . $ConfigItemIDs[1],
             "ConfigItemID $ConfigItemIDs[0] is on bottom of table sort by Name descending"
         );
 
@@ -199,13 +197,157 @@ $Selenium->RunTest(
         # verify order is changed, sort by Name ascending
         $Self->Is(
             $Selenium->execute_script("return \$('tbody tr:eq(0)').attr('id')"),
-            'ConfigItemID_' . $ConfigItemIDs[0],
+            'ConfigItemID_' . $ConfigItemIDs[1],
             "ConfigItemID $ConfigItemIDs[0] is on top of table sort by Name ascending"
         );
         $Self->Is(
             $Selenium->execute_script("return \$('tbody tr:eq(1)').attr('id')"),
-            'ConfigItemID_' . $ConfigItemIDs[1],
+            'ConfigItemID_' . $ConfigItemIDs[0],
             "ConfigItemID $ConfigItemIDs[1] is on bottom of table sort by Name ascending"
+        );
+
+        # create ConfigItem numbers
+        @ConfigItemNumbers = ();
+        for my $ConfigNumberCreate ( 1 .. 35 ) {
+            my $ConfigItemNumber = $ConfigItemObject->ConfigItemNumberCreate(
+                Type    => $ConfigObject->Get('ITSMConfigItem::NumberGenerator'),
+                ClassID => $ConfigItemClassIDs[0],
+            );
+            $Self->True(
+                $ConfigItemNumber,
+                "ConfigItem number is created - $ConfigItemNumber"
+            );
+            push @ConfigItemNumbers, $ConfigItemNumber;
+        }
+
+        # add the new ConfigItems
+        for my $ConfigItemCreateNumber (@ConfigItemNumbers) {
+            my $ConfigItemID = $ConfigItemObject->ConfigItemAdd(
+                Number  => $ConfigItemCreateNumber,
+                ClassID => $ConfigItemClassIDs[0],
+                UserID  => 1,
+            );
+            $Self->True(
+                $ConfigItemID,
+                "ConfigItem is created - ID $ConfigItemID"
+            );
+            push @ConfigItemIDs, $ConfigItemID;
+        }
+
+        my @XMLDataArray = [
+            undef,
+            {
+                'Version' => [
+                    undef,
+                    {
+
+                        'WarrantyExpirationDate' => [
+                            undef,
+                            {
+                                'Content' => '2017-10-10'
+                            },
+                        ],
+                    },
+                ],
+            },
+            {
+                'Version' => [
+                    undef,
+                    {
+
+                        'WarrantyExpirationDate' => [
+                            undef,
+                            {
+                                'Content' => '2017-11-11'
+                            },
+                        ],
+                    },
+                ],
+            },
+        ];
+
+        # add a new version for each ConfigItem
+        $Count = 1;
+        for my $ConfigItemVersion (@ConfigItemIDs) {
+
+            my $XMLData = ( $Count <= 30 ) ? $XMLDataArray[0] : $XMLDataArray[1];
+            my $VersionID = $ConfigItemObject->VersionAdd(
+                Name         => $Count . $RandomID,
+                DefinitionID => 1,
+                DeplStateID  => $ProductionDeplStateID,
+                InciStateID  => 1,
+                UserID       => 1,
+                XMLData      => $XMLData,
+                ConfigItemID => $ConfigItemVersion,
+            );
+            $Self->True(
+                $VersionID,
+                "Version is created - ID $VersionID"
+            );
+            push @VersionIDs, $VersionID;
+
+            $Count++;
+        }
+
+        # change search option
+        $Selenium->find_element( "#ITSMConfigItemSearch", 'css' )->VerifiedClick();
+
+        # wait until form has loaded, if necessary
+        $Selenium->WaitFor( JavaScript => "return \$('#Attribute').length" );
+
+        # Add search filter by WarrantyExpirationDate and set date range (8-10-2017 - 15-10-2017).
+        $Selenium->execute_script(
+            "\$('#Attribute').val('WarrantyExpirationDate').trigger('redraw.InputField').trigger('change');",
+        );
+        $Selenium->find_element( '.AddButton', 'css' )->click();
+        $Selenium->execute_script(
+            "\$('#SearchInsert select[id=\"WarrantyExpirationDate::TimeStart::Day\"]').val('8');"
+        );
+        $Selenium->execute_script(
+            "\$('#SearchInsert select[id=\"WarrantyExpirationDate::TimeStart::Month\"]').val('10');"
+        );
+        $Selenium->execute_script(
+            "\$('#SearchInsert select[id=\"WarrantyExpirationDate::TimeStart::Year\"]').val('2017');"
+        );
+        $Selenium->execute_script(
+            "\$('#SearchInsert select[id=\"WarrantyExpirationDate::TimeStop::Day\"]').val('15');"
+        );
+        $Selenium->execute_script(
+            "\$('#SearchInsert select[id=\"WarrantyExpirationDate::TimeStop::Month\"]').val('10');"
+        );
+        $Selenium->execute_script(
+            "\$('#SearchInsert select[id=\"WarrantyExpirationDate::TimeStop::Year\"]').val('2017');"
+        );
+        $Selenium->find_element("//input[\@name='Number']")->clear();
+        $Selenium->find_element("//input[\@name='Number']")->send_keys('*');
+        $Selenium->find_element("//input[\@name='Name']")->clear();
+        $Selenium->find_element("//input[\@name='Name']")->send_keys( '*' . $RandomID );
+
+        $Selenium->find_element( "#SearchFormSubmit", 'css' )->VerifiedClick();
+
+        $Self->True(
+            index( $Selenium->execute_script("return \$('.Pagination').text().trim();"), '1-25 of 30' ) > -1,
+            "Check pagination on the first page",
+        );
+
+        $Self->Is(
+            $Selenium->execute_script("return \$('tbody tr').length;"),
+            '25',
+            "Check number of config items on the second page",
+        );
+
+        # Go to the second page.
+        $Selenium->find_element( "#GenericPage2", 'css' )->VerifiedClick();
+
+        $Self->True(
+            index( $Selenium->execute_script("return \$('.Pagination').text().trim();"), '26-30 of 30' ) > -1,
+            "Check pagination on the second page",
+        );
+
+        $Self->Is(
+            $Selenium->execute_script("return \$('tbody tr').length;"),
+            '5',
+            "Check number of config items on the second page",
         );
 
         # change search option

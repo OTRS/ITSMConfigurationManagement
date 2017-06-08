@@ -1138,6 +1138,42 @@ sub _XMLSearchFormGet {
             $InputKey = $Param{Prefix} . '::' . $InputKey;
         }
 
+        # Date type fields must to get all date parameters.
+        if ( $Item->{Input}->{Type} eq 'Date' && $Param{$InputKey} ) {
+            $Param{$InputKey} =
+                {
+                $InputKey                      => $Param{$InputKey},
+                $InputKey . '::TimeStart::Day' => $Param{ $InputKey . '::TimeStart::Day' },
+                $InputKey
+                    . '::TimeStart::Month' => $Param{ $InputKey . '::TimeStart::Month' },
+                $InputKey . '::TimeStart::Year' => $Param{ $InputKey . '::TimeStart::Year' },
+                $InputKey . '::TimeStop::Day'   => $Param{ $InputKey . '::TimeStop::Day' },
+                $InputKey . '::TimeStop::Month' => $Param{ $InputKey . '::TimeStop::Month' },
+                $InputKey . '::TimeStop::Year'  => $Param{ $InputKey . '::TimeStop::Year' },
+                } || '';
+        }
+
+        # Date-time type fields must get all date and time parameters.
+        elsif ( $Item->{Input}->{Type} eq 'DateTime' && $Param{$InputKey} ) {
+            $Param{$InputKey} =
+                {
+                $InputKey => $Param{$InputKey},
+                $InputKey
+                    . '::TimeStart::Minute' => $Param{ $InputKey . '::TimeStart::Minute' },
+                $InputKey . '::TimeStart::Hour' => $Param{ $InputKey . '::TimeStart::Hour' },
+                $InputKey . '::TimeStart::Day'  => $Param{ $InputKey . '::TimeStart::Day' },
+                $InputKey
+                    . '::TimeStart::Month' => $Param{ $InputKey . '::TimeStart::Month' },
+                $InputKey . '::TimeStart::Year' => $Param{ $InputKey . '::TimeStart::Year' },
+                $InputKey
+                    . '::TimeStop::Minute' => $Param{ $InputKey . '::TimeStop::Minute' },
+                $InputKey . '::TimeStop::Hour'  => $Param{ $InputKey . '::TimeStop::Hour' },
+                $InputKey . '::TimeStop::Day'   => $Param{ $InputKey . '::TimeStop::Day' },
+                $InputKey . '::TimeStop::Month' => $Param{ $InputKey . '::TimeStop::Month' },
+                $InputKey . '::TimeStop::Year'  => $Param{ $InputKey . '::TimeStop::Year' },
+                } || '';
+        }
+
         # get search form data
         my $Values = $Kernel::OM->Get('Kernel::Output::HTML::Layout')->ITSMConfigItemSearchFormDataGet(
             Key   => $InputKey,
