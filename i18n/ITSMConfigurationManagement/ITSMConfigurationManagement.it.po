@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2017-04-28 13:33+0000\n"
-"PO-Revision-Date: 2017-04-28 11:34+0000\n"
+"POT-Creation-Date: 2017-06-01 19:31+0000\n"
+"PO-Revision-Date: 2017-06-02 13:31+0000\n"
 "Last-Translator: Udo Bretz\n"
 "Language-Team: Italian (http://www.transifex.com/otrs/OTRS/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -303,6 +303,106 @@ msgstr "Numero massimo di un elemento"
 #. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
 msgid "Empty fields indicate that the current values are kept"
 msgstr ""
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Model"
+msgstr "Modello"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Serial Number"
+msgstr "Numero seriale"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "CPU"
+msgstr "CPU"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Ram"
+msgstr "Ram"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Hard Disk"
+msgstr "Disco fisso"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Capacity"
+msgstr "Capacità"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Network Adapter"
+msgstr "Scheda di rete"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "IP over DHCP"
+msgstr "IP su DHCP"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "IP Address"
+msgstr "Indirizzo IP"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Graphic Adapter"
+msgstr "Scheda grafica"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Other Equipment"
+msgstr "Altri apparati"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Warranty Expiration Date"
+msgstr "Data di scadenza della garanzia"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Install Date"
+msgstr "Data di installazione"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Phone 1"
+msgstr "Telefono 1"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Phone 2"
+msgstr "Telefono 2"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "E-Mail"
+msgstr ""
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Address"
+msgstr "Indirizzo"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Network Address"
+msgstr "Indirizzo di rete"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Subnet Mask"
+msgstr "Maschera di rete"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Gateway"
+msgstr "Gateway"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Licence Type"
+msgstr "Tipo di licenza"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Licence Key"
+msgstr "Chiave di licenza"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Quantity"
+msgstr "Quantità"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Expiration Date"
+msgstr "Data di scadenza"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Media"
+msgstr "Supporto"
 
 #. Database XML Definition:
 #. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm

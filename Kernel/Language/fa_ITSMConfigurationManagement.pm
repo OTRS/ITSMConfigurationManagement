@@ -129,31 +129,31 @@ sub Data {
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'فیلدهای خالی مشخص می‌کند که مقادیر کنونی باقی خواهند ماند';
 
     # Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
-    $Self->{Translation}->{'Model'} = '';
-    $Self->{Translation}->{'Serial Number'} = '';
-    $Self->{Translation}->{'CPU'} = '';
-    $Self->{Translation}->{'Ram'} = '';
-    $Self->{Translation}->{'Hard Disk'} = '';
-    $Self->{Translation}->{'Capacity'} = '';
-    $Self->{Translation}->{'Network Adapter'} = '';
-    $Self->{Translation}->{'IP over DHCP'} = '';
-    $Self->{Translation}->{'IP Address'} = '';
-    $Self->{Translation}->{'Graphic Adapter'} = '';
-    $Self->{Translation}->{'Other Equipment'} = '';
-    $Self->{Translation}->{'Warranty Expiration Date'} = '';
-    $Self->{Translation}->{'Install Date'} = '';
-    $Self->{Translation}->{'Phone 1'} = '';
-    $Self->{Translation}->{'Phone 2'} = '';
+    $Self->{Translation}->{'Model'} = 'مدل';
+    $Self->{Translation}->{'Serial Number'} = 'شماره سریال';
+    $Self->{Translation}->{'CPU'} = 'سی‌پی‌یو';
+    $Self->{Translation}->{'Ram'} = 'رم';
+    $Self->{Translation}->{'Hard Disk'} = 'هارد دیسک';
+    $Self->{Translation}->{'Capacity'} = 'ظرفیت';
+    $Self->{Translation}->{'Network Adapter'} = 'کارت شبکه';
+    $Self->{Translation}->{'IP over DHCP'} = 'IP از طریق DHCP';
+    $Self->{Translation}->{'IP Address'} = 'آدرس IP';
+    $Self->{Translation}->{'Graphic Adapter'} = 'کارت گرافیک';
+    $Self->{Translation}->{'Other Equipment'} = 'تجهیزات متفرقه';
+    $Self->{Translation}->{'Warranty Expiration Date'} = 'تاریخ انقضای ضمانت‌نامه';
+    $Self->{Translation}->{'Install Date'} = 'تاریخ نصب';
+    $Self->{Translation}->{'Phone 1'} = 'تلفن ۱';
+    $Self->{Translation}->{'Phone 2'} = 'تلفن ۲';
     $Self->{Translation}->{'E-Mail'} = '';
-    $Self->{Translation}->{'Address'} = '';
-    $Self->{Translation}->{'Network Address'} = '';
-    $Self->{Translation}->{'Subnet Mask'} = '';
-    $Self->{Translation}->{'Gateway'} = '';
-    $Self->{Translation}->{'Licence Type'} = '';
-    $Self->{Translation}->{'Licence Key'} = '';
-    $Self->{Translation}->{'Quantity'} = '';
-    $Self->{Translation}->{'Expiration Date'} = '';
-    $Self->{Translation}->{'Media'} = '';
+    $Self->{Translation}->{'Address'} = 'نشانی';
+    $Self->{Translation}->{'Network Address'} = 'آدرس شبکه';
+    $Self->{Translation}->{'Subnet Mask'} = 'Subnet Mask';
+    $Self->{Translation}->{'Gateway'} = 'Gateway';
+    $Self->{Translation}->{'Licence Type'} = 'نوع اجازه‌نامه';
+    $Self->{Translation}->{'Licence Key'} = 'کلید اجازه‌نامه';
+    $Self->{Translation}->{'Quantity'} = 'تعداد';
+    $Self->{Translation}->{'Expiration Date'} = 'تاریخ انقضا';
+    $Self->{Translation}->{'Media'} = 'رسانه';
 
     # Database XML Definition: /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
     $Self->{Translation}->{'Computer'} = '';

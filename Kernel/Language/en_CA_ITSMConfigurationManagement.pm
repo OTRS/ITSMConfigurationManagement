@@ -149,8 +149,8 @@ sub Data {
     $Self->{Translation}->{'Network Address'} = '';
     $Self->{Translation}->{'Subnet Mask'} = '';
     $Self->{Translation}->{'Gateway'} = '';
-    $Self->{Translation}->{'Licence Type'} = '';
-    $Self->{Translation}->{'Licence Key'} = '';
+    $Self->{Translation}->{'Licence Type'} = 'License Type';
+    $Self->{Translation}->{'Licence Key'} = 'License Key';
     $Self->{Translation}->{'Quantity'} = '';
     $Self->{Translation}->{'Expiration Date'} = '';
     $Self->{Translation}->{'Media'} = '';

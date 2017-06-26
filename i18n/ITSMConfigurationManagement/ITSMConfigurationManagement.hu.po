@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2017-04-28 13:33+0000\n"
-"PO-Revision-Date: 2017-04-28 20:00+0000\n"
+"POT-Creation-Date: 2017-06-01 19:31+0000\n"
+"PO-Revision-Date: 2017-06-02 16:38+0000\n"
 "Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/otrs/OTRS/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -303,6 +303,106 @@ msgstr "Egy elem legnagyobb száma"
 msgid "Empty fields indicate that the current values are kept"
 msgstr "Az üres mezők azt jelzik, hogy az aktuális mezők megtartásra kerülnek"
 
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Model"
+msgstr "Modell"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Serial Number"
+msgstr "Sorozatszám"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "CPU"
+msgstr "CPU"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Ram"
+msgstr "Ram"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Hard Disk"
+msgstr "Merevlemez"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Capacity"
+msgstr "Kapacitás"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Network Adapter"
+msgstr "Hálózati csatoló"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "IP over DHCP"
+msgstr "IP a DHCP fölött"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "IP Address"
+msgstr "IP-cím"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Graphic Adapter"
+msgstr "Grafikus csatoló"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Other Equipment"
+msgstr "Egyéb berendezés"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Warranty Expiration Date"
+msgstr "Garancia lejárati idő"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Install Date"
+msgstr "Telepítés dátuma"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Phone 1"
+msgstr "1. telefon"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Phone 2"
+msgstr "2. telefon"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "E-Mail"
+msgstr "E-mail"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Address"
+msgstr "Cím"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Network Address"
+msgstr "Hálózati cím"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Subnet Mask"
+msgstr "Alhálózati maszk"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Gateway"
+msgstr "Átjáró"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Licence Type"
+msgstr "Licenctípus"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Licence Key"
+msgstr "Licenc kulcs"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Quantity"
+msgstr "Mennyiség"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Expiration Date"
+msgstr "Lejárati idő"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Media"
+msgstr "Adathordozó"
+
 #. Database XML Definition:
 #. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
 msgid "Computer"
@@ -376,7 +476,7 @@ msgstr "Laptop"
 #. Database XML Definition:
 #. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
 msgid "Desktop"
-msgstr "Asztal"
+msgstr "Asztali"
 
 #. Database XML Definition:
 #. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm

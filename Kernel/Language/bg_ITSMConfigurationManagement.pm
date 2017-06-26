@@ -129,31 +129,31 @@ sub Data {
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = '';
 
     # Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
-    $Self->{Translation}->{'Model'} = '';
-    $Self->{Translation}->{'Serial Number'} = '';
-    $Self->{Translation}->{'CPU'} = '';
-    $Self->{Translation}->{'Ram'} = '';
-    $Self->{Translation}->{'Hard Disk'} = '';
-    $Self->{Translation}->{'Capacity'} = '';
-    $Self->{Translation}->{'Network Adapter'} = '';
-    $Self->{Translation}->{'IP over DHCP'} = '';
-    $Self->{Translation}->{'IP Address'} = '';
-    $Self->{Translation}->{'Graphic Adapter'} = '';
-    $Self->{Translation}->{'Other Equipment'} = '';
-    $Self->{Translation}->{'Warranty Expiration Date'} = '';
-    $Self->{Translation}->{'Install Date'} = '';
+    $Self->{Translation}->{'Model'} = 'Модел';
+    $Self->{Translation}->{'Serial Number'} = 'Сериен Номер';
+    $Self->{Translation}->{'CPU'} = 'Процесор';
+    $Self->{Translation}->{'Ram'} = 'Памет';
+    $Self->{Translation}->{'Hard Disk'} = 'Твърд диск';
+    $Self->{Translation}->{'Capacity'} = 'Капацитет';
+    $Self->{Translation}->{'Network Adapter'} = 'Мрежов адаптер';
+    $Self->{Translation}->{'IP over DHCP'} = 'IP от DHCP';
+    $Self->{Translation}->{'IP Address'} = 'IP адрес';
+    $Self->{Translation}->{'Graphic Adapter'} = 'Графична карта';
+    $Self->{Translation}->{'Other Equipment'} = 'Друго оборудване';
+    $Self->{Translation}->{'Warranty Expiration Date'} = 'Дата на изтичане на гаранцията';
+    $Self->{Translation}->{'Install Date'} = 'Дата на инсталация';
     $Self->{Translation}->{'Phone 1'} = '';
     $Self->{Translation}->{'Phone 2'} = '';
     $Self->{Translation}->{'E-Mail'} = '';
     $Self->{Translation}->{'Address'} = '';
-    $Self->{Translation}->{'Network Address'} = '';
-    $Self->{Translation}->{'Subnet Mask'} = '';
-    $Self->{Translation}->{'Gateway'} = '';
-    $Self->{Translation}->{'Licence Type'} = '';
-    $Self->{Translation}->{'Licence Key'} = '';
-    $Self->{Translation}->{'Quantity'} = '';
-    $Self->{Translation}->{'Expiration Date'} = '';
-    $Self->{Translation}->{'Media'} = '';
+    $Self->{Translation}->{'Network Address'} = 'Мрежов адрес';
+    $Self->{Translation}->{'Subnet Mask'} = 'Маска на подмрежата';
+    $Self->{Translation}->{'Gateway'} = 'Гейт преход';
+    $Self->{Translation}->{'Licence Type'} = 'Тип на лиценза';
+    $Self->{Translation}->{'Licence Key'} = 'Лицензен ключ';
+    $Self->{Translation}->{'Quantity'} = 'Количество';
+    $Self->{Translation}->{'Expiration Date'} = 'Дата на изтичане';
+    $Self->{Translation}->{'Media'} = 'Медия';
 
     # Database XML Definition: /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
     $Self->{Translation}->{'Computer'} = '';
@@ -224,7 +224,7 @@ sub Data {
     $Self->{Translation}->{'Unlimited'} = 'Неограничен лиценз';
 
     # SysConfig
-    $Self->{Translation}->{'Admin.'} = '';
+    $Self->{Translation}->{'Admin.'} = 'Админ';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         '';
     $Self->{Translation}->{'Config Items'} = '';
@@ -312,7 +312,7 @@ sub Data {
     $Self->{Translation}->{'Parameters for the deployment states in the preferences view of the agent interface.'} =
         '';
     $Self->{Translation}->{'Parameters for the example permission groups of the general catalog attributes.'} =
-        '';
+        'Параметри за примерните разрешителни групи от атрибутите на общия каталог.';
     $Self->{Translation}->{'Parameters for the pages (in which the configuration items are shown).'} =
         '';
     $Self->{Translation}->{'Required permissions to use the ITSM configuration item screen in the agent interface.'} =

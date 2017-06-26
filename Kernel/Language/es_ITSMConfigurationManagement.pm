@@ -109,7 +109,7 @@ sub Data {
     $Self->{Translation}->{'ConfigItemID %s not found in database!'} = '';
     $Self->{Translation}->{'VersionID %s not found in database!'} = '';
     $Self->{Translation}->{'ConfigItem'} = '';
-    $Self->{Translation}->{'printed by %s at %s'} = '';
+    $Self->{Translation}->{'printed by %s at %s'} = 'impreso por %s en %s';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
     $Self->{Translation}->{'Invalid ClassID!'} = '';
@@ -129,31 +129,31 @@ sub Data {
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Los campos vacíos indican que los valores actuales se mantienen';
 
     # Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
-    $Self->{Translation}->{'Model'} = '';
-    $Self->{Translation}->{'Serial Number'} = '';
-    $Self->{Translation}->{'CPU'} = '';
-    $Self->{Translation}->{'Ram'} = '';
-    $Self->{Translation}->{'Hard Disk'} = '';
-    $Self->{Translation}->{'Capacity'} = '';
-    $Self->{Translation}->{'Network Adapter'} = '';
-    $Self->{Translation}->{'IP over DHCP'} = '';
-    $Self->{Translation}->{'IP Address'} = '';
-    $Self->{Translation}->{'Graphic Adapter'} = '';
-    $Self->{Translation}->{'Other Equipment'} = '';
-    $Self->{Translation}->{'Warranty Expiration Date'} = '';
-    $Self->{Translation}->{'Install Date'} = '';
-    $Self->{Translation}->{'Phone 1'} = '';
-    $Self->{Translation}->{'Phone 2'} = '';
-    $Self->{Translation}->{'E-Mail'} = '';
-    $Self->{Translation}->{'Address'} = '';
-    $Self->{Translation}->{'Network Address'} = '';
-    $Self->{Translation}->{'Subnet Mask'} = '';
-    $Self->{Translation}->{'Gateway'} = '';
-    $Self->{Translation}->{'Licence Type'} = '';
-    $Self->{Translation}->{'Licence Key'} = '';
-    $Self->{Translation}->{'Quantity'} = '';
-    $Self->{Translation}->{'Expiration Date'} = '';
-    $Self->{Translation}->{'Media'} = '';
+    $Self->{Translation}->{'Model'} = 'Modelo';
+    $Self->{Translation}->{'Serial Number'} = 'Número Serial';
+    $Self->{Translation}->{'CPU'} = 'CPU';
+    $Self->{Translation}->{'Ram'} = 'RAM';
+    $Self->{Translation}->{'Hard Disk'} = 'Disco Duro';
+    $Self->{Translation}->{'Capacity'} = 'Capacidad';
+    $Self->{Translation}->{'Network Adapter'} = 'Adaptador de Red';
+    $Self->{Translation}->{'IP over DHCP'} = 'IP sobre DHCP';
+    $Self->{Translation}->{'IP Address'} = 'Dirección IP';
+    $Self->{Translation}->{'Graphic Adapter'} = 'Tarjeta Gráfica';
+    $Self->{Translation}->{'Other Equipment'} = 'Otro Equipo';
+    $Self->{Translation}->{'Warranty Expiration Date'} = 'Fecha de Expiración de la Garantía';
+    $Self->{Translation}->{'Install Date'} = 'Fecha de Instalación';
+    $Self->{Translation}->{'Phone 1'} = 'Teléfono 1';
+    $Self->{Translation}->{'Phone 2'} = 'Teléfono 2';
+    $Self->{Translation}->{'E-Mail'} = 'E-Mail';
+    $Self->{Translation}->{'Address'} = 'Dirección';
+    $Self->{Translation}->{'Network Address'} = 'Dirección de Red';
+    $Self->{Translation}->{'Subnet Mask'} = 'Máscara de Subred';
+    $Self->{Translation}->{'Gateway'} = 'Puerta de enlace';
+    $Self->{Translation}->{'Licence Type'} = 'Tipo de Licencia';
+    $Self->{Translation}->{'Licence Key'} = 'Clave de Licencia';
+    $Self->{Translation}->{'Quantity'} = 'Cantidad';
+    $Self->{Translation}->{'Expiration Date'} = 'Fecha de Expiración';
+    $Self->{Translation}->{'Media'} = 'Medio';
 
     # Database XML Definition: /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
     $Self->{Translation}->{'Computer'} = 'Ordenador';

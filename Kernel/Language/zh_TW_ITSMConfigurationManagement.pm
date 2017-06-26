@@ -129,31 +129,31 @@ sub Data {
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = '空字段表示當前值被保存';
 
     # Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
-    $Self->{Translation}->{'Model'} = '';
-    $Self->{Translation}->{'Serial Number'} = '';
-    $Self->{Translation}->{'CPU'} = '';
-    $Self->{Translation}->{'Ram'} = '';
-    $Self->{Translation}->{'Hard Disk'} = '';
-    $Self->{Translation}->{'Capacity'} = '';
-    $Self->{Translation}->{'Network Adapter'} = '';
-    $Self->{Translation}->{'IP over DHCP'} = '';
-    $Self->{Translation}->{'IP Address'} = '';
-    $Self->{Translation}->{'Graphic Adapter'} = '';
-    $Self->{Translation}->{'Other Equipment'} = '';
-    $Self->{Translation}->{'Warranty Expiration Date'} = '';
-    $Self->{Translation}->{'Install Date'} = '';
-    $Self->{Translation}->{'Phone 1'} = '';
-    $Self->{Translation}->{'Phone 2'} = '';
+    $Self->{Translation}->{'Model'} = '型號';
+    $Self->{Translation}->{'Serial Number'} = '序列號';
+    $Self->{Translation}->{'CPU'} = 'CPU';
+    $Self->{Translation}->{'Ram'} = '内存';
+    $Self->{Translation}->{'Hard Disk'} = '硬碟';
+    $Self->{Translation}->{'Capacity'} = '容量';
+    $Self->{Translation}->{'Network Adapter'} = '網路卡';
+    $Self->{Translation}->{'IP over DHCP'} = '從DHCP取得IP';
+    $Self->{Translation}->{'IP Address'} = 'IP位址';
+    $Self->{Translation}->{'Graphic Adapter'} = '顯示卡';
+    $Self->{Translation}->{'Other Equipment'} = '其它設備';
+    $Self->{Translation}->{'Warranty Expiration Date'} = '保養失效日期';
+    $Self->{Translation}->{'Install Date'} = '安装日期';
+    $Self->{Translation}->{'Phone 1'} = '電話1';
+    $Self->{Translation}->{'Phone 2'} = '電話2';
     $Self->{Translation}->{'E-Mail'} = '';
-    $Self->{Translation}->{'Address'} = '';
-    $Self->{Translation}->{'Network Address'} = '';
-    $Self->{Translation}->{'Subnet Mask'} = '';
-    $Self->{Translation}->{'Gateway'} = '';
-    $Self->{Translation}->{'Licence Type'} = '';
-    $Self->{Translation}->{'Licence Key'} = '';
-    $Self->{Translation}->{'Quantity'} = '';
-    $Self->{Translation}->{'Expiration Date'} = '';
-    $Self->{Translation}->{'Media'} = '';
+    $Self->{Translation}->{'Address'} = '地址';
+    $Self->{Translation}->{'Network Address'} = '網路位址';
+    $Self->{Translation}->{'Subnet Mask'} = '子網路遮照';
+    $Self->{Translation}->{'Gateway'} = '閘道';
+    $Self->{Translation}->{'Licence Type'} = '許可類别';
+    $Self->{Translation}->{'Licence Key'} = '許可密鑰';
+    $Self->{Translation}->{'Quantity'} = '數量';
+    $Self->{Translation}->{'Expiration Date'} = '失效日期';
+    $Self->{Translation}->{'Media'} = '介質';
 
     # Database XML Definition: /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
     $Self->{Translation}->{'Computer'} = '';

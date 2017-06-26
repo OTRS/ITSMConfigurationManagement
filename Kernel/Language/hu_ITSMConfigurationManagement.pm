@@ -129,31 +129,31 @@ sub Data {
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Az üres mezők azt jelzik, hogy az aktuális mezők megtartásra kerülnek';
 
     # Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
-    $Self->{Translation}->{'Model'} = '';
-    $Self->{Translation}->{'Serial Number'} = '';
-    $Self->{Translation}->{'CPU'} = '';
-    $Self->{Translation}->{'Ram'} = '';
-    $Self->{Translation}->{'Hard Disk'} = '';
-    $Self->{Translation}->{'Capacity'} = '';
-    $Self->{Translation}->{'Network Adapter'} = '';
-    $Self->{Translation}->{'IP over DHCP'} = '';
-    $Self->{Translation}->{'IP Address'} = '';
-    $Self->{Translation}->{'Graphic Adapter'} = '';
-    $Self->{Translation}->{'Other Equipment'} = '';
-    $Self->{Translation}->{'Warranty Expiration Date'} = '';
-    $Self->{Translation}->{'Install Date'} = '';
-    $Self->{Translation}->{'Phone 1'} = '';
-    $Self->{Translation}->{'Phone 2'} = '';
-    $Self->{Translation}->{'E-Mail'} = '';
-    $Self->{Translation}->{'Address'} = '';
-    $Self->{Translation}->{'Network Address'} = '';
-    $Self->{Translation}->{'Subnet Mask'} = '';
-    $Self->{Translation}->{'Gateway'} = '';
-    $Self->{Translation}->{'Licence Type'} = '';
-    $Self->{Translation}->{'Licence Key'} = '';
-    $Self->{Translation}->{'Quantity'} = '';
-    $Self->{Translation}->{'Expiration Date'} = '';
-    $Self->{Translation}->{'Media'} = '';
+    $Self->{Translation}->{'Model'} = 'Modell';
+    $Self->{Translation}->{'Serial Number'} = 'Sorozatszám';
+    $Self->{Translation}->{'CPU'} = 'CPU';
+    $Self->{Translation}->{'Ram'} = 'Ram';
+    $Self->{Translation}->{'Hard Disk'} = 'Merevlemez';
+    $Self->{Translation}->{'Capacity'} = 'Kapacitás';
+    $Self->{Translation}->{'Network Adapter'} = 'Hálózati csatoló';
+    $Self->{Translation}->{'IP over DHCP'} = 'IP a DHCP fölött';
+    $Self->{Translation}->{'IP Address'} = 'IP-cím';
+    $Self->{Translation}->{'Graphic Adapter'} = 'Grafikus csatoló';
+    $Self->{Translation}->{'Other Equipment'} = 'Egyéb berendezés';
+    $Self->{Translation}->{'Warranty Expiration Date'} = 'Garancia lejárati idő';
+    $Self->{Translation}->{'Install Date'} = 'Telepítés dátuma';
+    $Self->{Translation}->{'Phone 1'} = '1. telefon';
+    $Self->{Translation}->{'Phone 2'} = '2. telefon';
+    $Self->{Translation}->{'E-Mail'} = 'E-mail';
+    $Self->{Translation}->{'Address'} = 'Cím';
+    $Self->{Translation}->{'Network Address'} = 'Hálózati cím';
+    $Self->{Translation}->{'Subnet Mask'} = 'Alhálózati maszk';
+    $Self->{Translation}->{'Gateway'} = 'Átjáró';
+    $Self->{Translation}->{'Licence Type'} = 'Licenctípus';
+    $Self->{Translation}->{'Licence Key'} = 'Licenc kulcs';
+    $Self->{Translation}->{'Quantity'} = 'Mennyiség';
+    $Self->{Translation}->{'Expiration Date'} = 'Lejárati idő';
+    $Self->{Translation}->{'Media'} = 'Adathordozó';
 
     # Database XML Definition: /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
     $Self->{Translation}->{'Computer'} = 'Számítógép';
@@ -170,7 +170,7 @@ sub Data {
     $Self->{Translation}->{'Review'} = 'Vizsgálat';
     $Self->{Translation}->{'Test/QA'} = 'Tesztelés/QA';
     $Self->{Translation}->{'Laptop'} = 'Laptop';
-    $Self->{Translation}->{'Desktop'} = 'Asztal';
+    $Self->{Translation}->{'Desktop'} = 'Asztali';
     $Self->{Translation}->{'PDA'} = 'PDA';
     $Self->{Translation}->{'Server'} = 'Kiszolgáló';
     $Self->{Translation}->{'Other'} = 'Egyéb';

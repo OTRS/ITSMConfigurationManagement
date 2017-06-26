@@ -129,31 +129,31 @@ sub Data {
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = '';
 
     # Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
-    $Self->{Translation}->{'Model'} = '';
-    $Self->{Translation}->{'Serial Number'} = '';
-    $Self->{Translation}->{'CPU'} = '';
-    $Self->{Translation}->{'Ram'} = '';
-    $Self->{Translation}->{'Hard Disk'} = '';
-    $Self->{Translation}->{'Capacity'} = '';
-    $Self->{Translation}->{'Network Adapter'} = '';
-    $Self->{Translation}->{'IP over DHCP'} = '';
-    $Self->{Translation}->{'IP Address'} = '';
-    $Self->{Translation}->{'Graphic Adapter'} = '';
-    $Self->{Translation}->{'Other Equipment'} = '';
-    $Self->{Translation}->{'Warranty Expiration Date'} = '';
-    $Self->{Translation}->{'Install Date'} = '';
-    $Self->{Translation}->{'Phone 1'} = '';
-    $Self->{Translation}->{'Phone 2'} = '';
+    $Self->{Translation}->{'Model'} = 'Modèle';
+    $Self->{Translation}->{'Serial Number'} = 'Numéro de série';
+    $Self->{Translation}->{'CPU'} = 'CPU';
+    $Self->{Translation}->{'Ram'} = 'RAM';
+    $Self->{Translation}->{'Hard Disk'} = 'Disque dur';
+    $Self->{Translation}->{'Capacity'} = 'Capacité';
+    $Self->{Translation}->{'Network Adapter'} = 'Adaptateur réseau';
+    $Self->{Translation}->{'IP over DHCP'} = 'IP sur DHCP';
+    $Self->{Translation}->{'IP Address'} = 'Adresse IP';
+    $Self->{Translation}->{'Graphic Adapter'} = 'Adaptateur graphique';
+    $Self->{Translation}->{'Other Equipment'} = 'Autre équipement';
+    $Self->{Translation}->{'Warranty Expiration Date'} = 'Date d\'expiration de la garantie';
+    $Self->{Translation}->{'Install Date'} = 'Date d\'installation';
+    $Self->{Translation}->{'Phone 1'} = 'Téléphone 1';
+    $Self->{Translation}->{'Phone 2'} = 'Téléphone 2';
     $Self->{Translation}->{'E-Mail'} = '';
-    $Self->{Translation}->{'Address'} = '';
-    $Self->{Translation}->{'Network Address'} = '';
-    $Self->{Translation}->{'Subnet Mask'} = '';
-    $Self->{Translation}->{'Gateway'} = '';
-    $Self->{Translation}->{'Licence Type'} = '';
-    $Self->{Translation}->{'Licence Key'} = '';
-    $Self->{Translation}->{'Quantity'} = '';
-    $Self->{Translation}->{'Expiration Date'} = '';
-    $Self->{Translation}->{'Media'} = '';
+    $Self->{Translation}->{'Address'} = 'Adresse';
+    $Self->{Translation}->{'Network Address'} = 'Adresse réseau';
+    $Self->{Translation}->{'Subnet Mask'} = 'Masque du sous réseau';
+    $Self->{Translation}->{'Gateway'} = 'Passerelle';
+    $Self->{Translation}->{'Licence Type'} = 'Type de license';
+    $Self->{Translation}->{'Licence Key'} = 'Clé de la license';
+    $Self->{Translation}->{'Quantity'} = 'Quantité';
+    $Self->{Translation}->{'Expiration Date'} = 'Date d\'expiration';
+    $Self->{Translation}->{'Media'} = 'Media';
 
     # Database XML Definition: /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
     $Self->{Translation}->{'Computer'} = '';

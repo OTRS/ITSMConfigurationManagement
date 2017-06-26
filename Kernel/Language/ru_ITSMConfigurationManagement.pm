@@ -129,31 +129,31 @@ sub Data {
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Пустые поля показывают, что текущие значения сохранятся';
 
     # Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
-    $Self->{Translation}->{'Model'} = '';
-    $Self->{Translation}->{'Serial Number'} = '';
-    $Self->{Translation}->{'CPU'} = '';
-    $Self->{Translation}->{'Ram'} = '';
-    $Self->{Translation}->{'Hard Disk'} = '';
-    $Self->{Translation}->{'Capacity'} = '';
-    $Self->{Translation}->{'Network Adapter'} = '';
-    $Self->{Translation}->{'IP over DHCP'} = '';
-    $Self->{Translation}->{'IP Address'} = '';
-    $Self->{Translation}->{'Graphic Adapter'} = '';
-    $Self->{Translation}->{'Other Equipment'} = '';
-    $Self->{Translation}->{'Warranty Expiration Date'} = '';
-    $Self->{Translation}->{'Install Date'} = '';
-    $Self->{Translation}->{'Phone 1'} = '';
-    $Self->{Translation}->{'Phone 2'} = '';
+    $Self->{Translation}->{'Model'} = 'Модель';
+    $Self->{Translation}->{'Serial Number'} = 'Серийный номер';
+    $Self->{Translation}->{'CPU'} = 'ЦПУ';
+    $Self->{Translation}->{'Ram'} = 'ОЗУ';
+    $Self->{Translation}->{'Hard Disk'} = 'Жесткий диск';
+    $Self->{Translation}->{'Capacity'} = 'Объем';
+    $Self->{Translation}->{'Network Adapter'} = 'Сетевой адаптер';
+    $Self->{Translation}->{'IP over DHCP'} = 'IP по DHCP';
+    $Self->{Translation}->{'IP Address'} = 'IP адрес';
+    $Self->{Translation}->{'Graphic Adapter'} = 'Видео адаптер';
+    $Self->{Translation}->{'Other Equipment'} = 'Другое оборудование';
+    $Self->{Translation}->{'Warranty Expiration Date'} = 'Срок истечения гарантии';
+    $Self->{Translation}->{'Install Date'} = 'Дата установки';
+    $Self->{Translation}->{'Phone 1'} = 'Телефон 1';
+    $Self->{Translation}->{'Phone 2'} = 'Телефон 2';
     $Self->{Translation}->{'E-Mail'} = '';
-    $Self->{Translation}->{'Address'} = '';
-    $Self->{Translation}->{'Network Address'} = '';
-    $Self->{Translation}->{'Subnet Mask'} = '';
-    $Self->{Translation}->{'Gateway'} = '';
-    $Self->{Translation}->{'Licence Type'} = '';
-    $Self->{Translation}->{'Licence Key'} = '';
-    $Self->{Translation}->{'Quantity'} = '';
-    $Self->{Translation}->{'Expiration Date'} = '';
-    $Self->{Translation}->{'Media'} = '';
+    $Self->{Translation}->{'Address'} = 'Адрес';
+    $Self->{Translation}->{'Network Address'} = 'Сетевой адрес';
+    $Self->{Translation}->{'Subnet Mask'} = 'Маска подсети';
+    $Self->{Translation}->{'Gateway'} = 'Шлюз';
+    $Self->{Translation}->{'Licence Type'} = 'Тип лицензии';
+    $Self->{Translation}->{'Licence Key'} = 'Лицензионный ключ';
+    $Self->{Translation}->{'Quantity'} = 'Количество';
+    $Self->{Translation}->{'Expiration Date'} = 'Срок лицензии';
+    $Self->{Translation}->{'Media'} = 'Мультимедийные средства';
 
     # Database XML Definition: /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
     $Self->{Translation}->{'Computer'} = '';
@@ -289,8 +289,8 @@ sub Data {
     $Self->{Translation}->{'Deployment State Color'} = '';
     $Self->{Translation}->{'Deployment State Color.'} = '';
     $Self->{Translation}->{'Deployment State Type.'} = '';
-    $Self->{Translation}->{'Disabled'} = '';
-    $Self->{Translation}->{'Enabled'} = '';
+    $Self->{Translation}->{'Disabled'} = 'Отключено';
+    $Self->{Translation}->{'Enabled'} = 'Включено';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         'Включает возможность массовых действий с КЕ для интерфейса агента для работы с несколькими КЕ одновременно.';
     $Self->{Translation}->{'Enables configuration item bulk action feature only for the listed groups.'} =

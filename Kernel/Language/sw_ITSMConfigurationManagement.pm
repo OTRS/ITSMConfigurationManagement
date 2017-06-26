@@ -129,31 +129,31 @@ sub Data {
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Uga zilizowazi zinaonyesha kwamba thamani za sasa zimewekwa.';
 
     # Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
-    $Self->{Translation}->{'Model'} = '';
-    $Self->{Translation}->{'Serial Number'} = '';
-    $Self->{Translation}->{'CPU'} = '';
-    $Self->{Translation}->{'Ram'} = '';
-    $Self->{Translation}->{'Hard Disk'} = '';
-    $Self->{Translation}->{'Capacity'} = '';
-    $Self->{Translation}->{'Network Adapter'} = '';
-    $Self->{Translation}->{'IP over DHCP'} = '';
-    $Self->{Translation}->{'IP Address'} = '';
-    $Self->{Translation}->{'Graphic Adapter'} = '';
-    $Self->{Translation}->{'Other Equipment'} = '';
-    $Self->{Translation}->{'Warranty Expiration Date'} = '';
-    $Self->{Translation}->{'Install Date'} = '';
-    $Self->{Translation}->{'Phone 1'} = '';
-    $Self->{Translation}->{'Phone 2'} = '';
+    $Self->{Translation}->{'Model'} = 'Mfano';
+    $Self->{Translation}->{'Serial Number'} = 'Namba tambulishi';
+    $Self->{Translation}->{'CPU'} = 'CPU';
+    $Self->{Translation}->{'Ram'} = 'Ram';
+    $Self->{Translation}->{'Hard Disk'} = 'Diski kuu';
+    $Self->{Translation}->{'Capacity'} = 'Uwezo';
+    $Self->{Translation}->{'Network Adapter'} = 'Adapta ya mtandao';
+    $Self->{Translation}->{'IP over DHCP'} = 'IP kwa DHCP';
+    $Self->{Translation}->{'IP Address'} = 'Anwani ya IP';
+    $Self->{Translation}->{'Graphic Adapter'} = 'Adapta ya Mchoro';
+    $Self->{Translation}->{'Other Equipment'} = 'Vifaa vingine';
+    $Self->{Translation}->{'Warranty Expiration Date'} = 'Tarehe ya kuisha kw audhamini.';
+    $Self->{Translation}->{'Install Date'} = 'Tarehe ya kusakinisha';
+    $Self->{Translation}->{'Phone 1'} = 'Simu ya 1';
+    $Self->{Translation}->{'Phone 2'} = 'Simu ya 2';
     $Self->{Translation}->{'E-Mail'} = '';
-    $Self->{Translation}->{'Address'} = '';
-    $Self->{Translation}->{'Network Address'} = '';
-    $Self->{Translation}->{'Subnet Mask'} = '';
-    $Self->{Translation}->{'Gateway'} = '';
-    $Self->{Translation}->{'Licence Type'} = '';
-    $Self->{Translation}->{'Licence Key'} = '';
-    $Self->{Translation}->{'Quantity'} = '';
-    $Self->{Translation}->{'Expiration Date'} = '';
-    $Self->{Translation}->{'Media'} = '';
+    $Self->{Translation}->{'Address'} = 'Anwani';
+    $Self->{Translation}->{'Network Address'} = 'Anwani ya mtandao';
+    $Self->{Translation}->{'Subnet Mask'} = 'Subnet mask';
+    $Self->{Translation}->{'Gateway'} = 'Kichanganishi mtandao';
+    $Self->{Translation}->{'Licence Type'} = 'Aina ya leseni';
+    $Self->{Translation}->{'Licence Key'} = 'Neno kuu la leseni';
+    $Self->{Translation}->{'Quantity'} = 'Wingi';
+    $Self->{Translation}->{'Expiration Date'} = 'Tarehe ya mwisho';
+    $Self->{Translation}->{'Media'} = 'Midia';
 
     # Database XML Definition: /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
     $Self->{Translation}->{'Computer'} = '';

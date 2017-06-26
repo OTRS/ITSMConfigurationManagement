@@ -79,48 +79,48 @@ sub Data {
     $Self->{Translation}->{'Property'} = '属性';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
-    $Self->{Translation}->{'No access to Class is given!'} = '';
-    $Self->{Translation}->{'Overview: ITSM ConfigItem'} = '';
+    $Self->{Translation}->{'No access to Class is given!'} = '没有类的访问权限！';
+    $Self->{Translation}->{'Overview: ITSM ConfigItem'} = 'ITSM配置项概览';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
-    $Self->{Translation}->{'No ConfigItemID is given!'} = '';
-    $Self->{Translation}->{'You need at least one selected Configuration Item!'} = '';
+    $Self->{Translation}->{'No ConfigItemID is given!'} = '没有指定配置项ID！';
+    $Self->{Translation}->{'You need at least one selected Configuration Item!'} = '您至少需要一个选定的配置项！';
     $Self->{Translation}->{'You don\'t have write access to this configuration item: %s.'} =
-        '';
+        '你没有此配置项的写权限：%s。';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
-    $Self->{Translation}->{'Config item "%s" not found in database!'} = '';
-    $Self->{Translation}->{'Was not able to delete the configitem ID %s!'} = '';
-    $Self->{Translation}->{'No version found for ConfigItemID %s!'} = '';
+    $Self->{Translation}->{'Config item "%s" not found in database!'} = '在数据库中找不到配置项“%s”！';
+    $Self->{Translation}->{'Was not able to delete the configitem ID %s!'} = '无法删除配置项ID %s！';
+    $Self->{Translation}->{'No version found for ConfigItemID %s!'} = '找不到配置项ID%s的版本！';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
-    $Self->{Translation}->{'No ConfigItemID, DuplicateID or ClassID is given!'} = '';
-    $Self->{Translation}->{'No access is given!'} = '';
-    $Self->{Translation}->{'No definition was defined for class %s!'} = '';
+    $Self->{Translation}->{'No ConfigItemID, DuplicateID or ClassID is given!'} = '没有指定配置项ID、DuplicateID或ClassID！';
+    $Self->{Translation}->{'No access is given!'} = '没有访问权限！';
+    $Self->{Translation}->{'No definition was defined for class %s!'} = '没有类 %s的定义！';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
-    $Self->{Translation}->{'Can\'t show history, no ConfigItemID is given!'} = '';
-    $Self->{Translation}->{'Can\'t show history, no access rights given!'} = '';
+    $Self->{Translation}->{'Can\'t show history, no ConfigItemID is given!'} = '不能显示历史信息，因为没有指定配置项ID！';
+    $Self->{Translation}->{'Can\'t show history, no access rights given!'} = '无法显示历史记录，因为没有访问权限！';
     $Self->{Translation}->{'CIHistory::'} = '配置项历史::';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
-    $Self->{Translation}->{'No ConfigItemID or VersionID is given!'} = '';
-    $Self->{Translation}->{'Can\'t show config item, no access rights given!'} = '';
-    $Self->{Translation}->{'ConfigItemID %s not found in database!'} = '';
-    $Self->{Translation}->{'VersionID %s not found in database!'} = '';
+    $Self->{Translation}->{'No ConfigItemID or VersionID is given!'} = '没有指定配置项ID或版本ID！';
+    $Self->{Translation}->{'Can\'t show config item, no access rights given!'} = '无法显示配置项，因为没有访问权限！';
+    $Self->{Translation}->{'ConfigItemID %s not found in database!'} = '在数据库中找不到配置项ID %s！';
+    $Self->{Translation}->{'VersionID %s not found in database!'} = '在数据库中找不到版本ID %s！';
     $Self->{Translation}->{'ConfigItem'} = '配置项';
-    $Self->{Translation}->{'printed by %s at %s'} = '';
+    $Self->{Translation}->{'printed by %s at %s'} = '打印人：%s ，打印日期：%s';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
-    $Self->{Translation}->{'Invalid ClassID!'} = '';
-    $Self->{Translation}->{'No ClassID is given!'} = '';
-    $Self->{Translation}->{'No access rights for this class given!'} = '';
+    $Self->{Translation}->{'Invalid ClassID!'} = '无效的类ID！';
+    $Self->{Translation}->{'No ClassID is given!'} = '没有指定类ID！';
+    $Self->{Translation}->{'No access rights for this class given!'} = '没有这个指定类的访问权限！';
     $Self->{Translation}->{'No Result!'} = '无结果！';
     $Self->{Translation}->{'Config Item Search Results'} = '配置项搜索结果';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
     $Self->{Translation}->{'Can\'t show item, no access rights for ConfigItem are given!'} =
-        '';
+        '无法显示配置项，因为没有给定配置项的访问权限！';
     $Self->{Translation}->{'The deployment state of this config item'} = '配置项部署状态';
     $Self->{Translation}->{'The incident state of this config item'} = '配置项故障状态';
 
@@ -129,31 +129,31 @@ sub Data {
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = '空字段表示保持当前值';
 
     # Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
-    $Self->{Translation}->{'Model'} = '';
-    $Self->{Translation}->{'Serial Number'} = '';
-    $Self->{Translation}->{'CPU'} = '';
-    $Self->{Translation}->{'Ram'} = '';
-    $Self->{Translation}->{'Hard Disk'} = '';
-    $Self->{Translation}->{'Capacity'} = '';
-    $Self->{Translation}->{'Network Adapter'} = '';
-    $Self->{Translation}->{'IP over DHCP'} = '';
-    $Self->{Translation}->{'IP Address'} = '';
-    $Self->{Translation}->{'Graphic Adapter'} = '';
-    $Self->{Translation}->{'Other Equipment'} = '';
-    $Self->{Translation}->{'Warranty Expiration Date'} = '';
-    $Self->{Translation}->{'Install Date'} = '';
-    $Self->{Translation}->{'Phone 1'} = '';
-    $Self->{Translation}->{'Phone 2'} = '';
-    $Self->{Translation}->{'E-Mail'} = '';
-    $Self->{Translation}->{'Address'} = '';
-    $Self->{Translation}->{'Network Address'} = '';
-    $Self->{Translation}->{'Subnet Mask'} = '';
-    $Self->{Translation}->{'Gateway'} = '';
-    $Self->{Translation}->{'Licence Type'} = '';
-    $Self->{Translation}->{'Licence Key'} = '';
-    $Self->{Translation}->{'Quantity'} = '';
-    $Self->{Translation}->{'Expiration Date'} = '';
-    $Self->{Translation}->{'Media'} = '';
+    $Self->{Translation}->{'Model'} = '型号';
+    $Self->{Translation}->{'Serial Number'} = '序列号';
+    $Self->{Translation}->{'CPU'} = 'CPU';
+    $Self->{Translation}->{'Ram'} = '内存';
+    $Self->{Translation}->{'Hard Disk'} = '硬盘';
+    $Self->{Translation}->{'Capacity'} = '容量';
+    $Self->{Translation}->{'Network Adapter'} = '网卡';
+    $Self->{Translation}->{'IP over DHCP'} = '从DHCP获取IP';
+    $Self->{Translation}->{'IP Address'} = 'IP地址';
+    $Self->{Translation}->{'Graphic Adapter'} = '显卡';
+    $Self->{Translation}->{'Other Equipment'} = '其它设备';
+    $Self->{Translation}->{'Warranty Expiration Date'} = '保修过期日期';
+    $Self->{Translation}->{'Install Date'} = '安装日期';
+    $Self->{Translation}->{'Phone 1'} = '电话1';
+    $Self->{Translation}->{'Phone 2'} = '电话2';
+    $Self->{Translation}->{'E-Mail'} = 'E-Mail';
+    $Self->{Translation}->{'Address'} = '地址';
+    $Self->{Translation}->{'Network Address'} = '网络地址';
+    $Self->{Translation}->{'Subnet Mask'} = '子网掩码';
+    $Self->{Translation}->{'Gateway'} = '网关';
+    $Self->{Translation}->{'Licence Type'} = '许可类别';
+    $Self->{Translation}->{'Licence Key'} = '许可密钥';
+    $Self->{Translation}->{'Quantity'} = '数量';
+    $Self->{Translation}->{'Expiration Date'} = '过期日期';
+    $Self->{Translation}->{'Media'} = '介质';
 
     # Database XML Definition: /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
     $Self->{Translation}->{'Computer'} = '计算机';
@@ -235,7 +235,7 @@ sub Data {
     $Self->{Translation}->{'Config item history.'} = '配置项历史。';
     $Self->{Translation}->{'Config item print.'} = '打印配置项。';
     $Self->{Translation}->{'Config item zoom.'} = '配置项详情。';
-    $Self->{Translation}->{'ConfigItemNumber'} = '';
+    $Self->{Translation}->{'ConfigItemNumber'} = 'ConfigItemNumber（配置项编号）';
     $Self->{Translation}->{'Configuration Item Limit'} = '配置项限制';
     $Self->{Translation}->{'Configuration Item limit per page'} = '每页配置项限制';
     $Self->{Translation}->{'Configuration Management Database.'} = '配置管理数据库。';

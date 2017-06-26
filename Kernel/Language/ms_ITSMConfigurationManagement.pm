@@ -129,31 +129,31 @@ sub Data {
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Medan kosong menunjukkan bahawa nilai semasa disimpan';
 
     # Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
-    $Self->{Translation}->{'Model'} = '';
-    $Self->{Translation}->{'Serial Number'} = '';
-    $Self->{Translation}->{'CPU'} = '';
-    $Self->{Translation}->{'Ram'} = '';
-    $Self->{Translation}->{'Hard Disk'} = '';
-    $Self->{Translation}->{'Capacity'} = '';
-    $Self->{Translation}->{'Network Adapter'} = '';
-    $Self->{Translation}->{'IP over DHCP'} = '';
-    $Self->{Translation}->{'IP Address'} = '';
-    $Self->{Translation}->{'Graphic Adapter'} = '';
-    $Self->{Translation}->{'Other Equipment'} = '';
-    $Self->{Translation}->{'Warranty Expiration Date'} = '';
-    $Self->{Translation}->{'Install Date'} = '';
-    $Self->{Translation}->{'Phone 1'} = '';
-    $Self->{Translation}->{'Phone 2'} = '';
+    $Self->{Translation}->{'Model'} = 'Model';
+    $Self->{Translation}->{'Serial Number'} = 'Nombor Series';
+    $Self->{Translation}->{'CPU'} = 'CPU';
+    $Self->{Translation}->{'Ram'} = 'memori utama';
+    $Self->{Translation}->{'Hard Disk'} = 'Cakera Keras';
+    $Self->{Translation}->{'Capacity'} = 'Muatan';
+    $Self->{Translation}->{'Network Adapter'} = 'Network Adapter';
+    $Self->{Translation}->{'IP over DHCP'} = 'IP lebih DHCP';
+    $Self->{Translation}->{'IP Address'} = 'IP Addresse';
+    $Self->{Translation}->{'Graphic Adapter'} = 'Penyesuai grafik';
+    $Self->{Translation}->{'Other Equipment'} = 'Peralatan lain-lain';
+    $Self->{Translation}->{'Warranty Expiration Date'} = 'Tarikh Waranti Peluputan';
+    $Self->{Translation}->{'Install Date'} = 'Pasang Tarikh';
+    $Self->{Translation}->{'Phone 1'} = 'Telefon 1';
+    $Self->{Translation}->{'Phone 2'} = 'Telefon 2';
     $Self->{Translation}->{'E-Mail'} = '';
-    $Self->{Translation}->{'Address'} = '';
-    $Self->{Translation}->{'Network Address'} = '';
-    $Self->{Translation}->{'Subnet Mask'} = '';
-    $Self->{Translation}->{'Gateway'} = '';
-    $Self->{Translation}->{'Licence Type'} = '';
-    $Self->{Translation}->{'Licence Key'} = '';
-    $Self->{Translation}->{'Quantity'} = '';
-    $Self->{Translation}->{'Expiration Date'} = '';
-    $Self->{Translation}->{'Media'} = '';
+    $Self->{Translation}->{'Address'} = 'Alamat';
+    $Self->{Translation}->{'Network Address'} = 'Alamat Rangkaian';
+    $Self->{Translation}->{'Subnet Mask'} = 'Subnet Mask';
+    $Self->{Translation}->{'Gateway'} = 'Gerbang';
+    $Self->{Translation}->{'Licence Type'} = 'Jenis Lesen';
+    $Self->{Translation}->{'Licence Key'} = 'Kunci Lesen';
+    $Self->{Translation}->{'Quantity'} = 'Kuantiti';
+    $Self->{Translation}->{'Expiration Date'} = 'Tarikh Tamat Tempoh';
+    $Self->{Translation}->{'Media'} = 'Media';
 
     # Database XML Definition: /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
     $Self->{Translation}->{'Computer'} = '';

@@ -129,31 +129,31 @@ sub Data {
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = '';
 
     # Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
-    $Self->{Translation}->{'Model'} = '';
-    $Self->{Translation}->{'Serial Number'} = '';
-    $Self->{Translation}->{'CPU'} = '';
-    $Self->{Translation}->{'Ram'} = '';
-    $Self->{Translation}->{'Hard Disk'} = '';
-    $Self->{Translation}->{'Capacity'} = '';
-    $Self->{Translation}->{'Network Adapter'} = '';
-    $Self->{Translation}->{'IP over DHCP'} = '';
-    $Self->{Translation}->{'IP Address'} = '';
-    $Self->{Translation}->{'Graphic Adapter'} = '';
-    $Self->{Translation}->{'Other Equipment'} = '';
-    $Self->{Translation}->{'Warranty Expiration Date'} = '';
-    $Self->{Translation}->{'Install Date'} = '';
-    $Self->{Translation}->{'Phone 1'} = '';
-    $Self->{Translation}->{'Phone 2'} = '';
+    $Self->{Translation}->{'Model'} = 'Model';
+    $Self->{Translation}->{'Serial Number'} = 'Sériové Číslo';
+    $Self->{Translation}->{'CPU'} = 'Procesor';
+    $Self->{Translation}->{'Ram'} = 'RAM';
+    $Self->{Translation}->{'Hard Disk'} = 'Pevný Disk';
+    $Self->{Translation}->{'Capacity'} = 'Kapacita';
+    $Self->{Translation}->{'Network Adapter'} = 'Síťový Adapter';
+    $Self->{Translation}->{'IP over DHCP'} = 'IP z DHCP';
+    $Self->{Translation}->{'IP Address'} = 'IP Adresa';
+    $Self->{Translation}->{'Graphic Adapter'} = 'Grafická Karta';
+    $Self->{Translation}->{'Other Equipment'} = 'Jiné Vybavení';
+    $Self->{Translation}->{'Warranty Expiration Date'} = 'Konec platnosti záruky';
+    $Self->{Translation}->{'Install Date'} = 'Datum Instalace';
+    $Self->{Translation}->{'Phone 1'} = 'Telefon 1';
+    $Self->{Translation}->{'Phone 2'} = 'Telefon 2';
     $Self->{Translation}->{'E-Mail'} = '';
-    $Self->{Translation}->{'Address'} = '';
-    $Self->{Translation}->{'Network Address'} = '';
-    $Self->{Translation}->{'Subnet Mask'} = '';
-    $Self->{Translation}->{'Gateway'} = '';
-    $Self->{Translation}->{'Licence Type'} = '';
-    $Self->{Translation}->{'Licence Key'} = '';
-    $Self->{Translation}->{'Quantity'} = '';
-    $Self->{Translation}->{'Expiration Date'} = '';
-    $Self->{Translation}->{'Media'} = '';
+    $Self->{Translation}->{'Address'} = 'Adresa';
+    $Self->{Translation}->{'Network Address'} = 'Síťová Adresa';
+    $Self->{Translation}->{'Subnet Mask'} = 'Maska Podsítě';
+    $Self->{Translation}->{'Gateway'} = 'Gateway';
+    $Self->{Translation}->{'Licence Type'} = 'Druh licence';
+    $Self->{Translation}->{'Licence Key'} = 'Licenční Klíč';
+    $Self->{Translation}->{'Quantity'} = 'Množství';
+    $Self->{Translation}->{'Expiration Date'} = 'Konec Platnosti';
+    $Self->{Translation}->{'Media'} = 'Médium';
 
     # Database XML Definition: /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
     $Self->{Translation}->{'Computer'} = '';
@@ -224,7 +224,7 @@ sub Data {
     $Self->{Translation}->{'Unlimited'} = 'Neomezená';
 
     # SysConfig
-    $Self->{Translation}->{'Admin.'} = '';
+    $Self->{Translation}->{'Admin.'} = 'Administrátor';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         '';
     $Self->{Translation}->{'Config Items'} = '';

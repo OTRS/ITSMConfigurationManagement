@@ -18,7 +18,7 @@ sub Data {
     # Template: AdminITSMConfigItem
     $Self->{Translation}->{'Config Item Management'} = 'Zarządzanie CI';
     $Self->{Translation}->{'Change class definition'} = 'Zmień definicję klasy';
-    $Self->{Translation}->{'Config Item Class'} = '';
+    $Self->{Translation}->{'Config Item Class'} = 'Klasa CI';
     $Self->{Translation}->{'Definition'} = 'Definicja';
 
     # Template: AgentITSMConfigItemAdd
@@ -129,31 +129,31 @@ sub Data {
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Puste pola znaczają, że zatrzymane będą bieżące wartości';
 
     # Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
-    $Self->{Translation}->{'Model'} = '';
-    $Self->{Translation}->{'Serial Number'} = '';
-    $Self->{Translation}->{'CPU'} = '';
-    $Self->{Translation}->{'Ram'} = '';
-    $Self->{Translation}->{'Hard Disk'} = '';
-    $Self->{Translation}->{'Capacity'} = '';
-    $Self->{Translation}->{'Network Adapter'} = '';
-    $Self->{Translation}->{'IP over DHCP'} = '';
-    $Self->{Translation}->{'IP Address'} = '';
-    $Self->{Translation}->{'Graphic Adapter'} = '';
-    $Self->{Translation}->{'Other Equipment'} = '';
-    $Self->{Translation}->{'Warranty Expiration Date'} = '';
-    $Self->{Translation}->{'Install Date'} = '';
-    $Self->{Translation}->{'Phone 1'} = '';
-    $Self->{Translation}->{'Phone 2'} = '';
+    $Self->{Translation}->{'Model'} = 'Model';
+    $Self->{Translation}->{'Serial Number'} = 'Numer seryjny';
+    $Self->{Translation}->{'CPU'} = 'Procesor';
+    $Self->{Translation}->{'Ram'} = 'RAM';
+    $Self->{Translation}->{'Hard Disk'} = 'Dysk twardy';
+    $Self->{Translation}->{'Capacity'} = 'Pojemność';
+    $Self->{Translation}->{'Network Adapter'} = 'Karta sieciowa';
+    $Self->{Translation}->{'IP over DHCP'} = 'Adres IP z DHCP';
+    $Self->{Translation}->{'IP Address'} = 'Adres IP';
+    $Self->{Translation}->{'Graphic Adapter'} = 'Karta graficzna';
+    $Self->{Translation}->{'Other Equipment'} = 'Pozostałe wyposażenie';
+    $Self->{Translation}->{'Warranty Expiration Date'} = 'Data wygaśnięcia gwarancji';
+    $Self->{Translation}->{'Install Date'} = 'Data instalacji';
+    $Self->{Translation}->{'Phone 1'} = 'Telefon 1';
+    $Self->{Translation}->{'Phone 2'} = 'Telefon 2';
     $Self->{Translation}->{'E-Mail'} = '';
-    $Self->{Translation}->{'Address'} = '';
-    $Self->{Translation}->{'Network Address'} = '';
-    $Self->{Translation}->{'Subnet Mask'} = '';
-    $Self->{Translation}->{'Gateway'} = '';
-    $Self->{Translation}->{'Licence Type'} = '';
-    $Self->{Translation}->{'Licence Key'} = '';
-    $Self->{Translation}->{'Quantity'} = '';
-    $Self->{Translation}->{'Expiration Date'} = '';
-    $Self->{Translation}->{'Media'} = '';
+    $Self->{Translation}->{'Address'} = 'Adres';
+    $Self->{Translation}->{'Network Address'} = 'Adres sieciowy';
+    $Self->{Translation}->{'Subnet Mask'} = 'Maska sieci';
+    $Self->{Translation}->{'Gateway'} = 'Brama';
+    $Self->{Translation}->{'Licence Type'} = 'Typ licencji';
+    $Self->{Translation}->{'Licence Key'} = 'Klucz licencyjny';
+    $Self->{Translation}->{'Quantity'} = 'Ilość';
+    $Self->{Translation}->{'Expiration Date'} = 'Data wygaśnięcia';
+    $Self->{Translation}->{'Media'} = 'Nośnik';
 
     # Database XML Definition: /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
     $Self->{Translation}->{'Computer'} = '';
