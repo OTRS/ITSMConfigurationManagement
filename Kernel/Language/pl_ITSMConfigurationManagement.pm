@@ -155,7 +155,7 @@ sub Data {
     $Self->{Translation}->{'Expiration Date'} = 'Data wygaśnięcia';
     $Self->{Translation}->{'Media'} = 'Nośnik';
 
-    # Database XML Definition: /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+    # Database XML Definition: ITSMConfigurationManagement.sopm
     $Self->{Translation}->{'Computer'} = '';
     $Self->{Translation}->{'Hardware'} = '';
     $Self->{Translation}->{'Network'} = '';

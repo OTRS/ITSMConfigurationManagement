@@ -155,7 +155,7 @@ sub Data {
     $Self->{Translation}->{'Expiration Date'} = 'Lejárati idő';
     $Self->{Translation}->{'Media'} = 'Adathordozó';
 
-    # Database XML Definition: /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+    # Database XML Definition: ITSMConfigurationManagement.sopm
     $Self->{Translation}->{'Computer'} = 'Számítógép';
     $Self->{Translation}->{'Hardware'} = 'Hardver';
     $Self->{Translation}->{'Network'} = 'Hálózat';
