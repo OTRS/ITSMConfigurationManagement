@@ -18,13 +18,13 @@ sub Data {
     # Template: AdminITSMConfigItem
     $Self->{Translation}->{'Config Item Management'} = 'Gestion des Eléments de Configuration';
     $Self->{Translation}->{'Change class definition'} = '';
-    $Self->{Translation}->{'Config Item Class'} = '';
+    $Self->{Translation}->{'Config Item Class'} = 'Classe d\'Élément de Configuration';
     $Self->{Translation}->{'Definition'} = '';
 
     # Template: AgentITSMConfigItemAdd
-    $Self->{Translation}->{'Config Item'} = 'Elément de configuration';
+    $Self->{Translation}->{'Config Item'} = 'Élément de Configuration';
     $Self->{Translation}->{'Filter for Classes'} = '';
-    $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = '';
+    $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = 'Choisissez une classe pour créer un nouvel Élément de Configuration';
     $Self->{Translation}->{'Class'} = 'Classe';
 
     # Template: AgentITSMConfigItemBulk
@@ -32,11 +32,11 @@ sub Data {
     $Self->{Translation}->{'Deployment state'} = '';
     $Self->{Translation}->{'Incident state'} = '';
     $Self->{Translation}->{'Link to another'} = '';
-    $Self->{Translation}->{'Invalid Configuration Item number!'} = '';
+    $Self->{Translation}->{'Invalid Configuration Item number!'} = 'Numéro d\'Élément de Configuration non valable !';
     $Self->{Translation}->{'The number of another Configuration Item to link with.'} = '';
 
     # Template: AgentITSMConfigItemDelete
-    $Self->{Translation}->{'Do you really want to delete this config item?'} = '';
+    $Self->{Translation}->{'Do you really want to delete this config item?'} = 'Voulez-vous vraiment supprimer cet élément de configuration ?';
 
     # Template: AgentITSMConfigItemEdit
     $Self->{Translation}->{'The name of this config item'} = 'Le nom de cet élément de configuration';
@@ -50,7 +50,7 @@ sub Data {
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'Réglages de Contexte';
-    $Self->{Translation}->{'Config Items per page'} = '';
+    $Self->{Translation}->{'Config Items per page'} = 'Éléments de Configuration par page';
 
     # Template: AgentITSMConfigItemOverviewSmall
     $Self->{Translation}->{'A generic ITSM Configuration Item table'} = '';
@@ -65,7 +65,7 @@ sub Data {
     $Self->{Translation}->{'Also search in previous versions?'} = 'Chercher également dans les versions précédentes??';
 
     # Template: AgentITSMConfigItemZoom
-    $Self->{Translation}->{'Configuration Item'} = '';
+    $Self->{Translation}->{'Configuration Item'} = 'Élément de Configuration';
     $Self->{Translation}->{'Configuration Item Information'} = '';
     $Self->{Translation}->{'Current Deployment State'} = 'Etat actuel de déploiement';
     $Self->{Translation}->{'Last changed by'} = 'Dernière modification effectuée par';
