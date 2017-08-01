@@ -183,8 +183,8 @@
         <Setting>
             <Hash>
                 <Item Key="Module">Kernel::Output::HTML::ITSMConfigItem::MenuGeneric</Item>
-                <Item Key="Name">Back</Item>
-                <Item Key="Description">Back</Item>
+                <Item Key="Name" Translatable="1">Back</Item>
+                <Item Key="Description" Translatable="1">Back</Item>
                 <Item Key="Action"></Item>
                 <Item Key="Link">Action=AgentITSMConfigItem;ClassID=[% Data.ClassID | html %]</Item>
                 <Item Key="Target">Back</Item>
@@ -198,8 +198,8 @@
         <Setting>
             <Hash>
                 <Item Key="Module">Kernel::Output::HTML::ITSMConfigItem::MenuGeneric</Item>
-                <Item Key="Name">History</Item>
-                <Item Key="Description">History</Item>
+                <Item Key="Name" Translatable="1">History</Item>
+                <Item Key="Description" Translatable="1">History</Item>
                 <Item Key="Action">AgentITSMConfigItemHistory</Item>
                 <Item Key="Link">Action=AgentITSMConfigItemHistory;ConfigItemID=[% Data.ConfigItemID | html %];VersionID=[% Data.VersionID | html %]</Item>
                 <Item Key="Target">PopUp</Item>
@@ -213,8 +213,8 @@
         <Setting>
             <Hash>
                 <Item Key="Module">Kernel::Output::HTML::ITSMConfigItem::MenuGeneric</Item>
-                <Item Key="Name">Edit</Item>
-                <Item Key="Description">Edit</Item>
+                <Item Key="Name" Translatable="1">Edit</Item>
+                <Item Key="Description" Translatable="1">Edit</Item>
                 <Item Key="Action">AgentITSMConfigItemEdit</Item>
                 <Item Key="Link">Action=AgentITSMConfigItemEdit;ConfigItemID=[% Data.ConfigItemID | html %]</Item>
                 <Item Key="Target">PopUp</Item>
@@ -228,8 +228,8 @@
         <Setting>
             <Hash>
                 <Item Key="Module">Kernel::Output::HTML::ITSMConfigItem::MenuGeneric</Item>
-                <Item Key="Name">Print</Item>
-                <Item Key="Description">Print</Item>
+                <Item Key="Name" Translatable="1">Print</Item>
+                <Item Key="Description" Translatable="1">Print</Item>
                 <Item Key="Action">AgentITSMConfigItemPrint</Item>
                 <Item Key="Link">Action=AgentITSMConfigItemPrint;ConfigItemID=[% Data.ConfigItemID | html %];VersionID=[% Data.VersionID | html %]</Item>
                 <Item Key="LinkParam">target="print"</Item>
@@ -244,8 +244,8 @@
         <Setting>
             <Hash>
                 <Item Key="Module">Kernel::Output::HTML::ITSMConfigItem::MenuGeneric</Item>
-                <Item Key="Name">Link</Item>
-                <Item Key="Description">Link</Item>
+                <Item Key="Name" Translatable="1">Link</Item>
+                <Item Key="Description" Translatable="1">Link</Item>
                 <Item Key="Action">AgentLinkObject</Item>
                 <Item Key="Link">Action=AgentLinkObject;SourceObject=ITSMConfigItem;SourceKey=[% Data.ConfigItemID | html %]</Item>
                 <Item Key="Target">PopUp</Item>
@@ -259,8 +259,8 @@
         <Setting>
             <Hash>
                 <Item Key="Module">Kernel::Output::HTML::ITSMConfigItem::MenuGeneric</Item>
-                <Item Key="Name">Duplicate</Item>
-                <Item Key="Description">Duplicate</Item>
+                <Item Key="Name" Translatable="1">Duplicate</Item>
+                <Item Key="Description" Translatable="1">Duplicate</Item>
                 <Item Key="Action">AgentITSMConfigItemEdit</Item>
                 <Item Key="Link">Action=AgentITSMConfigItemEdit;DuplicateID=[% Data.ConfigItemID | html %];VersionID=[% Data.VersionID | html %]</Item>
                 <Item Key="Target">PopUp</Item>
@@ -274,8 +274,8 @@
         <Setting>
             <Hash>
                 <Item Key="Module">Kernel::Output::HTML::ITSMConfigItem::MenuGeneric</Item>
-                <Item Key="Name">Delete</Item>
-                <Item Key="Description">Delete Configuration Item</Item>
+                <Item Key="Name" Translatable="1">Delete</Item>
+                <Item Key="Description" Translatable="1">Delete Configuration Item</Item>
                 <Item Key="Action">AgentITSMConfigItemDelete</Item>
                 <Item Key="Link">Action=AgentITSMConfigItemDelete;ConfigItemID=[% Data.ConfigItemID | html %]</Item>
                 <Item Key="Target">ConfirmDialog</Item>
@@ -415,9 +415,9 @@
                 <Item Key="Desc" Translatable="1">Deployment State Type.</Item>
                 <Item Key="Data">
                     <Hash>
-                        <Item Key="postproductive">postproductive</Item>
-                        <Item Key="preproductive">preproductive</Item>
-                        <Item Key="productive">productive</Item>
+                        <Item Key="postproductive" Translatable="1">postproductive</Item>
+                        <Item Key="preproductive" Translatable="1">preproductive</Item>
+                        <Item Key="productive" Translatable="1">productive</Item>
                     </Hash>
                 </Item>
                 <Item Key="PrefKey">Functionality</Item>
@@ -592,7 +592,8 @@
                 <Item Key="Module">Kernel::Output::HTML::Preferences::Generic</Item>
                 <Item Key="Column">Other Settings</Item>
                 <Item Key="Label" Translatable="1">Configuration Item Limit</Item>
-                <Item Key="Key" Translatable="1">Configuration Item limit per page</Item>
+                <Item Key="Desc" Translatable="1">Configuration Item limit per page.</Item>
+                <Item Key="Key" Translatable="1">Limit</Item>
                 <Item Key="Data">
                     <Hash>
                         <Item Key="10">10</Item>
@@ -821,8 +822,8 @@
         <Setting>
             <Hash>
                 <Item Key="Module">Kernel::Output::HTML::ITSMConfigItem::MenuGeneric</Item>
-                <Item Key="Name">Zoom</Item>
-                <Item Key="Description">Zoom</Item>
+                <Item Key="Name" Translatable="1">Zoom</Item>
+                <Item Key="Description" Translatable="1">Zoom</Item>
                 <Item Key="Action">AgentITSMConfigItemZoom</Item>
                 <Item Key="Link">Action=AgentITSMConfigItemZoom;ConfigItemID=[% Data.ConfigItemID | html %]</Item>
                 <Item Key="Target"></Item>
@@ -836,8 +837,8 @@
         <Setting>
             <Hash>
                 <Item Key="Module">Kernel::Output::HTML::ITSMConfigItem::MenuGeneric</Item>
-                <Item Key="Name">History</Item>
-                <Item Key="Description">History</Item>
+                <Item Key="Name" Translatable="1">History</Item>
+                <Item Key="Description" Translatable="1">History</Item>
                 <Item Key="Action">AgentITSMConfigItemHistory</Item>
                 <Item Key="Link">Action=AgentITSMConfigItemHistory;ConfigItemID=[% Data.ConfigItemID | html %];VersionID=[% Data.VersionID | html %]</Item>
                 <Item Key="Target">PopUp</Item>
@@ -851,8 +852,8 @@
         <Setting>
             <Hash>
                 <Item Key="Module">Kernel::Output::HTML::ITSMConfigItem::MenuGeneric</Item>
-                <Item Key="Name">Duplicate</Item>
-                <Item Key="Description">Duplicate</Item>
+                <Item Key="Name" Translatable="1">Duplicate</Item>
+                <Item Key="Description" Translatable="1">Duplicate</Item>
                 <Item Key="Action">AgentITSMConfigItemEdit</Item>
                 <Item Key="Link">Action=AgentITSMConfigItemEdit;DuplicateID=[% Data.ConfigItemID | html %];VersionID=[% Data.VersionID | html %];ReturnToLastScreen=1</Item>
                 <Item Key="Target">PopUp</Item>
