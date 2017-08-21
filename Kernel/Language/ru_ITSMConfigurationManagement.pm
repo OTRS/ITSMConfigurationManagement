@@ -164,7 +164,6 @@ sub Data {
     $Self->{Translation}->{'Maintenance'} = 'Техническое обслуживание';
     $Self->{Translation}->{'Pilot'} = 'Эксперимент';
     $Self->{Translation}->{'Planned'} = 'Запланированно';
-    $Self->{Translation}->{'Production'} = 'Производство';
     $Self->{Translation}->{'Repair'} = 'Ремонт';
     $Self->{Translation}->{'Retired'} = 'Списано';
     $Self->{Translation}->{'Review'} = 'Экспертиза';
@@ -237,7 +236,7 @@ sub Data {
     $Self->{Translation}->{'Config item zoom.'} = '';
     $Self->{Translation}->{'ConfigItemNumber'} = '';
     $Self->{Translation}->{'Configuration Item Limit'} = ' Лимит КЕ';
-    $Self->{Translation}->{'Configuration Item limit per page'} = 'Количество КЕ на страницу';
+    $Self->{Translation}->{'Configuration Item limit per page.'} = '';
     $Self->{Translation}->{'Configuration Management Database.'} = '';
     $Self->{Translation}->{'Configuration item bulk module.'} = '';
     $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} =
@@ -286,10 +285,12 @@ sub Data {
         '';
     $Self->{Translation}->{'Defines which type of ticket can affect the status of a linked CI.'} =
         '';
+    $Self->{Translation}->{'Delete Configuration Item'} = '';
     $Self->{Translation}->{'Deployment State Color'} = '';
     $Self->{Translation}->{'Deployment State Color.'} = '';
     $Self->{Translation}->{'Deployment State Type.'} = '';
     $Self->{Translation}->{'Disabled'} = 'Отключено';
+    $Self->{Translation}->{'Duplicate'} = '';
     $Self->{Translation}->{'Enabled'} = 'Включено';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         'Включает возможность массовых действий с КЕ для интерфейса агента для работы с несколькими КЕ одновременно.';
@@ -365,6 +366,9 @@ sub Data {
         'Идентификатор (префикс) к номеру КЕ, т.е КЕ_№, КЕ#, Учетный_элемент_№. По умолчанию - ConfigItem# (или его перевод).';
     $Self->{Translation}->{'class'} = '';
     $Self->{Translation}->{'global'} = '';
+    $Self->{Translation}->{'postproductive'} = '';
+    $Self->{Translation}->{'preproductive'} = '';
+    $Self->{Translation}->{'productive'} = '';
 
 }
 

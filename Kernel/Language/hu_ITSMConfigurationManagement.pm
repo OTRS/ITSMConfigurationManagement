@@ -164,7 +164,6 @@ sub Data {
     $Self->{Translation}->{'Maintenance'} = 'Karbantartás';
     $Self->{Translation}->{'Pilot'} = 'Próbaüzem';
     $Self->{Translation}->{'Planned'} = 'Tervezett';
-    $Self->{Translation}->{'Production'} = 'Produktív';
     $Self->{Translation}->{'Repair'} = 'Javítás';
     $Self->{Translation}->{'Retired'} = 'Visszavont';
     $Self->{Translation}->{'Review'} = 'Vizsgálat';
@@ -237,7 +236,7 @@ sub Data {
     $Self->{Translation}->{'Config item zoom.'} = 'Konfigurációelem nagyítása.';
     $Self->{Translation}->{'ConfigItemNumber'} = 'Konfigurációelem-szám';
     $Self->{Translation}->{'Configuration Item Limit'} = 'Konfigurációelem-korlát';
-    $Self->{Translation}->{'Configuration Item limit per page'} = 'Konfigurációelem-korlát oldalanként';
+    $Self->{Translation}->{'Configuration Item limit per page.'} = '';
     $Self->{Translation}->{'Configuration Management Database.'} = 'Konfigurációmenedzsment-adatbázis.';
     $Self->{Translation}->{'Configuration item bulk module.'} = 'Konfigurációelem tömeges modul.';
     $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} =
@@ -286,10 +285,12 @@ sub Data {
         'Meghatározza, hogy mely kapcsolattípusok (a jegy nézőpontjából elnevezve) befolyásolhatják egy kapcsolt konfigurációelem állapotát.';
     $Self->{Translation}->{'Defines which type of ticket can affect the status of a linked CI.'} =
         'Meghatározza, hogy mely jegytípus befolyásolhatja egy kapcsolt konfigurációelem állapotát.';
+    $Self->{Translation}->{'Delete Configuration Item'} = '';
     $Self->{Translation}->{'Deployment State Color'} = 'Üzembe állítási állapot színe';
     $Self->{Translation}->{'Deployment State Color.'} = 'Üzembe állítási állapot színe.';
     $Self->{Translation}->{'Deployment State Type.'} = 'Üzembe állítási állapottípus.';
     $Self->{Translation}->{'Disabled'} = 'Letiltva';
+    $Self->{Translation}->{'Duplicate'} = '';
     $Self->{Translation}->{'Enabled'} = 'Engedélyezve';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         'Engedélyezi a konfigurációelem tömeges művelet funkciót az ügyintézői előtétprogramnál, hogy egyszerre egynél több konfigurációelemmel dolgozhasson.';
@@ -365,6 +366,9 @@ sub Data {
         'Egy konfigurációelem azonosítója, például: ConfigItem#, MyConfigItem#. Az alapértelmezett: ConfigItem#.';
     $Self->{Translation}->{'class'} = 'osztály';
     $Self->{Translation}->{'global'} = 'globális';
+    $Self->{Translation}->{'postproductive'} = '';
+    $Self->{Translation}->{'preproductive'} = '';
+    $Self->{Translation}->{'productive'} = '';
 
 }
 

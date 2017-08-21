@@ -164,7 +164,6 @@ sub Data {
     $Self->{Translation}->{'Maintenance'} = '維護';
     $Self->{Translation}->{'Pilot'} = '試驗';
     $Self->{Translation}->{'Planned'} = '已計劃';
-    $Self->{Translation}->{'Production'} = '生產';
     $Self->{Translation}->{'Repair'} = '修復';
     $Self->{Translation}->{'Retired'} = '報廢';
     $Self->{Translation}->{'Review'} = '複審';
@@ -237,7 +236,7 @@ sub Data {
     $Self->{Translation}->{'Config item zoom.'} = '';
     $Self->{Translation}->{'ConfigItemNumber'} = '';
     $Self->{Translation}->{'Configuration Item Limit'} = '';
-    $Self->{Translation}->{'Configuration Item limit per page'} = '限制每頁設定的項目數';
+    $Self->{Translation}->{'Configuration Item limit per page.'} = '';
     $Self->{Translation}->{'Configuration Management Database.'} = '';
     $Self->{Translation}->{'Configuration item bulk module.'} = '';
     $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} =
@@ -286,10 +285,12 @@ sub Data {
         '';
     $Self->{Translation}->{'Defines which type of ticket can affect the status of a linked CI.'} =
         '';
+    $Self->{Translation}->{'Delete Configuration Item'} = '';
     $Self->{Translation}->{'Deployment State Color'} = '';
     $Self->{Translation}->{'Deployment State Color.'} = '';
     $Self->{Translation}->{'Deployment State Type.'} = '';
     $Self->{Translation}->{'Disabled'} = '禁用';
+    $Self->{Translation}->{'Duplicate'} = '';
     $Self->{Translation}->{'Enabled'} = '啟用';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         '';
@@ -365,6 +366,9 @@ sub Data {
         '';
     $Self->{Translation}->{'class'} = '';
     $Self->{Translation}->{'global'} = '';
+    $Self->{Translation}->{'postproductive'} = '';
+    $Self->{Translation}->{'preproductive'} = '';
+    $Self->{Translation}->{'productive'} = '';
 
 }
 

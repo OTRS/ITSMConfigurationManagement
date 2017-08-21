@@ -164,7 +164,6 @@ sub Data {
     $Self->{Translation}->{'Maintenance'} = 'Manutenção';
     $Self->{Translation}->{'Pilot'} = 'Piloto';
     $Self->{Translation}->{'Planned'} = 'Planejado';
-    $Self->{Translation}->{'Production'} = 'Produção';
     $Self->{Translation}->{'Repair'} = 'Reparo';
     $Self->{Translation}->{'Retired'} = 'Retirado';
     $Self->{Translation}->{'Review'} = 'Revisão';
@@ -237,7 +236,7 @@ sub Data {
     $Self->{Translation}->{'Config item zoom.'} = 'Zoom de item de configuração.';
     $Self->{Translation}->{'ConfigItemNumber'} = 'ConfigItemNumber';
     $Self->{Translation}->{'Configuration Item Limit'} = 'Limite de Item de Configuração';
-    $Self->{Translation}->{'Configuration Item limit per page'} = 'Limite de Item de Configuração por página';
+    $Self->{Translation}->{'Configuration Item limit per page.'} = '';
     $Self->{Translation}->{'Configuration Management Database.'} = 'Configuração do Gerenciamento do Banco de Dados.';
     $Self->{Translation}->{'Configuration item bulk module.'} = 'Módulo de ação em massa em Itens de Configuração.';
     $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} =
@@ -286,10 +285,12 @@ sub Data {
         'Define qual tipo de associação (nomeado a partir da perspectiva do chamado) pode afetar o estado de um IC associado.';
     $Self->{Translation}->{'Defines which type of ticket can affect the status of a linked CI.'} =
         'Define qual tipo de chamado pode afetar o estado de um IC associado.';
+    $Self->{Translation}->{'Delete Configuration Item'} = '';
     $Self->{Translation}->{'Deployment State Color'} = 'Cor do Estado de Implantação';
     $Self->{Translation}->{'Deployment State Color.'} = 'Cor do Estado de Implantação.';
     $Self->{Translation}->{'Deployment State Type.'} = 'Tipo do Estado de Implantação';
     $Self->{Translation}->{'Disabled'} = 'Desabilitado';
+    $Self->{Translation}->{'Duplicate'} = '';
     $Self->{Translation}->{'Enabled'} = 'Habilitado';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         'Habilita a função de ação em massa em itens de configuração na interface de atendente para trabalhar em mais de um IC por vez.';
@@ -365,6 +366,9 @@ sub Data {
         'O identificador para um item de configuração, ex. ItemConfig#, MeuItemConfig#. O padrão é ItemConfig#.';
     $Self->{Translation}->{'class'} = 'class';
     $Self->{Translation}->{'global'} = 'global';
+    $Self->{Translation}->{'postproductive'} = '';
+    $Self->{Translation}->{'preproductive'} = '';
+    $Self->{Translation}->{'productive'} = '';
 
 }
 

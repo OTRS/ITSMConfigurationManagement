@@ -164,7 +164,6 @@ sub Data {
     $Self->{Translation}->{'Maintenance'} = 'In Wartung';
     $Self->{Translation}->{'Pilot'} = 'Pilotbetrieb';
     $Self->{Translation}->{'Planned'} = 'Geplant';
-    $Self->{Translation}->{'Production'} = 'Produktiv';
     $Self->{Translation}->{'Repair'} = 'In Reparatur';
     $Self->{Translation}->{'Retired'} = 'Außer Dienst';
     $Self->{Translation}->{'Review'} = 'Unter Review';
@@ -237,7 +236,7 @@ sub Data {
     $Self->{Translation}->{'Config item zoom.'} = 'Config Item Zoom.';
     $Self->{Translation}->{'ConfigItemNumber'} = '';
     $Self->{Translation}->{'Configuration Item Limit'} = 'Configuration Item Limit';
-    $Self->{Translation}->{'Configuration Item limit per page'} = 'Configuration Item Limit pro Seite';
+    $Self->{Translation}->{'Configuration Item limit per page.'} = '';
     $Self->{Translation}->{'Configuration Management Database.'} = '';
     $Self->{Translation}->{'Configuration item bulk module.'} = '';
     $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} =
@@ -286,10 +285,12 @@ sub Data {
         '';
     $Self->{Translation}->{'Defines which type of ticket can affect the status of a linked CI.'} =
         '';
+    $Self->{Translation}->{'Delete Configuration Item'} = '';
     $Self->{Translation}->{'Deployment State Color'} = '';
     $Self->{Translation}->{'Deployment State Color.'} = '';
     $Self->{Translation}->{'Deployment State Type.'} = '';
     $Self->{Translation}->{'Disabled'} = 'Deaktiviert';
+    $Self->{Translation}->{'Duplicate'} = '';
     $Self->{Translation}->{'Enabled'} = 'Aktiviert';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         '';
@@ -365,6 +366,9 @@ sub Data {
         '';
     $Self->{Translation}->{'class'} = 'Klasse';
     $Self->{Translation}->{'global'} = 'Global';
+    $Self->{Translation}->{'postproductive'} = '';
+    $Self->{Translation}->{'preproductive'} = '';
+    $Self->{Translation}->{'productive'} = '';
 
 }
 

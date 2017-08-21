@@ -164,7 +164,6 @@ sub Data {
     $Self->{Translation}->{'Maintenance'} = 'Maintenance';
     $Self->{Translation}->{'Pilot'} = 'Pilote';
     $Self->{Translation}->{'Planned'} = 'Planifié';
-    $Self->{Translation}->{'Production'} = 'Production';
     $Self->{Translation}->{'Repair'} = 'En réparation';
     $Self->{Translation}->{'Retired'} = 'Retiré';
     $Self->{Translation}->{'Review'} = 'Revue';
@@ -237,7 +236,7 @@ sub Data {
     $Self->{Translation}->{'Config item zoom.'} = '';
     $Self->{Translation}->{'ConfigItemNumber'} = '';
     $Self->{Translation}->{'Configuration Item Limit'} = '';
-    $Self->{Translation}->{'Configuration Item limit per page'} = '';
+    $Self->{Translation}->{'Configuration Item limit per page.'} = '';
     $Self->{Translation}->{'Configuration Management Database.'} = '';
     $Self->{Translation}->{'Configuration item bulk module.'} = '';
     $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} =
@@ -286,10 +285,12 @@ sub Data {
         '';
     $Self->{Translation}->{'Defines which type of ticket can affect the status of a linked CI.'} =
         '';
+    $Self->{Translation}->{'Delete Configuration Item'} = '';
     $Self->{Translation}->{'Deployment State Color'} = '';
     $Self->{Translation}->{'Deployment State Color.'} = '';
     $Self->{Translation}->{'Deployment State Type.'} = '';
     $Self->{Translation}->{'Disabled'} = '';
+    $Self->{Translation}->{'Duplicate'} = '';
     $Self->{Translation}->{'Enabled'} = '';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         '';
@@ -365,6 +366,9 @@ sub Data {
         '';
     $Self->{Translation}->{'class'} = '';
     $Self->{Translation}->{'global'} = '';
+    $Self->{Translation}->{'postproductive'} = '';
+    $Self->{Translation}->{'preproductive'} = '';
+    $Self->{Translation}->{'productive'} = '';
 
 }
 

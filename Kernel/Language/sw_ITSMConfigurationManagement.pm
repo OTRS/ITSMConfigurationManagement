@@ -164,7 +164,6 @@ sub Data {
     $Self->{Translation}->{'Maintenance'} = 'Matengenezo';
     $Self->{Translation}->{'Pilot'} = 'Kwanza';
     $Self->{Translation}->{'Planned'} = 'Iliyopangwa';
-    $Self->{Translation}->{'Production'} = 'Uzalishaji';
     $Self->{Translation}->{'Repair'} = 'Rekebisha';
     $Self->{Translation}->{'Retired'} = 'Staafu';
     $Self->{Translation}->{'Review'} = 'Mapitio';
@@ -237,7 +236,7 @@ sub Data {
     $Self->{Translation}->{'Config item zoom.'} = '';
     $Self->{Translation}->{'ConfigItemNumber'} = '';
     $Self->{Translation}->{'Configuration Item Limit'} = 'Kikomo cha kipengele cha usanidi';
-    $Self->{Translation}->{'Configuration Item limit per page'} = 'Kikomo cha kipengele kwa ukurasa';
+    $Self->{Translation}->{'Configuration Item limit per page.'} = '';
     $Self->{Translation}->{'Configuration Management Database.'} = '';
     $Self->{Translation}->{'Configuration item bulk module.'} = '';
     $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} =
@@ -288,10 +287,12 @@ ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns';
         '';
     $Self->{Translation}->{'Defines which type of ticket can affect the status of a linked CI.'} =
         '';
+    $Self->{Translation}->{'Delete Configuration Item'} = '';
     $Self->{Translation}->{'Deployment State Color'} = '';
     $Self->{Translation}->{'Deployment State Color.'} = '';
     $Self->{Translation}->{'Deployment State Type.'} = '';
     $Self->{Translation}->{'Disabled'} = '';
+    $Self->{Translation}->{'Duplicate'} = '';
     $Self->{Translation}->{'Enabled'} = '';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         'Inawezesha kipengele cha kitendo ch wingi cha kipengele cha usanidi kwa maingira ya mbele ya wakala kufanya kazi katika kipengele cha usanidi zaidi ya kimoja kwa muda.';
@@ -367,6 +368,9 @@ ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns';
         'Kitambulishi cha kipengele cha usanidi, mfano.ConfigItem#, MyConfigItem#. Chagu-msingi ni ConfigItem#.';
     $Self->{Translation}->{'class'} = '';
     $Self->{Translation}->{'global'} = '';
+    $Self->{Translation}->{'postproductive'} = '';
+    $Self->{Translation}->{'preproductive'} = '';
+    $Self->{Translation}->{'productive'} = '';
 
 }
 

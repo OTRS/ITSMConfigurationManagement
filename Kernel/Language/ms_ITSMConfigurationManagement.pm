@@ -164,7 +164,6 @@ sub Data {
     $Self->{Translation}->{'Maintenance'} = 'penyelenggaraan';
     $Self->{Translation}->{'Pilot'} = 'Pilot';
     $Self->{Translation}->{'Planned'} = 'Dirancang';
-    $Self->{Translation}->{'Production'} = 'pengeluaran';
     $Self->{Translation}->{'Repair'} = 'Membaiki';
     $Self->{Translation}->{'Retired'} = 'bersara';
     $Self->{Translation}->{'Review'} = 'mengkaji';
@@ -237,7 +236,7 @@ sub Data {
     $Self->{Translation}->{'Config item zoom.'} = 'Zum item config.';
     $Self->{Translation}->{'ConfigItemNumber'} = '';
     $Self->{Translation}->{'Configuration Item Limit'} = 'Had Barangan Konfigurasi';
-    $Self->{Translation}->{'Configuration Item limit per page'} = 'Had Barangan Konfigurasi setiap muka surat';
+    $Self->{Translation}->{'Configuration Item limit per page.'} = '';
     $Self->{Translation}->{'Configuration Management Database.'} = 'Konfigurasi Pengurusan Pangkalan Data.';
     $Self->{Translation}->{'Configuration item bulk module.'} = 'Konfigurasi item modul pukal.';
     $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} =
@@ -286,10 +285,12 @@ sub Data {
         'Takrifkan jenis sambungan yang mana (dinamakan daripada perspektif tiket) boleh menjejaskan status bagi satu sambungan CI.';
     $Self->{Translation}->{'Defines which type of ticket can affect the status of a linked CI.'} =
         'Takrifkan jenis tiket yang mana boleh menjejaskan status bagi satu sambungan CI.';
+    $Self->{Translation}->{'Delete Configuration Item'} = '';
     $Self->{Translation}->{'Deployment State Color'} = 'Penempatan Keadaan Warna.';
     $Self->{Translation}->{'Deployment State Color.'} = 'Penempatan Keadaan Warna.';
     $Self->{Translation}->{'Deployment State Type.'} = 'Penempatan Keadaan Jenis.';
     $Self->{Translation}->{'Disabled'} = 'Tidak dibolehkan';
+    $Self->{Translation}->{'Duplicate'} = '';
     $Self->{Translation}->{'Enabled'} = 'Dibolehkan';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         'Membolehkan ciri tindakan pukal item konfigurasi untuk frontend ejen untuk bekerja pada lebih daripada satu item konfigurasi pada satu masa.';
@@ -365,6 +366,9 @@ sub Data {
         'Pengecam untuk item konfigurasi, contoh: ConfigItem#, MyConfigItem#. Default ialah ConfigItem#.';
     $Self->{Translation}->{'class'} = 'kelas';
     $Self->{Translation}->{'global'} = 'global';
+    $Self->{Translation}->{'postproductive'} = '';
+    $Self->{Translation}->{'preproductive'} = '';
+    $Self->{Translation}->{'productive'} = '';
 
 }
 

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ITSMConfigurationManagement\n"
-"POT-Creation-Date: 2017-07-11 15:16+0000\n"
+"POT-Creation-Date: 2017-08-21 12:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -431,10 +431,6 @@ msgid "Planned"
 msgstr ""
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
-msgid "Production"
-msgstr ""
-
-#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Repair"
 msgstr ""
 
@@ -707,7 +703,7 @@ msgid "Configuration Item Limit"
 msgstr ""
 
 #. SysConfig
-msgid "Configuration Item limit per page"
+msgid "Configuration Item limit per page."
 msgstr ""
 
 #. SysConfig
@@ -815,6 +811,10 @@ msgid "Defines which type of ticket can affect the status of a linked CI."
 msgstr ""
 
 #. SysConfig
+msgid "Delete Configuration Item"
+msgstr ""
+
+#. SysConfig
 msgid "Deployment State Color"
 msgstr ""
 
@@ -828,6 +828,10 @@ msgstr ""
 
 #. SysConfig
 msgid "Disabled"
+msgstr ""
+
+#. SysConfig
+msgid "Duplicate"
 msgstr ""
 
 #. SysConfig
@@ -996,5 +1000,17 @@ msgstr ""
 
 #. SysConfig
 msgid "global"
+msgstr ""
+
+#. SysConfig
+msgid "postproductive"
+msgstr ""
+
+#. SysConfig
+msgid "preproductive"
+msgstr ""
+
+#. SysConfig
+msgid "productive"
 msgstr ""
 

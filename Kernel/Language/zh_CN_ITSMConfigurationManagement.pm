@@ -164,7 +164,6 @@ sub Data {
     $Self->{Translation}->{'Maintenance'} = '维护';
     $Self->{Translation}->{'Pilot'} = '试验';
     $Self->{Translation}->{'Planned'} = '已计划';
-    $Self->{Translation}->{'Production'} = '生产';
     $Self->{Translation}->{'Repair'} = '修复';
     $Self->{Translation}->{'Retired'} = '报废';
     $Self->{Translation}->{'Review'} = '复审';
@@ -237,7 +236,7 @@ sub Data {
     $Self->{Translation}->{'Config item zoom.'} = '配置项详情。';
     $Self->{Translation}->{'ConfigItemNumber'} = 'ConfigItemNumber（配置项编号）';
     $Self->{Translation}->{'Configuration Item Limit'} = '配置项限制';
-    $Self->{Translation}->{'Configuration Item limit per page'} = '每页配置项限制';
+    $Self->{Translation}->{'Configuration Item limit per page.'} = '';
     $Self->{Translation}->{'Configuration Management Database.'} = '配置管理数据库。';
     $Self->{Translation}->{'Configuration item bulk module.'} = '配置项批处理模块。';
     $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} =
@@ -286,10 +285,12 @@ sub Data {
         '定义哪一类(从工单角度命名的)链接可以影响一个链接的配置项的状态。';
     $Self->{Translation}->{'Defines which type of ticket can affect the status of a linked CI.'} =
         '定义哪一类工单可以影响一个链接的配置项的状态。';
+    $Self->{Translation}->{'Delete Configuration Item'} = '';
     $Self->{Translation}->{'Deployment State Color'} = '部署状态的颜色';
     $Self->{Translation}->{'Deployment State Color.'} = '部署状态的颜色。';
     $Self->{Translation}->{'Deployment State Type.'} = '部署状态类型。';
     $Self->{Translation}->{'Disabled'} = '已禁用';
+    $Self->{Translation}->{'Duplicate'} = '';
     $Self->{Translation}->{'Enabled'} = '已启用';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         '在服务人员界面启用配置项批量操作功能，可以一次处理多个配置项。';
@@ -365,6 +366,9 @@ sub Data {
         '配置项标识符，如ConfigItem#、MyConfigItem#，默认是ConfigItem#。';
     $Self->{Translation}->{'class'} = '类';
     $Self->{Translation}->{'global'} = '全局';
+    $Self->{Translation}->{'postproductive'} = '';
+    $Self->{Translation}->{'preproductive'} = '';
+    $Self->{Translation}->{'productive'} = '';
 
 }
 
