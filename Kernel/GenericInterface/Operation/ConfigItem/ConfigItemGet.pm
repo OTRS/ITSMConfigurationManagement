@@ -14,7 +14,7 @@ use warnings;
 use MIME::Base64;
 use Kernel::System::VariableCheck qw(:all);
 
-use base qw(
+use parent qw(
     Kernel::GenericInterface::Operation::Common
     Kernel::GenericInterface::Operation::ConfigItem::Common
 );

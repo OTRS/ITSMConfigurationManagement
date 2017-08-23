@@ -362,7 +362,7 @@
     <ConfigItem Name="ImportExport::ObjectBackendRegistration###ITSMConfigItem" Required="0" Valid="1">
         <Description Translatable="1">Object backend module registration for the import/export module.</Description>
         <Group>ImportExport</Group>
-        <SubGroup>ObjectBackend::ModuleRegistration</SubGroup>
+        <SubGroup>Core::ImportExport::ObjectBackend::ModuleRegistration</SubGroup>
         <Setting>
             <Hash>
                 <Item Key="Module">Kernel::System::ImportExport::ObjectBackend::ITSMConfigItem</Item>
@@ -373,7 +373,7 @@
     <ConfigItem Name="ITSMConfigItem::EventModulePost###100-History" Required="0" Valid="1">
         <Description Translatable="1">Config item event module that enables logging to history in the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
-        <SubGroup>Core::ITSMConfigItem</SubGroup>
+        <SubGroup>Core::Event::ITSMConfigItem</SubGroup>
         <Setting>
             <Hash>
                 <Item Key="Module">Kernel::System::ITSMConfigItem::Event::DoHistory</Item>
@@ -409,7 +409,7 @@
     <ConfigItem Name="GeneralCatalogPreferences###DeploymentStates" Required="0" Valid="1">
         <Description Translatable="1">Parameters for the deployment states in the preferences view of the agent interface.</Description>
         <Group>GeneralCatalog</Group>
-        <SubGroup>GeneralCatalog::Preferences</SubGroup>
+        <SubGroup>Core::GeneralCatalog::Preferences</SubGroup>
         <Setting>
             <Hash>
                 <Item Key="Module">Kernel::Output::HTML::GeneralCatalogPreferences::Generic</Item>
@@ -431,7 +431,7 @@
     <ConfigItem Name="GeneralCatalogPreferences###DeploymentStatesColors" Required="0" Valid="1">
         <Description Translatable="1">Parameters for the deployment states color in the preferences view of the agent interface.</Description>
         <Group>GeneralCatalog</Group>
-        <SubGroup>GeneralCatalog::Preferences</SubGroup>
+        <SubGroup>Core::GeneralCatalog::Preferences</SubGroup>
         <Setting>
             <Hash>
                 <Item Key="Module">Kernel::Output::HTML::GeneralCatalogPreferences::Generic</Item>
@@ -543,7 +543,7 @@
     <ConfigItem Name="GeneralCatalogPreferences###Permissions" Required="0" Valid="1">
         <Description Translatable="1">Parameters for the example permission groups of the general catalog attributes.</Description>
         <Group>GeneralCatalog</Group>
-        <SubGroup>GeneralCatalog::Preferences</SubGroup>
+        <SubGroup>Core::GeneralCatalog::Preferences</SubGroup>
         <Setting>
             <Hash>
                 <Item Key="Module">Kernel::Output::HTML::GeneralCatalogPreferences::Generic</Item>
@@ -578,7 +578,7 @@
     <ConfigItem Name="Loader::Agent::CommonJS###100-ConfigurationManagement" Required="1" Valid="1">
         <Description Translatable="1">List of JS files to always be loaded for the agent interface.</Description>
         <Group>Framework</Group>
-        <SubGroup>Core::Web</SubGroup>
+        <SubGroup>Frontend::Base::Loader</SubGroup>
         <Setting>
             <Array>
                 <Item>ITSM.Agent.ConfigItem.Search.js</Item>
