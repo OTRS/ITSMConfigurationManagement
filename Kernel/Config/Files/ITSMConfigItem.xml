@@ -92,6 +92,9 @@
                 <Description Translatable="1">Config item edit.</Description>
                 <Title Translatable="1">Edit</Title>
                 <NavBarName>Config Item</NavBarName>
+                <Loader>
+                    <JavaScript>ITSM.Agent.ConfigItem.CustomerSearch.js</JavaScript>
+                </Loader>
             </FrontendModuleReg>
         </Setting>
     </ConfigItem>

@@ -133,6 +133,7 @@
         <File Permission="660" Location="scripts/test/Console/Command/Admin/ITSM/Configitem/ListDuplicates.t" />
         <File Permission="660" Location="scripts/test/Console/Command/Admin/ITSM/Configitem/Delete.t" />
         <File Permission="660" Location="scripts/test/Console/Command/Admin/ITSM/IncidentState/Recalculate.t" />
+        <File Permission="660" Location="var/httpd/htdocs/js/ITSM.Agent.ConfigItem.CustomerSearch.js" />
         <File Permission="660" Location="var/httpd/htdocs/js/ITSM.Agent.ConfigItem.Search.js" />
         <File Permission="660" Location="var/httpd/htdocs/js/ITSM.UI.ConfigItemActionRow.js" />
         <File Permission="660" Location="var/packagesetup/ITSMConfigurationManagement.pm" />

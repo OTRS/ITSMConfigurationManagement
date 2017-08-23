@@ -911,11 +911,9 @@ sub _XMLFormOutput {
 
             if ( $Item->{Input}->{Type} eq 'Customer' ) {
 
-                $LayoutObject->Block(
-                    Name => 'CustomerSearchInit',
-                    Data => {
-                        ItemID => $ItemID,
-                    },
+                $Self->{LayoutObject}->AddJSData(
+                    Key   => 'CustomerSearchItemID',
+                    Value => $ItemID,
                 );
             }
 
