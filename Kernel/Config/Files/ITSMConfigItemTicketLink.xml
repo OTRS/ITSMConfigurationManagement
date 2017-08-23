@@ -14,7 +14,7 @@
     <ConfigItem Name="ITSMConfigItem::EventModulePost###042-ITSMConfigItemTicketStatusLink" Required="1" Valid="1">
         <Description Translatable="1">Event module to set configitem-status on ticket-configitem-link.</Description>
         <Group>ITSM Configuration Management</Group>
-        <SubGroup>Core::LinkStatus</SubGroup>
+        <SubGroup>Core::Event::Ticket</SubGroup>
         <Setting>
             <Hash>
                 <Item Key="Module">Kernel::System::Ticket::Event::TicketStatusLink</Item>
@@ -25,7 +25,7 @@
     <ConfigItem Name="Ticket::EventModulePost###042-ITSMConfigItemTicketStatusLink" Required="1" Valid="1">
         <Description Translatable="1">Event module to set configitem-status on ticket-configitem-link.</Description>
         <Group>ITSM Configuration Management</Group>
-        <SubGroup>Core::LinkStatus</SubGroup>
+        <SubGroup>Core::Event::Ticket</SubGroup>
         <Setting>
             <Hash>
                 <Item Key="Module">Kernel::System::Ticket::Event::TicketStatusLink</Item>

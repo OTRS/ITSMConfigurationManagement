@@ -9,7 +9,7 @@
     </Setting>
     <Setting Name="ITSMConfigItem::EventModulePost###042-ITSMConfigItemTicketStatusLink" Required="1" Valid="1">
         <Description Translatable="1">Event module to set configitem-status on ticket-configitem-link.</Description>
-        <Navigation>Core::LinkStatus</Navigation>
+        <Navigation>Core::Event::Ticket</Navigation>
         <Value>
             <Hash>
                 <Item Key="Module">Kernel::System::Ticket::Event::TicketStatusLink</Item>
@@ -19,7 +19,7 @@
     </Setting>
     <Setting Name="Ticket::EventModulePost###042-ITSMConfigItemTicketStatusLink" Required="1" Valid="1">
         <Description Translatable="1">Event module to set configitem-status on ticket-configitem-link.</Description>
-        <Navigation>Core::LinkStatus</Navigation>
+        <Navigation>Core::Event::Ticket</Navigation>
         <Value>
             <Hash>
                 <Item Key="Module">Kernel::System::Ticket::Event::TicketStatusLink</Item>
