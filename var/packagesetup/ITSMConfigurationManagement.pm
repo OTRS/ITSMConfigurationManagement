@@ -30,7 +30,7 @@ our @ObjectDependencies = (
 
 =head1 NAME
 
-ITSMConfigurationManagement.pm - code to excecute during package installation
+ITSMConfigurationManagement.pm - code to execute during package installation
 
 =head1 SYNOPSIS
 
@@ -99,19 +99,19 @@ sub CodeInstall {
         Description => 'Group for ITSM ConfigItem mask access in the agent interface.',
     );
 
-    # install config item definitions
+    # install configuration item definitions
     $Self->_AddConfigItemDefinitions();
 
-    # fill up empty last_version_id rows in configitem table
+    # fill up empty last_version_id rows in C<configitem> table
     $Self->_FillupEmptyLastVersionID();
 
-    # fill up empty inci_state_id rows in configitem_version table
+    # fill up empty inci_state_id rows in C<configitem_version> table
     $Self->_FillupEmptyVersionIncidentStateID();
 
-    # fill up empty cur_depl_state_id or cur_inci_state_id rows in configitem table
+    # fill up empty C<cur_depl_state_id> or C<cur_inci_state_id> rows in C<configitem> table
     $Self->_FillupEmptyIncidentAndDeploymentStateID();
 
-    # set preferences for some config items
+    # set preferences for some configuration items
     $Self->_SetPreferences();
 
     # set default permission group
@@ -143,19 +143,19 @@ sub CodeReinstall {
         Description => 'Group for ITSM ConfigItem mask access in the agent interface.',
     );
 
-    # install config item definitions
+    # install configuration item definitions
     $Self->_AddConfigItemDefinitions();
 
-    # fill up empty last_version_id rows in configitem table
+    # fill up empty last_version_id rows in C<configitem> table
     $Self->_FillupEmptyLastVersionID();
 
-    # fill up empty inci_state_id rows in configitem_version table
+    # fill up empty inci_state_id rows in C<configitem_version> table
     $Self->_FillupEmptyVersionIncidentStateID();
 
-    # fill up empty cur_depl_state_id or cur_inci_state_id rows in configitem table
+    # fill up empty cur_depl_state_id or cur_inci_state_id rows in C<configitem> table
     $Self->_FillupEmptyIncidentAndDeploymentStateID();
 
-    # set preferences for some config items
+    # set preferences for some configuration items
     $Self->_SetPreferences();
 
     # set default permission group
@@ -232,19 +232,19 @@ run the code upgrade part
 sub CodeUpgrade {
     my ( $Self, %Param ) = @_;
 
-    # install config item definitions
+    # install configuration item definitions
     $Self->_AddConfigItemDefinitions();
 
-    # fill up empty last_version_id rows in configitem table
+    # fill up empty last_version_id rows in C<configitem> table
     $Self->_FillupEmptyLastVersionID();
 
-    # fill up empty inci_state_id rows in configitem_version table
+    # fill up empty inci_state_id rows in C<configitem_version> table
     $Self->_FillupEmptyVersionIncidentStateID();
 
-    # fill up empty cur_depl_state_id or cur_inci_state_id rows in configitem table
+    # fill up empty cur_depl_state_id or cur_inci_state_id rows in C<configitem> table
     $Self->_FillupEmptyIncidentAndDeploymentStateID();
 
-    # set preferences for some config items
+    # set preferences for some configuration items
     $Self->_SetPreferences();
 
     # set default permission group
@@ -270,10 +270,10 @@ run the code uninstall part
 sub CodeUninstall {
     my ( $Self, %Param ) = @_;
 
-    # delete all links with config items
+    # delete all links with configuration items
     $Self->_LinkDelete();
 
-    # deactivate the group itsm-configitem
+    # deactivate the group C<itsm-configitem>
     $Self->_GroupDeactivate(
         Name => 'itsm-configitem',
     );
@@ -321,6 +321,8 @@ sub _SetPreferences {
             Value  => $Map{$Name},
         );
     }
+
+    return 1;
 }
 
 =item _SetDefaultPermission()
@@ -357,6 +359,8 @@ sub _SetDefaultPermission {
             );
         }
     }
+
+    return 1;
 }
 
 =item _GroupAdd()
@@ -505,7 +509,7 @@ sub _GroupDeactivate {
 
 =item _AddConfigItemDefinitions()
 
-installs ConfigItem definitions
+installs configuration item definitions
 
     my $Result = $CodeObject->_AddConfigItemDefinitions();
 
@@ -514,7 +518,7 @@ installs ConfigItem definitions
 sub _AddConfigItemDefinitions {
     my ( $Self, %Param ) = @_;
 
-    # config item definitions
+    # configuration item definitions
     my %Definition = (
         Computer => "[
     {
@@ -1104,7 +1108,7 @@ sub _AddConfigItemDefinitions {
 ];",
     );
 
-    # get list of installed config item classes
+    # get list of installed configuration item classes
     my $ClassList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => 'ITSM::ConfigItem::Class',
     );
@@ -1139,7 +1143,7 @@ sub _AddConfigItemDefinitions {
 
 =item _LinkDelete()
 
-delete all existing links to config items
+delete all existing links to configuration items
 
     my $Result = $CodeObject->_LinkDelete();
 
@@ -1148,13 +1152,13 @@ delete all existing links to config items
 sub _LinkDelete {
     my ( $Self, %Param ) = @_;
 
-    # get all config items
+    # get all configuration items
     my $ConfigItemIDs = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->ConfigItemSearch();
 
     return if !$ConfigItemIDs;
     return if ref $ConfigItemIDs ne 'ARRAY';
 
-    # delete the config item links
+    # delete the configuration item links
     for my $ConfigItemID ( @{$ConfigItemIDs} ) {
         $Kernel::OM->Get('Kernel::System::LinkObject')->LinkDeleteAll(
             Object => 'ITSMConfigItem',
@@ -1168,7 +1172,7 @@ sub _LinkDelete {
 
 =item _FillupEmptyLastVersionID()
 
-fill up empty entries in the last_version_id column of the configitem table
+fill up empty entries in the last_version_id column of the C<configitem> table
 
     my $Result = $CodeObject->_FillupEmptyLastVersionID();
 
@@ -1177,7 +1181,7 @@ fill up empty entries in the last_version_id column of the configitem table
 sub _FillupEmptyLastVersionID {
     my ( $Self, %Param ) = @_;
 
-    # get config items with empty last_version_id
+    # get configuration items with empty last_version_id
     $Kernel::OM->Get('Kernel::System::DB')->Prepare(
         SQL => 'SELECT id FROM configitem WHERE '
             . 'last_version_id = 0 OR last_version_id IS NULL',
@@ -1192,7 +1196,7 @@ sub _FillupEmptyLastVersionID {
     CONFIGITEMID:
     for my $ConfigItemID (@ConfigItemIDs) {
 
-        # get the last version of this config item
+        # get the last version of this configuration item
         $Kernel::OM->Get('Kernel::System::DB')->Prepare(
             SQL => 'SELECT id FROM configitem_version '
                 . 'WHERE configitem_id = ? ORDER BY id DESC',
@@ -1208,7 +1212,7 @@ sub _FillupEmptyLastVersionID {
 
         next CONFIGITEMID if !$VersionID;
 
-        # update inci_state_id
+        # update C<inci_state_id>
         $Kernel::OM->Get('Kernel::System::DB')->Do(
             SQL => 'UPDATE configitem '
                 . 'SET last_version_id = ? '
@@ -1222,7 +1226,7 @@ sub _FillupEmptyLastVersionID {
 
 =item _FillupEmptyVersionIncidentStateID()
 
-fill up empty entries in the inci_state_id column of the configitem_version table
+fill up empty entries in the C<inci_state_id column> of the C<configitem_version> table
 
     my $Result = $CodeObject->_FillupEmptyVersionIncidentStateID();
 
@@ -1262,7 +1266,7 @@ sub _FillupEmptyVersionIncidentStateID {
 
 =item _FillupEmptyIncidentAndDeploymentStateID()
 
-fill up empty entries in the cur_depl_state_id or cur_inci_state_id column of the configitem table
+fill up empty entries in the cur_depl_state_id or cur_inci_state_id column of the C<configitem> table
 
     my $Result = $CodeObject->_FillupEmptyIncidentAndDeploymentStateID();
 
@@ -1271,7 +1275,7 @@ fill up empty entries in the cur_depl_state_id or cur_inci_state_id column of th
 sub _FillupEmptyIncidentAndDeploymentStateID {
     my ( $Self, %Param ) = @_;
 
-    # get config items with empty cur_depl_state_id or cur_inci_state_id
+    # get configuration items with empty cur_depl_state_id or cur_inci_state_id
     $Kernel::OM->Get('Kernel::System::DB')->Prepare(
         SQL => 'SELECT id FROM configitem WHERE '
             . 'cur_depl_state_id = 0 OR cur_depl_state_id IS NULL OR '
@@ -1297,7 +1301,7 @@ sub _FillupEmptyIncidentAndDeploymentStateID {
         next CONFIGITEMID if !$LastVersion->{DeplStateID};
         next CONFIGITEMID if !$LastVersion->{InciStateID};
 
-        # complete config item
+        # complete configuration item
         $Kernel::OM->Get('Kernel::System::DB')->Do(
             SQL => 'UPDATE configitem SET '
                 . 'cur_depl_state_id = ?, '
@@ -1402,7 +1406,7 @@ sub _MigrateDTLInSysConfig {
                 }
             }
 
-            # update the config item
+            # update the configuration item
             my $Success = $SysConfigObject->ConfigItemUpdate(
                 Valid => 1,
                 Key   => $Name,
