@@ -1348,7 +1348,7 @@ sub _DeleteServicePreferences {
 
 =item _MigrateDTLInSysConfig()
 
-Converts DTL settings in sysconfig to template toolkit.
+Converts template settings in sysconfig to template toolkit.
 
     my $Result = $CodeObject->_MigrateDTLInSysConfig();
 
