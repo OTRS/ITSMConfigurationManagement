@@ -102,13 +102,13 @@ sub CodeInstall {
     # install config item definitions
     $Self->_AddConfigItemDefinitions();
 
-    # fillup empty last_version_id rows in configitem table
+    # fill up empty last_version_id rows in configitem table
     $Self->_FillupEmptyLastVersionID();
 
-    # fillup empty inci_state_id rows in configitem_version table
+    # fill up empty inci_state_id rows in configitem_version table
     $Self->_FillupEmptyVersionIncidentStateID();
 
-    # fillup empty cur_depl_state_id or cur_inci_state_id rows in configitem table
+    # fill up empty cur_depl_state_id or cur_inci_state_id rows in configitem table
     $Self->_FillupEmptyIncidentAndDeploymentStateID();
 
     # set preferences for some config items
@@ -146,13 +146,13 @@ sub CodeReinstall {
     # install config item definitions
     $Self->_AddConfigItemDefinitions();
 
-    # fillup empty last_version_id rows in configitem table
+    # fill up empty last_version_id rows in configitem table
     $Self->_FillupEmptyLastVersionID();
 
-    # fillup empty inci_state_id rows in configitem_version table
+    # fill up empty inci_state_id rows in configitem_version table
     $Self->_FillupEmptyVersionIncidentStateID();
 
-    # fillup empty cur_depl_state_id or cur_inci_state_id rows in configitem table
+    # fill up empty cur_depl_state_id or cur_inci_state_id rows in configitem table
     $Self->_FillupEmptyIncidentAndDeploymentStateID();
 
     # set preferences for some config items
@@ -235,13 +235,13 @@ sub CodeUpgrade {
     # install config item definitions
     $Self->_AddConfigItemDefinitions();
 
-    # fillup empty last_version_id rows in configitem table
+    # fill up empty last_version_id rows in configitem table
     $Self->_FillupEmptyLastVersionID();
 
-    # fillup empty inci_state_id rows in configitem_version table
+    # fill up empty inci_state_id rows in configitem_version table
     $Self->_FillupEmptyVersionIncidentStateID();
 
-    # fillup empty cur_depl_state_id or cur_inci_state_id rows in configitem table
+    # fill up empty cur_depl_state_id or cur_inci_state_id rows in configitem table
     $Self->_FillupEmptyIncidentAndDeploymentStateID();
 
     # set preferences for some config items
@@ -1168,7 +1168,7 @@ sub _LinkDelete {
 
 =item _FillupEmptyLastVersionID()
 
-fillup empty entries in the last_version_id column of the configitem table
+fill up empty entries in the last_version_id column of the configitem table
 
     my $Result = $CodeObject->_FillupEmptyLastVersionID();
 
@@ -1222,7 +1222,7 @@ sub _FillupEmptyLastVersionID {
 
 =item _FillupEmptyVersionIncidentStateID()
 
-fillup empty entries in the inci_state_id column of the configitem_version table
+fill up empty entries in the inci_state_id column of the configitem_version table
 
     my $Result = $CodeObject->_FillupEmptyVersionIncidentStateID();
 
@@ -1262,7 +1262,7 @@ sub _FillupEmptyVersionIncidentStateID {
 
 =item _FillupEmptyIncidentAndDeploymentStateID()
 
-fillup empty entries in the cur_depl_state_id or cur_inci_state_id column of the configitem table
+fill up empty entries in the cur_depl_state_id or cur_inci_state_id column of the configitem table
 
     my $Result = $CodeObject->_FillupEmptyIncidentAndDeploymentStateID();
 
