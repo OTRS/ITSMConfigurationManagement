@@ -21,15 +21,9 @@ our @ObjectDependencies = (
 
 Kernel::System::ITSMConfigItem::Permission::ClassGroupCheck - check if a user belongs to a group
 
-=head1 SYNOPSIS
-
 =head1 PUBLIC INTERFACE
 
-=over 4
-
-=cut
-
-=item new()
+=head2 new()
 
 create an object
 
@@ -49,7 +43,7 @@ sub new {
     return $Self;
 }
 
-=item Run()
+=head2 Run()
 
 this method does the check if the use belongs to a given group
 
@@ -98,8 +92,6 @@ sub Run {
 }
 
 1;
-
-=back
 
 =head1 TERMS AND CONDITIONS
 

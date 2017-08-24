@@ -21,17 +21,13 @@ our $ObjectManagerDisabled = 1;
 
 Kernel::GenericInterface::Operation::ConfigItem::Common - Base class for all CI Operations
 
-=head1 SYNOPSIS
-
 =head1 PUBLIC INTERFACE
-
-=over 4
 
 =cut
 
-=item Init()
+=head2 Init()
 
-initialize the operation by checking the webservice configuration
+initialize the operation by checking the web-service configuration
 
     my $Return = $CommonObject->Init(
         WebserviceID => 1,
@@ -74,7 +70,7 @@ sub Init {
     };
 }
 
-=item ValidateClass()
+=head2 ValidateClass()
 
 checks if the given Class is valid.
 
@@ -105,7 +101,7 @@ sub ValidateClass {
     return 1;
 }
 
-=item ValidateDeplState()
+=head2 ValidateDeplState()
 
 checks if the given DeplState is valid.
 
@@ -136,7 +132,7 @@ sub ValidateDeplState {
     return 1;
 }
 
-=item ValidateInciState()
+=head2 ValidateInciState()
 
 checks if the given InciState is valid.
 
@@ -167,7 +163,7 @@ sub ValidateInciState {
     return 1;
 }
 
-=item ValidateInputText()
+=head2 ValidateInputText()
 
 checks if the given value is valid.
 
@@ -197,7 +193,7 @@ sub ValidateInputText {
     return 1;
 }
 
-=item ValidateInputDate()
+=head2 ValidateInputDate()
 
 checks if the given value is valid.
 
@@ -231,22 +227,20 @@ sub ValidateInputDate {
         $Value = $1 . ' 00:00:00';
     }
 
-    # convert the raw data to a system time format
-    my $SystemTime = $Kernel::OM->Get('Kernel::System::Time')->TimeStamp2SystemTime(
-        String => $Value,
+    # Convert the raw data to a system datetime object.
+    my $DateTimeObject = $Kernel::OM->Create(
+        'Kernel::System::DateTime',
+        ObjectParams => {
+            String => $Value,
+        },
     );
 
-    # convert it back to a standard time stamp
-    my $TimeStamp = $Kernel::OM->Get('Kernel::System::Time')->SystemTime2TimeStamp(
-        SystemTime => $SystemTime,
-    );
-
-    return if !$TimeStamp;
+    return if !$DateTimeObject;
 
     return 1;
 }
 
-=item ValidateInputDateTime()
+=head2 ValidateInputDateTime()
 
 checks if the given value is valid.
 
@@ -283,22 +277,20 @@ sub ValidateInputDateTime {
         $Value = $1 . ' 00:00:00';
     }
 
-    # convert the raw data to a system time format
-    my $SystemTime = $Kernel::OM->Get('Kernel::System::Time')->TimeStamp2SystemTime(
-        String => $Value,
+    # Convert the raw data to a system datetime object.
+    my $DateTimeObject = $Kernel::OM->Create(
+        'Kernel::System::DateTime',
+        ObjectParams => {
+            String => $Value,
+        },
     );
 
-    # convert it back to a standard time stamp
-    my $TimeStamp = $Kernel::OM->Get('Kernel::System::Time')->SystemTime2TimeStamp(
-        SystemTime => $SystemTime,
-    );
-
-    return if !$TimeStamp;
+    return if !$DateTimeObject;
 
     return 1;
 }
 
-=item ValidateInputInteger()
+=head2 ValidateInputInteger()
 
 checks if the given value is valid.
 
@@ -324,7 +316,7 @@ sub ValidateInputInteger {
     return 1;
 }
 
-=item ValidateInputGeneralCatalog()
+=head2 ValidateInputGeneralCatalog()
 
 checks if the given value is valid.
 
@@ -356,7 +348,7 @@ sub ValidateInputGeneralCatalog {
     return 1;
 }
 
-=item ValidateInputCustomer()
+=head2 ValidateInputCustomer()
 
 checks if the given value is valid.
 
@@ -394,7 +386,7 @@ sub ValidateInputCustomer {
     return 1;
 }
 
-=item ValidateInputCustomerCompany()
+=head2 ValidateInputCustomerCompany()
 
 checks if the given value is valid.
 
@@ -421,7 +413,7 @@ sub ValidateInputCustomerCompany {
     return 1;
 }
 
-=item ValidateMimeType()
+=head2 ValidateMimeType()
 
 checks if the given MimeType is valid.
 
@@ -445,7 +437,7 @@ sub ValidateMimeType {
     return 1;
 }
 
-=item ValidateCharset()
+=head2 ValidateCharset()
 
 checks if the given Charset is valid.
 
@@ -471,7 +463,7 @@ sub ValidateCharset {
     return 1;
 }
 
-=item ReplaceInputDate()
+=head2 ReplaceInputDate()
 
 replaces the user value with a system valid value.
 
@@ -505,23 +497,18 @@ sub ReplaceInputDate {
         $Value = $1 . ' 00:00:00';
     }
 
-    # convert the raw data to a system time format
-    my $SystemTime = $Kernel::OM->Get('Kernel::System::Time')->TimeStamp2SystemTime(
-        String => $Value,
+    # Convert the raw data to a system datetime object.
+    my $DateTimeObject = $Kernel::OM->Create(
+        'Kernel::System::DateTime',
+        ObjectParams => {
+            String => $Value,
+        },
     );
 
-    # convert it back to a standard time stamp
-    my $TimeStamp = $Kernel::OM->Get('Kernel::System::Time')->SystemTime2TimeStamp(
-        SystemTime => $SystemTime,
-    );
-
-    # remove the time part
-    $TimeStamp =~ s{ [ ] 00:00:00 \z }{}xms;
-
-    return $TimeStamp;
+    return $DateTimeObject->Format('%F');
 }
 
-=item ReplaceInputDateTime()
+=head2 ReplaceInputDateTime()
 
 replaces the user value with a system valid value.
 
@@ -558,20 +545,18 @@ sub ReplaceInputDateTime {
         $Value = $1 . ' 00:00:00';
     }
 
-    # convert the raw data to a system time format
-    my $SystemTime = $Kernel::OM->Get('Kernel::System::Time')->TimeStamp2SystemTime(
-        String => $Value,
+    # Convert the raw data to a system datetime object.
+    my $DateTimeObject = $Kernel::OM->Create(
+        'Kernel::System::DateTime',
+        ObjectParams => {
+            String => $Value,
+        },
     );
 
-    # convert it back to a standard time stamp
-    my $TimeStamp = $Kernel::OM->Get('Kernel::System::Time')->SystemTime2TimeStamp(
-        SystemTime => $SystemTime,
-    );
-
-    return $TimeStamp;
+    return $DateTimeObject->ToString();
 }
 
-=item ReplaceInputGeneralCatalog()
+=head2 ReplaceInputGeneralCatalog()
 
 replaces the user value with a system valid value.
 
@@ -601,7 +586,7 @@ sub ReplaceInputGeneralCatalog {
     return $ItemListLookup{$Value};
 }
 
-=item InvertReplaceInputDate()
+=head2 InvertReplaceInputDate()
 
 replaces the system value with a user value.
 
@@ -624,7 +609,7 @@ sub InvertReplaceInputDate {
     return $Value;
 }
 
-=item InvertReplaceInputGeneralCatalog()
+=head2 InvertReplaceInputGeneralCatalog()
 
 replaces the system value with a user value.
 
@@ -652,9 +637,9 @@ sub InvertReplaceInputGeneralCatalog {
     return $ItemList->{$Value};
 }
 
-=item CreateAttachment()
+=head2 CreateAttachment()
 
-cretes a new attachment for the given ConfigItem.
+creates a new attachment for the given ConfigItem.
 
     my $Result = $CommonObject->CreateAttachment(
         Content      => $Data,                   # file content (Base64 encoded)
@@ -702,7 +687,7 @@ sub CreateAttachment {
     };
 }
 
-=item CheckXMLData()
+=head2 CheckXMLData()
 
 checks if the given XMLData value are valid.
 
@@ -885,7 +870,7 @@ sub CheckXMLData {
         }
 }
 
-=item ReplaceXMLData()
+=head2 ReplaceXMLData()
 
 replace the XMLData to one that uses internal values.
 
@@ -1021,7 +1006,7 @@ sub ReplaceXMLData {
     return $NewXMLData;
 }
 
-=item FormatXMLData()
+=head2 FormatXMLData()
 
 Create a XMLData suitable for VersionAdd.
 
@@ -1103,8 +1088,8 @@ sub FormatXMLData {
                 undef,
                 {
                     Content => $XMLData->{$RootKey},
-                }
-                ],
+                },
+            ];
         }
     }
 
@@ -1125,9 +1110,9 @@ sub FormatXMLData {
     ];
 }
 
-=item InvertFormatXMLData()
+=head2 InvertFormatXMLData()
 
-Creates a readible XMLData.
+Creates a readable XMLData.
 
     my $NewXMLData = $CommonObject->InvertFormatXMLData(
         XMLData    => $XMLDataHashRef,
@@ -1222,7 +1207,7 @@ sub InvertFormatXMLData {
     return $NewXMLData;
 }
 
-=item InvertReplaceXMLData()
+=head2 InvertReplaceXMLData()
 
 replace the XMLData to one that uses user values.
 
@@ -1370,9 +1355,9 @@ sub InvertReplaceXMLData {
     return $NewXMLData;
 }
 
-=begin Internal:
+=head1 INTERNAL INTERFACE
 
-=item _CharsetList()
+=head2 _CharsetList()
 
 returns a list of all available charsets.
 
@@ -1409,7 +1394,7 @@ sub _CharsetList {
     return \%CharsetHash;
 }
 
-=item _CheckValue()
+=head2 _CheckValue()
 
 checks if the given value is valid.
 
@@ -1550,7 +1535,7 @@ sub _CheckValue {
     };
 }
 
-=item _ReplaceValue()
+=head2 _ReplaceValue()
 
 replace user values with system ready values.
 
@@ -1602,7 +1587,7 @@ sub _ReplaceValue {
     return $NewValue;
 }
 
-=item _InvertReplaceValue()
+=head2 _InvertReplaceValue()
 
 replace internal values with user values.
 
@@ -1650,10 +1635,6 @@ sub _InvertReplaceValue {
 }
 
 1;
-
-=end Internal:
-
-=back
 
 =head1 TERMS AND CONDITIONS
 

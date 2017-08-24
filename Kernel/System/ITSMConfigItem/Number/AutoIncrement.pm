@@ -17,15 +17,11 @@ our $ObjectManagerDisabled = 1;
 
 Kernel::System::ITSMConfigItem::Number::AutoIncrement - config item number backend module
 
-=head1 SYNOPSIS
+=head1 DESCRIPTION
 
 All auto increment config item number functions
 
-=over 4
-
-=cut
-
-=item _ConfigItemNumberCreate()
+=head2 _ConfigItemNumberCreate()
 
 create a new config item number
 
@@ -83,8 +79,6 @@ sub _ConfigItemNumberCreate {
 }
 
 1;
-
-=back
 
 =head1 TERMS AND CONDITIONS
 

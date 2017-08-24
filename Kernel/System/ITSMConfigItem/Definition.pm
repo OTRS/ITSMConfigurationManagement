@@ -19,19 +19,15 @@ our $ObjectManagerDisabled = 1;
 
 Kernel::System::ITSMConfigItem::Definition - sub module of Kernel::System::ITSMConfigItem
 
-=head1 SYNOPSIS
+=head1 PUBLIC INTERFACE
+
+=head1 DESCRIPTION
 
 All definition functions.
 
-=head1 PUBLIC INTERFACE
+=head2 DefinitionList()
 
-=over 4
-
-=cut
-
-=item DefinitionList()
-
-return a config item definition list as arrayhash reference
+return a config item definition list as array-hash reference
 
     my $DefinitionListRef = $ConfigItemObject->DefinitionList(
         ClassID => 123,
@@ -115,7 +111,7 @@ sub DefinitionList {
     return \@DefinitionList;
 }
 
-=item DefinitionGet()
+=head2 DefinitionGet()
 
 return a config item definition as hash reference
 
@@ -218,7 +214,7 @@ sub DefinitionGet {
     return \%Definition;
 }
 
-=item DefinitionAdd()
+=head2 DefinitionAdd()
 
 add a new definition
 
@@ -309,7 +305,7 @@ sub DefinitionAdd {
     return $DefinitionID;
 }
 
-=item DefinitionCheck()
+=head2 DefinitionCheck()
 
 check the syntax of a new definition
 
@@ -419,7 +415,7 @@ sub DefinitionCheck {
     return 1;
 }
 
-=item _DefinitionPrepare()
+=head2 _DefinitionPrepare()
 
 Prepare the syntax of a new definition
 
@@ -482,8 +478,6 @@ sub _DefinitionPrepare {
 }
 
 1;
-
-=back
 
 =head1 TERMS AND CONDITIONS
 

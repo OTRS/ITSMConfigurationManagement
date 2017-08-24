@@ -258,19 +258,15 @@ sub Run {
         Type     => 'Attachment',
     );
 
-    # get time object
-    my $TimeObject = $Kernel::OM->Get('Kernel::System::Time');
-
-    my ( $s, $m, $h, $D, $M, $Y ) = $TimeObject->SystemTime2Date(
-        SystemTime => $TimeObject->SystemTime(),
-    );
-    $M = sprintf( "%02d", $M );
-    $D = sprintf( "%02d", $D );
-    $h = sprintf( "%02d", $h );
-    $m = sprintf( "%02d", $m );
+    # Get current system datetime object.
+    my $CurrentSystemDTObj = $Kernel::OM->Create('Kernel::System::DateTime');
 
     return $LayoutObject->Attachment(
-        Filename    => 'configitem_' . $Filename . "_$Y-$M-$D\_$h-$m.pdf",
+        Filename => sprintf(
+            'configitem_%s_%s.pdf',
+            $Filename,
+            $CurrentSystemDTObj->Format('%F_%H-%M'),
+        ),
         ContentType => 'application/pdf',
         Content     => $PDFObject->DocumentOutput(),
         Type        => 'inline',

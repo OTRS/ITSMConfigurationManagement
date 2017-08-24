@@ -13,7 +13,7 @@ use warnings;
 
 use Kernel::System::VariableCheck qw(:all);
 
-use base qw(
+use parent qw(
     Kernel::GenericInterface::Operation::Common
     Kernel::GenericInterface::Operation::ConfigItem::Common
 );
@@ -24,15 +24,9 @@ our $ObjectManagerDisabled = 1;
 
 Kernel::GenericInterface::Operation::ConfigItem::ConfigItemSearch - GenericInterface ConfigItem ConfigItemSearch Operation backend
 
-=head1 SYNOPSIS
-
 =head1 PUBLIC INTERFACE
 
-=over 4
-
-=cut
-
-=item new()
+=head2 new()
 
 usually, you want to create an instance of this
 by using Kernel::GenericInterface::Operation->new();
@@ -115,7 +109,7 @@ sub new {
     return $Self;
 }
 
-=item Run()
+=head2 Run()
 
 perform ConfigItemCreate Operation. This will return the created config item number.
 
@@ -376,9 +370,9 @@ sub Run {
     );
 }
 
-=begin Internal:
+=head1 INTERNAL INTERFACE
 
-=item _CleanXMLData()
+=head2 _CleanXMLData()
 
 removed trailing and leading white spaces in the XMLData.
 
@@ -442,9 +436,11 @@ sub _CleanXMLData {
             $XMLData->{$Key} =~ s{\s+\z}{};
         }
     }
+
+    return 1;
 }
 
-=item _CheckConfigItem()
+=head2 _CheckConfigItem()
 
 checks if the given config item parameters are valid.
 
@@ -574,7 +570,7 @@ sub _CheckConfigItem {
     };
 }
 
-=item _ConfigItemSearch()
+=head2 _ConfigItemSearch()
 
 search a configuration items.
 
@@ -694,7 +690,7 @@ sub _ConfigItemSearch {
     };
 }
 
-=item _CheckSearchXMLData()
+=head2 _CheckSearchXMLData()
 
 checks if the given XMLData value are valid.
 
@@ -843,7 +839,7 @@ sub _CheckSearchXMLData {
         }
 }
 
-=item _CheckValue()
+=head2 _CheckValue()
 
 checks if the given value is valid.
 
@@ -972,7 +968,7 @@ sub _CheckValue {
     };
 }
 
-=item _FormatSearchXMLData()
+=head2 _FormatSearchXMLData()
 
 Create a XMLData suitable for ConfigItemSeach.
 
@@ -1073,10 +1069,6 @@ sub _FormatSearchXMLData {
 }
 
 1;
-
-=end Internal:
-
-=back
 
 =head1 TERMS AND CONDITIONS
 

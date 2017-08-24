@@ -27,15 +27,13 @@ our @ObjectDependencies = (
 
 Kernel::System::ImportExport::ObjectBackend::ITSMConfigItem - import/export backend for ITSMConfigItem
 
-=head1 SYNOPSIS
+=head1 DESCRIPTION
 
 All functions to import and export ITSM config items.
 
-=over 4
+=head1 PUBLIC INTERFACE
 
-=cut
-
-=item new()
+=head2 new()
 
 create an object
 
@@ -55,7 +53,7 @@ sub new {
     return $Self;
 }
 
-=item ObjectAttributesGet()
+=head2 ObjectAttributesGet()
 
 get the object attributes of an object as a ref to an array of hash references
 
@@ -120,7 +118,7 @@ sub ObjectAttributesGet {
     return $Attributes;
 }
 
-=item MappingObjectAttributesGet()
+=head2 MappingObjectAttributesGet()
 
 get the mapping attributes of an object as array/hash reference
 
@@ -215,7 +213,7 @@ sub MappingObjectAttributesGet {
     return $Attributes;
 }
 
-=item SearchAttributesGet()
+=head2 SearchAttributesGet()
 
 get the search object attributes of an object as array/hash reference
 
@@ -322,9 +320,9 @@ sub SearchAttributesGet {
     return $AttributeList;
 }
 
-=item ExportDataGet()
+=head2 ExportDataGet()
 
-get export data as 2D-array-hash reference
+get export data as C<2D-array-hash> reference
 
     my $ExportData = $ObjectBackend->ExportDataGet(
         TemplateID => 123,
@@ -579,7 +577,7 @@ sub ExportDataGet {
     return \@ExportData;
 }
 
-=item ImportDataSave()
+=head2 ImportDataSave()
 
 imports a single entity of the import data. The C<TemplateID> points to the definition
 of the current import. C<ImportDataRow> holds the data. C<Counter> is only used in
@@ -1180,9 +1178,9 @@ sub ImportDataSave {
     return;
 }
 
-=begin Internal:
+=head1 INTERNAL INTERFACE
 
-=item _MappingObjectAttributesGet()
+=head2 _MappingObjectAttributesGet()
 
 recursion function for MappingObjectAttributesGet().
 Definitions for object attributes are passed in C<XMLDefinition>.
@@ -1259,7 +1257,7 @@ sub _MappingObjectAttributesGet {
     return 1;
 }
 
-=item _SearchAttributesGet()
+=head2 _SearchAttributesGet()
 
 recursion function for MappingObjectAttributesGet()
 
@@ -1349,7 +1347,7 @@ sub _SearchAttributesGet {
     return 1;
 }
 
-=item _ExportXMLSearchDataPrepare()
+=head2 _ExportXMLSearchDataPrepare()
 
 recursion function to prepare the export XML search params
 
@@ -1412,7 +1410,7 @@ sub _ExportXMLSearchDataPrepare {
     return 1;
 }
 
-=item _ExportXMLDataPrepare()
+=head2 _ExportXMLDataPrepare()
 
 recursion function to prepare the export XML data
 
@@ -1472,7 +1470,7 @@ sub _ExportXMLDataPrepare {
     return 1;
 }
 
-=item _ImportXMLSearchDataPrepare()
+=head2 _ImportXMLSearchDataPrepare()
 
 recursion function to prepare the import XML search params
 
@@ -1558,7 +1556,7 @@ sub _ImportXMLSearchDataPrepare {
     return 1;
 }
 
-=item _ImportXMLDataMerge()
+=head2 _ImportXMLDataMerge()
 
 recursive function to inplace edit the import XML data.
 
@@ -1568,7 +1566,7 @@ recursive function to inplace edit the import XML data.
         XMLData2D     => $HashRef,
     );
 
-The return value indicates wheter the merge was successful.
+The return value indicates whether the merge was successful.
 A merge fails when for example a general catalog item name can't be mapped to an id.
 
 =cut
@@ -1643,10 +1641,6 @@ sub _ImportXMLDataMerge {
 }
 
 1;
-
-=end Internal:
-
-=back
 
 =head1 TERMS AND CONDITIONS
 

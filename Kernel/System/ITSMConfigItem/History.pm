@@ -17,17 +17,13 @@ our $ObjectManagerDisabled = 1;
 
 Kernel::System::ITSMConfigItem::History - module for ITSMConfigItem.pm with history functions
 
-=head1 SYNOPSIS
+=head1 PUBLIC INTERFACE
+
+=head1 DESCRIPTION
 
 All history functions.
 
-=head1 PUBLIC INTERFACE
-
-=over 4
-
-=cut
-
-=item HistoryGet()
+=head2 HistoryGet()
 
 Returns an array reference with all history entries for the given config item.
 Each array element is a hash reference representing one history entry.
@@ -120,7 +116,7 @@ sub HistoryGet {
     return \@Entries;
 }
 
-=item HistoryEntryGet()
+=head2 HistoryEntryGet()
 
 Returns a hash reference with information about a single history entry.
 The hash reference contain information about:
@@ -205,7 +201,7 @@ sub HistoryEntryGet {
     return \%Entry;
 }
 
-=item HistoryAdd()
+=head2 HistoryAdd()
 
 Adds a single history entry to the history.
 
@@ -321,7 +317,7 @@ sub HistoryAdd {
     );
 }
 
-=item HistoryDelete()
+=head2 HistoryDelete()
 
 Deletes complete history for a given config item
 
@@ -359,7 +355,7 @@ sub HistoryDelete {
     );
 }
 
-=item HistoryEntryDelete()
+=head2 HistoryEntryDelete()
 
 Deletes a single history entry.
 
@@ -390,7 +386,7 @@ sub HistoryEntryDelete {
     );
 }
 
-=item HistoryTypeLookup()
+=head2 HistoryTypeLookup()
 
 This method does a lookup for a history type. If a history type id is given,
 it returns the name of the history type. If a history type is given, the appropriate
@@ -450,8 +446,6 @@ sub HistoryTypeLookup {
 }
 
 1;
-
-=back
 
 =head1 TERMS AND CONDITIONS
 

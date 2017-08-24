@@ -17,17 +17,13 @@ our $ObjectManagerDisabled = 1;
 
 Kernel::System::ITSMConfigItem::XML - sub module of Kernel::System::ITSMConfigItem
 
-=head1 SYNOPSIS
+=head1 DESCRIPTION
 
 All xml functions.
 
 =head1 PUBLIC INTERFACE
 
-=over 4
-
-=cut
-
-=item XMLValueLookup()
+=head2 XMLValueLookup()
 
 lookup a xml value
 
@@ -63,7 +59,7 @@ sub XMLValueLookup {
     return $Value;
 }
 
-=item XMLStatsAttributeCreate()
+=head2 XMLStatsAttributeCreate()
 
 create a attribute array for the stats framework
 
@@ -98,7 +94,7 @@ sub XMLStatsAttributeCreate {
     return $Attribute;
 }
 
-=item XMLExportSearchValuePrepare()
+=head2 XMLExportSearchValuePrepare()
 
 prepare xml search data for export
 
@@ -134,7 +130,7 @@ sub XMLExportSearchValuePrepare {
     return $Array;
 }
 
-=item XMLExportValuePrepare()
+=head2 XMLExportValuePrepare()
 
 prepare xml data for export
 
@@ -170,7 +166,7 @@ sub XMLExportValuePrepare {
     return $Value;
 }
 
-=item XMLImportSearchValuePrepare()
+=head2 XMLImportSearchValuePrepare()
 
 prepare xml search data for import
 
@@ -206,7 +202,7 @@ sub XMLImportSearchValuePrepare {
     return $Array;
 }
 
-=item XMLImportValuePrepare()
+=head2 XMLImportValuePrepare()
 
 prepare xml data for import
 
@@ -242,7 +238,7 @@ sub XMLImportValuePrepare {
     return $Value;
 }
 
-=item _XMLVersionSearch()
+=head2 _XMLVersionSearch()
 
 Search xml data of a version and return a hash reference.
 The C<What> parameter is a bit like the parameter used in L<SQL::Abstract>.
@@ -349,7 +345,7 @@ sub _XMLVersionSearch {
     return \%VersionIDs;
 }
 
-=item _XMLVersionGet()
+=head2 _XMLVersionGet()
 
 get the xml data of a version
 
@@ -391,9 +387,9 @@ sub _XMLVersionGet {
     return \@XML;
 }
 
-=item _XMLVersionAdd()
+=head2 _XMLVersionAdd()
 
-add the xml data of a new version and move old xml versions in archiv class
+add the xml data of a new version and move old xml versions in archive class
 
     my $XMLID = $ConfigItemObject->_XMLVersionAdd(
         ClassID      => 1,
@@ -452,7 +448,7 @@ sub _XMLVersionAdd {
     return $XMLID;
 }
 
-=item _XMLVersionDelete()
+=head2 _XMLVersionDelete()
 
 delete the xml data of a version
 
@@ -499,7 +495,7 @@ sub _XMLVersionDelete {
     return 1;
 }
 
-=item _XMLHashSearch()
+=head2 _XMLHashSearch()
 
 Search a xml hash from database.
 This method is based on Kernel::System::XMLHashSearch, but has support for some extra features.
@@ -686,8 +682,6 @@ sub _XMLHashSearch {
 }
 
 1;
-
-=back
 
 =head1 TERMS AND CONDITIONS
 

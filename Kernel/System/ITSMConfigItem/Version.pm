@@ -21,19 +21,15 @@ our $ObjectManagerDisabled = 1;
 
 Kernel::System::ITSMConfigItem::Version - sub module of Kernel::System::ITSMConfigItem
 
-=head1 SYNOPSIS
+=head1 DESCRIPTION
 
 All version functions.
 
 =head1 PUBLIC INTERFACE
 
-=over 4
+=head2 VersionZoomList()
 
-=cut
-
-=item VersionZoomList()
-
-return a config item version list as arrayhash reference
+return a config item version list as array-hash reference
 
     my $VersionListRef = $ConfigItemObject->VersionZoomList(
         ConfigItemID => 123,
@@ -112,9 +108,9 @@ sub VersionZoomList {
     return \@VersionList;
 }
 
-=item VersionListAll()
+=head2 VersionListAll()
 
-Returns a two-dimensional hash reference with the configitem ids as keys of the first level
+Returns a two-dimensional hash reference with the config item ids as keys of the first level
 and the corresponding version ids as keys of the second level,
 then followed by the version data as hash reference.
 
@@ -253,7 +249,7 @@ sub VersionListAll {
     return \%Results;
 }
 
-=item VersionList()
+=head2 VersionList()
 
 return a config item version list as array reference
 
@@ -290,7 +286,7 @@ sub VersionList {
     return \@VersionList;
 }
 
-=item VersionGet()
+=head2 VersionGet()
 
 returns a version of a config item as hash reference.
 The returned hash contains following attributes.
@@ -521,7 +517,7 @@ sub VersionGet {
     return \%Version;
 }
 
-=item VersionNameGet()
+=head2 VersionNameGet()
 
 returns the name of a version of a config item.
 
@@ -628,7 +624,7 @@ sub VersionNameGet {
     return $Version{Name};
 }
 
-=item VersionConfigItemIDGet()
+=head2 VersionConfigItemIDGet()
 
 return the config item id of a version
 
@@ -673,7 +669,7 @@ sub VersionConfigItemIDGet {
     return $ConfigItemID;
 }
 
-=item VersionAdd()
+=head2 VersionAdd()
 
 add a new version
 
@@ -963,7 +959,7 @@ sub VersionAdd {
     return $VersionID;
 }
 
-=item VersionDelete()
+=head2 VersionDelete()
 
 delete an existing version or versions
 
@@ -1103,7 +1099,7 @@ sub VersionDelete {
     return $Success;
 }
 
-=item VersionSearch()
+=head2 VersionSearch()
 
 return a config item list as an array reference
 
@@ -1359,9 +1355,9 @@ sub VersionSearch {
     return \@ConfigItemList;
 }
 
-=begin Internal:
+=head1 INTERNAL INTERFACE
 
-=item _GetEvents()
+=head2 _GetEvents()
 
 This method checks what values were changed and what events have to be triggered.
 It returns a hash reference with all event names as keys that should be triggered.
@@ -1441,10 +1437,10 @@ sub _GetEvents {
     return $Events;
 }
 
-=item _EventHandlerForChangedXMLValues()
+=head2 _EventHandlerForChangedXMLValues()
 
 This method calls the event handler for each changed value of the config item.
-The changed values are passed in C<UpdateValues> as an hashref with tagkeys as keys.
+The changed values are passed in C<UpdateValues> as an hashref with tag-keys as keys.
 Please note that this only handles values inside the XML structure, not general
 attributes like C<CurInciState>.
 
@@ -1489,13 +1485,13 @@ sub _EventHandlerForChangedXMLValues {
     return 1;
 }
 
-=item _FindChangedXMLValues()
+=head2 _FindChangedXMLValues()
 
 compares the new xml data C<NewXMLData> with the xml data of the latest version
 of the config item C<ConfigItemID>. Note that the new XML data does not contain tag keys.
 All values of the two data sets are compared.
 When a changed value is encountered, the tag key and the old and the new value are stored in a hash.
-The hash with the updata values is returned.
+The hash with the update values is returned.
 
     my %UpdateValues = $ConfigItemObject->_FindChangedXMLValues(
         ConfigItemID => 123,
@@ -1587,9 +1583,9 @@ sub _FindChangedXMLValues {
     return %UpdateValues;
 }
 
-=item _GrabTagKeys()
+=head2 _GrabTagKeys()
 
-recursively scans a perl datastructure for the hash key 'TagKey' and returns a
+recursively scans a perl data structure for the hash key 'TagKey' and returns a
 list of all the values for that key.
 
     my @TagKeys = $ConfigItemObject->_GrabTagKeys(
@@ -1632,10 +1628,6 @@ sub _GrabTagKeys {
 }
 
 1;
-
-=end Internal:
-
-=back
 
 =head1 TERMS AND CONDITIONS
 

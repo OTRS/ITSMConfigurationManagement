@@ -25,15 +25,9 @@ our $ObjectManagerDisabled = 1;
 
 Kernel::GenericInterface::Operation::ConfigItem::ConfigItemDelete - GenericInterface Configuration Item Delete Operation backend
 
-=head1 SYNOPSIS
-
 =head1 PUBLIC INTERFACE
 
-=over 4
-
-=cut
-
-=item new()
+=head2 new()
 
 usually, you want to create an instance of this
 by using Kernel::GenericInterface::Operation->new();
@@ -65,7 +59,7 @@ sub new {
     return $Self;
 }
 
-=item Run()
+=head2 Run()
 
 perform ConfigItemDelete Operation. This function is able to return
 one or more ConfigItem entries in one call.
@@ -208,8 +202,6 @@ sub Run {
 }
 
 1;
-
-=back
 
 =head1 TERMS AND CONDITIONS
 

@@ -42,17 +42,13 @@ our @ObjectDependencies = (
 
 Kernel::System::ITSMConfigItem - config item lib
 
-=head1 SYNOPSIS
+=head1 DESCRIPTION
 
 All config item functions.
 
 =head1 PUBLIC INTERFACE
 
-=over 4
-
-=cut
-
-=item new()
+=head2 new()
 
 create an object
 
@@ -90,7 +86,7 @@ sub new {
     return $Self;
 }
 
-=item ConfigItemCount()
+=head2 ConfigItemCount()
 
 count all records of a config item class
 
@@ -142,7 +138,7 @@ sub ConfigItemCount {
     return $Count;
 }
 
-=item ConfigItemResultList()
+=head2 ConfigItemResultList()
 
 return a config item list as array hash reference
 
@@ -209,7 +205,7 @@ sub ConfigItemResultList {
     return \@ConfigItemList;
 }
 
-=item ConfigItemGet()
+=head2 ConfigItemGet()
 
 return a config item as hash reference
 
@@ -334,7 +330,7 @@ sub ConfigItemGet {
     return \%ConfigItem;
 }
 
-=item ConfigItemAdd()
+=head2 ConfigItemAdd()
 
 add a new config item
 
@@ -440,7 +436,7 @@ sub ConfigItemAdd {
     return $ConfigItemID;
 }
 
-=item ConfigItemDelete()
+=head2 ConfigItemDelete()
 
 delete an existing config item
 
@@ -539,7 +535,7 @@ sub ConfigItemDelete {
     return $Success;
 }
 
-=item ConfigItemAttachmentAdd()
+=head2 ConfigItemAttachmentAdd()
 
 adds an attachment to a config item
 
@@ -608,7 +604,7 @@ sub ConfigItemAttachmentAdd {
     return 1;
 }
 
-=item ConfigItemAttachmentDelete()
+=head2 ConfigItemAttachmentDelete()
 
 Delete the given file from the virtual filesystem.
 
@@ -670,7 +666,7 @@ sub ConfigItemAttachmentDelete {
     return $Success;
 }
 
-=item ConfigItemAttachmentGet()
+=head2 ConfigItemAttachmentGet()
 
 This method returns information about one specific attachment.
 
@@ -746,7 +742,7 @@ sub ConfigItemAttachmentGet {
     return $AttachmentInfo;
 }
 
-=item ConfigItemAttachmentList()
+=head2 ConfigItemAttachmentList()
 
 Returns an array with all attachments of the given config item.
 
@@ -792,7 +788,7 @@ sub ConfigItemAttachmentList {
     return @Attachments;
 }
 
-=item ConfigItemAttachmentExists()
+=head2 ConfigItemAttachmentExists()
 
 Checks if a file with a given filename exists.
 
@@ -826,7 +822,7 @@ sub ConfigItemAttachmentExists {
     return 1;
 }
 
-=item ConfigItemSearchExtended()
+=head2 ConfigItemSearchExtended()
 
 return a config item list as an array reference
 
@@ -1033,7 +1029,7 @@ sub ConfigItemSearchExtended {
     return \@ResultList;
 }
 
-=item ConfigItemSearch()
+=head2 ConfigItemSearch()
 
 return a config item list as an array reference
 
@@ -1311,10 +1307,10 @@ sub ConfigItemSearch {
     return \@ConfigItemList;
 }
 
-=item ConfigItemLookup()
+=head2 ConfigItemLookup()
 
-This method does a lookup for a configitem. If a configitem id is given,
-it returns the number of the configitem. If a configitem number is given,
+This method does a lookup for a config-item. If a config-item id is given,
+it returns the number of the config-item. If a config-item number is given,
 the appropriate id is returned.
 
     my $Number = $ConfigItemObject->ConfigItemLookup(
@@ -1369,10 +1365,10 @@ sub ConfigItemLookup {
     return $Value;
 }
 
-=item UniqueNameCheck()
+=head2 UniqueNameCheck()
 
 This method checks all already existing config items, whether the given name does already exist
-within the same config item class or amongst all classes, depending on the SysConfig value of
+within the same config item class or among all classes, depending on the SysConfig value of
 UniqueCIName::UniquenessCheckScope (Class or Global).
 
 This method requires 3 parameters: ConfigItemID, Name and Class
@@ -1524,7 +1520,7 @@ sub UniqueNameCheck {
     return \@Duplicates;
 }
 
-=item CurInciStateRecalc()
+=head2 CurInciStateRecalc()
 
 recalculates the current incident state of this config item and all linked config items
 
@@ -1757,9 +1753,9 @@ sub CurInciStateRecalc {
     return 1;
 }
 
-=begin Internal:
+=head1 INTERNAL INTERFACE
 
-=item _FindInciConfigItems()
+=head2 _FindInciConfigItems()
 
 find all config items with an incident state
 
@@ -1835,7 +1831,7 @@ sub _FindInciConfigItems {
     return 1;
 }
 
-=item _FindWarnConfigItems()
+=head2 _FindWarnConfigItems()
 
 find all config items with a warning
 
@@ -1914,7 +1910,7 @@ sub _FindWarnConfigItems {
     return 1;
 }
 
-=item _PrepareLikeString()
+=head2 _PrepareLikeString()
 
 internal function to prepare like strings
 
@@ -1938,10 +1934,6 @@ sub _PrepareLikeString {
 }
 
 1;
-
-=end Internal:
-
-=back
 
 =head1 ITSM Config Item events:
 

@@ -13,7 +13,7 @@ use warnings;
 
 use Kernel::System::VariableCheck qw(:all);
 
-use base qw(
+use parent qw(
     Kernel::GenericInterface::Operation::Common
     Kernel::GenericInterface::Operation::ConfigItem::Common
 );
@@ -24,15 +24,9 @@ our $ObjectManagerDisabled = 1;
 
 Kernel::GenericInterface::Operation::ConfigItem::ConfigItemUpdate - GenericInterface ConfigItem ConfigItemUpdate Operation backend
 
-=head1 SYNOPSIS
-
 =head1 PUBLIC INTERFACE
 
-=over 4
-
-=cut
-
-=item new()
+=head2 new()
 
 usually, you want to create an instance of this
 by using Kernel::GenericInterface::Operation->new();
@@ -116,7 +110,7 @@ sub new {
     return $Self;
 }
 
-=item Run()
+=head2 Run()
 
 perform ConfigItemUpdate Operation. This will return the updated config item number.
 
@@ -436,9 +430,9 @@ sub Run {
     );
 }
 
-=begin Internal:
+=head1 INTERNAL INTERFACE
 
-=item _CleanXMLData()
+=head2 _CleanXMLData()
 
 removed trailing and leading white spaces in the XMLData.
 
@@ -504,9 +498,11 @@ sub _CleanXMLData {
             $XMLData->{$Key} =~ s{\s+\z}{};
         }
     }
+
+    return 1;
 }
 
-=item _CheckConfigItem()
+=head2 _CheckConfigItem()
 
 checks if the given config item parameters are valid.
 
@@ -589,7 +585,7 @@ sub _CheckConfigItem {
     };
 }
 
-=item _CheckAttachment()
+=head2 _CheckAttachment()
 
 checks if the given attachment parameter is valid.
 
@@ -669,7 +665,7 @@ sub _CheckAttachment {
     };
 }
 
-=item _ConfigItemUpdate()
+=head2 _ConfigItemUpdate()
 
 updates a configuration item with attachments if specified.
 
@@ -838,10 +834,6 @@ sub _ConfigItemUpdate {
 }
 
 1;
-
-=end Internal:
-
-=back
 
 =head1 TERMS AND CONDITIONS
 

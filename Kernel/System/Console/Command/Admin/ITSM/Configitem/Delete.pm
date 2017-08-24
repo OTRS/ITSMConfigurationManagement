@@ -13,12 +13,12 @@ use warnings;
 
 use Kernel::System::VariableCheck qw(:all);
 
-use base qw(Kernel::System::Console::BaseCommand);
+use parent qw(Kernel::System::Console::BaseCommand);
 
 our @ObjectDependencies = (
     'Kernel::System::GeneralCatalog',
     'Kernel::System::ITSMConfigItem',
-    'Kernel::System::Time',
+    'Kernel::System::DateTime',
 );
 
 sub Configure {
@@ -263,14 +263,13 @@ sub Run {
     # delete versions older than xx days from all config items
     elsif ($AllOlderThanDays) {
 
-        my $SystemTime = $Kernel::OM->Get('Kernel::System::Time')->SystemTime();
-        my $OlderDate = $SystemTime - ( 60 * 60 * 24 * $AllOlderThanDays );
-        $OlderDate = $Kernel::OM->Get('Kernel::System::Time')->SystemTime2TimeStamp(
-            SystemTime => $OlderDate,
+        my $OlderDateDTObject = $Kernel::OM->Create('Kernel::System::DateTime');
+        $OlderDateDTObject->Subtract(
+            Days => $AllOlderThanDays,
         );
 
         my $VersionsOlderDate = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->VersionListAll(
-            OlderDate => $OlderDate,
+            OlderDate => $OlderDateDTObject->ToString(),
         );
 
         # We need to get all versions to make sure that at least one version remains
@@ -434,8 +433,6 @@ sub DeleteConfigItemVersions {
 }
 
 1;
-
-=back
 
 =head1 TERMS AND CONDITIONS
 

@@ -17,17 +17,13 @@ our $ObjectManagerDisabled = 1;
 
 Kernel::System::ITSMConfigItem::Permission - module for ITSMConfigItem.pm with Permission functions
 
-=head1 SYNOPSIS
+=head1 DESCRIPTION
 
 All Permission functions.
 
 =head1 PUBLIC INTERFACE
 
-=over 4
-
-=cut
-
-=item Permission()
+=head2 Permission()
 
 returns whether the user has permissions or not
 
@@ -139,8 +135,6 @@ sub Permission {
 }
 
 1;
-
-=back
 
 =head1 TERMS AND CONDITIONS
 

@@ -19,15 +19,11 @@ our @ObjectDependencies = (
 
 Kernel::System::ITSMConfigItem::XML::Type::Date - xml backend module
 
-=head1 SYNOPSIS
+=head1 DESCRIPTION
 
 All xml functions of date objects
 
-=over 4
-
-=cut
-
-=item new()
+=head2 new()
 
 create an object
 
@@ -47,7 +43,7 @@ sub new {
     return $Self;
 }
 
-=item ValueLookup()
+=head2 ValueLookup()
 
 get the date data of a version
 
@@ -63,7 +59,7 @@ sub ValueLookup {
     return $Param{Value} || '';
 }
 
-=item StatsAttributeCreate()
+=head2 StatsAttributeCreate()
 
 create a attribute array for the stats framework
 
@@ -105,7 +101,7 @@ sub StatsAttributeCreate {
     return $Attribute;
 }
 
-=item ExportSearchValuePrepare()
+=head2 ExportSearchValuePrepare()
 
 prepare search value for export
 
@@ -122,7 +118,7 @@ sub ExportSearchValuePrepare {
     return $Param{Value};
 }
 
-=item ExportValuePrepare()
+=head2 ExportValuePrepare()
 
 prepare value for export
 
@@ -139,7 +135,7 @@ sub ExportValuePrepare {
     return $Param{Value};
 }
 
-=item ImportSearchValuePrepare()
+=head2 ImportSearchValuePrepare()
 
 prepare search value for import
 
@@ -156,7 +152,7 @@ sub ImportSearchValuePrepare {
     return $Param{Value};
 }
 
-=item ImportValuePrepare()
+=head2 ImportValuePrepare()
 
 prepare value for import
 
@@ -174,8 +170,6 @@ sub ImportValuePrepare {
 }
 
 1;
-
-=back
 
 =head1 TERMS AND CONDITIONS
 

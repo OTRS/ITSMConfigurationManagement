@@ -17,17 +17,13 @@ our $ObjectManagerDisabled = 1;
 
 Kernel::System::ITSMConfigItem::Number - sub module of Kernel::System::ITSMConfigItem
 
-=head1 SYNOPSIS
+=head1 DESCRIPTION
 
 All config item number functions.
 
 =head1 PUBLIC INTERFACE
 
-=over 4
-
-=cut
-
-=item ConfigItemNumberLookup()
+=head2 ConfigItemNumberLookup()
 
 return config item id or config item number
 
@@ -103,7 +99,7 @@ sub ConfigItemNumberLookup {
     return $ConfigItemID;
 }
 
-=item ConfigItemNumberCreate()
+=head2 ConfigItemNumberCreate()
 
 create a new config item number
 
@@ -146,7 +142,7 @@ sub ConfigItemNumberCreate {
     return $Number;
 }
 
-=item CurrentCounterGet()
+=head2 CurrentCounterGet()
 
 return the current counter of a class
 
@@ -188,7 +184,7 @@ sub CurrentCounterGet {
     return $Number;
 }
 
-=item CurrentCounterSet()
+=head2 CurrentCounterSet()
 
 set the current counter of a class
 
@@ -231,8 +227,6 @@ sub CurrentCounterSet {
 }
 
 1;
-
-=back
 
 =head1 TERMS AND CONDITIONS
 

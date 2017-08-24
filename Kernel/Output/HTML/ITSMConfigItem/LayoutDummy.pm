@@ -22,15 +22,11 @@ our @ObjectDependencies = (
 
 Kernel::Output::HTML::ITSMConfigItem::LayoutDummy - layout backend module
 
-=head1 SYNOPSIS
+=head1 DESCRIPTION
 
 All layout functions of dummy objects
 
-=over 4
-
-=cut
-
-=item new()
+=head2 new()
 
 create an object
 
@@ -50,7 +46,7 @@ sub new {
     return $Self;
 }
 
-=item OutputStringCreate()
+=head2 OutputStringCreate()
 
 create output string
 
@@ -99,7 +95,7 @@ sub OutputStringCreate {
     return $Param{Value};
 }
 
-=item FormDataGet()
+=head2 FormDataGet()
 
 get form data as hash reference
 
@@ -135,7 +131,7 @@ sub FormDataGet {
     return \%FormData;
 }
 
-=item InputCreate()
+=head2 InputCreate()
 
 create a input string
 
@@ -213,7 +209,7 @@ sub InputCreate {
     return $String;
 }
 
-=item SearchFormDataGet()
+=head2 SearchFormDataGet()
 
 get search form data
 
@@ -225,7 +221,7 @@ sub SearchFormDataGet {
     return [];
 }
 
-=item SearchInputCreate()
+=head2 SearchInputCreate()
 
 create a search input string
 
@@ -238,8 +234,6 @@ sub SearchInputCreate {
 }
 
 1;
-
-=back
 
 =head1 TERMS AND CONDITIONS
 

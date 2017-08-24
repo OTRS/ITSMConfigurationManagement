@@ -593,9 +593,6 @@ sub Run {
             $GetParam{ResultForm} = $ParamObject->GetParam( Param => 'ResultForm' );
         }
 
-        # get time object
-        my $TimeObject = $Kernel::OM->Get('Kernel::System::Time');
-
         # CSV output
         if ( $GetParam{ResultForm} eq 'CSV' ) {
             my @CSVData;
@@ -670,16 +667,13 @@ sub Run {
             );
 
             # return csv to download
-            my $CSVFile = 'configitem_search';
-            my ( $s, $m, $h, $D, $M, $Y ) = $TimeObject->SystemTime2Date(
-                SystemTime => $TimeObject->SystemTime(),
-            );
-            $M = sprintf( "%02d", $M );
-            $D = sprintf( "%02d", $D );
-            $h = sprintf( "%02d", $h );
-            $m = sprintf( "%02d", $m );
+            my $CurrentSystemDTObj = $Kernel::OM->Create('Kernel::System::DateTime');
+
             return $LayoutObject->Attachment(
-                Filename    => $CSVFile . "_" . "$Y-$M-$D" . "_" . "$h-$m.csv",
+                Filename => sprintf(
+                    'configitem_search_%s_%s.csv',
+                    $CurrentSystemDTObj->Format('%F_%H-%M'),
+                ),
                 ContentType => "text/csv; charset=" . $LayoutObject->{UserCharset},
                 Content     => $CSV,
             );
@@ -849,17 +843,13 @@ sub Run {
             }
 
             # return the pdf document
-            my $Filename = 'configitem_search';
-            my ( $s, $m, $h, $D, $M, $Y ) = $TimeObject->SystemTime2Date(
-                SystemTime => $TimeObject->SystemTime(),
-            );
-            $M = sprintf( "%02d", $M );
-            $D = sprintf( "%02d", $D );
-            $h = sprintf( "%02d", $h );
-            $m = sprintf( "%02d", $m );
-            my $PDFString = $PDFObject->DocumentOutput();
+            my $CurrentSystemDTObj = $Kernel::OM->Create('Kernel::System::DateTime');
+            my $PDFString          = $PDFObject->DocumentOutput();
             return $LayoutObject->Attachment(
-                Filename    => $Filename . "_" . "$Y-$M-$D" . "_" . "$h-$m.pdf",
+                Filename => sprintf(
+                    'configitem_search_%s_%s.pdf',
+                    $CurrentSystemDTObj->Format('%F_%H-%M'),
+                ),
                 ContentType => "application/pdf",
                 Content     => $PDFString,
                 Type        => 'inline',

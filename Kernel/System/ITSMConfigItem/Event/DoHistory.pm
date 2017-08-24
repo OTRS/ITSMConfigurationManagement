@@ -20,17 +20,9 @@ our @ObjectDependencies = (
 
 Kernel::System::ITSMConfigItem::Event::DoHistory - Event handler that does the history
 
-=head1 SYNOPSIS
-
-All event handler functions for history.
-
 =head1 PUBLIC INTERFACE
 
-=over 4
-
-=cut
-
-=item new()
+=head2 new()
 
 create an object
 
@@ -50,7 +42,7 @@ sub new {
     return $Self;
 }
 
-=item Run()
+=head2 Run()
 
 This method handles the event.
 
@@ -126,7 +118,9 @@ sub Run {
     return 1;
 }
 
-=item _ConfigItemDelete()
+=head1 INTERNAL INTERFACE
+
+=head2 _ConfigItemDelete()
 
 history's event handler for ConfigItemDelete
 
@@ -143,7 +137,7 @@ sub _ConfigItemDelete {
     return 1;
 }
 
-=item _HistoryAdd()
+=head2 _HistoryAdd()
 
 history's default event handler.
 
@@ -161,8 +155,6 @@ sub _HistoryAdd {
 }
 
 1;
-
-=back
 
 =head1 TERMS AND CONDITIONS
 

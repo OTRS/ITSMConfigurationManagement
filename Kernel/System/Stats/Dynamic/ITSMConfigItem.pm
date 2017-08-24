@@ -14,7 +14,7 @@ use warnings;
 our @ObjectDependencies = (
     'Kernel::System::GeneralCatalog',
     'Kernel::System::ITSMConfigItem',
-    'Kernel::System::Time',
+    'Kernel::System::DateTime',
 );
 
 sub new {
@@ -52,9 +52,7 @@ sub GetObjectAttributes {
     );
 
     # get current time to fix bug#3830
-    my $TimeStamp = $Kernel::OM->Get('Kernel::System::Time')->CurrentTimestamp();
-    my ($Date) = split /\s+/, $TimeStamp;
-    my $Today = sprintf "%s 23:59:59", $Date;
+    my $TimeStamp = $Kernel::OM->Create('Kernel::System::DateTime')->ToString();
 
     # create object attribute array
     my @ObjectAttributes = (
