@@ -181,7 +181,7 @@ my $Result = $CodeObject->CodeUpgradeFromLowerThan_4_0_2();
 sub CodeUpgradeFromLowerThan_4_0_2 {    ## no critic
     my ( $Self, %Param ) = @_;
 
-    # migrate the DTL Content in the SysConfig
+    # migrate the template Content in the SysConfig
     $Self->_MigrateDTLInSysConfig();
 
     return 1;
@@ -1348,7 +1348,7 @@ sub _DeleteServicePreferences {
 
 =item _MigrateDTLInSysConfig()
 
-Converts DTL settings in sysconfig to TT.
+Converts DTL settings in sysconfig to template toolkit.
 
     my $Result = $CodeObject->_MigrateDTLInSysConfig();
 
