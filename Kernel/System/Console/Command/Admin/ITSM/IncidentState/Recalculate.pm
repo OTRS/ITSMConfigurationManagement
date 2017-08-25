@@ -11,7 +11,7 @@ package Kernel::System::Console::Command::Admin::ITSM::IncidentState::Recalculat
 use strict;
 use warnings;
 
-use base qw(Kernel::System::Console::BaseCommand);
+use parent qw(Kernel::System::Console::BaseCommand);
 
 our @ObjectDependencies = (
     'Kernel::System::GeneralCatalog',
@@ -105,8 +105,6 @@ sub Run {
 }
 
 1;
-
-=back
 
 =head1 TERMS AND CONDITIONS
 

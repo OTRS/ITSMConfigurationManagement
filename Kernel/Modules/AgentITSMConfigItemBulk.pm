@@ -53,7 +53,7 @@ sub Run {
             Comment => Translatable('You need at least one selected Configuration Item!'),
         );
     }
-    my $Output .= $LayoutObject->Header(
+    my $Output = $LayoutObject->Header(
         Type => 'Small',
     );
 

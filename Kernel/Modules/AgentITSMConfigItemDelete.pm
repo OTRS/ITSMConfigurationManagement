@@ -124,7 +124,7 @@ sub Run {
     my $DialogType = 'Confirmation';
 
     # output content
-    my $Output .= $LayoutObject->Output(
+    my $Output = $LayoutObject->Output(
         TemplateFile => 'AgentITSMConfigItemDelete',
         Data         => {
             %Param,
