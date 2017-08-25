@@ -17,15 +17,13 @@ our $ObjectManagerDisabled = 1;
 
 Kernel::Output::HTML::Layout::ITSMConfigItem - all ConfigItem-related HTML functions
 
-=head1 SYNOPSIS
+=head1 DESCRIPTION
 
 All ITSM Configuration Management-related HTML functions
 
 =head1 PUBLIC INTERFACE
 
-=over 4
-
-=item ITSMConfigItemOutputStringCreate()
+=head2 ITSMConfigItemOutputStringCreate()
 
 returns an output string
 
@@ -62,7 +60,7 @@ sub ITSMConfigItemOutputStringCreate {
     return $String;
 }
 
-=item ITSMConfigItemFormDataGet()
+=head2 ITSMConfigItemFormDataGet()
 
 returns the values from the html form as hash reference
 
@@ -101,7 +99,7 @@ sub ITSMConfigItemFormDataGet {
     return $FormData;
 }
 
-=item ITSMConfigItemInputCreate()
+=head2 ITSMConfigItemInputCreate()
 
 returns a input field html string
 
@@ -140,7 +138,7 @@ sub ITSMConfigItemInputCreate {
     return $String;
 }
 
-=item ITSMConfigItemSearchFormDataGet()
+=head2 ITSMConfigItemSearchFormDataGet()
 
 returns the values from the search html form
 
@@ -178,7 +176,7 @@ sub ITSMConfigItemSearchFormDataGet {
     return $Values;
 }
 
-=item ITSMConfigItemSearchInputCreate()
+=head2 ITSMConfigItemSearchInputCreate()
 
 returns a search input field html string
 
@@ -216,7 +214,7 @@ sub ITSMConfigItemSearchInputCreate {
     return $String;
 }
 
-=item _ITSMLoadLayoutBackend()
+=head2 _ITSMLoadLayoutBackend()
 
 load a input type backend module
 
@@ -269,9 +267,9 @@ sub _ITSMLoadLayoutBackend {
     return $BackendObject;
 }
 
-=item ITSMConfigItemListShow()
+=head2 ITSMConfigItemListShow()
 
-Returns a list of configuration items as sortable list with pagination.
+Returns a list of configuration items with sort and pagination capabilities.
 
 This function is similar to L<Kernel::Output::HTML::LayoutTicket::TicketListShow()>
 in F<Kernel/Output/HTML/LayoutTicket.pm>.
@@ -530,11 +528,14 @@ sub ITSMConfigItemListShow {
         else {
             GROUP:
             for my $Group (@Groups) {
-                next GROUP if !$LayoutObject->{"UserIsGroup[$Group]"};
-                if ( $LayoutObject->{"UserIsGroup[$Group]"} eq 'Yes' ) {
-                    $BulkFeature = 1;
-                    last GROUP;
-                }
+                next GROUP if !$Kernel::OM->Get('Kernel::System::Group')->PermissionCheck(
+                    UserID    => $Self->{UserID},
+                    GroupName => $Group,
+                    Type      => 'rw',
+                );
+
+                $BulkFeature = 1;
+                last GROUP;
             }
         }
     }
@@ -607,8 +608,6 @@ sub ITSMConfigItemListShow {
 }
 
 1;
-
-=back
 
 =head1 TERMS AND CONDITIONS
 
