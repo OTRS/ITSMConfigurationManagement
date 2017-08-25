@@ -94,6 +94,7 @@
                 <NavBarName>Config Item</NavBarName>
                 <Loader>
                     <JavaScript>ITSM.Agent.ConfigItem.CustomerSearch.js</JavaScript>
+                    <JavaScript>ITSM.Agent.ConfigItem.Edit.js</JavaScript>
                 </Loader>
             </FrontendModuleReg>
         </Setting>
@@ -144,6 +145,9 @@
                     <AccessKey></AccessKey>
                     <Prio>200</Prio>
                 </NavBar>
+                <Loader>
+                    <JavaScript>ITSM.Agent.ConfigItem.Add.js</JavaScript>
+                </Loader>
             </FrontendModuleReg>
         </Setting>
     </ConfigItem>

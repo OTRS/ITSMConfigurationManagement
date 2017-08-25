@@ -211,6 +211,7 @@
                 <Item Key="JavaScript">
                     <Array>
                         <Item>ITSM.Agent.ConfigItem.CustomerSearch.js</Item>
+                        <Item>ITSM.Agent.ConfigItem.Edit.js</Item>
                     </Array>
                 </Item>
             </Hash>
@@ -280,6 +281,19 @@
                     <Item Key="NavBarName">Config Item</Item>
                 </Hash>
             </Item>
+        </Value>
+    </Setting>
+    <Setting Name="Loader::Module::AgentITSMConfigItemAdd###003-ITSMConfigItem" Required="0" Valid="1">
+        <Description Translatable="1">Loader module registration for the agent interface.</Description>
+        <Navigation>Frontend::Agent::ModuleRegistration::Loader</Navigation>
+        <Value>
+            <Hash>
+                <Item Key="JavaScript">
+                    <Array>
+                        <Item>ITSM.Agent.ConfigItem.Add.js</Item>
+                    </Array>
+                </Item>
+            </Hash>
         </Value>
     </Setting>
     <Setting Name="Frontend::Navigation###AgentITSMConfigItemAdd###1" Required="0" Valid="1">

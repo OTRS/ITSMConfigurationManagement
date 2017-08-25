@@ -617,13 +617,22 @@ sub Run {
     );
 
     # show attachments
+    my @AttachmentsFileID;
+
     ATTACHMENT:
     for my $Attachment (@Attachments) {
         $LayoutObject->Block(
             Name => 'Attachment',
             Data => $Attachment,
         );
+
+        push( @AttachmentsFileID, $Attachment->{FileID}, );
     }
+
+    $Self->{LayoutObject}->AddJSData(
+        Key   => 'ITSMConfigItemAttachmentsFileID',
+        Value => \@AttachmentsFileID,
+    );
 
     my $Output = '';
     if ( ( $ConfigItem->{ConfigItemID} && $ConfigItem->{ConfigItemID} ne 'NEW' ) || $DuplicateID ) {

@@ -116,13 +116,6 @@
                                 <li>
                                     [% Data.Filename | html %] ([% Data.Filesize | html %])
                                     <button type="submit" id="AttachmentDelete[% Data.FileID | html %]" name="AttachmentDelete[% Data.FileID | html %]" value="[% Translate("Delete") | html %]">[% Translate("Delete") | html %]</button>
-[% WRAPPER JSOnDocumentComplete %]
-<script type="text/javascript">//<![CDATA[
-    $('#AttachmentDelete[% Data.FileID | html %]').bind('click', function () {
-        Core.Form.Validate.DisableValidation($('#AttachmentDelete[% Data.FileID | html %]').closest('form'));
-    });
-//]]></script>
-[% END %]
                                 </li>
 [% RenderBlockEnd("Attachment") %]
                                 <li>
@@ -132,16 +125,6 @@
                             </ul>
                         </div>
                         <div class="Clear"></div>
-
-[% WRAPPER JSOnDocumentComplete %]
-<script type="text/javascript">//<![CDATA[
-    $('#FileUpload').bind('change', function (Event) {
-        var $Form = $('#FileUpload').closest('form');
-        Core.Form.Validate.DisableValidation($Form);
-        $Form.find('#AttachmentUpload').val('1').end().submit();
-    });
-//]]></script>
-[% END %]
 
                     </fieldset>
 [% RenderBlockEnd("AttachmentUpload") %]
@@ -162,20 +145,3 @@
     <div class="Clear"></div>
 </div>
 [% RenderBlockEnd("EndNormal") %]
-
-
-[% WRAPPER JSOnDocumentComplete %]
-        <script type="text/javascript">//<![CDATA[
-            $('#SubmitButton').on('click', function () {
-                $('input[name=SubmitSave]').val('1');
-            });
-
-            $('.DisableValidation').bind('click', function (Event) {
-                $('input[name=SubmitSave]').val('0');
-                Core.Form.Validate.DisableValidation($('#ClassItem'));
-                // fix for Safari: race condition with submit in Core.Form.Validate.js
-                // fixed in OTRS 3.0.5, this line remains here for backwards compatibility reasons
-                $('#ClassItem').removeClass('PreventMultipleSubmits');
-            });
-        //]]></script>
-[% END %]
