@@ -32,17 +32,13 @@ our @ObjectDependencies = (
 
 ITSMConfigurationManagement.pm - code to execute during package installation
 
-=head1 SYNOPSIS
+=head1 DESCRIPTION
 
 Functions for installing the ITSMConfigurationManagement package.
 
 =head1 PUBLIC INTERFACE
 
-=over 4
-
-=cut
-
-=item new()
+=head2 new()
 
 create an object
 
@@ -82,7 +78,7 @@ sub new {
     return $Self;
 }
 
-=item CodeInstall()
+=head2 CodeInstall()
 
 run the code install part
 
@@ -126,7 +122,7 @@ sub CodeInstall {
     return 1;
 }
 
-=item CodeReinstall()
+=head2 CodeReinstall()
 
 run the code reinstall part
 
@@ -170,7 +166,7 @@ sub CodeReinstall {
     return 1;
 }
 
-=item CodeUpgradeFromLowerThan_4_0_2()
+=head2 CodeUpgradeFromLowerThan_4_0_2()
 
 This function is only executed if the installed module version is smaller than 4.0.2.
 
@@ -187,7 +183,7 @@ sub CodeUpgradeFromLowerThan_4_0_2 {    ## no critic
     return 1;
 }
 
-=item CodeUpgradeFromLowerThan_4_0_8()
+=head2 CodeUpgradeFromLowerThan_4_0_8()
 
 This function is only executed if the installed module version is smaller than 4.0.8.
 
@@ -204,7 +200,7 @@ sub CodeUpgradeFromLowerThan_4_0_8 {    ## no critic
     return 1;
 }
 
-=item CodeUpgradeFromLowerThan_4_0_91()
+=head2 CodeUpgradeFromLowerThan_4_0_91()
 
 This function is only executed if the installed module version is smaller than 4.0.91.
 
@@ -221,7 +217,7 @@ sub CodeUpgradeFromLowerThan_4_0_91 {    ## no critic
     return 1;
 }
 
-=item CodeUpgrade()
+=head2 CodeUpgrade()
 
 run the code upgrade part
 
@@ -259,7 +255,7 @@ sub CodeUpgrade {
     return 1;
 }
 
-=item CodeUninstall()
+=head2 CodeUninstall()
 
 run the code uninstall part
 
@@ -284,7 +280,7 @@ sub CodeUninstall {
     return 1;
 }
 
-=item _SetPreferences()
+=head2 _SetPreferences()
 
     my $Result = $CodeObject->_SetPreferences()
 
@@ -325,7 +321,7 @@ sub _SetPreferences {
     return 1;
 }
 
-=item _SetDefaultPermission()
+=head2 _SetDefaultPermission()
 
 set the default group that has access rights
 
@@ -363,7 +359,7 @@ sub _SetDefaultPermission {
     return 1;
 }
 
-=item _GroupAdd()
+=head2 _GroupAdd()
 
 add a group
 
@@ -456,7 +452,7 @@ sub _GroupAdd {
     return 1;
 }
 
-=item _GroupDeactivate()
+=head2 _GroupDeactivate()
 
 deactivate a group
 
@@ -507,7 +503,7 @@ sub _GroupDeactivate {
     return 1;
 }
 
-=item _AddConfigItemDefinitions()
+=head2 _AddConfigItemDefinitions()
 
 installs configuration item definitions
 
@@ -1141,7 +1137,7 @@ sub _AddConfigItemDefinitions {
     return 1;
 }
 
-=item _LinkDelete()
+=head2 _LinkDelete()
 
 delete all existing links to configuration items
 
@@ -1170,7 +1166,7 @@ sub _LinkDelete {
     return 1;
 }
 
-=item _FillupEmptyLastVersionID()
+=head2 _FillupEmptyLastVersionID()
 
 fill up empty entries in the last_version_id column of the C<configitem> table
 
@@ -1224,7 +1220,7 @@ sub _FillupEmptyLastVersionID {
     return 1;
 }
 
-=item _FillupEmptyVersionIncidentStateID()
+=head2 _FillupEmptyVersionIncidentStateID()
 
 fill up empty entries in the C<inci_state_id column> of the C<configitem_version> table
 
@@ -1264,7 +1260,7 @@ sub _FillupEmptyVersionIncidentStateID {
     );
 }
 
-=item _FillupEmptyIncidentAndDeploymentStateID()
+=head2 _FillupEmptyIncidentAndDeploymentStateID()
 
 fill up empty entries in the cur_depl_state_id or cur_inci_state_id column of the C<configitem> table
 
@@ -1318,7 +1314,7 @@ sub _FillupEmptyIncidentAndDeploymentStateID {
     return 1;
 }
 
-=item _DeleteServicePreferences()
+=head2 _DeleteServicePreferences()
 
 Deletes the service preferences for the key 'CurInciStateTypeFromCIs'.
 
@@ -1350,7 +1346,7 @@ sub _DeleteServicePreferences {
     return 1;
 }
 
-=item _MigrateDTLInSysConfig()
+=head2 _MigrateDTLInSysConfig()
 
 Converts template settings in sysconfig to template toolkit.
 
@@ -1418,7 +1414,7 @@ sub _MigrateDTLInSysConfig {
     return 1;
 }
 
-=item _FixTypo()
+=head2 _FixTypo()
 
 Fixes a typo in the general catalog
 
@@ -1449,7 +1445,7 @@ sub _FixTypo {
     return 1;
 }
 
-=item _MigrateConfigs()
+=head2 _MigrateConfigs()
 
 change configurations to match the new module location.
 
@@ -1490,8 +1486,6 @@ sub _MigrateConfigs {
 }
 
 1;
-
-=back
 
 =head1 TERMS AND CONDITIONS
 
