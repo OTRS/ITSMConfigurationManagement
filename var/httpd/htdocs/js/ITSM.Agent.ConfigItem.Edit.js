@@ -37,7 +37,7 @@ ITSM.Agent.ConfigItem.Edit = (function (TargetNS) {
             });
         });
 
-        $('#FileUpload').bind('change', function (Event) {
+        $('#FileUpload').bind('change', function () {
             var $Form = $('#FileUpload').closest('form');
             Core.Form.Validate.DisableValidation($Form);
             $Form.find('#AttachmentUpload').val('1').end().submit();
@@ -47,7 +47,7 @@ ITSM.Agent.ConfigItem.Edit = (function (TargetNS) {
             $('input[name=SubmitSave]').val('1');
         });
 
-        $('.DisableValidation').bind('click', function (Event) {
+        $('.DisableValidation').bind('click', function () {
             $('input[name=SubmitSave]').val('0');
             Core.Form.Validate.DisableValidation($('#ClassItem'));
             // fix for Safari: race condition with submit in Core.Form.Validate.js
