@@ -103,25 +103,6 @@
                     <li>
                         <a href="[% Env("Baselink") %][% Data.Link | Interpolate %]" id="Menu[% Data.MenuID | html %]" class="[% Data.MenuClass | html %]" title="[% Translate(Data.Description) | html %]">[% Translate(Data.Name) | html %]</a>
                     </li>
-[% RenderBlockStart("ShowConfirmDialog") %]
-[% WRAPPER JSOnDocumentComplete %]
-<script type="text/javascript">//<![CDATA[
-/*global ITSM: true */
-    ITSM.Agent.ConfirmDialog.BindConfirmDialog({
-        ElementID:                  'Menu[% Data.MenuID %]',
-        ElementSelector:            '[% Data.ElementSelector | Interpolate %]',
-        DialogContentQueryString:   '[% Data.DialogContentQueryString | Interpolate %]',
-        ConfirmedActionQueryString: '[% Data.ConfirmedActionQueryString | Interpolate %]',
-        DialogTitle:                '[% Data.DialogTitle | Interpolate %]',
-        TranslatedText:             {
-            Yes: [% Translate("Yes") | JSON %],
-            No:  [% Translate("No") | JSON %],
-            Ok:  [% Translate("Ok") | JSON %]
-        }
-    });
-//]]></script>
-[% END %]
-[% RenderBlockEnd("ShowConfirmDialog") %]
 [% RenderBlockEnd("MenuItem") %]
 [% RenderBlockEnd("Menu") %]
                 </ul>
@@ -269,32 +250,3 @@
         <div class="Clear"></div>
     </div>
 </div>
-
-[% WRAPPER JSOnDocumentComplete %]
-<script type="text/javascript">//<![CDATA[
-/*global ITSM: true */
-    ITSM.Agent.Zoom.Init([% Env("UserConfigItemZoomTableHeight") %]);
-
-    $('ul.Actions a.AsPopup').bind('click', function (Event) {
-        Core.UI.Popup.OpenPopup($(this).attr('href'), 'Action');
-        return false;
-    });
-
-    $('ul.Actions a.HistoryBack').bind('click', function (Event) {
-        history.back();
-        return false;
-    });
-
-    $('.MasterAction').bind('click', function (Event) {
-        var $MasterActionLink = $(this).find('.MasterActionLink');
-        // only act if the link was not clicked directly
-        if (Event.target !== $MasterActionLink.get(0)) {
-            window.location = $MasterActionLink.attr('href');
-            return false;
-        }
-    });
-
-    // Initialize allocation list for link object table.
-    Core.Agent.TableFilters.SetAllocationList();
-//]]></script>
-[% END %]

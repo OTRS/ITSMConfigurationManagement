@@ -14,6 +14,7 @@ use parent('Kernel::Output::HTML::Base');
 
 our @ObjectDependencies = (
     'Kernel::Config',
+    'Kernel::Language',
     'Kernel::Output::HTML::Layout',
     'Kernel::System::Log',
     'Kernel::System::Group',
@@ -107,15 +108,32 @@ sub Run {
 
     # check if a dialog has to be shown
     if ( $Param{Config}->{DialogTitle} ) {
+        my $ConfigObject   = $Kernel::OM->Get('Kernel::Config');
+        my $LanguageObject = $Kernel::OM->Get('Kernel::Language');
 
-        # output confirmation dialog
-        $LayoutObject->Block(
-            Name => 'ShowConfirmDialog',
-            Data => {
-                %Param,
-                %{ $Param{ConfigItem} },
-                %{ $Param{Config} },
-            },
+        # Replace the template toolkit expressions with the final value.
+        my %JSData = (
+            %Param,
+            %{ $Param{ConfigItem} },
+            %{ $Param{Config} },
+        );
+
+        delete $JSData{Config};
+        delete $JSData{ConfigItem};
+
+        $JSData{ElementSelector} =~ s/\[%\s*Data\.MenuID\s*\|\s*html\s*%\]/$JSData{MenuID}/i;
+        $JSData{DialogContentQueryString} =~ s/\[%\s*Data\.ConfigItemID\s*\|\s*html\s*%\]/$JSData{ConfigItemID}/i;
+        $JSData{ConfirmedActionQueryString} =~ s/\[%\s*Data\.ConfigItemID\s*\|\s*html\s*%\]/$JSData{ConfigItemID}/i;
+
+        $JSData{DialogTitle} =~ s/\[%\s*Translate\("(.*)"\)\s*\|\s*html\s*%\]/$LanguageObject->Translate($1)/ei;
+        $JSData{DialogTitle} =~ s/\[%\s*Config\("(.*)"\)\s*%\]/$ConfigObject->Get($1)/ei;
+        $JSData{DialogTitle} =~ s/\[%\s*Data.Number\s*\|\s*html\s*%\]/$JSData{Number}/ei;
+
+        $JSData{MenuID} = 'Menu' . $JSData{MenuID};
+
+        $LayoutObject->AddJSData(
+            Key   => 'ITSMShowConfirmDialog.' . $Param{MenuID},
+            Value => \%JSData,
         );
     }
 

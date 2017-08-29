@@ -78,6 +78,7 @@
                     <JavaScript>Core.Agent.LinkObject.js</JavaScript>
                     <JavaScript>ITSM.Agent.Zoom.js</JavaScript>
                     <JavaScript>ITSM.Agent.ConfirmDialog.js</JavaScript>
+                    <JavaScript>ITSM.Agent.ConfigItem.Zoom.js</JavaScript>
                 </Loader>
             </FrontendModuleReg>
         </Setting>
@@ -407,6 +408,9 @@
                 <Description Translatable="1">Config item history.</Description>
                 <Title Translatable="1">History</Title>
                 <NavBarName>Config Item</NavBarName>
+                <Loader>
+                    <JavaScript>ITSM.Agent.ConfigItem.History.js</JavaScript>
+                </Loader>
             </FrontendModuleReg>
         </Setting>
     </ConfigItem>

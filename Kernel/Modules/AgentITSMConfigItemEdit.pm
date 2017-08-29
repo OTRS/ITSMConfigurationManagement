@@ -186,38 +186,17 @@ sub Run {
     my $CINameRegexErrorMessage;
     if ( $Self->{Subaction} eq 'VersionSave' ) {
 
-        # check if an attachment must be deleted
-        ATTACHMENT:
-        for my $Number ( 1 .. 32 ) {
+        # get the uploaded attachment
+        my %UploadStuff = $ParamObject->GetUploadAll(
+            Param  => 'FileUpload',
+            Source => 'string',
+        );
 
-            # check if the delete button was pressed for this attachment
-            my $Delete = $ParamObject->GetParam( Param => "AttachmentDelete$Number" );
-
-            # check next attachment if it was not pressed
-            next ATTACHMENT if !$Delete;
-
-            # remove the attachment from the upload cache
-            $UploadCacheObject->FormIDRemoveFile(
-                FormID => $Self->{FormID},
-                FileID => $Number,
-            );
-        }
-
-        # check if there was an attachment upload
-        if ( $ParamObject->GetParam( Param => 'AttachmentUpload' ) ) {
-
-            # get the uploaded attachment
-            my %UploadStuff = $ParamObject->GetUploadAll(
-                Param  => 'FileUpload',
-                Source => 'string',
-            );
-
-            # add attachment to the upload cache
-            $UploadCacheObject->FormIDAddFile(
-                FormID => $Self->{FormID},
-                %UploadStuff,
-            );
-        }
+        # add attachment to the upload cache
+        $UploadCacheObject->FormIDAddFile(
+            FormID => $Self->{FormID},
+            %UploadStuff,
+        );
 
         my $AllRequired = 1;
 
@@ -605,34 +584,12 @@ sub Run {
         );
     }
 
-    # show the attachment upload button
-    $LayoutObject->Block(
-        Name => 'AttachmentUpload',
-        Data => {%Param},
-    );
-
     # get all attachments meta data
-    my @Attachments = $UploadCacheObject->FormIDGetAllFilesMeta(
-        FormID => $Self->{FormID},
-    );
-
-    # show attachments
-    my @AttachmentsFileID;
-
-    ATTACHMENT:
-    for my $Attachment (@Attachments) {
-        $LayoutObject->Block(
-            Name => 'Attachment',
-            Data => $Attachment,
-        );
-
-        push( @AttachmentsFileID, $Attachment->{FileID}, );
-    }
-
-    $Self->{LayoutObject}->AddJSData(
-        Key   => 'ITSMConfigItemAttachmentsFileID',
-        Value => \@AttachmentsFileID,
-    );
+    $Param{AttachmentList} = [
+        $UploadCacheObject->FormIDGetAllFilesMeta(
+            FormID => $Self->{FormID},
+        )
+    ];
 
     my $Output = '';
     if ( ( $ConfigItem->{ConfigItemID} && $ConfigItem->{ConfigItemID} ne 'NEW' ) || $DuplicateID ) {
@@ -920,7 +877,7 @@ sub _XMLFormOutput {
 
             if ( $Item->{Input}->{Type} eq 'Customer' ) {
 
-                $Self->{LayoutObject}->AddJSData(
+                $LayoutObject->AddJSData(
                     Key   => 'CustomerSearchItemID',
                     Value => $ItemID,
                 );

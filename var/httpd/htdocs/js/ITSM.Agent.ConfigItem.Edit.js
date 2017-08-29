@@ -37,11 +37,11 @@ ITSM.Agent.ConfigItem.Edit = (function (TargetNS) {
             });
         });
 
-        $('#FileUpload').bind('change', function () {
-            var $Form = $('#FileUpload').closest('form');
-            Core.Form.Validate.DisableValidation($Form);
-            $Form.find('#AttachmentUpload').val('1').end().submit();
-        });
+        //$('#FileUpload').bind('change', function () {
+        //    var $Form = $('#FileUpload').closest('form');
+        //    Core.Form.Validate.DisableValidation($Form);
+        //    $Form.find('#AttachmentUpload').val('1').end().submit();
+        //});
 
         $('#SubmitButton').on('click', function () {
             $('input[name=SubmitSave]').val('1');

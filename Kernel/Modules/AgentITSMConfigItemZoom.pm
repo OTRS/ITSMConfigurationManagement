@@ -463,6 +463,11 @@ sub Run {
         Value     => $Self->{RequestedURL},
     );
 
+    $LayoutObject->AddJSData(
+        Key   => 'UserConfigItemZoomTableHeight',
+        Value => $Self->{UserConfigItemZoomTableHeight},
+    );
+
     # start template output
     $Output .= $LayoutObject->Output(
         TemplateFile => 'AgentITSMConfigItemZoom',

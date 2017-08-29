@@ -70,14 +70,6 @@
                 </table>
             </div>
         </div>
-[% WRAPPER JSOnDocumentComplete %]
-<script type="text/javascript">//<![CDATA[
-    $('a.LinkZoomView').bind('click', function () {
-        window.opener.Core.UI.Popup.FirePopupEvent('URL', { URL: $(this).attr('href')});
-        window.close();
-    });
-//]]></script>
-[% END %]
     </div>
     <div class="Footer">
     </div>
