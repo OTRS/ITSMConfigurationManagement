@@ -12,8 +12,15 @@ use utf8;
 
 use vars (qw($Self));
 
-# get selenium object
 my $Selenium = $Kernel::OM->Get('Kernel::System::UnitTest::Selenium');
+
+if ( $Selenium->{browser_name} ne 'firefox' ) {
+    $Self->True(
+        1,
+        "PDF test currently only supports Firefox",
+    );
+    return 1;
+}
 
 $Selenium->RunTest(
     sub {
