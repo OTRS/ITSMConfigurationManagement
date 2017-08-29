@@ -288,6 +288,14 @@ sub Run {
         );
 
         return $LayoutObject->ErrorScreen() if !$DefinitionID;
+
+        my $ContinueAfterSave = $ParamObject->GetParam( Param => 'ContinueAfterSave' );
+        if ($ContinueAfterSave) {
+            return $LayoutObject->Redirect(
+                OP => "Action=$Self->{Action};Subaction=DefinitionChange;ClassID=$Definition{ClassID}",
+            );
+        }
+
         return $LayoutObject->Redirect( OP => "Action=$Self->{Action}" );
     }
 

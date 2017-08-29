@@ -192,11 +192,14 @@ sub Run {
             Source => 'string',
         );
 
-        # add attachment to the upload cache
-        $UploadCacheObject->FormIDAddFile(
-            FormID => $Self->{FormID},
-            %UploadStuff,
-        );
+        if (%UploadStuff) {
+
+            # add attachment to the upload cache
+            $UploadCacheObject->FormIDAddFile(
+                FormID => $Self->{FormID},
+                %UploadStuff,
+            );
+        }
 
         my $AllRequired = 1;
 
@@ -588,7 +591,7 @@ sub Run {
     $Param{AttachmentList} = [
         $UploadCacheObject->FormIDGetAllFilesMeta(
             FormID => $Self->{FormID},
-        )
+            )
     ];
 
     my $Output = '';

@@ -29,22 +29,15 @@ ITSM.Agent.ConfigItem.Edit = (function (TargetNS) {
     *      This function initializes the form submittion.
     */
     TargetNS.Init = function () {
-        var AttachmentsFileID = Core.Config.Get('ITSMConfigItemAttachmentsFileID') || [];
-        $.each(AttachmentsFileID, function(Idx, FileID) {
-            FileID = Core.App.EscapeSelector(FileID);
-            $('#AttachmentDelete' + FileID).bind('click', function () {
-                Core.Form.Validate.DisableValidation($('#AttachmentDelete' + FileID).closest('form'));
-            });
-        });
-
-        //$('#FileUpload').bind('change', function () {
-        //    var $Form = $('#FileUpload').closest('form');
-        //    Core.Form.Validate.DisableValidation($Form);
-        //    $Form.find('#AttachmentUpload').val('1').end().submit();
-        //});
-
         $('#SubmitButton').on('click', function () {
             $('input[name=SubmitSave]').val('1');
+        });
+
+        $('#CancelButton').on('click', function () {
+            if (Core.UI.Popup.CurrentIsPopupWindow()) {
+                Core.UI.Popup.ClosePopup();
+                return false;
+            }
         });
 
         $('.DisableValidation').bind('click', function () {

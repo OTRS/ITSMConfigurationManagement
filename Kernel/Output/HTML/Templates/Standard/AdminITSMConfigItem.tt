@@ -141,6 +141,7 @@
                     <input type="hidden" name="Action" value="[% Env("Action") %]"/>
                     <input type="hidden" name="Subaction" value="DefinitionSave"/>
                     <input type="hidden" name="ClassID" value="[% Data.ClassID | html %]"/>
+                    <input type="hidden" name="ContinueAfterSave" id="ContinueAfterSave" value=""/>
                     <fieldset class="TableLike">
 
 
@@ -157,7 +158,13 @@
                         <div class="Clear"></div>
 
                         <div class="Field SpacingTop">
-                            <button class="Primary CallForAction" type="submit" id="Submit" value="[% Translate("Submit") | html %]"><span>[% Translate("Submit") | html %]</span></button>
+                            <button name="SubmitAndContinue" class="CallForAction Primary" id="SubmitAndContinue" type="button" value="Submit">
+                                <span>[% Translate("Save") | html %]</span>
+                            </button>
+                            [% Translate("or") | html %]
+                            <button name="Submit" class="CallForAction Primary" id="Submit" type="submit" value="Submit">
+                                <span>[% Translate("Save and finish") | html %]</span>
+                            </button>
                             [% Translate("or") | html %]
                             <a href="[% Env("Baselink") %]Action=[% Env("Action") %]">[% Translate("Cancel") | html %]</a>
                         </div>
