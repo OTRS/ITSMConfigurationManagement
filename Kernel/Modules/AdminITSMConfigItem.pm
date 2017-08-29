@@ -68,6 +68,10 @@ sub Run {
             Name => 'Overview',
             Data => {
                 ClassOptionStrg => $ClassOptionStrg,
+                ClassSelected   => {
+                    ID   => $ClassID,
+                    Name => $ClassList->{$ClassID},
+                },
             },
         );
 
@@ -135,6 +139,7 @@ sub Run {
         my $Definition = $ConfigItemObject->DefinitionGet(
             DefinitionID => $DefinitionID,
         );
+
         $Definition->{DefinitionString} = $LayoutObject->Ascii2Html(
             Text           => $Definition->{Definition},
             HTMLResultMode => 1,
@@ -155,6 +160,14 @@ sub Run {
             Name => 'Overview',
             Data => {
                 ClassOptionStrg => $ClassOptionStrg,
+                ClassSelected   => {
+                    ID   => $Definition->{ClassID},
+                    Name => $Definition->{Class},
+                },
+                VersionSelected => {
+                    ID      => $DefinitionID,
+                    Version => $Definition->{Version},
+                },
             },
         );
 
@@ -226,6 +239,11 @@ sub Run {
             Name => 'Overview',
             Data => {
                 ClassOptionStrg => $ClassOptionStrg,
+                ClassSelected   => {
+                    ID   => $Definition->{ClassID},
+                    Name => $Definition->{Class},
+                },
+                Edit => 1,
             },
         );
 

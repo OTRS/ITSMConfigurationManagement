@@ -10,6 +10,36 @@
 <div class="MainBox ARIARoleMain LayoutFixedSidebar SidebarFirst">
     <h1>[% Translate("Config Item Management") | html %]</h1>
 
+    [%- BreadcrumbPath = [
+            {
+                Name => Translate('Config Item Management'),
+                Link => 'AdminITSMConfigItem',
+            },
+        ]
+    %]
+
+    [% IF (Data.ClassSelected) %]
+        [% BreadcrumbPath.push({
+            Name => Data.ClassSelected.Name,
+            Link => 'AdminITSMConfigItem;Subaction=DefinitionList;ClassID=' _ Data.ClassSelected.ID
+        }) %]
+    [% END %]
+
+    [% IF (Data.VersionSelected) %]
+        [% BreadcrumbPath.push({
+            Name => 'Version ' _ Data.VersionSelected.Version,
+            Link => 'AdminITSMConfigItem;Subaction=DefinitionView;DefinitionID=' _ Data.VersionSelected.ID
+        }) %]
+    [% END %]
+
+    [% IF (Data.Edit) %]
+        [% BreadcrumbPath.push({
+            Name => 'Edit definition',
+        }) %]
+    [% END %]
+
+    [% INCLUDE "Breadcrumb.tt" Path = BreadcrumbPath %]
+
     <div class="SidebarColumn">
         <div class="WidgetSimple">
             <div class="Header">
