@@ -142,6 +142,7 @@
         <File Permission="660" Location="var/httpd/htdocs/js/ITSM.Agent.ConfigItem.Edit.js" />
         <File Permission="660" Location="var/httpd/htdocs/js/ITSM.Agent.ConfigItem.History.js" />
         <File Permission="660" Location="var/httpd/htdocs/js/ITSM.Agent.ConfigItem.Zoom.js" />
+        <File Permission="660" Location="var/httpd/htdocs/js/ITSM.Agent.ConfigItem.Overview.js" />
         <File Permission="660" Location="var/httpd/htdocs/js/ITSM.UI.ConfigItemActionRow.js" />
         <File Permission="660" Location="var/packagesetup/ITSMConfigurationManagement.pm" />
     </Filelist>

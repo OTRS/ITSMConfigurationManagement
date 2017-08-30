@@ -166,34 +166,7 @@
                 </td>
 [% RenderBlockEnd("RecordLastChanged") %]
             </tr>
-
-[% RenderBlockStart("DocumentReadyActionRowAdd") %]
-[% WRAPPER JSOnDocumentComplete %]
-<script type="text/javascript">//<![CDATA[
-    ITSM.UI.ConfigItemActionRow.AddActions($('#ConfigItemID_[% Data.ConfigItemID | html %]'), [% Data.Data %]);
-//]]></script>
-[% END %]
-[% RenderBlockEnd("DocumentReadyActionRowAdd") %]
-
 [% RenderBlockEnd("Record") %]
         </tbody>
     </table>
 </div>
-[% WRAPPER JSOnDocumentComplete %]
-<script type="text/javascript">//<![CDATA[
-
-    /*global ITSM: true */
-    ITSM.UI.ConfigItemActionRow.Init();
-
-    Core.UI.InitCheckboxSelection($('table td.Checkbox'));
-
-    $('.MasterAction').bind('click', function (Event) {
-        var $MasterActionLink = $(this).find('.MasterActionLink');
-        // only act if the link was not clicked directly
-        if (Event.target !== $MasterActionLink.get(0)) {
-            window.location = $MasterActionLink.attr('href');
-            return false;
-        }
-    });
-//]]></script>
-[% END %]

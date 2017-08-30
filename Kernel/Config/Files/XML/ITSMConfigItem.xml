@@ -77,6 +77,11 @@
                         <Item>ITSM.Agent.Default.css</Item>
                     </Array>
                 </Item>
+                <Item Key="JavaScript">
+                    <Array>
+                        <Item>ITSM.Agent.ConfigItem.Overview.js</Item>
+                    </Array>
+                </Item>
             </Hash>
         </Value>
     </Setting>
@@ -362,6 +367,7 @@
                         <Item>thirdparty/jquery-tablesorter-2.0.5/jquery.tablesorter.js</Item>
                         <Item>Core.UI.Table.Sort.js</Item>
                         <Item>ITSM.Agent.Zoom.js</Item>
+                        <Item>ITSM.Agent.ConfigItem.Overview.js</Item>
                     </Array>
                 </Item>
             </Hash>

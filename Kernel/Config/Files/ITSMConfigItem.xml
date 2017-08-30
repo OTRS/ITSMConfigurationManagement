@@ -52,6 +52,7 @@
                 </NavBar>
                 <Loader>
                     <CSS>ITSM.Agent.Default.css</CSS>
+                    <JavaScript>ITSM.Agent.ConfigItem.Overview.js</JavaScript>
                 </Loader>
             </FrontendModuleReg>
         </Setting>
@@ -180,6 +181,8 @@
                     <JavaScript>thirdparty/jquery-tablesorter-2.0.5/jquery.tablesorter.js</JavaScript>
                     <JavaScript>Core.UI.Table.Sort.js</JavaScript>
                     <JavaScript>ITSM.Agent.Zoom.js</JavaScript>
+                    <JavaScript>ITSM.Agent.ConfigItem.Overview.js</JavaScript>
+                    <JavaScript>ITSM.Agent.ConfigItem.Search.js</JavaScript>
                 </Loader>
             </FrontendModuleReg>
         </Setting>

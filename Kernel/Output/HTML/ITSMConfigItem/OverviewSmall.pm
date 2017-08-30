@@ -483,16 +483,21 @@ END
                     $ActionItem->{Link} =~ s{ \Q[% Data.VersionID | html %]\E }{$ConfigItem->{VersionID}}xmsg;
                 }
 
-                my $JSON = $LayoutObject->JSONEncode(
-                    Data => $ClonedActionItems,
-                );
+                #my $JSON = $LayoutObject->JSONEncode(
+                #    Data => $ClonedActionItems,
+                #);
 
-                $LayoutObject->Block(
-                    Name => 'DocumentReadyActionRowAdd',
-                    Data => {
-                        ConfigItemID => $ConfigItemID,
-                        Data         => $JSON,
-                    },
+                #$LayoutObject->Block(
+                #    Name => 'DocumentReadyActionRowAdd',
+                #    Data => {
+                #        ConfigItemID => $ConfigItemID,
+                #        Data         => $JSON,
+                #    },
+                #);
+
+                $LayoutObject->AddJSData(
+                    Key   => 'ITSMConfigItemActionRow.' . $ConfigItemID,
+                    Value => $ClonedActionItems,
                 );
             }
         }

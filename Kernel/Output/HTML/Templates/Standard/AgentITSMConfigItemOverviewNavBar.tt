@@ -39,14 +39,6 @@
                         <a id="ITSMConfigItemSearch" href="[% Env("Baselink") %]Action=[% Env("Action") %];[% Data.LinkBack %]">[% Translate("Change search options") | html %]</a>
                     </li>
                 </ul>
-[% WRAPPER JSOnDocumentComplete %]
-<script type="text/javascript">//<![CDATA[
-    $('#ITSMConfigItemSearch').bind('click', function (Event) {
-        ITSM.Agent.ConfigItem.Search.OpenSearchDialog( 'AgentITSMConfigItemSearch', '[% Data.Profile | html %]', '[% Data.ClassID | html %]' );
-        return false;
-    });
-//]]></script>
-[% END %]
 [% RenderBlockEnd("OverviewNavBarPageBack") %]
 
 [% RenderBlockStart("ContextSettings") %]
@@ -74,26 +66,6 @@
                         </fieldset>
                     </form>
                 </div>
-
-[% WRAPPER JSOnDocumentComplete %]
-<script type="text/javascript">//<![CDATA[
-    // bind the ContextSettingsDialogContainer
-    $('#ShowContextSettingsDialog').bind('click', function (Event) {
-        Core.UI.Dialog.ShowContentDialog($('#ContextSettingsDialogContainer'), [% Translate("Settings") | JSON %], '20%', 'Center', true,
-            [
-                {
-                    Label: [% Translate("Submit") | JSON %],
-                    Type: 'Submit',
-                    Class: 'Primary'
-                }
-            ]
-        );
-        Event.preventDefault();
-        Event.stopPropagation();
-        return false;
-    });
-//]]></script>
-[% END %]
 [% RenderBlockEnd("ContextSettings") %]
 
             </div>

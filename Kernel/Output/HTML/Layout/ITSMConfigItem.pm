@@ -399,6 +399,14 @@ sub ITSMConfigItemListShow {
             Name => 'OverviewNavBarPageBack',
             Data => \%Param,
         );
+
+        $LayoutObject->AddJSData(
+            Key   => 'ITSMConfigItemSearch',
+            Value => {
+                Profile => $Param{Profile},
+                ClassID => $Param{ClassID},
+            },
+        );
     }
 
     # get filters
