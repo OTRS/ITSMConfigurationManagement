@@ -1378,13 +1378,26 @@ sub _MigrateDTLInSysConfig {
         MENUMODULE:
         for my $MenuModule ( sort keys %{$Setting} ) {
 
-            # setting is a hash
+            my %MenuModuleSetting = $SysConfigObject->SettingGet(
+                Name    => "${ Name }###${ MenuModule }",
+                Default => 1,
+            );
+
+            # Lock setting.
+            my $ExclusiveLockGUID = $SysConfigObject->SettingLock(
+                Name      => "${ Name }###${ MenuModule }",
+                UserID    => 1,
+                Force     => 1,
+                DefaultID => $MenuModuleSetting{DefaultID},
+            );
+
+            # Setting is a hash.
             SETTINGITEM:
             for my $SettingItem ( sort keys %{ $Setting->{$MenuModule} } ) {
 
                 my $SettingContent = $Setting->{$MenuModule}->{$SettingItem};
 
-                # do nothing if there is no value for migrating
+                # Do nothing if there is no value for migrating.
                 next SETTINGITEM if !$SettingContent;
 
                 my $TTContent;
@@ -1402,11 +1415,19 @@ sub _MigrateDTLInSysConfig {
                 }
             }
 
-            # update the configuration item
-            my $Success = $SysConfigObject->ConfigItemUpdate(
-                Valid => 1,
-                Key   => $Name,
-                Value => $Setting,
+            # Update the configuration item.
+            $SysConfigObject->SettingUpdate(
+                Name              => "${ Name }###${ MenuModule }",
+                UserID            => 1,
+                IsValid           => 1,
+                EffectiveValue    => $Setting->{$MenuModule},
+                ExclusiveLockGUID => $ExclusiveLockGUID,
+            );
+
+            # Unlock system config setting.
+            $SysConfigObject->SettingUnlock(
+                UserID    => 1,
+                DefaultID => $MenuModuleSetting{DefaultID},
             );
         }
     }
@@ -1454,6 +1475,9 @@ change configurations to match the new module location.
 =cut
 
 sub _MigrateConfigs {
+    my ( $Self, %Param ) = @_;
+
+    my $SysConfigObject = $Kernel::OM->Get('Kernel::System::SysConfig');
 
     for my $Type (qw(MenuModule Overview)) {
 
@@ -1463,21 +1487,40 @@ sub _MigrateConfigs {
 
         CONFIGITEM:
         for my $MenuModule ( sort keys %{$Setting} ) {
+            my $MenuModuleSettings = $Setting->{$MenuModule};
 
             # update module location
-            my $Module = $Setting->{$MenuModule}->{'Module'};
+            my $Module = $MenuModuleSettings->{'Module'};
             if ( $Module !~ m{Kernel::Output::HTML::ITSMConfigItem(\w+)} ) {
                 next CONFIGITEM;
             }
 
-            $Module =~ s{Kernel::Output::HTML::ITSMConfigItem(\w+)}{Kernel::Output::HTML::ITSMConfigItem::$1}xmsg;
-            $Setting->{$MenuModule}->{Module} = $Module;
+            # Get menu module raw settings.
+            my %MenuModuleRawSettings = $SysConfigObject->SettingGet(
+                Name    => "ITSMConfigItem::Frontend::${ Type }###${ MenuModule }",
+                Default => 1,
+            );
 
-            # set new setting
-            my $Success = $Kernel::OM->Get('Kernel::System::SysConfig')->ConfigItemUpdate(
-                Valid => 1,
-                Key   => 'ITSMConfigItem::Frontend::' . $Type . '###' . $MenuModule,
-                Value => $Setting->{$MenuModule},
+            # Lock the settings.
+            my $ExclusiveLockGUID = $SysConfigObject->SettingLock(
+                UserID    => 1,
+                Force     => 1,
+                DefaultID => $MenuModuleRawSettings{DefaultID},
+            );
+
+            $Module =~ s{Kernel::Output::HTML::ITSMConfigItem(\w+)}{Kernel::Output::HTML::ITSMConfigItem::$1}xmsg;
+            $MenuModuleSettings->{Module} = $Module;
+
+            $SysConfigObject->SettingUpdate(
+                Name              => "ITSMConfigItem::Frontend::${ Type }###${ MenuModule }",
+                EffectiveValue    => $MenuModuleSettings,
+                ExclusiveLockGUID => $ExclusiveLockGUID,
+                UserID            => 1,
+            );
+
+            $SysConfigObject->SettingUnlock(
+                UserID    => 1,
+                DefaultID => $MenuModuleRawSettings{DefaultID},
             );
         }
     }
