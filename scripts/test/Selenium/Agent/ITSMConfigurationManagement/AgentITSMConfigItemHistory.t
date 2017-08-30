@@ -149,7 +149,7 @@ $Selenium->RunTest(
             "${ScriptAlias}index.pl?Action=AgentITSMConfigItemHistory;ConfigItemID=$ConfigItemID;VersionID=$VersionID"
         );
 
-        my $ErrorMessageNoPermission = 'Can\'t show history, no access rights given!';
+        my $ErrorMessageNoPermission = 'No Permission to use this frontend module!';
         $Self->True(
             index( $Selenium->get_page_source(), $ErrorMessageNoPermission ) > -1,
             "Error message $ErrorMessageNoPermission - found",

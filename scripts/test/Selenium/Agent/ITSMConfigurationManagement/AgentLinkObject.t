@@ -167,7 +167,7 @@ $Selenium->RunTest(
 
         # check 'Link' screen for two ConfigItems
         for my $ID (
-            qw(TargetIdentifier SubmitSelect SubmitSearch)
+            qw(TargetIdentifier SubmitSearch)
             )
         {
             my $Element = $Selenium->find_element( "#$ID", 'css' );
@@ -247,9 +247,8 @@ $Selenium->RunTest(
         # wait until page has loaded, if necessary
         $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && $("#TargetIdentifier").length' );
 
-        # click 'go to link delete screen'
-        $Selenium->find_element("//a[contains(\@href, \'Action=AgentLinkObject;Subaction=LinkDelete\' )]")
-            ->VerifiedClick();
+        # click 'go to manage links screen'
+        $Selenium->find_element("//a[contains(\@href, \'#ManageLinks\' )]")->VerifiedClick();
 
         # select all linked items and delete links
         $Selenium->find_element("//input[\@value='ITSMConfigItem::$ConfigItemIDs[1]::AlternativeTo']")->click();
