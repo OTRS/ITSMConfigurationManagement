@@ -672,7 +672,7 @@ sub Run {
             return $LayoutObject->Attachment(
                 Filename => sprintf(
                     'configitem_search_%s_%s.csv',
-                    $CurrentSystemDTObj->Format('%F_%H-%M'),
+                    $CurrentSystemDTObj->Format( Format => '%F_%H-%M' ),
                 ),
                 ContentType => "text/csv; charset=" . $LayoutObject->{UserCharset},
                 Content     => $CSV,
@@ -848,7 +848,7 @@ sub Run {
             return $LayoutObject->Attachment(
                 Filename => sprintf(
                     'configitem_search_%s_%s.pdf',
-                    $CurrentSystemDTObj->Format('%F_%H-%M'),
+                    $CurrentSystemDTObj->Format( Format => '%F_%H-%M' ),
                 ),
                 ContentType => "application/pdf",
                 Content     => $PDFString,

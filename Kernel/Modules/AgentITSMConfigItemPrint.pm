@@ -265,7 +265,7 @@ sub Run {
         Filename => sprintf(
             'configitem_%s_%s.pdf',
             $Filename,
-            $CurrentSystemDTObj->Format('%F_%H-%M'),
+            $CurrentSystemDTObj->Format( Format => '%F_%H-%M' ),
         ),
         ContentType => 'application/pdf',
         Content     => $PDFObject->DocumentOutput(),

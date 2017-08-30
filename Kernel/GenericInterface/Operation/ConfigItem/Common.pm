@@ -505,7 +505,7 @@ sub ReplaceInputDate {
         },
     );
 
-    return $DateTimeObject->Format('%F');
+    return $DateTimeObject->Format( Format => '%F' );
 }
 
 =head2 ReplaceInputDateTime()
