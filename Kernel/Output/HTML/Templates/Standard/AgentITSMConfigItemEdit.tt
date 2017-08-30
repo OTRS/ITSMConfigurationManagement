@@ -118,7 +118,7 @@
                     <fieldset class="TableLike">
                         <div class="Field SpacingTop">
                             <button name="Submit" class="CallForAction Primary" id="SubmitButton" type="submit" value="Submit">
-                                <span>[% Translate("Save and finish") | html %]</span>
+                                <span>[% Translate("Save") | html %]</span>
                             </button>
                             [% Translate("or") | html %]
                             <a id="CancelButton" href="[% Env("Baselink") %]Action=AgentITSMConfigItemAdd">[% Translate("Cancel") | html %]</a>
