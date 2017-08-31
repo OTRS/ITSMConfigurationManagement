@@ -48,39 +48,7 @@
 <div class="ContentFooter Center">
     <button id="SearchFormSubmit" class="CallForAction Primary Hidden" value="Run Search"><span><i class="fa fa-search"></i>[% Translate("Run Search") | html %]</span></button>
 </div>
-<script type="text/javascript">//<![CDATA[
-/*global ITSM: true */
-    window.setTimeout(function (){
-        $('#SearchClassID').bind('change', function(){
-            if ( $('#SearchClassID').val() !== "" ){
-                ITSM.Agent.ConfigItem.Search.LoadProfile( $('#SearchProfile').val() );
-            }
-            else {
-                $('#SearchProfile').attr("id", "SearchProfileOld");
-            }
-        });
-    }, 150);
-//]]></script>
 [% RenderBlockEnd("SearchAJAX") %]
-
-[% RenderBlockStart("SearchAJAXSetClass") %]
-<script type="text/javascript">//<![CDATA[
-/*global ITSM: true */
-    window.setTimeout(function (){
-            ITSM.Agent.ConfigItem.Search.LoadProfile( "[% Data.Profile | html %]" );
-    }, 150);
-//]]></script>
-[% RenderBlockEnd("SearchAJAXSetClass") %]
-
-[% RenderBlockStart("Search") %]
-[% WRAPPER JSOnDocumentComplete %]
-<script type="text/javascript">//<![CDATA[
-/*global ITSM: true */
-    ITSM.Agent.ConfigItem.Search.OpenSearchDialog( '[% Env("Action") %]', "[% Data.Profile | html %]", "[% Data.ClassID | html %]" );
-//]]></script>
-[% END %]
-[% RenderBlockEnd("Search") %]
-
 
 [% RenderBlockStart("AJAXContent") %]
 <form action="[% Env("CGIHandle") %]" method="post" id="SearchForm">
@@ -177,14 +145,4 @@
     <div class="Clear"></div>
     [% Data.AttributesOrigStrg %]
 </fieldset>
-
-<script type="text/javascript">//<![CDATA[
-/*global ITSM: true */
-    window.setTimeout(function (){
-[% RenderBlockStart("SearchAJAXShow") %]
-        ITSM.Agent.ConfigItem.Search.SearchAttributeAdd('[% Data.Attribute | html %]');
-        ITSM.Agent.ConfigItem.Search.AdditionalAttributeSelectionRebuild();
-[% RenderBlockEnd("SearchAJAXShow") %]
-    }, 0);
-//]]></script>
 [% RenderBlockEnd("AJAXContent") %]

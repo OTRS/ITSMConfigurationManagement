@@ -29,6 +29,22 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
     /**
      * @function
      * @return nothing
+     *      This function initializes the search screen.
+     */
+    TargetNS.Init = function () {
+        var ITSMConfigItemOpenSearchDialog = Core.Config.Get('ITSMConfigItemOpenSearchDialog');
+        if ( ITSMConfigItemOpenSearchDialog ) {
+            ITSM.Agent.ConfigItem.Search.OpenSearchDialog(
+                ITSMConfigItemOpenSearchDialog.Action,
+                Core.App.EscapeSelector(ITSMConfigItemOpenSearchDialog.Profile),
+                Core.App.EscapeSelector(ITSMConfigItemOpenSearchDialog.ClassID)
+            );
+        }
+    };
+
+    /**
+     * @function
+     * @return nothing
      *      This function rebuild attribute selection, only show available attributes.
      */
     TargetNS.AdditionalAttributeSelectionRebuild = function () {
@@ -310,6 +326,12 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
 
         $('#DivClassID').addClass('ui-autocomplete-loading');
         Core.AJAX.ContentUpdate($('#AJAXUpdate'), URL, function() {
+            var ITSMSearchProfileAttributes = Core.Config.Get('ITSMSearchProfileAttributes') || [];
+            $.each(ITSMSearchProfileAttributes, function(Idx, Attribute) {
+                ITSM.Agent.ConfigItem.Search.SearchAttributeAdd(Core.App.EscapeSelector(Attribute));
+                ITSM.Agent.ConfigItem.Search.AdditionalAttributeSelectionRebuild();
+            });
+
             TargetNS.SetSearchDialog( '$Env{"Action"}' );
             $('#ITSMSearchProfile').removeClass('Hidden');
             $('#ITSMSearchFields').removeClass('Hidden');
@@ -356,10 +378,27 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
                 }
 
                 Core.UI.Dialog.ShowContentDialog(HTML, Core.Config.Get('SearchMsg'), '10px', 'Center', true, [], true);
+
+                $('#SearchClassID').off('change.SearchProfile').on('change.SearchProfile', function() {
+                    if ( $('#SearchClassID').val() !== "" ) {
+                        ITSM.Agent.ConfigItem.Search.LoadProfile( $('#SearchProfile').val() );
+                    }
+                    else {
+                        $('#SearchProfile').attr("id", "SearchProfileOld");
+                    }
+                });
+
+                var ClassSelected = $('#SearchClassID').val();
+                if (ClassSelected) {
+                    ITSM.Agent.ConfigItem.Search.LoadProfile($('#SearchProfile').val());
+                }
+
                 TargetNS.SetSearchDialog();
             }, 'html'
         );
     };
+
+    Core.Init.RegisterNamespace(TargetNS, 'APP_MODULE');
 
     return TargetNS;
 }(ITSM.Agent.ConfigItem.Search || {}));

@@ -151,16 +151,6 @@ sub Run {
             },
         );
 
-        # set class fields if class specified
-        if ($ClassID) {
-            $LayoutObject->Block(
-                Name => 'SearchAJAXSetClass',
-                Data => {
-                    Profile => $Self->{Profile},
-                },
-            );
-        }
-
         # output template
         $Output = $LayoutObject->Output(
             TemplateFile => 'AgentITSMConfigItemSearch',
@@ -360,6 +350,8 @@ sub Run {
             );
         }
 
+        my @ProfileAttributes;
+
         # show attributes
         my $AttributeIsUsed = 0;
         KEY:
@@ -370,28 +362,23 @@ sub Run {
 
             $AttributeIsUsed = 1;
 
-            $LayoutObject->Block(
-                Name => 'SearchAJAXShow',
-                Data => {
-                    Attribute => $Key,
-                },
-            );
+            push @ProfileAttributes, $Key;
         }
 
         # if no attribute is shown, show configitem number
         if ( !$Self->{Profile} ) {
-
-            $LayoutObject->Block(
-                Name => 'SearchAJAXShow',
-                Data => {
-                    Attribute => 'Number',
-                },
-            );
+            push @ProfileAttributes, 'Number';
         }
+
+        $LayoutObject->AddJSData(
+            Key   => 'ITSMSearchProfileAttributes',
+            Value => \@ProfileAttributes,
+        );
 
         # output template
         $Output = $LayoutObject->Output(
             TemplateFile => 'AgentITSMConfigItemSearch',
+            AJAX         => 1,
         );
 
         return $LayoutObject->Attachment(
@@ -960,6 +947,15 @@ sub Run {
                 ClassID       => $ClassID,
             );
 
+            $LayoutObject->AddJSData(
+                Key   => 'ITSMConfigItemSearch',
+                Value => {
+                    Profile => $Self->{Profile},
+                    ClassID => $ClassID,
+                    Action  => $Self->{Action},
+                },
+            );
+
             # build footer
             $Output .= $LayoutObject->Footer();
 
@@ -976,11 +972,12 @@ sub Run {
         $Output = $LayoutObject->Header();
         $Output .= $LayoutObject->NavigationBar();
 
-        $LayoutObject->Block(
-            Name => 'Search',
-            Data => {
+        $LayoutObject->AddJSData(
+            Key   => 'ITSMConfigItemOpenSearchDialog',
+            Value => {
                 Profile => $Self->{Profile},
                 ClassID => $ClassID,
+                Action  => $Self->{Action},
             },
         );
 
