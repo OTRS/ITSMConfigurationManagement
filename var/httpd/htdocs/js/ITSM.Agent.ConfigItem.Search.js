@@ -160,8 +160,21 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
      * @return nothing
      * @description Shows waiting dialog until search screen is ready.
      */
-    function ShowWaitingDialog(){
-        Core.UI.Dialog.ShowContentDialog('<div class="Spacing Center"><span class="AJAXLoader" title="' + Core.Config.Get('LoadingMsg') + '"></span></div>', Core.Config.Get('LoadingMsg'), '10px', 'Center', true);
+    function ShowWaitingDialog() {
+        var Content = Core.Template.Render(
+            'Agent/ITSMCore/LoadingDialog',
+            {
+                SpanTitle: Core.Config.Get('LoadingMsg')
+            }
+        );
+
+        Core.UI.Dialog.ShowContentDialog(
+            Content,
+            Core.Config.Get('LoadingMsg'),
+            '10px',
+            'Center',
+            true
+        );
     }
 
     /**
