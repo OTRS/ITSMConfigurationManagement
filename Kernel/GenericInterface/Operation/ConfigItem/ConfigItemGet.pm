@@ -11,6 +11,8 @@ package Kernel::GenericInterface::Operation::ConfigItem::ConfigItemGet;
 use strict;
 use warnings;
 
+## nofilter(TidyAll::Plugin::OTRS::Migrations::OTRS6::SysConfig)
+
 use MIME::Base64;
 use Kernel::System::VariableCheck qw(:all);
 

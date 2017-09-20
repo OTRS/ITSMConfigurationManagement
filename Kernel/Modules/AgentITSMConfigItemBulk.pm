@@ -10,6 +10,8 @@ package Kernel::Modules::AgentITSMConfigItemBulk;
 use strict;
 use warnings;
 
+## nofilter(TidyAll::Plugin::OTRS::Migrations::OTRS6::SysConfig)
+
 use Kernel::Language qw(Translatable);
 use Kernel::System::VariableCheck qw(:all);
 
@@ -140,7 +142,7 @@ sub Run {
             # challenge token check for write action
             $LayoutObject->ChallengeTokenCheck();
 
-            # bulk action version ddd
+            # bulk action version add
             if ( $GetParam{DeplStateID} || $GetParam{InciStateID} ) {
 
                 # get current version of the config item

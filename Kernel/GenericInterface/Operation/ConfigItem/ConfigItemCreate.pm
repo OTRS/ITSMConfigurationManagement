@@ -11,6 +11,8 @@ package Kernel::GenericInterface::Operation::ConfigItem::ConfigItemCreate;
 use strict;
 use warnings;
 
+## nofilter(TidyAll::Plugin::OTRS::Migrations::OTRS6::SysConfig)
+
 use Kernel::System::VariableCheck qw(:all);
 
 use parent qw(

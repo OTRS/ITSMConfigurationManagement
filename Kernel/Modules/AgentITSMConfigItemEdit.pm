@@ -11,6 +11,8 @@ package Kernel::Modules::AgentITSMConfigItemEdit;
 use strict;
 use warnings;
 
+## nofilter(TidyAll::Plugin::OTRS::Migrations::OTRS6::SysConfig)
+
 use Kernel::System::VariableCheck qw(:all);
 use Kernel::Language qw(Translatable);
 

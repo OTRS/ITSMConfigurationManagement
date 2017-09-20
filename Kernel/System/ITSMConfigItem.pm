@@ -11,6 +11,8 @@ package Kernel::System::ITSMConfigItem;
 use strict;
 use warnings;
 
+## nofilter(TidyAll::Plugin::OTRS::Migrations::OTRS6::SysConfig)
+
 use Kernel::System::EventHandler;
 use Kernel::System::ITSMConfigItem::Definition;
 use Kernel::System::ITSMConfigItem::History;

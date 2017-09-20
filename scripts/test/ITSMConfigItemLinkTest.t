@@ -8,6 +8,9 @@
 
 use strict;
 use warnings;
+
+## nofilter(TidyAll::Plugin::OTRS::Migrations::OTRS6::SysConfig)
+
 use utf8;
 
 use vars qw($Self);

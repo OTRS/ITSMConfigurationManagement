@@ -11,6 +11,8 @@ package Kernel::System::Console::Command::Admin::ITSM::IncidentState::Recalculat
 use strict;
 use warnings;
 
+## nofilter(TidyAll::Plugin::OTRS::Migrations::OTRS6::SysConfig)
+
 use parent qw(Kernel::System::Console::BaseCommand);
 
 our @ObjectDependencies = (

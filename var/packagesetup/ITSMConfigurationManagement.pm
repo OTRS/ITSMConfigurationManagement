@@ -11,6 +11,8 @@ package var::packagesetup::ITSMConfigurationManagement;    ## no critic
 use strict;
 use warnings;
 
+## nofilter(TidyAll::Plugin::OTRS::Migrations::OTRS6::SysConfig)
+
 use Kernel::Language qw(Translatable);
 use Kernel::Output::Template::Provider;
 

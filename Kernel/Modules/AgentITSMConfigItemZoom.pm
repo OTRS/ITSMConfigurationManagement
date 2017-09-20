@@ -11,6 +11,8 @@ package Kernel::Modules::AgentITSMConfigItemZoom;
 use strict;
 use warnings;
 
+## nofilter(TidyAll::Plugin::OTRS::Migrations::OTRS6::SysConfig)
+
 use Kernel::Language qw(Translatable);
 
 our $ObjectManagerDisabled = 1;
