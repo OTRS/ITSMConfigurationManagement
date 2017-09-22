@@ -368,6 +368,7 @@
                         <Item>Core.UI.Table.Sort.js</Item>
                         <Item>ITSM.Agent.Zoom.js</Item>
                         <Item>ITSM.Agent.ConfigItem.Overview.js</Item>
+                        <Item>ITSM.Agent.ConfigItem.Search.js</Item>
                     </Array>
                 </Item>
             </Hash>
