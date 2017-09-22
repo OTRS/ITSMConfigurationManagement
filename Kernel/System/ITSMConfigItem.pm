@@ -686,7 +686,7 @@ returns
         Filename    => 'test.txt',
         Content     => 'content',
         ContentType => 'text/plain',
-        Filesize    => '123 KBytes',
+        Filesize    => 12348409,
         Type        => 'attachment',
     }
 
@@ -738,7 +738,7 @@ sub ConfigItemAttachmentGet {
         Content     => ${ $AttachmentData{Content} },
         ContentType => $AttachmentData{Preferences}->{ContentType},
         Type        => 'attachment',
-        Filesize    => $AttachmentData{Preferences}->{Filesize},
+        Filesize    => $AttachmentData{Preferences}->{FilesizeRaw},
     };
 
     return $AttachmentInfo;
