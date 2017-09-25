@@ -20,6 +20,7 @@ sub Data {
     $Self->{Translation}->{'Change class definition'} = 'Ubah definisi kelas';
     $Self->{Translation}->{'Config Item Class'} = '';
     $Self->{Translation}->{'Definition'} = 'Definisi';
+    $Self->{Translation}->{'Change'} = 'Ubah';
 
     # Template: AgentITSMConfigItemAdd
     $Self->{Translation}->{'Config Item'} = 'Config Item';
@@ -36,6 +37,7 @@ sub Data {
     $Self->{Translation}->{'The number of another Configuration Item to link with.'} = 'Nombor Barangan Konfigurasi lain untuk dipautkan dengan.';
 
     # Template: AgentITSMConfigItemDelete
+    $Self->{Translation}->{'Number'} = 'Nombor';
     $Self->{Translation}->{'Do you really want to delete this config item?'} = 'Anda benar ingin membuang item config ini?';
 
     # Template: AgentITSMConfigItemEdit
@@ -47,6 +49,9 @@ sub Data {
 
     # Template: AgentITSMConfigItemHistory
     $Self->{Translation}->{'History of Config Item: %s'} = '';
+    $Self->{Translation}->{'History Content'} = 'Kandungan sejarah';
+    $Self->{Translation}->{'Createtime'} = 'Cipta masa';
+    $Self->{Translation}->{'Zoom view'} = 'Pandangan dibesarkan';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'konteks Tetapan';
@@ -69,7 +74,6 @@ sub Data {
     $Self->{Translation}->{'Configuration Item Information'} = 'Maklumat Barangan Konfigurasi';
     $Self->{Translation}->{'Current Deployment State'} = 'Pertukaran keadaan semasa';
     $Self->{Translation}->{'Last changed by'} = 'Terakhir diubah oleh';
-    $Self->{Translation}->{'Ok'} = 'Ok';
     $Self->{Translation}->{'Show one version'} = 'Tunjukkan satu versi';
     $Self->{Translation}->{'Show all versions'} = 'Tunjukkan semua versi';
     $Self->{Translation}->{'Version Incident State'} = 'Versi Insiden Negeri';
@@ -124,6 +128,9 @@ sub Data {
     $Self->{Translation}->{'The deployment state of this config item'} = 'Keadaan penempatan item ini config';
     $Self->{Translation}->{'The incident state of this config item'} = 'Keadaan insiden bagi config item ini';
 
+    # Perl Module: Kernel/Output/HTML/ITSMConfigItem/LayoutDate.pm
+    $Self->{Translation}->{'Between'} = 'Between';
+
     # Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
     $Self->{Translation}->{'Maximum number of one element'} = 'Bilangan maksimum satu elemen';
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Medan kosong menunjukkan bahawa nilai semasa disimpan';
@@ -145,7 +152,6 @@ sub Data {
     $Self->{Translation}->{'Phone 1'} = 'Telefon 1';
     $Self->{Translation}->{'Phone 2'} = 'Telefon 2';
     $Self->{Translation}->{'E-Mail'} = '';
-    $Self->{Translation}->{'Address'} = 'Alamat';
     $Self->{Translation}->{'Network Address'} = 'Alamat Rangkaian';
     $Self->{Translation}->{'Subnet Mask'} = 'Subnet Mask';
     $Self->{Translation}->{'Gateway'} = 'Gerbang';
@@ -190,6 +196,7 @@ sub Data {
     $Self->{Translation}->{'Docking Station'} = 'Dok Stesen';
     $Self->{Translation}->{'Scanner'} = 'Pengimbas';
     $Self->{Translation}->{'Building'} = 'Bangunan';
+    $Self->{Translation}->{'Office'} = 'Pejabat';
     $Self->{Translation}->{'Floor'} = 'tingkat';
     $Self->{Translation}->{'Room'} = 'Bilik';
     $Self->{Translation}->{'Rack'} = 'Rak';
@@ -222,8 +229,10 @@ sub Data {
     $Self->{Translation}->{'Open Source'} = 'Sumber Terbuka';
     $Self->{Translation}->{'Unlimited'} = 'Tiada batasan';
 
+    # JS File: ITSM.Agent.ConfigItem.Zoom
+    $Self->{Translation}->{'Ok'} = 'Ok';
+
     # SysConfig
-    $Self->{Translation}->{'Admin.'} = 'Admin.';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         'Semak nama yang unik sahaja di dalam kelas ConfigItem yang sama (\'kelas\') atau di peringkat global (\'global\'), yang bermaksud setiap ConfigItem sedia ada diambil kira ketika mencari pendua.';
     $Self->{Translation}->{'Config Items'} = 'Barangan Konfigurasi';
@@ -289,9 +298,8 @@ sub Data {
     $Self->{Translation}->{'Deployment State Color'} = 'Penempatan Keadaan Warna.';
     $Self->{Translation}->{'Deployment State Color.'} = 'Penempatan Keadaan Warna.';
     $Self->{Translation}->{'Deployment State Type.'} = 'Penempatan Keadaan Jenis.';
-    $Self->{Translation}->{'Disabled'} = 'Tidak dibolehkan';
-    $Self->{Translation}->{'Duplicate'} = '';
-    $Self->{Translation}->{'Enabled'} = 'Dibolehkan';
+    $Self->{Translation}->{'Duplicate'} = 'Gandakan';
+    $Self->{Translation}->{'Dutch'} = '';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         'Membolehkan ciri tindakan pukal item konfigurasi untuk frontend ejen untuk bekerja pada lebih daripada satu item konfigurasi pada satu masa.';
     $Self->{Translation}->{'Enables configuration item bulk action feature only for the listed groups.'} =
@@ -369,6 +377,15 @@ sub Data {
     $Self->{Translation}->{'postproductive'} = '';
     $Self->{Translation}->{'preproductive'} = '';
     $Self->{Translation}->{'productive'} = '';
+
+
+    push @{ $Self->{JavaScriptStrings} // [] }, (
+    'No',
+    'Ok',
+    'Settings',
+    'Submit',
+    'Yes',
+    );
 
 }
 

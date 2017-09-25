@@ -20,6 +20,7 @@ sub Data {
     $Self->{Translation}->{'Change class definition'} = 'Osztály-meghatározás módosítása';
     $Self->{Translation}->{'Config Item Class'} = 'Konfigurációelem-osztály';
     $Self->{Translation}->{'Definition'} = 'Meghatározás';
+    $Self->{Translation}->{'Change'} = 'Változtatás';
 
     # Template: AgentITSMConfigItemAdd
     $Self->{Translation}->{'Config Item'} = 'Konfigurációelem';
@@ -36,6 +37,7 @@ sub Data {
     $Self->{Translation}->{'The number of another Configuration Item to link with.'} = 'Egy másik konfigurációelem száma, amellyel össze kell kötni.';
 
     # Template: AgentITSMConfigItemDelete
+    $Self->{Translation}->{'Number'} = 'Szám';
     $Self->{Translation}->{'Do you really want to delete this config item?'} = 'Valóban törölni szeretné ezt a konfigurációelemet?';
 
     # Template: AgentITSMConfigItemEdit
@@ -47,6 +49,9 @@ sub Data {
 
     # Template: AgentITSMConfigItemHistory
     $Self->{Translation}->{'History of Config Item: %s'} = 'Konfigurációelem előzményei: %s';
+    $Self->{Translation}->{'History Content'} = 'Előzménytartalom';
+    $Self->{Translation}->{'Createtime'} = 'Létrehozás ideje';
+    $Self->{Translation}->{'Zoom view'} = 'Nagyítási nézet';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'Környezet beállítások';
@@ -69,7 +74,6 @@ sub Data {
     $Self->{Translation}->{'Configuration Item Information'} = 'Konfigurációelem-információk';
     $Self->{Translation}->{'Current Deployment State'} = 'Jelenlegi üzembe állítási állapot';
     $Self->{Translation}->{'Last changed by'} = 'Utoljára módosította';
-    $Self->{Translation}->{'Ok'} = 'OK';
     $Self->{Translation}->{'Show one version'} = 'Egy verzió megjelenítése';
     $Self->{Translation}->{'Show all versions'} = 'Összes verzió megjelenítése';
     $Self->{Translation}->{'Version Incident State'} = 'Verzió incidensállapot';
@@ -124,6 +128,9 @@ sub Data {
     $Self->{Translation}->{'The deployment state of this config item'} = 'A konfigurációelem üzembe állítási állapota';
     $Self->{Translation}->{'The incident state of this config item'} = 'A konfigurációelem incidensállapota';
 
+    # Perl Module: Kernel/Output/HTML/ITSMConfigItem/LayoutDate.pm
+    $Self->{Translation}->{'Between'} = 'Között';
+
     # Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
     $Self->{Translation}->{'Maximum number of one element'} = 'Egy elem legnagyobb száma';
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Az üres mezők azt jelzik, hogy az aktuális mezők megtartásra kerülnek';
@@ -145,7 +152,6 @@ sub Data {
     $Self->{Translation}->{'Phone 1'} = '1. telefon';
     $Self->{Translation}->{'Phone 2'} = '2. telefon';
     $Self->{Translation}->{'E-Mail'} = 'E-mail';
-    $Self->{Translation}->{'Address'} = 'Cím';
     $Self->{Translation}->{'Network Address'} = 'Hálózati cím';
     $Self->{Translation}->{'Subnet Mask'} = 'Alhálózati maszk';
     $Self->{Translation}->{'Gateway'} = 'Átjáró';
@@ -190,6 +196,7 @@ sub Data {
     $Self->{Translation}->{'Docking Station'} = 'Dokkoló állomás';
     $Self->{Translation}->{'Scanner'} = 'Lapolvasó';
     $Self->{Translation}->{'Building'} = 'Épület';
+    $Self->{Translation}->{'Office'} = 'Iroda';
     $Self->{Translation}->{'Floor'} = 'Emelet';
     $Self->{Translation}->{'Room'} = 'Szoba';
     $Self->{Translation}->{'Rack'} = 'Rack';
@@ -222,8 +229,10 @@ sub Data {
     $Self->{Translation}->{'Open Source'} = 'Nyílt forrású';
     $Self->{Translation}->{'Unlimited'} = 'Korlátlan';
 
+    # JS File: ITSM.Agent.ConfigItem.Zoom
+    $Self->{Translation}->{'Ok'} = 'OK';
+
     # SysConfig
-    $Self->{Translation}->{'Admin.'} = 'Adminisztráció.';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         'Egyedi név ellenőrzése kizárólag ugyanabban a konfigurációelem osztályban („osztály”) vagy globálisan („globális”), amely azt jelenti, hogy minden meglévő konfigurációelem egy fiókba lesz felvéve a kettőzések keresésekor.';
     $Self->{Translation}->{'Config Items'} = 'Konfigurációelemek';
@@ -236,7 +245,7 @@ sub Data {
     $Self->{Translation}->{'Config item zoom.'} = 'Konfigurációelem nagyítása.';
     $Self->{Translation}->{'ConfigItemNumber'} = 'Konfigurációelem-szám';
     $Self->{Translation}->{'Configuration Item Limit'} = 'Konfigurációelem-korlát';
-    $Self->{Translation}->{'Configuration Item limit per page.'} = '';
+    $Self->{Translation}->{'Configuration Item limit per page.'} = 'Konfigurációelem-korlát oldalanként.';
     $Self->{Translation}->{'Configuration Management Database.'} = 'Konfigurációmenedzsment-adatbázis.';
     $Self->{Translation}->{'Configuration item bulk module.'} = 'Konfigurációelem tömeges modul.';
     $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} =
@@ -285,13 +294,12 @@ sub Data {
         'Meghatározza, hogy mely kapcsolattípusok (a jegy nézőpontjából elnevezve) befolyásolhatják egy kapcsolt konfigurációelem állapotát.';
     $Self->{Translation}->{'Defines which type of ticket can affect the status of a linked CI.'} =
         'Meghatározza, hogy mely jegytípus befolyásolhatja egy kapcsolt konfigurációelem állapotát.';
-    $Self->{Translation}->{'Delete Configuration Item'} = '';
+    $Self->{Translation}->{'Delete Configuration Item'} = 'Konfigurációelem törlése';
     $Self->{Translation}->{'Deployment State Color'} = 'Üzembe állítási állapot színe';
     $Self->{Translation}->{'Deployment State Color.'} = 'Üzembe állítási állapot színe.';
     $Self->{Translation}->{'Deployment State Type.'} = 'Üzembe állítási állapottípus.';
-    $Self->{Translation}->{'Disabled'} = 'Letiltva';
-    $Self->{Translation}->{'Duplicate'} = '';
-    $Self->{Translation}->{'Enabled'} = 'Engedélyezve';
+    $Self->{Translation}->{'Duplicate'} = 'Kettőzés';
+    $Self->{Translation}->{'Dutch'} = '';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         'Engedélyezi a konfigurációelem tömeges művelet funkciót az ügyintézői előtétprogramnál, hogy egyszerre egynél több konfigurációelemmel dolgozhasson.';
     $Self->{Translation}->{'Enables configuration item bulk action feature only for the listed groups.'} =
@@ -366,9 +374,18 @@ sub Data {
         'Egy konfigurációelem azonosítója, például: ConfigItem#, MyConfigItem#. Az alapértelmezett: ConfigItem#.';
     $Self->{Translation}->{'class'} = 'osztály';
     $Self->{Translation}->{'global'} = 'globális';
-    $Self->{Translation}->{'postproductive'} = '';
-    $Self->{Translation}->{'preproductive'} = '';
-    $Self->{Translation}->{'productive'} = '';
+    $Self->{Translation}->{'postproductive'} = 'beüzemelés után';
+    $Self->{Translation}->{'preproductive'} = 'beüzemelés előtt';
+    $Self->{Translation}->{'productive'} = 'beüzemelve';
+
+
+    push @{ $Self->{JavaScriptStrings} // [] }, (
+    'No',
+    'Ok',
+    'Settings',
+    'Submit',
+    'Yes',
+    );
 
 }
 

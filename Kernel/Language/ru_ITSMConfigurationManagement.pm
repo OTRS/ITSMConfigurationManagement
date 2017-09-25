@@ -20,6 +20,7 @@ sub Data {
     $Self->{Translation}->{'Change class definition'} = 'Изменить описание класса';
     $Self->{Translation}->{'Config Item Class'} = '';
     $Self->{Translation}->{'Definition'} = 'Описание';
+    $Self->{Translation}->{'Change'} = 'Изменение';
 
     # Template: AgentITSMConfigItemAdd
     $Self->{Translation}->{'Config Item'} = 'Основные средства';
@@ -36,6 +37,7 @@ sub Data {
     $Self->{Translation}->{'The number of another Configuration Item to link with.'} = 'Количество других КЕ для связывания.';
 
     # Template: AgentITSMConfigItemDelete
+    $Self->{Translation}->{'Number'} = 'Число';
     $Self->{Translation}->{'Do you really want to delete this config item?'} = '';
 
     # Template: AgentITSMConfigItemEdit
@@ -47,6 +49,9 @@ sub Data {
 
     # Template: AgentITSMConfigItemHistory
     $Self->{Translation}->{'History of Config Item: %s'} = '';
+    $Self->{Translation}->{'History Content'} = 'Содержимое истории';
+    $Self->{Translation}->{'Createtime'} = 'Время создания';
+    $Self->{Translation}->{'Zoom view'} = 'Подробный показ';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'Параметры контекста';
@@ -69,7 +74,6 @@ sub Data {
     $Self->{Translation}->{'Configuration Item Information'} = ' Информация о Конф. ед.';
     $Self->{Translation}->{'Current Deployment State'} = 'Текущее состояние использования';
     $Self->{Translation}->{'Last changed by'} = 'Автор последнего изменения';
-    $Self->{Translation}->{'Ok'} = 'Ok';
     $Self->{Translation}->{'Show one version'} = 'Показать одну версию';
     $Self->{Translation}->{'Show all versions'} = 'Показать все версии';
     $Self->{Translation}->{'Version Incident State'} = 'Состояние инцидента версии';
@@ -124,6 +128,9 @@ sub Data {
     $Self->{Translation}->{'The deployment state of this config item'} = 'Состояние использования этой КЕ';
     $Self->{Translation}->{'The incident state of this config item'} = 'Состояние инцидента для этой КЕ';
 
+    # Perl Module: Kernel/Output/HTML/ITSMConfigItem/LayoutDate.pm
+    $Self->{Translation}->{'Between'} = 'Между';
+
     # Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
     $Self->{Translation}->{'Maximum number of one element'} = 'Максимальное количество одного элемента';
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Пустые поля показывают, что текущие значения сохранятся';
@@ -145,7 +152,6 @@ sub Data {
     $Self->{Translation}->{'Phone 1'} = 'Телефон 1';
     $Self->{Translation}->{'Phone 2'} = 'Телефон 2';
     $Self->{Translation}->{'E-Mail'} = '';
-    $Self->{Translation}->{'Address'} = 'Адрес';
     $Self->{Translation}->{'Network Address'} = 'Сетевой адрес';
     $Self->{Translation}->{'Subnet Mask'} = 'Маска подсети';
     $Self->{Translation}->{'Gateway'} = 'Шлюз';
@@ -190,6 +196,7 @@ sub Data {
     $Self->{Translation}->{'Docking Station'} = 'Док-станция';
     $Self->{Translation}->{'Scanner'} = 'Сканер';
     $Self->{Translation}->{'Building'} = 'Здание';
+    $Self->{Translation}->{'Office'} = 'Офис';
     $Self->{Translation}->{'Floor'} = 'Этаж';
     $Self->{Translation}->{'Room'} = 'Кабинет';
     $Self->{Translation}->{'Rack'} = 'Стойка';
@@ -222,8 +229,10 @@ sub Data {
     $Self->{Translation}->{'Open Source'} = 'ПО с открытым кодом';
     $Self->{Translation}->{'Unlimited'} = 'Без ограничений';
 
+    # JS File: ITSM.Agent.ConfigItem.Zoom
+    $Self->{Translation}->{'Ok'} = 'Ok';
+
     # SysConfig
-    $Self->{Translation}->{'Admin.'} = 'Администратор.';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         'Проверка уникальности Имени внутри текущего класса КЕ(\'class\') или глобально (\'global\'),что означает, что любая существующая КЕ учитывается при поиске дубликатов ';
     $Self->{Translation}->{'Config Items'} = 'Конфигурационные единицы';
@@ -289,9 +298,8 @@ sub Data {
     $Self->{Translation}->{'Deployment State Color'} = '';
     $Self->{Translation}->{'Deployment State Color.'} = '';
     $Self->{Translation}->{'Deployment State Type.'} = '';
-    $Self->{Translation}->{'Disabled'} = 'Отключено';
-    $Self->{Translation}->{'Duplicate'} = '';
-    $Self->{Translation}->{'Enabled'} = 'Включено';
+    $Self->{Translation}->{'Duplicate'} = 'Резерв';
+    $Self->{Translation}->{'Dutch'} = '';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         'Включает возможность массовых действий с КЕ для интерфейса агента для работы с несколькими КЕ одновременно.';
     $Self->{Translation}->{'Enables configuration item bulk action feature only for the listed groups.'} =
@@ -369,6 +377,15 @@ sub Data {
     $Self->{Translation}->{'postproductive'} = '';
     $Self->{Translation}->{'preproductive'} = '';
     $Self->{Translation}->{'productive'} = '';
+
+
+    push @{ $Self->{JavaScriptStrings} // [] }, (
+    'No',
+    'Ok',
+    'Settings',
+    'Submit',
+    'Yes',
+    );
 
 }
 

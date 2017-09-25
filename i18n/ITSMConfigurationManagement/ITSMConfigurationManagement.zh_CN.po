@@ -4,13 +4,14 @@
 # Udo Bretz, 2015
 # 张梦 <adoeh@sina.com>, 2014
 # 汇民 王 <whuim@163.com>, 2017
+# 汇民 王 <whuim@qq.com>, 2017
 # 陈德文 <sggggy@gmail.com>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2017-06-01 19:31+0000\n"
-"PO-Revision-Date: 2017-06-05 01:18+0000\n"
-"Last-Translator: 汇民 王 <whuim@163.com>\n"
+"POT-Creation-Date: 2017-09-25 09:15+0000\n"
+"PO-Revision-Date: 2017-09-25 09:15+0000\n"
+"Last-Translator: Dusan Vuckovic\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otrs/OTRS/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,6 +34,10 @@ msgstr "配置项类"
 #. Template: AdminITSMConfigItem
 msgid "Definition"
 msgstr "定义"
+
+#. Template: AdminITSMConfigItem
+msgid "Change"
+msgstr "变更"
 
 #. Template: AgentITSMConfigItemAdd
 msgid "Config Item"
@@ -75,6 +80,10 @@ msgid "The number of another Configuration Item to link with."
 msgstr "将要链接的另外一个配置项编号。"
 
 #. Template: AgentITSMConfigItemDelete
+msgid "Number"
+msgstr "编号"
+
+#. Template: AgentITSMConfigItemDelete
 msgid "Do you really want to delete this config item?"
 msgstr "你真的想要删除这个配置项吗?"
 
@@ -98,6 +107,18 @@ msgstr "故障状态"
 #. Template: AgentITSMConfigItemHistory
 msgid "History of Config Item: %s"
 msgstr "配置项：%s 的历史信息"
+
+#. Template: AgentITSMConfigItemHistory
+msgid "History Content"
+msgstr "历史值"
+
+#. Template: AgentITSMConfigItemHistory
+msgid "Createtime"
+msgstr "创建时间"
+
+#. Template: AgentITSMConfigItemHistory
+msgid "Zoom view"
+msgstr "详情视图"
 
 #. Template: AgentITSMConfigItemOverviewNavBar
 msgid "Context Settings"
@@ -154,10 +175,6 @@ msgstr "当前的部署状态"
 #. Template: AgentITSMConfigItemZoom
 msgid "Last changed by"
 msgstr "最后修改人"
-
-#. Template: AgentITSMConfigItemZoom
-msgid "Ok"
-msgstr "确定"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Show one version"
@@ -299,6 +316,10 @@ msgstr "配置项部署状态"
 msgid "The incident state of this config item"
 msgstr "配置项故障状态"
 
+#. Perl Module: Kernel/Output/HTML/ITSMConfigItem/LayoutDate.pm
+msgid "Between"
+msgstr "时间区间"
+
 #. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
 msgid "Maximum number of one element"
 msgstr "单个元素的最大数量"
@@ -372,10 +393,6 @@ msgid "E-Mail"
 msgstr "E-Mail"
 
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
-msgid "Address"
-msgstr "地址"
-
-#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
 msgid "Network Address"
 msgstr "网络地址"
 
@@ -407,339 +424,273 @@ msgstr "过期日期"
 msgid "Media"
 msgstr "介质"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Computer"
 msgstr "计算机"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Hardware"
 msgstr "硬件"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Network"
 msgstr "网络"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Software"
 msgstr "软件"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Expired"
 msgstr "已过期"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Maintenance"
 msgstr "维护"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Pilot"
 msgstr "试验"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Planned"
 msgstr "已计划"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
-msgid "Production"
-msgstr "生产"
-
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Repair"
 msgstr "修复"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Retired"
 msgstr "报废"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Review"
 msgstr "复审"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Test/QA"
 msgstr "测试/品质保证"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Laptop"
 msgstr "笔记本"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Desktop"
 msgstr "台式电脑"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "PDA"
 msgstr "PDA"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Server"
 msgstr "服务器"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Other"
 msgstr "其它"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Monitor"
 msgstr "显示器"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Printer"
 msgstr "打印机"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Switch"
 msgstr "交换机"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Router"
 msgstr "路由器"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "WLAN Access Point"
 msgstr "WLAN 无线访问点"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Security Device"
 msgstr "安全设备"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Backup Device"
 msgstr "备份设备"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Mouse"
 msgstr "鼠标"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Keyboard"
 msgstr "键盘"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Camera"
 msgstr "照相机"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Beamer"
 msgstr "投影仪"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Modem"
 msgstr "调解调器"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "PCMCIA Card"
 msgstr "PCMCIA卡"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "USB Device"
 msgstr "USB 设备"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Docking Station"
 msgstr "坞站"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Scanner"
 msgstr "扫描仪"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Building"
 msgstr "大厦"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Office"
+msgstr "办公室"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Floor"
 msgstr "楼层"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Room"
 msgstr "房间"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Rack"
 msgstr "机架"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Workplace"
 msgstr "工作间"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Outlet"
 msgstr "插座"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "IT Facility"
 msgstr "IT设施"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "LAN"
 msgstr "局域网"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "WLAN"
 msgstr "无线网络"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Telco"
 msgstr "电话公司"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "GSM"
 msgstr "GSM"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Client Application"
 msgstr "客户端应用程序"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Middleware"
 msgstr "中间件"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Server Application"
 msgstr "服务器应用程序"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Client OS"
 msgstr "客户操作系统"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Server OS"
 msgstr "服务器操作系统"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Admin Tool"
 msgstr "管理工具"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "User Tool"
 msgstr "用户工具"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Embedded"
 msgstr "嵌入式"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Single Licence"
 msgstr "单一许可"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Per User"
 msgstr "每个用户"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Per Processor"
 msgstr "每个处理器"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Per Server"
 msgstr "每个服务器"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Per Node"
 msgstr "每个节点"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Volume Licence"
 msgstr "批量授权"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Enterprise Licence"
 msgstr "企业许可"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Developer Licence"
 msgstr "开发许可"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Demo"
 msgstr "演示"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Time Restricted"
 msgstr "时间限制"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Freeware"
 msgstr "免费软件"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Open Source"
 msgstr "开源"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Unlimited"
 msgstr "无限制的"
 
-#. SysConfig
-msgid "Admin."
-msgstr "系统管理。"
+#. JS File: ITSM.Agent.ConfigItem.Zoom
+msgid "Ok"
+msgstr "确定"
 
 #. SysConfig
 msgid ""
@@ -787,8 +738,8 @@ msgid "Configuration Item Limit"
 msgstr "配置项限制"
 
 #. SysConfig
-msgid "Configuration Item limit per page"
-msgstr "每页配置项限制"
+msgid "Configuration Item limit per page."
+msgstr "每个页面上的配置项限制。"
 
 #. SysConfig
 msgid "Configuration Management Database."
@@ -957,6 +908,10 @@ msgid "Defines which type of ticket can affect the status of a linked CI."
 msgstr "定义哪一类工单可以影响一个链接的配置项的状态。"
 
 #. SysConfig
+msgid "Delete Configuration Item"
+msgstr "删除配置项"
+
+#. SysConfig
 msgid "Deployment State Color"
 msgstr "部署状态的颜色"
 
@@ -969,12 +924,12 @@ msgid "Deployment State Type."
 msgstr "部署状态类型。"
 
 #. SysConfig
-msgid "Disabled"
-msgstr "已禁用"
+msgid "Duplicate"
+msgstr "复制"
 
 #. SysConfig
-msgid "Enabled"
-msgstr "已启用"
+msgid "Dutch"
+msgstr ""
 
 #. SysConfig
 msgid ""
@@ -1199,3 +1154,15 @@ msgstr "类"
 #. SysConfig
 msgid "global"
 msgstr "全局"
+
+#. SysConfig
+msgid "postproductive"
+msgstr "闲置"
+
+#. SysConfig
+msgid "preproductive"
+msgstr "准备投产"
+
+#. SysConfig
+msgid "productive"
+msgstr "投产"

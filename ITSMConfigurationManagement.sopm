@@ -38,6 +38,7 @@
         <File Permission="660" Location="Kernel/Language/fa_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/fr_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/hu_ITSMConfigurationManagement.pm" />
+        <File Permission="660" Location="Kernel/Language/id_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/it_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/ja_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/ms_ITSMConfigurationManagement.pm" />
@@ -47,8 +48,11 @@
         <File Permission="660" Location="Kernel/Language/pt_BR_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/pt_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/ru_ITSMConfigurationManagement.pm" />
+        <File Permission="660" Location="Kernel/Language/sr_Cyrl_ITSMConfigurationManagement.pm" />
+        <File Permission="660" Location="Kernel/Language/sr_Latn_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/sv_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/sw_ITSMConfigurationManagement.pm" />
+        <File Permission="660" Location="Kernel/Language/th_TH_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/zh_CN_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/zh_TW_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Modules/AdminITSMConfigItem.pm" />

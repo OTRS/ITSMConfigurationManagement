@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2017-06-01 19:31+0000\n"
-"PO-Revision-Date: 2017-06-02 13:31+0000\n"
-"Last-Translator: Udo Bretz\n"
+"POT-Creation-Date: 2017-09-25 09:15+0000\n"
+"PO-Revision-Date: 2017-09-25 09:15+0000\n"
+"Last-Translator: Dusan Vuckovic\n"
 "Language-Team: Portuguese (http://www.transifex.com/otrs/OTRS/language/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,6 +31,10 @@ msgstr ""
 #. Template: AdminITSMConfigItem
 msgid "Definition"
 msgstr "Definição"
+
+#. Template: AdminITSMConfigItem
+msgid "Change"
+msgstr "Alterar"
 
 #. Template: AgentITSMConfigItemAdd
 msgid "Config Item"
@@ -73,6 +77,10 @@ msgid "The number of another Configuration Item to link with."
 msgstr ""
 
 #. Template: AgentITSMConfigItemDelete
+msgid "Number"
+msgstr "Número"
+
+#. Template: AgentITSMConfigItemDelete
 msgid "Do you really want to delete this config item?"
 msgstr ""
 
@@ -96,6 +104,18 @@ msgstr "Estado de Incidente"
 #. Template: AgentITSMConfigItemHistory
 msgid "History of Config Item: %s"
 msgstr ""
+
+#. Template: AgentITSMConfigItemHistory
+msgid "History Content"
+msgstr "Histórico do conteúdo"
+
+#. Template: AgentITSMConfigItemHistory
+msgid "Createtime"
+msgstr "Hora de criação"
+
+#. Template: AgentITSMConfigItemHistory
+msgid "Zoom view"
+msgstr "Vista de detalhe"
 
 #. Template: AgentITSMConfigItemOverviewNavBar
 msgid "Context Settings"
@@ -152,10 +172,6 @@ msgstr "Estado de Implementação Atual"
 #. Template: AgentITSMConfigItemZoom
 msgid "Last changed by"
 msgstr "Última modificação por"
-
-#. Template: AgentITSMConfigItemZoom
-msgid "Ok"
-msgstr "Ok"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Show one version"
@@ -279,7 +295,7 @@ msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "No Result!"
-msgstr ""
+msgstr "Sem resultado!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "Config Item Search Results"
@@ -296,6 +312,10 @@ msgstr "O estado de implementação do item de configuração"
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
 msgid "The incident state of this config item"
 msgstr "O estado de incidente deste item de configuração"
+
+#. Perl Module: Kernel/Output/HTML/ITSMConfigItem/LayoutDate.pm
+msgid "Between"
+msgstr "Entre"
 
 #. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
 msgid "Maximum number of one element"
@@ -370,10 +390,6 @@ msgid "E-Mail"
 msgstr ""
 
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
-msgid "Address"
-msgstr "Endereço"
-
-#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
 msgid "Network Address"
 msgstr "Endereço de Rede"
 
@@ -405,339 +421,273 @@ msgstr "Data de Expiração"
 msgid "Media"
 msgstr "Media"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Computer"
 msgstr ""
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Hardware"
 msgstr ""
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Network"
 msgstr ""
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Software"
 msgstr ""
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Expired"
 msgstr "Expirado"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Maintenance"
 msgstr "Manutenção"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Pilot"
 msgstr "Piloto"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Planned"
 msgstr "Planeado"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
-msgid "Production"
-msgstr "Produção"
-
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Repair"
 msgstr "Reparação"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Retired"
 msgstr "Retirado"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Review"
 msgstr "Revisão"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Test/QA"
 msgstr "Teste de Qualidade"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Laptop"
 msgstr "portátil"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Desktop"
 msgstr "Área "
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "PDA"
 msgstr ""
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Server"
 msgstr "Servidor"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Other"
 msgstr "Outro"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Monitor"
 msgstr ""
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Printer"
 msgstr "Impressora"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Switch"
 msgstr "Switch"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Router"
 msgstr "Router"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "WLAN Access Point"
 msgstr ""
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Security Device"
 msgstr "Dispositivo de Segurança"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Backup Device"
 msgstr "Dispositivo de Backup"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Mouse"
 msgstr "rato"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Keyboard"
 msgstr "Teclado"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Camera"
 msgstr "Câmara"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Beamer"
 msgstr "Projetor"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Modem"
 msgstr ""
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "PCMCIA Card"
 msgstr "Placa PCMCIA"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "USB Device"
 msgstr "Dispositivo USB"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Docking Station"
 msgstr ""
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Scanner"
 msgstr "Scanner"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Building"
 msgstr "Prédio"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Office"
+msgstr "Gabinete"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Floor"
 msgstr "Piso"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Room"
 msgstr "Sala"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Rack"
 msgstr ""
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Workplace"
 msgstr "Local de Trabalho"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Outlet"
 msgstr "Tomada"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "IT Facility"
 msgstr "Departamento de TI"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "LAN"
 msgstr "REDE"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "WLAN"
 msgstr ""
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Telco"
 msgstr "Telecomunicações"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "GSM"
 msgstr ""
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Client Application"
 msgstr "Aplicação Cliente"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Middleware"
 msgstr ""
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Server Application"
 msgstr "Servidor Aplicacional "
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Client OS"
 msgstr "SO Cliente"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Server OS"
 msgstr "SO Servidor"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Admin Tool"
 msgstr "Ferramenta de Administração"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "User Tool"
 msgstr "Ferramenta de Utilizador"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Embedded"
 msgstr "Integrado"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Single Licence"
 msgstr "Licença Única"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Per User"
 msgstr "Por Utilizador"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Per Processor"
 msgstr "Por Processador"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Per Server"
 msgstr "Por Servidor"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Per Node"
 msgstr "Por Posto"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Volume Licence"
 msgstr "Licença por Volume"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Enterprise Licence"
 msgstr "Licença Corporativa"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Developer Licence"
 msgstr "Licença de desenvolvimento"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Demo"
 msgstr "Demonstração"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Time Restricted"
 msgstr "Tempo Restrito"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Freeware"
 msgstr "Livre"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Open Source"
 msgstr "Código aberto"
 
-#. Database XML Definition:
-#. /devel/ITSMConfigurationManagement_5_0//ITSMConfigurationManagement.sopm
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Unlimited"
 msgstr "Ilimitada"
 
-#. SysConfig
-msgid "Admin."
-msgstr "Administração."
+#. JS File: ITSM.Agent.ConfigItem.Zoom
+msgid "Ok"
+msgstr "Ok"
 
 #. SysConfig
 msgid ""
@@ -785,8 +735,8 @@ msgid "Configuration Item Limit"
 msgstr "Limite de Items de Configuração"
 
 #. SysConfig
-msgid "Configuration Item limit per page"
-msgstr "Limite de Items de Configuração por página"
+msgid "Configuration Item limit per page."
+msgstr ""
 
 #. SysConfig
 msgid "Configuration Management Database."
@@ -955,6 +905,10 @@ msgid "Defines which type of ticket can affect the status of a linked CI."
 msgstr ""
 
 #. SysConfig
+msgid "Delete Configuration Item"
+msgstr ""
+
+#. SysConfig
 msgid "Deployment State Color"
 msgstr ""
 
@@ -967,11 +921,11 @@ msgid "Deployment State Type."
 msgstr ""
 
 #. SysConfig
-msgid "Disabled"
-msgstr ""
+msgid "Duplicate"
+msgstr "Duplicar"
 
 #. SysConfig
-msgid "Enabled"
+msgid "Dutch"
 msgstr ""
 
 #. SysConfig
@@ -1196,4 +1150,16 @@ msgstr ""
 
 #. SysConfig
 msgid "global"
+msgstr ""
+
+#. SysConfig
+msgid "postproductive"
+msgstr ""
+
+#. SysConfig
+msgid "preproductive"
+msgstr ""
+
+#. SysConfig
+msgid "productive"
 msgstr ""

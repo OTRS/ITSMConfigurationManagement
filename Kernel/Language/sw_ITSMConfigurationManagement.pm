@@ -20,6 +20,7 @@ sub Data {
     $Self->{Translation}->{'Change class definition'} = 'Badili ufafanuzi wa tabaka';
     $Self->{Translation}->{'Config Item Class'} = '';
     $Self->{Translation}->{'Definition'} = 'Ufafanuzi';
+    $Self->{Translation}->{'Change'} = 'Badilisha';
 
     # Template: AgentITSMConfigItemAdd
     $Self->{Translation}->{'Config Item'} = 'Usanidi wa Kipengele ';
@@ -36,6 +37,7 @@ sub Data {
     $Self->{Translation}->{'The number of another Configuration Item to link with.'} = 'Namba ya kipengele kingine cha usanidi cha kuunganisha nacho.';
 
     # Template: AgentITSMConfigItemDelete
+    $Self->{Translation}->{'Number'} = 'Namba';
     $Self->{Translation}->{'Do you really want to delete this config item?'} = '';
 
     # Template: AgentITSMConfigItemEdit
@@ -47,6 +49,9 @@ sub Data {
 
     # Template: AgentITSMConfigItemHistory
     $Self->{Translation}->{'History of Config Item: %s'} = '';
+    $Self->{Translation}->{'History Content'} = 'Maudhui ya historia';
+    $Self->{Translation}->{'Createtime'} = 'Muda wa kutengeneza';
+    $Self->{Translation}->{'Zoom view'} = 'Mandhari iliyokuzwa';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'Mipangilio ya muktadha';
@@ -69,7 +74,6 @@ sub Data {
     $Self->{Translation}->{'Configuration Item Information'} = 'Taarifa za kipengele cha usanidi';
     $Self->{Translation}->{'Current Deployment State'} = 'Hali ya kutumia ya sasa';
     $Self->{Translation}->{'Last changed by'} = 'Mwisho kubadilishwa na';
-    $Self->{Translation}->{'Ok'} = 'Sawa';
     $Self->{Translation}->{'Show one version'} = 'Onyesha toleo moja';
     $Self->{Translation}->{'Show all versions'} = 'Onyesha matoleo yote';
     $Self->{Translation}->{'Version Incident State'} = 'Toleo la hali ya tukio';
@@ -124,6 +128,9 @@ sub Data {
     $Self->{Translation}->{'The deployment state of this config item'} = 'Hali ya matumizi ya hii kipengele cha usanidi ';
     $Self->{Translation}->{'The incident state of this config item'} = 'Hali ya tukio ya hiki kipengele cha usanidi';
 
+    # Perl Module: Kernel/Output/HTML/ITSMConfigItem/LayoutDate.pm
+    $Self->{Translation}->{'Between'} = 'Katikati';
+
     # Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
     $Self->{Translation}->{'Maximum number of one element'} = 'Kima cha juu cha namba ya elementi mojawapo';
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Uga zilizowazi zinaonyesha kwamba thamani za sasa zimewekwa.';
@@ -145,7 +152,6 @@ sub Data {
     $Self->{Translation}->{'Phone 1'} = 'Simu ya 1';
     $Self->{Translation}->{'Phone 2'} = 'Simu ya 2';
     $Self->{Translation}->{'E-Mail'} = '';
-    $Self->{Translation}->{'Address'} = 'Anwani';
     $Self->{Translation}->{'Network Address'} = 'Anwani ya mtandao';
     $Self->{Translation}->{'Subnet Mask'} = 'Subnet mask';
     $Self->{Translation}->{'Gateway'} = 'Kichanganishi mtandao';
@@ -190,6 +196,7 @@ sub Data {
     $Self->{Translation}->{'Docking Station'} = 'Kituo egeshi';
     $Self->{Translation}->{'Scanner'} = 'Kitambazo';
     $Self->{Translation}->{'Building'} = 'Jengo';
+    $Self->{Translation}->{'Office'} = 'Ofisi';
     $Self->{Translation}->{'Floor'} = 'Sakafu';
     $Self->{Translation}->{'Room'} = 'Chumba';
     $Self->{Translation}->{'Rack'} = 'Rack';
@@ -222,8 +229,10 @@ sub Data {
     $Self->{Translation}->{'Open Source'} = 'Chanzo cha wazi';
     $Self->{Translation}->{'Unlimited'} = 'Haina kikomo';
 
+    # JS File: ITSM.Agent.ConfigItem.Zoom
+    $Self->{Translation}->{'Ok'} = 'Sawa';
+
     # SysConfig
-    $Self->{Translation}->{'Admin.'} = '';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         'Angalia majina ya kipekee tu katika tabaka sawa la kipengele cha usanidi (\'Tabaka\') au zote (\'Zote\'), ambayo inamaanisha kila kipengele cha usanidi kilichopo kimejumuishwa wakati nakala pacha zinaangaliwa.';
     $Self->{Translation}->{'Config Items'} = 'Vipengele vya usanidi';
@@ -291,9 +300,8 @@ ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns';
     $Self->{Translation}->{'Deployment State Color'} = '';
     $Self->{Translation}->{'Deployment State Color.'} = '';
     $Self->{Translation}->{'Deployment State Type.'} = '';
-    $Self->{Translation}->{'Disabled'} = '';
-    $Self->{Translation}->{'Duplicate'} = '';
-    $Self->{Translation}->{'Enabled'} = '';
+    $Self->{Translation}->{'Duplicate'} = 'Nakala pacha';
+    $Self->{Translation}->{'Dutch'} = '';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         'Inawezesha kipengele cha kitendo ch wingi cha kipengele cha usanidi kwa maingira ya mbele ya wakala kufanya kazi katika kipengele cha usanidi zaidi ya kimoja kwa muda.';
     $Self->{Translation}->{'Enables configuration item bulk action feature only for the listed groups.'} =
@@ -371,6 +379,15 @@ ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns';
     $Self->{Translation}->{'postproductive'} = '';
     $Self->{Translation}->{'preproductive'} = '';
     $Self->{Translation}->{'productive'} = '';
+
+
+    push @{ $Self->{JavaScriptStrings} // [] }, (
+    'No',
+    'Ok',
+    'Settings',
+    'Submit',
+    'Yes',
+    );
 
 }
 

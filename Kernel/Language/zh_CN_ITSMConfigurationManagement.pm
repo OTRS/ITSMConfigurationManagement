@@ -20,6 +20,7 @@ sub Data {
     $Self->{Translation}->{'Change class definition'} = '修改类定义';
     $Self->{Translation}->{'Config Item Class'} = '配置项类';
     $Self->{Translation}->{'Definition'} = '定义';
+    $Self->{Translation}->{'Change'} = '变更';
 
     # Template: AgentITSMConfigItemAdd
     $Self->{Translation}->{'Config Item'} = '配置项';
@@ -36,6 +37,7 @@ sub Data {
     $Self->{Translation}->{'The number of another Configuration Item to link with.'} = '将要链接的另外一个配置项编号。';
 
     # Template: AgentITSMConfigItemDelete
+    $Self->{Translation}->{'Number'} = '编号';
     $Self->{Translation}->{'Do you really want to delete this config item?'} = '你真的想要删除这个配置项吗?';
 
     # Template: AgentITSMConfigItemEdit
@@ -47,6 +49,9 @@ sub Data {
 
     # Template: AgentITSMConfigItemHistory
     $Self->{Translation}->{'History of Config Item: %s'} = '配置项：%s 的历史信息';
+    $Self->{Translation}->{'History Content'} = '历史值';
+    $Self->{Translation}->{'Createtime'} = '创建时间';
+    $Self->{Translation}->{'Zoom view'} = '详情视图';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = '上下文设置';
@@ -69,7 +74,6 @@ sub Data {
     $Self->{Translation}->{'Configuration Item Information'} = '配置项信息';
     $Self->{Translation}->{'Current Deployment State'} = '当前的部署状态';
     $Self->{Translation}->{'Last changed by'} = '最后修改人';
-    $Self->{Translation}->{'Ok'} = '确定';
     $Self->{Translation}->{'Show one version'} = '显示一个版本';
     $Self->{Translation}->{'Show all versions'} = '显示所有版本';
     $Self->{Translation}->{'Version Incident State'} = '版本故障状态';
@@ -124,6 +128,9 @@ sub Data {
     $Self->{Translation}->{'The deployment state of this config item'} = '配置项部署状态';
     $Self->{Translation}->{'The incident state of this config item'} = '配置项故障状态';
 
+    # Perl Module: Kernel/Output/HTML/ITSMConfigItem/LayoutDate.pm
+    $Self->{Translation}->{'Between'} = '时间区间';
+
     # Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
     $Self->{Translation}->{'Maximum number of one element'} = '单个元素的最大数量';
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = '空字段表示保持当前值';
@@ -145,7 +152,6 @@ sub Data {
     $Self->{Translation}->{'Phone 1'} = '电话1';
     $Self->{Translation}->{'Phone 2'} = '电话2';
     $Self->{Translation}->{'E-Mail'} = 'E-Mail';
-    $Self->{Translation}->{'Address'} = '地址';
     $Self->{Translation}->{'Network Address'} = '网络地址';
     $Self->{Translation}->{'Subnet Mask'} = '子网掩码';
     $Self->{Translation}->{'Gateway'} = '网关';
@@ -190,6 +196,7 @@ sub Data {
     $Self->{Translation}->{'Docking Station'} = '坞站';
     $Self->{Translation}->{'Scanner'} = '扫描仪';
     $Self->{Translation}->{'Building'} = '大厦';
+    $Self->{Translation}->{'Office'} = '办公室';
     $Self->{Translation}->{'Floor'} = '楼层';
     $Self->{Translation}->{'Room'} = '房间';
     $Self->{Translation}->{'Rack'} = '机架';
@@ -222,8 +229,10 @@ sub Data {
     $Self->{Translation}->{'Open Source'} = '开源';
     $Self->{Translation}->{'Unlimited'} = '无限制的';
 
+    # JS File: ITSM.Agent.ConfigItem.Zoom
+    $Self->{Translation}->{'Ok'} = '确定';
+
     # SysConfig
-    $Self->{Translation}->{'Admin.'} = '系统管理。';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         '检查是否为唯一名称的范围是仅在\'class\'（配置项类）内还是\'global\'(全局)，就是在查找重复配置项名称时的范围。';
     $Self->{Translation}->{'Config Items'} = '配置项';
@@ -236,7 +245,7 @@ sub Data {
     $Self->{Translation}->{'Config item zoom.'} = '配置项详情。';
     $Self->{Translation}->{'ConfigItemNumber'} = 'ConfigItemNumber（配置项编号）';
     $Self->{Translation}->{'Configuration Item Limit'} = '配置项限制';
-    $Self->{Translation}->{'Configuration Item limit per page.'} = '';
+    $Self->{Translation}->{'Configuration Item limit per page.'} = '每个页面上的配置项限制。';
     $Self->{Translation}->{'Configuration Management Database.'} = '配置管理数据库。';
     $Self->{Translation}->{'Configuration item bulk module.'} = '配置项批处理模块。';
     $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} =
@@ -285,13 +294,12 @@ sub Data {
         '定义哪一类(从工单角度命名的)链接可以影响一个链接的配置项的状态。';
     $Self->{Translation}->{'Defines which type of ticket can affect the status of a linked CI.'} =
         '定义哪一类工单可以影响一个链接的配置项的状态。';
-    $Self->{Translation}->{'Delete Configuration Item'} = '';
+    $Self->{Translation}->{'Delete Configuration Item'} = '删除配置项';
     $Self->{Translation}->{'Deployment State Color'} = '部署状态的颜色';
     $Self->{Translation}->{'Deployment State Color.'} = '部署状态的颜色。';
     $Self->{Translation}->{'Deployment State Type.'} = '部署状态类型。';
-    $Self->{Translation}->{'Disabled'} = '已禁用';
-    $Self->{Translation}->{'Duplicate'} = '';
-    $Self->{Translation}->{'Enabled'} = '已启用';
+    $Self->{Translation}->{'Duplicate'} = '复制';
+    $Self->{Translation}->{'Dutch'} = '';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         '在服务人员界面启用配置项批量操作功能，可以一次处理多个配置项。';
     $Self->{Translation}->{'Enables configuration item bulk action feature only for the listed groups.'} =
@@ -366,9 +374,18 @@ sub Data {
         '配置项标识符，如ConfigItem#、MyConfigItem#，默认是ConfigItem#。';
     $Self->{Translation}->{'class'} = '类';
     $Self->{Translation}->{'global'} = '全局';
-    $Self->{Translation}->{'postproductive'} = '';
-    $Self->{Translation}->{'preproductive'} = '';
-    $Self->{Translation}->{'productive'} = '';
+    $Self->{Translation}->{'postproductive'} = '闲置';
+    $Self->{Translation}->{'preproductive'} = '准备投产';
+    $Self->{Translation}->{'productive'} = '投产';
+
+
+    push @{ $Self->{JavaScriptStrings} // [] }, (
+    'No',
+    'Ok',
+    'Settings',
+    'Submit',
+    'Yes',
+    );
 
 }
 

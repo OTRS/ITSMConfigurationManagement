@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ITSMConfigurationManagement\n"
-"POT-Creation-Date: 2017-08-21 12:05+0000\n"
+"POT-Creation-Date: 2017-09-25 09:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,6 +24,10 @@ msgstr ""
 
 #. Template: AdminITSMConfigItem
 msgid "Definition"
+msgstr ""
+
+#. Template: AdminITSMConfigItem
+msgid "Change"
 msgstr ""
 
 #. Template: AgentITSMConfigItemAdd
@@ -67,6 +71,10 @@ msgid "The number of another Configuration Item to link with."
 msgstr ""
 
 #. Template: AgentITSMConfigItemDelete
+msgid "Number"
+msgstr ""
+
+#. Template: AgentITSMConfigItemDelete
 msgid "Do you really want to delete this config item?"
 msgstr ""
 
@@ -88,6 +96,18 @@ msgstr ""
 
 #. Template: AgentITSMConfigItemHistory
 msgid "History of Config Item: %s"
+msgstr ""
+
+#. Template: AgentITSMConfigItemHistory
+msgid "History Content"
+msgstr ""
+
+#. Template: AgentITSMConfigItemHistory
+msgid "Createtime"
+msgstr ""
+
+#. Template: AgentITSMConfigItemHistory
+msgid "Zoom view"
 msgstr ""
 
 #. Template: AgentITSMConfigItemOverviewNavBar
@@ -144,10 +164,6 @@ msgstr ""
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Last changed by"
-msgstr ""
-
-#. Template: AgentITSMConfigItemZoom
-msgid "Ok"
 msgstr ""
 
 #. Template: AgentITSMConfigItemZoom
@@ -290,6 +306,10 @@ msgstr ""
 msgid "The incident state of this config item"
 msgstr ""
 
+#. Perl Module: Kernel/Output/HTML/ITSMConfigItem/LayoutDate.pm
+msgid "Between"
+msgstr ""
+
 #. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
 msgid "Maximum number of one element"
 msgstr ""
@@ -360,10 +380,6 @@ msgstr ""
 
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
 msgid "E-Mail"
-msgstr ""
-
-#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
-msgid "Address"
 msgstr ""
 
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
@@ -535,6 +551,10 @@ msgid "Building"
 msgstr ""
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Office"
+msgstr ""
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Floor"
 msgstr ""
 
@@ -658,8 +678,8 @@ msgstr ""
 msgid "Unlimited"
 msgstr ""
 
-#. SysConfig
-msgid "Admin."
+#. JS File: ITSM.Agent.ConfigItem.Zoom
+msgid "Ok"
 msgstr ""
 
 #. SysConfig
@@ -827,15 +847,11 @@ msgid "Deployment State Type."
 msgstr ""
 
 #. SysConfig
-msgid "Disabled"
-msgstr ""
-
-#. SysConfig
 msgid "Duplicate"
 msgstr ""
 
 #. SysConfig
-msgid "Enabled"
+msgid "Dutch"
 msgstr ""
 
 #. SysConfig

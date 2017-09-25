@@ -20,6 +20,7 @@ sub Data {
     $Self->{Translation}->{'Change class definition'} = 'Zmień definicję klasy';
     $Self->{Translation}->{'Config Item Class'} = 'Klasa CI';
     $Self->{Translation}->{'Definition'} = 'Definicja';
+    $Self->{Translation}->{'Change'} = 'Zmień';
 
     # Template: AgentITSMConfigItemAdd
     $Self->{Translation}->{'Config Item'} = 'CI';
@@ -36,6 +37,7 @@ sub Data {
     $Self->{Translation}->{'The number of another Configuration Item to link with.'} = '';
 
     # Template: AgentITSMConfigItemDelete
+    $Self->{Translation}->{'Number'} = 'Liczba';
     $Self->{Translation}->{'Do you really want to delete this config item?'} = '';
 
     # Template: AgentITSMConfigItemEdit
@@ -47,6 +49,9 @@ sub Data {
 
     # Template: AgentITSMConfigItemHistory
     $Self->{Translation}->{'History of Config Item: %s'} = '';
+    $Self->{Translation}->{'History Content'} = 'Zawartość historii';
+    $Self->{Translation}->{'Createtime'} = 'Utworzone';
+    $Self->{Translation}->{'Zoom view'} = 'Widok szczegółowy';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'Ustawienia kontekstu';
@@ -69,7 +74,6 @@ sub Data {
     $Self->{Translation}->{'Configuration Item Information'} = 'Informacje o CI';
     $Self->{Translation}->{'Current Deployment State'} = 'Aktualny stan wdrożenia';
     $Self->{Translation}->{'Last changed by'} = 'Ostatnio zmienione przez';
-    $Self->{Translation}->{'Ok'} = 'Ok';
     $Self->{Translation}->{'Show one version'} = 'Pokaż jedną wersję!';
     $Self->{Translation}->{'Show all versions'} = 'Pokaż wszystkie wersje';
     $Self->{Translation}->{'Version Incident State'} = 'Stan';
@@ -124,6 +128,9 @@ sub Data {
     $Self->{Translation}->{'The deployment state of this config item'} = 'Stan wdrożenia tego CI';
     $Self->{Translation}->{'The incident state of this config item'} = 'Stan zdarzenia tego CI';
 
+    # Perl Module: Kernel/Output/HTML/ITSMConfigItem/LayoutDate.pm
+    $Self->{Translation}->{'Between'} = 'Pomiędzy';
+
     # Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
     $Self->{Translation}->{'Maximum number of one element'} = 'Maksymalna liczba wystąpień pojednyczego elemetntu';
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Puste pola znaczają, że zatrzymane będą bieżące wartości';
@@ -145,7 +152,6 @@ sub Data {
     $Self->{Translation}->{'Phone 1'} = 'Telefon 1';
     $Self->{Translation}->{'Phone 2'} = 'Telefon 2';
     $Self->{Translation}->{'E-Mail'} = '';
-    $Self->{Translation}->{'Address'} = 'Adres';
     $Self->{Translation}->{'Network Address'} = 'Adres sieciowy';
     $Self->{Translation}->{'Subnet Mask'} = 'Maska sieci';
     $Self->{Translation}->{'Gateway'} = 'Brama';
@@ -190,6 +196,7 @@ sub Data {
     $Self->{Translation}->{'Docking Station'} = 'Stacja dokująca';
     $Self->{Translation}->{'Scanner'} = 'Skaner';
     $Self->{Translation}->{'Building'} = 'Budynek';
+    $Self->{Translation}->{'Office'} = 'Biuro';
     $Self->{Translation}->{'Floor'} = 'Piętro';
     $Self->{Translation}->{'Room'} = 'Pokój';
     $Self->{Translation}->{'Rack'} = 'Rack';
@@ -222,8 +229,10 @@ sub Data {
     $Self->{Translation}->{'Open Source'} = 'Open source';
     $Self->{Translation}->{'Unlimited'} = 'Bez limitu';
 
+    # JS File: ITSM.Agent.ConfigItem.Zoom
+    $Self->{Translation}->{'Ok'} = 'Ok';
+
     # SysConfig
-    $Self->{Translation}->{'Admin.'} = 'Admin';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         '';
     $Self->{Translation}->{'Config Items'} = '';
@@ -289,9 +298,8 @@ sub Data {
     $Self->{Translation}->{'Deployment State Color'} = '';
     $Self->{Translation}->{'Deployment State Color.'} = '';
     $Self->{Translation}->{'Deployment State Type.'} = '';
-    $Self->{Translation}->{'Disabled'} = 'Wyłączony';
-    $Self->{Translation}->{'Duplicate'} = '';
-    $Self->{Translation}->{'Enabled'} = 'Włączony';
+    $Self->{Translation}->{'Duplicate'} = 'Duplikat';
+    $Self->{Translation}->{'Dutch'} = '';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         '';
     $Self->{Translation}->{'Enables configuration item bulk action feature only for the listed groups.'} =
@@ -369,6 +377,15 @@ sub Data {
     $Self->{Translation}->{'postproductive'} = '';
     $Self->{Translation}->{'preproductive'} = '';
     $Self->{Translation}->{'productive'} = '';
+
+
+    push @{ $Self->{JavaScriptStrings} // [] }, (
+    'No',
+    'Ok',
+    'Settings',
+    'Submit',
+    'Yes',
+    );
 
 }
 

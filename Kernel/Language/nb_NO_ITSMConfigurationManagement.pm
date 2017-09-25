@@ -20,6 +20,7 @@ sub Data {
     $Self->{Translation}->{'Change class definition'} = 'Endre klassedefinisjon';
     $Self->{Translation}->{'Config Item Class'} = 'Konfigurasjonsenhetsklasse';
     $Self->{Translation}->{'Definition'} = 'Definisjon';
+    $Self->{Translation}->{'Change'} = 'Endre';
 
     # Template: AgentITSMConfigItemAdd
     $Self->{Translation}->{'Config Item'} = 'Konfigurasjonsenhet';
@@ -36,6 +37,7 @@ sub Data {
     $Self->{Translation}->{'The number of another Configuration Item to link with.'} = '';
 
     # Template: AgentITSMConfigItemDelete
+    $Self->{Translation}->{'Number'} = 'Nummer';
     $Self->{Translation}->{'Do you really want to delete this config item?'} = 'Vil du virkelig fjerne denne konfigurasjonsenheten?';
 
     # Template: AgentITSMConfigItemEdit
@@ -47,6 +49,9 @@ sub Data {
 
     # Template: AgentITSMConfigItemHistory
     $Self->{Translation}->{'History of Config Item: %s'} = 'Historien til konfigurasjonsenheten: %s';
+    $Self->{Translation}->{'History Content'} = 'Historikk';
+    $Self->{Translation}->{'Createtime'} = 'Opprettet';
+    $Self->{Translation}->{'Zoom view'} = 'Zoom visning';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'Kontekstvalg';
@@ -69,7 +74,6 @@ sub Data {
     $Self->{Translation}->{'Configuration Item Information'} = 'Opplysninger om konfigurasjonsenheten';
     $Self->{Translation}->{'Current Deployment State'} = 'Nåværende produksjonssettingstilstand';
     $Self->{Translation}->{'Last changed by'} = 'Sist endret av';
-    $Self->{Translation}->{'Ok'} = 'Ok';
     $Self->{Translation}->{'Show one version'} = 'Vis én versjon';
     $Self->{Translation}->{'Show all versions'} = 'Vis alle versjoner';
     $Self->{Translation}->{'Version Incident State'} = 'Hendelsestilstand for versjonen';
@@ -124,6 +128,9 @@ sub Data {
     $Self->{Translation}->{'The deployment state of this config item'} = 'Produksjonssettingstilstand for denne konfigurasjonsenheten';
     $Self->{Translation}->{'The incident state of this config item'} = 'Hendelsestilstanden for denne konfigurasjonsenheten';
 
+    # Perl Module: Kernel/Output/HTML/ITSMConfigItem/LayoutDate.pm
+    $Self->{Translation}->{'Between'} = 'Mellom';
+
     # Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
     $Self->{Translation}->{'Maximum number of one element'} = 'Maks. antall av ett element';
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Tomme felter indikerer at de nåværende verdiene beholdes';
@@ -145,7 +152,6 @@ sub Data {
     $Self->{Translation}->{'Phone 1'} = 'Telefon 1';
     $Self->{Translation}->{'Phone 2'} = 'Telefon 2';
     $Self->{Translation}->{'E-Mail'} = '';
-    $Self->{Translation}->{'Address'} = 'Adresse';
     $Self->{Translation}->{'Network Address'} = 'Nettverksadresse';
     $Self->{Translation}->{'Subnet Mask'} = 'Subnettmaske';
     $Self->{Translation}->{'Gateway'} = 'Ruter';
@@ -190,6 +196,7 @@ sub Data {
     $Self->{Translation}->{'Docking Station'} = 'Dokkingstasjon';
     $Self->{Translation}->{'Scanner'} = 'Skanner';
     $Self->{Translation}->{'Building'} = 'Bygning';
+    $Self->{Translation}->{'Office'} = 'Kontor';
     $Self->{Translation}->{'Floor'} = 'Etasje';
     $Self->{Translation}->{'Room'} = 'Rom';
     $Self->{Translation}->{'Rack'} = 'Rack';
@@ -222,8 +229,10 @@ sub Data {
     $Self->{Translation}->{'Open Source'} = 'Åpen kildekode';
     $Self->{Translation}->{'Unlimited'} = 'Ubegrenset';
 
+    # JS File: ITSM.Agent.ConfigItem.Zoom
+    $Self->{Translation}->{'Ok'} = 'Ok';
+
     # SysConfig
-    $Self->{Translation}->{'Admin.'} = '';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         '';
     $Self->{Translation}->{'Config Items'} = 'Konfigurasjonsenheter';
@@ -289,9 +298,8 @@ sub Data {
     $Self->{Translation}->{'Deployment State Color'} = 'Farge for produksjonssettingstilstand';
     $Self->{Translation}->{'Deployment State Color.'} = 'Farge for produksjonssettingstilstand.';
     $Self->{Translation}->{'Deployment State Type.'} = 'Type produksjonssettingstilstand.';
-    $Self->{Translation}->{'Disabled'} = 'Inaktiv';
-    $Self->{Translation}->{'Duplicate'} = '';
-    $Self->{Translation}->{'Enabled'} = 'Aktiv';
+    $Self->{Translation}->{'Duplicate'} = 'Duplisér';
+    $Self->{Translation}->{'Dutch'} = '';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         '';
     $Self->{Translation}->{'Enables configuration item bulk action feature only for the listed groups.'} =
@@ -369,6 +377,15 @@ sub Data {
     $Self->{Translation}->{'postproductive'} = '';
     $Self->{Translation}->{'preproductive'} = '';
     $Self->{Translation}->{'productive'} = '';
+
+
+    push @{ $Self->{JavaScriptStrings} // [] }, (
+    'No',
+    'Ok',
+    'Settings',
+    'Submit',
+    'Yes',
+    );
 
 }
 

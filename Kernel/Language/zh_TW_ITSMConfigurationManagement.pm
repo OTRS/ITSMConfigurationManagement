@@ -20,6 +20,7 @@ sub Data {
     $Self->{Translation}->{'Change class definition'} = '修改類定義';
     $Self->{Translation}->{'Config Item Class'} = '';
     $Self->{Translation}->{'Definition'} = '定義';
+    $Self->{Translation}->{'Change'} = '修改';
 
     # Template: AgentITSMConfigItemAdd
     $Self->{Translation}->{'Config Item'} = '配置項';
@@ -36,6 +37,7 @@ sub Data {
     $Self->{Translation}->{'The number of another Configuration Item to link with.'} = '';
 
     # Template: AgentITSMConfigItemDelete
+    $Self->{Translation}->{'Number'} = '編號';
     $Self->{Translation}->{'Do you really want to delete this config item?'} = '';
 
     # Template: AgentITSMConfigItemEdit
@@ -47,6 +49,9 @@ sub Data {
 
     # Template: AgentITSMConfigItemHistory
     $Self->{Translation}->{'History of Config Item: %s'} = '';
+    $Self->{Translation}->{'History Content'} = '歷史内容';
+    $Self->{Translation}->{'Createtime'} = '創建時間';
+    $Self->{Translation}->{'Zoom view'} = '缩放視圖';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = '上下文設置';
@@ -69,7 +74,6 @@ sub Data {
     $Self->{Translation}->{'Configuration Item Information'} = '配置項信息';
     $Self->{Translation}->{'Current Deployment State'} = '當前的部署狀態';
     $Self->{Translation}->{'Last changed by'} = '最後修改於';
-    $Self->{Translation}->{'Ok'} = 'Ok';
     $Self->{Translation}->{'Show one version'} = '顯示一個版本';
     $Self->{Translation}->{'Show all versions'} = '顯示所有版本';
     $Self->{Translation}->{'Version Incident State'} = '版本故障狀態';
@@ -124,6 +128,9 @@ sub Data {
     $Self->{Translation}->{'The deployment state of this config item'} = '配置項部署狀態';
     $Self->{Translation}->{'The incident state of this config item'} = '配置項故障狀態';
 
+    # Perl Module: Kernel/Output/HTML/ITSMConfigItem/LayoutDate.pm
+    $Self->{Translation}->{'Between'} = '';
+
     # Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
     $Self->{Translation}->{'Maximum number of one element'} = '此元素的最大數量';
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = '空字段表示當前值被保存';
@@ -145,7 +152,6 @@ sub Data {
     $Self->{Translation}->{'Phone 1'} = '電話1';
     $Self->{Translation}->{'Phone 2'} = '電話2';
     $Self->{Translation}->{'E-Mail'} = '';
-    $Self->{Translation}->{'Address'} = '地址';
     $Self->{Translation}->{'Network Address'} = '網路位址';
     $Self->{Translation}->{'Subnet Mask'} = '子網路遮照';
     $Self->{Translation}->{'Gateway'} = '閘道';
@@ -190,6 +196,7 @@ sub Data {
     $Self->{Translation}->{'Docking Station'} = '塢站';
     $Self->{Translation}->{'Scanner'} = '掃描儀';
     $Self->{Translation}->{'Building'} = '大廈';
+    $Self->{Translation}->{'Office'} = '辦公室';
     $Self->{Translation}->{'Floor'} = '樓層';
     $Self->{Translation}->{'Room'} = '房間';
     $Self->{Translation}->{'Rack'} = '機架';
@@ -222,8 +229,10 @@ sub Data {
     $Self->{Translation}->{'Open Source'} = '開源';
     $Self->{Translation}->{'Unlimited'} = '無限制的';
 
+    # JS File: ITSM.Agent.ConfigItem.Zoom
+    $Self->{Translation}->{'Ok'} = 'Ok';
+
     # SysConfig
-    $Self->{Translation}->{'Admin.'} = '';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         '';
     $Self->{Translation}->{'Config Items'} = '配置項';
@@ -289,9 +298,8 @@ sub Data {
     $Self->{Translation}->{'Deployment State Color'} = '';
     $Self->{Translation}->{'Deployment State Color.'} = '';
     $Self->{Translation}->{'Deployment State Type.'} = '';
-    $Self->{Translation}->{'Disabled'} = '禁用';
-    $Self->{Translation}->{'Duplicate'} = '';
-    $Self->{Translation}->{'Enabled'} = '啟用';
+    $Self->{Translation}->{'Duplicate'} = '複製';
+    $Self->{Translation}->{'Dutch'} = '';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         '';
     $Self->{Translation}->{'Enables configuration item bulk action feature only for the listed groups.'} =
@@ -369,6 +377,15 @@ sub Data {
     $Self->{Translation}->{'postproductive'} = '';
     $Self->{Translation}->{'preproductive'} = '';
     $Self->{Translation}->{'productive'} = '';
+
+
+    push @{ $Self->{JavaScriptStrings} // [] }, (
+    'No',
+    'Ok',
+    'Settings',
+    'Submit',
+    'Yes',
+    );
 
 }
 
