@@ -1,0 +1,1147 @@
+# 
+# Translators:
+# OTRS SDN BHD <otrssdnbhd@gmail.com>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: OTRS\n"
+"POT-Creation-Date: 2017-08-21 12:05+0000\n"
+"PO-Revision-Date: 2017-09-22 15:09+0000\n"
+"Last-Translator: Udo Bretz\n"
+"Language-Team: Thai (Thailand) (http://www.transifex.com/otrs/OTRS/language/th_TH/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: th_TH\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. Template: AdminITSMConfigItem
+msgid "Config Item Management"
+msgstr "การจัดการ Config Item"
+
+#. Template: AdminITSMConfigItem
+msgid "Change class definition"
+msgstr "นิยามของคลาสการเปลี่ยนแปลง"
+
+#. Template: AdminITSMConfigItem
+msgid "Config Item Class"
+msgstr ""
+
+#. Template: AdminITSMConfigItem
+msgid "Definition"
+msgstr "นิยาม"
+
+#. Template: AgentITSMConfigItemAdd
+msgid "Config Item"
+msgstr "Config Item"
+
+#. Template: AgentITSMConfigItemAdd
+msgid "Filter for Classes"
+msgstr "ตัวกรองสำหรับคลาส"
+
+#. Template: AgentITSMConfigItemAdd
+msgid "Select a Class from the list to create a new Config Item."
+msgstr "เลือกคลาสจากรายการที่จะสร้าง Config Item ใหม่"
+
+#. Template: AgentITSMConfigItemAdd
+msgid "Class"
+msgstr "คลาส"
+
+#. Template: AgentITSMConfigItemBulk
+msgid "ITSM ConfigItem Bulk Action"
+msgstr "การทำงานเป็นกลุ่มของ ITSM ConfigItem"
+
+#. Template: AgentITSMConfigItemBulk
+msgid "Deployment state"
+msgstr "สถานภาพการใช้งาน"
+
+#. Template: AgentITSMConfigItemBulk
+msgid "Incident state"
+msgstr "สถานภาพของเหตุการณ์"
+
+#. Template: AgentITSMConfigItemBulk
+msgid "Link to another"
+msgstr "เชื่อมโยงไปที่อื่น"
+
+#. Template: AgentITSMConfigItemBulk
+msgid "Invalid Configuration Item number!"
+msgstr "จำนวนรายการการกำหนดค่าไม่ถูกต้อง!"
+
+#. Template: AgentITSMConfigItemBulk
+msgid "The number of another Configuration Item to link with."
+msgstr "จำนวนของรายการการกำหนดค่าอื่นๆที่ต้องการเชื่อมโยง"
+
+#. Template: AgentITSMConfigItemDelete
+msgid "Do you really want to delete this config item?"
+msgstr ""
+
+#. Template: AgentITSMConfigItemEdit
+msgid "The name of this config item"
+msgstr " ชื่อของรายการการตั้งค่านี้'"
+
+#. Template: AgentITSMConfigItemEdit
+msgid ""
+"Name is already in use by the ConfigItems with the following Number(s): %s"
+msgstr "ชื่อที่ถูกการใช้งานโดย ConfigItems มีจำนวนดังต่อไปนี้ (s): %s"
+
+#. Template: AgentITSMConfigItemEdit
+msgid "Deployment State"
+msgstr "สถานภาพการใช้งาน"
+
+#. Template: AgentITSMConfigItemEdit
+msgid "Incident State"
+msgstr "สถานภาพของเหต์การณ์"
+
+#. Template: AgentITSMConfigItemHistory
+msgid "History of Config Item: %s"
+msgstr ""
+
+#. Template: AgentITSMConfigItemOverviewNavBar
+msgid "Context Settings"
+msgstr "การตั้งค่าข้อความ"
+
+#. Template: AgentITSMConfigItemOverviewNavBar
+msgid "Config Items per page"
+msgstr "Config Items ในแต่ละหน้า"
+
+#. Template: AgentITSMConfigItemOverviewSmall
+msgid "A generic ITSM Configuration Item table"
+msgstr ""
+
+#. Template: AgentITSMConfigItemOverviewSmall
+msgid "Deployment State Type"
+msgstr "ประเภทสถานภาพการใช้งาน"
+
+#. Template: AgentITSMConfigItemOverviewSmall
+msgid "Current Incident State"
+msgstr "สถานภาพของเหต์การณ์ปัจจุบัน"
+
+#. Template: AgentITSMConfigItemOverviewSmall
+msgid "Current Incident State Type"
+msgstr "ประเภทสถานภาพของเหต์การณ์ปัจจุบัน"
+
+#. Template: AgentITSMConfigItemOverviewSmall
+msgid "Last changed"
+msgstr "การเปลี่ยนแปลงล่าสุด"
+
+#. Template: AgentITSMConfigItemSearch
+msgid "Create New Template"
+msgstr "สร้างแม่แบบใหม่"
+
+#. Template: AgentITSMConfigItemSearch
+msgid "Run Search"
+msgstr "ดำเนินการค้นหา"
+
+#. Template: AgentITSMConfigItemSearch
+msgid "Also search in previous versions?"
+msgstr "ค้นหาเวอร์ชั่นที่แล้วด้วยหรือไม่?"
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Configuration Item"
+msgstr "รายการการกำหนดค่า"
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Configuration Item Information"
+msgstr "ข้อมูลรายการการกำหนดค่า"
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Current Deployment State"
+msgstr "สถานภาพการใช้งานปัจจุบัน"
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Last changed by"
+msgstr "การเปลี่ยนแปลงล่าสุดโดย"
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Ok"
+msgstr "โอเค"
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Show one version"
+msgstr "แสดงหนึ่งเวอร์ชั่น"
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Show all versions"
+msgstr "แสดงเวอร์ชั่นทั้งหมด"
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Version Incident State"
+msgstr "เวอร์ชั่นของสถานภาพของเหตุการณ์"
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Version Deployment State"
+msgstr "เว่อร์ชั่นสถานภาพการใช้งาน"
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Version Number"
+msgstr "หมายเลขเวอร์ชั้น"
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Configuration Item Version Details"
+msgstr "เนื้อหาเวอร์ชั่น Configuration Item"
+
+#. Template: AgentITSMConfigItemZoom
+msgid "Property"
+msgstr "คุณสมบัติ"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
+msgid "No access to Class is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
+msgid "Overview: ITSM ConfigItem"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+msgid "No ConfigItemID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+msgid "You need at least one selected Configuration Item!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
+msgid "You don't have write access to this configuration item: %s."
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+msgid "Config item \"%s\" not found in database!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+msgid "Was not able to delete the configitem ID %s!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
+msgid "No version found for ConfigItemID %s!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+msgid "No ConfigItemID, DuplicateID or ClassID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+msgid "No access is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
+msgid "No definition was defined for class %s!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "Can't show history, no ConfigItemID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "Can't show history, no access rights given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "CIHistory::"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "No ConfigItemID or VersionID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "Can't show config item, no access rights given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "ConfigItemID %s not found in database!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "VersionID %s not found in database!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "ConfigItem"
+msgstr "ConfigItem"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
+msgid "printed by %s at %s"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+msgid "Invalid ClassID!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+msgid "No ClassID is given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+msgid "No access rights for this class given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+msgid "No Result!"
+msgstr "ไม่มีผลลัพธ์!"
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
+msgid "Config Item Search Results"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+msgid "Can't show item, no access rights for ConfigItem are given!"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+msgid "The deployment state of this config item"
+msgstr "สถานภาพการพัฒนาการของ config item นี้ "
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+msgid "The incident state of this config item"
+msgstr "สถานภาพเหตุการณ์ของ config item นี"
+
+#. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
+msgid "Maximum number of one element"
+msgstr "จำนวนสูงสุดของหนึ่งอุปกรณ์"
+
+#. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
+msgid "Empty fields indicate that the current values are kept"
+msgstr "เขตข้อมูลว่างเปล่าบ่งชี้ว่าค่าปัจจุบันจะถูกเก็บไว้"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Model"
+msgstr "โมเดล"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Serial Number"
+msgstr "หมายเลขซีเรียล"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "CPU"
+msgstr "ซีพียู"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Ram"
+msgstr "แรม"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Hard Disk"
+msgstr "ฮาร์ดดิสก์"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Capacity"
+msgstr "ความจุ"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Network Adapter"
+msgstr "การ์ดเชื่อมต่อเครือข่าย"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "IP over DHCP"
+msgstr "IP ผ่าน DHCP"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "IP Address"
+msgstr "ที่อยู่ไอพี"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Graphic Adapter"
+msgstr "ตัวปรับต่อกราฟฟิค"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Other Equipment"
+msgstr "อุปกรณ์อื่น ๆ"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Warranty Expiration Date"
+msgstr "การรับประกันวันหมดอายุ"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Install Date"
+msgstr "วันติดตั้ง"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Phone 1"
+msgstr "โทรศัพท์ 1"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Phone 2"
+msgstr "โทรศัพท์ 2"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "E-Mail"
+msgstr ""
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Address"
+msgstr "ที่อยู่"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Network Address"
+msgstr "ที่อยู่เครือข่าย"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Subnet Mask"
+msgstr "เครือข่ายย่อยมาส์ก"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Gateway"
+msgstr "ประตูสัญญาณ"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Licence Type"
+msgstr "ประเภทลายเซนต์"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Licence Key"
+msgstr "กุญแจลายเซนต์"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Quantity"
+msgstr "จำนวน"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Expiration Date"
+msgstr "วันหมดอายุ"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Media"
+msgstr "มีเดีย"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Computer"
+msgstr ""
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Hardware"
+msgstr ""
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Network"
+msgstr ""
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Software"
+msgstr ""
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Expired"
+msgstr "หมดอายุ"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Maintenance"
+msgstr "การดูแลรักษา"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Pilot"
+msgstr "การนำร่อง"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Planned"
+msgstr "การวางแผน"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Repair"
+msgstr "ซ่อม"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Retired"
+msgstr "เกษียณ"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Review"
+msgstr "ตัวอย่าง"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Test/QA"
+msgstr "ทดสอบ/QA"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Laptop"
+msgstr "แล็ปท็อป"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Desktop"
+msgstr "เดสทอป"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "PDA"
+msgstr "PDA"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Server"
+msgstr "เซิร์ฟเวอร์"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Other"
+msgstr "อื่นๆ"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Monitor"
+msgstr "จอภาพ"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Printer"
+msgstr "เครื่องพิมพ์"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Switch"
+msgstr "สับเปลี่ยน"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Router"
+msgstr "เราเตอร์"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "WLAN Access Point"
+msgstr "จุดเชื่อมต่อWLAN"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Security Device"
+msgstr "อุปกรณ์รักษาความปลอดภัย"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Backup Device"
+msgstr "อุปกรณ์สำรองข้อมูล"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Mouse"
+msgstr "เม้าส์"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Keyboard"
+msgstr "แป้นพิมพ์"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Camera"
+msgstr "กล้อง"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Beamer"
+msgstr "ผู้คาน"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Modem"
+msgstr "โมเดม"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "PCMCIA Card"
+msgstr "บัตร PCMCIA"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "USB Device"
+msgstr "อุปกรณ์ USB"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Docking Station"
+msgstr "สถานี Docking"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Scanner"
+msgstr "เครื่องสแกน"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Building"
+msgstr "การสร้าง"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Floor"
+msgstr "ชั้น"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Room"
+msgstr "ห้อง"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Rack"
+msgstr "จำพวก"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Workplace"
+msgstr "ที่ทำงาน"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Outlet"
+msgstr "เอาท์เล็ท"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "IT Facility"
+msgstr "สิ่งอำนวยความสะดวกด้านไอที"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "LAN"
+msgstr "LAN"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "WLAN"
+msgstr "WLAN"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Telco"
+msgstr "Telco"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "GSM"
+msgstr "GSM"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Client Application"
+msgstr "แอพลิเคชันของลูกค้า"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Middleware"
+msgstr "มิดเดิ้ลแวย์"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Server Application"
+msgstr "แอพลิเคชันเซิร์ฟเวอร์"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Client OS"
+msgstr "OS ของลูกค้า"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Server OS"
+msgstr "OS เซิร์ฟเวอร์"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Admin Tool"
+msgstr "เครื่องมือแอดมิน"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "User Tool"
+msgstr "เครื่องมือของผู้ใช้"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Embedded"
+msgstr "การฝังตัว"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Single Licence"
+msgstr "ลายเซนต์เดียว"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Per User"
+msgstr "ต่อผู้ใช้"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Per Processor"
+msgstr "สำหรับตัวประมวลผล"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Per Server"
+msgstr "ต่อเซิร์ฟเวอร์"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Per Node"
+msgstr "ต่อหนึ่งโหนด"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Volume Licence"
+msgstr "ลายเซนต์อุปกรณ์เสียง"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Enterprise Licence"
+msgstr "ลายเวนต์เอ็นเตอร์ไพรส์"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Developer Licence"
+msgstr "ลายเซนต์ผู้พัฒนา"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Demo"
+msgstr "การสาธิต"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Time Restricted"
+msgstr "เวลา จำกัด"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Freeware"
+msgstr "ฟรีแวร์"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Open Source"
+msgstr "โอเพนซอร์ส"
+
+#. Database XML Definition: ITSMConfigurationManagement.sopm
+msgid "Unlimited"
+msgstr "ไม่จำกัด"
+
+#. SysConfig
+msgid "Admin."
+msgstr ""
+
+#. SysConfig
+msgid ""
+"Check for a unique name only within the same ConfigItem class ('class') or "
+"globally ('global'), which means every existing ConfigItem is taken into "
+"account when looking for duplicates."
+msgstr "ตรวจสอบชื่อเฉพาะเท่านั้นที่อยู่ใน ConfigItem ชั้นเดียวกัน (ชั้น) หรือทั้งหมด (ทั้งหมด) ซึ่งหมายความว่าConfigItem ที่มีอยู่ทั้งหมดจะถูกนำเข้าบัญชีเพื่อค้นหารายการที่ซ้ำกัน"
+
+#. SysConfig
+msgid "Config Items"
+msgstr "Config Items"
+
+#. SysConfig
+msgid "Config item add."
+msgstr ""
+
+#. SysConfig
+msgid "Config item edit."
+msgstr ""
+
+#. SysConfig
+msgid ""
+"Config item event module that enables logging to history in the agent "
+"interface."
+msgstr "โมดูลกิจกรรมของConfig item ที่ช่วยให้เข้าสู่ระบบประวัติในอินเตอร์เฟสของเอเย่นต์"
+
+#. SysConfig
+msgid "Config item history."
+msgstr ""
+
+#. SysConfig
+msgid "Config item print."
+msgstr ""
+
+#. SysConfig
+msgid "Config item zoom."
+msgstr ""
+
+#. SysConfig
+msgid "ConfigItemNumber"
+msgstr ""
+
+#. SysConfig
+msgid "Configuration Item Limit"
+msgstr "การจำกัด Configuration Item"
+
+#. SysConfig
+msgid "Configuration Item limit per page."
+msgstr ""
+
+#. SysConfig
+msgid "Configuration Management Database."
+msgstr ""
+
+#. SysConfig
+msgid "Configuration item bulk module."
+msgstr ""
+
+#. SysConfig
+msgid "Configuration item search backend router of the agent interface."
+msgstr "Configuration Item ค้นหา backend router ของอินเตอร์เฟซเอเย่นต์"
+
+#. SysConfig
+msgid "Create and manage the definitions for Configuration Items."
+msgstr "สร้างและจัดการคำนิยามสำหรับ Configuration Items"
+
+#. SysConfig
+msgid ""
+"Define Actions where a settings button is available in the linked objects "
+"widget (LinkObject::ViewMode = \"complex\"). Please note that these Actions "
+"must have registered the following JS and CSS files: "
+"Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, "
+"Core.Agent.TableFilters.js and Core.Agent.LinkObject.js."
+msgstr ""
+
+#. SysConfig
+msgid "Define the group with permissions."
+msgstr ""
+
+#. SysConfig
+msgid ""
+"Defines Required permissions to create ITSM configuration items using the "
+"Generic Interface."
+msgstr "กำหนดสิทธิ์ที่จำเป็นในการสร้างรายการการตั้งค่า ITSMโดยใช้อินเตอร์เฟซทั่วไป"
+
+#. SysConfig
+msgid ""
+"Defines Required permissions to delete ITSM configuration items using the "
+"Generic Interface."
+msgstr ""
+
+#. SysConfig
+msgid ""
+"Defines Required permissions to get ITSM configuration items using the "
+"Generic Interface."
+msgstr "กำหนดสิทธิ์ที่จำเป็นในการเอารายการการตั้งค่า ITSMโดยใช้อินเตอร์เฟซทั่วไป"
+
+#. SysConfig
+msgid ""
+"Defines Required permissions to search ITSM configuration items using the "
+"Generic Interface."
+msgstr "กำหนดสิทธิ์ที่จำเป็นในการค้นหารายการการตั้งค่า ITSMโดยใช้อินเตอร์เฟซทั่วไป"
+
+#. SysConfig
+msgid ""
+"Defines Required permissions to update ITSM configuration items using the "
+"Generic Interface."
+msgstr "กำหนดสิทธิ์ที่จำเป็นในการอัพเดตรายการการตั้งค่า ITSMโดยใช้อินเตอร์เฟซทั่วไป"
+
+#. SysConfig
+msgid ""
+"Defines an overview module to show the small view of a configuration item "
+"list."
+msgstr "กำหนดโมดูลภาพรวมในการแสดงมุมมองขนาดเล็กของรายการ  Configuration Items"
+
+#. SysConfig
+msgid ""
+"Defines regular expressions individually for each ConfigItem class to check "
+"the ConfigItem name and to show corresponding error messages."
+msgstr "กำหนดนิพจน์ทั่วไปเป็นรายบุคคลในConfigItem แต่ละชั้น เพื่อตรวจสอบชื่อ ConfigItem และเพื่อแสดงข้อความผิดพลาดที่สอดคล้องกัน"
+
+#. SysConfig
+msgid "Defines the default subobject of the class 'ITSMConfigItem'."
+msgstr "กำหนดอบเจกต์ย่อยเริ่มต้นของคลาส 'ITSMConfigItem'"
+
+#. SysConfig
+msgid ""
+"Defines the number of rows for the CI definition editor in the admin "
+"interface."
+msgstr "กำหนดจำนวนแถวสำหรับตัวแก้ไขการนิยาม CI ในอินเตอร์เฟสของผู้ดูแลระบบ"
+
+#. SysConfig
+msgid ""
+"Defines the order of incident states from high (e.g. cricital) to low (e.g. "
+"functional)."
+msgstr ""
+
+#. SysConfig
+msgid ""
+"Defines the relevant deployment states where linked tickets can affect the "
+"status of a CI."
+msgstr ""
+
+#. SysConfig
+msgid "Defines the search limit for the AgentITSMConfigItem screen."
+msgstr "กำหนดขีดจำกัดของการค้นหาสำหรับหน้าจอ AgentITSMConfigItem"
+
+#. SysConfig
+msgid "Defines the search limit for the AgentITSMConfigItemSearch screen."
+msgstr "กำหนดขีดจำกัดของการค้นหาสำหรับหน้าจอ AgentITSMConfigItemSearch"
+
+#. SysConfig
+msgid ""
+"Defines the shown columns in the config item overview. This option has no "
+"effect on the position of the column. Note: Class column is always available"
+" if filter 'All' is selected."
+msgstr "กำหนดคอลัมน์ที่จะแสดงในภาพรวมของconfig item ตัวเลือกนี้จะไม่มีผลต่อตำแหน่งของคอลัมน์ หมายเหตุ: ระดับของคอลัมน์สามารถใช้ได้เสมอถ้าตัวกรอง 'ทั้งหมด' ถูกเลือก"
+
+#. SysConfig
+msgid ""
+"Defines the shown columns in the config item search. This option has no "
+"effect on the position of the column."
+msgstr "กำหนดคอลัมน์ที่จะแสดงในการค้นหา config item ตัวเลือกนี้จะไม่มีผลต่อตำแหน่งของคอลัมน์ "
+
+#. SysConfig
+msgid ""
+"Defines the shown columns of CIs in the config item overview depending on "
+"the CI class. Each entry must be prefixed with the class name and double "
+"colons (i.e. Computer::). There are a few CI-Attributes that are common to "
+"all CIs (example for the class Computer: Computer::Name, "
+"Computer::CurDeplState, Computer::CreateTime). To show individual CI-"
+"Attributes as defined in the CI-Definition, the following scheme must be "
+"used (example for the class Computer): Computer::HardDisk::1, "
+"Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, "
+"Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, "
+"then the default columns are shown as defined in the setting "
+"ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns."
+msgstr "กำหนดคอลัมน์ที่แสดง CIs ในภาพรวมของรายการการตั้งค่าซึ่งขึ้นอยู่กับคลาส CI รายการการป้อนแต่ละรายการจะต้องนำหน้าด้วยชื่อคลาสและเครื่องหมายทวิภาคคู่ (เช่นคอมพิวเตอร์: :) มีแอตทริบิวต์ CI เพียงไม่กี่แอตทริบิวต์ ที่ใช้กันทั่วไปใน CIs ทั้งหมด (ตัวอย่างสำหรับคลาสคอมพิวเตอร์: คอมพิวเตอร์::ชื่อ, คอมพิวเตอร์::CurDeplState, คอมพิวเตอร์::CreateTime) ในการแสดงแอตทริบิวต์ CI ตามที่กำหนดไว้ในคำนิยาม CI จะต้องใช้รูปแบบต่อไปนี้(ตัวอย่างสำหรับคลาสคอมพิวเตอร์): คอมพิวเตอร์::ฮาร์ดดิสก์::1, คอมพิวเตอร์::ฮาร์ดดิสก์::1::ความจุ::1, คอมพิวเตอร์::ฮาร์ดดิสก์::2, คอมพิวเตอร์::ฮาร์ดดิสก์::2::ความจุ::1  หากไม่มีการป้อนคลาสที่ CI แล้วคอลัมน์เริ่มต้นจะแสดงตามที่กำหนดไว้ในการตั้งค่า ITSMConfigItem ::Frontend :: AgentITSMConfigItem ### ShowColumns"
+
+#. SysConfig
+msgid ""
+"Defines the shown columns of CIs in the config item search depending on the "
+"CI class. Each entry must be prefixed with the class name and double colons "
+"(i.e. Computer::). There are a few CI-Attributes that are common to all CIs "
+"(example for the class Computer: Computer::Name, Computer::CurDeplState, "
+"Computer::CreateTime). To show individual CI-Attributes as defined in the "
+"CI-Definition, the following scheme must be used (example for the class "
+"Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, "
+"Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no "
+"entry for a CI class, then the default columns are shown as defined in the "
+"setting ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns."
+msgstr "กำหนดคอลัมน์ที่แสดง CIs ในการค้นหาของรายการการตั้งค่าซึ่งขึ้นอยู่กับคลาส CI รายการการป้อนแต่ละรายการจะต้องนำหน้าด้วยชื่อคลาสและเครื่องหมายทวิภาคคู่ (เช่นคอมพิวเตอร์: :) มีแอตทริบิวต์ CI เพียงไม่กี่แอตทริบิวต์ ที่ใช้กันทั่วไปใน CIs ทั้งหมด (ตัวอย่างสำหรับคลาสคอมพิวเตอร์: คอมพิวเตอร์::ชื่อ, คอมพิวเตอร์::CurDeplState, คอมพิวเตอร์::CreateTime) ในการแสดงแอตทริบิวต์ CI ตามที่กำหนดไว้ในคำนิยาม CI จะต้องใช้รูปแบบต่อไปนี้(ตัวอย่างสำหรับคลาสคอมพิวเตอร์): คอมพิวเตอร์::ฮาร์ดดิสก์::1, คอมพิวเตอร์::ฮาร์ดดิสก์::1::ความจุ::1, คอมพิวเตอร์::ฮาร์ดดิสก์::2, คอมพิวเตอร์::ฮาร์ดดิสก์::2::ความจุ::1 หากไม่มีการป้อนคลาสที่ CI แล้วคอลัมน์เริ่มต้นจะแสดงตามที่กำหนดไว้ในการตั้งค่า ITSMConfigItem ::Frontend :: AgentITSMConfigItem ### ShowColumns"
+
+#. SysConfig
+msgid ""
+"Defines the shown columns of CIs in the link table complex view, depending "
+"on the CI class. Each entry must be prefixed with the class name and double "
+"colons (i.e. Computer::). There are a few CI-Attributes that common to all "
+"CIs (example for the class Computer: Computer::Name, Computer::CurDeplState,"
+" Computer::CreateTime). To show individual CI-Attributes as defined in the "
+"CI-Definition, the following scheme must be used (example for the class "
+"Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, "
+"Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no "
+"entry for a CI class, then the default columns are shown."
+msgstr "กำหนดคอลัมน์ที่แสดง CIs ในตารางการเชื่อมโยงมุมมองที่ซับซ้อนซึ่งขึ้นอยู่กับคลาส CI รายการการป้อนแต่ละรายการจะต้องนำหน้าด้วยชื่อคลาสและเครื่องหมายทวิภาคคู่ (เช่นคอมพิวเตอร์: :) มีแอตทริบิวต์ CI เพียงไม่กี่แอตทริบิวต์ ที่ใช้กันทั่วไปใน CIs ทั้งหมด (ตัวอย่างสำหรับคลาสคอมพิวเตอร์: คอมพิวเตอร์::ชื่อ, คอมพิวเตอร์::CurDeplState, คอมพิวเตอร์::CreateTime) ในการแสดงแอตทริบิวต์ CI ตามที่กำหนดไว้ในคำนิยาม CI จะต้องใช้รูปแบบต่อไปนี้(ตัวอย่างสำหรับคลาสคอมพิวเตอร์): คอมพิวเตอร์::ฮาร์ดดิสก์::1, คอมพิวเตอร์::ฮาร์ดดิสก์::1::ความจุ::1, คอมพิวเตอร์::ฮาร์ดดิสก์::2, คอมพิวเตอร์::ฮาร์ดดิสก์::2::ความจุ::1 หากไม่มีการป้อนคลาสที่ CI แล้วคอลัมน์เริ่มต้นจะแสดงตามที่กำหนดไว้ในการตั้งค่า ITSMConfigItem ::Frontend :: AgentITSMConfigItem ### ShowColumns"
+
+#. SysConfig
+msgid ""
+"Defines which type of link (named from the ticket perspective) can affect "
+"the status of a linked CI."
+msgstr ""
+
+#. SysConfig
+msgid "Defines which type of ticket can affect the status of a linked CI."
+msgstr ""
+
+#. SysConfig
+msgid "Delete Configuration Item"
+msgstr ""
+
+#. SysConfig
+msgid "Deployment State Color"
+msgstr ""
+
+#. SysConfig
+msgid "Deployment State Color."
+msgstr ""
+
+#. SysConfig
+msgid "Deployment State Type."
+msgstr ""
+
+#. SysConfig
+msgid "Disabled"
+msgstr ""
+
+#. SysConfig
+msgid "Duplicate"
+msgstr "ซ้ำ"
+
+#. SysConfig
+msgid "Enabled"
+msgstr ""
+
+#. SysConfig
+msgid ""
+"Enables configuration item bulk action feature for the agent frontend to "
+"work on more than one configuration item at a time."
+msgstr "เปิดใช้งานการตั้งค่ารายการคุณลักษณะของการทำงานเป็นกลุ่ม สำหรับฟรอนต์เอนของเอเย่นต์เพื่อทำงานกับรายการการกำหนดค่าที่มีมากกว่าหนึ่งในหนึ่งครั้ง"
+
+#. SysConfig
+msgid ""
+"Enables configuration item bulk action feature only for the listed groups."
+msgstr "เปิดใช้งานการตั้งค่ารายการคุณลักษณะของการทำงานเป็นกลุ่มเฉพาะสำหรับกลุ่มที่ระบุไว้"
+
+#. SysConfig
+msgid ""
+"Enables/disables the functionality to check ConfigItems for unique names. "
+"Before enabling this option you should check your system for already "
+"existing config items with duplicate names. You can do this with the script "
+"bin/otrs.ITSMConfigItemListDuplicates.pl."
+msgstr "เปิด / ปิดการใช้งานฟังก์ชั่นเพื่อตรวจสอบ ConfigItems สำหรับชื่อที่ไม่ซ้ำกัน ก่อนเปิดใช้งานตัวเลือกนี้คุณควรตรวจสอบระบบของคุณสำหรับรายการการตั้งค่าที่มีอยู่แล้วด้วยชื่อที่ซ้ำกัน คุณสามารถทำเช่นนี้ด้วยสคริปต์ดังต่อไปนี้ bin / otrs.ITSMConfigItemListDuplicates.pl"
+
+#. SysConfig
+msgid "Event module to set configitem-status on ticket-configitem-link."
+msgstr ""
+
+#. SysConfig
+msgid "ITSM config item overview."
+msgstr ""
+
+#. SysConfig
+msgid "Module to check the group responsible for a class."
+msgstr "โมดูลในการตรวจสอบผู้รับผิดชอบกลุ่มสำหรับคลาส"
+
+#. SysConfig
+msgid "Module to check the group responsible for a configuration item."
+msgstr "โมดูลในการตรวจสอบผู้รับผิดชอบกลุ่มสำหรับ configuration item"
+
+#. SysConfig
+msgid "Module to generate ITSM config item statistics."
+msgstr "โมดูลสร้างสถิติ ITSM config item"
+
+#. SysConfig
+msgid "Object backend module registration for the import/export module."
+msgstr "การลงทะเบียนโมดูล Object backend สำหรับโมดูลนำเข้าหรือส่งออก"
+
+#. SysConfig
+msgid "Overview."
+msgstr ""
+
+#. SysConfig
+msgid ""
+"Parameters for the deployment states color in the preferences view of the "
+"agent interface."
+msgstr "พารามิเตอร์สำหรับการพัฒนาสถานภาพของสีในมุมมองการตั้งค่าของอินเตอร์เฟซเอเย่นต์"
+
+#. SysConfig
+msgid ""
+"Parameters for the deployment states in the preferences view of the agent "
+"interface."
+msgstr "พารามิเตอร์สำหรับการพัฒนาสถานภาพในมุมมองการตั้งค่าของอินเตอร์เฟซเอเย่นต์"
+
+#. SysConfig
+msgid ""
+"Parameters for the example permission groups of the general catalog "
+"attributes."
+msgstr "พารามิเตอร์สำหรับตัวอย่างกลุ่มที่ได้รับอนุญาตของแอตทริบิวต์แค็ตตาล็อกทั่วไป"
+
+#. SysConfig
+msgid "Parameters for the pages (in which the configuration items are shown)."
+msgstr "พารามิเตอร์สำหรับแต่ละหน้า(ซึ่ง configuration items แสดง)"
+
+#. SysConfig
+msgid ""
+"Required permissions to use the ITSM configuration item screen in the agent "
+"interface."
+msgstr "จำเป็นต้องมีการอนุญาติในการใช้งานในหน้าจอรายการการตั้งค่า ITSM ในอินเตอร์เฟซของเอเย่นต์"
+
+#. SysConfig
+msgid ""
+"Required permissions to use the ITSM configuration item search screen in the"
+" agent interface."
+msgstr "จำเป็นต้องมีการอนุญาติในการใช้งานในหน้าจอการค้นหารายการการตั้งค่า ITSM ในอินเตอร์เฟซของเอเย่นต์"
+
+#. SysConfig
+msgid ""
+"Required permissions to use the ITSM configuration item zoom screen in the "
+"agent interface."
+msgstr "จำเป็นต้องมีการอนุญาติในการใช้งานในหน้าจอการซูมรายการการตั้งค่า ITSM ในอินเตอร์เฟซของเอเย่นต์"
+
+#. SysConfig
+msgid ""
+"Required permissions to use the add ITSM configuration item screen in the "
+"agent interface."
+msgstr "จำเป็นต้องมีการอนุญาติในการใช้งานการเพิ่มในหน้าจอรายการการตั้งค่า ITSM ในอินเตอร์เฟซของเอเย่นต์"
+
+#. SysConfig
+msgid ""
+"Required permissions to use the edit ITSM configuration item screen in the "
+"agent interface."
+msgstr "จำเป็นต้องมีการอนุญาติในการใช้งานการแก้ไขในหน้าจอรายการการตั้งค่า ITSM ในอินเตอร์เฟซของเอเย่นต์"
+
+#. SysConfig
+msgid ""
+"Required permissions to use the history ITSM configuration item screen in "
+"the agent interface."
+msgstr "จำเป็นต้องมีการอนุญาติในการใช้งานประวัติในหน้าจอรายการการตั้งค่า ITSM ในอินเตอร์เฟซของเอเย่นต์"
+
+#. SysConfig
+msgid ""
+"Required permissions to use the print ITSM configuration item screen in the "
+"agent interface."
+msgstr "จำเป็นต้องมีการอนุญาติในการใช้งานการพิมพ์ในหน้าจอรายการการตั้งค่า ITSM ในอินเตอร์เฟซของเอเย่นต์"
+
+#. SysConfig
+msgid "Required privileges to delete config items."
+msgstr ""
+
+#. SysConfig
+msgid "Search config items."
+msgstr ""
+
+#. SysConfig
+msgid ""
+"Selects the configuration item number generator module. \"AutoIncrement\" "
+"increments the configuration item number, the SystemID, the "
+"ConfigItemClassID and the counter are used. The format is "
+"\"SystemID.ConfigItemClassID.Counter\", e.g. 1205000004, 1205000005."
+msgstr "เลือกหมายเลขรายการตั้งค่าตัวกำเนิดโมดูล \"AutoIncrement\" จะเพิ่มหมายเลขรายการกำหนดค่า SystemID ConfigItemClassID และตัวนับที่มีการใช้ รูปแบบคือ \"SystemID.ConfigItemClassID.Counter\" เช่น 1205000004, 1205000005"
+
+#. SysConfig
+msgid ""
+"Set the incident state of a CI automatically when a Ticket is Linked to a "
+"CI."
+msgstr ""
+
+#. SysConfig
+msgid ""
+"Sets the deployment state in the configuration item bulk screen of the agent"
+" interface."
+msgstr "ตั้งค่าสถานะการใช้งานในหน้าจอการตั้งค่ารายการเป็นกลุ่มของอินเตอร์เฟซเอเย่นต์"
+
+#. SysConfig
+msgid ""
+"Sets the incident state in the configuration item bulk screen of the agent "
+"interface."
+msgstr "ตั้งค่าสถานะของเหตุการณ์ในหน้าจอการตั้งค่ารายการเป็นกลุ่มของอินเตอร์เฟซเอเย่นต์"
+
+#. SysConfig
+msgid ""
+"Shows a link in the menu that allows linking a configuration item with "
+"another object in the config item zoom view of the agent interface."
+msgstr "แสดงลิงค์ในเมนูเพื่อลิงค์รายการการตั้งค่ากับออบเจกค์อื่นในการซูมในอินเตอร์เฟซเอเย่นต์"
+
+#. SysConfig
+msgid ""
+"Shows a link in the menu to access the history of a configuration item in "
+"the configuration item overview of the agent interface."
+msgstr "แสดงลิงค์ในเมนูในการที่จะเข้าชมประวัติของ configuration item ในมุมมองทั่วไปของconfiguration itemในอินเตอร์เฟซเอเย่นต์"
+
+#. SysConfig
+msgid ""
+"Shows a link in the menu to access the history of a configuration item in "
+"the its zoom view of the agent interface."
+msgstr "แสดงลิงค์ในเมนูในการที่จะเข้าชมประวัติของ configuration item ในมุมมองการซูมของอินเตอร์เฟซเอเย่นต์"
+
+#. SysConfig
+msgid ""
+"Shows a link in the menu to delete a configuration item in its zoom view of "
+"the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid ""
+"Shows a link in the menu to duplicate a configuration item in the "
+"configuration item overview of the agent interface."
+msgstr "แสดงลิงค์ในเมนูในการที่จะจำลอง configuration item ในมุมมองทั่วไปของconfiguration item ในอินเตอร์เฟซเอเย่นต์ "
+
+#. SysConfig
+msgid ""
+"Shows a link in the menu to duplicate a configuration item in the its zoom "
+"view of the agent interface."
+msgstr "แสดงลิงค์ในเมนูในการที่จะจำลองconfiguration item ในมุมมองการซูมของอินเตอร์เฟซเอเย่นต์ "
+
+#. SysConfig
+msgid ""
+"Shows a link in the menu to edit a configuration item in the its zoom view "
+"of the agent interface."
+msgstr "แสดงลิงค์ในเมนูในการที่จะแก้ไข configuration item ในมุมมองการซูมของอินเตอร์เฟซเอเย่นต์"
+
+#. SysConfig
+msgid ""
+"Shows a link in the menu to go back in the configuration item zoom view of "
+"the agent interface."
+msgstr ""
+
+#. SysConfig
+msgid ""
+"Shows a link in the menu to print a configuration item in the its zoom view "
+"of the agent interface."
+msgstr "แสดงลิงค์ในเมนูในการที่จะพิมพ์ configuration item ในมุมมองการซูมของอินเตอร์เฟซเอเย่นต์"
+
+#. SysConfig
+msgid ""
+"Shows a link in the menu to zoom into a configuration item in the "
+"configuration item overview of the agent interface."
+msgstr "แสดงลิงค์ในเมนูเพื่อซูมรายการการตั้งค่าในมุมมองภาพรวมของรายการการตั้งค่าในอินเตอร์เฟซเอเย่นต์"
+
+#. SysConfig
+msgid ""
+"Shows the config item history (reverse ordered) in the agent interface."
+msgstr "แสดงประวัติ config item (ลำดับย้อนกลับ) ในอินเตอร์เฟซเอเย่นต์"
+
+#. SysConfig
+msgid ""
+"The identifier for a configuration item, e.g. ConfigItem#, MyConfigItem#. "
+"The default is ConfigItem#."
+msgstr "ตัวบ่งชี้สำหรับ  Configuration Item เช่น ConfigItem#, MyConfigItem# ค่าเริ่มต้นคือ ConfigItem#"
+
+#. SysConfig
+msgid "class"
+msgstr ""
+
+#. SysConfig
+msgid "global"
+msgstr ""
+
+#. SysConfig
+msgid "postproductive"
+msgstr ""
+
+#. SysConfig
+msgid "preproductive"
+msgstr ""
+
+#. SysConfig
+msgid "productive"
+msgstr ""
