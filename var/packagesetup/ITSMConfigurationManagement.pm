@@ -1363,6 +1363,8 @@ sub _MigrateDTLInSysConfig {
     my $SysConfigObject = $Kernel::OM->Get('Kernel::System::SysConfig');
     my $ProviderObject  = Kernel::Output::Template::Provider->new();
 
+    my @NewSettings;
+
     # handle hash settings
     NAME:
     for my $Name (
@@ -1379,19 +1381,6 @@ sub _MigrateDTLInSysConfig {
 
         MENUMODULE:
         for my $MenuModule ( sort keys %{$Setting} ) {
-
-            my %MenuModuleSetting = $SysConfigObject->SettingGet(
-                Name    => "${ Name }###${ MenuModule }",
-                Default => 1,
-            );
-
-            # Lock setting.
-            my $ExclusiveLockGUID = $SysConfigObject->SettingLock(
-                Name      => "${ Name }###${ MenuModule }",
-                UserID    => 1,
-                Force     => 1,
-                DefaultID => $MenuModuleSetting{DefaultID},
-            );
 
             # Setting is a hash.
             SETTINGITEM:
@@ -1417,22 +1406,22 @@ sub _MigrateDTLInSysConfig {
                 }
             }
 
-            # Update the configuration item.
-            $SysConfigObject->SettingUpdate(
-                Name              => "${ Name }###${ MenuModule }",
-                UserID            => 1,
-                IsValid           => 1,
-                EffectiveValue    => $Setting->{$MenuModule},
-                ExclusiveLockGUID => $ExclusiveLockGUID,
-            );
-
-            # Unlock system config setting.
-            $SysConfigObject->SettingUnlock(
-                UserID    => 1,
-                DefaultID => $MenuModuleSetting{DefaultID},
-            );
+            # Build new setting.
+            push @NewSettings, {
+                Name           => $Name . '###' . $MenuModule,
+                EffectiveValue => $Setting->{$MenuModule},
+            };
         }
     }
+
+    return 1 if !@NewSettings;
+
+    # Write new setting.
+    $SysConfigObject->SettingsSet(
+        UserID   => 1,
+        Comments => 'ITSMConfigurationManagement - package setup function: _MigrateDTLInSysConfig',
+        Settings => \@NewSettings,
+    );
 
     return 1;
 }
@@ -1481,6 +1470,8 @@ sub _MigrateConfigs {
 
     my $SysConfigObject = $Kernel::OM->Get('Kernel::System::SysConfig');
 
+    my @NewSettings;
+
     for my $Type (qw(MenuModule Overview)) {
 
         # migrate ITSMConfiguration Preferences
@@ -1497,35 +1488,25 @@ sub _MigrateConfigs {
                 next CONFIGITEM;
             }
 
-            # Get menu module raw settings.
-            my %MenuModuleRawSettings = $SysConfigObject->SettingGet(
-                Name    => "ITSMConfigItem::Frontend::${ Type }###${ MenuModule }",
-                Default => 1,
-            );
-
-            # Lock the settings.
-            my $ExclusiveLockGUID = $SysConfigObject->SettingLock(
-                UserID    => 1,
-                Force     => 1,
-                DefaultID => $MenuModuleRawSettings{DefaultID},
-            );
-
             $Module =~ s{Kernel::Output::HTML::ITSMConfigItem(\w+)}{Kernel::Output::HTML::ITSMConfigItem::$1}xmsg;
             $MenuModuleSettings->{Module} = $Module;
 
-            $SysConfigObject->SettingUpdate(
-                Name              => "ITSMConfigItem::Frontend::${ Type }###${ MenuModule }",
-                EffectiveValue    => $MenuModuleSettings,
-                ExclusiveLockGUID => $ExclusiveLockGUID,
-                UserID            => 1,
-            );
-
-            $SysConfigObject->SettingUnlock(
-                UserID    => 1,
-                DefaultID => $MenuModuleRawSettings{DefaultID},
-            );
+            # Build new setting.
+            push @NewSettings, {
+                Name           => 'ITSMConfigItem::Frontend::' . $Type . '###' . $MenuModule,
+                EffectiveValue => $MenuModuleSettings,
+            };
         }
     }
+
+    return 1 if !@NewSettings;
+
+    # Write new setting.
+    $SysConfigObject->SettingsSet(
+        UserID   => 1,
+        Comments => 'ITSMConfigurationManagement - package setup function: _MigrateConfigs',
+        Settings => \@NewSettings,
+    );
 
     return 1;
 }
