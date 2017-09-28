@@ -156,14 +156,19 @@ $Selenium->RunTest(
         $Selenium->switch_to_window( $Handles->[1] );
 
         # wait until page has loaded, if necessary
-        $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && $("#TargetIdentifier").length' );
+        $Selenium->WaitFor(
+            JavaScript => 'return typeof(Core) == "object" && typeof(Core.App) == "object" && Core.App.PageLoadComplete'
+        );
 
         # select to link with test Hardware ConfigItem
         $Selenium->execute_script(
             "\$('#TargetIdentifier').val('ITSMConfigItem::$ConfigItemClassIDs[1]').trigger('redraw.InputField').trigger('change');"
         );
 
-        sleep(2);
+        $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && !$("#DialogWaiting").length' );
+        $Selenium->WaitFor(
+            JavaScript => 'return typeof(Core) == "object" && typeof(Core.App) == "object" && Core.App.PageLoadComplete'
+        );
 
         # check 'Link' screen for two ConfigItems
         for my $ID (
@@ -188,7 +193,10 @@ $Selenium->RunTest(
             "\$('#TargetIdentifier').val('Service').trigger('redraw.InputField').trigger('change');"
         );
 
-        sleep(2);
+        $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && !$("#DialogWaiting").length' );
+        $Selenium->WaitFor(
+            JavaScript => 'return typeof(Core) == "object" && typeof(Core.App) == "object" && Core.App.PageLoadComplete'
+        );
 
         # search Service by name and select result
         $Selenium->find_element("//input[\@id='SEARCH::Name']")->send_keys($ServiceName);
@@ -206,7 +214,10 @@ $Selenium->RunTest(
             "\$('#TargetIdentifier').val('Ticket').trigger('redraw.InputField').trigger('change');"
         );
 
-        sleep(2);
+        $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && !$("#DialogWaiting").length' );
+        $Selenium->WaitFor(
+            JavaScript => 'return typeof(Core) == "object" && typeof(Core.App) == "object" && Core.App.PageLoadComplete'
+        );
 
         # search Ticket by number and select result
         $Selenium->find_element("//input[\@id='SEARCH::TicketNumber']")->send_keys($TicketNumber);
@@ -245,7 +256,9 @@ $Selenium->RunTest(
         $Selenium->switch_to_window( $Handles->[1] );
 
         # wait until page has loaded, if necessary
-        $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && $("#TargetIdentifier").length' );
+        $Selenium->WaitFor(
+            JavaScript => 'return typeof(Core) == "object" && typeof(Core.App) == "object" && Core.App.PageLoadComplete'
+        );
 
         # click 'go to manage links screen'
         $Selenium->find_element("//a[contains(\@href, \'#ManageLinks\' )]")->VerifiedClick();
