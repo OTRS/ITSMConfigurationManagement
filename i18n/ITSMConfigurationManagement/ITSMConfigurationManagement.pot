@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ITSMConfigurationManagement\n"
-"POT-Creation-Date: 2017-09-25 09:17+0000\n"
+"POT-Creation-Date: 2017-09-29 15:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,10 +68,6 @@ msgstr ""
 
 #. Template: AgentITSMConfigItemBulk
 msgid "The number of another Configuration Item to link with."
-msgstr ""
-
-#. Template: AgentITSMConfigItemDelete
-msgid "Number"
 msgstr ""
 
 #. Template: AgentITSMConfigItemDelete
@@ -848,10 +844,6 @@ msgstr ""
 
 #. SysConfig
 msgid "Duplicate"
-msgstr ""
-
-#. SysConfig
-msgid "Dutch"
 msgstr ""
 
 #. SysConfig
