@@ -20,7 +20,7 @@ sub Data {
     $Self->{Translation}->{'Change class definition'} = 'Osztály-meghatározás módosítása';
     $Self->{Translation}->{'Config Item Class'} = 'Konfigurációelem-osztály';
     $Self->{Translation}->{'Definition'} = 'Meghatározás';
-    $Self->{Translation}->{'Change'} = 'Változtatás';
+    $Self->{Translation}->{'Change'} = 'Változás';
 
     # Template: AgentITSMConfigItemAdd
     $Self->{Translation}->{'Config Item'} = 'Konfigurációelem';

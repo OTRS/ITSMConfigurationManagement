@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2017-09-25 09:15+0000\n"
-"PO-Revision-Date: 2017-09-25 09:15+0000\n"
-"Last-Translator: Dusan Vuckovic\n"
+"POT-Creation-Date: 2017-10-02 11:19+0000\n"
+"PO-Revision-Date: 2017-10-02 11:19+0000\n"
+"Last-Translator: Udo Bretz\n"
 "Language-Team: Indonesian (http://www.transifex.com/otrs/OTRS/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -75,10 +75,6 @@ msgstr "Nomor item konfigurasi tidak sah"
 #. Template: AgentITSMConfigItemBulk
 msgid "The number of another Configuration Item to link with."
 msgstr "Jumlah item konfigurasi lainnya yang akan di hubungkan"
-
-#. Template: AgentITSMConfigItemDelete
-msgid "Number"
-msgstr "Nomor"
 
 #. Template: AgentITSMConfigItemDelete
 msgid "Do you really want to delete this config item?"
@@ -254,8 +250,48 @@ msgid "Can't show history, no access rights given!"
 msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
-msgid "CIHistory::"
-msgstr "SejarahCI::"
+msgid "New ConfigItem (ID=%s)"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "New version (ID=%s)"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "Deployment state updated (new=%s, old=%s)"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "Incident state updated (new=%s, old=%s)"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "ConfigItem (ID=%s) deleted"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "Link to %s (type=%s) added"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "Link to %s (type=%s) deleted"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "ConfigItem definition updated (ID=%s)"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "Name updated (new=%s, old=%s)"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "Attribute %s updated from \"%s\" to \"%s\""
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "Version %s deleted"
+msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "No ConfigItemID or VersionID is given!"
@@ -923,10 +959,6 @@ msgstr ""
 #. SysConfig
 msgid "Duplicate"
 msgstr "Duplikat"
-
-#. SysConfig
-msgid "Dutch"
-msgstr ""
 
 #. SysConfig
 msgid ""

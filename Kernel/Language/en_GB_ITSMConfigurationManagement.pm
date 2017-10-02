@@ -20,7 +20,7 @@ sub Data {
     $Self->{Translation}->{'Change class definition'} = '';
     $Self->{Translation}->{'Config Item Class'} = '';
     $Self->{Translation}->{'Definition'} = '';
-    $Self->{Translation}->{'Change'} = '';
+    $Self->{Translation}->{'Change'} = 'Change';
 
     # Template: AgentITSMConfigItemAdd
     $Self->{Translation}->{'Config Item'} = '';
@@ -48,9 +48,9 @@ sub Data {
 
     # Template: AgentITSMConfigItemHistory
     $Self->{Translation}->{'History of Config Item: %s'} = '';
-    $Self->{Translation}->{'History Content'} = '';
-    $Self->{Translation}->{'Createtime'} = '';
-    $Self->{Translation}->{'Zoom view'} = '';
+    $Self->{Translation}->{'History Content'} = 'History Content';
+    $Self->{Translation}->{'Createtime'} = 'Createtime';
+    $Self->{Translation}->{'Zoom view'} = 'Zoom view';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'Context Settings';
@@ -138,7 +138,7 @@ sub Data {
     $Self->{Translation}->{'The incident state of this config item'} = '';
 
     # Perl Module: Kernel/Output/HTML/ITSMConfigItem/LayoutDate.pm
-    $Self->{Translation}->{'Between'} = '';
+    $Self->{Translation}->{'Between'} = 'Between';
 
     # Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
     $Self->{Translation}->{'Maximum number of one element'} = '';
@@ -205,7 +205,7 @@ sub Data {
     $Self->{Translation}->{'Docking Station'} = '';
     $Self->{Translation}->{'Scanner'} = '';
     $Self->{Translation}->{'Building'} = '';
-    $Self->{Translation}->{'Office'} = '';
+    $Self->{Translation}->{'Office'} = 'Office';
     $Self->{Translation}->{'Floor'} = '';
     $Self->{Translation}->{'Room'} = '';
     $Self->{Translation}->{'Rack'} = '';

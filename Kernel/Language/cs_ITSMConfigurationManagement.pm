@@ -20,7 +20,7 @@ sub Data {
     $Self->{Translation}->{'Change class definition'} = '';
     $Self->{Translation}->{'Config Item Class'} = '';
     $Self->{Translation}->{'Definition'} = '';
-    $Self->{Translation}->{'Change'} = '';
+    $Self->{Translation}->{'Change'} = 'Změnit';
 
     # Template: AgentITSMConfigItemAdd
     $Self->{Translation}->{'Config Item'} = 'Konfig. Položka';
@@ -49,7 +49,7 @@ sub Data {
     # Template: AgentITSMConfigItemHistory
     $Self->{Translation}->{'History of Config Item: %s'} = '';
     $Self->{Translation}->{'History Content'} = '';
-    $Self->{Translation}->{'Createtime'} = '';
+    $Self->{Translation}->{'Createtime'} = 'Doba vytvoření';
     $Self->{Translation}->{'Zoom view'} = '';
 
     # Template: AgentITSMConfigItemOverviewNavBar
@@ -138,7 +138,7 @@ sub Data {
     $Self->{Translation}->{'The incident state of this config item'} = 'Stav Incidentu této Konfig. Položky';
 
     # Perl Module: Kernel/Output/HTML/ITSMConfigItem/LayoutDate.pm
-    $Self->{Translation}->{'Between'} = '';
+    $Self->{Translation}->{'Between'} = 'Mezi';
 
     # Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
     $Self->{Translation}->{'Maximum number of one element'} = 'Max počet jedné Položky';
@@ -205,7 +205,7 @@ sub Data {
     $Self->{Translation}->{'Docking Station'} = 'Dok Stanice';
     $Self->{Translation}->{'Scanner'} = 'Skener';
     $Self->{Translation}->{'Building'} = 'Budova';
-    $Self->{Translation}->{'Office'} = '';
+    $Self->{Translation}->{'Office'} = 'Kancelář';
     $Self->{Translation}->{'Floor'} = 'podlaží';
     $Self->{Translation}->{'Room'} = 'Místnost';
     $Self->{Translation}->{'Rack'} = 'Rack';
@@ -307,7 +307,7 @@ sub Data {
     $Self->{Translation}->{'Deployment State Color'} = '';
     $Self->{Translation}->{'Deployment State Color.'} = '';
     $Self->{Translation}->{'Deployment State Type.'} = '';
-    $Self->{Translation}->{'Duplicate'} = '';
+    $Self->{Translation}->{'Duplicate'} = 'Duplikace';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         '';
     $Self->{Translation}->{'Enables configuration item bulk action feature only for the listed groups.'} =

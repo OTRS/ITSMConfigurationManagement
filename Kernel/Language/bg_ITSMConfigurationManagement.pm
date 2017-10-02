@@ -20,7 +20,7 @@ sub Data {
     $Self->{Translation}->{'Change class definition'} = '';
     $Self->{Translation}->{'Config Item Class'} = '';
     $Self->{Translation}->{'Definition'} = '';
-    $Self->{Translation}->{'Change'} = '';
+    $Self->{Translation}->{'Change'} = 'Промяна';
 
     # Template: AgentITSMConfigItemAdd
     $Self->{Translation}->{'Config Item'} = '';
@@ -49,7 +49,7 @@ sub Data {
     # Template: AgentITSMConfigItemHistory
     $Self->{Translation}->{'History of Config Item: %s'} = '';
     $Self->{Translation}->{'History Content'} = '';
-    $Self->{Translation}->{'Createtime'} = '';
+    $Self->{Translation}->{'Createtime'} = 'време на създаване';
     $Self->{Translation}->{'Zoom view'} = '';
 
     # Template: AgentITSMConfigItemOverviewNavBar
@@ -138,7 +138,7 @@ sub Data {
     $Self->{Translation}->{'The incident state of this config item'} = '';
 
     # Perl Module: Kernel/Output/HTML/ITSMConfigItem/LayoutDate.pm
-    $Self->{Translation}->{'Between'} = '';
+    $Self->{Translation}->{'Between'} = 'Между';
 
     # Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
     $Self->{Translation}->{'Maximum number of one element'} = '';
@@ -205,7 +205,7 @@ sub Data {
     $Self->{Translation}->{'Docking Station'} = 'Докинг станция';
     $Self->{Translation}->{'Scanner'} = 'Скенер';
     $Self->{Translation}->{'Building'} = '';
-    $Self->{Translation}->{'Office'} = '';
+    $Self->{Translation}->{'Office'} = 'Офис';
     $Self->{Translation}->{'Floor'} = '';
     $Self->{Translation}->{'Room'} = '';
     $Self->{Translation}->{'Rack'} = '';
@@ -307,7 +307,7 @@ sub Data {
     $Self->{Translation}->{'Deployment State Color'} = '';
     $Self->{Translation}->{'Deployment State Color.'} = '';
     $Self->{Translation}->{'Deployment State Type.'} = '';
-    $Self->{Translation}->{'Duplicate'} = '';
+    $Self->{Translation}->{'Duplicate'} = 'Направи копие';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         '';
     $Self->{Translation}->{'Enables configuration item bulk action feature only for the listed groups.'} =

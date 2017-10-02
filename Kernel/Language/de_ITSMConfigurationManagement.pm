@@ -47,7 +47,7 @@ sub Data {
     $Self->{Translation}->{'Incident State'} = 'Vorfallsstatus';
 
     # Template: AgentITSMConfigItemHistory
-    $Self->{Translation}->{'History of Config Item: %s'} = '';
+    $Self->{Translation}->{'History of Config Item: %s'} = 'Änderungsverlauf von Config Item: %s';
     $Self->{Translation}->{'History Content'} = 'Änderungsverlauf';
     $Self->{Translation}->{'Createtime'} = 'Erstellt am';
     $Self->{Translation}->{'Zoom view'} = 'Großansicht';
@@ -104,17 +104,17 @@ sub Data {
     # Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
     $Self->{Translation}->{'Can\'t show history, no ConfigItemID is given!'} = '';
     $Self->{Translation}->{'Can\'t show history, no access rights given!'} = '';
-    $Self->{Translation}->{'New ConfigItem (ID=%s)'} = '';
-    $Self->{Translation}->{'New version (ID=%s)'} = '';
-    $Self->{Translation}->{'Deployment state updated (new=%s, old=%s)'} = '';
-    $Self->{Translation}->{'Incident state updated (new=%s, old=%s)'} = '';
-    $Self->{Translation}->{'ConfigItem (ID=%s) deleted'} = '';
-    $Self->{Translation}->{'Link to %s (type=%s) added'} = '';
-    $Self->{Translation}->{'Link to %s (type=%s) deleted'} = '';
-    $Self->{Translation}->{'ConfigItem definition updated (ID=%s)'} = '';
-    $Self->{Translation}->{'Name updated (new=%s, old=%s)'} = '';
-    $Self->{Translation}->{'Attribute %s updated from "%s" to "%s"'} = '';
-    $Self->{Translation}->{'Version %s deleted'} = '';
+    $Self->{Translation}->{'New ConfigItem (ID=%s)'} = 'Neues ConfigItem (ID=%s)';
+    $Self->{Translation}->{'New version (ID=%s)'} = 'Neue Version (ID=%s)';
+    $Self->{Translation}->{'Deployment state updated (new=%s, old=%s)'} = 'Verwendungsstatus aktualisiert (neu=%s, alt=%s)';
+    $Self->{Translation}->{'Incident state updated (new=%s, old=%s)'} = 'Vorfallsstatus aktualisiert (neu=%s, alt=%s)';
+    $Self->{Translation}->{'ConfigItem (ID=%s) deleted'} = 'ConfigItem (ID=%s) gelöscht';
+    $Self->{Translation}->{'Link to %s (type=%s) added'} = 'Verknüpfung zu %s (Typ=%s) hinzugefügt';
+    $Self->{Translation}->{'Link to %s (type=%s) deleted'} = 'Verknüpfung zu %s (Typ=%s) gelöscht';
+    $Self->{Translation}->{'ConfigItem definition updated (ID=%s)'} = 'ConfigItem-Definition aktualisiert (ID=%s)';
+    $Self->{Translation}->{'Name updated (new=%s, old=%s)'} = 'Name aktualisiert (new=%s, alt=%s)';
+    $Self->{Translation}->{'Attribute %s updated from "%s" to "%s"'} = 'Attribut %s aktualisiert von "%s" nach "%s"';
+    $Self->{Translation}->{'Version %s deleted'} = 'Version %s gelöscht';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
     $Self->{Translation}->{'No ConfigItemID or VersionID is given!'} = '';

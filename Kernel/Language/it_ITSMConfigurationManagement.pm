@@ -20,7 +20,7 @@ sub Data {
     $Self->{Translation}->{'Change class definition'} = '';
     $Self->{Translation}->{'Config Item Class'} = '';
     $Self->{Translation}->{'Definition'} = 'Definizione';
-    $Self->{Translation}->{'Change'} = '';
+    $Self->{Translation}->{'Change'} = 'Modifica';
 
     # Template: AgentITSMConfigItemAdd
     $Self->{Translation}->{'Config Item'} = 'Elemento di configurazione';
@@ -37,7 +37,7 @@ sub Data {
     $Self->{Translation}->{'The number of another Configuration Item to link with.'} = '';
 
     # Template: AgentITSMConfigItemDelete
-    $Self->{Translation}->{'Do you really want to delete this config item?'} = '';
+    $Self->{Translation}->{'Do you really want to delete this config item?'} = 'Vuoi davvero eliminare questo elemento di configurazione?';
 
     # Template: AgentITSMConfigItemEdit
     $Self->{Translation}->{'The name of this config item'} = 'Il nome di questo elemento di configurazione';
@@ -48,9 +48,9 @@ sub Data {
 
     # Template: AgentITSMConfigItemHistory
     $Self->{Translation}->{'History of Config Item: %s'} = '';
-    $Self->{Translation}->{'History Content'} = '';
-    $Self->{Translation}->{'Createtime'} = '';
-    $Self->{Translation}->{'Zoom view'} = '';
+    $Self->{Translation}->{'History Content'} = 'Contenuto dello storico';
+    $Self->{Translation}->{'Createtime'} = 'Istante di creazione';
+    $Self->{Translation}->{'Zoom view'} = 'Vista di Dettaglio';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = 'Impostazioni di contesto';
@@ -69,7 +69,7 @@ sub Data {
     $Self->{Translation}->{'Also search in previous versions?'} = 'Cercare anche in versioni precedenti?';
 
     # Template: AgentITSMConfigItemZoom
-    $Self->{Translation}->{'Configuration Item'} = '';
+    $Self->{Translation}->{'Configuration Item'} = 'Elemento di configurazione';
     $Self->{Translation}->{'Configuration Item Information'} = '';
     $Self->{Translation}->{'Current Deployment State'} = 'Stato attuale di implementazione';
     $Self->{Translation}->{'Last changed by'} = 'Ultima modifica di';
@@ -138,7 +138,7 @@ sub Data {
     $Self->{Translation}->{'The incident state of this config item'} = 'Lo stato di incidente di questo elemento di configurazione';
 
     # Perl Module: Kernel/Output/HTML/ITSMConfigItem/LayoutDate.pm
-    $Self->{Translation}->{'Between'} = '';
+    $Self->{Translation}->{'Between'} = 'fra';
 
     # Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
     $Self->{Translation}->{'Maximum number of one element'} = 'Numero massimo di un elemento';
@@ -171,10 +171,10 @@ sub Data {
     $Self->{Translation}->{'Media'} = 'Supporto';
 
     # Database XML Definition: ITSMConfigurationManagement.sopm
-    $Self->{Translation}->{'Computer'} = '';
-    $Self->{Translation}->{'Hardware'} = '';
-    $Self->{Translation}->{'Network'} = '';
-    $Self->{Translation}->{'Software'} = '';
+    $Self->{Translation}->{'Computer'} = 'Computer';
+    $Self->{Translation}->{'Hardware'} = 'Hardware';
+    $Self->{Translation}->{'Network'} = 'Rete';
+    $Self->{Translation}->{'Software'} = 'Software';
     $Self->{Translation}->{'Expired'} = 'Scaduto';
     $Self->{Translation}->{'Maintenance'} = 'Manutenzione';
     $Self->{Translation}->{'Pilot'} = 'Pilot';
@@ -205,7 +205,7 @@ sub Data {
     $Self->{Translation}->{'Docking Station'} = 'Docking Station';
     $Self->{Translation}->{'Scanner'} = 'Scanner';
     $Self->{Translation}->{'Building'} = 'Edificio';
-    $Self->{Translation}->{'Office'} = '';
+    $Self->{Translation}->{'Office'} = 'Ufficio';
     $Self->{Translation}->{'Floor'} = 'Piano';
     $Self->{Translation}->{'Room'} = 'Stanza';
     $Self->{Translation}->{'Rack'} = 'Armadio';
@@ -262,7 +262,7 @@ sub Data {
     $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = 'Crea e gestisci le definizioni per gli elementi di configurazione.';
     $Self->{Translation}->{'Define Actions where a settings button is available in the linked objects widget (LinkObject::ViewMode = "complex"). Please note that these Actions must have registered the following JS and CSS files: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js and Core.Agent.LinkObject.js.'} =
         '';
-    $Self->{Translation}->{'Define the group with permissions.'} = '';
+    $Self->{Translation}->{'Define the group with permissions.'} = 'Specifica il gruppo con permessi.';
     $Self->{Translation}->{'Defines Required permissions to create ITSM configuration items using the Generic Interface.'} =
         '';
     $Self->{Translation}->{'Defines Required permissions to delete ITSM configuration items using the Generic Interface.'} =
@@ -307,7 +307,7 @@ sub Data {
     $Self->{Translation}->{'Deployment State Color'} = '';
     $Self->{Translation}->{'Deployment State Color.'} = '';
     $Self->{Translation}->{'Deployment State Type.'} = '';
-    $Self->{Translation}->{'Duplicate'} = '';
+    $Self->{Translation}->{'Duplicate'} = 'Duplicato';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         '';
     $Self->{Translation}->{'Enables configuration item bulk action feature only for the listed groups.'} =

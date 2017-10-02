@@ -20,7 +20,7 @@ sub Data {
     $Self->{Translation}->{'Change class definition'} = '';
     $Self->{Translation}->{'Config Item Class'} = '';
     $Self->{Translation}->{'Definition'} = '';
-    $Self->{Translation}->{'Change'} = '';
+    $Self->{Translation}->{'Change'} = 'Skift';
 
     # Template: AgentITSMConfigItemAdd
     $Self->{Translation}->{'Config Item'} = 'Config Item';
@@ -48,9 +48,9 @@ sub Data {
 
     # Template: AgentITSMConfigItemHistory
     $Self->{Translation}->{'History of Config Item: %s'} = '';
-    $Self->{Translation}->{'History Content'} = '';
-    $Self->{Translation}->{'Createtime'} = '';
-    $Self->{Translation}->{'Zoom view'} = '';
+    $Self->{Translation}->{'History Content'} = 'Historik';
+    $Self->{Translation}->{'Createtime'} = 'Oprettelsestid';
+    $Self->{Translation}->{'Zoom view'} = 'Zoom-visning';
 
     # Template: AgentITSMConfigItemOverviewNavBar
     $Self->{Translation}->{'Context Settings'} = '';
@@ -138,7 +138,7 @@ sub Data {
     $Self->{Translation}->{'The incident state of this config item'} = 'Incident tilstand for denne Config Item';
 
     # Perl Module: Kernel/Output/HTML/ITSMConfigItem/LayoutDate.pm
-    $Self->{Translation}->{'Between'} = '';
+    $Self->{Translation}->{'Between'} = 'Mellem';
 
     # Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
     $Self->{Translation}->{'Maximum number of one element'} = 'Maximum antal af et element';
@@ -205,7 +205,7 @@ sub Data {
     $Self->{Translation}->{'Docking Station'} = 'Docking Station';
     $Self->{Translation}->{'Scanner'} = 'Skanner';
     $Self->{Translation}->{'Building'} = 'Bygning';
-    $Self->{Translation}->{'Office'} = '';
+    $Self->{Translation}->{'Office'} = 'Kontor';
     $Self->{Translation}->{'Floor'} = 'Etage';
     $Self->{Translation}->{'Room'} = '';
     $Self->{Translation}->{'Rack'} = 'Rack';
@@ -307,7 +307,7 @@ sub Data {
     $Self->{Translation}->{'Deployment State Color'} = '';
     $Self->{Translation}->{'Deployment State Color.'} = '';
     $Self->{Translation}->{'Deployment State Type.'} = '';
-    $Self->{Translation}->{'Duplicate'} = '';
+    $Self->{Translation}->{'Duplicate'} = 'Dupliker';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         '';
     $Self->{Translation}->{'Enables configuration item bulk action feature only for the listed groups.'} =

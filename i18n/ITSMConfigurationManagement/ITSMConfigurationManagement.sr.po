@@ -5,9 +5,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2017-09-25 09:15+0000\n"
-"PO-Revision-Date: 2017-09-25 09:15+0000\n"
-"Last-Translator: Dusan Vuckovic\n"
+"POT-Creation-Date: 2017-10-02 11:19+0000\n"
+"PO-Revision-Date: 2017-10-02 11:19+0000\n"
+"Last-Translator: Udo Bretz\n"
 "Language-Team: Serbian (http://www.transifex.com/otrs/OTRS/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,7 +53,7 @@ msgstr "Класа"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "ITSM ConfigItem Bulk Action"
-msgstr "„ITSM” масовна акција на тикету"
+msgstr "ITSM масовна акција на тикету"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Deployment state"
@@ -74,10 +74,6 @@ msgstr "Неисправан број конфигурационе ставке!
 #. Template: AgentITSMConfigItemBulk
 msgid "The number of another Configuration Item to link with."
 msgstr "Број друге конфигурационе ставке за повезивање."
-
-#. Template: AgentITSMConfigItemDelete
-msgid "Number"
-msgstr "Број"
 
 #. Template: AgentITSMConfigItemDelete
 msgid "Do you really want to delete this config item?"
@@ -210,11 +206,11 @@ msgstr "Преглед: ITSM конфигурационе ставке"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
 msgid "No ConfigItemID is given!"
-msgstr "Није дат ИД Конфигурационе Ставке!"
+msgstr "Није дат ConfigItemID!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
 msgid "You need at least one selected Configuration Item!"
-msgstr "Потребна је бар једна изабрана Конфигурациона ставка!"
+msgstr "Потребна је бар једна изабрана конфигурациона ставка!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
 msgid "You don't have write access to this configuration item: %s."
@@ -222,15 +218,15 @@ msgstr "Немате право уписа за ову конфигурацио�
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
 msgid "Config item \"%s\" not found in database!"
-msgstr "Конфигурациона ставка „%s” није нађена у бази података!"
+msgstr "Конфигурациона ставка \"%s\" није нађена у бази података!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
 msgid "Was not able to delete the configitem ID %s!"
-msgstr "Није било могуће обрисати конфигурациону ставку ID %s!"
+msgstr "Није било могуће обрисати ConfigItemID %s!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
 msgid "No version found for ConfigItemID %s!"
-msgstr "Није пронађена верзија за конфигурациону ставку ID %s!"
+msgstr "Није пронађена верзија за ConfigItemID %s!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
 msgid "No ConfigItemID, DuplicateID or ClassID is given!"
@@ -246,15 +242,55 @@ msgstr "Није пронађена дефиниција за класу %s!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Can't show history, no ConfigItemID is given!"
-msgstr "Не може се приказати историјат, јер није дат ID конфигурационе ставке!"
+msgstr "Не може се приказати историјат, јер није дат ConfigItemID!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Can't show history, no access rights given!"
-msgstr "Не може се приказати историјат, није дат приступ!"
+msgstr "Не може се приказати историјат, није дозвољен приступ!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
-msgid "CIHistory::"
-msgstr "CIHistory::"
+msgid "New ConfigItem (ID=%s)"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "New version (ID=%s)"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "Deployment state updated (new=%s, old=%s)"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "Incident state updated (new=%s, old=%s)"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "ConfigItem (ID=%s) deleted"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "Link to %s (type=%s) added"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "Link to %s (type=%s) deleted"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "ConfigItem definition updated (ID=%s)"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "Name updated (new=%s, old=%s)"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "Attribute %s updated from \"%s\" to \"%s\""
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
+msgid "Version %s deleted"
+msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "No ConfigItemID or VersionID is given!"
@@ -266,11 +302,11 @@ msgstr "Не може се приказати конфигурациона ст�
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "ConfigItemID %s not found in database!"
-msgstr "Конфигурациона ставка ID %s није нађена у бази података!"
+msgstr "ConfigItemID %s није нађена у бази података!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "VersionID %s not found in database!"
-msgstr "Верзија ID %s није нађена у бази података!"
+msgstr "VersionID %s није нађена у бази података!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "ConfigItem"
@@ -282,11 +318,11 @@ msgstr "штампану од стране %s у %s"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "Invalid ClassID!"
-msgstr "Неисправан ИД Класе!"
+msgstr "Неисправан ClassID!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "No ClassID is given!"
-msgstr "Није дат ИД Класе!"
+msgstr "Није дат ClassID!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "No access rights for this class given!"
@@ -338,11 +374,11 @@ msgstr "Процесор"
 
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
 msgid "Ram"
-msgstr "РАМ"
+msgstr "RAM"
 
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
 msgid "Hard Disk"
-msgstr "Чврсти диск"
+msgstr "Хард диск"
 
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
 msgid "Capacity"
@@ -354,11 +390,11 @@ msgstr "Мрежни адаптер"
 
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
 msgid "IP over DHCP"
-msgstr "„IP” преко „DHCP”"
+msgstr "IP преко DHCP"
 
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
 msgid "IP Address"
-msgstr "„IP” Адреса"
+msgstr "IP адреса"
 
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
 msgid "Graphic Adapter"
@@ -466,7 +502,7 @@ msgstr "Рецензија"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Test/QA"
-msgstr "Тест/ОК"
+msgstr "Тест/QA"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Laptop"
@@ -506,7 +542,7 @@ msgstr "Рутер"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "WLAN Access Point"
-msgstr "„WLAN” приступна тачка"
+msgstr "WLAN приступна тачка"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Security Device"
@@ -538,11 +574,11 @@ msgstr "Модем"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "PCMCIA Card"
-msgstr "„PCMCIA” картица"
+msgstr "PCMCIA картица"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "USB Device"
-msgstr "„USB” уређај"
+msgstr "USB уређај"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Docking Station"
@@ -586,11 +622,11 @@ msgstr "ИТ објекат"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "LAN"
-msgstr "„LAN” - локална мрежа"
+msgstr "LAN"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "WLAN"
-msgstr "„WLAN”"
+msgstr "WLAN"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Telco"
@@ -598,7 +634,7 @@ msgstr "Telco"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "GSM"
-msgstr "„GSM”"
+msgstr "GSM"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Client Application"
@@ -614,11 +650,11 @@ msgstr "Серверска апликација"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Client OS"
-msgstr "Клијентски ОС"
+msgstr "Клијентски OS"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Server OS"
-msgstr "Серверски ОС"
+msgstr "Серверски OS"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Admin Tool"
@@ -693,7 +729,7 @@ msgid ""
 "Check for a unique name only within the same ConfigItem class ('class') or "
 "globally ('global'), which means every existing ConfigItem is taken into "
 "account when looking for duplicates."
-msgstr "Провера јединственог имена само у оквиру исте класе конфигурационих ставки („класа”) или глобално („глобално”), што значи да је свака постојећа Конфигурациона ставка узета у обзир у провери дупликата."
+msgstr "Провера јединственог имена само у оквиру исте класе конфигурационих ставки ('класа') или глобално ('глобално'), што значи да је свака постојећа Конфигурациона ставка узета у обзир у провери дупликата."
 
 #. SysConfig
 msgid "Config Items"
@@ -760,7 +796,7 @@ msgid ""
 "must have registered the following JS and CSS files: "
 "Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, "
 "Core.Agent.TableFilters.js and Core.Agent.LinkObject.js."
-msgstr "Дефинише Акције где је дугме поставки доступно у повезаном графичком елементу објекта (LinkObject::ViewMode = \"complex\"). Молимо да имате на уму да ове Акције морају да буду регистроване у следећим JS и CSS датотекама: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js и Core.Agent.LinkObject.js."
+msgstr "Дефинише акције где је дугме поставки доступно у повезаном графичком елементу објекта (LinkObject::ViewMode = \"complex\"). Молимо да имате на уму да ове Акције морају да буду регистроване у следећим JS и CSS датотекама: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js и Core.Agent.LinkObject.js."
 
 #. SysConfig
 msgid "Define the group with permissions."
@@ -770,31 +806,31 @@ msgstr "Дефинисаље групе са правима."
 msgid ""
 "Defines Required permissions to create ITSM configuration items using the "
 "Generic Interface."
-msgstr "Дефинише неопходне дозволе за креирање ИТСМ конфигурационих ставки коришћењем општег интерфејса."
+msgstr "Дефинише неопходне дозволе за креирање ITSM конфигурационих ставки коришћењем генеричког интерфејса."
 
 #. SysConfig
 msgid ""
 "Defines Required permissions to delete ITSM configuration items using the "
 "Generic Interface."
-msgstr "Одређује потребне дозволе за брисање „ITSM” конфигурационих ставки кроз општи интерфејс."
+msgstr "Одређује потребне дозволе за брисање ITSM конфигурационих ставки кроз генерички интерфејс."
 
 #. SysConfig
 msgid ""
 "Defines Required permissions to get ITSM configuration items using the "
 "Generic Interface."
-msgstr "Дефинише неопходне дозволе за добијање ИТСМ конфигурационих ставки коришћењем општег интерфејса."
+msgstr "Дефинише неопходне дозволе за добијање ITSM конфигурационих ставки коришћењем генеричког интерфејса."
 
 #. SysConfig
 msgid ""
 "Defines Required permissions to search ITSM configuration items using the "
 "Generic Interface."
-msgstr "Дефинише неопходне дозволе за претрагу ИТСМ конфигурационих ставки коришћењем општег интерфејса."
+msgstr "Дефинише неопходне дозволе за претрагу ITSM конфигурационих ставки коришћењем генеричког интерфејса."
 
 #. SysConfig
 msgid ""
 "Defines Required permissions to update ITSM configuration items using the "
 "Generic Interface."
-msgstr "Дефинише неопходне дозволе за ажурирање ИТСМ конфигурационих ставки коришћењем општег интерфејса."
+msgstr "Дефинише неопходне дозволе за ажурирање ITSM конфигурационих ставки коришћењем генеричког интерфејса."
 
 #. SysConfig
 msgid ""
@@ -810,13 +846,13 @@ msgstr "Одређује регуларне изразе за сваку кла�
 
 #. SysConfig
 msgid "Defines the default subobject of the class 'ITSMConfigItem'."
-msgstr "Одређује подразумевани подобјекат класе „ITSM Конфигурациона ставка”."
+msgstr "Одређује подразумевани подобјекат класе ITSM конфигурациона ставка."
 
 #. SysConfig
 msgid ""
 "Defines the number of rows for the CI definition editor in the admin "
 "interface."
-msgstr "Одређује број редова за едитор дефиниције КС у административном интерфејсу."
+msgstr "Одређује број редова за едитор дефиниције CI у административном интерфејсу."
 
 #. SysConfig
 msgid ""
@@ -828,7 +864,7 @@ msgstr "Одређује редослед инцидентних стања од
 msgid ""
 "Defines the relevant deployment states where linked tickets can affect the "
 "status of a CI."
-msgstr "Одређује релевантна стања распоређивања где повезани тикети могу да утичу на статус КС."
+msgstr "Одређује релевантна стања распоређивања где повезани тикети могу да утичу на статус CI."
 
 #. SysConfig
 msgid "Defines the search limit for the AgentITSMConfigItem screen."
@@ -843,7 +879,7 @@ msgid ""
 "Defines the shown columns in the config item overview. This option has no "
 "effect on the position of the column. Note: Class column is always available"
 " if filter 'All' is selected."
-msgstr "Одређује приказане колоне у прегледу конфигурационих ставки. Ова опције нема утицај на позиције колона. Напомена: Ако је изабран филтер „Све” класа колоне је увек доступна."
+msgstr "Одређује приказане колоне у прегледу конфигурационих ставки. Ова опције нема утицај на позиције колона. Напомена: уколико је изабран филтер 'Све' класа колоне је увек доступна."
 
 #. SysConfig
 msgid ""
@@ -897,11 +933,11 @@ msgstr "Дефинише приказане колоне конфигураци�
 msgid ""
 "Defines which type of link (named from the ticket perspective) can affect "
 "the status of a linked CI."
-msgstr "Одређује који тип везе (гледано из перспективе тикета) може да утиче на повезану КС."
+msgstr "Одређује који тип везе (гледано из перспективе тикета) може да утиче на повезану CI."
 
 #. SysConfig
 msgid "Defines which type of ticket can affect the status of a linked CI."
-msgstr "Одређује који тип тикета може да утиче на статус повезане КС."
+msgstr "Одређује који тип тикета може да утиче на статус повезане CI."
 
 #. SysConfig
 msgid "Delete Configuration Item"
@@ -924,10 +960,6 @@ msgid "Duplicate"
 msgstr "Дупликат"
 
 #. SysConfig
-msgid "Dutch"
-msgstr ""
-
-#. SysConfig
 msgid ""
 "Enables configuration item bulk action feature for the agent frontend to "
 "work on more than one configuration item at a time."
@@ -944,7 +976,7 @@ msgid ""
 "Before enabling this option you should check your system for already "
 "existing config items with duplicate names. You can do this with the script "
 "bin/otrs.ITSMConfigItemListDuplicates.pl."
-msgstr "Активира/деактивира функцију за проверу јединствености имана конфигурационих ставки. Пре активирања ове опције требате проверити у вашем систему постојање дупликата на постојећим ставкама. То можете урадити помоћу скрипта „bin/otrs.ITSMConfigItemListDuplicates.pl”. "
+msgstr "Активира/деактивира функцију за проверу јединствености имана конфигурационих ставки. Пре активирања ове опције требате проверити у вашем систему постојање дупликата на постојећим ставкама. То можете урадити помоћу скрипта bin/otrs.ITSMConfigItemListDuplicates.pl. "
 
 #. SysConfig
 msgid "Event module to set configitem-status on ticket-configitem-link."
@@ -952,7 +984,7 @@ msgstr "Модул догађаја за подешавање статуса к�
 
 #. SysConfig
 msgid "ITSM config item overview."
-msgstr "Преглед „ITSM” конфигурационе ставке."
+msgstr "Преглед ITSM конфигурационе ставке."
 
 #. SysConfig
 msgid "Module to check the group responsible for a class."
@@ -964,11 +996,11 @@ msgstr "Модул за проверу групе одговорне за кон
 
 #. SysConfig
 msgid "Module to generate ITSM config item statistics."
-msgstr "Модул за генерисање статистике „ITSM” конфигурационих ставки."
+msgstr "Модул за генерисање статистике ITSM конфигурационих ставки."
 
 #. SysConfig
 msgid "Object backend module registration for the import/export module."
-msgstr "Регистрације „backend” модула објекта за увоз/извоз модул."
+msgstr "Регистрација модула објекта за додатак увоз/извоз."
 
 #. SysConfig
 msgid "Overview."
@@ -1052,7 +1084,7 @@ msgid ""
 "increments the configuration item number, the SystemID, the "
 "ConfigItemClassID and the counter are used. The format is "
 "\"SystemID.ConfigItemClassID.Counter\", e.g. 1205000004, 1205000005."
-msgstr "Бира модул оператора аутоматског увећања конфигурационе ставке. Оператор аутоматског увећања повећава број ставке, системски ИД, ИД конфигурационе класе и кориштени бројач. Формат је „SystemID.ConfigItemClassID.Counter”, нпр 1205000004, 1205000005."
+msgstr "Бира модул оператора аутоматског увећања конфигурационе ставке. Оператор аутоматског увећања повећава број ставке, SystemID, ConfigItemClassID и коришћени бројач. Формат је \"SystemID.ConfigItemClassID.бројач\", нпр 1205000004, 1205000005."
 
 #. SysConfig
 msgid ""
@@ -1141,7 +1173,7 @@ msgstr "Приказује историјат конфигурационе ст�
 msgid ""
 "The identifier for a configuration item, e.g. ConfigItem#, MyConfigItem#. "
 "The default is ConfigItem#."
-msgstr "Идентификатор за конфигурациону ставку, нпр КонфигурационаСтавка#, МојаКонфигурационаСтавка#. Подразумевано је КонфигурационаСтавка#."
+msgstr "Идентификатор за конфигурациону ставку, нпр. ConfigItem#, MyConfigItem#. Подразумевано је ConfigItem#."
 
 #. SysConfig
 msgid "class"
