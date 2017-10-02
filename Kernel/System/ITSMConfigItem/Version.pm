@@ -812,13 +812,13 @@ sub VersionAdd {
             my $ContentString = $UpdateValue . '{\'Content\'}';
 
             # Check if the key exists.
-            next UPDATEVALUE if !exists $ValueHash2D{ $ContentString };
+            next UPDATEVALUE if !exists $ValueHash2D{$ContentString};
 
             my $Type = 'ITSM::ConfigItem::' . $ConfigItemInfo->{ClassID};
 
             # Delete old entries from the database.
             return if !$DBObject->Do(
-                SQL  => '
+                SQL => '
                     DELETE FROM xml_storage
                     WHERE xml_type = ?
                     AND xml_key = ?
@@ -842,7 +842,7 @@ sub VersionAdd {
                     \$Type,
                     \$ReturnVersionID,
                     \$ContentString,
-                    \$ValueHash2D{ $ContentString },
+                    \$ValueHash2D{$ContentString},
                 ],
             );
 
@@ -1733,7 +1733,7 @@ sub _FindChangedXMLValues {
                     $SuppressVersionAdd{UpdateLastVersion}->{$TagKey} = join '%%', $OldContent, $NewContent;
 
                     # Build a new data structire only with the update values.
-                    eval '$SuppressVersionAdd{UpdateXMLData}->' . $TagKey . '->{Content} = $NewContent';  ## no critic
+                    eval '$SuppressVersionAdd{UpdateXMLData}->' . $TagKey . '->{Content} = $NewContent';    ## no critic
                 }
                 elsif ( $AttributeInfo->{SuppressVersionAdd} eq 'Ignore' ) {
                     $SuppressVersionAdd{Ignore}->{$TagKey} = join '%%', $OldContent, $NewContent;
@@ -1750,17 +1750,19 @@ sub _FindChangedXMLValues {
     my $IgnoreCount            = scalar keys %{ $SuppressVersionAdd{Ignore} };
     my $UpdateLastVersionCount = scalar keys %{ $SuppressVersionAdd{UpdateLastVersion} };
 
-    if ( %UpdateValues ) {
+    if (%UpdateValues) {
 
         # Update values contains only values that should be ignored.
         if ( $UpdateValuesCount == $IgnoreCount ) {
             %UpdateValues = ();
         }
+
         # Update values contains only values that should update the last version or should be ignored,
         elsif (
             ( $UpdateValuesCount == $UpdateLastVersionCount )
             || ( $UpdateValuesCount == ( $UpdateLastVersionCount + $IgnoreCount ) )
-        ) {
+            )
+        {
             %UpdateValues                    = %{ $SuppressVersionAdd{UpdateLastVersion} };
             $UpdateValues{UpdateXMLData}     = $SuppressVersionAdd{UpdateXMLData};
             $UpdateValues{UpdateLastVersion} = 1;
