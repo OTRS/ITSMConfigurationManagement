@@ -37,7 +37,6 @@ sub Data {
     $Self->{Translation}->{'The number of another Configuration Item to link with.'} = 'Die Nummer des zu verlinkenden ConfigItems.';
 
     # Template: AgentITSMConfigItemDelete
-    $Self->{Translation}->{'Number'} = 'Nummer';
     $Self->{Translation}->{'Do you really want to delete this config item?'} = 'Wollen Sie dieses Configitem wirklich löschen?';
 
     # Template: AgentITSMConfigItemEdit
@@ -299,7 +298,6 @@ sub Data {
     $Self->{Translation}->{'Deployment State Color.'} = '';
     $Self->{Translation}->{'Deployment State Type.'} = '';
     $Self->{Translation}->{'Duplicate'} = 'Duplizieren';
-    $Self->{Translation}->{'Dutch'} = '';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         '';
     $Self->{Translation}->{'Enables configuration item bulk action feature only for the listed groups.'} =

@@ -37,7 +37,6 @@ sub Data {
     $Self->{Translation}->{'The number of another Configuration Item to link with.'} = '将要链接的另外一个配置项编号。';
 
     # Template: AgentITSMConfigItemDelete
-    $Self->{Translation}->{'Number'} = '编号';
     $Self->{Translation}->{'Do you really want to delete this config item?'} = '你真的想要删除这个配置项吗?';
 
     # Template: AgentITSMConfigItemEdit
@@ -299,7 +298,6 @@ sub Data {
     $Self->{Translation}->{'Deployment State Color.'} = '部署状态的颜色。';
     $Self->{Translation}->{'Deployment State Type.'} = '部署状态类型。';
     $Self->{Translation}->{'Duplicate'} = '复制';
-    $Self->{Translation}->{'Dutch'} = '';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         '在服务人员界面启用配置项批量操作功能，可以一次处理多个配置项。';
     $Self->{Translation}->{'Enables configuration item bulk action feature only for the listed groups.'} =

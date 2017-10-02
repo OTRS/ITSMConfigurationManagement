@@ -37,7 +37,6 @@ sub Data {
     $Self->{Translation}->{'The number of another Configuration Item to link with.'} = 'Egy másik konfigurációelem száma, amellyel össze kell kötni.';
 
     # Template: AgentITSMConfigItemDelete
-    $Self->{Translation}->{'Number'} = 'Szám';
     $Self->{Translation}->{'Do you really want to delete this config item?'} = 'Valóban törölni szeretné ezt a konfigurációelemet?';
 
     # Template: AgentITSMConfigItemEdit
@@ -299,7 +298,6 @@ sub Data {
     $Self->{Translation}->{'Deployment State Color.'} = 'Üzembe állítási állapot színe.';
     $Self->{Translation}->{'Deployment State Type.'} = 'Üzembe állítási állapottípus.';
     $Self->{Translation}->{'Duplicate'} = 'Kettőzés';
-    $Self->{Translation}->{'Dutch'} = '';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         'Engedélyezi a konfigurációelem tömeges művelet funkciót az ügyintézői előtétprogramnál, hogy egyszerre egynél több konfigurációelemmel dolgozhasson.';
     $Self->{Translation}->{'Enables configuration item bulk action feature only for the listed groups.'} =

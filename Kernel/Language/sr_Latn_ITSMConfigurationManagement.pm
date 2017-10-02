@@ -37,7 +37,6 @@ sub Data {
     $Self->{Translation}->{'The number of another Configuration Item to link with.'} = 'Broj druge konfiguracione stavke za povezivanje.';
 
     # Template: AgentITSMConfigItemDelete
-    $Self->{Translation}->{'Number'} = 'Broj';
     $Self->{Translation}->{'Do you really want to delete this config item?'} = 'Da li stvarno želite da obrišete ovu konfiguracionu stavku?';
 
     # Template: AgentITSMConfigItemEdit
@@ -299,7 +298,6 @@ sub Data {
     $Self->{Translation}->{'Deployment State Color.'} = 'Boja statusa raspoređivanja.';
     $Self->{Translation}->{'Deployment State Type.'} = 'Tip statusa raspoređivanja.';
     $Self->{Translation}->{'Duplicate'} = 'Duplikat';
-    $Self->{Translation}->{'Dutch'} = '';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         'Omogućava masovnu akciju na konfiguracionim stavkama u pristupnom sistemu operatera na više od jedne stavke istovremeno.';
     $Self->{Translation}->{'Enables configuration item bulk action feature only for the listed groups.'} =
