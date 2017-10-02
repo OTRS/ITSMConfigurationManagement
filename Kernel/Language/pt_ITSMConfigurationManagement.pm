@@ -104,7 +104,17 @@ sub Data {
     # Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
     $Self->{Translation}->{'Can\'t show history, no ConfigItemID is given!'} = '';
     $Self->{Translation}->{'Can\'t show history, no access rights given!'} = '';
-    $Self->{Translation}->{'CIHistory::'} = '';
+    $Self->{Translation}->{'New ConfigItem (ID=%s)'} = '';
+    $Self->{Translation}->{'New version (ID=%s)'} = '';
+    $Self->{Translation}->{'Deployment state updated (new=%s, old=%s)'} = '';
+    $Self->{Translation}->{'Incident state updated (new=%s, old=%s)'} = '';
+    $Self->{Translation}->{'ConfigItem (ID=%s) deleted'} = '';
+    $Self->{Translation}->{'Link to %s (type=%s) added'} = '';
+    $Self->{Translation}->{'Link to %s (type=%s) deleted'} = '';
+    $Self->{Translation}->{'ConfigItem definition updated (ID=%s)'} = '';
+    $Self->{Translation}->{'Name updated (new=%s, old=%s)'} = '';
+    $Self->{Translation}->{'Attribute %s updated from "%s" to "%s"'} = '';
+    $Self->{Translation}->{'Version %s deleted'} = '';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
     $Self->{Translation}->{'No ConfigItemID or VersionID is given!'} = '';
