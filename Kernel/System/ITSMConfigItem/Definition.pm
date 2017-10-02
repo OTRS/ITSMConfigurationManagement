@@ -415,6 +415,92 @@ sub DefinitionCheck {
     return 1;
 }
 
+=head2 DefinitionAttributeInfo()
+
+Return attribute information from the definition for a given attribute path name
+
+    my $AttributeInfo = $ConfigItemObject->DefinitionAttributeInfo(
+        AttributePath => 'HardDisk::Capacity',
+        Definition    => '
+            [
+                # ...
+
+                {
+                    Key => 'HardDisk',
+                    Name => 'Hard Disk',
+                    Input => {
+                        Type => 'Text',
+                        Size => 50,
+                        MaxLength => 100,
+                    },
+                    CountMax => 10,
+                    Sub => [
+                        {
+                            Key => 'Capacity',
+                            Name => 'Capacity',
+                            Input => {
+                                Type => 'Text',
+                                Size => 20,
+                                MaxLength => 10,
+                            },
+                        },
+                    ],
+                },
+
+                # ...
+            ];
+        ',
+    );
+
+    Returns:
+
+        my $AttributeInfo =  {
+            CountDefault => 1,
+            CountMax     => 1,
+            Input => {
+                Size      => 20,
+                Type      => 'Text',
+                MaxLength => 10
+            },
+            Name     => 'Capacity',
+            CountMin => 1,
+            Key      => 'Capacity'
+        };
+
+=cut
+
+sub DefinitionAttributeInfo {
+    my ( $Self, %Param ) = @_;
+
+    # check needed stuff
+    for my $Argument (qw(Definition AttributePath)) {
+        if ( !$Param{$Argument} ) {
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
+                Priority => 'error',
+                Message  => "Need $Argument!",
+            );
+            return;
+        }
+    }
+
+    my $Subtree = $Param{Definition};
+    my $Info;
+
+    PART:
+    for my $Part ( split /::/, $Param{AttributePath} ) {
+        my ($Found) = grep { $_->{Key} eq $Part } @{$Subtree};
+
+        last PART if !$Found;
+
+        $Subtree = $Found->{Sub};
+        $Info    = $Found;
+    }
+
+    return $Info;
+}
+
+=begin Internal:
+
 =head2 _DefinitionPrepare()
 
 Prepare the syntax of a new definition
@@ -478,6 +564,8 @@ sub _DefinitionPrepare {
 }
 
 1;
+
+=end Internal:
 
 =head1 TERMS AND CONDITIONS
 

@@ -701,6 +701,9 @@ sub VersionAdd {
         }
     }
 
+    my $DBObject    = $Kernel::OM->Get('Kernel::System::DB');
+    my $CacheObject = $Kernel::OM->Get('Kernel::System::Cache');
+
     # get deployment state list
     my $DeplStateList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => 'ITSM::ConfigItem::DeploymentState',
@@ -796,8 +799,110 @@ sub VersionAdd {
     my $ReturnVersionID = scalar @{$VersionList} ? $VersionList->[-1] : 0;
     return $ReturnVersionID if !( $Events && keys %{$Events} );
 
+    # Special case that only XML attributes have been changed that should not create a new version
+    if ( $Events->{UpdateLastVersion} && $Events->{UpdateXMLData} && ref $Events->{UpdateXMLData} eq 'ARRAY' ) {
+
+        my %ValueHash2D = $Kernel::OM->Get('Kernel::System::XML')->XMLHash2D(
+            XMLHash => $Events->{UpdateXMLData},
+        );
+
+        UPDATEVALUE:
+        for my $UpdateValue ( sort keys %{ $Events->{ValueUpdate} } ) {
+
+            my $ContentString = $UpdateValue . '{\'Content\'}';
+
+            # Check if the key exists.
+            next UPDATEVALUE if !exists $ValueHash2D{ $ContentString };
+
+            my $Type = 'ITSM::ConfigItem::' . $ConfigItemInfo->{ClassID};
+
+            # Delete old entries from the database.
+            return if !$DBObject->Do(
+                SQL  => '
+                    DELETE FROM xml_storage
+                    WHERE xml_type = ?
+                    AND xml_key = ?
+                    AND xml_content_key = ?
+                ',
+                Bind => [
+                    \$Type,
+                    \$ReturnVersionID,
+                    \$ContentString,
+                ],
+            );
+
+            # Add updated entry to the database.
+            return if !$DBObject->Do(
+                SQL => '
+                    INSERT INTO xml_storage
+                    (xml_type, xml_key, xml_content_key, xml_content_value)
+                    VALUES (?, ?, ?, ?)
+                ',
+                Bind => [
+                    \$Type,
+                    \$ReturnVersionID,
+                    \$ContentString,
+                    \$ValueHash2D{ $ContentString },
+                ],
+            );
+
+            # Delete cache.
+            $CacheObject->Delete(
+                Type => 'XML',
+                Key  => "$Type-$ReturnVersionID",
+            );
+        }
+
+        # delete affected caches
+        my $CacheKey = 'VersionGet::ConfigItemID::' . $Param{ConfigItemID} . '::XMLData::';
+        for my $XMLData (qw(0 1)) {
+            $CacheObject->Delete(
+                Type => $Self->{CacheType},
+                Key  => $CacheKey . $XMLData,
+            );
+        }
+
+        # delete affected caches
+        $CacheKey = 'VersionGet::VersionID::' . $ReturnVersionID . '::XMLData::';
+        for my $XMLData (qw(0 1)) {
+            $CacheObject->Delete(
+                Type => $Self->{CacheType},
+                Key  => $CacheKey . $XMLData,
+            );
+        }
+
+        # update change_time and change_by of the config item
+        return if !$DBObject->Do(
+            SQL => '
+                UPDATE configitem
+                SET change_time = current_timestamp,
+                change_by = ?
+                WHERE id = ?',
+            Bind => [
+                \$Param{UserID},
+                \$Param{ConfigItemID},
+            ],
+        );
+
+        # delete config item cache
+        $CacheKey = 'ConfigItemGet::ConfigItemID::' . $Param{ConfigItemID};
+        $CacheObject->Delete(
+            Type => $Self->{CacheType},
+            Key  => $CacheKey,
+        );
+
+        # Trigger ValueUpdate event.
+        $Self->_EventHandlerForChangedXMLValues(
+            ConfigItemID => $Param{ConfigItemID},
+            UpdateValues => $Events->{ValueUpdate},
+            UserID       => $Param{UserID},
+        );
+
+        return $ReturnVersionID;
+    }
+
     # insert new version
-    my $Success = $Kernel::OM->Get('Kernel::System::DB')->Do(
+    my $Success = $DBObject->Do(
         SQL => 'INSERT INTO configitem_version '
             . '(configitem_id, name, definition_id, '
             . 'depl_state_id, inci_state_id, create_time, create_by) VALUES '
@@ -815,8 +920,7 @@ sub VersionAdd {
     return if !$Success;
 
     # delete affected caches
-    my $CacheKey    = 'VersionGet::ConfigItemID::' . $Param{ConfigItemID} . '::XMLData::';
-    my $CacheObject = $Kernel::OM->Get('Kernel::System::Cache');
+    my $CacheKey = 'VersionGet::ConfigItemID::' . $Param{ConfigItemID} . '::XMLData::';
     for my $XMLData (qw(0 1)) {
         $CacheObject->Delete(
             Type => $Self->{CacheType},
@@ -829,7 +933,7 @@ sub VersionAdd {
     );
 
     # get id of new version
-    $Kernel::OM->Get('Kernel::System::DB')->Prepare(
+    $DBObject->Prepare(
         SQL => 'SELECT id, create_time FROM configitem_version WHERE '
             . 'configitem_id = ? ORDER BY id DESC',
         Bind  => [ \$Param{ConfigItemID} ],
@@ -839,7 +943,7 @@ sub VersionAdd {
     # fetch the result
     my $VersionID;
     my $CreateTime;
-    while ( my @Row = $Kernel::OM->Get('Kernel::System::DB')->FetchrowArray() ) {
+    while ( my @Row = $DBObject->FetchrowArray() ) {
         $VersionID  = $Row[0];
         $CreateTime = $Row[1];
     }
@@ -864,7 +968,7 @@ sub VersionAdd {
     }
 
     # update last_version_id, cur_depl_state_id, cur_inci_state_id, change_time and change_by
-    $Kernel::OM->Get('Kernel::System::DB')->Do(
+    $DBObject->Do(
         SQL => 'UPDATE configitem SET last_version_id = ?, '
             . 'cur_depl_state_id = ?, cur_inci_state_id = ?, '
             . 'change_time = ?, change_by = ? '
@@ -1425,13 +1529,39 @@ sub _GetEvents {
         $Events->{DefinitionUpdate} = $NewDefinitionID;
     }
 
+    # store if anything like Name, DeploymeintState, IncidentState, Definition has been changed.
+    my $NothingElseChanged;
+    if ( !%{$Events} ) {
+        $NothingElseChanged = 1;
+    }
+
     # check for changes in XML data
     if ( $Param{Param}->{XMLData} && ref $Param{Param}->{XMLData} eq 'ARRAY' ) {
         my %UpdateValues = $Self->_FindChangedXMLValues(
-            ConfigItemID => $Param{Param}->{ConfigItemID},
-            NewXMLData   => $Param{Param}->{XMLData},
+            ConfigItemID       => $Param{Param}->{ConfigItemID},
+            NewXMLData         => $Param{Param}->{XMLData},
+            DefinitionID       => $NewDefinitionID,
+            NothingElseChanged => $NothingElseChanged,
         );
-        if ( keys %UpdateValues ) {
+
+        if (%UpdateValues) {
+
+            # if only attributes have changed that should not create a new version
+            if ( $UpdateValues{UpdateLastVersion} && $NothingElseChanged ) {
+
+                $Events->{UpdateLastVersion} = 1;
+
+                # Clone the data structure, so we can delete the origial.
+                $Events->{UpdateXMLData} = $Kernel::OM->Get('Kernel::System::Storable')->Clone(
+                    Data => $UpdateValues{UpdateXMLData},
+                );
+
+                # We need to delete the flag and data again, to not cause any problems later
+                #   when processing the values.
+                delete $UpdateValues{UpdateLastVersion};
+                delete $UpdateValues{UpdateXMLData};
+            }
+
             $Events->{ValueUpdate} = \%UpdateValues;
         }
     }
@@ -1493,7 +1623,7 @@ compares the new xml data C<NewXMLData> with the xml data of the latest version
 of the config item C<ConfigItemID>. Note that the new XML data does not contain tag keys.
 All values of the two data sets are compared.
 When a changed value is encountered, the tag key and the old and the new value are stored in a hash.
-The hash with the update values is returned.
+The hash with the updated values is returned.
 
     my %UpdateValues = $ConfigItemObject->_FindChangedXMLValues(
         ConfigItemID => 123,
@@ -1533,7 +1663,7 @@ sub _FindChangedXMLValues {
     my ( $Self, %Param ) = @_;
 
     # check for needed stuff
-    for my $Needed (qw(ConfigItemID NewXMLData)) {
+    for my $Needed (qw(ConfigItemID NewXMLData DefinitionID)) {
         if ( !$Param{$Needed} ) {
             $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
@@ -1561,6 +1691,11 @@ sub _FindChangedXMLValues {
     my $NewXMLData = $Param{NewXMLData};
     my $OldXMLData = $OldVersion->{XMLData};
 
+    # get xml definition
+    my $Definition = $Self->DefinitionGet(
+        DefinitionID => $Param{DefinitionID},
+    );
+
     # get all tagkeys in new and old XML data
     # use a side effect of XMLHash2D(), which adds the tag keys to the passed in data structure
     $Kernel::OM->Get('Kernel::System::XML')->XMLHash2D( XMLHash => $NewXMLData );
@@ -1569,16 +1704,66 @@ sub _FindChangedXMLValues {
     # get an unique list of all tag keys
     my %UniqueTagKeys = map { $_ => 1 } @TagKeys;
 
-    # do the check
     my %UpdateValues;
+    my %SuppressVersionAdd;
+
     for my $TagKey ( sort keys %UniqueTagKeys ) {
         my $NewContent = eval '$NewXMLData->' . $TagKey . '->{Content}' || '';    ## no critic
         my $OldContent = eval '$OldXMLData->' . $TagKey . '->{Content}' || '';    ## no critic
 
         if ( $NewContent ne $OldContent ) {
 
-            # a change was found
+            # extract attribute path name
+            my $AttributePath = $TagKey;
+            $AttributePath =~ s{ \A \[.*?\] \{'Version'\} \[.*?\] \{' }{}xms;
+            $AttributePath =~ s{ '\} \[.*?\] \{' }{::}xmsg;
+            $AttributePath =~ s{ '\} \[.*?\] \z }{}xms;
+
+            # get definition info about attribute
+            my $AttributeInfo = $Self->DefinitionAttributeInfo(
+                Definition    => $Definition->{DefinitionRef},
+                AttributePath => $AttributePath,
+            );
+
+            # check if this attribute should be suppressed and nothing else of
+            #    Name, DeploymentState, IncidentState, Definition has been changed.
+            if ( $AttributeInfo->{SuppressVersionAdd} && $Param{NothingElseChanged} ) {
+
+                if ( $AttributeInfo->{SuppressVersionAdd} eq 'UpdateLastVersion' ) {
+                    $SuppressVersionAdd{UpdateLastVersion}->{$TagKey} = join '%%', $OldContent, $NewContent;
+
+                    # Build a new data structire only with the update values.
+                    eval '$SuppressVersionAdd{UpdateXMLData}->' . $TagKey . '->{Content} = $NewContent';  ## no critic
+                }
+                elsif ( $AttributeInfo->{SuppressVersionAdd} eq 'Ignore' ) {
+                    $SuppressVersionAdd{Ignore}->{$TagKey} = join '%%', $OldContent, $NewContent;
+                }
+            }
+
+            # change was found
             $UpdateValues{$TagKey} = join '%%', $OldContent, $NewContent;
+        }
+    }
+
+    # count how many of each SuppressVersionAdd types we have.
+    my $UpdateValuesCount      = scalar keys %UpdateValues;
+    my $IgnoreCount            = scalar keys %{ $SuppressVersionAdd{Ignore} };
+    my $UpdateLastVersionCount = scalar keys %{ $SuppressVersionAdd{UpdateLastVersion} };
+
+    if ( %UpdateValues ) {
+
+        # Update values contains only values that should be ignored.
+        if ( $UpdateValuesCount == $IgnoreCount ) {
+            %UpdateValues = ();
+        }
+        # Update values contains only values that should update the last version or should be ignored,
+        elsif (
+            ( $UpdateValuesCount == $UpdateLastVersionCount )
+            || ( $UpdateValuesCount == ( $UpdateLastVersionCount + $IgnoreCount ) )
+        ) {
+            %UpdateValues                    = %{ $SuppressVersionAdd{UpdateLastVersion} };
+            $UpdateValues{UpdateXMLData}     = $SuppressVersionAdd{UpdateXMLData};
+            $UpdateValues{UpdateLastVersion} = 1;
         }
     }
 

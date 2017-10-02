@@ -67,6 +67,21 @@ sub Run {
         );
     }
 
+    # Define translatable history strings.
+    my %HistoryStrings = (
+        'CIHistory::ConfigItemCreate'            => Translatable('New ConfigItem (ID=%s)'),
+        'CIHistory::VersionCreate'               => Translatable('New version (ID=%s)'),
+        'CIHistory::DeploymentStateUpdate'       => Translatable('Deployment state updated (new=%s, old=%s)'),
+        'CIHistory::IncidentStateUpdate'         => Translatable('Incident state updated (new=%s, old=%s)'),
+        'CIHistory::ConfigItemDelete'            => Translatable('ConfigItem (ID=%s) deleted'),
+        'CIHistory::LinkAdd'                     => Translatable('Link to %s (type=%s) added'),
+        'CIHistory::LinkDelete'                  => Translatable('Link to %s (type=%s) deleted'),
+        'CIHistory::DefinitionUpdate'            => Translatable('ConfigItem definition updated (ID=%s)'),
+        'CIHistory::NameUpdate'                  => Translatable('Name updated (new=%s, old=%s)'),
+        'CIHistory::ValueUpdate'                 => Translatable('Attribute %s updated from "%s" to "%s"'),
+        'CIHistory::VersionDelete'               => Translatable('Version %s deleted'),
+    );
+
     # get all information about the config item
     my $ConfigItem = $ConfigItemObject->ConfigItemGet(
         ConfigItemID => $Self->{ConfigItemID},
@@ -116,10 +131,10 @@ sub Run {
             $Parts[0] =~ s{ '\} \[.*?\] \{' }{::}xmsg;
             $Parts[0] =~ s{ '\} \[.*?\] \z }{}xms;
 
-            # get info about attribute
-            my $AttributeInfo = $Self->_GetAttributeInfo(
-                Definition => $Definition->{DefinitionRef},
-                Path       => $Parts[0],
+            # get definition info about attribute
+            my $AttributeInfo = $ConfigItemObject->DefinitionAttributeInfo(
+                Definition    => $Definition->{DefinitionRef},
+                AttributePath => $Parts[0],
             );
 
             if ( $AttributeInfo && $AttributeInfo->{Input}->{Type} eq 'GeneralCatalog' ) {
@@ -176,7 +191,7 @@ sub Run {
             my @Values = split /%%/, $Data{Comment};
 
             $Data{Comment} = $LayoutObject->{LanguageObject}->Translate(
-                'CIHistory::' . $Data{HistoryType},
+                $HistoryStrings{ 'CIHistory::' . $Data{HistoryType} },
                 @Values,
             );
 
@@ -206,36 +221,6 @@ sub Run {
     $Output .= $LayoutObject->Footer( Type => 'Small' );
 
     return $Output;
-}
-
-sub _GetAttributeInfo {
-    my ( $Self, %Param ) = @_;
-
-    # check needed stuff
-    for my $Argument (qw(Definition Path)) {
-        if ( !$Param{$Argument} ) {
-            $Kernel::OM->Get('Kernel::System::Log')->Log(
-                Priority => 'error',
-                Message  => "Need $Argument!",
-            );
-            return;
-        }
-    }
-
-    my $Subtree = $Param{Definition};
-    my $Info;
-
-    PART:
-    for my $Part ( split /::/, $Param{Path} ) {
-        my ($Found) = grep { $_->{Key} eq $Part } @{$Subtree};
-
-        last PART if !$Found;
-
-        $Subtree = $Found->{Sub};
-        $Info    = $Found;
-    }
-
-    return $Info;
 }
 
 1;
