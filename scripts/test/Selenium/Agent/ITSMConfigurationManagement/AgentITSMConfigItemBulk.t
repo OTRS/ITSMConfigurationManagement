@@ -136,7 +136,7 @@ $Selenium->RunTest(
         }
 
         # change deployment state to 'Repair' for test ConfigItems
-        $Selenium->find_element( "#DeplStateID option[value='$DeplStateIDs[1]']", 'css' )->click();
+        $Selenium->execute_script("\$('#DeplStateID').val('$DeplStateIDs[1]');");
 
         # link 'Alternative to' test ConfigItems together
         $Selenium->find_element( "#LinkTogether option[value='1']",                           'css' )->click();
@@ -154,7 +154,6 @@ $Selenium->RunTest(
         $Selenium->switch_to_window( $Handles->[0] );
 
         # Wait for reload to kick in.
-        sleep 1;
         $Selenium->WaitFor(
             JavaScript =>
                 'return typeof(Core) == "object" && typeof(Core.App) == "object" && Core.App.PageLoadComplete'
@@ -162,8 +161,6 @@ $Selenium->RunTest(
 
         # click on first created test ConfigItems to enter zoom view
         $Selenium->find_element( "#ConfigItemID_$ConfigItemIDs[1]", 'css' )->VerifiedClick();
-
-        sleep 1;
 
         # check for other two created test ConfigItems
         # verify that link action in bulk screen was success
@@ -174,20 +171,10 @@ $Selenium->RunTest(
             );
         }
 
-        # click on history and change window
-        $Selenium->find_element( "#Menu200-History", 'css' )->click();
-        $Selenium->WaitFor( WindowCount => 2 );
-        $Handles = $Selenium->get_window_handles();
-        $Selenium->switch_to_window( $Handles->[1] );
-
-        # wait until page has loaded, if necessary
-        $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && $(".CancelClosePopup").length' );
-
-        # check state deployment change of test ConfigItem
-        my $CheckHistory = 'Deployment state updated (new=Repair; old=Production)';
-        $Self->True(
-            index( $Selenium->get_page_source(), $CheckHistory ) > -1,
-            "$CheckHistory - found",
+        $Self->Is(
+            $Selenium->execute_script("return \$('.MasterAction td:eq(1) span').text();"),
+            'Repair',
+            "Deployment state is Repair.",
         );
 
         # delete created test ConfigItems
