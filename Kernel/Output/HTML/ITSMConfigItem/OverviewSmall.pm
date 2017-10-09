@@ -455,7 +455,7 @@ END
 
                         # convert to ascii text in case the value contains html
                         my $Value = $Kernel::OM->Get('Kernel::System::HTMLUtils')
-                            ->ToAscii( String => $ExtendedVersionData->{$Column}->{Value} )
+                            ->ToAscii( String => $ExtendedVersionData->{$Column}->{Value} || '' )
                             || '';
 
                         # convert all whitespace and newlines to single spaces
