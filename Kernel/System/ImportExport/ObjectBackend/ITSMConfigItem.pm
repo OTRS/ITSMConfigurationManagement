@@ -1058,7 +1058,7 @@ sub ImportDataSave {
         return;
     }
 
-    my $RetCode = $ConfigItemID ? 'Changed' : 'Created';
+    my $RetCode = $ConfigItemID ? Translatable('Changed') : Translatable('Created');
 
     # check if the feature to check for a unique name is enabled
     if (
@@ -1153,7 +1153,7 @@ sub ImportDataSave {
         # no new version has been added.
         # The import of this config item has been skipped.
         if ( $LatestVersionID && $VersionID == $LatestVersionID ) {
-            $RetCode = 'Skipped';
+            $RetCode = Translatable('Skipped');
         }
 
         return $ConfigItemID, $RetCode;
