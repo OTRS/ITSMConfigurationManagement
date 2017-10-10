@@ -12,6 +12,22 @@ use utf8;
 
 use vars qw($Self);
 
+# run this test only if the ImportExport package is installed
+{
+    # get ImportExport module directory
+    my $ImportExportModule = $Kernel::OM->Get('Kernel::Config')->Get('Home') . '/Kernel/System/ImportExport.pm';
+
+    # exit here if ImportExport package is not installed.
+    if ( !-e $ImportExportModule ) {
+        $Self->False(
+            0,
+            "ImportExport package not installed.",
+        );
+
+        exit;
+    }
+}
+
 # get needed objects
 my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
 my $ConfigItemObject     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
