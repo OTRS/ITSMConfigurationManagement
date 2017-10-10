@@ -143,6 +143,7 @@ sub Data {
     # Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
     $Self->{Translation}->{'Maximum number of one element'} = 'Максимални број једног елемента';
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Празна поља указују да ће актуелне вредности бити задржане';
+    $Self->{Translation}->{'Skipped'} = '';
 
     # Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
     $Self->{Translation}->{'Model'} = 'Модел';

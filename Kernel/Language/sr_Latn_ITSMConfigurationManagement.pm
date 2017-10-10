@@ -29,7 +29,7 @@ sub Data {
     $Self->{Translation}->{'Class'} = 'Klasa';
 
     # Template: AgentITSMConfigItemBulk
-    $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = '„ITSM” masovna akcija na tiketu';
+    $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = 'ITSM masovna akcija na tiketu';
     $Self->{Translation}->{'Deployment state'} = 'Status raspoređivanja';
     $Self->{Translation}->{'Incident state'} = 'Stanje incidenta';
     $Self->{Translation}->{'Link to another'} = 'Poveži sa drugim';
@@ -86,15 +86,15 @@ sub Data {
     $Self->{Translation}->{'Overview: ITSM ConfigItem'} = 'Pregled: ITSM konfiguracione stavke';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
-    $Self->{Translation}->{'No ConfigItemID is given!'} = 'Nije dat ID Konfiguracione Stavke!';
-    $Self->{Translation}->{'You need at least one selected Configuration Item!'} = 'Potrebna je bar jedna izabrana Konfiguraciona stavka!';
+    $Self->{Translation}->{'No ConfigItemID is given!'} = 'Nije dat ConfigItemID!';
+    $Self->{Translation}->{'You need at least one selected Configuration Item!'} = 'Potrebna je bar jedna izabrana konfiguraciona stavka!';
     $Self->{Translation}->{'You don\'t have write access to this configuration item: %s.'} =
         'Nemate pravo upisa za ovu konfiguracionu stavku: %s.';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
-    $Self->{Translation}->{'Config item "%s" not found in database!'} = 'Konfiguraciona stavka „%s” nije nađena u bazi podataka!';
-    $Self->{Translation}->{'Was not able to delete the configitem ID %s!'} = 'Nije bilo moguće obrisati konfiguracionu stavku ID %s!';
-    $Self->{Translation}->{'No version found for ConfigItemID %s!'} = 'Nije pronađena verzija za konfiguracionu stavku ID %s!';
+    $Self->{Translation}->{'Config item "%s" not found in database!'} = 'Konfiguraciona stavka "%s" nije nađena u bazi podataka!';
+    $Self->{Translation}->{'Was not able to delete the configitem ID %s!'} = 'Nije bilo moguće obrisati ConfigItemID %s!';
+    $Self->{Translation}->{'No version found for ConfigItemID %s!'} = 'Nije pronađena verzija za ConfigItemID %s!';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
     $Self->{Translation}->{'No ConfigItemID, DuplicateID or ClassID is given!'} = 'Nisu dati ConfigItemID, DuplicateID ili ClassID!';
@@ -102,8 +102,8 @@ sub Data {
     $Self->{Translation}->{'No definition was defined for class %s!'} = 'Nije pronađena definicija za klasu %s!';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
-    $Self->{Translation}->{'Can\'t show history, no ConfigItemID is given!'} = 'Ne može se prikazati istorijat, jer nije dat ID konfiguracione stavke!';
-    $Self->{Translation}->{'Can\'t show history, no access rights given!'} = 'Ne može se prikazati istorijat, nije dat pristup!';
+    $Self->{Translation}->{'Can\'t show history, no ConfigItemID is given!'} = 'Ne može se prikazati istorijat, jer nije dat ConfigItemID!';
+    $Self->{Translation}->{'Can\'t show history, no access rights given!'} = 'Ne može se prikazati istorijat, nije dozvoljen pristup!';
     $Self->{Translation}->{'New ConfigItem (ID=%s)'} = '';
     $Self->{Translation}->{'New version (ID=%s)'} = '';
     $Self->{Translation}->{'Deployment state updated (new=%s, old=%s)'} = '';
@@ -119,14 +119,14 @@ sub Data {
     # Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
     $Self->{Translation}->{'No ConfigItemID or VersionID is given!'} = 'Nisu dati ConfigItemID ili VersionID!';
     $Self->{Translation}->{'Can\'t show config item, no access rights given!'} = 'Ne može se prikazati konfiguraciona stavka, nije dat pristup!';
-    $Self->{Translation}->{'ConfigItemID %s not found in database!'} = 'Konfiguraciona stavka ID %s nije nađena u bazi podataka!';
-    $Self->{Translation}->{'VersionID %s not found in database!'} = 'Verzija ID %s nije nađena u bazi podataka!';
+    $Self->{Translation}->{'ConfigItemID %s not found in database!'} = 'ConfigItemID %s nije nađena u bazi podataka!';
+    $Self->{Translation}->{'VersionID %s not found in database!'} = 'VersionID %s nije nađena u bazi podataka!';
     $Self->{Translation}->{'ConfigItem'} = 'Konfiguraciona stavka';
     $Self->{Translation}->{'printed by %s at %s'} = 'štampanu od strane %s u %s';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
-    $Self->{Translation}->{'Invalid ClassID!'} = 'Neispravan ID Klase!';
-    $Self->{Translation}->{'No ClassID is given!'} = 'Nije dat ID Klase!';
+    $Self->{Translation}->{'Invalid ClassID!'} = 'Neispravan ClassID!';
+    $Self->{Translation}->{'No ClassID is given!'} = 'Nije dat ClassID!';
     $Self->{Translation}->{'No access rights for this class given!'} = 'Nije dat pristup ovoj klasi!';
     $Self->{Translation}->{'No Result!'} = 'Nema rezultata!';
     $Self->{Translation}->{'Config Item Search Results'} = 'Rezultat pretrage konfiguracionih stavki';
@@ -143,17 +143,18 @@ sub Data {
     # Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
     $Self->{Translation}->{'Maximum number of one element'} = 'Maksimalni broj jednog elementa';
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Prazna polja ukazuju da će aktuelne vrednosti biti zadržane';
+    $Self->{Translation}->{'Skipped'} = '';
 
     # Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
     $Self->{Translation}->{'Model'} = 'Model';
     $Self->{Translation}->{'Serial Number'} = 'Serijski broj';
     $Self->{Translation}->{'CPU'} = 'Procesor';
     $Self->{Translation}->{'Ram'} = 'RAM';
-    $Self->{Translation}->{'Hard Disk'} = 'Čvrsti disk';
+    $Self->{Translation}->{'Hard Disk'} = 'Hard disk';
     $Self->{Translation}->{'Capacity'} = 'Kapacitet';
     $Self->{Translation}->{'Network Adapter'} = 'Mrežni adapter';
-    $Self->{Translation}->{'IP over DHCP'} = '„IP” preko „DHCP”';
-    $Self->{Translation}->{'IP Address'} = '„IP” Adresa';
+    $Self->{Translation}->{'IP over DHCP'} = 'IP preko DHCP';
+    $Self->{Translation}->{'IP Address'} = 'IP adresa';
     $Self->{Translation}->{'Graphic Adapter'} = 'Grafički adapter';
     $Self->{Translation}->{'Other Equipment'} = 'Druga oprema';
     $Self->{Translation}->{'Warranty Expiration Date'} = 'Datum isticanja garancije';
@@ -182,7 +183,7 @@ sub Data {
     $Self->{Translation}->{'Repair'} = 'Na popravci';
     $Self->{Translation}->{'Retired'} = 'Rashodovano';
     $Self->{Translation}->{'Review'} = 'Recenzija';
-    $Self->{Translation}->{'Test/QA'} = 'Test/OK';
+    $Self->{Translation}->{'Test/QA'} = 'Test/QA';
     $Self->{Translation}->{'Laptop'} = 'Laptop';
     $Self->{Translation}->{'Desktop'} = 'Desktop';
     $Self->{Translation}->{'PDA'} = 'PDA';
@@ -192,7 +193,7 @@ sub Data {
     $Self->{Translation}->{'Printer'} = 'Štampač';
     $Self->{Translation}->{'Switch'} = 'Svič';
     $Self->{Translation}->{'Router'} = 'Ruter';
-    $Self->{Translation}->{'WLAN Access Point'} = '„WLAN” pristupna tačka';
+    $Self->{Translation}->{'WLAN Access Point'} = 'WLAN pristupna tačka';
     $Self->{Translation}->{'Security Device'} = 'Sigurnosni uređaj';
     $Self->{Translation}->{'Backup Device'} = 'Uređaj za rezervne kopije';
     $Self->{Translation}->{'Mouse'} = 'Miš';
@@ -200,8 +201,8 @@ sub Data {
     $Self->{Translation}->{'Camera'} = 'Kamera';
     $Self->{Translation}->{'Beamer'} = 'Projektor';
     $Self->{Translation}->{'Modem'} = 'Modem';
-    $Self->{Translation}->{'PCMCIA Card'} = '„PCMCIA” kartica';
-    $Self->{Translation}->{'USB Device'} = '„USB” uređaj';
+    $Self->{Translation}->{'PCMCIA Card'} = 'PCMCIA kartica';
+    $Self->{Translation}->{'USB Device'} = 'USB uređaj';
     $Self->{Translation}->{'Docking Station'} = 'Priključna stanica';
     $Self->{Translation}->{'Scanner'} = 'Skener';
     $Self->{Translation}->{'Building'} = 'Zgrada';
@@ -212,10 +213,10 @@ sub Data {
     $Self->{Translation}->{'Workplace'} = 'Radno mesto';
     $Self->{Translation}->{'Outlet'} = 'Utičnica';
     $Self->{Translation}->{'IT Facility'} = 'IT objekat';
-    $Self->{Translation}->{'LAN'} = '„LAN” - lokalna mreža';
-    $Self->{Translation}->{'WLAN'} = '„WLAN”';
+    $Self->{Translation}->{'LAN'} = 'LAN';
+    $Self->{Translation}->{'WLAN'} = 'WLAN';
     $Self->{Translation}->{'Telco'} = 'Telco';
-    $Self->{Translation}->{'GSM'} = '„GSM”';
+    $Self->{Translation}->{'GSM'} = 'GSM';
     $Self->{Translation}->{'Client Application'} = 'Klijentska aplikacija';
     $Self->{Translation}->{'Middleware'} = 'Posrednički program';
     $Self->{Translation}->{'Server Application'} = 'Serverska aplikacija';
@@ -243,7 +244,7 @@ sub Data {
 
     # SysConfig
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
-        'Provera jedinstvenog imena samo u okviru iste klase konfiguracionih stavki („klasa”) ili globalno („globalno”), što znači da je svaka postojeća Konfiguraciona stavka uzeta u obzir u proveri duplikata.';
+        'Provera jedinstvenog imena samo u okviru iste klase konfiguracionih stavki (\'klasa\') ili globalno (\'globalno\'), što znači da je svaka postojeća Konfiguraciona stavka uzeta u obzir u proveri duplikata.';
     $Self->{Translation}->{'Config Items'} = 'Konfiguracione stavke';
     $Self->{Translation}->{'Config item add.'} = 'Dodavanje konfiguracione stavke.';
     $Self->{Translation}->{'Config item edit.'} = 'Uređivanje konfiguracione stavke.';
@@ -261,36 +262,36 @@ sub Data {
         'Konfiguraciona stavka pretražuje pozadinski ruter u interfejsu operatera.';
     $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = 'Kreiranje i upravljanje definicija za konfiguracione stavke.';
     $Self->{Translation}->{'Define Actions where a settings button is available in the linked objects widget (LinkObject::ViewMode = "complex"). Please note that these Actions must have registered the following JS and CSS files: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js and Core.Agent.LinkObject.js.'} =
-        'Definiše Akcije gde je dugme postavki dostupno u povezanom grafičkom elementu objekta (LinkObject::ViewMode = "complex"). Molimo da imate na umu da ove Akcije moraju da budu registrovane u sledećim JS i CSS datotekama: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js i Core.Agent.LinkObject.js.';
+        'Definiše akcije gde je dugme postavki dostupno u povezanom grafičkom elementu objekta (LinkObject::ViewMode = "complex"). Molimo da imate na umu da ove Akcije moraju da budu registrovane u sledećim JS i CSS datotekama: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js i Core.Agent.LinkObject.js.';
     $Self->{Translation}->{'Define the group with permissions.'} = 'Definisalje grupe sa pravima.';
     $Self->{Translation}->{'Defines Required permissions to create ITSM configuration items using the Generic Interface.'} =
-        'Definiše neophodne dozvole za kreiranje ITSM konfiguracionih stavki korišćenjem opšteg interfejsa.';
+        'Definiše neophodne dozvole za kreiranje ITSM konfiguracionih stavki korišćenjem generičkog interfejsa.';
     $Self->{Translation}->{'Defines Required permissions to delete ITSM configuration items using the Generic Interface.'} =
-        'Određuje potrebne dozvole za brisanje „ITSM” konfiguracionih stavki kroz opšti interfejs.';
+        'Određuje potrebne dozvole za brisanje ITSM konfiguracionih stavki kroz generički interfejs.';
     $Self->{Translation}->{'Defines Required permissions to get ITSM configuration items using the Generic Interface.'} =
-        'Definiše neophodne dozvole za dobijanje ITSM konfiguracionih stavki korišćenjem opšteg interfejsa.';
+        'Definiše neophodne dozvole za dobijanje ITSM konfiguracionih stavki korišćenjem generičkog interfejsa.';
     $Self->{Translation}->{'Defines Required permissions to search ITSM configuration items using the Generic Interface.'} =
-        'Definiše neophodne dozvole za pretragu ITSM konfiguracionih stavki korišćenjem opšteg interfejsa.';
+        'Definiše neophodne dozvole za pretragu ITSM konfiguracionih stavki korišćenjem generičkog interfejsa.';
     $Self->{Translation}->{'Defines Required permissions to update ITSM configuration items using the Generic Interface.'} =
-        'Definiše neophodne dozvole za ažuriranje ITSM konfiguracionih stavki korišćenjem opšteg interfejsa.';
+        'Definiše neophodne dozvole za ažuriranje ITSM konfiguracionih stavki korišćenjem generičkog interfejsa.';
     $Self->{Translation}->{'Defines an overview module to show the small view of a configuration item list.'} =
         'Definiše modul pregleda za mali prikaz liste konfiguracionih stavki. ';
     $Self->{Translation}->{'Defines regular expressions individually for each ConfigItem class to check the ConfigItem name and to show corresponding error messages.'} =
         'Određuje regularne izraze za svaku klasu konfiguracione stavke radi provere naziva konfiguracione stavke i prikaza pripadajućih poruka o greškama.';
     $Self->{Translation}->{'Defines the default subobject of the class \'ITSMConfigItem\'.'} =
-        'Određuje podrazumevani podobjekat klase „ITSM Konfiguraciona stavka”.';
+        'Određuje podrazumevani podobjekat klase ITSM konfiguraciona stavka.';
     $Self->{Translation}->{'Defines the number of rows for the CI definition editor in the admin interface.'} =
-        'Određuje broj redova za editor definicije KS u administrativnom interfejsu.';
+        'Određuje broj redova za editor definicije CI u administrativnom interfejsu.';
     $Self->{Translation}->{'Defines the order of incident states from high (e.g. cricital) to low (e.g. functional).'} =
         'Određuje redosled incidentnih stanja od visokog (npr kritično) do niskog (npr funkcionalno).';
     $Self->{Translation}->{'Defines the relevant deployment states where linked tickets can affect the status of a CI.'} =
-        'Određuje relevantna stanja raspoređivanja gde povezani tiketi mogu da utiču na status KS.';
+        'Određuje relevantna stanja raspoređivanja gde povezani tiketi mogu da utiču na status CI.';
     $Self->{Translation}->{'Defines the search limit for the AgentITSMConfigItem screen.'} =
         'Definiše granicu pretrage za ekran AgentITSMConfigItem.';
     $Self->{Translation}->{'Defines the search limit for the AgentITSMConfigItemSearch screen.'} =
         'Definiše granicu pretrage za ekran AgentITSMConfigItemSearch.';
     $Self->{Translation}->{'Defines the shown columns in the config item overview. This option has no effect on the position of the column. Note: Class column is always available if filter \'All\' is selected.'} =
-        'Određuje prikazane kolone u pregledu konfiguracionih stavki. Ova opcije nema uticaj na pozicije kolona. Napomena: Ako je izabran filter „Sve” klasa kolone je uvek dostupna.';
+        'Određuje prikazane kolone u pregledu konfiguracionih stavki. Ova opcije nema uticaj na pozicije kolona. Napomena: ukoliko je izabran filter \'Sve\' klasa kolone je uvek dostupna.';
     $Self->{Translation}->{'Defines the shown columns in the config item search. This option has no effect on the position of the column.'} =
         'Definiše prikazane kolone u pretrazi konfiguracionih stavki. Ova opcije nema uticaj na pozicije kolona.';
     $Self->{Translation}->{'Defines the shown columns of CIs in the config item overview depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns.'} =
@@ -300,9 +301,9 @@ sub Data {
     $Self->{Translation}->{'Defines the shown columns of CIs in the link table complex view, depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown.'} =
         'Definiše prikazane kolone konfiguracionih stavki u tabeli veza u zavisnosti od klase. Svaki unos mora sadržati prefiks sa nazivom klase i dvotačkom (npr. Computer::). Postoji par atributa koji su zajednički za sve klase (npr. za klasu Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). Za prikaz pojedinačnih atributa iz definicije, morate koristiti sledeću šemu (primer za klasu Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. Ukoliko ne postoji unos za pojedinačnu klasu, biće prikazane podrazumevane kolone.';
     $Self->{Translation}->{'Defines which type of link (named from the ticket perspective) can affect the status of a linked CI.'} =
-        'Određuje koji tip veze (gledano iz perspektive tiketa) može da utiče na povezanu KS.';
+        'Određuje koji tip veze (gledano iz perspektive tiketa) može da utiče na povezanu CI.';
     $Self->{Translation}->{'Defines which type of ticket can affect the status of a linked CI.'} =
-        'Određuje koji tip tiketa može da utiče na status povezane KS.';
+        'Određuje koji tip tiketa može da utiče na status povezane CI.';
     $Self->{Translation}->{'Delete Configuration Item'} = 'Brisanje konfiguracione stavke';
     $Self->{Translation}->{'Deployment State Color'} = 'Boja statusa raspoređivanja';
     $Self->{Translation}->{'Deployment State Color.'} = 'Boja statusa raspoređivanja.';
@@ -313,16 +314,16 @@ sub Data {
     $Self->{Translation}->{'Enables configuration item bulk action feature only for the listed groups.'} =
         'Aktivira svojstvo masovne akcije na konfigiracionim stavkama samo za izlistane grupe.';
     $Self->{Translation}->{'Enables/disables the functionality to check ConfigItems for unique names. Before enabling this option you should check your system for already existing config items with duplicate names. You can do this with the script bin/otrs.ITSMConfigItemListDuplicates.pl.'} =
-        'Aktivira/deaktivira funkciju za proveru jedinstvenosti imana konfiguracionih stavki. Pre aktiviranja ove opcije trebate proveriti u vašem sistemu postojanje duplikata na postojećim stavkama. To možete uraditi pomoću skripta „bin/otrs.ITSMConfigItemListDuplicates.pl”. ';
+        'Aktivira/deaktivira funkciju za proveru jedinstvenosti imana konfiguracionih stavki. Pre aktiviranja ove opcije trebate proveriti u vašem sistemu postojanje duplikata na postojećim stavkama. To možete uraditi pomoću skripta bin/otrs.ITSMConfigItemListDuplicates.pl. ';
     $Self->{Translation}->{'Event module to set configitem-status on ticket-configitem-link.'} =
         'Modul događaja za podešavanje statusa konfiguracionih stavki prilikom postavljanja veza.';
-    $Self->{Translation}->{'ITSM config item overview.'} = 'Pregled „ITSM” konfiguracione stavke.';
+    $Self->{Translation}->{'ITSM config item overview.'} = 'Pregled ITSM konfiguracione stavke.';
     $Self->{Translation}->{'Module to check the group responsible for a class.'} = 'Modul za proveru grupe odgovorne za klasu.';
     $Self->{Translation}->{'Module to check the group responsible for a configuration item.'} =
         'Modul za proveru grupe odgovorne za konfiguracionu stavku.';
-    $Self->{Translation}->{'Module to generate ITSM config item statistics.'} = 'Modul za generisanje statistike „ITSM” konfiguracionih stavki.';
+    $Self->{Translation}->{'Module to generate ITSM config item statistics.'} = 'Modul za generisanje statistike ITSM konfiguracionih stavki.';
     $Self->{Translation}->{'Object backend module registration for the import/export module.'} =
-        'Registracije „backend” modula objekta za uvoz/izvoz modul.';
+        'Registracija modula objekta za dodatak uvoz/izvoz.';
     $Self->{Translation}->{'Overview.'} = 'Pregled.';
     $Self->{Translation}->{'Parameters for the deployment states color in the preferences view of the agent interface.'} =
         'Parametri za boje statusa primene na prikazu postavki u interfejsu operatera.';
@@ -349,7 +350,7 @@ sub Data {
     $Self->{Translation}->{'Required privileges to delete config items.'} = 'Potrebna prava za brisanje konfiguracione stavke.';
     $Self->{Translation}->{'Search config items.'} = 'Pretraga konfiguracionih stavki.';
     $Self->{Translation}->{'Selects the configuration item number generator module. "AutoIncrement" increments the configuration item number, the SystemID, the ConfigItemClassID and the counter are used. The format is "SystemID.ConfigItemClassID.Counter", e.g. 1205000004, 1205000005.'} =
-        'Bira modul operatora automatskog uvećanja konfiguracione stavke. Operator automatskog uvećanja povećava broj stavke, sistemski ID, ID konfiguracione klase i korišteni brojač. Format je „SystemID.ConfigItemClassID.Counter”, npr 1205000004, 1205000005.';
+        'Bira modul operatora automatskog uvećanja konfiguracione stavke. Operator automatskog uvećanja povećava broj stavke, SystemID, ConfigItemClassID i korišćeni brojač. Format je "SystemID.ConfigItemClassID.brojač", npr 1205000004, 1205000005.';
     $Self->{Translation}->{'Set the incident state of a CI automatically when a Ticket is Linked to a CI.'} =
         'Postavlja stanje incidenta konfiguracione stavke kada je tiket povezan sa stavkom.';
     $Self->{Translation}->{'Sets the deployment state in the configuration item bulk screen of the agent interface.'} =
@@ -379,7 +380,7 @@ sub Data {
     $Self->{Translation}->{'Shows the config item history (reverse ordered) in the agent interface.'} =
         'Prikazuje istorijat konfiguracione stavke (obrnut redosled) u interfejsu operatera.';
     $Self->{Translation}->{'The identifier for a configuration item, e.g. ConfigItem#, MyConfigItem#. The default is ConfigItem#.'} =
-        'Identifikator za konfiguracionu stavku, npr KonfiguracionaStavka#, MojaKonfiguracionaStavka#. Podrazumevano je KonfiguracionaStavka#.';
+        'Identifikator za konfiguracionu stavku, npr. ConfigItem#, MyConfigItem#. Podrazumevano je ConfigItem#.';
     $Self->{Translation}->{'class'} = 'klasa';
     $Self->{Translation}->{'global'} = 'globalno';
     $Self->{Translation}->{'postproductive'} = 'post-produkcija';
