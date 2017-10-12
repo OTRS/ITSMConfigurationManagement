@@ -220,6 +220,21 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
             return false;
         });
 
+        // register add of attribute
+        $('#Attribute').bind('change', function () {
+            var Attribute = $('#Attribute').val();
+            TargetNS.SearchAttributeAdd(Attribute);
+            TargetNS.AdditionalAttributeSelectionRebuild();
+
+            // Register event for tree selection dialog
+            $('.ShowTreeSelection').unbind('click').bind('click', function () {
+                Core.UI.TreeSelection.ShowTreeSelection($(this));
+                return false;
+            });
+
+            return false;
+        });
+
         // register return key
         $('#SearchForm').unbind('keypress.FilterInput').bind('keypress.FilterInput', function (Event) {
             if ((Event.charCode || Event.keyCode) === 13) {
