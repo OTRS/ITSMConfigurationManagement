@@ -1529,7 +1529,7 @@ sub _GetEvents {
         $Events->{DefinitionUpdate} = $NewDefinitionID;
     }
 
-    # store if anything like Name, DeploymeintState, IncidentState, Definition has been changed.
+    # store if anything like Name, DeploymentState, IncidentState, Definition has been changed.
     my $NothingElseChanged;
     if ( !%{$Events} ) {
         $NothingElseChanged = 1;
