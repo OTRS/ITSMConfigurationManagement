@@ -32,7 +32,7 @@ ITSM.Agent.ConfigItem.Overview = (function (TargetNS) {
         var ITSMConfigItemSearch    = Core.Config.Get('ITSMConfigItemSearch');
         var ITSMConfigItemActionRow = Core.Config.Get('ITSMConfigItemActionRow') || {};
 
-        $('#ShowContextSettingsDialog').bind('click', function (Event) {
+        $('#ShowContextSettingsDialog').on('click', function (Event) {
             Core.UI.Dialog.ShowContentDialog($('#ContextSettingsDialogContainer'), Core.Language.Translate("Settings"), '20%', 'Center', true,                                                                             [
                     {                                                                                                                                                                                                             Label: Core.Language.Translate("Submit"),
                         Type: 'Submit',                                                                                                                                                                                           Class: 'Primary'
@@ -42,7 +42,7 @@ ITSM.Agent.ConfigItem.Overview = (function (TargetNS) {
         });
 
         if (ITSMConfigItemSearch) {
-            $('#ITSMConfigItemSearch').bind('click', function () {
+            $('#ITSMConfigItemSearch').on('click', function () {
                 ITSM.Agent.ConfigItem.Search.OpenSearchDialog(
                     'AgentITSMConfigItemSearch',
                     Core.App.EscapeSelector(ITSMConfigItemSearch.Profile),
@@ -60,7 +60,7 @@ ITSM.Agent.ConfigItem.Overview = (function (TargetNS) {
 
         Core.UI.InitCheckboxSelection($('table td.Checkbox'));
 
-        $('.MasterAction').bind('click', function (Event) {
+        $('.MasterAction').on('click', function (Event) {
             var $MasterActionLink = $(this).find('.MasterActionLink');
             // only act if the link was not clicked directly
             if (Event.target !== $MasterActionLink.get(0)) {

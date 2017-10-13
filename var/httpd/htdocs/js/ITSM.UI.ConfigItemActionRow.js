@@ -135,7 +135,7 @@ ITSM.UI.ConfigItemActionRow = (function (TargetNS) {
                             ActionRowElement.attr('href', Value.Link);
                         }
                         if (Value.PopupType) {
-                            ActionRowElement.bind('click.Popup', function () {
+                            ActionRowElement.on('click.Popup', function () {
                                 Core.UI.Popup.OpenPopup(Value.Link, Value.PopupType);
                                 return false;
                             });
@@ -182,17 +182,17 @@ ITSM.UI.ConfigItemActionRow = (function (TargetNS) {
             ConfigItemView = 'Small';
         }
 
-        $('#SelectAllConfigItems').bind('click', function () {
+        $('#SelectAllConfigItems').on('click', function () {
             var Status = $(this).prop('checked');
             $(ConfigItemElementSelectors[ConfigItemView]).prop('checked', Status).triggerHandler('click');
         });
 
-        $(ConfigItemElementSelectors[ConfigItemView]).bind('click', function (Event) {
+        $(ConfigItemElementSelectors[ConfigItemView]).on('click', function (Event) {
             Event.stopPropagation();
             ITSM.UI.ConfigItemActionRow.UpdateActionRow($(this), $(ConfigItemElementSelectors[ConfigItemView]), $('div.OverviewActions ul.Actions'));
         });
 
-        $('#ConfigItemBulkAction a').bind('click', function () {
+        $('#ConfigItemBulkAction a').on('click', function () {
             var $Element = $(this),
                 $SelectedConfigItems,
                 ConfigItemIDParameter = "ConfigItemID=",

@@ -31,7 +31,7 @@ ITSM.Agent.ConfigItem.History = (function (TargetNS) {
     *      This function initializes the popup.
     */
     TargetNS.Init = function () {
-        $('a.LinkZoomView').bind('click', function () {
+        $('a.LinkZoomView').on('click', function () {
             window.opener.Core.UI.Popup.FirePopupEvent('URL', { URL: $(this).attr('href')});
             Core.UI.Popup.ClosePopup();
         });

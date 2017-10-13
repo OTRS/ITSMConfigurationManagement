@@ -33,17 +33,17 @@ ITSM.Agent.ConfigItem.Zoom = (function (TargetNS) {
 
         ITSM.Agent.Zoom.Init(Core.Config.Get('UserConfigItemZoomTableHeight'));
 
-        $('ul.Actions a.AsPopup').bind('click', function () {
+        $('ul.Actions a.AsPopup').on('click', function () {
             Core.UI.Popup.OpenPopup($(this).attr('href'), 'Action');
             return false;
         });
 
-        $('ul.Actions a.HistoryBack').bind('click', function () {
+        $('ul.Actions a.HistoryBack').on('click', function () {
             history.back();
             return false;
         });
 
-        $('.MasterAction').bind('click', function (Event) {
+        $('.MasterAction').on('click', function (Event) {
             var $MasterActionLink = $(this).find('.MasterActionLink');
             // only act if the link was not clicked directly
             if (Event.target !== $MasterActionLink.get(0)) {

@@ -40,7 +40,7 @@ ITSM.Agent.ConfigItem.Edit = (function (TargetNS) {
             }
         });
 
-        $('.DisableValidation').bind('click', function () {
+        $('.DisableValidation').on('click', function () {
             $('input[name=SubmitSave]').val('0');
             Core.Form.Validate.DisableValidation($('#ClassItem'));
             // fix for Safari: race condition with submit in Core.Form.Validate.js
