@@ -65,6 +65,21 @@ sub Run {
         );
     }
 
+    # Define translatable history strings.
+    my %HistoryStrings = (
+        'CIHistory::ConfigItemCreate'      => Translatable('New ConfigItem (ID=%s)'),
+        'CIHistory::VersionCreate'         => Translatable('New version (ID=%s)'),
+        'CIHistory::DeploymentStateUpdate' => Translatable('Deployment state updated (new=%s, old=%s)'),
+        'CIHistory::IncidentStateUpdate'   => Translatable('Incident state updated (new=%s, old=%s)'),
+        'CIHistory::ConfigItemDelete'      => Translatable('ConfigItem (ID=%s) deleted'),
+        'CIHistory::LinkAdd'               => Translatable('Link to %s (type=%s) added'),
+        'CIHistory::LinkDelete'            => Translatable('Link to %s (type=%s) deleted'),
+        'CIHistory::DefinitionUpdate'      => Translatable('ConfigItem definition updated (ID=%s)'),
+        'CIHistory::NameUpdate'            => Translatable('Name updated (new=%s, old=%s)'),
+        'CIHistory::ValueUpdate'           => Translatable('Attribute %s updated from "%s" to "%s"'),
+        'CIHistory::VersionDelete'         => Translatable('Version %s deleted'),
+    );
+
     # get all information about the config item
     my $ConfigItem = $ConfigItemObject->ConfigItemGet(
         ConfigItemID => $Self->{ConfigItemID},
@@ -174,7 +189,7 @@ sub Run {
             my @Values = split /%%/, $Data{Comment};
 
             $Data{Comment} = $LayoutObject->{LanguageObject}->Translate(
-                'CIHistory::' . $Data{HistoryType},
+                $HistoryStrings{ 'CIHistory::' . $Data{HistoryType} },
                 @Values,
             );
 
