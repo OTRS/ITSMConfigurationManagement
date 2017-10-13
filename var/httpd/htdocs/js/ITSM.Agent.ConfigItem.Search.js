@@ -86,7 +86,7 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
             $Label.next().clone().appendTo('#SearchInsert')
 
                 // bind click function to remove button now
-                .find('.RemoveButton').bind('click', function () {
+                .find('.RemoveButton').on('click', function () {
                     var $Element = $(this).parent();
                     TargetNS.SearchAttributeRemove($Element);
 
@@ -107,7 +107,7 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
                     ITSM.Agent.CustomerSearch.Init( $('#' + Core.App.EscapeSelector(InputID) ) );
 
                     // prevent dialog closure when select a customer from the list
-                    $('ul.ui-autocomplete').bind('click', function(Event) {
+                    $('ul.ui-autocomplete').on('click', function(Event) {
                         Event.stopPropagation();
                         return false;
                     });
@@ -206,13 +206,28 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
         }
 
         // register add of attribute
-        $('.AddButton').bind('click', function () {
+        $('.AddButton').on('click', function () {
             var Attribute = $('#Attribute').val();
             TargetNS.SearchAttributeAdd(Attribute);
             TargetNS.AdditionalAttributeSelectionRebuild();
 
             // Register event for tree selection dialog
-            $('.ShowTreeSelection').unbind('click').bind('click', function () {
+            $('.ShowTreeSelection').off('click').on('click', function () {
+                Core.UI.TreeSelection.ShowTreeSelection($(this));
+                return false;
+            });
+
+            return false;
+        });
+
+        // register add of attribute
+        $('#Attribute').on('change', function () {
+            var Attribute = $('#Attribute').val();
+            TargetNS.SearchAttributeAdd(Attribute);
+            TargetNS.AdditionalAttributeSelectionRebuild();
+
+            // Register event for tree selection dialog
+            $('.ShowTreeSelection').off('click').on('click', function () {
                 Core.UI.TreeSelection.ShowTreeSelection($(this));
                 return false;
             });
@@ -221,7 +236,7 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
         });
 
         // register return key
-        $('#SearchForm').unbind('keypress.FilterInput').bind('keypress.FilterInput', function (Event) {
+        $('#SearchForm').off('keypress.FilterInput').on('keypress.FilterInput', function (Event) {
             if ((Event.charCode || Event.keyCode) === 13) {
                 $('#SearchForm').submit();
                 return false;
@@ -229,7 +244,7 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
         });
 
         // register submit
-        $('#SearchFormSubmit').bind('click', function () {
+        $('#SearchFormSubmit').on('click', function () {
             // Normal results mode will return HTML in the same window
             if ($('#SearchForm #ResultForm').val() === 'Normal') {
                 $('#SearchForm').submit();
@@ -244,21 +259,21 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
         });
 
         // load profile
-        $('#SearchProfile').bind('change', function () {
+        $('#SearchProfile').on('change', function () {
             var Profile = $('#SearchProfile').val();
             TargetNS.LoadProfile(Profile);
             return false;
         });
 
         // show add profile block or not
-        $('#SearchProfileNew').bind('click', function (Event) {
+        $('#SearchProfileNew').on('click', function (Event) {
             $('#SearchProfileAddBlock').toggle();
             Event.preventDefault();
             return false;
         });
 
         // add new profile
-        $('#SearchProfileAddAction').bind('click', function () {
+        $('#SearchProfileAddAction').on('click', function () {
             var Name, $Element1, $Element2;
 
             // get name
@@ -292,7 +307,7 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
         });
 
         // delete profile
-        $('#SearchProfileDelete').bind('click', function (Event) {
+        $('#SearchProfileDelete').on('click', function (Event) {
 
             // strip all already used attributes
             $('#SearchProfile').find('option:selected').each(function () {

@@ -242,18 +242,20 @@ sub Run {
 
         # build attributes string for attributes list
         $Param{AttributesStrg} = $LayoutObject->BuildSelection(
-            Data     => \@XMLAttributes,
-            Name     => 'Attribute',
-            Multiple => 0,
-            Class    => 'Modernize',
+            PossibleNone => 1,
+            Data         => \@XMLAttributes,
+            Name         => 'Attribute',
+            Multiple     => 0,
+            Class        => 'Modernize',
         );
 
         # build attributes string for recovery on add or subtract search fields
         $Param{AttributesOrigStrg} = $LayoutObject->BuildSelection(
-            Data     => \@XMLAttributes,
-            Name     => 'AttributeOrig',
-            Multiple => 0,
-            Class    => 'Modernize',
+            PossibleNone => 1,
+            Data         => \@XMLAttributes,
+            Name         => 'AttributeOrig',
+            Multiple     => 0,
+            Class        => 'Modernize',
         );
 
         my %Profiles = $SearchProfileObject->SearchProfileList(
@@ -561,7 +563,7 @@ sub Run {
 
         my $SearchResultList = [];
 
-        # start search if called from a search dialog or from a resutls page
+        # start search if called from a search dialog or from a results page
         if ( $SearchDialog || $Self->{TakeLastSearch} ) {
 
             # start search
