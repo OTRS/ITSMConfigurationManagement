@@ -206,21 +206,6 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
         }
 
         // register add of attribute
-        $('.AddButton').on('click', function () {
-            var Attribute = $('#Attribute').val();
-            TargetNS.SearchAttributeAdd(Attribute);
-            TargetNS.AdditionalAttributeSelectionRebuild();
-
-            // Register event for tree selection dialog
-            $('.ShowTreeSelection').off('click').on('click', function () {
-                Core.UI.TreeSelection.ShowTreeSelection($(this));
-                return false;
-            });
-
-            return false;
-        });
-
-        // register add of attribute
         $('#Attribute').on('change', function () {
             var Attribute = $('#Attribute').val();
             TargetNS.SearchAttributeAdd(Attribute);
