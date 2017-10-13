@@ -3289,6 +3289,131 @@ continue {
 }
 
 # ------------------------------------------------------------ #
+# testing adding of invalid definitions
+# ------------------------------------------------------------ #
+
+{
+    # define some invalid definitions
+
+    my @InvalidConfigItemDefinitions;
+
+    # Data sctructure is no array reference.
+    push @InvalidConfigItemDefinitions, "
+        {
+            Key        => 'Customer1',
+            Name       => 'Customer 1',
+            Searchable => 1,
+            Input      => {
+                Type => 'Customer',
+            },
+        }
+    ";
+
+    # Data sctructure hash elements contain no data.
+    push @InvalidConfigItemDefinitions, " [
+        {
+        },
+        {
+        },
+    ]";
+
+    # Missing comma between the 2 elements
+    push @InvalidConfigItemDefinitions, " [
+        {
+            Key        => 'Customer1',
+            Name       => 'Customer 1',
+            Searchable => 1,
+            Input      => {
+                Type => 'Customer',
+            },
+        }
+        {
+            Key        => 'Date1',
+            Name       => 'Date 1',
+            Searchable => 1,
+            Input      => {
+                Type => 'Date',
+            },
+        },
+    ]";
+
+    # Key "Customer 1" containing a space.
+    push @InvalidConfigItemDefinitions, " [
+        {
+            Key        => 'Customer 1',   # Key containing a space!
+            Name       => 'Customer 1',
+            Searchable => 1,
+            Input      => {
+                Type => 'Customer',
+            },
+        },
+    ]";
+
+    # Key "Customer1ΣՎέ" containing non-ascii characters.
+    push @InvalidConfigItemDefinitions, " [
+        {
+            Key        => 'Customer1ΣՎέ',
+            Name       => 'Customer 1',
+            Searchable => 1,
+            Input      => {
+                Type => 'Customer',
+            },
+        },
+    ]";
+
+    # Invalid empty sub element.
+    push @InvalidConfigItemDefinitions, " [
+        {
+            Key        => 'Customer1',
+            Name       => 'Customer 1',
+            Searchable => 1,
+            Input      => {
+                Type => 'Customer',
+            },
+            Sub => [
+                {},
+            ],
+        },
+    ]";
+
+    # generate a random name
+    my $ClassName = 'UnitTest' . $Helper->GetRandomID();
+
+        # add an unittest config item class
+        my $ClassID = $GeneralCatalogObject->ItemAdd(
+            Class   => 'ITSM::ConfigItem::Class',
+            Name    => $ClassName,
+            ValidID => 1,
+            UserID  => 1,
+        );
+
+        # check class id
+        if ( !$ClassID ) {
+            $Self->True(
+                0,
+                "Can't add new config item class.",
+            );
+        }
+
+    for my $Definition (@InvalidConfigItemDefinitions) {
+
+        # add a definition to the class
+        my $DefinitionID = $ConfigItemObject->DefinitionAdd(
+            ClassID    => $ClassID,
+            Definition => $Definition,
+            UserID     => 1,
+        );
+
+        # check definition id, must be false, because all definitions have errors
+        $Self->False(
+            $DefinitionID,
+            "Can't add new config item definition.",
+        );
+    }
+
+}
+
+# ------------------------------------------------------------ #
 # testing support for attachments
 # ------------------------------------------------------------ #
 
