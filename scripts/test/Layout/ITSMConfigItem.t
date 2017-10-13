@@ -1,5 +1,5 @@
 # --
-# Copyright (C) 2001-2016 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2017 OTRS AG, http://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -17,126 +17,126 @@ my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
 
 my $XMLDefinition = [
     {
-        Key => 'Vendor',
-        Name => 'Vendor',
+        Key        => 'Vendor',
+        Name       => 'Vendor',
         Searchable => 1,
-        Input => {
-            Type => 'Text',
-            Size => 50,
+        Input      => {
+            Type      => 'Text',
+            Size      => 50,
             MaxLength => 50,
         },
     },
     {
-        Key => 'Model',
-        Name => 'Model',
+        Key        => 'Model',
+        Name       => 'Model',
         Searchable => 1,
-        Input => {
-            Type => 'Text',
-            Size => 50,
+        Input      => {
+            Type      => 'Text',
+            Size      => 50,
             MaxLength => 50,
         },
     },
     {
-        Key => 'Description',
-        Name => 'Description',
+        Key        => 'Description',
+        Name       => 'Description',
         Searchable => 1,
-        Input => {
+        Input      => {
             Type => 'TextArea',
         },
     },
     {
-        Key => 'Type',
-        Name => 'Type',
+        Key        => 'Type',
+        Name       => 'Type',
         Searchable => 1,
-        Input => {
-            Type => 'GeneralCatalog',
-            Class => 'ITSM::ConfigItem::Computer::Type',
+        Input      => {
+            Type        => 'GeneralCatalog',
+            Class       => 'ITSM::ConfigItem::Computer::Type',
             Translation => 1,
         },
     },
     {
-        Key => 'Owner',
-        Name => 'Owner',
+        Key        => 'Owner',
+        Name       => 'Owner',
         Searchable => 1,
-        Input => {
+        Input      => {
             Type => 'Customer',
         },
     },
     {
-        Key => 'SerialNumber',
-        Name => 'Serial Number',
+        Key        => 'SerialNumber',
+        Name       => 'Serial Number',
         Searchable => 1,
-        Input => {
-            Type => 'Text',
-            Size => 50,
+        Input      => {
+            Type      => 'Text',
+            Size      => 50,
             MaxLength => 100,
         },
     },
     {
-        Key => 'OperatingSystem',
-        Name => 'Operating System',
+        Key   => 'OperatingSystem',
+        Name  => 'Operating System',
         Input => {
-            Type => 'Text',
-            Size => 50,
+            Type      => 'Text',
+            Size      => 50,
             MaxLength => 100,
         },
     },
     {
-        Key => 'CPU',
-        Name => 'CPU',
+        Key   => 'CPU',
+        Name  => 'CPU',
         Input => {
-            Type => 'Text',
-            Size => 50,
+            Type      => 'Text',
+            Size      => 50,
             MaxLength => 100,
         },
         CountMax => 16,
     },
     {
-        Key => 'Ram',
-        Name => 'Ram',
+        Key   => 'Ram',
+        Name  => 'Ram',
         Input => {
-            Type => 'Text',
-            Size => 50,
+            Type      => 'Text',
+            Size      => 50,
             MaxLength => 100,
         },
         CountMax => 10,
     },
     {
-        Key => 'HardDisk',
-        Name => 'Hard Disk',
+        Key   => 'HardDisk',
+        Name  => 'Hard Disk',
         Input => {
-            Type => 'Text',
-            Size => 50,
+            Type      => 'Text',
+            Size      => 50,
             MaxLength => 100,
         },
         CountMax => 100,
-        Sub => [
+        Sub      => [
             {
-                Key => 'Capacity',
-                Name => 'Capacity',
+                Key   => 'Capacity',
+                Name  => 'Capacity',
                 Input => {
-                    Type => 'Text',
-                    Size => 20,
+                    Type      => 'Text',
+                    Size      => 20,
                     MaxLength => 10,
                 },
                 CountMax => 100,
-                Sub => [
+                Sub      => [
                     {
-                        Key => 'Capacity',
-                        Name => 'Capacity',
+                        Key   => 'Capacity',
+                        Name  => 'Capacity',
                         Input => {
-                            Type => 'Text',
-                            Size => 20,
+                            Type      => 'Text',
+                            Size      => 20,
                             MaxLength => 10,
                         },
                         CountMax => 100,
-                        Sub => [
+                        Sub      => [
                             {
-                                Key => 'Capacity',
-                                Name => 'Capacity',
+                                Key   => 'Capacity',
+                                Name  => 'Capacity',
                                 Input => {
-                                    Type => 'Text',
-                                    Size => 20,
+                                    Type      => 'Text',
+                                    Size      => 20,
                                     MaxLength => 10,
                                 },
                                 CountMax => 100,
@@ -148,105 +148,105 @@ my $XMLDefinition = [
         ],
     },
     {
-        Key => 'FQDN',
-        Name => 'FQDN',
+        Key        => 'FQDN',
+        Name       => 'FQDN',
         Searchable => 1,
-        Input => {
-            Type => 'Text',
-            Size => 50,
+        Input      => {
+            Type      => 'Text',
+            Size      => 50,
             MaxLength => 100,
         },
     },
     {
-        Key => 'NIC',
-        Name => 'Network Adapter',
+        Key   => 'NIC',
+        Name  => 'Network Adapter',
         Input => {
-            Type => 'Text',
-            Size => 50,
+            Type      => 'Text',
+            Size      => 50,
             MaxLength => 100,
-            Required => 1,
+            Required  => 1,
         },
-        CountMin => 0,
-        CountMax => 10,
+        CountMin     => 0,
+        CountMax     => 10,
         CountDefault => 1,
-        Sub => [
+        Sub          => [
             {
-                Key => 'IPoverDHCP',
-                Name => 'IP over DHCP',
+                Key   => 'IPoverDHCP',
+                Name  => 'IP over DHCP',
                 Input => {
-                    Type => 'GeneralCatalog',
-                    Class => 'ITSM::ConfigItem::YesNo',
+                    Type        => 'GeneralCatalog',
+                    Class       => 'ITSM::ConfigItem::YesNo',
                     Translation => 1,
-                    Required => 1,
+                    Required    => 1,
                 },
             },
             {
-                Key => 'IPAddress',
-                Name => 'IP Address',
+                Key        => 'IPAddress',
+                Name       => 'IP Address',
                 Searchable => 1,
-                Input => {
-                    Type => 'Text',
-                    Size => 40,
+                Input      => {
+                    Type      => 'Text',
+                    Size      => 40,
                     MaxLength => 40,
-                    Required => 1,
+                    Required  => 1,
                 },
-                CountMin => 0,
-                CountMax => 20,
+                CountMin     => 0,
+                CountMax     => 20,
                 CountDefault => 0,
             },
         ],
     },
     {
-        Key => 'GraphicAdapter',
-        Name => 'Graphic Adapter',
+        Key   => 'GraphicAdapter',
+        Name  => 'Graphic Adapter',
         Input => {
-            Type => 'Text',
-            Size => 50,
+            Type      => 'Text',
+            Size      => 50,
             MaxLength => 100,
         },
     },
     {
-        Key => 'OtherEquipment',
-        Name => 'Other Equipment',
+        Key   => 'OtherEquipment',
+        Name  => 'Other Equipment',
         Input => {
-            Type => 'TextArea',
+            Type     => 'TextArea',
             Required => 1,
         },
-        CountMin => 0,
+        CountMin     => 0,
         CountDefault => 0,
     },
     {
-        Key => 'WarrantyExpirationDate',
-        Name => 'Warranty Expiration Date',
+        Key        => 'WarrantyExpirationDate',
+        Name       => 'Warranty Expiration Date',
         Searchable => 1,
-        Input => {
-            Type => 'Date',
-            YearPeriodPast => 20,
+        Input      => {
+            Type             => 'Date',
+            YearPeriodPast   => 20,
             YearPeriodFuture => 10,
         },
     },
     {
-        Key => 'InstallDate',
-        Name => 'Install Date',
+        Key        => 'InstallDate',
+        Name       => 'Install Date',
         Searchable => 1,
-        Input => {
-            Type => 'Date',
-            Required => 1,
-            YearPeriodPast => 20,
+        Input      => {
+            Type             => 'Date',
+            Required         => 1,
+            YearPeriodPast   => 20,
             YearPeriodFuture => 10,
         },
-        CountMin => 0,
+        CountMin     => 0,
         CountDefault => 0,
     },
     {
-        Key => 'Note',
-        Name => 'Note',
+        Key        => 'Note',
+        Name       => 'Note',
         Searchable => 1,
-        Input => {
-            Type => 'TextArea',
+        Input      => {
+            Type     => 'TextArea',
             Required => 1,
         },
-        CountMin => 0,
+        CountMin     => 0,
         CountDefault => 0,
     },
 ];
@@ -255,22 +255,22 @@ my $XMLData = {
     HardDisk => [
         undef,
         {
-            Content => 'HD1',
+            Content  => 'HD1',
             Capacity => [
                 undef,
                 {
                     Content => '42 GB',
                 }
-            ]
+                ]
         },
         {
-            Content => 'HD2',
+            Content  => 'HD2',
             Capacity => [
                 undef,
                 {
                     Content => '780 GB',
                 }
-            ]
+                ]
         },
     ],
 };
@@ -304,7 +304,7 @@ my $Expected = {
     'HardDisk::2' => {
         Value => 'HD2',
         Name  => 'Hard Disk',
-     },
+    },
     'HardDisk::2::Capacity::1' => {
         Value => '780 GB',
         Name  => 'Capacity',
@@ -312,7 +312,7 @@ my $Expected = {
     'WarrantyExpirationDate::1' => {
         Name  => 'Warranty Expiration Date',
         Value => ''
-    }
+        }
 };
 
 $Self->IsDeeply(

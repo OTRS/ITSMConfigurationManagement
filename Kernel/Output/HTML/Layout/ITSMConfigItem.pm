@@ -696,7 +696,7 @@ sub XMLData2Hash {
                 );
             }
 
-            if ( $RelevantAttributes{ $Prefix } ) {
+            if ( $RelevantAttributes{$Prefix} ) {
 
                 # store the item in hash
                 $Data->{$Prefix} = {
