@@ -615,6 +615,112 @@ sub ITSMConfigItemListShow {
     return $OutputRaw;
 }
 
+=head2 XMLData2Hash()
+
+returns a hash reference with the requested attributes data for a config item
+
+Return
+
+    $Data = {
+        'HardDisk::2' => {
+            Value => 'HD2',
+            Name  => 'Hard Disk',
+         },
+        'CPU::1' => {
+            Value => '',
+            Name  => 'CPU',
+        },
+        'HardDisk::2::Capacity::1' => {
+            Value => '780 GB',
+            Name  => 'Capacity',
+        },
+    };
+
+    my $Data = $LayoutObject->XMLData2Hash(
+        XMLDefinition => $Version->{XMLDefinition},
+        XMLData       => $Version->{XMLData}->[1]->{Version}->[1],
+        Attributes    => ['CPU::1', 'HardDrive::2::Capacity::1', ...],
+        Data          => \%DataHashRef,                                 # optional
+        Prefix        => 'HardDisk::1',                                 # optional
+    );
+
+=cut
+
+sub XMLData2Hash {
+    my ( $Self, %Param ) = @_;
+
+    # check needed stuff
+    return if !$Param{XMLData};
+    return if !$Param{XMLDefinition};
+    return if !$Param{Attributes};
+    return if ref $Param{XMLData} ne 'HASH';
+    return if ref $Param{XMLDefinition} ne 'ARRAY';
+    return if ref $Param{Attributes} ne 'ARRAY';
+
+    # to store the return data
+    my $Data = $Param{Data} || {};
+
+    # create a lookup structure
+    my %RelevantAttributes = map { $_ => 1 } @{ $Param{Attributes} };
+
+    ITEM:
+    for my $Item ( @{ $Param{XMLDefinition} } ) {
+
+        my $CountMax = $Item->{CountMax} || 1;
+
+        COUNTER:
+        for my $Counter ( 1 .. $CountMax ) {
+
+            # add prefix
+            my $Prefix = $Item->{Key} . '::' . $Counter;
+            if ( $Param{Prefix} ) {
+                $Prefix = $Param{Prefix} . '::' . $Prefix;
+            }
+
+            # skip not needed elements and sub elements
+            next COUNTER if !grep { $_ =~ m{\A$Prefix} } @{ $Param{Attributes} };
+
+            # lookup value
+            my $Value = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->XMLValueLookup(
+                Item  => $Item,
+                Value => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content} || '',
+            );
+
+            # only if value is not empty
+            if ($Value) {
+
+                # create output string
+                $Value = $Self->ITSMConfigItemOutputStringCreate(
+                    Value => $Value,
+                    Item  => $Item,
+                );
+            }
+
+            if ( $RelevantAttributes{ $Prefix } ) {
+
+                # store the item in hash
+                $Data->{$Prefix} = {
+                    Name  => $Item->{Name},
+                    Value => $Value || '',
+                };
+            }
+
+            # start recursion, if "Sub" was found
+            if ( $Item->{Sub} ) {
+                $Data = $Self->XMLData2Hash(
+                    XMLDefinition => $Item->{Sub},
+                    XMLData       => $Param{XMLData}->{ $Item->{Key} }->[$Counter],
+                    Prefix        => $Prefix,
+                    Data          => $Data,
+                    Attributes    => $Param{Attributes},
+                );
+            }
+        }
+    }
+
+    return $Data;
+}
+
 1;
 
 =head1 TERMS AND CONDITIONS
