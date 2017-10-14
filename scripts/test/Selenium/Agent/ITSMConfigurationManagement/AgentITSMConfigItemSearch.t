@@ -118,8 +118,6 @@ $Selenium->RunTest(
             "Class select box - found",
         );
 
-        sleep(5);
-
         # select 'Computer' class
         $Selenium->execute_script(
             "\$('#SearchClassID').val('$ConfigItemClassIDs[0]').trigger('redraw.InputField').trigger('change');"
@@ -142,7 +140,9 @@ $Selenium->RunTest(
 
         # search ConfigItems by test ConfigItem number and names
         $Selenium->execute_script("\$('#Attribute').val('Name').trigger('redraw.InputField').trigger('change');");
-        $Selenium->find_element( ".AddButton", 'css' )->click();
+
+        $Selenium->WaitFor( JavaScript => "return typeof(\$) === 'function' && \$('input[name=\"Name\"]').length" );
+
         $Selenium->find_element("//input[\@name='Number']")->send_keys('*');
         $Selenium->find_element("//input[\@name='Name']")->send_keys( '*' . $RandomID );
         $Selenium->find_element( "#SearchFormSubmit", 'css' )->VerifiedClick();
@@ -299,7 +299,7 @@ $Selenium->RunTest(
         $Selenium->execute_script(
             "\$('#Attribute').val('WarrantyExpirationDate').trigger('redraw.InputField').trigger('change');",
         );
-        $Selenium->find_element( '.AddButton', 'css' )->click();
+        $Selenium->WaitFor( JavaScript => "return typeof(\$) === 'function' && \$('input[name=\"WarrantyExpirationDate\"]').length" );
         $Selenium->execute_script(
             "\$('#SearchInsert select[id=\"WarrantyExpirationDate::TimeStart::Day\"]').val('8');"
         );
