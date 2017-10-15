@@ -3376,21 +3376,21 @@ continue {
     # generate a random name
     my $ClassName = 'UnitTest' . $Helper->GetRandomID();
 
-        # add an unittest config item class
-        my $ClassID = $GeneralCatalogObject->ItemAdd(
-            Class   => 'ITSM::ConfigItem::Class',
-            Name    => $ClassName,
-            ValidID => 1,
-            UserID  => 1,
-        );
+    # add an unittest config item class
+    my $ClassID = $GeneralCatalogObject->ItemAdd(
+        Class   => 'ITSM::ConfigItem::Class',
+        Name    => $ClassName,
+        ValidID => 1,
+        UserID  => 1,
+    );
 
-        # check class id
-        if ( !$ClassID ) {
-            $Self->True(
-                0,
-                "Can't add new config item class.",
-            );
-        }
+    # check class id
+    if ( !$ClassID ) {
+        $Self->True(
+            0,
+            "Can't add new config item class.",
+        );
+    }
 
     for my $Definition (@InvalidConfigItemDefinitions) {
 
