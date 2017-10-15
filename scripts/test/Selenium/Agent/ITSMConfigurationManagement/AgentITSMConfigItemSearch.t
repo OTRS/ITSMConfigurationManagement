@@ -300,7 +300,8 @@ $Selenium->RunTest(
             "\$('#Attribute').val('WarrantyExpirationDate').trigger('redraw.InputField').trigger('change');",
         );
         $Selenium->WaitFor(
-            JavaScript => "return typeof(\$) === 'function' && \$('input[name=\"WarrantyExpirationDate\"]').length" );
+            JavaScript => "return typeof(\$) === 'function' && \$('input[name=\"WarrantyExpirationDate\"]').length"
+        );
         $Selenium->execute_script(
             "\$('#SearchInsert select[id=\"WarrantyExpirationDate::TimeStart::Day\"]').val('8');"
         );
