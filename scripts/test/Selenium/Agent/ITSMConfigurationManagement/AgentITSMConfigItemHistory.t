@@ -107,10 +107,10 @@ $Selenium->RunTest(
         my @HistoryMessages = (
             'New ConfigItem (ID=' . $ConfigItemID . ')',
             'New version (ID=' . $VersionID . ')',
-            "ConfigItems' definition updated (ID=1)",
-            'Name updated (new=SeleniumTest; old=)',
-            'Incident state updated (new=Operational; old=)',
-            'Deployment state updated (new=Production; old=)',
+            'ConfigItem definition updated (ID=1)',
+            'Name updated (new=SeleniumTest, old=)',
+            'Incident state updated (new=Operational, old=)',
+            'Deployment state updated (new=Production, old=)',
         );
 
         # check for history messages in history screen of created test ConfigItem
