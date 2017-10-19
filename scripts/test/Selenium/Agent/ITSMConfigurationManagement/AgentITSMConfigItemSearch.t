@@ -21,7 +21,7 @@ $Selenium->RunTest(
         my $Helper               = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
         my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
 
-        # get 'Computer' ConfigItem ID
+        # Get 'Computer' ConfigItem ID.
         my @ConfigItemClassIDs;
         for my $ConfigItemClass (qw(Computer)) {
             my $ConfigItemDataRef = $GeneralCatalogObject->ItemGet(
@@ -31,7 +31,7 @@ $Selenium->RunTest(
             push @ConfigItemClassIDs, $ConfigItemDataRef->{ItemID};
         }
 
-        # get 'Production' deployment state IDs
+        # Get 'Production' deployment state IDs.
         my $ProductionDeplStateDataRef = $GeneralCatalogObject->ItemGet(
             Class => 'ITSM::ConfigItem::DeploymentState',
             Name  => 'Production',
@@ -41,7 +41,7 @@ $Selenium->RunTest(
         my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
         my $ConfigObject     = $Kernel::OM->Get('Kernel::Config');
 
-        # create ConfigItem numbers
+        # Create ConfigItem numbers.
         my @ConfigItemNumbers;
         for my $ConfigNumberCreate ( 1 .. 2 ) {
             my $ConfigItemNumber = $ConfigItemObject->ConfigItemNumberCreate(
@@ -55,7 +55,7 @@ $Selenium->RunTest(
             push @ConfigItemNumbers, $ConfigItemNumber;
         }
 
-        # add the new ConfigItems
+        # Add the new ConfigItems.
         my @ConfigItemIDs;
         for my $ConfigItemCreateNumber (@ConfigItemNumbers) {
             my $ConfigItemID = $ConfigItemObject->ConfigItemAdd(
@@ -70,7 +70,7 @@ $Selenium->RunTest(
             push @ConfigItemIDs, $ConfigItemID;
         }
 
-        # add a new version for each ConfigItem
+        # Add a new version for each ConfigItem.
         my @VersionIDs;
         my $Count    = 1;
         my $RandomID = $Helper->GetRandomID();
@@ -92,7 +92,7 @@ $Selenium->RunTest(
             $Count++;
         }
 
-        # create test user and login
+        # Create test user and login.
         my $TestUserLogin = $Helper->TestUserCreate(
             Groups => [ 'admin', 'users', 'itsm-configitem' ],
         ) || die "Did not get test user";
@@ -103,30 +103,46 @@ $Selenium->RunTest(
             Password => $TestUserLogin,
         );
 
-        # get script alias
         my $ScriptAlias = $ConfigObject->Get('ScriptAlias');
 
-        # navigate to AgentITSMConfigItemSearch
+        # Navigate to AgentITSMConfigItemSearch.
         $Selenium->VerifiedGet("${ScriptAlias}index.pl?Action=AgentITSMConfigItemSearch");
 
-        # wait until form and overlay has loaded, if necessary
+        # Wait until form and overlay has loaded, if necessary.
         $Selenium->WaitFor( JavaScript => "return typeof(\$) === 'function' && \$('#SearchClassID').length" );
 
-        # check for class select box
+        # Check for 'Class' label.
+        $Self->True(
+            $Selenium->execute_script("return \$('label[for=\"Class\"]').length"),
+            "Class label - found",
+        );
+
+        # Check for 'Class' select box.
         $Self->True(
             $Selenium->find_element( "#SearchClassID", 'css' ),
             "Class select box - found",
         );
 
-        # select 'Computer' class
+        # Be sure modernized field has loaded.
+        sleep 1;
+
+        # Select 'Computer' class.
         $Selenium->execute_script(
             "\$('#SearchClassID').val('$ConfigItemClassIDs[0]').trigger('redraw.InputField').trigger('change');"
         );
 
-        # wait until form has loaded, if necessary
-        $Selenium->WaitFor( JavaScript => "return typeof(\$) === 'function' && \$('#Attribute').length" );
+        # Wait until all form elements has loaded by AJAX.
+        $Selenium->WaitFor(
+            JavaScript => "return typeof(\$) === 'function' " .
+                "&& \$('#SearchProfile').length " .
+                "&& \$('#SearchProfileNew').length " .
+                "&& \$('#Attribute').length " .
+                "&& \$('#PreviousVersionSearch').length " .
+                "&& \$('#ResultForm').length " .
+                "&& \$('#SearchFormSubmit').length"
+        );
 
-        # check ConfigItem search page
+        # Check ConfigItem search page.
         for my $ID (
             qw(SearchClassID SearchProfile SearchProfileNew Attribute PreviousVersionSearch ResultForm SearchFormSubmit)
             )
@@ -138,25 +154,32 @@ $Selenium->RunTest(
             $Element->is_displayed();
         }
 
-        # search ConfigItems by test ConfigItem number and names
+        # Search ConfigItems by test ConfigItem number and names.
         $Selenium->execute_script("\$('#Attribute').val('Name').trigger('redraw.InputField').trigger('change');");
-
-        $Selenium->WaitFor( JavaScript => "return typeof(\$) === 'function' && \$('input[name=\"Name\"]').length" );
+        $Selenium->WaitFor(
+            JavaScript => "return typeof(\$) === 'function' && \$('#SearchInsert input[name=\"Name\"]').length"
+        );
 
         $Selenium->find_element("//input[\@name='Number']")->send_keys('*');
         $Selenium->find_element("//input[\@name='Name']")->send_keys( '*' . $RandomID );
-        $Selenium->find_element( "#SearchFormSubmit", 'css' )->VerifiedClick();
+        $Selenium->find_element( "#SearchFormSubmit", 'css' )->click();
+        $Selenium->WaitFor(
+            JavaScript =>
+                "return typeof(\$) === 'function' && !\$('Dialog.Modal').length && \$('#OverviewBody .TableSmall').length"
+        );
 
-        # check for expected result
+        # Check for expected result.
         for my $CheckConfigItem (@ConfigItemNumbers) {
             $Self->True(
-                index( $Selenium->get_page_source(), $CheckConfigItem ) > -1,
+                $Selenium->execute_script(
+                    "return \$('#OverviewBody .TableSmall td:contains($CheckConfigItem)').length"
+                ),
                 "ConfigItem number $CheckConfigItem - found",
             );
         }
 
-        # verify sorting in table, by default sorting is done by ConfigItemNumber - sort ascending
-        # lower ID will on the top of table
+        # Verify sorting in table, by default sorting is done by ConfigItemNumber - sort ascending.
+        # Lower ID will on the top of table.
         $Self->Is(
             $Selenium->execute_script("return \$('tbody tr:eq(0)').attr('id')"),
             'ConfigItemID_' . $ConfigItemIDs[1],
@@ -168,18 +191,20 @@ $Selenium->RunTest(
             "ConfigItemID $ConfigItemIDs[0] is on bottom of table sort by Number ascending"
         );
 
-        # click to sort by Name
+        # Click to sort by Name.
         $Selenium->find_element( ".Name", 'css' )->VerifiedClick();
 
-        # check for expected result
+        # Check for expected result.
         for my $CheckConfigItem (@ConfigItemNumbers) {
             $Self->True(
-                index( $Selenium->get_page_source(), $CheckConfigItem ) > -1,
+                $Selenium->execute_script(
+                    "return \$('#OverviewBody .TableSmall td:contains($CheckConfigItem)').length"
+                ),
                 "ConfigItem number $CheckConfigItem - found",
             );
         }
 
-        # sort is by Name descending
+        # Sort is by Name descending.
         $Self->Is(
             $Selenium->execute_script("return \$('tbody tr:eq(0)').attr('id')"),
             'ConfigItemID_' . $ConfigItemIDs[0],
@@ -191,10 +216,10 @@ $Selenium->RunTest(
             "ConfigItemID $ConfigItemIDs[0] is on bottom of table sort by Name descending"
         );
 
-        # click to sort by Name again
+        # Click to sort by Name again.
         $Selenium->find_element( ".Name", 'css' )->VerifiedClick();
 
-        # verify order is changed, sort by Name ascending
+        # Verify order is changed, sort by Name ascending.
         $Self->Is(
             $Selenium->execute_script("return \$('tbody tr:eq(0)').attr('id')"),
             'ConfigItemID_' . $ConfigItemIDs[1],
@@ -206,7 +231,7 @@ $Selenium->RunTest(
             "ConfigItemID $ConfigItemIDs[1] is on bottom of table sort by Name ascending"
         );
 
-        # create ConfigItem numbers
+        # Create ConfigItem numbers and add the new ConfigItems.
         @ConfigItemNumbers = ();
         for my $ConfigNumberCreate ( 1 .. 35 ) {
             my $ConfigItemNumber = $ConfigItemObject->ConfigItemNumberCreate(
@@ -218,12 +243,9 @@ $Selenium->RunTest(
                 "ConfigItem number is created - $ConfigItemNumber"
             );
             push @ConfigItemNumbers, $ConfigItemNumber;
-        }
 
-        # add the new ConfigItems
-        for my $ConfigItemCreateNumber (@ConfigItemNumbers) {
             my $ConfigItemID = $ConfigItemObject->ConfigItemAdd(
-                Number  => $ConfigItemCreateNumber,
+                Number  => $ConfigItemNumber,
                 ClassID => $ConfigItemClassIDs[0],
                 UserID  => 1,
             );
@@ -266,7 +288,7 @@ $Selenium->RunTest(
             },
         ];
 
-        # add a new version for each ConfigItem
+        # Add a new version for each ConfigItem.
         $Count = 1;
         for my $ConfigItemVersion (@ConfigItemIDs) {
 
@@ -289,10 +311,10 @@ $Selenium->RunTest(
             $Count++;
         }
 
-        # change search option
+        # Change search option.
         $Selenium->find_element( "#ITSMConfigItemSearch", 'css' )->VerifiedClick();
 
-        # wait until form has loaded, if necessary
+        # Wait until form has loaded, if necessary.
         $Selenium->WaitFor( JavaScript => "return \$('#Attribute').length" );
 
         # Add search filter by WarrantyExpirationDate and set date range (8-10-2017 - 15-10-2017).
@@ -325,51 +347,61 @@ $Selenium->RunTest(
         $Selenium->find_element("//input[\@name='Name']")->clear();
         $Selenium->find_element("//input[\@name='Name']")->send_keys( '*' . $RandomID );
 
-        $Selenium->find_element( "#SearchFormSubmit", 'css' )->VerifiedClick();
+        $Selenium->find_element( "#SearchFormSubmit", 'css' )->click();
+        $Selenium->WaitFor(
+            JavaScript =>
+                "return typeof(\$) === 'function' && !\$('Dialog.Modal').length && \$('#OverviewBody .TableSmall').length"
+        );
 
         $Self->True(
-            index( $Selenium->execute_script("return \$('.Pagination').text().trim();"), '1-25 of 30' ) > -1,
+            $Selenium->execute_script("return \$('.Pagination').text().trim().indexOf('1-25 of 30') > -1;"),
             "Check pagination on the first page",
         );
 
         $Self->Is(
-            $Selenium->execute_script("return \$('tbody tr').length;"),
+            $Selenium->execute_script("return \$('#OverviewBody .TableSmall tbody tr').length;"),
             '25',
-            "Check number of config items on the second page",
+            "Number of config items on the first page is correct - 25",
         );
 
         # Go to the second page.
         $Selenium->find_element( "#GenericPage2", 'css' )->VerifiedClick();
 
         $Self->True(
-            index( $Selenium->execute_script("return \$('.Pagination').text().trim();"), '26-30 of 30' ) > -1,
+            $Selenium->execute_script("return \$('.Pagination').text().trim().indexOf('26-30 of 30') > -1;"),
             "Check pagination on the second page",
         );
 
         $Self->Is(
-            $Selenium->execute_script("return \$('tbody tr').length;"),
+            $Selenium->execute_script("return \$('#OverviewBody .TableSmall tbody tr').length;"),
             '5',
-            "Check number of config items on the second page",
+            "Number of config items on the second page is correct - 5",
         );
 
-        # change search option
+        # Change search option.
         $Selenium->find_element( "#ITSMConfigItemSearch", 'css' )->VerifiedClick();
 
-        # wait until form has loaded, if necessary
-        $Selenium->WaitFor( JavaScript => "return \$('#Attribute').length" );
+        # Wait until form has loaded, if necessary.
+        $Selenium->WaitFor(
+            JavaScript => "return \$('#Attribute').length && \$('#SearchInsert input[name=\"Name\"]').length"
+        );
 
-        # input wrong search parameters, result should be 'No data found'
+        # Input wrong search parameters, result should be 'No data found'.
         $Selenium->find_element("//input[\@name='Name']")->clear();
         $Selenium->find_element("//input[\@name='Name']")->send_keys('asdfg');
-        $Selenium->find_element( "#SearchFormSubmit", 'css' )->VerifiedClick();
+        $Selenium->find_element( "#SearchFormSubmit", 'css' )->click();
+        $Selenium->WaitFor(
+            JavaScript =>
+                "return typeof(\$) === 'function' && !\$('Dialog.Modal').length && \$('#OverviewBody .TableSmall').length"
+        );
 
-        # check for expected result
+        # Check for expected result.
         $Self->True(
             index( $Selenium->get_page_source(), 'No data found' ) > -1,
             "'No data found' - found",
         );
 
-        # delete created test ConfigItem
+        # Delete created test ConfigItem.
         for my $ConfigItemDeleteID (@ConfigItemIDs) {
             my $Success = $ConfigItemObject->ConfigItemDelete(
                 ConfigItemID => $ConfigItemDeleteID,
@@ -379,6 +411,12 @@ $Selenium->RunTest(
                 $Success,
                 "ConfigItem is deleted - ID $ConfigItemDeleteID",
             );
+        }
+
+        # Make sure the cache is correct.
+        my $CacheObject = $Kernel::OM->Get('Kernel::System::Cache');
+        for my $Cache (qw(ConfigItem Version)) {
+            $CacheObject->CleanUp( Type => $Cache );
         }
     }
 );
