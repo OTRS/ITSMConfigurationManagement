@@ -393,7 +393,7 @@
     <ConfigItem Name="ITSMConfigItem::Frontend::HistoryOrder" Required="1" Valid="1">
         <Description Translatable="1">Shows the config item history (reverse ordered) in the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
-        <SubGroup>Frontend::Agent::ITSMConfigItem::ViewHistory</SubGroup>
+        <SubGroup>Frontend::Agent::View::ITSMConfigItemHistory</SubGroup>
         <Setting>
             <Option SelectedID="normal">
                 <Item Key="reverse" Translatable="1">reverse</Item>
@@ -522,7 +522,7 @@
     <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemDelete###Permission" Required="1" Valid="1">
         <Description Translatable="1">Required privileges to delete config items.</Description>
         <Group>ITSM Configuration Management</Group>
-        <SubGroup>Frontend::Agent::ViewConfigItemDelete</SubGroup>
+        <SubGroup>Frontend::Agent::View::ITSMConfigItemDelete</SubGroup>
         <Setting>
             <String Regex="^(rw|ro)$">rw</String>
         </Setting>
@@ -546,7 +546,7 @@
     <ConfigItem Name="ITSMConfigItem::Frontend::AdminITSMConfigItem###EditorRows" Required="1" Valid="1">
         <Description Translatable="1">Defines the number of rows for the CI definition editor in the admin interface.</Description>
         <Group>ITSM Configuration Management</Group>
-        <SubGroup>Frontend::Admin::ViewConfigItemDefinition</SubGroup>
+        <SubGroup>Frontend::Admin::View::ITSMConfigItemDefinition</SubGroup>
         <Setting>
             <String Regex="">30</String>
         </Setting>
@@ -649,7 +649,7 @@
     <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemSearch###SearchLimit" Required="1" Valid="1">
         <Description Translatable="1">Defines the search limit for the AgentITSMConfigItemSearch screen.</Description>
         <Group>ITSM Configuration Management</Group>
-        <SubGroup>Frontend::Agent::ViewConfigItemSearch</SubGroup>
+        <SubGroup>Frontend::Agent::View::ITSMConfigItemSearch</SubGroup>
         <Setting>
             <String Regex="">10000</String>
         </Setting>
@@ -657,7 +657,7 @@
     <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemSearch###ShowColumns" Required="1" Valid="1">
         <Description Translatable="1">Defines the shown columns in the config item search. This option has no effect on the position of the column.</Description>
         <Group>ITSM Configuration Management</Group>
-        <SubGroup>Frontend::Agent::ViewConfigItemSearch</SubGroup>
+        <SubGroup>Frontend::Agent::View::ITSMConfigItemSearch</SubGroup>
         <Setting>
             <Hash>
                 <Item Key="CurInciSignal">1</Item>
@@ -676,7 +676,7 @@
     <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemSearch###ShowColumnsByClass" Required="0" Valid="0">
         <Description Translatable="1">Defines the shown columns of CIs in the config item search depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns.</Description>
         <Group>ITSM Configuration Management</Group>
-        <SubGroup>Frontend::Agent::ViewConfigItemSearch</SubGroup>
+        <SubGroup>Frontend::Agent::View::ITSMConfigItemSearch</SubGroup>
         <Setting>
             <Array>
                 <Item>Computer::Name</Item>
@@ -704,7 +704,7 @@
     <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemSearch###SearchCSVData" Required="1" Valid="1">
         <Description Translatable="1">Data used to export the search result in CSV format.</Description>
         <Group>ITSM Configuration Management</Group>
-        <SubGroup>Frontend::Agent::ViewConfigItemSearch</SubGroup>
+        <SubGroup>Frontend::Agent::View::ITSMConfigItemSearch</SubGroup>
         <Setting>
             <Array>
                 <Item Translatable="1">Class</Item>
@@ -720,7 +720,7 @@
     <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItem###SearchLimit" Required="1" Valid="1">
         <Description Translatable="1">Defines the search limit for the AgentITSMConfigItem screen.</Description>
         <Group>ITSM Configuration Management</Group>
-        <SubGroup>Frontend::Agent::ViewConfigItem</SubGroup>
+        <SubGroup>Frontend::Agent::View::ITSMConfigItem</SubGroup>
         <Setting>
             <String Regex="">10000</String>
         </Setting>
@@ -728,7 +728,7 @@
     <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns" Required="1" Valid="1">
         <Description Translatable="1">Defines the shown columns in the config item overview. This option has no effect on the position of the column. Note: Class column is always available if filter 'All' is selected.</Description>
         <Group>ITSM Configuration Management</Group>
-        <SubGroup>Frontend::Agent::ViewConfigItem</SubGroup>
+        <SubGroup>Frontend::Agent::View::ITSMConfigItem</SubGroup>
         <Setting>
             <Hash>
                 <Item Key="CurInciSignal">1</Item>
@@ -747,7 +747,7 @@
     <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumnsByClass" Required="0" Valid="0">
         <Description Translatable="1">Defines the shown columns of CIs in the config item overview depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns.</Description>
         <Group>ITSM Configuration Management</Group>
-        <SubGroup>Frontend::Agent::ViewConfigItem</SubGroup>
+        <SubGroup>Frontend::Agent::View::ITSMConfigItem</SubGroup>
         <Setting>
             <Array>
                 <Item>Computer::Name</Item>
@@ -877,7 +877,7 @@
     <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemBulk###DeplState" Required="0" Valid="1">
         <Description Translatable="1">Sets the deployment state in the configuration item bulk screen of the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
-        <SubGroup>Frontend::Agent::ConfigItem::ViewBulk</SubGroup>
+        <SubGroup>Frontend::Agent::View::ITSMConfigItemBulk</SubGroup>
         <Setting>
             <Option SelectedID="1">
                 <Item Key="0" Translatable="1">No</Item>
@@ -888,7 +888,7 @@
     <ConfigItem Name="ITSMConfigItem::Frontend::AgentITSMConfigItemBulk###InciState" Required="0" Valid="1">
         <Description Translatable="1">Sets the incident state in the configuration item bulk screen of the agent interface.</Description>
         <Group>ITSM Configuration Management</Group>
-        <SubGroup>Frontend::Agent::ConfigItem::ViewBulk</SubGroup>
+        <SubGroup>Frontend::Agent::View::ITSMConfigItemBulk</SubGroup>
         <Setting>
             <Option SelectedID="1">
                 <Item Key="0" Translatable="1">No</Item>
