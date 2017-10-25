@@ -4,7 +4,7 @@
 <!-- nofilter(TidyAll::Plugin::OTRS::SOPM::DocumentationPresent) -->
     <Version>0.0.0</Version>
     <Framework Minimum="6.0.0">6.0.x</Framework>
-    <PackageRequired Version="5.0.92">ITSMCore</PackageRequired>
+    <PackageRequired Version="5.0.93">ITSMCore</PackageRequired>
     <Vendor>OTRS AG</Vendor>
     <URL>http://otrs.org/</URL>
     <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
@@ -1344,7 +1344,7 @@
         <br/>
         <strong>REQUIRED OTRS PACKAGES</strong>
         <ul>
-        <li>ITSMCore 5.0.92</li>
+        <li>ITSMCore 5.0.93</li>
         </ul>
         <br/>
         ((enjoy))<br/>
@@ -1362,7 +1362,7 @@
         <br/>
         <strong>BENÖTIGTE OTRS-PAKETE</strong>
         <ul>
-        <li>ITSMCore 5.0.92</li>
+        <li>ITSMCore 5.0.93</li>
         </ul>
         <br/>
         ((enjoy))<br/>
@@ -1380,7 +1380,7 @@
         <br/>
         <strong>PAQUETES OTRS REQUERIDOS</strong>
         <ul>
-        <li>ITSMCore 5.0.92</li>
+        <li>ITSMCore 5.0.93</li>
         </ul>
         <br/>
         ((enjoy))<br/>
@@ -1398,7 +1398,7 @@
         <br/>
         <strong>SZÜKSÉGES OTRS CSOMAGOK</strong>
         <ul>
-        <li>ITSMCore 5.0.92</li>
+        <li>ITSMCore 5.0.93</li>
         </ul>
         <br/>
         ((enjoy))<br/>
@@ -1482,7 +1482,7 @@
         <br/>
         <strong>REQUIRED OTRS PACKAGES</strong>
         <ul>
-        <li>ITSMCore 5.0.92</li>
+        <li>ITSMCore 5.0.93</li>
         </ul>
         <br/>
         ((enjoy))<br/>
@@ -1500,7 +1500,7 @@
         <br/>
         <strong>BENÖTIGTE OTRS-PAKETE</strong>
         <ul>
-        <li>ITSMCore 5.0.92</li>
+        <li>ITSMCore 5.0.93</li>
         </ul>
         <br/>
         ((enjoy))<br/>
@@ -1518,7 +1518,7 @@
         <br/>
         <strong>PAQUETES OTRS REQUERIDOS</strong>
         <ul>
-        <li>ITSMCore 5.0.92</li>
+        <li>ITSMCore 5.0.93</li>
         </ul>
         <br/>
         ((enjoy))<br/>
@@ -1536,7 +1536,7 @@
         <br/>
         <strong>SZÜKSÉGES OTRS CSOMAGOK</strong>
         <ul>
-        <li>ITSMCore 5.0.92</li>
+        <li>ITSMCore 5.0.93</li>
         </ul>
         <br/>
         ((enjoy))<br/>
