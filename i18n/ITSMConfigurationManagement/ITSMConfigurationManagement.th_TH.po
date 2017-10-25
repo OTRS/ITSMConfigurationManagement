@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2017-10-02 11:19+0000\n"
-"PO-Revision-Date: 2017-10-02 11:19+0000\n"
+"POT-Creation-Date: 2017-10-10 13:56+0000\n"
+"PO-Revision-Date: 2017-10-10 13:57+0000\n"
 "Last-Translator: Udo Bretz\n"
 "Language-Team: Thai (Thailand) (http://www.transifex.com/otrs/OTRS/language/th_TH/)\n"
 "MIME-Version: 1.0\n"
@@ -358,6 +358,10 @@ msgstr "จำนวนสูงสุดของหนึ่งอุปกร
 #. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
 msgid "Empty fields indicate that the current values are kept"
 msgstr "เขตข้อมูลว่างเปล่าบ่งชี้ว่าค่าปัจจุบันจะถูกเก็บไว้"
+
+#. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
+msgid "Skipped"
+msgstr "ข้ามแล้ว"
 
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
 msgid "Model"

@@ -29,8 +29,8 @@ sub Data {
     $Self->{Translation}->{'Class'} = 'Klasa';
 
     # Template: AgentITSMConfigItemBulk
-    $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = '';
-    $Self->{Translation}->{'Deployment state'} = '';
+    $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = 'Akcja grupowa na CI';
+    $Self->{Translation}->{'Deployment state'} = 'Stan wdrożenia';
     $Self->{Translation}->{'Incident state'} = 'Stan zdarzenia';
     $Self->{Translation}->{'Link to another'} = '';
     $Self->{Translation}->{'Invalid Configuration Item number!'} = '';
@@ -76,7 +76,7 @@ sub Data {
     $Self->{Translation}->{'Show one version'} = 'Pokaż jedną wersję!';
     $Self->{Translation}->{'Show all versions'} = 'Pokaż wszystkie wersje';
     $Self->{Translation}->{'Version Incident State'} = 'Stan';
-    $Self->{Translation}->{'Version Deployment State'} = '';
+    $Self->{Translation}->{'Version Deployment State'} = 'Stan wdrożenia wersji';
     $Self->{Translation}->{'Version Number'} = 'Wersja';
     $Self->{Translation}->{'Configuration Item Version Details'} = 'Szczegóły wersji CI';
     $Self->{Translation}->{'Property'} = 'Właściwość';
@@ -143,7 +143,7 @@ sub Data {
     # Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
     $Self->{Translation}->{'Maximum number of one element'} = 'Maksymalna liczba wystąpień pojednyczego elemetntu';
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Puste pola znaczają, że zatrzymane będą bieżące wartości';
-    $Self->{Translation}->{'Skipped'} = '';
+    $Self->{Translation}->{'Skipped'} = 'Pominięte';
 
     # Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
     $Self->{Translation}->{'Model'} = 'Model';
@@ -263,7 +263,7 @@ sub Data {
     $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = 'Tworzenie i zarządzanie definicjami elementów konfiguracji.';
     $Self->{Translation}->{'Define Actions where a settings button is available in the linked objects widget (LinkObject::ViewMode = "complex"). Please note that these Actions must have registered the following JS and CSS files: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js and Core.Agent.LinkObject.js.'} =
         '';
-    $Self->{Translation}->{'Define the group with permissions.'} = '';
+    $Self->{Translation}->{'Define the group with permissions.'} = 'Zdefiniuj grupę z uprawnieniami.';
     $Self->{Translation}->{'Defines Required permissions to create ITSM configuration items using the Generic Interface.'} =
         '';
     $Self->{Translation}->{'Defines Required permissions to delete ITSM configuration items using the Generic Interface.'} =

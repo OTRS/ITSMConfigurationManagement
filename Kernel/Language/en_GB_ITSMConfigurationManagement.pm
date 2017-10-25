@@ -263,7 +263,7 @@ sub Data {
     $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = '';
     $Self->{Translation}->{'Define Actions where a settings button is available in the linked objects widget (LinkObject::ViewMode = "complex"). Please note that these Actions must have registered the following JS and CSS files: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js and Core.Agent.LinkObject.js.'} =
         '';
-    $Self->{Translation}->{'Define the group with permissions.'} = '';
+    $Self->{Translation}->{'Define the group with permissions.'} = 'Define the group with permissions.';
     $Self->{Translation}->{'Defines Required permissions to create ITSM configuration items using the Generic Interface.'} =
         '';
     $Self->{Translation}->{'Defines Required permissions to delete ITSM configuration items using the Generic Interface.'} =
@@ -330,7 +330,7 @@ sub Data {
     $Self->{Translation}->{'Parameters for the deployment states in the preferences view of the agent interface.'} =
         '';
     $Self->{Translation}->{'Parameters for the example permission groups of the general catalog attributes.'} =
-        '';
+        'Parameters for the example permission groups of the general catalogue attributes.';
     $Self->{Translation}->{'Parameters for the pages (in which the configuration items are shown).'} =
         '';
     $Self->{Translation}->{'Required permissions to use the ITSM configuration item screen in the agent interface.'} =

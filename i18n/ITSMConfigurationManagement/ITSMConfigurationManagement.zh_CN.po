@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2017-10-02 11:19+0000\n"
-"PO-Revision-Date: 2017-10-02 11:19+0000\n"
+"POT-Creation-Date: 2017-10-10 13:56+0000\n"
+"PO-Revision-Date: 2017-10-10 13:57+0000\n"
 "Last-Translator: Udo Bretz\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otrs/OTRS/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -254,47 +254,47 @@ msgstr "无法显示历史记录，因为没有访问权限！"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "New ConfigItem (ID=%s)"
-msgstr ""
+msgstr "新建配置项（ID=%s）"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "New version (ID=%s)"
-msgstr ""
+msgstr "新建版本（ID=%s）"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Deployment state updated (new=%s, old=%s)"
-msgstr ""
+msgstr "部署状态已更新（新=%s，旧=%s）"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Incident state updated (new=%s, old=%s)"
-msgstr ""
+msgstr "故障状态已更新（新=%s，旧=%s）"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "ConfigItem (ID=%s) deleted"
-msgstr ""
+msgstr "配置项（ID=%s）已删除"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Link to %s (type=%s) added"
-msgstr ""
+msgstr "到%s链接的（类型=%s）已添加"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Link to %s (type=%s) deleted"
-msgstr ""
+msgstr "到%s链接的（类型=%s）已删除"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "ConfigItem definition updated (ID=%s)"
-msgstr ""
+msgstr "配置项定义已更新（ID=%s）"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Name updated (new=%s, old=%s)"
-msgstr ""
+msgstr "名称已更新（新=%s，旧=%s）"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Attribute %s updated from \"%s\" to \"%s\""
-msgstr ""
+msgstr "属性%s已从“%s”更新为“%s”"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Version %s deleted"
-msgstr ""
+msgstr "版本%s 已删除"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "No ConfigItemID or VersionID is given!"
@@ -363,6 +363,10 @@ msgstr "单个元素的最大数量"
 #. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
 msgid "Empty fields indicate that the current values are kept"
 msgstr "空字段表示保持当前值"
+
+#. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
+msgid "Skipped"
+msgstr "跳过的"
 
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
 msgid "Model"

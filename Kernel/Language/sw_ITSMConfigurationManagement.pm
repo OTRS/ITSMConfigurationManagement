@@ -143,7 +143,7 @@ sub Data {
     # Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
     $Self->{Translation}->{'Maximum number of one element'} = 'Kima cha juu cha namba ya elementi mojawapo';
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Uga zilizowazi zinaonyesha kwamba thamani za sasa zimewekwa.';
-    $Self->{Translation}->{'Skipped'} = '';
+    $Self->{Translation}->{'Skipped'} = 'Rukwa';
 
     # Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
     $Self->{Translation}->{'Model'} = 'Mfano';

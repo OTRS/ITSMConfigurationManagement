@@ -104,17 +104,17 @@ sub Data {
     # Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
     $Self->{Translation}->{'Can\'t show history, no ConfigItemID is given!'} = 'Nem lehet megjeleníteni az előzményeket, nincs konfigurációelem-azonosító megadva!';
     $Self->{Translation}->{'Can\'t show history, no access rights given!'} = 'Nem lehet megjeleníteni az előzményeket, nincsenek hozzáférési jogok megadva!';
-    $Self->{Translation}->{'New ConfigItem (ID=%s)'} = '';
-    $Self->{Translation}->{'New version (ID=%s)'} = '';
-    $Self->{Translation}->{'Deployment state updated (new=%s, old=%s)'} = '';
-    $Self->{Translation}->{'Incident state updated (new=%s, old=%s)'} = '';
-    $Self->{Translation}->{'ConfigItem (ID=%s) deleted'} = '';
-    $Self->{Translation}->{'Link to %s (type=%s) added'} = '';
-    $Self->{Translation}->{'Link to %s (type=%s) deleted'} = '';
-    $Self->{Translation}->{'ConfigItem definition updated (ID=%s)'} = '';
-    $Self->{Translation}->{'Name updated (new=%s, old=%s)'} = '';
-    $Self->{Translation}->{'Attribute %s updated from "%s" to "%s"'} = '';
-    $Self->{Translation}->{'Version %s deleted'} = '';
+    $Self->{Translation}->{'New ConfigItem (ID=%s)'} = 'Új konfigurációelem (azonosító = %s)';
+    $Self->{Translation}->{'New version (ID=%s)'} = 'Új verzió (azonosító = %s)';
+    $Self->{Translation}->{'Deployment state updated (new=%s, old=%s)'} = 'Üzembe állítási állapot frissítve (új = %s, régi = %s)';
+    $Self->{Translation}->{'Incident state updated (new=%s, old=%s)'} = 'Incidensállapot frissítve (új = %s, régi = %s)';
+    $Self->{Translation}->{'ConfigItem (ID=%s) deleted'} = 'Konfigurációelem (azonosító = %s) törölve';
+    $Self->{Translation}->{'Link to %s (type=%s) added'} = 'Kapcsolat ehhez: %s (típus = %s) hozzáadva';
+    $Self->{Translation}->{'Link to %s (type=%s) deleted'} = 'Kapcsolat ehhez: %s (típus = %s) törölve';
+    $Self->{Translation}->{'ConfigItem definition updated (ID=%s)'} = 'Konfigurációelem-meghatározás frissítve (azonosító = %s)';
+    $Self->{Translation}->{'Name updated (new=%s, old=%s)'} = 'Név frissítve (új = %s, régi = %s)';
+    $Self->{Translation}->{'Attribute %s updated from "%s" to "%s"'} = 'Attribútum (%s) frissítve erről: „%s”, erre: „%s”';
+    $Self->{Translation}->{'Version %s deleted'} = '%s. verzió törölve';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
     $Self->{Translation}->{'No ConfigItemID or VersionID is given!'} = 'Nincs konfigurációelem-azonosító vagy verzióazonosító megadva!';
@@ -143,7 +143,7 @@ sub Data {
     # Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
     $Self->{Translation}->{'Maximum number of one element'} = 'Egy elem legnagyobb száma';
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Az üres mezők azt jelzik, hogy az aktuális mezők megtartásra kerülnek';
-    $Self->{Translation}->{'Skipped'} = '';
+    $Self->{Translation}->{'Skipped'} = 'Kihagyva';
 
     # Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
     $Self->{Translation}->{'Model'} = 'Modell';

@@ -104,29 +104,29 @@ sub Data {
     # Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
     $Self->{Translation}->{'Can\'t show history, no ConfigItemID is given!'} = 'Не може се приказати историјат, јер није дат ConfigItemID!';
     $Self->{Translation}->{'Can\'t show history, no access rights given!'} = 'Не може се приказати историјат, није дозвољен приступ!';
-    $Self->{Translation}->{'New ConfigItem (ID=%s)'} = '';
-    $Self->{Translation}->{'New version (ID=%s)'} = '';
-    $Self->{Translation}->{'Deployment state updated (new=%s, old=%s)'} = '';
-    $Self->{Translation}->{'Incident state updated (new=%s, old=%s)'} = '';
-    $Self->{Translation}->{'ConfigItem (ID=%s) deleted'} = '';
-    $Self->{Translation}->{'Link to %s (type=%s) added'} = '';
-    $Self->{Translation}->{'Link to %s (type=%s) deleted'} = '';
-    $Self->{Translation}->{'ConfigItem definition updated (ID=%s)'} = '';
-    $Self->{Translation}->{'Name updated (new=%s, old=%s)'} = '';
-    $Self->{Translation}->{'Attribute %s updated from "%s" to "%s"'} = '';
-    $Self->{Translation}->{'Version %s deleted'} = '';
+    $Self->{Translation}->{'New ConfigItem (ID=%s)'} = 'Нова конфигурациона ставка (ID=%s)';
+    $Self->{Translation}->{'New version (ID=%s)'} = 'Нова верзија (ID=%s)';
+    $Self->{Translation}->{'Deployment state updated (new=%s, old=%s)'} = 'Ажурирано стање распореда (ново=%s, старо=%s) ';
+    $Self->{Translation}->{'Incident state updated (new=%s, old=%s)'} = 'Ажурирано стање инцидента (ново=%s, старо=%s)';
+    $Self->{Translation}->{'ConfigItem (ID=%s) deleted'} = 'Обрисана конфигурациона ставка (ID=%s)';
+    $Self->{Translation}->{'Link to %s (type=%s) added'} = 'Повезано са %s (тип=%s)';
+    $Self->{Translation}->{'Link to %s (type=%s) deleted'} = 'Обрисана веза са %s (тип=%s)';
+    $Self->{Translation}->{'ConfigItem definition updated (ID=%s)'} = 'Ажурирана дефиниција конфигурационе ставке (ID=%s)';
+    $Self->{Translation}->{'Name updated (new=%s, old=%s)'} = 'Ажуриран назив (нови=%s, стари=%s)';
+    $Self->{Translation}->{'Attribute %s updated from "%s" to "%s"'} = 'Ажуриран атрибут%s са "%s" на "%s"';
+    $Self->{Translation}->{'Version %s deleted'} = 'Верзија %s је обрисана';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
     $Self->{Translation}->{'No ConfigItemID or VersionID is given!'} = 'Нису дати ConfigItemID или VersionID!';
     $Self->{Translation}->{'Can\'t show config item, no access rights given!'} = 'Не може се приказати конфигурациона ставка, није дат приступ!';
-    $Self->{Translation}->{'ConfigItemID %s not found in database!'} = 'ConfigItemID %s није нађена у бази података!';
-    $Self->{Translation}->{'VersionID %s not found in database!'} = 'VersionID %s није нађена у бази података!';
+    $Self->{Translation}->{'ConfigItemID %s not found in database!'} = 'ИД конфигурационе ставке %s није нађен у бази података!';
+    $Self->{Translation}->{'VersionID %s not found in database!'} = 'Ид верзије %s није нађен у бази података!';
     $Self->{Translation}->{'ConfigItem'} = 'Конфигурациона ставка';
     $Self->{Translation}->{'printed by %s at %s'} = 'штампану од стране %s у %s';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
-    $Self->{Translation}->{'Invalid ClassID!'} = 'Неисправан ClassID!';
-    $Self->{Translation}->{'No ClassID is given!'} = 'Није дат ClassID!';
+    $Self->{Translation}->{'Invalid ClassID!'} = 'Неисправан ИД класе!';
+    $Self->{Translation}->{'No ClassID is given!'} = 'Није дат ИД класе!';
     $Self->{Translation}->{'No access rights for this class given!'} = 'Није дат приступ овој класи!';
     $Self->{Translation}->{'No Result!'} = 'Нема резултата!';
     $Self->{Translation}->{'Config Item Search Results'} = 'Резултат претраге конфигурационих ставки';
@@ -143,7 +143,7 @@ sub Data {
     # Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
     $Self->{Translation}->{'Maximum number of one element'} = 'Максимални број једног елемента';
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = 'Празна поља указују да ће актуелне вредности бити задржане';
-    $Self->{Translation}->{'Skipped'} = '';
+    $Self->{Translation}->{'Skipped'} = 'Прескочено';
 
     # Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
     $Self->{Translation}->{'Model'} = 'Модел';
@@ -253,7 +253,7 @@ sub Data {
     $Self->{Translation}->{'Config item history.'} = 'Историјат конфигурационе ставке.';
     $Self->{Translation}->{'Config item print.'} = 'Штампа конфигурационе ставке';
     $Self->{Translation}->{'Config item zoom.'} = 'Детаљни приказ конфигурацине ставке.';
-    $Self->{Translation}->{'ConfigItemNumber'} = 'ConfigItemNumber';
+    $Self->{Translation}->{'ConfigItemNumber'} = 'Број конфигурационе ставке';
     $Self->{Translation}->{'Configuration Item Limit'} = 'Ограничење конфигурационе ставке';
     $Self->{Translation}->{'Configuration Item limit per page.'} = 'Ограничење конфигурационих ставки по страни.';
     $Self->{Translation}->{'Configuration Management Database.'} = 'База података управљања конфигурацијом.';

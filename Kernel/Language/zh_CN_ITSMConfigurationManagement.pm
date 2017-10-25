@@ -104,17 +104,17 @@ sub Data {
     # Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
     $Self->{Translation}->{'Can\'t show history, no ConfigItemID is given!'} = '不能显示历史信息，因为没有指定配置项ID！';
     $Self->{Translation}->{'Can\'t show history, no access rights given!'} = '无法显示历史记录，因为没有访问权限！';
-    $Self->{Translation}->{'New ConfigItem (ID=%s)'} = '';
-    $Self->{Translation}->{'New version (ID=%s)'} = '';
-    $Self->{Translation}->{'Deployment state updated (new=%s, old=%s)'} = '';
-    $Self->{Translation}->{'Incident state updated (new=%s, old=%s)'} = '';
-    $Self->{Translation}->{'ConfigItem (ID=%s) deleted'} = '';
-    $Self->{Translation}->{'Link to %s (type=%s) added'} = '';
-    $Self->{Translation}->{'Link to %s (type=%s) deleted'} = '';
-    $Self->{Translation}->{'ConfigItem definition updated (ID=%s)'} = '';
-    $Self->{Translation}->{'Name updated (new=%s, old=%s)'} = '';
-    $Self->{Translation}->{'Attribute %s updated from "%s" to "%s"'} = '';
-    $Self->{Translation}->{'Version %s deleted'} = '';
+    $Self->{Translation}->{'New ConfigItem (ID=%s)'} = '新建配置项（ID=%s）';
+    $Self->{Translation}->{'New version (ID=%s)'} = '新建版本（ID=%s）';
+    $Self->{Translation}->{'Deployment state updated (new=%s, old=%s)'} = '部署状态已更新（新=%s，旧=%s）';
+    $Self->{Translation}->{'Incident state updated (new=%s, old=%s)'} = '故障状态已更新（新=%s，旧=%s）';
+    $Self->{Translation}->{'ConfigItem (ID=%s) deleted'} = '配置项（ID=%s）已删除';
+    $Self->{Translation}->{'Link to %s (type=%s) added'} = '到%s链接的（类型=%s）已添加';
+    $Self->{Translation}->{'Link to %s (type=%s) deleted'} = '到%s链接的（类型=%s）已删除';
+    $Self->{Translation}->{'ConfigItem definition updated (ID=%s)'} = '配置项定义已更新（ID=%s）';
+    $Self->{Translation}->{'Name updated (new=%s, old=%s)'} = '名称已更新（新=%s，旧=%s）';
+    $Self->{Translation}->{'Attribute %s updated from "%s" to "%s"'} = '属性%s已从“%s”更新为“%s”';
+    $Self->{Translation}->{'Version %s deleted'} = '版本%s 已删除';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
     $Self->{Translation}->{'No ConfigItemID or VersionID is given!'} = '没有指定配置项ID或版本ID！';
@@ -143,7 +143,7 @@ sub Data {
     # Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
     $Self->{Translation}->{'Maximum number of one element'} = '单个元素的最大数量';
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = '空字段表示保持当前值';
-    $Self->{Translation}->{'Skipped'} = '';
+    $Self->{Translation}->{'Skipped'} = '跳过的';
 
     # Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
     $Self->{Translation}->{'Model'} = '型号';

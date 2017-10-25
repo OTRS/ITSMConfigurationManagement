@@ -5,9 +5,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2017-10-02 11:19+0000\n"
-"PO-Revision-Date: 2017-10-02 11:19+0000\n"
-"Last-Translator: Udo Bretz\n"
+"POT-Creation-Date: 2017-10-10 13:56+0000\n"
+"PO-Revision-Date: 2017-10-12 13:11+0000\n"
+"Last-Translator: Dusan Vuckovic\n"
 "Language-Team: Serbian (http://www.transifex.com/otrs/OTRS/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -250,47 +250,47 @@ msgstr "Не може се приказати историјат, није до�
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "New ConfigItem (ID=%s)"
-msgstr ""
+msgstr "Нова конфигурациона ставка (ID=%s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "New version (ID=%s)"
-msgstr ""
+msgstr "Нова верзија (ID=%s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Deployment state updated (new=%s, old=%s)"
-msgstr ""
+msgstr "Ажурирано стање распореда (ново=%s, старо=%s) "
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Incident state updated (new=%s, old=%s)"
-msgstr ""
+msgstr "Ажурирано стање инцидента (ново=%s, старо=%s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "ConfigItem (ID=%s) deleted"
-msgstr ""
+msgstr "Обрисана конфигурациона ставка (ID=%s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Link to %s (type=%s) added"
-msgstr ""
+msgstr "Повезано са %s (тип=%s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Link to %s (type=%s) deleted"
-msgstr ""
+msgstr "Обрисана веза са %s (тип=%s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "ConfigItem definition updated (ID=%s)"
-msgstr ""
+msgstr "Ажурирана дефиниција конфигурационе ставке (ID=%s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Name updated (new=%s, old=%s)"
-msgstr ""
+msgstr "Ажуриран назив (нови=%s, стари=%s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Attribute %s updated from \"%s\" to \"%s\""
-msgstr ""
+msgstr "Ажуриран атрибут%s са \"%s\" на \"%s\""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Version %s deleted"
-msgstr ""
+msgstr "Верзија %s је обрисана"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "No ConfigItemID or VersionID is given!"
@@ -302,11 +302,11 @@ msgstr "Не може се приказати конфигурациона ст�
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "ConfigItemID %s not found in database!"
-msgstr "ConfigItemID %s није нађена у бази података!"
+msgstr "ИД конфигурационе ставке %s није нађен у бази података!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "VersionID %s not found in database!"
-msgstr "VersionID %s није нађена у бази података!"
+msgstr "Ид верзије %s није нађен у бази података!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "ConfigItem"
@@ -318,11 +318,11 @@ msgstr "штампану од стране %s у %s"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "Invalid ClassID!"
-msgstr "Неисправан ClassID!"
+msgstr "Неисправан ИД класе!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "No ClassID is given!"
-msgstr "Није дат ClassID!"
+msgstr "Није дат ИД класе!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "No access rights for this class given!"
@@ -359,6 +359,10 @@ msgstr "Максимални број једног елемента"
 #. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
 msgid "Empty fields indicate that the current values are kept"
 msgstr "Празна поља указују да ће актуелне вредности бити задржане"
+
+#. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
+msgid "Skipped"
+msgstr "Прескочено"
 
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
 msgid "Model"
@@ -763,7 +767,7 @@ msgstr "Детаљни приказ конфигурацине ставке."
 
 #. SysConfig
 msgid "ConfigItemNumber"
-msgstr "ConfigItemNumber"
+msgstr "Број конфигурационе ставке"
 
 #. SysConfig
 msgid "Configuration Item Limit"

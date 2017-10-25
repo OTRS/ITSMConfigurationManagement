@@ -4,9 +4,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2017-10-02 11:19+0000\n"
-"PO-Revision-Date: 2017-10-02 11:19+0000\n"
-"Last-Translator: Udo Bretz\n"
+"POT-Creation-Date: 2017-10-10 13:56+0000\n"
+"PO-Revision-Date: 2017-10-12 08:24+0000\n"
+"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/otrs/OTRS/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -249,47 +249,47 @@ msgstr "Nem lehet megjeleníteni az előzményeket, nincsenek hozzáférési jog
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "New ConfigItem (ID=%s)"
-msgstr ""
+msgstr "Új konfigurációelem (azonosító = %s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "New version (ID=%s)"
-msgstr ""
+msgstr "Új verzió (azonosító = %s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Deployment state updated (new=%s, old=%s)"
-msgstr ""
+msgstr "Üzembe állítási állapot frissítve (új = %s, régi = %s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Incident state updated (new=%s, old=%s)"
-msgstr ""
+msgstr "Incidensállapot frissítve (új = %s, régi = %s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "ConfigItem (ID=%s) deleted"
-msgstr ""
+msgstr "Konfigurációelem (azonosító = %s) törölve"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Link to %s (type=%s) added"
-msgstr ""
+msgstr "Kapcsolat ehhez: %s (típus = %s) hozzáadva"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Link to %s (type=%s) deleted"
-msgstr ""
+msgstr "Kapcsolat ehhez: %s (típus = %s) törölve"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "ConfigItem definition updated (ID=%s)"
-msgstr ""
+msgstr "Konfigurációelem-meghatározás frissítve (azonosító = %s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Name updated (new=%s, old=%s)"
-msgstr ""
+msgstr "Név frissítve (új = %s, régi = %s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Attribute %s updated from \"%s\" to \"%s\""
-msgstr ""
+msgstr "Attribútum (%s) frissítve erről: „%s”, erre: „%s”"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Version %s deleted"
-msgstr ""
+msgstr "%s. verzió törölve"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "No ConfigItemID or VersionID is given!"
@@ -358,6 +358,10 @@ msgstr "Egy elem legnagyobb száma"
 #. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
 msgid "Empty fields indicate that the current values are kept"
 msgstr "Az üres mezők azt jelzik, hogy az aktuális mezők megtartásra kerülnek"
+
+#. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
+msgid "Skipped"
+msgstr "Kihagyva"
 
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
 msgid "Model"

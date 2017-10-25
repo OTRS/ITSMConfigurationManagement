@@ -18,36 +18,36 @@ sub Data {
     # Template: AdminITSMConfigItem
     $Self->{Translation}->{'Config Item Management'} = '構成アイテム管理';
     $Self->{Translation}->{'Change class definition'} = 'クラス定義を変更';
-    $Self->{Translation}->{'Config Item Class'} = '';
+    $Self->{Translation}->{'Config Item Class'} = '構成アイテムのクラス';
     $Self->{Translation}->{'Definition'} = '記述';
     $Self->{Translation}->{'Change'} = '変更';
 
     # Template: AgentITSMConfigItemAdd
-    $Self->{Translation}->{'Config Item'} = 'Config アイテム';
+    $Self->{Translation}->{'Config Item'} = '構成アイテム';
     $Self->{Translation}->{'Filter for Classes'} = 'クラスでフィルタ';
     $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = '新規の構成アイテムを作成するには、リストからクラスを選択してください。';
     $Self->{Translation}->{'Class'} = 'クラス';
 
     # Template: AgentITSMConfigItemBulk
-    $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = 'ITSM 変更アイテム一括アクション';
-    $Self->{Translation}->{'Deployment state'} = 'デプロイメント状況';
+    $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = '構成アイテム一括アクション';
+    $Self->{Translation}->{'Deployment state'} = 'デプロイ・ステータス';
     $Self->{Translation}->{'Incident state'} = 'インシデント状況';
     $Self->{Translation}->{'Link to another'} = '他とリンクする';
     $Self->{Translation}->{'Invalid Configuration Item number!'} = 'コンフィグレーションアイテムの値が不正です!';
     $Self->{Translation}->{'The number of another Configuration Item to link with.'} = '他の構成アイテムへのリンク数';
 
     # Template: AgentITSMConfigItemDelete
-    $Self->{Translation}->{'Do you really want to delete this config item?'} = '';
+    $Self->{Translation}->{'Do you really want to delete this config item?'} = '本当にこの構成アイテムを削除しますか？';
 
     # Template: AgentITSMConfigItemEdit
     $Self->{Translation}->{'The name of this config item'} = 'この 構成アイテム の名称';
     $Self->{Translation}->{'Name is already in use by the ConfigItems with the following Number(s): %s'} =
         'この名称はすでに Number(s): %s の構成アイテムで使用中です。';
-    $Self->{Translation}->{'Deployment State'} = '展開状況';
+    $Self->{Translation}->{'Deployment State'} = 'デプロイ・ステータス';
     $Self->{Translation}->{'Incident State'} = 'インシデント状況';
 
     # Template: AgentITSMConfigItemHistory
-    $Self->{Translation}->{'History of Config Item: %s'} = '';
+    $Self->{Translation}->{'History of Config Item: %s'} = '構成アイテムの履歴: %s';
     $Self->{Translation}->{'History Content'} = '履歴内容';
     $Self->{Translation}->{'Createtime'} = '作成日時';
     $Self->{Translation}->{'Zoom view'} = 'ズーム・ビュー';
@@ -57,10 +57,10 @@ sub Data {
     $Self->{Translation}->{'Config Items per page'} = '1ページ毎の設定項目';
 
     # Template: AgentITSMConfigItemOverviewSmall
-    $Self->{Translation}->{'A generic ITSM Configuration Item table'} = '';
-    $Self->{Translation}->{'Deployment State Type'} = '展開の状態';
-    $Self->{Translation}->{'Current Incident State'} = '現在のインシデント状態';
-    $Self->{Translation}->{'Current Incident State Type'} = '現在のインシデント状態のタイプ';
+    $Self->{Translation}->{'A generic ITSM Configuration Item table'} = 'ジェネリック構成アイテムのテーブル';
+    $Self->{Translation}->{'Deployment State Type'} = 'デプロイ・ステータスのタイプ';
+    $Self->{Translation}->{'Current Incident State'} = '現在のインシデント・ステータス';
+    $Self->{Translation}->{'Current Incident State Type'} = '現在のインシデント・ステータスのタイプ';
     $Self->{Translation}->{'Last changed'} = '最終変更日時';
 
     # Template: AgentITSMConfigItemSearch
@@ -71,22 +71,22 @@ sub Data {
     # Template: AgentITSMConfigItemZoom
     $Self->{Translation}->{'Configuration Item'} = '詳細設定';
     $Self->{Translation}->{'Configuration Item Information'} = '変更アイテム情報';
-    $Self->{Translation}->{'Current Deployment State'} = '現在の展開状態';
+    $Self->{Translation}->{'Current Deployment State'} = '現在のデプロイ・ステータス';
     $Self->{Translation}->{'Last changed by'} = '最終変更者';
     $Self->{Translation}->{'Show one version'} = '説明を表示';
     $Self->{Translation}->{'Show all versions'} = 'すべての説明を表示';
     $Self->{Translation}->{'Version Incident State'} = 'インシデント状態';
-    $Self->{Translation}->{'Version Deployment State'} = 'バージョン展開状況';
+    $Self->{Translation}->{'Version Deployment State'} = 'バージョンのデプロイ・ステータス';
     $Self->{Translation}->{'Version Number'} = 'バージョンナンバー';
     $Self->{Translation}->{'Configuration Item Version Details'} = '構成の詳細';
     $Self->{Translation}->{'Property'} = '項目';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
     $Self->{Translation}->{'No access to Class is given!'} = '';
-    $Self->{Translation}->{'Overview: ITSM ConfigItem'} = '';
+    $Self->{Translation}->{'Overview: ITSM ConfigItem'} = '一覧: 構成アイテム';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
-    $Self->{Translation}->{'No ConfigItemID is given!'} = '';
+    $Self->{Translation}->{'No ConfigItemID is given!'} = 'ConfigItemIDが指定されていません！';
     $Self->{Translation}->{'You need at least one selected Configuration Item!'} = '';
     $Self->{Translation}->{'You don\'t have write access to this configuration item: %s.'} =
         '';
@@ -106,7 +106,7 @@ sub Data {
     $Self->{Translation}->{'Can\'t show history, no access rights given!'} = '';
     $Self->{Translation}->{'New ConfigItem (ID=%s)'} = '';
     $Self->{Translation}->{'New version (ID=%s)'} = '';
-    $Self->{Translation}->{'Deployment state updated (new=%s, old=%s)'} = '';
+    $Self->{Translation}->{'Deployment state updated (new=%s, old=%s)'} = 'デプロイ・ステータスが更新されました。（新規=%s、前=%s）';
     $Self->{Translation}->{'Incident state updated (new=%s, old=%s)'} = '';
     $Self->{Translation}->{'ConfigItem (ID=%s) deleted'} = '';
     $Self->{Translation}->{'Link to %s (type=%s) added'} = '';
@@ -129,12 +129,12 @@ sub Data {
     $Self->{Translation}->{'No ClassID is given!'} = '';
     $Self->{Translation}->{'No access rights for this class given!'} = '';
     $Self->{Translation}->{'No Result!'} = '結果がありません。';
-    $Self->{Translation}->{'Config Item Search Results'} = '';
+    $Self->{Translation}->{'Config Item Search Results'} = '構成アイテムの検索結果';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
     $Self->{Translation}->{'Can\'t show item, no access rights for ConfigItem are given!'} =
         '';
-    $Self->{Translation}->{'The deployment state of this config item'} = 'この設定項目の展開状態';
+    $Self->{Translation}->{'The deployment state of this config item'} = 'この設定項目のデプロイ・ステータス';
     $Self->{Translation}->{'The incident state of this config item'} = 'この設定項目のインシデント状態';
 
     # Perl Module: Kernel/Output/HTML/ITSMConfigItem/LayoutDate.pm
@@ -143,7 +143,7 @@ sub Data {
     # Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
     $Self->{Translation}->{'Maximum number of one element'} = '一エレメントあたりの最大数';
     $Self->{Translation}->{'Empty fields indicate that the current values are kept'} = '空欄の項目は現在の値が保持されること意味します';
-    $Self->{Translation}->{'Skipped'} = '';
+    $Self->{Translation}->{'Skipped'} = 'スキップされました';
 
     # Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
     $Self->{Translation}->{'Model'} = 'モデル';
@@ -161,7 +161,7 @@ sub Data {
     $Self->{Translation}->{'Install Date'} = 'インストール日付';
     $Self->{Translation}->{'Phone 1'} = '電話 1';
     $Self->{Translation}->{'Phone 2'} = '電話 2';
-    $Self->{Translation}->{'E-Mail'} = '';
+    $Self->{Translation}->{'E-Mail'} = 'メールアドレス';
     $Self->{Translation}->{'Network Address'} = 'ネットワークアドレス';
     $Self->{Translation}->{'Subnet Mask'} = 'サブネットマスク';
     $Self->{Translation}->{'Gateway'} = 'ゲートウェイ';
@@ -172,10 +172,10 @@ sub Data {
     $Self->{Translation}->{'Media'} = 'メディア';
 
     # Database XML Definition: ITSMConfigurationManagement.sopm
-    $Self->{Translation}->{'Computer'} = '';
-    $Self->{Translation}->{'Hardware'} = '';
+    $Self->{Translation}->{'Computer'} = 'コンピューター';
+    $Self->{Translation}->{'Hardware'} = 'ハードウェア';
     $Self->{Translation}->{'Network'} = 'ネットワーク';
-    $Self->{Translation}->{'Software'} = '';
+    $Self->{Translation}->{'Software'} = 'ソフトウェア';
     $Self->{Translation}->{'Expired'} = '期限切れ';
     $Self->{Translation}->{'Maintenance'} = 'メンテナンス';
     $Self->{Translation}->{'Pilot'} = 'パイロット';
@@ -246,14 +246,14 @@ sub Data {
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         '';
     $Self->{Translation}->{'Config Items'} = '構成アイテム';
-    $Self->{Translation}->{'Config item add.'} = '';
-    $Self->{Translation}->{'Config item edit.'} = '';
+    $Self->{Translation}->{'Config item add.'} = '構成アイテムを追加';
+    $Self->{Translation}->{'Config item edit.'} = '構成アイテムを修正';
     $Self->{Translation}->{'Config item event module that enables logging to history in the agent interface.'} =
         '';
-    $Self->{Translation}->{'Config item history.'} = '';
-    $Self->{Translation}->{'Config item print.'} = '';
-    $Self->{Translation}->{'Config item zoom.'} = '';
-    $Self->{Translation}->{'ConfigItemNumber'} = '';
+    $Self->{Translation}->{'Config item history.'} = '構成アイテムの履歴';
+    $Self->{Translation}->{'Config item print.'} = '構成アイテムを印刷';
+    $Self->{Translation}->{'Config item zoom.'} = '構成アイテムのズーム';
+    $Self->{Translation}->{'ConfigItemNumber'} = '構成アイテム番号';
     $Self->{Translation}->{'Configuration Item Limit'} = '構成アイテムの制限';
     $Self->{Translation}->{'Configuration Item limit per page.'} = '';
     $Self->{Translation}->{'Configuration Management Database.'} = '';
@@ -262,8 +262,8 @@ sub Data {
         '';
     $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = '構成アイテムの作成または変更';
     $Self->{Translation}->{'Define Actions where a settings button is available in the linked objects widget (LinkObject::ViewMode = "complex"). Please note that these Actions must have registered the following JS and CSS files: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js and Core.Agent.LinkObject.js.'} =
-        '';
-    $Self->{Translation}->{'Define the group with permissions.'} = '';
+        'リンクオブジェクトウィジェット（LinkObject :: ViewMode = "complex"）で設定ボタンを使用できるアクションを定義します。 これらのアクションは、次のJSおよびCSSファイルを登録している必要があります。Core.AllocationList.css、Core.UI.AllocationList.js、Core.UI.Table.Sort.js、Core.Agent.TableFilters.js、及びCore.Agent .LinkObject.js';
+    $Self->{Translation}->{'Define the group with permissions.'} = '権限を持つグループを定義します。';
     $Self->{Translation}->{'Defines Required permissions to create ITSM configuration items using the Generic Interface.'} =
         'ジェネリックインターフェイスを用いてITSM構成を作成する権限を定義する。';
     $Self->{Translation}->{'Defines Required permissions to delete ITSM configuration items using the Generic Interface.'} =
@@ -285,7 +285,7 @@ sub Data {
     $Self->{Translation}->{'Defines the order of incident states from high (e.g. cricital) to low (e.g. functional).'} =
         '';
     $Self->{Translation}->{'Defines the relevant deployment states where linked tickets can affect the status of a CI.'} =
-        '';
+        'リンクされたチケットがCIのステータスに影響を与える可能性がある、関連するデプロイ・ステータスを定義します。';
     $Self->{Translation}->{'Defines the search limit for the AgentITSMConfigItem screen.'} =
         '';
     $Self->{Translation}->{'Defines the search limit for the AgentITSMConfigItemSearch screen.'} =
@@ -305,9 +305,9 @@ sub Data {
     $Self->{Translation}->{'Defines which type of ticket can affect the status of a linked CI.'} =
         '';
     $Self->{Translation}->{'Delete Configuration Item'} = '';
-    $Self->{Translation}->{'Deployment State Color'} = '';
-    $Self->{Translation}->{'Deployment State Color.'} = '';
-    $Self->{Translation}->{'Deployment State Type.'} = '';
+    $Self->{Translation}->{'Deployment State Color'} = 'デプロイ・ステータスのカラー';
+    $Self->{Translation}->{'Deployment State Color.'} = 'デプロイ・ステータスのカラー';
+    $Self->{Translation}->{'Deployment State Type.'} = 'デプロイ・ステータスのタイプ';
     $Self->{Translation}->{'Duplicate'} = 'コピー';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         '';
@@ -317,7 +317,7 @@ sub Data {
         '';
     $Self->{Translation}->{'Event module to set configitem-status on ticket-configitem-link.'} =
         '';
-    $Self->{Translation}->{'ITSM config item overview.'} = '';
+    $Self->{Translation}->{'ITSM config item overview.'} = '構成アイテムの一覧';
     $Self->{Translation}->{'Module to check the group responsible for a class.'} = '';
     $Self->{Translation}->{'Module to check the group responsible for a configuration item.'} =
         '';

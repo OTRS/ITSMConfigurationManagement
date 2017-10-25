@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2017-10-02 11:19+0000\n"
-"PO-Revision-Date: 2017-10-02 11:19+0000\n"
+"POT-Creation-Date: 2017-10-10 13:56+0000\n"
+"PO-Revision-Date: 2017-10-10 13:57+0000\n"
 "Last-Translator: Udo Bretz\n"
 "Language-Team: Portuguese (http://www.transifex.com/otrs/OTRS/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -360,6 +360,10 @@ msgstr "Número máximo de um elemento"
 #. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
 msgid "Empty fields indicate that the current values are kept"
 msgstr "Os campos vazios indicam que os valores atuais são mantidos"
+
+#. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
+msgid "Skipped"
+msgstr "Desconsiderados"
 
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
 msgid "Model"

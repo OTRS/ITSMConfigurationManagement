@@ -1,12 +1,13 @@
 # 
 # Translators:
+# Ilya Ko <mchammer@inbox.ru>, 2017
 # Udo Bretz, 2015
 # Yuri Kolesniov <ynkolesnikov@gmail.com>, 2014,2016
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2017-10-02 11:19+0000\n"
-"PO-Revision-Date: 2017-10-02 11:19+0000\n"
+"POT-Creation-Date: 2017-10-10 13:56+0000\n"
+"PO-Revision-Date: 2017-10-10 13:57+0000\n"
 "Last-Translator: Udo Bretz\n"
 "Language-Team: Russian (http://www.transifex.com/otrs/OTRS/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +26,7 @@ msgstr "Изменить описание класса"
 
 #. Template: AdminITSMConfigItem
 msgid "Config Item Class"
-msgstr ""
+msgstr "Класс конфигурационной единицы"
 
 #. Template: AdminITSMConfigItem
 msgid "Definition"
@@ -77,7 +78,7 @@ msgstr "Количество других КЕ для связывания."
 
 #. Template: AgentITSMConfigItemDelete
 msgid "Do you really want to delete this config item?"
-msgstr ""
+msgstr "Вы действительно хотите удалить эту конфигурационную единицу?"
 
 #. Template: AgentITSMConfigItemEdit
 msgid "The name of this config item"
@@ -98,7 +99,7 @@ msgstr "Состояние инцидента"
 
 #. Template: AgentITSMConfigItemHistory
 msgid "History of Config Item: %s"
-msgstr ""
+msgstr "История конфигурационной единицы: %s"
 
 #. Template: AgentITSMConfigItemHistory
 msgid "History Content"
@@ -122,7 +123,7 @@ msgstr "Конфигурационных единиц на страницу"
 
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "A generic ITSM Configuration Item table"
-msgstr ""
+msgstr "Общая таблица элементов конфигурации ITSM"
 
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "Deployment State Type"
@@ -198,115 +199,115 @@ msgstr "Свойство"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
 msgid "No access to Class is given!"
-msgstr ""
+msgstr "Нет доступа к классу!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
 msgid "Overview: ITSM ConfigItem"
-msgstr ""
+msgstr "Обзор: ITSM ConfigItem"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
 msgid "No ConfigItemID is given!"
-msgstr ""
+msgstr "Нет ConfigItemID!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
 msgid "You need at least one selected Configuration Item!"
-msgstr ""
+msgstr "Вам нужна хотя бы одна выбранная конфигурационная единица!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
 msgid "You don't have write access to this configuration item: %s."
-msgstr ""
+msgstr "У вас нет доступа на запись этой конфигурационной единицы: %s."
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
 msgid "Config item \"%s\" not found in database!"
-msgstr ""
+msgstr "Конфигурационная единица \"%s\" не найдена в базе!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
 msgid "Was not able to delete the configitem ID %s!"
-msgstr ""
+msgstr "Не удалось удалить конфигурационную единицу с ID %s!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
 msgid "No version found for ConfigItemID %s!"
-msgstr ""
+msgstr "Не найдена версия конфигурационной единицы %s!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
 msgid "No ConfigItemID, DuplicateID or ClassID is given!"
-msgstr ""
+msgstr "Не присвоен ConfigItemID, DuplicateID или ClassID!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
 msgid "No access is given!"
-msgstr ""
+msgstr "Нет доступа!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
 msgid "No definition was defined for class %s!"
-msgstr ""
+msgstr "Класс %s не был определен!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Can't show history, no ConfigItemID is given!"
-msgstr ""
+msgstr "Невозможно показать историю, нет ConfigItemID!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Can't show history, no access rights given!"
-msgstr ""
+msgstr "Невозможно показать историю, недостаточно прав!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "New ConfigItem (ID=%s)"
-msgstr ""
+msgstr "Новая КЕ (ID=%s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "New version (ID=%s)"
-msgstr ""
+msgstr "Новая версия (ID=%s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Deployment state updated (new=%s, old=%s)"
-msgstr ""
+msgstr "Состояние использования обновлено (новое=%s, старое=%s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Incident state updated (new=%s, old=%s)"
-msgstr ""
+msgstr "Состояние инцидента обновлено (новое=%s, старое=%s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "ConfigItem (ID=%s) deleted"
-msgstr ""
+msgstr "КЕ (ID=%s) удалена"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Link to %s (type=%s) added"
-msgstr ""
+msgstr "Связь с %s (тип=%s) добавлена"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Link to %s (type=%s) deleted"
-msgstr ""
+msgstr "Связь с %s (тип=%s) удалена"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "ConfigItem definition updated (ID=%s)"
-msgstr ""
+msgstr "Описание КЕ обновлено (ID=%s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Name updated (new=%s, old=%s)"
-msgstr ""
+msgstr "Имя обновлено (новое=%s, старое=%s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Attribute %s updated from \"%s\" to \"%s\""
-msgstr ""
+msgstr "Атрибут %s обновлен с \"%s\" до \"%s\""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Version %s deleted"
-msgstr ""
+msgstr "Версия %s удалена"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "No ConfigItemID or VersionID is given!"
-msgstr ""
+msgstr "Не присвоен ConfigItemID или VersionID!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "Can't show config item, no access rights given!"
-msgstr ""
+msgstr "Невозможно отобразить конфигурационную единицу, нет доступа!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "ConfigItemID %s not found in database!"
-msgstr ""
+msgstr "Конфигурационная единица %s не найдена в базе!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "VersionID %s not found in database!"
-msgstr ""
+msgstr "Версия %s не найдена в базе!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "ConfigItem"
@@ -314,19 +315,19 @@ msgstr "Конфигурационная единица"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "printed by %s at %s"
-msgstr ""
+msgstr "напечатано %s в %s"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "Invalid ClassID!"
-msgstr ""
+msgstr "Неверный ClassID!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "No ClassID is given!"
-msgstr ""
+msgstr "ClassID не присвоен!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "No access rights for this class given!"
-msgstr ""
+msgstr "Нет доступа для этого класса!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "No Result!"
@@ -338,7 +339,7 @@ msgstr "Результаты поиска конфигурационных ед�
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
 msgid "Can't show item, no access rights for ConfigItem are given!"
-msgstr ""
+msgstr "Невозможно отобразить элемент, недостаточно прав для КЕ!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
 msgid "The deployment state of this config item"
@@ -359,6 +360,10 @@ msgstr "Максимальное количество одного элемен�
 #. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
 msgid "Empty fields indicate that the current values are kept"
 msgstr "Пустые поля показывают, что текущие значения сохранятся"
+
+#. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
+msgid "Skipped"
+msgstr "Пропущено"
 
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
 msgid "Model"
@@ -422,7 +427,7 @@ msgstr "Телефон 2"
 
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
 msgid "E-Mail"
-msgstr ""
+msgstr "E-Mail"
 
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
 msgid "Network Address"
@@ -458,11 +463,11 @@ msgstr "Мультимедийные средства"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Computer"
-msgstr ""
+msgstr "Компьютер"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Hardware"
-msgstr ""
+msgstr "Аппаратное обеспечение"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Network"
@@ -470,7 +475,7 @@ msgstr "Сеть"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Software"
-msgstr ""
+msgstr "Программное обеспечение"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Expired"
@@ -737,11 +742,11 @@ msgstr "Конфигурационные единицы"
 
 #. SysConfig
 msgid "Config item add."
-msgstr ""
+msgstr "Создать конфигурационную единицу"
 
 #. SysConfig
 msgid "Config item edit."
-msgstr ""
+msgstr "Редактировать конфигурационную единицу"
 
 #. SysConfig
 msgid ""
@@ -751,19 +756,19 @@ msgstr "Config item (КЕ) event module ведущий запись в исто�
 
 #. SysConfig
 msgid "Config item history."
-msgstr ""
+msgstr "История конфигурационной единицы"
 
 #. SysConfig
 msgid "Config item print."
-msgstr ""
+msgstr "Печать конфигурационной единицы"
 
 #. SysConfig
 msgid "Config item zoom."
-msgstr ""
+msgstr "Просмотр конфигурационной единицы"
 
 #. SysConfig
 msgid "ConfigItemNumber"
-msgstr ""
+msgstr "Номер конфигурационной единицы"
 
 #. SysConfig
 msgid "Configuration Item Limit"
@@ -771,15 +776,15 @@ msgstr " Лимит КЕ"
 
 #. SysConfig
 msgid "Configuration Item limit per page."
-msgstr ""
+msgstr "Лимит КЕ на страницу"
 
 #. SysConfig
 msgid "Configuration Management Database."
-msgstr ""
+msgstr "База управления конфигурацией"
 
 #. SysConfig
 msgid "Configuration item bulk module."
-msgstr ""
+msgstr "Объемный модуль КЕ"
 
 #. SysConfig
 msgid "Configuration item search backend router of the agent interface."
@@ -800,7 +805,7 @@ msgstr "Задает Действия/Actions когда кнопка настр
 
 #. SysConfig
 msgid "Define the group with permissions."
-msgstr ""
+msgstr "Определите группу с разрешениями."
 
 #. SysConfig
 msgid ""
@@ -812,7 +817,7 @@ msgstr "Задать требуемые права для создания ITSM 
 msgid ""
 "Defines Required permissions to delete ITSM configuration items using the "
 "Generic Interface."
-msgstr ""
+msgstr "Задать требуемые права для удаления ITSM КЕ с использованием Generic Interface."
 
 #. SysConfig
 msgid ""
@@ -858,13 +863,13 @@ msgstr "Задает количество строк для редактора �
 msgid ""
 "Defines the order of incident states from high (e.g. cricital) to low (e.g. "
 "functional)."
-msgstr ""
+msgstr "Задает порядок состояний инцидентов от высоких (например, критических) до низких (например, функциональных)."
 
 #. SysConfig
 msgid ""
 "Defines the relevant deployment states where linked tickets can affect the "
 "status of a CI."
-msgstr ""
+msgstr "Задает соответствующие состояния развертывания, когда связанные заявки могут влиять на статус КЕ."
 
 #. SysConfig
 msgid "Defines the search limit for the AgentITSMConfigItem screen."
@@ -933,27 +938,27 @@ msgstr "Задает перечень отображаемых столбцов 
 msgid ""
 "Defines which type of link (named from the ticket perspective) can affect "
 "the status of a linked CI."
-msgstr ""
+msgstr "Определяет, какой тип связи (названный с точки зрения заявки) может повлиять на статус связанной КЕ."
 
 #. SysConfig
 msgid "Defines which type of ticket can affect the status of a linked CI."
-msgstr ""
+msgstr "Определяет, какой тип заявки может повлиять на статус связанной КЕ."
 
 #. SysConfig
 msgid "Delete Configuration Item"
-msgstr ""
+msgstr "Удалить конфигурационную единицу"
 
 #. SysConfig
 msgid "Deployment State Color"
-msgstr ""
+msgstr "Цвет состояния использования"
 
 #. SysConfig
 msgid "Deployment State Color."
-msgstr ""
+msgstr "Цвет состояния использования"
 
 #. SysConfig
 msgid "Deployment State Type."
-msgstr ""
+msgstr "Тип состояния использования"
 
 #. SysConfig
 msgid "Duplicate"
@@ -980,11 +985,11 @@ msgstr "Включает/выключает проверку уникально�
 
 #. SysConfig
 msgid "Event module to set configitem-status on ticket-configitem-link."
-msgstr ""
+msgstr "Модуль установки статуса КЕ для связанной с ней заявки."
 
 #. SysConfig
 msgid "ITSM config item overview."
-msgstr ""
+msgstr "Обзор конфигурационных единиц ITSM."
 
 #. SysConfig
 msgid "Module to check the group responsible for a class."
@@ -1072,11 +1077,11 @@ msgstr "Требуемые права для печати характерист
 
 #. SysConfig
 msgid "Required privileges to delete config items."
-msgstr ""
+msgstr "Необходимы права для удаления конфигурационных единиц."
 
 #. SysConfig
 msgid "Search config items."
-msgstr ""
+msgstr "Поиск конфигурационных единиц."
 
 #. SysConfig
 msgid ""
@@ -1090,7 +1095,7 @@ msgstr "Выбор модуля генерации номера КЕ. \"AutoIncr
 msgid ""
 "Set the incident state of a CI automatically when a Ticket is Linked to a "
 "CI."
-msgstr ""
+msgstr "Установить состояние инцидента КЕ автоматически, когда заявка связана с КЕ."
 
 #. SysConfig
 msgid ""
@@ -1126,7 +1131,7 @@ msgstr "Показывает пункт меню История для прос�
 msgid ""
 "Shows a link in the menu to delete a configuration item in its zoom view of "
 "the agent interface."
-msgstr ""
+msgstr "Показывает пункт меню для удаления конфигурационной единицы при подробном просмотре в интерфейсе агента."
 
 #. SysConfig
 msgid ""
@@ -1177,20 +1182,20 @@ msgstr "Идентификатор (префикс) к номеру КЕ, т.е 
 
 #. SysConfig
 msgid "class"
-msgstr ""
+msgstr "класс"
 
 #. SysConfig
 msgid "global"
-msgstr ""
+msgstr "глобальный"
 
 #. SysConfig
 msgid "postproductive"
-msgstr ""
+msgstr "постпродуктивный"
 
 #. SysConfig
 msgid "preproductive"
-msgstr ""
+msgstr "предпродуктивный"
 
 #. SysConfig
 msgid "productive"
-msgstr ""
+msgstr "продуктивный"

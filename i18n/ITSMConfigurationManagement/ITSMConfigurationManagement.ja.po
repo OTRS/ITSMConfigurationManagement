@@ -1,13 +1,14 @@
 # 
 # Translators:
 # Kentaro Hori <kentaro0919@gmail.com>, 2014
+# Kozo Sakurai <sakurai@io-architect.com>, 2017
 # Udo Bretz, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2017-10-02 11:19+0000\n"
-"PO-Revision-Date: 2017-10-02 11:19+0000\n"
-"Last-Translator: Udo Bretz\n"
+"POT-Creation-Date: 2017-10-10 13:56+0000\n"
+"PO-Revision-Date: 2017-10-25 04:24+0000\n"
+"Last-Translator: Kozo Sakurai <sakurai@io-architect.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/otrs/OTRS/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +26,7 @@ msgstr "クラス定義を変更"
 
 #. Template: AdminITSMConfigItem
 msgid "Config Item Class"
-msgstr ""
+msgstr "構成アイテムのクラス"
 
 #. Template: AdminITSMConfigItem
 msgid "Definition"
@@ -37,7 +38,7 @@ msgstr "変更"
 
 #. Template: AgentITSMConfigItemAdd
 msgid "Config Item"
-msgstr "Config アイテム"
+msgstr "構成アイテム"
 
 #. Template: AgentITSMConfigItemAdd
 msgid "Filter for Classes"
@@ -53,11 +54,11 @@ msgstr "クラス"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "ITSM ConfigItem Bulk Action"
-msgstr "ITSM 変更アイテム一括アクション"
+msgstr "構成アイテム一括アクション"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Deployment state"
-msgstr "デプロイメント状況"
+msgstr "デプロイ・ステータス"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Incident state"
@@ -77,7 +78,7 @@ msgstr "他の構成アイテムへのリンク数"
 
 #. Template: AgentITSMConfigItemDelete
 msgid "Do you really want to delete this config item?"
-msgstr ""
+msgstr "本当にこの構成アイテムを削除しますか？"
 
 #. Template: AgentITSMConfigItemEdit
 msgid "The name of this config item"
@@ -90,7 +91,7 @@ msgstr "この名称はすでに Number(s): %s の構成アイテムで使用中
 
 #. Template: AgentITSMConfigItemEdit
 msgid "Deployment State"
-msgstr "展開状況"
+msgstr "デプロイ・ステータス"
 
 #. Template: AgentITSMConfigItemEdit
 msgid "Incident State"
@@ -98,7 +99,7 @@ msgstr "インシデント状況"
 
 #. Template: AgentITSMConfigItemHistory
 msgid "History of Config Item: %s"
-msgstr ""
+msgstr "構成アイテムの履歴: %s"
 
 #. Template: AgentITSMConfigItemHistory
 msgid "History Content"
@@ -122,19 +123,19 @@ msgstr "1ページ毎の設定項目"
 
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "A generic ITSM Configuration Item table"
-msgstr ""
+msgstr "ジェネリック構成アイテムのテーブル"
 
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "Deployment State Type"
-msgstr "展開の状態"
+msgstr "デプロイ・ステータスのタイプ"
 
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "Current Incident State"
-msgstr "現在のインシデント状態"
+msgstr "現在のインシデント・ステータス"
 
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "Current Incident State Type"
-msgstr "現在のインシデント状態のタイプ"
+msgstr "現在のインシデント・ステータスのタイプ"
 
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "Last changed"
@@ -162,7 +163,7 @@ msgstr "変更アイテム情報"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Current Deployment State"
-msgstr "現在の展開状態"
+msgstr "現在のデプロイ・ステータス"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Last changed by"
@@ -182,7 +183,7 @@ msgstr "インシデント状態"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Version Deployment State"
-msgstr "バージョン展開状況"
+msgstr "バージョンのデプロイ・ステータス"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Version Number"
@@ -202,11 +203,11 @@ msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
 msgid "Overview: ITSM ConfigItem"
-msgstr ""
+msgstr "一覧: 構成アイテム"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
 msgid "No ConfigItemID is given!"
-msgstr ""
+msgstr "ConfigItemIDが指定されていません！"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
 msgid "You need at least one selected Configuration Item!"
@@ -258,7 +259,7 @@ msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Deployment state updated (new=%s, old=%s)"
-msgstr ""
+msgstr "デプロイ・ステータスが更新されました。（新規=%s、前=%s）"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Incident state updated (new=%s, old=%s)"
@@ -334,7 +335,7 @@ msgstr "結果がありません。"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "Config Item Search Results"
-msgstr ""
+msgstr "構成アイテムの検索結果"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
 msgid "Can't show item, no access rights for ConfigItem are given!"
@@ -342,7 +343,7 @@ msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
 msgid "The deployment state of this config item"
-msgstr "この設定項目の展開状態"
+msgstr "この設定項目のデプロイ・ステータス"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
 msgid "The incident state of this config item"
@@ -359,6 +360,10 @@ msgstr "一エレメントあたりの最大数"
 #. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
 msgid "Empty fields indicate that the current values are kept"
 msgstr "空欄の項目は現在の値が保持されること意味します"
+
+#. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
+msgid "Skipped"
+msgstr "スキップされました"
 
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
 msgid "Model"
@@ -422,7 +427,7 @@ msgstr "電話 2"
 
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
 msgid "E-Mail"
-msgstr ""
+msgstr "メールアドレス"
 
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
 msgid "Network Address"
@@ -458,11 +463,11 @@ msgstr "メディア"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Computer"
-msgstr ""
+msgstr "コンピューター"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Hardware"
-msgstr ""
+msgstr "ハードウェア"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Network"
@@ -470,7 +475,7 @@ msgstr "ネットワーク"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Software"
-msgstr ""
+msgstr "ソフトウェア"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Expired"
@@ -737,11 +742,11 @@ msgstr "構成アイテム"
 
 #. SysConfig
 msgid "Config item add."
-msgstr ""
+msgstr "構成アイテムを追加"
 
 #. SysConfig
 msgid "Config item edit."
-msgstr ""
+msgstr "構成アイテムを修正"
 
 #. SysConfig
 msgid ""
@@ -751,19 +756,19 @@ msgstr ""
 
 #. SysConfig
 msgid "Config item history."
-msgstr ""
+msgstr "構成アイテムの履歴"
 
 #. SysConfig
 msgid "Config item print."
-msgstr ""
+msgstr "構成アイテムを印刷"
 
 #. SysConfig
 msgid "Config item zoom."
-msgstr ""
+msgstr "構成アイテムのズーム"
 
 #. SysConfig
 msgid "ConfigItemNumber"
-msgstr ""
+msgstr "構成アイテム番号"
 
 #. SysConfig
 msgid "Configuration Item Limit"
@@ -796,11 +801,11 @@ msgid ""
 "must have registered the following JS and CSS files: "
 "Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, "
 "Core.Agent.TableFilters.js and Core.Agent.LinkObject.js."
-msgstr ""
+msgstr "リンクオブジェクトウィジェット（LinkObject :: ViewMode = \"complex\"）で設定ボタンを使用できるアクションを定義します。 これらのアクションは、次のJSおよびCSSファイルを登録している必要があります。Core.AllocationList.css、Core.UI.AllocationList.js、Core.UI.Table.Sort.js、Core.Agent.TableFilters.js、及びCore.Agent .LinkObject.js"
 
 #. SysConfig
 msgid "Define the group with permissions."
-msgstr ""
+msgstr "権限を持つグループを定義します。"
 
 #. SysConfig
 msgid ""
@@ -864,7 +869,7 @@ msgstr ""
 msgid ""
 "Defines the relevant deployment states where linked tickets can affect the "
 "status of a CI."
-msgstr ""
+msgstr "リンクされたチケットがCIのステータスに影響を与える可能性がある、関連するデプロイ・ステータスを定義します。"
 
 #. SysConfig
 msgid "Defines the search limit for the AgentITSMConfigItem screen."
@@ -945,15 +950,15 @@ msgstr ""
 
 #. SysConfig
 msgid "Deployment State Color"
-msgstr ""
+msgstr "デプロイ・ステータスのカラー"
 
 #. SysConfig
 msgid "Deployment State Color."
-msgstr ""
+msgstr "デプロイ・ステータスのカラー"
 
 #. SysConfig
 msgid "Deployment State Type."
-msgstr ""
+msgstr "デプロイ・ステータスのタイプ"
 
 #. SysConfig
 msgid "Duplicate"
@@ -984,7 +989,7 @@ msgstr ""
 
 #. SysConfig
 msgid "ITSM config item overview."
-msgstr ""
+msgstr "構成アイテムの一覧"
 
 #. SysConfig
 msgid "Module to check the group responsible for a class."
