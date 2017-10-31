@@ -12,30 +12,15 @@ use utf8;
 
 use vars (qw($Self));
 
-# get selenium object
 my $Selenium = $Kernel::OM->Get('Kernel::System::UnitTest::Selenium');
 
 $Selenium->RunTest(
     sub {
 
-        # get helper object
-        my $Helper = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
+        my $Helper               = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
+        my $ConfigItemObject     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+        my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
 
-        # create test user and login
-        my $TestUserLogin = $Helper->TestUserCreate(
-            Groups => [ 'admin', 'itsm-configitem' ],
-        ) || die "Did not get test user";
-
-        $Selenium->Login(
-            Type     => 'Agent',
-            User     => $TestUserLogin,
-            Password => $TestUserLogin,
-        );
-
-        # get script alias
-        my $ScriptAlias = $Kernel::OM->Get('Kernel::Config')->Get('ScriptAlias');
-
-        # create test param
         my @Test = (
             {
                 ConfigItemClass => 'Computer',
@@ -80,35 +65,54 @@ $Selenium->RunTest(
             },
         );
 
-        # get general catalog object
-        my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
-
-        # get 'Production' deployment state ID
+        # Get 'Production' deployment state ID.
         my $DeplStateDataRef = $GeneralCatalogObject->ItemGet(
             Class => 'ITSM::ConfigItem::DeploymentState',
             Name  => 'Production',
         );
         my $DeplStateID = $DeplStateDataRef->{ItemID};
 
-        # test AgentITSMConfigItemEdit
+        # Create test user and login.
+        my $TestUserLogin = $Helper->TestUserCreate(
+            Groups => [ 'admin', 'itsm-configitem' ],
+        ) || die "Did not get test user";
+
+        $Selenium->Login(
+            Type     => 'Agent',
+            User     => $TestUserLogin,
+            Password => $TestUserLogin,
+        );
+
+        my $ScriptAlias = $Kernel::OM->Get('Kernel::Config')->Get('ScriptAlias');
+        my $RandomID    = $Helper->GetRandomID();
+
         for my $ConfigItemEdit (@Test) {
 
-            # navigate to AgentITSMConfigItemAdd screen
+            # Navigate to AgentITSMConfigItemAdd screen.
             $Selenium->VerifiedGet("${ScriptAlias}index.pl?Action=AgentITSMConfigItemAdd");
 
-            # get ConfigItem class ID
+            # Get ConfigItem class ID.
             my $ConfigItemDataRef = $GeneralCatalogObject->ItemGet(
                 Class => 'ITSM::ConfigItem::Class',
                 Name  => $ConfigItemEdit->{ConfigItemClass},
             );
             my $ConfigItemClassID = $ConfigItemDataRef->{ItemID};
 
-            # click on ConfigItem class
+            $Selenium->WaitFor(
+                JavaScript =>
+                    "return typeof(\$) === 'function' && \$('a[href*=\"Action=AgentITSMConfigItemEdit;ClassID=$ConfigItemClassID\"]').length"
+            );
+
+            # Click on ConfigItem class.
             $Selenium->find_element(
                 "//a[contains(\@href, \'Action=AgentITSMConfigItemEdit;ClassID=$ConfigItemClassID\' )]"
             )->VerifiedClick();
 
-            # check for ConfigItemEdit fields
+            $Selenium->WaitFor(
+                JavaScript => "return typeof(\$) === 'function' && \$('#Name').length && \$('#SubmitButton').length"
+            );
+
+            # Check for ConfigItemEdit fields.
             for my $CheckConfigItemField ( @{ $ConfigItemEdit->{CheckEditFields} } ) {
 
                 my $Element = $Selenium->find_element("//*[contains(\@name, \'$CheckConfigItemField\' )]");
@@ -116,29 +120,33 @@ $Selenium->RunTest(
                 $Element->is_displayed();
             }
 
-            # create test ConfigItem
-            my $RandomLabel    = $Helper->GetRandomID();
-            my $ConfigItemName = $ConfigItemEdit->{ConfigItemClass} . $Helper->GetRandomID();
+            # Create test ConfigItem.
+            my $ConfigItemName = $ConfigItemEdit->{ConfigItemClass} . $RandomID;
             $Selenium->find_element( "#Name", 'css' )->send_keys($ConfigItemName);
 
             $Selenium->execute_script(
-                "\$('#DeplStateID').val('$DeplStateID').trigger('redraw.InputField').trigger('change');"
+                "\$('#DeplStateID').val('$DeplStateID').trigger('redraw.InputField').trigger('change')"
             );
-            $Selenium->execute_script("\$('#InciStateID').val('1').trigger('redraw.InputField').trigger('change');");
+            $Selenium->WaitFor(
+                JavaScript => "return typeof(\$) === 'function' && \$('#DeplStateID').val() === '$DeplStateID'"
+            );
+
+            $Selenium->execute_script("\$('#InciStateID').val('1').trigger('redraw.InputField').trigger('change')");
+            $Selenium->WaitFor( JavaScript => "return typeof(\$) === 'function' && \$('#InciStateID').val() === '1'" );
 
             if ( $ConfigItemEdit->{ConfigItemClass} eq 'Computer' ) {
 
-                # get General Catalog ID for 'Yes'
+                # Get General Catalog ID for 'Yes'.
                 my $YesDataRef = $GeneralCatalogObject->ItemGet(
                     Class => 'ITSM::ConfigItem::YesNo',
                     Name  => 'Yes',
                 );
                 my $YesID = $YesDataRef->{ItemID};
 
-                # enter NIC name
+                # Enter NIC name.
                 $Selenium->find_element("//*[contains(\@name, \'NIC::1\' )]")->send_keys('SeleniumNetwork');
 
-                # select Yes for DHCPOverIP
+                # Select Yes for DHCPOverIP.
                 $Selenium->execute_script(
                     "\$('#' + Core.App.EscapeSelector('Item1NIC::11')).val('$YesID').trigger('redraw.InputField').trigger('change');"
                 );
@@ -149,37 +157,40 @@ $Selenium->RunTest(
 
             $Selenium->find_element("//button[\@value='Submit'][\@type='submit']")->VerifiedClick();
 
-            # get ConfigItem value
+            $Selenium->WaitFor(
+                JavaScript => "return typeof(\$) === 'function' && \$('h1:contains($ConfigItemName)').length"
+            );
+
+            # Get ConfigItem value.
             my @ConfigItemValues = (
                 {
-                    Value => $ConfigItemEdit->{ConfigItemClass},
-                    Check => "p.Value:contains($ConfigItemEdit->{ConfigItemClass})",
+                    Value       => $ConfigItemName,
+                    Check       => "h1:contains($ConfigItemName)",
+                    CheckResult => 1,
                 },
                 {
-                    Value => $ConfigItemName,
-                    Check => "h1:contains($ConfigItemName)",
+                    Value       => $ConfigItemEdit->{ConfigItemClass},
+                    Check       => "p.Value:contains($ConfigItemEdit->{ConfigItemClass})",
+                    CheckResult => 2,
                 },
             );
 
-            # check submitted values in AgentITSMConfigItemZoom screen
+            # Check submitted values in AgentITSMConfigItemZoom screen.
             for my $CheckConfigItemValue (@ConfigItemValues) {
                 $Self->True(
                     $Selenium->execute_script(
-                        "return \$('$CheckConfigItemValue->{Check}').length"
+                        "return \$('$CheckConfigItemValue->{Check}').length === $CheckConfigItemValue->{CheckResult}"
                     ),
                     "Test ConfigItem value $CheckConfigItemValue->{Value} - found",
                 );
             }
 
-            # get ConfigItem object
-            my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
-
-            # get ConfigItemID
+            # Get ConfigItemID.
             my $ConfigItemID = $ConfigItemObject->VersionSearch(
                 Name => $ConfigItemName
             );
 
-            # delete created test ConfigItem
+            # Delete created test ConfigItem.
             my $Success = $ConfigItemObject->ConfigItemDelete(
                 ConfigItemID => $ConfigItemID->[0],
                 UserID       => 1,
