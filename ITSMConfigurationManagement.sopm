@@ -15,9 +15,6 @@
     <Filelist>
         <File Permission="660" Location="doc/itsm-configuration-management-database.dia" />
         <File Permission="660" Location="doc/itsm-configuration-management-database.png" />
-        <File Permission="660" Location="Kernel/Config/Files/ITSMConfigItem.xml" />
-        <File Permission="660" Location="Kernel/Config/Files/ITSMConfigItemGenericInterface.xml" />
-        <File Permission="660" Location="Kernel/Config/Files/ITSMConfigItemTicketLink.xml" />
         <File Permission="660" Location="Kernel/Config/Files/XML/ITSMConfigItem.xml" />
         <File Permission="660" Location="Kernel/Config/Files/XML/ITSMConfigItemGenericInterface.xml" />
         <File Permission="660" Location="Kernel/Config/Files/XML/ITSMConfigItemTicketLink.xml" />
