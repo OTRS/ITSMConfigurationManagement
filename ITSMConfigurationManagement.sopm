@@ -1323,8 +1323,9 @@
     <CodeUninstall Type="post"><![CDATA[
 
         {
-            # cleanup stats list
+            # cleanup stats list (only stats related to the given stat objects)
             $Kernel::OM->Get('Kernel::System::Stats')->StatsCleanUp(
+                ObjectNames => [ 'ITSMConfigItem' ],
                 UserID => 1,
             );
         }
