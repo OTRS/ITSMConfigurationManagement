@@ -22,6 +22,18 @@
             </Item>
         </Value>
     </Setting>
+    <Setting Name="Frontend::Navigation###AdminITSMConfigItem###003-ITSMConfigItem" Required="0" Valid="0">
+        <Description Translatable="1">Main menu item registration.</Description>
+        <Navigation>Frontend::Admin::ModuleRegistration::MainMenu</Navigation>
+        <Value>
+            <Array>
+                <DefaultItem ValueType="FrontendNavigation">
+                    <Hash>
+                    </Hash>
+                </DefaultItem>
+            </Array>
+        </Value>
+    </Setting>
     <Setting Name="Frontend::NavigationModule###AdminITSMConfigItem" Required="0" Valid="1">
         <Description Translatable="1">Admin area navigation for the agent interface.</Description>
         <Navigation>Frontend::Admin::ModuleRegistration::AdminOverview</Navigation>
@@ -85,56 +97,60 @@
             </Hash>
         </Value>
     </Setting>
-    <Setting Name="Frontend::Navigation###AgentITSMConfigItem###1" Required="0" Valid="1">
-        <Description Translatable="1">Main menu for the agent interface.</Description>
+    <Setting Name="Frontend::Navigation###AgentITSMConfigItem###003-ITSMConfigItem" Required="0" Valid="1">
+        <Description Translatable="1">Main menu item registration.</Description>
         <Navigation>Frontend::Agent::ModuleRegistration::MainMenu</Navigation>
         <Value>
-            <Hash>
-                <Item Key="Group">
-                    <Array>
-                    </Array>
+            <Array>
+                <DefaultItem ValueType="FrontendNavigation">
+                    <Hash>
+                    </Hash>
+                </DefaultItem>
+                <Item>
+                    <Hash>
+                        <Item Key="Group">
+                            <Array>
+                            </Array>
+                        </Item>
+                        <Item Key="GroupRo">
+                            <Array>
+                                <Item>itsm-configitem</Item>
+                            </Array>
+                        </Item>
+                        <Item Key="Description" Translatable="1">Configuration Management Database.</Item>
+                        <Item Key="Name">CMDB</Item>
+                        <Item Key="Link">Action=AgentITSMConfigItem</Item>
+                        <Item Key="LinkOption"></Item>
+                        <Item Key="NavBar">Config Item</Item>
+                        <Item Key="Type">Menu</Item>
+                        <Item Key="Block">ItemArea</Item>
+                        <Item Key="AccessKey"></Item>
+                        <Item Key="Prio">3200</Item>
+                    </Hash>
                 </Item>
-                <Item Key="GroupRo">
-                    <Array>
-                        <Item>itsm-configitem</Item>
-                    </Array>
+                <Item>
+                    <Hash>
+                        <Item Key="Group">
+                            <Array>
+                            </Array>
+                        </Item>
+                        <Item Key="GroupRo">
+                            <Array>
+                                <Item>itsm-configitem</Item>
+                            </Array>
+                        </Item>
+                        <Item Key="Description" Translatable="1">Overview.</Item>
+                        <Item Key="Name">Overview</Item>
+                        <Item Key="Link">Action=AgentITSMConfigItem</Item>
+                        <Item Key="LinkOption"></Item>
+                        <Item Key="NavBar">Config Item</Item>
+                        <Item Key="Type"></Item>
+                        <Item Key="Block"></Item>
+                        <Item Key="AccessKey"></Item>
+                        <Item Key="Prio">100</Item>
+                    </Hash>
                 </Item>
-                <Item Key="Description" Translatable="1">Configuration Management Database.</Item>
-                <Item Key="Name">CMDB</Item>
-                <Item Key="Link">Action=AgentITSMConfigItem</Item>
-                <Item Key="LinkOption"></Item>
-                <Item Key="NavBar">Config Item</Item>
-                <Item Key="Type">Menu</Item>
-                <Item Key="Block">ItemArea</Item>
-                <Item Key="AccessKey"></Item>
-                <Item Key="Prio">3200</Item>
-            </Hash>
-        </Value>
-    </Setting>
-    <Setting Name="Frontend::Navigation###AgentITSMConfigItem###2" Required="0" Valid="1">
-        <Description Translatable="1">Main menu for the agent interface.</Description>
-        <Navigation>Frontend::Agent::ModuleRegistration::MainMenu</Navigation>
-        <Value>
-            <Hash>
-                <Item Key="Group">
-                    <Array>
-                    </Array>
-                </Item>
-                <Item Key="GroupRo">
-                    <Array>
-                        <Item>itsm-configitem</Item>
-                    </Array>
-                </Item>
-                <Item Key="Description" Translatable="1">Overview.</Item>
-                <Item Key="Name">Overview</Item>
-                <Item Key="Link">Action=AgentITSMConfigItem</Item>
-                <Item Key="LinkOption"></Item>
-                <Item Key="NavBar">Config Item</Item>
-                <Item Key="Type"></Item>
-                <Item Key="Block"></Item>
-                <Item Key="AccessKey"></Item>
-                <Item Key="Prio">100</Item>
-            </Hash>
+            </Array>
         </Value>
     </Setting>
     <Setting Name="Frontend::Module###AgentITSMConfigItemZoom" Required="0" Valid="1">
@@ -302,30 +318,38 @@
             </Hash>
         </Value>
     </Setting>
-    <Setting Name="Frontend::Navigation###AgentITSMConfigItemAdd###1" Required="0" Valid="1">
-        <Description Translatable="1">Main menu for the agent interface.</Description>
+    <Setting Name="Frontend::Navigation###AgentITSMConfigItemAdd###003-ITSMConfigItem" Required="0" Valid="1">
+        <Description Translatable="1">Main menu item registration.</Description>
         <Navigation>Frontend::Agent::ModuleRegistration::MainMenu</Navigation>
         <Value>
-            <Hash>
-                <Item Key="Group">
-                    <Array>
-                        <Item>itsm-configitem</Item>
-                    </Array>
+            <Array>
+                <DefaultItem ValueType="FrontendNavigation">
+                    <Hash>
+                    </Hash>
+                </DefaultItem>
+                <Item>
+                    <Hash>
+                        <Item Key="Group">
+                            <Array>
+                                <Item>itsm-configitem</Item>
+                            </Array>
+                        </Item>
+                        <Item Key="GroupRo">
+                            <Array>
+                            </Array>
+                        </Item>
+                        <Item Key="Description" Translatable="1">New</Item>
+                        <Item Key="Name">New</Item>
+                        <Item Key="Link">Action=AgentITSMConfigItemAdd</Item>
+                        <Item Key="LinkOption"></Item>
+                        <Item Key="NavBar">Config Item</Item>
+                        <Item Key="Type"></Item>
+                        <Item Key="Block"></Item>
+                        <Item Key="AccessKey"></Item>
+                        <Item Key="Prio">200</Item>
+                    </Hash>
                 </Item>
-                <Item Key="GroupRo">
-                    <Array>
-                    </Array>
-                </Item>
-                <Item Key="Description" Translatable="1">New</Item>
-                <Item Key="Name">New</Item>
-                <Item Key="Link">Action=AgentITSMConfigItemAdd</Item>
-                <Item Key="LinkOption"></Item>
-                <Item Key="NavBar">Config Item</Item>
-                <Item Key="Type"></Item>
-                <Item Key="Block"></Item>
-                <Item Key="AccessKey"></Item>
-                <Item Key="Prio">200</Item>
-            </Hash>
+            </Array>
         </Value>
     </Setting>
     <Setting Name="Frontend::Module###AgentITSMConfigItemSearch" Required="0" Valid="1">
@@ -374,30 +398,38 @@
             </Hash>
         </Value>
     </Setting>
-    <Setting Name="Frontend::Navigation###AgentITSMConfigItemSearch###1" Required="0" Valid="1">
-        <Description Translatable="1">Main menu for the agent interface.</Description>
+    <Setting Name="Frontend::Navigation###AgentITSMConfigItemSearch###003-ITSMConfigItem" Required="0" Valid="1">
+        <Description Translatable="1">Main menu item registration.</Description>
         <Navigation>Frontend::Agent::ModuleRegistration::MainMenu</Navigation>
         <Value>
-            <Hash>
-                <Item Key="Group">
-                    <Array>
-                    </Array>
+            <Array>
+                <DefaultItem ValueType="FrontendNavigation">
+                    <Hash>
+                    </Hash>
+                </DefaultItem>
+                <Item>
+                    <Hash>
+                        <Item Key="Group">
+                            <Array>
+                            </Array>
+                        </Item>
+                        <Item Key="GroupRo">
+                            <Array>
+                                <Item>itsm-configitem</Item>
+                            </Array>
+                        </Item>
+                        <Item Key="Description" Translatable="1">Search config items.</Item>
+                        <Item Key="Name">Search</Item>
+                        <Item Key="Link">Action=AgentITSMConfigItemSearch</Item>
+                        <Item Key="LinkOption">onclick="ITSM.Agent.ConfigItem.Search.OpenSearchDialog('AgentITSMConfigItemSearch'); if (event.stopPropagation) { event.stopPropagation(); } else { window.event.cancelBubble = true; } return false;"</Item>
+                        <Item Key="NavBar">Config Item</Item>
+                        <Item Key="Type"></Item>
+                        <Item Key="Block"></Item>
+                        <Item Key="AccessKey"></Item>
+                        <Item Key="Prio">300</Item>
+                    </Hash>
                 </Item>
-                <Item Key="GroupRo">
-                    <Array>
-                        <Item>itsm-configitem</Item>
-                    </Array>
-                </Item>
-                <Item Key="Description" Translatable="1">Search config items.</Item>
-                <Item Key="Name">Search</Item>
-                <Item Key="Link">Action=AgentITSMConfigItemSearch</Item>
-                <Item Key="LinkOption">onclick="ITSM.Agent.ConfigItem.Search.OpenSearchDialog('AgentITSMConfigItemSearch'); if (event.stopPropagation) { event.stopPropagation(); } else { window.event.cancelBubble = true; } return false;"</Item>
-                <Item Key="NavBar">Config Item</Item>
-                <Item Key="Type"></Item>
-                <Item Key="Block"></Item>
-                <Item Key="AccessKey"></Item>
-                <Item Key="Prio">300</Item>
-            </Hash>
+            </Array>
         </Value>
     </Setting>
     <Setting Name="ITSMConfigItem::Frontend::MenuModule###000-Back" Required="0" Valid="1">
@@ -1018,6 +1050,18 @@
                     <Item Key="NavBarName">CMDB</Item>
                 </Hash>
             </Item>
+        </Value>
+    </Setting>
+    <Setting Name="Frontend::Navigation###AgentITSMConfigItemBulk###003-ITSMConfigItem" Required="0" Valid="0">
+        <Description Translatable="1">Main menu item registration.</Description>
+        <Navigation>Frontend::Agent::ModuleRegistration::MainMenu</Navigation>
+        <Value>
+            <Array>
+                <DefaultItem ValueType="FrontendNavigation">
+                    <Hash>
+                    </Hash>
+                </DefaultItem>
+            </Array>
         </Value>
     </Setting>
     <Setting Name="ITSMConfigItem::Frontend::PreMenuModule###100-Zoom" Required="0" Valid="1">
