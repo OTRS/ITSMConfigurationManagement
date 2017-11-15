@@ -10,7 +10,7 @@
 <div class="MainBox ARIARoleMain LayoutFixedSidebar SidebarFirst">
     <h1>[% Translate("Config Item Management") | html %]</h1>
 
-    [%- BreadcrumbPath = [
+    [% BreadcrumbPath = [
             {
                 Name => Translate('Config Item Management'),
                 Link => 'AdminITSMConfigItem',
