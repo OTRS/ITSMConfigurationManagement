@@ -243,6 +243,7 @@ sub Data {
     $Self->{Translation}->{'Ok'} = 'У реду';
 
     # SysConfig
+    $Self->{Translation}->{'CMDB Settings'} = '';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         'Провера јединственог имена само у оквиру исте класе конфигурационих ставки (\'класа\') или глобално (\'глобално\'), што значи да је свака постојећа Конфигурациона ставка узета у обзир у провери дупликата.';
     $Self->{Translation}->{'Config Items'} = 'Конфигурационе ставке';

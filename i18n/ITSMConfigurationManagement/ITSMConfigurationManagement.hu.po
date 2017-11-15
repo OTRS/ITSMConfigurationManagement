@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
 "POT-Creation-Date: 2017-10-10 13:56+0000\n"
-"PO-Revision-Date: 2017-10-12 08:24+0000\n"
+"PO-Revision-Date: 2017-11-13 11:41+0000\n"
 "Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/otrs/OTRS/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -1111,7 +1111,7 @@ msgstr "Beállítja az incidensállapotot az ügyintézői felület konfiguráci
 msgid ""
 "Shows a link in the menu that allows linking a configuration item with "
 "another object in the config item zoom view of the agent interface."
-msgstr "Egy hivatkozást jelenít meg a menüben, amely lehetővé teszi egy konfigurációelem hozzákapcsolását egy másik objektumhoz az ügyintézői felület konfigurációelem nagyítási nézetén."
+msgstr "Egy hivatkozást jelenít meg a menüben, amely lehetővé teszi egy konfigurációelem összekapcsolását egy másik objektummal az ügyintézői felület konfigurációelem nagyítási nézetén."
 
 #. SysConfig
 msgid ""

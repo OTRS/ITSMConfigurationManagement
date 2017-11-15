@@ -243,6 +243,7 @@ sub Data {
     $Self->{Translation}->{'Ok'} = 'โอเค';
 
     # SysConfig
+    $Self->{Translation}->{'CMDB Settings'} = '';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         'ตรวจสอบชื่อเฉพาะเท่านั้นที่อยู่ใน ConfigItem ชั้นเดียวกัน (ชั้น) หรือทั้งหมด (ทั้งหมด) ซึ่งหมายความว่าConfigItem ที่มีอยู่ทั้งหมดจะถูกนำเข้าบัญชีเพื่อค้นหารายการที่ซ้ำกัน';
     $Self->{Translation}->{'Config Items'} = 'Config Items';

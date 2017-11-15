@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
 "POT-Creation-Date: 2017-10-10 13:56+0000\n"
-"PO-Revision-Date: 2017-10-25 04:24+0000\n"
+"PO-Revision-Date: 2017-11-14 12:38+0000\n"
 "Last-Translator: Kozo Sakurai <sakurai@io-architect.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/otrs/OTRS/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -70,7 +70,7 @@ msgstr "他とリンクする"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Invalid Configuration Item number!"
-msgstr "コンフィグレーションアイテムの値が不正です!"
+msgstr "構成アイテムの値が不正です!"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "The number of another Configuration Item to link with."
@@ -155,11 +155,11 @@ msgstr "プレビュー時、以前のバージョンも検索対象とします
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Configuration Item"
-msgstr "詳細設定"
+msgstr "構成アイテム"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Configuration Item Information"
-msgstr "変更アイテム情報"
+msgstr "構成アイテム情報"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Current Deployment State"
@@ -191,7 +191,7 @@ msgstr "バージョンナンバー"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Configuration Item Version Details"
-msgstr "構成の詳細"
+msgstr "構成アイテムの詳細"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Property"
@@ -199,7 +199,7 @@ msgstr "項目"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
 msgid "No access to Class is given!"
-msgstr ""
+msgstr "クラスへのアクセス権はありません！"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
 msgid "Overview: ITSM ConfigItem"
@@ -211,51 +211,51 @@ msgstr "ConfigItemIDが指定されていません！"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
 msgid "You need at least one selected Configuration Item!"
-msgstr ""
+msgstr "少なくとも1つの選択された構成アイテムが必要です！"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
 msgid "You don't have write access to this configuration item: %s."
-msgstr ""
+msgstr "この構成アイテムへの書き込みアクセス権がありません: %s"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
 msgid "Config item \"%s\" not found in database!"
-msgstr ""
+msgstr "構成アイテム \"%s\"がデータベースに見つかりません！"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
 msgid "Was not able to delete the configitem ID %s!"
-msgstr ""
+msgstr "構成アイテムID%sを削除できませんでした！"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
 msgid "No version found for ConfigItemID %s!"
-msgstr ""
+msgstr "ConfigItemID%sのバージョンが見つかりません！"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
 msgid "No ConfigItemID, DuplicateID or ClassID is given!"
-msgstr ""
+msgstr "ConfigItemID、DuplicateID、ClassIDは指定されていません！"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
 msgid "No access is given!"
-msgstr ""
+msgstr "アクセス権はありません！"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
 msgid "No definition was defined for class %s!"
-msgstr ""
+msgstr "クラス%sの定義が定義されていません！"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Can't show history, no ConfigItemID is given!"
-msgstr ""
+msgstr "履歴を表示することはできませんが、ConfigItemIDは指定されていません！"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Can't show history, no access rights given!"
-msgstr ""
+msgstr "履歴を表示することはできません。アクセス権は与えられていません！"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "New ConfigItem (ID=%s)"
-msgstr ""
+msgstr "新しい構成アイテム(ID=%s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "New version (ID=%s)"
-msgstr ""
+msgstr "新しいバージョン（ID =%s）"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Deployment state updated (new=%s, old=%s)"
@@ -263,71 +263,71 @@ msgstr "デプロイ・ステータスが更新されました。（新規=%s、
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Incident state updated (new=%s, old=%s)"
-msgstr ""
+msgstr "インシデント状態が更新されました（新規=%s、古い=%s）"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "ConfigItem (ID=%s) deleted"
-msgstr ""
+msgstr "構成アイテムを削除 (ID=%s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Link to %s (type=%s) added"
-msgstr ""
+msgstr "%s（タイプ=%s）へのリンクが追加されました"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Link to %s (type=%s) deleted"
-msgstr ""
+msgstr "%s（タイプ=%s）へのリンクが削除されました"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "ConfigItem definition updated (ID=%s)"
-msgstr ""
+msgstr "ConfigItem定義が更新されました（ID =%s）"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Name updated (new=%s, old=%s)"
-msgstr ""
+msgstr "名前が更新されました（新規=%s、古い=%s）"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Attribute %s updated from \"%s\" to \"%s\""
-msgstr ""
+msgstr "属性%sが \"%s\"から \"%s\"に更新されました"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Version %s deleted"
-msgstr ""
+msgstr "バージョン%sが削除されました"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "No ConfigItemID or VersionID is given!"
-msgstr ""
+msgstr "ConfigItemIDまたはVersionIDは指定されていません！"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "Can't show config item, no access rights given!"
-msgstr ""
+msgstr "構成アイテムを表示できません。アクセス権はありません！"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "ConfigItemID %s not found in database!"
-msgstr ""
+msgstr "ConfigItemID%sはデータベースに見つかりません！"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "VersionID %s not found in database!"
-msgstr ""
+msgstr "VersionID%sはデータベースに見つかりません！"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "ConfigItem"
-msgstr "設定項目"
+msgstr "構成アイテム"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "printed by %s at %s"
-msgstr ""
+msgstr "%sで%sで印刷されました"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "Invalid ClassID!"
-msgstr ""
+msgstr "ClassIDが無効です！"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "No ClassID is given!"
-msgstr ""
+msgstr "ClassIDは指定されていません！"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "No access rights for this class given!"
-msgstr ""
+msgstr "このクラスのアクセス権はありません！"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "No Result!"
@@ -339,15 +339,15 @@ msgstr "構成アイテムの検索結果"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
 msgid "Can't show item, no access rights for ConfigItem are given!"
-msgstr ""
+msgstr "構成アイテムを表示できません。構成アイテムのアクセス権は与えられていません！"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
 msgid "The deployment state of this config item"
-msgstr "この設定項目のデプロイ・ステータス"
+msgstr "この構成アイテムのデプロイ・ステータス"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
 msgid "The incident state of this config item"
-msgstr "この設定項目のインシデント状態"
+msgstr "この構成アイテムのインシデント状態"
 
 #. Perl Module: Kernel/Output/HTML/ITSMConfigItem/LayoutDate.pm
 msgid "Between"
@@ -734,7 +734,7 @@ msgid ""
 "Check for a unique name only within the same ConfigItem class ('class') or "
 "globally ('global'), which means every existing ConfigItem is taken into "
 "account when looking for duplicates."
-msgstr ""
+msgstr "同じConfigItemクラス（ 'class'）内またはグローバル（ 'global'）内でのみ一意の名前を確認します。これは、重複を検索するときに既存のConfigItemがすべて考慮されることを意味します。"
 
 #. SysConfig
 msgid "Config Items"
@@ -752,7 +752,7 @@ msgstr "構成アイテムを修正"
 msgid ""
 "Config item event module that enables logging to history in the agent "
 "interface."
-msgstr ""
+msgstr "担当者Webインタフェースの履歴を記録する構成アイテムのイベントモジュール"
 
 #. SysConfig
 msgid "Config item history."
@@ -776,19 +776,19 @@ msgstr "構成アイテムの制限"
 
 #. SysConfig
 msgid "Configuration Item limit per page."
-msgstr ""
+msgstr "ページあたりの構成アイテムの表示制限"
 
 #. SysConfig
 msgid "Configuration Management Database."
-msgstr ""
+msgstr "構成管理データベース"
 
 #. SysConfig
 msgid "Configuration item bulk module."
-msgstr ""
+msgstr "構成アイテムの一括モジュール"
 
 #. SysConfig
 msgid "Configuration item search backend router of the agent interface."
-msgstr ""
+msgstr "担当者インターフェースの構成アイテムの検索バックエンドルーター"
 
 #. SysConfig
 msgid "Create and manage the definitions for Configuration Items."
@@ -811,47 +811,47 @@ msgstr "権限を持つグループを定義します。"
 msgid ""
 "Defines Required permissions to create ITSM configuration items using the "
 "Generic Interface."
-msgstr "ジェネリックインターフェイスを用いてITSM構成を作成する権限を定義する。"
+msgstr "ジェネリックインターフェイスを活用して構成アイテムを作成する権限を定義する。"
 
 #. SysConfig
 msgid ""
 "Defines Required permissions to delete ITSM configuration items using the "
 "Generic Interface."
-msgstr ""
+msgstr "ジェネリック・インターフェースを活用して構成アイテムを削除するために必要な権限を定義します。"
 
 #. SysConfig
 msgid ""
 "Defines Required permissions to get ITSM configuration items using the "
 "Generic Interface."
-msgstr "ジェネリックインターフェイスを用いてITSM構成を取得する権限を定義する。"
+msgstr "ジェネリックインターフェイスを活用して構成アイテムを取得する権限を定義する。"
 
 #. SysConfig
 msgid ""
 "Defines Required permissions to search ITSM configuration items using the "
 "Generic Interface."
-msgstr "ジェネリックインターフェイスを用いてITSM構成を検索する権限を定義する。"
+msgstr "ジェネリックインターフェイスを活用して構成アイテムを検索する権限を定義する。"
 
 #. SysConfig
 msgid ""
 "Defines Required permissions to update ITSM configuration items using the "
 "Generic Interface."
-msgstr "ジェネリックインターフェイスを用いてITSM構成を変更する権限を定義する。"
+msgstr "ジェネリックインターフェイスを活用して構成アイテムを変更する権限を定義する。"
 
 #. SysConfig
 msgid ""
 "Defines an overview module to show the small view of a configuration item "
 "list."
-msgstr ""
+msgstr "構成アイテムを定義して、構成アイテムのリストの小さなビューを表示します。"
 
 #. SysConfig
 msgid ""
 "Defines regular expressions individually for each ConfigItem class to check "
 "the ConfigItem name and to show corresponding error messages."
-msgstr ""
+msgstr "各ConfigItemクラスの正規表現を個別に定義して、ConfigItem名を確認し、対応するエラーメッセージを表示します。"
 
 #. SysConfig
 msgid "Defines the default subobject of the class 'ITSMConfigItem'."
-msgstr "ITSMConfigItemクラスのデフォルト・サブオブジェクトを定義する。"
+msgstr "構成アイテムのクラスのデフォルトのサブオブジェクトを定義する。"
 
 #. SysConfig
 msgid ""
@@ -863,7 +863,7 @@ msgstr "管理インターフェイス Cl 定義エディタの行数を定義�
 msgid ""
 "Defines the order of incident states from high (e.g. cricital) to low (e.g. "
 "functional)."
-msgstr ""
+msgstr "インシデント状態の高（例: 危険）から低（例: 情報）へのインシデント状態の順序を定義する。"
 
 #. SysConfig
 msgid ""
@@ -873,24 +873,24 @@ msgstr "リンクされたチケットがCIのステータスに影響を与え�
 
 #. SysConfig
 msgid "Defines the search limit for the AgentITSMConfigItem screen."
-msgstr ""
+msgstr "構成アイテムの画面の検索制限を定義します。"
 
 #. SysConfig
 msgid "Defines the search limit for the AgentITSMConfigItemSearch screen."
-msgstr ""
+msgstr "構成アイテムの検索画面の検索制限を定義します。"
 
 #. SysConfig
 msgid ""
 "Defines the shown columns in the config item overview. This option has no "
 "effect on the position of the column. Note: Class column is always available"
 " if filter 'All' is selected."
-msgstr ""
+msgstr "構成アイテムの一覧に表示される列を定義します。 このオプションは列の位置には影響しません。 注：クラス列は、フィルター「全て」が選択されている場合は常に使用可能です。"
 
 #. SysConfig
 msgid ""
 "Defines the shown columns in the config item search. This option has no "
 "effect on the position of the column."
-msgstr ""
+msgstr "構成アイテムの検索に表示される列を定義します。 このオプションは列の位置には影響しません。"
 
 #. SysConfig
 msgid ""
@@ -905,7 +905,7 @@ msgid ""
 "Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, "
 "then the default columns are shown as defined in the setting "
 "ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns."
-msgstr ""
+msgstr "CIクラスに応じて、表示されるCIの列を設定項目の概要で定義します。 各エントリの先頭には、クラス名と二重コロン（つまり、Computer::)を付ける必要があります。全てのCIに共通のCI属性がいくつかあります。（コンピュータクラスの例：Computer::Name、Computer::CurDeplState、Computer::CreateTime）\n CI定義で定義されている個々のCI属性を表示するには、以下のスキームを使用する必要があります（コンピュータクラスの例）。\nComputer::HardDisk::1,\nComputer::HardDisk::1::Capacity::1,\nComputer::HardDisk::2,\nComputer::HardDisk::2::Capacity::1\nCIクラスのエントリがない場合は、ITSMConfigItem :: Frontend :: AgentITSMConfigItem ### ShowColumnsの設定で定義されているデフォルトの列が表示されます。"
 
 #. SysConfig
 msgid ""
@@ -938,15 +938,15 @@ msgstr ""
 msgid ""
 "Defines which type of link (named from the ticket perspective) can affect "
 "the status of a linked CI."
-msgstr ""
+msgstr "リンクされたCIのステータスに影響するリンクのタイプ（チケットの観点から名前が付けられます）を定義します。"
 
 #. SysConfig
 msgid "Defines which type of ticket can affect the status of a linked CI."
-msgstr ""
+msgstr "リンクされたCIのステータスに影響するチケットのタイプを定義します。"
 
 #. SysConfig
 msgid "Delete Configuration Item"
-msgstr ""
+msgstr "構成アイテムを削除"
 
 #. SysConfig
 msgid "Deployment State Color"
@@ -968,12 +968,12 @@ msgstr "コピー"
 msgid ""
 "Enables configuration item bulk action feature for the agent frontend to "
 "work on more than one configuration item at a time."
-msgstr ""
+msgstr "担当者フロントエンドが一度に複数の設定項目で機能するように設定項目一括操作機能を有効にします。"
 
 #. SysConfig
 msgid ""
 "Enables configuration item bulk action feature only for the listed groups."
-msgstr ""
+msgstr "リストされたグループの構成アイテム一括処理機能のみを有効にします。"
 
 #. SysConfig
 msgid ""
@@ -985,7 +985,7 @@ msgstr ""
 
 #. SysConfig
 msgid "Event module to set configitem-status on ticket-configitem-link."
-msgstr ""
+msgstr "チケット構成アイテムのリンクに構成アイテムのステータスを設定するイベントモジュール"
 
 #. SysConfig
 msgid "ITSM config item overview."
@@ -993,19 +993,19 @@ msgstr "構成アイテムの一覧"
 
 #. SysConfig
 msgid "Module to check the group responsible for a class."
-msgstr ""
+msgstr "クラスを担当するグループをチェックするモジュール"
 
 #. SysConfig
 msgid "Module to check the group responsible for a configuration item."
-msgstr ""
+msgstr "構成アイテムを担当するグループをチェックするモジュール"
 
 #. SysConfig
 msgid "Module to generate ITSM config item statistics."
-msgstr "ITSM構成タイテム統計を生成するためのモジュール"
+msgstr "構成タイテムのレポートを生成するためのモジュール"
 
 #. SysConfig
 msgid "Object backend module registration for the import/export module."
-msgstr ""
+msgstr "インポート/エクスポートモジュールのオブジェクトバックエンドモジュール登録"
 
 #. SysConfig
 msgid "Overview."
@@ -1015,13 +1015,13 @@ msgstr "概要"
 msgid ""
 "Parameters for the deployment states color in the preferences view of the "
 "agent interface."
-msgstr ""
+msgstr "デプロイメントのパラメータは、担当者Webインタフェースの環境設定ビューで色を示します。"
 
 #. SysConfig
 msgid ""
 "Parameters for the deployment states in the preferences view of the agent "
 "interface."
-msgstr ""
+msgstr "担当者Webインタフェースの環境設定ビューで展開状態のパラメータ"
 
 #. SysConfig
 msgid ""
@@ -1031,57 +1031,57 @@ msgstr "ジェネラルカタログ属性のパーミッショングループ　
 
 #. SysConfig
 msgid "Parameters for the pages (in which the configuration items are shown)."
-msgstr ""
+msgstr "ページのパラメータ（構成アイテムが表示されます）"
 
 #. SysConfig
 msgid ""
 "Required permissions to use the ITSM configuration item screen in the agent "
 "interface."
-msgstr ""
+msgstr "担当者Webインターフェイスで構成アイテム画面を使用するために必要な権限"
 
 #. SysConfig
 msgid ""
 "Required permissions to use the ITSM configuration item search screen in the"
 " agent interface."
-msgstr ""
+msgstr "担当者Webインターフェイスの構成アイテムの検索画面を使用するために必要な権限"
 
 #. SysConfig
 msgid ""
 "Required permissions to use the ITSM configuration item zoom screen in the "
 "agent interface."
-msgstr ""
+msgstr "担当者Webインターフェイス構成アイテムのズーム画面を使用するために必要な権限"
 
 #. SysConfig
 msgid ""
 "Required permissions to use the add ITSM configuration item screen in the "
 "agent interface."
-msgstr ""
+msgstr "担当者Webインターフェイスで構成アイテムの追加画面を使用するために必要な権限"
 
 #. SysConfig
 msgid ""
 "Required permissions to use the edit ITSM configuration item screen in the "
 "agent interface."
-msgstr ""
+msgstr "担当者Webインターフェイスで構成アイテムの編集画面を使用するために必要な権限"
 
 #. SysConfig
 msgid ""
 "Required permissions to use the history ITSM configuration item screen in "
 "the agent interface."
-msgstr ""
+msgstr "担当者Webインターフェイスで構成アイテムの履歴画面を使用するために必要な権限"
 
 #. SysConfig
 msgid ""
 "Required permissions to use the print ITSM configuration item screen in the "
 "agent interface."
-msgstr ""
+msgstr "担当者Webインタフェースで構成アイテムの印刷画面を使用するために必要な権限"
 
 #. SysConfig
 msgid "Required privileges to delete config items."
-msgstr ""
+msgstr "構成アイテムを削除するために必要な特権"
 
 #. SysConfig
 msgid "Search config items."
-msgstr ""
+msgstr "構成アイテムを検索"
 
 #. SysConfig
 msgid ""
@@ -1095,7 +1095,7 @@ msgstr ""
 msgid ""
 "Set the incident state of a CI automatically when a Ticket is Linked to a "
 "CI."
-msgstr ""
+msgstr "チケットがCIにリンクされている場合、CIのインシデントのステータスを自動的に設定します。"
 
 #. SysConfig
 msgid ""
@@ -1131,7 +1131,7 @@ msgstr ""
 msgid ""
 "Shows a link in the menu to delete a configuration item in its zoom view of "
 "the agent interface."
-msgstr ""
+msgstr "メニューにリンクを表示して、担当者Webインターフェイスのズーム表示で設定項目を削除します。"
 
 #. SysConfig
 msgid ""
@@ -1172,30 +1172,30 @@ msgstr ""
 #. SysConfig
 msgid ""
 "Shows the config item history (reverse ordered) in the agent interface."
-msgstr ""
+msgstr "担当者Webインターフェイスで構成アイテムの履歴（逆順）を表示します。"
 
 #. SysConfig
 msgid ""
 "The identifier for a configuration item, e.g. ConfigItem#, MyConfigItem#. "
 "The default is ConfigItem#."
-msgstr ""
+msgstr "構成アイテムの識別子。 ConfigItem＃、MyConfigItem＃、 デフォルトはConfigItem＃です。"
 
 #. SysConfig
 msgid "class"
-msgstr ""
+msgstr "クラス"
 
 #. SysConfig
 msgid "global"
-msgstr ""
+msgstr "グローバル"
 
 #. SysConfig
 msgid "postproductive"
-msgstr ""
+msgstr "次の生産"
 
 #. SysConfig
 msgid "preproductive"
-msgstr ""
+msgstr "再生産"
 
 #. SysConfig
 msgid "productive"
-msgstr ""
+msgstr "生産"

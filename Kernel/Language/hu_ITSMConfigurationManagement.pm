@@ -243,6 +243,7 @@ sub Data {
     $Self->{Translation}->{'Ok'} = 'OK';
 
     # SysConfig
+    $Self->{Translation}->{'CMDB Settings'} = '';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         'Egyedi név ellenőrzése kizárólag ugyanabban a konfigurációelem osztályban („osztály”) vagy globálisan („globális”), amely azt jelenti, hogy minden meglévő konfigurációelem egy fiókba lesz felvéve a kettőzések keresésekor.';
     $Self->{Translation}->{'Config Items'} = 'Konfigurációelemek';
@@ -358,7 +359,7 @@ sub Data {
     $Self->{Translation}->{'Sets the incident state in the configuration item bulk screen of the agent interface.'} =
         'Beállítja az incidensállapotot az ügyintézői felület konfigurációelem tömeges művelet képernyőjén.';
     $Self->{Translation}->{'Shows a link in the menu that allows linking a configuration item with another object in the config item zoom view of the agent interface.'} =
-        'Egy hivatkozást jelenít meg a menüben, amely lehetővé teszi egy konfigurációelem hozzákapcsolását egy másik objektumhoz az ügyintézői felület konfigurációelem nagyítási nézetén.';
+        'Egy hivatkozást jelenít meg a menüben, amely lehetővé teszi egy konfigurációelem összekapcsolását egy másik objektummal az ügyintézői felület konfigurációelem nagyítási nézetén.';
     $Self->{Translation}->{'Shows a link in the menu to access the history of a configuration item in the configuration item overview of the agent interface.'} =
         'Egy hivatkozást jelenít meg a menüben egy konfigurációelem előzményeinek eléréséhez az ügyintézői felület konfigurációelem áttekintőjében.';
     $Self->{Translation}->{'Shows a link in the menu to access the history of a configuration item in the its zoom view of the agent interface.'} =

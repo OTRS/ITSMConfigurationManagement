@@ -243,6 +243,7 @@ sub Data {
     $Self->{Translation}->{'Ok'} = 'Sawa';
 
     # SysConfig
+    $Self->{Translation}->{'CMDB Settings'} = '';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         'Angalia majina ya kipekee tu katika tabaka sawa la kipengele cha usanidi (\'Tabaka\') au zote (\'Zote\'), ambayo inamaanisha kila kipengele cha usanidi kilichopo kimejumuishwa wakati nakala pacha zinaangaliwa.';
     $Self->{Translation}->{'Config Items'} = 'Vipengele vya usanidi';
