@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2017-10-10 13:56+0000\n"
-"PO-Revision-Date: 2017-10-10 13:57+0000\n"
+"POT-Creation-Date: 2017-11-15 13:08+0000\n"
+"PO-Revision-Date: 2017-11-16 13:46+0000\n"
 "Last-Translator: Udo Bretz\n"
 "Language-Team: German (http://www.transifex.com/otrs/OTRS/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -287,7 +287,7 @@ msgstr "ConfigItem-Definition aktualisiert (ID=%s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Name updated (new=%s, old=%s)"
-msgstr "Name aktualisiert (new=%s, alt=%s)"
+msgstr "Name aktualisiert (neu=%s, alt=%s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Attribute %s updated from \"%s\" to \"%s\""
@@ -732,6 +732,10 @@ msgstr "Unlimitiert"
 #. JS File: ITSM.Agent.ConfigItem.Zoom
 msgid "Ok"
 msgstr "Ok"
+
+#. SysConfig
+msgid "CMDB Settings"
+msgstr ""
 
 #. SysConfig
 msgid ""

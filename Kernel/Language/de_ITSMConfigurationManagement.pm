@@ -112,7 +112,7 @@ sub Data {
     $Self->{Translation}->{'Link to %s (type=%s) added'} = 'Verknüpfung zu %s (Typ=%s) hinzugefügt';
     $Self->{Translation}->{'Link to %s (type=%s) deleted'} = 'Verknüpfung zu %s (Typ=%s) gelöscht';
     $Self->{Translation}->{'ConfigItem definition updated (ID=%s)'} = 'ConfigItem-Definition aktualisiert (ID=%s)';
-    $Self->{Translation}->{'Name updated (new=%s, old=%s)'} = 'Name aktualisiert (new=%s, alt=%s)';
+    $Self->{Translation}->{'Name updated (new=%s, old=%s)'} = 'Name aktualisiert (neu=%s, alt=%s)';
     $Self->{Translation}->{'Attribute %s updated from "%s" to "%s"'} = 'Attribut %s aktualisiert von "%s" nach "%s"';
     $Self->{Translation}->{'Version %s deleted'} = 'Version %s gelöscht';
 

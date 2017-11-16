@@ -243,7 +243,7 @@ sub Data {
     $Self->{Translation}->{'Ok'} = 'OK';
 
     # SysConfig
-    $Self->{Translation}->{'CMDB Settings'} = '';
+    $Self->{Translation}->{'CMDB Settings'} = 'CMDB beállítások';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         'Egyedi név ellenőrzése kizárólag ugyanabban a konfigurációelem osztályban („osztály”) vagy globálisan („globális”), amely azt jelenti, hogy minden meglévő konfigurációelem egy fiókba lesz felvéve a kettőzések keresésekor.';
     $Self->{Translation}->{'Config Items'} = 'Konfigurációelemek';

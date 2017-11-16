@@ -5,9 +5,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2017-10-10 13:56+0000\n"
-"PO-Revision-Date: 2017-10-12 13:11+0000\n"
-"Last-Translator: Dusan Vuckovic\n"
+"POT-Creation-Date: 2017-11-15 13:08+0000\n"
+"PO-Revision-Date: 2017-11-15 13:09+0000\n"
+"Last-Translator: Udo Bretz\n"
 "Language-Team: Serbian (http://www.transifex.com/otrs/OTRS/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -727,6 +727,10 @@ msgstr "Неограничено"
 #. JS File: ITSM.Agent.ConfigItem.Zoom
 msgid "Ok"
 msgstr "У реду"
+
+#. SysConfig
+msgid "CMDB Settings"
+msgstr ""
 
 #. SysConfig
 msgid ""

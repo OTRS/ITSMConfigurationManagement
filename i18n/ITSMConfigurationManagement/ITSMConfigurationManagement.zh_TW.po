@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2017-10-10 13:56+0000\n"
-"PO-Revision-Date: 2017-10-10 13:57+0000\n"
+"POT-Creation-Date: 2017-11-15 13:08+0000\n"
+"PO-Revision-Date: 2017-11-15 13:09+0000\n"
 "Last-Translator: Udo Bretz\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otrs/OTRS/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -727,6 +727,10 @@ msgstr "無限制的"
 #. JS File: ITSM.Agent.ConfigItem.Zoom
 msgid "Ok"
 msgstr "Ok"
+
+#. SysConfig
+msgid "CMDB Settings"
+msgstr ""
 
 #. SysConfig
 msgid ""
