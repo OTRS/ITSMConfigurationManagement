@@ -434,7 +434,7 @@
                 <Item Key="Module">Kernel::Output::HTML::GeneralCatalogPreferences::Generic</Item>
                 <Item Key="Class">ITSM::ConfigItem::DeploymentState</Item>
                 <Item Key="Label" Translatable="1">Deployment State Color</Item>
-                <Item Key="Desc" Translatable="1">Deployment State Color.</Item>
+                <Item Key="Desc" Translatable="1"></Item>
                 <Item Key="Data"></Item>
                 <Item Key="PrefKey">Color</Item>
                 <Item Key="Block">ColorPicker</Item>
