@@ -673,7 +673,7 @@
                 <Item Key="Module">Kernel::Output::HTML::GeneralCatalogPreferences::Generic</Item>
                 <Item Key="Class">ITSM::ConfigItem::DeploymentState</Item>
                 <Item Key="Label" Translatable="1">Deployment State Type</Item>
-                <Item Key="Desc" Translatable="1">Deployment State Type.</Item>
+                <Item Key="Desc" Translatable="1"></Item>
                 <Item Key="Data">
                     <Hash>
                         <Item Key="postproductive" Translatable="1">postproductive</Item>
