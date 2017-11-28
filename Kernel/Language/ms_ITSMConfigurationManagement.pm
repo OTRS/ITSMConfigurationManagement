@@ -307,8 +307,6 @@ sub Data {
         'Takrifkan jenis tiket yang mana boleh menjejaskan status bagi satu sambungan CI.';
     $Self->{Translation}->{'Delete Configuration Item'} = '';
     $Self->{Translation}->{'Deployment State Color'} = 'Penempatan Keadaan Warna.';
-    $Self->{Translation}->{'Deployment State Color.'} = 'Penempatan Keadaan Warna.';
-    $Self->{Translation}->{'Deployment State Type.'} = 'Penempatan Keadaan Jenis.';
     $Self->{Translation}->{'Duplicate'} = 'Gandakan';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         'Membolehkan ciri tindakan pukal item konfigurasi untuk frontend ejen untuk bekerja pada lebih daripada satu item konfigurasi pada satu masa.';

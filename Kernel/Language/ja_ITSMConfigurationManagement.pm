@@ -313,8 +313,6 @@ CIクラスのエントリがない場合は、ITSMConfigItem :: Frontend :: Age
         'リンクされたCIのステータスに影響するチケットのタイプを定義します。';
     $Self->{Translation}->{'Delete Configuration Item'} = '構成アイテムを削除';
     $Self->{Translation}->{'Deployment State Color'} = 'デプロイ・ステータスのカラー';
-    $Self->{Translation}->{'Deployment State Color.'} = 'デプロイ・ステータスのカラー';
-    $Self->{Translation}->{'Deployment State Type.'} = 'デプロイ・ステータスのタイプ';
     $Self->{Translation}->{'Duplicate'} = 'コピー';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         '担当者フロントエンドが一度に複数の設定項目で機能するように設定項目一括操作機能を有効にします。';

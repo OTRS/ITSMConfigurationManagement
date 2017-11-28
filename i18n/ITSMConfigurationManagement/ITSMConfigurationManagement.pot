@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ITSMConfigurationManagement\n"
-"POT-Creation-Date: 2017-11-16 14:11+0000\n"
+"POT-Creation-Date: 2017-11-28 11:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -880,14 +880,6 @@ msgstr ""
 
 #. SysConfig
 msgid "Deployment State Color"
-msgstr ""
-
-#. SysConfig
-msgid "Deployment State Color."
-msgstr ""
-
-#. SysConfig
-msgid "Deployment State Type."
 msgstr ""
 
 #. SysConfig

@@ -307,8 +307,6 @@ sub Data {
         'Meghatározza, hogy mely jegytípus befolyásolhatja egy kapcsolt konfigurációelem állapotát.';
     $Self->{Translation}->{'Delete Configuration Item'} = 'Konfigurációelem törlése';
     $Self->{Translation}->{'Deployment State Color'} = 'Üzembe állítási állapot színe';
-    $Self->{Translation}->{'Deployment State Color.'} = 'Üzembe állítási állapot színe.';
-    $Self->{Translation}->{'Deployment State Type.'} = 'Üzembe állítási állapottípus.';
     $Self->{Translation}->{'Duplicate'} = 'Kettőzés';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         'Engedélyezi a konfigurációelem tömeges művelet funkciót az ügyintézői előtétprogramnál, hogy egyszerre egynél több konfigurációelemmel dolgozhasson.';

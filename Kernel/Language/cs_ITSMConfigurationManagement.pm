@@ -307,8 +307,6 @@ sub Data {
         '';
     $Self->{Translation}->{'Delete Configuration Item'} = '';
     $Self->{Translation}->{'Deployment State Color'} = '';
-    $Self->{Translation}->{'Deployment State Color.'} = '';
-    $Self->{Translation}->{'Deployment State Type.'} = '';
     $Self->{Translation}->{'Duplicate'} = 'Duplikace';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         '';

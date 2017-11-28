@@ -307,8 +307,6 @@ sub Data {
         'Define qual tipo de chamado pode afetar o estado de um IC associado.';
     $Self->{Translation}->{'Delete Configuration Item'} = '';
     $Self->{Translation}->{'Deployment State Color'} = 'Cor do Estado de Implantação';
-    $Self->{Translation}->{'Deployment State Color.'} = 'Cor do Estado de Implantação.';
-    $Self->{Translation}->{'Deployment State Type.'} = 'Tipo do Estado de Implantação';
     $Self->{Translation}->{'Duplicate'} = 'Duplicar';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         'Habilita a função de ação em massa em itens de configuração na interface de atendente para trabalhar em mais de um IC por vez.';

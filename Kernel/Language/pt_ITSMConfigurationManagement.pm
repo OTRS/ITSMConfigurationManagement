@@ -264,7 +264,7 @@ sub Data {
     $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = 'Criar e gerir as definições de Itens de Configuração.';
     $Self->{Translation}->{'Define Actions where a settings button is available in the linked objects widget (LinkObject::ViewMode = "complex"). Please note that these Actions must have registered the following JS and CSS files: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js and Core.Agent.LinkObject.js.'} =
         'Definir Acções onde um botão de configurações está disponível na widget the objectos ligados (LinkObject::ViewMode = "complex").  Estas Acções devem estar registadas nos seguintes ficheiros JS e CSS: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js and Core.Agent.LinkObject.js.';
-    $Self->{Translation}->{'Define the group with permissions.'} = '';
+    $Self->{Translation}->{'Define the group with permissions.'} = 'Definir o grupo com permissões.';
     $Self->{Translation}->{'Defines Required permissions to create ITSM configuration items using the Generic Interface.'} =
         '';
     $Self->{Translation}->{'Defines Required permissions to delete ITSM configuration items using the Generic Interface.'} =
@@ -307,8 +307,6 @@ sub Data {
         '';
     $Self->{Translation}->{'Delete Configuration Item'} = '';
     $Self->{Translation}->{'Deployment State Color'} = '';
-    $Self->{Translation}->{'Deployment State Color.'} = '';
-    $Self->{Translation}->{'Deployment State Type.'} = '';
     $Self->{Translation}->{'Duplicate'} = 'Duplicar';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         '';

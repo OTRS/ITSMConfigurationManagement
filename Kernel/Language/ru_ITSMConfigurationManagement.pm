@@ -307,8 +307,6 @@ sub Data {
         'Определяет, какой тип заявки может повлиять на статус связанной КЕ.';
     $Self->{Translation}->{'Delete Configuration Item'} = 'Удалить конфигурационную единицу';
     $Self->{Translation}->{'Deployment State Color'} = 'Цвет состояния использования';
-    $Self->{Translation}->{'Deployment State Color.'} = 'Цвет состояния использования';
-    $Self->{Translation}->{'Deployment State Type.'} = 'Тип состояния использования';
     $Self->{Translation}->{'Duplicate'} = 'Резерв';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         'Включает возможность массовых действий с КЕ для интерфейса агента для работы с несколькими КЕ одновременно.';

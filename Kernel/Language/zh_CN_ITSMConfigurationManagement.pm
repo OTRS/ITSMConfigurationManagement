@@ -307,8 +307,6 @@ sub Data {
         '定义哪一类工单可以影响一个链接的配置项的状态。';
     $Self->{Translation}->{'Delete Configuration Item'} = '删除配置项';
     $Self->{Translation}->{'Deployment State Color'} = '部署状态的颜色';
-    $Self->{Translation}->{'Deployment State Color.'} = '部署状态的颜色。';
-    $Self->{Translation}->{'Deployment State Type.'} = '部署状态类型。';
     $Self->{Translation}->{'Duplicate'} = '复制';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         '在服务人员界面启用配置项批量操作功能，可以一次处理多个配置项。';

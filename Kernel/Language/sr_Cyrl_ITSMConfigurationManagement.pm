@@ -243,7 +243,7 @@ sub Data {
     $Self->{Translation}->{'Ok'} = 'У реду';
 
     # SysConfig
-    $Self->{Translation}->{'CMDB Settings'} = '';
+    $Self->{Translation}->{'CMDB Settings'} = 'CMDB подешавања';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         'Провера јединственог имена само у оквиру исте класе конфигурационих ставки (\'класа\') или глобално (\'глобално\'), што значи да је свака постојећа Конфигурациона ставка узета у обзир у провери дупликата.';
     $Self->{Translation}->{'Config Items'} = 'Конфигурационе ставке';
@@ -307,8 +307,6 @@ sub Data {
         'Одређује који тип тикета може да утиче на статус повезане CI.';
     $Self->{Translation}->{'Delete Configuration Item'} = 'Брисање конфигурационе ставке';
     $Self->{Translation}->{'Deployment State Color'} = 'Боја статуса распоређивања';
-    $Self->{Translation}->{'Deployment State Color.'} = 'Боја статуса распоређивања.';
-    $Self->{Translation}->{'Deployment State Type.'} = 'Тип статуса распоређивања.';
     $Self->{Translation}->{'Duplicate'} = 'Дупликат';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         'Омогућава масовну акцију на конфигурационим ставкама у приступном систему оператера на више од једне ставке истовремено.';

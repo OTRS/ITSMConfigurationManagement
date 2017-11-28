@@ -307,8 +307,6 @@ sub Data {
         'Određuje koji tip tiketa može da utiče na status povezane CI.';
     $Self->{Translation}->{'Delete Configuration Item'} = 'Brisanje konfiguracione stavke';
     $Self->{Translation}->{'Deployment State Color'} = 'Boja statusa raspoređivanja';
-    $Self->{Translation}->{'Deployment State Color.'} = 'Boja statusa raspoređivanja.';
-    $Self->{Translation}->{'Deployment State Type.'} = 'Tip statusa raspoređivanja.';
     $Self->{Translation}->{'Duplicate'} = 'Duplikat';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
         'Omogućava masovnu akciju na konfiguracionim stavkama u pristupnom sistemu operatera na više od jedne stavke istovremeno.';
