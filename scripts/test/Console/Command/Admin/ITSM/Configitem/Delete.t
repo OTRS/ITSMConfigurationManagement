@@ -241,6 +241,34 @@ $Self->Is(
     "Exit code: Option --class $RandomClass",
 );
 
+# check command with configitem-number options and not allowed additional class option
+$ExitCode = $CommandObject->Execute( '--configitem-number', $ConfigItemNumbers[0], '--class', $RandomClass );
+
+$Self->Is(
+    $ExitCode,
+    1,
+    "Exit code: Options --configitem-number --class",
+);
+
+# check command with configitem-number options and not allowed additional deployment state option
+$ExitCode = $CommandObject->Execute( '--configitem-number', $ConfigItemNumbers[0], '--deployment-state', 'Planned' );
+
+$Self->Is(
+    $ExitCode,
+    1,
+    "Exit code: Options --configitem-number --deployment-state",
+);
+
+# check command with --all, --all-old-versions, --all-but-keep-last-versions, --all-older-than-days-versions mixed together.
+$ExitCode = $CommandObject->Execute( '--all', '--all-old-versions',  '--all-but-keep-last-versions', 2, '--all-older-than-days-versions', '10' );
+
+$Self->Is(
+    $ExitCode,
+    1,
+    "Exit code: Options --all --all-old-versions --all-but-keep-last-versions 2 --all-older-than-days-versions 10",
+);
+
+
 # cleanup is done by RestoreDatabase
 
 1;

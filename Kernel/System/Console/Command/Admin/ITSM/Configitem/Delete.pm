@@ -29,7 +29,7 @@ sub Configure {
     $Self->Description('Delete config items (all, by class (and deployment state) or by number).');
     $Self->AddOption(
         Name        => 'all',
-        Description => "Delete all config items",
+        Description => "Delete all config items.",
         Required    => 0,
         HasValue    => 0,
     );
@@ -48,14 +48,14 @@ sub Configure {
     );
     $Self->AddOption(
         Name        => 'deployment-state',
-        Description => "Delete all config items with this deployment state (ONLY TOGETHER with the --class parameter)",
+        Description => "Delete all config items with this deployment state (ONLY TOGETHER with the --class parameter).",
         Required    => 0,
         HasValue    => 1,
         ValueRegex  => qr/.*/smx,
     );
     $Self->AddOption(
         Name        => 'configitem-number',
-        Description => "Delete listed config items",
+        Description => "Delete listed config items.",
         Required    => 0,
         HasValue    => 1,
         ValueRegex  => qr/\d+/smx,
@@ -63,20 +63,20 @@ sub Configure {
     );
     $Self->AddOption(
         Name        => 'all-old-versions',
-        Description => "Delete all config item versions except the newest version",
+        Description => "Delete all config item versions except the newest version.",
         Required    => 0,
         HasValue    => 0,
     );
     $Self->AddOption(
         Name        => 'all-but-keep-last-versions',
-        Description => "Delete all config item versions but keep the last XX versions",
+        Description => "Delete all config item versions but keep the last XX versions.",
         Required    => 0,
         HasValue    => 1,
         ValueRegex  => qr/\d+/smx,
     );
     $Self->AddOption(
         Name        => 'all-older-than-days-versions',
-        Description => "Delete all config item versions older than XX days",
+        Description => "Delete all config item versions older than XX days.",
         Required    => 0,
         HasValue    => 1,
         ValueRegex  => qr/\d+/smx,
@@ -111,13 +111,32 @@ sub PreRun {
             . " For more details use --help\n";
     }
 
+    my $AllOptionTypeCount;
+    for my $Value ( $All, $AllOldVersions, $AllButKeepLast, $AllOlderThanDays ) {
+        if ($Value) {
+            $AllOptionTypeCount++;
+        }
+    }
+    if ( $AllOptionTypeCount > 1 ) {
+        die
+            "The options --all, --all-old-versions, --all-but-keep-last-versions and --all-older-than-days-versions can not be mixed. \nFor more details use --help\n";
+    }
+    if ( $AllOptionTypeCount && ( $Class || @ConfigItemNumbers || $DeploymentState ) ) {
+        die
+            "The options --all, --all-old-versions, --all-but-keep-last-versions and --all-older-than-days-versions can not used together with any other option. \nFor more details use --help\n";
+    }
+
     if ( $DeploymentState && !$Class ) {
         die
             "Deleting all config items with this deployment state is posible ONLY TOGETHER with the --class parameter. \nFor more details use --help\n";
     }
 
-    return;
+    if ( @ConfigItemNumbers && ( $Class || $DeploymentState ) ) {
+        die
+            "The option --configitem-number can not be used together with the --class or the --deployment-state parameter. \nFor more details use --help\n";
+    }
 
+    return;
 }
 
 sub Run {
@@ -397,7 +416,6 @@ sub DeleteConfigItems {
     my ( $Self, %Param ) = @_;
 
     my $DeletedCI;
-    my @ConfigItemNumbers = @{ $Self->GetOption('configitem-number') // [] };
 
     # delete specified config items
     for my $ConfigItemID ( @{ $Param{ConfigItemIDs} } ) {
