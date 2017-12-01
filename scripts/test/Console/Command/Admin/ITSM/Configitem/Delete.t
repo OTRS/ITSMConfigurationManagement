@@ -260,14 +260,14 @@ $Self->Is(
 );
 
 # check command with --all, --all-old-versions, --all-but-keep-last-versions, --all-older-than-days-versions mixed together.
-$ExitCode = $CommandObject->Execute( '--all', '--all-old-versions',  '--all-but-keep-last-versions', 2, '--all-older-than-days-versions', '10' );
+$ExitCode = $CommandObject->Execute( '--all', '--all-old-versions', '--all-but-keep-last-versions',
+    2, '--all-older-than-days-versions', '10' );
 
 $Self->Is(
     $ExitCode,
     1,
     "Exit code: Options --all --all-old-versions --all-but-keep-last-versions 2 --all-older-than-days-versions 10",
 );
-
 
 # cleanup is done by RestoreDatabase
 
