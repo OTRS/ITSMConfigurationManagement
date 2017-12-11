@@ -174,8 +174,8 @@ sub Data {
     # Database XML Definition: ITSMConfigurationManagement.sopm
     $Self->{Translation}->{'Computer'} = '';
     $Self->{Translation}->{'Hardware'} = '';
-    $Self->{Translation}->{'Network'} = '';
-    $Self->{Translation}->{'Software'} = '';
+    $Self->{Translation}->{'Network'} = 'Nettverk';
+    $Self->{Translation}->{'Software'} = 'Programvare';
     $Self->{Translation}->{'Expired'} = 'Utgått';
     $Self->{Translation}->{'Maintenance'} = 'Vedlikehold';
     $Self->{Translation}->{'Pilot'} = 'Pilot';
