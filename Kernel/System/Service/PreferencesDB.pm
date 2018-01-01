@@ -1,5 +1,5 @@
 # --
-# Copyright (C) 2001-2017 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2018 OTRS AG, http://otrs.com/
 # --
 # $origin: otrs - be4010f3365da552dcfd079c36ad31cc90e06c32 - Kernel/System/Service/PreferencesDB.pm
 # --
