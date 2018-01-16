@@ -1,0 +1,11 @@
+Active: 1
+
+PlatformSets:
+ - ondemand-otrs6
+
+DeployOTRSBranch: rel-6_0
+
+DeployOTRSPackages:
+ - OTRSCodePolicy@master
+ - GeneralCatalog@master
+ - ITSMCore@master
