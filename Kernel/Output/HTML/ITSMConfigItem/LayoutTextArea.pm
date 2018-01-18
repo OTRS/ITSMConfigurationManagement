@@ -133,7 +133,7 @@ sub FormDataGet {
     $FormData{Value} = $Kernel::OM->Get('Kernel::System::Web::Request')->GetParam( Param => $Param{Key} );
 
     # set invalid param
-    if ( $Param{Item}->{Input}->{Required} && !$FormData{Value} ) {
+    if ( $Param{Item}->{Input}->{Required} && !defined $FormData{Value} ) {
         $FormData{Invalid} = 1;
         $Param{Item}->{Form}->{ $Param{Key} }->{Invalid} = 1;
     }

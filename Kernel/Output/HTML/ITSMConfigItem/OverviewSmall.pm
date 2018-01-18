@@ -447,8 +447,8 @@ END
 
                         # convert to ascii text in case the value contains html
                         my $Value = $Kernel::OM->Get('Kernel::System::HTMLUtils')
-                            ->ToAscii( String => $ExtendedVersionData->{$Column}->{Value} || '' )
-                            || '';
+                            ->ToAscii( String => $ExtendedVersionData->{$Column}->{Value} // '' )
+                            // '';
 
                         # convert all whitespace and newlines to single spaces
                         $Value =~ s{ \s+ }{ }gxms;
@@ -566,11 +566,11 @@ sub _XMLData2Hash {
             # lookup value
             my $Value = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->XMLValueLookup(
                 Item  => $Item,
-                Value => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content} || '',
+                Value => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content} // '',
             );
 
-            # only if value is not empty
-            if ($Value) {
+            # only if value is defined
+            if (defined $Value) {
 
                 # create output string
                 $Value = $Kernel::OM->Get('Kernel::Output::HTML::Layout')->ITSMConfigItemOutputStringCreate(
@@ -588,7 +588,7 @@ sub _XMLData2Hash {
             # store the item in hash
             $Data->{$Prefix} = {
                 Name  => $Item->{Name},
-                Value => $Value,
+                Value => $Value // '',
             };
 
             # start recursion, if "Sub" was found
