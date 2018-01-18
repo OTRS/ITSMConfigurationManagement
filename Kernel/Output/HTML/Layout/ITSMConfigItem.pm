@@ -683,11 +683,11 @@ sub XMLData2Hash {
             # lookup value
             my $Value = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->XMLValueLookup(
                 Item  => $Item,
-                Value => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content} || '',
+                Value => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content} // '',
             );
 
-            # only if value is not empty
-            if ($Value) {
+            # only if value is defined
+            if (defined $Value) {
 
                 # create output string
                 $Value = $Self->ITSMConfigItemOutputStringCreate(
@@ -701,7 +701,7 @@ sub XMLData2Hash {
                 # store the item in hash
                 $Data->{$Prefix} = {
                     Name  => $Item->{Name},
-                    Value => $Value || '',
+                    Value => $Value // '',
                 };
             }
 
