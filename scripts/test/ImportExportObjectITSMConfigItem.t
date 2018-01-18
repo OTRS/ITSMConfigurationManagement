@@ -17,14 +17,14 @@ use vars qw($Self);
     # get ImportExport module directory
     my $ImportExportModule = $Kernel::OM->Get('Kernel::Config')->Get('Home') . '/Kernel/System/ImportExport.pm';
 
-    # exit here if ImportExport package is not installed.
+    # Return early if ImportExport package is not installed.
     if ( !-e $ImportExportModule ) {
         $Self->False(
             0,
-            "ImportExport package not installed.",
+            'ImportExport package not installed'
         );
 
-        exit;
+        return 1;
     }
 }
 
