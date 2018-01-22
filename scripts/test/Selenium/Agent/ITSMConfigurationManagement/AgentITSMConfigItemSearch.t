@@ -12,7 +12,6 @@ use utf8;
 
 use vars (qw($Self));
 
-# get selenium object
 my $Selenium = $Kernel::OM->Get('Kernel::System::UnitTest::Selenium');
 
 $Selenium->RunTest(
@@ -131,23 +130,12 @@ $Selenium->RunTest(
             "\$('#SearchClassID').val('$ConfigItemClassIDs[0]').trigger('redraw.InputField').trigger('change');"
         );
 
-        # Wait until all form elements has loaded by AJAX.
-        $Selenium->WaitFor(
-            JavaScript => "return typeof(\$) === 'function' " .
-                "&& \$('#SearchProfile').length " .
-                "&& \$('#SearchProfileNew').length " .
-                "&& \$('#Attribute').length " .
-                "&& \$('#PreviousVersionSearch').length " .
-                "&& \$('#ResultForm').length " .
-                "&& \$('#SearchFormSubmit').length"
-        );
-
         # Check ConfigItem search page.
         for my $ID (
             qw(SearchClassID SearchProfile SearchProfileNew Attribute PreviousVersionSearch ResultForm SearchFormSubmit)
             )
         {
-
+            $Selenium->WaitFor( JavaScript => "return typeof(\$) === 'function' && \$('#$ID').length" );
             my $Element = $Selenium->find_element( "#$ID", 'css' );
 
             $Element->is_enabled();
@@ -312,7 +300,7 @@ $Selenium->RunTest(
         }
 
         # Change search option.
-        $Selenium->find_element( "#ITSMConfigItemSearch", 'css' )->VerifiedClick();
+        $Selenium->find_element( "#ITSMConfigItemSearch", 'css' )->click();
 
         # Wait until form has loaded, if necessary.
         $Selenium->WaitFor( JavaScript => "return \$('#Attribute').length" );
@@ -379,7 +367,7 @@ $Selenium->RunTest(
         );
 
         # Change search option.
-        $Selenium->find_element( "#ITSMConfigItemSearch", 'css' )->VerifiedClick();
+        $Selenium->find_element( "#ITSMConfigItemSearch", 'css' )->click();
 
         # Wait until form has loaded, if necessary.
         $Selenium->WaitFor(
