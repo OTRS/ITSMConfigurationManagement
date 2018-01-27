@@ -570,7 +570,7 @@ sub _XMLData2Hash {
             );
 
             # only if value is defined
-            if (defined $Value) {
+            if ( defined $Value ) {
 
                 # create output string
                 $Value = $Kernel::OM->Get('Kernel::Output::HTML::Layout')->ITSMConfigItemOutputStringCreate(
