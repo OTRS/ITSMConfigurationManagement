@@ -687,7 +687,7 @@ sub XMLData2Hash {
             );
 
             # only if value is defined
-            if (defined $Value) {
+            if ( defined $Value ) {
 
                 # create output string
                 $Value = $Self->ITSMConfigItemOutputStringCreate(
