@@ -817,6 +817,8 @@ sub _XMLFormOutput {
         $DataPresentMode = 1;
     }
 
+    my @CustomerSearchItemIDs;
+
     my $ItemCounter = 1;
     ITEM:
     for my $Item ( @{ $Param{XMLDefinition} } ) {
@@ -881,11 +883,7 @@ sub _XMLFormOutput {
             my $ItemID = 'Item' . $ItemCounter++ . $Param{Prefix} . $Param{Level};
 
             if ( $Item->{Input}->{Type} eq 'Customer' ) {
-
-                $LayoutObject->AddJSData(
-                    Key   => 'CustomerSearchItemID',
-                    Value => $ItemID,
-                );
+                push @CustomerSearchItemIDs, $ItemID;
             }
 
             # create input element
@@ -1040,6 +1038,14 @@ sub _XMLFormOutput {
                 },
             );
         }
+    }
+
+    if (@CustomerSearchItemIDs) {
+
+        $Kernel::OM->Get('Kernel::Output::HTML::Layout')->AddJSData(
+            Key   => 'CustomerSearchItemIDs',
+            Value => \@CustomerSearchItemIDs,
+        );
     }
 
     return 1;
