@@ -9,3 +9,4 @@ DeployOTRSPackages:
  - OTRSCodePolicy@master
  - GeneralCatalog@master
  - ITSMCore@master
+ - ImportExport@master
