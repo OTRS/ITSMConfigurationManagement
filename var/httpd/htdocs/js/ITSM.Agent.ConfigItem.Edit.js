@@ -47,6 +47,14 @@ ITSM.Agent.ConfigItem.Edit = (function (TargetNS) {
             // fixed in OTRS 3.0.5, this line remains here for backwards compatibility reasons
             $('#ClassItem').removeClass('PreventMultipleSubmits');
         });
+
+        // Register return key.
+        $('#ClassItem').off('keypress.FilterInput').on('keypress.FilterInput', function (Event) {
+            if ((Event.charCode || Event.keyCode) === 13) {
+                $('#SubmitButton').click();
+                return false;
+            }
+        });
     };
 
     Core.Init.RegisterNamespace(TargetNS, 'APP_MODULE');
