@@ -183,8 +183,11 @@ sub TableCreateComplex {
         return;
     }
 
+    my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
+    my $ConfigItemObject     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+
     # get and remember the Deployment state colors
-    my $DeploymentStatesList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
+    my $DeploymentStatesList = $GeneralCatalogObject->ItemList(
         Class => 'ITSM::ConfigItem::DeploymentState',
     );
 
@@ -192,7 +195,7 @@ sub TableCreateComplex {
     for my $ItemID ( sort keys %{$DeploymentStatesList} ) {
 
         # get deployment state preferences
-        my %Preferences = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->GeneralCatalogPreferencesGet(
+        my %Preferences = $GeneralCatalogObject->GeneralCatalogPreferencesGet(
             ItemID => $ItemID,
         );
 
@@ -267,6 +270,9 @@ sub TableCreateComplex {
             keys %{$ConfigItemList}
             )
         {
+            my $ConfigItemData = $ConfigItemObject->ConfigItemGet(
+                ConfigItemID => $ConfigItemID,
+            );
 
             # extract version data
             my $Version = $ConfigItemList->{$ConfigItemID}->{Data};
@@ -275,7 +281,7 @@ sub TableCreateComplex {
             @ShowColumnsHeadlines = ();
 
             # get the version data, including all the XML data
-            my $VersionXMLData = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->VersionGet(
+            my $VersionXMLData = $ConfigItemObject->VersionGet(
                 ConfigItemID => $ConfigItemID,
                 XMLDataGet   => 1,
             );
@@ -322,7 +328,7 @@ sub TableCreateComplex {
                 },
                 {
                     Type    => 'TimeLong',
-                    Content => $Version->{CreateTime},
+                    Content => $ConfigItemData->{CreateTime},
                 },
             );
 
