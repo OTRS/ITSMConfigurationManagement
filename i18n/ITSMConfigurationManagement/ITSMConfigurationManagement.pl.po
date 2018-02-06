@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2017-11-15 13:08+0000\n"
-"PO-Revision-Date: 2017-11-15 13:09+0000\n"
+"POT-Creation-Date: 2018-02-06 20:04+0000\n"
+"PO-Revision-Date: 2018-02-06 20:05+0000\n"
 "Last-Translator: Udo Bretz\n"
 "Language-Team: Polish (http://www.transifex.com/otrs/OTRS/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -67,11 +67,11 @@ msgstr "Stan zdarzenia"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Link to another"
-msgstr ""
+msgstr "Połącz z innym"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Invalid Configuration Item number!"
-msgstr ""
+msgstr "Nieprawidłowy numer CI!"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "The number of another Configuration Item to link with."
@@ -332,7 +332,7 @@ msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "No Result!"
-msgstr ""
+msgstr "Brak Wyników!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "Config Item Search Results"
@@ -955,14 +955,6 @@ msgstr ""
 
 #. SysConfig
 msgid "Deployment State Color"
-msgstr ""
-
-#. SysConfig
-msgid "Deployment State Color."
-msgstr ""
-
-#. SysConfig
-msgid "Deployment State Type."
 msgstr ""
 
 #. SysConfig

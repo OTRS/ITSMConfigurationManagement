@@ -32,8 +32,8 @@ sub Data {
     $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = 'Akcja grupowa na CI';
     $Self->{Translation}->{'Deployment state'} = 'Stan wdrożenia';
     $Self->{Translation}->{'Incident state'} = 'Stan zdarzenia';
-    $Self->{Translation}->{'Link to another'} = '';
-    $Self->{Translation}->{'Invalid Configuration Item number!'} = '';
+    $Self->{Translation}->{'Link to another'} = 'Połącz z innym';
+    $Self->{Translation}->{'Invalid Configuration Item number!'} = 'Nieprawidłowy numer CI!';
     $Self->{Translation}->{'The number of another Configuration Item to link with.'} = '';
 
     # Template: AgentITSMConfigItemDelete
@@ -128,7 +128,7 @@ sub Data {
     $Self->{Translation}->{'Invalid ClassID!'} = '';
     $Self->{Translation}->{'No ClassID is given!'} = '';
     $Self->{Translation}->{'No access rights for this class given!'} = '';
-    $Self->{Translation}->{'No Result!'} = '';
+    $Self->{Translation}->{'No Result!'} = 'Brak Wyników!';
     $Self->{Translation}->{'Config Item Search Results'} = '';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm

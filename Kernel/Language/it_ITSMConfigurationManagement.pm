@@ -323,7 +323,7 @@ sub Data {
     $Self->{Translation}->{'Module to generate ITSM config item statistics.'} = 'Modulo per generare le statistiche degli elementi di configurazione ITSM.';
     $Self->{Translation}->{'Object backend module registration for the import/export module.'} =
         '';
-    $Self->{Translation}->{'Overview.'} = '';
+    $Self->{Translation}->{'Overview.'} = 'Vista Globale.';
     $Self->{Translation}->{'Parameters for the deployment states color in the preferences view of the agent interface.'} =
         '';
     $Self->{Translation}->{'Parameters for the deployment states in the preferences view of the agent interface.'} =

@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2017-11-15 13:08+0000\n"
-"PO-Revision-Date: 2017-11-15 13:09+0000\n"
+"POT-Creation-Date: 2018-02-06 20:04+0000\n"
+"PO-Revision-Date: 2018-02-06 20:05+0000\n"
 "Last-Translator: Udo Bretz\n"
 "Language-Team: Swedish (http://www.transifex.com/otrs/OTRS/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -953,14 +953,6 @@ msgstr ""
 
 #. SysConfig
 msgid "Deployment State Color"
-msgstr ""
-
-#. SysConfig
-msgid "Deployment State Color."
-msgstr ""
-
-#. SysConfig
-msgid "Deployment State Type."
 msgstr ""
 
 #. SysConfig
