@@ -52,12 +52,18 @@ sub Run {
 
     $Self->Print("<yellow>Recalculating incident state for $CICount config items.</yellow>\n");
 
+    # Remember config item results through multiple runs of CurInciStateRecalc().
+    my %NewConfigItemIncidentState;
+    my %ScannedConfigItemIDs;
+
     my $Count = 0;
     CONFIGITEM:
     for my $ConfigItemID ( @{$ConfigItemsIDsRef} ) {
 
         my $Success = $Kernel::OM->Get('Kernel::System::ITSMConfigItem')->CurInciStateRecalc(
-            ConfigItemID => $ConfigItemID,
+            ConfigItemID               => $ConfigItemID,
+            NewConfigItemIncidentState => \%NewConfigItemIncidentState,
+            ScannedConfigItemIDs       => \%ScannedConfigItemIDs,
         );
 
         if ( !$Success ) {

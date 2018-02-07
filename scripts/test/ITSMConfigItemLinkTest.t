@@ -39,7 +39,8 @@ my $ServiceName    = 'UnitTestServiceTest' . $RandomID;
 my @ConfigItemIDs;
 my @ServiceIDs;
 
-my $CheckExpectedResults = sub {
+my $CheckExpectedResults;
+$CheckExpectedResults = sub {
 
     # get parameters
     my (%Param) = @_;
@@ -88,6 +89,25 @@ my $CheckExpectedResults = sub {
         }
     }
 
+    # Done for second run (after recalculation).
+    return 1 if $Param{Recalculate};
+
+    # Trigger recalculation of incident states for each config item.
+    my $ExitCode
+        = $Kernel::OM->Get('Kernel::System::Console::Command::Admin::ITSM::IncidentState::Recalculate')->Execute();
+    $Self->Is(
+        $ExitCode,
+        0,
+        "Admin::ITSM::IncidentState::Recalculate exit code",
+    );
+
+    # Check results again after recalculation (call myself recursively).
+    $CheckExpectedResults->(
+        %Param,
+        Recalculate => 1,
+    );
+
+    # Done for first run (before recalculation).
     return 1;
 };
 
