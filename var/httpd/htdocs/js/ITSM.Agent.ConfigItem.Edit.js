@@ -48,9 +48,9 @@ ITSM.Agent.ConfigItem.Edit = (function (TargetNS) {
             $('#ClassItem').removeClass('PreventMultipleSubmits');
         });
 
-        // Register return key.
+        // Register return key. But not in textareas.
         $('#ClassItem').off('keypress.FilterInput').on('keypress.FilterInput', function (Event) {
-            if ((Event.charCode || Event.keyCode) === 13) {
+            if ((Event.charCode || Event.keyCode) === 13 && ($(Event.target).prop('tagName') !== 'TEXTAREA')) {
                 $('#SubmitButton').click();
                 return false;
             }
