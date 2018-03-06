@@ -29,7 +29,7 @@ sub Data {
     $Self->{Translation}->{'Class'} = 'Clase';
 
     # Template: AgentITSMConfigItemBulk
-    $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = '';
+    $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = 'ITSM ConfigItem Acción Masiva';
     $Self->{Translation}->{'Deployment state'} = 'Estado de despliegue';
     $Self->{Translation}->{'Incident state'} = 'Estado del incidente';
     $Self->{Translation}->{'Link to another'} = 'Enlazar con otro';
@@ -60,7 +60,7 @@ sub Data {
     $Self->{Translation}->{'A generic ITSM Configuration Item table'} = 'Una tabla genérica de ítems de configuración de ITSM';
     $Self->{Translation}->{'Deployment State Type'} = 'Tipo de estado de implementación';
     $Self->{Translation}->{'Current Incident State'} = 'Estado Actual del Incidente';
-    $Self->{Translation}->{'Current Incident State Type'} = '';
+    $Self->{Translation}->{'Current Incident State Type'} = 'Estado actual del Tipo de incidente';
     $Self->{Translation}->{'Last changed'} = 'Última modificación';
 
     # Template: AgentITSMConfigItemSearch
@@ -78,62 +78,62 @@ sub Data {
     $Self->{Translation}->{'Version Incident State'} = 'Estado del incidente de la versión';
     $Self->{Translation}->{'Version Deployment State'} = 'Estado de la versión de implementación';
     $Self->{Translation}->{'Version Number'} = 'Número de versión';
-    $Self->{Translation}->{'Configuration Item Version Details'} = '';
+    $Self->{Translation}->{'Configuration Item Version Details'} = 'Elemento de configuración Detalles de la versión';
     $Self->{Translation}->{'Property'} = 'Propiedad';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
-    $Self->{Translation}->{'No access to Class is given!'} = '';
-    $Self->{Translation}->{'Overview: ITSM ConfigItem'} = '';
+    $Self->{Translation}->{'No access to Class is given!'} = '¡No se ha proporcionado acceso a Clase!';
+    $Self->{Translation}->{'Overview: ITSM ConfigItem'} = 'Resumen: ITSM ConfigItem';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
-    $Self->{Translation}->{'No ConfigItemID is given!'} = '';
-    $Self->{Translation}->{'You need at least one selected Configuration Item!'} = '';
+    $Self->{Translation}->{'No ConfigItemID is given!'} = '¡No se ha proporcionado ConfigItemID!';
+    $Self->{Translation}->{'You need at least one selected Configuration Item!'} = '¡Necesita al menos un elemento de configuración seleccionado!';
     $Self->{Translation}->{'You don\'t have write access to this configuration item: %s.'} =
-        '';
+        'No tiene permiso de escritura para este elemento de configuración: %s';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
-    $Self->{Translation}->{'Config item "%s" not found in database!'} = '';
-    $Self->{Translation}->{'Was not able to delete the configitem ID %s!'} = '';
-    $Self->{Translation}->{'No version found for ConfigItemID %s!'} = '';
+    $Self->{Translation}->{'Config item "%s" not found in database!'} = '¡Elemento de configuración "%s"  no se encontró en la base de datos!';
+    $Self->{Translation}->{'Was not able to delete the configitem ID %s!'} = '¡No fue posible eliminar el configitem ID %s!';
+    $Self->{Translation}->{'No version found for ConfigItemID %s!'} = '¡No se encontró Versión para ConfigItemID %s!';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
-    $Self->{Translation}->{'No ConfigItemID, DuplicateID or ClassID is given!'} = '';
-    $Self->{Translation}->{'No access is given!'} = '';
-    $Self->{Translation}->{'No definition was defined for class %s!'} = '';
+    $Self->{Translation}->{'No ConfigItemID, DuplicateID or ClassID is given!'} = '¡No se ha proporcionado ConfigItemID, DuplicateID o ClassID!';
+    $Self->{Translation}->{'No access is given!'} = '¡No se ha proporcionado acceso!';
+    $Self->{Translation}->{'No definition was defined for class %s!'} = '¡Ninguna definición fue definida para clase %s!';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
-    $Self->{Translation}->{'Can\'t show history, no ConfigItemID is given!'} = '';
-    $Self->{Translation}->{'Can\'t show history, no access rights given!'} = '';
-    $Self->{Translation}->{'New ConfigItem (ID=%s)'} = '';
-    $Self->{Translation}->{'New version (ID=%s)'} = '';
-    $Self->{Translation}->{'Deployment state updated (new=%s, old=%s)'} = '';
-    $Self->{Translation}->{'Incident state updated (new=%s, old=%s)'} = '';
-    $Self->{Translation}->{'ConfigItem (ID=%s) deleted'} = '';
-    $Self->{Translation}->{'Link to %s (type=%s) added'} = '';
-    $Self->{Translation}->{'Link to %s (type=%s) deleted'} = '';
-    $Self->{Translation}->{'ConfigItem definition updated (ID=%s)'} = '';
-    $Self->{Translation}->{'Name updated (new=%s, old=%s)'} = '';
-    $Self->{Translation}->{'Attribute %s updated from "%s" to "%s"'} = '';
-    $Self->{Translation}->{'Version %s deleted'} = '';
+    $Self->{Translation}->{'Can\'t show history, no ConfigItemID is given!'} = '¡No se puede mostrar el historial, no se ha proporcionado ConfigItemID!';
+    $Self->{Translation}->{'Can\'t show history, no access rights given!'} = '¡No se puede mostrar el historial, no se han proporcionado permisos de acceso!';
+    $Self->{Translation}->{'New ConfigItem (ID=%s)'} = 'Nuevo ConfigItem (ID=%s)';
+    $Self->{Translation}->{'New version (ID=%s)'} = 'Nueva versión (ID=%s)';
+    $Self->{Translation}->{'Deployment state updated (new=%s, old=%s)'} = 'Actualizado estado de despliegue (nuevo=%s, viejo=%s)';
+    $Self->{Translation}->{'Incident state updated (new=%s, old=%s)'} = 'Actualizado estado de incidencia (nuevo=%s,viejo=%s)';
+    $Self->{Translation}->{'ConfigItem (ID=%s) deleted'} = 'ConfigItem (ID=%s) eliminado';
+    $Self->{Translation}->{'Link to %s (type=%s) added'} = 'Enlace a %s (tipo=%s) añadido';
+    $Self->{Translation}->{'Link to %s (type=%s) deleted'} = 'Enlace a %s (tipo=%s) eliminado';
+    $Self->{Translation}->{'ConfigItem definition updated (ID=%s)'} = 'Actualizada definición de ConfigItem (ID=%s)';
+    $Self->{Translation}->{'Name updated (new=%s, old=%s)'} = 'Nombre actualizado (nuevo=%s,viejo=%s)';
+    $Self->{Translation}->{'Attribute %s updated from "%s" to "%s"'} = 'Atributo %s actualizado de "%s" a "%s"';
+    $Self->{Translation}->{'Version %s deleted'} = 'Versión %s eliminada';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
-    $Self->{Translation}->{'No ConfigItemID or VersionID is given!'} = '';
-    $Self->{Translation}->{'Can\'t show config item, no access rights given!'} = '';
-    $Self->{Translation}->{'ConfigItemID %s not found in database!'} = '';
-    $Self->{Translation}->{'VersionID %s not found in database!'} = '';
-    $Self->{Translation}->{'ConfigItem'} = '';
+    $Self->{Translation}->{'No ConfigItemID or VersionID is given!'} = '¡No se ha proporcionado ConfigItemID o VersionID!';
+    $Self->{Translation}->{'Can\'t show config item, no access rights given!'} = '¡No se puede mostrar el elemento de configuración, no se han proporcionado permisos de acceso!';
+    $Self->{Translation}->{'ConfigItemID %s not found in database!'} = '¡ConfigItemID %s no se encontró en la base de datos!';
+    $Self->{Translation}->{'VersionID %s not found in database!'} = '¡VersionID %s no se encontró en la base de datos!';
+    $Self->{Translation}->{'ConfigItem'} = 'ConfigItem';
     $Self->{Translation}->{'printed by %s at %s'} = 'impreso por %s en %s';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
-    $Self->{Translation}->{'Invalid ClassID!'} = '';
-    $Self->{Translation}->{'No ClassID is given!'} = '';
-    $Self->{Translation}->{'No access rights for this class given!'} = '';
+    $Self->{Translation}->{'Invalid ClassID!'} = '¡ClassID no es válida!';
+    $Self->{Translation}->{'No ClassID is given!'} = '¡No se ha proporcionado ClassID!';
+    $Self->{Translation}->{'No access rights for this class given!'} = '¡No se ha proporcionado permisos de acceso para esta clase!';
     $Self->{Translation}->{'No Result!'} = '¡Sin resultados!';
-    $Self->{Translation}->{'Config Item Search Results'} = '';
+    $Self->{Translation}->{'Config Item Search Results'} = 'Resultados de búsqueda de elemento de configuración';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
     $Self->{Translation}->{'Can\'t show item, no access rights for ConfigItem are given!'} =
-        '';
+        '¡No se puede mostrar el elemento, no se han proporcionado permisos de acceso para ConfigItem!';
     $Self->{Translation}->{'The deployment state of this config item'} = 'El estado de implementación de este elemento de configuración';
     $Self->{Translation}->{'The incident state of this config item'} = 'El estado de este elemento de configuración';
 
@@ -243,22 +243,22 @@ sub Data {
     $Self->{Translation}->{'Ok'} = 'Ok';
 
     # SysConfig
-    $Self->{Translation}->{'CMDB Settings'} = '';
+    $Self->{Translation}->{'CMDB Settings'} = 'Configuraciones CMDB';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
-        '';
-    $Self->{Translation}->{'Config Items'} = '';
-    $Self->{Translation}->{'Config item add.'} = '';
-    $Self->{Translation}->{'Config item edit.'} = '';
+        'Busque un nombre único solo dentro de la misma clase de ConfigItem (\'clase\') o globalmente (\'global\'), lo que significa que cada ConfigItem existente se tiene en cuenta cuando se buscan duplicados.';
+    $Self->{Translation}->{'Config Items'} = 'Elementos de configuración';
+    $Self->{Translation}->{'Config item add.'} = 'Añadir elemento de configuración';
+    $Self->{Translation}->{'Config item edit.'} = 'Editar elemento de configuración.';
     $Self->{Translation}->{'Config item event module that enables logging to history in the agent interface.'} =
         'Módulo de evento de elementos de configuración que habilita el acceso a la historia en la interfaz del agente.';
-    $Self->{Translation}->{'Config item history.'} = '';
-    $Self->{Translation}->{'Config item print.'} = '';
-    $Self->{Translation}->{'Config item zoom.'} = '';
-    $Self->{Translation}->{'ConfigItemNumber'} = '';
+    $Self->{Translation}->{'Config item history.'} = 'Historial del elemento de configuración.';
+    $Self->{Translation}->{'Config item print.'} = 'Imprimir elemento de configuración.';
+    $Self->{Translation}->{'Config item zoom.'} = 'Detallez del elemento de configuración.';
+    $Self->{Translation}->{'ConfigItemNumber'} = 'ConfigItemNumber';
     $Self->{Translation}->{'Configuration Item Limit'} = 'Límite de Elementos de Configuración';
-    $Self->{Translation}->{'Configuration Item limit per page.'} = '';
-    $Self->{Translation}->{'Configuration Management Database.'} = '';
-    $Self->{Translation}->{'Configuration item bulk module.'} = '';
+    $Self->{Translation}->{'Configuration Item limit per page.'} = 'Límite de elemento de configuración por página.';
+    $Self->{Translation}->{'Configuration Management Database.'} = 'Gestión de la Configuración de Bases de Datos';
+    $Self->{Translation}->{'Configuration item bulk module.'} = 'Elemento de configuración del módulo masivo';
     $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} =
         'Router backend de búsqueda de elementos de configuración de la interfaz del agente.';
     $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = 'Crea y gestiona las definiciones de los elementos de configuración.';
@@ -266,57 +266,57 @@ sub Data {
         'Definir acciones donde está disponible un botón de configuración en el widget de objetos vinculados (LinkObject::ViewMode = "complex"). Tenga en cuenta que estas acciones deben haber registrado los siguientes archivos JS y CSS: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js y Core.Agent.LinkObject.js.';
     $Self->{Translation}->{'Define the group with permissions.'} = 'Definir el grupo con permisos.';
     $Self->{Translation}->{'Defines Required permissions to create ITSM configuration items using the Generic Interface.'} =
-        '';
+        'Define los permisos necesarios para crear elementos de configuración de ITSM utilizando la interfaz genérica.';
     $Self->{Translation}->{'Defines Required permissions to delete ITSM configuration items using the Generic Interface.'} =
-        '';
+        'Define los permisos necesarios para eliminar elementos de configuración de ITSM mediante la interfaz genérica.';
     $Self->{Translation}->{'Defines Required permissions to get ITSM configuration items using the Generic Interface.'} =
-        '';
+        'Define los permisos necesarios para obtener elementos de configuración de ITSM utilizando la interfaz genérica.';
     $Self->{Translation}->{'Defines Required permissions to search ITSM configuration items using the Generic Interface.'} =
-        '';
+        'Define los permisos necesarios para buscar elementos de configuración de ITSM utilizando la interfaz genérica.';
     $Self->{Translation}->{'Defines Required permissions to update ITSM configuration items using the Generic Interface.'} =
-        '';
+        'Define los permisos necesarios para actualizar los elementos de configuración de ITSM mediante la interfaz genérica.';
     $Self->{Translation}->{'Defines an overview module to show the small view of a configuration item list.'} =
-        '';
+        'Define un módulo de resumen para mostrar la pequeña vista de una lista de elemento de configuración.';
     $Self->{Translation}->{'Defines regular expressions individually for each ConfigItem class to check the ConfigItem name and to show corresponding error messages.'} =
-        '';
+        'Define expresiones regulares individualmente para cada clase ConfigItem para verificar el nombre de ConfigItem y para mostrar los mensajes de error correspondientes.';
     $Self->{Translation}->{'Defines the default subobject of the class \'ITSMConfigItem\'.'} =
         'Define el subobjeto por default de la clase \'ITSMConfigItem\'.';
     $Self->{Translation}->{'Defines the number of rows for the CI definition editor in the admin interface.'} =
-        '';
+        'Define el número de filas para el editor de definiciones de CI en la interfaz de administración.';
     $Self->{Translation}->{'Defines the order of incident states from high (e.g. cricital) to low (e.g. functional).'} =
-        '';
+        'Define el orden de los estados de incidencia desde alto (por ejemplo, crítico) a bajo (por ejemplo, funcional).';
     $Self->{Translation}->{'Defines the relevant deployment states where linked tickets can affect the status of a CI.'} =
-        '';
+        'Define los estados de implementación relevantes donde los tickets vinculados pueden afectar el estado de un CI.';
     $Self->{Translation}->{'Defines the search limit for the AgentITSMConfigItem screen.'} =
-        '';
+        'Define el límite de búsqueda para la pantalla AgentITSMConfigItem.';
     $Self->{Translation}->{'Defines the search limit for the AgentITSMConfigItemSearch screen.'} =
-        '';
+        'Define el límite de búsqueda para la pantalla AgentITSMConfigItemSearch.';
     $Self->{Translation}->{'Defines the shown columns in the config item overview. This option has no effect on the position of the column. Note: Class column is always available if filter \'All\' is selected.'} =
-        '';
+        'Define las columnas mostradas en la descripción general del elemento de configuración. Esta opción no tiene efecto en la posición de la columna. Nota: La columna de clase siempre está disponible si se selecciona el filtro \'Todos\'.';
     $Self->{Translation}->{'Defines the shown columns in the config item search. This option has no effect on the position of the column.'} =
-        '';
+        'Define las columnas mostradas en la búsqueda de elementos de configuración. Esta opción no tiene efecto en la posición de la columna.';
     $Self->{Translation}->{'Defines the shown columns of CIs in the config item overview depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns.'} =
-        '';
+        'Define las columnas de los elementos de configuración que se muestran en la vista general del elemento de configuración, en función de la clase CI. Cada entrada debe ir precedida del nombre de la clase y dos puntos dobles (es decir, computadora: :). Hay algunos atributos de CI que son comunes a todos los elementos de configuración (ejemplo para la clase Computadora: Computadora :: Nombre, Computadora :: CurDeplState, Computadora :: CreateTime). Para mostrar los IC-Atributos individuales definidos en la Definición-CI, se debe utilizar el siguiente esquema (ejemplo para la clase Computadora): Computadora :: Disco Duro :: 1, Computadora :: Disco Duro :: 1 :: Capacidad :: 1, Computadora :: Disco Duro :: 2, Computadora :: Disco Duro :: 2 :: Capacidad :: 1. Si no hay ninguna entrada para una clase CI, las columnas predeterminadas se muestran como se define en la configuración ITSMConfigItem :: Frontend :: AgentITSMConfigItem ### ShowColumns.';
     $Self->{Translation}->{'Defines the shown columns of CIs in the config item search depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns.'} =
-        '';
+        'Define las columnas de los elementos de configuración mostrados en la búsqueda del elemento config dependiendo de la clase CI. Cada entrada debe ir precedida del nombre de la clase y dos puntos dobles (es decir, computadora: :). Hay algunos atributos de CI que son comunes a todos los elementos de configuración (ejemplo para la clase Computadora: Computadora :: Nombre, Computadora :: CurDeplState, Computadora :: CreateTime). Para mostrar los IC-Atributos individuales definidos en la Definición-CI, se debe utilizar el siguiente esquema (ejemplo para la clase Computadora): Computadora :: Disco Duro :: 1, Computadora :: Disco Duro :: 1 :: Capacidad :: 1, Computadora :: Disco Duro :: 2, Computadora :: Disco Duro :: 2 :: Capacidad :: 1. Si no hay ninguna entrada para una clase CI, las columnas predeterminadas se muestran como se define en la configuración ITSMConfigItem :: Frontend :: AgentITSMConfigItem ### ShowColumns.';
     $Self->{Translation}->{'Defines the shown columns of CIs in the link table complex view, depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown.'} =
-        '';
+        'Define las columnas de los elementos de configuración mostrados en la vista compleja de la tabla de enlaces, según la clase de CI. Cada entrada debe ir precedida del nombre de la clase y dos puntos dobles (es decir, computadora: :). Hay algunos atributos de CI que son comunes a todos los elementos de configuración (ejemplo para la clase Computadora: Computadora :: Nombre, Computadora :: CurDeplState, Computadora :: CreateTime). Para mostrar los IC-Atributos individuales definidos en la Definición-CI, se debe utilizar el siguiente esquema (ejemplo para la clase Computadora): Computadora :: Disco Duro :: 1, Computadora :: Disco Duro :: 1 :: Capacidad :: 1, Computadora :: Disco Duro :: 2, Computadora :: Disco Duro :: 2 :: Capacidad :: 1. Si no hay una entrada para una clase CI, se muestran las columnas predeterminadas.';
     $Self->{Translation}->{'Defines which type of link (named from the ticket perspective) can affect the status of a linked CI.'} =
-        '';
+        'Define qué tipo de enlace (nombrado desde la perspectiva del ticket) puede afectar el estado de un CI vinculado.';
     $Self->{Translation}->{'Defines which type of ticket can affect the status of a linked CI.'} =
-        '';
-    $Self->{Translation}->{'Delete Configuration Item'} = '';
-    $Self->{Translation}->{'Deployment State Color'} = '';
+        'Define qué tipo de ticket puede afectar el estado de un CI vinculado.';
+    $Self->{Translation}->{'Delete Configuration Item'} = 'Eliminar elemento de configuración';
+    $Self->{Translation}->{'Deployment State Color'} = 'Color del estado de despliegue';
     $Self->{Translation}->{'Duplicate'} = 'Duplicado';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
-        '';
+        'Permite que la característica de acción masiva del elemento de configuración para la interfaz del agente funcione en más de un elemento de configuración a la vez.';
     $Self->{Translation}->{'Enables configuration item bulk action feature only for the listed groups.'} =
-        '';
+        'Habilita la característica de acción masiva del elemento de configuración solo para los grupos enumerados.';
     $Self->{Translation}->{'Enables/disables the functionality to check ConfigItems for unique names. Before enabling this option you should check your system for already existing config items with duplicate names. You can do this with the script bin/otrs.ITSMConfigItemListDuplicates.pl.'} =
-        '';
+        'Habilita / deshabilita la funcionalidad para verificar ConfigItems para nombres únicos. Antes de habilitar esta opción, debe verificar en su sistema los elementos de configuración ya existentes con nombres duplicados. Puede hacer esto con el script bin/otrs.ITSMConfigItemListDuplicates.pl.';
     $Self->{Translation}->{'Event module to set configitem-status on ticket-configitem-link.'} =
-        '';
-    $Self->{Translation}->{'ITSM config item overview.'} = '';
+        'Módulo de eventos para configurar configitem-status en ticket-configitem-link.';
+    $Self->{Translation}->{'ITSM config item overview.'} = 'Descripción general del elemento de configuración de ITSM.';
     $Self->{Translation}->{'Module to check the group responsible for a class.'} = 'Módulo para verificar el grupo responsable de una clase.';
     $Self->{Translation}->{'Module to check the group responsible for a configuration item.'} =
         'Módulo para verificar el grupo responsable de un elemento de configuración.';
@@ -325,7 +325,7 @@ sub Data {
         'Registro del módulo de objeto backend para el módulo de importación/exportación.';
     $Self->{Translation}->{'Overview.'} = 'Vista general.';
     $Self->{Translation}->{'Parameters for the deployment states color in the preferences view of the agent interface.'} =
-        '';
+        'Los parámetros para la implementación indican el color en la vista de preferencias de la interfaz de agente.';
     $Self->{Translation}->{'Parameters for the deployment states in the preferences view of the agent interface.'} =
         'Parámetros para los estados de implementación en la vista de preferencias de la interfaz del agente.';
     $Self->{Translation}->{'Parameters for the example permission groups of the general catalog attributes.'} =
@@ -347,44 +347,44 @@ sub Data {
     $Self->{Translation}->{'Required permissions to use the print ITSM configuration item screen in the agent interface.'} =
         'Permisos necesarios para usar la ventana de impresión de elementos de configuración en la interfaz del agente.';
     $Self->{Translation}->{'Required privileges to delete config items.'} = 'Privilegios necesarios para eliminar los elementos de configuración.';
-    $Self->{Translation}->{'Search config items.'} = '';
+    $Self->{Translation}->{'Search config items.'} = 'Buscar elementos de configuración.';
     $Self->{Translation}->{'Selects the configuration item number generator module. "AutoIncrement" increments the configuration item number, the SystemID, the ConfigItemClassID and the counter are used. The format is "SystemID.ConfigItemClassID.Counter", e.g. 1205000004, 1205000005.'} =
         'Selecciona el módulo generador de números de los elementos de configuración. "AutoIncrementar" incrementa el número del elemento de configuración; el SystemID, el ConfigItemClassID y el contador son usados. El formato es "SystemID.ConfigItemClassID.Counter", por ejemplo: 1205000004, 1205000005.';
     $Self->{Translation}->{'Set the incident state of a CI automatically when a Ticket is Linked to a CI.'} =
-        '';
+        'Establezca el estado de incidente de un CI automáticamente cuando un ticket esté vinculado a un CI.';
     $Self->{Translation}->{'Sets the deployment state in the configuration item bulk screen of the agent interface.'} =
-        '';
+        'Establece el estado de implementación en la pantalla masiva del elemento de configuración de la interfaz de agente.';
     $Self->{Translation}->{'Sets the incident state in the configuration item bulk screen of the agent interface.'} =
-        '';
+        'Establece el estado del incidente en la pantalla masiva del elemento de configuración de la interfaz de agente.';
     $Self->{Translation}->{'Shows a link in the menu that allows linking a configuration item with another object in the config item zoom view of the agent interface.'} =
         'Muestra un link en el menú para vincular un elemento de configuración con otro objeto, en la vista detallada de dicho elemento de configuración de la interfaz del agente.';
     $Self->{Translation}->{'Shows a link in the menu to access the history of a configuration item in the configuration item overview of the agent interface.'} =
-        '';
+        'Muestra un enlace en el menú para acceder al historial de un elemento de configuración en la vista general del elemento de configuración de la interfaz de agente.';
     $Self->{Translation}->{'Shows a link in the menu to access the history of a configuration item in the its zoom view of the agent interface.'} =
         'Muestra un link en el menú para acceder a la historia de un elemento de configuracion en su vista detallada, en la interfaz del agente.';
     $Self->{Translation}->{'Shows a link in the menu to delete a configuration item in its zoom view of the agent interface.'} =
-        '';
+        'Muestra un enlace en el menú para eliminar un elemento de configuración en su vista ampliada de la interfaz de agente.';
     $Self->{Translation}->{'Shows a link in the menu to duplicate a configuration item in the configuration item overview of the agent interface.'} =
-        '';
+        'Muestra un enlace en el menú para duplicar un elemento de configuración en la descripción general del elemento de configuración de la interfaz de agente.';
     $Self->{Translation}->{'Shows a link in the menu to duplicate a configuration item in the its zoom view of the agent interface.'} =
         'Muestra un link en el menú para duplicar un elemento de configuracion en su vista detallada, en la interfaz del agente.';
     $Self->{Translation}->{'Shows a link in the menu to edit a configuration item in the its zoom view of the agent interface.'} =
         'Muestra un link en el menú para editar un elemento de configuracion en su vista detallada, en la interfaz del agente.';
     $Self->{Translation}->{'Shows a link in the menu to go back in the configuration item zoom view of the agent interface.'} =
-        '';
+        'Muestra un enlace en el menú para volver a la vista de zoom de elemento de configuración de la interfaz de agente.';
     $Self->{Translation}->{'Shows a link in the menu to print a configuration item in the its zoom view of the agent interface.'} =
         'Muestra un link en el menú para imprimir un elemento de configuracion en su vista detallada, en la interfaz del agente.';
     $Self->{Translation}->{'Shows a link in the menu to zoom into a configuration item in the configuration item overview of the agent interface.'} =
-        '';
+        'Muestra un enlace en el menú para acercarse a un elemento de configuración en la vista general del elemento de configuración de la interfaz de agente.';
     $Self->{Translation}->{'Shows the config item history (reverse ordered) in the agent interface.'} =
         'Muestra la historia de los elementos de configuración (ordenados inversamente) en la interfaz del agente.';
     $Self->{Translation}->{'The identifier for a configuration item, e.g. ConfigItem#, MyConfigItem#. The default is ConfigItem#.'} =
-        '';
+        'El identificador de un elemento de configuración, por ejemplo. ConfigItem #, MyConfigItem #. El valor por defecto es ConfigItem #.';
     $Self->{Translation}->{'class'} = 'clase';
     $Self->{Translation}->{'global'} = 'global';
-    $Self->{Translation}->{'postproductive'} = '';
-    $Self->{Translation}->{'preproductive'} = '';
-    $Self->{Translation}->{'productive'} = '';
+    $Self->{Translation}->{'postproductive'} = 'postproductivo';
+    $Self->{Translation}->{'preproductive'} = 'preproductivo';
+    $Self->{Translation}->{'productive'} = 'productivo';
 
 
     push @{ $Self->{JavaScriptStrings} // [] }, (
