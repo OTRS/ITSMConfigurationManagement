@@ -230,6 +230,11 @@
         <Navigation>Frontend::Agent::ModuleRegistration::Loader</Navigation>
         <Value>
             <Hash>
+                <Item Key="CSS">
+                    <Array>
+                        <Item>ITSM.Agent.ConfigItem.Edit.css</Item>
+                    </Array>
+                </Item>
                 <Item Key="JavaScript">
                     <Array>
                         <Item>ITSM.Agent.ConfigItem.CustomerSearch.js</Item>

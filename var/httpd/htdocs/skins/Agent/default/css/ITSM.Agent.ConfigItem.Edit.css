@@ -1,0 +1,18 @@
+/**
+ * @project     OTRS (http://www.otrs.org) - Agent Frontend
+ * @copyright   OTRS AG
+ * @license     AGPL (http://www.gnu.org/licenses/agpl.txt)
+ */
+
+/**
+ * @package     Skin "Default"
+ * @section     ITSM ConfigIten
+ */
+
+@media screen,projection,tv,handheld {
+
+ .Field button.DisableValidation  {
+	z-index: 0;
+}
+
+} /* end @media */
