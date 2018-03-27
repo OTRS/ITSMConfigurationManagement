@@ -20,7 +20,7 @@ our @ObjectDependencies = (
 
 =head1 NAME
 
-Kernel/System/LinkObject/ITSMConfigItem.pm - LinkObject module for ITSMConfigItem
+Kernel::System::LinkObject::ITSMConfigItem - LinkObject module for ITSMConfigItem
 
 =head2 new()
 

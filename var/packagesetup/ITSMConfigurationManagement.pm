@@ -32,7 +32,7 @@ our @ObjectDependencies = (
 
 =head1 NAME
 
-ITSMConfigurationManagement.pm - code to execute during package installation
+var::packagesetup::ITSMConfigurationManagement - code to execute during package installation
 
 =head1 DESCRIPTION
 
