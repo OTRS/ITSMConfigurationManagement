@@ -37,7 +37,7 @@ $Selenium->RunTest(
                 Class => 'ITSM::ConfigItem::DeploymentState',
                 Name  => $DeplState,
             );
-            push @DeplStateIDs, $DeplStateDataRef->{ItemID}
+            push @DeplStateIDs, $DeplStateDataRef->{ItemID};
         }
 
         # get needed objects
@@ -80,7 +80,7 @@ $Selenium->RunTest(
                 $VersionID,
                 "Version is created - ID $VersionID"
             );
-            push @VersionIDs, $VersionID
+            push @VersionIDs, $VersionID;
         }
 
         # create test user and login

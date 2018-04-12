@@ -748,7 +748,7 @@ sub _ConfigItemUpdate {
             Success      => 0,
             ErrorMessage => 'Configuration Item could not be updated, please contact the system'
                 . 'administrator'
-            }
+        };
     }
 
     # get the version ID of the config item before the update

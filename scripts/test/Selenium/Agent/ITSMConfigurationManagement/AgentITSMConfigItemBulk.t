@@ -36,7 +36,7 @@ $Selenium->RunTest(
                 Class => 'ITSM::ConfigItem::DeploymentState',
                 Name  => $DeplState,
             );
-            push @DeplStateIDs, $DeplStateDataRef->{ItemID}
+            push @DeplStateIDs, $DeplStateDataRef->{ItemID};
         }
 
         # get needed objects

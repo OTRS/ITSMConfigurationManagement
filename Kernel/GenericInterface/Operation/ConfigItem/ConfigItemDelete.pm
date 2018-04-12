@@ -190,7 +190,7 @@ sub Run {
         return {
             Success      => 0,
             ErrorMessage => 'Could not delete ConfigItems!',
-            }
+        };
     }
 
     return {
