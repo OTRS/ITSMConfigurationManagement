@@ -326,7 +326,7 @@ sub SearchInputCreate {
     my $ParamObject = $Kernel::OM->Get('Kernel::System::Web::Request');
 
     if ( $Param{Value} ) {
-        %GetParam = %{ $Param{Value} }
+        %GetParam = %{ $Param{Value} };
     }
     else {
         $GetParam{$Key} = $ParamObject->GetParam( Param => $Key );

@@ -187,7 +187,7 @@ sub Run {
 
                     if ( $Type[1] eq 'Target' ) {
                         $SourceKey = $MainConfigItemID;
-                        $TargetKey = $ConfigItemID
+                        $TargetKey = $ConfigItemID;
                     }
 
                     for my $ConfigItemIDPartner (@ConfigItemIDs) {
@@ -220,7 +220,7 @@ sub Run {
 
                         if ( $Type[1] eq 'Target' ) {
                             $SourceKey = $ConfigItemIDPartner;
-                            $TargetKey = $ConfigItemID
+                            $TargetKey = $ConfigItemID;
                         }
 
                         if ( $ConfigItemID ne $ConfigItemIDPartner ) {

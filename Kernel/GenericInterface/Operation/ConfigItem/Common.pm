@@ -882,7 +882,7 @@ sub CheckXMLData {
 
     return {
         Success => 1,
-        }
+    };
 }
 
 =item ReplaceXMLData()
@@ -1105,6 +1105,7 @@ sub FormatXMLData {
                     Content => $XMLData->{$RootKey},
                 }
                 ],
+                ;
         }
     }
 
@@ -1177,7 +1178,7 @@ sub InvertFormatXMLData {
                             }
                         }
                         else {
-                            $NewXMLData->{$RootHashKey}->[$Counter] = $Content
+                            $NewXMLData->{$RootHashKey}->[$Counter] = $Content;
                         }
 
                         $Counter++;
@@ -1206,7 +1207,7 @@ sub InvertFormatXMLData {
                             }
                         }
                         else {
-                            $NewXMLData->{$RootHashKey} = $Content
+                            $NewXMLData->{$RootHashKey} = $Content;
                         }
                     }
                 }
@@ -1303,7 +1304,7 @@ sub InvertReplaceXMLData {
             );
 
             # replace the value in the hash
-            $XMLData->{$ItemKey}->{$ItemKey} = $NewValue
+            $XMLData->{$ItemKey}->{$ItemKey} = $NewValue;
         }
         else {
 
@@ -1317,7 +1318,7 @@ sub InvertReplaceXMLData {
                 );
 
                 # replace the root value
-                $XMLData->{$ItemKey} = $NewValue
+                $XMLData->{$ItemKey} = $NewValue;
             }
         }
 
@@ -1587,16 +1588,16 @@ sub _ReplaceValue {
     if ( $Param{Input}->{Type} eq 'Date' ) {
 
         # run Date replace
-        $NewValue = $Self->ReplaceInputDate(%Param)
+        $NewValue = $Self->ReplaceInputDate(%Param);
     }
     elsif ( $Param{Input}->{Type} eq 'DateTime' ) {
 
         # run DateTime replace
-        $NewValue = $Self->ReplaceInputDateTime(%Param)
+        $NewValue = $Self->ReplaceInputDateTime(%Param);
     }
     else {
         # run General Catalog replace
-        $NewValue = $Self->ReplaceInputGeneralCatalog(%Param)
+        $NewValue = $Self->ReplaceInputGeneralCatalog(%Param);
     }
 
     return $NewValue;
@@ -1639,11 +1640,11 @@ sub _InvertReplaceValue {
     if ( $Param{Input}->{Type} eq 'Date' ) {
 
         # run Date replace
-        $NewValue = $Self->InvertReplaceInputDate(%Param)
+        $NewValue = $Self->InvertReplaceInputDate(%Param);
     }
     else {
         # run General Catalog replace
-        $NewValue = $Self->InvertReplaceInputGeneralCatalog(%Param)
+        $NewValue = $Self->InvertReplaceInputGeneralCatalog(%Param);
     }
 
     return $NewValue;
