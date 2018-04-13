@@ -644,7 +644,7 @@ sub _ConfigItemCreate {
             Success      => 0,
             ErrorMessage => 'Configuration Item could not be created, please contact the system'
                 . 'administrator',
-            }
+        };
     }
 
     # set attachments
@@ -680,7 +680,7 @@ sub _ConfigItemCreate {
             Success      => 0,
             ErrorMessage => 'Could not get new configuration item information, please contact the'
                 . ' system administrator',
-            }
+        };
     }
 
     return {

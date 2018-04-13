@@ -631,7 +631,7 @@ sub _ConfigItemSearch {
             my $InciStateID = $Self->{ReverseInciStateList}->{$InciState};
             push @InciStateIDs, $InciStateID;
         }
-        $SearchParams{InciStateIDs} = \@InciStateIDs
+        $SearchParams{InciStateIDs} = \@InciStateIDs;
     }
 
     # set search deployment states
@@ -641,7 +641,7 @@ sub _ConfigItemSearch {
             my $DeplStateID = $Self->{ReverseDeplStateList}->{$DeplState};
             push @DeplStateIDs, $DeplStateID;
         }
-        $SearchParams{DeplStateIDs} = \@DeplStateIDs
+        $SearchParams{DeplStateIDs} = \@DeplStateIDs;
     }
 
     my $RawXMLData = $ConfigItem->{CIXMLData};
@@ -840,7 +840,7 @@ sub _CheckSearchXMLData {
 
     return {
         Success => 1,
-        }
+    };
 }
 
 =item _CheckValue()

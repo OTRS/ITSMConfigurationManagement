@@ -292,7 +292,7 @@ sub SearchInputCreate {
     my %GetParam;
 
     if ( $Param{Value} ) {
-        %GetParam = %{ $Param{Value} }
+        %GetParam = %{ $Param{Value} };
     }
     else {
         $GetParam{$Key} = $Self->{ParamObject}->GetParam( Param => $Key );
