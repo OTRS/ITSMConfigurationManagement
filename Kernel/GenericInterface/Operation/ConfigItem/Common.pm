@@ -1104,8 +1104,7 @@ sub FormatXMLData {
                 {
                     Content => $XMLData->{$RootKey},
                 }
-                ],
-                ;
+            ];
         }
     }
 
