@@ -61,6 +61,7 @@
         <File Permission="660" Location="Kernel/Modules/AgentITSMConfigItemPrint.pm" />
         <File Permission="660" Location="Kernel/Modules/AgentITSMConfigItemSearch.pm" />
         <File Permission="660" Location="Kernel/Modules/AgentITSMConfigItemZoom.pm" />
+        <File Permission="660" Location="Kernel/Output/HTML/Dashboard/ITSMConfigItemGeneric.pm" />
         <File Permission="660" Location="Kernel/Output/HTML/ITSMConfigItem/LayoutCustomer.pm" />
         <File Permission="660" Location="Kernel/Output/HTML/ITSMConfigItem/LayoutCustomerCompany.pm" />
         <File Permission="660" Location="Kernel/Output/HTML/ITSMConfigItem/LayoutDate.pm" />
@@ -84,6 +85,7 @@
         <File Permission="660" Location="Kernel/Output/HTML/Templates/Standard/AgentITSMConfigItemOverviewSmall.tt" />
         <File Permission="660" Location="Kernel/Output/HTML/Templates/Standard/AgentITSMConfigItemSearch.tt" />
         <File Permission="660" Location="Kernel/Output/HTML/Templates/Standard/AgentITSMConfigItemZoom.tt" />
+        <File Permission="660" Location="Kernel/Output/HTML/Templates/Standard/AgentDashboardITSMConfigItemGeneric.tt" />
         <File Permission="660" Location="Kernel/System/ITSMConfigItem.pm" />
         <File Permission="660" Location="Kernel/System/Console/Command/Admin/ITSM/Configitem/ListDuplicates.pm" />
         <File Permission="660" Location="Kernel/System/Console/Command/Admin/ITSM/Configitem/Delete.pm" />
@@ -145,8 +147,10 @@
         <File Permission="660" Location="var/httpd/htdocs/js/ITSM.Agent.ConfigItem.Zoom.js" />
         <File Permission="660" Location="var/httpd/htdocs/js/ITSM.Agent.ConfigItem.Overview.js" />
         <File Permission="660" Location="var/httpd/htdocs/js/ITSM.UI.ConfigItemActionRow.js" />
+        <File Permission="660" Location="var/httpd/htdocs/js/ITSM.Agent.ConfigItem.Dashboard.js" />
         <File Permission="660" Location="var/httpd/htdocs/skins/Agent/default/css/ITSM.Agent.ConfigItem.Edit.css" />
         <File Permission="660" Location="var/packagesetup/ITSMConfigurationManagement.pm" />
+        <File Permission="660" Location="scripts/test/Selenium/Agent/ITSMConfigurationManagement/DashboardITSMConfigItemGeneric.t" />
     </Filelist>
     <DatabaseInstall Type="post">
         <TableCreate Name="configitem">

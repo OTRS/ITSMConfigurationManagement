@@ -830,6 +830,7 @@
             <Array>
                 <Item>ITSM.Agent.ConfigItem.Search.js</Item>
                 <Item>ITSM.UI.ConfigItemActionRow.js</Item>
+                <Item>ITSM.Agent.ConfigItem.Dashboard.js</Item>
             </Array>
         </Value>
     </Setting>
@@ -1139,4 +1140,141 @@
             </Hash>
         </Value>
     </Setting>
+
+    <Setting Name="AgentCustomerInformationCenter::Backend###0060-CIC-ITSMConfigItemCustomerCompany" Required="0" Valid="1">
+        <Description Translatable="1">Parameters for the dashboard backend of the customer company config item overview of the agent interface . "Limit" is the number of entries shown by default. "Group" is used to restrict the access to the plugin (e. g. Group: admin;group1;group2;). "Default" determines if the plugin is enabled by default or if the user needs to enable it manually. "CacheTTLLocal" is the cache time in minutes for the plugin.</Description>
+        <Navigation>Frontend::Agent::View::CustomerInformationCenter</Navigation>
+        <Value>
+            <Hash>
+                <Item Key="Module">Kernel::Output::HTML::Dashboard::ITSMConfigItemGeneric</Item>
+                <Item Key="Title" Translatable="1">Assigned CIs</Item>
+                <Item Key="Description" Translatable="1">CIs assigned to customer company</Item>
+                <Item Key="Attributes">CustomerCompany</Item>
+                <Item Key="Limit">10</Item>
+                <Item Key="Permission">ro</Item>
+                <Item Key="Block">ContentLarge</Item>
+                <Item Key="Group"></Item>
+                <Item Key="Default">1</Item>
+                <Item Key="CacheTTLLocal">0.5</Item>
+                <Item Key="ConfigItemKey">
+                    <Hash>
+                    </Hash>
+                </Item>
+                <Item Key="DefaultColumns">
+                    <Hash>
+                        <DefaultItem ValueType="Select">
+                            <Item ValueType="Option" Value="0" Translatable="1">0 - Disabled</Item>
+                            <Item ValueType="Option" Value="1" Translatable="1">1 - Enabled</Item>
+                        </DefaultItem>
+                        <Item Key="CurInciSignal" SelectedID="1"></Item>
+                        <Item Key="CurDeplSignal" SelectedID="1"></Item>
+                        <Item Key="Number" SelectedID="1"></Item>
+                        <Item Key="Name" SelectedID="1"></Item>
+                        <Item Key="Class" SelectedID="0"></Item>
+                        <Item Key="CurDeplState" SelectedID="1"></Item>
+                        <Item Key="CurDeplStateType" SelectedID="0"></Item>
+                        <Item Key="CurInciState" SelectedID="1"></Item>
+                        <Item Key="CurInciStateType" SelectedID="0"></Item>
+                        <Item Key="LastChanged" SelectedID="1"></Item>
+                    </Hash>
+                </Item>
+            </Hash>
+        </Value>
+    </Setting>
+    <Setting Name="Frontend::Agent::CustomerInformationCenter::ITSMConfigItem###ShowColumnsByClass" Required="0" Valid="0">
+        <Description Translatable="1">Defines the shown columns of CIs in the config item widget depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting AgentCustomerInformationCenter::Backend###0060-CIC-ITSMConfigItemCustomerCompany (key DefaultColumns).</Description>
+        <Navigation>Frontend::Agent::View::CustomerInformationCenter</Navigation>
+        <Value>
+            <Array>
+                <Item>Computer::Name</Item>
+                <Item>Computer::Number</Item>
+                <Item>Computer::CurInciSignal</Item>
+                <Item>Computer::CurDeplSignal</Item>
+                <Item>Computer::CurDeplState</Item>
+                <Item>Computer::HardDisk::1</Item>
+                <Item>Computer::HardDisk::1::Capacity::1</Item>
+                <Item>Computer::HardDisk::2</Item>
+                <Item>Computer::HardDisk::2::Capacity::1</Item>
+                <Item>Computer::HardDisk::3</Item>
+                <Item>Computer::HardDisk::3::Capacity::1</Item>
+                <Item>Computer::WarrantyExpirationDate::1</Item>
+                <Item>Computer::CreateTime</Item>
+                <Item>Location::CurInciSignal</Item>
+                <Item>Location::Number</Item>
+                <Item>Location::Type::1</Item>
+                <Item>Location::Name</Item>
+                <Item>Location::Address::1</Item>
+                <Item>Location::LastChanged</Item>
+            </Array>
+        </Value>
+    </Setting>
+
+    <Setting Name="AgentCustomerUserInformationCenter::Backend###0060-CUIC-ITSMConfigItemCustomerUser" Required="0" Valid="1">
+        <Description Translatable="1">Parameters for the dashboard backend of the customer company config item overview of the agent interface . "Limit" is the number of entries shown by default. "Group" is used to restrict the access to the plugin (e. g. Group: admin;group1;group2;). "Default" determines if the plugin is enabled by default or if the user needs to enable it manually. "CacheTTLLocal" is the cache time in minutes for the plugin.</Description>
+        <Navigation>Frontend::Agent::View::CustomerUserInformationCenter</Navigation>
+        <Value>
+            <Hash>
+                <Item Key="Module">Kernel::Output::HTML::Dashboard::ITSMConfigItemGeneric</Item>
+                <Item Key="Title" Translatable="1">Assigned CIs</Item>
+                <Item Key="Description" Translatable="1">CIs assigned to customer user</Item>
+                <Item Key="Attributes">Customer</Item>
+                <Item Key="Limit">10</Item>
+                <Item Key="Permission">ro</Item>
+                <Item Key="Block">ContentLarge</Item>
+                <Item Key="Group"></Item>
+                <Item Key="Default">1</Item>
+                <Item Key="CacheTTLLocal">0.5</Item>
+                <Item Key="ConfigItemKey">
+                    <Hash>
+                    </Hash>
+                </Item>
+                <Item Key="DefaultColumns">
+                    <Hash>
+                        <DefaultItem ValueType="Select">
+                            <Item ValueType="Option" Value="0" Translatable="1">0 - Disabled</Item>
+                            <Item ValueType="Option" Value="1" Translatable="1">1 - Enabled</Item>
+                        </DefaultItem>
+                        <Item Key="CurInciSignal" SelectedID="1"></Item>
+                        <Item Key="CurDeplSignal" SelectedID="1"></Item>
+                        <Item Key="Number" SelectedID="1"></Item>
+                        <Item Key="Name" SelectedID="1"></Item>
+                        <Item Key="Class" SelectedID="0"></Item>
+                        <Item Key="CurDeplState" SelectedID="1"></Item>
+                        <Item Key="CurDeplStateType" SelectedID="0"></Item>
+                        <Item Key="CurInciState" SelectedID="1"></Item>
+                        <Item Key="CurInciStateType" SelectedID="0"></Item>
+                        <Item Key="LastChanged" SelectedID="1"></Item>
+                    </Hash>
+                </Item>
+            </Hash>
+        </Value>
+    </Setting>
+    <Setting Name="Frontend::Agent::CustomerUserInformationCenter::ITSMConfigItem###ShowColumnsByClass" Required="0" Valid="0">
+        <Description Translatable="1">Defines the shown columns of CIs in the config item widget depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting AgentCustomerInformationCenter::Backend###0060-CIC-ITSMConfigItemCustomerCompany (key DefaultColumns).</Description>
+        <Navigation>Frontend::Agent::View::CustomerUserInformationCenter</Navigation>
+        <Value>
+            <Array>
+                <Item>Computer::Name</Item>
+                <Item>Computer::Number</Item>
+                <Item>Computer::CurInciSignal</Item>
+                <Item>Computer::CurDeplSignal</Item>
+                <Item>Computer::CurDeplState</Item>
+                <Item>Computer::HardDisk::1</Item>
+                <Item>Computer::HardDisk::1::Capacity::1</Item>
+                <Item>Computer::HardDisk::2</Item>
+                <Item>Computer::HardDisk::2::Capacity::1</Item>
+                <Item>Computer::HardDisk::3</Item>
+                <Item>Computer::HardDisk::3::Capacity::1</Item>
+                <Item>Computer::WarrantyExpirationDate::1</Item>
+                <Item>Computer::CreateTime</Item>
+                <Item>Location::CurInciSignal</Item>
+                <Item>Location::Number</Item>
+                <Item>Location::Type::1</Item>
+                <Item>Location::Name</Item>
+                <Item>Location::Address::1</Item>
+                <Item>Location::LastChanged</Item>
+            </Array>
+        </Value>
+    </Setting>
+
 </otrs_config>

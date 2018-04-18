@@ -1195,7 +1195,7 @@ sub ConfigItemSearch {
 
     # add number to sql where array
     my @SQLWhere;
-    if ( defined $Param{Number} && $Param{Number} ne '' ) {
+    if ( defined $Param{Number} && $Param{Number} ne '' && ref $Param{Number} ne 'ARRAY' ) {
 
         # quote
         $Param{Number} = $Kernel::OM->Get('Kernel::System::DB')->Quote( $Param{Number} );
@@ -1212,14 +1212,22 @@ sub ConfigItemSearch {
             push @SQLWhere, "LOWER(configitem_number) = LOWER('$Param{Number}')";
         }
     }
+    elsif ( defined $Param{Number} && $Param{Number} ne '' && ref $Param{Number} eq 'ARRAY' ) {
+
+        # Create string.
+        my $InString = join q{, }, @{ $Param{Number} };
+
+        push @SQLWhere, "LOWER(configitem_number) IN ($InString)";
+    }
 
     # set array params
     my %ArrayParams = (
-        ClassIDs     => 'class_id',
-        DeplStateIDs => 'cur_depl_state_id',
-        InciStateIDs => 'cur_inci_state_id',
-        CreateBy     => 'create_by',
-        ChangeBy     => 'change_by',
+        ConfigItemIDs => 'id',
+        ClassIDs      => 'class_id',
+        DeplStateIDs  => 'cur_depl_state_id',
+        InciStateIDs  => 'cur_inci_state_id',
+        CreateBy      => 'create_by',
+        ChangeBy      => 'change_by',
     );
 
     ARRAYPARAM:

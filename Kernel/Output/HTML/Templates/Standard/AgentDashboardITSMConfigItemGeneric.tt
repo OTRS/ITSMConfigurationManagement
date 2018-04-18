@@ -1,0 +1,193 @@
+# --
+# Copyright (C) 2001-2018 OTRS AG, http://otrs.com/
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# --
+
+<div class="DashboardActions">
+
+    <ul class="ITSMConfigItemFilter Tab Actions">
+[% RenderBlockStart("OverviewNavBarFilter") %]
+[% RenderBlockStart("OverviewNavBarFilterItem") %]
+[% RenderBlockStart("OverviewNavBarFilterItemSelected") %]
+            <li class="Selected [% Data.CSS | html %] [% Data.Name | html %]">
+                <a href="#" id="DashboardAdditionalFilter[% Data.Name | html %]" data-filter="[% Data.Name | html %]" class="DashboardITSMConfigItemGenericFilter">[% Data.Name | html %] ([% Data.Count | html %]) </a>
+            </li>
+[% RenderBlockEnd("OverviewNavBarFilterItemSelected") %]
+[% RenderBlockStart("OverviewNavBarFilterItemSelectedNot") %]
+            <li class="[% Data.CSS | html %] [% Data.Name | html %]">
+                <a href="#" id="DashboardAdditionalFilter[% Data.Name | html %]" data-filter="[% Data.Name | html %]" class="DashboardITSMConfigItemGenericFilter">[% Data.Name | html %] ([% Data.Count | html %]) </a>
+            </li>
+[% RenderBlockEnd("OverviewNavBarFilterItemSelectedNot") %]
+[% RenderBlockEnd("OverviewNavBarFilterItem") %]
+[% RenderBlockEnd("OverviewNavBarFilter") %]
+    </ul>
+
+</div>
+
+[% RenderBlockStart("ContentLargeITSMConfigItemGenericFilterNavBar") %]
+<span class="Pagination">
+    [% Data.SiteNavBar %]
+</span>
+[% RenderBlockEnd("ContentLargeITSMConfigItemGenericFilterNavBar") %]
+
+#<!-- This form will not be submitted, we need it for the AJAX calls. -->
+<form action="[% Env("CGIHandle") %]" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="CustomerID" value="[% Data.CustomerID | html %]"/>
+    <input type="hidden" name="CustomerUserID" value="[% Data.CustomerUserID | html %]"/>
+    <input type="hidden" name="Filter[% Data.Name | html %]" id="Filter[% Data.Name | html %]" value="[% Data.FilterValue | html %]" />
+    <input type="hidden" name="AdditionalFilter[% Data.Name | html %]" id="AdditionalFilter[% Data.Name | html %]" value="[% Data.AdditionalFilterValue | html %]" />
+    <table class="DataTable">
+        <thead>
+            <tr>
+[% RenderBlockStart("RecordCurInciSignalHeader") %]
+                <th>
+                    <span>[% Translate("Incident State") | html %]</span>
+                </th>
+[% RenderBlockEnd("RecordCurInciSignalHeader") %]
+[% RenderBlockStart("RecordCurDeplSignalHeader") %]
+                <th>
+                    <span>[% Translate("Deployment State") | html %]</span>
+                </th>
+[% RenderBlockEnd("RecordCurDeplSignalHeader") %]
+[% RenderBlockStart("RecordNumberHeader") %]
+                <th class="DashboardHeader Number [% Data.CSS | html %]">
+                    <a id="OverviewControl[% Data.Column | html %]" name="OverviewControl[% Data.Column | html %]" href="#" data-column="Number">[% Config("ITSMConfigItem::Hook") %]</a>
+                </th>
+[% RenderBlockEnd("RecordNumberHeader") %]
+[% RenderBlockStart("RecordNameHeader") %]
+                <th class="DashboardHeader Name [% Data.CSS | html %]">
+                    <a id="OverviewControl[% Data.Column | html %]" name="OverviewControl[% Data.Column | html %]" href="#" data-column="Name">[% Translate("Name") | html %]</a>
+                </th>
+[% RenderBlockEnd("RecordNameHeader") %]
+[% RenderBlockStart("RecordClassHeader") %]
+                <th class="DashboardHeader Class [% Data.CSS | html %]">
+                    <a id="OverviewControl[% Data.Column | html %]" name="OverviewControl[% Data.Column | html %]" href="#" data-column="ClassID">[% Translate("Class") | html %]</a>
+                </th>
+[% RenderBlockEnd("RecordClassHeader") %]
+[% RenderBlockStart("RecordCurDeplStateHeader") %]
+                <th class="DashboardHeader CurDeplState [% Data.CSS | html %]">
+                    <a id="OverviewControl[% Data.Column | html %]" name="OverviewControl[% Data.Column | html %]" href="#" data-column="DeplStateID">[% Translate("Deployment State") | html %]</a>
+                </th>
+[% RenderBlockEnd("RecordCurDeplStateHeader") %]
+[% RenderBlockStart("RecordCurDeplStateTypeHeader") %]
+                <th>
+                    <span>[% Translate("Deployment State Type") | html %]</span>
+                </th>
+[% RenderBlockEnd("RecordCurDeplStateTypeHeader") %]
+[% RenderBlockStart("RecordCurInciStateHeader") %]
+                <th class="DashboardHeader CurInciState [% Data.CSS | html %]">
+                    <a id="OverviewControl[% Data.Column | html %]" name="OverviewControl[% Data.Column | html %]" href="#" data-column="InciStateID">[% Translate("Current Incident State") | html %]</a>
+                </th>
+[% RenderBlockEnd("RecordCurInciStateHeader") %]
+[% RenderBlockStart("RecordCurInciStateTypeHeader") %]
+                <th>
+                    <span>[% Translate("Current Incident State Type") | html %]</span>
+                </th>
+[% RenderBlockEnd("RecordCurInciStateTypeHeader") %]
+[% RenderBlockStart("RecordXMLAttributeHeader") %]
+                <th>
+                    <span>[% Translate(Data.XMLAttributeHeader) | html %]</span>
+                </th>
+[% RenderBlockEnd("RecordXMLAttributeHeader") %]
+[% RenderBlockStart("RecordLastChangedHeader") %]
+                <th class="DashboardHeader LastChanged [% Data.CSS | html %]">
+                    <a id="OverviewControl[% Data.Column | html %]" name="OverviewControl[% Data.Column | html %]" href="#" data-column="LastChanged">[% Translate("Last changed") | html %]</a>
+                </th>
+[% RenderBlockEnd("RecordLastChangedHeader") %]
+            </tr>
+        </thead>
+        <tbody>
+[% RenderBlockStart("NoDataFoundMsg") %]
+            <tr>
+                <td colspan="[% Data.TotalColumns | html %]">
+                    [% Translate("No data found.") | html %]
+                </td>
+            </tr>
+[% RenderBlockEnd("NoDataFoundMsg") %]
+[% RenderBlockStart("Record") %]
+            <tr id="ConfigItemID_[% Data.ConfigItemID | html %]" class="MasterAction">
+[% RenderBlockStart("RecordCurInciSignal") %]
+                <td title="[% Translate(Data.CurInciState) | html %]">
+                    <div class="Flag Small">
+                        <span class="[% Data.CurInciSignal | html %]">"[% Translate(Data.CurInciState) | html %]"</span>
+                    </div>
+                </td>
+[% RenderBlockEnd("RecordCurInciSignal") %]
+[% RenderBlockStart("RecordCurDeplSignal") %]
+                <td title="[% Translate(Data.CurDeplState) | html %]">
+                    <div class="Flag Small">
+                        <span class="[% Data.CurDeplSignal | html %]">"[% Translate(Data.CurDeplState) | html %]"</span>
+                    </div>
+                </td>
+[% RenderBlockEnd("RecordCurDeplSignal") %]
+[% RenderBlockStart("RecordNumber") %]
+                <td>
+[% RenderBlockStart("RecordNumberLinkStart") %]
+                    <a href="[% Env("Baselink") %]Action=AgentITSMConfigItemZoom;ConfigItemID=[% Data.ConfigItemID | uri %]" title="[% Data.Number | uri %]" class="MasterActionLink">
+[% RenderBlockEnd("RecordNumberLinkStart") %]
+                        [% Data.Number | html %]
+[% RenderBlockStart("RecordNumberLinkEnd") %]
+                    </a>
+[% RenderBlockEnd("RecordNumberLinkEnd") %]
+                </td>
+[% RenderBlockEnd("RecordNumber") %]
+[% RenderBlockStart("RecordName") %]
+                <td>
+[% RenderBlockStart("RecordNameLinkStart") %]
+                    <a href="[% Env("Baselink") %]Action=AgentITSMConfigItemZoom;ConfigItemID=[% Data.ConfigItemID | uri %]" title="[% Data.Name | uri %]" class="MasterActionLink">
+[% RenderBlockEnd("RecordNameLinkStart") %]
+                        <div title="[% Data.Name | html %]">[% Data.Name | truncate(40) | html %]</div>
+[% RenderBlockStart("RecordNameLinkEnd") %]
+                    </a>
+[% RenderBlockEnd("RecordNameLinkEnd") %]
+                </td>
+[% RenderBlockEnd("RecordName") %]
+[% RenderBlockStart("RecordClass") %]
+                <td>
+                    <div title="[% Translate(Data.Class) | html %]">[% Translate(Data.Class) | html %]</div>
+                </td>
+[% RenderBlockEnd("RecordClass") %]
+[% RenderBlockStart("RecordCurDeplState") %]
+                <td>
+                    <div title="[% Translate(Data.CurDeplState) | html %]">[% Translate(Data.CurDeplState) | html %]</div>
+                </td>
+[% RenderBlockEnd("RecordCurDeplState") %]
+[% RenderBlockStart("RecordCurDeplStateType") %]
+                <td>
+                    <div title="[% Translate(Data.CurDeplStateType) | html %]">[% Translate(Data.CurDeplStateType) | html %]</div>
+                </td>
+[% RenderBlockEnd("RecordCurDeplStateType") %]
+[% RenderBlockStart("RecordCurInciState") %]
+                <td>
+                    <div title="[% Translate(Data.CurInciState) | html %]">[% Translate(Data.CurInciState) | html %]</div>
+                </td>
+[% RenderBlockEnd("RecordCurInciState") %]
+[% RenderBlockStart("RecordCurInciStateType") %]
+                <td>
+                    <div title="[% Translate(Data.CurInciStateType) | html %]">[% Translate(Data.CurInciStateType) | html %]</div>
+                </td>
+[% RenderBlockEnd("RecordCurInciStateType") %]
+[% RenderBlockStart("RecordXMLAttribute") %]
+                <td>
+[% RenderBlockStart("RecordXMLAttributeLinkStart") %]
+                    <a href="[% Env("Baselink") %]Action=AgentITSMConfigItemZoom;ConfigItemID=[% Data.ConfigItemID | uri %]" title="[% Data.Number | uri %]" class="MasterActionLink">
+[% RenderBlockEnd("RecordXMLAttributeLinkStart") %]
+                        <div title="[% Data.XMLAttributeData | html %]">[% Data.XMLAttributeData | html %]</div>
+[% RenderBlockStart("RecordXMLAttributeLinkEnd") %]
+                    </a>
+[% RenderBlockEnd("RecordXMLAttributeLinkEnd") %]
+                </td>
+[% RenderBlockEnd("RecordXMLAttribute") %]
+[% RenderBlockStart("RecordLastChanged") %]
+                <td>
+                    <div title="[% Data.CreateTime | Localize("TimeLong") %]">[% Data.CreateTime | Localize("TimeLong") %]</div>
+                </td>
+[% RenderBlockEnd("RecordLastChanged") %]
+            </tr>
+[% RenderBlockEnd("Record") %]
+        </tbody>
+    </table>
+</form>
