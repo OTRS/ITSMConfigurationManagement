@@ -1687,8 +1687,11 @@ sub _FindChangedXMLValues {
         VersionID => $VersionList->[-1],
     );
 
-    # the short names for new and old xml data are used in the 'eval' below
-    my $NewXMLData = $Param{NewXMLData};
+    # The short names for new and old xml data are used in the 'eval' below,
+    #    and we do not want to modify the original parameter data NewXMLData
+    #    due to side effects of Perls autovivification feature used later here
+    #    in another eval statement.
+    my $NewXMLData = Storable::dclone( $Param{NewXMLData} );
     my $OldXMLData = $OldVersion->{XMLData};
 
     # get xml definition
