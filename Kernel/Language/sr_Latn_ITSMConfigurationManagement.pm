@@ -22,11 +22,19 @@ sub Data {
     $Self->{Translation}->{'Definition'} = 'Definicija';
     $Self->{Translation}->{'Change'} = 'Promeni';
 
+    # Template: AgentDashboardITSMConfigItemGeneric
+    $Self->{Translation}->{'Incident State'} = 'Stanje incidenta';
+    $Self->{Translation}->{'Deployment State'} = 'Status raspoređivanja';
+    $Self->{Translation}->{'Class'} = 'Klasa';
+    $Self->{Translation}->{'Deployment State Type'} = 'Tip statusa raspoređivanja';
+    $Self->{Translation}->{'Current Incident State'} = 'Trenutno stanje incidenta';
+    $Self->{Translation}->{'Current Incident State Type'} = 'Tip trenutnog statusa incidenta';
+    $Self->{Translation}->{'Last changed'} = 'Zadnji put promenjeno';
+
     # Template: AgentITSMConfigItemAdd
     $Self->{Translation}->{'Config Item'} = 'Konfiguraciona stavka';
     $Self->{Translation}->{'Filter for Classes'} = 'Filter za klase';
     $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = 'Izaberite klasu iz liste radi kreiranja nove konfiguracione stavke.';
-    $Self->{Translation}->{'Class'} = 'Klasa';
 
     # Template: AgentITSMConfigItemBulk
     $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = 'ITSM masovna akcija na tiketu';
@@ -43,8 +51,6 @@ sub Data {
     $Self->{Translation}->{'The name of this config item'} = 'Naziv ove konfiguracione stavke';
     $Self->{Translation}->{'Name is already in use by the ConfigItems with the following Number(s): %s'} =
         'Naziv je već u upotrebi na konfiguracionim stavkama broj: %s';
-    $Self->{Translation}->{'Deployment State'} = 'Status raspoređivanja';
-    $Self->{Translation}->{'Incident State'} = 'Stanje incidenta';
 
     # Template: AgentITSMConfigItemHistory
     $Self->{Translation}->{'History of Config Item: %s'} = 'Istorijat konfiguracione stavke: %s';
@@ -58,10 +64,6 @@ sub Data {
 
     # Template: AgentITSMConfigItemOverviewSmall
     $Self->{Translation}->{'A generic ITSM Configuration Item table'} = 'Generička tabela ITSM konfiguracione stavke';
-    $Self->{Translation}->{'Deployment State Type'} = 'Tip statusa raspoređivanja';
-    $Self->{Translation}->{'Current Incident State'} = 'Trenutno stanje incidenta';
-    $Self->{Translation}->{'Current Incident State Type'} = 'Tip trenutnog statusa incidenta';
-    $Self->{Translation}->{'Last changed'} = 'Zadnji put promenjeno';
 
     # Template: AgentITSMConfigItemSearch
     $Self->{Translation}->{'Create New Template'} = 'Napravi novi šablon';
@@ -136,6 +138,9 @@ sub Data {
         'Ne može se prikazati stavka, nije dat pristup za ovu konfiguracionu stavku!';
     $Self->{Translation}->{'The deployment state of this config item'} = 'Status primene ove konfiguracione stavke';
     $Self->{Translation}->{'The incident state of this config item'} = 'Status incidenta ove konfiguracione stavke';
+
+    # Perl Module: Kernel/Output/HTML/Dashboard/ITSMConfigItemGeneric.pm
+    $Self->{Translation}->{'Shown config items'} = '';
 
     # Perl Module: Kernel/Output/HTML/ITSMConfigItem/LayoutDate.pm
     $Self->{Translation}->{'Between'} = 'Između';
@@ -243,6 +248,9 @@ sub Data {
     $Self->{Translation}->{'Ok'} = 'U redu';
 
     # SysConfig
+    $Self->{Translation}->{'Assigned CIs'} = '';
+    $Self->{Translation}->{'CIs assigned to customer company'} = '';
+    $Self->{Translation}->{'CIs assigned to customer user'} = '';
     $Self->{Translation}->{'CMDB Settings'} = 'CMDB podešavanja';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         'Provera jedinstvenog imena samo u okviru iste klase konfiguracionih stavki (\'klasa\') ili globalno (\'globalno\'), što znači da je svaka postojeća Konfiguraciona stavka uzeta u obzir u proveri duplikata.';
@@ -299,6 +307,8 @@ sub Data {
         'Definiše prikazane kolone konfiguracionih stavki u pregledu u zavisnosti od klase. Svaki unos mora sadržati prefiks sa nazivom klase i dvotačkom (npr. Computer::). Postoji par atributa koji su zajednički za sve klase (npr. za klasu Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). Za prikaz pojedinačnih atributa iz definicije, morate koristiti sledeću šemu (primer za klasu Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. Ukoliko ne postoji unos za pojedinačnu klasu, biće prikazane podrazumevane kolone definisane u ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns.';
     $Self->{Translation}->{'Defines the shown columns of CIs in the config item search depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns.'} =
         'Definiše prikazane kolone konfiguracionih stavki u pretrazi u zavisnosti od klase. Svaki unos mora sadržati prefiks sa nazivom klase i dvotačkom (npr. Computer::). Postoji par atributa koji su zajednički za sve klase (npr. za klasu Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). Za prikaz pojedinačnih atributa iz definicije, morate koristiti sledeću šemu (primer za klasu Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. Ukoliko ne postoji unos za pojedinačnu klasu, biće prikazane podrazumevane kolone definisane u ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns.';
+    $Self->{Translation}->{'Defines the shown columns of CIs in the config item widget depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting AgentCustomerInformationCenter::Backend###0060-CIC-ITSMConfigItemCustomerCompany (key DefaultColumns).'} =
+        '';
     $Self->{Translation}->{'Defines the shown columns of CIs in the link table complex view, depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown.'} =
         'Definiše prikazane kolone konfiguracionih stavki u tabeli veza u zavisnosti od klase. Svaki unos mora sadržati prefiks sa nazivom klase i dvotačkom (npr. Computer::). Postoji par atributa koji su zajednički za sve klase (npr. za klasu Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). Za prikaz pojedinačnih atributa iz definicije, morate koristiti sledeću šemu (primer za klasu Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. Ukoliko ne postoji unos za pojedinačnu klasu, biće prikazane podrazumevane kolone.';
     $Self->{Translation}->{'Defines which type of link (named from the ticket perspective) can affect the status of a linked CI.'} =
@@ -324,6 +334,8 @@ sub Data {
     $Self->{Translation}->{'Object backend module registration for the import/export module.'} =
         'Registracija modula objekta za dodatak uvoz/izvoz.';
     $Self->{Translation}->{'Overview.'} = 'Pregled.';
+    $Self->{Translation}->{'Parameters for the dashboard backend of the customer company config item overview of the agent interface . "Limit" is the number of entries shown by default. "Group" is used to restrict the access to the plugin (e. g. Group: admin;group1;group2;). "Default" determines if the plugin is enabled by default or if the user needs to enable it manually. "CacheTTLLocal" is the cache time in minutes for the plugin.'} =
+        '';
     $Self->{Translation}->{'Parameters for the deployment states color in the preferences view of the agent interface.'} =
         'Parametri za boje statusa primene na prikazu postavki u interfejsu operatera.';
     $Self->{Translation}->{'Parameters for the deployment states in the preferences view of the agent interface.'} =

@@ -22,11 +22,19 @@ sub Data {
     $Self->{Translation}->{'Definition'} = 'Definición';
     $Self->{Translation}->{'Change'} = 'Modificar';
 
+    # Template: AgentDashboardITSMConfigItemGeneric
+    $Self->{Translation}->{'Incident State'} = 'Estado del Incidente';
+    $Self->{Translation}->{'Deployment State'} = 'Estado de la Implementación';
+    $Self->{Translation}->{'Class'} = 'Clase';
+    $Self->{Translation}->{'Deployment State Type'} = 'Tipo de estado de implementación';
+    $Self->{Translation}->{'Current Incident State'} = 'Estado Actual del Incidente';
+    $Self->{Translation}->{'Current Incident State Type'} = 'Estado actual del Tipo de incidente';
+    $Self->{Translation}->{'Last changed'} = 'Última modificación';
+
     # Template: AgentITSMConfigItemAdd
     $Self->{Translation}->{'Config Item'} = 'Elemento de Configuración';
     $Self->{Translation}->{'Filter for Classes'} = 'Filtro para Clases';
     $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = 'Seleccione una Clase de la lista para crear un nuevo Item de Configuración';
-    $Self->{Translation}->{'Class'} = 'Clase';
 
     # Template: AgentITSMConfigItemBulk
     $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = 'ITSM ConfigItem Acción Masiva';
@@ -43,8 +51,6 @@ sub Data {
     $Self->{Translation}->{'The name of this config item'} = 'El nombre de este elemento de configuración';
     $Self->{Translation}->{'Name is already in use by the ConfigItems with the following Number(s): %s'} =
         'El nombre ya esta en uso por Ítems de Configuración con los siguientes número(s): %s';
-    $Self->{Translation}->{'Deployment State'} = 'Estado de la Implementación';
-    $Self->{Translation}->{'Incident State'} = 'Estado del Incidente';
 
     # Template: AgentITSMConfigItemHistory
     $Self->{Translation}->{'History of Config Item: %s'} = 'Historial del Elemento de configuración: %s';
@@ -58,10 +64,6 @@ sub Data {
 
     # Template: AgentITSMConfigItemOverviewSmall
     $Self->{Translation}->{'A generic ITSM Configuration Item table'} = 'Una tabla genérica de ítems de configuración de ITSM';
-    $Self->{Translation}->{'Deployment State Type'} = 'Tipo de estado de implementación';
-    $Self->{Translation}->{'Current Incident State'} = 'Estado Actual del Incidente';
-    $Self->{Translation}->{'Current Incident State Type'} = 'Estado actual del Tipo de incidente';
-    $Self->{Translation}->{'Last changed'} = 'Última modificación';
 
     # Template: AgentITSMConfigItemSearch
     $Self->{Translation}->{'Create New Template'} = 'Crear nueva plantilla';
@@ -136,6 +138,9 @@ sub Data {
         '¡No se puede mostrar el elemento, no se han proporcionado permisos de acceso para ConfigItem!';
     $Self->{Translation}->{'The deployment state of this config item'} = 'El estado de implementación de este elemento de configuración';
     $Self->{Translation}->{'The incident state of this config item'} = 'El estado de este elemento de configuración';
+
+    # Perl Module: Kernel/Output/HTML/Dashboard/ITSMConfigItemGeneric.pm
+    $Self->{Translation}->{'Shown config items'} = '';
 
     # Perl Module: Kernel/Output/HTML/ITSMConfigItem/LayoutDate.pm
     $Self->{Translation}->{'Between'} = 'Entre';
@@ -243,6 +248,9 @@ sub Data {
     $Self->{Translation}->{'Ok'} = 'Ok';
 
     # SysConfig
+    $Self->{Translation}->{'Assigned CIs'} = '';
+    $Self->{Translation}->{'CIs assigned to customer company'} = '';
+    $Self->{Translation}->{'CIs assigned to customer user'} = '';
     $Self->{Translation}->{'CMDB Settings'} = 'Configuraciones CMDB';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         'Busque un nombre único solo dentro de la misma clase de ConfigItem (\'clase\') o globalmente (\'global\'), lo que significa que cada ConfigItem existente se tiene en cuenta cuando se buscan duplicados.';
@@ -299,6 +307,8 @@ sub Data {
         'Define las columnas de los elementos de configuración que se muestran en la vista general del elemento de configuración, en función de la clase CI. Cada entrada debe ir precedida del nombre de la clase y dos puntos dobles (es decir, computadora: :). Hay algunos atributos de CI que son comunes a todos los elementos de configuración (ejemplo para la clase Computadora: Computadora :: Nombre, Computadora :: CurDeplState, Computadora :: CreateTime). Para mostrar los IC-Atributos individuales definidos en la Definición-CI, se debe utilizar el siguiente esquema (ejemplo para la clase Computadora): Computadora :: Disco Duro :: 1, Computadora :: Disco Duro :: 1 :: Capacidad :: 1, Computadora :: Disco Duro :: 2, Computadora :: Disco Duro :: 2 :: Capacidad :: 1. Si no hay ninguna entrada para una clase CI, las columnas predeterminadas se muestran como se define en la configuración ITSMConfigItem :: Frontend :: AgentITSMConfigItem ### ShowColumns.';
     $Self->{Translation}->{'Defines the shown columns of CIs in the config item search depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns.'} =
         'Define las columnas de los elementos de configuración mostrados en la búsqueda del elemento config dependiendo de la clase CI. Cada entrada debe ir precedida del nombre de la clase y dos puntos dobles (es decir, computadora: :). Hay algunos atributos de CI que son comunes a todos los elementos de configuración (ejemplo para la clase Computadora: Computadora :: Nombre, Computadora :: CurDeplState, Computadora :: CreateTime). Para mostrar los IC-Atributos individuales definidos en la Definición-CI, se debe utilizar el siguiente esquema (ejemplo para la clase Computadora): Computadora :: Disco Duro :: 1, Computadora :: Disco Duro :: 1 :: Capacidad :: 1, Computadora :: Disco Duro :: 2, Computadora :: Disco Duro :: 2 :: Capacidad :: 1. Si no hay ninguna entrada para una clase CI, las columnas predeterminadas se muestran como se define en la configuración ITSMConfigItem :: Frontend :: AgentITSMConfigItem ### ShowColumns.';
+    $Self->{Translation}->{'Defines the shown columns of CIs in the config item widget depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting AgentCustomerInformationCenter::Backend###0060-CIC-ITSMConfigItemCustomerCompany (key DefaultColumns).'} =
+        '';
     $Self->{Translation}->{'Defines the shown columns of CIs in the link table complex view, depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown.'} =
         'Define las columnas de los elementos de configuración mostrados en la vista compleja de la tabla de enlaces, según la clase de CI. Cada entrada debe ir precedida del nombre de la clase y dos puntos dobles (es decir, computadora: :). Hay algunos atributos de CI que son comunes a todos los elementos de configuración (ejemplo para la clase Computadora: Computadora :: Nombre, Computadora :: CurDeplState, Computadora :: CreateTime). Para mostrar los IC-Atributos individuales definidos en la Definición-CI, se debe utilizar el siguiente esquema (ejemplo para la clase Computadora): Computadora :: Disco Duro :: 1, Computadora :: Disco Duro :: 1 :: Capacidad :: 1, Computadora :: Disco Duro :: 2, Computadora :: Disco Duro :: 2 :: Capacidad :: 1. Si no hay una entrada para una clase CI, se muestran las columnas predeterminadas.';
     $Self->{Translation}->{'Defines which type of link (named from the ticket perspective) can affect the status of a linked CI.'} =
@@ -324,6 +334,8 @@ sub Data {
     $Self->{Translation}->{'Object backend module registration for the import/export module.'} =
         'Registro del módulo de objeto backend para el módulo de importación/exportación.';
     $Self->{Translation}->{'Overview.'} = 'Vista general.';
+    $Self->{Translation}->{'Parameters for the dashboard backend of the customer company config item overview of the agent interface . "Limit" is the number of entries shown by default. "Group" is used to restrict the access to the plugin (e. g. Group: admin;group1;group2;). "Default" determines if the plugin is enabled by default or if the user needs to enable it manually. "CacheTTLLocal" is the cache time in minutes for the plugin.'} =
+        '';
     $Self->{Translation}->{'Parameters for the deployment states color in the preferences view of the agent interface.'} =
         'Los parámetros para la implementación indican el color en la vista de preferencias de la interfaz de agente.';
     $Self->{Translation}->{'Parameters for the deployment states in the preferences view of the agent interface.'} =

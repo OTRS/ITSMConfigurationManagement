@@ -22,11 +22,19 @@ sub Data {
     $Self->{Translation}->{'Definition'} = 'Definição';
     $Self->{Translation}->{'Change'} = 'Alterar';
 
+    # Template: AgentDashboardITSMConfigItemGeneric
+    $Self->{Translation}->{'Incident State'} = 'Estado de Incidente';
+    $Self->{Translation}->{'Deployment State'} = 'Estado de Implantação';
+    $Self->{Translation}->{'Class'} = 'Classe';
+    $Self->{Translation}->{'Deployment State Type'} = 'Tipo de Estado de Implantação';
+    $Self->{Translation}->{'Current Incident State'} = 'Estado do Incidente Atual';
+    $Self->{Translation}->{'Current Incident State Type'} = 'Estado Atual de Incidente por tipo';
+    $Self->{Translation}->{'Last changed'} = 'Última modificação';
+
     # Template: AgentITSMConfigItemAdd
     $Self->{Translation}->{'Config Item'} = 'Item de Configuração';
     $Self->{Translation}->{'Filter for Classes'} = 'Filtro para Classes';
     $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = 'Selecione uma classe a partir da lista para criar um novo item de configuração.';
-    $Self->{Translation}->{'Class'} = 'Classe';
 
     # Template: AgentITSMConfigItemBulk
     $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = 'Ação em Massa em ICs ITSM';
@@ -43,8 +51,6 @@ sub Data {
     $Self->{Translation}->{'The name of this config item'} = 'O nome deste item de configuração';
     $Self->{Translation}->{'Name is already in use by the ConfigItems with the following Number(s): %s'} =
         'Nome já em uso pelos ICs com os seguintes Número(s): %s';
-    $Self->{Translation}->{'Deployment State'} = 'Estado de Implantação';
-    $Self->{Translation}->{'Incident State'} = 'Estado de Incidente';
 
     # Template: AgentITSMConfigItemHistory
     $Self->{Translation}->{'History of Config Item: %s'} = 'Histórico do Item de Configuração: %s';
@@ -58,10 +64,6 @@ sub Data {
 
     # Template: AgentITSMConfigItemOverviewSmall
     $Self->{Translation}->{'A generic ITSM Configuration Item table'} = 'Uma tabela genérica de Itens de Configuração GSTI';
-    $Self->{Translation}->{'Deployment State Type'} = 'Tipo de Estado de Implantação';
-    $Self->{Translation}->{'Current Incident State'} = 'Estado do Incidente Atual';
-    $Self->{Translation}->{'Current Incident State Type'} = 'Estado Atual de Incidente por tipo';
-    $Self->{Translation}->{'Last changed'} = 'Última modificação';
 
     # Template: AgentITSMConfigItemSearch
     $Self->{Translation}->{'Create New Template'} = 'Criar novo Modelo';
@@ -105,16 +107,16 @@ sub Data {
     $Self->{Translation}->{'Can\'t show history, no ConfigItemID is given!'} = 'Não é possível exibir histórico. Nenhum ConfigItemID é dado!';
     $Self->{Translation}->{'Can\'t show history, no access rights given!'} = 'Não é possível exibir histórico. Nenhum direito de acesso é dado!';
     $Self->{Translation}->{'New ConfigItem (ID=%s)'} = '';
-    $Self->{Translation}->{'New version (ID=%s)'} = '';
-    $Self->{Translation}->{'Deployment state updated (new=%s, old=%s)'} = '';
-    $Self->{Translation}->{'Incident state updated (new=%s, old=%s)'} = '';
+    $Self->{Translation}->{'New version (ID=%s)'} = 'Nova versão (ID = %s)';
+    $Self->{Translation}->{'Deployment state updated (new=%s, old=%s)'} = 'Estado de implementação atualizado (novo=%s , antigo=%s)';
+    $Self->{Translation}->{'Incident state updated (new=%s, old=%s)'} = 'Estado de incidente atualizado (novo=%s, antigo=%s)';
     $Self->{Translation}->{'ConfigItem (ID=%s) deleted'} = '';
     $Self->{Translation}->{'Link to %s (type=%s) added'} = '';
     $Self->{Translation}->{'Link to %s (type=%s) deleted'} = '';
     $Self->{Translation}->{'ConfigItem definition updated (ID=%s)'} = '';
-    $Self->{Translation}->{'Name updated (new=%s, old=%s)'} = '';
-    $Self->{Translation}->{'Attribute %s updated from "%s" to "%s"'} = '';
-    $Self->{Translation}->{'Version %s deleted'} = '';
+    $Self->{Translation}->{'Name updated (new=%s, old=%s)'} = 'Nome atualizado (novo=%s, antigo=%s)';
+    $Self->{Translation}->{'Attribute %s updated from "%s" to "%s"'} = 'Atributo %s atualizado de "%s" para "%s"';
+    $Self->{Translation}->{'Version %s deleted'} = 'Versão %s excluída';
 
     # Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
     $Self->{Translation}->{'No ConfigItemID or VersionID is given!'} = 'Nenhum ConfigItemID ou VersionID é dado!';
@@ -136,6 +138,9 @@ sub Data {
         'Não foi possível exibir item. Nenhum direito de acesso para ConfigItem é dado!';
     $Self->{Translation}->{'The deployment state of this config item'} = 'O estado de implantação deste item de configuração';
     $Self->{Translation}->{'The incident state of this config item'} = 'O estado de incidente deste item de configuração';
+
+    # Perl Module: Kernel/Output/HTML/Dashboard/ITSMConfigItemGeneric.pm
+    $Self->{Translation}->{'Shown config items'} = '';
 
     # Perl Module: Kernel/Output/HTML/ITSMConfigItem/LayoutDate.pm
     $Self->{Translation}->{'Between'} = 'Entre';
@@ -243,7 +248,10 @@ sub Data {
     $Self->{Translation}->{'Ok'} = 'Ok';
 
     # SysConfig
-    $Self->{Translation}->{'CMDB Settings'} = '';
+    $Self->{Translation}->{'Assigned CIs'} = '';
+    $Self->{Translation}->{'CIs assigned to customer company'} = '';
+    $Self->{Translation}->{'CIs assigned to customer user'} = '';
+    $Self->{Translation}->{'CMDB Settings'} = 'Configurações do CMDB';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         'Verifique se o nome é único apenas dentro da mesma classe de IC (\'classe) ou globalmente (\'global\'), o que significa que cada IC existente é levado em conta ao procurar por duplicações.';
     $Self->{Translation}->{'Config Items'} = 'Itens de Configuração';
@@ -256,7 +264,7 @@ sub Data {
     $Self->{Translation}->{'Config item zoom.'} = 'Zoom de item de configuração.';
     $Self->{Translation}->{'ConfigItemNumber'} = 'ConfigItemNumber';
     $Self->{Translation}->{'Configuration Item Limit'} = 'Limite de Item de Configuração';
-    $Self->{Translation}->{'Configuration Item limit per page.'} = '';
+    $Self->{Translation}->{'Configuration Item limit per page.'} = 'Limite do item de configuração por página.';
     $Self->{Translation}->{'Configuration Management Database.'} = 'Configuração do Gerenciamento do Banco de Dados.';
     $Self->{Translation}->{'Configuration item bulk module.'} = 'Módulo de ação em massa em Itens de Configuração.';
     $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} =
@@ -299,13 +307,15 @@ sub Data {
         'Define as colunas de ICs exibidas na visão geral de itens de configuração, dependendo da classe do IC. Cada entrada deve ser prefixada com o nome da classe e duplo dois pontos (ex. Computador::). Há alguns atributos de IC que são comuns a todos os ICs (tal como a classe Computador: Computador::Nome, Computador::EstadoImplAtual, Computador::HoraCriacao). Para exibir atributos de IC individualmente como definido na definição do IC, o seguinte esquema deve ser usado (classe Computador, por exemplo): Computador::DiscoRigido::1, Computador::DiscoRigido::1::Capacidade::1, Computador::DiscoRigido::2, Computador::DiscoRigido::2::Capacidade::1. Se não há entrada para a classe IC, então as colunas padrão são exibidas como definido na configuração ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns.';
     $Self->{Translation}->{'Defines the shown columns of CIs in the config item search depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns.'} =
         'Define as colunas de ICs exibidas na tela de pesquisa de itens de configuração, dependendo da classe do IC. Cada entrada deve ser prefixada com o nome da classe e duplo dois pontos (ex. Computador::). Há alguns atributos de IC que são comuns a todos os ICs (tal como a classe Computador: Computador::Nome, Computador::EstadoImplAtual, Computador::HoraCriacao). Para exibir atributos de IC individualmente como definido na definição do IC, o seguinte esquema deve ser usado (classe Computador, por exemplo): Computador::DiscoRigido::1, Computador::DiscoRigido::1::Capacidade::1, Computador::DiscoRigido::2, Computador::DiscoRigido::2::Capacidade::1. Se não há entrada para a classe IC, então as colunas padrão são exibidas como definido na configuração ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns.';
+    $Self->{Translation}->{'Defines the shown columns of CIs in the config item widget depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting AgentCustomerInformationCenter::Backend###0060-CIC-ITSMConfigItemCustomerCompany (key DefaultColumns).'} =
+        '';
     $Self->{Translation}->{'Defines the shown columns of CIs in the link table complex view, depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown.'} =
         'Define as colunas de ICs exibidas na tela de tabela complexa de links, dependendo da classe do IC. Cada entrada deve ser prefixada com o nome da classe e duplo dois pontos (ex. Computador::). Há alguns atributos de IC que são comuns a todos os ICs (tal como a classe Computador: Computador::Nome, Computador::EstadoImplAtual, Computador::HoraCriacao). Para exibir atributos de IC individualmente como definido na definição do IC, o seguinte esquema deve ser usado (classe Computador, por exemplo): Computador::DiscoRigido::1, Computador::DiscoRigido::1::Capacidade::1, Computador::DiscoRigido::2, Computador::DiscoRigido::2::Capacidade::1. Se não há entrada para a classe IC, então as colunas padrão são exibidas.';
     $Self->{Translation}->{'Defines which type of link (named from the ticket perspective) can affect the status of a linked CI.'} =
         'Define qual tipo de associação (nomeado a partir da perspectiva do chamado) pode afetar o estado de um IC associado.';
     $Self->{Translation}->{'Defines which type of ticket can affect the status of a linked CI.'} =
         'Define qual tipo de chamado pode afetar o estado de um IC associado.';
-    $Self->{Translation}->{'Delete Configuration Item'} = '';
+    $Self->{Translation}->{'Delete Configuration Item'} = 'Excluir item de configuração';
     $Self->{Translation}->{'Deployment State Color'} = 'Cor do Estado de Implantação';
     $Self->{Translation}->{'Duplicate'} = 'Duplicar';
     $Self->{Translation}->{'Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time.'} =
@@ -324,6 +334,8 @@ sub Data {
     $Self->{Translation}->{'Object backend module registration for the import/export module.'} =
         'Modulo de registro de objeto para o módulo de importação/exportação.';
     $Self->{Translation}->{'Overview.'} = 'Visão Geral.';
+    $Self->{Translation}->{'Parameters for the dashboard backend of the customer company config item overview of the agent interface . "Limit" is the number of entries shown by default. "Group" is used to restrict the access to the plugin (e. g. Group: admin;group1;group2;). "Default" determines if the plugin is enabled by default or if the user needs to enable it manually. "CacheTTLLocal" is the cache time in minutes for the plugin.'} =
+        '';
     $Self->{Translation}->{'Parameters for the deployment states color in the preferences view of the agent interface.'} =
         'Parâmetros para a cor dos estados de implantação na tela de preferências da interface de atendente.';
     $Self->{Translation}->{'Parameters for the deployment states in the preferences view of the agent interface.'} =
@@ -382,9 +394,9 @@ sub Data {
         'O identificador para um item de configuração, ex. ItemConfig#, MeuItemConfig#. O padrão é ItemConfig#.';
     $Self->{Translation}->{'class'} = 'class';
     $Self->{Translation}->{'global'} = 'global';
-    $Self->{Translation}->{'postproductive'} = '';
-    $Self->{Translation}->{'preproductive'} = '';
-    $Self->{Translation}->{'productive'} = '';
+    $Self->{Translation}->{'postproductive'} = 'pós-produtivo';
+    $Self->{Translation}->{'preproductive'} = 'improdutivo';
+    $Self->{Translation}->{'productive'} = 'produtivo';
 
 
     push @{ $Self->{JavaScriptStrings} // [] }, (

@@ -22,11 +22,19 @@ sub Data {
     $Self->{Translation}->{'Definition'} = '記述';
     $Self->{Translation}->{'Change'} = '変更';
 
+    # Template: AgentDashboardITSMConfigItemGeneric
+    $Self->{Translation}->{'Incident State'} = 'インシデント状況';
+    $Self->{Translation}->{'Deployment State'} = 'デプロイ・ステータス';
+    $Self->{Translation}->{'Class'} = 'クラス';
+    $Self->{Translation}->{'Deployment State Type'} = 'デプロイ・ステータスのタイプ';
+    $Self->{Translation}->{'Current Incident State'} = '現在のインシデント・ステータス';
+    $Self->{Translation}->{'Current Incident State Type'} = '現在のインシデント・ステータスのタイプ';
+    $Self->{Translation}->{'Last changed'} = '最終変更日時';
+
     # Template: AgentITSMConfigItemAdd
     $Self->{Translation}->{'Config Item'} = '構成アイテム';
     $Self->{Translation}->{'Filter for Classes'} = 'クラスでフィルタ';
     $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = '新規の構成アイテムを作成するには、リストからクラスを選択してください。';
-    $Self->{Translation}->{'Class'} = 'クラス';
 
     # Template: AgentITSMConfigItemBulk
     $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = '構成アイテム一括アクション';
@@ -43,8 +51,6 @@ sub Data {
     $Self->{Translation}->{'The name of this config item'} = 'この 構成アイテム の名称';
     $Self->{Translation}->{'Name is already in use by the ConfigItems with the following Number(s): %s'} =
         'この名称はすでに Number(s): %s の構成アイテムで使用中です。';
-    $Self->{Translation}->{'Deployment State'} = 'デプロイ・ステータス';
-    $Self->{Translation}->{'Incident State'} = 'インシデント状況';
 
     # Template: AgentITSMConfigItemHistory
     $Self->{Translation}->{'History of Config Item: %s'} = '構成アイテムの履歴: %s';
@@ -58,10 +64,6 @@ sub Data {
 
     # Template: AgentITSMConfigItemOverviewSmall
     $Self->{Translation}->{'A generic ITSM Configuration Item table'} = 'ジェネリック構成アイテムのテーブル';
-    $Self->{Translation}->{'Deployment State Type'} = 'デプロイ・ステータスのタイプ';
-    $Self->{Translation}->{'Current Incident State'} = '現在のインシデント・ステータス';
-    $Self->{Translation}->{'Current Incident State Type'} = '現在のインシデント・ステータスのタイプ';
-    $Self->{Translation}->{'Last changed'} = '最終変更日時';
 
     # Template: AgentITSMConfigItemSearch
     $Self->{Translation}->{'Create New Template'} = '新規テンプレートを作成する';
@@ -136,6 +138,9 @@ sub Data {
         '構成アイテムを表示できません。構成アイテムのアクセス権は与えられていません！';
     $Self->{Translation}->{'The deployment state of this config item'} = 'この構成アイテムのデプロイ・ステータス';
     $Self->{Translation}->{'The incident state of this config item'} = 'この構成アイテムのインシデント状態';
+
+    # Perl Module: Kernel/Output/HTML/Dashboard/ITSMConfigItemGeneric.pm
+    $Self->{Translation}->{'Shown config items'} = '';
 
     # Perl Module: Kernel/Output/HTML/ITSMConfigItem/LayoutDate.pm
     $Self->{Translation}->{'Between'} = 'この間';
@@ -243,6 +248,9 @@ sub Data {
     $Self->{Translation}->{'Ok'} = 'Ok';
 
     # SysConfig
+    $Self->{Translation}->{'Assigned CIs'} = '';
+    $Self->{Translation}->{'CIs assigned to customer company'} = '';
+    $Self->{Translation}->{'CIs assigned to customer user'} = '';
     $Self->{Translation}->{'CMDB Settings'} = 'CMDBの設定';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         '同じConfigItemクラス（ \'class\'）内またはグローバル（ \'global\'）内でのみ一意の名前を確認します。これは、重複を検索するときに既存のConfigItemがすべて考慮されることを意味します。';
@@ -305,6 +313,8 @@ Computer::HardDisk::2::Capacity::1
 CIクラスのエントリがない場合は、ITSMConfigItem :: Frontend :: AgentITSMConfigItem ### ShowColumnsの設定で定義されているデフォルトの列が表示されます。';
     $Self->{Translation}->{'Defines the shown columns of CIs in the config item search depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns.'} =
         '';
+    $Self->{Translation}->{'Defines the shown columns of CIs in the config item widget depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting AgentCustomerInformationCenter::Backend###0060-CIC-ITSMConfigItemCustomerCompany (key DefaultColumns).'} =
+        '';
     $Self->{Translation}->{'Defines the shown columns of CIs in the link table complex view, depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown.'} =
         '';
     $Self->{Translation}->{'Defines which type of link (named from the ticket perspective) can affect the status of a linked CI.'} =
@@ -330,6 +340,8 @@ CIクラスのエントリがない場合は、ITSMConfigItem :: Frontend :: Age
     $Self->{Translation}->{'Object backend module registration for the import/export module.'} =
         'インポート/エクスポートモジュールのオブジェクトバックエンドモジュール登録';
     $Self->{Translation}->{'Overview.'} = '概要';
+    $Self->{Translation}->{'Parameters for the dashboard backend of the customer company config item overview of the agent interface . "Limit" is the number of entries shown by default. "Group" is used to restrict the access to the plugin (e. g. Group: admin;group1;group2;). "Default" determines if the plugin is enabled by default or if the user needs to enable it manually. "CacheTTLLocal" is the cache time in minutes for the plugin.'} =
+        '';
     $Self->{Translation}->{'Parameters for the deployment states color in the preferences view of the agent interface.'} =
         'デプロイメントのパラメータは、担当者Webインタフェースの環境設定ビューで色を示します。';
     $Self->{Translation}->{'Parameters for the deployment states in the preferences view of the agent interface.'} =

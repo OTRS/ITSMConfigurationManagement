@@ -22,11 +22,19 @@ sub Data {
     $Self->{Translation}->{'Definition'} = 'Definisi';
     $Self->{Translation}->{'Change'} = 'Ubah';
 
+    # Template: AgentDashboardITSMConfigItemGeneric
+    $Self->{Translation}->{'Incident State'} = 'Kondisi insiden';
+    $Self->{Translation}->{'Deployment State'} = 'Status penyebaran';
+    $Self->{Translation}->{'Class'} = 'Kelas';
+    $Self->{Translation}->{'Deployment State Type'} = 'Tipe status penyebaran';
+    $Self->{Translation}->{'Current Incident State'} = 'Kondisi insiden saat ini';
+    $Self->{Translation}->{'Current Incident State Type'} = 'Tipe Status insiden saat ini';
+    $Self->{Translation}->{'Last changed'} = 'Terakhir diubah';
+
     # Template: AgentITSMConfigItemAdd
     $Self->{Translation}->{'Config Item'} = 'Item konfigurasi';
     $Self->{Translation}->{'Filter for Classes'} = 'Saringan untuk kelas-kelas';
     $Self->{Translation}->{'Select a Class from the list to create a new Config Item.'} = 'Pilih satu kelas dari datar untuk membuat sebuah item konfigurasi baru';
-    $Self->{Translation}->{'Class'} = 'Kelas';
 
     # Template: AgentITSMConfigItemBulk
     $Self->{Translation}->{'ITSM ConfigItem Bulk Action'} = 'Tindakan masal ItemKonfigurasi ITSM';
@@ -43,8 +51,6 @@ sub Data {
     $Self->{Translation}->{'The name of this config item'} = 'Nama item konfigurasi ini';
     $Self->{Translation}->{'Name is already in use by the ConfigItems with the following Number(s): %s'} =
         'Nama ini telah di gunakan oleh ItemKonfigurasi dengan nomor(nomor-nomor) berikut: %s';
-    $Self->{Translation}->{'Deployment State'} = 'Status penyebaran';
-    $Self->{Translation}->{'Incident State'} = 'Kondisi insiden';
 
     # Template: AgentITSMConfigItemHistory
     $Self->{Translation}->{'History of Config Item: %s'} = '';
@@ -58,10 +64,6 @@ sub Data {
 
     # Template: AgentITSMConfigItemOverviewSmall
     $Self->{Translation}->{'A generic ITSM Configuration Item table'} = '';
-    $Self->{Translation}->{'Deployment State Type'} = 'Tipe status penyebaran';
-    $Self->{Translation}->{'Current Incident State'} = 'Kondisi insiden saat ini';
-    $Self->{Translation}->{'Current Incident State Type'} = 'Tipe Status insiden saat ini';
-    $Self->{Translation}->{'Last changed'} = 'Terakhir diubah';
 
     # Template: AgentITSMConfigItemSearch
     $Self->{Translation}->{'Create New Template'} = 'Buat Template baru';
@@ -136,6 +138,9 @@ sub Data {
         '';
     $Self->{Translation}->{'The deployment state of this config item'} = 'Status penyebaran item konfigurasi ini';
     $Self->{Translation}->{'The incident state of this config item'} = 'Status insiden item konfigurasi ini';
+
+    # Perl Module: Kernel/Output/HTML/Dashboard/ITSMConfigItemGeneric.pm
+    $Self->{Translation}->{'Shown config items'} = '';
 
     # Perl Module: Kernel/Output/HTML/ITSMConfigItem/LayoutDate.pm
     $Self->{Translation}->{'Between'} = 'Diantara';
@@ -243,6 +248,9 @@ sub Data {
     $Self->{Translation}->{'Ok'} = 'Ok';
 
     # SysConfig
+    $Self->{Translation}->{'Assigned CIs'} = '';
+    $Self->{Translation}->{'CIs assigned to customer company'} = '';
+    $Self->{Translation}->{'CIs assigned to customer user'} = '';
     $Self->{Translation}->{'CMDB Settings'} = '';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         'Periksa hanya nama unik saja di dalam kelas(\'kelas\') itemkonfigurasi yang sama atau secara global (\'global), yang berarti setiap ItemKonfigurasi yang ada akan diperhitungkan ketika mencari duplikat';
@@ -299,6 +307,8 @@ sub Data {
         'Definisikan kolom yang ditunjukan oleh CI di dalam gambaran item konfigurasi tergantung pada kelas CI. Setiap entri harus diawali dengan nama kelas dan dua tanda titik dua (contohnya komputer::). Ada beberapa CI-Atribut yang umum pada semua CI (Contoh untuk kelas Komputer: Komputer::Nama, Komputer::CurDeplState, Komputer::Waktupembuatan). Untuk menunjukan CI-Atribut secara individual seperti yang didefinisikan di dalam CI-Definisi, Skema berikut ini harus di gunakan (Contoh untuk kelas Komputer): Komputer::HardDisk::1, komputer::HardDisk::1::kapasitas::1, komputer::HardDisk::2, Komputer::HardDisk::2::Kapasitas::1. Jika tidak ada entri untuk sebuah kelas CI, Maka kolom default yang akan ditunjukan sesuai dengan yang di tentukan pada pengaturanITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns.';
     $Self->{Translation}->{'Defines the shown columns of CIs in the config item search depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns.'} =
         'Mendefinisikan kolom yang ditampilkan dari CI dalam pencarian config barang tergantung pada kelas CI. Setiap entri harus diawali dengan nama kelas dan titik dua ganda (i.e. Computer::). Ada beberapa CI-Atribut yang umum untuk semua CI (Contoh untuk Komputer kelas: Komputer :: Nama, Komputer :: CurDeplState, Komputer :: CreateTime). Untuk menunjukkan individu CI-Atribut sebagaimana didefinisikan dalam CI-Definition, skema berikut harus digunakan (misalnya untuk Komputer kelas):  Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. Jika tidak ada entri untuk kelas CI, maka kolom standar ditampilkan sebagaimana didefinisikan dalam pengaturan ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns.';
+    $Self->{Translation}->{'Defines the shown columns of CIs in the config item widget depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting AgentCustomerInformationCenter::Backend###0060-CIC-ITSMConfigItemCustomerCompany (key DefaultColumns).'} =
+        '';
     $Self->{Translation}->{'Defines the shown columns of CIs in the link table complex view, depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown.'} =
         'Mendefinisikan kolom yang ditampilkan dari CI di link tabel tampilan yang kompleks, tergantung pada kelas CI. Setiap entri harus diawali dengan nama kelas dan titik dua ganda (i.e. Computer::). Ada beberapa CI-Atribut yang umum untuk semua CI (Contoh untuk Komputer kelas: Komputer :: Nama, Komputer :: CurDeplState, Komputer :: CreateTime). Untuk menunjukkan individu CI-Atribut sebagaimana didefinisikan dalam CI-Definition, skema berikut harus digunakan (misalnya untuk Komputer kelas):  Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. Jika tidak ada entri untuk kelas CI, maka kolom standar ditampilkan sebagaimana didefinisikan dalam pengaturan ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns.';
     $Self->{Translation}->{'Defines which type of link (named from the ticket perspective) can affect the status of a linked CI.'} =
@@ -324,6 +334,8 @@ sub Data {
     $Self->{Translation}->{'Object backend module registration for the import/export module.'} =
         'Objek backend pendaftaran modul untuk modul impor / ekspor.';
     $Self->{Translation}->{'Overview.'} = '';
+    $Self->{Translation}->{'Parameters for the dashboard backend of the customer company config item overview of the agent interface . "Limit" is the number of entries shown by default. "Group" is used to restrict the access to the plugin (e. g. Group: admin;group1;group2;). "Default" determines if the plugin is enabled by default or if the user needs to enable it manually. "CacheTTLLocal" is the cache time in minutes for the plugin.'} =
+        '';
     $Self->{Translation}->{'Parameters for the deployment states color in the preferences view of the agent interface.'} =
         'Parameter untuk warna state penyebaran dalam preferensi melihat antarmuka agen.';
     $Self->{Translation}->{'Parameters for the deployment states in the preferences view of the agent interface.'} =

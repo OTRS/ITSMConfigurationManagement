@@ -1,5 +1,6 @@
 # 
 # Translators:
+# Arthur  Guimarães Yuan <arthuryuan23@hotmail.com>, 2018
 # Flávio Veras <flaviove@gmail.com>, 2017
 # Glauber Caires <glaubercaires@gmail.com>, 2016
 # Murilo Moreira de Oliveira <murilo.moreira@gmail.com>, 2014
@@ -11,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
 "POT-Creation-Date: 2018-02-06 20:04+0000\n"
-"PO-Revision-Date: 2018-02-06 20:05+0000\n"
-"Last-Translator: Udo Bretz\n"
+"PO-Revision-Date: 2018-04-10 16:36+0000\n"
+"Last-Translator: Arthur  Guimarães Yuan <arthuryuan23@hotmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otrs/OTRS/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -259,15 +260,15 @@ msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "New version (ID=%s)"
-msgstr ""
+msgstr "Nova versão (ID = %s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Deployment state updated (new=%s, old=%s)"
-msgstr ""
+msgstr "Estado de implementação atualizado (novo=%s , antigo=%s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Incident state updated (new=%s, old=%s)"
-msgstr ""
+msgstr "Estado de incidente atualizado (novo=%s, antigo=%s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "ConfigItem (ID=%s) deleted"
@@ -287,15 +288,15 @@ msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Name updated (new=%s, old=%s)"
-msgstr ""
+msgstr "Nome atualizado (novo=%s, antigo=%s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Attribute %s updated from \"%s\" to \"%s\""
-msgstr ""
+msgstr "Atributo %s atualizado de \"%s\" para \"%s\""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Version %s deleted"
-msgstr ""
+msgstr "Versão %s excluída"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "No ConfigItemID or VersionID is given!"
@@ -735,7 +736,7 @@ msgstr "Ok"
 
 #. SysConfig
 msgid "CMDB Settings"
-msgstr ""
+msgstr "Configurações do CMDB"
 
 #. SysConfig
 msgid ""
@@ -784,7 +785,7 @@ msgstr "Limite de Item de Configuração"
 
 #. SysConfig
 msgid "Configuration Item limit per page."
-msgstr ""
+msgstr "Limite do item de configuração por página."
 
 #. SysConfig
 msgid "Configuration Management Database."
@@ -954,7 +955,7 @@ msgstr "Define qual tipo de chamado pode afetar o estado de um IC associado."
 
 #. SysConfig
 msgid "Delete Configuration Item"
-msgstr ""
+msgstr "Excluir item de configuração"
 
 #. SysConfig
 msgid "Deployment State Color"
@@ -1190,12 +1191,12 @@ msgstr "global"
 
 #. SysConfig
 msgid "postproductive"
-msgstr ""
+msgstr "pós-produtivo"
 
 #. SysConfig
 msgid "preproductive"
-msgstr ""
+msgstr "improdutivo"
 
 #. SysConfig
 msgid "productive"
-msgstr ""
+msgstr "produtivo"
