@@ -1809,6 +1809,12 @@ for my $Test ( @{$ConfigItemTests} ) {
 
     my $Counter           = 0;
     my $LastVersionIDMust = 'UNDEF-unittest';
+
+    # Refresh ITSMConfigurationManagement cache to avoid issues with previously cached values.
+    $Kernel::OM->Get('Kernel::System::Cache')->CleanUp(
+        Type => 'ITSMConfigurationManagement',
+    );
+
     VERSIONID:
     for my $VersionID (@VersionIDs) {
 
