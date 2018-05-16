@@ -732,35 +732,35 @@
         <Description Translatable="1">Required permissions to use the ITSM configuration item screen in the agent interface.</Description>
         <Navigation>Frontend::Agent::ITSMConfigItem::Permission</Navigation>
         <Value>
-            <Item ValueType="String" ValueRegex="">ro</Item>
+            <Item ValueType="String" ValueRegex="^(rw|ro)$">ro</Item>
         </Value>
     </Setting>
     <Setting Name="ITSMConfigItem::Frontend::AgentITSMConfigItemEdit###Permission" Required="1" Valid="1">
         <Description Translatable="1">Required permissions to use the edit ITSM configuration item screen in the agent interface.</Description>
         <Navigation>Frontend::Agent::ITSMConfigItem::Permission</Navigation>
         <Value>
-            <Item ValueType="String" ValueRegex="">rw</Item>
+            <Item ValueType="String" ValueRegex="^(rw|ro)$">rw</Item>
         </Value>
     </Setting>
     <Setting Name="ITSMConfigItem::Frontend::AgentITSMConfigItemAdd###Permission" Required="1" Valid="1">
         <Description Translatable="1">Required permissions to use the add ITSM configuration item screen in the agent interface.</Description>
         <Navigation>Frontend::Agent::ITSMConfigItem::Permission</Navigation>
         <Value>
-            <Item ValueType="String" ValueRegex="">rw</Item>
+            <Item ValueType="String" ValueRegex="^(rw|ro)$">rw</Item>
         </Value>
     </Setting>
     <Setting Name="ITSMConfigItem::Frontend::AgentITSMConfigItemHistory###Permission" Required="1" Valid="1">
         <Description Translatable="1">Required permissions to use the history ITSM configuration item screen in the agent interface.</Description>
         <Navigation>Frontend::Agent::ITSMConfigItem::Permission</Navigation>
         <Value>
-            <Item ValueType="String" ValueRegex="">ro</Item>
+            <Item ValueType="String" ValueRegex="^(rw|ro)$">ro</Item>
         </Value>
     </Setting>
     <Setting Name="ITSMConfigItem::Frontend::AgentITSMConfigItemPrint###Permission" Required="1" Valid="1">
         <Description Translatable="1">Required permissions to use the print ITSM configuration item screen in the agent interface.</Description>
         <Navigation>Frontend::Agent::ITSMConfigItem::Permission</Navigation>
         <Value>
-            <Item ValueType="String" ValueRegex="">ro</Item>
+            <Item ValueType="String" ValueRegex="^(rw|ro)$">ro</Item>
         </Value>
     </Setting>
     <Setting Name="ITSMConfigItem::Frontend::AgentITSMConfigItemDelete###Permission" Required="1" Valid="1">
@@ -774,14 +774,14 @@
         <Description Translatable="1">Required permissions to use the ITSM configuration item zoom screen in the agent interface.</Description>
         <Navigation>Frontend::Agent::ITSMConfigItem::Permission</Navigation>
         <Value>
-            <Item ValueType="String" ValueRegex="">ro</Item>
+            <Item ValueType="String" ValueRegex="^(rw|ro)$">ro</Item>
         </Value>
     </Setting>
     <Setting Name="ITSMConfigItem::Frontend::AgentITSMConfigItemSearch###Permission" Required="1" Valid="1">
         <Description Translatable="1">Required permissions to use the ITSM configuration item search screen in the agent interface.</Description>
         <Navigation>Frontend::Agent::ITSMConfigItem::Permission</Navigation>
         <Value>
-            <Item ValueType="String" ValueRegex="">ro</Item>
+            <Item ValueType="String" ValueRegex="^(rw|ro)$">ro</Item>
         </Value>
     </Setting>
     <Setting Name="ITSMConfigItem::Frontend::AdminITSMConfigItem###EditorRows" Required="1" Valid="1">
