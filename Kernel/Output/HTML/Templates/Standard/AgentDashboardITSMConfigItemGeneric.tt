@@ -13,12 +13,12 @@
 [% RenderBlockStart("OverviewNavBarFilterItem") %]
 [% RenderBlockStart("OverviewNavBarFilterItemSelected") %]
             <li class="Selected [% Data.CSS | html %] [% Data.Name | html %]">
-                <a href="#" id="DashboardAdditionalFilter[% Data.Name | html %]" data-filter="[% Data.Name | html %]" class="DashboardITSMConfigItemGenericFilter">[% Data.Name | html %] ([% Data.Count | html %]) </a>
+                <a href="#" id="DashboardAdditionalFilter[% Data.Name | html %]" data-filter="[% Data.Name | html %]" class="DashboardITSMConfigItemGenericFilter">[% Translate(Data.Name) | html %] ([% Data.Count | html %]) </a>
             </li>
 [% RenderBlockEnd("OverviewNavBarFilterItemSelected") %]
 [% RenderBlockStart("OverviewNavBarFilterItemSelectedNot") %]
             <li class="[% Data.CSS | html %] [% Data.Name | html %]">
-                <a href="#" id="DashboardAdditionalFilter[% Data.Name | html %]" data-filter="[% Data.Name | html %]" class="DashboardITSMConfigItemGenericFilter">[% Data.Name | html %] ([% Data.Count | html %]) </a>
+                <a href="#" id="DashboardAdditionalFilter[% Data.Name | html %]" data-filter="[% Data.Name | html %]" class="DashboardITSMConfigItemGenericFilter">[% Translate(Data.Name) | html %] ([% Data.Count | html %]) </a>
             </li>
 [% RenderBlockEnd("OverviewNavBarFilterItemSelectedNot") %]
 [% RenderBlockEnd("OverviewNavBarFilterItem") %]
