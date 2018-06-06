@@ -1,12 +1,12 @@
 # 
 # Translators:
-# Balázs Úr <urbalazs@gmail.com>, 2014-2017
+# Balázs Úr <urbalazs@gmail.com>, 2014-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2018-02-06 20:04+0000\n"
-"PO-Revision-Date: 2018-02-06 20:05+0000\n"
-"Last-Translator: Udo Bretz\n"
+"POT-Creation-Date: 2018-04-24 14:34+0000\n"
+"PO-Revision-Date: 2018-04-30 15:10+0000\n"
+"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/otrs/OTRS/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,6 +34,34 @@ msgstr "Meghatározás"
 msgid "Change"
 msgstr "Változás"
 
+#. Template: AgentDashboardITSMConfigItemGeneric
+msgid "Incident State"
+msgstr "Incidensállapot"
+
+#. Template: AgentDashboardITSMConfigItemGeneric
+msgid "Deployment State"
+msgstr "Üzembe állítási állapot"
+
+#. Template: AgentDashboardITSMConfigItemGeneric
+msgid "Class"
+msgstr "Osztály"
+
+#. Template: AgentDashboardITSMConfigItemGeneric
+msgid "Deployment State Type"
+msgstr "Üzembe állítási állapottípus"
+
+#. Template: AgentDashboardITSMConfigItemGeneric
+msgid "Current Incident State"
+msgstr "Jelenlegi incidensállapot"
+
+#. Template: AgentDashboardITSMConfigItemGeneric
+msgid "Current Incident State Type"
+msgstr "Jelenlegi incidensállapot típus"
+
+#. Template: AgentDashboardITSMConfigItemGeneric
+msgid "Last changed"
+msgstr "Utolsó módosítás"
+
 #. Template: AgentITSMConfigItemAdd
 msgid "Config Item"
 msgstr "Konfigurációelem"
@@ -45,10 +73,6 @@ msgstr "Szűrő az osztályokhoz"
 #. Template: AgentITSMConfigItemAdd
 msgid "Select a Class from the list to create a new Config Item."
 msgstr "Válasszon egy osztályt a listából egy új konfigurációelem létrehozásához."
-
-#. Template: AgentITSMConfigItemAdd
-msgid "Class"
-msgstr "Osztály"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "ITSM ConfigItem Bulk Action"
@@ -87,14 +111,6 @@ msgid ""
 "Name is already in use by the ConfigItems with the following Number(s): %s"
 msgstr "A nevet már használják a konfigurációelemek a következő számokkal: %s"
 
-#. Template: AgentITSMConfigItemEdit
-msgid "Deployment State"
-msgstr "Üzembe állítási állapot"
-
-#. Template: AgentITSMConfigItemEdit
-msgid "Incident State"
-msgstr "Incidensállapot"
-
 #. Template: AgentITSMConfigItemHistory
 msgid "History of Config Item: %s"
 msgstr "Konfigurációelem előzményei: %s"
@@ -122,22 +138,6 @@ msgstr "Konfigurációelemek oldalanként"
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "A generic ITSM Configuration Item table"
 msgstr "Egy általános ITSM konfigurációelem táblázat"
-
-#. Template: AgentITSMConfigItemOverviewSmall
-msgid "Deployment State Type"
-msgstr "Üzembe állítási állapottípus"
-
-#. Template: AgentITSMConfigItemOverviewSmall
-msgid "Current Incident State"
-msgstr "Jelenlegi incidensállapot"
-
-#. Template: AgentITSMConfigItemOverviewSmall
-msgid "Current Incident State Type"
-msgstr "Jelenlegi incidensállapot típus"
-
-#. Template: AgentITSMConfigItemOverviewSmall
-msgid "Last changed"
-msgstr "Utolsó módosítás"
 
 #. Template: AgentITSMConfigItemSearch
 msgid "Create New Template"
@@ -346,6 +346,10 @@ msgstr "A konfigurációelem üzembe állítási állapota"
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
 msgid "The incident state of this config item"
 msgstr "A konfigurációelem incidensállapota"
+
+#. Perl Module: Kernel/Output/HTML/Dashboard/ITSMConfigItemGeneric.pm
+msgid "Shown config items"
+msgstr "Megjelenített konfigurációelemek"
 
 #. Perl Module: Kernel/Output/HTML/ITSMConfigItem/LayoutDate.pm
 msgid "Between"
@@ -728,6 +732,18 @@ msgid "Ok"
 msgstr "OK"
 
 #. SysConfig
+msgid "Assigned CIs"
+msgstr "Hozzárendelt konfigurációelemek"
+
+#. SysConfig
+msgid "CIs assigned to customer company"
+msgstr "Ügyfél-vállalathoz hozzárendelt konfigurációelemek"
+
+#. SysConfig
+msgid "CIs assigned to customer user"
+msgstr "Ügyfél-felhasználóhoz hozzárendelt konfigurációelemek"
+
+#. SysConfig
 msgid "CMDB Settings"
 msgstr "CMDB beállítások"
 
@@ -925,6 +941,21 @@ msgstr "Meghatározza a CI-k megjelenített oszlopait a konfigurációelem keres
 
 #. SysConfig
 msgid ""
+"Defines the shown columns of CIs in the config item widget depending on the "
+"CI class. Each entry must be prefixed with the class name and double colons "
+"(i.e. Computer::). There are a few CI-Attributes that are common to all CIs "
+"(example for the class Computer: Computer::Name, Computer::CurDeplState, "
+"Computer::CreateTime). To show individual CI-Attributes as defined in the "
+"CI-Definition, the following scheme must be used (example for the class "
+"Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, "
+"Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no "
+"entry for a CI class, then the default columns are shown as defined in the "
+"setting AgentCustomerInformationCenter::Backend###0060-CIC-"
+"ITSMConfigItemCustomerCompany (key DefaultColumns)."
+msgstr "Meghatározza a konfigurációelemek megjelenített oszlopait a konfigurációelem áttekintőben a konfigurációelem-osztálytól függően. Minden bejegyzést az oszlop neve és dupla kettőspont előtaggal kell ellátni (azaz Computer::). Van néhány olyan konfigurációelem-attribútum, amely közös minden konfigurációelemmel (például a Computer osztálynál: Computer::Name, Computer::CurDeplState, Computer::CreateTime). Az egyéni konfigurációelem-attribútumok megjelenítéséhez, ahogy azok a konfigurációelem-meghatározásban meg vannak adva, a következő sémát kell használni (például a Computer osztálynál): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. Ha egy konfigurációelem osztályhoz nincs bejegyzés, akkor az alapértelmezett oszlopok lesznek megjelenítve, ahogy az ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns beállításban meg van határozva."
+
+#. SysConfig
+msgid ""
 "Defines the shown columns of CIs in the link table complex view, depending "
 "on the CI class. Each entry must be prefixed with the class name and double "
 "colons (i.e. Computer::). There are a few CI-Attributes that common to all "
@@ -1004,6 +1035,16 @@ msgstr "Objektum háttérprogram modul regisztráció az importálás/exportál�
 #. SysConfig
 msgid "Overview."
 msgstr "Áttekintés."
+
+#. SysConfig
+msgid ""
+"Parameters for the dashboard backend of the customer company config item "
+"overview of the agent interface . \"Limit\" is the number of entries shown "
+"by default. \"Group\" is used to restrict the access to the plugin (e. g. "
+"Group: admin;group1;group2;). \"Default\" determines if the plugin is "
+"enabled by default or if the user needs to enable it manually. "
+"\"CacheTTLLocal\" is the cache time in minutes for the plugin."
+msgstr "Paraméterek az ügyintézői felület ügyfél-vállalat konfigurációelem áttekintőjének vezérlőpult háttérprogramjához. A „Limit” az alapértelmezetten megjelenített bejegyzések száma. A „Group” használható a hozzáférés korlátozásához a bővítményre (például Group: admin;csoport1;csoport2;). A „Default” azt határozza meg, hogy a bővítmény alapértelmezetten engedélyezve van, vagy hogy a felhasználónak kézzel kell engedélyeznie azt. A „CacheTTLLocal” a bővítmény gyorsítótár ideje percben."
 
 #. SysConfig
 msgid ""

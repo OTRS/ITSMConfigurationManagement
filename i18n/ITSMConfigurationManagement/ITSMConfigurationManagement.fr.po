@@ -1,14 +1,15 @@
 # 
 # Translators:
 # EricLF44 <E.lefoll@cdg44.fr>, 2016
-# Thomas Imbreckx <zinks@linux.com>, 2017
+# Snake, 2018
+# Thomas Imbreckx <zinks@linux.com>, 2017-2018
 # Udo Bretz, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2018-02-06 20:04+0000\n"
-"PO-Revision-Date: 2018-02-06 20:05+0000\n"
-"Last-Translator: Udo Bretz\n"
+"POT-Creation-Date: 2018-04-24 14:34+0000\n"
+"PO-Revision-Date: 2018-05-18 20:01+0000\n"
+"Last-Translator: Thomas Imbreckx <zinks@linux.com>\n"
 "Language-Team: French (http://www.transifex.com/otrs/OTRS/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,39 +19,63 @@ msgstr ""
 
 #. Template: AdminITSMConfigItem
 msgid "Config Item Management"
-msgstr "Gestion des Eléments de Configuration"
+msgstr "Gestion des éléments de configuration"
 
 #. Template: AdminITSMConfigItem
 msgid "Change class definition"
-msgstr ""
+msgstr "Modifier la définition d'une classe"
 
 #. Template: AdminITSMConfigItem
 msgid "Config Item Class"
-msgstr "Classe d'Élément de Configuration"
+msgstr "Classe d'élément de configuration"
 
 #. Template: AdminITSMConfigItem
 msgid "Definition"
-msgstr ""
+msgstr "Définition"
 
 #. Template: AdminITSMConfigItem
 msgid "Change"
 msgstr "Modifier"
 
+#. Template: AgentDashboardITSMConfigItemGeneric
+msgid "Incident State"
+msgstr "État d'incident"
+
+#. Template: AgentDashboardITSMConfigItemGeneric
+msgid "Deployment State"
+msgstr "État de déploiement"
+
+#. Template: AgentDashboardITSMConfigItemGeneric
+msgid "Class"
+msgstr "Classe"
+
+#. Template: AgentDashboardITSMConfigItemGeneric
+msgid "Deployment State Type"
+msgstr "Type d'état du déploiement"
+
+#. Template: AgentDashboardITSMConfigItemGeneric
+msgid "Current Incident State"
+msgstr "État actuel de l'incident"
+
+#. Template: AgentDashboardITSMConfigItemGeneric
+msgid "Current Incident State Type"
+msgstr "Type d'état actuel de l'incident"
+
+#. Template: AgentDashboardITSMConfigItemGeneric
+msgid "Last changed"
+msgstr "Dernières modifications"
+
 #. Template: AgentITSMConfigItemAdd
 msgid "Config Item"
-msgstr "Élément de Configuration"
+msgstr "Élément de configuration"
 
 #. Template: AgentITSMConfigItemAdd
 msgid "Filter for Classes"
-msgstr ""
+msgstr "Filtres pour les classes"
 
 #. Template: AgentITSMConfigItemAdd
 msgid "Select a Class from the list to create a new Config Item."
-msgstr "Choisissez une classe pour créer un nouvel Élément de Configuration"
-
-#. Template: AgentITSMConfigItemAdd
-msgid "Class"
-msgstr "Classe"
+msgstr "Choisissez une classe pour créer un nouvel élément de configuration."
 
 #. Template: AgentITSMConfigItemBulk
 msgid "ITSM ConfigItem Bulk Action"
@@ -58,23 +83,23 @@ msgstr ""
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Deployment state"
-msgstr ""
+msgstr "État du déploiement"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Incident state"
-msgstr ""
+msgstr "État de l'incident"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Link to another"
-msgstr ""
+msgstr "Lier à un autre"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "Invalid Configuration Item number!"
-msgstr "Numéro d'Élément de Configuration non valable !"
+msgstr "Numéro d'élément de configuration invalide !"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "The number of another Configuration Item to link with."
-msgstr ""
+msgstr "Le numéro d'un autre élément de configuration à lier."
 
 #. Template: AgentITSMConfigItemDelete
 msgid "Do you really want to delete this config item?"
@@ -87,19 +112,11 @@ msgstr "Le nom de cet élément de configuration"
 #. Template: AgentITSMConfigItemEdit
 msgid ""
 "Name is already in use by the ConfigItems with the following Number(s): %s"
-msgstr ""
-
-#. Template: AgentITSMConfigItemEdit
-msgid "Deployment State"
-msgstr "Etat de déploiement"
-
-#. Template: AgentITSMConfigItemEdit
-msgid "Incident State"
-msgstr "Etat de l'incident"
+msgstr "Le nom est déjà utilisé par l'élément de configuration avec le numéro suivant : %s"
 
 #. Template: AgentITSMConfigItemHistory
 msgid "History of Config Item: %s"
-msgstr ""
+msgstr "Historique de l'élément de configuration %s"
 
 #. Template: AgentITSMConfigItemHistory
 msgid "History Content"
@@ -111,235 +128,219 @@ msgstr "Date de création"
 
 #. Template: AgentITSMConfigItemHistory
 msgid "Zoom view"
-msgstr "Zoomer sur la vue"
+msgstr "Vue détaillée"
 
 #. Template: AgentITSMConfigItemOverviewNavBar
 msgid "Context Settings"
-msgstr "Réglages de Contexte"
+msgstr "Réglages de contexte"
 
 #. Template: AgentITSMConfigItemOverviewNavBar
 msgid "Config Items per page"
-msgstr "Éléments de Configuration par page"
+msgstr "Éléments de configuration par page"
 
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "A generic ITSM Configuration Item table"
 msgstr ""
 
-#. Template: AgentITSMConfigItemOverviewSmall
-msgid "Deployment State Type"
-msgstr ""
-
-#. Template: AgentITSMConfigItemOverviewSmall
-msgid "Current Incident State"
-msgstr "Etat actuel de l'incident"
-
-#. Template: AgentITSMConfigItemOverviewSmall
-msgid "Current Incident State Type"
-msgstr ""
-
-#. Template: AgentITSMConfigItemOverviewSmall
-msgid "Last changed"
-msgstr "Dernière modification"
-
 #. Template: AgentITSMConfigItemSearch
 msgid "Create New Template"
-msgstr ""
+msgstr "Créer un nouveau modèle"
 
 #. Template: AgentITSMConfigItemSearch
 msgid "Run Search"
-msgstr ""
+msgstr "Lancer la recherche"
 
 #. Template: AgentITSMConfigItemSearch
 msgid "Also search in previous versions?"
-msgstr "Chercher également dans les versions précédentes??"
+msgstr "Chercher également dans les versions précédentes ?"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Configuration Item"
-msgstr "Élément de Configuration"
+msgstr "Élément de configuration"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Configuration Item Information"
-msgstr ""
+msgstr "Informations de l'élément de configuration"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Current Deployment State"
-msgstr "Etat actuel de déploiement"
+msgstr "État actuel de déploiement"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Last changed by"
-msgstr "Dernière modification effectuée par"
+msgstr "Dernières modifications effectuées par"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Show one version"
-msgstr ""
+msgstr "Afficher une seule version"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Show all versions"
-msgstr ""
+msgstr "Afficher toutes les versions"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Version Incident State"
-msgstr ""
+msgstr "État de la version de l'incident"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Version Deployment State"
-msgstr ""
+msgstr "État de la version du déploiement"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Version Number"
-msgstr ""
+msgstr "Numéro de version"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Configuration Item Version Details"
-msgstr ""
+msgstr "Détails de la version de l'élément de configuration"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Property"
-msgstr ""
+msgstr "Propriété"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
 msgid "No access to Class is given!"
-msgstr ""
+msgstr "Aucun accès à la classe n'a été donné !"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItem.pm
 msgid "Overview: ITSM ConfigItem"
-msgstr ""
+msgstr "Vue d'ensemble: éléments de configuration"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
 msgid "No ConfigItemID is given!"
-msgstr ""
+msgstr "Aucun ID d'élément de configuration n'a été donné !"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
 msgid "You need at least one selected Configuration Item!"
-msgstr ""
+msgstr "Vous devez sélectionner au moins un élément de configuration !"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemBulk.pm
 msgid "You don't have write access to this configuration item: %s."
-msgstr ""
+msgstr "Vous n'avez pas le droit de modifier l'élément de configuration %s."
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
 msgid "Config item \"%s\" not found in database!"
-msgstr ""
+msgstr "L'élément de configuration \"%s\" n'a pas été trouvé dans la base de données !"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
 msgid "Was not able to delete the configitem ID %s!"
-msgstr ""
+msgstr "Impossible de supprimer l'ID de l'élément de configuration %s !"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemDelete.pm
 msgid "No version found for ConfigItemID %s!"
-msgstr ""
+msgstr "Aucune version trouvée pour l'ID de l'élément de configuration %s !"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
 msgid "No ConfigItemID, DuplicateID or ClassID is given!"
-msgstr ""
+msgstr "Aucun ID d'élément de configuration, de duplication ou de classe n'a été donné !"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
 msgid "No access is given!"
-msgstr ""
+msgstr "Aucun accès n'a été donné !"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
 msgid "No definition was defined for class %s!"
-msgstr ""
+msgstr "Aucune définition définie pour la classe %s !"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Can't show history, no ConfigItemID is given!"
-msgstr ""
+msgstr "Impossible d'afficher l'historique, aucun ID d'élément de configuration n'a été donné !"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Can't show history, no access rights given!"
-msgstr ""
+msgstr "Impossible d'afficher l'historique, aucun accès n'a été donné !"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "New ConfigItem (ID=%s)"
-msgstr ""
+msgstr "Nouvel élément de configuration (ID=%s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "New version (ID=%s)"
-msgstr ""
+msgstr "Nouvelle version (ID=%s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Deployment state updated (new=%s, old=%s)"
-msgstr ""
+msgstr "État de déploiement mis à jour (nouveau=%s, ancien=%s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Incident state updated (new=%s, old=%s)"
-msgstr ""
+msgstr "État de l'incident mis à jour (nouveau=%s, ancien=%s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "ConfigItem (ID=%s) deleted"
-msgstr ""
+msgstr "Élément de configuration (ID=%s) supprimé"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Link to %s (type=%s) added"
-msgstr ""
+msgstr "Lier à %s (type=%s) ajouté"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Link to %s (type=%s) deleted"
-msgstr ""
+msgstr "Lier à %s (type=%s) supprimé"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "ConfigItem definition updated (ID=%s)"
-msgstr ""
+msgstr "Définition de l'élément de configuration mise à jour (ID=%s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Name updated (new=%s, old=%s)"
-msgstr ""
+msgstr "Nom mis à jour (nouveau=%s, ancien=%s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Attribute %s updated from \"%s\" to \"%s\""
-msgstr ""
+msgstr "Attribue %s mis à jour de \"%s\" à \"%s\""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Version %s deleted"
-msgstr ""
+msgstr "Version %s supprimée"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "No ConfigItemID or VersionID is given!"
-msgstr ""
+msgstr "Aucun ID d'élément de configuration ou de version n'a été donné !"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "Can't show config item, no access rights given!"
-msgstr ""
+msgstr "Impossible d'afficher l'élément de configuration, aucun accès n'a été donné !"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "ConfigItemID %s not found in database!"
-msgstr ""
+msgstr "L'ID de l'élément de configuration %s n'a pas été trouvé dans la base de données !"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "VersionID %s not found in database!"
-msgstr ""
+msgstr "L'ID de version %s n'a pas été trouvé dans la base de données !"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "ConfigItem"
-msgstr ""
+msgstr "Élément de configuration"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "printed by %s at %s"
-msgstr ""
+msgstr "Imprimé par %s à %s"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "Invalid ClassID!"
-msgstr ""
+msgstr "ID de classe invalide !"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "No ClassID is given!"
-msgstr ""
+msgstr "Aucun ID de classe n'a été donné !"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "No access rights for this class given!"
-msgstr ""
+msgstr "Aucuns droits d'accès pour cette classe n'a été donné !"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "No Result!"
-msgstr "Aucun résultat !"
+msgstr "Aucuns résultats !"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemSearch.pm
 msgid "Config Item Search Results"
-msgstr ""
+msgstr "Résultat de la recherche des éléments de configuration"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
 msgid "Can't show item, no access rights for ConfigItem are given!"
-msgstr ""
+msgstr "Impossible d'afficher l'élément, aucuns droits d'accès pour cet élément de configuration n'a été donné !"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
 msgid "The deployment state of this config item"
@@ -348,6 +349,10 @@ msgstr "L'état de déploiement de cet élément de configuration"
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
 msgid "The incident state of this config item"
 msgstr "L'état d'incident de cet élément de configuration"
+
+#. Perl Module: Kernel/Output/HTML/Dashboard/ITSMConfigItemGeneric.pm
+msgid "Shown config items"
+msgstr "Afficher les éléments de configuration"
 
 #. Perl Module: Kernel/Output/HTML/ITSMConfigItem/LayoutDate.pm
 msgid "Between"
@@ -359,7 +364,7 @@ msgstr "Quantité maximale pour un élément"
 
 #. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
 msgid "Empty fields indicate that the current values are kept"
-msgstr ""
+msgstr "Les champs vides indiquent que les valeurs par défauts sont gardées"
 
 #. Perl Module: Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm
 msgid "Skipped"
@@ -427,7 +432,7 @@ msgstr "Téléphone 2"
 
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
 msgid "E-Mail"
-msgstr ""
+msgstr "Adresse e-mail"
 
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
 msgid "Network Address"
@@ -443,11 +448,11 @@ msgstr "Passerelle"
 
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
 msgid "Licence Type"
-msgstr "Type de license"
+msgstr "Type de la licence"
 
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
 msgid "Licence Key"
-msgstr "Clé de la license"
+msgstr "Clé de la licence"
 
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
 msgid "Quantity"
@@ -459,23 +464,23 @@ msgstr "Date d'expiration"
 
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
 msgid "Media"
-msgstr "Media"
+msgstr "Média"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Computer"
-msgstr ""
+msgstr "Ordinateur"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Hardware"
-msgstr ""
+msgstr "Matériel"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Network"
-msgstr ""
+msgstr "Réseau"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Software"
-msgstr ""
+msgstr "Logiciel"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Expired"
@@ -511,7 +516,7 @@ msgstr "Test/QA"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Laptop"
-msgstr "Portable"
+msgstr "Ordinateur portable"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Desktop"
@@ -539,7 +544,7 @@ msgstr "Imprimante"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Switch"
-msgstr "Switch"
+msgstr "Commutateur"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Router"
@@ -555,7 +560,7 @@ msgstr "Périphérique de sécurité"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Backup Device"
-msgstr "Element de sauvegarde"
+msgstr "Élément de sauvegarde"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Mouse"
@@ -571,7 +576,7 @@ msgstr "Caméra"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Beamer"
-msgstr "Rétroprojecteur"
+msgstr "Vidéoprojecteur"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Modem"
@@ -587,7 +592,7 @@ msgstr "Périphérique USB"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Docking Station"
-msgstr "Base pour Portable"
+msgstr "Station d'accueil"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Scanner"
@@ -595,7 +600,7 @@ msgstr "Scanner"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Building"
-msgstr "Batiment"
+msgstr "Bâtiment"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Office"
@@ -603,7 +608,7 @@ msgstr "Bureau"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Floor"
-msgstr "Etage"
+msgstr "Étage"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Room"
@@ -623,7 +628,7 @@ msgstr "Prise"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "IT Facility"
-msgstr "Département IT"
+msgstr "Département \"Technologies de l'Information\""
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "LAN"
@@ -643,31 +648,31 @@ msgstr "GSM"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Client Application"
-msgstr "Application Cliente"
+msgstr "Application cliente"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Middleware"
-msgstr "Middleware"
+msgstr "Intergiciel (middleware)"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Server Application"
-msgstr "Application Serveur"
+msgstr "Application serveur"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Client OS"
-msgstr "OS Client"
+msgstr "OS client"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Server OS"
-msgstr "OS Server"
+msgstr "OS serveur"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Admin Tool"
-msgstr "Outil d'Administration"
+msgstr "Outil d'administration"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "User Tool"
-msgstr "Outil Utilisateur"
+msgstr "Outil utilisateur"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Embedded"
@@ -679,7 +684,7 @@ msgstr "License unique"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Per User"
-msgstr "Par Utilisateur"
+msgstr "Par utilisateur"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Per Processor"
@@ -687,7 +692,7 @@ msgstr "Par processeur"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Per Server"
-msgstr "Par Serveur"
+msgstr "Par serveur"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Per Node"
@@ -699,15 +704,15 @@ msgstr "License par volume"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Enterprise Licence"
-msgstr "License Entreprise"
+msgstr "License entreprise"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Developer Licence"
-msgstr "License Développeur"
+msgstr "License développeur"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Demo"
-msgstr "Demo"
+msgstr "Démo"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Time Restricted"
@@ -715,11 +720,11 @@ msgstr "Limitée dans le temps"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Freeware"
-msgstr "Freeware/Graticiel"
+msgstr "Logiciel gratuit (freeware)"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Open Source"
-msgstr "Open Source"
+msgstr "Open-source"
 
 #. Database XML Definition: ITSMConfigurationManagement.sopm
 msgid "Unlimited"
@@ -730,8 +735,20 @@ msgid "Ok"
 msgstr "Ok"
 
 #. SysConfig
+msgid "Assigned CIs"
+msgstr "Éléments de configuration attribués"
+
+#. SysConfig
+msgid "CIs assigned to customer company"
+msgstr "Éléments de configuration attribués à un client"
+
+#. SysConfig
+msgid "CIs assigned to customer user"
+msgstr "Éléments de configuration attribués à un utilisateur client"
+
+#. SysConfig
 msgid "CMDB Settings"
-msgstr ""
+msgstr "Paramètres de la CMDB (base de données des éléments de configuration)"
 
 #. SysConfig
 msgid ""
@@ -742,15 +759,15 @@ msgstr ""
 
 #. SysConfig
 msgid "Config Items"
-msgstr ""
+msgstr "Éléments de configuration"
 
 #. SysConfig
 msgid "Config item add."
-msgstr ""
+msgstr "Élément de configuration ajouté"
 
 #. SysConfig
 msgid "Config item edit."
-msgstr ""
+msgstr "Éléments de configuration édité"
 
 #. SysConfig
 msgid ""
@@ -760,31 +777,31 @@ msgstr ""
 
 #. SysConfig
 msgid "Config item history."
-msgstr ""
+msgstr "Historique de l'élément de configuration."
 
 #. SysConfig
 msgid "Config item print."
-msgstr ""
+msgstr "Impression de l'élément de configuration."
 
 #. SysConfig
 msgid "Config item zoom."
-msgstr ""
+msgstr "Vue détaillée de l'élément de configuration."
 
 #. SysConfig
 msgid "ConfigItemNumber"
-msgstr ""
+msgstr "Numéro de l'élément de configuration"
 
 #. SysConfig
 msgid "Configuration Item Limit"
-msgstr ""
+msgstr "Limite d'éléments de configuration"
 
 #. SysConfig
 msgid "Configuration Item limit per page."
-msgstr ""
+msgstr "Limite d'éléments de configuration par page."
 
 #. SysConfig
 msgid "Configuration Management Database."
-msgstr ""
+msgstr "Base de données des éléments de configuration."
 
 #. SysConfig
 msgid "Configuration item bulk module."
@@ -796,7 +813,7 @@ msgstr ""
 
 #. SysConfig
 msgid "Create and manage the definitions for Configuration Items."
-msgstr ""
+msgstr "Créer et gérer les définitions des éléments de configuration"
 
 #. SysConfig
 msgid ""
@@ -809,7 +826,7 @@ msgstr ""
 
 #. SysConfig
 msgid "Define the group with permissions."
-msgstr ""
+msgstr "Définir le groupe de permissions."
 
 #. SysConfig
 msgid ""
@@ -927,6 +944,21 @@ msgstr ""
 
 #. SysConfig
 msgid ""
+"Defines the shown columns of CIs in the config item widget depending on the "
+"CI class. Each entry must be prefixed with the class name and double colons "
+"(i.e. Computer::). There are a few CI-Attributes that are common to all CIs "
+"(example for the class Computer: Computer::Name, Computer::CurDeplState, "
+"Computer::CreateTime). To show individual CI-Attributes as defined in the "
+"CI-Definition, the following scheme must be used (example for the class "
+"Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, "
+"Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no "
+"entry for a CI class, then the default columns are shown as defined in the "
+"setting AgentCustomerInformationCenter::Backend###0060-CIC-"
+"ITSMConfigItemCustomerCompany (key DefaultColumns)."
+msgstr ""
+
+#. SysConfig
+msgid ""
 "Defines the shown columns of CIs in the link table complex view, depending "
 "on the CI class. Each entry must be prefixed with the class name and double "
 "colons (i.e. Computer::). There are a few CI-Attributes that common to all "
@@ -950,11 +982,11 @@ msgstr ""
 
 #. SysConfig
 msgid "Delete Configuration Item"
-msgstr ""
+msgstr "Supprimer un élément de configuration"
 
 #. SysConfig
 msgid "Deployment State Color"
-msgstr ""
+msgstr "Couleur de l'état de déploiement"
 
 #. SysConfig
 msgid "Duplicate"
@@ -985,7 +1017,7 @@ msgstr ""
 
 #. SysConfig
 msgid "ITSM config item overview."
-msgstr ""
+msgstr "Vue d'ensemble de l'élément de configuration"
 
 #. SysConfig
 msgid "Module to check the group responsible for a class."
@@ -1005,6 +1037,16 @@ msgstr ""
 
 #. SysConfig
 msgid "Overview."
+msgstr "Vue d'ensemble."
+
+#. SysConfig
+msgid ""
+"Parameters for the dashboard backend of the customer company config item "
+"overview of the agent interface . \"Limit\" is the number of entries shown "
+"by default. \"Group\" is used to restrict the access to the plugin (e. g. "
+"Group: admin;group1;group2;). \"Default\" determines if the plugin is "
+"enabled by default or if the user needs to enable it manually. "
+"\"CacheTTLLocal\" is the cache time in minutes for the plugin."
 msgstr ""
 
 #. SysConfig
@@ -1023,7 +1065,7 @@ msgstr ""
 msgid ""
 "Parameters for the example permission groups of the general catalog "
 "attributes."
-msgstr "Paramètrés pour l'exemple de permissions de groupe des attributs du Catalogue Général"
+msgstr "Paramètres pour l'exemple des permissions de groupes des attributs du catalogue général."
 
 #. SysConfig
 msgid "Parameters for the pages (in which the configuration items are shown)."
@@ -1077,7 +1119,7 @@ msgstr ""
 
 #. SysConfig
 msgid "Search config items."
-msgstr ""
+msgstr "Rechercher les éléments de configuration."
 
 #. SysConfig
 msgid ""
@@ -1178,20 +1220,20 @@ msgstr ""
 
 #. SysConfig
 msgid "class"
-msgstr ""
+msgstr "classe"
 
 #. SysConfig
 msgid "global"
-msgstr ""
+msgstr "global"
 
 #. SysConfig
 msgid "postproductive"
-msgstr ""
+msgstr "post-productif"
 
 #. SysConfig
 msgid "preproductive"
-msgstr ""
+msgstr "pré-productif"
 
 #. SysConfig
 msgid "productive"
-msgstr ""
+msgstr "productif"

@@ -1,13 +1,13 @@
 # 
 # Translators:
-# Kentaro Hori <kentaro0919@gmail.com>, 2014
+# Kentaro Matsuzaki <kentaro0919@gmail.com>, 2014
 # Kozo Sakurai <sakurai@io-architect.com>, 2017
 # Udo Bretz, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2018-02-06 20:04+0000\n"
-"PO-Revision-Date: 2018-02-06 20:05+0000\n"
+"POT-Creation-Date: 2018-04-24 14:34+0000\n"
+"PO-Revision-Date: 2018-04-24 14:35+0000\n"
 "Last-Translator: Udo Bretz\n"
 "Language-Team: Japanese (http://www.transifex.com/otrs/OTRS/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -36,6 +36,34 @@ msgstr "記述"
 msgid "Change"
 msgstr "変更"
 
+#. Template: AgentDashboardITSMConfigItemGeneric
+msgid "Incident State"
+msgstr "インシデント状況"
+
+#. Template: AgentDashboardITSMConfigItemGeneric
+msgid "Deployment State"
+msgstr "デプロイ・ステータス"
+
+#. Template: AgentDashboardITSMConfigItemGeneric
+msgid "Class"
+msgstr "クラス"
+
+#. Template: AgentDashboardITSMConfigItemGeneric
+msgid "Deployment State Type"
+msgstr "デプロイ・ステータスのタイプ"
+
+#. Template: AgentDashboardITSMConfigItemGeneric
+msgid "Current Incident State"
+msgstr "現在のインシデント・ステータス"
+
+#. Template: AgentDashboardITSMConfigItemGeneric
+msgid "Current Incident State Type"
+msgstr "現在のインシデント・ステータスのタイプ"
+
+#. Template: AgentDashboardITSMConfigItemGeneric
+msgid "Last changed"
+msgstr "最終変更日時"
+
 #. Template: AgentITSMConfigItemAdd
 msgid "Config Item"
 msgstr "構成アイテム"
@@ -47,10 +75,6 @@ msgstr "クラスでフィルタ"
 #. Template: AgentITSMConfigItemAdd
 msgid "Select a Class from the list to create a new Config Item."
 msgstr "新規の構成アイテムを作成するには、リストからクラスを選択してください。"
-
-#. Template: AgentITSMConfigItemAdd
-msgid "Class"
-msgstr "クラス"
 
 #. Template: AgentITSMConfigItemBulk
 msgid "ITSM ConfigItem Bulk Action"
@@ -89,14 +113,6 @@ msgid ""
 "Name is already in use by the ConfigItems with the following Number(s): %s"
 msgstr "この名称はすでに Number(s): %s の構成アイテムで使用中です。"
 
-#. Template: AgentITSMConfigItemEdit
-msgid "Deployment State"
-msgstr "デプロイ・ステータス"
-
-#. Template: AgentITSMConfigItemEdit
-msgid "Incident State"
-msgstr "インシデント状況"
-
 #. Template: AgentITSMConfigItemHistory
 msgid "History of Config Item: %s"
 msgstr "構成アイテムの履歴: %s"
@@ -124,22 +140,6 @@ msgstr "1ページ毎の設定項目"
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "A generic ITSM Configuration Item table"
 msgstr "ジェネリック構成アイテムのテーブル"
-
-#. Template: AgentITSMConfigItemOverviewSmall
-msgid "Deployment State Type"
-msgstr "デプロイ・ステータスのタイプ"
-
-#. Template: AgentITSMConfigItemOverviewSmall
-msgid "Current Incident State"
-msgstr "現在のインシデント・ステータス"
-
-#. Template: AgentITSMConfigItemOverviewSmall
-msgid "Current Incident State Type"
-msgstr "現在のインシデント・ステータスのタイプ"
-
-#. Template: AgentITSMConfigItemOverviewSmall
-msgid "Last changed"
-msgstr "最終変更日時"
 
 #. Template: AgentITSMConfigItemSearch
 msgid "Create New Template"
@@ -348,6 +348,10 @@ msgstr "この構成アイテムのデプロイ・ステータス"
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
 msgid "The incident state of this config item"
 msgstr "この構成アイテムのインシデント状態"
+
+#. Perl Module: Kernel/Output/HTML/Dashboard/ITSMConfigItemGeneric.pm
+msgid "Shown config items"
+msgstr ""
 
 #. Perl Module: Kernel/Output/HTML/ITSMConfigItem/LayoutDate.pm
 msgid "Between"
@@ -730,6 +734,18 @@ msgid "Ok"
 msgstr "Ok"
 
 #. SysConfig
+msgid "Assigned CIs"
+msgstr ""
+
+#. SysConfig
+msgid "CIs assigned to customer company"
+msgstr ""
+
+#. SysConfig
+msgid "CIs assigned to customer user"
+msgstr ""
+
+#. SysConfig
 msgid "CMDB Settings"
 msgstr "CMDBの設定"
 
@@ -927,6 +943,21 @@ msgstr ""
 
 #. SysConfig
 msgid ""
+"Defines the shown columns of CIs in the config item widget depending on the "
+"CI class. Each entry must be prefixed with the class name and double colons "
+"(i.e. Computer::). There are a few CI-Attributes that are common to all CIs "
+"(example for the class Computer: Computer::Name, Computer::CurDeplState, "
+"Computer::CreateTime). To show individual CI-Attributes as defined in the "
+"CI-Definition, the following scheme must be used (example for the class "
+"Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, "
+"Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no "
+"entry for a CI class, then the default columns are shown as defined in the "
+"setting AgentCustomerInformationCenter::Backend###0060-CIC-"
+"ITSMConfigItemCustomerCompany (key DefaultColumns)."
+msgstr ""
+
+#. SysConfig
+msgid ""
 "Defines the shown columns of CIs in the link table complex view, depending "
 "on the CI class. Each entry must be prefixed with the class name and double "
 "colons (i.e. Computer::). There are a few CI-Attributes that common to all "
@@ -1006,6 +1037,16 @@ msgstr "インポート/エクスポートモジュールのオブジェクト�
 #. SysConfig
 msgid "Overview."
 msgstr "概要"
+
+#. SysConfig
+msgid ""
+"Parameters for the dashboard backend of the customer company config item "
+"overview of the agent interface . \"Limit\" is the number of entries shown "
+"by default. \"Group\" is used to restrict the access to the plugin (e. g. "
+"Group: admin;group1;group2;). \"Default\" determines if the plugin is "
+"enabled by default or if the user needs to enable it manually. "
+"\"CacheTTLLocal\" is the cache time in minutes for the plugin."
+msgstr ""
 
 #. SysConfig
 msgid ""
