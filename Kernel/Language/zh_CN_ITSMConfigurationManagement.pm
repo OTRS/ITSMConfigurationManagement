@@ -140,7 +140,7 @@ sub Data {
     $Self->{Translation}->{'The incident state of this config item'} = '配置项故障状态';
 
     # Perl Module: Kernel/Output/HTML/Dashboard/ITSMConfigItemGeneric.pm
-    $Self->{Translation}->{'Shown config items'} = '';
+    $Self->{Translation}->{'Shown config items'} = '已显示的配置项';
 
     # Perl Module: Kernel/Output/HTML/ITSMConfigItem/LayoutDate.pm
     $Self->{Translation}->{'Between'} = '时间区间';
@@ -248,9 +248,9 @@ sub Data {
     $Self->{Translation}->{'Ok'} = '确定';
 
     # SysConfig
-    $Self->{Translation}->{'Assigned CIs'} = '';
-    $Self->{Translation}->{'CIs assigned to customer company'} = '';
-    $Self->{Translation}->{'CIs assigned to customer user'} = '';
+    $Self->{Translation}->{'Assigned CIs'} = '已分配的配置项';
+    $Self->{Translation}->{'CIs assigned to customer company'} = '已分配给客户单位的配置项';
+    $Self->{Translation}->{'CIs assigned to customer user'} = '已分配给客户用户的配置项';
     $Self->{Translation}->{'CMDB Settings'} = 'CMDB设置';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         '检查是否为唯一名称的范围是仅在\'class\'（配置项类）内还是\'global\'(全局)，就是在查找重复配置项名称时的范围。';
@@ -308,7 +308,7 @@ sub Data {
     $Self->{Translation}->{'Defines the shown columns of CIs in the config item search depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns.'} =
         '定义按配置项类分类的配置项搜索结果中显示的字段。每个条目均需以类名为前缀再加上双冒号（如计算机::）。有一些配置项属性是所有配置项都有的（例如，对于计算机类：计算机::名称、计算机::CurDeplState当前部署状态、计算机::CreateTime创建时间）。要显示在配置项定义中定义的独特的配置项属性，必须使用下面的方案（例如：对于计算机类：计算机::硬盘::1、计算机::硬盘::容量::1、计算机::硬盘::2、计算机::硬盘::2计算机::硬盘::2）。如果一个配置项类没有条目存在，则使用在ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns中设置的默认字段。';
     $Self->{Translation}->{'Defines the shown columns of CIs in the config item widget depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting AgentCustomerInformationCenter::Backend###0060-CIC-ITSMConfigItemCustomerCompany (key DefaultColumns).'} =
-        '';
+        '定义配置项小部件中按配置项类分类显示的字段。每个条目均需以类名为前缀再加上双冒号（如计算机::）。有一些配置项属性是所有配置项都有的（例如，对于计算机类：Computer::Name、Computer::CurDeplState当前部署状态、Computer::CreateTime创建时间）。要显示在配置项定义中定义的独特的配置项属性，必须使用下面的方案（例如：对于计算机类：Computer::HardDisk::1【计算机::硬盘::1】、Computer::HardDisk::1::Capacity::1【计算机::硬盘::容量::1】、 Computer::HardDisk::2【计算机::硬盘::2】、Computer::HardDisk::2::Capacity::1【计算机::硬盘::2::容量::1】）。如果一个配置项类没有条目存在，则使用在AgentCustomerInformationCenter::Backend###0060-CIC-ITSMConfigItemCustomerCompany 中设置的默认字段(DefaultColumns键)。';
     $Self->{Translation}->{'Defines the shown columns of CIs in the link table complex view, depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown.'} =
         '定义链接表复合视图中按配置项类分类显示的字段。每个条目均需以类名为前缀再加上双冒号（如计算机::）。有一些配置项属性是所有配置项都有的（例如，对于计算机类：计算机::名称、计算机::CurDeplState当前部署状态、计算机::CreateTime创建时间）。要显示在配置项定义中定义的独特的配置项属性，必须使用下面的方案（例如：对于计算机类：计算机::硬盘::1、计算机::硬盘::容量::1、计算机::硬盘::2、计算机::硬盘::2计算机::硬盘::2）。如果一个配置项类没有条目存在，则使用在ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns中设置的默认字段。';
     $Self->{Translation}->{'Defines which type of link (named from the ticket perspective) can affect the status of a linked CI.'} =
@@ -335,7 +335,7 @@ sub Data {
         '用于导入/导出模块的对象后端模块注册。';
     $Self->{Translation}->{'Overview.'} = '概览。';
     $Self->{Translation}->{'Parameters for the dashboard backend of the customer company config item overview of the agent interface . "Limit" is the number of entries shown by default. "Group" is used to restrict the access to the plugin (e. g. Group: admin;group1;group2;). "Default" determines if the plugin is enabled by default or if the user needs to enable it manually. "CacheTTLLocal" is the cache time in minutes for the plugin.'} =
-        '';
+        '服务人员界面客户客户单位配置项概览的仪表板后端的参数。"Limit（限制）" 是默认的显示条目数，“Group”（组）用于到本插件的访问权限限制（如 Group:admin;group1;group2）。“Default（默认）”代表这个插件是默认启用还是需要用户手动启用。“CacheTTL”是本插件的缓存过期时间（单位：分钟）。';
     $Self->{Translation}->{'Parameters for the deployment states color in the preferences view of the agent interface.'} =
         '服务人员界面偏好设置视图中用于部署状态颜色的参数。';
     $Self->{Translation}->{'Parameters for the deployment states in the preferences view of the agent interface.'} =
