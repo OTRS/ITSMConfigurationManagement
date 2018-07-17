@@ -269,7 +269,7 @@ sub Data {
     $Self->{Translation}->{'Configuration item bulk module.'} = '';
     $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} =
         '';
-    $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = 'Créer et gérer les définitions des éléments de configuration';
+    $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = 'Créer et gérer les définitions des éléments de configuration.';
     $Self->{Translation}->{'Define Actions where a settings button is available in the linked objects widget (LinkObject::ViewMode = "complex"). Please note that these Actions must have registered the following JS and CSS files: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js and Core.Agent.LinkObject.js.'} =
         '';
     $Self->{Translation}->{'Define the group with permissions.'} = 'Définir le groupe de permissions.';
