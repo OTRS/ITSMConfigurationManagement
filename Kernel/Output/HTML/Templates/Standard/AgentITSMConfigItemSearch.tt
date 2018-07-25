@@ -21,24 +21,25 @@
 
     <form action="[% Env("CGIHandle") %]" method="post" id="SearchForm">
         <input type="hidden" name="Action" value="[% Env("Action") %]"/>
+        <input type="hidden" name="ClassID" value="[% Data.ClassID | html %]" id="SearchClassID"/>
         <input type="hidden" name="Subaction" value="Search"/>
 
         <fieldset class="TableLike Hidden" id='ITSMSearchProfile'>
             <div class="Clear"></div>
             <legend><span>[% Translate("Templates") | html %]</span></legend>
-            <label>[% Translate("Search template") | html %]</label>
+            <label for="SearchProfile">[% Translate("Search template") | html %]:</label>
             <div class="Field">
                 <input type="hidden" id="SearchProfile" name="SearchProfile" value="[% Data.Profile | html %]"/>
-
-                <button id="SearchProfileNew" value="[% Translate("Create New") | html %]">[% Translate("Create New") | html %]</button>
-
-                <button id="SearchProfileDelete" class="Hidden" value="[% Translate("Delete") | html %]">[% Translate("Delete") | html %]</button>
-
                 <div id="SearchProfileAddBlock">
                     <input type="text" name="ProfileName" id="SearchProfileAddName"/>
-                    <button type="submit" title="[% Translate("Create Template") | html %]" id="SearchProfileAddAction">[% Translate("Create New Template") | html %]</button>
+                    <button class="CallForAction" type="button" title="[% Translate("Create Template") | html %]" id="SearchProfileAddAction"><span>[% Translate("Add") | html %]</span></button>
                     <input type="hidden" name="SaveProfile" value="1"/>
                 </div>
+            </div>
+            <div class="Field">
+                <button id="SearchProfileNew" class="CallForAction" value="[% Translate("Create New") | html %]"><span>[% Translate("Create New") | html %]</span></button>
+                <button id="SearchProfileDelete" class="CallForAction Hidden" value="[% Translate("Delete") | html %]"><span>[% Translate("Delete") | html %]</span></button>
+                <button id="SearchProfileAsLink" class="CallForAction Hidden" value="[% Translate("Profile link") | html %]"><span>[% Translate("Profile link") | html %]</span></button>
             </div>
         </fieldset>
 
@@ -54,24 +55,23 @@
 <form action="[% Env("CGIHandle") %]" method="post" id="SearchForm">
     <input type="hidden" name="Action" value="[% Env("Action") %]"/>
     <input type="hidden" name="Subaction" value="Search"/>
-    <input type="hidden" name="ClassID" value="[% Data.ClassID | html %]">
+    <input type="hidden" name="ClassID" value="[% Data.ClassID | html %]" id="SearchClassID">
     <input type="hidden" name="SearchDialog" value='1'>
     <input type="hidden" name="EmptySearch" value="[% Data.EmptySearch | html %]" id="EmptySearch"/>
     <fieldset class="TableLike Hidden" id='ITSMSearchProfile'>
-        <div class="Clear"></div>
         <legend><span>[% Translate("Templates") | html %]</span></legend>
-        <label>[% Translate("Search template") | html %]:</label>
+        <label for="SearchProfile">[% Translate("Search template") | html %]:</label>
         <div class="Field">
             [% Data.ProfilesStrg %]
-
-            <button id="SearchProfileNew" value="[% Translate("Create New") | html %]">[% Translate("Create New") | html %]</button>
-
-            <button id="SearchProfileDelete" class="Hidden" value="[% Translate("Delete") | html %]">[% Translate("Delete") | html %]</button>
-
             <div id="SearchProfileAddBlock">
                 <input type="text" name="ProfileName" id="SearchProfileAddName"/>
-                <button type="submit" title="[% Translate("Create Template") | html %]" id="SearchProfileAddAction">[% Translate("Create New Template") | html %]</button>
+                <button class="CallForAction" type="button" title="[% Translate("Create Template") | html %]" id="SearchProfileAddAction"><span>[% Translate("Add") | html %]</span></button>
             </div>
+        </div>
+        <div class="Field">
+            <button id="SearchProfileNew" class="CallForAction" value="[% Translate("Create New") | html %]"><span>[% Translate("Create New") | html %]</span></button>
+            <button id="SearchProfileDelete" class="CallForAction Hidden" value="[% Translate("Delete") | html %]"><span>[% Translate("Delete") | html %]</span></button>
+            <button id="SearchProfileAsLink" class="CallForAction Hidden" value="[% Translate("Profile link") | html %]"><span>[% Translate("Profile link") | html %]</span></button>
         </div>
         <div class="Clear"></div>
         <label>[% Translate("Save changes in template") | html %]:</label>
@@ -79,6 +79,7 @@
             <input type="checkbox" name="SaveProfile" id="SaveProfile" value="1"/>
         </div>
     </fieldset>
+
     <fieldset class="TableLike Hidden" id='ITSMSearchFields'>
         <fieldset class="TableLike" id="SearchInsert">
             <legend><span>[% Translate("Filters in use") | html %]</span></legend>

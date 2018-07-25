@@ -69,6 +69,11 @@ $Selenium->RunTest(
             push @ConfigItemIDs, $ConfigItemID;
         }
 
+        my $InciStateID = $GeneralCatalogObject->ItemGet(
+            Class => 'ITSM::Core::IncidentState',
+            Name  => 'Incident',
+        );
+
         # Add a new version for each ConfigItem.
         my @VersionIDs;
         my $Count    = 1;
@@ -78,7 +83,7 @@ $Selenium->RunTest(
                 Name         => $Count . $RandomID,
                 DefinitionID => 1,
                 DeplStateID  => $ProductionDeplStateID,
-                InciStateID  => 1,
+                InciStateID  => $InciStateID->{ItemID},
                 UserID       => 1,
                 ConfigItemID => $ConfigItemVersion,
             );
@@ -285,7 +290,7 @@ $Selenium->RunTest(
                 Name         => $Count . $RandomID,
                 DefinitionID => 1,
                 DeplStateID  => $ProductionDeplStateID,
-                InciStateID  => 1,
+                InciStateID  => $InciStateID->{ItemID},
                 UserID       => 1,
                 XMLData      => $XMLData,
                 ConfigItemID => $ConfigItemVersion,
@@ -387,6 +392,37 @@ $Selenium->RunTest(
         $Self->True(
             index( $Selenium->get_page_source(), 'No data found' ) > -1,
             "'No data found' - found",
+        );
+
+        # Click on "Change search option"
+        $Selenium->find_element( "#ITSMConfigItemSearch", 'css' )->click();
+        $Selenium->WaitFor( JavaScript => "return typeof(\$) === 'function' && \$('#SearchProfileNew').length" );
+        sleep 2;
+
+        # Create new template search.
+        my $SearchProfileName = "Search-" . $Helper->GetRandomID();
+        $Selenium->find_element( "#SearchProfileNew", 'css' )->click();
+        $Selenium->WaitFor( JavaScript => "return typeof(\$) === 'function' && \$('#SearchProfileAddName').length" );
+
+        $Selenium->find_element( "#SearchProfileAddName",   'css' )->send_keys($SearchProfileName);
+        $Selenium->find_element( "#SearchProfileAddAction", 'css' )->click();
+        $Selenium->WaitFor(
+            JavaScript => "return typeof(\$) === 'function' && \$('#SearchProfile').val() === '$SearchProfileName'"
+        );
+
+        # Check button for profil link.
+        $Selenium->find_element( "#SearchProfileAsLink", 'css' )->click();
+
+        # Click on "Change search option"
+        $Selenium->find_element( "#ITSMConfigItemSearch", 'css' )->click();
+        $Selenium->WaitFor(
+            JavaScript => "return typeof(\$) === 'function' && \$('#SearchProfile').val() === '$SearchProfileName'"
+        );
+
+        $Self->Is(
+            $Selenium->execute_script("return \$('#SearchProfile').val();"),
+            $SearchProfileName,
+            "Check if profil is loaded well"
         );
 
         # Delete created test ConfigItem.
