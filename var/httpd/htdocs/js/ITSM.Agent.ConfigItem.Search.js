@@ -169,12 +169,17 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
             // show delete button
             $('#SearchProfileDelete').show();
 
+            // show profile link
+            $('#SearchProfileAsLink').show();
+
             // show save changes in template block
             $('#SaveProfile').parent().show().prev().show().prev().show();
 
             // set SaveProfile to 0
-            $('#SaveProfile').attr('checked', false);
+            $('#SaveProfile').prop('checked', false);
         }
+
+        Core.UI.InputFields.Activate($('.Dialog:visible'));
 
         // register add of attribute
         $('.AddButton').bind('click', function () {
@@ -194,56 +199,108 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
         // register return key
         $('#SearchForm').unbind('keypress.FilterInput').bind('keypress.FilterInput', function (Event) {
             if ((Event.charCode || Event.keyCode) === 13) {
-                $('#SearchForm').submit();
+                if (!CheckForSearchedValues()) {
+                    return false;
+                }
+                else {
+                    $('#SearchFormSubmit').trigger('click');
+                }
                 return false;
             }
         });
 
         // register submit
         $('#SearchFormSubmit').bind('click', function () {
+
+            var ShownAttributes = [];
+
+            if ($('#SearchProfileAddAction, #SearchProfileAddName').is(':visible') && $('#SearchProfileAddName').val()) {
+                $('#SearchProfileAddAction').trigger('click');
+            }
+
+            // remember shown attributes
+            $('#SearchInsert label').each(function () {
+                if ($(this).attr('id')) {
+                    ShownAttributes.push($(this).attr('id'));
+                }
+            });
+            $('#SearchForm #ShownAttributes').val(ShownAttributes.join(';'));
+
             // Normal results mode will return HTML in the same window
             if ($('#SearchForm #ResultForm').val() === 'Normal') {
-                $('#SearchForm').submit();
-                ShowWaitingDialog();
+
+                if (!CheckForSearchedValues()) {
+                    return false;
+                }
+                else {
+                    CheckSearchStringsForStopWords(function () {
+                        $('#SearchForm').submit();
+                        return false;
+                   });
+                }
             }
             else { // Print and CSV should open in a new window, no waiting dialog
                 $('#SearchForm').attr('target', 'SearchResultPage');
-                $('#SearchForm').submit();
-                $('#SearchForm').attr('target', '');
+                if (!CheckForSearchedValues()) {
+                    return false;
+                }
+                else {
+                    CheckSearchStringsForStopWords(function () {
+                        $('#SearchForm').submit();
+                        $('#SearchForm').attr('target', '');
+                    });
+                }
             }
             return false;
         });
 
+        Core.Form.Validate.Init();
+        Core.Form.Validate.SetSubmitFunction($('#SearchForm'), function (Form) {
+            Form.submit();
+
+            // Show only a waiting dialog for Normal results mode, because this result
+            //  will return the HTML in the same window.
+            if ($('#SearchForm #ResultForm').val() === 'Normal') {
+                ShowWaitingDialog();
+            }
+        });
+
         // load profile
         $('#SearchProfile').bind('change', function () {
-            var Profile = $('#SearchProfile').val();
-            TargetNS.LoadProfile(Profile);
+            var SearchProfile = $('#SearchProfile').val(),
+                SearchProfileEmptySearch = $('#EmptySearch').val(),
+                SearchProfileAction = $('#SearchAction').val();
+
+            TargetNS.OpenSearchDialog(SearchProfileAction, SearchProfile, SearchProfileEmptySearch);
             return false;
         });
 
         // show add profile block or not
         $('#SearchProfileNew').bind('click', function (Event) {
             $('#SearchProfileAddBlock').toggle();
+            $('#SearchProfileAddName').focus();
             Event.preventDefault();
             return false;
         });
 
         // add new profile
         $('#SearchProfileAddAction').bind('click', function () {
-            var Name, $Element1, $Element2;
+            var ProfileName, $Element1;
 
             // get name
-            Name = $('#SearchProfileAddName').val();
-            if (!Name) {
-                return false;
+            ProfileName = $('#SearchProfileAddName').val();
+
+            // check name
+            if (!ProfileName.length || ProfileName.length < 2) {
+                return;
             }
 
             // add name to profile selection
             $Element1 = $('#SearchProfile').children().first().clone();
-            $Element1.text(Name);
-            $Element1.attr('value', Name);
-            $Element1.attr('selected', 'selected');
-            $('#SearchProfile').append($Element1);
+            $Element1.text(ProfileName);
+            $Element1.attr('value', ProfileName);
+            $Element1.prop('selected', true);
+            $('#SearchProfile').append($Element1).trigger('redraw.InputField');
 
             // set input box to empty
             $('#SearchProfileAddName').val('');
@@ -255,10 +312,24 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
             $('#SaveProfile').parent().hide().prev().hide().prev().hide();
 
             // set SaveProfile to 1
-            $('#SaveProfile').attr('checked', true);
+            $('#SaveProfile').prop('checked', true);
 
+            // show delete button
             $('#SearchProfileDelete').show();
 
+            // show profile link
+            $('#SearchProfileAsLink').show();
+        });
+
+        // direct link to profile
+        $('#SearchProfileAsLink').bind('click', function () {
+            var SearchProfile = $('#SearchProfile').val(),
+                SearchProfileAction = $('#SearchAction').val();
+                ClassID = $('#ClassID').val();
+
+            window.location.href = Core.Config.Get('Baselink') + 'Action=' + SearchProfileAction +
+            ';Subaction=Search;TakeLastSearch=1;SaveProfile=1;Profile=' + encodeURIComponent(SearchProfile)
+            + ';ClassID=' + ClassID;
             return false;
         });
 
@@ -278,13 +349,23 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
                     // remove local
                     $(this).remove();
 
+                    // show fulltext
+                    TargetNS.SearchAttributeAdd('Fulltext');
+
                     // rebuild selection
                     TargetNS.AdditionalAttributeSelectionRebuild();
                 }
             });
+            $('#SearchProfile').trigger('change');
 
             if ($('#SearchProfile').val() && $('#SearchProfile').val() === 'last-search') {
+
+                // hide delete link
                 $('#SearchProfileDelete').hide();
+
+                // show profile link
+                $('#SearchProfileAsLink').hide();
+
             }
 
             Event.preventDefault();
@@ -319,6 +400,131 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
             Core.UI.InputFields.Activate($('#SearchForm'));
         });
     };
+
+    /**
+     * @private
+     * @name CheckForSearchedValues
+     * @memberof Core.Agent.Search
+     * @function
+     * @returns {Boolean} False if no values were found, true if values where there.
+     * @description
+     *      Checks if any values were entered in the search.
+     *      If nothing at all exists, it alerts with translated:
+     *      "Please enter at least one search value or * to find anything"
+     */
+    function CheckForSearchedValues() {
+        // loop through the SerachForm labels
+        var SearchValueFlag = false;
+        $('#SearchForm label').each(function () {
+            var ElementName,
+                $Element,
+                $LabelElement = $(this),
+                $FieldElement = $LabelElement.next('.Field');
+            // those with ID's are used for searching
+            if ($(this).attr('id')) {
+
+                // substring "Label" (e.g. first five characters ) from the
+                // label id, use the remaining name as name string for accessing
+                // the form input's value
+                ElementName = $(this).attr('id').substring(5);
+                $Element = $('#SearchForm input[name=' + Core.App.EscapeSelector(ElementName) + ']');
+
+                // If there's no input element with the selected name
+                // find the next "select" element and use that one for checking
+                if (!$Element.length) {
+                    $Element = $(this).next().find('select');
+                }
+
+                // Fix for bug#10845: make sure time slot fields with TimeInputFormat
+                // 'Input' set are being considered correctly, too. As this is only
+                // relevant for search type 'TimeSlot', we check for the first
+                // input type=text elment in the corresponding field element.
+                // All time field elements have to be filled in, but if only one
+                // is missing, we treat the whole field as invalid.
+                if ($FieldElement.find('input[name$="SearchType"]').val() === 'TimeSlot' && !$FieldElement.find('select').length) {
+                    $Element = $FieldElement.find('input[type=text]').first();
+                }
+
+                if ($Element.length) {
+                    if ($Element.val() && $Element.val() !== '') {
+                        SearchValueFlag = true;
+                    }
+                }
+            }
+        });
+        if (!SearchValueFlag) {
+           alert(Core.Config.Get('EmptySearchMsg'));
+        }
+        return SearchValueFlag;
+    }
+
+        /**
+     * @private
+     * @name CheckSearchStringsForStopWords
+     * @memberof Core.Agent.Search
+     * @function
+     * @param {Function} Callback - function to execute, if no stop words were found.
+     * @description Checks if specific values of the search form contain stop words.
+     *              If stop words are present, a warning will be displayed.
+     *              If stop words are not present, the given callback will be executed.
+     */
+    function CheckSearchStringsForStopWords(Callback) {
+        var SearchStrings = {},
+            SearchStringsFound = 0,
+            RelevantElementNames = {
+                'From': 1,
+                'To': 1,
+                'Cc': 1,
+                'Subject': 1,
+                'Body': 1,
+                'Fulltext': 1
+            };
+
+        if (!Core.Config.Get('CheckSearchStringsForStopWords')) {
+            Callback();
+            return;
+        }
+
+        $('#SearchForm label').each(function () {
+            var ElementName,
+                $Element;
+
+            // those with ID's are used for searching
+            if ($(this).attr('id')) {
+
+                // substring "Label" (e.g. first five characters ) from the
+                // label id, use the remaining name as name string for accessing
+                // the form input's value
+                ElementName = $(this).attr('id').substring(5);
+                if (!RelevantElementNames[ElementName]) {
+                    return;
+                }
+
+                $Element = $('#SearchForm input[name=' + ElementName + ']');
+
+                if ($Element.length) {
+                    if ($Element.val() && $Element.val() !== '') {
+                        SearchStrings[ElementName] = $Element.val();
+                        SearchStringsFound = 1;
+                    }
+                }
+            }
+        });
+
+        // Check if stop words are present.
+        if (!SearchStringsFound) {
+            Callback();
+            return;
+        }
+
+        AJAXStopWordCheck(
+            SearchStrings,
+            function (FoundStopWords) {
+                alert(Core.Config.Get('SearchStringsContainStopWordsMsg') + "\n" + FoundStopWords);
+            },
+            Callback
+        );
+    }
 
     /**
      * @function

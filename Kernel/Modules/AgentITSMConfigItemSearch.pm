@@ -148,6 +148,7 @@ sub Run {
             Data => {
                 ClassOptionStrg => $ClassOptionStrg,
                 Profile         => $Self->{Profile},
+                ClassID         => $ClassID,
             },
         );
 
@@ -274,12 +275,12 @@ sub Run {
         delete $Profiles{''};
         $Profiles{'last-search'} = '-';
         $Param{ProfilesStrg} = $LayoutObject->BuildSelection(
-            Data       => \%Profiles,
-            Name       => 'Profile',
-            ID         => 'SearchProfile',
-            SelectedID => $Self->{Profile},
-
-            # Do not modernize this field as this causes problems with the automatic focussing of the first element.
+            Data         => \%Profiles,
+            Name         => 'Profile',
+            ID           => 'SearchProfile',
+            SelectedID   => $Self->{Profile},
+            Class        => 'Modernize',
+            PossibleNone => 1,
         );
 
         # get deployment state list
