@@ -322,9 +322,9 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
         });
 
         // direct link to profile
-        $('#SearchProfileAsLink').bind('click', function () {
+        $('#SearchProfileAsLink').on('change', function () {
             var SearchProfile = $('#SearchProfile').val(),
-                SearchProfileAction = $('#SearchAction').val();
+                SearchProfileAction = $('#SearchAction').val(),
                 ClassID = $('#ClassID').val();
 
             window.location.href = Core.Config.Get('Baselink') + 'Action=' + SearchProfileAction +
