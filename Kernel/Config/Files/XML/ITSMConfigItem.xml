@@ -840,10 +840,10 @@
         <Value>
             <Hash>
                 <Item Key="Module">Kernel::Output::HTML::Preferences::Generic</Item>
-                <Item Key="PreferenceGroup">Other Settings</Item>
+                <Item Key="PreferenceGroup">Miscellaneous</Item>
                 <Item Key="Label" Translatable="1">Configuration Item Limit</Item>
                 <Item Key="Desc" Translatable="1">Configuration Item limit per page.</Item>
-                <Item Key="Key" Translatable="1">Limit</Item>
+                <Item Key="Key" Translatable="1"></Item>
                 <Item Key="Data">
                     <Hash>
                         <Item Key="10">10</Item>
