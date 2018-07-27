@@ -158,6 +158,15 @@ $Selenium->RunTest(
             $Element->is_displayed();
         }
 
+        # Check if ITSMChange Search form contain Excel output option, see bug#12769.
+        $Self->Is(
+            $Selenium->execute_script(
+                "return \$('#ResultForm option:contains(\"Excel\")').length"
+            ),
+            '1',
+            'ITSMConfigItem Search contain Excel output',
+        );
+
         # Search ConfigItems by test ConfigItem number and names.
         $Selenium->execute_script("\$('#Attribute').val('Name').trigger('redraw.InputField').trigger('change');");
         $Selenium->find_element( ".AddButton", 'css' )->click();

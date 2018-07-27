@@ -330,6 +330,7 @@ sub Run {
                 Normal => Translatable('Normal'),
                 Print  => Translatable('Print'),
                 CSV    => Translatable('CSV'),
+                Excel  => Translatable('Excel'),
             },
             Name       => 'ResultForm',
             SelectedID => $GetParam{ResultForm} || 'Normal',
@@ -598,7 +599,12 @@ sub Run {
         my $TimeObject = $Kernel::OM->Get('Kernel::System::Time');
 
         # CSV output
-        if ( $GetParam{ResultForm} eq 'CSV' ) {
+        if (
+            $GetParam{ResultForm} eq 'CSV'
+            ||
+            $GetParam{ResultForm} eq 'Excel'
+            )
+        {
             my @CSVData;
             my @CSVHead;
 
@@ -664,14 +670,8 @@ sub Run {
             }
 
             # assemble CSV data
-            my $CSV = $Kernel::OM->Get('Kernel::System::CSV')->Array2CSV(
-                Head      => \@CSVHead,
-                Data      => \@CSVData,
-                Separator => $Self->{UserCSVSeparator},
-            );
-
-            # return csv to download
-            my $CSVFile = 'configitem_search';
+            my $CSVObject = $Kernel::OM->Get('Kernel::System::CSV');
+            my $CSVFile   = 'change_search';
             my ( $s, $m, $h, $D, $M, $Y ) = $TimeObject->SystemTime2Date(
                 SystemTime => $TimeObject->SystemTime(),
             );
@@ -679,11 +679,42 @@ sub Run {
             $D = sprintf( "%02d", $D );
             $h = sprintf( "%02d", $h );
             $m = sprintf( "%02d", $m );
-            return $LayoutObject->Attachment(
-                Filename    => $CSVFile . "_" . "$Y-$M-$D" . "_" . "$h-$m.csv",
-                ContentType => "text/csv; charset=" . $LayoutObject->{UserCharset},
-                Content     => $CSV,
-            );
+
+            if ( $GetParam{ResultForm} eq 'CSV' ) {
+
+                # Assable CSV data.
+                my $CSV = $CSVObject->Array2CSV(
+                    Head      => \@CSVHead,
+                    Data      => \@CSVData,
+                    Separator => $Self->{UserCSVSeparator},
+                );
+
+                # Return csv to download.
+                return $LayoutObject->Attachment(
+                    Filename    => $CSVFile . "_" . "$Y-$M-$D" . "_" . "$h-$m.csv",
+                    ContentType => "text/csv; charset=" . $LayoutObject->{UserCharset},
+                    Content     => $CSV,
+                );
+            }
+
+            # generate Excel output
+            elsif ( $GetParam{ResultForm} eq 'Excel' ) {
+
+                # Assable Excel data.
+                my $Excel = $CSVObject->Array2CSV(
+                    Head   => \@CSVHead,
+                    Data   => \@CSVData,
+                    Format => 'Excel',
+                );
+
+                # Return Excel to download.
+                return $LayoutObject->Attachment(
+                    Filename => $CSVFile . "_" . "$Y-$M-$D" . "_" . "$h-$m.xlsx",
+                    ContentType =>
+                        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    Content => $Excel,
+                );
+            }
         }
 
         # print PDF output
