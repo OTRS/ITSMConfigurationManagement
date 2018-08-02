@@ -71,6 +71,8 @@
                     <a href="[% Env("Baselink") %]Action=[% Env("Action") %];[% Data.LinkSort %];SortBy=ChangeTime;OrderBy=[% Data.OrderBy | uri %]">[% Translate("Last changed") | html %]</a>
                 </th>
 [% RenderBlockEnd("RecordLastChangedHeader") %]
+                <th class="Hidden">
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -104,24 +106,12 @@
 [% RenderBlockEnd("RecordCurDeplSignal") %]
 [% RenderBlockStart("RecordNumber") %]
                 <td>
-[% RenderBlockStart("RecordNumberLinkStart") %]
-                    <a href="[% Env("Baselink") %]Action=AgentITSMConfigItemZoom;ConfigItemID=[% Data.ConfigItemID | uri %]" title="[% Data.Number | uri %]" class="MasterActionLink">
-[% RenderBlockEnd("RecordNumberLinkStart") %]
-                        [% Data.Number | html %]
-[% RenderBlockStart("RecordNumberLinkEnd") %]
-                    </a>
-[% RenderBlockEnd("RecordNumberLinkEnd") %]
+                    <div title="[% Data.Number | html %]">[% Data.Number | html %]</div>
                 </td>
 [% RenderBlockEnd("RecordNumber") %]
 [% RenderBlockStart("RecordName") %]
                 <td>
-[% RenderBlockStart("RecordNameLinkStart") %]
-                    <a href="[% Env("Baselink") %]Action=AgentITSMConfigItemZoom;ConfigItemID=[% Data.ConfigItemID | uri %]" title="[% Data.Name | uri %]" class="MasterActionLink">
-[% RenderBlockEnd("RecordNameLinkStart") %]
-                        <div title="[% Data.Name | html %]">[% Data.Name | truncate(40) | html %]</div>
-[% RenderBlockStart("RecordNameLinkEnd") %]
-                    </a>
-[% RenderBlockEnd("RecordNameLinkEnd") %]
+                    <div title="[% Data.Name | html %]">[% Data.Name | truncate(40) | html %]</div>
                 </td>
 [% RenderBlockEnd("RecordName") %]
 [% RenderBlockStart("RecordClass") %]
@@ -151,13 +141,7 @@
 [% RenderBlockEnd("RecordCurInciStateType") %]
 [% RenderBlockStart("RecordXMLAttribute") %]
                 <td>
-[% RenderBlockStart("RecordXMLAttributeLinkStart") %]
-                    <a href="[% Env("Baselink") %]Action=AgentITSMConfigItemZoom;ConfigItemID=[% Data.ConfigItemID | uri %]" title="[% Data.Number | uri %]" class="MasterActionLink">
-[% RenderBlockEnd("RecordXMLAttributeLinkStart") %]
-                        <div title="[% Data.XMLAttributeData | html %]">[% Data.XMLAttributeData | html %]</div>
-[% RenderBlockStart("RecordXMLAttributeLinkEnd") %]
-                    </a>
-[% RenderBlockEnd("RecordXMLAttributeLinkEnd") %]
+                    <div title="[% Data.XMLAttributeData | html %]">[% Data.XMLAttributeData | html %]</div>
                 </td>
 [% RenderBlockEnd("RecordXMLAttribute") %]
 [% RenderBlockStart("RecordLastChanged") %]
@@ -165,6 +149,9 @@
                     <div title="[% Data.CreateTime | Localize("TimeLong") %]">[% Data.CreateTime | Localize("TimeLong") %]</div>
                 </td>
 [% RenderBlockEnd("RecordLastChanged") %]
+                <td class="Hidden">
+                    <a href="[% Env("Baselink") %]Action=AgentITSMConfigItemZoom;ConfigItemID=[% Data.ConfigItemID | uri %]" class="MasterActionLink">
+                </td>
             </tr>
 
 [% RenderBlockStart("DocumentReadyActionRowAdd") %]

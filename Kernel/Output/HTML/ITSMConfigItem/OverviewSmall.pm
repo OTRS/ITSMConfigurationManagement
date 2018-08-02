@@ -421,22 +421,6 @@ END
                                 CurDeplSignal => $DeplSignals{ $Data{CurDeplState} },
                             },
                         );
-
-                        # show links if available
-                        $LayoutObject->Block(
-                            Name => 'Record' . $Column . 'LinkStart',
-                            Data => {
-                                %Param,
-                                %Data,
-                            },
-                        );
-                        $LayoutObject->Block(
-                            Name => 'Record' . $Column . 'LinkEnd',
-                            Data => {
-                                %Param,
-                                %Data,
-                            },
-                        );
                     }
 
                     COLUMN:
