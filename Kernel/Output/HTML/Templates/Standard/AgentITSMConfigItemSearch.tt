@@ -20,7 +20,7 @@
 <div class="InnerContent" id="AJAXUpdate">
 
     <form action="[% Env("CGIHandle") %]" method="post" id="SearchForm">
-        <input type="hidden" name="Action" value="[% Env("Action") %]"/>
+        <input type="hidden" name="Action" value="[% Env("Action") %]" id="SearchAction"/>
         <input type="hidden" name="ClassID" value="[% Data.ClassID | html %]" id="SearchClassID"/>
         <input type="hidden" name="Subaction" value="Search"/>
 
@@ -53,7 +53,7 @@
 
 [% RenderBlockStart("AJAXContent") %]
 <form action="[% Env("CGIHandle") %]" method="post" id="SearchForm">
-    <input type="hidden" name="Action" value="[% Env("Action") %]"/>
+    <input type="hidden" name="Action" value="[% Env("Action") %]" id="SearchAction"/>
     <input type="hidden" name="Subaction" value="Search"/>
     <input type="hidden" name="ClassID" value="[% Data.ClassID | html %]" id="SearchClassID">
     <input type="hidden" name="SearchDialog" value='1'>
