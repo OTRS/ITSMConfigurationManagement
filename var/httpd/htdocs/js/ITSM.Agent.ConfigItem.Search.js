@@ -239,7 +239,7 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
         });
 
         // register submit
-        $('#SearchFormSubmit').off('click.DoSearch').on('click.DoSearch', function () {
+        $('#SearchFormSubmit').bind('click', function () {
 
             var ShownAttributes = [];
 
@@ -488,7 +488,7 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
             }
         });
         if (!SearchValueFlag) {
-           alert(Core.Language.Translate('Please enter at least one search value or * to find anything.'));
+           alert(Core.Config.Get('EmptySearchMsg'));
         }
         return SearchValueFlag;
     }
