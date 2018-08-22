@@ -135,6 +135,11 @@ $Selenium->RunTest(
             "\$('#SearchClassID').val('$ConfigItemClassIDs[0]').trigger('redraw.InputField').trigger('change');"
         );
 
+        # Be sure all fields are loaded.
+        $Selenium->WaitFor(
+            JavaScript => 'return typeof($) === "function" && $("#SearchFormSubmit").length;',
+        );
+
         # Check ConfigItem search page.
         for my $ID (
             qw(SearchClassID SearchProfile SearchProfileNew Attribute PreviousVersionSearch ResultForm SearchFormSubmit)
@@ -419,8 +424,37 @@ $Selenium->RunTest(
             JavaScript => "return typeof(\$) === 'function' && \$('#SearchProfile').val() === '$SearchProfileName'"
         );
 
-        # Check button for profil link.
+        # Execute search with new search profile to save it.
+        $Selenium->find_element("//input[\@name='Number']")->clear();
+        $Selenium->find_element("//input[\@name='Number']")->send_keys('*');
+        $Selenium->find_element("//input[\@name='Name']")->clear();
+        $Selenium->find_element("//input[\@name='Name']")->send_keys( '*' . $RandomID );
+
+        $Selenium->find_element( "#SearchFormSubmit", 'css' )->click();
+        $Selenium->WaitFor(
+            JavaScript =>
+                "return typeof(\$) === 'function' && !\$('Dialog.Modal').length && \$('#OverviewBody .TableSmall').length"
+        );
+
+        # Click on "Change search option"
+        $Selenium->find_element( "#ITSMConfigItemSearch", 'css' )->click();
+
+        # Select newly created search profile.
+        $Selenium->execute_script(
+            "\$('#SearchProfile').val('$SearchProfileName').trigger('redraw.InputField').trigger('change');",
+        );
+
+        $Selenium->WaitFor(
+            JavaScript => "return typeof(\$) === 'function' && \$('#SearchProfile').val() === '$SearchProfileName'"
+        );
+
+        # Check button for profile link.
         $Selenium->find_element( "#SearchProfileAsLink", 'css' )->click();
+
+        $Selenium->WaitFor(
+            JavaScript =>
+                'return typeof(Core) == "object" && typeof(Core.App) == "object" && Core.App.PageLoadComplete'
+        );
 
         # Click on "Change search option"
         $Selenium->find_element( "#ITSMConfigItemSearch", 'css' )->click();
@@ -431,7 +465,7 @@ $Selenium->RunTest(
         $Self->Is(
             $Selenium->execute_script("return \$('#SearchProfile').val();"),
             $SearchProfileName,
-            "Check if profil is loaded well"
+            "Check if profile is loaded well"
         );
 
         # Delete created test ConfigItem.
