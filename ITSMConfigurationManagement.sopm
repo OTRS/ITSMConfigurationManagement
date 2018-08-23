@@ -7,7 +7,7 @@
     <PackageRequired Version="6.0.10">ITSMCore</PackageRequired>
     <Vendor>OTRS AG</Vendor>
     <URL>http://otrs.org/</URL>
-    <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
+    <License>GNU GENERAL PUBLIC LICENSE Version 3, November 2007</License>
     <Description Lang="en">The OTRS::ITSM Configuration Management package.</Description>
     <Description Lang="de">Das OTRS::ITSM Configuration Management Paket.</Description>
     <Description Lang="es">El paquete OTRS::ITSM Configuration Management.</Description>
