@@ -575,6 +575,16 @@
             <Item ValueType="String" ValueRegex="">Computer</Item>
         </Value>
     </Setting>
+    <Setting Name="LinkObject::ITSMConfigItem::ShowColumns" Required="0" Valid="1">
+        <Description Translatable="1">Defines the shown columns of CIs in the link table complex view for all CI classes. If there is no entry, then the default columns are shown.</Description>
+        <Navigation>Core::LinkObject</Navigation>
+        <Value>
+            <Array>
+                <Item>CurInciSignal</Item>
+                <Item>CurDeplSignal</Item>
+            </Array>
+        </Value>
+    </Setting>
     <Setting Name="LinkObject::ITSMConfigItem::ShowColumnsByClass" Required="0" Valid="0">
         <Description Translatable="1">Defines the shown columns of CIs in the link table complex view, depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown.</Description>
         <Navigation>Core::LinkObject</Navigation>

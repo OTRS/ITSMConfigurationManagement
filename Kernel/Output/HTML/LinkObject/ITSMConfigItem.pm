@@ -208,18 +208,30 @@ sub TableCreateComplex {
         $Self->{DeplStateColors}->{$DeplState} = lc $Preferences{Color};
     }
 
-    # get the column config
-    my $ColumnConfig = $Kernel::OM->Get('Kernel::Config')->Get('LinkObject::ITSMConfigItem::ShowColumnsByClass');
+    # Get the columns config.
+    my $ColumnsConfig = $Kernel::OM->Get('Kernel::Config')->Get('LinkObject::ITSMConfigItem::ShowColumns');
 
-    # get the configered columns and reorganize them by class name
+    # Get the columns by class config.
+    my $ColumnsByClassConfig
+        = $Kernel::OM->Get('Kernel::Config')->Get('LinkObject::ITSMConfigItem::ShowColumnsByClass');
+
+    # Get configured columns and reorganize them by class name.
     my %ColumnByClass;
-    if ( $ColumnConfig && ref $ColumnConfig eq 'ARRAY' && @{$ColumnConfig} ) {
+    my %SignalColumnList;
+    if ( $ColumnsByClassConfig && ref $ColumnsByClassConfig eq 'ARRAY' && @{$ColumnsByClassConfig} ) {
 
         NAME:
-        for my $Name ( @{$ColumnConfig} ) {
+        for my $Name ( @{$ColumnsByClassConfig} ) {
             my ( $Class, $Column ) = split /::/, $Name, 2;
 
             next NAME if !$Column;
+
+            # If signal columns are configured just for certain classes, add them to the beginning of ItemColumns array,
+            # not to the array with other columns.
+            if ( $Column eq 'CurInciSignal' || $Column eq 'CurDeplSignal' ) {
+                $SignalColumnList{$Class}->{$Column} = 1;
+                next NAME;
+            }
 
             push @{ $ColumnByClass{$Class} }, $Column;
         }
@@ -284,17 +296,6 @@ sub TableCreateComplex {
 
             my @ItemColumns = (
                 {
-                    Type             => 'CurInciSignal',
-                    Key              => $ConfigItemID,
-                    Content          => $Version->{CurInciState},
-                    CurInciStateType => $Version->{CurInciStateType},
-                },
-                {
-                    Type    => 'CurDeplSignal',
-                    Key     => $ConfigItemID,
-                    Content => $Version->{CurDeplState},
-                },
-                {
                     Type    => 'Link',
                     Content => $Version->{Number},
                     Link    => $Self->{LayoutObject}->{Baselink}
@@ -303,6 +304,36 @@ sub TableCreateComplex {
                     Title => "ConfigItem# $Version->{Number} ($Version->{Class}): $Version->{Name}",
                 },
             );
+
+            # Add columns from 'LinkObject::ITSMConfigItem::ShowColumns' setting to the current CI class
+            # if it does not contain them. Signal columns is saved in hash because they will be added later.
+            COLUMNCONFIG:
+            for my $Column ( @{$ColumnsConfig} ) {
+
+                if ( $Column eq 'CurInciSignal' || $Column eq 'CurDeplSignal' ) {
+                    $SignalColumnList{$Class}->{$Column} = 1;
+                }
+                elsif ( !grep { $_ eq $Column } @{ $ColumnByClass{$Class} } ) {
+                    push @{ $ColumnByClass{$Class} }, $Column;
+                }
+            }
+
+            # Add signal columns to the beginning of the array if needed.
+            if ( $SignalColumnList{$Class}->{CurDeplSignal} ) {
+                unshift @ItemColumns, {
+                    Type    => 'CurDeplSignal',
+                    Key     => $ConfigItemID,
+                    Content => $Version->{CurDeplState},
+                };
+            }
+            if ( $SignalColumnList{$Class}->{CurInciSignal} ) {
+                unshift @ItemColumns, {
+                    Type             => 'CurInciSignal',
+                    Key              => $ConfigItemID,
+                    Content          => $Version->{CurInciState},
+                    CurInciStateType => $Version->{CurInciStateType},
+                };
+            }
 
             # these columns will be added if no class based column config is defined
             my @AdditionalDefaultItemColumns = (
@@ -475,20 +506,26 @@ sub TableCreateComplex {
             Blockname => $Self->{ObjectData}->{Realname} . ' (' . $Class . ')',
             Headline  => [
                 {
-                    Content => 'Incident State',
-                    Width   => 20,
-                },
-                {
-                    Content => 'Deployment State',
-                    Width   => 20,
-                },
-                {
                     Content => 'ConfigItem#',
                     Width   => 100,
                 },
             ],
             ItemList => \@ItemList,
         );
+
+        # Add 'CurInciSignal' and 'CurDeplSignal' columns to the beginning of headline if needed.
+        if ( $SignalColumnList{$Class}->{CurDeplSignal} ) {
+            unshift @{ $Block{Headline} }, {
+                Content => 'Deployment State',
+                Width   => 20,
+            };
+        }
+        if ( $SignalColumnList{$Class}->{CurInciSignal} ) {
+            unshift @{ $Block{Headline} }, {
+                Content => 'Incident State',
+                Width   => 20,
+            };
+        }
 
         # add the column headlines
         push @{ $Block{Headline} }, @ShowColumnsHeadlines;
