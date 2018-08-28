@@ -151,11 +151,12 @@ $Selenium->RunTest(
             qw(SearchClassID SearchProfile SearchProfileNew Attribute PreviousVersionSearch ResultForm SearchFormSubmit)
             )
         {
-
-            my $Element = $Selenium->find_element( "#$ID", 'css' );
-
-            $Element->is_enabled();
-            $Element->is_displayed();
+            sleep 1;
+            $Selenium->WaitFor( JavaScript => "return typeof(\$) === 'function' && \$('#$ID').length" );
+            $Self->True(
+                $Selenium->execute_script("return typeof(\$) === 'function' && \$('#$ID').length;"),
+                "Element is found - $ID",
+            );
         }
 
         # Check if ITSMChange Search form contain Excel output option, see bug#12769.
@@ -427,6 +428,9 @@ $Selenium->RunTest(
         $Selenium->find_element( "#SearchProfileAddAction", 'css' )->click();
         $Selenium->WaitFor(
             JavaScript => "return typeof(\$) === 'function' && \$('#SearchProfile').val() === '$SearchProfileName'"
+        );
+        $Selenium->WaitFor(
+            JavaScript => "return typeof(\$) === 'function' && \$('#SearchProfileAsLink:visible').length"
         );
 
         # Check button for profil link.
