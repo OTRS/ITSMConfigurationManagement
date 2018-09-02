@@ -449,7 +449,8 @@ $Selenium->RunTest(
             JavaScript => "return typeof(\$) === 'function' && \$('#SearchProfile').val() === '$SearchProfileName';"
         );
         $Selenium->WaitFor(
-            JavaScript => "return typeof(\$) === 'function' && \$('#SearchProfileAsLink:visible').length" );
+            JavaScript => "return typeof(\$) === 'function' && \$('#SearchProfileAsLink:visible').length"
+        );
 
         # Check button for profile link.
         $Selenium->find_element( "#SearchProfileAsLink", 'css' )->click();
