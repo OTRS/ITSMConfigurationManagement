@@ -268,10 +268,9 @@ ITSM.Agent.ConfigItem.Search = (function (TargetNS) {
         // load profile
         $('#SearchProfile').bind('change', function () {
             var SearchProfile = $('#SearchProfile').val(),
-                SearchProfileEmptySearch = $('#EmptySearch').val(),
+                SearchProfileClassID = $('#SearchClassID').val(),
                 SearchProfileAction = $('#SearchAction').val();
-
-            TargetNS.OpenSearchDialog(SearchProfileAction, SearchProfile, SearchProfileEmptySearch);
+            TargetNS.OpenSearchDialog(SearchProfileAction, SearchProfile, SearchProfileClassID);
             return false;
         });
 
