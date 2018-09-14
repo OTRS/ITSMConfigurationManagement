@@ -66,7 +66,6 @@ sub Data {
     $Self->{Translation}->{'A generic ITSM Configuration Item table'} = '';
 
     # Template: AgentITSMConfigItemSearch
-    $Self->{Translation}->{'Create New Template'} = 'Tengeneza kiolezo kipya';
     $Self->{Translation}->{'Run Search'} = 'Tafuta';
     $Self->{Translation}->{'Also search in previous versions?'} = 'Pia tafuta katika toleo lililopita?';
 
@@ -311,6 +310,8 @@ ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns';
 ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns';
     $Self->{Translation}->{'Defines the shown columns of CIs in the config item widget depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting AgentCustomerInformationCenter::Backend###0060-CIC-ITSMConfigItemCustomerCompany (key DefaultColumns).'} =
         '';
+    $Self->{Translation}->{'Defines the shown columns of CIs in the link table complex view for all CI classes. If there is no entry, then the default columns are shown.'} =
+        '';
     $Self->{Translation}->{'Defines the shown columns of CIs in the link table complex view, depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown.'} =
         'Inafafanua safu wima za CI zilizoonyeshwa katika mandhari ya jedwali tata la kiungo,kutegemeana na tabaka la CI. Kila ingizo lazima liwe na kiambishi awali jina la tabaka na :: ( mfano Tarakilishi::).Kuna viumbi vichache vya CI ambavyo vipo kwa CI zote (mfano kwenye tabaka la tarakilishi: tarakilishi::jina, Tarakilishi::Hali yaCurDep, Tarakilishi::Muda wa kutengeneza). Kuonyesha kiumbi cha CI kimoja kimoja kama vilivyo fafanuliwa kwenye ufafanuzi wa CI, mpangilio ufuatao lazima utumike (mfano kwenye tabaka tarakilishi): Tarakilishi::diski kuu::1, Tarakilishi::Diski kuu ngumu::1Uwezo::1, Tarakilishi::Diski kuu ngumu::2, Tarakilishi::Diski kuu ngumu::2::Uwezo::1. Kama hakuna ingizo kwa tabaka la CI, safuwima chaguo msingi zinaonyeshwa.';
     $Self->{Translation}->{'Defines which type of link (named from the ticket perspective) can affect the status of a linked CI.'} =
@@ -404,6 +405,7 @@ ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns';
     push @{ $Self->{JavaScriptStrings} // [] }, (
     'No',
     'Ok',
+    'Please enter at least one search value or * to find anything.',
     'Settings',
     'Submit',
     'Yes',

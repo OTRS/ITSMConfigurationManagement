@@ -66,7 +66,6 @@ sub Data {
     $Self->{Translation}->{'A generic ITSM Configuration Item table'} = 'Uma tabela genérica de Itens de Configuração GSTI';
 
     # Template: AgentITSMConfigItemSearch
-    $Self->{Translation}->{'Create New Template'} = 'Criar novo Modelo';
     $Self->{Translation}->{'Run Search'} = 'Executar Pesquisa';
     $Self->{Translation}->{'Also search in previous versions?'} = 'Procurar nas verões anteriores também?';
 
@@ -111,8 +110,8 @@ sub Data {
     $Self->{Translation}->{'Deployment state updated (new=%s, old=%s)'} = 'Estado de implementação atualizado (novo=%s , antigo=%s)';
     $Self->{Translation}->{'Incident state updated (new=%s, old=%s)'} = 'Estado de incidente atualizado (novo=%s, antigo=%s)';
     $Self->{Translation}->{'ConfigItem (ID=%s) deleted'} = '';
-    $Self->{Translation}->{'Link to %s (type=%s) added'} = '';
-    $Self->{Translation}->{'Link to %s (type=%s) deleted'} = '';
+    $Self->{Translation}->{'Link to %s (type=%s) added'} = 'Vínculo para %s (tipo=%s) adicionado';
+    $Self->{Translation}->{'Link to %s (type=%s) deleted'} = 'Vínculo para %s (tipo=%s) deletado';
     $Self->{Translation}->{'ConfigItem definition updated (ID=%s)'} = '';
     $Self->{Translation}->{'Name updated (new=%s, old=%s)'} = 'Nome atualizado (novo=%s, antigo=%s)';
     $Self->{Translation}->{'Attribute %s updated from "%s" to "%s"'} = 'Atributo %s atualizado de "%s" para "%s"';
@@ -140,7 +139,7 @@ sub Data {
     $Self->{Translation}->{'The incident state of this config item'} = 'O estado de incidente deste item de configuração';
 
     # Perl Module: Kernel/Output/HTML/Dashboard/ITSMConfigItemGeneric.pm
-    $Self->{Translation}->{'Shown config items'} = '';
+    $Self->{Translation}->{'Shown config items'} = 'Exibir itens de configuração';
 
     # Perl Module: Kernel/Output/HTML/ITSMConfigItem/LayoutDate.pm
     $Self->{Translation}->{'Between'} = 'Entre';
@@ -249,8 +248,8 @@ sub Data {
 
     # SysConfig
     $Self->{Translation}->{'Assigned CIs'} = '';
-    $Self->{Translation}->{'CIs assigned to customer company'} = '';
-    $Self->{Translation}->{'CIs assigned to customer user'} = '';
+    $Self->{Translation}->{'CIs assigned to customer company'} = 'IC atribuido à empresa cliente';
+    $Self->{Translation}->{'CIs assigned to customer user'} = 'IC atribuido ao usuário cliente';
     $Self->{Translation}->{'CMDB Settings'} = 'Configurações do CMDB';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
         'Verifique se o nome é único apenas dentro da mesma classe de IC (\'classe) ou globalmente (\'global\'), o que significa que cada IC existente é levado em conta ao procurar por duplicações.';
@@ -308,6 +307,8 @@ sub Data {
     $Self->{Translation}->{'Defines the shown columns of CIs in the config item search depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns.'} =
         'Define as colunas de ICs exibidas na tela de pesquisa de itens de configuração, dependendo da classe do IC. Cada entrada deve ser prefixada com o nome da classe e duplo dois pontos (ex. Computador::). Há alguns atributos de IC que são comuns a todos os ICs (tal como a classe Computador: Computador::Nome, Computador::EstadoImplAtual, Computador::HoraCriacao). Para exibir atributos de IC individualmente como definido na definição do IC, o seguinte esquema deve ser usado (classe Computador, por exemplo): Computador::DiscoRigido::1, Computador::DiscoRigido::1::Capacidade::1, Computador::DiscoRigido::2, Computador::DiscoRigido::2::Capacidade::1. Se não há entrada para a classe IC, então as colunas padrão são exibidas como definido na configuração ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns.';
     $Self->{Translation}->{'Defines the shown columns of CIs in the config item widget depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting AgentCustomerInformationCenter::Backend###0060-CIC-ITSMConfigItemCustomerCompany (key DefaultColumns).'} =
+        '';
+    $Self->{Translation}->{'Defines the shown columns of CIs in the link table complex view for all CI classes. If there is no entry, then the default columns are shown.'} =
         '';
     $Self->{Translation}->{'Defines the shown columns of CIs in the link table complex view, depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown.'} =
         'Define as colunas de ICs exibidas na tela de tabela complexa de links, dependendo da classe do IC. Cada entrada deve ser prefixada com o nome da classe e duplo dois pontos (ex. Computador::). Há alguns atributos de IC que são comuns a todos os ICs (tal como a classe Computador: Computador::Nome, Computador::EstadoImplAtual, Computador::HoraCriacao). Para exibir atributos de IC individualmente como definido na definição do IC, o seguinte esquema deve ser usado (classe Computador, por exemplo): Computador::DiscoRigido::1, Computador::DiscoRigido::1::Capacidade::1, Computador::DiscoRigido::2, Computador::DiscoRigido::2::Capacidade::1. Se não há entrada para a classe IC, então as colunas padrão são exibidas.';
@@ -402,6 +403,7 @@ sub Data {
     push @{ $Self->{JavaScriptStrings} // [] }, (
     'No',
     'Ok',
+    'Please enter at least one search value or * to find anything.',
     'Settings',
     'Submit',
     'Yes',

@@ -66,7 +66,6 @@ sub Data {
     $Self->{Translation}->{'A generic ITSM Configuration Item table'} = '一个通用的ITSM配置项表格';
 
     # Template: AgentITSMConfigItemSearch
-    $Self->{Translation}->{'Create New Template'} = '创建新模板';
     $Self->{Translation}->{'Run Search'} = '搜索';
     $Self->{Translation}->{'Also search in previous versions?'} = '同时搜索以前的版本吗?';
 
@@ -309,6 +308,8 @@ sub Data {
         '定义按配置项类分类的配置项搜索结果中显示的字段。每个条目均需以类名为前缀再加上双冒号（如计算机::）。有一些配置项属性是所有配置项都有的（例如，对于计算机类：计算机::名称、计算机::CurDeplState当前部署状态、计算机::CreateTime创建时间）。要显示在配置项定义中定义的独特的配置项属性，必须使用下面的方案（例如：对于计算机类：计算机::硬盘::1、计算机::硬盘::容量::1、计算机::硬盘::2、计算机::硬盘::2计算机::硬盘::2）。如果一个配置项类没有条目存在，则使用在ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns中设置的默认字段。';
     $Self->{Translation}->{'Defines the shown columns of CIs in the config item widget depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting AgentCustomerInformationCenter::Backend###0060-CIC-ITSMConfigItemCustomerCompany (key DefaultColumns).'} =
         '定义配置项小部件中按配置项类分类显示的字段。每个条目均需以类名为前缀再加上双冒号（如计算机::）。有一些配置项属性是所有配置项都有的（例如，对于计算机类：Computer::Name、Computer::CurDeplState当前部署状态、Computer::CreateTime创建时间）。要显示在配置项定义中定义的独特的配置项属性，必须使用下面的方案（例如：对于计算机类：Computer::HardDisk::1【计算机::硬盘::1】、Computer::HardDisk::1::Capacity::1【计算机::硬盘::容量::1】、 Computer::HardDisk::2【计算机::硬盘::2】、Computer::HardDisk::2::Capacity::1【计算机::硬盘::2::容量::1】）。如果一个配置项类没有条目存在，则使用在AgentCustomerInformationCenter::Backend###0060-CIC-ITSMConfigItemCustomerCompany 中设置的默认字段(DefaultColumns键)。';
+    $Self->{Translation}->{'Defines the shown columns of CIs in the link table complex view for all CI classes. If there is no entry, then the default columns are shown.'} =
+        '';
     $Self->{Translation}->{'Defines the shown columns of CIs in the link table complex view, depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown.'} =
         '定义链接表复合视图中按配置项类分类显示的字段。每个条目均需以类名为前缀再加上双冒号（如计算机::）。有一些配置项属性是所有配置项都有的（例如，对于计算机类：计算机::名称、计算机::CurDeplState当前部署状态、计算机::CreateTime创建时间）。要显示在配置项定义中定义的独特的配置项属性，必须使用下面的方案（例如：对于计算机类：计算机::硬盘::1、计算机::硬盘::容量::1、计算机::硬盘::2、计算机::硬盘::2计算机::硬盘::2）。如果一个配置项类没有条目存在，则使用在ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns中设置的默认字段。';
     $Self->{Translation}->{'Defines which type of link (named from the ticket perspective) can affect the status of a linked CI.'} =
@@ -402,6 +403,7 @@ sub Data {
     push @{ $Self->{JavaScriptStrings} // [] }, (
     'No',
     'Ok',
+    'Please enter at least one search value or * to find anything.',
     'Settings',
     'Submit',
     'Yes',
