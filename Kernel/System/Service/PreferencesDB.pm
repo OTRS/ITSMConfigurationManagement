@@ -1,7 +1,7 @@
 # --
 # Copyright (C) 2001-2018 OTRS AG, https://otrs.com/
 # --
-# $origin: otrs - a4512636fc11eff48b5864b208e064bb1cce29f3 - Kernel/System/Service/PreferencesDB.pm
+# $origin: otrs - 77d4495533edfdbd2370353edad87839ee636357 - Kernel/System/Service/PreferencesDB.pm
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
