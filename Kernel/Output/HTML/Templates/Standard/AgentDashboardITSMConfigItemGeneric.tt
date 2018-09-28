@@ -40,6 +40,7 @@
     <input type="hidden" name="Filter[% Data.Name | html %]" id="Filter[% Data.Name | html %]" value="[% Data.FilterValue | html %]" />
     <input type="hidden" name="AdditionalFilter[% Data.Name | html %]" id="AdditionalFilter[% Data.Name | html %]" value="[% Data.AdditionalFilterValue | html %]" />
     <table class="DataTable">
+         [% Data.StyleClasses %]
         <thead>
             <tr>
 [% RenderBlockStart("RecordCurInciSignalHeader") %]

@@ -691,7 +691,8 @@ sub Run {
         TemplateFile => 'AgentDashboardITSMConfigItemGeneric',
         Data         => {
             %{ $Self->{Config} },
-            Name => $Self->{Name},
+            Name         => $Self->{Name},
+            StyleClasses => $StyleClasses,
         },
         AJAX => $Param{AJAX},
     );
