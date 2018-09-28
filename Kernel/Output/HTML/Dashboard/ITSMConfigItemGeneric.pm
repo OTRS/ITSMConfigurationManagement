@@ -267,10 +267,10 @@ sub Run {
     if ( scalar keys %Filters == 1 ) {
 
         # Get the name of the only filter.
-        my ($FilterName) = keys %Filters;
+        my ($FilterKey) = keys %Filters;
 
         # Activate this filter.
-        $Self->{Filter} = $FilterName;
+        $Self->{Filter} = $Filters{$FilterKey}->{Name};
     }
     else {
 
