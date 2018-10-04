@@ -158,9 +158,9 @@ $Selenium->RunTest(
             "\$('#TargetIdentifier').val('ITSMConfigItem::$ConfigItemClassIDs[1]').trigger('redraw.InputField').trigger('change');"
         );
 
-        $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && !$("#DialogWaiting").length' );
+        sleep 2;
         $Selenium->WaitFor(
-            JavaScript => 'return typeof(Core) == "object" && typeof(Core.App) == "object" && Core.App.PageLoadComplete'
+            JavaScript => 'return typeof($) === "function" && $("#SEARCH\\\\:\\\\:Number").length;'
         );
 
         # Check 'Link' screen for two ConfigItems.
@@ -176,7 +176,9 @@ $Selenium->RunTest(
         # Search ConfigItem by its number and select result.
         $Selenium->find_element("//input[\@id='SEARCH::Number']")->send_keys( $ConfigItemNumbers[1] );
         $Selenium->find_element( "#SubmitSearch", 'css' )->VerifiedClick();
-        $Selenium->find_element("//input[\@id='LinkTargetKeys'][\@value='$ConfigItemIDs[1]']")->click();
+
+        $Selenium->find_element( '#LinkTargetKeys', 'css' )->click();
+        sleep 1;
 
         # Select 'AlternativeTo' link type.
         $Selenium->find_element("//button[\@id='AddLinks']")->VerifiedClick();
@@ -186,9 +188,9 @@ $Selenium->RunTest(
             "\$('#TargetIdentifier').val('Service').trigger('redraw.InputField').trigger('change');"
         );
 
-        $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && !$("#DialogWaiting").length' );
+        sleep 2;
         $Selenium->WaitFor(
-            JavaScript => 'return typeof(Core) == "object" && typeof(Core.App) == "object" && Core.App.PageLoadComplete'
+            JavaScript => 'return typeof($) === "function" && $("#SEARCH\\\\:\\\\:Name").length;'
         );
 
         # Search Service by name and select result.
@@ -207,9 +209,9 @@ $Selenium->RunTest(
             "\$('#TargetIdentifier').val('Ticket').trigger('redraw.InputField').trigger('change');"
         );
 
-        $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && !$("#DialogWaiting").length' );
+        sleep 2;
         $Selenium->WaitFor(
-            JavaScript => 'return typeof(Core) == "object" && typeof(Core.App) == "object" && Core.App.PageLoadComplete'
+            JavaScript => 'return typeof($) === "function" && $("#SEARCH\\\\:\\\\:TicketNumber").length;'
         );
 
         # Search Ticket by number and select result.
