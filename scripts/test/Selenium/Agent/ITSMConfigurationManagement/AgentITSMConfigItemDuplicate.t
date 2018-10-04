@@ -147,23 +147,25 @@ $Selenium->RunTest(
             "#InciStateID stored value",
         );
 
-        # edit name for duplicate test ConfigItem
+        # Edit name for duplicate test ConfigItem.
         my $DuplicateConfigItemName = "Duplicate" . $ConfigItemName;
         $Selenium->find_element( "#Name", 'css' )->clear();
         $Selenium->find_element( "#Name", 'css' )->send_keys($DuplicateConfigItemName);
         $Selenium->find_element("//button[\@value='Submit'][\@type='submit']")->click();
 
-        # switch back to zoom view
+        # Switch back to zoom view.
         $Selenium->WaitFor( WindowCount => 1 );
         $Selenium->switch_to_window( $Handles->[0] );
 
-        # wait until page has loaded, if necessary
-        $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && $("body").length' );
+        # Wait until page has loaded, if necessary.
+        $Selenium->WaitFor(
+            JavaScript =>
+                'return typeof(Core) == "object" && typeof(Core.App) == "object" && Core.App.PageLoadComplete'
+        );
+        $Selenium->WaitFor(
+            JavaScript => "return typeof(\$) === 'function' && \$('h1:contains($DuplicateConfigItemName)').length;" );
 
-        # refresh screen
-        $Selenium->VerifiedRefresh();
-
-        # check for duplicated ConfigItem value
+        # Check for duplicated ConfigItem value.
         $Self->True(
             $Selenium->execute_script(
                 "return \$('h1:contains($DuplicateConfigItemName)').length"
@@ -171,7 +173,7 @@ $Selenium->RunTest(
             "Test ConfigItem value $DuplicateConfigItemName - found",
         );
 
-        # delete created test ConfigItems
+        # Delete created test ConfigItems.
         for my $DeleteConfigItem ( 1 .. 2 ) {
             my $Success = $ConfigItemObject->ConfigItemDelete(
                 ConfigItemID => $ConfigItemID,
