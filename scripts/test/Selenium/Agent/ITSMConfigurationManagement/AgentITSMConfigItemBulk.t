@@ -159,11 +159,12 @@ $Selenium->RunTest(
                 'return typeof(Core) == "object" && typeof(Core.App) == "object" && Core.App.PageLoadComplete'
         );
 
-        # click on first created test ConfigItems to enter zoom view
-        $Selenium->find_element( "#ConfigItemID_$ConfigItemIDs[1]", 'css' )->VerifiedClick();
+        # Click on first created test ConfigItems to enter zoom view.
+        $Selenium->execute_script("\$('#ConfigItemID_$ConfigItemIDs[1]').click();");
+        $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && $("#ITSMTree").length' );
 
-        # check for other two created test ConfigItems
-        # verify that link action in bulk screen was success
+        # Check for other two created test ConfigItems.
+        # Verify that link action in bulk screen was success.
         for my $CheckConfigItem (@ConfigItemNumbers) {
             $Self->True(
                 index( $Selenium->get_page_source(), $CheckConfigItem ) > -1,
@@ -177,7 +178,7 @@ $Selenium->RunTest(
             "Deployment state is Repair.",
         );
 
-        # delete created test ConfigItems
+        # Delete created test ConfigItems.
         for my $ConfigItemDelete (@ConfigItemIDs) {
             my $Success = $ConfigItemObject->ConfigItemDelete(
                 ConfigItemID => $ConfigItemDelete,
