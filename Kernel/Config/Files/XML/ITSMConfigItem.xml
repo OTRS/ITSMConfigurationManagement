@@ -902,16 +902,20 @@
         <Navigation>Frontend::Agent::View::ITSMConfigItemSearch</Navigation>
         <Value>
             <Hash>
-                <Item Key="CurInciSignal">1</Item>
-                <Item Key="CurDeplSignal">1</Item>
-                <Item Key="Number">1</Item>
-                <Item Key="Name">1</Item>
-                <Item Key="Class">0</Item>
-                <Item Key="CurDeplState">1</Item>
-                <Item Key="CurDeplStateType">0</Item>
-                <Item Key="CurInciState">1</Item>
-                <Item Key="CurInciStateType">0</Item>
-                <Item Key="LastChanged">1</Item>
+                <DefaultItem ValueType="Select">
+                    <Item ValueType="Option" Value="0" Translatable="1">0 - Disabled</Item>
+                    <Item ValueType="Option" Value="1" Translatable="1">1 - Enabled</Item>
+                </DefaultItem>
+                <Item Key="CurInciSignal" SelectedID="1"></Item>
+                <Item Key="CurDeplSignal" SelectedID="1"></Item>
+                <Item Key="Number" SelectedID="1"></Item>
+                <Item Key="Name" SelectedID="1"></Item>
+                <Item Key="Class" SelectedID="0"></Item>
+                <Item Key="CurDeplState" SelectedID="1"></Item>
+                <Item Key="CurDeplStateType" SelectedID="0"></Item>
+                <Item Key="CurInciState" SelectedID="1">1</Item>
+                <Item Key="CurInciStateType" SelectedID="0"></Item>
+                <Item Key="LastChanged" SelectedID="1"></Item>
             </Hash>
         </Value>
     </Setting>
@@ -969,16 +973,20 @@
         <Navigation>Frontend::Agent::View::ITSMConfigItem</Navigation>
         <Value>
             <Hash>
-                <Item Key="CurInciSignal">1</Item>
-                <Item Key="CurDeplSignal">1</Item>
-                <Item Key="Number">1</Item>
-                <Item Key="Name">1</Item>
-                <Item Key="Class">0</Item>
-                <Item Key="CurDeplState">1</Item>
-                <Item Key="CurDeplStateType">0</Item>
-                <Item Key="CurInciState">1</Item>
-                <Item Key="CurInciStateType">0</Item>
-                <Item Key="LastChanged">1</Item>
+                <DefaultItem ValueType="Select">
+                    <Item ValueType="Option" Value="0" Translatable="1">0 - Disabled</Item>
+                    <Item ValueType="Option" Value="1" Translatable="1">1 - Enabled</Item>
+                </DefaultItem>
+                <Item Key="CurInciSignal" SelectedID="1"></Item>
+                <Item Key="CurDeplSignal" SelectedID="1"></Item>
+                <Item Key="Number" SelectedID="1"></Item>
+                <Item Key="Name" SelectedID="1"></Item>
+                <Item Key="Class" SelectedID="0"></Item>
+                <Item Key="CurDeplState" SelectedID="1"></Item>
+                <Item Key="CurDeplStateType" SelectedID="0"></Item>
+                <Item Key="CurInciState" SelectedID="1"></Item>
+                <Item Key="CurInciStateType" SelectedID="1"></Item>
+                <Item Key="LastChanged" SelectedID="1"></Item>
             </Hash>
         </Value>
     </Setting>
