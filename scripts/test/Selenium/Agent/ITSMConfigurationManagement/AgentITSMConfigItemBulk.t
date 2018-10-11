@@ -12,24 +12,24 @@ use utf8;
 
 use vars (qw($Self));
 
-# get selenium object
 my $Selenium = $Kernel::OM->Get('Kernel::System::UnitTest::Selenium');
 
 $Selenium->RunTest(
     sub {
 
-        # get needed objects
         my $Helper               = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
         my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
+        my $ConfigItemObject     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+        my $ConfigObject         = $Kernel::OM->Get('Kernel::Config');
 
-        # get 'Computer' catalog class IDs
+        # Get 'Computer' catalog class IDs.
         my $ConfigItemDataRef = $GeneralCatalogObject->ItemGet(
             Class => 'ITSM::ConfigItem::Class',
             Name  => 'Computer',
         );
         my $ComputerConfigItemID = $ConfigItemDataRef->{ItemID};
 
-        # get 'Production' and 'Repair' deployment state IDs
+        # Get 'Production' and 'Repair' deployment state IDs.
         my @DeplStateIDs;
         for my $DeplState (qw (Production Repair)) {
             my $DeplStateDataRef = $GeneralCatalogObject->ItemGet(
@@ -39,16 +39,12 @@ $Selenium->RunTest(
             push @DeplStateIDs, $DeplStateDataRef->{ItemID};
         }
 
-        # get needed objects
-        my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
-        my $ConfigObject     = $Kernel::OM->Get('Kernel::Config');
-
-        # create three test ConfigItems for 'Computer' ConfigItem class
+        # Create three test ConfigItems for 'Computer' ConfigItem class.
         my @ConfigItemNumbers;
         my @ConfigItemIDs;
         for my $ITSMConfigItem ( 1 .. 3 ) {
 
-            # create ConfigItem number
+            # Create ConfigItem number.
             my $ConfigItemNumber = $ConfigItemObject->ConfigItemNumberCreate(
                 Type    => $ConfigObject->Get('ITSMConfigItem::NumberGenerator'),
                 ClassID => $ComputerConfigItemID,
@@ -59,7 +55,7 @@ $Selenium->RunTest(
             );
             push @ConfigItemNumbers, $ConfigItemNumber;
 
-            # add the new ConfigItem
+            # Add the new ConfigItem.
             my $ConfigItemID = $ConfigItemObject->ConfigItemAdd(
                 Number  => $ConfigItemNumber,
                 ClassID => $ComputerConfigItemID,
@@ -70,7 +66,7 @@ $Selenium->RunTest(
                 "ConfigItem is created - ID $ConfigItemID"
             );
 
-            # add a new version
+            # Add a new version.
             my $VersionID = $ConfigItemObject->VersionAdd(
                 Name         => 'SeleniumTest',
                 DefinitionID => 1,
@@ -86,7 +82,7 @@ $Selenium->RunTest(
             push @ConfigItemIDs, $ConfigItemID;
         }
 
-        # create test user and login
+        # Create test user and login.
         my $TestUserLogin = $Helper->TestUserCreate(
             Groups => [ 'admin', 'itsm-configitem' ],
         ) || die "Did not get test user";
@@ -97,35 +93,34 @@ $Selenium->RunTest(
             Password => $TestUserLogin,
         );
 
-        # get script alias
         my $ScriptAlias = $ConfigObject->Get('ScriptAlias');
 
-        # navigate to AgentITSMConfigItem, sorted by created time
+        # Navigate to AgentITSMConfigItem, sorted by created time.
         $Selenium->VerifiedGet(
             "${ScriptAlias}index.pl?Action=AgentITSMConfigItem;Filter=All;View=;;SortBy=ChangeTime;OrderBy=Down"
         );
 
-        # select two created test ConfigItems
+        # Select two created test ConfigItems.
         for my $SelectConfigItem (@ConfigItemIDs) {
 
-            # don't click on third test ConfigItem
+            # Don't click on third test ConfigItem.
             if ( $SelectConfigItem ne $ConfigItemIDs[2] ) {
                 $Selenium->find_element("//input[\@value='$SelectConfigItem']")->click();
             }
         }
 
-        # click on bulk action
+        # Click on bulk action.
         $Selenium->find_element("//*[text()='Bulk']")->click();
 
-        # switch to 'Bulk' window
+        # Switch to 'Bulk' window.
         $Selenium->WaitFor( WindowCount => 2 );
         my $Handles = $Selenium->get_window_handles();
         $Selenium->switch_to_window( $Handles->[1] );
 
         # wait until page has loaded, if necessary
-        $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && $("#DeplStateID").length' );
+        $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && $("#DeplStateID").length;' );
 
-        # check screen
+        # Check screen
         for my $ID (
             qw(DeplStateID InciStateID LinkTogether LinkTogetherLinkType LinkTogetherAnother LinkType submitRichText)
             )
@@ -135,7 +130,7 @@ $Selenium->RunTest(
             $Element->is_displayed();
         }
 
-        # change deployment state to 'Repair' for test ConfigItems
+        # Change deployment state to 'Repair' for test ConfigItems
         $Selenium->execute_script("\$('#DeplStateID').val('$DeplStateIDs[1]');");
 
         # link 'Alternative to' test ConfigItems together
@@ -146,22 +141,27 @@ $Selenium->RunTest(
         $Selenium->find_element( "#LinkTogetherAnother", 'css' )->send_keys( $ConfigItemNumbers[2] );
         $Selenium->find_element( "#LinkType option[value='Includes::Target']", 'css' )->click();
 
-        # submit bulk changes
+        # Submit bulk changes
         $Selenium->find_element( "#submitRichText", 'css' )->click();
 
-        # switch window
+        # Switch window
         $Selenium->WaitFor( WindowCount => 1 );
         $Selenium->switch_to_window( $Handles->[0] );
 
         # Wait for reload to kick in.
         $Selenium->WaitFor(
             JavaScript =>
-                'return typeof(Core) == "object" && typeof(Core.App) == "object" && Core.App.PageLoadComplete'
+                'return typeof(Core) == "object" && typeof(Core.App) == "object" && Core.App.PageLoadComplete;'
         );
+
+        $Selenium->WaitFor(
+            JavaScript => "return typeof(\$) === 'function' && \$('#ConfigItemID_$ConfigItemIDs[1]').length;"
+        );
+        sleep 1;
 
         # Click on first created test ConfigItems to enter zoom view.
         $Selenium->execute_script("\$('#ConfigItemID_$ConfigItemIDs[1]').click();");
-        $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && $("#ITSMTree").length' );
+        $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && $("#ITSMTree").length;' );
 
         # Check for other two created test ConfigItems.
         # Verify that link action in bulk screen was success.
