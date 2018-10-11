@@ -25,29 +25,26 @@ if ( $Selenium->{browser_name} ne 'firefox' ) {
 $Selenium->RunTest(
     sub {
 
-        # get needed objects
         my $Helper               = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
         my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
+        my $ConfigItemObject     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+        my $ConfigObject         = $Kernel::OM->Get('Kernel::Config');
 
-        # get 'Hardware' catalog class IDs
+        # Get 'Hardware' catalog class IDs.
         my $ConfigItemDataRef = $GeneralCatalogObject->ItemGet(
             Class => 'ITSM::ConfigItem::Class',
             Name  => 'Hardware',
         );
         my $HardwareConfigItemID = $ConfigItemDataRef->{ItemID};
 
-        # get 'Production' deployment state IDs
+        # Get 'Production' deployment state IDs.
         my $ProductionDeplStateDataRef = $GeneralCatalogObject->ItemGet(
             Class => 'ITSM::ConfigItem::DeploymentState',
             Name  => 'Production',
         );
         my $ProductionDeplStateID = $ProductionDeplStateDataRef->{ItemID};
 
-        # get needed objects
-        my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
-        my $ConfigObject     = $Kernel::OM->Get('Kernel::Config');
-
-        # create ConfigItem number
+        # Create ConfigItem number.
         my $ConfigItemNumber = $ConfigItemObject->ConfigItemNumberCreate(
             Type    => $ConfigObject->Get('ITSMConfigItem::NumberGenerator'),
             ClassID => $HardwareConfigItemID,
@@ -57,7 +54,7 @@ $Selenium->RunTest(
             "ConfigItem number is created - $ConfigItemNumber"
         );
 
-        # add the new ConfigItem
+        # Add the new ConfigItem.
         my $ConfigItemID = $ConfigItemObject->ConfigItemAdd(
             Number  => $ConfigItemNumber,
             ClassID => $HardwareConfigItemID,
@@ -68,7 +65,7 @@ $Selenium->RunTest(
             "ConfigItem is created - ID $ConfigItemID"
         );
 
-        # add a new version
+        # Add a new version.
         my $VersionID = $ConfigItemObject->VersionAdd(
             Name         => 'SeleniumTest',
             DefinitionID => 1,
@@ -82,7 +79,7 @@ $Selenium->RunTest(
             "Version is created - ID $VersionID"
         );
 
-        # create test user and login
+        # Create test user and login.
         my $TestUserLogin = $Helper->TestUserCreate(
             Groups => [ 'admin', 'itsm-configitem' ],
         ) || die "Did not get test user";
@@ -93,23 +90,28 @@ $Selenium->RunTest(
             Password => $TestUserLogin,
         );
 
-        # get script alias
         my $ScriptAlias = $ConfigObject->Get('ScriptAlias');
 
-        # navigate to AgentITSConfigItemZoom screen
+        # Navigate to AgentITSConfigItemZoom screen.
         $Selenium->VerifiedGet("${ScriptAlias}index.pl?Action=AgentITSMConfigItemZoom;ConfigItemID=$ConfigItemID");
 
-        # click on print menu
+        $Selenium->WaitFor(
+            JavaScript =>
+                "return typeof(\$) === 'function' && \$('a[href*=\"Action=AgentITSMConfigItemPrint;ConfigItemID=$ConfigItemID\"]').length;"
+        );
+        sleep 1;
+
+        # Click on print menu.
         $Selenium->find_element(
             "//a[contains(\@href, \'Action=AgentITSMConfigItemPrint;ConfigItemID=$ConfigItemID\' )]"
         )->click();
 
-        # switch to another window
+        # Switch to another window.
         $Selenium->WaitFor( WindowCount => 2 );
         my $Handles = $Selenium->get_window_handles();
         $Selenium->switch_to_window( $Handles->[1] );
 
-        # wait until print screen is loaded
+        # Wait until print screen is loaded.
         ACTIVESLEEP:
         for my $Second ( 1 .. 30 ) {
             if ( index( $Selenium->get_page_source(), "printed by" ) > -1, ) {
@@ -118,7 +120,7 @@ $Selenium->RunTest(
             sleep 1;
         }
 
-        # get test print values
+        # Get test print values.
         my @ConfigItemPrint = (
             {
                 Value   => $ConfigItemNumber,
@@ -146,7 +148,7 @@ $Selenium->RunTest(
             },
         );
 
-        # check for printed values
+        # Check for printed values.
         for my $ConfigItemValue (@ConfigItemPrint) {
             $Self->True(
                 index( $Selenium->get_page_source(), $ConfigItemValue->{Value} ) > -1,
@@ -154,7 +156,7 @@ $Selenium->RunTest(
             );
         }
 
-        # delete created test ConfigItem
+        # Delete created test ConfigItem.
         my $Success = $ConfigItemObject->ConfigItemDelete(
             ConfigItemID => $ConfigItemID,
             UserID       => 1,
