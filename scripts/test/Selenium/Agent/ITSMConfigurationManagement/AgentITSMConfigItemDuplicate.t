@@ -12,35 +12,31 @@ use utf8;
 
 use vars (qw($Self));
 
-# get selenium object
 my $Selenium = $Kernel::OM->Get('Kernel::System::UnitTest::Selenium');
 
 $Selenium->RunTest(
     sub {
 
-        # get needed objects
         my $Helper               = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
         my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
+        my $ConfigItemObject     = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+        my $ConfigObject         = $Kernel::OM->Get('Kernel::Config');
 
-        # get 'Hardware' catalog class IDs
+        # Get 'Hardware' catalog class IDs.
         my $ConfigItemDataRef = $GeneralCatalogObject->ItemGet(
             Class => 'ITSM::ConfigItem::Class',
             Name  => 'Hardware',
         );
         my $HardwareConfigItemID = $ConfigItemDataRef->{ItemID};
 
-        # get 'Production' deployment state IDs
+        # Get 'Production' deployment state IDs.
         my $ProductionDeplStateDataRef = $GeneralCatalogObject->ItemGet(
             Class => 'ITSM::ConfigItem::DeploymentState',
             Name  => 'Production',
         );
         my $ProductionDeplStateID = $ProductionDeplStateDataRef->{ItemID};
 
-        # get needed objects
-        my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
-        my $ConfigObject     = $Kernel::OM->Get('Kernel::Config');
-
-        # create ConfigItem number
+        # Create ConfigItem number.
         my $ConfigItemNumber = $ConfigItemObject->ConfigItemNumberCreate(
             Type    => $ConfigObject->Get('ITSMConfigItem::NumberGenerator'),
             ClassID => $HardwareConfigItemID,
@@ -50,7 +46,7 @@ $Selenium->RunTest(
             "ConfigItem number is created - $ConfigItemNumber"
         );
 
-        # add the new ConfigItem
+        # Add the new ConfigItem.
         my $ConfigItemID = $ConfigItemObject->ConfigItemAdd(
             Number  => $ConfigItemNumber,
             ClassID => $HardwareConfigItemID,
@@ -61,7 +57,7 @@ $Selenium->RunTest(
             "ConfigItem is created - ID $ConfigItemID"
         );
 
-        # add a new version
+        # Add a new version.
         my $ConfigItemName = 'Hardware' . $Helper->GetRandomID();
         my $VersionID      = $ConfigItemObject->VersionAdd(
             Name         => $ConfigItemName,
@@ -76,7 +72,7 @@ $Selenium->RunTest(
             "Version is created - ID $VersionID"
         );
 
-        # create test user and login
+        # Create test user and login.
         my $TestUserLogin = $Helper->TestUserCreate(
             Groups => [ 'admin', 'itsm-configitem' ],
         ) || die "Did not get test user";
@@ -87,15 +83,14 @@ $Selenium->RunTest(
             Password => $TestUserLogin,
         );
 
-        # get script alias
         my $ScriptAlias = $ConfigObject->Get('ScriptAlias');
 
-        # navigate to AgentITSMConfigItemZoom screen
+        # Navigate to AgentITSMConfigItemZoom screen.
         $Selenium->VerifiedGet(
             "${ScriptAlias}index.pl?Action=AgentITSMConfigItemZoom;ConfigItemID=$ConfigItemID;Version=$VersionID"
         );
 
-        # get ConfigItem value params
+        # Get ConfigItem value params.
         my @ConfigItemValues = (
             {
                 Value => 'Hardware',
@@ -107,17 +102,17 @@ $Selenium->RunTest(
             },
         );
 
-        # check ConfigItem values on screen
+        # Check ConfigItem values on screen
         for my $CheckConfigItemValue (@ConfigItemValues) {
             $Self->True(
                 $Selenium->execute_script(
-                    "return \$('$CheckConfigItemValue->{Check}').length"
+                    "return \$('$CheckConfigItemValue->{Check}').length;"
                 ),
                 "Test ConfigItem value $CheckConfigItemValue->{Value} - found",
             );
         }
 
-        # click on 'Duplicate' menu item and switch window
+        # Click on 'Duplicate' menu item and switch window
         $Selenium->find_element(
             "//a[contains(\@href, \'Action=AgentITSMConfigItemEdit;DuplicateID=$ConfigItemID;VersionID=$VersionID\' )]"
         )->click();
@@ -128,9 +123,9 @@ $Selenium->RunTest(
         $Selenium->switch_to_window( $Handles->[1] );
 
         # wait until page has loaded, if necessary
-        $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && $("#DeplStateID").length' );
+        $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && $("#DeplStateID").length;' );
 
-        # check for created ConfigItem values
+        # Check for created ConfigItem values
         $Self->Is(
             $Selenium->find_element( '#Name', 'css' )->get_value(),
             $ConfigItemName,
@@ -151,6 +146,7 @@ $Selenium->RunTest(
         my $DuplicateConfigItemName = "Duplicate" . $ConfigItemName;
         $Selenium->find_element( "#Name", 'css' )->clear();
         $Selenium->find_element( "#Name", 'css' )->send_keys($DuplicateConfigItemName);
+        sleep 2;
         $Selenium->find_element("//button[\@value='Submit'][\@type='submit']")->click();
 
         # Switch back to zoom view.
@@ -160,15 +156,16 @@ $Selenium->RunTest(
         # Wait until page has loaded, if necessary.
         $Selenium->WaitFor(
             JavaScript =>
-                'return typeof(Core) == "object" && typeof(Core.App) == "object" && Core.App.PageLoadComplete'
+                'return typeof(Core) == "object" && typeof(Core.App) == "object" && Core.App.PageLoadComplete;'
         );
         $Selenium->WaitFor(
-            JavaScript => "return typeof(\$) === 'function' && \$('h1:contains($DuplicateConfigItemName)').length;" );
+            JavaScript => "return typeof(\$) === 'function' && \$('h1:contains($DuplicateConfigItemName)').length;"
+        );
 
         # Check for duplicated ConfigItem value.
         $Self->True(
             $Selenium->execute_script(
-                "return \$('h1:contains($DuplicateConfigItemName)').length"
+                "return \$('h1:contains($DuplicateConfigItemName)').length;"
             ),
             "Test ConfigItem value $DuplicateConfigItemName - found",
         );
