@@ -385,6 +385,8 @@ sub ITSMConfigItemListShow {
         SelectedID  => $PageShown,
         Data        => \%Data,
         Translation => 0,
+        Sort        => 'NumericValue',
+        Class       => 'Modernize',
     );
 
     # build navbar content
