@@ -115,6 +115,10 @@ $Selenium->RunTest(
         ACTIVESLEEP:
         for my $Second ( 1 .. 30 ) {
             if ( index( $Selenium->get_page_source(), "printed by" ) > -1, ) {
+                $Self->True(
+                    index( $Selenium->get_page_source(), "printed by" ) > -1,
+                    "Print screen is loaded",
+                ) || die;
                 last ACTIVESLEEP;
             }
             sleep 1;
