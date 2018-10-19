@@ -100,9 +100,9 @@ $Selenium->RunTest(
         $Selenium->VerifiedGet("${ScriptAlias}index.pl?Action=AgentITSMConfigItemZoom;ConfigItemID=$ConfigItemID");
 
         # click on print menu
-        $Selenium->find_element(
-            "//a[contains(\@href, \'Action=AgentITSMConfigItemPrint;ConfigItemID=$ConfigItemID\' )]"
-        )->click();
+        $Selenium->execute_script(
+            "\$('a[href*=\"Action=AgentITSMConfigItemPrint;ConfigItemID=$ConfigItemID\"]').click();");
+        sleep 1;
 
         # switch to another window
         $Selenium->WaitFor( WindowCount => 2 );
@@ -113,6 +113,10 @@ $Selenium->RunTest(
         ACTIVESLEEP:
         for my $Second ( 1 .. 30 ) {
             if ( index( $Selenium->get_page_source(), "printed by" ) > -1, ) {
+                $Self->True(
+                    index( $Selenium->get_page_source(), "printed by" ) > -1,
+                    "Print screen is loaded",
+                ) || die;
                 last ACTIVESLEEP;
             }
             sleep 1;
