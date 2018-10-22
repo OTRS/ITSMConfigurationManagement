@@ -398,6 +398,13 @@ END
                 # store config item data,
                 %Data = %{$ConfigItem};
 
+                # Get config item data for 'CreateTime' and 'ChangeTime'.
+                my $ConfigItemData = $ConfigItemObject->ConfigItemGet(
+                    ConfigItemID => $ConfigItemID,
+                );
+                $Data{CreateTime} = $ConfigItemData->{CreateTime};
+                $Data{ChangeTime} = $ConfigItemData->{ChangeTime};
+
                 # build record block
                 $LayoutObject->Block(
                     Name => 'Record',

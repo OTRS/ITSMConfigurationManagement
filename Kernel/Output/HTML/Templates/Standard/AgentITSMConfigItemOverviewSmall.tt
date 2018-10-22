@@ -71,6 +71,11 @@
                     <a href="[% Env("Baselink") %]Action=[% Env("Action") %];[% Data.LinkSort %];SortBy=ChangeTime;OrderBy=[% Data.OrderBy | uri %]">[% Translate("Last changed") | html %]</a>
                 </th>
 [% RenderBlockEnd("RecordLastChangedHeader") %]
+[% RenderBlockStart("RecordCreateTimeHeader") %]
+                <th class="[% Data.CSS | html %]">
+                    <a href="[% Env("Baselink") %]Action=[% Env("Action") %];[% Data.LinkSort %];SortBy=CreateTime;OrderBy=[% Data.OrderBy | uri %]">[% Translate("Create Time") | html %]</a>
+                </th>
+[% RenderBlockEnd("RecordCreateTimeHeader") %]
                 <th class="Hidden">
                 </th>
             </tr>
@@ -146,9 +151,14 @@
 [% RenderBlockEnd("RecordXMLAttribute") %]
 [% RenderBlockStart("RecordLastChanged") %]
                 <td>
-                    <div title="[% Data.CreateTime | Localize("TimeLong") %]">[% Data.CreateTime | Localize("TimeLong") %]</div>
+                    <div title="[% Data.ChangeTime | Localize("TimeLong") %]">[% Data.ChangeTime | Localize("TimeLong") %]</div>
                 </td>
 [% RenderBlockEnd("RecordLastChanged") %]
+[% RenderBlockStart("RecordCreateTime") %]
+                <td>
+                    <div title="[% Data.CreateTime | Localize("TimeLong") %]">[% Data.CreateTime | Localize("TimeLong") %]</div>
+                </td>
+[% RenderBlockEnd("RecordCreateTime") %]
                 <td class="Hidden">
                     <a href="[% Env("Baselink") %]Action=AgentITSMConfigItemZoom;ConfigItemID=[% Data.ConfigItemID | uri %]" class="MasterActionLink">
                 </td>
