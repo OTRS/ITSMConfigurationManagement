@@ -25,15 +25,11 @@ $Selenium->RunTest(
             Name => 'ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumnsByClass',
         );
 
-        %ShowColumnsByClassSysConfig = map { $_->{Content} => 1 }
-            grep { defined $_->{Content} } @{ $ShowColumnsByClassSysConfig{Setting}->[1]->{Array}->[1]->{Item} };
-        my @ShowColumnsByClassSysConfig = sort keys %ShowColumnsByClassSysConfig;
-
         # Enable AgentITSMConfigItem###ShowColumnsByClass sysconfig item.
         $Helper->ConfigSettingChange(
             Valid => 1,
             Key   => 'ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumnsByClass',
-            Value => \@ShowColumnsByClassSysConfig,
+            Value => $ShowColumnsByClassSysConfig{EffectiveValue},
         );
 
         # Get catalog class IDs.
@@ -119,7 +115,7 @@ $Selenium->RunTest(
         # Check for created test ConfigItems with 'All' filter active
         for my $AllConfigItem (@ConfigItemNumbers) {
             $Self->True(
-                $Selenium->find_element("//div[contains(\@title, $AllConfigItem )]"),
+                $Selenium->find_element("//div[contains(\@title, \'$AllConfigItem\' )]"),
                 "Test ConfigItem number $AllConfigItem - found",
             );
         }
@@ -138,7 +134,7 @@ $Selenium->RunTest(
 
             # Check for ConfigItem number
             $Self->True(
-                $Selenium->find_element("//div[contains(\@title, $ConfigItemNumbers[$Count] )]"),
+                $Selenium->find_element("//div[contains(\@title, \'$ConfigItemNumbers[$Count]\' )]"),
                 "Test ConfigItem number $ConfigItemNumbers[$Count] - found",
             );
             $Count++;
