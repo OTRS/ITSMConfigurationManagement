@@ -119,7 +119,7 @@ $Selenium->RunTest(
         # Check for created test ConfigItems with 'All' filter active
         for my $AllConfigItem (@ConfigItemNumbers) {
             $Self->True(
-                $Selenium->find_element("//div[contains(\@title, $AllConfigItem )]"),
+                $Selenium->find_element("//div[contains(\@title, \'$AllConfigItem\' )]"),
                 "Test ConfigItem number $AllConfigItem - found",
             );
         }
@@ -138,7 +138,7 @@ $Selenium->RunTest(
 
             # Check for ConfigItem number
             $Self->True(
-                $Selenium->find_element("//div[contains(\@title, $ConfigItemNumbers[$Count] )]"),
+                $Selenium->find_element("//div[contains(\@title, \'$ConfigItemNumbers[$Count]\' )]"),
                 "Test ConfigItem number $ConfigItemNumbers[$Count] - found",
             );
             $Count++;
