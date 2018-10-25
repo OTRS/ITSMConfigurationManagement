@@ -101,7 +101,8 @@ $Selenium->RunTest(
 
         # click on print menu
         $Selenium->execute_script(
-            "\$('a[href*=\"Action=AgentITSMConfigItemPrint;ConfigItemID=$ConfigItemID\"]').click();");
+            "\$('a[href*=\"Action=AgentITSMConfigItemPrint;ConfigItemID=$ConfigItemID\"]').click();"
+        );
         sleep 1;
 
         # switch to another window
