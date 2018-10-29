@@ -406,7 +406,9 @@ sub ValidateInputCustomerCompany {
 
     return if !$Value;
 
-    my %CompanyList = $Kernel::OM->Get('Kernel::System::CustomerCompany')->CustomerCompanyList();
+    my %CompanyList = $Kernel::OM->Get('Kernel::System::CustomerCompany')->CustomerCompanyList(
+        Limit => 0,    # Display all Customer Companies
+    );
 
     return if !$CompanyList{ $Param{Value} };
 
