@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2018-04-24 14:34+0000\n"
-"PO-Revision-Date: 2018-08-10 12:01+0000\n"
-"Last-Translator: Adonai Silveira Canez <adonaicanez@gmail.com>\n"
+"POT-Creation-Date: 2018-09-14 12:44+0000\n"
+"PO-Revision-Date: 2018-10-23 13:55+0000\n"
+"Last-Translator: Ricardo von Staa <ricardo.von.staa@otrs.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otrs/OTRS/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -146,10 +146,6 @@ msgstr "Itens de configuração por página"
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "A generic ITSM Configuration Item table"
 msgstr "Uma tabela genérica de Itens de Configuração GSTI"
-
-#. Template: AgentITSMConfigItemSearch
-msgid "Create New Template"
-msgstr "Criar novo Modelo"
 
 #. Template: AgentITSMConfigItemSearch
 msgid "Run Search"
@@ -960,6 +956,12 @@ msgid ""
 "entry for a CI class, then the default columns are shown as defined in the "
 "setting AgentCustomerInformationCenter::Backend###0060-CIC-"
 "ITSMConfigItemCustomerCompany (key DefaultColumns)."
+msgstr ""
+
+#. SysConfig
+msgid ""
+"Defines the shown columns of CIs in the link table complex view for all CI "
+"classes. If there is no entry, then the default columns are shown."
 msgstr ""
 
 #. SysConfig

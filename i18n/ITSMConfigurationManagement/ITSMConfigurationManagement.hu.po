@@ -1,12 +1,12 @@
 # 
 # Translators:
-# Balázs Úr <urbalazs@gmail.com>, 2014-2018
+# Balázs Úr <ur.balazs@fsf.hu>, 2014-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2018-04-24 14:34+0000\n"
-"PO-Revision-Date: 2018-04-30 15:10+0000\n"
-"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
+"POT-Creation-Date: 2018-09-14 12:44+0000\n"
+"PO-Revision-Date: 2018-09-19 09:33+0000\n"
+"Last-Translator: Balázs Úr <ur.balazs@fsf.hu>\n"
 "Language-Team: Hungarian (http://www.transifex.com/otrs/OTRS/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -138,10 +138,6 @@ msgstr "Konfigurációelemek oldalanként"
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "A generic ITSM Configuration Item table"
 msgstr "Egy általános ITSM konfigurációelem táblázat"
-
-#. Template: AgentITSMConfigItemSearch
-msgid "Create New Template"
-msgstr "Új sablon létrehozása"
 
 #. Template: AgentITSMConfigItemSearch
 msgid "Run Search"
@@ -953,6 +949,12 @@ msgid ""
 "setting AgentCustomerInformationCenter::Backend###0060-CIC-"
 "ITSMConfigItemCustomerCompany (key DefaultColumns)."
 msgstr "Meghatározza a konfigurációelemek megjelenített oszlopait a konfigurációelem áttekintőben a konfigurációelem-osztálytól függően. Minden bejegyzést az oszlop neve és dupla kettőspont előtaggal kell ellátni (azaz Computer::). Van néhány olyan konfigurációelem-attribútum, amely közös minden konfigurációelemmel (például a Computer osztálynál: Computer::Name, Computer::CurDeplState, Computer::CreateTime). Az egyéni konfigurációelem-attribútumok megjelenítéséhez, ahogy azok a konfigurációelem-meghatározásban meg vannak adva, a következő sémát kell használni (például a Computer osztálynál): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. Ha egy konfigurációelem osztályhoz nincs bejegyzés, akkor az alapértelmezett oszlopok lesznek megjelenítve, ahogy az ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns beállításban meg van határozva."
+
+#. SysConfig
+msgid ""
+"Defines the shown columns of CIs in the link table complex view for all CI "
+"classes. If there is no entry, then the default columns are shown."
+msgstr "Meghatározza a konfigurációelemek megjelenített oszlopait a kapcsolati tábla komplex nézetében az összes konfigurációelem-osztálynál. Ha nincs bejegyzés, akkor az alapértelmezett oszlopok lesznek megjelenítve."
 
 #. SysConfig
 msgid ""

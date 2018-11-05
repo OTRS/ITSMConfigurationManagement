@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2018-04-24 14:34+0000\n"
-"PO-Revision-Date: 2018-04-26 10:33+0000\n"
+"POT-Creation-Date: 2018-09-14 12:44+0000\n"
+"PO-Revision-Date: 2018-09-17 07:05+0000\n"
 "Last-Translator: Dusan Vuckovic\n"
 "Language-Team: Serbian (http://www.transifex.com/otrs/OTRS/language/sr/)\n"
 "MIME-Version: 1.0\n"
@@ -139,10 +139,6 @@ msgstr "Конфигурационе ставке по страни"
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "A generic ITSM Configuration Item table"
 msgstr "Генеричка табела ITSM конфигурационе ставке"
-
-#. Template: AgentITSMConfigItemSearch
-msgid "Create New Template"
-msgstr "Направи нови шаблон"
 
 #. Template: AgentITSMConfigItemSearch
 msgid "Run Search"
@@ -954,6 +950,12 @@ msgid ""
 "setting AgentCustomerInformationCenter::Backend###0060-CIC-"
 "ITSMConfigItemCustomerCompany (key DefaultColumns)."
 msgstr "Дефинише приказане колоне конфигурационих ставки у додатку командне табле у зависности од класе. Сваки унос мора садржати префикс са називом класе и двотачком (нпр. Computer::). Постоји пар атрибута који су заједнички за све класе (нпр. за класу Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). За приказ појединачних атрибута из дефиниције, морате користити следећу шему (пример за класу Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. Уколико не постоји унос за појединачну класу, биће приказане подразумеване колоне дефинисане у AgentCustomerInformationCenter::Backend###0060-CIC-ITSMConfigItemCustomerCompany (кључ DefaultColumns)."
+
+#. SysConfig
+msgid ""
+"Defines the shown columns of CIs in the link table complex view for all CI "
+"classes. If there is no entry, then the default columns are shown."
+msgstr "Дефинише приказане колоне конфигурационих ставки у табели веза у зависности од класе. Уколико не постоји унос за појединачну класу, биће приказане подразумеване колоне."
 
 #. SysConfig
 msgid ""

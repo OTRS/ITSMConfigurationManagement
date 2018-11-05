@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2018-04-24 14:34+0000\n"
-"PO-Revision-Date: 2018-05-16 10:40+0000\n"
-"Last-Translator: 汇民 王 <whuim@qq.com>\n"
+"POT-Creation-Date: 2018-09-14 12:44+0000\n"
+"PO-Revision-Date: 2018-09-14 12:45+0000\n"
+"Last-Translator: Udo Bretz\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otrs/OTRS/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -143,10 +143,6 @@ msgstr "每页配置项个数"
 #. Template: AgentITSMConfigItemOverviewSmall
 msgid "A generic ITSM Configuration Item table"
 msgstr "一个通用的ITSM配置项表格"
-
-#. Template: AgentITSMConfigItemSearch
-msgid "Create New Template"
-msgstr "创建新模板"
 
 #. Template: AgentITSMConfigItemSearch
 msgid "Run Search"
@@ -958,6 +954,12 @@ msgid ""
 "setting AgentCustomerInformationCenter::Backend###0060-CIC-"
 "ITSMConfigItemCustomerCompany (key DefaultColumns)."
 msgstr "定义配置项小部件中按配置项类分类显示的字段。每个条目均需以类名为前缀再加上双冒号（如计算机::）。有一些配置项属性是所有配置项都有的（例如，对于计算机类：Computer::Name、Computer::CurDeplState当前部署状态、Computer::CreateTime创建时间）。要显示在配置项定义中定义的独特的配置项属性，必须使用下面的方案（例如：对于计算机类：Computer::HardDisk::1【计算机::硬盘::1】、Computer::HardDisk::1::Capacity::1【计算机::硬盘::容量::1】、 Computer::HardDisk::2【计算机::硬盘::2】、Computer::HardDisk::2::Capacity::1【计算机::硬盘::2::容量::1】）。如果一个配置项类没有条目存在，则使用在AgentCustomerInformationCenter::Backend###0060-CIC-ITSMConfigItemCustomerCompany 中设置的默认字段(DefaultColumns键)。"
+
+#. SysConfig
+msgid ""
+"Defines the shown columns of CIs in the link table complex view for all CI "
+"classes. If there is no entry, then the default columns are shown."
+msgstr ""
 
 #. SysConfig
 msgid ""
