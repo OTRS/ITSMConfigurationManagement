@@ -189,6 +189,7 @@ sub InputCreate {
         %Values,
         $Param{Key} . '::' . 'Class' => $Class,
         Validate                     => 1,
+        OverrideTimeZone             => $Param{OverrideTimeZone},
     );
 
     return $String;

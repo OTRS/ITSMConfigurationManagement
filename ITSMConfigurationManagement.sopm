@@ -118,6 +118,7 @@
         <File Permission="644" Location="scripts/test/GenericInterface/Operation/ConfigItem/ConfigItemGet.t" />
         <File Permission="644" Location="scripts/test/GenericInterface/Operation/ConfigItem/ConfigItemSearch.t" />
         <File Permission="644" Location="scripts/test/GenericInterface/Operation/ConfigItem/ConfigItemUpdate.t" />
+        <File Permission="644" Location="scripts/test/Layout/ITSMConfigItem.t" />
         <File Permission="644" Location="scripts/test/Selenium/Agent/Admin/AdminITSMConfigItem.t" />
         <File Permission="644" Location="scripts/test/Selenium/Agent/ITSMConfigurationManagement/AgentITSMConfigItem.t" />
         <File Permission="644" Location="scripts/test/Selenium/Agent/ITSMConfigurationManagement/AgentITSMConfigItemAdd.t" />
