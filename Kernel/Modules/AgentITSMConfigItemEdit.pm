@@ -888,12 +888,13 @@ sub _XMLFormOutput {
 
             # create input element
             my $InputString = $LayoutObject->ITSMConfigItemInputCreate(
-                Key      => $InputKey,
-                Item     => $Item,
-                Value    => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content},
-                ItemId   => $ItemID,
-                Required => $XMLRowValueContentRequired,
-                Invalid  => $XMLRowValueContentInvalid,
+                Key              => $InputKey,
+                Item             => $Item,
+                Value            => $Param{XMLData}->{ $Item->{Key} }->[$Counter]->{Content},
+                ItemId           => $ItemID,
+                Required         => $XMLRowValueContentRequired,
+                Invalid          => $XMLRowValueContentInvalid,
+                OverrideTimeZone => 1,
             );
 
             # ID?

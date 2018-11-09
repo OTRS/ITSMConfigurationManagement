@@ -12,8 +12,14 @@ use utf8;
 
 use vars (qw($Self));
 
-# get layout object
 my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
+
+$Kernel::OM->ObjectParamAdd(
+    'Kernel::System::UnitTest::Helper' => {
+        RestoreDatabase => 1,
+    },
+);
+my $Helper = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
 
 my $XMLDefinition = [
     {
@@ -320,5 +326,80 @@ $Self->IsDeeply(
     $Expected,
     'XML Data converts into Hash structure',
 );
+
+# Test ITSMConfigItemInputCreate() to check bug#14174 (https://bugs.otrs.org/show_bug.cgi?id=14174).
+# Set OTRSTimeZone to UTC.
+$Helper->ConfigSettingChange(
+    Valid => 1,
+    Key   => 'OTRSTimeZone',
+    Value => 'UTC',
+);
+
+# Get Layout object with EST user time zone.
+$Kernel::OM->ObjectsDiscard(
+    Objects => ['Kernel::Output::HTML::Layout'],
+);
+$Kernel::OM->ObjectParamAdd(
+    'Kernel::Output::HTML::Layout' => {
+        Lang         => 'en',
+        UserTimeZone => 'EST',
+    },
+);
+$LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
+
+my %Param = (
+    'Item' => {
+        'Searchable' => 1,
+        'Form'       => {
+            'InstallDate::1' => {}
+        },
+        'Key'      => 'InstallDate',
+        'CountMax' => 1,
+        'Name'     => 'Install Date',
+        'CountMin' => 0,
+        'Input'    => {
+            'Type'             => 'Date',
+            'YearPeriodFuture' => 10,
+            'Required'         => 1,
+            'YearPeriodPast'   => 20
+        },
+        'CountDefault' => 0
+    },
+    'Invalid'  => 0,
+    'Value'    => '2018-01-16',
+    'Key'      => 'InstallDate::1',
+    'Required' => 1,
+    'ItemId'   => 'Item140'
+);
+
+my @Tests = (
+    {
+        OverrideTimeZone => 0,
+        Expected         => '<option \s value="15" \s selected="selected">15</option>',
+        Comment          => 'date is changed',
+    },
+    {
+        OverrideTimeZone => 1,
+        Expected         => '<option \s value="16" \s selected="selected">16<\/option>',
+        Comment          => 'date is not changed',
+    },
+);
+
+for my $Test (@Tests) {
+    my $String = $LayoutObject->ITSMConfigItemInputCreate(
+        %Param,
+        OverrideTimeZone => $Test->{OverrideTimeZone},
+    );
+
+    my $Success;
+    if ( $String =~ m{ $Test->{Expected} }msx ) {
+        $Success = 1;
+    }
+
+    $Self->True(
+        $Success,
+        "OverrideTimeZone = $Test->{OverrideTimeZone} - $Test->{Comment}",
+    );
+}
 
 1;
