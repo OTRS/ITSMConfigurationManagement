@@ -12,15 +12,28 @@ use utf8;
 
 use vars (qw($Self));
 
-# Set the server time zone.
-local $ENV{TZ} = 'UTC';
-
 $Kernel::OM->ObjectParamAdd(
     'Kernel::System::UnitTest::Helper' => {
         RestoreDatabase => 1,
     },
 );
 my $Helper = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
+
+my $ConfigObject = $Kernel::OM->Get('Kernel::Config');
+
+# Set timezone variables.
+$ConfigObject->Set(
+    Key   => 'TimeZone',
+    Value => '+0',
+);
+$ConfigObject->Set(
+    Key   => 'TimeZoneUser',
+    Value => 1,
+);
+$ConfigObject->Set(
+    Key   => 'TimeZoneUserBrowserAutoOffset',
+    Value => 0,
+);
 
 # Set layout object to time zone west of UTC.
 $Kernel::OM->ObjectParamAdd(
