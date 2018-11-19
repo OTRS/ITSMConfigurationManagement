@@ -200,6 +200,144 @@ $Selenium->RunTest(
                 "ConfigItem is deleted - ID $ConfigItemID->[0]",
             );
         }
+
+        # Check multiple Customer type fields (see bug#14218 - https://bugs.otrs.org/show_bug.cgi?id=14218).
+        # Create test CI class.
+        my $ClassName = 'Class' . $Helper->GetRandomID();
+        my $ClassID   = $GeneralCatalogObject->ItemAdd(
+            Class   => 'ITSM::ConfigItem::Class',
+            Name    => $ClassName,
+            ValidID => 1,
+            UserID  => 1,
+        );
+        $Self->True(
+            $ClassID,
+            "ClassID $ClassID is created",
+        );
+
+        my $GroupID = $Kernel::OM->Get('Kernel::System::Group')->GroupLookup(
+            Group  => 'itsm-configitem',
+            UserID => 1,
+        );
+
+        # Set permission.
+        $Kernel::OM->Get('Kernel::System::GeneralCatalog')->GeneralCatalogPreferencesSet(
+            ItemID => $ClassID,
+            Key    => 'Permission',
+            Value  => $GroupID,
+        );
+
+        my $Definition = " [
+    {
+        Key => 'CustomerID1',
+        Name => Translatable('CustomerCompany 1'),
+        Searchable => 1,
+        Input => {
+            Type => 'CustomerCompany',
+        },
+        Sub => [
+            {
+                Key => 'Customer1',
+                Name => Translatable('Customer 1'),
+                Searchable => 1,
+                Input => {
+                    Type => 'Customer',
+                },
+            },
+        ],
+    },
+    {
+        Key => 'CustomerID2',
+        Name => Translatable('CustomerCompany 2'),
+        Searchable => 1,
+        Input => {
+            Type => 'CustomerCompany',
+        },
+        Sub => [
+            {
+                Key => 'Customer2',
+                Name => Translatable('Customer 2'),
+                Searchable => 1,
+                Input => {
+                    Type => 'Customer',
+                },
+            },
+        ],
+    },
+    {
+        Key => 'CustomerID3',
+        Name => Translatable('CustomerCompany 3'),
+        Searchable => 1,
+        Input => {
+            Type => 'CustomerCompany',
+        },
+        Sub => [
+            {
+                Key => 'Customer3',
+                Name => Translatable('Customer 3'),
+                Searchable => 1,
+                Input => {
+                    Type => 'Customer',
+                },
+            },
+        ],
+    },
+] ";
+
+        # Add test definition to test CI class.
+        my $DefinitionID = $ConfigItemObject->DefinitionAdd(
+            ClassID    => $ClassID,
+            Definition => $Definition,
+            UserID     => 1,
+        );
+        $Self->True(
+            $DefinitionID,
+            "DefinitionID $DefinitionID is created",
+        );
+
+        # Navigate to AgentITSMConfigItemAdd screen.
+        $Selenium->VerifiedGet("${ScriptAlias}index.pl?Action=AgentITSMConfigItemEdit;ClassID=$ClassID");
+
+        # Verify all of three sub elements are autocomplete input fields.
+        $Self->Is(
+            $Selenium->execute_script(
+                "return \$('.SubElement .ITSMCustomerSearch.ui-autocomplete-input').length;"
+            ),
+            3,
+            "All sub elements work correctly - they are autocomplete input fields",
+        );
+
+        # Cleanup.
+        my $DBObject = $Kernel::OM->Get('Kernel::System::DB');
+
+        # Delete test definition.
+        my $Success = $DBObject->Do(
+            SQL  => "DELETE FROM configitem_definition WHERE id = ?",
+            Bind => [ \$DefinitionID ],
+        );
+        $Self->True(
+            $Success,
+            "Config item definition is deleted",
+        );
+
+        $Success = $DBObject->Do(
+            SQL  => "DELETE FROM general_catalog_preferences WHERE general_catalog_id = ?",
+            Bind => [ \$ClassID ],
+        );
+        $Self->True(
+            $Success,
+            "General catalog preferences for ClassID $ClassID is deleted",
+        );
+
+        $Success = $DBObject->Do(
+            SQL  => "DELETE FROM general_catalog WHERE id = ?",
+            Bind => [ \$ClassID ],
+        );
+        $Self->True(
+            $Success,
+            "ClassID $ClassID is deleted",
+        );
+
     }
 );
 

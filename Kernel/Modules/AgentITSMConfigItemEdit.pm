@@ -583,6 +583,7 @@ sub Run {
 
     # output xml form
     if ( $XMLDefinition->{Definition} ) {
+        $Self->{CustomerSearchItemIDs} = [];
         $Self->_XMLFormOutput(
             XMLDefinition => $XMLDefinition->{DefinitionRef},
             %XMLFormOutputParam,
@@ -703,6 +704,9 @@ sub _XMLFormGet {
     return if ref $Param{AllRequired} ne 'SCALAR';
     return if !$Param{ConfigItemID};
 
+    my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
+    my $ParamObject  = $Kernel::OM->Get('Kernel::System::Web::Request');
+
     my $FormData = {};
 
     ITEM:
@@ -721,14 +725,11 @@ sub _XMLFormGet {
             }
 
             # get param
-            my $FormValues = $Kernel::OM->Get('Kernel::Output::HTML::Layout')->ITSMConfigItemFormDataGet(
+            my $FormValues = $LayoutObject->ITSMConfigItemFormDataGet(
                 Key          => $InputKey,
                 Item         => $Item,
                 ConfigItemID => $Param{ConfigItemID},
             );
-
-            # get param object
-            my $ParamObject = $Kernel::OM->Get('Kernel::System::Web::Request');
 
             if ( defined $FormValues->{Value} ) {
 
@@ -817,7 +818,7 @@ sub _XMLFormOutput {
         $DataPresentMode = 1;
     }
 
-    my @CustomerSearchItemIDs;
+    my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
 
     my $ItemCounter = 1;
     ITEM:
@@ -846,9 +847,6 @@ sub _XMLFormOutput {
         if ( $Loop > $Item->{CountMin} ) {
             $Delete = 1;
         }
-
-        # get layout object
-        my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
 
         # output content rows
         for my $Counter ( 1 .. $Loop ) {
@@ -883,7 +881,7 @@ sub _XMLFormOutput {
             my $ItemID = 'Item' . $ItemCounter++ . $Param{Prefix} . $Param{Level};
 
             if ( $Item->{Input}->{Type} eq 'Customer' ) {
-                push @CustomerSearchItemIDs, $ItemID;
+                push @{ $Self->{CustomerSearchItemIDs} }, $ItemID;
             }
 
             # create input element
@@ -1041,11 +1039,11 @@ sub _XMLFormOutput {
         }
     }
 
-    if (@CustomerSearchItemIDs) {
+    if ( IsArrayRefWithData( $Self->{CustomerSearchItemIDs} ) ) {
 
-        $Kernel::OM->Get('Kernel::Output::HTML::Layout')->AddJSData(
+        $LayoutObject->AddJSData(
             Key   => 'CustomerSearchItemIDs',
-            Value => \@CustomerSearchItemIDs,
+            Value => $Self->{CustomerSearchItemIDs},
         );
     }
 
