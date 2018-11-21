@@ -1,4 +1,4 @@
-#6.0.15 20??-??-??
+#6.0.15 2018-??-??
  - 2018-11-21 Fixed bug#[12998](https://bugs.otrs.org/show_bug.cgi?id=12998) - Pagination in ConfigItemOverview not working with subattributes.
  - 2018-11-19 Fixed bug#[14218](https://bugs.otrs.org/show_bug.cgi?id=14218) - If there are more than one Customer type field in the CI definition, only the last field works.
 
