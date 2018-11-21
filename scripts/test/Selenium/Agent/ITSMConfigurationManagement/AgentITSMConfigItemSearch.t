@@ -49,7 +49,7 @@ $Selenium->RunTest(
             );
             $Self->True(
                 $ConfigItemNumber,
-                "ConfigItem number is created - $ConfigItemNumber"
+                "ConfigItem $ConfigItemNumber number is created"
             );
             push @ConfigItemNumbers, $ConfigItemNumber;
         }
@@ -64,7 +64,7 @@ $Selenium->RunTest(
             );
             $Self->True(
                 $ConfigItemID,
-                "ConfigItem is created - ID $ConfigItemID"
+                "ConfigItemID $ConfigItemID is created"
             );
             push @ConfigItemIDs, $ConfigItemID;
         }
@@ -89,7 +89,7 @@ $Selenium->RunTest(
             );
             $Self->True(
                 $VersionID,
-                "Version is created - ID $VersionID"
+                "VersionID $VersionID is created"
             );
             push @VersionIDs, $VersionID;
 
@@ -182,7 +182,7 @@ $Selenium->RunTest(
                 $Selenium->execute_script(
                     "return \$('#OverviewBody .TableSmall td:contains($CheckConfigItem)').length"
                 ),
-                "ConfigItem number $CheckConfigItem - found",
+                "ConfigItem $CheckConfigItem number is found",
             );
         }
 
@@ -208,7 +208,7 @@ $Selenium->RunTest(
                 $Selenium->execute_script(
                     "return \$('#OverviewBody .TableSmall td:contains($CheckConfigItem)').length"
                 ),
-                "ConfigItem number $CheckConfigItem - found",
+                "ConfigItem $CheckConfigItem number is found",
             );
         }
 
@@ -248,7 +248,7 @@ $Selenium->RunTest(
             );
             $Self->True(
                 $ConfigItemNumber,
-                "ConfigItem number is created - $ConfigItemNumber"
+                "ConfigItem $ConfigItemNumber number is created"
             );
             push @ConfigItemNumbers, $ConfigItemNumber;
 
@@ -259,7 +259,7 @@ $Selenium->RunTest(
             );
             $Self->True(
                 $ConfigItemID,
-                "ConfigItem is created - ID $ConfigItemID"
+                "ConfigItemID $ConfigItemID is created"
             );
             push @ConfigItemIDs, $ConfigItemID;
         }
@@ -276,6 +276,24 @@ $Selenium->RunTest(
                             {
                                 'Content' => '2017-10-10'
                             },
+                        ],
+                        'NIC' => [
+                            undef,
+                            {
+                                'IPoverDHCP' => [
+                                    undef,
+                                    {
+                                        'Content' => '38'
+                                    }
+                                ],
+                                'IPAddress' => [
+                                    undef,
+                                    {
+                                        'Content' => '172.0.0.0'
+                                    }
+                                ],
+                                'Content' => 'test 172.0.0.0'
+                            }
                         ],
                     },
                 ],
@@ -312,7 +330,7 @@ $Selenium->RunTest(
             );
             $Self->True(
                 $VersionID,
-                "Version is created - ID $VersionID"
+                "VersionID $VersionID is created"
             );
             push @VersionIDs, $VersionID;
 
@@ -472,6 +490,151 @@ $Selenium->RunTest(
             "Check if profile is loaded well"
         );
 
+        # Check if correct config items are shown after sub attributes are searched. See bug#12998.
+        my $ConfigItemNumber2 = $ConfigItemObject->ConfigItemNumberCreate(
+            Type    => $ConfigObject->Get('ITSMConfigItem::NumberGenerator'),
+            ClassID => $ConfigItemClassIDs[0],
+        );
+        $Self->True(
+            $ConfigItemNumber2,
+            "ConfigItem $ConfigItemNumber2 number is created"
+        );
+        my $ConfigItemID2 = $ConfigItemObject->ConfigItemAdd(
+            Number  => $ConfigItemNumber2,
+            ClassID => $ConfigItemClassIDs[0],
+            UserID  => 1,
+        );
+        $Self->True(
+            $ConfigItemID2,
+            "ConfigItemID $ConfigItemID2 is created"
+        );
+
+        push @ConfigItemIDs, $ConfigItemID2;
+
+        # Create config that should not appear in search.
+        my $VersionID2 = $ConfigItemObject->VersionAdd(
+            Name         => $Count . $RandomID,
+            DefinitionID => 1,
+            DeplStateID  => $ProductionDeplStateID,
+            InciStateID  => $InciStateID->{ItemID},
+            UserID       => 1,
+            ConfigItemID => $ConfigItemID2,
+            XMLData      => [
+                undef,
+                {
+                    Version => [
+                        undef,
+                        {
+                            NIC => [
+                                undef,
+                                {
+                                    IPoverDHCP => [
+                                        undef,
+                                        {
+                                            Content => '38'
+                                        }
+                                    ],
+                                    IPAddress => [
+                                        undef,
+                                        {
+                                            Content => '222.0.0.0'
+                                        }
+                                    ],
+                                    Content => 'test 222.0.0.0'
+                                }
+                            ],
+                        }
+                        ]
+                }
+            ],
+        );
+        $Self->True(
+            $VersionID2,
+            "VersionID $VersionID2 is created"
+        );
+
+        # Configure IPAddres to show in search result.
+        $Helper->ConfigSettingChange(
+            Valid => 1,
+            Key   => 'ITSMConfigItem::Frontend::AgentITSMConfigItemSearch###ShowColumns',
+            Value => {
+                Class                  => 0,
+                CurDeplSignal          => 1,
+                CurDeplState           => 1,
+                CurDeplStateType       => 0,
+                CurInciSignal          => 1,
+                CurInciState           => 1,
+                CurInciStateType       => 0,
+                LastChanged            => 1,
+                'NIC::1::IPAddress::1' => 1,
+                Name                   => 1,
+                Number                 => 1,
+            },
+        );
+
+        $Selenium->find_element( ".Dialog .Close", 'css' )->click();
+
+        # Navigate to AgentITSMConfigItemSearch.
+        $Selenium->VerifiedGet("${ScriptAlias}index.pl?Action=AgentITSMConfigItemSearch");
+
+        # Wait until form and overlay has loaded, if necessary.
+        $Selenium->WaitFor( JavaScript => "return typeof(\$) === 'function' && \$('#SearchClassID').length" );
+        sleep 1;
+
+        # Select 'Computer' class.
+        $Selenium->execute_script(
+            "\$('#SearchClassID').val('$ConfigItemClassIDs[0]').trigger('redraw.InputField').trigger('change');"
+        );
+
+        # Wait until form has loaded, if necessary.
+        $Selenium->WaitFor( JavaScript => "return \$('#Attribute').length" );
+
+        # Add search filter by NIC::IPAddress and set 172*.
+        $Selenium->execute_script(
+            "\$('#Attribute').val('NIC::IPAddress').trigger('redraw.InputField').trigger('change');",
+        );
+
+        # Wait for Network Adapter::IP Address to appear.
+        $Selenium->WaitFor(
+            JavaScript =>
+                "return typeof(\$) === 'function' && \$('#SearchInsert input[name=\"NIC::IPAddress\"]').length"
+        );
+
+        $Selenium->find_element("//input[\@name='NIC::IPAddress']")->send_keys('172*');
+
+        $Selenium->find_element( "#SearchFormSubmit", 'css' )->click();
+        $Selenium->WaitFor(
+            JavaScript =>
+                "return typeof(\$) === 'function' && !\$('Dialog.Modal').length && \$('#OverviewBody .TableSmall').length"
+        );
+
+        # Check if correct number of items are shown on pagination.
+        $Self->True(
+            $Selenium->execute_script("return \$('.Pagination').text().trim().indexOf('1-25 of 30') > -1;"),
+            "Check pagination on the first page",
+        );
+
+        $Self->Is(
+            $Selenium->execute_script("return \$('#OverviewBody .TableSmall tbody tr').length;"),
+            '25',
+            "Number of config items on the first page is correct - 25",
+        );
+
+        # Go to the second page.
+        $Selenium->find_element( "#GenericPage2", 'css' )->VerifiedClick();
+
+        # Check if correct number of items are shown on pagination.
+        $Self->True(
+            $Selenium->execute_script("return \$('.Pagination').text().trim().indexOf('26-30 of 30') > -1;"),
+            "Check pagination on the second page",
+        );
+
+        $Self->Is(
+            $Selenium->execute_script("return \$('#OverviewBody .TableSmall tbody tr').length;"),
+            '5',
+            "Number of config items on the second page is correct - 5",
+        );
+
         # Delete created test ConfigItem.
         for my $ConfigItemDeleteID (@ConfigItemIDs) {
             my $Success = $ConfigItemObject->ConfigItemDelete(
@@ -480,7 +643,7 @@ $Selenium->RunTest(
             );
             $Self->True(
                 $Success,
-                "ConfigItem is deleted - ID $ConfigItemDeleteID",
+                "ConfigItemID $ConfigItemDeleteID is deleted",
             );
         }
 

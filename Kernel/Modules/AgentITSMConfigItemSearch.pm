@@ -1294,6 +1294,7 @@ sub _XMLSearchFormGet {
 
         # start recursion, if "Sub" was found
         $Self->_XMLSearchFormGet(
+            %Param,
             XMLDefinition => $Item->{Sub},
             XMLFormData   => $Param{XMLFormData},
             XMLGetParam   => $Param{XMLGetParam},
