@@ -131,8 +131,8 @@ sub InputCreate {
     }
 
     # set min, max and default
-    my $ValueMin = $Param{Item}->{Input}->{ValueMin} || 1;
-    my $ValueMax = $Param{Item}->{Input}->{ValueMax} || 1;
+    my $ValueMin = $Param{Item}->{Input}->{ValueMin} // 1;
+    my $ValueMax = $Param{Item}->{Input}->{ValueMax} // 1;
     if ( $ValueMin > $ValueMax ) {
         $ValueMin = $ValueMax;
     }
@@ -226,8 +226,8 @@ sub SearchInputCreate {
     }
 
     # set min, max
-    my $ValueMin = $Param{Item}->{Input}->{ValueMin} || 1;
-    my $ValueMax = $Param{Item}->{Input}->{ValueMax} || 1;
+    my $ValueMin = $Param{Item}->{Input}->{ValueMin} // 1;
+    my $ValueMax = $Param{Item}->{Input}->{ValueMax} // 1;
     if ( $ValueMin > $ValueMax ) {
         $ValueMin = $ValueMax;
     }
