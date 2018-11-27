@@ -38,11 +38,6 @@ ITSM.Agent.ConfigItem.Zoom = (function (TargetNS) {
             return false;
         });
 
-        $('ul.Actions a.HistoryBack').on('click', function () {
-            history.back();
-            return false;
-        });
-
         $('.MasterAction').on('click', function (Event) {
             var $MasterActionLink = $(this).find('.MasterActionLink');
             // only act if the link was not clicked directly
