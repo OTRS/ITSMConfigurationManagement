@@ -280,11 +280,6 @@
         return false;
     });
 
-    $('ul.Actions a.HistoryBack').bind('click', function (Event) {
-        history.back();
-        return false;
-    });
-
     $('.MasterAction').bind('click', function (Event) {
         var $MasterActionLink = $(this).find('.MasterActionLink');
         // only act if the link was not clicked directly

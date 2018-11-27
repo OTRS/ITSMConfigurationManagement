@@ -186,8 +186,8 @@
                 <Item Key="Name" Translatable="1">Back</Item>
                 <Item Key="Description" Translatable="1">Back</Item>
                 <Item Key="Action"></Item>
-                <Item Key="Link">Action=AgentITSMConfigItem;ClassID=[% Data.ClassID | html %]</Item>
-                <Item Key="Target">Back</Item>
+                <Item Key="Link">[% Env("LastScreenOverview") %]</Item>
+                <Item Key="Target"></Item>
             </Hash>
         </Setting>
     </ConfigItem>
