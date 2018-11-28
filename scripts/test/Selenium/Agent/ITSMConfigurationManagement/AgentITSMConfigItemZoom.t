@@ -97,10 +97,13 @@ $Selenium->RunTest(
         # get script alias
         my $ScriptAlias = $ConfigObject->Get('ScriptAlias');
 
-        # navigate to AgentITSMConfigItemZoom screen
+        # Navigate to AgentITSMConfigItem screen.
         $Selenium->VerifiedGet(
-            "${ScriptAlias}index.pl?Action=AgentITSMConfigItemZoom;ConfigItemID=$ConfigItemID;Version=$VersionIDs[0]"
+            "${ScriptAlias}index.pl?Action=AgentITSMConfigItem;SortBy=Number;OrderBy=Down;View=;Filter=$HardwareConfigItemID"
         );
+
+        # Click on created ConfigItem.
+        $Selenium->find_element("//div[contains(\@title, '$ConfigItemNumber' )]")->VerifiedClick();
 
         # get ConfigItem value params
         my @ConfigItemValues = (
@@ -151,7 +154,7 @@ $Selenium->RunTest(
         my @MenuButtons = (
             {
                 Name => 'Back',
-                Link => "Action=AgentITSMConfigItem;ClassID=$HardwareConfigItemID",
+                Link => "Action=AgentITSMConfigItem;SortBy=Number;OrderBy=Down;View=;Filter=$HardwareConfigItemID",
             },
             {
                 Name => 'History',
