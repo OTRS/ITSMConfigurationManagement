@@ -1176,6 +1176,11 @@
                 <Item Key="CacheTTLLocal">0.5</Item>
                 <Item Key="ConfigItemKey">
                     <Hash>
+                        <Item Key="Computer">CustomerID</Item>
+                        <Item Key="Hardware">CustomerID</Item>
+                        <Item Key="Location">CustomerID</Item>
+                        <Item Key="Network">CustomerID</Item>
+                        <Item Key="Software">CustomerID</Item>
                     </Hash>
                 </Item>
                 <Item Key="DefaultColumns">
@@ -1244,6 +1249,11 @@
                 <Item Key="CacheTTLLocal">0.5</Item>
                 <Item Key="ConfigItemKey">
                     <Hash>
+                        <Item Key="Computer">Owner</Item>
+                        <Item Key="Hardware">Owner</Item>
+                        <Item Key="Location">Owner</Item>
+                        <Item Key="Network">Owner</Item>
+                        <Item Key="Software">Owner</Item>
                     </Hash>
                 </Item>
                 <Item Key="DefaultColumns">
