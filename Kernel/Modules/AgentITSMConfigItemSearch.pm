@@ -265,7 +265,7 @@ sub Run {
 
         delete $Profiles{''};
         $Profiles{'last-search'} = '-';
-        $Param{ProfilesStrg} = $Self->{LayoutObject}->BuildSelection(
+        $Param{ProfilesStrg}     = $Self->{LayoutObject}->BuildSelection(
             Data       => \%Profiles,
             Name       => 'Profile',
             ID         => 'SearchProfile',

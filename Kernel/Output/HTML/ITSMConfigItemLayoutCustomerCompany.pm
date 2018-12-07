@@ -71,7 +71,7 @@ sub OutputStringCreate {
 
     # transform ascii to html
     $Param{Value} = $Self->{LayoutObject}->Ascii2Html(
-        Text => $Param{Value} || '',
+        Text           => $Param{Value} || '',
         HTMLResultMode => 1,
     );
 

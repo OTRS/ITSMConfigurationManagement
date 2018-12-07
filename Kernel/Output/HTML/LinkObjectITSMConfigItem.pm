@@ -731,7 +731,7 @@ sub SelectableObjectList {
 
         next CLASSID if !$HasAccess;
 
-        my $Class = $ClassList->{$ClassID} || '';
+        my $Class      = $ClassList->{$ClassID} || '';
         my $Identifier = $Self->{ObjectData}->{Object} . '::' . $ClassID;
 
         # set selected flag
