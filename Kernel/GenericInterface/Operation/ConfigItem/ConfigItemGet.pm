@@ -180,7 +180,7 @@ sub Run {
         );
     }
     my $Attachments = $Param{Data}->{Attachments} || 0;
-    my $ReturnData = {
+    my $ReturnData  = {
         Success => 1,
     };
 

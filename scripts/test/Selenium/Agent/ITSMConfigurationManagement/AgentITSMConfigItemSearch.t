@@ -325,7 +325,7 @@ $Selenium->RunTest(
         $Count = 1;
         for my $ConfigItemVersion (@ConfigItemIDs) {
 
-            my $XMLData = ( $Count <= 30 ) ? $XMLDataArray[0] : $XMLDataArray[1];
+            my $XMLData   = ( $Count <= 30 ) ? $XMLDataArray[0] : $XMLDataArray[1];
             my $VersionID = $ConfigItemObject->VersionAdd(
                 Name         => $Count . $RandomID,
                 DefinitionID => 1,
@@ -520,7 +520,7 @@ $Selenium->RunTest(
                                 }
                             ],
                         }
-                        ]
+                    ]
                 }
             ],
         );

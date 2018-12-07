@@ -274,7 +274,7 @@ sub Run {
 
         delete $Profiles{''};
         $Profiles{'last-search'} = '-';
-        $Param{ProfilesStrg} = $LayoutObject->BuildSelection(
+        $Param{ProfilesStrg}     = $LayoutObject->BuildSelection(
             Data         => \%Profiles,
             Name         => 'Profile',
             ID           => 'SearchProfile',
@@ -321,7 +321,7 @@ sub Run {
                 1 => Translatable('Yes'),
             },
             SelectedID => $GetParam{PreviousVersionSearch} || '0',
-            Class => 'Modernize',
+            Class      => 'Modernize',
         );
 
         # build output format string

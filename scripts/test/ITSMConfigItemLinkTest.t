@@ -263,7 +263,7 @@ my %Links = (
         Service => {
             '2' => {
                 ITSMConfigItem => ['2'],
-                }
+            }
         },
     },
     Includes => {

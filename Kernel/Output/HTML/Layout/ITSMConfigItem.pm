@@ -368,7 +368,7 @@ sub ITSMConfigItemListShow {
     }
 
     # set page limit and build page nav
-    my $Limit = $Param{Limit} || 20_000;
+    my $Limit   = $Param{Limit} || 20_000;
     my %PageNav = $LayoutObject->PageNavBar(
         Limit     => $Limit,
         StartHit  => $StartHit,

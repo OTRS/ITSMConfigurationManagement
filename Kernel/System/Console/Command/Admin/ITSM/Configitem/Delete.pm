@@ -264,7 +264,7 @@ sub Run {
     elsif ($AllOlderThanDays) {
 
         my $SystemTime = $Kernel::OM->Get('Kernel::System::Time')->SystemTime();
-        my $OlderDate = $SystemTime - ( 60 * 60 * 24 * $AllOlderThanDays );
+        my $OlderDate  = $SystemTime - ( 60 * 60 * 24 * $AllOlderThanDays );
         $OlderDate = $Kernel::OM->Get('Kernel::System::Time')->SystemTime2TimeStamp(
             SystemTime => $OlderDate,
         );
