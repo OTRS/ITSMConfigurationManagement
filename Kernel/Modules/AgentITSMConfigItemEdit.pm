@@ -594,7 +594,7 @@ sub Run {
     $Param{AttachmentList} = [
         $UploadCacheObject->FormIDGetAllFilesMeta(
             FormID => $Self->{FormID},
-            )
+        )
     ];
 
     my $Output = '';

@@ -311,7 +311,7 @@ sub Run {
                 1 => Translatable('Yes'),
             },
             SelectedID => $GetParam{PreviousVersionSearch} || '0',
-            Class => 'Modernize',
+            Class      => 'Modernize',
         );
 
         # build output format string

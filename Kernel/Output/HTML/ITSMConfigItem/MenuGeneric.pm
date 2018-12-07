@@ -121,8 +121,8 @@ sub Run {
         delete $JSData{Config};
         delete $JSData{ConfigItem};
 
-        $JSData{ElementSelector} =~ s/\[%\s*Data\.MenuID\s*\|\s*html\s*%\]/$JSData{MenuID}/i;
-        $JSData{DialogContentQueryString} =~ s/\[%\s*Data\.ConfigItemID\s*\|\s*html\s*%\]/$JSData{ConfigItemID}/i;
+        $JSData{ElementSelector}            =~ s/\[%\s*Data\.MenuID\s*\|\s*html\s*%\]/$JSData{MenuID}/i;
+        $JSData{DialogContentQueryString}   =~ s/\[%\s*Data\.ConfigItemID\s*\|\s*html\s*%\]/$JSData{ConfigItemID}/i;
         $JSData{ConfirmedActionQueryString} =~ s/\[%\s*Data\.ConfigItemID\s*\|\s*html\s*%\]/$JSData{ConfigItemID}/i;
 
         $JSData{DialogTitle} =~ s/\[%\s*Translate\("(.*)"\)\s*\|\s*html\s*%\]/$LanguageObject->Translate($1)/ei;

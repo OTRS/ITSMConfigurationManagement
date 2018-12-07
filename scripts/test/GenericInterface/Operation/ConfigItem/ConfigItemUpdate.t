@@ -552,7 +552,7 @@ my @Tests = (
                 CIXMLData => {
                     NIC => {
                         Test => 1,
-                        }
+                    }
                 },
             },
         },
@@ -580,7 +580,7 @@ my @Tests = (
                 CIXMLData => {
                     NIC => {
                         NIC => 'Eth0',
-                        }
+                    }
                 },
             },
         },

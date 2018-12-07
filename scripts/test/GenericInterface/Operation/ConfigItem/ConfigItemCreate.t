@@ -219,7 +219,7 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemCreate.MissingParameter',
-                    }
+                }
             },
             Success => 1,
         },
@@ -236,7 +236,7 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemCreate.MissingParameter',
-                    }
+                }
             },
             Success => 1,
         },
@@ -255,7 +255,7 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemCreate.MissingParameter',
-                    }
+                }
             },
             Success => 1,
         },
@@ -274,7 +274,7 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemCreate.MissingParameter',
-                    }
+                }
             },
             Success => 1,
         },
@@ -295,7 +295,7 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemCreate.MissingParameter',
-                    }
+                }
             },
             Success => 1,
         },
@@ -317,7 +317,7 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemCreate.MissingParameter',
-                    }
+                }
             },
             Success => 1,
         },
@@ -340,7 +340,7 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemCreate.MissingParameter',
-                    }
+                }
             },
             Success => 1,
         },
@@ -364,7 +364,7 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemCreate.MissingParameter',
-                    }
+                }
             },
             Success => 1,
         },
@@ -389,7 +389,7 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemCreate.InvalidParameter',
-                    }
+                }
             },
             Success => 1,
         },
@@ -414,7 +414,7 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemCreate.InvalidParameter',
-                    }
+                }
             },
             Success => 1,
         },
@@ -439,7 +439,7 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemCreate.InvalidParameter',
-                    }
+                }
             },
             Success => 1,
         },
@@ -458,7 +458,7 @@ my @Tests = (
                 CIXMLData => {
                     NIC => {
                         Test => 1,
-                        }
+                    }
                 },
             },
         },
@@ -466,7 +466,7 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemCreate.MissingParameter',
-                    }
+                }
             },
             Success => 1,
         },
@@ -485,7 +485,7 @@ my @Tests = (
                 CIXMLData => {
                     NIC => {
                         NIC => 'Eth0',
-                        }
+                    }
                 },
             },
         },
@@ -493,7 +493,7 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemCreate.MissingParameter',
-                    }
+                }
             },
             Success => 1,
         },

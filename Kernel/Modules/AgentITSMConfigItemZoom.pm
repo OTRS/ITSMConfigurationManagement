@@ -437,7 +437,7 @@ sub Run {
     if ( $Self->{Subaction} eq 'DownloadAttachment' ) {
 
         # get data for attachment
-        my $Filename = $ParamObject->GetParam( Param => 'Filename' );
+        my $Filename       = $ParamObject->GetParam( Param => 'Filename' );
         my $AttachmentData = $ConfigItemObject->ConfigItemAttachmentGet(
             ConfigItemID => $ConfigItemID,
             Filename     => $Filename,

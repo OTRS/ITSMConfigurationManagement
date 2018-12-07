@@ -267,7 +267,7 @@ my $XMLData = {
                 {
                     Content => '42 GB',
                 }
-                ]
+            ]
         },
         {
             Content  => 'HD2',
@@ -276,7 +276,7 @@ my $XMLData = {
                 {
                     Content => '780 GB',
                 }
-                ]
+            ]
         },
     ],
 };
@@ -318,7 +318,7 @@ my $Expected = {
     'WarrantyExpirationDate::1' => {
         Name  => 'Warranty Expiration Date',
         Value => ''
-        }
+    }
 };
 
 $Self->IsDeeply(
