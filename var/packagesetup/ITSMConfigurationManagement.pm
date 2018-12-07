@@ -562,6 +562,14 @@ sub _AddConfigItemDefinitions {
         },
     },
     {
+        Key => 'CustomerID',
+        Name => Translatable('Customer Company'),
+        Searchable => 1,
+        Input => {
+            Type => 'CustomerCompany',
+        },
+    },
+    {
         Key => 'Owner',
         Name => Translatable('Owner'),
         Searchable => 1,
@@ -772,6 +780,14 @@ sub _AddConfigItemDefinitions {
         },
     },
     {
+        Key => 'CustomerID',
+        Name => Translatable('Customer Company'),
+        Searchable => 1,
+        Input => {
+            Type => 'CustomerCompany',
+        },
+    },
+    {
         Key => 'Owner',
         Name => Translatable('Owner'),
         Searchable => 1,
@@ -835,6 +851,22 @@ sub _AddConfigItemDefinitions {
             Type => 'GeneralCatalog',
             Class => 'ITSM::ConfigItem::Location::Type',
             Translation => 1,
+        },
+    },
+    {
+        Key => 'CustomerID',
+        Name => Translatable('Customer Company'),
+        Searchable => 1,
+        Input => {
+            Type => 'CustomerCompany',
+        },
+    },
+    {
+        Key => 'Owner',
+        Name => Translatable('Owner'),
+        Searchable => 1,
+        Input => {
+            Type => 'Customer',
         },
     },
     {
@@ -914,6 +946,22 @@ sub _AddConfigItemDefinitions {
             Type => 'GeneralCatalog',
             Class => 'ITSM::ConfigItem::Network::Type',
             Translation => 1,
+        },
+    },
+    {
+        Key => 'CustomerID',
+        Name => Translatable('Customer Company'),
+        Searchable => 1,
+        Input => {
+            Type => 'CustomerCompany',
+        },
+    },
+    {
+        Key => 'Owner',
+        Name => Translatable('Owner'),
+        Searchable => 1,
+        Input => {
+            Type => 'Customer',
         },
     },
     {
@@ -1009,6 +1057,14 @@ sub _AddConfigItemDefinitions {
             Type => 'GeneralCatalog',
             Class => 'ITSM::ConfigItem::Software::Type',
             Translation => 1,
+        },
+    },
+    {
+        Key => 'CustomerID',
+        Name => Translatable('Customer Company'),
+        Searchable => 1,
+        Input => {
+            Type => 'CustomerCompany',
         },
     },
     {
