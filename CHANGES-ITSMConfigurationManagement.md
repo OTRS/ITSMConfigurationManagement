@@ -1,4 +1,5 @@
 #6.0.15 2018-??-??
+ - 2018-12-12 Fixed bug#[14294](https://bugs.otrs.org/show_bug.cgi?id=14294) - Group name is translated in General Catalog, but it shouldn't.
  - 2018-11-27 Fixed bug#[11014](https://bugs.otrs.org/show_bug.cgi?id=11014) - Using 'Back'-Button in CI after a search ends in 'Document expired'.
  - 2018-11-22 Fixed bug#[6005](https://bugs.otrs.org/show_bug.cgi?id=6005) - Definition: zero as minimum or maximum value for Type Integer is not possible.
  - 2018-11-21 Fixed bug#[12998](https://bugs.otrs.org/show_bug.cgi?id=12998) - Pagination in ConfigItemOverview not working with subattributes.
