@@ -18,35 +18,31 @@ use Kernel::GenericInterface::Debugger;
 use Kernel::GenericInterface::Operation::ConfigItem::ConfigItemCreate;
 use Kernel::System::VariableCheck qw(:all);
 
-# set UserID to root
+# Set UserID to root.
 $Self->{UserID} = 1;
 
-# helper object
-# skip SSL certificate verification
+# Skip SSL certificate verification.
 $Kernel::OM->ObjectParamAdd(
     'Kernel::System::UnitTest::Helper' => {
         SkipSSLVerify => 1,
     },
 );
-my $HelperObject = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
+my $HelperObject     = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
+my $ConfigObject     = $Kernel::OM->Get('Kernel::Config');
+my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
 
 my $RandomID = $HelperObject->GetRandomID();
 
-my $ConfigObject = $Kernel::OM->Get('Kernel::Config');
-
-# check if SSL Certificate verification is disabled
+# Check if SSL Certificate verification is disabled.
 $Self->Is(
     $ENV{PERL_LWP_SSL_VERIFY_HOSTNAME},
     0,
     'Disabled SSL certiticates verification in environment',
 );
 
-# create ConfigItem object
-my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
-
 my $TestCustomerUserLogin = $HelperObject->TestCustomerUserCreate();
 
-# create webservice object
+# Create webservice object.
 my $WebserviceObject = $Kernel::OM->Get('Kernel::System::GenericInterface::Webservice');
 $Self->Is(
     'Kernel::System::GenericInterface::Webservice',
@@ -54,7 +50,7 @@ $Self->Is(
     "Create webservice object",
 );
 
-# set webservice name
+# Set webservice name.
 my $WebserviceName = '-Test-' . $RandomID;
 
 my $WebserviceID = $WebserviceObject->WebserviceAdd(
@@ -77,26 +73,26 @@ $Self->True(
     "Added Webservice",
 );
 
-# get remote host with some precautions for certain unit test systems
+# Get remote host with some precautions for certain unit test systems.
 my $Host;
 my $FQDN = $ConfigObject->Get('FQDN');
 
-# try to resolve fqdn host
+# Try to resolve fqdn host.
 if ( $FQDN ne 'yourhost.example.com' && gethostbyname($FQDN) ) {
     $Host = $FQDN;
 }
 
-# try to resolve localhost instead
+# Try to resolve localhost instead.
 if ( !$Host && gethostbyname('localhost') ) {
     $Host = 'localhost';
 }
 
-# use hardcoded localhost ip address
+# Use hardcoded localhost ip address.
 if ( !$Host ) {
     $Host = '127.0.0.1';
 }
 
-# prepare webservice config
+# Prepare webservice config.
 my $RemoteSystem =
     $ConfigObject->Get('HttpType')
     . '://'
@@ -107,8 +103,6 @@ my $RemoteSystem =
     . $WebserviceID;
 
 my $WebserviceConfig = {
-
-    #    Name => '',
     Description =>
         'Test for ConfigItem Connector using SOAP transport backend.',
     Debugger => {
@@ -153,7 +147,7 @@ my $WebserviceConfig = {
     },
 };
 
-# update webservice with real config
+# Update webservice with real config.
 my $WebserviceUpdate = $WebserviceObject->WebserviceUpdate(
     ID      => $WebserviceID,
     Name    => $WebserviceName,
@@ -166,7 +160,7 @@ $Self->True(
     "Updated Webservice $WebserviceID - $WebserviceName",
 );
 
-# debugger object
+# Debugger object.
 my $DebuggerObject = Kernel::GenericInterface::Debugger->new(
     DebuggerConfig => {
         DebugThreshold => 'debug',
@@ -181,8 +175,8 @@ $Self->Is(
     'DebuggerObject instanciated correctly',
 );
 
-# Get SessionID
-# create requester object
+# Get SessionID.
+# Create requester object.
 my $RequesterSessionObject = $Kernel::OM->Get('Kernel::GenericInterface::Requester');
 $Self->Is(
     'Kernel::GenericInterface::Requester',
@@ -190,13 +184,13 @@ $Self->Is(
     "SessionID - Create requester object",
 );
 
-# create a new user for current test
+# Create a new user for current test.
 my $UserLogin = $HelperObject->TestUserCreate(
     Groups => [ 'admin', 'users', 'itsm-configitem' ],
 );
 my $Password = $UserLogin;
 
-# start requester with our webservice
+# Start requester with our webservice.
 my $RequesterSessionResult = $RequesterSessionObject->Run(
     WebserviceID => $WebserviceID,
     Invoker      => 'SessionCreate',
@@ -208,7 +202,7 @@ my $RequesterSessionResult = $RequesterSessionObject->Run(
 
 my $NewSessionID = $RequesterSessionResult->{Data}->{SessionID};
 
-# actual tests
+# Actual tests.
 my @Tests = (
     {
         Name           => 'Empty Request',
@@ -218,10 +212,10 @@ my @Tests = (
         ExpectedData   => {
             Data => {
                 Error => {
-                    ErrorCode => 'ConfigItemCreate.MissingParameter',
+                    ErrorCode    => 'ConfigItemCreate.MissingParameter',
+                    ErrorMessage => 'ConfigItemCreate: ConfigItem parameter is missing or not valid!',
                 }
             },
-            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -235,10 +229,10 @@ my @Tests = (
         ExpectedData => {
             Data => {
                 Error => {
-                    ErrorCode => 'ConfigItemCreate.MissingParameter',
+                    ErrorCode    => 'ConfigItemCreate.MissingParameter',
+                    ErrorMessage => 'ConfigItemCreate: ConfigItem parameter is missing or not valid!',
                 }
             },
-            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -248,16 +242,19 @@ my @Tests = (
         SuccessCreate  => 0,
         RequestData    => {
             ConfigItem => {
-                Test => 1,
+                Class     => 'Computer',
+                Name      => 'Test' . $RandomID,
+                DeplState => 'Production',
+                InciState => 'Operational',
             },
         },
         ExpectedData => {
             Data => {
                 Error => {
-                    ErrorCode => 'ConfigItemCreate.MissingParameter',
+                    ErrorCode    => 'ConfigItemCreate.MissingParameter',
+                    ErrorMessage => 'ConfigItemCreate: ConfigItem->CIXMLData->NIC->IPoverDHCP parameter is missing!',
                 }
             },
-            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -267,16 +264,20 @@ my @Tests = (
         SuccessCreate  => 0,
         RequestData    => {
             ConfigItem => {
-                CIXMLData => 1,
+                Class     => 'Computer',
+                Name      => 'Test' . $RandomID,
+                DeplState => 'Production',
+                InciState => 'Operational',
+                CIXMLData => 0,
             },
         },
         ExpectedData => {
             Data => {
                 Error => {
-                    ErrorCode => 'ConfigItemCreate.MissingParameter',
+                    ErrorCode    => 'ConfigItemCreate.MissingParameter',
+                    ErrorMessage => 'ConfigItemCreate: ConfigItem->CIXMLData is missing or invalid!',
                 }
             },
-            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -294,10 +295,10 @@ my @Tests = (
         ExpectedData => {
             Data => {
                 Error => {
-                    ErrorCode => 'ConfigItemCreate.MissingParameter',
+                    ErrorCode    => 'ConfigItemCreate.MissingParameter',
+                    ErrorMessage => 'ConfigItemCreate: ConfigItem->Class parameter is missing!',
                 }
             },
-            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -316,10 +317,10 @@ my @Tests = (
         ExpectedData => {
             Data => {
                 Error => {
-                    ErrorCode => 'ConfigItemCreate.MissingParameter',
+                    ErrorCode    => 'ConfigItemCreate.MissingParameter',
+                    ErrorMessage => 'ConfigItemCreate: ConfigItem->Name parameter is missing!',
                 }
             },
-            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -339,10 +340,10 @@ my @Tests = (
         ExpectedData => {
             Data => {
                 Error => {
-                    ErrorCode => 'ConfigItemCreate.MissingParameter',
+                    ErrorCode    => 'ConfigItemCreate.MissingParameter',
+                    ErrorMessage => 'ConfigItemCreate: ConfigItem->DeplState parameter is missing!',
                 }
             },
-            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -363,10 +364,10 @@ my @Tests = (
         ExpectedData => {
             Data => {
                 Error => {
-                    ErrorCode => 'ConfigItemCreate.MissingParameter',
+                    ErrorCode    => 'ConfigItemCreate.MissingParameter',
+                    ErrorMessage => 'ConfigItemCreate: ConfigItem->InciState parameter is missing!',
                 }
             },
-            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -388,10 +389,10 @@ my @Tests = (
         ExpectedData => {
             Data => {
                 Error => {
-                    ErrorCode => 'ConfigItemCreate.InvalidParameter',
+                    ErrorCode    => 'ConfigItemCreate.InvalidParameter',
+                    ErrorMessage => 'ConfigItemCreate: ConfigItem->Class parameter is invalid!',
                 }
             },
-            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -413,10 +414,10 @@ my @Tests = (
         ExpectedData => {
             Data => {
                 Error => {
-                    ErrorCode => 'ConfigItemCreate.InvalidParameter',
+                    ErrorCode    => 'ConfigItemCreate.InvalidParameter',
+                    ErrorMessage => 'ConfigItemCreate: ConfigItem->DeplState parameter is invalid!',
                 }
             },
-            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -438,10 +439,10 @@ my @Tests = (
         ExpectedData => {
             Data => {
                 Error => {
-                    ErrorCode => 'ConfigItemCreate.InvalidParameter',
+                    ErrorCode    => 'ConfigItemCreate.InvalidParameter',
+                    ErrorMessage => 'ConfigItemCreate: ConfigItem->InciState parameter is invalid!',
                 }
             },
-            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -466,9 +467,10 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemCreate.MissingParameter',
+                    ErrorMessage =>
+                        'ConfigItemCreate: ConfigItem->CIXMLData->NIC parameter value is required and is missing!',
                 }
             },
-            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -492,10 +494,10 @@ my @Tests = (
         ExpectedData => {
             Data => {
                 Error => {
-                    ErrorCode => 'ConfigItemCreate.MissingParameter',
+                    ErrorCode    => 'ConfigItemCreate.MissingParameter',
+                    ErrorMessage => 'ConfigItemCreate: ConfigItem->CIXMLData->NIC->IPoverDHCP parameter is missing!',
                 }
             },
-            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -526,9 +528,10 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemCreate.MissingParameter',
+                    ErrorMessage =>
+                        'ConfigItemCreate: ConfigItem->CIXMLData->NIC parameter value is required and is missing!',
                 },
             },
-            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -558,10 +561,10 @@ my @Tests = (
         ExpectedData => {
             Data => {
                 Error => {
-                    ErrorCode => 'ConfigItemCreate.MissingParameter',
+                    ErrorCode    => 'ConfigItemCreate.MissingParameter',
+                    ErrorMessage => 'ConfigItemCreate: ConfigItem->CIXMLData->NIC[1]->IPoverDHCP parameter is missing!',
                 },
             },
-            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -587,9 +590,10 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemCreate.InvalidParameter',
+                    ErrorMessage =>
+                        'ConfigItemCreate: ConfigItem->CIXMLData->NIC->IPoverDHCP parameter value is not a valid for General Catalog \'ITSM::ConfigItem::YesNo\'!',
                 },
             },
-            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -621,9 +625,10 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemCreate.InvalidParameter',
+                    ErrorMessage =>
+                        'ConfigItemCreate: ConfigItem->CIXMLData->NIC[1]->IPoverDHCP parameter value is not a valid for General Catalog \'ITSM::ConfigItem::YesNo\'!',
                 },
             },
-            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -656,9 +661,10 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemCreate.InvalidParameter',
+                    ErrorMessage =>
+                        'ConfigItemCreate: ConfigItem->CIXMLData->Vendor parameter value excedes the maxium length!',
                 },
             },
-            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -692,9 +698,10 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemCreate.InvalidParameter',
+                    ErrorMessage =>
+                        'ConfigItemCreate: ConfigItem->CIXMLData->WarrantyExpirationDate parameter value is not a valid Date format!',
                 },
             },
-            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -729,9 +736,10 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemCreate.InvalidParameter',
+                    ErrorMessage =>
+                        'ConfigItemCreate: ConfigItem->CIXMLData->Owner parameter value is not a valid customer!',
                 },
             },
-            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -779,9 +787,10 @@ my @Tests = (
             Data => {
                 Error => {
                     ErrorCode => 'ConfigItemCreate.InvalidParameter',
+                    ErrorMessage =>
+                        'ConfigItemCreate: ConfigItem->CIXMLData->Ram parameter repetitions is higher than the maxium value!',
                 },
             },
-            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -820,10 +829,10 @@ my @Tests = (
         ExpectedData => {
             Data => {
                 Error => {
-                    ErrorCode => 'ConfigItemCreate.InvalidParameter',
+                    ErrorCode    => 'ConfigItemCreate.InvalidParameter',
+                    ErrorMessage => 'ConfigItemCreate: ConfigItem->Attachment parameter is invalid!',
                 },
             },
-            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -866,10 +875,10 @@ my @Tests = (
         ExpectedData => {
             Data => {
                 Error => {
-                    ErrorCode => 'ConfigItemCreate.MissingParameter',
+                    ErrorCode    => 'ConfigItemCreate.MissingParameter',
+                    ErrorMessage => 'ConfigItemCreate: Attachment->Content parameter is missing!',
                 },
             },
-            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -912,10 +921,10 @@ my @Tests = (
         ExpectedData => {
             Data => {
                 Error => {
-                    ErrorCode => 'ConfigItemCreate.MissingParameter',
+                    ErrorCode    => 'ConfigItemCreate.MissingParameter',
+                    ErrorMessage => 'ConfigItemCreate: Attachment->ContentType parameter is missing!',
                 },
             },
-            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -959,10 +968,10 @@ my @Tests = (
         ExpectedData => {
             Data => {
                 Error => {
-                    ErrorCode => 'ConfigItemCreate.MissingParameter',
+                    ErrorCode    => 'ConfigItemCreate.MissingParameter',
+                    ErrorMessage => 'ConfigItemCreate: Attachment->Filename parameter is missing!',
                 },
             },
-            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
@@ -1026,22 +1035,28 @@ my @Tests = (
                 ],
             },
         },
-        ExpectedData => {
-            Data => {
-                Error => {
-                    ErrorCode => 'ConfigItemCreate.MissingParameter',
-                },
+        Operation => 'ConfigItemCreate',
+    },
+    {
+        Name           => 'Correct ConfigItem without XSLData',
+        SuccessRequest => 1,
+        SuccessCreate  => 1,
+        RequestData    => {
+            ConfigItem => {
+                Class     => 'Location',
+                Name      => 'Test' . $RandomID,
+                DeplState => 'Production',
+                InciState => 'Operational',
             },
-            Success => 1,
         },
         Operation => 'ConfigItemCreate',
     },
 );
 
-# start testing
+# Start testing.
 for my $Test (@Tests) {
 
-    # create local object
+    # Create local object.
     my $LocalObject = "Kernel::GenericInterface::Operation::ConfigItem::$Test->{Operation}"->new(
         DebuggerObject => $DebuggerObject,
         WebserviceID   => $WebserviceID,
@@ -1053,10 +1068,10 @@ for my $Test (@Tests) {
         "$Test->{Name} - Create local object",
     );
 
-    # make a deep copy to avoid changing the definition
+    # Make a deep copy to avoid changing the definition.
     my $ClonedRequestData = Storable::dclone( $Test->{RequestData} );
 
-    # start requester with our webservice
+    # Start requester with our webservice.
     my $LocalResult = $LocalObject->Run(
         WebserviceID => $WebserviceID,
         Invoker      => $Test->{Operation},
@@ -1067,17 +1082,17 @@ for my $Test (@Tests) {
         },
     );
 
-    # restore cloned data
+    # Restore cloned data.
     $Test->{RequestData} = $ClonedRequestData;
 
-    # check result
+    # Check result.
     $Self->Is(
         'HASH',
         ref $LocalResult,
         "$Test->{Name} - Local result structure is valid",
     );
 
-    # create requester object
+    # Create requester object.
     my $RequesterObject = $Kernel::OM->Get('Kernel::GenericInterface::Requester');
     $Self->Is(
         'Kernel::GenericInterface::Requester',
@@ -1085,7 +1100,7 @@ for my $Test (@Tests) {
         "$Test->{Name} - Create requester object",
     );
 
-    # start requester with our webservice
+    # Start requester with our webservice.
     my $RequesterResult = $RequesterObject->Run(
         WebserviceID => $WebserviceID,
         Invoker      => $Test->{Operation},
@@ -1095,7 +1110,7 @@ for my $Test (@Tests) {
         },
     );
 
-    # check result
+    # Check result.
     $Self->Is(
         'HASH',
         ref $RequesterResult,
@@ -1108,10 +1123,10 @@ for my $Test (@Tests) {
         "$Test->{Name} - Requester successful result",
     );
 
-    # tests supposed to succeed
+    # Tests supposed to succeed.
     if ( $Test->{SuccessCreate} ) {
 
-        # local results
+        # Local results.
         $Self->True(
             $LocalResult->{Data}->{ConfigItemID},
             "$Test->{Name} - Local result ConfigItemID with True.",
@@ -1126,7 +1141,7 @@ for my $Test (@Tests) {
             "$Test->{Name} - Local result Error is undefined.",
         );
 
-        # requester results
+        # Requester results.
         $Self->True(
             $RequesterResult->{Data}->{ConfigItemID},
             "$Test->{Name} - Requester result ConfigItemID with True.",
@@ -1141,7 +1156,7 @@ for my $Test (@Tests) {
             "$Test->{Name} - Requester result Error is undefined.",
         );
 
-        # get the ConfigItem entry (from local result)
+        # Get the ConfigItem entry (from local result).
         my $LocalVersionData = $ConfigItemObject->VersionGet(
             ConfigItemID => $LocalResult->{Data}->{ConfigItemID},
             UserID       => 1,
@@ -1152,7 +1167,7 @@ for my $Test (@Tests) {
             "$Test->{Name} - created local version strcture with True.",
         );
 
-        # get the config item entry (from requester result)
+        # Get the config item entry (from requester result).
         my $RequesterVersionData = $ConfigItemObject->VersionGet(
             ConfigItemID => $RequesterResult->{Data}->{ConfigItemID},
             UserID       => 1,
@@ -1163,7 +1178,7 @@ for my $Test (@Tests) {
             "$Test->{Name} - created requester config item strcture with True.",
         );
 
-        # check config item attributes as defined in the test
+        # Check config item attributes as defined in the test.
         for my $Attribute (qw(Number Class Name InciState DeplState DeplStateType)) {
             if ( $Test->{RequestData}->{ConfigItem}->{$Attribute} ) {
                 $Self->Is(
@@ -1174,71 +1189,77 @@ for my $Test (@Tests) {
             }
         }
 
-        # transform XML data to a comparable format
-        my $Definition = $LocalVersionData->{XMLDefinition};
+        if ( $Test->{RequestData}->{ConfigItem}->{CIXMLData} ) {
 
-        # make a deep copy to avoid changing the result
-        my $ClonedXMLData = Storable::dclone( $LocalVersionData->{XMLData} );
+            # Transform XML data to a comparable format.
+            my $Definition = $LocalVersionData->{XMLDefinition};
 
-        my $FormatedXMLData = $LocalObject->InvertFormatXMLData(
-            XMLData => $ClonedXMLData->[1]->{Version},
-        );
+            # Make a deep copy to avoid changing the result.
+            my $ClonedXMLData = Storable::dclone( $LocalVersionData->{XMLData} );
 
-        my $ReplacedXMLData = $LocalObject->InvertReplaceXMLData(
-            XMLData    => $FormatedXMLData,
-            Definition => $Definition,
-        );
-
-        # compare XML data
-        $Self->IsDeeply(
-            $ReplacedXMLData,
-            $Test->{RequestData}->{ConfigItem}->{CIXMLData},
-            "$Test->{Name} - local ConfigItem->CIXMLData match test definition.",
-        );
-
-        # check attachments
-        my @AttachmentList = $ConfigItemObject->ConfigItemAttachmentList(
-            ConfigItemID => $RequesterResult->{Data}->{ConfigItemID},
-        );
-
-        my @Attachments;
-        ATTACHMENT:
-        for my $FileName (@AttachmentList) {
-            next ATTACHMENT if !$FileName;
-
-            my $Attachment = $ConfigItemObject->ConfigItemAttachmentGet(
-                ConfigItemID => $RequesterResult->{Data}->{ConfigItemID},
-                Filename     => $FileName,
+            my $FormatedXMLData = $LocalObject->InvertFormatXMLData(
+                XMLData => $ClonedXMLData->[1]->{Version},
             );
 
-            # next if not attachment
-            next ATTACHMENT if !IsHashRefWithData($Attachment);
+            my $ReplacedXMLData = $LocalObject->InvertReplaceXMLData(
+                XMLData    => $FormatedXMLData,
+                Definition => $Definition,
+            );
 
-            # convert content to base64
-            $Attachment->{Content} = encode_base64( $Attachment->{Content}, '' );
+            # Compare XML data.
+            $Self->IsDeeply(
+                $ReplacedXMLData,
+                $Test->{RequestData}->{ConfigItem}->{CIXMLData},
+                "$Test->{Name} - local ConfigItem->CIXMLData match test definition.",
+            );
+        }
 
-            # delete not needed attibutes
-            for my $Attribute (qw(Preferences Filesize Type)) {
-                delete $Attachment->{$Attribute};
+        if ( $Test->{RequestData}->{ConfigItem}->{Attachment} ) {
+
+            # Check attachments.
+            my @AttachmentList = $ConfigItemObject->ConfigItemAttachmentList(
+                ConfigItemID => $RequesterResult->{Data}->{ConfigItemID},
+            );
+
+            my @Attachments;
+            ATTACHMENT:
+            for my $FileName (@AttachmentList) {
+                next ATTACHMENT if !$FileName;
+
+                my $Attachment = $ConfigItemObject->ConfigItemAttachmentGet(
+                    ConfigItemID => $RequesterResult->{Data}->{ConfigItemID},
+                    Filename     => $FileName,
+                );
+
+                # Next if not attachment.
+                next ATTACHMENT if !IsHashRefWithData($Attachment);
+
+                # Convert content to base64.
+                $Attachment->{Content} = encode_base64( $Attachment->{Content}, '' );
+
+                # Delete not needed attibutes.
+                for my $Attribute (qw(Preferences Filesize Type)) {
+                    delete $Attachment->{$Attribute};
+                }
+                push @Attachments, $Attachment;
             }
-            push @Attachments, $Attachment;
+
+            my @RequestedAttachments;
+            if ( ref $Test->{RequestData}->{Attachment} eq 'HASH' ) {
+                push @RequestedAttachments, $Test->{RequestData}->{ConfigItem}->{Attachment};
+            }
+            else {
+                @RequestedAttachments = @{ $Test->{RequestData}->{ConfigItem}->{Attachment} };
+            }
+
+            $Self->IsDeeply(
+                \@Attachments,
+                \@RequestedAttachments,
+                "$Test->{Name} - local ConfigItem->Attachment match test definition.",
+            );
         }
 
-        my @RequestedAttachments;
-        if ( ref $Test->{RequestData}->{Attachment} eq 'HASH' ) {
-            push @RequestedAttachments, $Test->{RequestData}->{ConfigItem}->{Attachment};
-        }
-        else {
-            @RequestedAttachments = @{ $Test->{RequestData}->{ConfigItem}->{Attachment} };
-        }
-
-        $Self->IsDeeply(
-            \@Attachments,
-            \@RequestedAttachments,
-            "$Test->{Name} - local ConfigItem->Attachment match test definition.",
-        );
-
-        # remove attributes that might be different from local and requester responses
+        # Remove attributes that might be different from local and requester responses.
         for my $Attribute (
             qw(ConfigItemID Number CreateTime VersionID LastVersionID)
             )
@@ -1253,7 +1274,7 @@ for my $Test (@Tests) {
             "$Test->{Name} - Local config item result matched with remote result.",
         );
 
-        # delete the config items
+        # Delete the config items.
         for my $ConfigItemID (
             $LocalResult->{Data}->{ConfigItemID},
             $RequesterResult->{Data}->{ConfigItemID}
@@ -1265,7 +1286,7 @@ for my $Test (@Tests) {
                 UserID       => 1,
             );
 
-            # sanity check
+            # Sanity check.
             $Self->True(
                 $ConfigItemDelete,
                 "ConfigItemDelete() successful for ConfigItem ID $ConfigItemID",
@@ -1273,7 +1294,7 @@ for my $Test (@Tests) {
         }
     }
 
-    # tests supposed to fail
+    # Tests supposed to fail.
     else {
         $Self->False(
             $LocalResult->{ConfigItemID},
@@ -1288,14 +1309,10 @@ for my $Test (@Tests) {
             $Test->{ExpectedData}->{Data}->{Error}->{ErrorCode},
             "$Test->{Name} - Local result ErrorCode matched with expected local call result.",
         );
-        $Self->True(
+        $Self->Is(
             $LocalResult->{Data}->{Error}->{ErrorMessage},
-            "$Test->{Name} - Local result ErrorMessage with true.",
-        );
-        $Self->IsNot(
-            $LocalResult->{Data}->{Error}->{ErrorMessage},
-            '',
-            "$Test->{Name} - Local result ErrorMessage is not empty.",
+            $Test->{ExpectedData}->{Data}->{Error}->{ErrorMessage},
+            "$Test->{Name} - Local result ErrorMessage matched with expected local call result.",
         );
         $Self->Is(
             $LocalResult->{ErrorMessage},
@@ -1306,13 +1323,13 @@ for my $Test (@Tests) {
                 . " of ErrorCode and ErrorMessage within Data hash.",
         );
 
-        # remove ErrorMessage parameter from direct call
-        # result to be consistent with SOAP call result
+        # Remove ErrorMessage parameter from direct call.
+        # Result to be consistent with SOAP call result.
         if ( $LocalResult->{ErrorMessage} ) {
             delete $LocalResult->{ErrorMessage};
         }
 
-        # sanity check
+        # Sanity check.
         $Self->False(
             $LocalResult->{ErrorMessage},
             "$Test->{Name} - Local result ErroMessage (outsise Data hash) got removed to compare"
@@ -1327,7 +1344,7 @@ for my $Test (@Tests) {
     }
 }
 
-# clean up webservice
+# Clean up webservice.
 my $WebserviceDelete = $WebserviceObject->WebserviceDelete(
     ID     => $WebserviceID,
     UserID => 1,

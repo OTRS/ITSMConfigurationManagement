@@ -238,15 +238,19 @@ sub Run {
             $ConfigItem->{$Attribute} =~ s{\s+\z}{};
         }
     }
-    if ( !IsHashRefWithData( $ConfigItem->{CIXMLData} ) ) {
-        return $Self->ReturnError(
-            ErrorCode    => "$Self->{OperationName}.MissingParameter",
-            ErrorMessage => "$Self->{OperationName}: ConfigItem->CIXMLData is missing or invalid!",
-        );
-    }
 
-    # remove leading and trailing spaces for CIXMLData
-    $Self->_CleanXMLData( XMLData => $ConfigItem->{CIXMLData} );
+    # CIXMLData is not mandatory, but it must be HashRef if exists.
+    if ( defined $ConfigItem->{CIXMLData} ) {
+        if ( !IsHashRefWithData( $ConfigItem->{CIXMLData} ) ) {
+            return $Self->ReturnError(
+                ErrorCode    => "$Self->{OperationName}.MissingParameter",
+                ErrorMessage => "$Self->{OperationName}: ConfigItem->CIXMLData is missing or invalid!",
+            );
+        }
+
+        # Remove leading and trailing spaces for CIXMLData (must be HashRef).
+        $Self->_CleanXMLData( XMLData => $ConfigItem->{CIXMLData} );
+    }
 
     # check ConfigItem attribute values
     my $ConfigItemCheck = $Self->_CheckConfigItem( ConfigItem => $ConfigItem );
@@ -428,7 +432,7 @@ sub _CheckConfigItem {
     my $ConfigItem = $Param{ConfigItem};
 
     # check config item internally
-    for my $Needed (qw(Class Name DeplState InciState CIXMLData)) {
+    for my $Needed (qw(Class Name DeplState InciState)) {
         if ( !$ConfigItem->{$Needed} ) {
             return {
                 ErrorCode    => "$Self->{OperationName}.MissingParameter",
@@ -516,7 +520,7 @@ sub _CheckAttachment {
             return {
                 ErrorCode => "$Self->{OperationName}.MissingParameter",
                 ErrorMessage =>
-                    "$Self->{OperationName}: Attachment->$Needed  parameter is missing!",
+                    "$Self->{OperationName}: Attachment->$Needed parameter is missing!",
             };
         }
     }
