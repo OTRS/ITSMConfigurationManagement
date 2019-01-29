@@ -756,11 +756,12 @@ sub _AssignedCIsGet {
                 # Skip if we have no class id.
                 next CLASS if !$ClassID;
 
-                my @SearchKey = (
-                    {
-                        "[1]{'Version'}[1]{'$ConfigItemKey->{$Class}'}[%]{'Content'}" => $Self->{CustomerID},
-                    }
-                );
+                my @SearchKeys = split /,/, $ConfigItemKey->{$Class};
+                my $SearchParams = {};
+                foreach my $TargetKey (@SearchKeys) {
+                    $SearchParams->{"[1]{'Version'}[1]{'$TargetKey'}[%]{'Content'}"} = $Self->{CustomerID},
+                }
+                my @SearchKey = ($SearchParams);
 
                 # Perform config item search (extended).
                 my $ConfigItemIDs = $ConfigItemObject->ConfigItemSearchExtended(
@@ -793,11 +794,12 @@ sub _AssignedCIsGet {
                 # Skip if we have no class id.
                 next CLASS if !$ClassID;
 
-                my @SearchKey = (
-                    {
-                        "[1]{'Version'}[1]{'$ConfigItemKey->{$Class}'}[%]{'Content'}" => $Self->{CustomerUserID},
-                    }
-                );
+                my @SearchKeys = split /,/, $ConfigItemKey->{$Class};
+                my $SearchParams = {};
+                foreach my $TargetKey (@SearchKeys) {
+                    $SearchParams->{"[1]{'Version'}[1]{'$TargetKey'}[%]{'Content'}"} = $Self->{CustomerUserID},
+                }
+                my @SearchKey = ($SearchParams);
 
                 # Perform config item search (extended).
                 my $ConfigItemIDs = $ConfigItemObject->ConfigItemSearchExtended(
