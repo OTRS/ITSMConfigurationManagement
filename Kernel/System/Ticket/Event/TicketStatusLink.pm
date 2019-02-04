@@ -64,16 +64,6 @@ sub Run {
             }
         }
 
-        if ( $Param{Event} eq 'LinkAdd' ) {
-            if ( !$Param{Data}->{Type} ) {
-                $Kernel::OM->Get('Kernel::System::Log')->Log(
-                    Priority => 'error',
-                    Message  => "Need Type in Data!",
-                );
-                return;
-            }
-        }
-
         # check if link event concerns a ticket
         return 1 if $Param{Data}->{Comment} !~ m{ \A ( \d+ ) %%Ticket \z }xms;
         $TicketID = $1;
@@ -185,19 +175,9 @@ sub Run {
         return;
     }
     my %LinkTypesByIncidentState;
-
-    if ( $Param{Event} eq 'LinkAdd' ) {
-        for my $LinkType ( sort keys %{$LinkTypes} ) {
-            if ( $LinkType eq $Param{Data}->{Type} ) {
-                push @{ $LinkTypesByIncidentState{ $LinkTypes->{$LinkType} } }, $LinkType;
-            }
-        }
-        return 1 if !IsHashRefWithData( \%LinkTypesByIncidentState );
-    }
-    else {
-        for my $LinkType ( sort keys %{$LinkTypes} ) {
-            push @{ $LinkTypesByIncidentState{ $LinkTypes->{$LinkType} } }, $LinkType;
-        }
+    LINKTYPE:
+    for my $LinkType ( sort keys %{$LinkTypes} ) {
+        push @{ $LinkTypesByIncidentState{ $LinkTypes->{$LinkType} } }, $LinkType;
     }
 
     # handle added or removed links

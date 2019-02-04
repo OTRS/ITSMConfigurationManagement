@@ -412,7 +412,6 @@ sub LinkAddPost {
         Data  => {
             ConfigItemID => $Param{Key},
             Comment      => $ID . '%%' . $Object,
-            Type         => $Param{Type},
         },
         UserID => $Param{UserID},
     );
