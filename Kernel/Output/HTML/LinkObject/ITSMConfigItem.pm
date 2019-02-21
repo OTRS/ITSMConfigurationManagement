@@ -671,7 +671,7 @@ sub ContentStringCreate {
         $CurInciSignal ||= $InciSignals{unknown};
 
         $String = $Self->{LayoutObject}->Output(
-            Template => '<div class="Flag Small" title="[% Data.CurInciState | html %]"> '
+            Template => '<div class="Flag Small" title="[% Translate(Data.CurInciState) | html %]"> '
                 . '<span class="[% Data.CurInciSignal | html %]"></span> </div>',
             Data => {
                 CurInciSignal => $CurInciSignal,
@@ -688,7 +688,7 @@ sub ContentStringCreate {
         # get the color of the deplyment state if defined
         my $DeplStateColor = $Self->{DeplStateColors}->{$DeplState} || '';
 
-        my $Template = '<div class="Flag Small" title="[% Data.CurDeplState | html %]"> ';
+        my $Template = '<div class="Flag Small" title="[% Translate(Data.CurDeplState) | html %]"> ';
 
         # check if color is defined and set the style class
         if ($DeplStateColor) {

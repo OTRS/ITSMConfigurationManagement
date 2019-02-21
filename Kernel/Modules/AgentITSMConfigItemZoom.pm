@@ -166,9 +166,9 @@ sub Run {
 
     # set incident signal
     my %InciSignals = (
-        operational => 'greenled',
-        warning     => 'yellowled',
-        incident    => 'redled',
+        Translatable('operational') => 'greenled',
+        Translatable('warning')     => 'yellowled',
+        Translatable('incident')    => 'redled',
     );
 
     # to store the color for the deployment states

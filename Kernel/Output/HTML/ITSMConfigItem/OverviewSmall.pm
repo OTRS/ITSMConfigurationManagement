@@ -11,6 +11,8 @@ package Kernel::Output::HTML::ITSMConfigItem::OverviewSmall;
 use strict;
 use warnings;
 
+use Kernel::Language qw(Translatable);
+
 our @ObjectDependencies = (
     'Kernel::Config',
     'Kernel::Output::HTML::Layout',
@@ -60,9 +62,9 @@ sub Run {
 
     # define incident signals, needed for services
     my %InciSignals = (
-        operational => 'greenled',
-        warning     => 'yellowled',
-        incident    => 'redled',
+        Translatable('operational') => 'greenled',
+        Translatable('warning')     => 'yellowled',
+        Translatable('incident')    => 'redled',
     );
 
     # to store the color for the deployment states

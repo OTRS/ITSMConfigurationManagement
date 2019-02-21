@@ -219,9 +219,9 @@ sub Run {
 
     # Define incident signals, needed for services.
     my %InciSignals = (
-        operational => 'greenled',
-        warning     => 'yellowled',
-        incident    => 'redled',
+        Translatable('operational') => 'greenled',
+        Translatable('warning')     => 'yellowled',
+        Translatable('incident')    => 'redled',
     );
 
     CLASSID:
