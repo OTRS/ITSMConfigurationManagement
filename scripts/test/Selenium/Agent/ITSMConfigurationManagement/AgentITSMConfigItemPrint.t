@@ -99,16 +99,16 @@ $Selenium->RunTest(
         # navigate to AgentITSConfigItemZoom screen
         $Selenium->VerifiedGet("${ScriptAlias}index.pl?Action=AgentITSMConfigItemZoom;ConfigItemID=$ConfigItemID");
 
-        # click on print menu
-        $Selenium->execute_script(
-            "\$('a[href*=\"Action=AgentITSMConfigItemPrint;ConfigItemID=$ConfigItemID\"]').click();"
+        # Check if there is the link to AgentITSMConfigItemPrint screen.
+        $Selenium->WaitFor(
+            JavaScript =>
+                "return typeof(\$) === 'function' && \$('a[href*=\"Action=AgentITSMConfigItemPrint;ConfigItemID=$ConfigItemID\"]').length;"
         );
-        sleep 1;
 
-        # switch to another window
-        $Selenium->WaitFor( WindowCount => 2 );
-        my $Handles = $Selenium->get_window_handles();
-        $Selenium->switch_to_window( $Handles->[1] );
+        # Go to AgentITSMConfigItemPrint screen for test ConfigItem.
+        $Selenium->get(
+            "${ScriptAlias}index.pl?Action=AgentITSMConfigItemPrint;ConfigItemID=$ConfigItemID;VersionID=$VersionID"
+        );
 
         # wait until print screen is loaded
         ACTIVESLEEP:
