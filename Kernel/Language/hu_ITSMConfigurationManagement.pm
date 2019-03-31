@@ -135,6 +135,9 @@ sub Data {
     # Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
     $Self->{Translation}->{'Can\'t show item, no access rights for ConfigItem are given!'} =
         'Nem lehet megjeleníteni az elemet, nincsenek hozzáférési jogok megadva a konfigurációelemhez!';
+    $Self->{Translation}->{'operational'} = 'üzemképes';
+    $Self->{Translation}->{'warning'} = 'figyelmeztetés';
+    $Self->{Translation}->{'incident'} = 'incidens';
     $Self->{Translation}->{'The deployment state of this config item'} = 'A konfigurációelem üzembe állítási állapota';
     $Self->{Translation}->{'The incident state of this config item'} = 'A konfigurációelem incidensállapota';
 
@@ -151,6 +154,7 @@ sub Data {
 
     # Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
     $Self->{Translation}->{'Model'} = 'Modell';
+    $Self->{Translation}->{'Customer Company'} = 'Ügyfél-vállalat';
     $Self->{Translation}->{'Serial Number'} = 'Sorozatszám';
     $Self->{Translation}->{'CPU'} = 'CPU';
     $Self->{Translation}->{'Ram'} = 'Ram';
@@ -271,7 +275,6 @@ sub Data {
     $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = 'Meghatározások létrehozása és kezelése a konfigurációelemeknél.';
     $Self->{Translation}->{'Define Actions where a settings button is available in the linked objects widget (LinkObject::ViewMode = "complex"). Please note that these Actions must have registered the following JS and CSS files: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js and Core.Agent.LinkObject.js.'} =
         'Műveletek meghatározása, ahol egy beállítások gomb érhető el a kapcsolt objektumok felületi elemen (LinkObject::ViewMode = „összetett”). Ne feledje, hogy ezeknek a műveleteknek rendelkezniük kell a következő JS és CSS fájlok regisztrálásával: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js és Core.Agent.LinkObject.js.';
-    $Self->{Translation}->{'Define the group with permissions.'} = 'A jogosultságokkal rendelkező csoport meghatározása.';
     $Self->{Translation}->{'Defines Required permissions to create ITSM configuration items using the Generic Interface.'} =
         'Meghatározza a szükséges jogosultságokat az ITSM konfigurációelemek létrehozásához az általános felület használatával.';
     $Self->{Translation}->{'Defines Required permissions to delete ITSM configuration items using the Generic Interface.'} =
@@ -345,6 +348,7 @@ sub Data {
         'Paraméterek az általános katalógus attribútumainak példa jogosultság csoportjaihoz.';
     $Self->{Translation}->{'Parameters for the pages (in which the configuration items are shown).'} =
         'Paraméterek az oldalakhoz (amelyeken a konfigurációelemek megjelennek).';
+    $Self->{Translation}->{'Permission Group'} = 'Jogosultsági csoport';
     $Self->{Translation}->{'Required permissions to use the ITSM configuration item screen in the agent interface.'} =
         'A szükséges jogosultságok az ITSM konfigurációelem képernyőjének használatához az ügyintézői felületen.';
     $Self->{Translation}->{'Required permissions to use the ITSM configuration item search screen in the agent interface.'} =

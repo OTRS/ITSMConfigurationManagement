@@ -135,6 +135,9 @@ sub Data {
     # Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
     $Self->{Translation}->{'Can\'t show item, no access rights for ConfigItem are given!'} =
         '';
+    $Self->{Translation}->{'operational'} = '';
+    $Self->{Translation}->{'warning'} = '';
+    $Self->{Translation}->{'incident'} = '';
     $Self->{Translation}->{'The deployment state of this config item'} = 'สถานภาพการพัฒนาการของ config item นี้ ';
     $Self->{Translation}->{'The incident state of this config item'} = 'สถานภาพเหตุการณ์ของ config item นี';
 
@@ -151,6 +154,7 @@ sub Data {
 
     # Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
     $Self->{Translation}->{'Model'} = 'โมเดล';
+    $Self->{Translation}->{'Customer Company'} = '';
     $Self->{Translation}->{'Serial Number'} = 'หมายเลขซีเรียล';
     $Self->{Translation}->{'CPU'} = 'ซีพียู';
     $Self->{Translation}->{'Ram'} = 'แรม';
@@ -271,7 +275,6 @@ sub Data {
     $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = 'สร้างและจัดการคำนิยามสำหรับ Configuration Items';
     $Self->{Translation}->{'Define Actions where a settings button is available in the linked objects widget (LinkObject::ViewMode = "complex"). Please note that these Actions must have registered the following JS and CSS files: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js and Core.Agent.LinkObject.js.'} =
         '';
-    $Self->{Translation}->{'Define the group with permissions.'} = '';
     $Self->{Translation}->{'Defines Required permissions to create ITSM configuration items using the Generic Interface.'} =
         'กำหนดสิทธิ์ที่จำเป็นในการสร้างรายการการตั้งค่า ITSMโดยใช้อินเตอร์เฟซทั่วไป';
     $Self->{Translation}->{'Defines Required permissions to delete ITSM configuration items using the Generic Interface.'} =
@@ -345,6 +348,7 @@ sub Data {
         'พารามิเตอร์สำหรับตัวอย่างกลุ่มที่ได้รับอนุญาตของแอตทริบิวต์แค็ตตาล็อกทั่วไป';
     $Self->{Translation}->{'Parameters for the pages (in which the configuration items are shown).'} =
         'พารามิเตอร์สำหรับแต่ละหน้า(ซึ่ง configuration items แสดง)';
+    $Self->{Translation}->{'Permission Group'} = '';
     $Self->{Translation}->{'Required permissions to use the ITSM configuration item screen in the agent interface.'} =
         'จำเป็นต้องมีการอนุญาติในการใช้งานในหน้าจอรายการการตั้งค่า ITSM ในอินเตอร์เฟซของเอเย่นต์';
     $Self->{Translation}->{'Required permissions to use the ITSM configuration item search screen in the agent interface.'} =

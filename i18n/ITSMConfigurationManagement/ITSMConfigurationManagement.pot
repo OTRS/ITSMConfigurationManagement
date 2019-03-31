@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ITSMConfigurationManagement\n"
-"POT-Creation-Date: 2018-11-05 11:56+0000\n"
+"POT-Creation-Date: 2019-03-31 21:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -331,6 +331,18 @@ msgid "Can't show item, no access rights for ConfigItem are given!"
 msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+msgid "operational"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+msgid "warning"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+msgid "incident"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
 msgid "The deployment state of this config item"
 msgstr ""
 
@@ -360,6 +372,10 @@ msgstr ""
 
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
 msgid "Model"
+msgstr ""
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Customer Company"
 msgstr ""
 
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
@@ -803,10 +819,6 @@ msgid "Define Actions where a settings button is available in the linked objects
 msgstr ""
 
 #. SysConfig
-msgid "Define the group with permissions."
-msgstr ""
-
-#. SysConfig
 msgid "Defines Required permissions to create ITSM configuration items using the Generic Interface."
 msgstr ""
 
@@ -964,6 +976,10 @@ msgstr ""
 
 #. SysConfig
 msgid "Parameters for the pages (in which the configuration items are shown)."
+msgstr ""
+
+#. SysConfig
+msgid "Permission Group"
 msgstr ""
 
 #. SysConfig

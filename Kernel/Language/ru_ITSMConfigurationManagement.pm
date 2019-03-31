@@ -135,6 +135,9 @@ sub Data {
     # Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
     $Self->{Translation}->{'Can\'t show item, no access rights for ConfigItem are given!'} =
         'Невозможно отобразить элемент, недостаточно прав для КЕ!';
+    $Self->{Translation}->{'operational'} = '';
+    $Self->{Translation}->{'warning'} = '';
+    $Self->{Translation}->{'incident'} = '';
     $Self->{Translation}->{'The deployment state of this config item'} = 'Состояние использования этой КЕ';
     $Self->{Translation}->{'The incident state of this config item'} = 'Состояние инцидента для этой КЕ';
 
@@ -151,6 +154,7 @@ sub Data {
 
     # Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
     $Self->{Translation}->{'Model'} = 'Модель';
+    $Self->{Translation}->{'Customer Company'} = '';
     $Self->{Translation}->{'Serial Number'} = 'Серийный номер';
     $Self->{Translation}->{'CPU'} = 'ЦПУ';
     $Self->{Translation}->{'Ram'} = 'ОЗУ';
@@ -271,7 +275,6 @@ sub Data {
     $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = 'Создание и управление описаниями конфигурационных единиц.';
     $Self->{Translation}->{'Define Actions where a settings button is available in the linked objects widget (LinkObject::ViewMode = "complex"). Please note that these Actions must have registered the following JS and CSS files: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js and Core.Agent.LinkObject.js.'} =
         'Задает Действия/Actions когда кнопка настройки доступна в связанном виджете (LinkObject::ViewMode = "complex"). Обратите внимание, что эти Действия/Actions должны иметь зарегистрированные JS или CSS файлы: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js и Core.Agent.LinkObject.js.';
-    $Self->{Translation}->{'Define the group with permissions.'} = 'Определите группу с разрешениями.';
     $Self->{Translation}->{'Defines Required permissions to create ITSM configuration items using the Generic Interface.'} =
         'Задать требуемые права для создания ITSM КЕ с использованием Generic Interface.';
     $Self->{Translation}->{'Defines Required permissions to delete ITSM configuration items using the Generic Interface.'} =
@@ -345,6 +348,7 @@ sub Data {
         'Параметры для примерных групповых прав для атрибутов Общего каталога';
     $Self->{Translation}->{'Parameters for the pages (in which the configuration items are shown).'} =
         'Параметры страниц (на которых отображаются КЕ)';
+    $Self->{Translation}->{'Permission Group'} = '';
     $Self->{Translation}->{'Required permissions to use the ITSM configuration item screen in the agent interface.'} =
         'Требуемые права для использования обзора КЕ в CMDB агентом';
     $Self->{Translation}->{'Required permissions to use the ITSM configuration item search screen in the agent interface.'} =

@@ -135,6 +135,9 @@ sub Data {
     # Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
     $Self->{Translation}->{'Can\'t show item, no access rights for ConfigItem are given!'} =
         'Ne može se prikazati stavka, nije dat pristup za ovu konfiguracionu stavku!';
+    $Self->{Translation}->{'operational'} = '';
+    $Self->{Translation}->{'warning'} = '';
+    $Self->{Translation}->{'incident'} = '';
     $Self->{Translation}->{'The deployment state of this config item'} = 'Status primene ove konfiguracione stavke';
     $Self->{Translation}->{'The incident state of this config item'} = 'Status incidenta ove konfiguracione stavke';
 
@@ -151,6 +154,7 @@ sub Data {
 
     # Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
     $Self->{Translation}->{'Model'} = 'Model';
+    $Self->{Translation}->{'Customer Company'} = '';
     $Self->{Translation}->{'Serial Number'} = 'Serijski broj';
     $Self->{Translation}->{'CPU'} = 'Procesor';
     $Self->{Translation}->{'Ram'} = 'RAM';
@@ -271,7 +275,6 @@ sub Data {
     $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = 'Kreiranje i upravljanje definicija za konfiguracione stavke.';
     $Self->{Translation}->{'Define Actions where a settings button is available in the linked objects widget (LinkObject::ViewMode = "complex"). Please note that these Actions must have registered the following JS and CSS files: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js and Core.Agent.LinkObject.js.'} =
         'Definiše akcije gde je dugme postavki dostupno u povezanom grafičkom elementu objekta (LinkObject::ViewMode = "complex"). Molimo da imate na umu da ove Akcije moraju da budu registrovane u sledećim JS i CSS datotekama: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js i Core.Agent.LinkObject.js.';
-    $Self->{Translation}->{'Define the group with permissions.'} = 'Definisalje grupe sa pravima.';
     $Self->{Translation}->{'Defines Required permissions to create ITSM configuration items using the Generic Interface.'} =
         'Definiše neophodne dozvole za kreiranje ITSM konfiguracionih stavki korišćenjem generičkog interfejsa.';
     $Self->{Translation}->{'Defines Required permissions to delete ITSM configuration items using the Generic Interface.'} =
@@ -309,7 +312,7 @@ sub Data {
     $Self->{Translation}->{'Defines the shown columns of CIs in the config item widget depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting AgentCustomerInformationCenter::Backend###0060-CIC-ITSMConfigItemCustomerCompany (key DefaultColumns).'} =
         'Definiše prikazane kolone konfiguracionih stavki u dodatku komandne table u zavisnosti od klase. Svaki unos mora sadržati prefiks sa nazivom klase i dvotačkom (npr. Computer::). Postoji par atributa koji su zajednički za sve klase (npr. za klasu Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). Za prikaz pojedinačnih atributa iz definicije, morate koristiti sledeću šemu (primer za klasu Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. Ukoliko ne postoji unos za pojedinačnu klasu, biće prikazane podrazumevane kolone definisane u AgentCustomerInformationCenter::Backend###0060-CIC-ITSMConfigItemCustomerCompany (ključ DefaultColumns).';
     $Self->{Translation}->{'Defines the shown columns of CIs in the link table complex view for all CI classes. If there is no entry, then the default columns are shown.'} =
-        '';
+        'Definiše prikazane kolone konfiguracionih stavki u tabeli veza u zavisnosti od klase. Ukoliko ne postoji unos za pojedinačnu klasu, biće prikazane podrazumevane kolone.';
     $Self->{Translation}->{'Defines the shown columns of CIs in the link table complex view, depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown.'} =
         'Definiše prikazane kolone konfiguracionih stavki u tabeli veza u zavisnosti od klase. Svaki unos mora sadržati prefiks sa nazivom klase i dvotačkom (npr. Computer::). Postoji par atributa koji su zajednički za sve klase (npr. za klasu Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). Za prikaz pojedinačnih atributa iz definicije, morate koristiti sledeću šemu (primer za klasu Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. Ukoliko ne postoji unos za pojedinačnu klasu, biće prikazane podrazumevane kolone.';
     $Self->{Translation}->{'Defines which type of link (named from the ticket perspective) can affect the status of a linked CI.'} =
@@ -345,6 +348,7 @@ sub Data {
         'Parametri za atribute uzorka grupe za dozvole opšteg kataloga';
     $Self->{Translation}->{'Parameters for the pages (in which the configuration items are shown).'} =
         'Parametri za stranice (na kojima su konfiguracione stavke prikazane).';
+    $Self->{Translation}->{'Permission Group'} = '';
     $Self->{Translation}->{'Required permissions to use the ITSM configuration item screen in the agent interface.'} =
         'Potrebne dozvole za upotrebu ekrana ITSM konfiguracione stavke u interfejsu operatera.';
     $Self->{Translation}->{'Required permissions to use the ITSM configuration item search screen in the agent interface.'} =

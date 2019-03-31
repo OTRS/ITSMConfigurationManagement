@@ -105,14 +105,14 @@ sub Data {
     # Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
     $Self->{Translation}->{'Can\'t show history, no ConfigItemID is given!'} = 'Não é possível exibir histórico. Nenhum ConfigItemID é dado!';
     $Self->{Translation}->{'Can\'t show history, no access rights given!'} = 'Não é possível exibir histórico. Nenhum direito de acesso é dado!';
-    $Self->{Translation}->{'New ConfigItem (ID=%s)'} = '';
+    $Self->{Translation}->{'New ConfigItem (ID=%s)'} = 'Novo Item de Configuração (ID=%s)';
     $Self->{Translation}->{'New version (ID=%s)'} = 'Nova versão (ID = %s)';
     $Self->{Translation}->{'Deployment state updated (new=%s, old=%s)'} = 'Estado de implementação atualizado (novo=%s , antigo=%s)';
     $Self->{Translation}->{'Incident state updated (new=%s, old=%s)'} = 'Estado de incidente atualizado (novo=%s, antigo=%s)';
-    $Self->{Translation}->{'ConfigItem (ID=%s) deleted'} = '';
+    $Self->{Translation}->{'ConfigItem (ID=%s) deleted'} = 'Item de Configuração (ID=%s) excluído';
     $Self->{Translation}->{'Link to %s (type=%s) added'} = 'Vínculo para %s (tipo=%s) adicionado';
     $Self->{Translation}->{'Link to %s (type=%s) deleted'} = 'Vínculo para %s (tipo=%s) deletado';
-    $Self->{Translation}->{'ConfigItem definition updated (ID=%s)'} = '';
+    $Self->{Translation}->{'ConfigItem definition updated (ID=%s)'} = 'Definição de Item de Configuração (ID=%s) atualizada';
     $Self->{Translation}->{'Name updated (new=%s, old=%s)'} = 'Nome atualizado (novo=%s, antigo=%s)';
     $Self->{Translation}->{'Attribute %s updated from "%s" to "%s"'} = 'Atributo %s atualizado de "%s" para "%s"';
     $Self->{Translation}->{'Version %s deleted'} = 'Versão %s excluída';
@@ -135,6 +135,9 @@ sub Data {
     # Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
     $Self->{Translation}->{'Can\'t show item, no access rights for ConfigItem are given!'} =
         'Não foi possível exibir item. Nenhum direito de acesso para ConfigItem é dado!';
+    $Self->{Translation}->{'operational'} = '';
+    $Self->{Translation}->{'warning'} = '';
+    $Self->{Translation}->{'incident'} = '';
     $Self->{Translation}->{'The deployment state of this config item'} = 'O estado de implantação deste item de configuração';
     $Self->{Translation}->{'The incident state of this config item'} = 'O estado de incidente deste item de configuração';
 
@@ -151,6 +154,7 @@ sub Data {
 
     # Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
     $Self->{Translation}->{'Model'} = 'Modelo';
+    $Self->{Translation}->{'Customer Company'} = '';
     $Self->{Translation}->{'Serial Number'} = 'Número de Série';
     $Self->{Translation}->{'CPU'} = 'Processador';
     $Self->{Translation}->{'Ram'} = 'Memória RAM';
@@ -271,7 +275,6 @@ sub Data {
     $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = 'Criar e gerenciar as definições de Itens de Configuração.';
     $Self->{Translation}->{'Define Actions where a settings button is available in the linked objects widget (LinkObject::ViewMode = "complex"). Please note that these Actions must have registered the following JS and CSS files: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js and Core.Agent.LinkObject.js.'} =
         'Defina Ações onde um botão de configurações está disponível no widget de objetos vinculados (LinkObject::ViewMode="complex"). Observe que essas ações devem ter registrado os seguintes arquivos JS e CSS: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js e Core.Agent .LinkObject.js.';
-    $Self->{Translation}->{'Define the group with permissions.'} = 'Definir o grupo de permissionamento.';
     $Self->{Translation}->{'Defines Required permissions to create ITSM configuration items using the Generic Interface.'} =
         'Define as permissões requeridas para criar itens de configuração ITSM usando a Interface Genérica.';
     $Self->{Translation}->{'Defines Required permissions to delete ITSM configuration items using the Generic Interface.'} =
@@ -345,6 +348,7 @@ sub Data {
         'Parâmetros do grupos de permissão de exemplo dos atributos do catálogo geral.';
     $Self->{Translation}->{'Parameters for the pages (in which the configuration items are shown).'} =
         'Parâmetros das páginas (nas quais os itens de configuração são mostrados).';
+    $Self->{Translation}->{'Permission Group'} = '';
     $Self->{Translation}->{'Required permissions to use the ITSM configuration item screen in the agent interface.'} =
         'Permissões necessárias para usar a tela de item de configuração ITSM na interface de atendente.';
     $Self->{Translation}->{'Required permissions to use the ITSM configuration item search screen in the agent interface.'} =

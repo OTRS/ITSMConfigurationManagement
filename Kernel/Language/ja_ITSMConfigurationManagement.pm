@@ -135,6 +135,9 @@ sub Data {
     # Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
     $Self->{Translation}->{'Can\'t show item, no access rights for ConfigItem are given!'} =
         '構成アイテムを表示できません。構成アイテムのアクセス権は与えられていません！';
+    $Self->{Translation}->{'operational'} = '';
+    $Self->{Translation}->{'warning'} = '';
+    $Self->{Translation}->{'incident'} = '';
     $Self->{Translation}->{'The deployment state of this config item'} = 'この構成アイテムのデプロイ・ステータス';
     $Self->{Translation}->{'The incident state of this config item'} = 'この構成アイテムのインシデント状態';
 
@@ -151,6 +154,7 @@ sub Data {
 
     # Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
     $Self->{Translation}->{'Model'} = 'モデル';
+    $Self->{Translation}->{'Customer Company'} = '';
     $Self->{Translation}->{'Serial Number'} = 'シリアルナンバー';
     $Self->{Translation}->{'CPU'} = 'CPU';
     $Self->{Translation}->{'Ram'} = 'RAM';
@@ -271,7 +275,6 @@ sub Data {
     $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = '構成アイテムの作成または変更';
     $Self->{Translation}->{'Define Actions where a settings button is available in the linked objects widget (LinkObject::ViewMode = "complex"). Please note that these Actions must have registered the following JS and CSS files: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js and Core.Agent.LinkObject.js.'} =
         'リンクオブジェクトウィジェット（LinkObject :: ViewMode = "complex"）で設定ボタンを使用できるアクションを定義します。 これらのアクションは、次のJSおよびCSSファイルを登録している必要があります。Core.AllocationList.css、Core.UI.AllocationList.js、Core.UI.Table.Sort.js、Core.Agent.TableFilters.js、及びCore.Agent .LinkObject.js';
-    $Self->{Translation}->{'Define the group with permissions.'} = '権限を持つグループを定義します。';
     $Self->{Translation}->{'Defines Required permissions to create ITSM configuration items using the Generic Interface.'} =
         'ジェネリックインターフェイスを活用して構成アイテムを作成する権限を定義する。';
     $Self->{Translation}->{'Defines Required permissions to delete ITSM configuration items using the Generic Interface.'} =
@@ -351,6 +354,7 @@ CIクラスのエントリがない場合は、ITSMConfigItem :: Frontend :: Age
         'ジェネラルカタログ属性のパーミッショングループ　の設定値';
     $Self->{Translation}->{'Parameters for the pages (in which the configuration items are shown).'} =
         'ページのパラメータ（構成アイテムが表示されます）';
+    $Self->{Translation}->{'Permission Group'} = '';
     $Self->{Translation}->{'Required permissions to use the ITSM configuration item screen in the agent interface.'} =
         '担当者Webインターフェイスで構成アイテム画面を使用するために必要な権限';
     $Self->{Translation}->{'Required permissions to use the ITSM configuration item search screen in the agent interface.'} =
