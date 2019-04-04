@@ -155,7 +155,7 @@
 
                     <label>[% Translate("Definition") | html %]: </label>
                     <div class="Field">
-                        [% Data.DefinitionString %]
+                        <pre>[% Data.DefinitionString %]</pre>
                     </div>
                     <div class="Clear"></div>
 

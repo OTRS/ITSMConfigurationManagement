@@ -141,8 +141,7 @@ sub Run {
         );
 
         $Definition->{DefinitionString} = $LayoutObject->Ascii2Html(
-            Text           => $Definition->{Definition},
-            HTMLResultMode => 1,
+            Text => $Definition->{Definition},
         );
 
         # generate ClassOptionStrg
@@ -298,6 +297,12 @@ sub Run {
                 return $LayoutObject->Redirect( OP => "Action=$Self->{Action}" );
             }
         }
+
+        # Validate YAML code by converting it to Perl.
+        my $DefinitionRef = $Kernel::OM->Get('Kernel::System::YAML')->Load(
+            Data => $Definition{Definition},
+        );
+        return $LayoutObject->ErrorScreen() if ref $DefinitionRef ne 'ARRAY';
 
         # add to database
         my $DefinitionID = $ConfigItemObject->DefinitionAdd(

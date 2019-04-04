@@ -50,30 +50,26 @@ $Selenium->RunTest(
             {
                 ClassName  => 'Customer' . $RandomID,
                 Key        => 'Customer',
-                Definition => " [
-                    {
-                        Key        => 'Customer',
-                        Name       => 'Customer',
-                        Searchable => 1,
-                        Input      => {
-                            Type => 'Customer',
-                        },
-                    },
-                ] ",
+                Definition => << "EOF",
+---
+- Key: Customer
+  Name: Customer
+  Searchable: 1,
+  Input:
+    Type: Customer
+EOF
             },
             {
                 ClassName  => 'CustomerCompany' . $RandomID,
                 Key        => 'CustomerCompany',
-                Definition => " [
-                    {
-                        Key        => 'CustomerCompany',
-                        Name       => 'CustomerCompany',
-                        Searchable => 1,
-                        Input      => {
-                            Type => 'CustomerCompany',
-                        },
-                    },
-                ] ",
+                Definition => << "EOF",
+---
+- Key: CustomerCompany
+  Name: CustomerCompany
+  Searchable: 1,
+  Input:
+    Type: CustomerCompany
+EOF
             },
         );
 

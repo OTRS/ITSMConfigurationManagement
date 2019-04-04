@@ -93,21 +93,18 @@ $Selenium->RunTest(
         # Click on 'Change class definition'.
         $Selenium->find_element("//button[\@value='Add'][\@type='submit']")->VerifiedClick();
 
-        my $IntegerKey = "TestInteger$RandomID";
-        my $IntegerDefinition =
-            "[
-            {
-                Key => '$IntegerKey',
-                Name => 'Test Integer',
-                Searchable => 1,
-                Input => {
-                    Type => 'Integer',
-                    ValueMin => 0,
-                    ValueMax => 10,
-                    ValueDefault => 0,
-                },
-            }
-        ];";
+        my $IntegerKey        = "TestInteger$RandomID";
+        my $IntegerDefinition = << "EOF";
+---
+- Key: $IntegerKey
+  Name: Test Integer
+  Searchable: 1
+  Input:
+    Type:  Integer
+    ValueMin: 0
+    ValueMax: 10
+    ValueDefault: 0
+EOF
 
         $Selenium->find_element( "#Definition", 'css' )->send_keys($IntegerDefinition);
         $Selenium->find_element("//button[\@value='Submit'][\@type='submit']")->VerifiedClick();

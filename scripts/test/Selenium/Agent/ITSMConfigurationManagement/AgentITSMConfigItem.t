@@ -147,7 +147,7 @@ $Selenium->RunTest(
             if ( $ConfigItemData->{Class} eq 'Computer' ) {
                 $Self->True(
                     $Selenium->find_element("//a[contains(.,'Create Time')]"),
-                    "There is coolumn 'CreateTime', enabled by sysconfig item  AgentITSMConfigItem###ShowColumnsByClass",
+                    "There is column 'CreateTime', enabled by sysconfig item  AgentITSMConfigItem###ShowColumnsByClass",
                 );
             }
         }

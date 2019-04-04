@@ -227,62 +227,44 @@ $Selenium->RunTest(
             Value  => $GroupID,
         );
 
-        my $Definition = " [
-    {
-        Key => 'CustomerID1',
-        Name => Translatable('CustomerCompany 1'),
-        Searchable => 1,
-        Input => {
-            Type => 'CustomerCompany',
-        },
-        Sub => [
-            {
-                Key => 'Customer1',
-                Name => Translatable('Customer 1'),
-                Searchable => 1,
-                Input => {
-                    Type => 'Customer',
-                },
-            },
-        ],
-    },
-    {
-        Key => 'CustomerID2',
-        Name => Translatable('CustomerCompany 2'),
-        Searchable => 1,
-        Input => {
-            Type => 'CustomerCompany',
-        },
-        Sub => [
-            {
-                Key => 'Customer2',
-                Name => Translatable('Customer 2'),
-                Searchable => 1,
-                Input => {
-                    Type => 'Customer',
-                },
-            },
-        ],
-    },
-    {
-        Key => 'CustomerID3',
-        Name => Translatable('CustomerCompany 3'),
-        Searchable => 1,
-        Input => {
-            Type => 'CustomerCompany',
-        },
-        Sub => [
-            {
-                Key => 'Customer3',
-                Name => Translatable('Customer 3'),
-                Searchable => 1,
-                Input => {
-                    Type => 'Customer',
-                },
-            },
-        ],
-    },
-] ";
+        my $Definition = << "EOF";
+---
+- Key: CustomerID1
+  Name: CustomerCompany 1
+  Searchable: 1
+  Input:
+    Type: CustomerCompany
+  Sub:
+  - Key: Customer1
+    Name: Customer 1
+    Searchable: 1
+    Input:
+      Type: Customer
+
+- Key: CustomerID2
+  Name: CustomerCompany 2
+  Searchable: 1
+  Input:
+    Type: CustomerCompany
+  Sub:
+  - Key: Customer2
+    Name: Customer 2
+    Searchable: 1
+    Input:
+      Type: Customer
+
+- Key: CustomerID3
+  Name: CustomerCompany 3
+  Searchable: 1
+  Input:
+    Type: CustomerCompany
+  Sub:
+  - Key: Customer3
+    Name: Customer 3
+    Searchable: 1
+    Input:
+      Type: Customer
+EOF
 
         # Add test definition to test CI class.
         my $DefinitionID = $ConfigItemObject->DefinitionAdd(

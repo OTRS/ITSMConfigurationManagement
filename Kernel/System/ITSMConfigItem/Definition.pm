@@ -41,39 +41,33 @@ returns
             'CreateTime'   => '2012-06-12 14:09:43',
             'DefinitionID' => '1',
             'CreateBy'     => '123',
-            'Definition'   => '[
-                {
-                    Key => \'Vendor\',
-                    Name => \'Vendor\',
-                    Searchable => 1,
-                    Input => {
-                        Type => \'Text\',
-                        Size => 50,
-                        MaxLength => 50,
-                    },
-                },
-                {
-                    Key => \'Description\',
-                    Name => \'Description\',
-                    Searchable => 1,
-                    Input => {
-                        Type => \'TextArea\',
-                    },
-                },
-                {
-                    Key => \'Type\',
-                    Name => \'Type\',
-                    Searchable => 1,
-                    Input => {
-                        Type => \'GeneralCatalog\',
-                        Class => \'ITSM::ConfigItem::Computer::Type\',
-                        Translation => 1,
-                    },
-                },
-                ... etc ...
-            ];',
-          }
-        ];
+            'Definition'   => '---
+- Key: Vendor
+  Name: Vendor
+  Searchable: 1
+  Input:
+  - Type: Text
+    Size: 50
+    MaxLength: 50,
+
+- Key: Description
+  Name: Description
+  Searchable: 1
+  Input:
+  - Type: TextArea
+
+- Key: Type
+  Name: Type
+  Searchable: 1
+  Input:
+  - Type: TextArea
+  - Type: GeneralCatalog\
+    Class: ITSM::ConfigItem::Computer::Type
+    Translation: 1
+# ... etc ...
+',
+          },
+    ];
 
 =cut
 
@@ -100,10 +94,23 @@ sub DefinitionList {
     while ( my @Row = $Kernel::OM->Get('Kernel::System::DB')->FetchrowArray() ) {
         my %Definition;
         $Definition{DefinitionID} = $Row[0];
-        $Definition{Definition}   = $Row[1];
+        $Definition{Definition}   = $Row[1] || "--- []";
         $Definition{Version}      = $Row[2];
         $Definition{CreateTime}   = $Row[3];
         $Definition{CreateBy}     = $Row[4];
+
+        # Check if definition code is not a YAML string.
+        if ( substr( $Definition{Definition}, 0, 3 ) ne '---' ) {
+
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
+                Priority => 'notice',
+                Message  => "DefinitionID: $Definition{DefinitionID}"
+                    . " ClassID: $Param{ClassID}"
+                    . " found in legacy Perl code format, can not continue",
+            );
+
+            $Definition{Definition} = "--- []";
+        }
 
         push @DefinitionList, \%Definition;
     }
@@ -178,14 +185,30 @@ sub DefinitionGet {
     # fetch the result
     my %Definition;
     while ( my @Row = $Kernel::OM->Get('Kernel::System::DB')->FetchrowArray() ) {
+
         $Definition{DefinitionID} = $Row[0];
         $Definition{ClassID}      = $Row[1];
-        $Definition{Definition}   = $Row[2];
+        $Definition{Definition}   = $Row[2] || "--- []";
         $Definition{Version}      = $Row[3];
         $Definition{CreateTime}   = $Row[4];
         $Definition{CreateBy}     = $Row[5];
 
-        $Definition{DefinitionRef} = eval $Definition{Definition};    ## no critic
+        # Check if definition code is not a YAML string.
+        if ( substr( $Definition{Definition}, 0, 3 ) ne '---' ) {
+
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
+                Priority => 'notice',
+                Message  => "DefinitionID: $Definition{DefinitionID}"
+                    . " ClassID: $Definition{ClassID}"
+                    . " found in legacy Perl code format, can not continue",
+            );
+
+            $Definition{Definition} = "--- []";
+        }
+
+        $Definition{DefinitionRef} = $Kernel::OM->Get('Kernel::System::YAML')->Load(
+            Data => $Definition{Definition},
+        );
     }
 
     return {} if !$Definition{DefinitionID};
@@ -328,14 +351,24 @@ sub DefinitionCheck {
         return;
     }
 
-    # if check sub elements is enabled, we must not evaluate the expression
+    # if check sub elements is enabled, we must not YAML load it
     # because this has been done in an earlier recursion step already
     my $Definition;
     if ( $Param{CheckSubElement} ) {
         $Definition = $Param{Definition};
     }
     else {
-        $Definition = eval $Param{Definition};    ## no critic
+        if ( substr( $Param{Definition}, 0, 3 ) ne '---' ) {
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
+                Priority => 'error',
+                Message  => "Definition must be a YAML string",
+            );
+            return;
+        }
+
+        $Definition = $Kernel::OM->Get('Kernel::System::YAML')->Load(
+            Data => $Param{Definition},
+        );
     }
 
     # check if definition exists at all
