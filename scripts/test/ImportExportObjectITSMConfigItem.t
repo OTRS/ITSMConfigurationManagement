@@ -208,8 +208,8 @@ for my $Name (qw(Test1 Test2 Test3 Test4)) {
 }
 
 # define the first test definition (all provided data types)
-my @ConfigItemDefinitions;
-$ConfigItemDefinitions[0] = " [
+my @ConfigItemPerlDefinitions;
+$ConfigItemPerlDefinitions[0] = " [
     {
         Key        => 'Customer1',
         Name       => 'Customer 1',
@@ -279,7 +279,7 @@ $ConfigItemDefinitions[0] = " [
 ] ";
 
 # define the second test definition (sub data types)
-$ConfigItemDefinitions[1] = " [
+$ConfigItemPerlDefinitions[1] = " [
     {
         Key        => 'Main1',
         Name       => 'Main 1',
@@ -367,6 +367,16 @@ $ConfigItemDefinitions[1] = " [
         ],
     },
 ] ";
+
+my $YAMLObject = $Kernel::OM->Get('Kernel::System::YAML');
+
+my @ConfigItemDefinitions;
+for my $PerlDefinition (@ConfigItemPerlDefinitions) {
+    my $YAMLDefinition = $YAMLObject->Dump(
+        Data => eval $PerlDefinition,    ## no critic
+    );
+    push @ConfigItemDefinitions, $YAMLDefinition;
+}
 
 # add the test classes
 my @ConfigItemClassIDs;

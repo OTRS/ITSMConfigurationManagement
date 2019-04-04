@@ -87,7 +87,7 @@ push @ConfigItemClasses,  $SecondClassName;
 # testing the name which isn't part of the definition, but of the config item itself
 my $FirstDefinitionID = $ConfigItemObject->DefinitionAdd(
     ClassID    => $FirstClassID,
-    Definition => "[]",
+    Definition => "--- []",
     UserID     => 1,
 );
 
@@ -104,7 +104,7 @@ push @ConfigItemDefinitionIDs, $FirstDefinitionID;
 
 my $SecondDefinitionID = $ConfigItemObject->DefinitionAdd(
     ClassID    => $SecondClassID,
-    Definition => "[]",
+    Definition => "--- []",
     UserID     => 1,
 );
 
