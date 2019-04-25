@@ -341,6 +341,7 @@ END
                 XMLDefinition => $ConfigItem->{XMLDefinition},
                 XMLData       => $ConfigItem->{XMLData}->[1]->{Version}->[1],
                 Attributes    => \@ShowColumns,
+                Print         => 1,
             );
 
             # get the xml columns (they contain ::)
@@ -405,6 +406,7 @@ END
                     XMLDefinition => $ConfigItem->{XMLDefinition},
                     XMLData       => $ConfigItem->{XMLData}->[1]->{Version}->[1],
                     Attributes    => \@ShowColumns,
+                    Print         => 1,
                 );
 
                 # store config item data,
@@ -448,10 +450,7 @@ END
                         # check if column exists in CI-Data
                         next COLUMN if !$ExtendedVersionData->{$Column}->{Name};
 
-                        # convert to ascii text in case the value contains html
-                        my $Value = $Kernel::OM->Get('Kernel::System::HTMLUtils')
-                            ->ToAscii( String => $ExtendedVersionData->{$Column}->{Value} // '' )
-                            // '';
+                        my $Value = $ExtendedVersionData->{$Column}->{Value} // '';
 
                         # convert all whitespace and newlines to single spaces
                         $Value =~ s{ \s+ }{ }gxms;

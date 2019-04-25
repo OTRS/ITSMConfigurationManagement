@@ -81,17 +81,19 @@ sub OutputStringCreate {
         $Param{Value} = $LayoutObject->{LanguageObject}->Translate( $Param{Value} );
     }
 
-    my $LinkFeature = 1;
+    my $LinkFeature    = 1;
+    my $HTMLResultMode = 1;
 
     # do not transform links in print view
     if ( $Param{Print} ) {
-        $LinkFeature = 0;
+        $LinkFeature    = 0;
+        $HTMLResultMode = 0;
     }
 
     # transform ascii to html
     $Param{Value} = $LayoutObject->Ascii2Html(
         Text           => $Param{Value},
-        HTMLResultMode => 1,
+        HTMLResultMode => $HTMLResultMode,
         LinkFeature    => $LinkFeature,
     );
 

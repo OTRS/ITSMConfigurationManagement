@@ -695,6 +695,7 @@ sub XMLData2Hash {
                 $Value = $Self->ITSMConfigItemOutputStringCreate(
                     Value => $Value,
                     Item  => $Item,
+                    Print => $Param{Print},
                 );
             }
 
