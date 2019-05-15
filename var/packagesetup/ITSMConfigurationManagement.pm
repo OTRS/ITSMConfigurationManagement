@@ -521,6 +521,7 @@ installs configuration item definitions
 sub _AddConfigItemDefinitions {
     my ( $Self, %Param ) = @_;
 
+    # This is needed to extract translatable words from the config item definitions.
     my %Translations = (
         Vendor                 => Translatable('Vendor'),
         Model                  => Translatable('Model'),
