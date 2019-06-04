@@ -52,7 +52,7 @@ returns
   Input:
   - Type: Text
     Size: 50
-    MaxLength: 50,
+    MaxLength: 50
 
 - Key: Description
   Name: Description
