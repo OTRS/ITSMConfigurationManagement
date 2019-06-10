@@ -69,7 +69,7 @@ sub Permission {
     # check for existence of ItemID or ClassID dependent
     # on the Scope
     if (
-        ( $Param{Scope} eq 'Class' && !$Param{ClassID} )
+        ( $Param{Scope} eq 'Class'   && !$Param{ClassID} )
         || ( $Param{Scope} eq 'Item' && !$Param{ItemID} )
         )
     {
