@@ -572,8 +572,8 @@ sub _AddConfigItemDefinitions {
     Size: 50
     MaxLength: 50
     # Example for CI attribute syntax check for text and textarea fields
-    #RegEx : ^ABC.*,
-    #RegExErrorMessage: Value must start with ABC!,
+    #RegEx: ^ABC.*
+    #RegExErrorMessage: Value must start with ABC!
 
 - Key: Model
   Name: Model
