@@ -24,31 +24,53 @@
         <File Permission="660" Location="Kernel/GenericInterface/Operation/ConfigItem/ConfigItemGet.pm" />
         <File Permission="660" Location="Kernel/GenericInterface/Operation/ConfigItem/ConfigItemSearch.pm" />
         <File Permission="660" Location="Kernel/GenericInterface/Operation/ConfigItem/ConfigItemUpdate.pm" />
+        <File Permission="660" Location="Kernel/Language/ar_SA_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/bg_ITSMConfigurationManagement.pm" />
+        <File Permission="660" Location="Kernel/Language/ca_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/cs_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/da_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/de_ITSMConfigurationManagement.pm" />
+        <File Permission="660" Location="Kernel/Language/el_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/en_CA_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/en_GB_ITSMConfigurationManagement.pm" />
+        <File Permission="660" Location="Kernel/Language/es_CO_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/es_ITSMConfigurationManagement.pm" />
+        <File Permission="660" Location="Kernel/Language/es_MX_ITSMConfigurationManagement.pm" />
+        <File Permission="660" Location="Kernel/Language/et_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/fa_ITSMConfigurationManagement.pm" />
+        <File Permission="660" Location="Kernel/Language/fi_ITSMConfigurationManagement.pm" />
+        <File Permission="660" Location="Kernel/Language/fr_CA_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/fr_ITSMConfigurationManagement.pm" />
+        <File Permission="660" Location="Kernel/Language/gl_ITSMConfigurationManagement.pm" />
+        <File Permission="660" Location="Kernel/Language/he_ITSMConfigurationManagement.pm" />
+        <File Permission="660" Location="Kernel/Language/hi_ITSMConfigurationManagement.pm" />
+        <File Permission="660" Location="Kernel/Language/hr_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/hu_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/id_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/it_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/ja_ITSMConfigurationManagement.pm" />
+        <File Permission="660" Location="Kernel/Language/ko_ITSMConfigurationManagement.pm" />
+        <File Permission="660" Location="Kernel/Language/lt_ITSMConfigurationManagement.pm" />
+        <File Permission="660" Location="Kernel/Language/lv_ITSMConfigurationManagement.pm" />
+        <File Permission="660" Location="Kernel/Language/mk_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/ms_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/nb_NO_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/nl_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/pl_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/pt_BR_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/pt_ITSMConfigurationManagement.pm" />
+        <File Permission="660" Location="Kernel/Language/ro_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/ru_ITSMConfigurationManagement.pm" />
+        <File Permission="660" Location="Kernel/Language/sk_SK_ITSMConfigurationManagement.pm" />
+        <File Permission="660" Location="Kernel/Language/sl_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/sr_Cyrl_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/sr_Latn_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/sv_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/sw_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/th_TH_ITSMConfigurationManagement.pm" />
+        <File Permission="660" Location="Kernel/Language/tr_ITSMConfigurationManagement.pm" />
+        <File Permission="660" Location="Kernel/Language/uk_ITSMConfigurationManagement.pm" />
+        <File Permission="660" Location="Kernel/Language/vi_VN_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/zh_CN_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Language/zh_TW_ITSMConfigurationManagement.pm" />
         <File Permission="660" Location="Kernel/Modules/AdminITSMConfigItem.pm" />

@@ -135,9 +135,9 @@ sub Data {
     # Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
     $Self->{Translation}->{'Can\'t show item, no access rights for ConfigItem are given!'} =
         '无法显示配置项，因为没有给定配置项的访问权限！';
-    $Self->{Translation}->{'operational'} = '';
-    $Self->{Translation}->{'warning'} = '';
-    $Self->{Translation}->{'incident'} = '';
+    $Self->{Translation}->{'operational'} = '正常';
+    $Self->{Translation}->{'warning'} = '警告';
+    $Self->{Translation}->{'incident'} = '故障';
     $Self->{Translation}->{'The deployment state of this config item'} = '配置项部署状态';
     $Self->{Translation}->{'The incident state of this config item'} = '配置项故障状态';
 
@@ -154,7 +154,7 @@ sub Data {
 
     # Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
     $Self->{Translation}->{'Model'} = '型号';
-    $Self->{Translation}->{'Customer Company'} = '';
+    $Self->{Translation}->{'Customer Company'} = '客户单位';
     $Self->{Translation}->{'Serial Number'} = '序列号';
     $Self->{Translation}->{'CPU'} = 'CPU';
     $Self->{Translation}->{'Ram'} = '内存';
@@ -348,7 +348,7 @@ sub Data {
         '目录属性样例-权限组的参数。';
     $Self->{Translation}->{'Parameters for the pages (in which the configuration items are shown).'} =
         '显示配置项的页面参数。';
-    $Self->{Translation}->{'Permission Group'} = '';
+    $Self->{Translation}->{'Permission Group'} = '权限组';
     $Self->{Translation}->{'Required permissions to use the ITSM configuration item screen in the agent interface.'} =
         '服务人员界面使用ITSM配置项窗口需要的权限。';
     $Self->{Translation}->{'Required permissions to use the ITSM configuration item search screen in the agent interface.'} =

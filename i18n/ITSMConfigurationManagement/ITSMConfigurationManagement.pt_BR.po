@@ -1,26 +1,14 @@
-# 
-# Translators:
-# Adonai Silveira Canez <adonaicanez@gmail.com>, 2018
-# Arthur  Guimarães Yuan <arthuryuan23@hotmail.com>, 2018
-# Flávio Veras <flaviove@gmail.com>, 2017
-# Glauber Caires <glaubercaires@gmail.com>, 2016
-# Murilo Moreira de Oliveira <murilo.moreira@gmail.com>, 2014
-# Ronaldo Richieri <ronaldo@complemento.net.br>, 2017
-# Samuel Diniz Casimiro <nedmaj@yahoo.com>, 2015,2017
-# Thales Horta <tph@otrs.com.br>, 2017
-# Udo Bretz, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: OTRS\n"
-"POT-Creation-Date: 2018-09-14 12:44+0000\n"
-"PO-Revision-Date: 2018-10-23 13:55+0000\n"
-"Last-Translator: Ricardo von Staa <ricardo.von.staa@otrs.com>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/otrs/OTRS/language/pt_BR/)\n"
+"Project-Id-Version: ITSMConfigurationManagement\n"
+"POT-Creation-Date: 2019-06-25 12:05+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. Template: AdminITSMConfigItem
 msgid "Config Item Management"
@@ -115,8 +103,7 @@ msgid "The name of this config item"
 msgstr "O nome deste item de configuração"
 
 #. Template: AgentITSMConfigItemEdit
-msgid ""
-"Name is already in use by the ConfigItems with the following Number(s): %s"
+msgid "Name is already in use by the ConfigItems with the following Number(s): %s"
 msgstr "Nome já em uso pelos ICs com os seguintes Número(s): %s"
 
 #. Template: AgentITSMConfigItemHistory
@@ -253,7 +240,7 @@ msgstr "Não é possível exibir histórico. Nenhum direito de acesso é dado!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "New ConfigItem (ID=%s)"
-msgstr ""
+msgstr "Novo Item de Configuração (ID=%s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "New version (ID=%s)"
@@ -269,7 +256,7 @@ msgstr "Estado de incidente atualizado (novo=%s, antigo=%s)"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "ConfigItem (ID=%s) deleted"
-msgstr ""
+msgstr "Item de Configuração (ID=%s) excluído"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Link to %s (type=%s) added"
@@ -281,7 +268,7 @@ msgstr "Vínculo para %s (tipo=%s) deletado"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "ConfigItem definition updated (ID=%s)"
-msgstr ""
+msgstr "Definição de Item de Configuração (ID=%s) atualizada"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Name updated (new=%s, old=%s)"
@@ -344,6 +331,18 @@ msgid "Can't show item, no access rights for ConfigItem are given!"
 msgstr "Não foi possível exibir item. Nenhum direito de acesso para ConfigItem é dado!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+msgid "operational"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+msgid "warning"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
+msgid "incident"
+msgstr ""
+
+#. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
 msgid "The deployment state of this config item"
 msgstr "O estado de implantação deste item de configuração"
 
@@ -374,6 +373,10 @@ msgstr "Desconsiderados"
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
 msgid "Model"
 msgstr "Modelo"
+
+#. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
+msgid "Customer Company"
+msgstr ""
 
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
 msgid "Serial Number"
@@ -752,10 +755,7 @@ msgid "CMDB Settings"
 msgstr "Configurações do CMDB"
 
 #. SysConfig
-msgid ""
-"Check for a unique name only within the same ConfigItem class ('class') or "
-"globally ('global'), which means every existing ConfigItem is taken into "
-"account when looking for duplicates."
+msgid "Check for a unique name only within the same ConfigItem class ('class') or globally ('global'), which means every existing ConfigItem is taken into account when looking for duplicates."
 msgstr "Verifique se o nome é único apenas dentro da mesma classe de IC ('classe) ou globalmente ('global'), o que significa que cada IC existente é levado em conta ao procurar por duplicações."
 
 #. SysConfig
@@ -771,9 +771,7 @@ msgid "Config item edit."
 msgstr "Editar item de configuração."
 
 #. SysConfig
-msgid ""
-"Config item event module that enables logging to history in the agent "
-"interface."
+msgid "Config item event module that enables logging to history in the agent interface."
 msgstr "Módulo de evento de item de configuração que permite registrar o histórico da interface do atendente."
 
 #. SysConfig
@@ -817,58 +815,35 @@ msgid "Create and manage the definitions for Configuration Items."
 msgstr "Criar e gerenciar as definições de Itens de Configuração."
 
 #. SysConfig
-msgid ""
-"Define Actions where a settings button is available in the linked objects "
-"widget (LinkObject::ViewMode = \"complex\"). Please note that these Actions "
-"must have registered the following JS and CSS files: "
-"Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, "
-"Core.Agent.TableFilters.js and Core.Agent.LinkObject.js."
+msgid "Define Actions where a settings button is available in the linked objects widget (LinkObject::ViewMode = \"complex\"). Please note that these Actions must have registered the following JS and CSS files: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js and Core.Agent.LinkObject.js."
 msgstr "Defina Ações onde um botão de configurações está disponível no widget de objetos vinculados (LinkObject::ViewMode=\"complex\"). Observe que essas ações devem ter registrado os seguintes arquivos JS e CSS: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js e Core.Agent .LinkObject.js."
 
 #. SysConfig
-msgid "Define the group with permissions."
-msgstr "Definir o grupo de permissionamento."
-
-#. SysConfig
-msgid ""
-"Defines Required permissions to create ITSM configuration items using the "
-"Generic Interface."
+msgid "Defines Required permissions to create ITSM configuration items using the Generic Interface."
 msgstr "Define as permissões requeridas para criar itens de configuração ITSM usando a Interface Genérica."
 
 #. SysConfig
-msgid ""
-"Defines Required permissions to delete ITSM configuration items using the "
-"Generic Interface."
+msgid "Defines Required permissions to delete ITSM configuration items using the Generic Interface."
 msgstr "Define a permissão necessário para remover Itens de Configuração usando a Interface Genérica."
 
 #. SysConfig
-msgid ""
-"Defines Required permissions to get ITSM configuration items using the "
-"Generic Interface."
+msgid "Defines Required permissions to get ITSM configuration items using the Generic Interface."
 msgstr "Define as permissões requeridas para obter itens de configuração ITSM usando a Interface Genérica."
 
 #. SysConfig
-msgid ""
-"Defines Required permissions to search ITSM configuration items using the "
-"Generic Interface."
+msgid "Defines Required permissions to search ITSM configuration items using the Generic Interface."
 msgstr "Define as permissões requeridas para localizar itens de configuração ITSM usando a Interface Genérica."
 
 #. SysConfig
-msgid ""
-"Defines Required permissions to update ITSM configuration items using the "
-"Generic Interface."
+msgid "Defines Required permissions to update ITSM configuration items using the Generic Interface."
 msgstr "Define as permissões requeridas para atualizar itens de configuração ITSM usando a Interface Genérica."
 
 #. SysConfig
-msgid ""
-"Defines an overview module to show the small view of a configuration item "
-"list."
+msgid "Defines an overview module to show the small view of a configuration item list."
 msgstr "Define um módulo de visão geral para mostrar a visão pequena da lista de itens de configuração."
 
 #. SysConfig
-msgid ""
-"Defines regular expressions individually for each ConfigItem class to check "
-"the ConfigItem name and to show corresponding error messages."
+msgid "Defines regular expressions individually for each ConfigItem class to check the ConfigItem name and to show corresponding error messages."
 msgstr "Definie expressões regulares individualmente para cada classe de IC para verificar o nome do IC e para exibir as mensagens de erro correspondentes."
 
 #. SysConfig
@@ -876,21 +851,15 @@ msgid "Defines the default subobject of the class 'ITSMConfigItem'."
 msgstr "Define o subobjeto padrão da classe 'ITSMConfigItem'."
 
 #. SysConfig
-msgid ""
-"Defines the number of rows for the CI definition editor in the admin "
-"interface."
+msgid "Defines the number of rows for the CI definition editor in the admin interface."
 msgstr "Define o número de linhas do editor de definição do IC na interface de administração."
 
 #. SysConfig
-msgid ""
-"Defines the order of incident states from high (e.g. cricital) to low (e.g. "
-"functional)."
+msgid "Defines the order of incident states from high (e.g. cricital) to low (e.g. functional)."
 msgstr "Define a ordem dos estados de incidente de alto (ex: crítico) para baixo (ex: funcional)"
 
 #. SysConfig
-msgid ""
-"Defines the relevant deployment states where linked tickets can affect the "
-"status of a CI."
+msgid "Defines the relevant deployment states where linked tickets can affect the status of a CI."
 msgstr "Define os estados de implantação onde chamados associados podem afetar o estados de um IC."
 
 #. SysConfig
@@ -902,85 +871,35 @@ msgid "Defines the search limit for the AgentITSMConfigItemSearch screen."
 msgstr "Define o limite de pesquisa para a tela AgentITSMConfigItemSearch."
 
 #. SysConfig
-msgid ""
-"Defines the shown columns in the config item overview. This option has no "
-"effect on the position of the column. Note: Class column is always available"
-" if filter 'All' is selected."
+msgid "Defines the shown columns in the config item overview. This option has no effect on the position of the column. Note: Class column is always available if filter 'All' is selected."
 msgstr "Define as colunas exibidas na visão geral de itens de configuração. Esta opção não tem efeito na posição da coluna. Nota: A coluna classe está sempre disponível se o filtro \"Todos\" estiver selecionado."
 
 #. SysConfig
-msgid ""
-"Defines the shown columns in the config item search. This option has no "
-"effect on the position of the column."
+msgid "Defines the shown columns in the config item search. This option has no effect on the position of the column."
 msgstr "Define as colunas mostradas na busca de item de configuração. Esta opção não tem efeito sobre a posição da coluna."
 
 #. SysConfig
-msgid ""
-"Defines the shown columns of CIs in the config item overview depending on "
-"the CI class. Each entry must be prefixed with the class name and double "
-"colons (i.e. Computer::). There are a few CI-Attributes that are common to "
-"all CIs (example for the class Computer: Computer::Name, "
-"Computer::CurDeplState, Computer::CreateTime). To show individual CI-"
-"Attributes as defined in the CI-Definition, the following scheme must be "
-"used (example for the class Computer): Computer::HardDisk::1, "
-"Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, "
-"Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, "
-"then the default columns are shown as defined in the setting "
-"ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns."
+msgid "Defines the shown columns of CIs in the config item overview depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns."
 msgstr "Define as colunas de ICs exibidas na visão geral de itens de configuração, dependendo da classe do IC. Cada entrada deve ser prefixada com o nome da classe e duplo dois pontos (ex. Computador::). Há alguns atributos de IC que são comuns a todos os ICs (tal como a classe Computador: Computador::Nome, Computador::EstadoImplAtual, Computador::HoraCriacao). Para exibir atributos de IC individualmente como definido na definição do IC, o seguinte esquema deve ser usado (classe Computador, por exemplo): Computador::DiscoRigido::1, Computador::DiscoRigido::1::Capacidade::1, Computador::DiscoRigido::2, Computador::DiscoRigido::2::Capacidade::1. Se não há entrada para a classe IC, então as colunas padrão são exibidas como definido na configuração ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns."
 
 #. SysConfig
-msgid ""
-"Defines the shown columns of CIs in the config item search depending on the "
-"CI class. Each entry must be prefixed with the class name and double colons "
-"(i.e. Computer::). There are a few CI-Attributes that are common to all CIs "
-"(example for the class Computer: Computer::Name, Computer::CurDeplState, "
-"Computer::CreateTime). To show individual CI-Attributes as defined in the "
-"CI-Definition, the following scheme must be used (example for the class "
-"Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, "
-"Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no "
-"entry for a CI class, then the default columns are shown as defined in the "
-"setting ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns."
+msgid "Defines the shown columns of CIs in the config item search depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns."
 msgstr "Define as colunas de ICs exibidas na tela de pesquisa de itens de configuração, dependendo da classe do IC. Cada entrada deve ser prefixada com o nome da classe e duplo dois pontos (ex. Computador::). Há alguns atributos de IC que são comuns a todos os ICs (tal como a classe Computador: Computador::Nome, Computador::EstadoImplAtual, Computador::HoraCriacao). Para exibir atributos de IC individualmente como definido na definição do IC, o seguinte esquema deve ser usado (classe Computador, por exemplo): Computador::DiscoRigido::1, Computador::DiscoRigido::1::Capacidade::1, Computador::DiscoRigido::2, Computador::DiscoRigido::2::Capacidade::1. Se não há entrada para a classe IC, então as colunas padrão são exibidas como definido na configuração ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns."
 
 #. SysConfig
-msgid ""
-"Defines the shown columns of CIs in the config item widget depending on the "
-"CI class. Each entry must be prefixed with the class name and double colons "
-"(i.e. Computer::). There are a few CI-Attributes that are common to all CIs "
-"(example for the class Computer: Computer::Name, Computer::CurDeplState, "
-"Computer::CreateTime). To show individual CI-Attributes as defined in the "
-"CI-Definition, the following scheme must be used (example for the class "
-"Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, "
-"Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no "
-"entry for a CI class, then the default columns are shown as defined in the "
-"setting AgentCustomerInformationCenter::Backend###0060-CIC-"
-"ITSMConfigItemCustomerCompany (key DefaultColumns)."
+msgid "Defines the shown columns of CIs in the config item widget depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting AgentCustomerInformationCenter::Backend###0060-CIC-ITSMConfigItemCustomerCompany (key DefaultColumns)."
 msgstr ""
 
 #. SysConfig
-msgid ""
-"Defines the shown columns of CIs in the link table complex view for all CI "
-"classes. If there is no entry, then the default columns are shown."
+msgid "Defines the shown columns of CIs in the link table complex view for all CI classes. If there is no entry, then the default columns are shown."
 msgstr ""
 
 #. SysConfig
-msgid ""
-"Defines the shown columns of CIs in the link table complex view, depending "
-"on the CI class. Each entry must be prefixed with the class name and double "
-"colons (i.e. Computer::). There are a few CI-Attributes that common to all "
-"CIs (example for the class Computer: Computer::Name, Computer::CurDeplState,"
-" Computer::CreateTime). To show individual CI-Attributes as defined in the "
-"CI-Definition, the following scheme must be used (example for the class "
-"Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, "
-"Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no "
-"entry for a CI class, then the default columns are shown."
+msgid "Defines the shown columns of CIs in the link table complex view, depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown."
 msgstr "Define as colunas de ICs exibidas na tela de tabela complexa de links, dependendo da classe do IC. Cada entrada deve ser prefixada com o nome da classe e duplo dois pontos (ex. Computador::). Há alguns atributos de IC que são comuns a todos os ICs (tal como a classe Computador: Computador::Nome, Computador::EstadoImplAtual, Computador::HoraCriacao). Para exibir atributos de IC individualmente como definido na definição do IC, o seguinte esquema deve ser usado (classe Computador, por exemplo): Computador::DiscoRigido::1, Computador::DiscoRigido::1::Capacidade::1, Computador::DiscoRigido::2, Computador::DiscoRigido::2::Capacidade::1. Se não há entrada para a classe IC, então as colunas padrão são exibidas."
 
 #. SysConfig
-msgid ""
-"Defines which type of link (named from the ticket perspective) can affect "
-"the status of a linked CI."
+msgid "Defines which type of link (named from the ticket perspective) can affect the status of a linked CI."
 msgstr "Define qual tipo de associação (nomeado a partir da perspectiva do chamado) pode afetar o estado de um IC associado."
 
 #. SysConfig
@@ -1000,22 +919,15 @@ msgid "Duplicate"
 msgstr "Duplicar"
 
 #. SysConfig
-msgid ""
-"Enables configuration item bulk action feature for the agent frontend to "
-"work on more than one configuration item at a time."
+msgid "Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time."
 msgstr "Habilita a função de ação em massa em itens de configuração na interface de atendente para trabalhar em mais de um IC por vez."
 
 #. SysConfig
-msgid ""
-"Enables configuration item bulk action feature only for the listed groups."
+msgid "Enables configuration item bulk action feature only for the listed groups."
 msgstr "Habilita a função de ação em massa em itens de configuração apenas para grupos listados."
 
 #. SysConfig
-msgid ""
-"Enables/disables the functionality to check ConfigItems for unique names. "
-"Before enabling this option you should check your system for already "
-"existing config items with duplicate names. You can do this with the script "
-"bin/otrs.ITSMConfigItemListDuplicates.pl."
+msgid "Enables/disables the functionality to check ConfigItems for unique names. Before enabling this option you should check your system for already existing config items with duplicate names. You can do this with the script bin/otrs.ITSMConfigItemListDuplicates.pl."
 msgstr "Habilita/desabilita a funcionalidade de verificação de nomes únicos de ICs. Antes de habilitar esta opção, você deve verificar se há ICs com nomes duplicados em seu sistema. Você pode fazer isso por meio do script bin/otrs.ITSMConfigItemListDuplicates.pl."
 
 #. SysConfig
@@ -1047,31 +959,19 @@ msgid "Overview."
 msgstr "Visão Geral."
 
 #. SysConfig
-msgid ""
-"Parameters for the dashboard backend of the customer company config item "
-"overview of the agent interface . \"Limit\" is the number of entries shown "
-"by default. \"Group\" is used to restrict the access to the plugin (e. g. "
-"Group: admin;group1;group2;). \"Default\" determines if the plugin is "
-"enabled by default or if the user needs to enable it manually. "
-"\"CacheTTLLocal\" is the cache time in minutes for the plugin."
+msgid "Parameters for the dashboard backend of the customer company config item overview of the agent interface . \"Limit\" is the number of entries shown by default. \"Group\" is used to restrict the access to the plugin (e. g. Group: admin;group1;group2;). \"Default\" determines if the plugin is enabled by default or if the user needs to enable it manually. \"CacheTTLLocal\" is the cache time in minutes for the plugin."
 msgstr ""
 
 #. SysConfig
-msgid ""
-"Parameters for the deployment states color in the preferences view of the "
-"agent interface."
+msgid "Parameters for the deployment states color in the preferences view of the agent interface."
 msgstr "Parâmetros para a cor dos estados de implantação na tela de preferências da interface de atendente."
 
 #. SysConfig
-msgid ""
-"Parameters for the deployment states in the preferences view of the agent "
-"interface."
+msgid "Parameters for the deployment states in the preferences view of the agent interface."
 msgstr "Parâmetros de estado de implantação nas preferências de exibição da interface de atendente."
 
 #. SysConfig
-msgid ""
-"Parameters for the example permission groups of the general catalog "
-"attributes."
+msgid "Parameters for the example permission groups of the general catalog attributes."
 msgstr "Parâmetros do grupos de permissão de exemplo dos atributos do catálogo geral."
 
 #. SysConfig
@@ -1079,45 +979,35 @@ msgid "Parameters for the pages (in which the configuration items are shown)."
 msgstr "Parâmetros das páginas (nas quais os itens de configuração são mostrados)."
 
 #. SysConfig
-msgid ""
-"Required permissions to use the ITSM configuration item screen in the agent "
-"interface."
+msgid "Permission Group"
+msgstr ""
+
+#. SysConfig
+msgid "Required permissions to use the ITSM configuration item screen in the agent interface."
 msgstr "Permissões necessárias para usar a tela de item de configuração ITSM na interface de atendente."
 
 #. SysConfig
-msgid ""
-"Required permissions to use the ITSM configuration item search screen in the"
-" agent interface."
+msgid "Required permissions to use the ITSM configuration item search screen in the agent interface."
 msgstr "Permissões necessárias para usar a tela de pesquisa de item de configuração ITSM na interface de atendente."
 
 #. SysConfig
-msgid ""
-"Required permissions to use the ITSM configuration item zoom screen in the "
-"agent interface."
+msgid "Required permissions to use the ITSM configuration item zoom screen in the agent interface."
 msgstr "Permissões necessárias para usar a tela de detalhes do item de configuração ITSM na interface de atendente."
 
 #. SysConfig
-msgid ""
-"Required permissions to use the add ITSM configuration item screen in the "
-"agent interface."
+msgid "Required permissions to use the add ITSM configuration item screen in the agent interface."
 msgstr "Permissões necessárias para usar a tela de adição de item de configuração ITSM na interface de atendente."
 
 #. SysConfig
-msgid ""
-"Required permissions to use the edit ITSM configuration item screen in the "
-"agent interface."
+msgid "Required permissions to use the edit ITSM configuration item screen in the agent interface."
 msgstr "Permissões necessárias para usar a tela de edição de item de configuração ITSM na interface de atendente."
 
 #. SysConfig
-msgid ""
-"Required permissions to use the history ITSM configuration item screen in "
-"the agent interface."
+msgid "Required permissions to use the history ITSM configuration item screen in the agent interface."
 msgstr "Permissões necessárias para usar a tela de histórico de item de configuração ITSM na interface de atendente."
 
 #. SysConfig
-msgid ""
-"Required permissions to use the print ITSM configuration item screen in the "
-"agent interface."
+msgid "Required permissions to use the print ITSM configuration item screen in the agent interface."
 msgstr "Permissões necessárias para usar a tela de impressão de item de configuração ITSM na interface do atendente."
 
 #. SysConfig
@@ -1129,100 +1019,67 @@ msgid "Search config items."
 msgstr "Procurar itens de configuração."
 
 #. SysConfig
-msgid ""
-"Selects the configuration item number generator module. \"AutoIncrement\" "
-"increments the configuration item number, the SystemID, the "
-"ConfigItemClassID and the counter are used. The format is "
-"\"SystemID.ConfigItemClassID.Counter\", e.g. 1205000004, 1205000005."
+msgid "Selects the configuration item number generator module. \"AutoIncrement\" increments the configuration item number, the SystemID, the ConfigItemClassID and the counter are used. The format is \"SystemID.ConfigItemClassID.Counter\", e.g. 1205000004, 1205000005."
 msgstr "Seleciona o módulo de geração de número de item de configuração. \"Autoincremento\" incrementa o número do item de configuração, o SystemID, o ConfigItemClassID e o Counter são usados. O formato é \"SystemID.ConfigItemClassID.Counter\", por exemplo, 1205000004, 1205000005."
 
 #. SysConfig
-msgid ""
-"Set the incident state of a CI automatically when a Ticket is Linked to a "
-"CI."
+msgid "Set the incident state of a CI automatically when a Ticket is Linked to a CI."
 msgstr "Configurar o estado de um IC automaticamente quando um Chamado for associado."
 
 #. SysConfig
-msgid ""
-"Sets the deployment state in the configuration item bulk screen of the agent"
-" interface."
+msgid "Sets the deployment state in the configuration item bulk screen of the agent interface."
 msgstr "Configura o estado de implantação na tela de ação em massa de ICs na interface de atendente."
 
 #. SysConfig
-msgid ""
-"Sets the incident state in the configuration item bulk screen of the agent "
-"interface."
+msgid "Sets the incident state in the configuration item bulk screen of the agent interface."
 msgstr "Configura o estado de incidente na tela de ação em massa de ICs na interface de atendente."
 
 #. SysConfig
-msgid ""
-"Shows a link in the menu that allows linking a configuration item with "
-"another object in the config item zoom view of the agent interface."
+msgid "Shows a link in the menu that allows linking a configuration item with another object in the config item zoom view of the agent interface."
 msgstr "Mostra um link no menu que permite associar um item de configuração com um outro objeto na visão de detalhes do item de configuração da interface de atendente."
 
 #. SysConfig
-msgid ""
-"Shows a link in the menu to access the history of a configuration item in "
-"the configuration item overview of the agent interface."
+msgid "Shows a link in the menu to access the history of a configuration item in the configuration item overview of the agent interface."
 msgstr "Mostra um link no menu para acessar o histórico de um IC na visão geral de itens de configuração na interface de atendente."
 
 #. SysConfig
-msgid ""
-"Shows a link in the menu to access the history of a configuration item in "
-"the its zoom view of the agent interface."
+msgid "Shows a link in the menu to access the history of a configuration item in the its zoom view of the agent interface."
 msgstr "Mostra um link no menu para acessar o histórico de item de configuração na visão de detalhes do mesmo na interface de atendente."
 
 #. SysConfig
-msgid ""
-"Shows a link in the menu to delete a configuration item in its zoom view of "
-"the agent interface."
+msgid "Shows a link in the menu to delete a configuration item in its zoom view of the agent interface."
 msgstr "Mostra um link no menu para apagar o item de configuração na Visão Detalhada na interface de atendente."
 
 #. SysConfig
-msgid ""
-"Shows a link in the menu to duplicate a configuration item in the "
-"configuration item overview of the agent interface."
+msgid "Shows a link in the menu to duplicate a configuration item in the configuration item overview of the agent interface."
 msgstr "Mostra um link no menu para duplicar um IC na visão geral de itens de configuração na interface de atendente."
 
 #. SysConfig
-msgid ""
-"Shows a link in the menu to duplicate a configuration item in the its zoom "
-"view of the agent interface."
+msgid "Shows a link in the menu to duplicate a configuration item in the its zoom view of the agent interface."
 msgstr "Mostra um link no menu para duplicar um item de configuração na visão de detalhes do mesmo na interface de atendente."
 
 #. SysConfig
-msgid ""
-"Shows a link in the menu to edit a configuration item in the its zoom view "
-"of the agent interface."
+msgid "Shows a link in the menu to edit a configuration item in the its zoom view of the agent interface."
 msgstr "Mostra um link no menu para editar um item de configuração na visão de detalhes do mesmo na interface de atendente."
 
 #. SysConfig
-msgid ""
-"Shows a link in the menu to go back in the configuration item zoom view of "
-"the agent interface."
+msgid "Shows a link in the menu to go back in the configuration item zoom view of the agent interface."
 msgstr "Mostra um link no menu para retornar à tela de visão de detalhes de item de configuração da interface de atendente."
 
 #. SysConfig
-msgid ""
-"Shows a link in the menu to print a configuration item in the its zoom view "
-"of the agent interface."
+msgid "Shows a link in the menu to print a configuration item in the its zoom view of the agent interface."
 msgstr "Mostra um link no menu para imprimir um item de configuração na visão de detalhes do mesmo na interface de atendente."
 
 #. SysConfig
-msgid ""
-"Shows a link in the menu to zoom into a configuration item in the "
-"configuration item overview of the agent interface."
+msgid "Shows a link in the menu to zoom into a configuration item in the configuration item overview of the agent interface."
 msgstr "Mostra um link no menu para detalhar um IC na visão geral de itens de configuração na interface de atendente."
 
 #. SysConfig
-msgid ""
-"Shows the config item history (reverse ordered) in the agent interface."
+msgid "Shows the config item history (reverse ordered) in the agent interface."
 msgstr "Mostra o histórico do item configuração (ordem reversa) na interface de atendente."
 
 #. SysConfig
-msgid ""
-"The identifier for a configuration item, e.g. ConfigItem#, MyConfigItem#. "
-"The default is ConfigItem#."
+msgid "The identifier for a configuration item, e.g. ConfigItem#, MyConfigItem#. The default is ConfigItem#."
 msgstr "O identificador para um item de configuração, ex. ItemConfig#, MeuItemConfig#. O padrão é ItemConfig#."
 
 #. SysConfig
@@ -1244,3 +1101,4 @@ msgstr "improdutivo"
 #. SysConfig
 msgid "productive"
 msgstr "produtivo"
+

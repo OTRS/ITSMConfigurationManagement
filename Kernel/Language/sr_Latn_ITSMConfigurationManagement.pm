@@ -135,9 +135,9 @@ sub Data {
     # Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
     $Self->{Translation}->{'Can\'t show item, no access rights for ConfigItem are given!'} =
         'Ne može se prikazati stavka, nije dat pristup za ovu konfiguracionu stavku!';
-    $Self->{Translation}->{'operational'} = '';
-    $Self->{Translation}->{'warning'} = '';
-    $Self->{Translation}->{'incident'} = '';
+    $Self->{Translation}->{'operational'} = 'operativni';
+    $Self->{Translation}->{'warning'} = 'upozorenje';
+    $Self->{Translation}->{'incident'} = 'incident';
     $Self->{Translation}->{'The deployment state of this config item'} = 'Status primene ove konfiguracione stavke';
     $Self->{Translation}->{'The incident state of this config item'} = 'Status incidenta ove konfiguracione stavke';
 
@@ -154,7 +154,7 @@ sub Data {
 
     # Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
     $Self->{Translation}->{'Model'} = 'Model';
-    $Self->{Translation}->{'Customer Company'} = '';
+    $Self->{Translation}->{'Customer Company'} = 'Firma klijenta';
     $Self->{Translation}->{'Serial Number'} = 'Serijski broj';
     $Self->{Translation}->{'CPU'} = 'Procesor';
     $Self->{Translation}->{'Ram'} = 'RAM';
@@ -348,7 +348,7 @@ sub Data {
         'Parametri za atribute uzorka grupe za dozvole opšteg kataloga';
     $Self->{Translation}->{'Parameters for the pages (in which the configuration items are shown).'} =
         'Parametri za stranice (na kojima su konfiguracione stavke prikazane).';
-    $Self->{Translation}->{'Permission Group'} = '';
+    $Self->{Translation}->{'Permission Group'} = 'Grupa pristupa';
     $Self->{Translation}->{'Required permissions to use the ITSM configuration item screen in the agent interface.'} =
         'Potrebne dozvole za upotrebu ekrana ITSM konfiguracione stavke u interfejsu operatera.';
     $Self->{Translation}->{'Required permissions to use the ITSM configuration item search screen in the agent interface.'} =
