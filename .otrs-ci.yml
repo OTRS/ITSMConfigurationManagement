@@ -16,9 +16,6 @@ TestModes:
  Merge:
   PlatformSets:
    - ondemand-merge-otrs6
-
-  DeployOTRSBranch: rel-6_0
-
   DeployOTRSPackages:
    - OTRSCodePolicy@master
    - FAQ@rel-6_0
@@ -29,7 +26,6 @@ TestModes:
    - GeneralCatalog@rel-6_0
    - ITSMCore@rel-6_0
    - ITSMIncidentProblemManagement@rel-6_0
-   - ITSMConfigurationManagement@rel-6_0
    - ITSMChangeManagement@rel-6_0
    - ITSMServiceLevelManagement@rel-6_0
    - ImportExport@rel-6_0
