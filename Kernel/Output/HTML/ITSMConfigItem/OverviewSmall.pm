@@ -450,7 +450,9 @@ END
                         # check if column exists in CI-Data
                         next COLUMN if !$ExtendedVersionData->{$Column}->{Name};
 
-                        my $Value = $ExtendedVersionData->{$Column}->{Value} // '';
+                        # Convert to ascii text in case the value contains html.
+                        my $Value = $Kernel::OM->Get('Kernel::System::HTMLUtils')
+                            ->ToAscii( String => $ExtendedVersionData->{$Column}->{Value} // '' ) // '';
 
                         # convert all whitespace and newlines to single spaces
                         $Value =~ s{ \s+ }{ }gxms;

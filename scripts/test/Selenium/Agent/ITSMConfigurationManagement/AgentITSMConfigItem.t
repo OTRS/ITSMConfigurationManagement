@@ -25,6 +25,8 @@ $Selenium->RunTest(
             Name => 'ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumnsByClass',
         );
 
+        push @{ $ShowColumnsByClassSysConfig{EffectiveValue} }, 'Computer::Owner::1';
+
         # Enable AgentITSMConfigItem###ShowColumnsByClass sysconfig item.
         $Helper->ConfigSettingChange(
             Valid => 1,
@@ -50,6 +52,12 @@ $Selenium->RunTest(
         my $DeplStateID = $DeplStateDataRef->{ItemID};
 
         my $ConfigItemObject = $Kernel::OM->Get('Kernel::System::ITSMConfigItem');
+
+        my $Owner           = '"Test Test" <test@test.com>';
+        my $ComputerClassID = $GeneralCatalogObject->ItemGet(
+            Class => 'ITSM::ConfigItem::Class',
+            Name  => 'Computer',
+        );
 
         # Create ConfigItem for each ConfigItem class.
         my @ConfigItemNumbers;
@@ -78,6 +86,28 @@ $Selenium->RunTest(
                 "ConfigItem is created - ID $ConfigItemID"
             );
 
+            my %XMLData;
+            if ( $ComputerClassID->{ItemID} == $ITSMConfigItem ) {
+                %XMLData = (
+                    XMLData => [
+                        undef,
+                        {
+                            Version => [
+                                undef,
+                                {
+                                    Owner => [
+                                        undef,
+                                        {
+                                            Content => $Owner,
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                );
+            }
+
             # Add a new version.
             my $VersionID = $ConfigItemObject->VersionAdd(
                 Name         => 'SeleniumTest',
@@ -86,6 +116,7 @@ $Selenium->RunTest(
                 InciStateID  => 1,
                 UserID       => 1,
                 ConfigItemID => $ConfigItemID,
+                %XMLData,
             );
             $Self->True(
                 $VersionID,
@@ -145,6 +176,15 @@ $Selenium->RunTest(
                 ConfigItemID => $CheckConfigItem,
             );
             if ( $ConfigItemData->{Class} eq 'Computer' ) {
+
+                # Check if AgentITSMConfigItem Owner is displayed correctly. See bug#14633.
+                $Self->Is(
+                    $Selenium->execute_script(
+                        "return \$('#ConfigItemID_$CheckConfigItem td:contains($Owner)').text().trim();"),
+                    $Owner,
+                    'Owner name and address is displayed correctly',
+                );
+
                 $Self->True(
                     $Selenium->find_element("//a[contains(.,'Create Time')]"),
                     "There is column 'CreateTime', enabled by sysconfig item  AgentITSMConfigItem###ShowColumnsByClass",
