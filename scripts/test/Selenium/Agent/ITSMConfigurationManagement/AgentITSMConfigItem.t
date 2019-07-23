@@ -192,6 +192,20 @@ $Selenium->RunTest(
             }
         }
 
+        # Verify there are links to AgentITSMConfigItemZoom on ConfigItem Number and Name columns.
+        $Self->True(
+            $Selenium->execute_script(
+                "return \$('tr:eq(\"1\") div[title*=\"$ConfigItemNumbers[4]\"] a[href*=\"ItemID=$ConfigItemIDs[4]\"]').length;"
+            ),
+            "Link on ConfigItem 'Number' column correct."
+        );
+        $Self->True(
+            $Selenium->execute_script(
+                "return \$('tr:eq(\"1\") div[title*=\"SeleniumTest\"] a[href*=\"ItemID=$ConfigItemIDs[4]\"]').length;"
+            ),
+            "Link on ConfigItem 'Name' column correct."
+        );
+
         # Delete created test ConfigItems.
         for my $ConfigItemDelete (@ConfigItemIDs) {
             my $Success = $ConfigItemObject->ConfigItemDelete(
