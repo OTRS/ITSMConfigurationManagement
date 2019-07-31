@@ -180,7 +180,8 @@ $Selenium->RunTest(
                 # Check if AgentITSMConfigItem Owner is displayed correctly. See bug#14633.
                 $Self->Is(
                     $Selenium->execute_script(
-                        "return \$('#ConfigItemID_$CheckConfigItem td:contains($Owner)').text().trim();"),
+                        "return \$('#ConfigItemID_$CheckConfigItem td:contains($Owner)').text().trim();"
+                    ),
                     $Owner,
                     'Owner name and address is displayed correctly',
                 );
