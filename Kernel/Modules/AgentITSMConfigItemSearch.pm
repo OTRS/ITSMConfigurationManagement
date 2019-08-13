@@ -40,9 +40,9 @@ sub Run {
     my $ParamObject = $Kernel::OM->Get('Kernel::System::Web::Request');
 
     # get config data
-    $Self->{StartHit}    = int( $ParamObject->GetParam( Param => 'StartHit' ) || 1 );
+    $Self->{StartHit} = int( $ParamObject->GetParam( Param => 'StartHit' ) || 1 );
     $Self->{SearchLimit} = $Self->{Config}->{SearchLimit} || 10000;
-    $Self->{SortBy}      = $ParamObject->GetParam( Param => 'SortBy' )
+    $Self->{SortBy} = $ParamObject->GetParam( Param => 'SortBy' )
         || $Self->{Config}->{'SortBy::Default'}
         || 'Number';
     $Self->{OrderBy} = $ParamObject->GetParam( Param => 'OrderBy' )
@@ -680,9 +680,9 @@ sub Run {
 
                 # Assemble Excel data.
                 my $Excel = $CSVObject->Array2CSV(
-                    Head      => \@CSVHead,
-                    Data      => \@CSVData,
-                    Separator => $Self->{UserCSVSeparator},
+                    Head   => \@CSVHead,
+                    Data   => \@CSVData,
+                    Format => 'Excel',
                 );
 
                 # Return Excel to download.
