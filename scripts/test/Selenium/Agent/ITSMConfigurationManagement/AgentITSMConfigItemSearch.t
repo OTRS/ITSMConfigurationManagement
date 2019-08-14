@@ -635,6 +635,32 @@ $Selenium->RunTest(
             "Number of config items on the second page is correct - 5",
         );
 
+        # Verify search result remained intact after changing items per page, see bug#14717 for more details.
+        # Set 10 config items per page.
+        $Selenium->find_element( "a#ShowContextSettingsDialog", 'css' )->click();
+        $Selenium->WaitFor(
+            JavaScript => 'return $(".Dialog.Modal #UserConfigItemOverviewSmallPageShown").length'
+        );
+        $Selenium->InputFieldValueSet(
+            Element => '#UserConfigItemOverviewSmallPageShown',
+            Value   => '10',
+        );
+        $Selenium->find_element( "#DialogButton1", 'css' )->click();
+        $Selenium->WaitFor(
+            JavaScript => 'return !$(".Dialog.Modal").length'
+        );
+
+        # Check if correct number of items are shown on pagination.
+        $Self->True(
+            $Selenium->execute_script("return \$('.Pagination').text().trim().indexOf('1-10 of 30') > -1;"),
+            "Check pagination after switch",
+        );
+        $Self->Is(
+            $Selenium->execute_script("return \$('#OverviewBody .TableSmall tbody tr').length;"),
+            '10',
+            "Number of config items is correct - 10",
+        );
+
         # Delete created test ConfigItem.
         for my $ConfigItemDeleteID (@ConfigItemIDs) {
             my $Success = $ConfigItemObject->ConfigItemDelete(

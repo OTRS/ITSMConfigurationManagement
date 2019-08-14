@@ -317,6 +317,7 @@ sub Run {
         ShowColumns   => \@ShowColumns,
         SortBy        => $LayoutObject->Ascii2Html( Text => $SortBy ),
         OrderBy       => $LayoutObject->Ascii2Html( Text => $OrderBy ),
+        RequestedURL  => $Self->{RequestedURL},
     );
 
     # add footer

@@ -979,6 +979,7 @@ sub Run {
                 SortBy        => $LayoutObject->Ascii2Html( Text => $Self->{SortBy} ),
                 OrderBy       => $LayoutObject->Ascii2Html( Text => $Self->{OrderBy} ),
                 ClassID       => $ClassID,
+                RequestURL    => $Self->{RequestedURL},
             );
 
             $LayoutObject->AddJSData(

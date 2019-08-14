@@ -377,7 +377,7 @@ sub ITSMConfigItemListShow {
     );
 
     # build shown ticket a page
-    $Param{RequestedURL}    = "Action=$Self->{Action}";
+    $Param{RequestedURL}    = $Param{RequestedURL} || "Action=$Self->{Action};$Param{LinkPage}";
     $Param{Group}           = $Group;
     $Param{PreferencesKey}  = $PageShownPreferencesKey;
     $Param{PageShownString} = $Self->BuildSelection(
