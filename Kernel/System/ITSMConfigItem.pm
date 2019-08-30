@@ -1658,6 +1658,14 @@ sub CurInciStateRecalc {
             Functionality => 'warning',
         },
     );
+
+    if ( !defined $WarnStateList ) {
+        $Kernel::OM->Get('Kernel::System::Log')->Log(
+            Priority => 'error',
+            Message  => "ITSM::Core::IncidentState Warning cannot be invalid.",
+        );
+    }
+
     my %ReverseWarnStateList = reverse %{$WarnStateList};
     my @SortedWarnList       = sort keys %ReverseWarnStateList;
     my $WarningStateID       = $ReverseWarnStateList{Warning} || $ReverseWarnStateList{ $SortedWarnList[0] };
