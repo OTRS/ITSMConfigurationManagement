@@ -40,8 +40,7 @@ $Selenium->RunTest(
         }
 
         # Create three test ConfigItems for 'Computer' ConfigItem class.
-        my @ConfigItemNumbers;
-        my @ConfigItemIDs;
+        my @ConfigItems;
         for my $ITSMConfigItem ( 1 .. 3 ) {
 
             # Create ConfigItem number.
@@ -53,7 +52,6 @@ $Selenium->RunTest(
                 $ConfigItemNumber,
                 "ConfigItem number is created - $ConfigItemNumber",
             );
-            push @ConfigItemNumbers, $ConfigItemNumber;
 
             # Add the new ConfigItem.
             my $ConfigItemID = $ConfigItemObject->ConfigItemAdd(
@@ -79,7 +77,12 @@ $Selenium->RunTest(
                 $VersionID,
                 "Version is created - ID $VersionID"
             );
-            push @ConfigItemIDs, $ConfigItemID;
+
+            push @ConfigItems,
+                {
+                ID               => $ConfigItemID,
+                ConfigItemNumber => $ConfigItemNumber,
+                };
         }
 
         # Create test user and login.
@@ -101,11 +104,11 @@ $Selenium->RunTest(
         );
 
         # Select two created test ConfigItems.
-        for my $SelectConfigItem (@ConfigItemIDs) {
+        for my $SelectConfigItem (@ConfigItems) {
 
             # Don't click on third test ConfigItem.
-            if ( $SelectConfigItem ne $ConfigItemIDs[2] ) {
-                $Selenium->find_element("//input[\@value='$SelectConfigItem']")->click();
+            if ( $SelectConfigItem->{ID} ne $ConfigItems[2]->{ID} ) {
+                $Selenium->find_element("//input[\@value='$SelectConfigItem->{ID}']")->click();
             }
         }
 
@@ -138,7 +141,7 @@ $Selenium->RunTest(
         $Selenium->find_element( "#LinkTogetherLinkType option[value='ConnectedTo::Source']", 'css' )->click();
 
         # link third test ConfigItem as part of first two
-        $Selenium->find_element( "#LinkTogetherAnother", 'css' )->send_keys( $ConfigItemNumbers[2] );
+        $Selenium->find_element( "#LinkTogetherAnother", 'css' )->send_keys( $ConfigItems[2]->{ConfigItemNumber} );
         $Selenium->find_element( "#LinkType option[value='Includes::Target']", 'css' )->click();
 
         # Submit bulk changes
@@ -148,28 +151,25 @@ $Selenium->RunTest(
         $Selenium->WaitFor( WindowCount => 1 );
         $Selenium->switch_to_window( $Handles->[0] );
 
-        # Wait for reload to kick in.
-        $Selenium->WaitFor(
-            JavaScript =>
-                'return typeof(Core) == "object" && typeof(Core.App) == "object" && Core.App.PageLoadComplete;'
+        # Navigate to first created test ConfigItems zoom view.
+        $Selenium->VerifiedGet(
+            "${ScriptAlias}index.pl?Action=AgentITSMConfigItemZoom;ConfigItemID=$ConfigItems[1]->{ID}"
         );
-
-        $Selenium->WaitFor(
-            JavaScript => "return typeof(\$) === 'function' && \$('#ConfigItemID_$ConfigItemIDs[1]').length;"
-        );
-        sleep 1;
-
-        # Click on first created test ConfigItems to enter zoom view.
-        $Selenium->execute_script("\$('#ConfigItemID_$ConfigItemIDs[1]').click();");
-        $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && $("#ITSMTree").length;' );
 
         # Check for other two created test ConfigItems.
         # Verify that link action in bulk screen was success.
-        for my $CheckConfigItem (@ConfigItemNumbers) {
+        my $Count = 1;
+        ITEM:
+        for my $CheckConfigItem (@ConfigItems) {
+
+            next ITEM if $ConfigItems[1]->{ConfigItemNumber} == $CheckConfigItem->{ConfigItemNumber};
             $Self->True(
-                index( $Selenium->get_page_source(), $CheckConfigItem ) > -1,
-                "Test ConfigItem number $CheckConfigItem - found",
+                $Selenium->find_element(
+                    "//a[\@class=\'AsBlock LinkObjectLink\'][contains(.,\'$CheckConfigItem->{ConfigItemNumber}\')]"
+                ),
+                "Test ConfigItem number $CheckConfigItem->{ConfigItemNumber} - found",
             );
+            $Count++;
         }
 
         $Self->Is(
@@ -179,14 +179,14 @@ $Selenium->RunTest(
         );
 
         # Delete created test ConfigItems.
-        for my $ConfigItemDelete (@ConfigItemIDs) {
+        for my $ConfigItemDelete (@ConfigItems) {
             my $Success = $ConfigItemObject->ConfigItemDelete(
-                ConfigItemID => $ConfigItemDelete,
+                ConfigItemID => $ConfigItemDelete->{ID},
                 UserID       => 1,
             );
             $Self->True(
                 $Success,
-                "Config item is deleted - ID $ConfigItemDelete",
+                "Config item is deleted - ID $ConfigItemDelete->{ID}",
             );
         }
     }
