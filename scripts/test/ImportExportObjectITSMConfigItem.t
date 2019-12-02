@@ -384,6 +384,24 @@ $ConfigItemPerlDefinitions[1] = " [
     },
 ] ";
 
+# Define the third test definition with required attribute 'Type'.
+$ConfigItemPerlDefinitions[2] = " [
+    {
+        'Key' => 'Type',
+        'Input' => {
+            'Class' => '$GeneralCatalogClass',
+            'Required' => 1,
+            'Translation' => 1,
+            'Type' => 'GeneralCatalog'
+        },
+        'Searchable' => 1,
+        'CountMin' => 1,
+        'CountDefault' => 1,
+        'CountMax' => 3,
+        'Name' => 'Type',
+    },
+] ";
+
 my $YAMLObject = $Kernel::OM->Get('Kernel::System::YAML');
 
 my @ConfigItemDefinitions;
@@ -3864,6 +3882,37 @@ my @ImportDataTests = (
                     'invalid incident state',
                     '',
                     '',
+                ],
+                UserID => 1,
+            },
+        },
+    },
+
+    # Import without required attribute 'Type', an error should be generated (see bug#14098).
+    {
+        SourceImportData => {
+            ObjectData => {
+                ClassID                      => $ConfigItemClassIDs[2],
+                EmptyFieldsLeaveTheOldValues => '',
+            },
+            MappingObjectData => [
+                {
+                    Key        => 'Name',
+                    Identifier => 1,
+                },
+                {
+                    Key => 'DeplState',
+                },
+                {
+                    Key => 'InciState',
+                },
+            ],
+            ImportDataSave => {
+                TemplateID    => $TemplateIDs[25],
+                ImportDataRow => [
+                    'UnitTest - Importtest 5',
+                    'Production',
+                    'Operational',
                 ],
                 UserID => 1,
             },

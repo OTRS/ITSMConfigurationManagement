@@ -949,6 +949,31 @@ sub ImportDataSave {
         }
     }
 
+    my %MappingObjectKeyData = map { $_->{Key} => 1 } @MappingObjectList;
+
+    # Check if current definition of this class has required attribute which does not exist in mapping list.
+    for my $DefinitionRef ( @{ $DefinitionData->{DefinitionRef} } ) {
+        my $Key = $DefinitionRef->{Key};
+
+        if (
+            $DefinitionRef->{Input}->{Required}
+            && !$MappingObjectKeyData{$Key}
+            && (
+                !defined $DefinitionRef->{CountMin}
+                || ( defined $DefinitionRef->{CountMin} && $DefinitionRef->{CountMin} > 0 )
+            )
+            )
+        {
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
+                Priority => 'error',
+                Message =>
+                    "Can't import entity $Param{Counter}: "
+                    . "Attribute '$Key' is required, but does not exist in mapping list!",
+            );
+            return;
+        }
+    }
+
     # set up fields in VersionData and in the XML attributes
     my %XMLData2D;
     $RowIndex = 0;
