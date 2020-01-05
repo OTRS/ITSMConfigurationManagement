@@ -1,5 +1,5 @@
 # --
-# Copyright (C) 2001-2019 OTRS AG, https://otrs.com/
+# Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -923,8 +923,8 @@ sub ConfigItemSearchExtended {
         # search config items
         $ConfigItemLists{ConfigItem} = $Self->ConfigItemSearch(%Param);
 
-        return if !$ConfigItemLists{ConfigItem};
-        return if ref $ConfigItemLists{ConfigItem} ne 'ARRAY';
+        return    if !$ConfigItemLists{ConfigItem};
+        return    if ref $ConfigItemLists{ConfigItem} ne 'ARRAY';
         return [] if !@{ $ConfigItemLists{ConfigItem} };
     }
 
@@ -934,8 +934,8 @@ sub ConfigItemSearchExtended {
         # search versions
         $ConfigItemLists{Version} = $Self->VersionSearch(%Param);
 
-        return if !$ConfigItemLists{Version};
-        return if ref $ConfigItemLists{Version} ne 'ARRAY';
+        return    if !$ConfigItemLists{Version};
+        return    if ref $ConfigItemLists{Version} ne 'ARRAY';
         return [] if !@{ $ConfigItemLists{Version} };
     }
 
@@ -945,8 +945,8 @@ sub ConfigItemSearchExtended {
         # search xml versions
         my $XMLVersionList = $Self->_XMLVersionSearch(%Param);
 
-        return if !$XMLVersionList;
-        return if ref $XMLVersionList ne 'HASH';
+        return    if !$XMLVersionList;
+        return    if ref $XMLVersionList ne 'HASH';
         return [] if !%{$XMLVersionList};
 
         # get config item ids

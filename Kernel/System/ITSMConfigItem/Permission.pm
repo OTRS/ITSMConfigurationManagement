@@ -1,5 +1,5 @@
 # --
-# Copyright (C) 2001-2019 OTRS AG, https://otrs.com/
+# Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -69,7 +69,7 @@ sub Permission {
     # check for existence of ItemID or ClassID dependent
     # on the Scope
     if (
-        ( $Param{Scope} eq 'Class' && !$Param{ClassID} )
+        ( $Param{Scope} eq 'Class'   && !$Param{ClassID} )
         || ( $Param{Scope} eq 'Item' && !$Param{ItemID} )
         )
     {
