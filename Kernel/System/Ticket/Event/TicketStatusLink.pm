@@ -241,7 +241,7 @@ sub Run {
         # ticket closure or change to irrelevant type = might have to lower incident state of CIs
         my $RelevantNow;
         if (
-            ( $Param{Event} eq 'TicketStateUpdate'   && $NewTicketStateRelevant )
+            ( $Param{Event} eq 'TicketStateUpdate' && $NewTicketStateRelevant )
             || ( $Param{Event} eq 'TicketTypeUpdate' && $NewTicketTypeRelevant )
             )
         {

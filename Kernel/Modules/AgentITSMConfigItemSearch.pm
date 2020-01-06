@@ -1258,7 +1258,7 @@ sub _XMLSearchFormGet {
 
                         # get time elemet values
                         my ( $StartDateTime, $StopDateTime ) = @{ $Values->{'-between'} };
-                        my ( $StartDate, $StartTime ) = split( /\s/, $StartDateTime );
+                        my ( $StartDate,     $StartTime )    = split( /\s/, $StartDateTime );
                         my ( $StartYear, $StartMonth,  $StartDay )    = split( /-/,  $StartDate );
                         my ( $StartHour, $StartMinute, $StartSecond ) = split( /\:/, $StartTime );
 
