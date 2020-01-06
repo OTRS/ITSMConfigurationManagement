@@ -6,228 +6,228 @@
     <Framework>3.3.x</Framework>
     <PackageRequired Version="3.3.14">ITSMCore</PackageRequired>
     <Vendor>OTRS AG</Vendor>
-    <URL>http://otrs.org/</URL>
-    <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
+    <URL>https://otrs.com/</URL>
+    <License>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</License>
     <Description Lang="en">The OTRS ITSM Configuration Management package.</Description>
     <Description Lang="de">Das OTRS ITSM Configuration Management Paket.</Description>
     <Description Lang="es">El paquete OTRS ITSM Configuration Management.</Description>
     <Filelist>
-        <File Permission="755" Location="bin/otrs.ITSMConfigItemDelete.pl"/>
-        <File Permission="755" Location="bin/otrs.ITSMConfigItemListDuplicates.pl"/>
-        <File Permission="644" Location="doc/itsm-configuration-management-database.dia"/>
-        <File Permission="644" Location="doc/itsm-configuration-management-database.png"/>
-        <File Permission="644" Location="Kernel/Config/Files/ITSMConfigItem.xml"/>
-        <File Permission="644" Location="Kernel/Language/bg_ITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/Language/cs_ITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/Language/ct_ITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/Language/da_ITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/Language/de_ITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/Language/en_ITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/Language/en_CA_ITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/Language/en_GB_ITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/Language/es_ITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/Language/fa_ITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/Language/fr_ITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/Language/it_ITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/Language/ja_ITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/Language/ms_ITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/Language/nb_NO_ITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/Language/nl_ITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/Language/pl_ITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/Language/pt_BR_ITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/Language/pt_PT_ITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/Language/ru_ITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/Language/sv_ITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/Language/zh_CN_ITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/Language/zh_TW_ITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/Modules/AdminITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItemAdd.pm"/>
-        <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItemEdit.pm"/>
-        <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItemHistory.pm"/>
-        <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItemPrint.pm"/>
-        <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItemSearch.pm"/>
-        <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItemZoom.pm"/>
-        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutCustomer.pm"/>
-        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutCustomerCompany.pm"/>
-        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutDate.pm"/>
-        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutDateTime.pm"/>
-        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutDummy.pm"/>
-        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutGeneralCatalog.pm"/>
-        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutInteger.pm"/>
-        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutText.pm"/>
-        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutTextArea.pm"/>
-        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemMenuGeneric.pm"/>
-        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemOverviewSmall.pm"/>
-        <File Permission="644" Location="Kernel/Output/HTML/LayoutITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/Output/HTML/LinkObjectITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AAAITSMConfigItem.dtl"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AdminITSMConfigItem.dtl"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemAdd.dtl"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemEdit.dtl"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemHistory.dtl"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemOverviewNavBar.dtl"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemOverviewSmall.dtl"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemPrint.dtl"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemSearch.dtl"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemSearchResultPrint.dtl"/>
-        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemZoom.dtl"/>
-        <File Permission="644" Location="Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/System/ITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/System/ITSMConfigItem/Definition.pm"/>
-        <File Permission="644" Location="Kernel/System/ITSMConfigItem/History.pm"/>
-        <File Permission="644" Location="Kernel/System/ITSMConfigItem/Number.pm"/>
-        <File Permission="644" Location="Kernel/System/ITSMConfigItem/Permission.pm"/>
-        <File Permission="644" Location="Kernel/System/ITSMConfigItem/Version.pm"/>
-        <File Permission="644" Location="Kernel/System/ITSMConfigItem/XML.pm"/>
+        <File Permission="755" Location="bin/otrs.ITSMConfigItemDelete.pl" />
+        <File Permission="755" Location="bin/otrs.ITSMConfigItemListDuplicates.pl" />
+        <File Permission="644" Location="doc/itsm-configuration-management-database.dia" />
+        <File Permission="644" Location="doc/itsm-configuration-management-database.png" />
+        <File Permission="644" Location="Kernel/Config/Files/ITSMConfigItem.xml" />
+        <File Permission="644" Location="Kernel/Language/bg_ITSMConfigItem.pm" />
+        <File Permission="644" Location="Kernel/Language/cs_ITSMConfigItem.pm" />
+        <File Permission="644" Location="Kernel/Language/ct_ITSMConfigItem.pm" />
+        <File Permission="644" Location="Kernel/Language/da_ITSMConfigItem.pm" />
+        <File Permission="644" Location="Kernel/Language/de_ITSMConfigItem.pm" />
+        <File Permission="644" Location="Kernel/Language/en_ITSMConfigItem.pm" />
+        <File Permission="644" Location="Kernel/Language/en_CA_ITSMConfigItem.pm" />
+        <File Permission="644" Location="Kernel/Language/en_GB_ITSMConfigItem.pm" />
+        <File Permission="644" Location="Kernel/Language/es_ITSMConfigItem.pm" />
+        <File Permission="644" Location="Kernel/Language/fa_ITSMConfigItem.pm" />
+        <File Permission="644" Location="Kernel/Language/fr_ITSMConfigItem.pm" />
+        <File Permission="644" Location="Kernel/Language/it_ITSMConfigItem.pm" />
+        <File Permission="644" Location="Kernel/Language/ja_ITSMConfigItem.pm" />
+        <File Permission="644" Location="Kernel/Language/ms_ITSMConfigItem.pm" />
+        <File Permission="644" Location="Kernel/Language/nb_NO_ITSMConfigItem.pm" />
+        <File Permission="644" Location="Kernel/Language/nl_ITSMConfigItem.pm" />
+        <File Permission="644" Location="Kernel/Language/pl_ITSMConfigItem.pm" />
+        <File Permission="644" Location="Kernel/Language/pt_BR_ITSMConfigItem.pm" />
+        <File Permission="644" Location="Kernel/Language/pt_PT_ITSMConfigItem.pm" />
+        <File Permission="644" Location="Kernel/Language/ru_ITSMConfigItem.pm" />
+        <File Permission="644" Location="Kernel/Language/sv_ITSMConfigItem.pm" />
+        <File Permission="644" Location="Kernel/Language/zh_CN_ITSMConfigItem.pm" />
+        <File Permission="644" Location="Kernel/Language/zh_TW_ITSMConfigItem.pm" />
+        <File Permission="644" Location="Kernel/Modules/AdminITSMConfigItem.pm" />
+        <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItem.pm" />
+        <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItemAdd.pm" />
+        <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItemEdit.pm" />
+        <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItemHistory.pm" />
+        <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItemPrint.pm" />
+        <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItemSearch.pm" />
+        <File Permission="644" Location="Kernel/Modules/AgentITSMConfigItemZoom.pm" />
+        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutCustomer.pm" />
+        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutCustomerCompany.pm" />
+        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutDate.pm" />
+        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutDateTime.pm" />
+        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutDummy.pm" />
+        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutGeneralCatalog.pm" />
+        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutInteger.pm" />
+        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutText.pm" />
+        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemLayoutTextArea.pm" />
+        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemMenuGeneric.pm" />
+        <File Permission="644" Location="Kernel/Output/HTML/ITSMConfigItemOverviewSmall.pm" />
+        <File Permission="644" Location="Kernel/Output/HTML/LayoutITSMConfigItem.pm" />
+        <File Permission="644" Location="Kernel/Output/HTML/LinkObjectITSMConfigItem.pm" />
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AAAITSMConfigItem.dtl" />
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AdminITSMConfigItem.dtl" />
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemAdd.dtl" />
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemEdit.dtl" />
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemHistory.dtl" />
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemOverviewNavBar.dtl" />
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemOverviewSmall.dtl" />
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemPrint.dtl" />
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemSearch.dtl" />
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemSearchResultPrint.dtl" />
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentITSMConfigItemZoom.dtl" />
+        <File Permission="644" Location="Kernel/System/ImportExport/ObjectBackend/ITSMConfigItem.pm" />
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem.pm" />
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem/Definition.pm" />
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem/History.pm" />
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem/Number.pm" />
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem/Permission.pm" />
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem/Version.pm" />
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem/XML.pm" />
         <File Permission="644" Location="Kernel/System/ITSMConfigItem/Event/DoHistory.pm" />
-        <File Permission="644" Location="Kernel/System/ITSMConfigItem/Number/AutoIncrement.pm"/>
-        <File Permission="644" Location="Kernel/System/ITSMConfigItem/Permission/ClassGroupCheck.pm"/>
-        <File Permission="644" Location="Kernel/System/ITSMConfigItem/Permission/ItemClassGroupCheck.pm"/>
-        <File Permission="644" Location="Kernel/System/ITSMConfigItem/XML/Type/Customer.pm"/>
-        <File Permission="644" Location="Kernel/System/ITSMConfigItem/XML/Type/CustomerCompany.pm"/>
-        <File Permission="644" Location="Kernel/System/ITSMConfigItem/XML/Type/Date.pm"/>
-        <File Permission="644" Location="Kernel/System/ITSMConfigItem/XML/Type/DateTime.pm"/>
-        <File Permission="644" Location="Kernel/System/ITSMConfigItem/XML/Type/Dummy.pm"/>
-        <File Permission="644" Location="Kernel/System/ITSMConfigItem/XML/Type/GeneralCatalog.pm"/>
-        <File Permission="644" Location="Kernel/System/ITSMConfigItem/XML/Type/Integer.pm"/>
-        <File Permission="644" Location="Kernel/System/ITSMConfigItem/XML/Type/Text.pm"/>
-        <File Permission="644" Location="Kernel/System/ITSMConfigItem/XML/Type/TextArea.pm"/>
-        <File Permission="644" Location="Kernel/System/LinkObject/ITSMConfigItem.pm"/>
-        <File Permission="644" Location="Kernel/System/Service/PreferencesDB.pm"/>
-        <File Permission="644" Location="Kernel/System/Stats/Dynamic/ITSMConfigItem.pm"/>
-        <File Permission="644" Location="scripts/test/ImportExportObjectITSMConfigItem.t"/>
-        <File Permission="644" Location="scripts/test/ITSMConfigItem.t"/>
-        <File Permission="644" Location="scripts/test/ITSMConfigItemUniqueCIName.t"/>
-        <File Permission="644" Location="var/httpd/htdocs/js/ITSM.Agent.ConfigItem.Search.js"/>
-        <File Permission="644" Location="var/packagesetup/ITSMConfigurationManagement.pm"/>
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem/Number/AutoIncrement.pm" />
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem/Permission/ClassGroupCheck.pm" />
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem/Permission/ItemClassGroupCheck.pm" />
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem/XML/Type/Customer.pm" />
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem/XML/Type/CustomerCompany.pm" />
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem/XML/Type/Date.pm" />
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem/XML/Type/DateTime.pm" />
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem/XML/Type/Dummy.pm" />
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem/XML/Type/GeneralCatalog.pm" />
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem/XML/Type/Integer.pm" />
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem/XML/Type/Text.pm" />
+        <File Permission="644" Location="Kernel/System/ITSMConfigItem/XML/Type/TextArea.pm" />
+        <File Permission="644" Location="Kernel/System/LinkObject/ITSMConfigItem.pm" />
+        <File Permission="644" Location="Kernel/System/Service/PreferencesDB.pm" />
+        <File Permission="644" Location="Kernel/System/Stats/Dynamic/ITSMConfigItem.pm" />
+        <File Permission="644" Location="scripts/test/ImportExportObjectITSMConfigItem.t" />
+        <File Permission="644" Location="scripts/test/ITSMConfigItem.t" />
+        <File Permission="644" Location="scripts/test/ITSMConfigItemUniqueCIName.t" />
+        <File Permission="644" Location="var/httpd/htdocs/js/ITSM.Agent.ConfigItem.Search.js" />
+        <File Permission="644" Location="var/packagesetup/ITSMConfigurationManagement.pm" />
     </Filelist>
     <DatabaseInstall Type="post">
         <TableCreate Name="configitem">
-            <Column Name="id" Required="true" PrimaryKey="true" AutoIncrement="true" Type="BIGINT"/>
-            <Column Name="configitem_number" Required="true" Size="100" Type="VARCHAR"/>
-            <Column Name="class_id" Required="true" Type="INTEGER"/>
-            <Column Name="last_version_id" Required="false" Type="BIGINT"/>
-            <Column Name="cur_depl_state_id" Required="false" Type="INTEGER"/>
-            <Column Name="cur_inci_state_id" Required="false" Type="INTEGER"/>
-            <Column Name="create_time" Required="true" Type="DATE"/>
-            <Column Name="create_by" Required="true" Type="INTEGER"/>
-            <Column Name="change_time" Required="true" Type="DATE"/>
-            <Column Name="change_by" Required="true" Type="INTEGER"/>
+            <Column Name="id" Required="true" PrimaryKey="true" AutoIncrement="true" Type="BIGINT" />
+            <Column Name="configitem_number" Required="true" Size="100" Type="VARCHAR" />
+            <Column Name="class_id" Required="true" Type="INTEGER" />
+            <Column Name="last_version_id" Required="false" Type="BIGINT" />
+            <Column Name="cur_depl_state_id" Required="false" Type="INTEGER" />
+            <Column Name="cur_inci_state_id" Required="false" Type="INTEGER" />
+            <Column Name="create_time" Required="true" Type="DATE" />
+            <Column Name="create_by" Required="true" Type="INTEGER" />
+            <Column Name="change_time" Required="true" Type="DATE" />
+            <Column Name="change_by" Required="true" Type="INTEGER" />
             <Unique>
-                <UniqueColumn Name="configitem_number"/>
+                <UniqueColumn Name="configitem_number" />
             </Unique>
             <Index Name="configitem_class_id">
-                <IndexColumn Name="class_id"/>
+                <IndexColumn Name="class_id" />
             </Index>
             <Index Name="configitem_last_version_id">
-                <IndexColumn Name="last_version_id"/>
+                <IndexColumn Name="last_version_id" />
             </Index>
             <Index Name="configitem_cur_depl_state_id">
-                <IndexColumn Name="cur_depl_state_id"/>
+                <IndexColumn Name="cur_depl_state_id" />
             </Index>
             <Index Name="configitem_cur_inci_state_id">
-                <IndexColumn Name="cur_inci_state_id"/>
+                <IndexColumn Name="cur_inci_state_id" />
             </Index>
             <ForeignKey ForeignTable="general_catalog">
-                <Reference Local="class_id" Foreign="id"/>
-                <Reference Local="cur_depl_state_id" Foreign="id"/>
-                <Reference Local="cur_inci_state_id" Foreign="id"/>
+                <Reference Local="class_id" Foreign="id" />
+                <Reference Local="cur_depl_state_id" Foreign="id" />
+                <Reference Local="cur_inci_state_id" Foreign="id" />
             </ForeignKey>
             <ForeignKey ForeignTable="users">
-                <Reference Local="create_by" Foreign="id"/>
-                <Reference Local="change_by" Foreign="id"/>
+                <Reference Local="create_by" Foreign="id" />
+                <Reference Local="change_by" Foreign="id" />
             </ForeignKey>
         </TableCreate>
         <TableCreate Name="configitem_definition">
-            <Column Name="id" Required="true" PrimaryKey="true" AutoIncrement="true" Type="INTEGER"/>
-            <Column Name="class_id" Required="true" Type="INTEGER"/>
-            <Column Name="configitem_definition" Required="true" Type="LONGBLOB"/>
-            <Column Name="version" Required="true" Type="INTEGER"/>
-            <Column Name="create_time" Required="true" Type="DATE"/>
-            <Column Name="create_by" Required="true" Type="INTEGER"/>
+            <Column Name="id" Required="true" PrimaryKey="true" AutoIncrement="true" Type="INTEGER" />
+            <Column Name="class_id" Required="true" Type="INTEGER" />
+            <Column Name="configitem_definition" Required="true" Type="LONGBLOB" />
+            <Column Name="version" Required="true" Type="INTEGER" />
+            <Column Name="create_time" Required="true" Type="DATE" />
+            <Column Name="create_by" Required="true" Type="INTEGER" />
             <ForeignKey ForeignTable="general_catalog">
-                <Reference Local="class_id" Foreign="id"/>
+                <Reference Local="class_id" Foreign="id" />
             </ForeignKey>
             <ForeignKey ForeignTable="users">
-                <Reference Local="create_by" Foreign="id"/>
+                <Reference Local="create_by" Foreign="id" />
             </ForeignKey>
         </TableCreate>
         <TableCreate Name="configitem_version">
-            <Column Name="id" Required="true" PrimaryKey="true" AutoIncrement="true" Type="BIGINT"/>
-            <Column Name="configitem_id" Required="true" Type="BIGINT"/>
-            <Column Name="name" Required="true" Size="250" Type="VARCHAR"/>
-            <Column Name="definition_id" Required="true" Type="INTEGER"/>
-            <Column Name="depl_state_id" Required="true" Type="INTEGER"/>
-            <Column Name="inci_state_id" Required="false" Type="INTEGER"/>
-            <Column Name="create_time" Required="true" Type="DATE"/>
-            <Column Name="create_by" Required="true" Type="INTEGER"/>
+            <Column Name="id" Required="true" PrimaryKey="true" AutoIncrement="true" Type="BIGINT" />
+            <Column Name="configitem_id" Required="true" Type="BIGINT" />
+            <Column Name="name" Required="true" Size="250" Type="VARCHAR" />
+            <Column Name="definition_id" Required="true" Type="INTEGER" />
+            <Column Name="depl_state_id" Required="true" Type="INTEGER" />
+            <Column Name="inci_state_id" Required="false" Type="INTEGER" />
+            <Column Name="create_time" Required="true" Type="DATE" />
+            <Column Name="create_by" Required="true" Type="INTEGER" />
             <Index Name="configitem_version_configitem_id">
-                <IndexColumn Name="configitem_id"/>
+                <IndexColumn Name="configitem_id" />
             </Index>
             <Index Name="configitem_version_depl_state_id">
-                <IndexColumn Name="depl_state_id"/>
+                <IndexColumn Name="depl_state_id" />
             </Index>
             <Index Name="configitem_version_inci_state_id">
-                <IndexColumn Name="inci_state_id"/>
+                <IndexColumn Name="inci_state_id" />
             </Index>
             <ForeignKey ForeignTable="configitem">
-                <Reference Local="configitem_id" Foreign="id"/>
+                <Reference Local="configitem_id" Foreign="id" />
             </ForeignKey>
             <ForeignKey ForeignTable="configitem_definition">
-                <Reference Local="definition_id" Foreign="id"/>
+                <Reference Local="definition_id" Foreign="id" />
             </ForeignKey>
             <ForeignKey ForeignTable="general_catalog">
-                <Reference Local="depl_state_id" Foreign="id"/>
-                <Reference Local="inci_state_id" Foreign="id"/>
+                <Reference Local="depl_state_id" Foreign="id" />
+                <Reference Local="inci_state_id" Foreign="id" />
             </ForeignKey>
             <ForeignKey ForeignTable="users">
-                <Reference Local="create_by" Foreign="id"/>
+                <Reference Local="create_by" Foreign="id" />
             </ForeignKey>
         </TableCreate>
         <TableCreate Name="configitem_counter">
-            <Column Name="class_id" Required="true" PrimaryKey="true" Type="INTEGER"/>
-            <Column Name="counter_type" Required="true" Size="50" Type="VARCHAR"/>
-            <Column Name="counter" Required="true" Size="50" Type="VARCHAR"/>
+            <Column Name="class_id" Required="true" PrimaryKey="true" Type="INTEGER" />
+            <Column Name="counter_type" Required="true" Size="50" Type="VARCHAR" />
+            <Column Name="counter" Required="true" Size="50" Type="VARCHAR" />
             <ForeignKey ForeignTable="general_catalog">
-                <Reference Local="class_id" Foreign="id"/>
+                <Reference Local="class_id" Foreign="id" />
             </ForeignKey>
         </TableCreate>
         <TableCreate Name="configitem_history_type">
-            <Column Name="id" Required="true" PrimaryKey="true" AutoIncrement="true" Type="INTEGER"/>
-            <Column Name="name" Required="true" Size="255" Type="VARCHAR"/>
-            <Column Name="comments" Size="255" Type="VARCHAR"/>
-            <Column Name="valid_id" Required="true" Type="SMALLINT"/>
-            <Column Name="create_time" Required="true" Type="DATE"/>
-            <Column Name="create_by" Required="true" Type="INTEGER"/>
-            <Column Name="change_time" Type="DATE"/>
-            <Column Name="change_by" Type="INTEGER"/>
+            <Column Name="id" Required="true" PrimaryKey="true" AutoIncrement="true" Type="INTEGER" />
+            <Column Name="name" Required="true" Size="255" Type="VARCHAR" />
+            <Column Name="comments" Size="255" Type="VARCHAR" />
+            <Column Name="valid_id" Required="true" Type="SMALLINT" />
+            <Column Name="create_time" Required="true" Type="DATE" />
+            <Column Name="create_by" Required="true" Type="INTEGER" />
+            <Column Name="change_time" Type="DATE" />
+            <Column Name="change_by" Type="INTEGER" />
             <Unique Name="configitem_history_type_name">
-                <UniqueColumn Name="name"/>
+                <UniqueColumn Name="name" />
             </Unique>
             <ForeignKey ForeignTable="valid">
-                <Reference Local="valid_id" Foreign="id"/>
+                <Reference Local="valid_id" Foreign="id" />
             </ForeignKey>
             <ForeignKey ForeignTable="users">
-                <Reference Local="create_by" Foreign="id"/>
-                <Reference Local="change_by" Foreign="id"/>
+                <Reference Local="create_by" Foreign="id" />
+                <Reference Local="change_by" Foreign="id" />
             </ForeignKey>
         </TableCreate>
         <TableCreate Name="configitem_history">
-            <Column Name="id" Required="true" PrimaryKey="true" AutoIncrement="true" Type="BIGINT"/>
-            <Column Name="configitem_id" Required="true" Type="BIGINT"/>
-            <Column Name="type_id" Required="true" Type="INTEGER"/>
-            <Column Name="content" Required="true" Size="255" Type="VARCHAR"/>
-            <Column Name="create_time" Required="true" Type="DATE"/>
-            <Column Name="create_by" Required="true" Type="INTEGER"/>
+            <Column Name="id" Required="true" PrimaryKey="true" AutoIncrement="true" Type="BIGINT" />
+            <Column Name="configitem_id" Required="true" Type="BIGINT" />
+            <Column Name="type_id" Required="true" Type="INTEGER" />
+            <Column Name="content" Required="true" Size="255" Type="VARCHAR" />
+            <Column Name="create_time" Required="true" Type="DATE" />
+            <Column Name="create_by" Required="true" Type="INTEGER" />
             <ForeignKey ForeignTable="configitem">
-                <Reference Local="configitem_id" Foreign="id"/>
+                <Reference Local="configitem_id" Foreign="id" />
             </ForeignKey>
             <ForeignKey ForeignTable="configitem_history_type">
-                <Reference Local="type_id" Foreign="id"/>
+                <Reference Local="type_id" Foreign="id" />
             </ForeignKey>
             <ForeignKey ForeignTable="users">
-                <Reference Local="create_by" Foreign="id"/>
+                <Reference Local="create_by" Foreign="id" />
             </ForeignKey>
         </TableCreate>
         <Insert Table="general_catalog">
@@ -1030,37 +1030,37 @@
     </DatabaseInstall>
     <DatabaseUpgrade Type="post">
         <TableCreate Name="configitem_history_type" Version="1.3.71">
-            <Column Name="id" Required="true" PrimaryKey="true" AutoIncrement="true" Type="INTEGER"/>
-            <Column Name="name" Required="true" Size="255" Type="VARCHAR"/>
-            <Column Name="comments" Size="255" Type="VARCHAR"/>
-            <Column Name="valid_id" Required="true" Type="SMALLINT"/>
-            <Column Name="create_time" Required="true" Type="DATE"/>
-            <Column Name="create_by" Required="true" Type="INTEGER"/>
-            <Column Name="change_time" Type="DATE"/>
-            <Column Name="change_by" Type="INTEGER"/>
+            <Column Name="id" Required="true" PrimaryKey="true" AutoIncrement="true" Type="INTEGER" />
+            <Column Name="name" Required="true" Size="255" Type="VARCHAR" />
+            <Column Name="comments" Size="255" Type="VARCHAR" />
+            <Column Name="valid_id" Required="true" Type="SMALLINT" />
+            <Column Name="create_time" Required="true" Type="DATE" />
+            <Column Name="create_by" Required="true" Type="INTEGER" />
+            <Column Name="change_time" Type="DATE" />
+            <Column Name="change_by" Type="INTEGER" />
             <Unique Name="configitem_history_type_name">
-                <UniqueColumn Name="name"/>
+                <UniqueColumn Name="name" />
             </Unique>
             <ForeignKey ForeignTable="valid">
-                <Reference Local="valid_id" Foreign="id"/>
+                <Reference Local="valid_id" Foreign="id" />
             </ForeignKey>
             <ForeignKey ForeignTable="users">
-                <Reference Local="create_by" Foreign="id"/>
-                <Reference Local="change_by" Foreign="id"/>
+                <Reference Local="create_by" Foreign="id" />
+                <Reference Local="change_by" Foreign="id" />
             </ForeignKey>
         </TableCreate>
         <TableCreate Name="configitem_history" Version="1.3.71">
-            <Column Name="id" Required="true" PrimaryKey="true" AutoIncrement="true" Type="BIGINT"/>
-            <Column Name="configitem_id" Required="true" Type="BIGINT"/>
-            <Column Name="type_id" Required="true" Type="INTEGER"/>
-            <Column Name="content" Required="true" Size="255" Type="VARCHAR"/>
-            <Column Name="create_time" Required="true" Type="DATE"/>
-            <Column Name="create_by" Required="true" Type="INTEGER"/>
+            <Column Name="id" Required="true" PrimaryKey="true" AutoIncrement="true" Type="BIGINT" />
+            <Column Name="configitem_id" Required="true" Type="BIGINT" />
+            <Column Name="type_id" Required="true" Type="INTEGER" />
+            <Column Name="content" Required="true" Size="255" Type="VARCHAR" />
+            <Column Name="create_time" Required="true" Type="DATE" />
+            <Column Name="create_by" Required="true" Type="INTEGER" />
             <ForeignKey ForeignTable="configitem">
-                <Reference Local="configitem_id" Foreign="id"/>
+                <Reference Local="configitem_id" Foreign="id" />
             </ForeignKey>
             <ForeignKey ForeignTable="configitem_history_type">
-                <Reference Local="type_id" Foreign="id"/>
+                <Reference Local="type_id" Foreign="id" />
             </ForeignKey>
         </TableCreate>
         <Insert Table="general_catalog" Version="1.1.90">
@@ -1178,12 +1178,12 @@
         </Insert>
     </DatabaseUpgrade>
     <DatabaseUninstall Type="pre">
-        <TableDrop Name="configitem_counter"/>
-        <TableDrop Name="configitem_version"/>
-        <TableDrop Name="configitem_definition"/>
-        <TableDrop Name="configitem_history"/>
-        <TableDrop Name="configitem_history_type"/>
-        <TableDrop Name="configitem"/>
+        <TableDrop Name="configitem_counter" />
+        <TableDrop Name="configitem_version" />
+        <TableDrop Name="configitem_definition" />
+        <TableDrop Name="configitem_history" />
+        <TableDrop Name="configitem_history_type" />
+        <TableDrop Name="configitem" />
     </DatabaseUninstall>
     <CodeInstall Type="post"><![CDATA[
 

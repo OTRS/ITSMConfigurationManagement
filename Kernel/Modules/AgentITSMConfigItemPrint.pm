@@ -1,10 +1,9 @@
 # --
-# Kernel/Modules/AgentITSMConfigItemPrint.pm - print layout for itsm config item agent interface
-# Copyright (C) 2001-2015 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
-# the enclosed file COPYING for license information (AGPL). If you
-# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# the enclosed file COPYING for license information (GPL). If you
+# did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.
 # --
 
 package Kernel::Modules::AgentITSMConfigItemPrint;
@@ -304,7 +303,7 @@ sub Run {
             && $Version->{XMLDefinition}
             && $Version->{XMLData}
             && ref $Version->{XMLDefinition} eq 'ARRAY'
-            && ref $Version->{XMLData}       eq 'ARRAY'
+            && ref $Version->{XMLData} eq 'ARRAY'
             && $Version->{XMLData}->[1]
             && ref $Version->{XMLData}->[1] eq 'HASH'
             && $Version->{XMLData}->[1]->{Version}
@@ -513,7 +512,7 @@ sub _PDFOutputLinkedObjects {
     for my $LinkTypeLinkDirection ( sort { lc $a cmp lc $b } keys %{ $Param{LinkData} } ) {
 
         # investigate link type name
-        my @LinkData = split q{::}, $LinkTypeLinkDirection;
+        my @LinkData     = split q{::}, $LinkTypeLinkDirection;
         my $LinkTypeName = $TypeList{ $LinkData[0] }->{ $LinkData[1] . 'Name' };
         $LinkTypeName = $Self->{LayoutObject}->{LanguageObject}->Get($LinkTypeName);
 
@@ -759,7 +758,7 @@ sub _PDFOutputVersionInfos {
         && $Param{Version}->{XMLDefinition}
         && $Param{Version}->{XMLData}
         && ref $Param{Version}->{XMLDefinition} eq 'ARRAY'
-        && ref $Param{Version}->{XMLData}       eq 'ARRAY'
+        && ref $Param{Version}->{XMLData} eq 'ARRAY'
         && $Param{Version}->{XMLData}->[1]
         && ref $Param{Version}->{XMLData}->[1] eq 'HASH'
         && $Param{Version}->{XMLData}->[1]->{Version}
