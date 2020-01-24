@@ -337,7 +337,7 @@ sub Data {
     $Self->{Translation}->{'Module to generate ITSM config item statistics.'} = 'Módulo para gerar estatísticas do item de configuração ITSM.';
     $Self->{Translation}->{'Object backend module registration for the import/export module.'} =
         'Modulo de registo de objeto para o módulo de importação/exportação.';
-    $Self->{Translation}->{'Overview.'} = '';
+    $Self->{Translation}->{'Overview.'} = 'Visão Geral.';
     $Self->{Translation}->{'Parameters for the dashboard backend of the customer company config item overview of the agent interface . "Limit" is the number of entries shown by default. "Group" is used to restrict the access to the plugin (e. g. Group: admin;group1;group2;). "Default" determines if the plugin is enabled by default or if the user needs to enable it manually. "CacheTTLLocal" is the cache time in minutes for the plugin.'} =
         '';
     $Self->{Translation}->{'Parameters for the deployment states color in the preferences view of the agent interface.'} =

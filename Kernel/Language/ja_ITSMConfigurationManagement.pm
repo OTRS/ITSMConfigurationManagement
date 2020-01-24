@@ -135,9 +135,9 @@ sub Data {
     # Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
     $Self->{Translation}->{'Can\'t show item, no access rights for ConfigItem are given!'} =
         '構成アイテムを表示できません。構成アイテムのアクセス権は与えられていません！';
-    $Self->{Translation}->{'operational'} = '';
-    $Self->{Translation}->{'warning'} = '';
-    $Self->{Translation}->{'incident'} = '';
+    $Self->{Translation}->{'operational'} = '通常運用';
+    $Self->{Translation}->{'warning'} = '警告';
+    $Self->{Translation}->{'incident'} = 'インシデント';
     $Self->{Translation}->{'The deployment state of this config item'} = 'この構成アイテムのデプロイ・ステータス';
     $Self->{Translation}->{'The incident state of this config item'} = 'この構成アイテムのインシデント状態';
 
@@ -154,7 +154,7 @@ sub Data {
 
     # Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
     $Self->{Translation}->{'Model'} = 'モデル';
-    $Self->{Translation}->{'Customer Company'} = '';
+    $Self->{Translation}->{'Customer Company'} = '顧客企業';
     $Self->{Translation}->{'Serial Number'} = 'シリアルナンバー';
     $Self->{Translation}->{'CPU'} = 'CPU';
     $Self->{Translation}->{'Ram'} = 'RAM';
@@ -354,7 +354,7 @@ CIクラスのエントリがない場合は、ITSMConfigItem :: Frontend :: Age
         'ジェネラルカタログ属性のパーミッショングループ　の設定値';
     $Self->{Translation}->{'Parameters for the pages (in which the configuration items are shown).'} =
         'ページのパラメータ（構成アイテムが表示されます）';
-    $Self->{Translation}->{'Permission Group'} = '';
+    $Self->{Translation}->{'Permission Group'} = '権限グループ';
     $Self->{Translation}->{'Required permissions to use the ITSM configuration item screen in the agent interface.'} =
         '担当者Webインターフェイスで構成アイテム画面を使用するために必要な権限';
     $Self->{Translation}->{'Required permissions to use the ITSM configuration item search screen in the agent interface.'} =

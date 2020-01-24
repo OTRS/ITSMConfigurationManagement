@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ITSMConfigurationManagement\n"
-"POT-Creation-Date: 2019-06-25 12:05+0000\n"
+"POT-Creation-Date: 2020-01-24 12:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -332,15 +332,15 @@ msgstr "構成アイテムを表示できません。構成アイテムのアク
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
 msgid "operational"
-msgstr ""
+msgstr "通常運用"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
 msgid "warning"
-msgstr ""
+msgstr "警告"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
 msgid "incident"
-msgstr ""
+msgstr "インシデント"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
 msgid "The deployment state of this config item"
@@ -376,7 +376,7 @@ msgstr "モデル"
 
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
 msgid "Customer Company"
-msgstr ""
+msgstr "顧客企業"
 
 #. Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
 msgid "Serial Number"
@@ -987,7 +987,7 @@ msgstr "ページのパラメータ（構成アイテムが表示されます）
 
 #. SysConfig
 msgid "Permission Group"
-msgstr ""
+msgstr "権限グループ"
 
 #. SysConfig
 msgid "Required permissions to use the ITSM configuration item screen in the agent interface."
