@@ -304,6 +304,7 @@ $ConfigItemPerlDefinitions[1] = " [
             Type      => 'Text',
             Size      => 50,
             MaxLength => 50,
+            Required  => 1,
         },
         CountMax => 10,
         Sub => [

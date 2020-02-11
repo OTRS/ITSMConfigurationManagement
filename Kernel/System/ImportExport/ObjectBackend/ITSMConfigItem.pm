@@ -949,15 +949,13 @@ sub ImportDataSave {
         }
     }
 
-    my %MappingObjectKeyData = map { $_->{Key} => 1 } @MappingObjectList;
-
     # Check if current definition of this class has required attribute which does not exist in mapping list.
     for my $DefinitionRef ( @{ $DefinitionData->{DefinitionRef} } ) {
         my $Key = $DefinitionRef->{Key};
 
         if (
             $DefinitionRef->{Input}->{Required}
-            && !$MappingObjectKeyData{$Key}
+            && !scalar( grep { $_->{Key} =~ /\Q$DefinitionRef->{Key}\E(::(\d+))?$/ } @MappingObjectList )
             && (
                 !defined $DefinitionRef->{CountMin}
                 || ( defined $DefinitionRef->{CountMin} && $DefinitionRef->{CountMin} > 0 )
