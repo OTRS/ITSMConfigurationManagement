@@ -225,6 +225,11 @@ sub ImportValuePrepare {
 
     return if !defined $Param{Value};
 
+    # Just return empty value if item is not required.
+    if ( $Param{Value} eq '' && !$Param{Item}->{Input}->{Required} ) {
+        return $Param{Value};
+    }
+
     # get item list
     my $ItemList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
         Class => $Param{Item}->{Input}->{Class} || '',
@@ -238,7 +243,7 @@ sub ImportValuePrepare {
     if ( !$GeneralCatalogID ) {
         $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
-            Message  => "General catalog lookup of'$Param{Value}' failed!",
+            Message  => "General catalog lookup of '$Param{Value}' failed!",
         );
         return;
     }
