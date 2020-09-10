@@ -1,14 +1,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ITSMConfigurationManagement\n"
-"POT-Creation-Date: 2019-06-25 12:05+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2020-01-24 12:09+0000\n"
+"PO-Revision-Date: 2020-09-10 14:20+0000\n"
+"Last-Translator: Balázs Úr <balazs.ur@otrs.com>\n"
+"Language-Team: Hungarian <https://translate.app.otrs.com/projects/otrs-6/"
+"itsm-configuration-management/hu/>\n"
+"Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.1.1\n"
 
 #. Template: AdminITSMConfigItem
 msgid "Config Item Management"
@@ -68,7 +71,8 @@ msgstr "Szűrő az osztályokhoz"
 
 #. Template: AgentITSMConfigItemAdd
 msgid "Select a Class from the list to create a new Config Item."
-msgstr "Válasszon egy osztályt a listából egy új konfigurációelem létrehozásához."
+msgstr ""
+"Válasszon egy osztályt a listából egy új konfigurációelem létrehozásához."
 
 #. Template: AgentITSMConfigItemBulk
 msgid "ITSM ConfigItem Bulk Action"
@@ -103,7 +107,8 @@ msgid "The name of this config item"
 msgstr "A konfigurációelem neve"
 
 #. Template: AgentITSMConfigItemEdit
-msgid "Name is already in use by the ConfigItems with the following Number(s): %s"
+msgid ""
+"Name is already in use by the ConfigItems with the following Number(s): %s"
 msgstr "A nevet már használják a konfigurációelemek a következő számokkal: %s"
 
 #. Template: AgentITSMConfigItemHistory
@@ -220,7 +225,9 @@ msgstr "Nem található verzió a(z) %s konfigurációelem-azonosítónál!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
 msgid "No ConfigItemID, DuplicateID or ClassID is given!"
-msgstr "Nincs konfigurációelem-azonosító, kettőzésazonosító vagy osztályazonosító megadva!"
+msgstr ""
+"Nincs konfigurációelem-azonosító, kettőzésazonosító vagy osztályazonosító "
+"megadva!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemEdit.pm
 msgid "No access is given!"
@@ -232,11 +239,14 @@ msgstr "Nincs meghatározás meghatározva a(z) %s osztályhoz!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Can't show history, no ConfigItemID is given!"
-msgstr "Nem lehet megjeleníteni az előzményeket, nincs konfigurációelem-azonosító megadva!"
+msgstr ""
+"Nem lehet megjeleníteni az előzményeket, nincs konfigurációelem-azonosító "
+"megadva!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "Can't show history, no access rights given!"
-msgstr "Nem lehet megjeleníteni az előzményeket, nincsenek hozzáférési jogok megadva!"
+msgstr ""
+"Nem lehet megjeleníteni az előzményeket, nincsenek hozzáférési jogok megadva!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemHistory.pm
 msgid "New ConfigItem (ID=%s)"
@@ -288,7 +298,9 @@ msgstr "Nincs konfigurációelem-azonosító vagy verzióazonosító megadva!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "Can't show config item, no access rights given!"
-msgstr "Nem lehet megjeleníteni a konfigurációelemet, nincsenek hozzáférési jogok megadva!"
+msgstr ""
+"Nem lehet megjeleníteni a konfigurációelemet, nincsenek hozzáférési jogok "
+"megadva!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemPrint.pm
 msgid "ConfigItemID %s not found in database!"
@@ -328,7 +340,9 @@ msgstr "Konfigurációelem keresési eredmények"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
 msgid "Can't show item, no access rights for ConfigItem are given!"
-msgstr "Nem lehet megjeleníteni az elemet, nincsenek hozzáférési jogok megadva a konfigurációelemhez!"
+msgstr ""
+"Nem lehet megjeleníteni az elemet, nincsenek hozzáférési jogok megadva a "
+"konfigurációelemhez!"
 
 #. Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
 msgid "operational"
@@ -755,8 +769,14 @@ msgid "CMDB Settings"
 msgstr "CMDB beállítások"
 
 #. SysConfig
-msgid "Check for a unique name only within the same ConfigItem class ('class') or globally ('global'), which means every existing ConfigItem is taken into account when looking for duplicates."
-msgstr "Egyedi név ellenőrzése kizárólag ugyanabban a konfigurációelem osztályban („osztály”) vagy globálisan („globális”), amely azt jelenti, hogy minden meglévő konfigurációelem egy fiókba lesz felvéve a kettőzések keresésekor."
+msgid ""
+"Check for a unique name only within the same ConfigItem class ('class') or "
+"globally ('global'), which means every existing ConfigItem is taken into "
+"account when looking for duplicates."
+msgstr ""
+"Egyedi név ellenőrzése kizárólag ugyanabban a konfigurációelem osztályban "
+"(„osztály”) vagy globálisan („globális”), amely azt jelenti, hogy minden "
+"meglévő konfigurációelem figyelembe lesz véve a kettőzések keresésekor."
 
 #. SysConfig
 msgid "Config Items"
@@ -771,8 +791,12 @@ msgid "Config item edit."
 msgstr "Konfigurációelem szerkesztése."
 
 #. SysConfig
-msgid "Config item event module that enables logging to history in the agent interface."
-msgstr "Konfigurációelem esemény modul, amely engedélyezi a naplózást az előzményekbe az ügyintézői felületen."
+msgid ""
+"Config item event module that enables logging to history in the agent "
+"interface."
+msgstr ""
+"Konfigurációelem esemény modul, amely engedélyezi a naplózást az "
+"előzményekbe az ügyintézői felületen."
 
 #. SysConfig
 msgid "Config item history."
@@ -808,59 +832,111 @@ msgstr "Konfigurációelem tömeges modul."
 
 #. SysConfig
 msgid "Configuration item search backend router of the agent interface."
-msgstr "Az ügyintézői felület konfigurációelem keresési háttérprogram útválasztója."
+msgstr ""
+"Az ügyintézői felület konfigurációelem keresési háttérprogram útválasztója."
 
 #. SysConfig
 msgid "Create and manage the definitions for Configuration Items."
 msgstr "Meghatározások létrehozása és kezelése a konfigurációelemeknél."
 
 #. SysConfig
-msgid "Define Actions where a settings button is available in the linked objects widget (LinkObject::ViewMode = \"complex\"). Please note that these Actions must have registered the following JS and CSS files: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js and Core.Agent.LinkObject.js."
-msgstr "Műveletek meghatározása, ahol egy beállítások gomb érhető el a kapcsolt objektumok felületi elemen (LinkObject::ViewMode = „összetett”). Ne feledje, hogy ezeknek a műveleteknek rendelkezniük kell a következő JS és CSS fájlok regisztrálásával: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js és Core.Agent.LinkObject.js."
+msgid ""
+"Define Actions where a settings button is available in the linked objects "
+"widget (LinkObject::ViewMode = \"complex\"). Please note that these Actions "
+"must have registered the following JS and CSS files: Core.AllocationList."
+"css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent."
+"TableFilters.js and Core.Agent.LinkObject.js."
+msgstr ""
+"Műveletek meghatározása, ahol egy beállítások gomb érhető el a kapcsolt "
+"objektumok felületi elemen (LinkObject::ViewMode = „összetett”). Ne feledje, "
+"hogy ezeknek a műveleteknek rendelkezniük kell a következő JS és CSS fájlok "
+"regisztrálásával: Core.AllocationList.css, Core.UI.AllocationList.js, Core."
+"UI.Table.Sort.js, Core.Agent.TableFilters.js és Core.Agent.LinkObject.js."
 
 #. SysConfig
-msgid "Defines Required permissions to create ITSM configuration items using the Generic Interface."
-msgstr "Meghatározza a szükséges jogosultságokat az ITSM konfigurációelemek létrehozásához az általános felület használatával."
+msgid ""
+"Defines Required permissions to create ITSM configuration items using the "
+"Generic Interface."
+msgstr ""
+"Meghatározza a szükséges jogosultságokat az ITSM konfigurációelemek "
+"létrehozásához az általános felület használatával."
 
 #. SysConfig
-msgid "Defines Required permissions to delete ITSM configuration items using the Generic Interface."
-msgstr "Meghatározza a szükséges jogosultságokat az ITSM konfigurációelemek törléséhez az általános felület használatával."
+msgid ""
+"Defines Required permissions to delete ITSM configuration items using the "
+"Generic Interface."
+msgstr ""
+"Meghatározza a szükséges jogosultságokat az ITSM konfigurációelemek "
+"törléséhez az általános felület használatával."
 
 #. SysConfig
-msgid "Defines Required permissions to get ITSM configuration items using the Generic Interface."
-msgstr "Meghatározza a szükséges jogosultságokat az ITSM konfigurációelemek lekéréséhez az általános felület használatával."
+msgid ""
+"Defines Required permissions to get ITSM configuration items using the "
+"Generic Interface."
+msgstr ""
+"Meghatározza a szükséges jogosultságokat az ITSM konfigurációelemek "
+"lekéréséhez az általános felület használatával."
 
 #. SysConfig
-msgid "Defines Required permissions to search ITSM configuration items using the Generic Interface."
-msgstr "Meghatározza a szükséges jogosultságokat az ITSM konfigurációelemek kereséséhez az általános felület használatával."
+msgid ""
+"Defines Required permissions to search ITSM configuration items using the "
+"Generic Interface."
+msgstr ""
+"Meghatározza a szükséges jogosultságokat az ITSM konfigurációelemek "
+"kereséséhez az általános felület használatával."
 
 #. SysConfig
-msgid "Defines Required permissions to update ITSM configuration items using the Generic Interface."
-msgstr "Meghatározza a szükséges jogosultságokat az ITSM konfigurációelemek frissítéséhez az általános felület használatával."
+msgid ""
+"Defines Required permissions to update ITSM configuration items using the "
+"Generic Interface."
+msgstr ""
+"Meghatározza a szükséges jogosultságokat az ITSM konfigurációelemek "
+"frissítéséhez az általános felület használatával."
 
 #. SysConfig
-msgid "Defines an overview module to show the small view of a configuration item list."
-msgstr "Egy áttekintő modult határoz meg egy konfigurációelem lista kis nézetének megjelenítéséhez."
+msgid ""
+"Defines an overview module to show the small view of a configuration item "
+"list."
+msgstr ""
+"Egy áttekintő modult határoz meg egy konfigurációelem lista kis nézetének "
+"megjelenítéséhez."
 
 #. SysConfig
-msgid "Defines regular expressions individually for each ConfigItem class to check the ConfigItem name and to show corresponding error messages."
-msgstr "Reguláris kifejezéseket határoz meg egyénileg minden egyes konfigurációelem osztálynál a konfigurációelem nevének ellenőrzéséhez, valamint a megfelelő hibaüzenetek megjelenítéséhez."
+msgid ""
+"Defines regular expressions individually for each ConfigItem class to check "
+"the ConfigItem name and to show corresponding error messages."
+msgstr ""
+"Reguláris kifejezéseket határoz meg egyénileg minden egyes konfigurációelem "
+"osztálynál a konfigurációelem nevének ellenőrzéséhez, valamint a megfelelő "
+"hibaüzenetek megjelenítéséhez."
 
 #. SysConfig
 msgid "Defines the default subobject of the class 'ITSMConfigItem'."
 msgstr "Meghatározza az „ITSMConfigItem” osztály alapértelmezett alobjektumát."
 
 #. SysConfig
-msgid "Defines the number of rows for the CI definition editor in the admin interface."
-msgstr "Meghatározza a CI meghatározás-szerkesztő sorainak számát az adminisztrációs felületen."
+msgid ""
+"Defines the number of rows for the CI definition editor in the admin "
+"interface."
+msgstr ""
+"Meghatározza a CI meghatározás-szerkesztő sorainak számát az adminisztrációs "
+"felületen."
 
 #. SysConfig
-msgid "Defines the order of incident states from high (e.g. cricital) to low (e.g. functional)."
-msgstr "Meghatározza az incidensállapotok sorrendjét a legmagasabbtól (például kritikus) a legalacsonyabbig (például funkcionális)."
+msgid ""
+"Defines the order of incident states from high (e.g. cricital) to low (e.g. "
+"functional)."
+msgstr ""
+"Meghatározza az incidensállapotok sorrendjét a legmagasabbtól (például "
+"kritikus) a legalacsonyabbig (például funkcionális)."
 
 #. SysConfig
-msgid "Defines the relevant deployment states where linked tickets can affect the status of a CI."
-msgstr "Meghatározza a kapcsolódó üzembe állítási állapotokat, ahol a kapcsolt jegyek befolyásolhatják egy konfigurációelem állapotát."
+msgid ""
+"Defines the relevant deployment states where linked tickets can affect the "
+"status of a CI."
+msgstr ""
+"Meghatározza a kapcsolódó üzembe állítási állapotokat, ahol a kapcsolt "
+"jegyek befolyásolhatják egy konfigurációelem állapotát."
 
 #. SysConfig
 msgid "Defines the search limit for the AgentITSMConfigItem screen."
@@ -868,43 +944,153 @@ msgstr "Meghatározza a keresési korlátot az AgentITSMConfigItem képernyőn."
 
 #. SysConfig
 msgid "Defines the search limit for the AgentITSMConfigItemSearch screen."
-msgstr "Meghatározza a keresési korlátot az AgentITSMConfigItemSearch képernyőn."
+msgstr ""
+"Meghatározza a keresési korlátot az AgentITSMConfigItemSearch képernyőn."
 
 #. SysConfig
-msgid "Defines the shown columns in the config item overview. This option has no effect on the position of the column. Note: Class column is always available if filter 'All' is selected."
-msgstr "Meghatározza a megjelenített oszlopokat a konfigurációelem áttekintőben. Ennek a beállításnak nincs hatása az oszlop helyzetére. Megjegyzés: az osztály oszlop mindig látható, ha az „Összes” szűrő ki van választva."
+msgid ""
+"Defines the shown columns in the config item overview. This option has no "
+"effect on the position of the column. Note: Class column is always available "
+"if filter 'All' is selected."
+msgstr ""
+"Meghatározza a megjelenített oszlopokat a konfigurációelem áttekintőben. "
+"Ennek a beállításnak nincs hatása az oszlop helyzetére. Megjegyzés: az "
+"osztály oszlop mindig látható, ha az „Összes” szűrő ki van választva."
 
 #. SysConfig
-msgid "Defines the shown columns in the config item search. This option has no effect on the position of the column."
-msgstr "Meghatározza a megjelenített oszlopokat a konfigurációelem keresőben. Ennek a beállításnak nincs hatása az oszlop helyzetére."
+msgid ""
+"Defines the shown columns in the config item search. This option has no "
+"effect on the position of the column."
+msgstr ""
+"Meghatározza a megjelenített oszlopokat a konfigurációelem keresőben. Ennek "
+"a beállításnak nincs hatása az oszlop helyzetére."
 
 #. SysConfig
-msgid "Defines the shown columns of CIs in the config item overview depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns."
-msgstr "Meghatározza a CI-k megjelenített oszlopait a konfigurációelem áttekintőben a CI osztálytól függően. Minden bejegyzést az oszlop neve és dupla kettőspont előtaggal kell ellátni (azaz Computer::). Van néhány olyan CI-attribútum, amely közös minden CI-vel (például a Computer osztálynál: Computer::Name, Computer::CurDeplState, Computer::CreateTime). Az egyéni CI-attribútumok megjelenítéséhez, ahogy azok a CI-meghatározásban meg vannak adva, a következő sémát kell használni (például a Computer osztálynál): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. Ha egy CI osztályhoz nincs bejegyzés, akkor az alapértelmezett oszlopok lesznek megjelenítve, ahogy az ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns beállításban meg van határozva."
+msgid ""
+"Defines the shown columns of CIs in the config item overview depending on "
+"the CI class. Each entry must be prefixed with the class name and double "
+"colons (i.e. Computer::). There are a few CI-Attributes that are common to "
+"all CIs (example for the class Computer: Computer::Name, Computer::"
+"CurDeplState, Computer::CreateTime). To show individual CI-Attributes as "
+"defined in the CI-Definition, the following scheme must be used (example for "
+"the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::"
+"Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If "
+"there is no entry for a CI class, then the default columns are shown as "
+"defined in the setting ITSMConfigItem::Frontend::"
+"AgentITSMConfigItem###ShowColumns."
+msgstr ""
+"Meghatározza a CI-k megjelenített oszlopait a konfigurációelem áttekintőben "
+"a CI osztálytól függően. Minden bejegyzést az oszlop neve és dupla "
+"kettőspont előtaggal kell ellátni (azaz Computer::). Van néhány olyan CI-"
+"attribútum, amely közös minden CI-vel (például a Computer osztálynál: "
+"Computer::Name, Computer::CurDeplState, Computer::CreateTime). Az egyéni CI-"
+"attribútumok megjelenítéséhez, ahogy azok a CI-meghatározásban meg vannak "
+"adva, a következő sémát kell használni (például a Computer osztálynál): "
+"Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::"
+"HardDisk::2, Computer::HardDisk::2::Capacity::1. Ha egy CI osztályhoz nincs "
+"bejegyzés, akkor az alapértelmezett oszlopok lesznek megjelenítve, ahogy az "
+"ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns beállításban meg "
+"van határozva."
 
 #. SysConfig
-msgid "Defines the shown columns of CIs in the config item search depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns."
-msgstr "Meghatározza a CI-k megjelenített oszlopait a konfigurációelem keresőben a CI osztálytól függően. Minden bejegyzést az oszlop neve és dupla kettőspont előtaggal kell ellátni (azaz Computer::). Van néhány olyan CI-attribútum, amely közös minden CI-vel (például a Computer osztálynál: Computer::Name, Computer::CurDeplState, Computer::CreateTime). Az egyéni CI-attribútumok megjelenítéséhez, ahogy azok a CI-meghatározásban meg vannak adva, a következő sémát kell használni (például a Computer osztálynál): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. Ha egy CI osztályhoz nincs bejegyzés, akkor az alapértelmezett oszlopok lesznek megjelenítve, ahogy az ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns beállításban meg van határozva."
+msgid ""
+"Defines the shown columns of CIs in the config item search depending on the "
+"CI class. Each entry must be prefixed with the class name and double colons "
+"(i.e. Computer::). There are a few CI-Attributes that are common to all CIs "
+"(example for the class Computer: Computer::Name, Computer::CurDeplState, "
+"Computer::CreateTime). To show individual CI-Attributes as defined in the CI-"
+"Definition, the following scheme must be used (example for the class "
+"Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, "
+"Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no "
+"entry for a CI class, then the default columns are shown as defined in the "
+"setting ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns."
+msgstr ""
+"Meghatározza a CI-k megjelenített oszlopait a konfigurációelem keresőben a "
+"CI osztálytól függően. Minden bejegyzést az oszlop neve és dupla kettőspont "
+"előtaggal kell ellátni (azaz Computer::). Van néhány olyan CI-attribútum, "
+"amely közös minden CI-vel (például a Computer osztálynál: Computer::Name, "
+"Computer::CurDeplState, Computer::CreateTime). Az egyéni CI-attribútumok "
+"megjelenítéséhez, ahogy azok a CI-meghatározásban meg vannak adva, a "
+"következő sémát kell használni (például a Computer osztálynál): Computer::"
+"HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, "
+"Computer::HardDisk::2::Capacity::1. Ha egy CI osztályhoz nincs bejegyzés, "
+"akkor az alapértelmezett oszlopok lesznek megjelenítve, ahogy az "
+"ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns beállításban meg "
+"van határozva."
 
 #. SysConfig
-msgid "Defines the shown columns of CIs in the config item widget depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that are common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown as defined in the setting AgentCustomerInformationCenter::Backend###0060-CIC-ITSMConfigItemCustomerCompany (key DefaultColumns)."
-msgstr "Meghatározza a konfigurációelemek megjelenített oszlopait a konfigurációelem áttekintőben a konfigurációelem-osztálytól függően. Minden bejegyzést az oszlop neve és dupla kettőspont előtaggal kell ellátni (azaz Computer::). Van néhány olyan konfigurációelem-attribútum, amely közös minden konfigurációelemmel (például a Computer osztálynál: Computer::Name, Computer::CurDeplState, Computer::CreateTime). Az egyéni konfigurációelem-attribútumok megjelenítéséhez, ahogy azok a konfigurációelem-meghatározásban meg vannak adva, a következő sémát kell használni (például a Computer osztálynál): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. Ha egy konfigurációelem osztályhoz nincs bejegyzés, akkor az alapértelmezett oszlopok lesznek megjelenítve, ahogy az ITSMConfigItem::Frontend::AgentITSMConfigItem###ShowColumns beállításban meg van határozva."
+msgid ""
+"Defines the shown columns of CIs in the config item widget depending on the "
+"CI class. Each entry must be prefixed with the class name and double colons "
+"(i.e. Computer::). There are a few CI-Attributes that are common to all CIs "
+"(example for the class Computer: Computer::Name, Computer::CurDeplState, "
+"Computer::CreateTime). To show individual CI-Attributes as defined in the CI-"
+"Definition, the following scheme must be used (example for the class "
+"Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, "
+"Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no "
+"entry for a CI class, then the default columns are shown as defined in the "
+"setting AgentCustomerInformationCenter::Backend###0060-CIC-"
+"ITSMConfigItemCustomerCompany (key DefaultColumns)."
+msgstr ""
+"Meghatározza a konfigurációelemek megjelenített oszlopait a konfigurációelem "
+"áttekintőben a konfigurációelem-osztálytól függően. Minden bejegyzést az "
+"oszlop neve és dupla kettőspont előtaggal kell ellátni (azaz Computer::). "
+"Van néhány olyan konfigurációelem-attribútum, amely közös minden "
+"konfigurációelemmel (például a Computer osztálynál: Computer::Name, "
+"Computer::CurDeplState, Computer::CreateTime). Az egyéni konfigurációelem-"
+"attribútumok megjelenítéséhez, ahogy azok a konfigurációelem-meghatározásban "
+"meg vannak adva, a következő sémát kell használni (például a Computer "
+"osztálynál): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, "
+"Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. Ha egy "
+"konfigurációelem osztályhoz nincs bejegyzés, akkor az alapértelmezett "
+"oszlopok lesznek megjelenítve, ahogy az ITSMConfigItem::Frontend::"
+"AgentITSMConfigItem###ShowColumns beállításban meg van határozva."
 
 #. SysConfig
-msgid "Defines the shown columns of CIs in the link table complex view for all CI classes. If there is no entry, then the default columns are shown."
-msgstr "Meghatározza a konfigurációelemek megjelenített oszlopait a kapcsolati tábla komplex nézetében az összes konfigurációelem-osztálynál. Ha nincs bejegyzés, akkor az alapértelmezett oszlopok lesznek megjelenítve."
+msgid ""
+"Defines the shown columns of CIs in the link table complex view for all CI "
+"classes. If there is no entry, then the default columns are shown."
+msgstr ""
+"Meghatározza a konfigurációelemek megjelenített oszlopait a kapcsolati tábla "
+"komplex nézetében az összes konfigurációelem-osztálynál. Ha nincs bejegyzés, "
+"akkor az alapértelmezett oszlopok lesznek megjelenítve."
 
 #. SysConfig
-msgid "Defines the shown columns of CIs in the link table complex view, depending on the CI class. Each entry must be prefixed with the class name and double colons (i.e. Computer::). There are a few CI-Attributes that common to all CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, Computer::CreateTime). To show individual CI-Attributes as defined in the CI-Definition, the following scheme must be used (example for the class Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no entry for a CI class, then the default columns are shown."
-msgstr "Meghatározza a CI-k megjelenített oszlopait a kapcsolati tábla komplex nézetében a CI osztálytól függően. Minden bejegyzést az oszlop neve és dupla kettőspont előtaggal kell ellátni (azaz Computer::). Van néhány olyan CI-attribútum, amely közös minden CI-vel (például a Computer osztálynál: Computer::Name, Computer::CurDeplState, Computer::CreateTime). Az egyéni CI-attribútumok megjelenítéséhez, ahogy azok a CI-meghatározásban meg vannak adva, a következő sémát kell használni (például a Computer osztálynál): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. Ha egy CI osztályhoz nincs bejegyzés, akkor az alapértelmezett oszlopok lesznek megjelenítve."
+msgid ""
+"Defines the shown columns of CIs in the link table complex view, depending "
+"on the CI class. Each entry must be prefixed with the class name and double "
+"colons (i.e. Computer::). There are a few CI-Attributes that common to all "
+"CIs (example for the class Computer: Computer::Name, Computer::CurDeplState, "
+"Computer::CreateTime). To show individual CI-Attributes as defined in the CI-"
+"Definition, the following scheme must be used (example for the class "
+"Computer): Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, "
+"Computer::HardDisk::2, Computer::HardDisk::2::Capacity::1. If there is no "
+"entry for a CI class, then the default columns are shown."
+msgstr ""
+"Meghatározza a CI-k megjelenített oszlopait a kapcsolati tábla komplex "
+"nézetében a CI osztálytól függően. Minden bejegyzést az oszlop neve és dupla "
+"kettőspont előtaggal kell ellátni (azaz Computer::). Van néhány olyan CI-"
+"attribútum, amely közös minden CI-vel (például a Computer osztálynál: "
+"Computer::Name, Computer::CurDeplState, Computer::CreateTime). Az egyéni CI-"
+"attribútumok megjelenítéséhez, ahogy azok a CI-meghatározásban meg vannak "
+"adva, a következő sémát kell használni (például a Computer osztálynál): "
+"Computer::HardDisk::1, Computer::HardDisk::1::Capacity::1, Computer::"
+"HardDisk::2, Computer::HardDisk::2::Capacity::1. Ha egy CI osztályhoz nincs "
+"bejegyzés, akkor az alapértelmezett oszlopok lesznek megjelenítve."
 
 #. SysConfig
-msgid "Defines which type of link (named from the ticket perspective) can affect the status of a linked CI."
-msgstr "Meghatározza, hogy mely kapcsolattípusok (a jegy nézőpontjából elnevezve) befolyásolhatják egy kapcsolt konfigurációelem állapotát."
+msgid ""
+"Defines which type of link (named from the ticket perspective) can affect "
+"the status of a linked CI."
+msgstr ""
+"Meghatározza, hogy mely kapcsolattípusok (a jegy nézőpontjából elnevezve) "
+"befolyásolhatják egy kapcsolt konfigurációelem állapotát."
 
 #. SysConfig
 msgid "Defines which type of ticket can affect the status of a linked CI."
-msgstr "Meghatározza, hogy mely jegytípus befolyásolhatja egy kapcsolt konfigurációelem állapotát."
+msgstr ""
+"Meghatározza, hogy mely jegytípus befolyásolhatja egy kapcsolt "
+"konfigurációelem állapotát."
 
 #. SysConfig
 msgid "Delete Configuration Item"
@@ -919,20 +1105,38 @@ msgid "Duplicate"
 msgstr "Kettőzés"
 
 #. SysConfig
-msgid "Enables configuration item bulk action feature for the agent frontend to work on more than one configuration item at a time."
-msgstr "Engedélyezi a konfigurációelem tömeges művelet funkciót az ügyintézői előtétprogramnál, hogy egyszerre egynél több konfigurációelemmel dolgozhasson."
+msgid ""
+"Enables configuration item bulk action feature for the agent frontend to "
+"work on more than one configuration item at a time."
+msgstr ""
+"Engedélyezi a konfigurációelem tömeges művelet funkciót az ügyintézői "
+"előtétprogramnál, hogy egyszerre egynél több konfigurációelemmel "
+"dolgozhasson."
 
 #. SysConfig
-msgid "Enables configuration item bulk action feature only for the listed groups."
-msgstr "Csak a felsorolt csoportoknak engedélyezi a konfigurációelem tömeges művelet funkciót."
+msgid ""
+"Enables configuration item bulk action feature only for the listed groups."
+msgstr ""
+"Csak a felsorolt csoportoknak engedélyezi a konfigurációelem tömeges művelet "
+"funkciót."
 
 #. SysConfig
-msgid "Enables/disables the functionality to check ConfigItems for unique names. Before enabling this option you should check your system for already existing config items with duplicate names. You can do this with the script bin/otrs.ITSMConfigItemListDuplicates.pl."
-msgstr "Engedélyezi vagy letiltja azt a funkcionalitást, amely a konfigurációelemek egyedi neveit ellenőrzi. A lehetőség engedélyezése előtt ellenőriznie kell a rendszerét, hogy vannak-e már létező konfigurációelemek kettőzött névvel. Ezt megteheti a bin/otrs.ITSMConfigItemListDuplicates.pl parancsfájllal."
+msgid ""
+"Enables/disables the functionality to check ConfigItems for unique names. "
+"Before enabling this option you should check your system for already "
+"existing config items with duplicate names. You can do this with the script "
+"bin/otrs.ITSMConfigItemListDuplicates.pl."
+msgstr ""
+"Engedélyezi vagy letiltja azt a funkcionalitást, amely a konfigurációelemek "
+"egyedi neveit ellenőrzi. A lehetőség engedélyezése előtt ellenőriznie kell a "
+"rendszerét, hogy vannak-e már létező konfigurációelemek kettőzött névvel. "
+"Ezt megteheti a bin/otrs.ITSMConfigItemListDuplicates.pl parancsfájllal."
 
 #. SysConfig
 msgid "Event module to set configitem-status on ticket-configitem-link."
-msgstr "Eseménymodul a konfigurációelem állapotának beállításához egy jegy konfigurációelem hivatkozásán."
+msgstr ""
+"Eseménymodul a konfigurációelem állapotának beállításához egy jegy "
+"konfigurációelem hivatkozásán."
 
 #. SysConfig
 msgid "ITSM config item overview."
@@ -952,63 +1156,118 @@ msgstr "Egy modul ITSM konfigurációelem statisztikák előállításához."
 
 #. SysConfig
 msgid "Object backend module registration for the import/export module."
-msgstr "Objektum háttérprogram modul regisztráció az importálás/exportálás modulhoz."
+msgstr ""
+"Objektum háttérprogram modul regisztráció az importálás/exportálás modulhoz."
 
 #. SysConfig
 msgid "Overview."
 msgstr "Áttekintés."
 
 #. SysConfig
-msgid "Parameters for the dashboard backend of the customer company config item overview of the agent interface . \"Limit\" is the number of entries shown by default. \"Group\" is used to restrict the access to the plugin (e. g. Group: admin;group1;group2;). \"Default\" determines if the plugin is enabled by default or if the user needs to enable it manually. \"CacheTTLLocal\" is the cache time in minutes for the plugin."
-msgstr "Paraméterek az ügyintézői felület ügyfél-vállalat konfigurációelem áttekintőjének vezérlőpult háttérprogramjához. A „Limit” az alapértelmezetten megjelenített bejegyzések száma. A „Group” használható a hozzáférés korlátozásához a bővítményre (például Group: admin;csoport1;csoport2;). A „Default” azt határozza meg, hogy a bővítmény alapértelmezetten engedélyezve van, vagy hogy a felhasználónak kézzel kell engedélyeznie azt. A „CacheTTLLocal” a bővítmény gyorsítótár ideje percben."
+msgid ""
+"Parameters for the dashboard backend of the customer company config item "
+"overview of the agent interface . \"Limit\" is the number of entries shown "
+"by default. \"Group\" is used to restrict the access to the plugin (e. g. "
+"Group: admin;group1;group2;). \"Default\" determines if the plugin is "
+"enabled by default or if the user needs to enable it manually. "
+"\"CacheTTLLocal\" is the cache time in minutes for the plugin."
+msgstr ""
+"Paraméterek az ügyintézői felület ügyfél-vállalat konfigurációelem "
+"áttekintőjének vezérlőpult háttérprogramjához. A „Limit” az "
+"alapértelmezetten megjelenített bejegyzések száma. A „Group” használható a "
+"hozzáférés korlátozásához a bővítményre (például Group: admin;csoport1;"
+"csoport2;). A „Default” azt határozza meg, hogy a bővítmény "
+"alapértelmezetten engedélyezve van, vagy hogy a felhasználónak kézzel kell "
+"engedélyeznie azt. A „CacheTTLLocal” a bővítmény gyorsítótár ideje percben."
 
 #. SysConfig
-msgid "Parameters for the deployment states color in the preferences view of the agent interface."
-msgstr "Paraméterek az üzembe állítási állapotok színeihez az ügyintézői felület beállítások nézetében."
+msgid ""
+"Parameters for the deployment states color in the preferences view of the "
+"agent interface."
+msgstr ""
+"Paraméterek az üzembe állítási állapotok színeihez az ügyintézői felület "
+"beállítások nézetében."
 
 #. SysConfig
-msgid "Parameters for the deployment states in the preferences view of the agent interface."
-msgstr "Paraméterek az üzembe állítási állapotokhoz az ügyintézői felület beállítások nézetében."
+msgid ""
+"Parameters for the deployment states in the preferences view of the agent "
+"interface."
+msgstr ""
+"Paraméterek az üzembe állítási állapotokhoz az ügyintézői felület "
+"beállítások nézetében."
 
 #. SysConfig
-msgid "Parameters for the example permission groups of the general catalog attributes."
-msgstr "Paraméterek az általános katalógus attribútumainak példa jogosultság csoportjaihoz."
+msgid ""
+"Parameters for the example permission groups of the general catalog "
+"attributes."
+msgstr ""
+"Paraméterek az általános katalógus attribútumainak példa jogosultság "
+"csoportjaihoz."
 
 #. SysConfig
 msgid "Parameters for the pages (in which the configuration items are shown)."
-msgstr "Paraméterek az oldalakhoz (amelyeken a konfigurációelemek megjelennek)."
+msgstr ""
+"Paraméterek az oldalakhoz (amelyeken a konfigurációelemek megjelennek)."
 
 #. SysConfig
 msgid "Permission Group"
 msgstr "Jogosultsági csoport"
 
 #. SysConfig
-msgid "Required permissions to use the ITSM configuration item screen in the agent interface."
-msgstr "A szükséges jogosultságok az ITSM konfigurációelem képernyőjének használatához az ügyintézői felületen."
+msgid ""
+"Required permissions to use the ITSM configuration item screen in the agent "
+"interface."
+msgstr ""
+"A szükséges jogosultságok az ITSM konfigurációelem képernyőjének "
+"használatához az ügyintézői felületen."
 
 #. SysConfig
-msgid "Required permissions to use the ITSM configuration item search screen in the agent interface."
-msgstr "A szükséges jogosultságok az ITSM konfigurációelem keresési képernyőjének használatához az ügyintézői felületen."
+msgid ""
+"Required permissions to use the ITSM configuration item search screen in the "
+"agent interface."
+msgstr ""
+"A szükséges jogosultságok az ITSM konfigurációelem keresési képernyőjének "
+"használatához az ügyintézői felületen."
 
 #. SysConfig
-msgid "Required permissions to use the ITSM configuration item zoom screen in the agent interface."
-msgstr "A szükséges jogosultságok az ITSM konfigurációelem nagyítási képernyőjének használatához az ügyintézői felületen."
+msgid ""
+"Required permissions to use the ITSM configuration item zoom screen in the "
+"agent interface."
+msgstr ""
+"A szükséges jogosultságok az ITSM konfigurációelem nagyítási képernyőjének "
+"használatához az ügyintézői felületen."
 
 #. SysConfig
-msgid "Required permissions to use the add ITSM configuration item screen in the agent interface."
-msgstr "A szükséges jogosultságok az ITSM konfigurációelem hozzáadása képernyőjének használatához az ügyintézői felületen."
+msgid ""
+"Required permissions to use the add ITSM configuration item screen in the "
+"agent interface."
+msgstr ""
+"A szükséges jogosultságok az ITSM konfigurációelem hozzáadása képernyőjének "
+"használatához az ügyintézői felületen."
 
 #. SysConfig
-msgid "Required permissions to use the edit ITSM configuration item screen in the agent interface."
-msgstr "A szükséges jogosultságok az ITSM konfigurációelem szerkesztése képernyőjének használatához az ügyintézői felületen."
+msgid ""
+"Required permissions to use the edit ITSM configuration item screen in the "
+"agent interface."
+msgstr ""
+"A szükséges jogosultságok az ITSM konfigurációelem szerkesztése "
+"képernyőjének használatához az ügyintézői felületen."
 
 #. SysConfig
-msgid "Required permissions to use the history ITSM configuration item screen in the agent interface."
-msgstr "A szükséges jogosultságok az ITSM konfigurációelem előzmények képernyőjének használatához az ügyintézői felületen."
+msgid ""
+"Required permissions to use the history ITSM configuration item screen in "
+"the agent interface."
+msgstr ""
+"A szükséges jogosultságok az ITSM konfigurációelem előzmények képernyőjének "
+"használatához az ügyintézői felületen."
 
 #. SysConfig
-msgid "Required permissions to use the print ITSM configuration item screen in the agent interface."
-msgstr "A szükséges jogosultságok az ITSM konfigurációelem nyomtatása képernyőjének használatához az ügyintézői felületen."
+msgid ""
+"Required permissions to use the print ITSM configuration item screen in the "
+"agent interface."
+msgstr ""
+"A szükséges jogosultságok az ITSM konfigurációelem nyomtatása képernyőjének "
+"használatához az ügyintézői felületen."
 
 #. SysConfig
 msgid "Required privileges to delete config items."
@@ -1019,68 +1278,134 @@ msgid "Search config items."
 msgstr "Konfigurációelemek keresése."
 
 #. SysConfig
-msgid "Selects the configuration item number generator module. \"AutoIncrement\" increments the configuration item number, the SystemID, the ConfigItemClassID and the counter are used. The format is \"SystemID.ConfigItemClassID.Counter\", e.g. 1205000004, 1205000005."
-msgstr "Kiválasztja a konfigurációelem számelőállító modulját. Az „AutoIncrement” növeli a konfigurációelem számát, a használt SystemID, ConfigItemClassID és számláló értékét. A formátum: „SystemID.ConfigItemClassID.Counter”, például: 1205000004, 1205000005."
+msgid ""
+"Selects the configuration item number generator module. \"AutoIncrement\" "
+"increments the configuration item number, the SystemID, the "
+"ConfigItemClassID and the counter are used. The format is \"SystemID."
+"ConfigItemClassID.Counter\", e.g. 1205000004, 1205000005."
+msgstr ""
+"Kiválasztja a konfigurációelem számelőállító modulját. Az „AutoIncrement” "
+"növeli a konfigurációelem számát, a használt SystemID, ConfigItemClassID és "
+"számláló értékét. A formátum: „SystemID.ConfigItemClassID.Counter”, például: "
+"1205000004, 1205000005."
 
 #. SysConfig
-msgid "Set the incident state of a CI automatically when a Ticket is Linked to a CI."
-msgstr "Egy konfigurációelem incidensállapotának automatikus beállítása, amikor egy jegyet kapcsolnak egy konfigurációelemhez."
+msgid ""
+"Set the incident state of a CI automatically when a Ticket is Linked to a CI."
+msgstr ""
+"Egy konfigurációelem incidensállapotának automatikus beállítása, amikor egy "
+"jegyet kapcsolnak egy konfigurációelemhez."
 
 #. SysConfig
-msgid "Sets the deployment state in the configuration item bulk screen of the agent interface."
-msgstr "Beállítja az üzembe állítási állapotot az ügyintézői felület konfigurációelem tömeges művelet képernyőjén."
+msgid ""
+"Sets the deployment state in the configuration item bulk screen of the agent "
+"interface."
+msgstr ""
+"Beállítja az üzembe állítási állapotot az ügyintézői felület "
+"konfigurációelem tömeges művelet képernyőjén."
 
 #. SysConfig
-msgid "Sets the incident state in the configuration item bulk screen of the agent interface."
-msgstr "Beállítja az incidensállapotot az ügyintézői felület konfigurációelem tömeges művelet képernyőjén."
+msgid ""
+"Sets the incident state in the configuration item bulk screen of the agent "
+"interface."
+msgstr ""
+"Beállítja az incidensállapotot az ügyintézői felület konfigurációelem "
+"tömeges művelet képernyőjén."
 
 #. SysConfig
-msgid "Shows a link in the menu that allows linking a configuration item with another object in the config item zoom view of the agent interface."
-msgstr "Egy hivatkozást jelenít meg a menüben, amely lehetővé teszi egy konfigurációelem összekapcsolását egy másik objektummal az ügyintézői felület konfigurációelem nagyítási nézetén."
+msgid ""
+"Shows a link in the menu that allows linking a configuration item with "
+"another object in the config item zoom view of the agent interface."
+msgstr ""
+"Egy hivatkozást jelenít meg a menüben, amely lehetővé teszi egy "
+"konfigurációelem összekapcsolását egy másik objektummal az ügyintézői "
+"felület konfigurációelem nagyítási nézetén."
 
 #. SysConfig
-msgid "Shows a link in the menu to access the history of a configuration item in the configuration item overview of the agent interface."
-msgstr "Egy hivatkozást jelenít meg a menüben egy konfigurációelem előzményeinek eléréséhez az ügyintézői felület konfigurációelem áttekintőjében."
+msgid ""
+"Shows a link in the menu to access the history of a configuration item in "
+"the configuration item overview of the agent interface."
+msgstr ""
+"Egy hivatkozást jelenít meg a menüben egy konfigurációelem előzményeinek "
+"eléréséhez az ügyintézői felület konfigurációelem áttekintőjében."
 
 #. SysConfig
-msgid "Shows a link in the menu to access the history of a configuration item in the its zoom view of the agent interface."
-msgstr "Egy hivatkozást jelenít meg a menüben egy konfigurációelem előzményeinek eléréséhez az ügyintézői felületen az elem nagyítási nézetében."
+msgid ""
+"Shows a link in the menu to access the history of a configuration item in "
+"the its zoom view of the agent interface."
+msgstr ""
+"Egy hivatkozást jelenít meg a menüben egy konfigurációelem előzményeinek "
+"eléréséhez az ügyintézői felületen az elem nagyítási nézetében."
 
 #. SysConfig
-msgid "Shows a link in the menu to delete a configuration item in its zoom view of the agent interface."
-msgstr "Egy hivatkozást jelenít meg a menüben egy konfigurációelem törléséhez az ügyintézői felületen az elem nagyítási nézetében."
+msgid ""
+"Shows a link in the menu to delete a configuration item in its zoom view of "
+"the agent interface."
+msgstr ""
+"Egy hivatkozást jelenít meg a menüben egy konfigurációelem törléséhez az "
+"ügyintézői felületen az elem nagyítási nézetében."
 
 #. SysConfig
-msgid "Shows a link in the menu to duplicate a configuration item in the configuration item overview of the agent interface."
-msgstr "Egy hivatkozást jelenít meg a menüben egy konfigurációelem kettőzéséhez az ügyintézői felület konfigurációelem áttekintőjében."
+msgid ""
+"Shows a link in the menu to duplicate a configuration item in the "
+"configuration item overview of the agent interface."
+msgstr ""
+"Egy hivatkozást jelenít meg a menüben egy konfigurációelem kettőzéséhez az "
+"ügyintézői felület konfigurációelem áttekintőjében."
 
 #. SysConfig
-msgid "Shows a link in the menu to duplicate a configuration item in the its zoom view of the agent interface."
-msgstr "Egy hivatkozást jelenít meg a menüben egy konfigurációelem kettőzéséhez az ügyintézői felületen az elem nagyítási nézetében."
+msgid ""
+"Shows a link in the menu to duplicate a configuration item in the its zoom "
+"view of the agent interface."
+msgstr ""
+"Egy hivatkozást jelenít meg a menüben egy konfigurációelem kettőzéséhez az "
+"ügyintézői felületen az elem nagyítási nézetében."
 
 #. SysConfig
-msgid "Shows a link in the menu to edit a configuration item in the its zoom view of the agent interface."
-msgstr "Egy hivatkozást jelenít meg a menüben egy konfigurációelem szerkesztéséhez az ügyintézői felületen az elem nagyítási nézetében."
+msgid ""
+"Shows a link in the menu to edit a configuration item in the its zoom view "
+"of the agent interface."
+msgstr ""
+"Egy hivatkozást jelenít meg a menüben egy konfigurációelem szerkesztéséhez "
+"az ügyintézői felületen az elem nagyítási nézetében."
 
 #. SysConfig
-msgid "Shows a link in the menu to go back in the configuration item zoom view of the agent interface."
-msgstr "Egy hivatkozást jelenít meg a menüben az ügyintézői felület konfigurációelem nagyítási nézethez való visszatéréshez."
+msgid ""
+"Shows a link in the menu to go back in the configuration item zoom view of "
+"the agent interface."
+msgstr ""
+"Egy hivatkozást jelenít meg a menüben az ügyintézői felület konfigurációelem "
+"nagyítási nézethez való visszatéréshez."
 
 #. SysConfig
-msgid "Shows a link in the menu to print a configuration item in the its zoom view of the agent interface."
-msgstr "Egy hivatkozást jelenít meg a menüben egy konfigurációelem nyomtatásához az ügyintézői felületen az elem nagyítási nézetében."
+msgid ""
+"Shows a link in the menu to print a configuration item in the its zoom view "
+"of the agent interface."
+msgstr ""
+"Egy hivatkozást jelenít meg a menüben egy konfigurációelem nyomtatásához az "
+"ügyintézői felületen az elem nagyítási nézetében."
 
 #. SysConfig
-msgid "Shows a link in the menu to zoom into a configuration item in the configuration item overview of the agent interface."
-msgstr "Egy hivatkozást jelenít meg a menüben egy konfigurációelembe történő nagyításhoz az ügyintézői felület konfigurációelem áttekintőjében."
+msgid ""
+"Shows a link in the menu to zoom into a configuration item in the "
+"configuration item overview of the agent interface."
+msgstr ""
+"Egy hivatkozást jelenít meg a menüben egy konfigurációelembe történő "
+"nagyításhoz az ügyintézői felület konfigurációelem áttekintőjében."
 
 #. SysConfig
 msgid "Shows the config item history (reverse ordered) in the agent interface."
-msgstr "Megjeleníti a konfigurációelem előzményeit (fordított sorrendben) az ügyintézői felületen."
+msgstr ""
+"Megjeleníti a konfigurációelem előzményeit (fordított sorrendben) az "
+"ügyintézői felületen."
 
 #. SysConfig
-msgid "The identifier for a configuration item, e.g. ConfigItem#, MyConfigItem#. The default is ConfigItem#."
-msgstr "Egy konfigurációelem azonosítója, például: ConfigItem#, MyConfigItem#. Az alapértelmezett: ConfigItem#."
+msgid ""
+"The identifier for a configuration item, e.g. ConfigItem#, MyConfigItem#. "
+"The default is ConfigItem#."
+msgstr ""
+"Egy konfigurációelem azonosítója, például: ConfigItem#, MyConfigItem#. Az "
+"alapértelmezett: ConfigItem#."
 
 #. SysConfig
 msgid "class"
@@ -1101,4 +1426,3 @@ msgstr "beüzemelés előtt"
 #. SysConfig
 msgid "productive"
 msgstr "beüzemelve"
-
