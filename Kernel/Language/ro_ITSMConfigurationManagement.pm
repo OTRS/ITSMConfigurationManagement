@@ -136,7 +136,7 @@ sub Data {
     $Self->{Translation}->{'Can\'t show item, no access rights for ConfigItem are given!'} =
         '';
     $Self->{Translation}->{'operational'} = '';
-    $Self->{Translation}->{'warning'} = '';
+    $Self->{Translation}->{'warning'} = 'avertizare';
     $Self->{Translation}->{'incident'} = '';
     $Self->{Translation}->{'The deployment state of this config item'} = '';
     $Self->{Translation}->{'The incident state of this config item'} = '';
@@ -179,7 +179,7 @@ sub Data {
     $Self->{Translation}->{'Expiration Date'} = '';
     $Self->{Translation}->{'Media'} = '';
 
-    # Database XML Definition: ITSMConfigurationManagement.sopm
+    # Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
     $Self->{Translation}->{'Computer'} = '';
     $Self->{Translation}->{'Hardware'} = '';
     $Self->{Translation}->{'Network'} = '';

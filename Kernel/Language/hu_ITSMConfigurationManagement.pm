@@ -179,7 +179,7 @@ sub Data {
     $Self->{Translation}->{'Expiration Date'} = 'Lejárati idő';
     $Self->{Translation}->{'Media'} = 'Adathordozó';
 
-    # Database XML Definition: ITSMConfigurationManagement.sopm
+    # Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
     $Self->{Translation}->{'Computer'} = 'Számítógép';
     $Self->{Translation}->{'Hardware'} = 'Hardver';
     $Self->{Translation}->{'Network'} = 'Hálózat';
@@ -256,7 +256,7 @@ sub Data {
     $Self->{Translation}->{'CIs assigned to customer user'} = 'Ügyfél-felhasználóhoz hozzárendelt konfigurációelemek';
     $Self->{Translation}->{'CMDB Settings'} = 'CMDB beállítások';
     $Self->{Translation}->{'Check for a unique name only within the same ConfigItem class (\'class\') or globally (\'global\'), which means every existing ConfigItem is taken into account when looking for duplicates.'} =
-        'Egyedi név ellenőrzése kizárólag ugyanabban a konfigurációelem osztályban („osztály”) vagy globálisan („globális”), amely azt jelenti, hogy minden meglévő konfigurációelem egy fiókba lesz felvéve a kettőzések keresésekor.';
+        'Egyedi név ellenőrzése kizárólag ugyanabban a konfigurációelem osztályban („osztály”) vagy globálisan („globális”), amely azt jelenti, hogy minden meglévő konfigurációelem figyelembe lesz véve a kettőzések keresésekor.';
     $Self->{Translation}->{'Config Items'} = 'Konfigurációelemek';
     $Self->{Translation}->{'Config item add.'} = 'Konfigurációelem hozzáadása.';
     $Self->{Translation}->{'Config item edit.'} = 'Konfigurációelem szerkesztése.';

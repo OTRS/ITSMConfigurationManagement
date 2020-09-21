@@ -179,7 +179,7 @@ sub Data {
     $Self->{Translation}->{'Expiration Date'} = '有効期限';
     $Self->{Translation}->{'Media'} = 'メディア';
 
-    # Database XML Definition: ITSMConfigurationManagement.sopm
+    # Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
     $Self->{Translation}->{'Computer'} = 'コンピューター';
     $Self->{Translation}->{'Hardware'} = 'ハードウェア';
     $Self->{Translation}->{'Network'} = 'ネットワーク';

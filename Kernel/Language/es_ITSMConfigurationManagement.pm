@@ -135,9 +135,9 @@ sub Data {
     # Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
     $Self->{Translation}->{'Can\'t show item, no access rights for ConfigItem are given!'} =
         '¡No se puede mostrar el elemento, no se han proporcionado permisos de acceso para ConfigItem!';
-    $Self->{Translation}->{'operational'} = '';
-    $Self->{Translation}->{'warning'} = '';
-    $Self->{Translation}->{'incident'} = '';
+    $Self->{Translation}->{'operational'} = 'operacional';
+    $Self->{Translation}->{'warning'} = 'advertencia';
+    $Self->{Translation}->{'incident'} = 'incidente';
     $Self->{Translation}->{'The deployment state of this config item'} = 'El estado de implementación de este elemento de configuración';
     $Self->{Translation}->{'The incident state of this config item'} = 'El estado de este elemento de configuración';
 
@@ -154,7 +154,7 @@ sub Data {
 
     # Perl Module: var/packagesetup/ITSMConfigurationManagement.pm
     $Self->{Translation}->{'Model'} = 'Modelo';
-    $Self->{Translation}->{'Customer Company'} = '';
+    $Self->{Translation}->{'Customer Company'} = 'Empresa del Cliente';
     $Self->{Translation}->{'Serial Number'} = 'Número Serial';
     $Self->{Translation}->{'CPU'} = 'CPU';
     $Self->{Translation}->{'Ram'} = 'RAM';
@@ -179,7 +179,7 @@ sub Data {
     $Self->{Translation}->{'Expiration Date'} = 'Fecha de Expiración';
     $Self->{Translation}->{'Media'} = 'Medio';
 
-    # Database XML Definition: ITSMConfigurationManagement.sopm
+    # Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
     $Self->{Translation}->{'Computer'} = 'Ordenador';
     $Self->{Translation}->{'Hardware'} = 'Hardware';
     $Self->{Translation}->{'Network'} = 'Red';
@@ -348,7 +348,7 @@ sub Data {
         'Parámetros para los permisos de ejemplo de los atributos del catálogo general.';
     $Self->{Translation}->{'Parameters for the pages (in which the configuration items are shown).'} =
         'Parámetros para las páginas (donde se muestran los elementos de configuración)';
-    $Self->{Translation}->{'Permission Group'} = '';
+    $Self->{Translation}->{'Permission Group'} = 'Grupo de permisos';
     $Self->{Translation}->{'Required permissions to use the ITSM configuration item screen in the agent interface.'} =
         'Permisos necesarios para usar la ventana de los elementos de configuración en la interfaz del agente.';
     $Self->{Translation}->{'Required permissions to use the ITSM configuration item search screen in the agent interface.'} =

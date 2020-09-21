@@ -27,7 +27,7 @@ sub Data {
     $Self->{Translation}->{'Deployment State'} = 'Stato di implementazione';
     $Self->{Translation}->{'Class'} = 'Classe';
     $Self->{Translation}->{'Deployment State Type'} = 'Tipo di stato di distribuzione';
-    $Self->{Translation}->{'Current Incident State'} = 'Stato attuale dell\'incidente';
+    $Self->{Translation}->{'Current Incident State'} = 'Stato attuale dell\'Incidente';
     $Self->{Translation}->{'Current Incident State Type'} = 'Tipo di stato dell\'incidente corrente';
     $Self->{Translation}->{'Last changed'} = 'Ultima modifica';
 
@@ -73,7 +73,7 @@ sub Data {
     $Self->{Translation}->{'Configuration Item'} = 'Elemento di configurazione';
     $Self->{Translation}->{'Configuration Item Information'} = 'Informazioni sull\'elemento di configurazione';
     $Self->{Translation}->{'Current Deployment State'} = 'Stato attuale di implementazione';
-    $Self->{Translation}->{'Last changed by'} = 'Ultima modifica di';
+    $Self->{Translation}->{'Last changed by'} = 'Ultima modifica effettuata da';
     $Self->{Translation}->{'Show one version'} = 'Mostra una versione';
     $Self->{Translation}->{'Show all versions'} = 'Mostra tutte le versioni';
     $Self->{Translation}->{'Version Incident State'} = 'Stato incidente versione';
@@ -179,7 +179,7 @@ sub Data {
     $Self->{Translation}->{'Expiration Date'} = 'Data di scadenza';
     $Self->{Translation}->{'Media'} = 'Supporto';
 
-    # Database XML Definition: ITSMConfigurationManagement.sopm
+    # Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
     $Self->{Translation}->{'Computer'} = 'Computer';
     $Self->{Translation}->{'Hardware'} = 'Hardware';
     $Self->{Translation}->{'Network'} = 'Rete';
@@ -271,10 +271,10 @@ sub Data {
     $Self->{Translation}->{'Configuration Management Database.'} = 'Database di gestione della configurazione.';
     $Self->{Translation}->{'Configuration item bulk module.'} = 'Modulo di massa elemento di configurazione.';
     $Self->{Translation}->{'Configuration item search backend router of the agent interface.'} =
-        '';
+        'Elemento di configurazione del motore di ricerca dell\'interfaccia utente.';
     $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = 'Crea e gestisci le definizioni per gli elementi di configurazione.';
     $Self->{Translation}->{'Define Actions where a settings button is available in the linked objects widget (LinkObject::ViewMode = "complex"). Please note that these Actions must have registered the following JS and CSS files: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js and Core.Agent.LinkObject.js.'} =
-        '';
+        'Definisce l\'azione con cui il bottone dei settaggi è disponibile in un oggetto widget collegato (LinkObject::ViewMode = "complex"). Notare che queste Actions devono essere registrate nei seguenti file JS e CSS: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js and Core.Agent.LinkObject.js.';
     $Self->{Translation}->{'Defines Required permissions to create ITSM configuration items using the Generic Interface.'} =
         'Definisce i permessi necessari per creare elementi di configurazione ITSM utilizzando l\'interfaccia generica.';
     $Self->{Translation}->{'Defines Required permissions to delete ITSM configuration items using the Generic Interface.'} =
@@ -318,7 +318,7 @@ sub Data {
     $Self->{Translation}->{'Defines which type of link (named from the ticket perspective) can affect the status of a linked CI.'} =
         'Definisce quale tipo di collegamento (denominato dalla prospettiva del ticket) può influire sullo stato di un elemento della configurazione collegato CI.';
     $Self->{Translation}->{'Defines which type of ticket can affect the status of a linked CI.'} =
-        'Definisce quale tipo di ticket può influire sullo stato di un elemento della configurazione collegato CI. ';
+        'Definisce quale tipo di ticket può influire sullo stato di un elemento della configurazione collegato CI.';
     $Self->{Translation}->{'Delete Configuration Item'} = 'Elimina elemento di configurazione';
     $Self->{Translation}->{'Deployment State Color'} = 'Colore dello stato di distribuzione';
     $Self->{Translation}->{'Duplicate'} = 'Duplicato';

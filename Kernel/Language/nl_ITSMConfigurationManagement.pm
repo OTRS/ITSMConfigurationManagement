@@ -27,9 +27,9 @@ sub Data {
     $Self->{Translation}->{'Deployment State'} = 'Status';
     $Self->{Translation}->{'Class'} = 'Klasse';
     $Self->{Translation}->{'Deployment State Type'} = '';
-    $Self->{Translation}->{'Current Incident State'} = 'Actuele incidentstatus';
+    $Self->{Translation}->{'Current Incident State'} = 'Huidige Incidentstatus';
     $Self->{Translation}->{'Current Incident State Type'} = '';
-    $Self->{Translation}->{'Last changed'} = 'Laaste wijziging';
+    $Self->{Translation}->{'Last changed'} = 'Laatst gewijzigd';
 
     # Template: AgentITSMConfigItemAdd
     $Self->{Translation}->{'Config Item'} = 'Configuratie-item';
@@ -54,12 +54,12 @@ sub Data {
 
     # Template: AgentITSMConfigItemHistory
     $Self->{Translation}->{'History of Config Item: %s'} = '';
-    $Self->{Translation}->{'History Content'} = 'Inhoud';
-    $Self->{Translation}->{'Createtime'} = 'Aangemaakt op';
+    $Self->{Translation}->{'History Content'} = 'Geschiedenisinhoud';
+    $Self->{Translation}->{'Createtime'} = 'Maak tijd';
     $Self->{Translation}->{'Zoom view'} = 'Detailoverzicht';
 
     # Template: AgentITSMConfigItemOverviewNavBar
-    $Self->{Translation}->{'Context Settings'} = 'Context Instellingen';
+    $Self->{Translation}->{'Context Settings'} = 'Contextinstellingen';
     $Self->{Translation}->{'Config Items per page'} = 'Aantal configuratie-items per pagina';
 
     # Template: AgentITSMConfigItemOverviewSmall
@@ -73,7 +73,7 @@ sub Data {
     $Self->{Translation}->{'Configuration Item'} = 'Configuratie-item';
     $Self->{Translation}->{'Configuration Item Information'} = 'Configuratie-item informatie';
     $Self->{Translation}->{'Current Deployment State'} = 'Actuele status';
-    $Self->{Translation}->{'Last changed by'} = 'Laaste wijziging door';
+    $Self->{Translation}->{'Last changed by'} = 'Laatst gewijzigd door';
     $Self->{Translation}->{'Show one version'} = 'Toon één versie';
     $Self->{Translation}->{'Show all versions'} = 'Toon alle versies';
     $Self->{Translation}->{'Version Incident State'} = 'Versie Incident-status';
@@ -135,9 +135,9 @@ sub Data {
     # Perl Module: Kernel/Modules/AgentITSMConfigItemZoom.pm
     $Self->{Translation}->{'Can\'t show item, no access rights for ConfigItem are given!'} =
         '';
-    $Self->{Translation}->{'operational'} = '';
-    $Self->{Translation}->{'warning'} = '';
-    $Self->{Translation}->{'incident'} = '';
+    $Self->{Translation}->{'operational'} = 'operationeel';
+    $Self->{Translation}->{'warning'} = 'waarschuwing';
+    $Self->{Translation}->{'incident'} = 'incident';
     $Self->{Translation}->{'The deployment state of this config item'} = 'De status van dit configuratie-item';
     $Self->{Translation}->{'The incident state of this config item'} = 'De incidentstatus van dit configuratie-item';
 
@@ -179,7 +179,7 @@ sub Data {
     $Self->{Translation}->{'Expiration Date'} = 'Expiratiedatum';
     $Self->{Translation}->{'Media'} = 'Media';
 
-    # Database XML Definition: ITSMConfigurationManagement.sopm
+    # Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
     $Self->{Translation}->{'Computer'} = '';
     $Self->{Translation}->{'Hardware'} = '';
     $Self->{Translation}->{'Network'} = '';
@@ -196,7 +196,7 @@ sub Data {
     $Self->{Translation}->{'Desktop'} = 'Desktop';
     $Self->{Translation}->{'PDA'} = 'PDA';
     $Self->{Translation}->{'Server'} = 'Server';
-    $Self->{Translation}->{'Other'} = 'Overige';
+    $Self->{Translation}->{'Other'} = 'Anders';
     $Self->{Translation}->{'Monitor'} = 'Monitor';
     $Self->{Translation}->{'Printer'} = 'Printer';
     $Self->{Translation}->{'Switch'} = 'Switch';
@@ -248,7 +248,7 @@ sub Data {
     $Self->{Translation}->{'Unlimited'} = 'Ongelimiteerd';
 
     # JS File: ITSM.Agent.ConfigItem.Zoom
-    $Self->{Translation}->{'Ok'} = 'OK';
+    $Self->{Translation}->{'Ok'} = 'Ok';
 
     # SysConfig
     $Self->{Translation}->{'Assigned CIs'} = '';
@@ -274,7 +274,7 @@ sub Data {
         '';
     $Self->{Translation}->{'Create and manage the definitions for Configuration Items.'} = 'Aanmaken en beheren van definities voor configuratie-items.';
     $Self->{Translation}->{'Define Actions where a settings button is available in the linked objects widget (LinkObject::ViewMode = "complex"). Please note that these Actions must have registered the following JS and CSS files: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js and Core.Agent.LinkObject.js.'} =
-        '';
+        'Definieer acties waarbij een instellingenknop beschikbaar is in de widget voor gekoppelde objecten (LinkObject::ViewMode = "complex"). Houd er rekening mee dat deze acties de volgende JS- en CSS-bestanden moeten hebben geregistreerd: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js en Core.Agent .LinkObject.js.';
     $Self->{Translation}->{'Defines Required permissions to create ITSM configuration items using the Generic Interface.'} =
         '';
     $Self->{Translation}->{'Defines Required permissions to delete ITSM configuration items using the Generic Interface.'} =
@@ -345,10 +345,10 @@ sub Data {
     $Self->{Translation}->{'Parameters for the deployment states in the preferences view of the agent interface.'} =
         '';
     $Self->{Translation}->{'Parameters for the example permission groups of the general catalog attributes.'} =
-        'Parameters voor de voorbeeld perimssiegroepen van de algemene catalog attributen.';
+        'Parameters voor de voorbeeldmachtigingsgroepen van de algemene cataloguskenmerken.';
     $Self->{Translation}->{'Parameters for the pages (in which the configuration items are shown).'} =
         '';
-    $Self->{Translation}->{'Permission Group'} = '';
+    $Self->{Translation}->{'Permission Group'} = 'Toestemmingsgroep';
     $Self->{Translation}->{'Required permissions to use the ITSM configuration item screen in the agent interface.'} =
         '';
     $Self->{Translation}->{'Required permissions to use the ITSM configuration item search screen in the agent interface.'} =

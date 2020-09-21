@@ -27,7 +27,7 @@ sub Data {
     $Self->{Translation}->{'Deployment State'} = '部署状态';
     $Self->{Translation}->{'Class'} = '类';
     $Self->{Translation}->{'Deployment State Type'} = '部署状态类型';
-    $Self->{Translation}->{'Current Incident State'} = '当前的故障状态';
+    $Self->{Translation}->{'Current Incident State'} = '当前故障状态';
     $Self->{Translation}->{'Current Incident State Type'} = '当前的故障状态类型';
     $Self->{Translation}->{'Last changed'} = '最后修改';
 
@@ -73,7 +73,7 @@ sub Data {
     $Self->{Translation}->{'Configuration Item'} = '配置项';
     $Self->{Translation}->{'Configuration Item Information'} = '配置项信息';
     $Self->{Translation}->{'Current Deployment State'} = '当前的部署状态';
-    $Self->{Translation}->{'Last changed by'} = '最后修改人';
+    $Self->{Translation}->{'Last changed by'} = '上次修改人';
     $Self->{Translation}->{'Show one version'} = '显示一个版本';
     $Self->{Translation}->{'Show all versions'} = '显示所有版本';
     $Self->{Translation}->{'Version Incident State'} = '版本故障状态';
@@ -179,7 +179,7 @@ sub Data {
     $Self->{Translation}->{'Expiration Date'} = '过期日期';
     $Self->{Translation}->{'Media'} = '介质';
 
-    # Database XML Definition: ITSMConfigurationManagement.sopm
+    # Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
     $Self->{Translation}->{'Computer'} = '计算机';
     $Self->{Translation}->{'Hardware'} = '硬件';
     $Self->{Translation}->{'Network'} = '网络';
