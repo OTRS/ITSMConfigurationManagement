@@ -207,7 +207,7 @@ sub Data {
     $Self->{Translation}->{'Mouse'} = 'Egér';
     $Self->{Translation}->{'Keyboard'} = 'Billentyűzet';
     $Self->{Translation}->{'Camera'} = 'Kamera';
-    $Self->{Translation}->{'Beamer'} = 'Beamer';
+    $Self->{Translation}->{'Beamer'} = 'Kivetítő';
     $Self->{Translation}->{'Modem'} = 'Modem';
     $Self->{Translation}->{'PCMCIA Card'} = 'PCMCIA kártya';
     $Self->{Translation}->{'USB Device'} = 'USB eszköz';
@@ -223,7 +223,7 @@ sub Data {
     $Self->{Translation}->{'IT Facility'} = 'IT-létesítmény';
     $Self->{Translation}->{'LAN'} = 'LAN';
     $Self->{Translation}->{'WLAN'} = 'WLAN';
-    $Self->{Translation}->{'Telco'} = 'Telco';
+    $Self->{Translation}->{'Telco'} = 'Telekommunikáció';
     $Self->{Translation}->{'GSM'} = 'GSM';
     $Self->{Translation}->{'Client Application'} = 'Kliens alkalmazás';
     $Self->{Translation}->{'Middleware'} = 'Köztes réteg';
