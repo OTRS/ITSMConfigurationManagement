@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ITSMConfigurationManagement\n"
-"POT-Creation-Date: 2020-01-24 12:09+0000\n"
+"POT-Creation-Date: 2020-09-22 13:14+0000\n"
 "PO-Revision-Date: 2020-01-30 13:51+0000\n"
 "Last-Translator: Huimin Wang <whuim@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.app.otrs.com/projects/"
@@ -474,267 +474,267 @@ msgstr "过期日期"
 msgid "Media"
 msgstr "介质"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Computer"
 msgstr "计算机"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Hardware"
 msgstr "硬件"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Network"
 msgstr "网络"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Software"
 msgstr "软件"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Expired"
 msgstr "已过期"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Maintenance"
 msgstr "维护"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Pilot"
 msgstr "试验"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Planned"
 msgstr "已计划"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Repair"
 msgstr "修复"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Retired"
 msgstr "报废"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Review"
 msgstr "复审"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Test/QA"
 msgstr "测试/品质保证"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Laptop"
 msgstr "笔记本"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Desktop"
 msgstr "台式电脑"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "PDA"
 msgstr "PDA"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Server"
 msgstr "服务器"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Other"
 msgstr "其它"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Monitor"
 msgstr "显示器"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Printer"
 msgstr "打印机"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Switch"
 msgstr "交换机"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Router"
 msgstr "路由器"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "WLAN Access Point"
 msgstr "WLAN 无线访问点"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Security Device"
 msgstr "安全设备"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Backup Device"
 msgstr "备份设备"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Mouse"
 msgstr "鼠标"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Keyboard"
 msgstr "键盘"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Camera"
 msgstr "照相机"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Beamer"
 msgstr "投影仪"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Modem"
 msgstr "调解调器"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "PCMCIA Card"
 msgstr "PCMCIA卡"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "USB Device"
 msgstr "USB 设备"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Docking Station"
 msgstr "坞站"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Scanner"
 msgstr "扫描仪"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Building"
 msgstr "大厦"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Office"
 msgstr "办公室"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Floor"
 msgstr "楼层"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Room"
 msgstr "房间"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Rack"
 msgstr "机架"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Workplace"
 msgstr "工作间"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Outlet"
 msgstr "插座"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "IT Facility"
 msgstr "IT设施"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "LAN"
 msgstr "局域网"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "WLAN"
 msgstr "无线网络"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Telco"
 msgstr "电话公司"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "GSM"
 msgstr "GSM"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Client Application"
 msgstr "客户端应用程序"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Middleware"
 msgstr "中间件"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Server Application"
 msgstr "服务器应用程序"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Client OS"
 msgstr "客户操作系统"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Server OS"
 msgstr "服务器操作系统"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Admin Tool"
 msgstr "管理工具"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "User Tool"
 msgstr "用户工具"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Embedded"
 msgstr "嵌入式"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Single Licence"
 msgstr "单一许可"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Per User"
 msgstr "每个用户"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Per Processor"
 msgstr "每个处理器"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Per Server"
 msgstr "每个服务器"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Per Node"
 msgstr "每个节点"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Volume Licence"
 msgstr "批量授权"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Enterprise Licence"
 msgstr "企业许可"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Developer Licence"
 msgstr "开发许可"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Demo"
 msgstr "演示"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Time Restricted"
 msgstr "时间限制"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Freeware"
 msgstr "免费软件"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Open Source"
 msgstr "开源"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Unlimited"
 msgstr "无限制的"
 

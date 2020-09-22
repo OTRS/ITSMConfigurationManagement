@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ITSMConfigurationManagement\n"
-"POT-Creation-Date: 2020-01-24 12:09+0000\n"
+"POT-Creation-Date: 2020-09-22 13:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -471,267 +471,267 @@ msgstr "Ngày hết hạn"
 msgid "Media"
 msgstr "Phương tiện"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Computer"
 msgstr ""
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Hardware"
 msgstr ""
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Network"
 msgstr ""
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Software"
 msgstr ""
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Expired"
 msgstr "Đã hết hạn"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Maintenance"
 msgstr "Bảo trì"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Pilot"
 msgstr ""
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Planned"
 msgstr "Theo kế hoạch"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Repair"
 msgstr "Sửa chữa"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Retired"
 msgstr "Không sử dụng"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Review"
 msgstr "Thẩm định"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Test/QA"
 msgstr "Kiểm tra/Hỏi đáp"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Laptop"
 msgstr "Máy xách tay"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Desktop"
 msgstr "Máy để bàn"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "PDA"
 msgstr "Thiết bị cầm tay"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Server"
 msgstr "Máy chủ"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Other"
 msgstr "Khác"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Monitor"
 msgstr "Màn hình"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Printer"
 msgstr "Máy in"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Switch"
 msgstr "Bộ chuyển mạch"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Router"
 msgstr "Bộ định tuyến"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "WLAN Access Point"
 msgstr "Điểm truy cập không dây"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Security Device"
 msgstr "Thiết bị bảo mật"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Backup Device"
 msgstr "Thiết bị lưu trữ"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Mouse"
 msgstr "Chuột"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Keyboard"
 msgstr "Bàn phím"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Camera"
 msgstr "Camera"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Beamer"
 msgstr ""
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Modem"
 msgstr "Bộ điều biến"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "PCMCIA Card"
 msgstr "Card PCMCIA"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "USB Device"
 msgstr "Thiết bị USB"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Docking Station"
 msgstr "Máy trạm cố định"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Scanner"
 msgstr "Máy quets"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Building"
 msgstr "Toà nhà"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Office"
 msgstr "Văn phòng"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Floor"
 msgstr "Tầng"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Room"
 msgstr "Phòng"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Rack"
 msgstr "Tủ Rack"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Workplace"
 msgstr "Nơi làm việc"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Outlet"
 msgstr "Ổ cắm"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "IT Facility"
 msgstr "Cơ sở CNTT"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "LAN"
 msgstr "LAN"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "WLAN"
 msgstr "Mạng không dây"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Telco"
 msgstr "Viễn thông"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "GSM"
 msgstr "GSM"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Client Application"
 msgstr "Ứng dụng khách"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Middleware"
 msgstr "Phần mềm trung gian"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Server Application"
 msgstr "Ứng dụng máy chủ"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Client OS"
 msgstr "HĐH khách"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Server OS"
 msgstr "HĐH máy chủ"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Admin Tool"
 msgstr "Công cụ quản lý"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "User Tool"
 msgstr "Công cụ người dùng"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Embedded"
 msgstr "Nhúng"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Single Licence"
 msgstr "Giấy phép đơn"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Per User"
 msgstr "Trên người dùng"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Per Processor"
 msgstr "Trên bộ xử lý"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Per Server"
 msgstr "Trên máy chủ"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Per Node"
 msgstr "Trên node"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Volume Licence"
 msgstr "Cấp phép số lượng lớn"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Enterprise Licence"
 msgstr "Giấy phép doanh nghiệp"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Developer Licence"
 msgstr "Giấy phép phát triển"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Demo"
 msgstr "Chạy thử"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Time Restricted"
 msgstr "Giới hạn thời gian"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Freeware"
 msgstr "Phần mềm miễn phí"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Open Source"
 msgstr "Mã nguồn mở"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Unlimited"
 msgstr "Không giới hạn"
 

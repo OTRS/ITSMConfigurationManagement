@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ITSMConfigurationManagement\n"
-"POT-Creation-Date: 2020-01-24 12:09+0000\n"
+"POT-Creation-Date: 2020-09-22 13:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -471,267 +471,267 @@ msgstr "تاریخ انقضا"
 msgid "Media"
 msgstr "رسانه"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Computer"
 msgstr ""
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Hardware"
 msgstr ""
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Network"
 msgstr ""
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Software"
 msgstr ""
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Expired"
 msgstr "منقضی شده"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Maintenance"
 msgstr "پشتیبانی و نگهداری"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Pilot"
 msgstr "نمونه آزمایشی"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Planned"
 msgstr "برنامه ریزی شده"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Repair"
 msgstr "تعمیر"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Retired"
 msgstr "بازنشسته شده"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Review"
 msgstr "بازبینی"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Test/QA"
 msgstr "تست/تضمین کیفیت"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Laptop"
 msgstr "کیفی"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Desktop"
 msgstr "رومیزی"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "PDA"
 msgstr "PDA"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Server"
 msgstr "سرور"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Other"
 msgstr "غیره"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Monitor"
 msgstr "صفحه نمایش"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Printer"
 msgstr "چاپگر"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Switch"
 msgstr "سویچ"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Router"
 msgstr "مسیریاب"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "WLAN Access Point"
 msgstr "نقاط دسترسی WLAN"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Security Device"
 msgstr "وسایل امنیتی"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Backup Device"
 msgstr "وسایل پشتیبان‌گیری"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Mouse"
 msgstr "ماوس"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Keyboard"
 msgstr "صفحه کلید"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Camera"
 msgstr "دوربین"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Beamer"
 msgstr "پرتو افکن"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Modem"
 msgstr "مودم"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "PCMCIA Card"
 msgstr "کارت PCMCIA"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "USB Device"
 msgstr "تجهیزات USB"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Docking Station"
 msgstr "ایستگاه اتصال"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Scanner"
 msgstr "اسکنر"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Building"
 msgstr "ساختمان"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Office"
 msgstr "محل کار"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Floor"
 msgstr "طبقه"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Room"
 msgstr "اتاق"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Rack"
 msgstr "قفسه"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Workplace"
 msgstr "محل کار"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Outlet"
 msgstr "پریز"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "IT Facility"
 msgstr "تسهیلات IT"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "LAN"
 msgstr "LAN"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "WLAN"
 msgstr "WLAN"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Telco"
 msgstr "Telco"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "GSM"
 msgstr "GSM"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Client Application"
 msgstr "برنامه‌های کلاینت"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Middleware"
 msgstr "میان افزار"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Server Application"
 msgstr "نرم افزار سرور"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Client OS"
 msgstr "سیستم عامل کلاینت"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Server OS"
 msgstr "سیستم عامل سرور"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Admin Tool"
 msgstr "ابزار مدیریتی"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "User Tool"
 msgstr "ابزار کاربر"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Embedded"
 msgstr "داخلی"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Single Licence"
 msgstr "اجازه‌نامه تکی"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Per User"
 msgstr "به ازای کاربر"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Per Processor"
 msgstr "به ازای پردازشگر"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Per Server"
 msgstr "به ازای سرور"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Per Node"
 msgstr "به ازای کامپیوتر"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Volume Licence"
 msgstr "اجازه‌نامه حجمی"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Enterprise Licence"
 msgstr "اجازه‌نامه سازمانی"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Developer Licence"
 msgstr "اجازه‌نامه توسعه دهنده"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Demo"
 msgstr "نسخه نمایشی"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Time Restricted"
 msgstr "دارای محدوده زمانی"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Freeware"
 msgstr "نرم افزار مجانی"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Open Source"
 msgstr "کد باز"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Unlimited"
 msgstr "نامحدود"
 

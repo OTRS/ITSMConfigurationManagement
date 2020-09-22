@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ITSMConfigurationManagement\n"
-"POT-Creation-Date: 2020-01-24 12:09+0000\n"
+"POT-Creation-Date: 2020-09-22 13:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -471,267 +471,267 @@ msgstr "Data wygaśnięcia"
 msgid "Media"
 msgstr "Nośnik"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Computer"
 msgstr ""
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Hardware"
 msgstr ""
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Network"
 msgstr ""
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Software"
 msgstr ""
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Expired"
 msgstr "Wygasło"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Maintenance"
 msgstr "Utrzymanie"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Pilot"
 msgstr "Pilotaż"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Planned"
 msgstr "Planowany"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Repair"
 msgstr "Naprawa"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Retired"
 msgstr "Wycofany"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Review"
 msgstr "Przegląd"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Test/QA"
 msgstr "Test/QA"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Laptop"
 msgstr "Laptop"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Desktop"
 msgstr "Desktop"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "PDA"
 msgstr "PDA"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Server"
 msgstr "Serwer"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Other"
 msgstr "Inne"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Monitor"
 msgstr "Monitor"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Printer"
 msgstr "Drukarka"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Switch"
 msgstr "Switch"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Router"
 msgstr "Ruter"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "WLAN Access Point"
 msgstr "Access Point"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Security Device"
 msgstr "Urządzenie zabezpieczające"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Backup Device"
 msgstr "Urządzenie do tworzenia kopii zapasowej"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Mouse"
 msgstr "Myszka"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Keyboard"
 msgstr "Klawiatura"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Camera"
 msgstr "Kamera"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Beamer"
 msgstr "Projektor"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Modem"
 msgstr "Modem"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "PCMCIA Card"
 msgstr "Karta PCMCIA"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "USB Device"
 msgstr "Urządzenie USB"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Docking Station"
 msgstr "Stacja dokująca"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Scanner"
 msgstr "Skaner"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Building"
 msgstr "Budynek"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Office"
 msgstr "Biuro"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Floor"
 msgstr "Piętro"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Room"
 msgstr "Pokój"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Rack"
 msgstr "Rack"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Workplace"
 msgstr "Miejsce pracy"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Outlet"
 msgstr "Punkt sprzedaży"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "IT Facility"
 msgstr "Dział IT"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "LAN"
 msgstr "LAN"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "WLAN"
 msgstr "WLAN"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Telco"
 msgstr "Telco"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "GSM"
 msgstr "GSM"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Client Application"
 msgstr "Aplikacja kliencka"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Middleware"
 msgstr "Middleware"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Server Application"
 msgstr "Aplikacja serwerowa"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Client OS"
 msgstr "System kliencki"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Server OS"
 msgstr "System serwerowy"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Admin Tool"
 msgstr "Narzędzie administratora"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "User Tool"
 msgstr "Narzędzie Użytkownika"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Embedded"
 msgstr "Osadzony"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Single Licence"
 msgstr "Pojedyńcza licencja"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Per User"
 msgstr "Na Użytkownika"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Per Processor"
 msgstr "Na procesor"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Per Server"
 msgstr "Na serwer"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Per Node"
 msgstr "Na urządzenie"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Volume Licence"
 msgstr "Zbiorcza licencja"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Enterprise Licence"
 msgstr "Licencja Enterprise"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Developer Licence"
 msgstr "Licencja developerska"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Demo"
 msgstr "Demo"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Time Restricted"
 msgstr "Czasowo ograniczona"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Freeware"
 msgstr "Freeware"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Open Source"
 msgstr "Open source"
 
-#. Database XML Definition: ITSMConfigurationManagement.sopm
+#. Database XML / SOPM Definition: ITSMConfigurationManagement.sopm
 msgid "Unlimited"
 msgstr "Bez limitu"
 
