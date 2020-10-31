@@ -2,16 +2,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ITSMConfigurationManagement\n"
 "POT-Creation-Date: 2020-09-22 13:14+0000\n"
-"PO-Revision-Date: 2020-01-25 23:27+0000\n"
-"Last-Translator: Marc De Mena Tomé <mdemena@gmail.com>\n"
-"Language-Team: Spanish <https://translate.app.otrs.com/projects/otrs-6/itsm-"
-"configuration-management/es/>\n"
+"PO-Revision-Date: 2020-10-31 17:49+0000\n"
+"Last-Translator: Henry Culajay <hculajay.umg@gmail.com>\n"
+"Language-Team: Spanish <https://translate.otrs.com/projects/otrs-6/"
+"itsm-configuration-management/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.2.2\n"
 
 #. Template: AdminITSMConfigItem
 msgid "Config Item Management"
@@ -59,7 +59,7 @@ msgstr "Estado actual del Tipo de incidente"
 
 #. Template: AgentDashboardITSMConfigItemGeneric
 msgid "Last changed"
-msgstr "Última modificación"
+msgstr "Último cambio"
 
 #. Template: AgentITSMConfigItemAdd
 msgid "Config Item"
@@ -162,8 +162,9 @@ msgid "Current Deployment State"
 msgstr "Estado Actual de la Implementación"
 
 #. Template: AgentITSMConfigItemZoom
+#, fuzzy
 msgid "Last changed by"
-msgstr "Última modificación por"
+msgstr "Último cambio por"
 
 #. Template: AgentITSMConfigItemZoom
 msgid "Show one version"
@@ -749,6 +750,7 @@ msgid "Unlimited"
 msgstr "Ilimitada"
 
 #. JS File: ITSM.Agent.ConfigItem.Zoom
+#, fuzzy
 msgid "Ok"
 msgstr "Ok"
 
