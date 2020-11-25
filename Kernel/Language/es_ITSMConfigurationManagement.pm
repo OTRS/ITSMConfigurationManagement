@@ -29,7 +29,7 @@ sub Data {
     $Self->{Translation}->{'Deployment State Type'} = 'Tipo de estado de implementación';
     $Self->{Translation}->{'Current Incident State'} = 'Estado Actual del Incidente';
     $Self->{Translation}->{'Current Incident State Type'} = 'Estado actual del Tipo de incidente';
-    $Self->{Translation}->{'Last changed'} = 'Última modificación';
+    $Self->{Translation}->{'Last changed'} = 'Último cambio';
 
     # Template: AgentITSMConfigItemAdd
     $Self->{Translation}->{'Config Item'} = 'Elemento de Configuración';
